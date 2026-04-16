@@ -163,7 +163,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
       {/* ── Hero image ── */}
       <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#a8ccd4', overflow: 'hidden' }}>
-        <Image src={trip.image} alt="Tur" fill style={{ objectFit: 'cover' }} priority sizes="100vw" />
+        {trip.image && <Image src={trip.image} alt="Tur" fill style={{ objectFit: 'cover' }} priority sizes="100vw" />}
+        {!trip.image && <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, opacity: 0.3 }}>⛵</div>}
         {/* Gradient overlay */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,20,35,0.35) 0%, transparent 40%, transparent 60%, rgba(0,20,35,0.6) 100%)' }} />
 

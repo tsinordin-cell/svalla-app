@@ -7,11 +7,13 @@ type Message = { role: 'user' | 'assistant'; content: string }
 
 const SUGGESTIONS = [
   'Vad passar för en familj med barn?',
-  'Bästa stället att bada i skärgården?',
-  'Romantisk tur för oss två?',
-  'Kortaste turen från Stockholm?',
-  'Bra seglingsrutt i en heldag?',
-  'Hjälp mig skriva en turlogg',
+  'Romantisk helgtur för oss två?',
+  'Bra seglingsrutt en hel dag från Ingarö?',
+  'Var kan man äta bra i skärgården?',
+  'Nybörjare – vilken tur börjar jag med?',
+  'Bästa stället att bada i ytterskärgården?',
+  'Hur långt är det till Sandhamn från Stockholm?',
+  'Äventyrlig tur med flera stopp?',
 ]
 
 function GuideContent() {
@@ -65,7 +67,7 @@ function GuideContent() {
         boxShadow: '0 2px 12px rgba(0,45,60,0.15)',
         flexShrink: 0,
       }}>
-        <Link href="/rutter" style={{
+        <Link href="/feed" style={{
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(255,255,255,0.15)',
@@ -94,7 +96,7 @@ function GuideContent() {
               <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
               <h2 style={{ fontSize: 16, fontWeight: 900, color: '#1e5c82', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
               <p style={{ fontSize: 13, color: '#5a8090', margin: 0, lineHeight: 1.5 }}>
-                Jag känner till alla 40 turer i databasen. Fråga mig vad du vill – vem som ska med, hur lång tid du har, om du vill bada, äta eller paddla.
+                Jag känner till turer, restauranger och hamnar i hela Stockholms skärgård. Berätta vad du är ute efter – sällskap, tid, om du vill bada, äta eller segla – så hittar vi rätt tur.
               </p>
             </div>
 

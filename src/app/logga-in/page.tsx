@@ -107,7 +107,7 @@ export default function LoggaInPage() {
           {isNew && (
             <input
               type="text"
-              placeholder="Välj ett användarnamn"
+              placeholder="Välj ett alias / smeknamn"
               value={username}
               onChange={e => setUsername(e.target.value)}
               style={inputStyle}
