@@ -1,0 +1,169 @@
+'use client'
+import { useState, useEffect, useRef } from 'react'
+import { createClient } from '@/lib/supabase'
+import Link from 'next/link'
+
+type Notif = {
+  id: string
+  type: 'like' | 'comment' | 'follow' | 'tag'
+  read: boolean
+  created_at: string
+  trip_id: string | null
+  actor_username?: string
+}
+
+function timeAgo(d: string) {
+  const m = Math.floor((Date.now() - new Date(d).getTime()) / 60000)
+  if (m < 1) return 'Just nu'
+  if (m < 60) return `${m}m`
+  if (m < 1440) return `${Math.floor(m / 60)}h`
+  return `${Math.floor(m / 1440)}d`
+}
+
+const TYPE_LABEL: Record<string, string> = {
+  like:    'gillade din tur ❤️',
+  comment: 'kommenterade din tur 💬',
+  follow:  'börjar följa dig 👋',
+  tag:     'taggade dig i en tur 🏷️',
+}
+
+export default function NotificationBell() {
+  const supabase = createClient()
+  const [notifs, setNotifs] = useState<Notif[]>([])
+  const [open, setOpen] = useState(false)
+  const [userId, setUserId] = useState<string | null>(null)
+  const ref = useRef<HTMLDivElement>(null)
+
+  const unread = notifs.filter(n => !n.read).length
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) { setUserId(user.id); load(user.id) }
+    })
+  }, []) // eslint-disable-line
+
+  async function load(uid: string) {
+    const { data } = await supabase
+      .from('notifications')
+      .select('id, type, read, created_at, trip_id, actor_id')
+      .eq('user_id', uid)
+      .order('created_at', { ascending: false })
+      .limit(20)
+
+    const rows = (data ?? []) as (Notif & { actor_id: string })[]
+    const actorIds = [...new Set(rows.map(r => r.actor_id).filter(Boolean))]
+    const { data: uRows } = actorIds.length
+      ? await supabase.from('users').select('id, username').in('id', actorIds)
+      : { data: [] }
+    const umap: Record<string, string> = {}
+    for (const u of uRows ?? []) umap[u.id] = u.username
+
+    setNotifs(rows.map(r => ({ ...r, actor_username: umap[r.actor_id] ?? 'Någon' })))
+  }
+
+  async function markAllRead() {
+    if (!userId || unread === 0) return
+    await supabase.from('notifications').update({ read: true }).eq('user_id', userId).eq('read', false)
+    setNotifs(prev => prev.map(n => ({ ...n, read: true })))
+  }
+
+  // Stäng vid klick utanför
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  if (!userId) return null
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button
+        onClick={() => { setOpen(o => !o); if (!open) markAllRead() }}
+        style={{
+          width: 38, height: 38, borderRadius: '50%',
+          background: 'rgba(10,123,140,0.08)',
+          border: 'none', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          position: 'relative', flexShrink: 0,
+        }}
+        title="Notiser"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+        {unread > 0 && (
+          <div style={{
+            position: 'absolute', top: 4, right: 4,
+            width: 16, height: 16, borderRadius: '50%',
+            background: '#c96e2a', border: '2px solid #f2f8fa',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 9, fontWeight: 800, color: '#fff', lineHeight: 1,
+          }}>
+            {unread > 9 ? '9+' : unread}
+          </div>
+        )}
+      </button>
+
+      {open && (
+        <div style={{
+          position: 'absolute', top: 46, right: 0, zIndex: 200,
+          width: 300, maxHeight: 420, overflowY: 'auto',
+          background: '#fff', borderRadius: 18,
+          boxShadow: '0 8px 40px rgba(0,30,50,0.18)',
+          border: '1px solid rgba(10,123,140,0.10)',
+        }}>
+          <div style={{ padding: '14px 16px 10px', borderBottom: '1px solid rgba(10,123,140,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>Notiser</span>
+            {unread > 0 && (
+              <button onClick={markAllRead} style={{ fontSize: 11, color: '#7a9dab', background: 'none', border: 'none', cursor: 'pointer' }}>
+                Markera alla som lästa
+              </button>
+            )}
+          </div>
+
+          {notifs.length === 0 ? (
+            <div style={{ padding: '32px 16px', textAlign: 'center', color: '#7a9dab', fontSize: 13 }}>
+              Inga notiser ännu
+            </div>
+          ) : (
+            notifs.map(n => (
+              <Link
+                key={n.id}
+                href={n.trip_id ? `/tur/${n.trip_id}` : '#'}
+                onClick={() => setOpen(false)}
+                style={{
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
+                  padding: '11px 16px',
+                  background: n.read ? 'transparent' : 'rgba(10,123,140,0.04)',
+                  borderBottom: '1px solid rgba(10,123,140,0.06)',
+                  textDecoration: 'none',
+                }}
+              >
+                <div style={{
+                  width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
+                  background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 12, fontWeight: 800, color: '#fff',
+                }}>
+                  {n.actor_username?.[0]?.toUpperCase() ?? '?'}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ fontSize: 13, color: '#162d3a' }}>
+                    <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type]}
+                  </span>
+                  <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 2 }}>{timeAgo(n.created_at)}</div>
+                </div>
+                {!n.read && (
+                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1e5c82', flexShrink: 0, marginTop: 5 }} />
+                )}
+              </Link>
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  )
+}

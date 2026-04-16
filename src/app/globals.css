@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sea:   #1e5c82;
+  --sea-d: #143f5c;
+  --sea-l: #ccdff0;
+  --sea-xl: #e8f2fa;
+  --acc:   #c96e2a;
+  --acc-d: #9e5318;
+  --acc-l: #fdf0e5;
+  --txt:   #192830;
+  --txt2:  #3d5865;
+  --txt3:  #7a9dab;
+  --bg:    #e9f4f7;
+  --white: #fafeff;
+  --green: #0f9e64;
+  --red:   #cc3d3d;
+  --nav-h: 64px;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  height: 100%;
+  /* Respektera notch på iPhone */
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+html, body {
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(175deg, #dde9f5 0%, #e4eff8 40%, #e8f0f5 100%) fixed;
+  color: var(--txt);
+  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  min-height: 100dvh;
+}
+
+/* ── Spinner animation ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Scrollbars ── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #b8d4da; border-radius: 2px; }
+
+/* ── Horizontal scroll snap ── */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.scroll-snap-x > * {
+  scroll-snap-align: start;
+}
+
+/* ── Utility ── */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px);
+}
+
+/* ── Touch feedback ── */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Input focus ring ── */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2.5px rgba(30, 92, 130, 0.25);
+}
+
+/* ── Image optimization ── */
+img {
+  display: block;
+  max-width: 100%;
+}
