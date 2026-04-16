@@ -8,10 +8,11 @@ import LikeButton from '@/components/LikeButton'
 import Comments from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
 import TripActions from '@/components/TripActions'
+import BackButton from '@/components/BackButton'
 import { restaurantsAlongRoute, formatDuration } from '@/lib/gps'
 import type { Metadata } from 'next'
 
-export const revalidate = 0   // always fresh (trip just saved)
+export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-request DB calls)
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
@@ -169,17 +170,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,20,35,0.35) 0%, transparent 40%, transparent 60%, rgba(0,20,35,0.6) 100%)' }} />
 
         {/* Back button */}
-        <Link href="/feed" style={{
-          position: 'absolute', top: 16, left: 16,
-          width: 40, height: 40, borderRadius: '50%',
-          background: 'rgba(250,254,255,0.88)', backdropFilter: 'blur(8px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          textDecoration: 'none',
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </Link>
+        <BackButton fallback="/feed" />
 
         {/* Share + actions */}
         <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', gap: 8 }}>

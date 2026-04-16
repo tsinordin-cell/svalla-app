@@ -12,14 +12,19 @@ const BOAT_FILTERS = [
   { value: 'SUP',        label: '🏄 SUP' },
 ]
 
+const PAGE_SIZE = 10
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) {
   const [tab,        setTab]        = useState<'all' | 'following'>('all')
   const [boatFilter, setBoatFilter] = useState('alla')
+  const [visible,    setVisible]    = useState(PAGE_SIZE)
 
   const base = tab === 'following' ? followingTrips : allTrips
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const trips = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
+  const filtered = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
+  const trips    = filtered.slice(0, visible)
+  const hasMore  = visible < filtered.length
 
   return (
     <>
@@ -32,7 +37,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           {(['all', 'following'] as const).map(t => (
             <button
               key={t}
-              onClick={() => setTab(t)}
+              onClick={() => { setTab(t); setVisible(PAGE_SIZE) }}
               style={{
                 flex: 1, padding: '8px 0', borderRadius: 10, border: 'none', cursor: 'pointer',
                 fontSize: 12, fontWeight: 800,
@@ -53,7 +58,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         {BOAT_FILTERS.map(f => (
           <button
             key={f.value}
-            onClick={() => setBoatFilter(f.value)}
+            onClick={() => { setBoatFilter(f.value); setVisible(PAGE_SIZE) }}
             style={{
               flexShrink: 0, padding: '5px 12px', borderRadius: 20,
               border: `1.5px solid ${boatFilter === f.value ? '#1e5c82' : 'rgba(10,123,140,0.18)'}`,
@@ -124,6 +129,20 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           {trips.map((trip: any) => <TripCard key={trip.id} trip={trip} />)}
+          {hasMore && (
+            <button
+              onClick={() => setVisible(v => v + PAGE_SIZE)}
+              style={{
+                margin: '4px auto 8px', display: 'block',
+                padding: '12px 32px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                background: 'rgba(10,123,140,0.08)',
+                color: '#1e5c82', fontSize: 13, fontWeight: 700,
+                transition: 'background .15s',
+              }}
+            >
+              Ladda fler turer ↓
+            </button>
+          )}
         </div>
       )}
     </>

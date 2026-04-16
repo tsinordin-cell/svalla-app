@@ -82,14 +82,17 @@ export default async function RutterPage({
     .select('id, slug, title, start_location, destination, transport_types, duration_label, best_for, highlights, usp, category, food_stops, tone_tags, hamn_profil, bad_profil')
     .order('title', { ascending: true })
 
-  const { data: tours, error } = await (
-    forFilter !== 'alla' ? baseQuery.contains('best_for', [forFilter]) : baseQuery
-  )
+  const [{ data: tours, error }, { count: totalCount }] = await Promise.all([
+    forFilter !== 'alla' ? baseQuery.contains('best_for', [forFilter]) : baseQuery,
+    supabase.from('tours').select('*', { count: 'exact', head: true }),
+  ])
   if (error) console.error('[rutter]', error.message)
 
   const filtered = ((tours ?? []) as Tour[]).filter((t) =>
     tidFilter === 'alla' ? true : durationMatch(t.duration_label, tidFilter)
   )
+
+  const isFiltered = forFilter !== 'alla' || tidFilter !== 'alla'
 
   function href(f: string, t: string) {
     const p = new URLSearchParams()
@@ -115,7 +118,9 @@ export default async function RutterPage({
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Turer</h1>
           <p style={{ fontSize: 11, color: '#7a9dab', margin: '2px 0 0', fontWeight: 500 }}>
-            {filtered.length} turer · Stockholms skärgård
+            {isFiltered
+              ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
+              : `${filtered.length} turer · Stockholms skärgård`}
           </p>
         </div>
         <Link href="/guide" style={{

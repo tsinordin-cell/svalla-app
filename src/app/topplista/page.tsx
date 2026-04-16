@@ -225,13 +225,15 @@ function LeaderboardSection({
               : `${row.count ?? 0} ${unit}`
             const isTop3 = i < 3
             return (
-              <div
+              <Link
                 key={row.uid}
+                href={`/u/${row.username}`}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 12,
                   padding: '10px 12px', borderRadius: 14,
                   background: isTop3 ? `${accentColor}0d` : 'rgba(10,123,140,0.03)',
                   border: isTop3 ? `1.5px solid ${accentColor}22` : '1px solid rgba(10,123,140,0.06)',
+                  textDecoration: 'none',
                 }}
               >
                 {/* Rank */}
@@ -273,7 +275,7 @@ function LeaderboardSection({
                 }}>
                   {val}
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>

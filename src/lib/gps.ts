@@ -56,7 +56,8 @@ export function avgSpeedKnots(points: GpsPoint[]): number {
 // Max speed
 export function maxSpeedKnots(points: GpsPoint[]): number {
   if (points.length === 0) return 0
-  return Math.max(...points.map(p => p.speedKnots))
+  const speeds = points.map(p => p.speedKnots)
+  return speeds.reduce((max, s) => (s > max ? s : max), 0)
 }
 
 // Detect stops: groups of consecutive points where speed < 0.3 kn for > 2 min
@@ -118,4 +119,13 @@ export function formatDuration(seconds: number): string {
   if (h > 0) return m > 0 ? `${h}h ${m}min` : `${h}h`
   if (m > 0) return s > 0 ? `${m}min ${s}s` : `${m}min`
   return `${s}s`
+}
+
+/** Same as formatDuration but takes minutes (as stored on trips.duration) */
+export function formatDurationMin(min: number): string | null {
+  if (!min || min <= 0) return null
+  const h = Math.floor(min / 60)
+  const m = min % 60
+  if (h === 0) return `${m}min`
+  return m > 0 ? `${h}h ${m}min` : `${h}h`
 }

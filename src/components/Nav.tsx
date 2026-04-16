@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
+import NotificationBell from '@/components/NotificationBell'
 
 export default function Nav() {
   const path = usePathname()
@@ -109,8 +110,25 @@ export default function Nav() {
     },
   ]
 
+  // Feed har redan en notis-klocka i sin header.
+  // Tur-sidan och logga-sidorna har egna knappar i top-right — lägg inte på klockn där.
+  const showGlobalBell =
+    path !== '/' &&
+    path !== '/feed' &&
+    !path.startsWith('/tur/') &&
+    !path.startsWith('/logga') &&
+    !path.startsWith('/spara')
+
   return (
-    <nav style={{
+    <>
+      {showGlobalBell && (
+        <div style={{
+          position: 'fixed', top: 12, right: 16, zIndex: 901,
+        }}>
+          <NotificationBell />
+        </div>
+      )}
+    <nav aria-label="Navigering" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'var(--nav-h)',
       background: 'rgba(250,254,255,0.92)',
@@ -170,5 +188,6 @@ export default function Nav() {
         )
       })}
     </nav>
+    </>
   )
 }

@@ -2,6 +2,7 @@
 import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { toast } from '@/components/Toast'
 
 const PINNAR = [
   { value: 1, emoji: '⚓',     label: 'Okej' },
@@ -69,7 +70,7 @@ export default function TripActions({
   async function handleSave() {
     setSaving(true)
     const supabase = createClient()
-    await supabase
+    const { error } = await supabase
       .from('trips')
       .update({
         caption:       caption.trim() || null,
@@ -79,6 +80,8 @@ export default function TripActions({
       })
       .eq('id', tripId)
     setSaving(false)
+    if (error) { toast('Kunde inte spara ändringar. Försök igen.', 'error'); return }
+    toast('Turen uppdaterad ✓')
     setEditing(false)
     router.refresh()
   }
@@ -87,9 +90,10 @@ export default function TripActions({
   async function handleDelete() {
     setDeleting(true)
     const supabase = createClient()
+    const { error } = await supabase.from('trips').delete().eq('id', tripId)
+    if (error) { toast('Kunde inte radera turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
     await supabase.from('gps_points').delete().eq('trip_id', tripId)
     await supabase.from('stops').delete().eq('trip_id', tripId)
-    await supabase.from('trips').delete().eq('id', tripId)
     router.push('/feed')
   }
 

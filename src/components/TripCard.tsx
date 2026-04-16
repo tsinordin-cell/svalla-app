@@ -1,34 +1,14 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
+import { formatDurationMin } from '@/lib/gps'
+import { timeAgo } from '@/lib/utils'
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)
-}
-
-function formatDuration(min: number) {
-  if (!min || min <= 0) return null
-  const h = Math.floor(min / 60)
-  const m = min % 60
-  if (h === 0) return `${m}min`
-  return m > 0 ? `${h}h ${m}min` : `${h}h`
-}
-
-function timeAgo(dateStr: string) {
-  const diff = Date.now() - new Date(dateStr).getTime()
-  const m = Math.floor(diff / 60000)
-  if (m < 1) return 'Just nu'
-  if (m < 60) return `${m} min sedan`
-  const h = Math.floor(m / 60)
-  if (h < 24) return `${h}h sedan`
-  const d = Math.floor(h / 24)
-  if (d === 1) return 'Igår'
-  if (d < 7) return `${d} dagar sedan`
-  return new Date(dateStr).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })
 }
 
 const boatEmoji: Record<string, string> = {
@@ -49,10 +29,9 @@ const pinnarEmoji: Record<number, string> = {
 }
 
 export default function TripCard({ trip }: { trip: Trip }) {
-  const router   = useRouter()
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
-  const dur      = formatDuration(trip.duration)
+  const dur      = formatDurationMin(trip.duration)
   const hasStats = trip.distance > 0 || !!dur || trip.average_speed_knots > 0
 
   const stats: { val: string; label: string }[] = []
@@ -61,10 +40,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
   if (trip.average_speed_knots > 0)  stats.push({ val: `${fmt(trip.average_speed_knots)} kn`, label: 'Snitt' })
 
   return (
-    <article
-      onClick={() => router.push(`/tur/${trip.id}`)}
-      style={{ cursor: 'pointer' }}
-    >
+    <Link href={`/tur/${trip.id}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{
         background: '#fff', borderRadius: 20,
         overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,45,60,0.08)',
@@ -189,6 +165,6 @@ export default function TripCard({ trip }: { trip: Trip }) {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   )
 }

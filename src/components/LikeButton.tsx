@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase'
+import { toast } from '@/components/Toast'
 
 export default function LikeButton({ tripId }: { tripId: string }) {
   const supabase = createClient()
@@ -34,9 +35,11 @@ export default function LikeButton({ tripId }: { tripId: string }) {
     if (liked) {
       await supabase.from('likes').delete().eq('trip_id', tripId).eq('user_id', userId)
       setLiked(false); setCount(c => c - 1)
+      toast('Gillning borttagen', 'info')
     } else {
       await supabase.from('likes').insert({ trip_id: tripId, user_id: userId })
       setLiked(true); setCount(c => c + 1)
+      toast('Du gillade turen ❤️')
       // Notis + push till tur-ägaren
       const { data: trip } = await supabase.from('trips').select('user_id').eq('id', tripId).single()
       if (trip?.user_id && trip.user_id !== userId) {
@@ -63,6 +66,8 @@ export default function LikeButton({ tripId }: { tripId: string }) {
   return (
     <button
       onClick={toggle}
+      aria-label={liked ? 'Ta bort gillning' : 'Gilla turen'}
+      aria-pressed={liked}
       style={{
         display: 'flex', alignItems: 'center', gap: 5,
         padding: '6px 12px', borderRadius: 20, border: 'none',

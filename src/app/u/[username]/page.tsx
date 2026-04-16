@@ -207,16 +207,19 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
           {/* Follow button */}
           <div style={{ marginTop: 14 }}>
-            <FollowButton targetUserId={userRow.id} />
+            <FollowButton targetUserId={userRow.id} darkBg />
           </div>
         </div>
 
         {/* ── Trip grid ── */}
         <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <div style={{ textAlign: 'center', padding: '40px 16px' }}>
               <div style={{ fontSize: 48, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 14, color: '#7a9dab' }}>Inga loggade turer ännu</p>
+              <p style={{ fontSize: 15, fontWeight: 700, color: '#3d5865', margin: '0 0 6px' }}>Inga turer loggade ännu</p>
+              <p style={{ fontSize: 13, color: '#7a9dab', margin: 0, lineHeight: 1.5 }}>
+                {userRow.username} har inte loggat någon tur på Svalla än.<br />Kom tillbaka senare!
+              </p>
             </div>
           ) : (
             <>

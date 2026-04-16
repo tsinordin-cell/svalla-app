@@ -137,6 +137,11 @@ export default function LoggaInPage() {
             style={inputStyle}
             autoComplete={isNew ? 'new-password' : 'current-password'}
           />
+          {isNew && password.length > 0 && password.length < 6 && (
+            <p style={{ fontSize: 12, color: '#c96e2a', margin: '-4px 0 0', padding: '0 4px' }}>
+              Minst 6 tecken krävs ({6 - password.length} till)
+            </p>
+          )}
 
           {err && (
             <p style={{ fontSize: 13, color: '#cc3d3d', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', margin: 0, textAlign: 'center' }}>
@@ -175,6 +180,18 @@ export default function LoggaInPage() {
         >
           {isNew ? 'Har redan konto? Logga in →' : 'Ny på Svalla? Skapa konto gratis →'}
         </button>
+
+        {!isNew && (
+          <a
+            href="/glomt-losenord"
+            style={{
+              display: 'block', textAlign: 'center', marginTop: 12,
+              fontSize: 13, color: '#7a9dab', textDecoration: 'none',
+            }}
+          >
+            Glömt lösenordet?
+          </a>
+        )}
       </div>
     </div>
   )

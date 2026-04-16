@@ -1,8 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase'
+import { toast } from '@/components/Toast'
 
-export default function FollowButton({ targetUserId }: { targetUserId: string }) {
+export default function FollowButton({ targetUserId, darkBg = false }: { targetUserId: string; darkBg?: boolean }) {
   const supabase = createClient()
   const [myId, setMyId]         = useState<string | null>(null)
   const [following, setFollowing] = useState(false)
@@ -32,12 +33,16 @@ export default function FollowButton({ targetUserId }: { targetUserId: string })
     if (!myId || loading || myId === targetUserId) return
     setLoading(true)
     if (following) {
-      await supabase.from('follows').delete()
+      const { error } = await supabase.from('follows').delete()
         .eq('follower_id', myId).eq('following_id', targetUserId)
+      if (error) { toast('Kunde inte avfölja. Försök igen.', 'error'); setLoading(false); return }
       setFollowing(false); setCount(c => Math.max(0, c - 1))
+      toast('Du följer inte längre den här seglaren')
     } else {
-      await supabase.from('follows').insert({ follower_id: myId, following_id: targetUserId })
+      const { error } = await supabase.from('follows').insert({ follower_id: myId, following_id: targetUserId })
+      if (error) { toast('Kunde inte följa. Försök igen.', 'error'); setLoading(false); return }
       setFollowing(true); setCount(c => c + 1)
+      toast('Du följer nu den här seglaren ⛵')
       // Notis + push till den som följs
       await supabase.from('notifications').insert({
         user_id: targetUserId, actor_id: myId, type: 'follow',
@@ -61,25 +66,28 @@ export default function FollowButton({ targetUserId }: { targetUserId: string })
   if (myId === targetUserId) return null
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       <button
         onClick={toggle}
         disabled={loading || !myId}
         style={{
-          padding: '9px 22px', borderRadius: 20, border: 'none', cursor: myId ? 'pointer' : 'default',
-          background: following
-            ? 'rgba(10,123,140,0.08)'
-            : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-          color: following ? '#1e5c82' : '#fff',
-          fontSize: 13, fontWeight: 700,
-          transition: 'all .15s',
-          boxShadow: following ? 'none' : '0 2px 10px rgba(30,92,130,0.3)',
+          padding: '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',
+          fontSize: 13, fontWeight: 700, transition: 'all .15s',
+          ...(following
+            ? darkBg
+              ? { background: 'rgba(255,255,255,0.18)', border: '1.5px solid rgba(255,255,255,0.35)', color: '#fff', boxShadow: 'none' }
+              : { background: 'rgba(10,123,140,0.08)', border: '1.5px solid rgba(10,123,140,0.20)', color: '#1e5c82', boxShadow: 'none' }
+            : { background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', border: '1.5px solid transparent', color: '#fff', boxShadow: '0 2px 10px rgba(30,92,130,0.3)' }
+          ),
         }}
       >
         {loading ? '…' : following ? 'Följer ✓' : 'Följ'}
       </button>
       {count > 0 && (
-        <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>
+        <span style={{
+          fontSize: 12, fontWeight: 600,
+          color: darkBg ? 'rgba(255,255,255,0.75)' : '#7a9dab',
+        }}>
           {count} följare
         </span>
       )}

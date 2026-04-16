@@ -5,17 +5,9 @@ import OnboardingModal from '@/components/OnboardingModal'
 import FeedTabs from '@/components/FeedTabs'
 import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
+import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 60
-
-function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime()
-  const m = Math.floor(diff / 60000)
-  if (m < 60) return `${m} min sedan`
-  const h = Math.floor(m / 60)
-  if (h < 24) return `${h}h sedan`
-  return `${Math.floor(h / 24)}d sedan`
-}
 
 export default async function FeedPage() {
   const supabase = createClient()
@@ -35,7 +27,24 @@ export default async function FeedPage() {
     .order('created_at', { ascending: false })
     .limit(50)
 
-  if (error) console.error('[feed]', error.message)
+  if (error) {
+    console.error('[feed]', error.message)
+    return (
+      <div style={{ minHeight: '100vh', background: '#f2f8fa', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
+        <h2 style={{ fontSize: 18, fontWeight: 900, color: '#162d3a', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
+        <p style={{ fontSize: 14, color: '#7a9dab', margin: '0 0 20px', lineHeight: 1.5 }}>
+          Något gick fel. Kontrollera din anslutning och försök igen.
+        </p>
+        <Link href="/feed" style={{
+          padding: '12px 24px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
+        }}>
+          Försök igen
+        </Link>
+      </div>
+    )
+  }
 
   // Hämta usernames + avatars separat från public.users
   const userIds = [...new Set((trips ?? []).map((t: { user_id: string }) => t.user_id).filter(Boolean))]

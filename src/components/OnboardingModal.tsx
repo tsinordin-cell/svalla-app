@@ -31,7 +31,7 @@ export default function OnboardingModal() {
   const steps = [
     { emoji: '⛵', title: 'Logga din tur', desc: 'Spara GPS-spår, bilder och anteckningar från dina båtturer.' },
     { emoji: '🗺️', title: 'Utforska rutter', desc: 'Hitta inspirerande rutter och restauranger längs kusten.' },
-    { emoji: '🌊', title: 'Följ andra seglare', desc: 'Se vad andra paddlar, seglar och utforskar i skärgården.' },
+    { emoji: '🌊', title: 'Följ andra seglare', desc: 'Se vad andra seglar och utforskar i skärgården – och inspireras.' },
   ]
 
   return (

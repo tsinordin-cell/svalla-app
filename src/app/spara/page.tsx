@@ -102,11 +102,13 @@ export default function SparaPage() {
       (err) => {
         if (err.code === err.TIMEOUT) {
           // Timeout is normal while waiting for GPS fix — keep watching silently
-          setGpsError('Söker GPS-signal…')
+          setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
         } else if (err.code === err.PERMISSION_DENIED) {
-          setGpsError('Tillåt platsåtkomst i telefonens inställningar')
+          setGpsError('GPS-åtkomst nekad – tillåt platsdelning i telefonens inställningar och ladda om.')
+        } else if (err.code === err.POSITION_UNAVAILABLE) {
+          setGpsError('GPS-signal ej tillgänglig. Kontrollera att plats är aktiverat.')
         } else {
-          setGpsError(`GPS-fel: ${err.message}`)
+          setGpsError('GPS-fel – prova att ladda om sidan eller byt till manuell loggning.')
         }
       },
       { enableHighAccuracy: true, maximumAge: 5000, timeout: Infinity }

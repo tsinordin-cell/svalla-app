@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { toast } from '@/components/Toast'
 
 export default function ShareButton({ url, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false)
@@ -24,9 +25,10 @@ export default function ShareButton({ url, title }: { url: string; title: string
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
+      toast('Länk kopierad! 📋')
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // clipboard ej tillgänglig
+      toast('Kunde inte kopiera länken.', 'error')
     }
   }
 
@@ -40,6 +42,7 @@ export default function ShareButton({ url, title }: { url: string; title: string
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         flexShrink: 0, transition: 'all 0.2s',
       }}
+      aria-label={copied ? 'Kopierat!' : 'Dela tur'}
       title={copied ? 'Kopierat!' : 'Dela tur'}
     >
       {copied ? (

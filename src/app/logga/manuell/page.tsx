@@ -71,6 +71,11 @@ function ManuellForm() {
     const f = e.target.files?.[0]
     if (!f) return
     setErr('')
+    // Kontrollera filstorlek (max 20 MB råfil)
+    if (f.size > 20 * 1024 * 1024) {
+      setErr('Bilden är för stor (max 20 MB). Välj en annan bild.')
+      return
+    }
     // Komprimera alltid – tar bort storleksproblem och gör upload snabbare
     const compressed = await compressImage(f)
     setFile(compressed)
@@ -120,7 +125,7 @@ function ManuellForm() {
       }).select('id').single()
 
       if (insErr || !trip) {
-        setErr('Något gick fel. Försök igen.')
+        setErr('Kunde inte spara turen. Kontrollera din anslutning och försök igen.')
         setLoading(false)
         return
       }
@@ -141,8 +146,9 @@ function ManuellForm() {
 
       setPosted(true)
       setTimeout(() => router.push(`/tur/${trip.id}`), 800)
-    } catch {
-      setErr('Oväntat fel')
+    } catch (e) {
+      console.error('[manuell]', e)
+      setErr('Något gick oväntat fel. Kontrollera anslutningen och försök igen.')
       setLoading(false)
     }
   }
@@ -292,7 +298,7 @@ function ManuellForm() {
               Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
             </label>
             <textarea
-              placeholder="Paddlade hit i morgonsol, bastade direkt när vi kom in…"
+              placeholder="Seglade hit i morgonsol, drack kaffe i solen och hoppade i…"
               value={caption}
               onChange={e => setCaption(e.target.value)}
               maxLength={280}

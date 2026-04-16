@@ -4,6 +4,7 @@ import Nav from '@/components/Nav'
 import InstallPrompt from '@/components/InstallPrompt'
 import PushPrompt from '@/components/PushPrompt'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
+import ToastContainer from '@/components/Toast'
 // Leaflet CSS (needed for map components)
 import 'leaflet/dist/leaflet.css'
 
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <InstallPrompt />
         <PushPrompt />
         <ServiceWorkerRegister />
+        <ToastContainer />
       </body>
     </html>
   )

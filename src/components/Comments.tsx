@@ -1,30 +1,52 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
+import { timeAgoShort } from '@/lib/utils'
 
 type Comment = { id: string; content: string; created_at: string; user_id: string; username?: string }
 
 export default function Comments({ tripId }: { tripId: string }) {
   const supabase = createClient()
   const [comments, setComments] = useState<Comment[]>([])
-  const [text, setText] = useState('')
-  const [userId, setUserId] = useState<string | null>(null)
-  const [posting, setPosting] = useState(false)
-  const [open, setOpen] = useState(false)
+  const [text,     setText]     = useState('')
+  const [userId,   setUserId]   = useState<string | null>(null)
+  const [posting,  setPosting]  = useState(false)
+  const [open,     setOpen]     = useState(false)
+  const [err,      setErr]      = useState('')
+  const listRef = useRef<HTMLDivElement>(null)
 
+  // Load auth + comments, set up realtime
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => setUserId(user?.id ?? null))
-    loadComments()
-  }, [])
+    load()
 
-  async function loadComments() {
+    const channel = supabase
+      .channel(`comments:${tripId}`)
+      .on('postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'comments', filter: `trip_id=eq.${tripId}` },
+        () => load(),
+      )
+      .subscribe()
+
+    return () => { supabase.removeChannel(channel) }
+  }, [tripId]) // eslint-disable-line
+
+  // Auto-scroll to bottom when comments expand
+  useEffect(() => {
+    if (open && listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight
+    }
+  }, [open, comments.length])
+
+  async function load() {
     const { data } = await supabase
       .from('comments')
       .select('id, content, created_at, user_id')
       .eq('trip_id', tripId)
       .order('created_at', { ascending: true })
+      .limit(100)
+
     const rows = (data ?? []) as Comment[]
-    // hämta usernames separat
     const uids = [...new Set(rows.map(c => c.user_id).filter(Boolean))]
     const { data: uRows } = uids.length
       ? await supabase.from('users').select('id, username').in('id', uids)
@@ -37,18 +59,23 @@ export default function Comments({ tripId }: { tripId: string }) {
   async function post(e: React.FormEvent) {
     e.preventDefault()
     if (!userId || !text.trim() || posting) return
-    setPosting(true)
-    const { error: commentErr } = await supabase.from('comments').insert({ trip_id: tripId, user_id: userId, content: text.trim() })
-    if (commentErr) { console.error('[comments] insert error:', commentErr.message); setPosting(false); return }
+    setPosting(true); setErr('')
+    const { error: commentErr } = await supabase
+      .from('comments')
+      .insert({ trip_id: tripId, user_id: userId, content: text.trim() })
+
+    if (commentErr) {
+      setErr('Kunde inte skicka kommentaren. Försök igen.')
+      setPosting(false)
+      return
+    }
 
     // Notis + push till tur-ägaren
     const { data: trip } = await supabase.from('trips').select('user_id').eq('id', tripId).single()
     if (trip?.user_id && trip.user_id !== userId) {
-      const { error: notifErr } = await supabase.from('notifications').insert({
+      await supabase.from('notifications').insert({
         user_id: trip.user_id, actor_id: userId, type: 'comment', trip_id: tripId,
       })
-      if (notifErr) console.error('[comments] notification error:', notifErr.message)
-
       const { data: me } = await supabase.from('users').select('username').eq('id', userId).single()
       fetch('/api/push/send', {
         method: 'POST',
@@ -59,25 +86,20 @@ export default function Comments({ tripId }: { tripId: string }) {
           body: `${me?.username ?? 'Någon'}: ${text.trim().slice(0, 60)}`,
           url: `/tur/${tripId}`,
         }),
-      }).catch((e) => console.error('[comments] push error:', e))
+      }).catch(() => {/* tyst */})
     }
     setText('')
-    await loadComments()
     setPosting(false)
-  }
-
-  function timeAgo(d: string) {
-    const m = Math.floor((Date.now() - new Date(d).getTime()) / 60000)
-    if (m < 1) return 'Just nu'
-    if (m < 60) return `${m}m`
-    if (m < 1440) return `${Math.floor(m/60)}h`
-    return `${Math.floor(m/1440)}d`
+    // Realtime channel triggers reload, but also load manually as fallback
+    await load()
   }
 
   return (
     <div>
       <button
         onClick={() => setOpen(o => !o)}
+        aria-label={comments.length > 0 ? `${comments.length} kommentarer` : 'Lägg till kommentar'}
+        aria-expanded={open}
         style={{
           display: 'flex', alignItems: 'center', gap: 5,
           padding: '6px 12px', borderRadius: 20, border: 'none',
@@ -97,53 +119,70 @@ export default function Comments({ tripId }: { tripId: string }) {
           marginTop: 12, background: 'var(--white)', borderRadius: 16,
           border: '1px solid rgba(10,123,140,0.10)', overflow: 'hidden',
         }}>
-          {comments.length > 0 && (
-            <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {comments.map(c => (
-                <div key={c.id} style={{ display: 'flex', gap: 8 }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-                    background: 'linear-gradient(135deg,var(--sea),#2d7d8a)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontSize: 11, fontWeight: 700,
-                  }}>
-                    {c.username?.slice(0,2).toUpperCase() ?? '?'}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--sea)' }}>
-                      {c.username}
-                      <span style={{ fontWeight: 400, color: 'var(--txt3)', marginLeft: 6 }}>{timeAgo(c.created_at)}</span>
-                    </div>
-                    <div style={{ fontSize: 13, color: 'var(--txt2)', marginTop: 2 }}>{c.content}</div>
-                  </div>
+          {/* Comment list */}
+          <div ref={listRef} style={{ maxHeight: 280, overflowY: 'auto', padding: comments.length > 0 ? '12px 14px' : 0 }}>
+            {comments.length === 0 && (
+              <p style={{ textAlign: 'center', padding: '16px 14px', fontSize: 13, color: '#a0bec8', margin: 0 }}>
+                Bli först att kommentera 💬
+              </p>
+            )}
+            {comments.map(c => (
+              <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                <div style={{
+                  width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+                  background: 'linear-gradient(135deg,var(--sea),#2d7d8a)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: '#fff', fontSize: 11, fontWeight: 700,
+                }}>
+                  {c.username?.slice(0, 2).toUpperCase() ?? '?'}
                 </div>
-              ))}
-            </div>
-          )}
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--sea)' }}>
+                    {c.username}
+                    <span style={{ fontWeight: 400, color: 'var(--txt3)', marginLeft: 6 }}>{timeAgoShort(c.created_at)}</span>
+                  </div>
+                  <div style={{ fontSize: 13, color: 'var(--txt2)', marginTop: 2 }}>{c.content}</div>
+                </div>
+              </div>
+            ))}
+          </div>
 
+          {/* Input */}
           {userId ? (
-            <form onSubmit={post} style={{ display: 'flex', gap: 8, padding: '10px 14px', borderTop: comments.length > 0 ? '1px solid rgba(10,123,140,0.08)' : 'none' }}>
-              <input
-                value={text}
-                onChange={e => setText(e.target.value)}
-                placeholder="Skriv en kommentar…"
-                maxLength={500}
-                style={{
-                  flex: 1, padding: '8px 12px', borderRadius: 20,
-                  border: '1.5px solid rgba(10,123,140,0.15)',
-                  background: 'rgba(10,123,140,0.04)', fontSize: 13, outline: 'none',
-                }}
-              />
-              <button type="submit" disabled={!text.trim() || posting}
-                style={{
-                  padding: '8px 14px', borderRadius: 20, border: 'none',
-                  background: text.trim() ? 'var(--sea)' : 'rgba(10,123,140,0.15)',
-                  color: text.trim() ? '#fff' : 'var(--txt3)',
-                  fontSize: 12, fontWeight: 700, cursor: 'pointer',
-                }}
-              >
-                Skicka
-              </button>
+            <form onSubmit={post} style={{ padding: '10px 14px', borderTop: '1px solid rgba(10,123,140,0.08)' }}>
+              {err && (
+                <p style={{ fontSize: 12, color: '#cc3d3d', margin: '0 0 8px', textAlign: 'center' }}>{err}</p>
+              )}
+              <div style={{ display: 'flex', gap: 8 }}>
+                <input
+                  value={text}
+                  onChange={e => setText(e.target.value)}
+                  placeholder="Skriv en kommentar…"
+                  maxLength={500}
+                  style={{
+                    flex: 1, padding: '8px 12px', borderRadius: 20,
+                    border: '1.5px solid rgba(10,123,140,0.15)',
+                    background: 'rgba(10,123,140,0.04)', fontSize: 13, outline: 'none',
+                  }}
+                />
+                <button type="submit" disabled={!text.trim() || posting}
+                  aria-label="Skicka kommentar"
+                  style={{
+                    padding: '8px 14px', borderRadius: 20, border: 'none',
+                    background: text.trim() && !posting ? 'var(--sea)' : 'rgba(10,123,140,0.15)',
+                    color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
+                    fontSize: 12, fontWeight: 700, cursor: 'pointer',
+                    transition: 'all .15s',
+                  }}
+                >
+                  {posting ? '…' : 'Skicka'}
+                </button>
+              </div>
+              {text.length > 400 && (
+                <div style={{ fontSize: 10, color: text.length > 480 ? '#cc3d3d' : '#a0bec8', textAlign: 'right', marginTop: 4 }}>
+                  {text.length}/500
+                </div>
+              )}
             </form>
           ) : (
             <div style={{ padding: '10px 14px', fontSize: 12, color: 'var(--txt3)' }}>

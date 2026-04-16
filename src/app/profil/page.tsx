@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase'
 import type { Trip, User } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toast } from '@/components/Toast'
 
 // ── Achievements ──────────────────────────────────────────────────────────────
 const ACHIEVEMENTS = [
@@ -267,9 +268,11 @@ function EditSheet({
   }
 
   async function handleSave() {
-    const trimmed = username.trim()
-    if (!trimmed || trimmed.length < 2) { setError('Användarnamnet måste vara minst 2 tecken.'); return }
-    if (!/^[a-zA-Z0-9_.-]+$/.test(trimmed)) { setError('Bara bokstäver, siffror och _ . - är tillåtna.'); return }
+    const trimmed = username.trim().toLowerCase()
+    if (!trimmed || trimmed.length < 3) { setError('Aliaset måste vara minst 3 tecken.'); return }
+    if (trimmed.length > 20) { setError('Aliaset får max vara 20 tecken.'); return }
+    if (trimmed.includes(' ')) { setError('Aliaset får inte innehålla mellanslag.'); return }
+    if (!/^[a-z0-9_.-]+$/.test(trimmed)) { setError('Bara bokstäver (a-z), siffror och _ . - är tillåtna.'); return }
     setSaving(true); setError(null)
 
     let avatarUrl = user.avatar
@@ -307,6 +310,7 @@ function EditSheet({
       .single()
 
     if (upErr || !updated) { setError('Kunde inte spara. Försök igen.'); setSaving(false); return }
+    toast('Profil sparad ✓')
     onSaved(updated as User)
   }
 
@@ -562,6 +566,16 @@ export default function ProfilPage() {
       }}>
         <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Profil</h1>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          {user?.username && (
+            <Link href={`/u/${user.username}`} style={{
+              background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.15)',
+              fontSize: 12, color: '#1e5c82', fontWeight: 700,
+              padding: '7px 12px', borderRadius: 20, textDecoration: 'none',
+              display: 'flex', alignItems: 'center', gap: 4,
+            }}>
+              👁 Min profil
+            </Link>
+          )}
           <button onClick={() => setEditing(true)} style={{
             background: 'rgba(10,123,140,0.08)', border: 'none',
             fontSize: 12, color: '#1e5c82', cursor: 'pointer', fontWeight: 700,

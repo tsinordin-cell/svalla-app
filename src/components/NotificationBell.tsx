@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
+import { timeAgoShort } from '@/lib/utils'
 
 type Notif = {
   id: string
@@ -10,14 +11,6 @@ type Notif = {
   created_at: string
   trip_id: string | null
   actor_username?: string
-}
-
-function timeAgo(d: string) {
-  const m = Math.floor((Date.now() - new Date(d).getTime()) / 60000)
-  if (m < 1) return 'Just nu'
-  if (m < 60) return `${m}m`
-  if (m < 1440) return `${Math.floor(m / 60)}h`
-  return `${Math.floor(m / 1440)}d`
 }
 
 const TYPE_LABEL: Record<string, string> = {
@@ -37,9 +30,28 @@ export default function NotificationBell() {
   const unread = notifs.filter(n => !n.read).length
 
   useEffect(() => {
+    let channel: ReturnType<typeof supabase.channel> | null = null
+
     supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) { setUserId(user.id); load(user.id) }
+      if (!user) return
+      const uid = user.id
+      setUserId(uid)
+      load(uid)
+
+      // Realtime: ny notis → ladda om listan
+      channel = supabase
+        .channel(`notifications:${uid}`)
+        .on(
+          'postgres_changes',
+          { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },
+          () => load(uid),
+        )
+        .subscribe()
     })
+
+    return () => {
+      if (channel) supabase.removeChannel(channel)
+    }
   }, []) // eslint-disable-line
 
   async function load(uid: string) {
@@ -89,6 +101,7 @@ export default function NotificationBell() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', flexShrink: 0,
         }}
+        aria-label={unread > 0 ? `${unread} olästa notiser` : 'Notiser'}
         title="Notiser"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
@@ -154,7 +167,7 @@ export default function NotificationBell() {
                   <span style={{ fontSize: 13, color: '#162d3a' }}>
                     <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type]}
                   </span>
-                  <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 2 }}>{timeAgo(n.created_at)}</div>
+                  <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
                 </div>
                 {!n.read && (
                   <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1e5c82', flexShrink: 0, marginTop: 5 }} />

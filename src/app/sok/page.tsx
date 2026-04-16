@@ -26,6 +26,15 @@ export default function SokPage() {
     inputRef.current?.focus()
   }, [])
 
+  // Escape-tangent rensar sökfältet
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setQuery('')
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current)
     const q = query.trim()
@@ -44,22 +53,22 @@ export default function SokPage() {
         .from('trips')
         .select('id, location_name, boat_type, image, created_at')
         .ilike('location_name', pattern)
-        .limit(5),
+        .limit(8),
       supabase
         .from('tours')
         .select('id, title, usp, start_location, destination')
         .or(`title.ilike.${pattern},start_location.ilike.${pattern},destination.ilike.${pattern}`)
-        .limit(5),
+        .limit(8),
       supabase
         .from('restaurants')
         .select('id, name, island, image_url')
         .or(`name.ilike.${pattern},island.ilike.${pattern}`)
-        .limit(5),
+        .limit(8),
       supabase
         .from('users')
         .select('id, username, avatar, home_port, sailing_region, nationality')
         .ilike('username', pattern)
-        .limit(5),
+        .limit(8),
     ])
 
     const merged: Result[] = [
@@ -198,6 +207,9 @@ export default function SokPage() {
         {/* Results */}
         {results.length > 0 && !loading && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <p style={{ fontSize: 11, color: '#a0bec8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', margin: '0 0 4px 2px' }}>
+              {results.length} träff{results.length !== 1 ? 'ar' : ''} för &ldquo;{query}&rdquo;
+            </p>
             {results.map(r => (
               <Link key={`${r.type}-${r.id}`} href={r.href} style={{ textDecoration: 'none' }}>
                 <div style={{

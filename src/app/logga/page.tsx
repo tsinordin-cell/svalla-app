@@ -14,6 +14,7 @@ export default function LoggaChoicePage() {
       }}>
         <button
           onClick={() => router.back()}
+          aria-label="Gå tillbaka"
           style={{
             width: 38, height: 38, borderRadius: '50%',
             background: 'rgba(255,255,255,0.12)',

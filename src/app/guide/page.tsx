@@ -30,6 +30,12 @@ function GuideContent() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
+  // Auto-fokusera inmatningsfältet vid sidladdning
+  useEffect(() => {
+    const timer = setTimeout(() => inputRef.current?.focus(), 300)
+    return () => clearTimeout(timer)
+  }, [])
+
   async function send(text?: string) {
     const msg = (text ?? input).trim()
     if (!msg || loading) return
@@ -76,10 +82,22 @@ function GuideContent() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
-        <div>
+        <div style={{ flex: 1 }}>
           <div style={{ fontSize: 15, fontWeight: 900, color: '#fff' }}>🧭 Skärgårdsguiden</div>
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)' }}>Fråga om turer, restauranger och tips</div>
         </div>
+        {messages.length > 0 && (
+          <button
+            onClick={() => { setMessages([]); setInput('') }}
+            style={{
+              background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer',
+              padding: '6px 12px', borderRadius: 20, color: '#fff',
+              fontSize: 11, fontWeight: 700, flexShrink: 0,
+            }}
+          >
+            Ny konversation
+          </button>
+        )}
       </header>
 
       {/* Messages */}
