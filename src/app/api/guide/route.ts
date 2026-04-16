@@ -2,15 +2,104 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // Condensed tour list for context (titles + key data)
 const TOUR_CONTEXT = `
-KLASSISKA TURER: Stockholm→Vaxholm (familj/par/turist, halvdag-heldag, hamnpromenad/Kastellet), Stockholm→Grinda (familj/par, heldag, bad/naturreservat), Stockholm→Sandhamn (par/turist, heldag/weekend, premium/seglingspuls), Stockholm→Utö (par/äventyrare, heldag/weekend, cykel/klippbad), Stockholm→Fjäderholmarna (turist/familj, 2-4h, snabb/bryggliv), Stockholm→Finnhamn (par/äventyrare, heldag/weekend, natur/bastu/vandring), Stockholm→Möja (par/lugn-sökare, heldag/weekend, autentisk/genuin).
+=== STOCKHOLMS INNERSKÄRGÅRD ===
+Stockholm→Fjäderholmarna: Turist/familj, 2-4h, snabb dagstur, bryggliv, Rökeriet & Fjäderholmarnas Krog, inga övernattningar, perfekt för nybörjare. Avstånd ~8 NM t/r.
+Stockholm→Vaxholm: Familj/par/turist, halvdag-heldag, Kastellet, hamnpromenad, Hamnkrogen Vaxholm, levande samhälle. ~15 NM t/r. Regelbunden färjetrafik.
+Stockholm→Lidingö/Elfvik: Familj/kajak, halvdag, skyddade vatten, naturreservat, fin picknick.
+Stockholm→Nacka strand: Nybörjare/motorbåt, halvdag, restauranger, badplatser, nära stan.
 
-MINDRE KÄNDA: Stavsnäs→Möja (lugn-sökare/par), Stavsnäs→Sandhamn (par/vänner), Dalarö→Ornö (familj/nybörjare), Ornö→Nämdö (seglare, naturhamnar), Nämdö→Runmarö (båtfolk, avskilt), Runmarö→Sandhamn (båtfolk/par), Vaxholm→Resarö→Rindö (familj, halvdag, lokal rundtur), Vaxholm→Grinda (båtfolk, egen båt), Nynäshamn→Nåttarö (familj, sandstrand/snorkelled), Nynäshamn→Utö (äventyrare/par).
+=== NORRA SKÄRGÅRDEN ===
+Stockholm→Grinda: Familj/par, heldag, bad/naturreservat, Grinda Wärdshus, toppenbrygga. ~25 NM t/r.
+Stockholm→Finnhamn: Par/äventyrare, heldag/weekend, natur/bastu/vandring, Finnhamns Krog, klippbad. ~35 NM.
+Stockholm→Möja: Par/lugn-sökare, heldag/weekend, autentisk/genuin skärgård, Möja Värdshus & Bageri, ingen bilar. ~40 NM.
+Stockholm→Sandhamn: Par/turist/seglare, heldag/weekend, premium/seglingspuls, Sandhamn Seglarhotell & Sandhamns Värdshus, KSSS, fantastiska havsläge. ~40 NM.
+Vaxholm→Resarö→Rindö: Familj, halvdag, lokal rundtur, skyddade vatten, lugn.
+Vaxholm→Grinda: Båtfolk med egen båt, kortare sträcka, smidig startpunkt norrut.
+Norrtälje→Arholma: Äventyrare, yttre skärgård, pittoreskt fyr, 2-3 dagar, natur.
+Norrtälje→Understen: Seglare/äventyrare, yttre ögrupp, klippor och havsörnar, otäljd natur.
+Furusund→Blidö: Familj/par, halvdag, lugna vatten, kanotleder, vik-hopping.
+Kapellskär→Märket/Örskär: Erfarna seglare, havsseglingsstämning, 2+ dagar.
 
-AKTIVA TURER: Kajak Vaxholm→Bogesundslandet (nybörjare, halvdag, skyddade vatten), Kajak Grinda runt (äventyrare, halvdag/heldag), Kajak Trosa skärgård (nybörjare/familj, lugnt vatten), Segling Sandhamn→Möja (seglare, heldag/2 dagar), Segling Möja→Finnhamn (seglare/par), Segling Utö→Ornö (seglare, södra skärgården), Cykel Utö+Ålö (äventyrare/par, cykel+bad), Vandring Finnhamn (par/äventyrare), Badtur Nåttarö (familj/par, sandstrand/vikar), Naturhamn-tour (båtfolk/äventyrare, fri rutt).
+=== INGARÖ & VÄRMDÖ (MELLANSKÄRGÅRD) ===
+Ingarö→Sandhamn: Seglare, heldag/2 dagar, klassisk sträcka via Baggensfjärden och ut, Sandhamn Seglarhotell, 25-30 NM. Bra vindförhållanden.
+Ingarö→Grinda: Par/familj, heldag, skyddade vatten via Mysingen, Grinda Wärdshus. ~20 NM.
+Ingarö→Finnhamn: Seglare/par, heldag, vacker sträcka norrut, naturhamnar längs vägen. ~28 NM.
+Ingarö→Möja: Seglare/lugn-sökare, heldag, genuin skärgård, Möja Värdshus. ~22 NM.
+Ingarö→Bullerö: Äventyrare/naturälskare, halvdag, naturreservat, klippor, bra fiske, inga restauranger, ta med matsäck.
+Ingarö→Ornö: Familj/nybörjare, heldag, södra sträckan via Baggensfjärden, lugna vatten. ~15 NM.
+Ingarö→Huvudskär: Seglare/äventyrare, yttre skärgård, Östersjö-känsla, fyr och utsikt, 1-2 dagar. Ca 35 NM.
+Ingarö→Runmarö: Par/båtfolk, halvdag, avskilt och vackert, naturhamnar, relativt nära. ~12 NM.
+Ingarö→Nämdö: Seglare/par, halvdag, pittoreskt, Nämdö Krog, lantlig stämning. ~18 NM.
+Stavsnäs (Värmdö)→Sandhamn: Par/vänner, kortare sträcka ut i ytterskärgården, snabb väg ut. ~15 NM.
+Stavsnäs→Möja: Lugn-sökare/par, heldag, fin sträcka, Möja Värdshus. ~18 NM.
+Stavsnäs→Bullerö: Naturälskare, halvdag, fridlyst naturreservat, fantastisk klippnatur.
+Gustavsberg→Ingarö: Pendlare/lokal, korttur, kanaler och vikar.
 
-MAT & UPPLEVELSE: Krogturné Vaxholm→Grinda→Sandhamn (par/vänner, 2-3 dagar, tre hamnkrogar), Middagstur Stockholm→Sandhamn (par, kväll/heldag), Lunch på Grinda (par/familj, halvdag), Utö mat+cykel (par/äventyrare), Möja weekend+värdshus (par/lugn-sökare, 2 dagar), Finnhamn middag+bastu (par/vänner), Sandhamn beach+bar (vänner/par, högsommar), Nåttarö picknickdag (familj/budget), Fjäderholmarna middagstur (par/turist, kvällstur), Sunset route Vaxholm (par/båtfolk, kvällstur, solnedgång).
+=== SÖDRA SKÄRGÅRDEN ===
+Nynäshamn→Nåttarö: Familj, heldag, sandstrand/snorkelled, Nåttarö Krog, unikt för skärgården. ~10 NM.
+Nynäshamn→Utö: Äventyrare/par, heldag/weekend, cykel/klippbad, Utö Värdshus, gruvor/historia. ~15 NM.
+Dalarö→Ornö: Familj/nybörjare, heldag, lugna vatten, naturhamnsturer. ~8 NM.
+Ornö→Nämdö: Seglare, naturhamnar, backyards skärgård, 2 dagar.
+Nämdö→Runmarö: Båtfolk, avskilt, få turister, autentiskt. ~5 NM.
+Runmarö→Sandhamn: Båtfolk/par, korttur, soliga bryggor, KSSS atmosfär. ~8 NM.
+Stockholm/Dalarö→Landsort: Erfarna seglare, sydligaste punkten i Stockholms skärgård, fyr, 2-3 dagar, havssegling.
+Utö→Ornö: Seglare, södra skärgården, skyddade naturhamnar. ~10 NM.
+Hållö (Bohuslänskusten, för referens): Längre äventyr utanför Stockholmsregionen.
 
-RESTAURANGER I SYSTEMET: Grinda Wärdshus, Utö Värdshus, Sandhamn Seglarhotell, Sandhamns Värdshus, Finnhamns Krog, Möja Värdshus & Bageri, Hamnkrogen Vaxholm, Nåttarö Krog, Rökeriet Fjäderholmarna, Fjäderholmarnas Krog.
+=== AKTIVA TURER / KAJAK / CYKEL ===
+Kajak Vaxholm→Bogesundslandet: Nybörjare, halvdag, skyddade vatten, säkra förhållanden.
+Kajak Grinda runt: Äventyrare, halvdag/heldag, öcirkel, klipphopp.
+Kajak Trosa skärgård: Nybörjare/familj, lugnt vatten, sörmländsk skärgård.
+Kajak Ingarö kust: Intermediär, halvdag, kuperad kust, fin utsikt.
+Kajak Ornö runt: Äventyrare, heldag, varierad kust, naturhamnar.
+Cykel Utö+Ålö: Äventyrare/par, cykel+bad, öarna via bro, klippbad. Hyra cykel på Utö.
+Cykel Möja: Par/familj, halvdag, bilfri ö, sol och väg längs havet.
+Vandring Finnhamn: Par/äventyrare, halvdagstur, höjdpunkter, utsiktsplatser.
+Vandring Ornö: Äventyrare, skogsridåer, halvdag, bra stigar.
+Badtur Nåttarö: Familj/par, sandstrand/vikar, barnvänligt, picknick.
+SUP Fjäderholmarna→Nacka: Intermediär, halvdag, skärgårdsstad-känsla.
+SUP Ingarö vikar: Nybörjare, lugna vikar, kvällstur, solnedgång.
+
+=== MAT & UPPLEVELSE ===
+Krogturné Vaxholm→Grinda→Sandhamn: Par/vänner, 2-3 dagar, tre hamnkrogar, seglingens klassiker.
+Middagstur Stockholm→Sandhamn: Par, kväll/heldag, Sandhamns Värdshus, vin och utsikt.
+Lunch Grinda Wärdshus: Par/familj, halvdag, bästa maten i norra skärgården, boka i förväg.
+Utö mat+cykel: Par/äventyrare, heldag, Utö Värdshus (boka), cykel efteråt.
+Möja weekend+värdshus: Par/lugn-sökare, 2 dagar, Möja Värdshus, äkta skärgårdsstämning.
+Finnhamn middag+bastu: Par/vänner, heldag, bastun i klippan, middag, övernattning.
+Sandhamn beach+bar: Vänner/par, högsommar, KSSS-miljö, beach-vibbar.
+Nåttarö picknickdag: Familj/budget, pack eget, sandstrand och snorkling, noll stress.
+Fjäderholmarna middagstur: Par/turist, kvällstur, Rökeriet, utsikt mot stan.
+Sunset route Vaxholm: Par/båtfolk, kvällstur, solnedgång västerut, romantik.
+Ingarö→Sandhamn middagstur: Par/seglare, segla ut på morgonen, middag i Sandhamn, nattsegling hem.
+
+=== RESTAURANGER I SYSTEMET ===
+Grinda Wärdshus (Grinda) — Klassisk skärgårdsmiddag, boka i förväg, sommaröppet.
+Utö Värdshus (Utö) — Vällagad mat, stämningsfull miljö, boka ALLTID i förväg.
+Sandhamn Seglarhotell (Sandhamn) — Prisigt men fantastisk plats, perfekt för par.
+Sandhamns Värdshus (Sandhamn) — Lite mer avslappnat, god mat, fin terrass.
+Finnhamns Krog (Finnhamn) — Enkel mat, bästa bastun, sommarstämning.
+Möja Värdshus & Bageri (Möja) — Husmanskost och skärgårdsbröd, autentiskt.
+Hamnkrogen Vaxholm (Vaxholm) — Halvdagstur, skaldjur och utsikt, bra läge.
+Nåttarö Krog (Nåttarö) — Enkelt och trevligt, stranden runt hörnet.
+Rökeriet Fjäderholmarna — Rökt fisk och skaldjur, kvällstur från stan.
+Fjäderholmarnas Krog — Lite finare, bokningsbord, nära stan.
+
+=== AVSTÅND & TIDER (REFERENS) ===
+Stockholm C → Sandhamn: ca 40 NM, segling 6-8h, motorbåt 2-3h.
+Stockholm C → Grinda: ca 25 NM, segling 4-5h, motorbåt 1.5h.
+Stockholm C → Fjäderholmarna: ca 4 NM, 30-45 min.
+Stockholm C → Vaxholm: ca 15 NM, segling 2-3h, motorbåt 1h.
+Ingarö → Sandhamn: ca 25-30 NM, segling 4-6h.
+Ingarö → Grinda: ca 20 NM, segling 3-5h.
+Nynäshamn → Utö: ca 15 NM, segling 2-4h.
+Stavsnäs → Sandhamn: ca 15 NM, segling 2-3h.
+
+=== SÄSONG & VÄDER ===
+Bästa säsong: Juni-Augusti. Maj och september bra för de som vill ha lugn.
+Vindförhållanden: Sydvästliga vindar vanligast, bäst för norrut-segling på morgonen.
+Sommar (jun-aug): Trångt vid Sandhamn och Grinda, boka alltid brygga i förväg.
+Höst: Vackra färger, lite folk, men kallare, dubbelkolla öppettider.
 `
 
 const SYSTEM_PROMPT = `Du är en av Sveriges mest erfarna skärgårdsguider och fungerar som en intelligent guide i Svalla – en digital plattform för skärgårdsturer i Stockholms skärgård.
@@ -29,10 +118,13 @@ REKOMMENDATIONSLOGIK:
 - Familj: Grinda, Nåttarö, Fjäderholmarna, Kajak Trosa (kort restid, bad, barnvänligt)
 - Par: Sandhamn, Finnhamn, Sunset-turer, Möja weekend (restaurang, solnedgång, mys)
 - Turister: Vaxholm, Sandhamn, Fjäderholmarna (enkelt, ikoniskt, bra logistik)
-- Äventyrare: Utö, Möja, seglingsturer, naturhamnar (aktivitet, frihet, flera stopp)
-- Kajak: Vaxholm→Bogesundslandet, Grinda runt, Trosa skärgård (skyddade vatten)
-- Segling: Sandhamn→Möja, Möja→Finnhamn, Utö→Ornö (klassiska sträckor, naturhamnar)
+- Äventyrare: Utö, Möja, Huvudskär, Landsort, seglingsturer (aktivitet, frihet, flera stopp)
+- Kajak: Vaxholm→Bogesundslandet, Grinda runt, Ingarö kust (skyddade vatten)
+- Segling: Sandhamn→Möja, Möja→Finnhamn, Utö→Ornö, Ingarö→Sandhamn (klassiska sträckor)
 - Mat: Krogturné, Middagstur Sandhamn, Lunch Grinda, Finnhamn middag+bastu
+- Från Ingarö: Sandhamn (klassisk ut-segling), Grinda, Bullerö (natur), Möja, Nämdö
+- Från Värmdö/Stavsnäs: Sandhamn, Möja, Bullerö (kortare sträcka ut)
+- Nybörjare: Fjäderholmarna, Vaxholm, Ingarö vikar, Ornö (lugna vatten, skyddade rutter)
 
 OUTPUT FORMAT (när du föreslår en tur):
 **Titel**

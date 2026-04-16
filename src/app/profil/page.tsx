@@ -160,11 +160,45 @@ function favoritePlats(trips: Trip[]): string | null {
   return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
 }
 
+// ── Länder med flaggor ────────────────────────────────────────────────────────
+const COUNTRIES = [
+  { flag: '🇸🇪', name: 'Sverige' },
+  { flag: '🇳🇴', name: 'Norge' },
+  { flag: '🇩🇰', name: 'Danmark' },
+  { flag: '🇫🇮', name: 'Finland' },
+  { flag: '🇩🇪', name: 'Tyskland' },
+  { flag: '🇬🇧', name: 'Storbritannien' },
+  { flag: '🇳🇱', name: 'Nederländerna' },
+  { flag: '🇫🇷', name: 'Frankrike' },
+  { flag: '🇪🇸', name: 'Spanien' },
+  { flag: '🇮🇹', name: 'Italien' },
+  { flag: '🇵🇱', name: 'Polen' },
+  { flag: '🇺🇸', name: 'USA' },
+  { flag: '🇦🇺', name: 'Australien' },
+  { flag: '🇨🇦', name: 'Kanada' },
+  { flag: '🇯🇵', name: 'Japan' },
+  { flag: '🇧🇷', name: 'Brasilien' },
+  { flag: '🇦🇹', name: 'Österrike' },
+  { flag: '🇨🇭', name: 'Schweiz' },
+  { flag: '🇧🇪', name: 'Belgien' },
+  { flag: '🇵🇹', name: 'Portugal' },
+  { flag: '🇬🇷', name: 'Grekland' },
+  { flag: '🇸🇦', name: 'Saudiarabien' },
+  { flag: '🇦🇪', name: 'Förenade Arabemiraten' },
+  { flag: '🇳🇿', name: 'Nya Zeeland' },
+  { flag: '🇸🇬', name: 'Singapore' },
+  { flag: '🇭🇷', name: 'Kroatien' },
+  { flag: '🇮🇸', name: 'Island' },
+  { flag: '🇪🇪', name: 'Estland' },
+  { flag: '🇱🇻', name: 'Lettland' },
+  { flag: '🇱🇹', name: 'Litauen' },
+]
+
 // ── Edit Sheet ────────────────────────────────────────────────────────────────
 const VESSEL_TYPES = ['Segelbåt', 'Motorbåt', 'RIB', 'Katamaran', 'Segeljolle', 'Kajak', 'SUP', 'Annat']
 const PRIVACY_FIELDS: { key: string; label: string }[] = [
   { key: 'bio',              label: 'Kort om mig' },
-  { key: 'nationality',      label: 'Nationalitet' },
+  { key: 'nationality',      label: 'Land (flagga)' },
   { key: 'experience_years', label: 'År till havs' },
   { key: 'vessel_name',      label: 'Båtnamn' },
   { key: 'vessel_type',      label: 'Båttyp' },
@@ -325,9 +359,11 @@ function EditSheet({
 
           {/* ── Grundinfo ── */}
           <SectionLabel>Grundinfo</SectionLabel>
-          <Field label="ANVÄNDARNAMN">
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} style={inputStyle} />
-            <p style={{ fontSize: 11, color: '#7a9dab', margin: '3px 0 0' }}>Bokstäver, siffror, _ . och - tillåtna.</p>
+          <Field label="ALIAS / SMEKNAMN">
+            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32}
+              placeholder="Ditt alias som syns för andra"
+              style={inputStyle} />
+            <p style={{ fontSize: 11, color: '#7a9dab', margin: '3px 0 0' }}>Bokstäver, siffror, _ . och - tillåtna. Används i din profil-URL.</p>
           </Field>
           <Field label="KORT OM MIG">
             <textarea value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3}
@@ -335,9 +371,27 @@ function EditSheet({
               style={{ ...inputStyle, resize: 'none' }} />
             <p style={{ fontSize: 11, color: '#7a9dab', margin: '3px 0 0', textAlign: 'right' }}>{bio.length}/160</p>
           </Field>
-          <Field label="NATIONALITET">
-            <input type="text" value={nationality} onChange={e => setNationality(e.target.value)} maxLength={40}
-              placeholder="T.ex. Sverige, Norge…" style={inputStyle} />
+          <Field label="LAND">
+            <div style={{ position: 'relative' }}>
+              <select
+                value={nationality}
+                onChange={e => setNationality(e.target.value)}
+                style={{ ...inputStyle, appearance: 'none', paddingRight: 36 }}
+              >
+                <option value="">Välj land…</option>
+                {COUNTRIES.map(c => (
+                  <option key={c.name} value={`${c.flag} ${c.name}`}>
+                    {c.flag} {c.name}
+                  </option>
+                ))}
+              </select>
+              <span style={{
+                position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                fontSize: 16, pointerEvents: 'none',
+              }}>
+                {COUNTRIES.find(c => `${c.flag} ${c.name}` === nationality)?.flag ?? '🌍'}
+              </span>
+            </div>
           </Field>
           <Field label="ÅR TILL HAVS">
             <input type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80}

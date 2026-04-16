@@ -50,7 +50,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
   // Fetch user by username (with extended profile fields)
   const { data: userRow, error: userErr } = await supabase
     .from('users')
-    .select('id, username, email, avatar, bio, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields')
+    .select('id, username, avatar, bio, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields')
     .eq('username', username)
     .single()
 
