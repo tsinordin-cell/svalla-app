@@ -151,7 +151,7 @@ export default async function FeedPage() {
                 {thisWeek.length} turer loggades senaste veckan
               </div>
               <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 2 }}>
-                {uniqueUsers} paddlare · {uniquePlaces} unika platser
+                {uniqueUsers} seglare · {uniquePlaces} unika platser
               </div>
             </div>
           </div>

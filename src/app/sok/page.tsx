@@ -121,7 +121,7 @@ export default function SokPage() {
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, maxWidth: 520, margin: '0 auto' }}>
-          <Link href="/" style={{
+          <Link href="/feed" style={{
             width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
             background: 'rgba(10,123,140,0.07)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
