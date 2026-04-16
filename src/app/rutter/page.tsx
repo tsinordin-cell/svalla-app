@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import NotificationBell from '@/components/NotificationBell'
 
 export const metadata: Metadata = {
   title: 'Rutter',
@@ -123,16 +124,19 @@ export default async function RutterPage({
               : `${filtered.length} turer · Stockholms skärgård`}
           </p>
         </div>
-        <Link href="/guide" style={{
-          display: 'flex', alignItems: 'center', gap: 5,
-          padding: '8px 14px', borderRadius: 20,
-          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-          color: '#fff', fontSize: 12, fontWeight: 700,
-          textDecoration: 'none',
-          boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
-        }}>
-          🧭 Guide
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <NotificationBell />
+          <Link href="/guide" style={{
+            display: 'flex', alignItems: 'center', gap: 5,
+            padding: '8px 14px', borderRadius: 20,
+            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            color: '#fff', fontSize: 12, fontWeight: 700,
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
+          }}>
+            🧭 Guide
+          </Link>
+        </div>
       </header>
 
       {/* For-filter */}

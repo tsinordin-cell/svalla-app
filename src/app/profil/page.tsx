@@ -6,6 +6,7 @@ import type { Trip, User } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from '@/components/Toast'
+import NotificationBell from '@/components/NotificationBell'
 
 // ── Achievements ──────────────────────────────────────────────────────────────
 const ACHIEVEMENTS = [
@@ -566,6 +567,7 @@ export default function ProfilPage() {
       }}>
         <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Profil</h1>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <NotificationBell />
           {user?.username && (
             <Link href={`/u/${user.username}`} style={{
               background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.15)',

@@ -115,7 +115,10 @@ export default function Nav() {
   const showGlobalBell =
     path !== '/' &&
     path !== '/feed' &&
+    path !== '/rutter' &&
+    path !== '/profil' &&
     !path.startsWith('/tur/') &&
+    !path.startsWith('/rutter/') &&
     !path.startsWith('/logga') &&
     !path.startsWith('/spara')
 
