@@ -5,6 +5,7 @@ import InstallPrompt from '@/components/InstallPrompt'
 import PushPrompt from '@/components/PushPrompt'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
 import ToastContainer from '@/components/Toast'
+import ThemeProvider from '@/components/ThemeProvider'
 // Leaflet CSS (needed for map components)
 import 'leaflet/dist/leaflet.css'
 
@@ -68,16 +69,18 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sv">
+    <html lang="sv" suppressHydrationWarning>
       <body>
-        <main style={{ minHeight: '100dvh' }}>
-          {children}
-        </main>
-        <Nav />
-        <InstallPrompt />
-        <PushPrompt />
-        <ServiceWorkerRegister />
-        <ToastContainer />
+        <ThemeProvider>
+          <main style={{ minHeight: '100dvh' }}>
+            {children}
+          </main>
+          <Nav />
+          <InstallPrompt />
+          <PushPrompt />
+          <ServiceWorkerRegister />
+          <ToastContainer />
+        </ThemeProvider>
       </body>
     </html>
   )

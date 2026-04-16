@@ -7,6 +7,72 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from '@/components/Toast'
 import NotificationBell from '@/components/NotificationBell'
+import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
+
+// ── Settings section ─────────────────────────────────────────────────────────
+function SettingsSection() {
+  const { theme, setTheme, lang, setLang } = useTheme()
+
+  const themes: { val: Theme; sv: string; en: string; icon: string }[] = [
+    { val: 'auto',  sv: 'Auto',   en: 'Auto',  icon: '🌗' },
+    { val: 'light', sv: 'Ljust',  en: 'Light', icon: '☀️' },
+    { val: 'dark',  sv: 'Mörkt',  en: 'Dark',  icon: '🌙' },
+  ]
+  const langs: { val: Lang; label: string; flag: string }[] = [
+    { val: 'sv', label: 'Svenska', flag: '🇸🇪' },
+    { val: 'en', label: 'English', flag: '🇬🇧' },
+  ]
+
+  const pill = (active: boolean): React.CSSProperties => ({
+    padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
+    fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 700 : 500,
+    transition: 'all 0.15s',
+    background: active ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+    color: active ? '#fff' : '#3d5865',
+    boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
+  })
+
+  return (
+    <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', marginBottom: 12, boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
+      <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+        {lang === 'en' ? 'Settings' : 'Inställningar'}
+      </h3>
+
+      {/* Tema */}
+      <div style={{ marginBottom: 16 }}>
+        <p style={{ fontSize: 13, fontWeight: 700, color: '#162d3a', margin: '0 0 8px' }}>
+          {lang === 'en' ? 'Theme' : 'Tema'}
+        </p>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {themes.map(t => (
+            <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>
+              {t.icon} {lang === 'en' ? t.en : t.sv}
+            </button>
+          ))}
+        </div>
+        <p style={{ fontSize: 11, color: '#7a9dab', margin: '6px 0 0' }}>
+          {lang === 'en'
+            ? 'Auto: dark between 20:00–06:00'
+            : 'Auto: mörkt 20:00–06:00, ljust dagtid'}
+        </p>
+      </div>
+
+      {/* Språk */}
+      <div>
+        <p style={{ fontSize: 13, fontWeight: 700, color: '#162d3a', margin: '0 0 8px' }}>
+          {lang === 'en' ? 'Language' : 'Språk'}
+        </p>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {langs.map(l => (
+            <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>
+              {l.flag} {l.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // ── Achievements ──────────────────────────────────────────────────────────────
 const ACHIEVEMENTS = [
@@ -857,6 +923,10 @@ export default function ProfilPage() {
             </>
           )}
         </div>
+
+        {/* ── Inställningar ── */}
+        <SettingsSection />
+
       </div>
     </div>
   )

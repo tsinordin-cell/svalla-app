@@ -82,3 +82,106 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* ══════════════════════════════════════════
+   DARK MODE
+   Aktiveras via data-theme="dark" på <html>
+   ══════════════════════════════════════════ */
+[data-theme="dark"] {
+  --sea:    #4ab8d4;
+  --sea-d:  #2d9ab8;
+  --sea-l:  #0e2233;
+  --sea-xl: #091825;
+  --acc:    #e8924a;
+  --acc-d:  #c97030;
+  --acc-l:  #2a1a0e;
+  --txt:    #d8eaf4;
+  --txt2:   #9abccc;
+  --txt3:   #6a98aa;
+  --bg:     #070f18;
+  --white:  #0f1e2c;
+  --green:  #22c55e;
+  --red:    #f87171;
+  color-scheme: dark;
+}
+
+[data-theme="dark"] body {
+  background: linear-gradient(175deg, #060d15 0%, #091525 40%, #0b1a28 100%) fixed;
+}
+
+/* Nav */
+[data-theme="dark"] nav[aria-label="Navigering"] {
+  background: rgba(6, 14, 22, 0.96) !important;
+  border-top-color: rgba(74, 184, 212, 0.10) !important;
+}
+
+/* Sticky headers */
+[data-theme="dark"] header {
+  background: rgba(9, 21, 37, 0.97) !important;
+  border-bottom-color: rgba(74, 184, 212, 0.10) !important;
+}
+
+/* White cards → dark cards */
+[data-theme="dark"] [style*="background: #fff"],
+[data-theme="dark"] [style*="background:#fff"],
+[data-theme="dark"] [style*="background: white"] {
+  background: #0f1e2c !important;
+}
+
+[data-theme="dark"] [style*="background: rgba(250,254,255"] {
+  background: rgba(9, 21, 35, 0.97) !important;
+}
+
+[data-theme="dark"] [style*="background: #f7fbfc"],
+[data-theme="dark"] [style*="background:#f7fbfc"] {
+  background: #070f18 !important;
+}
+
+/* Text */
+[data-theme="dark"] [style*="color: #162d3a"],
+[data-theme="dark"] [style*="color:#162d3a"] {
+  color: #d0e8f4 !important;
+}
+[data-theme="dark"] [style*="color: #1e5c82"],
+[data-theme="dark"] [style*="color:#1e5c82"] {
+  color: #4ab8d4 !important;
+}
+[data-theme="dark"] [style*="color: #3d5865"] {
+  color: #8ab8cc !important;
+}
+
+/* Inputs */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: rgba(74, 184, 212, 0.07) !important;
+  border-color: rgba(74, 184, 212, 0.18) !important;
+  color: #d8eaf4 !important;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: rgba(160, 200, 220, 0.45) !important;
+}
+
+/* Borders */
+[data-theme="dark"] [style*="border: 1px solid rgba(10,123,140"],
+[data-theme="dark"] [style*="borderBottom: '1px solid rgba(10,123,140"] {
+  border-color: rgba(74, 184, 212, 0.12) !important;
+}
+
+/* Backdrop blur panels */
+[data-theme="dark"] [style*="backdropFilter"] {
+  background: rgba(9, 21, 35, 0.95) !important;
+}
+
+/* Scrollbar mörkt */
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #1e3a4a;
+}
+
+/* OAuth-knapp Google/Apple */
+[data-theme="dark"] .oauth-btn {
+  background: #182838 !important;
+  border-color: rgba(74, 184, 212, 0.18) !important;
+  color: #d8eaf4 !important;
+}
