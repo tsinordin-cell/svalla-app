@@ -8,6 +8,30 @@ import FollowButton from '@/components/FollowButton'
 
 export const revalidate = 60
 
+// ── Achievements (same logic as /profil) ─────────────────────────────────────
+const ACHIEVEMENTS = [
+  { id: 'first',       emoji: '🏁', label: 'Första kastet',     check: (t: Trip[], _d: number, _s: number) => t.length >= 1 },
+  { id: 'five',        emoji: '🧭', label: 'Äventyrare',        check: (t: Trip[], _d: number, _s: number) => t.length >= 5 },
+  { id: 'ten',         emoji: '🌊', label: 'Saltvattenblod',    check: (t: Trip[], _d: number, _s: number) => t.length >= 10 },
+  { id: 'dist50',      emoji: '⚓', label: '50 NM',             check: (_t: Trip[], d: number, _s: number) => d >= 50 },
+  { id: 'dist100',     emoji: '⛵', label: '100 NM Segrare',    check: (_t: Trip[], d: number, _s: number) => d >= 100 },
+  { id: 'magic',       emoji: '✨', label: 'Magisk tur',        check: (t: Trip[], _d: number, _s: number) => t.some(x => x.pinnar_rating === 3) },
+  { id: 'explorer',    emoji: '🗺️', label: 'Kartläggaren',     check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 5 },
+  { id: 'boats',       emoji: '🚤', label: 'Multifarare',       check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.boat_type).filter(Boolean)).size >= 3 },
+  { id: 'streak3',     emoji: '🔥', label: 'Veckostrejk',       check: (_t: Trip[], _d: number, s: number) => s >= 3 },
+  { id: 'twenty',      emoji: '🏆', label: 'Havets Herre',      check: (t: Trip[], _d: number, _s: number) => t.length >= 20 },
+  { id: 'dist250',     emoji: '🌍', label: 'Oceansegrare',      check: (_t: Trip[], d: number, _s: number) => d >= 250 },
+  { id: 'dist500',     emoji: '🚀', label: 'Atlantfararen',     check: (_t: Trip[], d: number, _s: number) => d >= 500 },
+  { id: 'locs10',      emoji: '📍', label: 'Skärgårdsvandraren',check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 10 },
+  { id: 'locs25',      emoji: '🗾', label: 'Arkipelagos',       check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 25 },
+  { id: 'magic3',      emoji: '🌟', label: 'Magikern',          check: (t: Trip[], _d: number, _s: number) => t.filter(x => x.pinnar_rating === 3).length >= 3 },
+  { id: 'streak8',     emoji: '⚡', label: 'Veckokrigaren',     check: (_t: Trip[], _d: number, s: number) => s >= 8 },
+  { id: 'earlybird',   emoji: '🌅', label: 'Gryningsseglaren',  check: (t: Trip[]) => t.some(x => x.started_at && new Date(x.started_at).getHours() < 7) },
+  { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',      check: (t: Trip[]) => t.some(x => x.ended_at && new Date(x.ended_at).getHours() >= 22) },
+  { id: 'speed15',     emoji: '💨', label: 'Vindridaren',       check: (t: Trip[]) => t.some((x: Trip & { max_speed_knots?: number }) => (x.max_speed_knots ?? 0) >= 15) },
+  { id: 'fifty_trips', emoji: '👑', label: 'Skärgårdskungen',   check: (t: Trip[], _d: number, _s: number) => t.length >= 50 },
+]
+
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
   const { username } = await params
   return {
@@ -73,10 +97,11 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
   const trips = (rawTrips ?? []) as Trip[]
 
-  const totalDist  = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
-  const streak     = calcStreak(trips)
-  const uniqueLocs = new Set(trips.map(t => t.location_name).filter(Boolean)).size
-  const magicCount = trips.filter(t => t.pinnar_rating === 3).length
+  const totalDist   = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
+  const streak      = calcStreak(trips)
+  const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
+  const magicCount  = trips.filter(t => t.pinnar_rating === 3).length
+  const unlockedAch = ACHIEVEMENTS.filter(a => a.check(trips, totalDist, streak))
 
   return (
     <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
@@ -210,6 +235,34 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             <FollowButton targetUserId={userRow.id} darkBg />
           </div>
         </div>
+
+        {/* ── Märken ── */}
+        {unlockedAch.length > 0 && (
+          <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+              Märken · {unlockedAch.length}/{ACHIEVEMENTS.length}
+            </h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              {ACHIEVEMENTS.map((a) => {
+                const unlocked = unlockedAch.includes(a)
+                return (
+                  <div key={a.id} style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+                    padding: '10px 4px', borderRadius: 14,
+                    background: unlocked ? 'rgba(10,123,140,0.07)' : 'rgba(0,0,0,0.025)',
+                    border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'transparent'}`,
+                    opacity: unlocked ? 1 : 0.30,
+                  }}>
+                    <span style={{ fontSize: 22, filter: unlocked ? 'none' : 'grayscale(1)' }}>{a.emoji}</span>
+                    <span style={{ fontSize: 9, fontWeight: 700, color: unlocked ? '#1e5c82' : '#7a9dab', textAlign: 'center', lineHeight: 1.3 }}>
+                      {a.label}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {/* ── Trip grid ── */}
         <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
