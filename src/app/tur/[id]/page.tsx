@@ -9,7 +9,7 @@ import Comments from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
 import TripActions from '@/components/TripActions'
 import BackButton from '@/components/BackButton'
-import { restaurantsAlongRoute, formatDuration } from '@/lib/gps'
+import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import type { Metadata } from 'next'
 
 export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-request DB calls)
@@ -58,7 +58,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   // fetch trip (utan users-join — FK pekar på auth.users, ej public.users)
   const { data: trip, error } = await supabase
     .from('trips')
-    .select(`*, routes(name)`)
+    .select(`*, routes(name), ai_summary`)
     .eq('id', id)
     .single()
   if (error || !trip) notFound()
@@ -127,6 +127,22 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         longitude: r.longitude,
       })), 0.5)
     : []
+
+  // Name stops with nearby restaurants (within ~220m = 0.12 NM)
+  const namedStops = stops.map(stop => {
+    if (stop.type !== 'stop') return { ...stop, placeName: undefined }
+    let nearest: string | undefined
+    let nearestDist = Infinity
+    for (const r of (allRestaurants ?? [])) {
+      if (!r.latitude || !r.longitude) continue
+      const d = distanceNM(stop.lat, stop.lng, r.latitude, r.longitude)
+      if (d < 0.12 && d < nearestDist) {
+        nearestDist = d
+        nearest = r.name
+      }
+    }
+    return { ...stop, placeName: nearest }
+  })
 
   const hasMap = points.length >= 2
   const username = userRow?.username ?? 'Seglare'
@@ -243,6 +259,44 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           </div>
         )}
 
+        {/* AI Summary */}
+        {trip.ai_summary && (
+          <div style={{
+            margin: '0 0 18px',
+            padding: '16px 18px',
+            background: 'linear-gradient(135deg, rgba(30,92,130,0.07), rgba(45,125,138,0.05))',
+            borderRadius: 20,
+            borderLeft: '3px solid #1e5c82',
+            position: 'relative',
+            overflow: 'hidden',
+          }}>
+            {/* AI badge */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              background: 'rgba(30,92,130,0.1)',
+              borderRadius: 20,
+              padding: '3px 10px',
+              marginBottom: 10,
+            }}>
+              <span style={{ fontSize: 10 }}>✨</span>
+              <span style={{
+                fontSize: 10,
+                fontWeight: 800,
+                color: '#1e5c82',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+              }}>
+                Svallas analys
+              </span>
+            </div>
+            <p style={{ fontSize: 14, color: '#2a4a5a', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
+              {trip.ai_summary}
+            </p>
+          </div>
+        )}
+
         {/* Taggade användare */}
         {taggedUsers.length > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
@@ -322,15 +376,24 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         )}
 
         {/* Stops */}
-        {stops.filter(s => s.type === 'stop').length > 0 && (
+        {namedStops.filter(s => s.type === 'stop').length > 0 && (
           <div style={{ marginBottom: 18 }}>
             <SectionTitle>Stopp</SectionTitle>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {stops.filter(s => s.type === 'stop').map((s, i) => (
+              {namedStops.filter(s => s.type === 'stop').map((s, i) => (
                 <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7a9dab', flexShrink: 0 }} />
-                    <span style={{ fontSize: 14, fontWeight: 700, color: '#162d3a' }}>Stopp {i + 1}</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: '#162d3a' }}>
+                        {s.placeName ?? `Stopp ${i + 1}`}
+                      </span>
+                      {s.placeName && (
+                        <span style={{ fontSize: 10, color: '#7a9dab', display: 'block' }}>
+                          📍 Stopp {i + 1}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <span style={{ fontSize: 13, color: '#7a9dab' }}>
                     {s.durationSeconds >= 60 ? `${Math.round(s.durationSeconds / 60)} min` : `${s.durationSeconds}s`}
@@ -372,4 +435,3 @@ function SectionTitle({ children }: { children: ReactNode }) {
     </h2>
   )
 }
-

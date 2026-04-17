@@ -8,6 +8,11 @@ import {
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
   detectStops, formatDuration,
 } from '@/lib/gps'
+import { GpsKalmanFilter } from '@/lib/kalman'
+import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
+import dynamic from 'next/dynamic'
+
+const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
 type Phase = 'setup' | 'tracking' | 'paused' | 'done'
 
@@ -59,6 +64,11 @@ export default function SparaPage() {
   const [caption, setCaption] = useState('')
   const [locationName, setLocationName] = useState('')
 
+  // New state for online/offline + Kalman
+  const [isOnline, setIsOnline] = useState(true)
+  const [offlineBuffered, setOfflineBuffered] = useState(0)
+  const [currentPos, setCurrentPos] = useState<{ lat: number; lng: number } | null>(null)
+
   const watchRef = useRef<number | null>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
   const pauseStartRef = useRef<Date | null>(null)
@@ -66,6 +76,63 @@ export default function SparaPage() {
   const startTimeRef = useRef<Date | null>(null)
   // Används för att beräkna hastighet från konsekutiva GPS-punkter
   const lastGpsPtRef = useRef<{ lat: number; lng: number; ts: number } | null>(null)
+  const kalmanRef = useRef<GpsKalmanFilter | null>(null)
+
+  // ── Online/Offline detection ───────────────────────────────────────────────
+  useEffect(() => {
+    setIsOnline(navigator.onLine)
+
+    function handleOnline() {
+      setIsOnline(true)
+      syncOfflinePoints()
+    }
+
+    function handleOffline() {
+      setIsOnline(false)
+    }
+
+    window.addEventListener('online', handleOnline)
+    window.addEventListener('offline', handleOffline)
+
+    return () => {
+      window.removeEventListener('online', handleOnline)
+      window.removeEventListener('offline', handleOffline)
+    }
+  }, [])
+
+  // ── Sync offline points to Supabase ────────────────────────────────────────
+  async function syncOfflinePoints() {
+    try {
+      const pending = await getPendingPoints()
+      if (pending.length === 0) return
+
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user || !tripId) return
+
+      // Convert buffered points to gps_points format
+      const batch = pending.map((p) => ({
+        trip_id: tripId,
+        latitude: p.point.lat,
+        longitude: p.point.lng,
+        speed_knots: parseFloat(p.point.speedKnots.toFixed(2)),
+        heading: p.point.heading,
+        accuracy: p.point.accuracy,
+        recorded_at: p.point.recordedAt,
+      }))
+
+      // Try to insert
+      const { error } = await supabase.from('gps_points').insert(batch)
+
+      if (!error) {
+        // Success - clear from IndexedDB
+        const keys = pending.map((p) => p.key)
+        await clearPoints(keys)
+        setOfflineBuffered(0)
+      }
+    } catch {
+      // Sync failed - data stays in buffer
+    }
+  }
 
   // tick timer
   useEffect(() => {
@@ -86,6 +153,10 @@ export default function SparaPage() {
     watchRef.current = navigator.geolocation.watchPosition(
       (pos) => {
         setGpsError('')
+
+        // Filter out inaccurate points (> 80m accuracy)
+        if (pos.coords.accuracy > 80) return
+
         const now = Date.now()
         // coords.speed är null på de flesta mobila webbläsare — beräkna från haversine
         let speedKnots = 0
@@ -104,27 +175,54 @@ export default function SparaPage() {
             speedKnots = nm / dtHours
           }
         }
-        lastGpsPtRef.current = { lat: pos.coords.latitude, lng: pos.coords.longitude, ts: now }
+
+        // Initialize Kalman filter on first point
+        if (!kalmanRef.current) {
+          kalmanRef.current = new GpsKalmanFilter()
+        }
+
+        // Apply Kalman smoothing
+        const smoothed = kalmanRef.current.update(pos.coords.latitude, pos.coords.longitude)
+
+        // Update current position for live map
+        setCurrentPos({ lat: smoothed.lat, lng: smoothed.lng })
+
+        // Store last GPS point (for next iteration)
+        lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
+
         // Filtrera bort orealistiska värden (> 40 kn är sannolikt GPS-brus)
         const clampedSpeed = Math.min(speedKnots, 40)
         setCurrentSpeed(clampedSpeed)
+
         const pt: GpsPoint = {
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
+          lat: smoothed.lat,
+          lng: smoothed.lng,
           speedKnots: clampedSpeed,
           heading: pos.coords.heading ?? null,
           accuracy: pos.coords.accuracy,
           recordedAt: new Date().toISOString(),
         }
+
         setPoints(prev => {
           const next = [...prev, pt]
           setStops(detectStops(next))
           return next
         })
+
+        // Buffer to IndexedDB
+        bufferPoint({
+          lat: smoothed.lat,
+          lng: smoothed.lng,
+          speedKnots: clampedSpeed,
+          heading: pos.coords.heading ?? null,
+          accuracy: pos.coords.accuracy,
+          recordedAt: new Date().toISOString(),
+        })
+          .then(() => getPendingCount().then(setOfflineBuffered))
+          .catch(() => {}) // Silently fail if IndexedDB not supported
       },
       (err) => {
         if (err.code === err.TIMEOUT) {
-          // Timeout is normal while waiting for GPS fix — keep watching silently
           setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
         } else if (err.code === err.PERMISSION_DENIED) {
           setGpsError('GPS-åtkomst nekad – tillåt platsdelning i telefonens inställningar och ladda om.')
@@ -148,6 +246,7 @@ export default function SparaPage() {
   function handleStart() {
     if (!boatType) return
     startTimeRef.current = new Date()
+    kalmanRef.current?.reset()
     setPhase('tracking')
     startGPS()
   }
@@ -155,6 +254,7 @@ export default function SparaPage() {
   function handlePause() {
     pauseStartRef.current = new Date()
     stopGPS()
+    kalmanRef.current?.reset()
     setPhase('paused')
     if (points.length > 0) {
       const last = points[points.length - 1]
@@ -181,12 +281,14 @@ export default function SparaPage() {
         return updated
       })
     }
+    kalmanRef.current?.reset()
     setPhase('tracking')
     startGPS()
   }
 
   function handleStop() {
     stopGPS()
+    kalmanRef.current?.reset()
     setPhase('done')
   }
 
@@ -276,6 +378,31 @@ export default function SparaPage() {
       if (stopsData.length > 0) await supabase.from('stops').insert(stopsData)
     }
 
+    // Generate AI summary (fire and forget)
+    fetch('/api/trip-summary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        distanceNM: dist,
+        durationMin: Math.round(elapsed / 60),
+        avgSpeed: avgSpd,
+        maxSpeed: maxSpd,
+        boatType,
+        locationName: locationName.trim() || undefined,
+        stops: stops.map(s => ({ durationSeconds: s.durationSeconds, type: s.type })),
+        nearbyPlaces: [],
+        startTime: startedAt,
+        endTime: endedAt,
+      }),
+    })
+      .then(r => r.json())
+      .then(({ summary }) => {
+        if (summary && tid) {
+          supabase.from('trips').update({ ai_summary: summary }).eq('id', tid).catch(() => {})
+        }
+      })
+      .catch(() => {})
+
     router.push(`/tur/${tid}`)
   }
 
@@ -347,6 +474,30 @@ export default function SparaPage() {
       <div className="min-h-screen flex flex-col">
         {/* live stats — scrollable, with padding so content clears the sticky controls */}
         <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center gap-6 px-6 py-10 pb-52">
+          {/* Offline banner */}
+          {!isOnline && (
+            <div style={{
+              width: '100%',
+              background: 'rgba(201, 110, 42, 0.12)',
+              border: '1px solid rgba(201, 110, 42, 0.3)',
+              color: '#c96e2a',
+              padding: '10px 14px',
+              borderRadius: 14,
+              fontSize: 13,
+              fontWeight: 600,
+              textAlign: 'center',
+            }}>
+              📡 Offline – GPS-punkter buffras lokalt ({offlineBuffered} st)
+            </div>
+          )}
+
+          {/* Live map */}
+          <LiveTrackMap
+            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+            currentPos={currentPos}
+            speed={currentSpeed}
+          />
+
           {/* status pill */}
           <div
             className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
