@@ -244,6 +244,8 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .dest-card-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.25}
 .dest-card-islands{display:flex;flex-wrap:wrap;gap:4px}
 .dest-island{font-size:11px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.12);padding:3px 8px;border-radius:10px;backdrop-filter:blur(4px)}
+a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* ── Activities ── */
 .activities-section{background:var(--sand-light)}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -530,7 +532,7 @@ const LANDING_HTML = `
         <div class="dest-card-content">
           <div class="dest-card-region">Innerskärgården</div>
           <div class="dest-card-name">Fjäderholmarna · Vaxholm · Grinda</div>
-          <div class="dest-card-islands"><span class="dest-island">Fjäderholmarna</span><span class="dest-island">Vaxholm</span><span class="dest-island">Grinda</span><span class="dest-island">Finnhamn</span><span class="dest-island">Resarö</span></div>
+          <div class="dest-card-islands"><a href="/o/fjaderholmarna" class="dest-island">Fjäderholmarna</a><a href="/o/vaxholm" class="dest-island">Vaxholm</a><a href="/o/grinda" class="dest-island">Grinda</a><a href="/o/finnhamn" class="dest-island">Finnhamn</a><span class="dest-island">Resarö</span></div>
         </div>
       </a>
       <a href="/platser" class="dest-card reveal reveal-delay-2">
@@ -544,7 +546,7 @@ const LANDING_HTML = `
         <div class="dest-card-content">
           <div class="dest-card-region">Mellersta skärgården</div>
           <div class="dest-card-name">Sandhamn · Möja · Ljusterö</div>
-          <div class="dest-card-islands"><span class="dest-island">Sandhamn</span><span class="dest-island">Möja</span><span class="dest-island">Ljusterö</span><span class="dest-island">Gällnö</span><span class="dest-island">Runmarö</span></div>
+          <div class="dest-card-islands"><a href="/o/sandhamn" class="dest-island">Sandhamn</a><a href="/o/moja" class="dest-island">Möja</a><a href="/o/ljustero" class="dest-island">Ljusterö</a><a href="/o/gallno" class="dest-island">Gällnö</a><span class="dest-island">Runmarö</span></div>
         </div>
       </a>
       <a href="/platser" class="dest-card reveal reveal-delay-3">
@@ -558,7 +560,7 @@ const LANDING_HTML = `
         <div class="dest-card-content">
           <div class="dest-card-region">Södra skärgården</div>
           <div class="dest-card-name">Utö · Nåttarö · Landsort</div>
-          <div class="dest-card-islands"><span class="dest-island">Utö</span><span class="dest-island">Nåttarö</span><span class="dest-island">Ornö</span><span class="dest-island">Dalarö</span><span class="dest-island">Landsort</span></div>
+          <div class="dest-card-islands"><a href="/o/uto" class="dest-island">Utö</a><a href="/o/nattaro" class="dest-island">Nåttarö</a><a href="/o/orno" class="dest-island">Ornö</a><a href="/o/dalaro" class="dest-island">Dalarö</a><a href="/o/landsort" class="dest-island">Landsort</a></div>
         </div>
       </a>
       <a href="/platser" class="dest-card reveal reveal-delay-4">
@@ -572,7 +574,7 @@ const LANDING_HTML = `
         <div class="dest-card-content">
           <div class="dest-card-region">Norra skärgården</div>
           <div class="dest-card-name">Furusund · Blidö · Norrtälje</div>
-          <div class="dest-card-islands"><span class="dest-island">Furusund</span><span class="dest-island">Blidö</span><span class="dest-island">Arholma</span><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
+          <div class="dest-card-islands"><a href="/o/furusund" class="dest-island">Furusund</a><a href="/o/blido" class="dest-island">Blidö</a><a href="/o/arholma" class="dest-island">Arholma</a><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
         </div>
       </a>
     </div>
