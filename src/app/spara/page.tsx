@@ -1,4 +1,5 @@
 'use client'
+export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
@@ -37,7 +38,7 @@ async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<
 
 export default function SparaPage() {
   const router = useRouter()
-  const supabase = createClient()
+  const [supabase] = useState(() => createClient())
 
   // setup
   const [boatType, setBoatType] = useState('')

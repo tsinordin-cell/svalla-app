@@ -1,10 +1,11 @@
 'use client'
+export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 
 export default function GlomtLosenordPage() {
-  const supabase = createClient()
+  const [supabase] = useState(() => createClient())
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)

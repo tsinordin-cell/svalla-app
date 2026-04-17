@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Suspense } from 'react'
 import './globals.css'
 import Nav from '@/components/Nav'
 import InstallPrompt from '@/components/InstallPrompt'
@@ -75,9 +76,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main style={{ minHeight: '100dvh' }}>
             {children}
           </main>
-          <Nav />
-          <InstallPrompt />
-          <PushPrompt />
+          <Suspense fallback={null}><Nav /></Suspense>
+          <Suspense fallback={null}><InstallPrompt /></Suspense>
+          <Suspense fallback={null}><PushPrompt /></Suspense>
           <ServiceWorkerRegister />
           <ToastContainer />
         </ThemeProvider>

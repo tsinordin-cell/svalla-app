@@ -7,7 +7,7 @@ export default function SvallaLogo({ height = 26, color = '#ffffff' }: { height?
         <path d="M9,8 L1,17 L9,17 Z" fill={color} opacity="0.5"/>
         <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke={color} strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.7"/>
       </g>
-      <text x="23" y="20" fontFamily="'Georgia','Times New Roman',serif" fontSize="15" fontWeight="700" letterSpacing="2.5" fill={color}>SVALLA</text>
+      <text x="23" y="20" fill={color} style={{ fontFamily: "'Georgia','Times New Roman',serif", fontSize: 15, fontWeight: 700, letterSpacing: 2.5 }}>SVALLA</text>
     </svg>
   )
 }

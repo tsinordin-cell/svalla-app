@@ -1,8 +1,10 @@
 'use client'
+export const dynamic = 'force-dynamic'
 import { useState, useRef, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import TagInput from '@/components/TagInput'
+import LocationSearch from '@/components/LocationSearch'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
 
@@ -41,26 +43,26 @@ async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<
 function ManuellForm() {
   const router       = useRouter()
   const searchParams = useSearchParams()
-  const supabase     = createClient()
+  const [supabase]   = useState(() => createClient())
   const fileRef      = useRef<HTMLInputElement>(null)
-  const locationRef  = useRef<HTMLInputElement>(null)
 
   // Pre-fill location from query param (e.g. from "Jag var här" on restaurant page)
   const prefilledPlats = searchParams.get('plats') ?? ''
 
-  const [preview, setPreview]       = useState('')
-  const [file, setFile]             = useState<File | null>(null)
-  const [location, setLocation]     = useState(prefilledPlats)
-  const [caption, setCaption]       = useState('')
-  const [boatType, setBoatType]     = useState('')
-  const [pinnar, setPinnar]         = useState<number | null>(null)
-  const [showMore, setShowMore]     = useState(false)
-  const [distance, setDistance]     = useState('')
-  const [duration, setDuration]     = useState('')
-  const [loading, setLoading]       = useState(false)
-  const [err, setErr]               = useState('')
-  const [posted, setPosted]         = useState(false)
-  const [tagged, setTagged]         = useState<TaggedUser[]>([])
+  const [preview, setPreview]               = useState('')
+  const [file, setFile]                     = useState<File | null>(null)
+  const [location, setLocation]             = useState(prefilledPlats)
+  const [startLocation, setStartLocation]   = useState('')
+  const [caption, setCaption]               = useState('')
+  const [boatType, setBoatType]             = useState('')
+  const [pinnar, setPinnar]                 = useState<number | null>(null)
+  const [showMore, setShowMore]             = useState(false)
+  const [distance, setDistance]             = useState('')
+  const [duration, setDuration]             = useState('')
+  const [loading, setLoading]               = useState(false)
+  const [err, setErr]                       = useState('')
+  const [posted, setPosted]                 = useState(false)
+  const [tagged, setTagged]                 = useState<TaggedUser[]>([])
 
   // Auto-open file picker on mount (per UX brief)
   useEffect(() => {
@@ -80,7 +82,6 @@ function ManuellForm() {
     const compressed = await compressImage(f)
     setFile(compressed)
     setPreview(URL.createObjectURL(compressed))
-    setTimeout(() => locationRef.current?.focus(), 100)
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -110,18 +111,19 @@ function ManuellForm() {
       const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
 
       const { data: trip, error: insErr } = await supabase.from('trips').insert({
-        user_id:       user.id,
-        image:         publicUrl,
-        location_name: location.trim().slice(0, 100),
-        caption:       caption.trim().slice(0, 280) || null,
-        pinnar_rating: pinnar,
-        boat_type:     boatType || 'Annat',
-        distance:      parseFloat(distance) || 0,
-        duration:      parseInt(duration) || 0,
+        user_id:        user.id,
+        image:          publicUrl,
+        location_name:  location.trim().slice(0, 100),
+        start_location: startLocation.trim().slice(0, 100) || null,
+        caption:        caption.trim().slice(0, 280) || null,
+        pinnar_rating:  pinnar,
+        boat_type:      boatType || 'Annat',
+        distance:       parseFloat(distance) || 0,
+        duration:       parseInt(duration) || 0,
         average_speed_knots: 0,
         max_speed_knots:     0,
-        started_at:    new Date().toISOString(),
-        ended_at:      new Date().toISOString(),
+        started_at:     new Date().toISOString(),
+        ended_at:       new Date().toISOString(),
       }).select('id').single()
 
       if (insErr || !trip) {
@@ -243,26 +245,23 @@ function ManuellForm() {
         <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
 
           {/* ── Plats (required) ── */}
-          <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
-              📍 Plats *
-            </label>
-            <input
-              ref={locationRef}
-              type="text"
-              placeholder="Grinda, Sandhamn, Utö…"
-              value={location}
-              onChange={e => setLocation(e.target.value)}
-              required
-              maxLength={100}
-              style={{
-                width: '100%', padding: '13px 14px', borderRadius: 14,
-                border: '1.5px solid rgba(10,123,140,0.18)',
-                background: '#fff', fontSize: 16, fontWeight: 600, color: '#162d3a',
-                outline: 'none', boxSizing: 'border-box',
-              }}
-            />
-          </div>
+          <LocationSearch
+            value={location}
+            onChange={(name) => setLocation(name)}
+            placeholder="Grinda, Sandhamn, Utö…"
+            required
+            label="Plats"
+            icon="📍"
+          />
+
+          {/* ── Avreste från (optional) ── */}
+          <LocationSearch
+            value={startLocation}
+            onChange={(name) => setStartLocation(name)}
+            placeholder="Stockholms ström, Nynäshamn…"
+            label="Avreste från"
+            icon="🛟"
+          />
 
           {/* ── Pinnar rating ── */}
           <div>

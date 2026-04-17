@@ -1,4 +1,5 @@
 'use client'
+export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
@@ -14,7 +15,7 @@ type Result = {
 }
 
 export default function SokPage() {
-  const supabase = createClient()
+  const [supabase] = useState(() => createClient())
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<Result[]>([])
   const [loading, setLoading] = useState(false)
