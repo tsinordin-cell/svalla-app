@@ -27,6 +27,8 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
     if (!mapRef.current || initializedRef.current || points.length < 2) return
     initializedRef.current = true
 
+    let map: any = null
+
     async function init() {
       const L = (await import('leaflet')).default
       // CSS loaded via CDN link in layout
@@ -34,12 +36,14 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
       // bounds
       const lats = points.map(p => p.lat)
       const lngs = points.map(p => p.lng)
+      if (lats.length === 0 || lngs.length === 0) return
+
       const bounds = L.latLngBounds(
         [Math.min(...lats) - 0.005, Math.min(...lngs) - 0.005],
         [Math.max(...lats) + 0.005, Math.max(...lngs) + 0.005]
       )
 
-      const map = L.map(mapRef.current!, {
+      map = L.map(mapRef.current!, {
         zoomControl: true,
         attributionControl: false,
         scrollWheelZoom: true,
@@ -125,6 +129,14 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
     }
 
     init().catch(console.error)
+
+    // Cleanup on unmount
+    return () => {
+      if (map) {
+        map.remove()
+        map = null
+      }
+    }
   }, [points, stops, restaurants])
 
   return (

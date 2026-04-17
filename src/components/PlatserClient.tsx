@@ -262,7 +262,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                   style={{
                     width: '100%', paddingLeft: 32, paddingRight: 12, paddingTop: 9, paddingBottom: 9,
                     borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.15)',
-                    background: '#f2f8fa', fontSize: 13, color: '#162d3a', outline: 'none',
+                    background: '#f2f8fa', fontSize: 16, color: '#162d3a', outline: 'none',
                     boxSizing: 'border-box',
                   }}
                 />
@@ -441,7 +441,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             style={{
               width: '100%', paddingLeft: 34, paddingRight: 12, paddingTop: 10, paddingBottom: 10,
               borderRadius: 14, border: '1.5px solid rgba(10,123,140,0.15)',
-              background: '#f2f8fa', fontSize: 14, color: '#162d3a', outline: 'none',
+              background: '#f2f8fa', fontSize: 16, color: '#162d3a', outline: 'none',
             }}
           />
         </div>

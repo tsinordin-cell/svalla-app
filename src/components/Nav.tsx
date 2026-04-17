@@ -40,7 +40,7 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor
-  const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista']
+  const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
   if (!APP_PATHS.some(p => path.startsWith(p))) return null
 
   const tabs = [

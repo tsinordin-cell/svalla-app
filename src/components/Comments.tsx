@@ -28,8 +28,10 @@ export default function Comments({ tripId }: { tripId: string }) {
       )
       .subscribe()
 
-    return () => { supabase.removeChannel(channel) }
-  }, [tripId]) // eslint-disable-line
+    return () => {
+      channel.unsubscribe().catch(() => {})
+    }
+  }, [tripId, supabase]) // eslint-disable-line
 
   // Auto-scroll to bottom when comments expand
   useEffect(() => {
@@ -162,7 +164,7 @@ export default function Comments({ tripId }: { tripId: string }) {
                   style={{
                     flex: 1, padding: '8px 12px', borderRadius: 20,
                     border: '1.5px solid rgba(10,123,140,0.15)',
-                    background: 'rgba(10,123,140,0.04)', fontSize: 13, outline: 'none',
+                    background: 'rgba(10,123,140,0.04)', fontSize: 16, outline: 'none',
                   }}
                 />
                 <button type="submit" disabled={!text.trim() || posting}

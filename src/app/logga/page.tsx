@@ -6,7 +6,7 @@ export default function LoggaChoicePage() {
   const router = useRouter()
 
   return (
-    <div style={{ minHeight: '100dvh', background: 'linear-gradient(180deg, #0e3d52 0%, #1a5570 40%, #f7fbfc 100%)' }}>
+    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #0e3d52 0%, #1a5570 40%, #f7fbfc 100%)' }}>
 
       {/* Header */}
       <header style={{
@@ -61,6 +61,7 @@ export default function LoggaChoicePage() {
             boxShadow: '0 8px 32px rgba(0,20,35,0.25)',
             cursor: 'pointer', textAlign: 'left',
             WebkitTapHighlightColor: 'transparent',
+            minHeight: 44,
           }}
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
@@ -101,6 +102,7 @@ export default function LoggaChoicePage() {
             border: '1.5px solid rgba(10,123,140,0.10)',
             cursor: 'pointer', textAlign: 'left',
             WebkitTapHighlightColor: 'transparent',
+            minHeight: 44,
           }}
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>

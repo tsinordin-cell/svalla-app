@@ -127,7 +127,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
   const trips = (rawTrips ?? []) as Trip[]
 
-  const totalDist   = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
+  const totalDist   = trips.reduce((a, t) => a + (t?.distance ?? 0), 0)
   const streak      = calcStreak(trips)
   const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
   const magicCount  = trips.filter(t => t.pinnar_rating === 3).length

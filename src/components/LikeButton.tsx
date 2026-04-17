@@ -27,7 +27,7 @@ export default function LikeButton({ tripId }: { tripId: string }) {
       }
     }
     load()
-  }, [tripId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [tripId, supabase])
 
   async function toggle() {
     if (!userId || loading) return

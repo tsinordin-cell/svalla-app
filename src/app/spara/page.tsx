@@ -79,7 +79,7 @@ export default function SparaPage() {
   const lastGpsPtRef = useRef<{ lat: number; lng: number; ts: number } | null>(null)
   const kalmanRef = useRef<GpsKalmanFilter | null>(null)
 
-  // ── Online/Offline detection ───────────────────────────────────────────────
+  // ── Online/Offline detection + cleanup ────────────────────────────────────
   useEffect(() => {
     setIsOnline(navigator.onLine)
 
@@ -98,6 +98,12 @@ export default function SparaPage() {
     return () => {
       window.removeEventListener('online', handleOnline)
       window.removeEventListener('offline', handleOffline)
+      // Clean up GPS on unmount
+      if (watchRef.current != null) {
+        navigator.geolocation.clearWatch(watchRef.current)
+        watchRef.current = null
+      }
+      if (timerRef.current) clearInterval(timerRef.current)
     }
   }, [])
 
@@ -255,13 +261,18 @@ export default function SparaPage() {
       navigator.geolocation.clearWatch(watchRef.current)
       watchRef.current = null
     }
+    // Clean up GPS state
+    lastGpsPtRef.current = null
   }, [])
 
   function handleStart() {
     if (!boatType) return
     startTimeRef.current = new Date()
-    kalmanRef.current?.reset()
+    lastGpsPtRef.current = null
+    anomalyCountRef.current = 0
+    kalmanRef.current = new GpsKalmanFilter()
     setPhase('tracking')
+    setAnomalyCount(0)
     startGPS()
   }
 

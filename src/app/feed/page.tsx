@@ -52,7 +52,9 @@ export default async function FeedPage() {
     ? await supabase.from('users').select('id, username, avatar').in('id', userIds)
     : { data: [] }
   const userMap: Record<string, { username: string; avatar_url: string | null }> = {}
-  for (const u of userRows ?? []) userMap[u.id] = { username: u.username, avatar_url: u.avatar ?? null }
+  for (const u of userRows ?? []) {
+    if (u?.id) userMap[u.id] = { username: u.username ?? 'Seglare', avatar_url: u.avatar ?? null }
+  }
 
   // Slå ihop trips med username + avatar
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,10 +85,10 @@ export default async function FeedPage() {
         .order('created_at', { ascending: false })
         .limit(50)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      followingTrips = (fTrips ?? []).map((t: any) => ({
-        ...t,
-        users: userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null },
-      }))
+      followingTrips = (fTrips ?? []).map((t: any) => {
+        const user = userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null }
+        return { ...t, users: user }
+      })
     }
   }
 

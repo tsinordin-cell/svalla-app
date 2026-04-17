@@ -107,22 +107,22 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     .select('id,name,latitude,longitude')
 
   const points = (rawPoints ?? []).map(p => ({
-    lat: p.latitude as number,
-    lng: p.longitude as number,
-    speedKnots: (p.speed_knots ?? 0) as number,
-    heading: null as null,
-    accuracy: 0,
-    recordedAt: p.recorded_at as string,
+    lat: p?.latitude ?? 0,
+    lng: p?.longitude ?? 0,
+    speedKnots: (p?.speed_knots ?? 0) as number,
+    heading: p?.heading ?? null,
+    accuracy: p?.accuracy ?? 0,
+    recordedAt: p?.recorded_at ?? new Date().toISOString(),
   }))
 
   const stops = (rawStops ?? []).map(s => ({
-    lat: s.latitude,
-    lng: s.longitude,
-    type: s.stop_type,
-    startedAt: s.started_at,
-    endedAt: s.ended_at,
-    durationSeconds: s.duration_seconds ?? 0,
-    placeName: s.place_name as string | undefined,  // från reverse geocoding
+    lat: s?.latitude ?? 0,
+    lng: s?.longitude ?? 0,
+    type: s?.stop_type ?? 'stop',
+    startedAt: s?.started_at ?? new Date().toISOString(),
+    endedAt: s?.ended_at ?? null,
+    durationSeconds: s?.duration_seconds ?? 0,
+    placeName: s?.place_name ?? undefined,  // från reverse geocoding
   }))
 
   // restaurants near the route
@@ -137,14 +137,14 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
   // Name stops: 1) reverse-geocoded name from DB, 2) nearby restaurant, 3) "Stopp N"
   const namedStops = stops.map(stop => {
-    if (stop.type !== 'stop') return { ...stop, placeName: undefined }
+    if (stop?.type !== 'stop') return { ...stop, placeName: undefined }
     // Prioritera Nominatim-reverse-geocodat namn (lagrat vid save)
-    if (stop.placeName) return stop
+    if (stop?.placeName) return stop
     // Fallback: kolla mot känd plats i databasen (inom ~220m = 0.12 NM)
     let nearest: string | undefined
     let nearestDist = Infinity
     for (const r of (allRestaurants ?? [])) {
-      if (!r.latitude || !r.longitude) continue
+      if (!r?.latitude || !r?.longitude) continue
       const d = distanceNM(stop.lat, stop.lng, r.latitude, r.longitude)
       if (d < 0.12 && d < nearestDist) { nearestDist = d; nearest = r.name }
     }
@@ -161,10 +161,11 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     let bestScore   = Infinity
 
     for (const tour of (toursData as TourRow[])) {
-      if (!Array.isArray(tour.waypoints) || tour.waypoints.length < 2) continue
+      if (!tour?.waypoints || !Array.isArray(tour.waypoints) || tour.waypoints.length < 2) continue
       const tw    = tour.waypoints
       const tS    = tw[0]
       const tE    = tw[tw.length - 1]
+      if (!tS || !tE) continue
       const fwd   = distanceNM(tripStart.lat, tripStart.lng, tS.lat, tS.lng) + distanceNM(tripEnd.lat, tripEnd.lng, tE.lat, tE.lng)
       const rev   = distanceNM(tripStart.lat, tripStart.lng, tE.lat, tE.lng) + distanceNM(tripEnd.lat, tripEnd.lng, tS.lat, tS.lng)
       const score = Math.min(fwd, rev)

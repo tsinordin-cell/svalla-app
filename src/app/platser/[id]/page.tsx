@@ -53,7 +53,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
     ? await supabase.from('users').select('id, username').in('id', tripUids)
     : { data: [] }
   const tripUmap: Record<string, string> = {}
-  for (const u of tripUserRows ?? []) tripUmap[u.id] = u.username
+  for (const u of tripUserRows ?? []) {
+    if (u?.id) tripUmap[u.id] = u.username ?? 'Seglare'
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recentTrips = (recentTripsRaw ?? []).map((t: any) => ({ ...t, users: { username: tripUmap[t.user_id] ?? 'Seglare' } }))
 
@@ -87,7 +89,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
     .eq('place_id', id)
 
   const avgRating = reviewStats && reviewStats.length > 0
-    ? (reviewStats.reduce((a: number, r: { rating: number }) => a + r.rating, 0) / reviewStats.length)
+    ? (reviewStats.reduce((a: number, r: { rating?: number }) => a + (r?.rating ?? 0), 0) / reviewStats.length)
     : null
   const reviewCount = reviewStats?.length ?? 0
 
