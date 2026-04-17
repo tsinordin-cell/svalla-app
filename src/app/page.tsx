@@ -202,8 +202,9 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .footer-social{display:flex;gap:14px}
 .footer-social a{color:rgba(255,255,255,.4);text-decoration:none;font-size:18px;transition:.2s}
 .footer-social a:hover{color:var(--white)}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
@@ -327,8 +328,9 @@ const LANDING_HTML = `
   <ul class="nav-links">
     <li><a href="/platser">Utforska</a></li>
     <li><a href="/rutter">Rutter</a></li>
-    <li><a href="/platser">Krogar</a></li>
-    <li><a href="/feed">Feed</a></li>
+    <li><a href="/#aktiviteter">Se & Göra</a></li>
+    <li><a href="/#resmål">Resmål</a></li>
+    <li><a href="/blogg">Bloggen</a></li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
@@ -991,12 +993,15 @@ export default function LandingPage() {
     window.addEventListener('scroll', handleScroll)
 
     // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) }
       })
-    }, { threshold: 0.12 })
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' })
+    revealEls.forEach(el => observer.observe(el))
+    // Fallback: om JS laddar långsamt, visa allt efter 1.5s
+    const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
 
     // Sök-hints
     document.querySelectorAll('.hero-search-hint span').forEach(s => {
@@ -1015,6 +1020,7 @@ export default function LandingPage() {
 
     return () => {
       document.getElementById('svalla-landing-css')?.remove()
+      clearTimeout(fallback)
       window.removeEventListener('scroll', handleScroll)
       observer.disconnect()
       searchInput?.removeEventListener('focus', onFocus)
