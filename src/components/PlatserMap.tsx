@@ -53,9 +53,12 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const markersRef    = useRef<Record<string, any>>({})
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const clusterRef    = useRef<any>(null)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const polylinesRef  = useRef<Record<string, any>>({})
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const userMarkerRef = useRef<any>(null)
+  const [fullscreen, setFullscreen] = useState(false)
   const [locating,   setLocating]   = useState(false)
   const [userPos,    setUserPos]    = useState<{ lat: number; lng: number } | null>(null)
   const userPosRef   = useRef<{ lat: number; lng: number } | null>(null)
@@ -164,7 +167,20 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
 
-    import('leaflet').then(L => {
+    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([L]) => {
+      // Läs in MarkerCluster CSS dynamiskt
+      if (!document.getElementById('mc-css')) {
+        const link1 = document.createElement('link')
+        link1.id = 'mc-css'
+        link1.rel = 'stylesheet'
+        link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css'
+        document.head.appendChild(link1)
+        const link2 = document.createElement('link')
+        link2.rel = 'stylesheet'
+        link2.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css'
+        document.head.appendChild(link2)
+      }
+
       const map = L.map(containerRef.current!, {
         center: [59.35, 18.7],
         zoom: 9,
@@ -178,6 +194,32 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       }).addTo(map)
 
       mapRef.current = map
+
+      // ── MarkerClusterGroup ──────────────────────────────────────
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const cluster = (L as any).markerClusterGroup({
+        maxClusterRadius: 48,
+        showCoverageOnHover: false,
+        iconCreateFunction: (c: any) => {
+          const count = c.getChildCount()
+          return L.divIcon({
+            className: '',
+            html: `<div style="
+              width:36px;height:36px;border-radius:50%;
+              background:linear-gradient(135deg,#1e5c82,#2d7d8a);
+              border:2.5px solid #fff;
+              box-shadow:0 2px 10px rgba(0,0,0,0.25);
+              display:flex;align-items:center;justify-content:center;
+              color:#fff;font-size:12px;font-weight:800;
+              font-family:system-ui,sans-serif;
+            ">${count}</div>`,
+            iconSize: [36, 36],
+            iconAnchor: [18, 18],
+          })
+        },
+      })
+      cluster.addTo(map)
+      clusterRef.current = cluster
 
       function reportCenter() {
         const c = map.getCenter()
@@ -199,7 +241,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           icon: L.divIcon(makeIconHtml(color, 34, false, emoji) as any),
         })
-          .addTo(map)
           .bindPopup(buildPopup(r, userPosRef.current), { maxWidth: 280 })
 
         marker.on('click', () => onMarkerClick(r.id))
@@ -217,6 +258,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           }
         })
 
+        cluster.addLayer(marker)
         markersRef.current[r.id] = { marker, cat, restaurant: r, isActive: false }
       }
 
@@ -256,6 +298,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       if (mapRef.current) {
         mapRef.current.remove()
         mapRef.current = null
+        clusterRef.current = null
         markersRef.current = {}
       }
     }
@@ -290,21 +333,23 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId, nearbyIds])
 
-  // Layer-synk
+  // Layer-synk (cluster-aware)
   useEffect(() => {
-    if (!mapRef.current) return
+    if (!mapRef.current || !clusterRef.current) return
     const visibleIds = new Set(restaurants.map(r => r.id))
     const q = searchQuery.toLowerCase().trim()
+    const cluster = clusterRef.current
 
     for (const [id, entry] of Object.entries(markersRef.current)) {
       const { marker, cat, restaurant } = entry as { marker: unknown; cat: LayerKey; restaurant: Restaurant }
       const matchesSearch = !q || restaurant.name.toLowerCase().includes(q)
-
       const show = visibleIds.has(id) && layers[cat as LayerKey] && matchesSearch
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (show  && !mapRef.current.hasLayer(marker)) (marker as any).addTo(mapRef.current)
+      const hasLayer = cluster.hasLayer(marker as any)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (!show && mapRef.current.hasLayer(marker))  mapRef.current.removeLayer(marker)
+      if (show  && !hasLayer) cluster.addLayer(marker as any)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!show && hasLayer)  cluster.removeLayer(marker as any)
     }
   }, [restaurants, layers, searchQuery])
 
@@ -382,8 +427,38 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <div style={{
+      position: fullscreen ? 'fixed' : 'relative',
+      inset: fullscreen ? 0 : undefined,
+      width: fullscreen ? '100vw' : '100%',
+      height: fullscreen ? '100dvh' : '100%',
+      zIndex: fullscreen ? 9000 : undefined,
+    }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+
+      {/* ── Fullscreen-knapp ── */}
+      <button
+        onClick={() => { setFullscreen(f => !f); setTimeout(() => mapRef.current?.invalidateSize(), 50) }}
+        title={fullscreen ? 'Stäng fullskärm' : 'Helskärm'}
+        style={{
+          position: 'absolute', bottom: fullscreen ? 24 : 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 70px)', right: 12,
+          zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
+          background: '#fff', border: 'none', cursor: 'pointer',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transition: 'background .2s',
+        }}
+      >
+        {fullscreen ? (
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+          </svg>
+        )}
+      </button>
 
       {/* ── Sökfält + Snabba val (övre vänster) ── */}
       <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 1000, width: 'min(260px, calc(100% - 80px))' }}>

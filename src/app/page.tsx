@@ -33,7 +33,8 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-dropdown > a{display:flex;align-items:center;gap:5px}
 .nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.6;transition:.2s}
 .nav-dropdown:hover > a::after{opacity:1}
-.nav-mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;min-width:440px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateX(-50%) translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:440px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .nav-mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .nav-mega-col{padding:8px 12px}
@@ -347,30 +348,32 @@ const LANDING_HTML = `
     <li class="nav-dropdown">
       <a href="/#resmål">Resmål</a>
       <div class="nav-mega">
-        <div class="nav-mega-grid">
-          <div class="nav-mega-col">
-            <div class="nav-mega-region">Innerskärgården</div>
-            <a href="/o/fjaderholmarna" class="nav-mega-link">Fjäderholmarna</a>
-            <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
-            <a href="/o/grinda" class="nav-mega-link">Grinda</a>
-            <a href="/o/finnhamn" class="nav-mega-link">Finnhamn</a>
-            <div class="nav-mega-region" style="margin-top:14px">Mellersta skärgården</div>
-            <a href="/o/sandhamn" class="nav-mega-link">Sandhamn</a>
-            <a href="/o/moja" class="nav-mega-link">Möja</a>
-            <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
-            <a href="/o/gallno" class="nav-mega-link">Gällnö</a>
-          </div>
-          <div class="nav-mega-col">
-            <div class="nav-mega-region">Södra skärgården</div>
-            <a href="/o/uto" class="nav-mega-link">Utö</a>
-            <a href="/o/nattaro" class="nav-mega-link">Nåttarö</a>
-            <a href="/o/orno" class="nav-mega-link">Ornö</a>
-            <a href="/o/dalaro" class="nav-mega-link">Dalarö</a>
-            <a href="/o/landsort" class="nav-mega-link">Landsort</a>
-            <div class="nav-mega-region" style="margin-top:14px">Norra skärgården</div>
-            <a href="/o/furusund" class="nav-mega-link">Furusund</a>
-            <a href="/o/blido" class="nav-mega-link">Blidö</a>
-            <a href="/o/arholma" class="nav-mega-link">Arholma</a>
+        <div class="nav-mega-inner">
+          <div class="nav-mega-grid">
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Innerskärgården</div>
+              <a href="/o/fjaderholmarna" class="nav-mega-link">Fjäderholmarna</a>
+              <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
+              <a href="/o/grinda" class="nav-mega-link">Grinda</a>
+              <a href="/o/finnhamn" class="nav-mega-link">Finnhamn</a>
+              <div class="nav-mega-region" style="margin-top:14px">Mellersta skärgården</div>
+              <a href="/o/sandhamn" class="nav-mega-link">Sandhamn</a>
+              <a href="/o/moja" class="nav-mega-link">Möja</a>
+              <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
+              <a href="/o/gallno" class="nav-mega-link">Gällnö</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Södra skärgården</div>
+              <a href="/o/uto" class="nav-mega-link">Utö</a>
+              <a href="/o/nattaro" class="nav-mega-link">Nåttarö</a>
+              <a href="/o/orno" class="nav-mega-link">Ornö</a>
+              <a href="/o/dalaro" class="nav-mega-link">Dalarö</a>
+              <a href="/o/landsort" class="nav-mega-link">Landsort</a>
+              <div class="nav-mega-region" style="margin-top:14px">Norra skärgården</div>
+              <a href="/o/furusund" class="nav-mega-link">Furusund</a>
+              <a href="/o/blido" class="nav-mega-link">Blidö</a>
+              <a href="/o/arholma" class="nav-mega-link">Arholma</a>
+            </div>
           </div>
         </div>
       </div>
