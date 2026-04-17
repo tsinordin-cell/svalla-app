@@ -8,6 +8,36 @@ import FollowButton from '@/components/FollowButton'
 
 export const revalidate = 60
 
+// ── Countries (for flag lookup) ───────────────────────────────────────────────
+const COUNTRIES = [
+  { flag: '🇸🇪', name: 'Sverige' },   { flag: '🇳🇴', name: 'Norge' },
+  { flag: '🇩🇰', name: 'Danmark' },   { flag: '🇫🇮', name: 'Finland' },
+  { flag: '🇩🇪', name: 'Tyskland' },  { flag: '🇬🇧', name: 'Storbritannien' },
+  { flag: '🇳🇱', name: 'Nederländerna' }, { flag: '🇫🇷', name: 'Frankrike' },
+  { flag: '🇪🇸', name: 'Spanien' },   { flag: '🇮🇹', name: 'Italien' },
+  { flag: '🇵🇱', name: 'Polen' },     { flag: '🇺🇸', name: 'USA' },
+  { flag: '🇦🇺', name: 'Australien' },{ flag: '🇨🇦', name: 'Kanada' },
+  { flag: '🇯🇵', name: 'Japan' },     { flag: '🇧🇷', name: 'Brasilien' },
+  { flag: '🇦🇹', name: 'Österrike' }, { flag: '🇨🇭', name: 'Schweiz' },
+  { flag: '🇧🇪', name: 'Belgien' },   { flag: '🇵🇹', name: 'Portugal' },
+  { flag: '🇬🇷', name: 'Grekland' },  { flag: '🇸🇦', name: 'Saudiarabien' },
+  { flag: '🇦🇪', name: 'Förenade Arabemiraten' }, { flag: '🇳🇿', name: 'Nya Zeeland' },
+  { flag: '🇸🇬', name: 'Singapore' }, { flag: '🇭🇷', name: 'Kroatien' },
+  { flag: '🇮🇸', name: 'Island' },    { flag: '🇪🇪', name: 'Estland' },
+  { flag: '🇱🇻', name: 'Lettland' },  { flag: '🇱🇹', name: 'Litauen' },
+]
+
+/** Returns "🇸🇪 Sverige" from either "🇸🇪 Sverige" or legacy "Sverige" */
+function formatNationality(raw: string): string {
+  // Already has flag prefix (stored as "🇸🇪 Sverige")
+  const withFlag = COUNTRIES.find(c => `${c.flag} ${c.name}` === raw)
+  if (withFlag) return `${withFlag.flag} ${withFlag.name}`
+  // Legacy: stored as just "Sverige"
+  const byName = COUNTRIES.find(c => c.name === raw)
+  if (byName) return `${byName.flag} ${byName.name}`
+  return raw // unknown — show as-is
+}
+
 // ── Achievements (same logic as /profil) ─────────────────────────────────────
 const ACHIEVEMENTS = [
   { id: 'first',       emoji: '🏁', label: 'Första kastet',     check: (t: Trip[], _d: number, _s: number) => t.length >= 1 },
@@ -163,7 +193,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
               </div>
               <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', display: 'flex', flexWrap: 'wrap', gap: '4px 10px' }}>
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                {pub.includes('nationality') && (userRow as any).nationality && <span>🌍 {(userRow as any).nationality}</span>}
+                {pub.includes('nationality') && (userRow as any).nationality && <span>{formatNationality((userRow as any).nationality)}</span>}
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {pub.includes('experience_years') && (userRow as any).experience_years && <span>⚓ {(userRow as any).experience_years} år till havs</span>}
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

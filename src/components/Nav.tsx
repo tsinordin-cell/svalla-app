@@ -133,7 +133,7 @@ export default function Nav() {
       )}
     <nav aria-label="Navigering" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
-      height: 'var(--nav-h)',
+      height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
       background: 'rgba(250,254,255,0.92)',
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)',
@@ -142,7 +142,11 @@ export default function Nav() {
       overflow: 'visible',
       zIndex: 900,
       boxShadow: '0 -1px 0 rgba(10,123,140,0.08), 0 -4px 24px rgba(0,45,60,0.08)',
-      paddingBottom: 'env(safe-area-inset-bottom,0px)',
+      paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+      /* Force GPU layer — prevents iOS Safari from scrolling fixed nav */
+      transform: 'translate3d(0,0,0)',
+      WebkitTransform: 'translate3d(0,0,0)',
+      willChange: 'transform',
     }}>
       {tabs.map((tab) => {
         const active = tab.exact ? path === tab.href : path.startsWith(tab.href)
