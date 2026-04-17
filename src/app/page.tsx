@@ -928,7 +928,7 @@ const LANDING_HTML = `
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">⛵ <span>Svalla</span></div>
+        <div class="logo"><svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style="display:block"><g transform="translate(0,2)"><line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/><path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/><path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/></g><text x="23" y="20" fill="#ffffff" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5">SVALLA</text></svg></div>
         <p>Den nordiska plattformen för krogar, kajer och upplevelser i skärgården. Byggt av skärgårdsälskare, för skärgårdsälskare.</p>
       </div>
       <div class="footer-col">

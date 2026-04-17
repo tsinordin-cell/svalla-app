@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { POSTS_META } from './posts-data'
+import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Skärgårdsbloggen – Svalla',
@@ -21,8 +22,10 @@ export default function BloggPage() {
         padding: '60px 20px 40px',
       }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13, textDecoration: 'none' }}>← Svalla</Link>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '12px 0 6px' }}>Skärgårdsbloggen</h1>
+          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
+            <SvallaLogo height={26} color="#ffffff" />
+          </Link>
+          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '0 0 6px' }}>Skärgårdsbloggen</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Tips, guider och inspiration för Stockholms skärgård</p>
         </div>
       </div>

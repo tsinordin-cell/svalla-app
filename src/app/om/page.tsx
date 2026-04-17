@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Om Svalla – Stockholms skärgårdsapp',
@@ -19,8 +20,10 @@ export default function OmPage() {
         padding: '60px 20px 40px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13, textDecoration: 'none' }}>← Svalla</Link>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '12px 0 6px' }}>Om Svalla</h1>
+          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
+            <SvallaLogo height={26} color="#ffffff" />
+          </Link>
+          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '0 0 6px' }}>Om Svalla</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Byggt av skärgårdsälskare, för skärgårdsälskare</p>
         </div>
       </div>

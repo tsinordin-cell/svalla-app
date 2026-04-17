@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import SvallaLogo from '@/components/SvallaLogo'
 
 // ─── Post content ───────────────────────────────────────────────────────────
 
@@ -1270,9 +1271,14 @@ export default async function BloggPostPage({
         padding: '60px 20px 40px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Link href="/blogg" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13, textDecoration: 'none' }}>
-            ← Tillbaka till bloggen
-          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
+              <SvallaLogo height={24} color="#ffffff" />
+            </Link>
+            <Link href="/blogg" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, textDecoration: 'none' }}>
+              ← Bloggen
+            </Link>
+          </div>
           <div style={{ display: 'flex', gap: 10, marginTop: 16, marginBottom: 12, flexWrap: 'wrap' }}>
             <span style={{
               fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.9)',

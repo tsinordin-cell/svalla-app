@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Vanliga frågor – Svalla',
@@ -67,8 +68,10 @@ export default function FaqPage() {
         padding: '60px 20px 32px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13, textDecoration: 'none' }}>← Svalla</Link>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '12px 0 6px' }}>Vanliga frågor</h1>
+          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
+            <SvallaLogo height={26} color="#ffffff" />
+          </Link>
+          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '0 0 6px' }}>Vanliga frågor</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Allt du behöver veta om Svalla och skärgården</p>
         </div>
       </div>
