@@ -19,6 +19,16 @@ export type Restaurant = {
   created_at: string
   tags?: string[]
   core_experience?: string | null
+  type?: string | null
+  island?: string | null
+  archipelago_region?: string | null
+  categories?: string[] | null
+  best_for?: string[] | null
+  facilities?: string[] | null
+  seasonality?: string | null
+  source_confidence?: string | null
+  image_url?: string | null
+  slug?: string | null
 }
 
 export type Route = {

@@ -2,8 +2,8 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-// Visa aldrig install-prompten på dessa sidor (modaler/forms)
-const BLOCKED_PATHS = ['/profil', '/logga', '/inloggning']
+// Visa bara install-prompten på app-sidor
+const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista']
 
 export default function InstallPrompt() {
   const [show, setShow] = useState(false)
@@ -51,7 +51,7 @@ export default function InstallPrompt() {
   }
 
   if (!show) return null
-  if (BLOCKED_PATHS.some(p => pathname?.startsWith(p))) return null
+  if (!APP_PATHS.some(p => pathname?.startsWith(p))) return null
 
   return (
     <div style={{

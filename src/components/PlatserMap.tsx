@@ -13,58 +13,35 @@ interface Props {
 
 const ROUTE_COLORS = ['#0f9e64', '#1e5c82', '#c96e2a', '#7c4d1e', '#2d7d8a', '#6b3fa0']
 
-type LayerKey = 'restaurang' | 'kafe' | 'hamn'
-
-// ── Snabba val ──────────────────────────────────────
-type QuickFilter = {
-  id: string
-  label: string
-  tags?: string[]         // visa platser som har MINST ETT av dessa taggar
-  nearLat?: number        // visa platser inom nearNM från denna punkt
-  nearLng?: number
-  nearNM?: number
-  flyTo?: [number, number, number]  // [lat, lng, zoom]
-}
-
-const QUICK_FILTERS: QuickFilter[] = [
-  {
-    id: 'halvdag',
-    label: '⏱ Halvdag från Stockholm',
-    nearLat: 59.33, nearLng: 18.07, nearNM: 28,
-    flyTo: [59.45, 18.55, 10],
-  },
-  {
-    id: 'par',
-    label: '💑 Perfekt för par',
-    tags: ['romantiskt'],
-  },
-  {
-    id: 'familj',
-    label: '👨‍👩‍👧 Barnvänligt',
-    tags: ['familjevänligt'],
-  },
-  {
-    id: 'lunch-bad',
-    label: '🍽 Lunch + bad',
-    tags: ['lunch', 'bad'],
-  },
-]
+type LayerKey = 'restaurang' | 'kafe' | 'hamn' | 'bensin' | 'boende'
 
 const LAYER_COLORS: Record<LayerKey, string> = {
   restaurang: '#1e5c82',
   kafe:       '#7c4d1e',
   hamn:       '#c96e2a',
+  bensin:     '#dc2626',
+  boende:     '#0f9e64',
 }
 
 const LAYER_LABELS: Record<LayerKey, string> = {
   restaurang: '🍽',
   kafe:       '☕',
   hamn:       '⚓',
+  bensin:     '⛽',
+  boende:     '🛏',
 }
 
 function getCat(r: Restaurant): LayerKey {
+  const t = (r.type ?? '').toLowerCase()
+  if (t === 'fuel') return 'bensin'
+  if (t === 'accommodation') return 'boende'
+  if (t === 'cafe') return 'kafe'
+  if (t === 'bar' || t === 'restaurant') return 'restaurang'
+  // Fallback: gissa från text
   const d = ((r.description ?? '') + r.name).toLowerCase()
   if (d.includes('kafé') || d.includes('café') || d.includes('fika') || d.includes('bak')) return 'kafe'
+  if (d.includes('bensin') || d.includes('bränsle') || d.includes('diesel') || d.includes('mack')) return 'bensin'
+  if (d.includes('hotell') || d.includes('vandrarhem') || d.includes('stugor')) return 'boende'
   if (d.includes('hamn') || d.includes('brygga') || d.includes('gästhamn')) return 'hamn'
   return 'restaurang'
 }
@@ -87,9 +64,10 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     restaurang: true,
     kafe:       true,
     hamn:       true,
+    bensin:     true,
+    boende:     true,
   })
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeQuickFilter, setActiveQuickFilter] = useState<string | null>(null)
   const [showRoutes, setShowRoutes] = useState(true)
 
   // Haversine — avstånd i nautiska mil
@@ -148,8 +126,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
             style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚗 Bil</a>
           <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=walking" target="_blank" rel="noopener noreferrer"
             style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
-          <a href="https://maps.apple.com/?daddr=${r.latitude},${r.longitude}&dirflg=d" target="_blank" rel="noopener noreferrer"
-            style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🍎 Apple</a>
         </div>
       </div>
     `
@@ -314,36 +290,23 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId, nearbyIds])
 
-  // Layer-synk (inkl. snabba val)
+  // Layer-synk
   useEffect(() => {
     if (!mapRef.current) return
     const visibleIds = new Set(restaurants.map(r => r.id))
     const q = searchQuery.toLowerCase().trim()
-    const qf = QUICK_FILTERS.find(f => f.id === activeQuickFilter) ?? null
 
     for (const [id, entry] of Object.entries(markersRef.current)) {
       const { marker, cat, restaurant } = entry as { marker: unknown; cat: LayerKey; restaurant: Restaurant }
       const matchesSearch = !q || restaurant.name.toLowerCase().includes(q)
 
-      // Snabbt val-filter
-      let matchesQuickFilter = true
-      if (qf) {
-        if (qf.nearLat !== undefined && qf.nearLng !== undefined && qf.nearNM !== undefined) {
-          matchesQuickFilter = !!(restaurant.latitude && restaurant.longitude &&
-            distNM(qf.nearLat, qf.nearLng, restaurant.latitude, restaurant.longitude) <= qf.nearNM)
-        } else if (qf.tags && qf.tags.length > 0) {
-          const rTags: string[] = restaurant.tags ?? []
-          matchesQuickFilter = qf.tags.some(t => rTags.includes(t))
-        }
-      }
-
-      const show = visibleIds.has(id) && layers[cat as LayerKey] && matchesSearch && matchesQuickFilter
+      const show = visibleIds.has(id) && layers[cat as LayerKey] && matchesSearch
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (show  && !mapRef.current.hasLayer(marker)) (marker as any).addTo(mapRef.current)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (!show && mapRef.current.hasLayer(marker))  mapRef.current.removeLayer(marker)
     }
-  }, [restaurants, layers, searchQuery, activeQuickFilter])
+  }, [restaurants, layers, searchQuery])
 
   // Ruttlinje-synk
   useEffect(() => {
@@ -451,56 +414,11 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           )}
         </div>
 
-        {/* Snabba val — chips */}
-        <div style={{
-          marginTop: 7,
-          display: 'flex', flexDirection: 'column', gap: 5,
-        }}>
-          {QUICK_FILTERS.map(f => {
-            const isActive = activeQuickFilter === f.id
-            return (
-              <button
-                key={f.id}
-                onClick={() => {
-                  const next = isActive ? null : f.id
-                  setActiveQuickFilter(next)
-                  // Flytta kartan till relevant område om filtret har flyTo
-                  if (next && f.flyTo && mapRef.current) {
-                    mapRef.current.flyTo([f.flyTo[0], f.flyTo[1]], f.flyTo[2], { animate: true, duration: 1 })
-                  }
-                }}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: 20,
-                  border: isActive ? 'none' : '1.5px solid rgba(255,255,255,0.7)',
-                  background: isActive
-                    ? '#1e5c82'
-                    : 'rgba(255,255,255,0.92)',
-                  color: isActive ? '#fff' : '#162d3a',
-                  fontSize: 12,
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  boxShadow: isActive
-                    ? '0 2px 10px rgba(30,92,130,0.35)'
-                    : '0 1px 6px rgba(0,0,0,0.12)',
-                  backdropFilter: 'blur(8px)',
-                  transition: 'background .15s, color .15s, box-shadow .15s',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                }}
-              >
-                {f.label}
-              </button>
-            )
-          })}
-        </div>
       </div>
 
-      {/* ── Layer-toggles (övre höger) ── */}
+      {/* ── Layer-toggles (höger, under väder-widget) ── */}
       <div style={{
-        position: 'absolute', top: 12, right: 12, zIndex: 1000,
+        position: 'absolute', top: 65, right: 12, zIndex: 1000,
         display: 'flex', flexDirection: 'column', gap: 6,
       }}>
         {(Object.keys(LAYER_LABELS) as LayerKey[]).map(key => (

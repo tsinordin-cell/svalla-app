@@ -39,8 +39,9 @@ export default function Nav() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // Hide bottom nav on the landing page
-  if (path === '/') return null
+  // Visa bara bottom nav på app-sidor — INTE på informationssidor
+  const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista']
+  if (!APP_PATHS.some(p => path.startsWith(p))) return null
 
   const tabs = [
     {

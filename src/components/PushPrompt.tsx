@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-const BLOCKED_PATHS = ['/profil', '/logga', '/inloggning']
+const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista']
 
 const VAPID_PUBLIC = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''
 
@@ -66,7 +66,7 @@ export default function PushPrompt() {
   }
 
   if (!show) return null
-  if (BLOCKED_PATHS.some(p => pathname?.startsWith(p))) return null
+  if (!APP_PATHS.some(p => pathname?.startsWith(p))) return null
 
   return (
     <div style={{
