@@ -45,7 +45,8 @@ export type Trip = {
   average_speed_knots: number
   max_speed_knots: number
   image: string
-  location_name: string | null   // "Grinda", "Sandhamn" etc
+  location_name: string | null    // "Grinda", "Sandhamn" etc
+  start_location: string | null   // "Nynäshamn", "Stockholms ström" etc
   caption: string | null          // kort text, max 280 tecken
   pinnar_rating: number | null    // 1 | 2 | 3 (⚓ systemet)
   route_id: string | null

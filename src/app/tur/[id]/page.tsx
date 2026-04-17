@@ -180,9 +180,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
         {/* Location + pinnar overlay at bottom */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px' }}>
-          {trip.location_name && (
+          {(trip.start_location || trip.location_name) && (
             <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: 4, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
-              {trip.location_name}
+              {trip.start_location
+                ? <>{trip.start_location} <span style={{ fontWeight: 400, opacity: 0.7 }}>→</span> {trip.location_name}</>
+                : trip.location_name
+              }
             </div>
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

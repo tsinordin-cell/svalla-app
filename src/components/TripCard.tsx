@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
@@ -30,7 +31,8 @@ const pinnarEmoji: Record<number, string> = {
 }
 
 export default function TripCard({ trip }: { trip: Trip }) {
-  const router   = useRouter()
+  const router    = useRouter()
+  const [imgErr, setImgErr] = useState(false)
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
   const dur      = formatDurationMin(trip.duration)
@@ -65,16 +67,17 @@ export default function TripCard({ trip }: { trip: Trip }) {
     >
       {/* ── Bild ── */}
       <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: 'linear-gradient(135deg,#1a4e72,#2d7d8a)' }}>
-        {trip.image && (
+        {trip.image && !imgErr && (
           <Image
             src={trip.image}
             alt={trip.location_name ?? `Tur av ${username}`}
             fill
             className="object-cover"
             sizes="(max-width: 640px) 100vw, 640px"
+            onError={() => setImgErr(true)}
           />
         )}
-        {!trip.image && (
+        {(!trip.image || imgErr) && (
           <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 52, opacity: 0.3 }}>⛵</div>
         )}
 

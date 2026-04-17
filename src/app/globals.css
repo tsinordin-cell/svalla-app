@@ -276,3 +276,87 @@ img {
   color: var(--txt2) !important;
   border-color: rgba(74, 184, 212, 0.15) !important;
 }
+
+/* ── Extra page backgrounds ── */
+[data-theme="dark"] [style*="background: #f0f8fb"],
+[data-theme="dark"] [style*="background:#f0f8fb"] {
+  background: #070f18 !important;
+}
+[data-theme="dark"] [style*="background: #f7fafb"],
+[data-theme="dark"] [style*="background:#f7fafb"] {
+  background: #070f18 !important;
+}
+
+/* ── Sticky bottom CTA & frosted panels ── */
+[data-theme="dark"] [style*="background: rgba(250,254,255,0.95)"],
+[data-theme="dark"] [style*="background: rgba(250,254,255,0.96)"] {
+  background: rgba(9, 21, 37, 0.97) !important;
+}
+
+/* ── More text colors ── */
+[data-theme="dark"] [style*="color: #2a4a5a"],
+[data-theme="dark"] [style*="color:#2a4a5a"] {
+  color: #b0d4e8 !important;
+}
+[data-theme="dark"] [style*="color: #3a6070"],
+[data-theme="dark"] [style*="color:#3a6070"] {
+  color: #8ab8cc !important;
+}
+[data-theme="dark"] [style*="color: #192830"],
+[data-theme="dark"] [style*="color:#192830"] {
+  color: #d0e8f4 !important;
+}
+
+/* ── Accent-tinted backgrounds ── */
+[data-theme="dark"] [style*="background: rgba(201,110,42,0.10)"],
+[data-theme="dark"] [style*="background: rgba(201,110,42,0.15)"] {
+  background: rgba(232, 146, 74, 0.12) !important;
+}
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.04)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.06)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.08)"] {
+  background: rgba(74, 184, 212, 0.07) !important;
+}
+[data-theme="dark"] [style*="background: rgba(10,123,140,0.09)"],
+[data-theme="dark"] [style*="background: rgba(10,123,140,0.10)"] {
+  background: rgba(74, 184, 212, 0.08) !important;
+}
+
+/* ── Borders — more variants ── */
+[data-theme="dark"] [style*="border-top: 1px solid rgba(10,123,140"],
+[data-theme="dark"] [style*="border-bottom: 1px solid rgba(10,123,140"],
+[data-theme="dark"] [style*="borderTop: '1px solid rgba(10,123,140"],
+[data-theme="dark"] [style*="borderLeft: '3px solid rgba(10,123,140"] {
+  border-color: rgba(74, 184, 212, 0.14) !important;
+}
+[data-theme="dark"] [style*="border: 1.5px solid rgba(30,92,130"] {
+  border-color: rgba(74, 184, 212, 0.20) !important;
+}
+
+/* ── Gradient stat/info rows ── */
+[data-theme="dark"] [style*="background: linear-gradient(135deg,#1e5c82"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #1e5c82"] {
+  background: linear-gradient(135deg, #0e2a3d, #163344) !important;
+}
+
+/* ── Dark card shadows ── */
+[data-theme="dark"] [style*="box-shadow: 0 2px 14px rgba(0,45,60"],
+[data-theme="dark"] [style*="box-shadow: 0 1px 6px rgba(0,45,60"],
+[data-theme="dark"] [style*="box-shadow: 0 4px 20px rgba(0,45,60"] {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.45) !important;
+}
+
+/* ── White/light modal & card backgrounds ── */
+[data-theme="dark"] [style*="background: rgba(255,255,255,0.08)"],
+[data-theme="dark"] [style*="background: rgba(255,255,255,0.10)"],
+[data-theme="dark"] [style*="background: rgba(255,255,255,0.12)"] {
+  background: rgba(74, 184, 212, 0.08) !important;
+}
+
+/* ── Login/form card background ── */
+[data-theme="dark"] [style*="background: #fdeaea"] {
+  background: rgba(204, 61, 61, 0.12) !important;
+}
+[data-theme="dark"] [style*="background: #e6f7ef"] {
+  background: rgba(15, 158, 100, 0.12) !important;
+}

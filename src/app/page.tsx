@@ -245,12 +245,24 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 }
 @media(max-width:600px){
   section{padding:72px 24px}
-  .lp-nav{padding:0 20px}
-  .trust-bar{gap:20px;padding:16px 20px}
+  .lp-nav{padding:0 16px;height:60px}
+  .nav-links{display:none}
+  .nav-cta{gap:7px}
+  .btn-ghost{padding:8px 14px;font-size:13px}
+  .btn-accent{padding:8px 14px;font-size:13px}
+  .trust-bar{gap:16px;padding:14px 16px}
+  .trust-item{font-size:12px}
+  .trust-divider{display:none}
   .krog-grid{grid-template-columns:1fr}
   .stats-grid{grid-template-columns:1fr 1fr}
   .split-pane{padding:60px 28px}
   .footer-grid{grid-template-columns:1fr}
+  .hero-title{font-size:clamp(36px,9vw,56px)}
+  .hero-sub{font-size:15px}
+  .hero-search{border-radius:16px;flex-direction:column;gap:0;overflow:hidden}
+  .hero-search input{padding:14px 18px;font-size:14px}
+  .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
+  .steps{grid-template-columns:1fr}
 }
 `
 
@@ -326,10 +338,6 @@ const LANDING_HTML = `
       Logga dina turer. Hitta krogar, bastun och bryggor. Dela med ett community av skärgårdsmänniskor.
       Back to nature — enkelt, nordiskt, äkta.
     </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
-      <a href="/feed" class="btn btn-accent btn-xl">Kasta loss →</a>
-      <a href="/logga-in" class="btn btn-ghost btn-lg">Logga in</a>
-    </div>
     <form class="hero-search" onsubmit="event.preventDefault();const q=this.querySelector('input').value.trim();location.href='/platser'+(q?'?q='+encodeURIComponent(q):'')">
       <input type="text" placeholder="🔍  Sök ö, krog eller hamn..." id="heroSearchInput"/>
       <button type="submit">Utforska</button>
