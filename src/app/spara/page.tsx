@@ -6,7 +6,7 @@ import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
-  detectStops, formatDuration,
+  detectStops, formatDuration, isGpsAnomaly, reverseGeocode,
 } from '@/lib/gps'
 import { GpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
@@ -64,10 +64,12 @@ export default function SparaPage() {
   const [caption, setCaption] = useState('')
   const [locationName, setLocationName] = useState('')
 
-  // New state for online/offline + Kalman
+  // Avancerad GPS-state
   const [isOnline, setIsOnline] = useState(true)
   const [offlineBuffered, setOfflineBuffered] = useState(0)
   const [currentPos, setCurrentPos] = useState<{ lat: number; lng: number } | null>(null)
+  const [anomalyCount, setAnomalyCount] = useState(0)
+  const anomalyCountRef = useRef(0)  // mutable ref för watchPosition-callback
 
   const watchRef = useRef<number | null>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
@@ -154,10 +156,23 @@ export default function SparaPage() {
       (pos) => {
         setGpsError('')
 
-        // Filter out inaccurate points (> 80m accuracy)
+        // Filtrera bort oprecisa punkter
         if (pos.coords.accuracy > 80) return
 
         const now = Date.now()
+
+        // Anomalidetektering: filtrera bort omöjliga GPS-hopp (> 45 kn = GPS-brus/teleportation)
+        if (lastGpsPtRef.current) {
+          const jump = isGpsAnomaly(
+            lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
+            pos.coords.latitude, pos.coords.longitude, now,
+          )
+          if (jump) {
+            anomalyCountRef.current += 1
+            setAnomalyCount(anomalyCountRef.current)
+            return  // Kasta bort punkten — håll Kalman-filter intakt
+          }
+        }
         // coords.speed är null på de flesta mobila webbläsare — beräkna från haversine
         let speedKnots = 0
         if (pos.coords.speed != null && pos.coords.speed >= 0) {
@@ -378,7 +393,27 @@ export default function SparaPage() {
       if (stopsData.length > 0) await supabase.from('stops').insert(stopsData)
     }
 
-    // Generate AI summary (fire and forget)
+    // Reverse geocoding för stopp (kör i bakgrunden, 1 req/s pga Nominatim rate-limit)
+    const realStops = stopsData.filter(s => s.stop_type === 'stop')
+    if (realStops.length > 0) {
+      ;(async () => {
+        for (const s of realStops) {
+          try {
+            const placeName = await reverseGeocode(s.latitude, s.longitude)
+            if (placeName) {
+              await supabase.from('stops')
+                .update({ place_name: placeName })
+                .eq('trip_id', tid)
+                .eq('started_at', s.started_at)
+            }
+          } catch { /* tyst */ }
+          // Nominatim rate-limit: 1 req/s
+          await new Promise(r => setTimeout(r, 1200))
+        }
+      })().catch(() => {})
+    }
+
+    // AI-turberättelse (fire and forget)
     fetch('/api/trip-summary', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -393,6 +428,7 @@ export default function SparaPage() {
         nearbyPlaces: [],
         startTime: startedAt,
         endTime: endedAt,
+        anomalyCount: anomalyCountRef.current > 0 ? anomalyCountRef.current : undefined,
       }),
     })
       .then(r => r.json())
@@ -552,6 +588,18 @@ export default function SparaPage() {
             >
               {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
             </p>
+          )}
+          {/* Anomali-indikator */}
+          {anomalyCount > 0 && (
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 6,
+              background: 'rgba(122,157,171,0.10)',
+              borderRadius: 12, padding: '5px 12px',
+              fontSize: 11, color: '#5a8090', fontWeight: 600,
+            }}>
+              <span>🔍</span>
+              <span>{anomalyCount} GPS-anomali{anomalyCount === 1 ? '' : 'er'} detekterade och exkluderade</span>
+            </div>
           )}
           <p className="text-xs text-svalla-text3">{points.length} GPS-punkter • {stops.length} stopp</p>
         </div>

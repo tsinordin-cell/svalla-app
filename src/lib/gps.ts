@@ -122,6 +122,65 @@ export function formatDuration(seconds: number): string {
 }
 
 /** Same as formatDuration but takes minutes (as stored on trips.duration) */
+// ── Anomalidetektering ────────────────────────────────────────────────────────
+/**
+ * Kontrollerar om en ny GPS-punkt är en omöjlig hopp givet elapsed tid.
+ * Returnerar true om punkten bör filtreras bort.
+ * maxSpeedKnots = 45 kn täcker alla rimliga fritidsbåtar + säkerhetsmarginal.
+ */
+export function isGpsAnomaly(
+  prevLat: number, prevLng: number, prevTs: number,
+  newLat: number,  newLng: number,  newTs: number,
+  maxSpeedKnots = 45,
+): boolean {
+  const dtHours = (newTs - prevTs) / 3_600_000
+  if (dtHours <= 0.00005) return false  // < 0.18 s — skippa, för tätt
+  const dist = distanceNM(prevLat, prevLng, newLat, newLng)
+  const impliedSpeed = dist / dtHours
+  return impliedSpeed > maxSpeedKnots
+}
+
+// ── Reverse geocoding (Nominatim/OpenStreetMap) ───────────────────────────────
+/**
+ * Hämtar ett läsbart platsnamn för ett GPS-koordinatpar.
+ * Prioriterar marina/hamn-namn framför gator och städer.
+ * Rate-limit: Nominatim tillåter max 1 req/s — anropa ej i realtids-loopar.
+ */
+export async function reverseGeocode(lat: number, lng: number): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat.toFixed(6)}&lon=${lng.toFixed(6)}&format=json&zoom=17&addressdetails=1&accept-language=sv`,
+      {
+        headers: {
+          'User-Agent': 'Svalla/1.0 (svalla.se)',
+          'Accept': 'application/json',
+        },
+        signal: AbortSignal.timeout(5000),
+      }
+    )
+    if (!res.ok) return null
+    const data = await res.json()
+    const a = data.address ?? {}
+
+    // Marina/hamn-namn har högst prioritet (mest relevant för seglare)
+    const name =
+      a.marina       ??  // gästhamn, marina
+      a.harbour      ??  // hamn
+      a.leisure      ??  // brygga, badplats
+      data.name      ??  // råa platsnamn från OSM
+      a.natural      ??  // klippa, holme, vik
+      a.island       ??  // ö-namn
+      a.place        ??  // by, plats
+      a.village      ??  // by
+      a.suburb       ??  // stadsdel
+      null
+
+    return name ?? null
+  } catch {
+    return null  // Timeout eller nätverksfel — tyst
+  }
+}
+
 export function formatDurationMin(min: number): string | null {
   if (!min || min <= 0) return null
   const h = Math.floor(min / 60)

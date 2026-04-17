@@ -15,6 +15,8 @@ interface TripData {
   nearbyPlaces: string[]
   startTime?: string
   endTime?: string
+  anomalyCount?: number   // antal filtrerade GPS-anomalier
+  routeMatch?: string     // matchad känd rutt (om rutigenkänning hittat match)
 }
 
 const SYSTEM_PROMPT = `Du är en personlig loggsassistent för Svalla – appen för skärgårdslivet i Sverige. Du skriver korta, personliga, levande turberättelser som känns som om de skrivs av en erfaren seglare med passion för skärgården.
@@ -55,10 +57,16 @@ function buildUserMessage(data: TripData): string {
   }
 
   if (data.nearbyPlaces && data.nearbyPlaces.length > 0) {
-    msg += `\n• Nära: ${data.nearbyPlaces.join(', ')}`
+    msg += `\n• Passerade: ${data.nearbyPlaces.join(', ')}`
+  }
+  if (data.routeMatch) {
+    msg += `\n• Rutten matchar känd sträcka: ${data.routeMatch}`
+  }
+  if (data.anomalyCount && data.anomalyCount > 0) {
+    msg += `\n• GPS-kvalitet: ${data.anomalyCount} anomala punkter filtrerades bort`
   }
 
-  msg += `\n\nSkriv en kort, varm turberättelse baserat på denna data. Använd datan för att skapa något autentiskt och inspirerande – inte bara factiskt.`
+  msg += `\n\nSkriv en kort, varm turberättelse baserat på denna data. Fånga känslan, inte bara fakta.`
 
   return msg
 }

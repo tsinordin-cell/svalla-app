@@ -88,12 +88,18 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     .eq('trip_id', id)
     .order('recorded_at', { ascending: true })
 
-  // fetch stops
+  // fetch stops (inkl. reverse-geocodat platsnamn)
   const { data: rawStops } = await supabase
     .from('stops')
-    .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds')
+    .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
     .eq('trip_id', id)
     .order('started_at', { ascending: true })
+
+  // fetch tours för rutigenkänning
+  const { data: toursData } = await supabase
+    .from('tours')
+    .select('id,title,start_location,destination,waypoints')
+    .limit(100)
 
   // fetch all restaurants (we'll filter by proximity)
   const { data: allRestaurants } = await supabase
@@ -116,6 +122,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     startedAt: s.started_at,
     endedAt: s.ended_at,
     durationSeconds: s.duration_seconds ?? 0,
+    placeName: s.place_name as string | undefined,  // från reverse geocoding
   }))
 
   // restaurants near the route
@@ -128,21 +135,42 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
       })), 0.5)
     : []
 
-  // Name stops with nearby restaurants (within ~220m = 0.12 NM)
+  // Name stops: 1) reverse-geocoded name from DB, 2) nearby restaurant, 3) "Stopp N"
   const namedStops = stops.map(stop => {
     if (stop.type !== 'stop') return { ...stop, placeName: undefined }
+    // Prioritera Nominatim-reverse-geocodat namn (lagrat vid save)
+    if (stop.placeName) return stop
+    // Fallback: kolla mot känd plats i databasen (inom ~220m = 0.12 NM)
     let nearest: string | undefined
     let nearestDist = Infinity
     for (const r of (allRestaurants ?? [])) {
       if (!r.latitude || !r.longitude) continue
       const d = distanceNM(stop.lat, stop.lng, r.latitude, r.longitude)
-      if (d < 0.12 && d < nearestDist) {
-        nearestDist = d
-        nearest = r.name
-      }
+      if (d < 0.12 && d < nearestDist) { nearestDist = d; nearest = r.name }
     }
     return { ...stop, placeName: nearest }
   })
+
+  // ── Rutigenkänning ────────────────────────────────────────────────────────
+  type TourRow = { id: string; title: string; start_location: string; destination: string; waypoints: { lat: number; lng: number }[] }
+  let matchedRoute: (TourRow & { score: number }) | null = null
+
+  if (points.length >= 10 && toursData && toursData.length > 0) {
+    const tripStart = points[0]
+    const tripEnd   = points[points.length - 1]
+    let bestScore   = Infinity
+
+    for (const tour of (toursData as TourRow[])) {
+      if (!Array.isArray(tour.waypoints) || tour.waypoints.length < 2) continue
+      const tw    = tour.waypoints
+      const tS    = tw[0]
+      const tE    = tw[tw.length - 1]
+      const fwd   = distanceNM(tripStart.lat, tripStart.lng, tS.lat, tS.lng) + distanceNM(tripEnd.lat, tripEnd.lng, tE.lat, tE.lng)
+      const rev   = distanceNM(tripStart.lat, tripStart.lng, tE.lat, tE.lng) + distanceNM(tripEnd.lat, tripEnd.lng, tS.lat, tS.lng)
+      const score = Math.min(fwd, rev)
+      if (score < bestScore && score < 5) { bestScore = score; matchedRoute = { ...tour, score } }
+    }
+  }
 
   const hasMap = points.length >= 2
   const username = userRow?.username ?? 'Seglare'
@@ -294,6 +322,31 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <p style={{ fontSize: 14, color: '#2a4a5a', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
               {trip.ai_summary}
             </p>
+          </div>
+        )}
+
+        {/* ── Rutigenkänning ── */}
+        {matchedRoute && (
+          <div style={{
+            margin: '0 0 16px',
+            padding: '12px 16px',
+            background: 'linear-gradient(135deg,rgba(15,158,100,0.08),rgba(15,158,100,0.03))',
+            borderRadius: 18,
+            borderLeft: '3px solid #0f9e64',
+            display: 'flex', alignItems: 'center', gap: 12,
+          }}>
+            <span style={{ fontSize: 22, flexShrink: 0 }}>⛵</span>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: '#0f9e64', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
+                Rutigenkänning
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a', lineHeight: 1.2 }}>
+                {matchedRoute.title}
+              </div>
+              <div style={{ fontSize: 11, color: '#7a9dab', marginTop: 2 }}>
+                {matchedRoute.start_location} → {matchedRoute.destination}
+              </div>
+            </div>
           </div>
         )}
 
