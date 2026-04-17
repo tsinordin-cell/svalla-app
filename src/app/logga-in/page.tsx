@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import SvallaLogo from '@/components/SvallaLogo'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -83,11 +84,8 @@ export default function LoggaInPage() {
       background: 'linear-gradient(180deg, #0b3348 0%, #1a5270 45%, #f7fbfc 100%)',
     }}>
       {/* ── Hero ── */}
-      <div style={{ padding: '52px 24px 36px', textAlign: 'center' }}>
-        <div style={{ fontSize: 48, marginBottom: 10, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}>⛵</div>
-        <h1 style={{ fontSize: 42, fontWeight: 900, color: '#fff', margin: '0 0 6px', letterSpacing: '-1.5px' }}>
-          Svalla
-        </h1>
+      <div style={{ padding: '56px 24px 36px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+        <SvallaLogo height={38} color="#ffffff" />
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0, fontWeight: 500 }}>
           {isNew ? 'Skapa konto och börja logga turer' : 'Välkommen tillbaka till skärgården'}
         </p>
