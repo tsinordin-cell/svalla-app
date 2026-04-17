@@ -1,0 +1,186 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "dynamicRoutes": [
+    {
+      "page": "/blogg/[slug]",
+      "regex": "^/blogg/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blogg/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/platser/[id]",
+      "regex": "^/platser/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/platser/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/rutter/[id]",
+      "regex": "^/rutter/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/rutter/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/tur/[id]",
+      "regex": "^/tur/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/tur/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/u/[username]",
+      "regex": "^/u/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPusername": "nxtPusername"
+      },
+      "namedRegex": "^/u/(?<nxtPusername>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/blogg",
+      "regex": "^/blogg(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blogg(?:/)?$"
+    },
+    {
+      "page": "/faq",
+      "regex": "^/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/faq(?:/)?$"
+    },
+    {
+      "page": "/feed",
+      "regex": "^/feed(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/feed(?:/)?$"
+    },
+    {
+      "page": "/glomt-losenord",
+      "regex": "^/glomt\\-losenord(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/glomt\\-losenord(?:/)?$"
+    },
+    {
+      "page": "/guide",
+      "regex": "^/guide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/guide(?:/)?$"
+    },
+    {
+      "page": "/integritetspolicy",
+      "regex": "^/integritetspolicy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/integritetspolicy(?:/)?$"
+    },
+    {
+      "page": "/logga",
+      "regex": "^/logga(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/logga(?:/)?$"
+    },
+    {
+      "page": "/logga/manuell",
+      "regex": "^/logga/manuell(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/logga/manuell(?:/)?$"
+    },
+    {
+      "page": "/logga-in",
+      "regex": "^/logga\\-in(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/logga\\-in(?:/)?$"
+    },
+    {
+      "page": "/om",
+      "regex": "^/om(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/om(?:/)?$"
+    },
+    {
+      "page": "/platser",
+      "regex": "^/platser(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/platser(?:/)?$"
+    },
+    {
+      "page": "/profil",
+      "regex": "^/profil(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profil(?:/)?$"
+    },
+    {
+      "page": "/rutter",
+      "regex": "^/rutter(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/rutter(?:/)?$"
+    },
+    {
+      "page": "/sok",
+      "regex": "^/sok(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sok(?:/)?$"
+    },
+    {
+      "page": "/spara",
+      "regex": "^/spara(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/spara(?:/)?$"
+    },
+    {
+      "page": "/topplista",
+      "regex": "^/topplista(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/topplista(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "RSC",
+    "varyHeader": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch",
+    "prefetchHeader": "Next-Router-Prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "Next-Router-Segment-Prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  },
+  "rewrites": []
+}

@@ -330,7 +330,6 @@ const LANDING_HTML = `
     <li><a href="/rutter">Rutter</a></li>
     <li><a href="/#aktiviteter">Se & Göra</a></li>
     <li><a href="/#resmål">Resmål</a></li>
-    <li><a href="/blogg">Bloggen</a></li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
