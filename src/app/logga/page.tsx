@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import SvallaLogo from '@/components/SvallaLogo'
 
 export default function LoggaChoicePage() {
   const router = useRouter()
@@ -31,7 +32,9 @@ export default function LoggaChoicePage() {
 
       {/* Hero text */}
       <div style={{ padding: '24px 20px 32px', textAlign: 'center' }}>
-        <div style={{ fontSize: 48, marginBottom: 12 }}>⛵</div>
+        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
+          <SvallaLogo height={52} color="#ffffff" />
+        </div>
         <h1 style={{
           fontSize: 28, fontWeight: 900, color: '#fff',
           margin: '0 0 8px', lineHeight: 1.15,

@@ -441,7 +441,11 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         onClick={() => { setFullscreen(f => !f); setTimeout(() => mapRef.current?.invalidateSize(), 50) }}
         title={fullscreen ? 'Stäng fullskärm' : 'Helskärm'}
         style={{
-          position: 'absolute', bottom: fullscreen ? 24 : 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 70px)', right: 12,
+          position: 'absolute',
+          bottom: fullscreen
+            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 20px)'
+            : 56,
+          right: 12,
           zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
           background: '#fff', border: 'none', cursor: 'pointer',
           boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
@@ -543,7 +547,11 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         onClick={locateUser}
         title="Visa min position"
         style={{
-          position: 'absolute', bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 20px)', right: 12, zIndex: 1000,
+          position: 'absolute',
+          bottom: fullscreen
+            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 70px)'
+            : 8,
+          right: 12, zIndex: 1000,
           width: 44, height: 44, borderRadius: '50%',
           background: userPos ? '#1e5c82' : '#fff',
           border: 'none', cursor: locating ? 'default' : 'pointer',

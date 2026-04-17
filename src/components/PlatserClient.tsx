@@ -22,6 +22,12 @@ const FILTERS = [
 ]
 
 function getCat(r: Restaurant): string {
+  // Använd type-fältet i första hand
+  const t = (r.type ?? '').toLowerCase()
+  if (t === 'cafe') return 'kafe'
+  if (t === 'bar' || t === 'restaurant') return 'restaurang'
+  if (t === 'accommodation' || t === 'fuel') return 'hamn'
+  // Fallback: textmatchning
   const d = (r.description ?? '').toLowerCase() + (r.name ?? '').toLowerCase()
   if (d.includes('kafé') || d.includes('café') || d.includes('fika') || d.includes('bak')) return 'kafe'
   if (d.includes('hamn') || d.includes('brygga') || d.includes('gästhamn')) return 'hamn'

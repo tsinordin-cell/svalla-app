@@ -64,6 +64,8 @@ export default function SparaPage() {
   const pauseStartRef = useRef<Date | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const startTimeRef = useRef<Date | null>(null)
+  // Används för att beräkna hastighet från konsekutiva GPS-punkter
+  const lastGpsPtRef = useRef<{ lat: number; lng: number; ts: number } | null>(null)
 
   // tick timer
   useEffect(() => {
@@ -84,12 +86,32 @@ export default function SparaPage() {
     watchRef.current = navigator.geolocation.watchPosition(
       (pos) => {
         setGpsError('')
-        const speedKnots = pos.coords.speed != null ? msToKnots(pos.coords.speed) : 0
-        setCurrentSpeed(speedKnots)
+        const now = Date.now()
+        // coords.speed är null på de flesta mobila webbläsare — beräkna från haversine
+        let speedKnots = 0
+        if (pos.coords.speed != null && pos.coords.speed >= 0) {
+          speedKnots = msToKnots(pos.coords.speed)
+        } else if (lastGpsPtRef.current) {
+          const dtHours = (now - lastGpsPtRef.current.ts) / 3_600_000
+          if (dtHours > 0.0005) { // minst ~2 sekunder
+            const R = 3440.065
+            const lat1 = lastGpsPtRef.current.lat * Math.PI / 180
+            const lat2 = pos.coords.latitude  * Math.PI / 180
+            const dLat = (pos.coords.latitude  - lastGpsPtRef.current.lat) * Math.PI / 180
+            const dLng = (pos.coords.longitude - lastGpsPtRef.current.lng) * Math.PI / 180
+            const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
+            const nm = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+            speedKnots = nm / dtHours
+          }
+        }
+        lastGpsPtRef.current = { lat: pos.coords.latitude, lng: pos.coords.longitude, ts: now }
+        // Filtrera bort orealistiska värden (> 40 kn är sannolikt GPS-brus)
+        const clampedSpeed = Math.min(speedKnots, 40)
+        setCurrentSpeed(clampedSpeed)
         const pt: GpsPoint = {
           lat: pos.coords.latitude,
           lng: pos.coords.longitude,
-          speedKnots,
+          speedKnots: clampedSpeed,
           heading: pos.coords.heading ?? null,
           accuracy: pos.coords.accuracy,
           recordedAt: new Date().toISOString(),
