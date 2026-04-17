@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
 
@@ -46,6 +46,67 @@ function getCat(r: Restaurant): LayerKey {
   return 'restaurang'
 }
 
+// Helper functions outside component to avoid recreating on every render
+function distNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 3440.065
+  const dLat = (lat2 - lat1) * Math.PI / 180
+  const dLon = (lon2 - lon1) * Math.PI / 180
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+}
+
+function etaStr(nm: number): string {
+  const h = nm / 5
+  if (h < 1) return `ca ${Math.round(h * 60)} min`
+  return `ca ${h.toFixed(1).replace('.', ',')}h`
+}
+
+function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null): string {
+  const nm = pos ? distNM(pos.lat, pos.lng, r.latitude!, r.longitude!) : null
+  const distRow = nm != null
+    ? `<div style="margin:6px 0 2px;padding:6px 8px;background:rgba(10,123,140,0.07);border-radius:10px;font-size:12px;color:#1e5c82;font-weight:700">
+        ⚓ ${nm.toFixed(1)} NM bort · ${etaStr(nm)} vid 5 kn
+       </div>`
+    : ''
+  // core_experience — "Varför hit?" i popup
+  const whyRow = r.core_experience
+    ? `<div style="margin:7px 0 4px;padding:7px 10px;background:rgba(30,92,130,0.07);border-radius:10px;border-left:3px solid rgba(30,92,130,0.3)">
+         <div style="font-size:9px;font-weight:800;color:#1e5c82;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Varför hit?</div>
+         <div style="font-size:12px;color:#2a4a5a;line-height:1.45">${r.core_experience}</div>
+       </div>`
+    : ''
+  // tags
+  const tagsRow = r.tags && r.tags.length > 0
+    ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">
+         ${r.tags.slice(0, 4).map((tag: string) =>
+           `<span style="padding:3px 8px;background:rgba(10,123,140,0.07);border-radius:12px;font-size:10px;font-weight:600;color:#2d6a82">${tag}</span>`
+         ).join('')}
+       </div>`
+    : ''
+  return `
+    <div style="font-family:system-ui,sans-serif;min-width:200px">
+      <div style="font-weight:800;font-size:14px;color:#162d3a;margin-bottom:3px">${r.name}</div>
+      ${r.opening_hours ? `<div style="font-size:11px;color:#7a9dab">🕐 ${r.opening_hours}</div>` : ''}
+      ${whyRow}
+      ${tagsRow}
+      ${distRow}
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+        <a href="/platser/${r.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Visa →</a>
+        <a href="https://map.openseamap.org/?zoom=13&lat=${r.latitude}&lon=${r.longitude}" target="_blank" rel="noopener noreferrer"
+          style="padding:5px 12px;background:rgba(10,123,140,0.12);color:#1e5c82;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">
+          ⚓ Sjökort
+        </a>
+      </div>
+      <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=driving" target="_blank" rel="noopener noreferrer"
+          style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚗 Bil</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=walking" target="_blank" rel="noopener noreferrer"
+          style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
+      </div>
+    </div>
+  `
+}
+
 export default function PlatserMap({ restaurants, tours = [], activeId, onMarkerClick, onMapMove }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,66 +134,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   const [searchQuery, setSearchQuery] = useState('')
   const [showRoutes, setShowRoutes] = useState(true)
 
-  // Haversine — avstånd i nautiska mil
-  function distNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 3440.065
-    const dLat = (lat2 - lat1) * Math.PI / 180
-    const dLon = (lon2 - lon1) * Math.PI / 180
-    const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) * Math.sin(dLon/2)**2
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-  }
-
-  function etaStr(nm: number): string {
-    const h = nm / 5
-    if (h < 1) return `ca ${Math.round(h * 60)} min`
-    return `ca ${h.toFixed(1).replace('.', ',')}h`
-  }
-
-  function buildPopup(r: Restaurant, pos: { lat: number; lng: number } | null): string {
-    const nm = pos ? distNM(pos.lat, pos.lng, r.latitude!, r.longitude!) : null
-    const distRow = nm != null
-      ? `<div style="margin:6px 0 2px;padding:6px 8px;background:rgba(10,123,140,0.07);border-radius:10px;font-size:12px;color:#1e5c82;font-weight:700">
-          ⚓ ${nm.toFixed(1)} NM bort · ${etaStr(nm)} vid 5 kn
-         </div>`
-      : ''
-    // core_experience — "Varför hit?" i popup
-    const whyRow = r.core_experience
-      ? `<div style="margin:7px 0 4px;padding:7px 10px;background:rgba(30,92,130,0.07);border-radius:10px;border-left:3px solid rgba(30,92,130,0.3)">
-           <div style="font-size:9px;font-weight:800;color:#1e5c82;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Varför hit?</div>
-           <div style="font-size:12px;color:#2a4a5a;line-height:1.45">${r.core_experience}</div>
-         </div>`
-      : ''
-    // tags
-    const tagsRow = r.tags && r.tags.length > 0
-      ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">
-           ${r.tags.slice(0, 4).map((tag: string) =>
-             `<span style="padding:3px 8px;background:rgba(10,123,140,0.07);border-radius:12px;font-size:10px;font-weight:600;color:#2d6a82">${tag}</span>`
-           ).join('')}
-         </div>`
-      : ''
-    return `
-      <div style="font-family:system-ui,sans-serif;min-width:200px">
-        <div style="font-weight:800;font-size:14px;color:#162d3a;margin-bottom:3px">${r.name}</div>
-        ${r.opening_hours ? `<div style="font-size:11px;color:#7a9dab">🕐 ${r.opening_hours}</div>` : ''}
-        ${whyRow}
-        ${tagsRow}
-        ${distRow}
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
-          <a href="/platser/${r.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Visa →</a>
-          <a href="https://map.openseamap.org/?zoom=13&lat=${r.latitude}&lon=${r.longitude}" target="_blank" rel="noopener noreferrer"
-            style="padding:5px 12px;background:rgba(10,123,140,0.12);color:#1e5c82;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">
-            ⚓ Sjökort
-          </a>
-        </div>
-        <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=driving" target="_blank" rel="noopener noreferrer"
-            style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚗 Bil</a>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=walking" target="_blank" rel="noopener noreferrer"
-            style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
-        </div>
-      </div>
-    `
-  }
 
   function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string): object {
     const pulseRing = pulse
@@ -241,7 +242,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           icon: L.divIcon(makeIconHtml(color, 34, false, emoji) as any),
         })
-          .bindPopup(buildPopup(r, userPosRef.current), { maxWidth: 280 })
+          .bindPopup(buildPopupHtml(r, userPosRef.current), { maxWidth: 280 })
 
         marker.on('click', () => onMarkerClick(r.id))
 
@@ -324,7 +325,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           mapRef.current.panTo((marker as any).getLatLng(), { animate: true })
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ;(marker as any).setPopupContent(buildPopup(restaurant, userPosRef.current))
+          ;(marker as any).setPopupContent(buildPopupHtml(restaurant, userPosRef.current))
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ;(marker as any).openPopup()
         }
@@ -386,7 +387,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         // Uppdatera popup-distanser
         for (const { marker, restaurant } of Object.values(markersRef.current)) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ;(marker as any).setPopupContent(buildPopup(restaurant as Restaurant, newPos))
+          ;(marker as any).setPopupContent(buildPopupHtml(restaurant as Restaurant, newPos))
         }
 
         const L   = await import('leaflet')

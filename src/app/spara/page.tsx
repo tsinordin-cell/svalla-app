@@ -1,7 +1,7 @@
 'use client'
-export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import {
   type GpsPoint, type StopEvent,
@@ -10,7 +10,6 @@ import {
 } from '@/lib/gps'
 import { GpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
-import dynamic from 'next/dynamic'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -103,7 +102,7 @@ export default function SparaPage() {
   }, [])
 
   // ── Sync offline points to Supabase ────────────────────────────────────────
-  async function syncOfflinePoints() {
+  const syncOfflinePoints = useCallback(async () => {
     try {
       const pending = await getPendingPoints()
       if (pending.length === 0) return
@@ -134,7 +133,7 @@ export default function SparaPage() {
     } catch {
       // Sync failed - data stays in buffer
     }
-  }
+  }, [tripId, supabase])
 
   // tick timer
   useEffect(() => {
@@ -396,7 +395,8 @@ export default function SparaPage() {
     // Reverse geocoding för stopp (kör i bakgrunden, 1 req/s pga Nominatim rate-limit)
     const realStops = stopsData.filter(s => s.stop_type === 'stop')
     if (realStops.length > 0) {
-      ;(async () => {
+      // Fire-and-forget background task, don't await
+      Promise.resolve().then(async () => {
         for (const s of realStops) {
           try {
             const placeName = await reverseGeocode(s.latitude, s.longitude)
@@ -410,7 +410,7 @@ export default function SparaPage() {
           // Nominatim rate-limit: 1 req/s
           await new Promise(r => setTimeout(r, 1200))
         }
-      })().catch(() => {})
+      }).catch(() => {})
     }
 
     // AI-turberättelse (fire and forget)

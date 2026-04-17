@@ -98,6 +98,23 @@ export function detectStops(points: GpsPoint[]): StopEvent[] {
     }
   }
 
+  // Check if trip ended with a stop (final points have speed < 0.3)
+  if (stopStart !== null && points.length > 0) {
+    const startTime = new Date(points[stopStart].recordedAt).getTime()
+    const endTime = new Date(points[points.length - 1].recordedAt).getTime()
+    const dur = (endTime - startTime) / 1000
+    if (dur >= MIN_STOP_SECONDS) {
+      stops.push({
+        lat: stopLat,
+        lng: stopLng,
+        type: 'stop',
+        startedAt: points[stopStart].recordedAt,
+        endedAt: points[points.length - 1].recordedAt,
+        durationSeconds: Math.round(dur),
+      })
+    }
+  }
+
   return stops
 }
 

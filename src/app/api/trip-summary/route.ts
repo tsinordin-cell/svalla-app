@@ -114,7 +114,10 @@ export async function POST(req: NextRequest) {
     }
 
     const result = await res.json()
-    const summary = result.content?.[0]?.text ?? ''
+    if (!result.content || !Array.isArray(result.content) || result.content.length === 0) {
+      return NextResponse.json({ summary: '' })
+    }
+    const summary = result.content[0].text ?? ''
 
     return NextResponse.json({ summary })
   } catch (error) {

@@ -7,8 +7,7 @@ import PushPrompt from '@/components/PushPrompt'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
 import ToastContainer from '@/components/Toast'
 import ThemeProvider from '@/components/ThemeProvider'
-// Leaflet CSS (needed for map components)
-import 'leaflet/dist/leaflet.css'
+// Note: Leaflet CSS is imported dynamically in client components that need it, not here
 
 export const metadata: Metadata = {
   title: {

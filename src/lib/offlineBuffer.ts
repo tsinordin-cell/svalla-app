@@ -65,16 +65,20 @@ export async function getPendingPoints(): Promise<{ key: IDBValidKey; point: Buf
     const tx = db.transaction(STORE_NAME, 'readonly')
     const store = tx.objectStore(STORE_NAME)
     return new Promise((resolve, reject) => {
-      const req = store.getAll()
+      const req = store.openCursor()
+      const result: { key: IDBValidKey; point: BufferedPoint }[] = []
       req.onerror = () => reject(req.error)
-      req.onsuccess = () => {
-        const points = req.result as BufferedPoint[]
-        resolve(
-          points.map((point, index) => ({
-            key: index,
-            point,
-          }))
-        )
+      req.onsuccess = (e) => {
+        const cursor = (e.target as IDBRequest).result as IDBCursorWithValue | null
+        if (cursor) {
+          result.push({
+            key: cursor.key,
+            point: cursor.value as BufferedPoint,
+          })
+          cursor.continue()
+        } else {
+          resolve(result)
+        }
       }
     })
   } catch {

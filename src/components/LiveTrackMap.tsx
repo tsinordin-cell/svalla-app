@@ -58,6 +58,10 @@ export default function LiveTrackMap({ points, currentPos, speed }: LiveTrackMap
             opacity: 0.8,
           }
         ).addTo(mapInstance.current)
+      } else if (polylineRef.current) {
+        // Clear polyline if points reduced below 2
+        mapInstance.current.removeLayer(polylineRef.current)
+        polylineRef.current = null
       }
 
       // Update position marker
@@ -97,6 +101,10 @@ export default function LiveTrackMap({ points, currentPos, speed }: LiveTrackMap
 
         // Pan to current position
         mapInstance.current.setView([currentPos.lat, currentPos.lng], 13, { animate: true, duration: 0.5 })
+      } else if (markerRef.current) {
+        // Remove marker if currentPos becomes null
+        mapInstance.current.removeLayer(markerRef.current)
+        markerRef.current = null
       }
     }
 

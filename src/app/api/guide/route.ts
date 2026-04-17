@@ -151,33 +151,49 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY saknas i .env.local' }, { status: 500 })
   }
 
-  const { messages } = await req.json()
+  let data: unknown
+  try {
+    data = await req.json()
+  } catch (e) {
+    return NextResponse.json({ error: 'Ogiltig JSON i request body' }, { status: 400 })
+  }
+
+  const { messages } = data as { messages?: unknown }
   if (!messages || !Array.isArray(messages)) {
-    return NextResponse.json({ error: 'messages krävs' }, { status: 400 })
+    return NextResponse.json({ error: 'messages krävs och måste vara array' }, { status: 400 })
   }
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 1200,
-      system: SYSTEM_PROMPT,
-      messages,
-    }),
-  })
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1200,
+        system: SYSTEM_PROMPT,
+        messages,
+      }),
+    })
 
-  if (!res.ok) {
-    const err = await res.text()
-    console.error('[guide api]', err)
-    return NextResponse.json({ error: 'API-fel' }, { status: 500 })
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('[guide api]', res.status, err)
+      return NextResponse.json({ error: 'Anthropic API fel' }, { status: 500 })
+    }
+
+    const data = await res.json()
+    if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
+      console.error('[guide api] Empty content in response')
+      return NextResponse.json({ reply: '' })
+    }
+    const text = data.content[0].text ?? ''
+    return NextResponse.json({ reply: text })
+  } catch (error) {
+    console.error('[guide api] Nätverksfel:', error)
+    return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
   }
-
-  const data = await res.json()
-  const text = data.content?.[0]?.text ?? ''
-  return NextResponse.json({ reply: text })
 }
