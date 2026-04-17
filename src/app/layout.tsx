@@ -72,16 +72,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="sv" suppressHydrationWarning>
       <head>
-        {/* DEBUG: catch and display JS errors visually — REMOVE after diagnosis */}
+        {/* DEBUG: intercept console.error (React calls this before fatal hydration errors) */}
         <script dangerouslySetInnerHTML={{ __html: `
 (function(){
-  function show(msg){
+  var msgs=[];
+  function show(){
     var d=document.getElementById('_svallaDbg');
-    if(!d){d=document.createElement('pre');d.id='_svallaDbg';d.style='position:fixed;top:0;left:0;right:0;z-index:99999;background:#c00;color:#fff;padding:12px;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:60vh;overflow:auto';document.body?document.body.appendChild(d):(document.documentElement.appendChild(d));}
-    d.textContent=(d.textContent||'')+msg+'\\n\\n';
+    if(!d){d=document.createElement('pre');d.id='_svallaDbg';d.style='position:fixed;top:0;left:0;right:0;z-index:99999;background:#800;color:#fff;padding:12px;font-size:10px;white-space:pre-wrap;word-break:break-all;max-height:70vh;overflow:auto';}
+    d.textContent=msgs.join('\\n---\\n');
+    if(!d.parentNode)(document.body||document.documentElement).appendChild(d);
   }
-  window.addEventListener('error',function(e){show('ERROR: '+e.message+'\\n'+(e.error&&e.error.stack||''));});
-  window.addEventListener('unhandledrejection',function(e){show('PROMISE: '+e.reason+'\\n'+(e.reason&&e.reason.stack||''));});
+  var orig=console.error;
+  console.error=function(){
+    var args=Array.prototype.slice.call(arguments);
+    msgs.push(args.map(function(a){return a instanceof Error?a.stack:(typeof a==='object'?JSON.stringify(a):String(a));}).join(' '));
+    show();
+    orig.apply(console,arguments);
+  };
+  window.addEventListener('error',function(e){msgs.push('WINERR: '+e.message+'\\n'+(e.error&&e.error.stack||''));show();});
+  window.addEventListener('unhandledrejection',function(e){msgs.push('PROMISE: '+e.reason+'\\n'+(e.reason&&e.reason.stack||''));show();});
 })();
         ` }} />
       </head>
