@@ -29,6 +29,19 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:.2s}
 .nav-links a:hover{color:var(--white)}
+.nav-dropdown{position:relative}
+.nav-dropdown > a{display:flex;align-items:center;gap:5px}
+.nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.6;transition:.2s}
+.nav-dropdown:hover > a::after{opacity:1}
+.nav-mega{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;min-width:440px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateX(-50%) translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.nav-mega-col{padding:8px 12px}
+.nav-mega-col:first-child{border-right:1px solid rgba(255,255,255,.07)}
+.nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.nav-mega-link{display:block;color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;padding:5px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-mega-link:last-child{border-bottom:none}
+.nav-mega-link:hover{color:#fff;padding-left:4px}
 .nav-cta{display:flex;gap:10px;align-items:center}
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-ghost{background:rgba(255,255,255,.12);color:var(--white);border:1px solid rgba(255,255,255,.2)}
@@ -331,7 +344,37 @@ const LANDING_HTML = `
     <li><a href="/platser">Utforska</a></li>
     <li><a href="/rutter">Rutter</a></li>
     <li><a href="/#aktiviteter">Se & Göra</a></li>
-    <li><a href="/#resmål">Resmål</a></li>
+    <li class="nav-dropdown">
+      <a href="/#resmål">Resmål</a>
+      <div class="nav-mega">
+        <div class="nav-mega-grid">
+          <div class="nav-mega-col">
+            <div class="nav-mega-region">Innerskärgården</div>
+            <a href="/o/fjaderholmarna" class="nav-mega-link">Fjäderholmarna</a>
+            <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
+            <a href="/o/grinda" class="nav-mega-link">Grinda</a>
+            <a href="/o/finnhamn" class="nav-mega-link">Finnhamn</a>
+            <div class="nav-mega-region" style="margin-top:14px">Mellersta skärgården</div>
+            <a href="/o/sandhamn" class="nav-mega-link">Sandhamn</a>
+            <a href="/o/moja" class="nav-mega-link">Möja</a>
+            <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
+            <a href="/o/gallno" class="nav-mega-link">Gällnö</a>
+          </div>
+          <div class="nav-mega-col">
+            <div class="nav-mega-region">Södra skärgården</div>
+            <a href="/o/uto" class="nav-mega-link">Utö</a>
+            <a href="/o/nattaro" class="nav-mega-link">Nåttarö</a>
+            <a href="/o/orno" class="nav-mega-link">Ornö</a>
+            <a href="/o/dalaro" class="nav-mega-link">Dalarö</a>
+            <a href="/o/landsort" class="nav-mega-link">Landsort</a>
+            <div class="nav-mega-region" style="margin-top:14px">Norra skärgården</div>
+            <a href="/o/furusund" class="nav-mega-link">Furusund</a>
+            <a href="/o/blido" class="nav-mega-link">Blidö</a>
+            <a href="/o/arholma" class="nav-mega-link">Arholma</a>
+          </div>
+        </div>
+      </div>
+    </li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
@@ -409,7 +452,7 @@ const LANDING_HTML = `
   <div class="trust-divider"></div>
   <div class="trust-item"><strong>200+</strong> krogar & kajer</div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><strong>4 000+</strong> äkta recensioner</div>
+  <div class="trust-item"><strong>17</strong> ösidor med guider</div>
   <div class="trust-divider"></div>
   <div class="trust-item"><strong>10 sek</strong> att logga en tur</div>
   <div class="trust-divider"></div>
@@ -521,7 +564,7 @@ const LANDING_HTML = `
       <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
     </div>
     <div class="destinations-grid">
-      <a href="/platser" class="dest-card reveal reveal-delay-1">
+      <div class="dest-card reveal reveal-delay-1">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f2e3b,#1a4a5e,#24697f)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="120" cy="200" rx="90" ry="45" fill="#0d2030" opacity="0.7"/><ellipse cx="220" cy="240" rx="70" ry="35" fill="#0a1f2b" opacity="0.8"/>
@@ -534,8 +577,8 @@ const LANDING_HTML = `
           <div class="dest-card-name">Fjäderholmarna · Vaxholm · Grinda</div>
           <div class="dest-card-islands"><a href="/o/fjaderholmarna" class="dest-island">Fjäderholmarna</a><a href="/o/vaxholm" class="dest-island">Vaxholm</a><a href="/o/grinda" class="dest-island">Grinda</a><a href="/o/finnhamn" class="dest-island">Finnhamn</a><span class="dest-island">Resarö</span></div>
         </div>
-      </a>
-      <a href="/platser" class="dest-card reveal reveal-delay-2">
+      </div>
+      <div class="dest-card reveal reveal-delay-2">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f3020,#1a5030,#2a7040)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="210" rx="75" ry="38" fill="#0a1f10" opacity="0.7"/><ellipse cx="210" cy="235" rx="85" ry="42" fill="#081510" opacity="0.8"/>
@@ -548,8 +591,8 @@ const LANDING_HTML = `
           <div class="dest-card-name">Sandhamn · Möja · Ljusterö</div>
           <div class="dest-card-islands"><a href="/o/sandhamn" class="dest-island">Sandhamn</a><a href="/o/moja" class="dest-island">Möja</a><a href="/o/ljustero" class="dest-island">Ljusterö</a><a href="/o/gallno" class="dest-island">Gällnö</a><span class="dest-island">Runmarö</span></div>
         </div>
-      </a>
-      <a href="/platser" class="dest-card reveal reveal-delay-3">
+      </div>
+      <div class="dest-card reveal reveal-delay-3">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#1a2a3a,#1e4060,#2a5875)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="150" cy="220" rx="100" ry="50" fill="#0d2030" opacity="0.7"/><ellipse cx="80" cy="255" rx="60" ry="28" fill="#0a1820" opacity="0.8"/>
@@ -562,8 +605,8 @@ const LANDING_HTML = `
           <div class="dest-card-name">Utö · Nåttarö · Landsort</div>
           <div class="dest-card-islands"><a href="/o/uto" class="dest-island">Utö</a><a href="/o/nattaro" class="dest-island">Nåttarö</a><a href="/o/orno" class="dest-island">Ornö</a><a href="/o/dalaro" class="dest-island">Dalarö</a><a href="/o/landsort" class="dest-island">Landsort</a></div>
         </div>
-      </a>
-      <a href="/platser" class="dest-card reveal reveal-delay-4">
+      </div>
+      <div class="dest-card reveal reveal-delay-4">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#2a1a3a,#3a2555,#4a356a)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="140" cy="215" rx="95" ry="48" fill="#1a0d2a" opacity="0.7"/><ellipse cx="240" cy="250" rx="65" ry="32" fill="#120a20" opacity="0.8"/>
@@ -576,7 +619,7 @@ const LANDING_HTML = `
           <div class="dest-card-name">Furusund · Blidö · Norrtälje</div>
           <div class="dest-card-islands"><a href="/o/furusund" class="dest-island">Furusund</a><a href="/o/blido" class="dest-island">Blidö</a><a href="/o/arholma" class="dest-island">Arholma</a><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
