@@ -32,8 +32,8 @@ export default async function FeedPage() {
     return (
       <div style={{ minHeight: '100vh', background: '#f2f8fa', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
-        <h2 style={{ fontSize: 18, fontWeight: 900, color: '#162d3a', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
-        <p style={{ fontSize: 14, color: '#7a9dab', margin: '0 0 20px', lineHeight: 1.5 }}>
+        <h2 style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
+        <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>
           Något gick fel. Kontrollera din anslutning och försök igen.
         </p>
         <Link href="/feed" style={{
@@ -104,14 +104,14 @@ export default async function FeedPage() {
   const magicTrips = thisWeek.filter((t: { pinnar_rating: number | null }) => t.pinnar_rating === 3).slice(0, 3)
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <OnboardingModal />
 
       {/* ── Header ── */}
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10,
         padding: '12px 16px 10px',
-        background: 'rgba(250,254,255,0.96)',
+        background: 'var(--header-bg, rgba(250,254,255,0.96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
@@ -172,7 +172,7 @@ export default async function FeedPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: 4,
-                fontSize: 10, fontWeight: 800, color: '#1e5c82',
+                fontSize: 10, fontWeight: 800, color: 'var(--sea)',
                 textTransform: 'uppercase', letterSpacing: '0.6px',
               }}>
                 <span style={{
@@ -184,12 +184,12 @@ export default async function FeedPage() {
               </span>
             </div>
             {/* Horizontal scroll med mini-kort */}
-            <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4 }}>
+            <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}>
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {activeNow.slice(0, 8).map((t: any) => (
                 <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
                   <div style={{
-                    width: 110, background: '#fff', borderRadius: 14,
+                    width: 110, background: 'var(--white)', borderRadius: 14,
                     overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,45,60,0.08)',
                     border: '1px solid rgba(10,123,140,0.08)',
                   }}>
@@ -199,10 +199,10 @@ export default async function FeedPage() {
                       : <div style={{ width: '100%', height: 72, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
                     }
                     <div style={{ padding: '7px 8px' }}>
-                      <div style={{ fontSize: 11, fontWeight: 800, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.location_name ?? 'Okänd plats'}
                       </div>
-                      <div style={{ fontSize: 9, color: '#7a9dab', marginTop: 1 }}>
+                      <div style={{ fontSize: 9, color: 'var(--txt3)', marginTop: 1 }}>
                         {timeAgo(t.created_at)}
                       </div>
                     </div>
@@ -216,7 +216,7 @@ export default async function FeedPage() {
         {/* ── Magiska turer ── */}
         {magicTrips.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               ✨ Magiska turer den här veckan
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -224,7 +224,7 @@ export default async function FeedPage() {
               {magicTrips.map((t: any) => (
                 <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
-                    background: '#fff', borderRadius: 16, padding: '10px 14px',
+                    background: 'var(--white)', borderRadius: 16, padding: '10px 14px',
                     display: 'flex', alignItems: 'center', gap: 12,
                     boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
                     border: '1.5px solid rgba(201,110,42,0.15)',
@@ -235,10 +235,10 @@ export default async function FeedPage() {
                       : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
                     }
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.location_name ?? 'Okänd plats'}
                       </div>
-                      <div style={{ fontSize: 11, color: '#7a9dab', marginTop: 1 }}>
+                      <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
                         av {t.users?.username ?? 'Okänd'}
                       </div>
                     </div>
@@ -252,7 +252,7 @@ export default async function FeedPage() {
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0) && trips && trips.length > 0 && (
-          <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>
         )}

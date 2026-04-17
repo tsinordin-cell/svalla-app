@@ -33,14 +33,14 @@ function SettingsSection() {
   })
 
   return (
-    <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', marginBottom: 12, boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
-      <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+    <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 16px', marginBottom: 12, boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
+      <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
         {lang === 'en' ? 'Settings' : 'Inställningar'}
       </h3>
 
       {/* Tema */}
       <div style={{ marginBottom: 16 }}>
-        <p style={{ fontSize: 13, fontWeight: 700, color: '#162d3a', margin: '0 0 8px' }}>
+        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
           {lang === 'en' ? 'Theme' : 'Tema'}
         </p>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -50,7 +50,7 @@ function SettingsSection() {
             </button>
           ))}
         </div>
-        <p style={{ fontSize: 11, color: '#7a9dab', margin: '6px 0 0' }}>
+        <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '6px 0 0' }}>
           {lang === 'en'
             ? 'Auto: dark between 20:00–06:00'
             : 'Auto: mörkt 20:00–06:00, ljust dagtid'}
@@ -59,7 +59,7 @@ function SettingsSection() {
 
       {/* Språk */}
       <div>
-        <p style={{ fontSize: 13, fontWeight: 700, color: '#162d3a', margin: '0 0 8px' }}>
+        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
           {lang === 'en' ? 'Language' : 'Språk'}
         </p>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -277,7 +277,7 @@ const PRIVACY_FIELDS: { key: string; label: string }[] = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '20px 0 10px' }}>
+    <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '20px 0 10px' }}>
       {children}
     </div>
   )
@@ -286,7 +286,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 12 }}>
-      <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#5a8090', marginBottom: 5, letterSpacing: '0.3px' }}>
+      <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5, letterSpacing: '0.3px' }}>
         {label}
       </label>
       {children}
@@ -297,7 +297,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '11px 13px', borderRadius: 13,
   border: '1.5px solid rgba(10,123,140,0.18)',
-  fontSize: 14, color: '#162d3a', background: '#f2f8fa',
+  fontSize: 14, color: 'var(--txt)', background: 'var(--bg)',
   outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit',
 }
 
@@ -386,7 +386,7 @@ function EditSheet({
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
       <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900,
-        background: '#fff', borderRadius: '24px 24px 0 0',
+        background: 'var(--white)', borderRadius: '24px 24px 0 0',
         maxWidth: 520, margin: '0 auto',
         boxShadow: '0 -4px 40px rgba(0,45,60,0.18)',
         maxHeight: '92dvh', display: 'flex', flexDirection: 'column',
@@ -394,8 +394,8 @@ function EditSheet({
         {/* Handle */}
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
-          <h2 style={{ fontSize: 17, fontWeight: 900, color: '#162d3a', margin: '0 0 4px' }}>Redigera profil</h2>
-          <p style={{ fontSize: 12, color: '#7a9dab', margin: '0 0 12px' }}>Välj vad andra ska kunna se under Sekretess</p>
+          <h2 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
+          <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 12px' }}>Välj vad andra ska kunna se under Sekretess</p>
         </div>
 
         {/* Scrollable content */}
@@ -419,10 +419,10 @@ function EditSheet({
               </div>
             </div>
             <div>
-              <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: '#fff', fontSize: 13, fontWeight: 700, color: '#1e5c82', cursor: 'pointer' }}>
+              <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 13, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer' }}>
                 Byt profilbild
               </button>
-              <p style={{ fontSize: 11, color: '#7a9dab', margin: '4px 0 0' }}>JPG eller PNG, max 5 MB</p>
+              <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '4px 0 0' }}>JPG eller PNG, max 5 MB</p>
             </div>
             <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }}
               onChange={e => { const f = e.target.files?.[0]; if (f) { setAvatarFile(f); setAvatarPreview(URL.createObjectURL(f)) } }} />
@@ -434,13 +434,13 @@ function EditSheet({
             <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32}
               placeholder="Ditt alias som syns för andra"
               style={inputStyle} />
-            <p style={{ fontSize: 11, color: '#7a9dab', margin: '3px 0 0' }}>Bokstäver, siffror, _ . och - tillåtna. Används i din profil-URL.</p>
+            <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '3px 0 0' }}>Bokstäver, siffror, _ . och - tillåtna. Används i din profil-URL.</p>
           </Field>
           <Field label="KORT OM MIG">
             <textarea value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3}
               placeholder="T.ex. Seglare sedan 1998, älskar Stockholms skärgård…"
               style={{ ...inputStyle, resize: 'none' }} />
-            <p style={{ fontSize: 11, color: '#7a9dab', margin: '3px 0 0', textAlign: 'right' }}>{bio.length}/160</p>
+            <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '3px 0 0', textAlign: 'right' }}>{bio.length}/160</p>
           </Field>
           <Field label="LAND">
             <div style={{ position: 'relative' }}>
@@ -505,7 +505,7 @@ function EditSheet({
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer',
               }}>
-                <span style={{ fontSize: 13, color: '#162d3a' }}>{label}</span>
+                <span style={{ fontSize: 13, color: 'var(--txt)' }}>{label}</span>
                 <div style={{
                   width: 40, height: 22, borderRadius: 11,
                   background: publicFields.includes(key) ? '#1e5c82' : 'rgba(10,123,140,0.15)',
@@ -513,7 +513,7 @@ function EditSheet({
                 }}>
                   <div style={{
                     position: 'absolute', top: 3, left: publicFields.includes(key) ? 21 : 3,
-                    width: 16, height: 16, borderRadius: '50%', background: '#fff',
+                    width: 16, height: 16, borderRadius: '50%', background: 'var(--white)',
                     boxShadow: '0 1px 4px rgba(0,0,0,0.2)', transition: 'left .2s',
                   }} />
                 </div>
@@ -530,7 +530,7 @@ function EditSheet({
 
         {/* Footer buttons */}
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
-          <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: '#fff', fontSize: 14, fontWeight: 700, color: '#5a8090', cursor: 'pointer' }}>
+          <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>
             Avbryt
           </button>
           <button onClick={handleSave} disabled={saving} style={{
@@ -612,7 +612,7 @@ export default function ProfilPage() {
   const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
       {/* ── Edit sheet ── */}
       {editing && user && (
@@ -626,18 +626,18 @@ export default function ProfilPage() {
       {/* ── Header ── */}
       <header style={{
         display: 'flex', alignItems: 'center', padding: '12px 16px',
-        background: 'rgba(250,254,255,0.96)',
+        background: 'var(--header-bg, rgba(250,254,255,0.96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Profil</h1>
+        <h1 style={{ fontSize: 20, fontWeight: 900, color: 'var(--sea)', margin: 0 }}>Profil</h1>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <NotificationBell />
           {user?.username && (
             <Link href={`/u/${user.username}`} style={{
               background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.15)',
-              fontSize: 12, color: '#1e5c82', fontWeight: 700,
+              fontSize: 12, color: 'var(--sea)', fontWeight: 700,
               padding: '7px 12px', borderRadius: 20, textDecoration: 'none',
               display: 'flex', alignItems: 'center', gap: 4,
             }}>
@@ -646,14 +646,14 @@ export default function ProfilPage() {
           )}
           <button onClick={() => setEditing(true)} style={{
             background: 'rgba(10,123,140,0.08)', border: 'none',
-            fontSize: 12, color: '#1e5c82', cursor: 'pointer', fontWeight: 700,
+            fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700,
             padding: '7px 14px', borderRadius: 20,
           }}>
             ✏️ Redigera
           </button>
           <button onClick={handleSignOut} style={{
             background: 'none', border: 'none',
-            fontSize: 12, color: '#7a9dab', cursor: 'pointer', fontWeight: 600, padding: '7px 10px',
+            fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 10px',
           }}>
             Logga ut
           </button>
@@ -663,7 +663,7 @@ export default function ProfilPage() {
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '14px 14px' }}>
 
         {/* ── Identity card ── */}
-        <div style={{ background: '#fff', borderRadius: 20, padding: '20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             {/* Avatar */}
             <div style={{
@@ -680,17 +680,17 @@ export default function ProfilPage() {
             </div>
             {/* Name + meta */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 900, color: '#162d3a', margin: '0 0 1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt)', margin: '0 0 1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {user?.username ?? 'Okänd'}
               </h2>
-              <p style={{ fontSize: 11, color: '#7a9dab', margin: '0 0 6px' }}>{user?.email}</p>
+              <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '0 0 6px' }}>{user?.email}</p>
               {/* Followers / following */}
               <div style={{ display: 'flex', gap: 14 }}>
-                <span style={{ fontSize: 12, color: '#5a8090' }}>
-                  <strong style={{ color: '#162d3a' }}>{followersCount}</strong> följare
+                <span style={{ fontSize: 12, color: 'var(--txt2)' }}>
+                  <strong style={{ color: 'var(--txt)' }}>{followersCount}</strong> följare
                 </span>
-                <span style={{ fontSize: 12, color: '#5a8090' }}>
-                  <strong style={{ color: '#162d3a' }}>{followingCount}</strong> följer
+                <span style={{ fontSize: 12, color: 'var(--txt2)' }}>
+                  <strong style={{ color: 'var(--txt)' }}>{followingCount}</strong> följer
                 </span>
               </div>
             </div>
@@ -712,7 +712,7 @@ export default function ProfilPage() {
 
           {/* Bio */}
           {u?.bio && (
-            <p style={{ fontSize: 13, color: '#4a7080', lineHeight: 1.55, margin: '14px 0 0', padding: '12px 14px', background: 'rgba(10,123,140,0.04)', borderRadius: 12 }}>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: '14px 0 0', padding: '12px 14px', background: 'rgba(10,123,140,0.04)', borderRadius: 12 }}>
               {u.bio}
             </p>
           )}
@@ -728,8 +728,8 @@ export default function ProfilPage() {
                 background: 'rgba(10,123,140,0.05)', borderRadius: 14, padding: '12px 8px', textAlign: 'center',
               }}>
                 <div style={{ fontSize: 18, marginBottom: 2 }}>{emoji}</div>
-                <div style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 9, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 3 }}>{label}</div>
+                <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--sea)', lineHeight: 1 }}>{val}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 3 }}>{label}</div>
               </div>
             ))}
           </div>
@@ -743,8 +743,8 @@ export default function ProfilPage() {
             }}>
               <span style={{ fontSize: 18 }}>📌</span>
               <div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Favoritplats</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1e5c82' }}>{favPlats}</div>
+                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Favoritplats</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--sea)' }}>{favPlats}</div>
               </div>
             </div>
           )}
@@ -752,8 +752,8 @@ export default function ProfilPage() {
 
         {/* ── Vessel / sailor info card ── */}
         {(u?.vessel_name || u?.vessel_type || u?.home_port || u?.nationality || u?.experience_years) && (
-          <div style={{ background: '#fff', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-            <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+          <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
               ⚓ Min båt &amp; bakgrund
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -761,8 +761,8 @@ export default function ProfilPage() {
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 16 }}>⛵</span>
                   <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Båt</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Båt</div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
                       {u.vessel_name}{u.vessel_type ? ` · ${u.vessel_type}` : ''}{u.vessel_model ? ` (${u.vessel_model})` : ''}
                     </div>
                   </div>
@@ -772,8 +772,8 @@ export default function ProfilPage() {
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 16 }}>🏠</span>
                   <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Hemmahamn</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Hemmahamn</div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
                       {u.home_port}{u.sailing_region ? ` · ${u.sailing_region}` : ''}
                     </div>
                   </div>
@@ -783,8 +783,8 @@ export default function ProfilPage() {
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 16 }}>🧭</span>
                   <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Bakgrund</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Bakgrund</div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
                       {[u.nationality, u.experience_years ? `${u.experience_years} år till havs` : null].filter(Boolean).join(' · ')}
                     </div>
                   </div>
@@ -796,14 +796,14 @@ export default function ProfilPage() {
 
         {/* ── Pinnar-breakdown ── */}
         {ratedTrips > 0 && (
-          <div style={{ background: '#fff', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-            <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+          <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
               ⚓ Pinnar-fördelning
             </h3>
             {[
               { emoji: '⚓⚓⚓', label: 'Magisk 🔥', count: pinnar3, color: '#c96e2a' },
-              { emoji: '⚓⚓',   label: 'Bra tur!',  count: pinnar2, color: '#1e5c82' },
-              { emoji: '⚓',    label: 'Okej',       count: pinnar1, color: '#7a9dab' },
+              { emoji: '⚓⚓',   label: 'Bra tur!',  count: pinnar2, color: 'var(--sea)' },
+              { emoji: '⚓',    label: 'Okej',       count: pinnar1, color: 'var(--txt3)' },
             ].map(({ emoji, label, count, color }) => (
               <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                 <span style={{ fontSize: 14, width: 52 }}>{emoji}</span>
@@ -821,8 +821,8 @@ export default function ProfilPage() {
         )}
 
         {/* ── Achievements ── */}
-        <div style={{ background: '#fff', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-          <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+          <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
             Märken · {unlockedAch.length}/{ACHIEVEMENTS.length}
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
@@ -855,18 +855,18 @@ export default function ProfilPage() {
               <span style={{ fontSize: 20, filter: 'grayscale(0.5)', opacity: 0.7 }}>{lockedAch[0].emoji}</span>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#c96e2a' }}>Nästa: {lockedAch[0].label}</div>
-                <div style={{ fontSize: 11, color: '#7a9dab' }}>{lockedAch[0].desc}</div>
+                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>{lockedAch[0].desc}</div>
               </div>
             </div>
           )}
         </div>
 
         {/* ── Trip grid ── */}
-        <div style={{ background: '#fff', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <div style={{ fontSize: 52, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 14, color: '#7a9dab', marginBottom: 20 }}>Inga turer ännu</p>
+              <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 20 }}>Inga turer ännu</p>
               <Link href="/logga" style={{
                 display: 'inline-block', padding: '12px 28px', borderRadius: 14,
                 background: 'linear-gradient(135deg,#c96e2a,#e07828)',
@@ -879,10 +879,10 @@ export default function ProfilPage() {
           ) : (
             <>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+                <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
                   Mina turer
                 </h3>
-                <span style={{ fontSize: 11, color: '#7a9dab' }}>{trips.length} st</span>
+                <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{trips.length} st</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
                 {trips.map((t) => (

@@ -11,6 +11,19 @@ const inputStyle: React.CSSProperties = {
   transition: 'border-color 0.15s',
 }
 
+// Subtle wave SVG divider
+function WaveDivider() {
+  return (
+    <svg viewBox="0 0 375 40" preserveAspectRatio="none"
+      style={{ display: 'block', width: '100%', height: 40, marginBottom: -1 }}>
+      <path
+        d="M0,20 C60,35 120,5 180,20 C240,35 300,5 375,20 L375,40 L0,40 Z"
+        fill="#f0f8fb"
+      />
+    </svg>
+  )
+}
+
 export default function LoggaInPage() {
   const router   = useRouter()
   const supabase = createClient()
@@ -81,29 +94,71 @@ export default function LoggaInPage() {
   return (
     <div style={{
       minHeight: '100dvh', display: 'flex', flexDirection: 'column',
-      background: 'linear-gradient(180deg, #0b3348 0%, #1a5270 45%, #f7fbfc 100%)',
+      background: 'linear-gradient(175deg, #09253a 0%, #0e3d5c 35%, #1a5c7a 65%, #e8f4f8 100%)',
     }}>
       {/* ── Hero ── */}
-      <div style={{ padding: '56px 24px 36px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-        <SvallaLogo height={38} color="#ffffff" />
-        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0, fontWeight: 500 }}>
-          {isNew ? 'Skapa konto och börja logga turer' : 'Välkommen tillbaka till skärgården'}
+      <div style={{
+        padding: '64px 24px 32px',
+        textAlign: 'center',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20,
+        position: 'relative',
+      }}>
+        {/* Stjärnor / reflektioner — subtil bakgrundseffekt */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: 0.18 }}>
+          {[
+            { top: '18%', left: '12%', r: 1.5 }, { top: '35%', left: '82%', r: 1 },
+            { top: '12%', left: '65%', r: 2 },   { top: '55%', left: '25%', r: 1.2 },
+            { top: '28%', left: '48%', r: 1 },   { top: '42%', left: '70%', r: 1.5 },
+            { top: '20%', left: '90%', r: 1 },   { top: '60%', left: '88%', r: 1.2 },
+            { top: '8%',  left: '38%', r: 1 },   { top: '48%', left: '6%',  r: 1.5 },
+          ].map((s, i) => (
+            <div key={i} style={{
+              position: 'absolute', top: s.top, left: s.left,
+              width: s.r * 2, height: s.r * 2, borderRadius: '50%',
+              background: '#fff',
+            }} />
+          ))}
+        </div>
+
+        {/* Logo */}
+        <div style={{
+          background: 'rgba(255,255,255,0.08)',
+          borderRadius: 20,
+          padding: '16px 24px',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid rgba(255,255,255,0.12)',
+        }}>
+          <SvallaLogo height={34} color="#ffffff" />
+        </div>
+
+        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', margin: 0, fontWeight: 500, letterSpacing: '0.3px' }}>
+          {isNew ? 'Skapa konto och börja logga turer' : 'Din skärgårdslogg i fickan'}
         </p>
+
+        {/* Horisont-linje */}
+        <div style={{
+          width: 48, height: 2,
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+          borderRadius: 2,
+        }} />
       </div>
+
+      {/* ── Vågövergång ── */}
+      <WaveDivider />
 
       {/* ── Kort ── */}
       <div style={{
-        flex: 1, background: '#f7fbfc',
-        borderRadius: '28px 28px 0 0',
-        padding: '28px 20px 48px',
-        boxShadow: '0 -8px 32px rgba(0,30,50,0.18)',
+        flex: 1,
+        background: '#f0f8fb',
+        padding: '24px 20px 52px',
       }}>
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 20, fontWeight: 900, color: '#162d3a', margin: '0 0 20px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 900, color: '#162d3a', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
             {isNew ? 'Skapa konto' : 'Logga in'}
           </h2>
 
-          {/* ── OAuth-knappar (bara vid inloggning) ── */}
+          {/* ── Google ── */}
           {!isNew && (
             <>
               <button
@@ -111,11 +166,11 @@ export default function LoggaInPage() {
                 disabled={!!oauthLoading}
                 className="oauth-btn"
                 style={{
-                  width: '100%', padding: '13px 16px', borderRadius: 14, marginBottom: 10,
-                  background: '#fff', border: '1.5px solid rgba(10,123,140,0.18)',
+                  width: '100%', padding: '13px 16px', borderRadius: 14, marginBottom: 12,
+                  background: '#fff', border: '1.5px solid rgba(10,123,140,0.15)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                   fontSize: 15, fontWeight: 600, color: '#162d3a', cursor: 'pointer',
-                  boxShadow: '0 1px 4px rgba(0,30,50,0.08)', transition: 'opacity 0.15s',
+                  boxShadow: '0 2px 8px rgba(0,30,50,0.08)', transition: 'opacity 0.15s',
                   opacity: oauthLoading === 'google' ? 0.6 : 1, fontFamily: 'inherit',
                 }}
               >
@@ -128,7 +183,7 @@ export default function LoggaInPage() {
                 {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
               </button>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
                 <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
                 <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>eller med e-post</span>
                 <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
@@ -175,14 +230,15 @@ export default function LoggaInPage() {
             <button
               type="submit" disabled={loading}
               style={{
-                padding: '14px 0', borderRadius: 14, border: 'none', cursor: 'pointer',
+                padding: '15px 0', borderRadius: 14, border: 'none', cursor: 'pointer',
                 background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                 color: '#fff', fontSize: 15, fontWeight: 800, marginTop: 4,
-                boxShadow: '0 4px 18px rgba(30,92,130,0.32)',
+                boxShadow: '0 4px 18px rgba(30,92,130,0.30)',
                 opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s', fontFamily: 'inherit',
+                letterSpacing: '0.2px',
               }}
             >
-              {loading ? '...' : isNew ? 'Kasta loss →' : 'Logga in'}
+              {loading ? '…' : isNew ? 'Kasta loss →' : 'Logga in'}
             </button>
           </form>
 
