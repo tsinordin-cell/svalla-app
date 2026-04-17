@@ -93,8 +93,8 @@ export default async function IslandPage({ params }: Props) {
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 18, marginBottom: 14 }}>
             <span style={{ fontSize: 52, lineHeight: 1 }}>{island.emoji}</span>
             <div>
-              <h1 style={{ fontSize: 38, fontWeight: 900, margin: '0 0 6px', letterSpacing: -0.5 }}>{island.name}</h1>
-              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560 }}>{island.tagline}</p>
+              <h1 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
+              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
             </div>
           </div>
 
@@ -412,11 +412,12 @@ function SectionHeader({ icon, title }: { icon: string; title: string }) {
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
       <span style={{ fontSize: 18 }}>{icon}</span>
       <h2 style={{
-        fontSize: 18,
-        fontWeight: 900,
+        fontSize: 19,
+        fontWeight: 700,
         color: '#162d3a',
         margin: 0,
-        letterSpacing: -0.3,
+        letterSpacing: -0.2,
+        fontFamily: "'Playfair Display', Georgia, serif",
       }}>{title}</h2>
       <div style={{ flex: 1, height: 1, background: 'rgba(30,92,130,0.12)', marginLeft: 8 }} />
     </div>
