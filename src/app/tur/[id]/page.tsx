@@ -111,7 +111,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     lng: p?.longitude ?? 0,
     speedKnots: (p?.speed_knots ?? 0) as number,
     heading: p?.heading ?? null,
-    accuracy: p?.accuracy ?? 0,
+    accuracy: 0,
     recordedAt: p?.recorded_at ?? new Date().toISOString(),
   }))
 

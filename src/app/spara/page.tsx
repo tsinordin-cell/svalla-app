@@ -388,20 +388,18 @@ export default function SparaPage() {
     }
 
     // insert stops
-    if (stops.length > 0) {
-      const stopsData = stops
-        .filter(s => s.durationSeconds > 0 || s.type === 'pause')
-        .map(s => ({
-          trip_id: tid,
-          latitude: s.lat,
-          longitude: s.lng,
-          stop_type: s.type,
-          started_at: s.startedAt,
-          ended_at: s.endedAt ?? new Date().toISOString(),
-          duration_seconds: s.durationSeconds,
-        }))
-      if (stopsData.length > 0) await supabase.from('stops').insert(stopsData)
-    }
+    const stopsData = stops
+      .filter(s => s.durationSeconds > 0 || s.type === 'pause')
+      .map(s => ({
+        trip_id: tid,
+        latitude: s.lat,
+        longitude: s.lng,
+        stop_type: s.type,
+        started_at: s.startedAt,
+        ended_at: s.endedAt ?? new Date().toISOString(),
+        duration_seconds: s.durationSeconds,
+      }))
+    if (stopsData.length > 0) await supabase.from('stops').insert(stopsData)
 
     // Reverse geocoding för stopp (kör i bakgrunden, 1 req/s pga Nominatim rate-limit)
     const realStops = stopsData.filter(s => s.stop_type === 'stop')
@@ -445,7 +443,7 @@ export default function SparaPage() {
       .then(r => r.json())
       .then(({ summary }) => {
         if (summary && tid) {
-          supabase.from('trips').update({ ai_summary: summary }).eq('id', tid).catch(() => {})
+          void (async () => { try { await supabase.from('trips').update({ ai_summary: summary }).eq('id', tid) } catch { /* tyst */ } })()
         }
       })
       .catch(() => {})

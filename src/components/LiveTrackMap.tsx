@@ -20,13 +20,19 @@ export default function LiveTrackMap({ points, currentPos, speed }: LiveTrackMap
     const initMap = async () => {
       // Lazy-load Leaflet
       const L = (await import('leaflet')).default
-      await import('leaflet/dist/leaflet.css')
+      // Load Leaflet CSS dynamically
+      if (!document.querySelector('link[href*="leaflet"]')) {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+        document.head.appendChild(link)
+      }
 
       // Initialize map with first point or default center
       const center =
         currentPos || (points.length > 0 ? points[points.length - 1] : { lat: 59.3293, lng: 18.0686 })
 
-      if (!mapInstance.current) {
+      if (!mapInstance.current && mapContainer.current) {
         mapInstance.current = L.map(mapContainer.current).setView([center.lat, center.lng], 13)
 
         // Add tile layer
