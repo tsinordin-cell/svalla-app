@@ -25,46 +25,98 @@ const boatEmoji: Record<string, string> = {
   'Annat':      '⚓',
 }
 
-const pinnarLabel: Record<number, string> = {
-  1: '⚓',
-  2: '⚓⚓',
-  3: '⚓⚓⚓ Magisk',
-}
-
 export default function TripCard({ trip }: { trip: Trip }) {
   const router   = useRouter()
-  const [imgErr, setImgErr] = useState(false)
+  const [imgErr, setImgErr]       = useState(false)
+  const [expanded, setExpanded]   = useState(false)
+
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
   const dur      = formatDurationMin(trip.duration)
   const hasRoute = Array.isArray(trip.route_points) && trip.route_points.length >= 2
   const hasPhoto = !!trip.image && !imgErr
 
-  // Stat chips shown overlaid on the image
+  // Stat chips — only show real values
   const statChips: { val: string; icon: string }[] = []
-  if (trip.distance >= 0.1)          statChips.push({ icon: '📏', val: `${fmt(trip.distance)} NM` })
-  if (dur)                          statChips.push({ icon: '⏱', val: dur })
+  if (trip.distance >= 0.1)            statChips.push({ icon: '📏', val: `${fmt(trip.distance)} NM` })
+  if (dur)                             statChips.push({ icon: '⏱', val: dur })
   if (trip.average_speed_knots >= 0.1) statChips.push({ icon: '⚡', val: `${fmt(trip.average_speed_knots)} kn` })
+
+  const MAX_CAPTION = 100
+  const caption = trip.caption ?? ''
+  const captionTruncated = !expanded && caption.length > MAX_CAPTION
+    ? caption.slice(0, MAX_CAPTION) + '…'
+    : caption
 
   return (
     <article
-      onClick={() => router.push(`/tur/${trip.id}`)}
       style={{
         background: 'var(--white)',
-        borderRadius: 22,
+        borderRadius: 18,
         overflow: 'hidden',
-        boxShadow: '0 2px 16px rgba(0,30,50,0.10)',
-        border: '1px solid rgba(10,123,140,0.08)',
-        cursor: 'pointer',
+        boxShadow: '0 1px 12px rgba(0,30,50,0.08)',
+        border: '1px solid rgba(10,123,140,0.07)',
         WebkitTapHighlightColor: 'transparent',
       }}
     >
-      {/* ── Visual hero ──────────────────────────────────────────────────── */}
+      {/* ── 1. Header row: avatar · username · time · boat ── */}
       <div style={{
-        position: 'relative', width: '100%', aspectRatio: '4/3',
-        background: 'linear-gradient(160deg,#0d2a3e,#1a5472)',
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '11px 14px 9px',
       }}>
-        {/* Image or route map */}
+        <Link
+          href={`/u/${username}`}
+          onClick={e => e.stopPropagation()}
+          style={{ display: 'flex', alignItems: 'center', gap: 9, textDecoration: 'none', flex: 1, minWidth: 0 }}
+        >
+          {/* Avatar */}
+          <div style={{
+            width: 36, height: 36, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 13, fontWeight: 900, color: '#fff',
+          }}>
+            {avatar
+              ? <Image src={avatar} alt={username} width={36} height={36} style={{ objectFit: 'cover' }} />
+              : username[0]?.toUpperCase() ?? '?'}
+          </div>
+          {/* Name + time */}
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', lineHeight: 1.2 }}>
+              {username}
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
+              {timeAgo(trip.created_at)}
+              {trip.boat_type && (
+                <span style={{ marginLeft: 5, opacity: 0.7 }}>· {boatEmoji[trip.boat_type] ?? '⚓'} {trip.boat_type}</span>
+              )}
+            </div>
+          </div>
+        </Link>
+
+        {/* Pinnar rating badge */}
+        {trip.pinnar_rating === 3 && (
+          <div style={{
+            flexShrink: 0,
+            background: 'rgba(201,110,42,0.1)',
+            borderRadius: 20, padding: '4px 9px',
+            fontSize: 11, fontWeight: 800, color: '#c96e2a',
+          }}>
+            ⚓⚓⚓
+          </div>
+        )}
+      </div>
+
+      {/* ── 2. Hero image — portrait 4:5 ── */}
+      <div
+        onClick={() => router.push(`/tur/${trip.id}`)}
+        style={{
+          cursor: 'pointer',
+          position: 'relative', width: '100%', aspectRatio: '4/5',
+          background: 'linear-gradient(160deg,#0d2a3e,#1a5472)',
+          overflow: 'hidden',
+        }}
+      >
         {hasPhoto ? (
           <Image
             src={trip.image}
@@ -76,170 +128,112 @@ export default function TripCard({ trip }: { trip: Trip }) {
           />
         ) : hasRoute ? (
           <div style={{ position: 'absolute', inset: 0 }}>
-            <RouteMapSVG points={trip.route_points!} w={600} h={450} />
+            <RouteMapSVG points={trip.route_points!} w={600} h={750} />
           </div>
         ) : (
           <div style={{
             position: 'absolute', inset: 0,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 64, opacity: 0.2,
+            fontSize: 72, opacity: 0.15,
           }}>⛵</div>
         )}
 
-        {/* Strong bottom gradient */}
+        {/* Bottom gradient */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(0,12,25,0.88) 0%, rgba(0,12,25,0.4) 38%, rgba(0,12,25,0.05) 65%, transparent 100%)',
+          background: 'linear-gradient(to top, rgba(0,12,25,0.72) 0%, rgba(0,12,25,0.2) 35%, transparent 60%)',
+          pointerEvents: 'none',
         }} />
 
-        {/* ── Stat chips — top left ── */}
+        {/* Stat chips — top left */}
         {statChips.length > 0 && (
           <div style={{
             position: 'absolute', top: 12, left: 12,
-            display: 'flex', gap: 6,
+            display: 'flex', gap: 6, flexWrap: 'wrap', maxWidth: '70%',
           }}>
             {statChips.map(chip => (
               <div key={chip.val} style={{
                 display: 'flex', alignItems: 'center', gap: 4,
-                background: 'rgba(0,12,25,0.60)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.16)',
-                borderRadius: 20,
-                padding: '5px 10px',
+                background: 'rgba(0,12,25,0.55)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255,255,255,0.14)',
+                borderRadius: 20, padding: '5px 10px',
               }}>
                 <span style={{ fontSize: 11 }}>{chip.icon}</span>
-                <span style={{ fontSize: 12, fontWeight: 800, color: '#fff', letterSpacing: '0.1px' }}>{chip.val}</span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>{chip.val}</span>
               </div>
             ))}
           </div>
         )}
 
-        {/* ── Boat type + rating — top right ── */}
-        <div style={{
-          position: 'absolute', top: 12, right: 12,
-          display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6,
-        }}>
-          {trip.boat_type && (
-            <div style={{
-              background: 'rgba(0,12,25,0.60)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.16)',
-              borderRadius: 20, padding: '5px 10px',
-              fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.92)',
-            }}>
-              {boatEmoji[trip.boat_type] ?? '⚓'} {trip.boat_type}
-            </div>
-          )}
-          {trip.pinnar_rating && (
-            <div style={{
-              background: 'rgba(180,90,20,0.72)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,160,60,0.3)',
-              borderRadius: 20, padding: '5px 10px',
-              fontSize: 11, fontWeight: 800, color: '#fff',
-            }}>
-              {pinnarLabel[trip.pinnar_rating]}
-            </div>
-          )}
-        </div>
+        {/* Route strip top-right when both photo + route */}
+        {hasPhoto && hasRoute && (
+          <div style={{
+            position: 'absolute', top: 12, right: 12,
+            width: 56, height: 56, borderRadius: 12, overflow: 'hidden',
+            border: '1.5px solid rgba(255,255,255,0.25)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+          }}>
+            <RouteMapSVG points={trip.route_points!} w={112} h={112} />
+          </div>
+        )}
 
-        {/* ── Bottom overlay: location + user row ── */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 14px 14px' }}>
-          {trip.location_name && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 9 }}>
+        {/* Bottom: location */}
+        {trip.location_name && (
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 14px 14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ fontSize: 12 }}>📍</span>
               <span style={{
-                fontSize: 17, fontWeight: 900, color: '#fff',
+                fontSize: 18, fontWeight: 900, color: '#fff',
                 textShadow: '0 1px 8px rgba(0,0,0,0.55)',
                 letterSpacing: '-0.3px',
               }}>
                 {trip.location_name}
               </span>
             </div>
-          )}
-
-          {/* User + timestamp */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Link
-              href={`/u/${username}`}
-              onClick={e => e.stopPropagation()}
-              style={{ display: 'flex', alignItems: 'center', gap: 7, textDecoration: 'none' }}
-            >
-              <div style={{
-                width: 30, height: 30, borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 12, fontWeight: 800, color: '#fff',
-                border: '2px solid rgba(255,255,255,0.35)',
-              }}>
-                {avatar
-                  ? <Image src={avatar} alt={username} width={30} height={30} style={{ objectFit: 'cover' }} />
-                  : username[0]?.toUpperCase() ?? '?'}
-              </div>
-              <span style={{
-                fontSize: 13, fontWeight: 700,
-                color: 'rgba(255,255,255,0.95)',
-                textShadow: '0 1px 4px rgba(0,0,0,0.4)',
-              }}>
-                {username}
-              </span>
-            </Link>
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginLeft: 'auto' }}>
-              {timeAgo(trip.created_at)}
-            </span>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* ── Body ─────────────────────────────────────────────────────────── */}
-      {(trip.caption || (hasPhoto && hasRoute)) && (
-        <div style={{ padding: '12px 14px 0' }}>
-          {trip.caption && (
-            <p style={{
-              fontSize: 14, color: 'var(--txt)', margin: 0, lineHeight: 1.55,
-              display: '-webkit-box', WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical', overflow: 'hidden',
-            }}>
-              {trip.caption}
-            </p>
-          )}
-
-          {/* Route strip when photo + route both exist */}
-          {hasPhoto && hasRoute && (
-            <div style={{
-              marginTop: trip.caption ? 10 : 0,
-              borderRadius: 12, overflow: 'hidden', height: 60,
-            }}>
-              <RouteMapSVG points={trip.route_points!} w={600} h={120} />
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ── Social actions ── */}
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{ padding: '10px 14px 14px' }}
-      >
-        <div style={{
-          display: 'flex', gap: 8,
-          paddingTop: 10,
-          borderTop: '1px solid rgba(10,123,140,0.07)',
-        }}>
+      {/* ── 3. Social actions — compact icon + count ── */}
+      <div onClick={e => e.stopPropagation()} style={{ padding: '10px 14px 4px' }}>
+        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <LikeButton
             tripId={trip.id}
             initialCount={trip.likes_count}
             initialLiked={trip.user_liked}
+            compact
           />
           <Comments
             tripId={trip.id}
             initialCount={trip.comments_count}
+            compact
           />
         </div>
       </div>
+
+      {/* ── 4. Caption ── */}
+      {caption && (
+        <div style={{ padding: '4px 14px 14px', fontSize: 14, color: 'var(--txt)', lineHeight: 1.55 }}>
+          <span style={{ fontWeight: 800 }}>{username}</span>
+          {' '}
+          <span>{captionTruncated}</span>
+          {caption.length > MAX_CAPTION && (
+            <button
+              onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: 13, color: 'var(--txt3)', padding: '0 0 0 4px', fontWeight: 600,
+              }}
+            >
+              {expanded ? 'Visa mindre' : 'Visa mer'}
+            </button>
+          )}
+        </div>
+      )}
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </article>
   )
 }

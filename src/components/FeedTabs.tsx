@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import TripCard from '@/components/TripCard'
 import Link from 'next/link'
 
@@ -15,13 +15,40 @@ const BOAT_FILTERS = [
 type SortKey = 'newest' | 'distance' | 'speed' | 'magic'
 
 const SORT_OPTIONS: { value: SortKey; label: string }[] = [
-  { value: 'newest',   label: '🕐 Nyast' },
-  { value: 'distance', label: '📏 Längst' },
-  { value: 'speed',    label: '💨 Snabbast' },
+  { value: 'newest',   label: 'Nyast' },
+  { value: 'distance', label: 'Längst' },
+  { value: 'speed',    label: 'Snabbast' },
   { value: 'magic',    label: '✨ Magiska' },
 ]
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 8
+
+// Skeleton card — visas under laddning
+function SkeletonCard() {
+  return (
+    <div style={{
+      background: 'var(--white)', borderRadius: 18, overflow: 'hidden',
+      boxShadow: '0 1px 12px rgba(0,30,50,0.07)',
+      border: '1px solid rgba(10,123,140,0.07)',
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 14px 9px' }}>
+        <div className="sk-pulse" style={{ width: 36, height: 36, borderRadius: '50%' }} />
+        <div style={{ flex: 1 }}>
+          <div className="sk-pulse" style={{ width: 90, height: 13, borderRadius: 6, marginBottom: 5 }} />
+          <div className="sk-pulse" style={{ width: 60, height: 10, borderRadius: 6 }} />
+        </div>
+      </div>
+      {/* Image */}
+      <div className="sk-pulse" style={{ width: '100%', aspectRatio: '4/5' }} />
+      {/* Actions */}
+      <div style={{ padding: '10px 14px 14px', display: 'flex', gap: 16 }}>
+        <div className="sk-pulse" style={{ width: 40, height: 16, borderRadius: 6 }} />
+        <div className="sk-pulse" style={{ width: 30, height: 16, borderRadius: 6 }} />
+      </div>
+    </div>
+  )
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) {
@@ -29,10 +56,16 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
   const [visible,    setVisible]    = useState(PAGE_SIZE)
-  const [loadingMore, setLoadingMore] = useState(false)
-  const filterRef = useRef<HTMLDivElement>(null)
+  const [initialLoad, setInitialLoad] = useState(true)
+  const sentinelRef = useRef<HTMLDivElement>(null)
 
-  // Reset visible count whenever filter or sort changes
+  // Simulate initial load skeleton (trips arrive from server, but render takes a tick)
+  useEffect(() => {
+    const t = setTimeout(() => setInitialLoad(false), 350)
+    return () => clearTimeout(t)
+  }, [])
+
+  // Reset visible on filter change
   useEffect(() => { setVisible(PAGE_SIZE) }, [tab, boatFilter, sortKey])
 
   const base = tab === 'following' ? followingTrips : allTrips
@@ -48,185 +81,163 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   })
   const trips   = sorted.slice(0, visible)
-  const hasMore = visible < filtered.length
+  const hasMore = visible < sorted.length
 
-  function handleLoadMore() {
-    setLoadingMore(true)
-    setTimeout(() => {
-      setVisible(v => v + PAGE_SIZE)
-      setLoadingMore(false)
-    }, 120)
-  }
+  // Infinite scroll via IntersectionObserver
+  const loadMore = useCallback(() => {
+    if (hasMore) setVisible(v => v + PAGE_SIZE)
+  }, [hasMore])
+
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0]?.isIntersecting) loadMore()
+    }, { rootMargin: '200px' })
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [loadMore])
 
   return (
     <>
       {/* ── Tab toggle ── */}
       {isLoggedIn && (
         <div style={{
-          display: 'flex', gap: 6, marginBottom: 12,
+          display: 'flex', gap: 4, marginBottom: 14,
           background: 'rgba(10,123,140,0.07)', borderRadius: 14, padding: 4,
         }}>
-          {(['all', 'following'] as const).map(t => (
+          {([
+            { key: 'all',       label: 'Alla turer' },
+            { key: 'following', label: 'Följer' },
+          ] as const).map(({ key, label }) => (
             <button
-              key={t}
-              onClick={() => setTab(t)}
+              key={key}
+              onClick={() => setTab(key)}
               style={{
                 flex: 1, padding: '9px 0', borderRadius: 10, border: 'none', cursor: 'pointer',
                 fontSize: 13, fontWeight: 800,
-                background: tab === t ? '#fff' : 'transparent',
-                color: tab === t ? '#1e5c82' : '#7a9dab',
-                boxShadow: tab === t ? '0 1px 6px rgba(0,45,60,0.12)' : 'none',
+                background: tab === key ? '#fff' : 'transparent',
+                color: tab === key ? '#1e5c82' : '#7a9dab',
+                boxShadow: tab === key ? '0 1px 6px rgba(0,45,60,0.12)' : 'none',
                 transition: 'all .15s',
                 WebkitTapHighlightColor: 'transparent',
               }}
             >
-              {t === 'all' ? 'Alla' : 'Följer'}
+              {label}
             </button>
           ))}
         </div>
       )}
 
-      {/* ── Sortering ── */}
-      <div
-        className="filter-scroll"
-        style={{ display: 'flex', gap: 5, overflowX: 'auto', marginBottom: 8, paddingBottom: 2 }}
-      >
-        {SORT_OPTIONS.map(s => (
-          <button
-            key={s.value}
-            onClick={() => setSortKey(s.value)}
-            style={{
-              flexShrink: 0, padding: '5px 12px', borderRadius: 20,
-              border: `1.5px solid ${sortKey === s.value ? 'rgba(201,110,42,0.6)' : 'rgba(10,123,140,0.12)'}`,
-              background: sortKey === s.value ? 'rgba(201,110,42,0.10)' : 'transparent',
-              color: sortKey === s.value ? '#c96e2a' : '#7a9dab',
-              fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
-              transition: 'all .15s',
-              WebkitTapHighlightColor: 'transparent',
-            }}
-          >
-            {s.label}
-          </button>
-        ))}
-      </div>
-
-      {/* ── Båttyp-filter ── */}
-      <div
-        ref={filterRef}
-        className="filter-scroll"
-        style={{ display: 'flex', gap: 6, overflowX: 'auto', marginBottom: 16, paddingBottom: 2 }}
-      >
-        {BOAT_FILTERS.map(f => (
-          <button
-            key={f.value}
-            onClick={() => setBoatFilter(f.value)}
-            style={{
-              flexShrink: 0, padding: '6px 14px', borderRadius: 20,
-              border: `1.5px solid ${boatFilter === f.value ? '#1e5c82' : 'rgba(10,123,140,0.18)'}`,
-              background: boatFilter === f.value ? '#1e5c82' : '#fff',
-              color: boatFilter === f.value ? '#fff' : '#3a6a80',
-              fontSize: 12, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
-              transition: 'all .15s',
-              WebkitTapHighlightColor: 'transparent',
-            }}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-
-      {/* ── Feed list ── */}
-      {trips.length === 0 ? (
-        tab === 'following' && boatFilter === 'alla' ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <div style={{ fontSize: 48, marginBottom: 12 }}>🌊</div>
-            <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>
-              Ingen aktivitet ännu
-            </h2>
-            <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>
-              Följ seglare för att se deras turer här.
-            </p>
-            <Link href="/sok" style={{
-              display: 'inline-block', padding: '11px 26px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              color: 'white', fontWeight: 700, fontSize: 13, textDecoration: 'none',
-              boxShadow: '0 4px 16px rgba(30,92,130,0.35)',
-            }}>
-              Hitta seglare →
-            </Link>
-          </div>
-        ) : boatFilter !== 'alla' || sortKey === 'magic' ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
-            <p style={{ fontSize: 14, color: '#7a9dab', marginBottom: 16 }}>
-              {sortKey === 'magic' ? 'Inga magiska turer ännu' : `Inga turer med ${boatFilter} ännu`}
-            </p>
+      {/* ── Filters — sort + boat type in one row ── */}
+      <div style={{ marginBottom: 16 }}>
+        {/* Sort pills */}
+        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', marginBottom: 7, paddingBottom: 2, scrollbarWidth: 'none' }}>
+          {SORT_OPTIONS.map(s => (
             <button
-              onClick={() => { setBoatFilter('alla'); setSortKey('newest') }}
+              key={s.value}
+              onClick={() => setSortKey(s.value)}
               style={{
-                padding: '9px 20px', borderRadius: 12, border: 'none',
-                background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+                flexShrink: 0, padding: '5px 13px', borderRadius: 20,
+                border: `1.5px solid ${sortKey === s.value ? 'rgba(10,123,140,0.5)' : 'rgba(10,123,140,0.12)'}`,
+                background: sortKey === s.value ? 'rgba(10,123,140,0.1)' : 'transparent',
+                color: sortKey === s.value ? 'var(--sea)' : '#7a9dab',
+                fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+                transition: 'all .12s',
                 WebkitTapHighlightColor: 'transparent',
               }}
             >
-              Visa alla turer
+              {s.label}
             </button>
-          </div>
-        ) : (
-          <div style={{ textAlign: 'center', padding: '80px 20px' }}>
-            <div style={{ fontSize: 56, marginBottom: 16 }}>⛵</div>
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--sea)', marginBottom: 8 }}>
-              Ingen har loggat ännu
-            </h2>
-            <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 20, lineHeight: 1.5 }}>
-              Var den första att logga en tur i skärgården.
-            </p>
-            <Link href="/logga" style={{
-              display: 'inline-block', padding: '12px 28px', borderRadius: 14,
-              background: 'linear-gradient(135deg,var(--acc),#e07828)',
-              color: 'white', fontWeight: 700, fontSize: 14,
-              boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none',
-            }}>
-              Logga min tur →
-            </Link>
-          </div>
-        )
-      ) : (
+          ))}
+        </div>
+        {/* Boat type pills */}
+        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
+          {BOAT_FILTERS.map(f => (
+            <button
+              key={f.value}
+              onClick={() => setBoatFilter(f.value)}
+              style={{
+                flexShrink: 0, padding: '5px 13px', borderRadius: 20,
+                border: `1.5px solid ${boatFilter === f.value ? '#1e5c82' : 'rgba(10,123,140,0.12)'}`,
+                background: boatFilter === f.value ? '#1e5c82' : 'transparent',
+                color: boatFilter === f.value ? '#fff' : '#7a9dab',
+                fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+                transition: 'all .12s',
+                WebkitTapHighlightColor: 'transparent',
+              }}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Skeleton loading ── */}
+      {initialLoad && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-          {trips.map((trip: any) => <TripCard key={trip.id} trip={trip} />)}
-
-          {hasMore && (
-            <button
-              className="load-more-btn"
-              onClick={handleLoadMore}
-              disabled={loadingMore}
-              style={{
-                margin: '4px auto 8px', display: 'flex', alignItems: 'center', gap: 8,
-                padding: '12px 32px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)',
-                cursor: 'pointer',
-                background: 'rgba(10,123,140,0.06)',
-                color: '#1e5c82', fontSize: 13, fontWeight: 700,
-                transition: 'all .15s',
-                opacity: loadingMore ? 0.6 : 1,
-                WebkitTapHighlightColor: 'transparent',
-              }}
-            >
-              {loadingMore
-                ? <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid #1e5c82', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
-                : null}
-              {loadingMore ? 'Laddar…' : `Visa fler (${filtered.length - visible} kvar)`}
-            </button>
-          )}
-
-          {/* End of feed */}
-          {!hasMore && sorted.length > PAGE_SIZE && (
-            <div style={{ textAlign: 'center', padding: '12px 0 4px', fontSize: 12, color: 'var(--txt3)' }}>
-              {sorted.length} turer totalt
-            </div>
-          )}
+          <SkeletonCard />
+          <SkeletonCard />
         </div>
       )}
+
+      {/* ── Feed list ── */}
+      {!initialLoad && (
+        <>
+          {trips.length === 0 ? (
+            tab === 'following' && boatFilter === 'alla' ? (
+              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+                <div style={{ fontSize: 52, marginBottom: 14 }}>🌊</div>
+                <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Ingen aktivitet ännu</h2>
+                <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>Följ seglare för att se deras turer här.</p>
+                <Link href="/sok" style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: 'white', fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 16px rgba(30,92,130,0.3)' }}>
+                  Hitta seglare →
+                </Link>
+              </div>
+            ) : (
+              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+                <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
+                <p style={{ fontSize: 14, color: '#7a9dab', marginBottom: 16 }}>
+                  {sortKey === 'magic' ? 'Inga magiska turer ännu' : `Inga turer med ${boatFilter} än`}
+                </p>
+                <button onClick={() => { setBoatFilter('alla'); setSortKey('newest') }}
+                  style={{ padding: '9px 20px', borderRadius: 12, border: 'none', background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
+                  Visa alla turer
+                </button>
+              </div>
+            )
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {trips.map((trip: any) => <TripCard key={trip.id} trip={trip} />)}
+
+              {/* Infinite scroll sentinel */}
+              <div ref={sentinelRef} style={{ height: 1 }} />
+
+              {/* End of feed */}
+              {!hasMore && sorted.length > PAGE_SIZE && (
+                <div style={{ textAlign: 'center', padding: '8px 0 4px', fontSize: 12, color: 'var(--txt3)' }}>
+                  Du har sett alla {sorted.length} turer
+                </div>
+              )}
+            </div>
+          )}
+        </>
+      )}
+
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes sk-shimmer {
+          0%   { background-position: -400px 0; }
+          100% { background-position: 400px 0; }
+        }
+        .sk-pulse {
+          background: linear-gradient(90deg, rgba(10,123,140,0.06) 25%, rgba(10,123,140,0.12) 50%, rgba(10,123,140,0.06) 75%);
+          background-size: 800px 100%;
+          animation: sk-shimmer 1.4s infinite linear;
+        }
+        .filter-scroll::-webkit-scrollbar { display: none; }
+      `}</style>
     </>
   )
 }
