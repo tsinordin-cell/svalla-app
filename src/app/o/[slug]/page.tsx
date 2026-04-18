@@ -3,6 +3,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
+import { createClient } from '@/lib/supabase'
+import dynamic from 'next/dynamic'
+import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
+
+const IslandWeather = dynamic(() => import('@/components/IslandWeather'), { ssr: false, loading: () => null })
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -26,10 +31,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+export const revalidate = 3600  // uppdatera besöksräknaren max en gång/timme
+
 export default async function IslandPage({ params }: Props) {
   const { slug } = await params
   const island = getIsland(slug)
   if (!island) notFound()
+
+  // Hämta antal unika besökare för denna ö
+  const supabase = createClient()
+  const { count: visitorCount } = await supabase
+    .from('visited_islands')
+    .select('*', { count: 'exact', head: true })
+    .eq('island_slug', slug)
 
   const regionColor = island.region === 'norra'
     ? '#1a5276'
@@ -95,6 +109,25 @@ export default async function IslandPage({ params }: Props) {
             <div>
               <h1 style={{ fontSize: 42, fontWeight: 900, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
+              {(visitorCount ?? 0) > 0 && (
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  marginTop: 10, padding: '5px 12px', borderRadius: 20,
+                  background: 'rgba(255,255,255,0.15)',
+                  fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.9)',
+                }}>
+                  <span>📍</span>
+                  <span>{visitorCount} seglare {(visitorCount ?? 0) === 1 ? 'har besökt' : 'har besökt'} via Svalla</span>
+                </div>
+              )}
+              {/* Live väder — kräver koordinater */}
+              {ISLAND_COORD_MAP[island.slug] && (
+                <IslandWeather
+                  lat={ISLAND_COORD_MAP[island.slug].lat}
+                  lng={ISLAND_COORD_MAP[island.slug].lng}
+                  islandName={island.name}
+                />
+              )}
             </div>
           </div>
 

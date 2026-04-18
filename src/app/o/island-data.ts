@@ -40,6 +40,8 @@ export type Island = {
   regionLabel: string
   emoji: string
   tagline: string
+  lat?: number   // approx center coordinate
+  lng?: number
   description: string[]
   facts: {
     travel_time: string

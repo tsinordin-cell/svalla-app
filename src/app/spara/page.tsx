@@ -14,6 +14,8 @@ import {
 import { GpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
+import { detectVisitedIslands } from '@/lib/islandCoords'
+import { ACHIEVEMENTS, computeUnlocked, type TripForAch } from '@/lib/achievements'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -97,6 +99,13 @@ export default function SparaPage() {
 
   // ── Recovery state ──
   const [recoverySnap, setRecoverySnap] = useState<TripSnapshot | null>(null)
+
+  // ── Besökta öar ──
+  const [newlyVisitedIslands, setNewlyVisitedIslands] = useState<string[]>([])
+
+  // ── Achievement celebration ──
+  const [newAchievements, setNewAchievements] = useState<{ emoji: string; label: string }[]>([])
+  const [showCelebration, setShowCelebration] = useState(false)
 
   // ── Refs ──
   const watchRef         = useRef<number | null>(null)
@@ -514,6 +523,57 @@ export default function SparaPage() {
       }).catch(() => {})
     }
 
+    // Check achievements: hämta tidigare turer och jämför
+    Promise.resolve().then(async () => {
+      try {
+        const { data: prevTrips } = await supabase
+          .from('trips')
+          .select('distance, pinnar_rating, location_name, boat_type, started_at, ended_at, max_speed_knots, created_at')
+          .eq('user_id', user.id)
+          .neq('id', tid)  // exkludera just sparad tur
+        const prevList = (prevTrips ?? []) as TripForAch[]
+        const newList: TripForAch[] = [
+          ...prevList,
+          {
+            distance: parseFloat(dist.toFixed(2)),
+            pinnar_rating: pinnar > 0 ? pinnar : null,
+            location_name: locationName.trim() || null,
+            boat_type: boatType,
+            started_at: startedAt,
+            ended_at: endedAt,
+            max_speed_knots: parseFloat(maxSpd.toFixed(1)),
+            created_at: endedAt,
+          }
+        ]
+        const before = new Set(computeUnlocked(prevList).map(a => a.id))
+        const after  = computeUnlocked(newList)
+        const justUnlocked = after.filter(a => !before.has(a.id))
+        if (justUnlocked.length > 0) {
+          setNewAchievements(justUnlocked.map(a => ({ emoji: a.emoji, label: a.label })))
+          setShowCelebration(true)
+        }
+      } catch { /* tyst */ }
+    }).catch(() => {})
+
+    // Background: Besökta öar — detektera vilka öar GPS-rutten passerat
+    Promise.resolve().then(async () => {
+      try {
+        const visitedSlugs = detectVisitedIslands(points.map(p => ({ lat: p.lat, lng: p.lng })))
+        if (visitedSlugs.length > 0) {
+          // upsert — ignorera om redan besökt
+          const rows = visitedSlugs.map(slug => ({
+            user_id:    user.id,
+            island_slug: slug,
+            trip_id:    tid,
+            visited_at: endedAt,
+          }))
+          await supabase.from('visited_islands').upsert(rows, { onConflict: 'user_id,island_slug', ignoreDuplicates: true })
+          // Visa i done-skärmen vilka nya öar som besöktes
+          setNewlyVisitedIslands(visitedSlugs)
+        }
+      } catch { /* tyst */ }
+    }).catch(() => {})
+
     // Background: AI trip summary
     fetch('/api/trip-summary', {
       method: 'POST',
@@ -543,7 +603,8 @@ export default function SparaPage() {
       })
       .catch(() => {})
 
-    router.push(`/tur/${tid}`)
+    // Navigera till tursidan — slight delay om celebration visas
+    setTimeout(() => router.push(`/tur/${tid}`), 100)
   }
 
   const dist   = totalDistanceNM(points)
@@ -833,6 +894,58 @@ export default function SparaPage() {
   // ── DONE — save screen ─────────────────────────────────────────────────────
   return (
     <div className="min-h-screen">
+
+      {/* ── Achievement celebration overlay ── */}
+      {showCelebration && newAchievements.length > 0 && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 100,
+          background: 'rgba(0,20,40,0.88)',
+          backdropFilter: 'blur(12px)',
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          padding: '32px 24px',
+          animation: 'fadeIn .3s ease',
+        }} onClick={() => setShowCelebration(false)}>
+          <div style={{
+            background: 'linear-gradient(170deg,#1e5c82,#2d7d8a)',
+            borderRadius: 28, padding: '32px 28px',
+            maxWidth: 340, width: '100%', textAlign: 'center',
+            boxShadow: '0 8px 40px rgba(0,45,80,.5)',
+            border: '1px solid rgba(255,255,255,.15)',
+          }}>
+            <div style={{ fontSize: 48, marginBottom: 12 }}>🏅</div>
+            <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', marginBottom: 6 }}>
+              {newAchievements.length === 1 ? 'Nytt märke upplåst!' : `${newAchievements.length} nya märken!`}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '20px 0' }}>
+              {newAchievements.map((a, i) => (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: 12,
+                  background: 'rgba(255,255,255,.12)', borderRadius: 16,
+                  padding: '12px 16px',
+                }}>
+                  <span style={{ fontSize: 26 }}>{a.emoji}</span>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: '#fff' }}>{a.label}</div>
+                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,.6)', marginTop: 1 }}>Nytt märke uppnått</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={() => setShowCelebration(false)}
+              style={{
+                padding: '12px 32px', borderRadius: 20, border: 'none',
+                background: 'rgba(255,255,255,.2)', color: '#fff',
+                fontSize: 14, fontWeight: 700, cursor: 'pointer',
+              }}
+            >
+              Fortsätt →
+            </button>
+          </div>
+          <style>{`@keyframes fadeIn{from{opacity:0}to{opacity:1}}`}</style>
+        </div>
+      )}
       <header className="sticky top-0 z-40 px-4 py-3 bg-white/96 border-b border-sea-light/40">
         <h1 className="text-lg font-bold text-sea">Tur avslutad 🎉</h1>
       </header>
@@ -840,6 +953,43 @@ export default function SparaPage() {
       <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-5"
         style={{ paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}
       >
+        {/* ── Besökta öar — nyupptäckta ── */}
+        {newlyVisitedIslands.length > 0 && (
+          <div style={{
+            background: 'linear-gradient(135deg,rgba(15,158,100,.08),rgba(15,158,100,.03))',
+            border: '1.5px solid rgba(15,158,100,.25)',
+            borderRadius: 20, padding: '16px 18px',
+            animation: 'fadeInUp .4s ease',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <span style={{ fontSize: 22 }}>🗺️</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 900, color: '#0f9e64' }}>
+                  {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
+                </div>
+                <div style={{ fontSize: 12, color: '#3d7a5a', marginTop: 1 }}>
+                  Automatiskt inloggat via din GPS-rutt
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {newlyVisitedIslands.map(slug => {
+                const name = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+                return (
+                  <span key={slug} style={{
+                    padding: '5px 12px', borderRadius: 20,
+                    background: 'rgba(15,158,100,.12)',
+                    color: '#0a7a50', fontSize: 12, fontWeight: 700,
+                    border: '1px solid rgba(15,158,100,.25)',
+                  }}>
+                    📍 {name}
+                  </span>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {/* ── Trip summary ── */}
         <div className="bg-white rounded-2xl p-4 shadow-sm">
           {/* Overall bearing if available */}
@@ -968,6 +1118,8 @@ export default function SparaPage() {
             </div>
           </div>
         )}
+
+        <style>{`@keyframes fadeInUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}`}</style>
 
         <button
           onClick={handleSave} disabled={saving}

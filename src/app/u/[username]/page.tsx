@@ -110,11 +110,12 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
   if (userErr || !userRow) notFound()
 
-  // Fetch their trips + social counts
+  // Fetch their trips + social counts + besökta öar
   const [
     { data: rawTrips },
     { count: followersCount },
     { count: followingCount },
+    { data: visitedIslandsData },
   ] = await Promise.all([
     supabase
       .from('trips')
@@ -123,9 +124,11 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
       .order('created_at', { ascending: false }),
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),
+    supabase.from('visited_islands').select('island_slug, visited_at').eq('user_id', userRow.id).order('visited_at', { ascending: false }),
   ])
 
   const trips = (rawTrips ?? []) as Trip[]
+  const visitedSlugs = (visitedIslandsData ?? []).map((v: { island_slug: string }) => v.island_slug)
 
   const totalDist   = trips.reduce((a, t) => a + (t?.distance ?? 0), 0)
   const streak      = calcStreak(trips)
@@ -265,6 +268,54 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             <FollowButton targetUserId={userRow.id} darkBg />
           </div>
         </div>
+
+        {/* ── Besökta öar ── */}
+        {visitedSlugs.length > 0 && (
+          <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+              <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+                🗺️ Besökta öar
+              </h3>
+              <span style={{ fontSize: 12, fontWeight: 800, color: '#0f9e64' }}>
+                {visitedSlugs.length} / 69
+              </span>
+            </div>
+            {/* Progress bar */}
+            <div style={{ height: 6, background: 'rgba(15,158,100,.1)', borderRadius: 4, marginBottom: 14, overflow: 'hidden' }}>
+              <div style={{
+                height: '100%', borderRadius: 4,
+                background: 'linear-gradient(90deg,#0f9e64,#2dc88c)',
+                width: `${Math.min(100, (visitedSlugs.length / 69) * 100)}%`,
+                transition: 'width .6s ease',
+              }} />
+            </div>
+            {/* Island chips */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {visitedSlugs.slice(0, 20).map((slug: string) => {
+                const name = slug.replace(/-/g, ' ')
+                  .split(' ')
+                  .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                  .join(' ')
+                return (
+                  <Link key={slug} href={`/o/${slug}`} style={{
+                    padding: '4px 10px', borderRadius: 20,
+                    background: 'rgba(15,158,100,.09)',
+                    color: '#0a7a50', fontSize: 11, fontWeight: 700,
+                    textDecoration: 'none',
+                    border: '1px solid rgba(15,158,100,.2)',
+                  }}>
+                    📍 {name}
+                  </Link>
+                )
+              })}
+              {visitedSlugs.length > 20 && (
+                <span style={{ padding: '4px 10px', borderRadius: 20, background: 'rgba(10,123,140,.07)', color: '#5a8090', fontSize: 11, fontWeight: 600 }}>
+                  +{visitedSlugs.length - 20} till
+                </span>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* ── Märken ── */}
         {unlockedAch.length > 0 && (

@@ -12,18 +12,36 @@ const BOAT_FILTERS = [
   { value: 'SUP',        label: '🏄 SUP' },
 ]
 
+type SortKey = 'newest' | 'distance' | 'speed' | 'magic'
+
+const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+  { value: 'newest',   label: '🕐 Nyast' },
+  { value: 'distance', label: '📏 Längst' },
+  { value: 'speed',    label: '💨 Snabbast' },
+  { value: 'magic',    label: '✨ Magiska' },
+]
+
 const PAGE_SIZE = 10
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) {
   const [tab,        setTab]        = useState<'all' | 'following'>('all')
   const [boatFilter, setBoatFilter] = useState('alla')
+  const [sortKey,    setSortKey]    = useState<SortKey>('newest')
   const [visible,    setVisible]    = useState(PAGE_SIZE)
 
   const base = tab === 'following' ? followingTrips : allTrips
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const filtered = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
-  const trips    = filtered.slice(0, visible)
+  let filtered = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
+  if (sortKey === 'magic') filtered = filtered.filter((t: any) => t.pinnar_rating === 3)
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sorted = [...filtered].sort((a: any, b: any) => {
+    if (sortKey === 'distance') return (b.distance ?? 0) - (a.distance ?? 0)
+    if (sortKey === 'speed')    return (b.max_speed_knots ?? 0) - (a.max_speed_knots ?? 0)
+    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  })
+  const trips    = sorted.slice(0, visible)
   const hasMore  = visible < filtered.length
 
   return (
@@ -52,6 +70,26 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           ))}
         </div>
       )}
+
+      {/* Sortering */}
+      <div style={{ display: 'flex', gap: 5, overflowX: 'auto', scrollbarWidth: 'none', marginBottom: 8, paddingBottom: 2 }}>
+        {SORT_OPTIONS.map(s => (
+          <button
+            key={s.value}
+            onClick={() => { setSortKey(s.value); setVisible(PAGE_SIZE) }}
+            style={{
+              flexShrink: 0, padding: '4px 11px', borderRadius: 20,
+              border: `1.5px solid ${sortKey === s.value ? 'rgba(201,110,42,0.6)' : 'rgba(10,123,140,0.12)'}`,
+              background: sortKey === s.value ? 'rgba(201,110,42,0.10)' : 'transparent',
+              color: sortKey === s.value ? '#c96e2a' : '#7a9dab',
+              fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+              transition: 'all .15s',
+            }}
+          >
+            {s.label}
+          </button>
+        ))}
+      </div>
 
       {/* Båttyp-filter */}
       <div style={{ display: 'flex', gap: 6, overflowX: 'auto', scrollbarWidth: 'none', marginBottom: 14, paddingBottom: 2 }}>
