@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { buildRoutePoints } from '@/lib/routeSmooth'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
@@ -457,21 +458,9 @@ export default function SparaPage() {
       imageUrl = publicUrl
     }
 
-    // Simplify GPS route for feed display — max 80 points, only lat/lng
-    let routePoints: { lat: number; lng: number }[] | null = null
-    if (points.length >= 2) {
-      const step = Math.max(1, Math.floor(points.length / 80))
-      const sampled: { lat: number; lng: number }[] = []
-      for (let i = 0; i < points.length; i += step) {
-        sampled.push({ lat: parseFloat(points[i].lat.toFixed(6)), lng: parseFloat(points[i].lng.toFixed(6)) })
-      }
-      // Always include last point
-      const last = points[points.length - 1]
-      if (sampled[sampled.length - 1]?.lat !== last.lat) {
-        sampled.push({ lat: parseFloat(last.lat.toFixed(6)), lng: parseFloat(last.lng.toFixed(6)) })
-      }
-      routePoints = sampled
-    }
+    // Build route_points: speed-outlier removal → Douglas-Peucker → cap at 120 pts
+    // This removes GPS teleport jumps and micro-jitter before saving to DB
+    const routePoints = buildRoutePoints(points, 120)
 
     // Insert trip
     const { data: trip, error: tripErr } = await supabase.from('trips').insert({
