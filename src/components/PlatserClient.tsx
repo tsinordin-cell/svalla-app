@@ -458,22 +458,23 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
   }
 
   // ── Mobile layout ──────────────────────────────────────────────────────
-  const mapHeight = 'min(52vw, 280px)'
+  // Kartans höjd: 56vw capped vid 300px — bra balans mellan karta och lista
+  const mapHeight = 'clamp(200px, 56vw, 300px)'
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100dvh - 56px)', overflow: 'hidden' }}>
 
-      {/* Top bar */}
+      {/* ── Sticky sökfält ── */}
       <div style={{
-        padding: '10px 12px 8px',
-        background: 'rgba(250,254,255,0.97)',
-        borderBottom: '1px solid rgba(10,123,140,0.09)',
-        display: 'flex', gap: 8, alignItems: 'center',
+        padding: '8px 16px 10px',
+        background: 'rgba(250,254,255,0.98)',
+        borderBottom: '1px solid rgba(10,123,140,0.08)',
         flexShrink: 0,
+        position: 'sticky', top: 0, zIndex: 200,
       }}>
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div style={{ position: 'relative' }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
-            style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, pointerEvents: 'none' }}>
+            style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, pointerEvents: 'none' }}>
             <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
           </svg>
           <input
@@ -482,15 +483,25 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             value={query}
             onChange={e => setQuery(e.target.value)}
             style={{
-              width: '100%', paddingLeft: 34, paddingRight: 12, paddingTop: 10, paddingBottom: 10,
-              borderRadius: 14, border: '1.5px solid rgba(10,123,140,0.15)',
+              width: '100%', paddingLeft: 38, paddingRight: query ? 36 : 16,
+              height: 44,  // 44px touch target
+              borderRadius: 22, border: '1.5px solid rgba(10,123,140,0.15)',
               background: '#f2f8fa', fontSize: 16, color: '#162d3a', outline: 'none',
+              boxSizing: 'border-box',
             }}
           />
+          {query && (
+            <button onClick={() => setQuery('')} style={{
+              position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontSize: 16, color: '#7a9dab', padding: '4px 4px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>✕</button>
+          )}
         </div>
       </div>
 
-      {/* Karta */}
+      {/* ── Karta ── */}
       <div style={{ height: mapHeight, flexShrink: 0, position: 'relative' }}>
         <PlatserMap
           restaurants={filtered}
@@ -500,33 +511,29 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
           onMapMove={handleMapMove}
         />
         <WeatherWidget lat={mapCenter.lat} lng={mapCenter.lng} />
-        <div style={{
-          position: 'absolute', bottom: 8, left: 8, zIndex: 500,
-          background: 'rgba(250,254,255,0.92)', backdropFilter: 'blur(8px)',
-          borderRadius: 10, padding: '4px 8px',
-          display: 'flex', gap: 8, alignItems: 'center',
-          boxShadow: '0 2px 8px rgba(0,45,60,0.10)',
-          fontSize: 9, fontWeight: 700,
-        }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#1e5c82', display: 'inline-block' }} /> Restaurang
-          </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#c96e2a', display: 'inline-block' }} /> Hamn/Kafé
-          </span>
-        </div>
       </div>
 
-      {/* Lista */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '10px 12px 100px' }}>
-        <div style={{ display: 'flex', gap: 5, overflowX: 'auto', scrollbarWidth: 'none', marginBottom: 10 }}>
+      {/* ── Lista ── */}
+      <div style={{
+        flex: 1, overflowY: 'auto',
+        paddingTop: 12, paddingLeft: 16, paddingRight: 16,
+        paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
+      }}>
+        {/* Filter-chips */}
+        <div style={{
+          display: 'flex', gap: 6, overflowX: 'auto',
+          scrollbarWidth: 'none', marginBottom: 12,
+          paddingBottom: 2,
+        }}>
           {FILTERS.map(f => (
             <button key={f.value} onClick={() => setFilter(f.value)} style={{
-              flexShrink: 0, padding: '6px 12px', borderRadius: 18, border: 'none', cursor: 'pointer',
-              fontWeight: 700, fontSize: 11,
+              flexShrink: 0, padding: '0 16px', height: 36, borderRadius: 18,
+              border: 'none', cursor: 'pointer',
+              fontWeight: 700, fontSize: 12,
               background: filter === f.value ? '#1e5c82' : '#fff',
               color: filter === f.value ? '#fff' : '#3a6a80',
               boxShadow: filter === f.value ? '0 2px 8px rgba(30,92,130,0.3)' : '0 1px 4px rgba(0,45,60,0.08)',
+              display: 'flex', alignItems: 'center',
             }}>
               {f.label}
             </button>
@@ -583,38 +590,54 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
         </div>
 
         {filtered.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-            <div style={{ fontSize: 40, marginBottom: 10 }}>🏝</div>
-            <p style={{ color: '#7a9dab', fontSize: 13 }}>Inga platser matchar.</p>
+          <div style={{ textAlign: 'center', padding: '48px 20px' }}>
+            <div style={{ fontSize: 44, marginBottom: 12 }}>🏝</div>
+            <p style={{ color: '#7a9dab', fontSize: 14, marginBottom: 0 }}>Inga platser matchar.</p>
             <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
-              marginTop: 10, padding: '8px 18px', borderRadius: 12, border: 'none',
-              background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer',
+              marginTop: 16, padding: '0 24px', height: 44, borderRadius: 22, border: 'none',
+              background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
             }}>Rensa filter</button>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {filtered.map(r => (
               <div key={r.id} ref={el => { cardRefs.current[r.id] = el }}>
                 <Link href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
                   <article style={{
                     background: '#fff', borderRadius: 16, overflow: 'hidden',
-                    boxShadow: activeId === r.id ? '0 0 0 2px #1e5c82' : '0 2px 8px rgba(0,45,60,0.07)',
-                    border: activeId === r.id ? '1px solid #1e5c82' : '1px solid rgba(10,123,140,0.08)',
+                    boxShadow: activeId === r.id
+                      ? '0 0 0 2px #1e5c82, 0 4px 16px rgba(30,92,130,0.12)'
+                      : '0 1px 6px rgba(0,45,60,0.07)',
+                    border: activeId === r.id ? '1px solid #1e5c82' : '1px solid rgba(10,123,140,0.07)',
                     display: 'flex',
+                    minHeight: 80,  // touch target
+                    transition: 'box-shadow 0.15s',
                   }}>
-                    <div style={{ width: 90, flexShrink: 0, background: '#a8ccd4' }}>
+                    <div style={{ width: 88, flexShrink: 0, background: '#a8ccd4' }}>
                       {r.images?.[0]
                         // eslint-disable-next-line @next/next/no-img-element
                         ? <img src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                        : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>🍽</div>
+                        : <div style={{
+                            width: '100%', height: '100%', minHeight: 80,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26,
+                            background: getCat(r) === 'kafe'
+                              ? 'linear-gradient(135deg,#7c4d1e,#a06b30)'
+                              : getCat(r) === 'hamn'
+                              ? 'linear-gradient(135deg,#c96e2a,#e07828)'
+                              : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                          }}>
+                            {getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}
+                          </div>
                       }
                     </div>
-                    <div style={{ flex: 1, padding: '11px 13px', minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: '#162d3a' }}>{r.name}</div>
-                      {r.opening_hours && <div style={{ fontSize: 10, color: '#7a9dab', marginTop: 2 }}>🕐 {r.opening_hours}</div>}
+                    <div style={{ flex: 1, padding: '12px 14px', minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 800, color: '#162d3a', lineHeight: 1.25 }}>{r.name}</div>
+                      {r.opening_hours && (
+                        <div style={{ fontSize: 10, color: '#7a9dab', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
+                      )}
                       {r.description && (
                         <div style={{
-                          fontSize: 11, color: '#5a8090', marginTop: 4, lineHeight: 1.4,
+                          fontSize: 11, color: '#5a8090', marginTop: 5, lineHeight: 1.45,
                           overflow: 'hidden', display: '-webkit-box',
                           WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
                         }}>

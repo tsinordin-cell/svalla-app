@@ -131,7 +131,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     bensin:     true,
     boende:     true,
   })
-  const [searchQuery, setSearchQuery] = useState('')
   const [showRoutes, setShowRoutes] = useState(true)
 
 
@@ -360,17 +359,15 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId, nearbyIds])
 
-  // Layer-synk (cluster-aware)
+  // Layer-synk (cluster-aware) — sökning hanteras av parent via restaurants-prop
   useEffect(() => {
     if (!mapRef.current || !clusterRef.current) return
     const visibleIds = new Set(restaurants.map(r => r.id))
-    const q = searchQuery.toLowerCase().trim()
     const cluster = clusterRef.current
 
     for (const [id, entry] of Object.entries(markersRef.current)) {
-      const { marker, cat, restaurant } = entry as { marker: unknown; cat: LayerKey; restaurant: Restaurant }
-      const matchesSearch = !q || restaurant.name.toLowerCase().includes(q)
-      const show = visibleIds.has(id) && layers[cat as LayerKey] && matchesSearch
+      const { marker, cat } = entry as { marker: unknown; cat: LayerKey; restaurant: Restaurant }
+      const show = visibleIds.has(id) && layers[cat as LayerKey]
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const hasLayer = cluster.hasLayer(marker as any)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -378,7 +375,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (!show && hasLayer)  cluster.removeLayer(marker as any)
     }
-  }, [restaurants, layers, searchQuery])
+  }, [restaurants, layers])
 
   // Ruttlinje-synk
   useEffect(() => {
@@ -463,69 +460,17 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 
-      {/* ── Fullscreen-knapp ── */}
-      <button
-        onClick={() => { setFullscreen(f => !f); setTimeout(() => mapRef.current?.invalidateSize(), 50) }}
-        title={fullscreen ? 'Stäng fullskärm' : 'Helskärm'}
-        style={{
-          position: 'absolute',
-          bottom: fullscreen
-            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 20px)'
-            : 56,
-          right: 12,
-          zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
-          background: '#fff', border: 'none', cursor: 'pointer',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          transition: 'background .2s',
-        }}
-      >
-        {fullscreen ? (
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-          </svg>
-        )}
-      </button>
-
-      {/* ── Sökfält + Snabba val (övre vänster) ── */}
-      <div style={{ position: 'absolute', top: 12, left: 12, zIndex: 1000, width: 'min(260px, calc(100% - 80px))' }}>
-        {/* Sökfält */}
-        <div style={{ position: 'relative' }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
-            style={{ width: 14, height: 14, position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-            <circle cx="11" cy="11" r="8"/><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Sök plats…"
-            style={{
-              width: '100%', padding: '8px 28px 8px 30px',
-              borderRadius: 20, border: 'none',
-              background: 'rgba(255,255,255,0.96)',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
-              fontSize: 13, color: '#162d3a', outline: 'none',
-              boxSizing: 'border-box',
-            }}
-          />
-          {searchQuery && (
-            <button onClick={() => setSearchQuery('')} style={{
-              position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
-              background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, color: '#7a9dab', padding: 2,
-            }}>✕</button>
-          )}
-        </div>
-
-      </div>
-
-      {/* ── Layer-toggles (höger, under väder-widget) ── */}
+      {/* ── Layer-toggles — horisontell rad, bottom-left ── */}
       <div style={{
-        position: 'absolute', top: 65, right: 12, zIndex: 1000,
-        display: 'flex', flexDirection: 'column', gap: 6,
+        position: 'absolute',
+        bottom: fullscreen
+          ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)'
+          : 12,
+        left: 12,
+        zIndex: 1000,
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 6,
       }}>
         {(Object.keys(LAYER_LABELS) as LayerKey[]).map(key => (
           <button
@@ -533,35 +478,36 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
             onClick={() => setLayers(prev => ({ ...prev, [key]: !prev[key] }))}
             title={key.charAt(0).toUpperCase() + key.slice(1)}
             style={{
-              width: 38, height: 38, borderRadius: '50%',
-              background: layers[key] ? LAYER_COLORS[key] : '#fff',
+              width: 36, height: 36, borderRadius: '50%',
+              background: layers[key] ? LAYER_COLORS[key] : 'rgba(255,255,255,0.95)',
               border: `2px solid ${LAYER_COLORS[key]}`,
               cursor: 'pointer',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 16,
-              opacity: layers[key] ? 1 : 0.45,
+              fontSize: 15,
+              opacity: layers[key] ? 1 : 0.5,
               transition: 'background .2s, opacity .2s',
+              flexShrink: 0,
             }}
           >
             {LAYER_LABELS[key]}
           </button>
         ))}
-        {/* Ruttlinje-toggle */}
         {tours.length > 0 && (
           <button
             onClick={() => setShowRoutes(r => !r)}
             title="Rutter"
             style={{
-              width: 38, height: 38, borderRadius: '50%',
-              background: showRoutes ? '#0f9e64' : '#fff',
+              width: 36, height: 36, borderRadius: '50%',
+              background: showRoutes ? '#0f9e64' : 'rgba(255,255,255,0.95)',
               border: '2px solid #0f9e64',
               cursor: 'pointer',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 16,
-              opacity: showRoutes ? 1 : 0.45,
+              fontSize: 15,
+              opacity: showRoutes ? 1 : 0.5,
               transition: 'background .2s, opacity .2s',
+              flexShrink: 0,
             }}
           >
             ⛵
@@ -569,20 +515,20 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         )}
       </div>
 
-      {/* ── GPS-knapp (nedre höger) ── */}
+      {/* ── GPS-knapp — bottom-right, 64px från botten ── */}
       <button
         onClick={locateUser}
         title="Visa min position"
         style={{
           position: 'absolute',
           bottom: fullscreen
-            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 70px)'
-            : 8,
+            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 64px)'
+            : 64,
           right: 12, zIndex: 1000,
           width: 44, height: 44, borderRadius: '50%',
           background: userPos ? '#1e5c82' : '#fff',
           border: 'none', cursor: locating ? 'default' : 'pointer',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.22)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'background .2s',
         }}
@@ -598,6 +544,34 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           <svg viewBox="0 0 24 24" fill="none" stroke={userPos ? '#fff' : '#1e5c82'} strokeWidth={2} style={{ width: 20, height: 20 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
             <circle cx="12" cy="9" r="2.5" />
+          </svg>
+        )}
+      </button>
+
+      {/* ── Fullscreen-knapp — bottom-right, 12px från botten ── */}
+      <button
+        onClick={() => { setFullscreen(f => !f); setTimeout(() => mapRef.current?.invalidateSize(), 50) }}
+        title={fullscreen ? 'Stäng fullskärm' : 'Helskärm'}
+        style={{
+          position: 'absolute',
+          bottom: fullscreen
+            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)'
+            : 12,
+          right: 12,
+          zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
+          background: '#fff', border: 'none', cursor: 'pointer',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          transition: 'background .2s',
+        }}
+      >
+        {fullscreen ? (
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
           </svg>
         )}
       </button>

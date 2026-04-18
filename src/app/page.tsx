@@ -33,16 +33,19 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-dropdown > a{display:flex;align-items:center;gap:5px}
 .nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.6;transition:.2s}
 .nav-dropdown:hover > a::after{opacity:1}
-.nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:440px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:720px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0}
 .nav-mega-col{padding:8px 12px}
-.nav-mega-col:first-child{border-right:1px solid rgba(255,255,255,.07)}
+.nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
 .nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.nav-mega-link{display:block;color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;padding:5px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-mega-region+.nav-mega-region{margin-top:12px}
+.nav-mega-link{display:block;color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;padding:4px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
 .nav-mega-link:last-child{border-bottom:none}
 .nav-mega-link:hover{color:#fff;padding-left:4px}
+.nav-mega-all{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;opacity:.75}
+.nav-mega-all:hover{opacity:1}
 .nav-cta{display:flex;gap:10px;align-items:center}
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-ghost{background:rgba(255,255,255,.12);color:var(--white);border:1px solid rgba(255,255,255,.2)}
@@ -350,18 +353,44 @@ const LANDING_HTML = `
       <div class="nav-mega">
         <div class="nav-mega-inner">
           <div class="nav-mega-grid">
+
+            <!-- Kolumn 1: Innerskärgården + Mellersta del 1 -->
             <div class="nav-mega-col">
               <div class="nav-mega-region">Innerskärgården</div>
               <a href="/o/fjaderholmarna" class="nav-mega-link">Fjäderholmarna</a>
               <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
               <a href="/o/grinda" class="nav-mega-link">Grinda</a>
               <a href="/o/finnhamn" class="nav-mega-link">Finnhamn</a>
-              <div class="nav-mega-region" style="margin-top:14px">Mellersta skärgården</div>
+              <a href="/o/rindo" class="nav-mega-link">Rindö</a>
+              <div class="nav-mega-region">Mellersta skärgården</div>
               <a href="/o/sandhamn" class="nav-mega-link">Sandhamn</a>
               <a href="/o/moja" class="nav-mega-link">Möja</a>
               <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
               <a href="/o/gallno" class="nav-mega-link">Gällnö</a>
+              <a href="/o/ingmarso" class="nav-mega-link">Ingmarsö</a>
+              <a href="/o/namdo" class="nav-mega-link">Nämdö</a>
+              <a href="/o/svartso" class="nav-mega-link">Svartsö</a>
             </div>
+
+            <!-- Kolumn 2: Mellersta del 2 + Mälaren -->
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Mellersta (forts.)</div>
+              <a href="/o/runmaro" class="nav-mega-link">Runmarö</a>
+              <a href="/o/resaro" class="nav-mega-link">Resarö</a>
+              <a href="/o/husaro" class="nav-mega-link">Husarö</a>
+              <a href="/o/vindo" class="nav-mega-link">Vindö</a>
+              <a href="/o/ingaro" class="nav-mega-link">Ingarö</a>
+              <a href="/o/kanholmen" class="nav-mega-link">Kanholmen</a>
+              <a href="/o/kymmendo" class="nav-mega-link">Kymmendö</a>
+              <a href="/o/bullero" class="nav-mega-link">Bullerö</a>
+              <a href="/o/svenska-hogarna" class="nav-mega-link">Svenska Högarna</a>
+              <a href="/o/huvudskar" class="nav-mega-link">Huvudskär</a>
+              <div class="nav-mega-region">Mälaren</div>
+              <a href="/o/bjorko" class="nav-mega-link">Björkö / Birka</a>
+              <a href="/o/adelsjo" class="nav-mega-link">Adelsö</a>
+            </div>
+
+            <!-- Kolumn 3: Södra skärgården -->
             <div class="nav-mega-col">
               <div class="nav-mega-region">Södra skärgården</div>
               <a href="/o/uto" class="nav-mega-link">Utö</a>
@@ -369,11 +398,32 @@ const LANDING_HTML = `
               <a href="/o/orno" class="nav-mega-link">Ornö</a>
               <a href="/o/dalaro" class="nav-mega-link">Dalarö</a>
               <a href="/o/landsort" class="nav-mega-link">Landsort</a>
-              <div class="nav-mega-region" style="margin-top:14px">Norra skärgården</div>
+              <a href="/o/fjardlang" class="nav-mega-link">Fjärdlång</a>
+              <a href="/o/toro" class="nav-mega-link">Torö</a>
+              <a href="/o/galo" class="nav-mega-link">Gålö</a>
+              <a href="/o/asko" class="nav-mega-link">Askö</a>
+              <a href="/o/smaadalaro" class="nav-mega-link">Smådalarö</a>
+              <a href="/o/morko" class="nav-mega-link">Mörkö</a>
+              <a href="/o/musko" class="nav-mega-link">Muskö</a>
+            </div>
+
+            <!-- Kolumn 4: Norra skärgården -->
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Norra skärgården</div>
               <a href="/o/furusund" class="nav-mega-link">Furusund</a>
               <a href="/o/blido" class="nav-mega-link">Blidö</a>
               <a href="/o/arholma" class="nav-mega-link">Arholma</a>
+              <a href="/o/fejan" class="nav-mega-link">Fejan</a>
+              <a href="/o/rodloga" class="nav-mega-link">Rödlöga</a>
+              <a href="/o/singo" class="nav-mega-link">Singö</a>
+              <a href="/o/lido" class="nav-mega-link">Lidö</a>
+              <a href="/o/graddo" class="nav-mega-link">Gräddö</a>
+              <a href="/o/vaddo" class="nav-mega-link">Väddö</a>
+              <a href="/o/yxlan" class="nav-mega-link">Yxlan</a>
+              <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
+              <a href="/#resmål" class="nav-mega-all">Visa alla 69 öar →</a>
             </div>
+
           </div>
         </div>
       </div>
