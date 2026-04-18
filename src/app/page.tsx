@@ -421,7 +421,7 @@ const LANDING_HTML = `
               <a href="/o/vaddo" class="nav-mega-link">Väddö</a>
               <a href="/o/yxlan" class="nav-mega-link">Yxlan</a>
               <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
-              <a href="/#resmål" class="nav-mega-all">Visa alla 69 öar →</a>
+              <a href="/oar" class="nav-mega-all">Visa alla 69 öar →</a>
             </div>
 
           </div>
