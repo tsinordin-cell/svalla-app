@@ -205,3 +205,94 @@ export function formatDurationMin(min: number): string | null {
   if (h === 0) return `${m}min`
   return m > 0 ? `${h}h ${m}min` : `${h}h`
 }
+
+// ── Kurs (bearing) ────────────────────────────────────────────────────────────
+export function calculateBearing(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const φ1 = lat1 * Math.PI / 180
+  const φ2 = lat2 * Math.PI / 180
+  const Δλ = (lng2 - lng1) * Math.PI / 180
+  const y = Math.sin(Δλ) * Math.cos(φ2)
+  const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+  return ((Math.atan2(y, x) * 180 / Math.PI) + 360) % 360
+}
+
+export function bearingLabel(deg: number): string {
+  const d = ['N','NNO','NO','ONO','O','OSO','SO','SSO','S','SSV','SV','VSV','V','VNV','NV','NNV']
+  return d[Math.round(deg / 22.5) % 16]
+}
+
+// ── Rörelsestatus ─────────────────────────────────────────────────────────────
+export type MovementState = 'SEGLING' | 'DRIFTAR' | 'ANKRAT' | 'STILLA'
+
+export function computeMovementState(points: GpsPoint[]): MovementState {
+  if (points.length === 0) return 'STILLA'
+  const recent = points.slice(-12)
+  const avg = recent.reduce((s, p) => s + p.speedKnots, 0) / recent.length
+  if (avg >= 0.8) return 'SEGLING'
+  if (avg >= 0.25) return 'DRIFTAR'
+  // Distinguish anchored (swinging) from truly stationary
+  if (recent.length >= 6) {
+    const lats = recent.map(p => p.lat)
+    const lngs = recent.map(p => p.lng)
+    if ((Math.max(...lats) - Math.min(...lats)) > 0.000072 ||
+        (Math.max(...lngs) - Math.min(...lngs)) > 0.000090) return 'ANKRAT'
+  }
+  return 'STILLA'
+}
+
+// ── Live turinsikter (visas under aktiv spårning) ────────────────────────────
+export type LiveInsight = { emoji: string; text: string; key: string }
+
+export function getLiveInsights(
+  points: GpsPoint[],
+  elapsed: number,
+  stops: StopEvent[],
+): LiveInsight[] {
+  if (points.length < 10) return []
+  const out: LiveInsight[] = []
+  const dist = totalDistanceNM(points)
+  const maxSpd = maxSpeedKnots(points)
+
+  if (dist >= 5   && dist < 5.3)  out.push({ key: '5nm',  emoji: '🎯', text: '5 NM avklarade!' })
+  if (dist >= 10  && dist < 10.5) out.push({ key: '10nm', emoji: '⭐', text: '10 NM — bra jobbat!' })
+  if (dist >= 25  && dist < 25.5) out.push({ key: '25nm', emoji: '🏆', text: '25 NM — en riktig långtur!' })
+  if (dist >= 50  && dist < 50.5) out.push({ key: '50nm', emoji: '🌟', text: '50 NM! Legendarisk tur.' })
+  if (maxSpd >= 15) out.push({ key: 'fast', emoji: '⚡', text: `Toppfart ${maxSpd.toFixed(1)} kn!` })
+  if (elapsed >= 3600 && elapsed < 3700)  out.push({ key: '1h', emoji: '⏱', text: '1 timme på vattnet!' })
+  if (elapsed >= 7200 && elapsed < 7300)  out.push({ key: '2h', emoji: '⏱', text: '2 timmar aktiv segling.' })
+  if (stops.length === 1) out.push({ key: 'stop1', emoji: '⚓', text: 'Första stoppet noterat.' })
+  if (stops.length >= 3)  out.push({ key: 'stop3', emoji: '⚓', text: `${stops.length} stopp under turen.` })
+
+  return out.slice(0, 2)
+}
+
+// ── Utökad sammanfattningsstatistik ───────────────────────────────────────────
+export type RouteStats = {
+  distanceNM: number
+  avgSpeedKnots: number
+  maxSpeedKnots: number
+  movingTimeSec: number
+  stoppedTimeSec: number
+  stopCount: number
+  overallBearing: number | null
+}
+
+export function computeRouteStats(
+  points: GpsPoint[],
+  stops: StopEvent[],
+  elapsedSec: number,
+): RouteStats {
+  const stoppedSec = stops.reduce((s, x) => s + x.durationSeconds, 0)
+  const bearing = points.length >= 2
+    ? calculateBearing(points[0].lat, points[0].lng, points[points.length - 1].lat, points[points.length - 1].lng)
+    : null
+  return {
+    distanceNM: totalDistanceNM(points),
+    avgSpeedKnots: avgSpeedKnots(points),
+    maxSpeedKnots: maxSpeedKnots(points),
+    movingTimeSec: Math.max(0, elapsedSec - stoppedSec),
+    stoppedTimeSec: stoppedSec,
+    stopCount: stops.filter(s => s.type === 'stop').length,
+    overallBearing: bearing,
+  }
+}
