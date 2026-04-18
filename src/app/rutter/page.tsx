@@ -87,7 +87,19 @@ export default async function RutterPage({
     forFilter !== 'alla' ? baseQuery.contains('best_for', [forFilter]) : baseQuery,
     supabase.from('tours').select('*', { count: 'exact', head: true }),
   ])
-  if (error) console.error('[rutter]', error.message)
+  if (error) {
+    console.error('[rutter]', error.message)
+    return (
+      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: '#f7fbfc' }}>
+        <div style={{ fontSize: 52 }}>⛵</div>
+        <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Kunde inte ladda turer</h1>
+        <p style={{ fontSize: 14, color: '#7a9dab', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
+        <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+          Försök igen
+        </a>
+      </div>
+    )
+  }
 
   const filtered = ((tours ?? []) as Tour[]).filter((t) =>
     tidFilter === 'alla' ? true : durationMatch(t.duration_label, tidFilter)

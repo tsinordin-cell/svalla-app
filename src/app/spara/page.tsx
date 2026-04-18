@@ -72,6 +72,7 @@ export default function SparaPage() {
 
   const watchRef = useRef<number | null>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const syncOfflineRef = useRef<() => void>(() => {})
   const pauseStartRef = useRef<Date | null>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const startTimeRef = useRef<Date | null>(null)
@@ -85,7 +86,7 @@ export default function SparaPage() {
 
     function handleOnline() {
       setIsOnline(true)
-      syncOfflinePoints()
+      syncOfflineRef.current()
     }
 
     function handleOffline() {
@@ -140,6 +141,9 @@ export default function SparaPage() {
       // Sync failed - data stays in buffer
     }
   }, [tripId, supabase])
+
+  // Keep ref current so the 'online' event listener always calls the latest version
+  useEffect(() => { syncOfflineRef.current = syncOfflinePoints }, [syncOfflinePoints])
 
   // tick timer
   useEffect(() => {

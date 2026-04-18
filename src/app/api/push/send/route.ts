@@ -27,6 +27,17 @@ export async function POST(req: Request) {
 
   const { targetUserId, title, body, url } = await req.json()
 
+  // Validera obligatoriska fält
+  if (!targetUserId || typeof targetUserId !== 'string') {
+    return NextResponse.json({ error: 'targetUserId krävs' }, { status: 400 })
+  }
+  if (!title || typeof title !== 'string' || title.trim().length === 0) {
+    return NextResponse.json({ error: 'title krävs' }, { status: 400 })
+  }
+  if (!body || typeof body !== 'string' || body.trim().length === 0) {
+    return NextResponse.json({ error: 'body krävs' }, { status: 400 })
+  }
+
   // Hämta alla subscriptions för target-användaren
   const { data: subs } = await supabase
     .from('push_subscriptions')

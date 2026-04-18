@@ -33,7 +33,19 @@ export default async function PlatserPage() {
     .select('id, name, images, description, opening_hours, latitude, longitude, tags, core_experience, type')
     .order('name', { ascending: true })
 
-  if (error) console.error('[platser]', error.message)
+  if (error) {
+    console.error('[platser]', error.message)
+    return (
+      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: '#f2f8fa' }}>
+        <div style={{ fontSize: 52 }}>⚓</div>
+        <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Kunde inte ladda platser</h1>
+        <p style={{ fontSize: 14, color: '#7a9dab', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
+        <a href="/platser" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+          Försök igen
+        </a>
+      </div>
+    )
+  }
 
   const { data: toursRaw } = await supabase
     .from('tours')
