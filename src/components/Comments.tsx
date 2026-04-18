@@ -10,6 +10,7 @@ type Comment = {
   created_at: string
   user_id: string
   username?: string
+  optimistic?: boolean
 }
 
 export default function Comments({
@@ -19,20 +20,34 @@ export default function Comments({
   tripId: string
   initialCount?: number
 }) {
-  const supabase  = useRef(createClient()).current
-  const inputRef  = useRef<HTMLInputElement>(null)
-  const listRef   = useRef<HTMLDivElement>(null)
+  const supabase     = useRef(createClient()).current
+  const inputRef     = useRef<HTMLInputElement>(null)
+  const listRef      = useRef<HTMLDivElement>(null)
+  const hasLoadedRef = useRef(false)
+  const channelRef   = useRef<ReturnType<typeof supabase.channel> | null>(null)
 
-  const [comments, setComments] = useState<Comment[]>([])
-  const [text,     setText]     = useState('')
-  const [userId,   setUserId]   = useState<string | null>(null)
-  const [posting,  setPosting]  = useState(false)
-  const [open,     setOpen]     = useState(false)
-  const [err,      setErr]      = useState('')
-  const [deleting, setDeleting] = useState<string | null>(null)
-  // Shown count: use initialCount until real comments are loaded
-  const displayCount = open ? comments.length : (initialCount ?? comments.length)
+  const [comments,   setComments]   = useState<Comment[]>([])
+  const [text,       setText]       = useState('')
+  const [userId,     setUserId]     = useState<string | null>(null)
+  const [myUsername, setMyUsername] = useState('Seglare')
+  const [posting,    setPosting]    = useState(false)
+  const [open,       setOpen]       = useState(false)
+  const [loading,    setLoading]    = useState(false)
+  const [deleting,   setDeleting]   = useState<string | null>(null)
 
+  const displayCount = hasLoadedRef.current ? comments.length : (initialCount ?? 0)
+
+  // ── Fetch current user once ────────────────────────────────────────────────
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) return
+      setUserId(user.id)
+      supabase.from('users').select('username').eq('id', user.id).single()
+        .then(({ data }) => { if (data?.username) setMyUsername(data.username) })
+    })
+  }, [supabase])
+
+  // ── Load — called lazily on first open and after mutations ─────────────────
   const load = useCallback(async () => {
     const { data } = await supabase
       .from('comments')
@@ -49,250 +64,303 @@ export default function Comments({
     const umap: Record<string, string> = {}
     for (const u of uRows ?? []) umap[u.id] = u.username
     setComments(rows.map(c => ({ ...c, username: umap[c.user_id] ?? 'Seglare' })))
+    hasLoadedRef.current = true
   }, [supabase, tripId])
 
+  // ── Open/close: lazy-load + realtime only while panel is visible ───────────
+  // This prevents 50 open realtime channels in the feed simultaneously.
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => setUserId(user?.id ?? null))
-    load()
+    if (!open) {
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current)
+        channelRef.current = null
+      }
+      return
+    }
 
-    const channel = supabase
-      .channel(`comments:${tripId}`)
+    if (!hasLoadedRef.current) {
+      setLoading(true)
+      load().finally(() => setLoading(false))
+    }
+
+    const ch = supabase
+      .channel(`comments-panel:${tripId}`)
       .on('postgres_changes',
         { event: '*', schema: 'public', table: 'comments', filter: `trip_id=eq.${tripId}` },
         () => load(),
       )
       .subscribe()
+    channelRef.current = ch
 
-    return () => { channel.unsubscribe().catch(() => {}) }
-  }, [tripId, load, supabase])
-
-  // Auto-scroll to bottom when comments open or new comment added
-  useEffect(() => {
-    if (open && listRef.current) {
-      setTimeout(() => {
-        listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
-      }, 50)
+    return () => {
+      supabase.removeChannel(ch)
+      channelRef.current = null
     }
-  }, [open, comments.length])
+  }, [open, tripId, load, supabase])
 
-  // Auto-focus input when panel opens
+  // ── Auto-scroll on new comments ────────────────────────────────────────────
+  useEffect(() => {
+    if (open && !loading && listRef.current) {
+      listRef.current.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
+    }
+  }, [open, comments.length, loading])
+
+  // ── Auto-focus input when panel opens ─────────────────────────────────────
   useEffect(() => {
     if (open && userId) {
-      setTimeout(() => inputRef.current?.focus(), 100)
+      const t = setTimeout(() => inputRef.current?.focus(), 120)
+      return () => clearTimeout(t)
     }
   }, [open, userId])
 
+  // ── Post — optimistic: comment appears instantly ───────────────────────────
   async function post(e?: React.FormEvent) {
     e?.preventDefault()
-    if (!userId || !text.trim() || posting) return
-    setPosting(true)
-    setErr('')
-
     const content = text.trim()
-    setText('') // Clear immediately for snappy UX
+    if (!userId || !content || posting) return
+    setPosting(true)
+    setText('')
 
-    const { error: commentErr } = await supabase
+    const tempId: string = `opt-${Date.now()}`
+    setComments(prev => [...prev, {
+      id: tempId, content,
+      created_at: new Date().toISOString(),
+      user_id: userId, username: myUsername,
+      optimistic: true,
+    }])
+    hasLoadedRef.current = true
+
+    const { error } = await supabase
       .from('comments')
       .insert({ trip_id: tripId, user_id: userId, content })
 
-    if (commentErr) {
-      setText(content) // Restore if failed
-      setErr('Kunde inte skicka kommentaren. Försök igen.')
+    if (error) {
+      setComments(prev => prev.filter(c => c.id !== tempId))
+      setText(content)
       setPosting(false)
       return
     }
 
-    // Notis + push till tur-ägaren (fire-and-forget)
-    supabase.from('trips').select('user_id').eq('id', tripId).single()
-      .then(({ data: trip }) => {
-        if (trip?.user_id && trip.user_id !== userId) {
-          supabase.from('notifications').insert({
-            user_id: trip.user_id, actor_id: userId, type: 'comment', trip_id: tripId,
-          })
-          supabase.from('users').select('username').eq('id', userId).single()
-            .then(({ data: me }) => {
-              fetch('/api/push/send', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  targetUserId: trip.user_id,
-                  title: 'Ny kommentar 💬',
-                  body: `${me?.username ?? 'Någon'}: ${content.slice(0, 60)}`,
-                  url: `/tur/${tripId}`,
-                }),
-              }).catch(() => {})
-            })
-        }
-      })
-
-    setPosting(false)
     await load()
+    setPosting(false)
+
+    // Notify owner — fire and forget
+    supabase.from('trips').select('user_id').eq('id', tripId).single().then(({ data: trip }) => {
+      if (!trip?.user_id || trip.user_id === userId) return
+      supabase.from('notifications').insert({
+        user_id: trip.user_id, actor_id: userId, type: 'comment', trip_id: tripId,
+      })
+      fetch('/api/push/send', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          targetUserId: trip.user_id,
+          title: 'Ny kommentar 💬',
+          body: `${myUsername}: ${content.slice(0, 60)}`,
+          url: `/tur/${tripId}`,
+        }),
+      }).catch(() => {})
+    })
   }
 
-  async function deleteComment(commentId: string) {
-    setDeleting(commentId)
-    const { error } = await supabase
-      .from('comments')
-      .delete()
-      .eq('id', commentId)
-      .eq('user_id', userId!) // RLS safety
-    if (error) {
-      setDeleting(null)
-      return
-    }
-    setComments(prev => prev.filter(c => c.id !== commentId))
+  async function deleteComment(id: string) {
+    setDeleting(id)
+    setComments(prev => prev.filter(c => c.id !== id))   // optimistic remove
+    const { error } = await supabase.from('comments').delete()
+      .eq('id', id).eq('user_id', userId!)
+    if (error) await load()   // restore on failure
     setDeleting(null)
-  }
-
-  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      post()
-    }
   }
 
   return (
     <div>
+      {/* ── Toggle — same height/weight as LikeButton ── */}
       <button
         onClick={() => setOpen(o => !o)}
-        aria-label={displayCount > 0 ? `${displayCount} kommentarer` : 'Lägg till kommentar'}
+        aria-label={displayCount > 0 ? `${displayCount} kommentarer` : 'Kommentera'}
         aria-expanded={open}
         style={{
-          display: 'flex', alignItems: 'center', gap: 5,
-          padding: '6px 12px', borderRadius: 20, border: 'none',
-          background: open ? 'rgba(10,123,140,0.12)' : 'rgba(10,123,140,0.06)',
-          color: open ? 'var(--sea)' : 'var(--txt3)',
-          fontSize: 13, fontWeight: 600, cursor: 'pointer',
-          transition: 'all .15s',
+          display: 'flex', alignItems: 'center', gap: 6,
+          padding: '9px 16px', borderRadius: 22, border: 'none',
+          background: open ? 'rgba(10,123,140,0.13)' : 'rgba(10,123,140,0.07)',
+          color: open ? 'var(--sea)' : 'var(--txt2)',
+          fontSize: 14, fontWeight: 700, cursor: 'pointer',
+          transition: 'background .15s, color .15s',
           WebkitTapHighlightColor: 'transparent',
+          minHeight: 42,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+          style={{ width: 19, height: 19, flexShrink: 0 }}>
           <path strokeLinecap="round" strokeLinejoin="round"
             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
-        {displayCount > 0 ? <span>{displayCount}</span> : <span>Kommentera</span>}
+        <span>{displayCount > 0 ? displayCount : 'Kommentera'}</span>
       </button>
 
+      {/* ── Comment panel ── */}
       {open && (
         <div style={{
           marginTop: 10,
-          background: 'var(--white)',
-          borderRadius: 16,
-          border: '1px solid rgba(10,123,140,0.10)',
+          background: 'rgba(10,123,140,0.03)',
+          borderRadius: 18,
+          border: '1px solid rgba(10,123,140,0.09)',
           overflow: 'hidden',
         }}>
-          {/* Comment list */}
-          <div
-            ref={listRef}
-            style={{
-              maxHeight: 260,
-              overflowY: 'auto',
-              padding: comments.length > 0 ? '12px 14px 6px' : 0,
-              scrollbarWidth: 'none',
-            }}
-          >
-            {comments.length === 0 && (
-              <p style={{ textAlign: 'center', padding: '16px 14px', fontSize: 13, color: '#a0bec8', margin: 0 }}>
-                Bli först att kommentera 💬
-              </p>
-            )}
-            {comments.map(c => (
-              <div key={c.id} style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'flex-start' }}>
-                {/* Avatar */}
-                <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()}
-                  style={{ textDecoration: 'none', flexShrink: 0 }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: '50%',
-                    background: 'linear-gradient(135deg,var(--sea),#2d7d8a)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontSize: 11, fontWeight: 700,
-                  }}>
-                    {(c.username ?? '?').slice(0, 1).toUpperCase()}
-                  </div>
-                </Link>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--sea)', marginBottom: 1 }}>
-                    <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()}
-                      style={{ color: 'inherit', textDecoration: 'none' }}>
-                      {c.username}
-                    </Link>
-                    <span style={{ fontWeight: 400, color: 'var(--txt3)', marginLeft: 6 }}>
-                      {timeAgoShort(c.created_at)}
-                    </span>
-                  </div>
-                  <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.4 }}>{c.content}</div>
-                </div>
-                {/* Delete own comment */}
-                {c.user_id === userId && (
-                  <button
-                    onClick={e => { e.stopPropagation(); deleteComment(c.id) }}
-                    aria-label="Radera kommentar"
-                    disabled={deleting === c.id}
-                    style={{
-                      background: 'none', border: 'none', cursor: 'pointer',
-                      color: 'var(--txt3)', fontSize: 14, padding: '2px 4px',
-                      opacity: deleting === c.id ? 0.4 : 0.6,
-                      flexShrink: 0, lineHeight: 1,
-                    }}
-                  >
-                    ×
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+          {/* Loading spinner */}
+          {loading && (
+            <div style={{ padding: '22px 0', display: 'flex', justifyContent: 'center' }}>
+              <div style={{
+                width: 22, height: 22, borderRadius: '50%',
+                border: '2.5px solid rgba(10,123,140,0.15)',
+                borderTopColor: 'var(--sea)',
+                animation: 'spin .7s linear infinite',
+              }} />
+            </div>
+          )}
 
-          {/* Input */}
-          {userId ? (
-            <form onSubmit={post} style={{ padding: '8px 12px 10px', borderTop: comments.length > 0 ? '1px solid rgba(10,123,140,0.07)' : 'none' }}>
-              {err && (
-                <p style={{ fontSize: 12, color: '#cc3d3d', margin: '0 0 6px', textAlign: 'center' }}>{err}</p>
+          {/* Comment list */}
+          {!loading && (
+            <div
+              ref={listRef}
+              style={{
+                maxHeight: 300, overflowY: 'auto', scrollbarWidth: 'none',
+                padding: comments.length > 0 ? '14px 12px 6px' : 0,
+              }}
+            >
+              {comments.length === 0 && (
+                <p style={{
+                  textAlign: 'center', padding: '20px 14px',
+                  fontSize: 13, color: 'var(--txt3)', margin: 0,
+                }}>
+                  Bli först att kommentera
+                </p>
               )}
-              <div style={{ display: 'flex', gap: 7, alignItems: 'center' }}>
+
+              {comments.map(c => (
+                <div key={c.id} style={{
+                  display: 'flex', gap: 9, marginBottom: 12, alignItems: 'flex-start',
+                  opacity: c.optimistic ? 0.6 : 1,
+                  transition: 'opacity .2s',
+                }}>
+                  {/* Avatar */}
+                  <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()}
+                    style={{ textDecoration: 'none', flexShrink: 0 }}>
+                    <div style={{
+                      width: 32, height: 32, borderRadius: '50%',
+                      background: 'linear-gradient(135deg,var(--sea),#2d7d8a)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#fff', fontSize: 12, fontWeight: 800,
+                    }}>
+                      {(c.username ?? '?')[0].toUpperCase()}
+                    </div>
+                  </Link>
+
+                  {/* Bubble */}
+                  <div style={{
+                    flex: 1, minWidth: 0,
+                    background: 'var(--white)', borderRadius: 14,
+                    padding: '8px 12px',
+                    boxShadow: '0 1px 3px rgba(0,30,50,0.06)',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 3 }}>
+                      <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()}
+                        style={{ fontSize: 12, fontWeight: 800, color: 'var(--sea)', textDecoration: 'none' }}>
+                        {c.username}
+                      </Link>
+                      <span style={{ fontSize: 10, color: 'var(--txt3)' }}>
+                        {c.optimistic ? 'skickar…' : timeAgoShort(c.created_at)}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: 14, color: 'var(--txt)', lineHeight: 1.45, wordBreak: 'break-word' }}>
+                      {c.content}
+                    </div>
+                  </div>
+
+                  {/* Delete own comment */}
+                  {c.user_id === userId && !c.optimistic && (
+                    <button
+                      onClick={e => { e.stopPropagation(); deleteComment(c.id) }}
+                      disabled={deleting === c.id}
+                      aria-label="Radera"
+                      style={{
+                        background: 'none', border: 'none', cursor: 'pointer',
+                        color: 'var(--txt3)', padding: '4px', marginTop: 4, flexShrink: 0,
+                        opacity: deleting === c.id ? 0.3 : 0.45,
+                        display: 'flex', alignItems: 'center',
+                        WebkitTapHighlightColor: 'transparent',
+                      }}
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+                        style={{ width: 14, height: 14 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* ── Input ── */}
+          {userId ? (
+            <form onSubmit={post} style={{
+              padding: '10px 12px 12px',
+              borderTop: !loading && comments.length > 0
+                ? '1px solid rgba(10,123,140,0.08)' : 'none',
+            }}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                 <input
                   ref={inputRef}
                   value={text}
-                  onChange={e => { setText(e.target.value); setErr('') }}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Skriv en kommentar… (Enter för att skicka)"
+                  onChange={e => setText(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); post() } }}
+                  placeholder="Skriv en kommentar…"
                   maxLength={500}
                   style={{
-                    flex: 1, padding: '9px 13px', borderRadius: 20,
+                    flex: 1, padding: '10px 14px', borderRadius: 22,
                     border: '1.5px solid rgba(10,123,140,0.15)',
-                    background: 'rgba(10,123,140,0.04)', fontSize: 14, outline: 'none',
-                    color: 'var(--txt)',
+                    background: 'var(--white)', fontSize: 14,
+                    color: 'var(--txt)', outline: 'none',
+                    WebkitAppearance: 'none',
                   }}
                 />
                 <button
                   type="submit"
                   disabled={!text.trim() || posting}
-                  aria-label="Skicka kommentar"
                   style={{
-                    padding: '9px 14px', borderRadius: 20, border: 'none',
-                    background: text.trim() && !posting ? 'var(--sea)' : 'rgba(10,123,140,0.12)',
+                    width: 42, height: 42, borderRadius: '50%', border: 'none', flexShrink: 0,
+                    background: text.trim() && !posting ? 'var(--sea)' : 'rgba(10,123,140,0.10)',
                     color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
-                    fontSize: 12, fontWeight: 700, cursor: text.trim() ? 'pointer' : 'default',
-                    transition: 'all .15s', flexShrink: 0,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    cursor: text.trim() && !posting ? 'pointer' : 'default',
+                    transition: 'background .15s, color .15s',
                     WebkitTapHighlightColor: 'transparent',
                   }}
                 >
-                  {posting ? '…' : '↑'}
+                  {posting
+                    ? <div style={{ width: 14, height: 14, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', animation: 'spin .7s linear infinite' }} />
+                    : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 16, height: 16 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                  }
                 </button>
               </div>
               {text.length > 400 && (
-                <div style={{ fontSize: 10, color: text.length > 480 ? '#cc3d3d' : '#a0bec8', textAlign: 'right', marginTop: 3 }}>
+                <div style={{ fontSize: 10, marginTop: 4, textAlign: 'right', color: text.length > 480 ? 'var(--red)' : 'var(--txt3)' }}>
                   {text.length}/500
                 </div>
               )}
             </form>
           ) : (
-            <div style={{ padding: '10px 14px', fontSize: 12, color: 'var(--txt3)', textAlign: 'center' }}>
-              <a href="/logga-in" onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: 600 }}>Logga in</a> för att kommentera
+            <div style={{ padding: '14px', fontSize: 13, color: 'var(--txt3)', textAlign: 'center' }}>
+              <a href="/logga-in" onClick={e => e.stopPropagation()}
+                style={{ color: 'var(--sea)', fontWeight: 700 }}>Logga in</a> för att kommentera
             </div>
           )}
         </div>
       )}
+
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   )
 }
