@@ -287,15 +287,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
         {/* Caption */}
         {trip.caption && (
-          <div style={{
-            fontSize: 15, color: '#2a4a5a', lineHeight: 1.6,
-            margin: '0 0 16px', fontStyle: 'italic',
-            padding: '12px 16px', background: '#fff', borderRadius: 16,
-            borderLeft: '3px solid rgba(10,123,140,0.3)',
-            boxShadow: '0 1px 6px rgba(0,45,60,0.06)',
+          <p style={{
+            fontSize: 15, color: '#2a4a5a', lineHeight: 1.65,
+            margin: '0 0 16px', fontWeight: 400,
           }}>
-            &ldquo;{trip.caption}&rdquo;
-          </div>
+            {trip.caption}
+          </p>
         )}
 
         {/* AI Summary */}
@@ -380,26 +377,43 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         )}
 
         {/* Stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 16 }}>
-          {[
-            { val: trip.distance > 0 ? `${trip.distance.toFixed(1)}` : '—', unit: 'NM', label: 'Distans', emoji: '🧭' },
-            { val: durationSecs > 0 ? formatDuration(durationSecs) : '—', unit: '', label: 'Tid', emoji: '⏱' },
-            { val: trip.average_speed_knots > 0 ? `${trip.average_speed_knots.toFixed(1)}` : '—', unit: 'kn', label: 'Snittfart', emoji: '⛵' },
-            { val: trip.max_speed_knots > 0 ? `${trip.max_speed_knots.toFixed(1)}` : '—', unit: 'kn', label: 'Toppfart', emoji: '💨' },
-          ].map(({ val, unit, label, emoji }) => (
-            <div key={label} style={{ background: '#fff', borderRadius: 16, padding: '10px 6px', textAlign: 'center', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
-              <div style={{ fontSize: 16, marginBottom: 2 }}>{emoji}</div>
-              <div style={{ fontSize: 16, fontWeight: 900, color: '#1e5c82', lineHeight: 1 }}>{val}</div>
-              {unit && <div style={{ fontSize: 9, color: '#7a9dab', fontWeight: 700 }}>{unit}</div>}
-              <div style={{ fontSize: 8, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.3px', marginTop: 3 }}>{label}</div>
+        {(() => {
+          const stats = [
+            { val: trip.distance >= 0.1 ? trip.distance.toFixed(1) : null, unit: 'NM', label: 'Distans' },
+            { val: durationSecs > 60 ? formatDuration(durationSecs) : null, unit: '', label: 'Tid' },
+            { val: trip.average_speed_knots >= 0.1 ? trip.average_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Snittfart' },
+            { val: trip.max_speed_knots >= 0.1 ? trip.max_speed_knots.toFixed(1) : null, unit: 'kn', label: 'Toppfart' },
+          ].filter(s => s.val !== null)
+          if (stats.length === 0) return null
+          return (
+            <div style={{
+              background: '#fff', borderRadius: 20,
+              boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
+              display: 'flex', marginBottom: 16, overflow: 'hidden',
+            }}>
+              {stats.map(({ val, unit, label }, i) => (
+                <div key={label} style={{
+                  flex: 1, padding: '14px 0', textAlign: 'center',
+                  borderRight: i < stats.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none',
+                }}>
+                  <div style={{ fontSize: 20, fontWeight: 900, color: '#0d2a3e', lineHeight: 1, letterSpacing: '-0.5px' }}>
+                    {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: '#7a9dab', marginLeft: 2 }}>{unit}</span>}
+                  </div>
+                  <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                    {label}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          )
+        })()}
 
         {/* Social */}
-        <div id="kommentarer" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-          <LikeButton tripId={trip.id} />
-          <Comments tripId={trip.id} />
+        <div id="kommentarer" style={{ marginBottom: 18 }}>
+          <div style={{ display: 'flex', gap: 8, paddingBottom: 14, borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
+            <LikeButton tripId={trip.id} />
+            <Comments tripId={trip.id} />
+          </div>
         </div>
 
         {/* Map */}

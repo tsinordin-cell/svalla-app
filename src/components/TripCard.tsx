@@ -42,9 +42,9 @@ export default function TripCard({ trip }: { trip: Trip }) {
 
   // Stat chips shown overlaid on the image
   const statChips: { val: string; icon: string }[] = []
-  if (trip.distance > 0)            statChips.push({ icon: '📏', val: `${fmt(trip.distance)} NM` })
+  if (trip.distance >= 0.1)          statChips.push({ icon: '📏', val: `${fmt(trip.distance)} NM` })
   if (dur)                          statChips.push({ icon: '⏱', val: dur })
-  if (trip.average_speed_knots > 0) statChips.push({ icon: '⚡', val: `${fmt(trip.average_speed_knots)} kn` })
+  if (trip.average_speed_knots >= 0.1) statChips.push({ icon: '⚡', val: `${fmt(trip.average_speed_knots)} kn` })
 
   return (
     <article
