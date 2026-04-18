@@ -63,6 +63,7 @@ export type Trip = {
   started_at: string | null
   ended_at: string | null
   created_at: string
+  route_points: { lat: number; lng: number }[] | null  // förenklad GPS-rutt för visning i feed
   users?: { username: string; avatar_url: string | null }
   routes?: { name: string } | null
 }

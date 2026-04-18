@@ -21,7 +21,7 @@ export default async function FeedPage() {
     .select(`
       id, user_id, boat_type, distance, duration,
       average_speed_knots, max_speed_knots, image, route_id, created_at,
-      location_name, caption, pinnar_rating, started_at, ended_at,
+      location_name, caption, pinnar_rating, started_at, ended_at, route_points,
       routes ( name )
     `)
     .order('created_at', { ascending: false })
@@ -78,7 +78,7 @@ export default async function FeedPage() {
         .select(`
           id, user_id, boat_type, distance, duration,
           average_speed_knots, max_speed_knots, image, route_id, created_at,
-          location_name, caption, pinnar_rating, started_at, ended_at,
+          location_name, caption, pinnar_rating, started_at, ended_at, route_points,
           routes ( name )
         `)
         .in('user_id', followingIds)

@@ -15,7 +15,7 @@ import { GpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
-import { ACHIEVEMENTS, computeUnlocked, type TripForAch } from '@/lib/achievements'
+import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -452,6 +452,22 @@ export default function SparaPage() {
       imageUrl = publicUrl
     }
 
+    // Simplify GPS route for feed display — max 80 points, only lat/lng
+    let routePoints: { lat: number; lng: number }[] | null = null
+    if (points.length >= 2) {
+      const step = Math.max(1, Math.floor(points.length / 80))
+      const sampled: { lat: number; lng: number }[] = []
+      for (let i = 0; i < points.length; i += step) {
+        sampled.push({ lat: parseFloat(points[i].lat.toFixed(6)), lng: parseFloat(points[i].lng.toFixed(6)) })
+      }
+      // Always include last point
+      const last = points[points.length - 1]
+      if (sampled[sampled.length - 1]?.lat !== last.lat) {
+        sampled.push({ lat: parseFloat(last.lat.toFixed(6)), lng: parseFloat(last.lng.toFixed(6)) })
+      }
+      routePoints = sampled
+    }
+
     // Insert trip
     const { data: trip, error: tripErr } = await supabase.from('trips').insert({
       user_id:              user.id,
@@ -466,6 +482,7 @@ export default function SparaPage() {
       pinnar_rating:        pinnar > 0 ? pinnar : null,
       caption:              caption.trim() || null,
       location_name:        locationName.trim() || null,
+      route_points:         routePoints,
     }).select('id').single()
 
     if (tripErr || !trip) {
