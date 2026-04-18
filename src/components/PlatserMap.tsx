@@ -169,7 +169,15 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     if (!containerRef.current || mapRef.current) return
 
     Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([L]) => {
-      // Läs in MarkerCluster CSS dynamiskt
+      // ── Leaflet CSS (kritisk — utan denna renderas kartan fel) ──
+      if (!document.getElementById('leaflet-css')) {
+        const leafletCss = document.createElement('link')
+        leafletCss.id = 'leaflet-css'
+        leafletCss.rel = 'stylesheet'
+        leafletCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'
+        document.head.appendChild(leafletCss)
+      }
+      // ── MarkerCluster CSS ──────────────────────────────────────
       if (!document.getElementById('mc-css')) {
         const link1 = document.createElement('link')
         link1.id = 'mc-css'
@@ -183,18 +191,36 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       }
 
       const map = L.map(containerRef.current!, {
-        center: [59.35, 18.7],
-        zoom: 9,
+        center: [59.35, 18.8],  // Stockholms skärgård
+        zoom: 10,
         zoomControl: true,
         attributionControl: false,
         wheelPxPerZoomLevel: 80,
       })
 
+      // ── Baskartor: OSM + OpenSeaMap nautiska lager ──────────────
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
+        opacity: 0.85,
+      }).addTo(map)
+
+      // Nautiska symboler (fyrar, grund, säkerhetsfarvatten)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        opacity: 0.7,
       }).addTo(map)
 
       mapRef.current = map
+
+      // ── invalidateSize: säkerställ rätt dimensioner efter render ──
+      setTimeout(() => map.invalidateSize(), 50)
+      setTimeout(() => map.invalidateSize(), 300)
+
+      // ── ResizeObserver: hantera container-resize dynamiskt ──────
+      if (containerRef.current && typeof ResizeObserver !== 'undefined') {
+        const ro = new ResizeObserver(() => map.invalidateSize())
+        ro.observe(containerRef.current)
+      }
 
       // ── MarkerClusterGroup ──────────────────────────────────────
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -856,6 +856,1589 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
   },
+
+  // ─── INGMARSÖ ────────────────────────────────────────────────
+  {
+    slug: 'ingmarso',
+    name: 'Ingmarsö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌲',
+    tagline: 'Glest befolkad naturö med utmärkta paddelvatten och bilfänja från Ljusterö.',
+    description: [
+      'Ingmarsö är en av de mer stillsamma öarna i mellersta skärgården. Bilfärja avgår från Ljusterö vilket ger ön ett "extra steg" bort från fastlandet — och det märks. Här är det lugnt, naturen är frodig och sommarfolket är en blandning av återvändande familjer och seglare som letar efter den orörda viken.',
+      'Öns norra klippor och den skyddade Ingmarsöviken är favoriter bland kajakpaddlare. Gästhamnen är enkel men välfungerande. Service finns för dagsbehoven — mer behöver man inte.',
+    ],
+    facts: {
+      travel_time: '75 min med buss + bilfärja från Stockholm',
+      character: 'Lugnt, naturnära, bilfärja, genuint',
+      season: 'Maj–September',
+      best_for: 'Kajak, lugn, barnfamiljer, återvändande sommargäster',
+    },
+    activities: [
+      { icon: '🛶', name: 'Kajakpaddling', desc: 'Norra kustlinjen är utmärkt paddlingvatten med skyddade vikar och fina holmar.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbad på öns norra sida. Relativt folktomt även högsäsong.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs övägen och utforska alla delar av ön.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Omarkerade men lättgångna stigar genom blandskog och längs kusten.' },
+    ],
+    accommodation: [
+      { name: 'Privatstugor', type: 'Stugor', desc: 'Sommarstugor uthyrda av lokalbor. Sök via Blocket eller Airbnb.' },
+    ],
+    getting_there: [
+      { method: 'Buss + Bilfärja', from: 'Tekniska Högskolan', time: '75 min', desc: 'Buss 676 till Ljusteröfärjan, bilfärja till Ljusterö, sedan lokal färja till Ingmarsö.', icon: '🚌' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Enstaka avgångar via Ljusterö.', icon: '⛴' },
+    ],
+    harbors: [
+      { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn. Servicenivå: grundläggande.', spots: 25, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel sommarmat i skärgårdsmiljö.' },
+      { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror och kaffepaus.' },
+    ],
+    tips: [
+      'Norra sidan av ön är bäst för klippbad och kajak.',
+      'Kombination med Ljusterö samma dag fungerar bra.',
+    ],
+    related: ['ljustero', 'gallno', 'finnhamn'],
+    tags: ['kajak', 'lugnt', 'bilfärja', 'natur', 'orört'],
+  },
+
+  // ─── NÄMDÖ ───────────────────────────────────────────────────
+  {
+    slug: 'namdo',
+    name: 'Nämdö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌿',
+    tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
+    description: [
+      'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan medeltiden och är en av de mer genuina öarna i mellersta skärgården — här finns ett litet samhälle, en kyrka och en lanthandel som håller ön levande.',
+      'Naturen på Nämdö är varierad och välskyddad. Klippbad, vandringsstigar och fina naturhamnar på öns södra sida lockar seglare och naturälskare. Ön passar perfekt som stopp på en längre seglingstur mot Sandhamn.',
+    ],
+    facts: {
+      travel_time: '90 min med Waxholmsbåt från Stavsnäs',
+      character: 'Bilfri, genuint, litet samhälle, välskyddat',
+      season: 'Maj–September',
+      best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
+    },
+    activities: [
+      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Liten vacker kyrka med anor från 1600-talet. Öppen sommartid.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten och fina klippor längs södra kustlinjen.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön och utforska de gamla fiskelägena.' },
+      { icon: '⛵', name: 'Segling', desc: 'Naturhamnen på södsidan är ett populärt seglarankar.' },
+    ],
+    accommodation: [
+      { name: 'Nämdö Camping', type: 'Camping', desc: 'Enkel campingplats nära hamnen.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '90 min', desc: 'Linjen mot Möja och Gällnö stannar vid Nämdö.', icon: '⛴' },
+    ],
+    harbors: [
+      { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', spots: 20, fuel: false, service: ['vatten'] },
+    ],
+    restaurants: [
+      { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.' },
+      { name: 'Nämdö Lanthandel', type: 'Handel', desc: 'Dagligvaror och proviant.' },
+    ],
+    tips: [
+      'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
+      'Kyrkan är värd ett besök — en av skärgårdens äldsta.',
+    ],
+    related: ['moja', 'gallno', 'sandhamn'],
+    tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
+  },
+
+  // ─── SVARTSÖ ─────────────────────────────────────────────────
+  {
+    slug: 'svartso',
+    name: 'Svartsö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🏝',
+    tagline: 'Bilfri ö med ekologisk profil — biodynamisk odling och enkel skärgårdslyx.',
+    description: [
+      'Svartsö är kanske den mest unika av de bilfria öarna i mellersta skärgården. Ön har sedan decennier en stark ekologisk profil — biodynamiskt jordbruk, lokal matproduktion och ett medvetet förhållningssätt till turism. Svartsö Krog & Logi är en av skärgårdens mest omtalade matdestinationer.',
+      'Naturen är varierad med öppna odlingslandskap, skog och en lång kustlinje. Ön är lagom stor för en heldag till fots. Känslan är lantlig snarare än marin — en skärgårdsö som också är en bondgård.',
+    ],
+    facts: {
+      travel_time: '2 h med Waxholmsbåt från Strömkajen',
+      character: 'Bilfri, ekologisk, lugnt, mat i fokus',
+      season: 'Maj–September',
+      best_for: 'Matälskare, naturälskare, de som söker unikt',
+    },
+    activities: [
+      { icon: '🥗', name: 'Ekologisk odling', desc: 'Besök gårdens biodynamiska odlingar och lär dig om öns matproduktion.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Vandra längs kustlinjen och genom det öppna odlingslandskapet.' },
+      { icon: '🏊', name: 'Bad', desc: 'Badplatser på öns södra sida med utsikt mot mellersta skärgården.' },
+    ],
+    accommodation: [
+      { name: 'Svartsö Logi', type: 'Stugor', desc: 'Enkla men välskötta stugor kopplade till krogens ekologiska profil.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h', desc: 'Linje via Möja och Gällnö.', icon: '⛴' },
+    ],
+    harbors: [
+      { name: 'Svartsö Hamn', desc: 'Liten gästhamn nära krogsbryggan.', spots: 20, fuel: false, service: ['vatten'] },
+    ],
+    restaurants: [
+      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Ekologisk mat baserad på öns egna råvaror. En av skärgårdens mest unika matupplevelser. Boka.' },
+    ],
+    tips: [
+      'Boka Svartsö Krog långt i förväg — den är välkänd och fullbokad sommartid.',
+      'Svartsö kombineras bäst med en natt — öns lugn förtjänar mer än en dagstur.',
+    ],
+    related: ['moja', 'gallno', 'namdo'],
+    tags: ['ekologisk', 'bilfri', 'matupplevelse', 'genuint', 'lantligt'],
+  },
+
+  // ─── RUNMARÖ ─────────────────────────────────────────────────
+  {
+    slug: 'runmaro',
+    name: 'Runmarö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '⛵',
+    tagline: 'Populär seglingsö nära Sandhamn — bränsle, krog och vackra naturhamnar.',
+    description: [
+      'Runmarö är den närmaste grannen till Sandhamn och en viktig knutpunkt för seglare på Stockholmsleden. Ön har en välutrustad sjömack och hamn, något som gör den till ett naturligt stopp för både inkommande och utgående seglare.',
+      'Öns naturhamnar — framförallt Runmarösund på södra sidan — räknas bland mellersta skärgårdens finaste ankringsplatser. Befolkningen är liten men fast, och ön har en lantlig karaktär som kontrasterar mot grannen Sandhamns festligare stämning.',
+    ],
+    facts: {
+      travel_time: '2 h med Waxholmsbåt från Strömkajen',
+      character: 'Lugnt, naturnära, knutpunkt för seglare',
+      season: 'Maj–September',
+      best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
+    },
+    activities: [
+      { icon: '⛵', name: 'Segling', desc: 'Klassisk passage och stopp på Stockholmsleden. Välplacerat för nattankring.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klippbad på öns västra sida med fin utsikt.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Promenera längs kustlinjen och se Sandhamn på nära håll.' },
+    ],
+    accommodation: [
+      { name: 'Runmarö Gästhamn', type: 'Gästhamn', desc: 'Förtöj på gästplatser — enkelt och bra.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Strömkajen / Stavsnäs', time: '2 h', desc: 'Direktlinje. Ingår i SL-kort.', icon: '⛴' },
+      { method: 'Eigen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Populärt segelstopp.', icon: '⛵' },
+    ],
+    harbors: [
+      { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', spots: 50, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+    ],
+    restaurants: [
+      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.' },
+      { name: 'Runmarö Lanthandel', type: 'Handel', desc: 'Proviant och dagligvaror.' },
+    ],
+    tips: [
+      'Runmarösund är en av mellersta skärgårdens finaste naturhamnar — anlöp tidigt.',
+      'Runmarö är ett lugnare alternativ till Sandhamn för övernattning med direktbåt till stan nästa dag.',
+    ],
+    related: ['sandhamn', 'moja', 'gallno'],
+    tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
+  },
+
+  // ─── RESARÖ ──────────────────────────────────────────────────
+  {
+    slug: 'resaro',
+    name: 'Resarö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🏡',
+    tagline: 'Välmående villaö nära Vaxholm — lättillgänglig med bil och buss.',
+    description: [
+      'Resarö är en av de mer lättillgängliga öarna i skärgården — bro och landsvägförbindning till fastlandet gör att man kan ta sig hit utan båt. Ön är känd för sina vackra 1900-tals villor, de fina badplatserna och den nästan urbana känslan kombinerat med äkta skärgårdskaraktär.',
+      'Resarö Brygga är öns naturliga samlingsplats med krog och cafe. Klippbadet på södra udden lockar sommargäster från hela regionen.',
+    ],
+    facts: {
+      travel_time: '50 min med buss från Stockholm / 10 min med bil från Vaxholm',
+      character: 'Lättillgänglig, villa-ö, badvänlig',
+      season: 'April–Oktober',
+      best_for: 'Dagstur, bad, familjer, bilanpassad',
+    },
+    activities: [
+      { icon: '🏊', name: 'Klippbad', desc: 'Öns södra udde har ett av regionens populäraste klippbad.' },
+      { icon: '🚶', name: 'Promenad', desc: 'Vandra längs öns stigar och beundra den historiska villaarkitekturen.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Plana vägar gör ön lätt att cykla runt.' },
+    ],
+    accommodation: [
+      { name: 'Sommarstugor', type: 'Stugor', desc: 'Privatuthyrning sommartid.' },
+    ],
+    getting_there: [
+      { method: 'Bil', from: 'Vaxholm', time: '10 min', desc: 'Direktväg från Vaxholm via Eriksberg.', icon: '🚗' },
+      { method: 'Buss', from: 'Stockholm', time: '50 min', desc: 'SL-buss 670 till Vaxholm, sedan buss 676 till Resarö.', icon: '🚌' },
+    ],
+    harbors: [
+      { name: 'Resarö Brygga', desc: 'Gästbrygga vid krogsbryggan.', fuel: false, service: ['vatten'] },
+    ],
+    restaurants: [
+      { name: 'Resarö Brygga Krog', type: 'Restaurang', desc: 'Sommarkrog vid bryggan. Räkor och husmanskost.' },
+      { name: 'Resarö Café', type: 'Café', desc: 'Fika och lätt lunch.' },
+    ],
+    tips: [
+      'Resarö är ett utmärkt val för den som vill till skärgården utan att ta båt.',
+      'Klippbadet på södra udden är bäst tidig morgon innan det fylls.',
+    ],
+    related: ['vaxholm', 'rindo', 'grinda'],
+    tags: ['lättillgänglig', 'bad', 'villa', 'dag-tur', 'bil'],
+  },
+
+  // ─── HUSARÖ ──────────────────────────────────────────────────
+  {
+    slug: 'husaro',
+    name: 'Husarö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌿',
+    tagline: 'Bilfri och lugn — ett av de bättre hållen hemligheterna i mellersta skärgården.',
+    description: [
+      'Husarö är en bilfri ö i norra delen av mellersta skärgården, nåbar med Waxholmsbåten från Strömkajen. Ön är relativt liten och gles befolkad, vilket ger den en orördhet som är svår att hitta bland de mer välkända öarna.',
+      'Krogen och den välskötta gästhamnen tar hand om seglarna. För vandringen till öns norra udde belönas man med en av regionens bästa panoramautsikter mot öppet vatten.',
+    ],
+    facts: {
+      travel_time: '2,5 h med Waxholmsbåt från Strömkajen',
+      character: 'Bilfri, lugnt, genuint, norra mellersta',
+      season: 'Maj–September',
+      best_for: 'Seglare, de som söker lugn och orördhet',
+    },
+    activities: [
+      { icon: '🚶', name: 'Vandring till norra udden', desc: 'Ca 3 km vandring till panoramautsikten norrut. Rekommenderas starkt.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbadplatser på öns västra sida.' },
+      { icon: '⛵', name: 'Segling', desc: 'Husarö är ett populärt ankringsstopp på norra Stockholmsleden.' },
+    ],
+    accommodation: [
+      { name: 'Husarö Gästhamn', type: 'Gästhamn', desc: 'Välskött med plats för ett tiotal båtar.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Norra linjen. Ingår i SL-kort.', icon: '⛴' },
+    ],
+    harbors: [
+      { name: 'Husarö Hamn', desc: 'Liten välskött gästhamn.', spots: 15, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Husarö Krog', type: 'Restaurang', desc: 'Öns krog med husmanskost och trevlig stämning.' },
+    ],
+    tips: [
+      'Vandra till norra udden — det är det bästa man kan göra på Husarö.',
+      'Husarö är mindre känt än grannarna, vilket ger ett lugnare hamnläge.',
+    ],
+    related: ['finnhamn', 'ingmarso', 'ljustero'],
+    tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],
+  },
+
+  // ─── FEJAN ───────────────────────────────────────────────────
+  {
+    slug: 'fejan',
+    name: 'Fejan',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🪨',
+    tagline: 'En av norra skärgårdens finaste naturhamnar — klara vatten och vita klippor.',
+    description: [
+      'Fejan är ett naturreservat norr om Furusund och räknas bland norra skärgårdens absolut finaste naturhamnar. Vita klippor, kristallklart vatten och en skyddad inhamn gör ön till ett av seglarnas mest omtyckta stopp längs Furusundsleder.',
+      'Det finns ingen reguljärbåt till Fejan — hit tar man sig med segelbåt eller motorbåt. Det är precis det som gör ön speciell. Inga dagsturister med Waxholmsbåten, bara båtfolk som sökt sig dit med intention.',
+      'Naturreservatsreglerna gäller — ta inte ved, lämna inget skräp, respektera fågelskyddet.',
+    ],
+    facts: {
+      travel_time: 'Nås med privat båt — ca 1–2 h från Furusund beroende på startpunkt',
+      character: 'Orört, naturreservat, vitt klipplandskap',
+      season: 'Juni–Augusti',
+      best_for: 'Seglare, naturälskare, snorkling, fotografer',
+    },
+    activities: [
+      { icon: '🏊', name: 'Klippbad', desc: 'Kristallklart vatten och vita klippor. En av norra skärgårdens finaste badplatser.' },
+      { icon: '⛵', name: 'Naturhamnsankring', desc: 'Skyddad inhamn med eldstäder avsedda för besökare. Populär övernattningsplats.' },
+      { icon: '🐟', name: 'Snorkling', desc: 'Klart vatten med bra sikt. Havsfauna i fin miljö.' },
+      { icon: '🌅', name: 'Solnedgångsfotografering', desc: 'Vita klippor i solnedgång — naturreservatets mest fotograferade vy.' },
+    ],
+    accommodation: [
+      { name: 'Ankring / Tält', type: 'Camping', desc: 'Ankring i naturhamnen eller tältning på anvisad plats i naturreservat.' },
+    ],
+    getting_there: [
+      { method: 'Privat båt', from: 'Furusund', time: '30–60 min', desc: 'Enda sättet att nå Fejan. Planera in stoppet på en norra skärgårdstur.', icon: '⛵' },
+    ],
+    harbors: [
+      { name: 'Fejan Naturhamn', desc: 'Skyddad och välbesökt naturhamn. Fyrsektioner och eldplatser finns.', spots: 15, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Anlöp tidigt — Fejan är populär och naturhamnen fylls kvällar i juli.',
+      'Ta med allt du behöver — ingen service finns på ön.',
+      'Naturreservatsregler: elden bara i anvisade eldplatser, inga lösa fyrverkerier.',
+    ],
+    related: ['furusund', 'arholma', 'graddo'],
+    tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
+  },
+
+  // ─── RÖDLÖGA ─────────────────────────────────────────────────
+  {
+    slug: 'rodloga',
+    name: 'Rödlöga',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌊',
+    tagline: 'Skyddat ytterklippsskär med en av norra skärgårdens finaste ankringsplatser.',
+    description: [
+      'Rödlöga är ett ösamhälle i norra ytterskärgården med en av de mest välskyddade naturhamnarna i hela regionen. Seglare söker sig hit för att ankra i den lugna inhamnen medan vind och våg gasar utanför. Det är en plats med en stark identitet — det yttersta av det yttersta.',
+      'Ön har fast befolkning och en verksamhet som sträcker sig över hela sommarsäsongen. Krogen är en samlingsplats för seglare från hela Östersjön under högsäsong.',
+    ],
+    facts: {
+      travel_time: '3–4 h med Waxholmsbåt från Norrtälje / privat båt',
+      character: 'Ytterskärgård, välskyddat ankare, äventyrligt',
+      season: 'Juni–Augusti',
+      best_for: 'Erfarna seglare, ytterskärgårdsälskare',
+    },
+    activities: [
+      { icon: '⛵', name: 'Ankring', desc: 'En av norra skärgårdens bäst skyddade naturhamnar. Populär under Gotland Runt och andra långseglingsäventyr.' },
+      { icon: '🌊', name: 'Klippvandring', desc: 'Vandra ut mot yttre klipporna och känn havsexponeringen.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Utmärkt havsöring- och makrillfiske i ytterskärgårdens vatten.' },
+    ],
+    accommodation: [
+      { name: 'Stugor vid hamnen', type: 'Stugor', desc: 'Enkla stugor för övernattning.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Norrtälje', time: '3–4 h', desc: 'Norra linjen längst ut.', icon: '⛴' },
+      { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
+    ],
+    harbors: [
+      { name: 'Rödlöga Hamn', desc: 'Välskyddad inhamn med plats för ca 15 båtar. En av norra skärgårdens bästa.', spots: 15, fuel: false, service: ['vatten'] },
+    ],
+    restaurants: [
+      { name: 'Rödlöga Krog', type: 'Restaurang', desc: 'Samlingsplatsen för seglare. Husmanskost och hamnstämning.' },
+    ],
+    tips: [
+      'Rödlöga kräver god navigeringskunskap — ytterskärgård med grunder.',
+      'Krogen är extra livlig under Gotland Runt-helgen (tidig juli).',
+    ],
+    related: ['arholma', 'furusund', 'fejan'],
+    tags: ['ytterskärgård', 'segling', 'ankring', 'norra', 'äventyr'],
+  },
+
+  // ─── SINGÖ ───────────────────────────────────────────────────
+  {
+    slug: 'singo',
+    name: 'Singö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌊',
+    tagline: 'Glest befolkad ö i Norrtäljes skärgård — rå natur och en bilfärja bort från turismen.',
+    description: [
+      'Singö är en liten ö i norra skärgården nära Norrtälje, nåbar med bilfärja. Ön är relativt okänd utanför de lokalt inbitna skärgårdsbesökarna, vilket är exakt vad som gör den speciell. Ingen masstourism, inga turisbåtar — bara klippor, fiskestugor och en takt som inte existerar längre i mellersta skärgården.',
+      'Singö kapell är ett av Upplands äldsta träkyrkor och en välbevarad kulturskatt. Fiskeläget på öns norra sida ger en äkta bild av hur skärgårdslivet sett ut i generationer.',
+    ],
+    facts: {
+      travel_time: '90 min med bil + bilfärja från Norrtälje',
+      character: 'Genuint, okänt, bilfärja, norra Uppland',
+      season: 'Juni–Augusti',
+      best_for: 'De som söker äkta orördhet, kulturhistoria',
+    },
+    activities: [
+      { icon: '⛪', name: 'Singö kapell', desc: 'Ett av Upplands äldsta träkyrkor. Historisk pärla värd ett besök.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Utmärkta fiskevatten runt ön. Abborre och havsöring.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs öns grusvägar och utforska fiskelägena.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Orörda klippbad längs kusten utan konkurrens om platserna.' },
+    ],
+    accommodation: [
+      { name: 'Stugor', type: 'Stugor', desc: 'Privatuthyrning av sommarstugor på ön.' },
+    ],
+    getting_there: [
+      { method: 'Bil + Bilfärja', from: 'Norrtälje', time: '45 min', desc: 'Kör norrut från Norrtälje mot Singöfärjan.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Singö Fiskehamn', desc: 'Liten fiskehamn med begränsad gästbrygga.', fuel: false },
+    ],
+    restaurants: [
+      { name: 'Singö Krog', type: 'Restaurang', desc: 'Liten sommarkrog med lokal fisk.' },
+    ],
+    tips: [
+      'Singö kapell är öns absoluta höjdpunkt — ta med kameran.',
+      'Ta med mat hemifrån — restaurangutbudet är mycket begränsat.',
+    ],
+    related: ['arholma', 'vaddo', 'norrora'],
+    tags: ['genuint', 'orört', 'bilfärja', 'norra', 'kulturhistoria'],
+  },
+
+  // ─── LIDÖ ────────────────────────────────────────────────────
+  {
+    slug: 'lido',
+    name: 'Lidö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌲',
+    tagline: 'Naturskönt gods med konferens och gästhamn — ett unikt skärgårdshotell.',
+    description: [
+      'Lidö är en ö i norra skärgården som ägs av Naturvårdsverket och drivs som naturhotell och konferensanläggning. Det gör Lidö unik — en hel ö som har bevarats i sin originalkaraktär med herrgårdsbyggnader, natursköna promenadstråk och en välskött gästhamn.',
+      'Naturen är varierad och välvårdad med blandskog, ängar och en lång kustlinje. Hotellets mat fokuserar på lokala råvaror och säsong. Ön lämpar sig för konferensgrupper, par och naturintresserade som söker en hotellikväl i äkta skärgårdsmiljö.',
+    ],
+    facts: {
+      travel_time: '3 h med Waxholmsbåt från Strömkajen / 2 h med bil + färja',
+      character: 'Naturhotell, välvårdat gods, lugnt',
+      season: 'April–Oktober (konferens helår)',
+      best_for: 'Par, konferens, naturälskare, golfare',
+    },
+    activities: [
+      { icon: '🏌', name: 'Golf', desc: 'Lidö har en av skärgårdens unikaste golfbanor — 9 hål på en ö.' },
+      { icon: '🚶', name: 'Naturpromenader', desc: 'Välskötta leder längs kust och genom skog.' },
+      { icon: '🛶', name: 'Kajak & kanot', desc: 'Uthyrning för paddling i de skyddade vattnen runt ön.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Guidat fiske och uthyrning av fiskeutrustning.' },
+    ],
+    accommodation: [
+      { name: 'Lidö Naturhotell', type: 'Hotell', desc: 'Hotellrum i historiska herrgårdsbyggnader. Full frukost och middag ingår i vissa paket.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '3 h', desc: 'Norra linjen. Ingår i SL-kort.', icon: '⛴' },
+      { method: 'Bil + Färja', from: 'Stockholm via E18', time: '2 h', desc: 'Kör mot Norrtälje, bilfärja till ön.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Lidö Gästhamn', desc: 'Välskött gästhamn vid herrgårdsbryggan.', spots: 30, fuel: false, service: ['el', 'vatten', 'dusch'] },
+    ],
+    restaurants: [
+      { name: 'Lidö Herrgårdsrestaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat med lokala råvaror. Middag för hotelgäster och dagsgäster med bokning.' },
+    ],
+    tips: [
+      'Golfen på Lidö är unik i skärgårdssammanhang — boka tee-tid online i förväg.',
+      'Naturhotellet är populärt för weekendpaket — boka minst 2–3 veckor i förväg.',
+    ],
+    related: ['furusund', 'blido', 'arholma'],
+    tags: ['naturhotell', 'golf', 'konferens', 'norra', 'herrgård'],
+  },
+
+  // ─── GRÄDDÖ ──────────────────────────────────────────────────
+  {
+    slug: 'graddo',
+    name: 'Gräddö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌊',
+    tagline: 'Halvö i norra skärgården med direktbuss och en av regionens finaste stränder.',
+    description: [
+      'Gräddö är en halvö norr om Norrtälje med landsvägförbindning och direktbuss från Stockholm. Det gör Gräddö till ett av de mest lättillgängliga norra skärgårds-destinationerna utan egen båt. Sandstranden vid Gräddöbadet är en av regionens populäraste badplatser.',
+      'Kustlinjen är lång och varierad med både klippor och sandstrand. Gräddö Gård driver konferens och övernattning i naturskön miljö.',
+    ],
+    facts: {
+      travel_time: '90 min med buss från Stockholm',
+      character: 'Lättillgänglig, sandstrand, norra skärgård',
+      season: 'April–Oktober',
+      best_for: 'Bad, dagstur, barnfamiljer, bilresenärer',
+    },
+    activities: [
+      { icon: '🏖', name: 'Gräddöbadet', desc: 'En av norra skärgårdens populäraste sandstränder. Grunt och barnvänligt.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs kustvägen och utforska halvöns alla delar.' },
+      { icon: '⛵', name: 'Segling', desc: 'Välplacerat stopp på väg norrut längs Furusundsleder.' },
+    ],
+    accommodation: [
+      { name: 'Gräddö Gård', type: 'Hotell', desc: 'Konferens- och övernattning på gård i naturskönt läge.' },
+    ],
+    getting_there: [
+      { method: 'Buss', from: 'Stockholm', time: '90 min', desc: 'SL-buss 637 mot Norrtälje och vidare.', icon: '🚌' },
+      { method: 'Bil', from: 'Stockholm', time: '75 min', desc: 'E18 mot Norrtälje, sedan väg 76 mot Gräddö.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Gräddö Hamn', desc: 'Liten gästhamn. Enkelt men fungerande.', fuel: false, service: ['vatten'] },
+    ],
+    restaurants: [
+      { name: 'Gräddö Gård Restaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat på gårdshotellet.' },
+    ],
+    tips: [
+      'Gräddöbadet är bäst tidig morgon — sandstranden fylls snabbt på varma dagar.',
+      'Gräddö är ett bra alternativ för den utan båt som vill uppleva norra skärgårdens karaktär.',
+    ],
+    related: ['furusund', 'blido', 'norrora'],
+    tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
+  },
+
+  // ─── VÄDDÖ ───────────────────────────────────────────────────
+  {
+    slug: 'vaddo',
+    name: 'Väddö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌾',
+    tagline: 'Stor halvö nära Norrtälje med kanal, dansbana och äkta Roslagskaraktär.',
+    description: [
+      'Väddö är en stor halvö norr om Norrtälje med bro och landsvägförbindning. Ön är känd för Väddö Kanalen — en historisk kanal som förbinder Östersjön med Mälaren — och Herrängs dansbana, hem till en av världens ledande lindy hop-festivaler varje sommar.',
+      'Naturen varierar från jordbrukslandskap i öster till skärgård i väster. Väddö är ett utmärkt basmål för utflykter till de omgivande öarna som Singö och Blidö.',
+    ],
+    facts: {
+      travel_time: '90 min med bil från Stockholm / 2 h med buss',
+      character: 'Bred halvö, landsbygd och skärgård, Roslagens hjärta',
+      season: 'April–Oktober',
+      best_for: 'Lindy hop-festival, kanalkryssning, cyklister, Roslagen-turism',
+    },
+    activities: [
+      { icon: '💃', name: 'Herrängs Dansbana', desc: 'Legendarisk lindy hop-festival varje sommar. Världsunik stämning.' },
+      { icon: '⚓', name: 'Väddö Kanal', desc: 'Historisk kanal med sluss och kanalkryssningar. Unik kulturupplevelse.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Utmärkta cykelleder längs kustlinjen och kanalstråket.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Kanalen och kustvattnen erbjuder bra fiske.' },
+    ],
+    accommodation: [
+      { name: 'Hallsta Gård', type: 'B&B', desc: 'Bondgårdsboende med frukost och Roslagsatmosfär.' },
+    ],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm via E18', time: '90 min', desc: 'E18 mot Norrtälje, sedan norrut mot Väddö.', icon: '🚗' },
+      { method: 'Buss', from: 'Stockholm T-centralen', time: '2 h', desc: 'SL-buss 637 mot Norrtälje och vidare till Väddö.', icon: '🚌' },
+    ],
+    harbors: [
+      { name: 'Väddö Kanalhus', desc: 'Sluss och kanalkryssning. Enkel gästbrygga.', fuel: false },
+    ],
+    restaurants: [
+      { name: 'Kanalhuset Väddö', type: 'Restaurang', desc: 'Mat och fika vid kanalen. Sommarstämning.' },
+      { name: 'Herrängs Danscafé', type: 'Café', desc: 'Öppet under festivalen i juli. Mysigt och unikt.' },
+    ],
+    tips: [
+      'Herrängs Dansbana (juli) är en upplevelse utöver det vanliga — boka boende i god tid.',
+      'Väddö Kanalen är ett underskattat besök — kryssningen tar 45 minuter.',
+    ],
+    related: ['singo', 'blido', 'norrora'],
+    tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
+  },
+
+  // ─── ASKÖ ────────────────────────────────────────────────────
+  {
+    slug: 'asko',
+    name: 'Askö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🔬',
+    tagline: 'Marinbiologisk forskning och naturskönt naturreservat i södra ytterskärgården.',
+    description: [
+      'Askö är mest känt för Askölaboratoriet — ett av Östersjöns ledande marinbiologiska forskningsstationer, drivet av Stockholms Universitet. Ön är ett naturreservat med begränsad tillgänglighet, men under sommaren arrangeras öppna turer och aktiviteter för allmänheten.',
+      'Naturen på Askö är orördd och dramatisk — ytterskärgård på riktigt med starka vindar och öppet hav mot söder. Seglare som tar sig hit belönas med fantastiska ankringsplatser och en känsla av att ha kommit riktigt långt ut.',
+    ],
+    facts: {
+      travel_time: '3 h med privat båt från Nynäshamn',
+      character: 'Naturreservat, forskning, ytterskärgård',
+      season: 'Juni–Augusti (begränsad tillgänglighet)',
+      best_for: 'Marinbiologiintresserade, erfarna seglare, naturälskare',
+    },
+    activities: [
+      { icon: '🔬', name: 'Marinbiologiska turer', desc: 'Stockholms Universitet arrangerar öppna guideturer till Askölaboratoriet sommartid.' },
+      { icon: '🌊', name: 'Ytterskärgårdsseglingd', desc: 'Askö är en etappdestination på södra ytterskärgårdens seglingsleder.' },
+      { icon: '🐦', name: 'Fågelskådning', desc: 'Naturreservat med rikt fågelliv. Häckningsplats för flera marina fågelarter.' },
+    ],
+    accommodation: [
+      { name: 'Askölaboratoriets stugor', type: 'Stugor', desc: 'Begränsat antal stugor för kursdeltagare och allmänheten under sommaren. Boka via SU.' },
+    ],
+    getting_there: [
+      { method: 'Privat båt', from: 'Nynäshamn', time: '3 h', desc: 'Nynäshamn är närmaste startpunkt. Öppet hav — planera vädret noga.', icon: '⛵' },
+    ],
+    harbors: [
+      { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', spots: 10, fuel: false },
+    ],
+    restaurants: [],
+    tips: [
+      'Kontakta Stockholms Universitet för programmet för allmänhetens turer till laboratoriet.',
+      'Askö kräver god sjövana — öppet ytterskärgårdsvatten med risk för snabba väderförändringar.',
+    ],
+    related: ['uto', 'nattaro', 'landsort'],
+    tags: ['marinbiologi', 'naturreservat', 'ytterskärgård', 'forskning', 'södra'],
+  },
+
+  // ─── GÅLÖ ────────────────────────────────────────────────────
+  {
+    slug: 'galo',
+    name: 'Gålö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🏖',
+    tagline: 'Halvö med en av regionens finaste sandstränder — lättillgänglig med bil.',
+    description: [
+      'Gålö är en halvö söder om Stockholm i Haninge kommun, förbunden med fastlandet via landsväg. Ön är mest känd för Gålö Havsbad med en av Stockholmsregionens populäraste sandstränder. Naturreservat täcker stora delar av ön och erbjuder fin vandring längs kustlinjen.',
+      'Gålö är ett perfekt val för den som vill till skärgård och sandstrand utan att ta båt. Halvtimme med bil från Handen och du är på en av regionens bästa sandstränder.',
+    ],
+    facts: {
+      travel_time: '40 min med bil från Stockholm / 75 min med buss',
+      character: 'Lättillgänglig, sandstrand, naturreservat',
+      season: 'April–Oktober',
+      best_for: 'Sandstrand, bad, barnfamiljer, dagsturister',
+    },
+    activities: [
+      { icon: '🏖', name: 'Gålö Havsbad', desc: 'Stor sandstrand med anläggningar, parkering och service. Regionens populäraste strandbad.' },
+      { icon: '🚶', name: 'Naturreservat', desc: 'Välmarkerade vandringsleder längs kustlinjen och genom det vackra kustlandskapet.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Bra cykelleder längs ön. Hyrcyklar finns vid stranden.' },
+      { icon: '🏄', name: 'Vattensport', desc: 'SUP, surfing och kajakuthyrning vid stranden.' },
+    ],
+    accommodation: [
+      { name: 'Gålö Havsbad Camping', type: 'Camping', desc: 'Stor campingplats med alla bekvämligheter. Populär — boka i god tid.' },
+      { name: 'Stugby Gålö', type: 'Stugor', desc: 'Stugor nära stranden.' },
+    ],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm', time: '40 min', desc: 'E4 söderut mot Handen, sedan skylt mot Gålö.', icon: '🚗' },
+      { method: 'Buss', from: 'Handen station', time: '30 min', desc: 'Buss 843 från Handen till Gålö.', icon: '🚌' },
+    ],
+    harbors: [
+      { name: 'Gålö Brygga', desc: 'Liten gästbrygga. Begränsad service.', fuel: false },
+    ],
+    restaurants: [
+      { name: 'Gålö Havsbad Restaurang', type: 'Restaurang', desc: 'Strandbistro med hamburgare, räkor och glass.' },
+    ],
+    tips: [
+      'Kom tidigt på sommardagar — Gålö Havsbad är populärt och parkeringen fylls snabbt.',
+      'Kombinera strandbesöket med vandringen i naturreservatet — 2 timmar och du har sett det bästa.',
+    ],
+    related: ['dalaro', 'orno', 'uto'],
+    tags: ['sandstrand', 'lättillgänglig', 'södra', 'bad', 'camping'],
+  },
+
+  // ─── TORÖ ────────────────────────────────────────────────────
+  {
+    slug: 'toro',
+    name: 'Torö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌲',
+    tagline: 'Naturreservat i söder med dramatisk kustlinje och surf-stämning.',
+    description: [
+      'Torö är en halvö söder om Stockholm med en dramatisk och vidsträckt kustlinje mot öppet hav. Naturreservat skyddar stora delar av ön och erbjuder en av regionens mest orörda vandringsstigar. Kusten mot söder är utsatt — här känner man Östersjön på riktigt.',
+      'Torö är känt bland surfare och vattensportentusiaster för sina tidvisa vindförhållanden. Stranden vid Torö Marinstaden är en populär badplats.',
+    ],
+    facts: {
+      travel_time: '60 min med bil från Stockholm',
+      character: 'Naturreservat, dramatisk kust, surf',
+      season: 'April–Oktober',
+      best_for: 'Vandring, surf, fotografi, naturälskare',
+    },
+    activities: [
+      { icon: '🌊', name: 'Surfing & Windsurfing', desc: 'Södra kustlinjen ger vindförhållanden för vattensport när Östersjövinden drar in.' },
+      { icon: '🚶', name: 'Kustvandringsleden', desc: 'Markerad led längs klippkusten mot sydväst. Dramatiska vyer mot öppet hav.' },
+      { icon: '🏖', name: 'Torö Strand', desc: 'Sandstrand vid Torö Marinstaden med service och parkering.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Utmärkta förhållanden för havsöring längs den öppna kustlinjen.' },
+    ],
+    accommodation: [
+      { name: 'Torö Marinstaden', type: 'Camping', desc: 'Campingplats och stugor nära stranden.' },
+    ],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm', time: '60 min', desc: 'E4 söderut mot Nynäshamn, sedan skylt mot Torö.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Torö Marinstaden', desc: 'Marinstation och gästhamn.', spots: 30, fuel: true, service: ['el', 'vatten', 'bränsle'] },
+    ],
+    restaurants: [
+      { name: 'Torö Krog', type: 'Restaurang', desc: 'Strandbistro vid marinsstaden.' },
+    ],
+    tips: [
+      'Kustvandringsleden är bäst vid solnedgång — dramatiska vyer mot Östersjön.',
+      'Surfare kolla vindprognosen på windguru.cz specifikt för Torö.',
+    ],
+    related: ['nattaro', 'uto', 'galo'],
+    tags: ['naturreservat', 'surf', 'kustlinje', 'södra', 'vandring'],
+  },
+
+  // ─── FJÄRDLÅNG ───────────────────────────────────────────────
+  {
+    slug: 'fjardlang',
+    name: 'Fjärdlång',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🪨',
+    tagline: 'Orört naturreservat i södra ytterskärgården — här åker man hit, inte förbi.',
+    description: [
+      'Fjärdlång är ett naturreservat i södra ytterskärgården, avlångt som namnet antyder och välskyddat längs sin norra sida. Ön har inga permanentbor och nås bara med privat båt — vilket ger den en exklusivitet som de mer populära öarna saknar.',
+      'Gästhamnen i Norra Fjärdlångsviken räknas som en av de snyggaste i södra skärgården. Klipporna längs öns östsida är dramatiska och vackra med Östersjön som fond.',
+    ],
+    facts: {
+      travel_time: '2–3 h med privat båt från Dalarö eller Utö',
+      character: 'Naturreservat, inga permanentbor, orört',
+      season: 'Juni–Augusti',
+      best_for: 'Seglare, naturälskare, stillhet',
+    },
+    activities: [
+      { icon: '⛵', name: 'Naturhamnssankring', desc: 'Norra Fjärdlångsviken — en av södra skärgårdens finaste ankringsplatser.' },
+      { icon: '🚶', name: 'Klippvandring', desc: 'Vandra längs östkusten för dramatiska havsvyer.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Rent klart vatten i ytterskärgårdsläge.' },
+    ],
+    accommodation: [
+      { name: 'Ankring', type: 'Gästhamn', desc: 'Ankra i naturhamnen. Inga fasta faciliteter.' },
+    ],
+    getting_there: [
+      { method: 'Privat båt', from: 'Utö / Dalarö', time: '2–3 h', desc: 'Enda alternativet. Erfaren seglare rekommenderas.', icon: '⛵' },
+    ],
+    harbors: [
+      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar. Begränsat antal platser.', spots: 10, fuel: false },
+    ],
+    restaurants: [],
+    tips: [
+      'Ta med allt du behöver — ingen service finns på ön.',
+      'Anlöp tidigt, viken tar slut snabbt under högsäsong.',
+    ],
+    related: ['uto', 'nattaro', 'landsort'],
+    tags: ['naturreservat', 'orört', 'segling', 'ytterskärgård', 'södra'],
+  },
+
+  // ── BATCH 3: Ytterligare öar för full konkurrenskraft ───────────────────
+
+  {
+    slug: 'rindo',
+    name: 'Rindö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🏰',
+    tagline: 'Militärhistoria och stilla vikar nära Vaxholm',
+    description: [
+      'Rindö ligger precis söder om Vaxholm och är delad av en smal sund. Ön har en lång militärhistoria med befästningar från 1600-talet och en aktiv garnison fram till modern tid.',
+      'Idag är Rindö ett lugnt bostadsområde med direktfärja från Vaxholm. Vandringsleder längs stränderna ger fina vyer mot Vaxholms fästning.',
+    ],
+    facts: { travel_time: '10 min från Vaxholm', character: 'Historisk, lugn, bostadsö', season: 'Maj–september', best_for: 'Historia, vandring, segling' },
+    activities: [
+      { icon: '🏰', name: 'Befästningsvandrning', desc: 'Utforska rester av gamla försvarsanläggningar längs öststranden.' },
+      { icon: '⛵', name: 'Segling', desc: 'Fin passage för segelbåtar med naturliga vindförhållanden.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Färja', from: 'Vaxholm', time: '10 min', desc: 'Reguljär bilfärja från Vaxholm centrum.', icon: '⛴' }],
+    harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.', spots: 8 }],
+    restaurants: [],
+    tips: ['Kombinera med ett besök på Vaxholms fästning.', 'Bra ankringsplats i Rindösund skyddat läge.'],
+    related: ['vaxholm', 'husaro', 'ljustero'],
+    tags: ['militärhistoria', 'lugnt', 'nära Vaxholm', 'vandring'],
+  },
+
+  {
+    slug: 'yxlan',
+    name: 'Yxlan',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🚲',
+    tagline: 'Bilfri cykelö med sandstränder och lantlig charm',
+    description: [
+      'Yxlan i Norrtelje-skärgården är en av de nordliga öarnas pärlor. Bilfri och avslappnad — perfekt för cykling längs grusstigar med havsutsikt på båda sidor.',
+      'Sandstranden vid Kungsudde är ovanlig i skärgården och lockar badgäster hela sommaren. Gästhamnen är välskött med kafé och enkel service.',
+    ],
+    facts: { travel_time: '45 min från Kapellskär', character: 'Bilfri, lantlig, sandstrand', season: 'Juni–september', best_for: 'Cykling, bad, avkoppling' },
+    activities: [
+      { icon: '🚲', name: 'Cykling', desc: 'Hyr cykel vid bryggan och utforska hela ön på 2–3 timmar.' },
+      { icon: '🏊', name: 'Bad vid Kungsudde', desc: 'Ovanlig sandstrand — sällsynt i norra skärgården.' },
+    ],
+    accommodation: [{ name: 'Yxlans Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt boende med självhushåll, perfekt för naturälskare.' }],
+    getting_there: [{ method: 'Bilfärja', from: 'Simpnäs', time: '45 min', desc: 'Waxholmsbolaget trafikerar leden sommarsäsong.', icon: '⛴' }],
+    harbors: [{ name: 'Yxlans gästhamn', desc: 'Välskött hamn med el, vatten och dusch.', spots: 30, service: ['El', 'Vatten', 'Dusch'] }],
+    restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
+    tips: ['Boka vandrarhem tidigt i juli.', 'Ta morgonbåten för en hel dag på ön.'],
+    related: ['singo', 'graddo', 'fejan'],
+    tags: ['bilfri', 'sandstrand', 'cykling', 'norra'],
+  },
+
+  {
+    slug: 'kymmendo',
+    name: 'Kymmendö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '✍️',
+    tagline: 'Strindbergs ö — litteraturhistoria mitt i skärgården',
+    description: [
+      'Kymmendö är framförallt känd som August Strindbergs favoritö, som inspirerade hans roman "Hemsöborna". Ön är liten, orört och full av literärt arv.',
+      'Besök den rekonstruerade Strindbergsstugan och vandra längs stigar som författaren gick. Kommunikationerna är begränsade — det är poängen.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Historisk, orört, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, historia, natur' },
+    activities: [
+      { icon: '✍️', name: 'Strindbergsstugan', desc: 'Besök stugan där "Hemsöborna" fick sin inspiration.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Korta men stämningsfulla stigar runt ön med klippvyer.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik — nås enklast med privat båt eller charterbåt.', icon: '⛵' }],
+    harbors: [{ name: 'Kymmendö naturhamn', desc: 'Skyddad vik på södra sidan. Ankring möjlig.', spots: 6 }],
+    restaurants: [],
+    tips: ['Läs Hemsöborna innan besöket.', 'Ta med allt — ingen butik eller service finns.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
+    related: ['orno', 'dalaro', 'nattaro'],
+    tags: ['Strindberg', 'literär', 'orört', 'historia', 'mellersta'],
+  },
+
+  {
+    slug: 'bullero',
+    name: 'Bullerö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🦅',
+    tagline: 'Naturreservat med rikt fågelliv och rå skärgårdskaraktär',
+    description: [
+      'Bullerö är ett av skärgårdens finaste naturreservat — en ögrupp i ytterskärgården med dramatiskt klipplandskap och rikt fågelliv. Häckningsplats för havsörn, sillgrissla och labb.',
+      'Naturum Bullerö har utställningar om livet i ytterskärgården och arrangerar guidade turer. Hit åker man för naturen, inte för service.',
+    ],
+    facts: { travel_time: '2–3 h från Stockholm', character: 'Naturreservat, vilt, fågelrikt', season: 'Maj–september (fåglar bäst i juni)', best_for: 'Fågelskådning, natur, fotografi' },
+    activities: [
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Havsörn, sillgrissla och labb häckar på öarna.' },
+      { icon: '🏛', name: 'Naturum Bullerö', desc: 'Utställning och guidade turer om ytterskärgårdens ekologi.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Båt', from: 'Stavsnäs', time: '2 h', desc: 'Waxholmsbolaget sommarsäsong eller privat båt.', icon: '⛴' }],
+    harbors: [{ name: 'Bullerö gästhamn', desc: 'Begränsade platser vid naturreservatets brygga.', spots: 15 }],
+    restaurants: [],
+    tips: ['Binokulär ett måste.', 'Visa respekt för häckande fåglar — håll avstånd.', 'Tidig morgon ger bäst fågelupplevelse.'],
+    related: ['nattaro', 'gallno', 'moja'],
+    tags: ['naturreservat', 'fågelskådning', 'ytterskärgård', 'vilt'],
+  },
+
+  {
+    slug: 'vindo',
+    name: 'Vindö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌳',
+    tagline: 'Stor skogsö med bro och hästgård',
+    description: [
+      'Vindö är en av de större öarna i Stockholms skärgård med broförbindelse och en välbevarad skärgårdsmiljö. Tät barrskog möter öppna klippor längs kusterna.',
+      'Ön lockar med vandringsleder, ridning och ett friluftsliv utan biltrafik på de inre vägarna. Populärt för sommarstugeägare och dagsturister.',
+    ],
+    facts: { travel_time: '1 h från Gustavsberg', character: 'Skogig, lugn, broförbunden', season: 'Maj–oktober', best_for: 'Vandring, ridning, familjeutflykt' },
+    activities: [
+      { icon: '🌳', name: 'Vandring', desc: 'Markerade leder genom gammal barrskog till klippvyer.' },
+      { icon: '🐴', name: 'Ridning', desc: 'Hästgård med rid-möjligheter för alla nivåer.' },
+    ],
+    accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats i skogen nära havet.' }],
+    getting_there: [{ method: 'Bil/bro', desc: 'Broförbindelse via Gustavsbergsleden.', icon: '🚗' }, { method: 'Båt', from: 'Stavsnäs', time: '40 min', desc: 'Sommarlinje Waxholmsbolaget.', icon: '⛴' }],
+    harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.', spots: 20 }],
+    restaurants: [{ name: 'Vindö Hamnkafé', type: 'Kafé', desc: 'Fika och enkel mat vid bryggan, öppet sommarsäsong.' }],
+    tips: ['Bra för familjer med barn.', 'Hyr cykel och utforska hela ön på halv dag.'],
+    related: ['ingaro', 'gallno', 'namdo'],
+    tags: ['skog', 'vandring', 'ridning', 'familj', 'mellersta'],
+  },
+
+  {
+    slug: 'smaadalaro',
+    name: 'Smådalarö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🛶',
+    tagline: 'Kajakcentrum och pittoreskt gammalt fiskläge',
+    description: [
+      'Smådalarö söder om Dalarö är känt som ett av skärgårdens bästa utgångslägen för havskajak. Det gamla fiskläget med röda bodar vid vattnet är fotogeniskt och genuint.',
+      'Gästhamnen är välskött med full service. Härifrån paddlar man vidare till Ornö och södra skärgårdens glest bebodda öar.',
+    ],
+    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Kajak, pittoreskt, havsnära', season: 'Maj–september', best_for: 'Kajak, segling, fiskeby' },
+    activities: [
+      { icon: '🛶', name: 'Havskajak', desc: 'Hyr kajak och paddla mot Ornö eller södra skären.' },
+      { icon: '📸', name: 'Fotopromenad', desc: 'Röda bodar, bryggor och gammalt fiskläge längs stranden.' },
+    ],
+    accommodation: [{ name: 'Smådalarö Gård', type: 'Hotell', desc: 'Välrenommerat hotell i gammalt gårdsläge med spa.' }],
+    getting_there: [{ method: 'Bil', time: '1 h 30 min', desc: 'Väg 73 mot Nynäshamn, sedan skyltat till Smådalarö.', icon: '🚗' }, { method: 'Båt', from: 'Dalarö', time: '15 min', desc: 'Kort passagerarbåt från Dalarö.', icon: '⛴' }],
+    harbors: [{ name: 'Smådalarö Gästhamn', desc: 'Full service, bra skydd, populär sommarhamn.', spots: 60, fuel: true, service: ['El', 'Vatten', 'Duschar', 'Tvätt'] }],
+    restaurants: [{ name: 'Smådalarö Gård Restaurant', type: 'Restaurang', desc: 'Skärgårdsmat med lokala råvaror i historisk miljö.' }],
+    tips: ['Boka kajak i förväg under juli.', 'Smådalarö Gård har populär brunch på helger.'],
+    related: ['dalaro', 'orno', 'toro'],
+    tags: ['kajak', 'fiskeby', 'södra', 'pittoreskt'],
+  },
+
+  {
+    slug: 'morko',
+    name: 'Mörkö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌊',
+    tagline: 'Rå söderskärgård med orörd natur och gamla traditioner',
+    description: [
+      'Mörkö i Södertälje-skärgården är en av de större öarna i söder, nådd med bilfärja. Ön är välkänd bland fiskare och naturälskare för sina genuina miljöer.',
+      'Karaktären är robust och genuin — lite av den kommersiella turistatmosfär som Stockholms-öarna fått. Perfekt för den som söker äkta skärgård.',
+    ],
+    facts: { travel_time: '1 h 45 min från Stockholm', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
+    activities: [
+      { icon: '🎣', name: 'Fiske', desc: 'Abborre och gädda i vikarna, havsöring längs ytterkusten.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Omarkerade stigar längs kusten med vyer mot Östersjön.' },
+    ],
+    accommodation: [{ name: 'Mörkö Stugor', type: 'Stugor', desc: 'Enkla stugor att hyra, boka via ön.' }],
+    getting_there: [{ method: 'Bilfärja', from: 'Tyresta/Tullinge', time: '20 min', desc: 'Bilfärja till Mörkö sommarsäsong.', icon: '⛴' }],
+    harbors: [{ name: 'Mörkö hamn', desc: 'Enkel gästbrygga med begränsat antal platser.', spots: 12 }],
+    restaurants: [],
+    tips: ['Ta med proviant — service är minimal.', 'Kontakta ö-borna för lokaltips.'],
+    related: ['orno', 'dalaro', 'fjardlang'],
+    tags: ['fiske', 'genuin', 'södra', 'orört'],
+  },
+
+  {
+    slug: 'musko',
+    name: 'Muskö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '⚓',
+    tagline: 'Gamla marinbasen — berghällshamnar och industrihistoria',
+    description: [
+      'Muskö är känd för sin enorma underjordiska marinbas som byggdes i berggrunden under kalla kriget. Basen är nu delvis öppen för besök och är en av Sveriges mest spännande industrihistoriska platser.',
+      'Ön i sig erbjuder fina klipplandskap och lugna vikar. Bron ger bilaccess men känslan är ändå avsides.',
+    ],
+    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Industrihistoria, klippor, halvö', season: 'Maj–oktober', best_for: 'Historia, klippbad, natur' },
+    activities: [
+      { icon: '🏛', name: 'Marinbasens museum', desc: 'Guidade turer i den underjordiska berganläggningen (bokningsbar).' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Fina badplatser längs sydkusten med klara vatten.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Bil/bro', time: '1 h 30 min', desc: 'Broförbunden via Handen och Haninge.', icon: '🚗' }],
+    harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.', spots: 10 }],
+    restaurants: [],
+    tips: ['Boka marinbas-tur i god tid, populärt sommartid.', 'Ta med fika och grillmat.'],
+    related: ['dalaro', 'toro', 'galo'],
+    tags: ['marinbas', 'industrihistoria', 'södra', 'klippor'],
+  },
+
+  {
+    slug: 'bjorko',
+    name: 'Björkö (Birka)',
+    region: 'mellersta',
+    regionLabel: 'Mälaren',
+    emoji: '⚔️',
+    tagline: 'Vikingastaden Birka — UNESCO-världsarv i Mälaren',
+    description: [
+      'Björkö i Mälaren är hem till Birka, Sveriges första stad och ett UNESCO-världsarv. Vikingatida handelsstad från 700-talet med gravhögar, vallgravar och ett utmärkt museum.',
+      'Dagstur med M/S Birka tar dig direkt till ön med guidad visning. Kombinera gärna med grannön Adelsö och Hovgårdens kungsgård.',
+    ],
+    facts: { travel_time: '3 h t/r från Stockholm med båt', character: 'UNESCO, viking, Mälaren', season: 'Maj–september', best_for: 'Historia, arkeologi, kultur' },
+    activities: [
+      { icon: '⚔️', name: 'Birkas museum', desc: 'Utställning om vikingatidens handel och samhälle.' },
+      { icon: '⛏', name: 'Arkeologisk visning', desc: 'Guidade turer till gravhögar och vallgravar (på engelska och svenska).' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Båt (M/S Birka)', from: 'Stockholm Stadshuskajen', time: '3 h', desc: 'Reguljär daglig trafik maj–september.', icon: '⛴' }],
+    harbors: [{ name: 'Björkö brygga', desc: 'Turistbåtsbrygga med gästmöjligheter.', spots: 20 }],
+    restaurants: [{ name: 'Birka Bistro', type: 'Restaurang', desc: 'Enkel mat och fika nära museet.' }],
+    tips: ['Boka biljett online — populärt sommartid.', 'Kombinera med Adelsö på samma dagstur.', 'Ta solkräm — lite träd på ön.'],
+    related: ['adelsjo', 'vaxholm', 'fjaderholmarna'],
+    tags: ['UNESCO', 'vikingar', 'historia', 'Mälaren', 'dagstur'],
+  },
+
+  {
+    slug: 'adelsjo',
+    name: 'Adelsö',
+    region: 'mellersta',
+    regionLabel: 'Mälaren',
+    emoji: '👑',
+    tagline: 'Kungsgård och medeltida kyrka vid Birkas granne',
+    description: [
+      'Adelsö ligger mittemot Björkö i Mälaren och har en historia som sträcker sig tusen år tillbaka. Hovgårdens kungsgård och en välbevarad medeltida kyrka är de viktigaste sevärdheterna.',
+      'En lugn jordbruksö med välbevarade kulturlandskap. Mycket cykelvänlig med inga bilar.',
+    ],
+    facts: { travel_time: '30 min från Björkö', character: 'Kungsgård, medeltida, lugn', season: 'Maj–september', best_for: 'Historia, cykling, kulturlandskap' },
+    activities: [
+      { icon: '👑', name: 'Hovgårdens kungsgård', desc: 'Gamla kungsgården med utsikt mot Birka och Mälaren.' },
+      { icon: '⛪', name: 'Adelsö kyrka', desc: 'En av Sveriges äldsta kyrkor, välbevarad sedan 1100-talet.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Bilfärja', from: 'Munsö', time: '10 min', desc: 'Kort bilfärjeöverfart till Adelsö.', icon: '⛴' }],
+    harbors: [{ name: 'Adelsö gästbrygga', desc: 'Enkel brygga med plats för ett dussin båtar.', spots: 12 }],
+    restaurants: [],
+    tips: ['Kombinera med Björkö/Birka på samma dag.', 'Hyr cykel för att utforska hela ön.'],
+    related: ['bjorko', 'vindo', 'fjaderholmarna'],
+    tags: ['kungsgård', 'historia', 'Mälaren', 'medeltid', 'cykling'],
+  },
+
+  {
+    slug: 'ingaro',
+    name: 'Ingarö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌲',
+    tagline: 'Stor bro-ö med stränder, skog och seglarhamnar',
+    description: [
+      'Ingarö är en av de mest tillgängliga skärgårdsöarna med bro från Gustavsberg. Ön är stor med varierat landskap — tät skog, klippstränder och välskyddade vikar populära bland segelsällskapet.',
+      'Hemmesta och Brunn är de centrala orterna med enklare service. Bra utgångsläge för vidare segling mot Möja och Sandhamn.',
+    ],
+    facts: { travel_time: '45 min från Stockholm', character: 'Bro-ö, skog, tillgänglig', season: 'Hela året', best_for: 'Segling, bad, friluftsliv' },
+    activities: [
+      { icon: '⛵', name: 'Segling', desc: 'Många naturhamnar längs syd- och östkusten.' },
+      { icon: '🏊', name: 'Bad', desc: 'Flertalet badplatser med klara vatten och klippor.' },
+    ],
+    accommodation: [{ name: 'Ingarö Camping', type: 'Camping', desc: 'Välskött campingplats vid vattnet.' }],
+    getting_there: [{ method: 'Bil/bro', time: '45 min', desc: 'Via Gustavsbergsleden, bro till Ingarö.', icon: '🚗' }],
+    harbors: [{ name: 'Brunns hamn', desc: 'Populär gästhamn med full service.', spots: 50, fuel: true, service: ['El', 'Vatten', 'Duschar'] }],
+    restaurants: [{ name: 'Ingarö Krog', type: 'Restaurang', desc: 'Skärgårdskrog med lokalt fångad fisk.' }],
+    tips: ['Populärt utflyktsmål för stockholmare — undvik veckoslutshelger i juli.'],
+    related: ['vindo', 'gallno', 'moja'],
+    tags: ['tillgänglig', 'skog', 'segling', 'bad', 'mellersta'],
+  },
+
+  {
+    slug: 'svenska-hogarna',
+    name: 'Svenska Högarna',
+    region: 'mellersta',
+    regionLabel: 'Ytterskärgård',
+    emoji: '🪨',
+    tagline: 'Ytterst i skärgården — klippor, hav och ingenting annat',
+    description: [
+      'Svenska Högarna är en av de mest avlägset belägna bebodda öarna i Stockholms skärgård. Klippor, hav och en meteorologisk station — inget annat. Hit tar man sig bara med privat båt.',
+      'Upplevelsen är unik: totalfreden, det stora havet och känslan av att vara i världens yttersta kant. Perfekt anchorage för en natt.',
+    ],
+    facts: { travel_time: '4–6 h från Stockholm', character: 'Extrem, orört, ytterskärgård', season: 'Juni–september', best_for: 'Segling, äventyr, soluppgång' },
+    activities: [
+      { icon: '🌅', name: 'Soluppgång/solnedgång', desc: 'En av skärgårdens bästa platser för dramatisk soluppgång mot öppet hav.' },
+      { icon: '📡', name: 'Meteorologisk station', desc: 'Aktiv station med bemanning — besök möjligt.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser. Kräver erfaret besättning och bra väder.', icon: '⛵' }],
+    harbors: [{ name: 'Svenska Högarna naturhamn', desc: 'Naturlig men exponerad vik. Ankring möjlig i gott väder.', spots: 8 }],
+    restaurants: [],
+    tips: ['Kräver erfaret besättning.', 'Kontrollera SMHI noggrant — ingen väg tillbaka vid storm.', 'Fulltanka i Sandhamn innan avfärd.'],
+    related: ['sandhamn', 'norrora', 'rodloga'],
+    tags: ['ytterskärgård', 'extrem', 'äventyr', 'klippor', 'segling'],
+  },
+
+  {
+    slug: 'huvudskar',
+    name: 'Huvudskär',
+    region: 'mellersta',
+    regionLabel: 'Ytterskärgård',
+    emoji: '🏮',
+    tagline: 'Det klassiska fyrtornet och ankringsplatsen i ytterskärgården',
+    description: [
+      'Huvudskär är en liten ögrupp i ytterskärgården med ett klassiskt fyrtorn som väglett seglare sedan 1800-talet. Ön är ett populärt stoppmål för seglare på väg mot eller från Sandhamn.',
+      'Naturhamnen på sydsidan är välskyddad och rymmer ett tjugotal båtar. Fyrtornets sken är makalöst att se vid solnedgång.',
+    ],
+    facts: { travel_time: '2–3 h från Stockholm', character: 'Fyrtorn, naturhamn, klassisk', season: 'Maj–september', best_for: 'Segling, övernattning, fyrtorn' },
+    activities: [
+      { icon: '🏮', name: 'Fyrtornet', desc: 'Besök det klassiska fyrtornet med utsikt över ytterskärgården.' },
+      { icon: '⛵', name: 'Ankring', desc: 'En av skärgårdens mest populära naturhamnar.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Nås enbart med privat båt. Ca 2–3 h från Sandhamn eller Stavsnäs.', icon: '⛵' }],
+    harbors: [{ name: 'Huvudskärs naturhamn', desc: 'Skyddad naturhamn på sydsidan med staket och mulltoa.', spots: 25 }],
+    restaurants: [],
+    tips: ['Kom tidigt i juli — hamnen fylls till kvällen.', 'Ta med grillkol — eldar tillåtna i anvisad plats.'],
+    related: ['sandhamn', 'norrora', 'svenska-hogarna'],
+    tags: ['fyrtorn', 'naturhamn', 'segling', 'ytterskärgård'],
+  },
+
+  {
+    slug: 'ramskar',
+    name: 'Ramsö/Ramskär',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌿',
+    tagline: 'Ostörd naturö med rik flora och klipplandskap',
+    description: [
+      'Ramskär är ett litet naturreservat med ovanligt rik flora och ett ostört skärgårdslandskap. Populärt bland botanister och naturentusiaster.',
+      'Inga fasta boenden eller restauranger — ta med allt du behöver och lämna inga spår.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Naturreservat, botanik, orört', season: 'Maj–september', best_for: 'Natur, botanik, stillhet' },
+    activities: [
+      { icon: '🌿', name: 'Botanik', desc: 'Ovanlig växtlighet med vilda orkidéer och strandväxter.' },
+      { icon: '🛶', name: 'Kajak', desc: 'Runt ön i lugnt väder — klara vatten och klippor.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Ramskärs naturhamn', desc: 'Enkel ankringsplats, begränsad.', spots: 5 }],
+    restaurants: [],
+    tips: ['Allemansrätten gäller — ta med soporna hem.', 'Kamera ett måste för blomsterfoton.'],
+    related: ['gallno', 'moja', 'bullero'],
+    tags: ['naturreservat', 'botanik', 'orört', 'mellersta'],
+  },
+
+  {
+    slug: 'ekno',
+    name: 'Eknö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌳',
+    tagline: 'Ekar och sommarstugor i klassisk skärgårdsmiljö',
+    description: [
+      'Eknö i Nämdöfjärden är en mellanstor ö känd för sina ovanligt stora ekar och en klassisk sommarstugemiljö. Hit åker man med privat båt för en lugn dag.',
+      'Inga reguljära turistattraktioner — bara skärgård, natur och ro.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Sommarstugor, ek, lugnt', season: 'Maj–september', best_for: 'Naturvistelse, stillhet, segling' },
+    activities: [
+      { icon: '🌳', name: 'Ekvandrng', desc: 'Gamla jättekar längs den östra stranden.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klippbad i kristallklart vatten.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Sommarlinjer existerar — kontrollera aktuell tidtabell.', icon: '⛵' }],
+    harbors: [{ name: 'Eknö naturbrygga', desc: 'Liten naturbrygga med begränsade platser.', spots: 8 }],
+    restaurants: [],
+    tips: ['Passa tidvattnet vid in- och utseglingen.'],
+    related: ['namdo', 'gallno', 'moja'],
+    tags: ['ek', 'sommarstugor', 'lugnt', 'mellersta'],
+  },
+
+  {
+    slug: 'hasselo',
+    name: 'Hasselö',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌻',
+    tagline: 'Liten söderö med sol och klippor',
+    description: [
+      'Hasselö är en av de sydliga öarna med fin klippvildmark och sol. Enkel naturhamnsvistelse för seglaren som söker ro.',
+    ],
+    facts: { travel_time: '3 h från Stockholm', character: 'Liten, klippig, solig', season: 'Juni–september', best_for: 'Segling, klippbad, stillhet' },
+    activities: [
+      { icon: '🏊', name: 'Klippbad', desc: 'Rena klara vatten och klippor.' },
+      { icon: '⛵', name: 'Segling', desc: 'Bra skydd på nordvästsidan.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Hasselö naturhamn', desc: 'Skyddad vik på nv-sidan.', spots: 6 }],
+    restaurants: [],
+    tips: ['Ta med all proviant.'],
+    related: ['fjardlang', 'toro', 'asko'],
+    tags: ['klippor', 'segling', 'södra', 'orört'],
+  },
+
+  {
+    slug: 'ormsko',
+    name: 'Ormskär',
+    region: 'mellersta',
+    regionLabel: 'Ytterskärgård',
+    emoji: '🐍',
+    tagline: 'Spetsig ytterskärsgård med vind och hav',
+    description: [
+      'Ormskär i ytterskärgården är en liten men känd ankringsplats och naturhamn för seglare på långtur. Klippig och vindexponerad — klassisk ytterskärgård.',
+    ],
+    facts: { travel_time: '3–4 h från Stockholm', character: 'Ytterskärgård, vind, klippig', season: 'Juni–september', best_for: 'Segling, äventyr, natur' },
+    activities: [
+      { icon: '⛵', name: 'Ankring', desc: 'Klassisk naturhamn för seglare.' },
+      { icon: '🌊', name: 'Vågbad', desc: 'Havsexponerad ytterkust med kraft.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Ormskärs naturhamn', desc: 'Naturlig vik med skydd i östliga vindar.', spots: 8 }],
+    restaurants: [],
+    tips: ['Känslig för sydvästliga vindar — planera avtrycket väl.'],
+    related: ['norrora', 'svenska-hogarna', 'sandhamn'],
+    tags: ['ytterskärgård', 'segling', 'klippor', 'äventyr'],
+  },
+
+  {
+    slug: 'ljusnas',
+    name: 'Ljusnäs',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '⛪',
+    tagline: 'Gammal kapellö med utsikt och historia',
+    description: [
+      'Ljusnäs i norra skärgården är en liten ö med ett vackert gammalt kapell och stämningsfulla utsiktspunkter mot öppet hav. Besöks för historikens och skönhetens skull.',
+    ],
+    facts: { travel_time: '2 h från Norrtälje', character: 'Liten, kapell, historisk', season: 'Maj–september', best_for: 'Historia, natur, avkoppling' },
+    activities: [
+      { icon: '⛪', name: 'Kapellvandring', desc: 'Litet välbevarat kapell med utsikt.' },
+      { icon: '🌅', name: 'Solnedgång', desc: 'Fin utsiktsplats mot väster.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Ljusnäs naturbrygga', desc: 'Enkel brygga med begränsat antal platser.', spots: 6 }],
+    restaurants: [],
+    tips: ['Respektera kapellet — ibland används det för gudstjänster.'],
+    related: ['blido', 'fejan', 'rodloga'],
+    tags: ['kapell', 'historia', 'norra', 'lugnt'],
+  },
+
+  {
+    slug: 'kanholmen',
+    name: 'Kanholmen',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '⚓',
+    tagline: 'Populär seglarhamn i hjärtat av skärgården',
+    description: [
+      'Kanholmen är en välkänd hamn för seglarflottorna som rör sig mellan Stockholm och Sandhamn. Välskyddad naturhamn med staket och enklare faciliteter.',
+      'En av de mer använda mellanlankringsplatserna — känd av de flesta erfarna skärgårdsseglare.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Klassisk seglarhamn, skyddad', season: 'Maj–september', best_for: 'Segling, övernattning' },
+    activities: [
+      { icon: '⛵', name: 'Segling', desc: 'Perfekt mellanlandning på Sandhamns-rutten.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klart vatten runt ön.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Enbart nåbar med båt.', icon: '⛵' }],
+    harbors: [{ name: 'Kanholmens naturhamn', desc: 'Välskyddad hamn med staket och mulltoa.', spots: 30 }],
+    restaurants: [],
+    tips: ['Kom tidigt — fylls snabbt midsommar–juli.', 'Grillplatser finns, ta med kol.'],
+    related: ['sandhamn', 'gallno', 'ingmarso'],
+    tags: ['seglarhamn', 'naturhamn', 'mellersta', 'segling'],
+  },
+
+  {
+    slug: 'norrpada',
+    name: 'Norrpada',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🦩',
+    tagline: 'Fågelrik ö med stilla vatten och skyddade vikar',
+    description: [
+      'Norrpada är en ostörd ö med rikt fågelliv och skyddade vikar populära för kajak och kanot. Naturreservat och begränsad tillgänglighet skyddar öns karaktär.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Fågelrik, ostörd, kajak', season: 'Maj–september', best_for: 'Fågelskådning, kajak, natur' },
+    activities: [
+      { icon: '🦩', name: 'Fågelskådning', desc: 'Häger, strandskata och sjöfågel.' },
+      { icon: '🛶', name: 'Kajak', desc: 'Lugna vatten längs öns östra sida.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt/kajak', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Norrpada naturhamn', desc: 'Liten naturhamn.', spots: 5 }],
+    restaurants: [],
+    tips: ['Kamerastativ rekommenderas för fågelfoto.'],
+    related: ['gallno', 'bullero', 'ramskär'],
+    tags: ['fågelskådning', 'kajak', 'naturreservat', 'lugnt'],
+  },
+
+  {
+    slug: 'graskar',
+    name: 'Gråskär',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🔭',
+    tagline: 'Fyrlins-ö med unika klippformationer',
+    description: [
+      'Gråskär i norra skärgården är ett litet naturreservat med ovanliga klippformationer och ett gamla fyrbåks-system. Besöks av naturvänner och seglare.',
+    ],
+    facts: { travel_time: '2–3 h från Norrtälje', character: 'Liten, klippig, natur', season: 'Juni–september', best_for: 'Natur, klippor, segling' },
+    activities: [
+      { icon: '🔭', name: 'Klippvandring', desc: 'Dramatiska klippformationer längs öns kant.' },
+      { icon: '⛵', name: 'Segling', desc: 'Bra ankringsplats i lämpliga vindar.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Gråskärs naturhamn', desc: 'Begränsad ankringsmöjlighet.', spots: 6 }],
+    restaurants: [],
+    tips: ['Sällsynt botanik längs klippkanten.'],
+    related: ['fejan', 'rodloga', 'arholma'],
+    tags: ['klippor', 'norra', 'naturreservat', 'segling'],
+  },
+
+  {
+    slug: 'lindholmen',
+    name: 'Lindholmen',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🏕',
+    tagline: 'Naturcamping och stillhet i skärgårdens mitt',
+    description: [
+      'Lindholmen är en populär kajakö med naturcamping och goda möjligheter för havspaddling. Inga fasta anläggningar — naturen och tystnaden är attraktionen.',
+    ],
+    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Camping, kajak, natur', season: 'Maj–september', best_for: 'Kajak, naturcamping, avkoppling' },
+    activities: [
+      { icon: '🛶', name: 'Kajak', desc: 'Utmärkt för paddling i alla riktningar.' },
+      { icon: '🏕', name: 'Naturcamping', desc: 'Tälta under bar himmel på klipporna.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt/kajak', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Lindholmens naturhamn', desc: 'Naturlig ankringsplats.', spots: 10 }],
+    restaurants: [],
+    tips: ['Allemansrätten gäller — lämna inga spår.', 'Ta med eldstartsutrustning för kvällsmat.'],
+    related: ['gallno', 'vindo', 'namdo'],
+    tags: ['kajak', 'camping', 'natur', 'mellersta'],
+  },
+
+  {
+    slug: 'iggon',
+    name: 'Iggö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌊',
+    tagline: 'Ostörd ytterskärgård i Norrtelje-området',
+    description: [
+      'Iggö är en liten ostörd ö i yttre norra skärgården. Klart hav, klippor och total stillhet. Dit tar man sig med privat båt och njuter av äkta ytterskärgård.',
+    ],
+    facts: { travel_time: '2 h från Norrtälje', character: 'Ostörd, klippig, norra', season: 'Juni–september', best_for: 'Segling, natur, äventyr' },
+    activities: [
+      { icon: '⛵', name: 'Ankring', desc: 'Bra naturhamn på södra sidan.' },
+      { icon: '🏊', name: 'Havsbadet', desc: 'Klara Östersjövatten.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Iggö naturhamn', desc: 'Skyddad naturhamn på sydsidan.', spots: 8 }],
+    restaurants: [],
+    tips: ['Ta med allt du behöver.'],
+    related: ['arholma', 'fejan', 'blido'],
+    tags: ['ostörd', 'norra', 'ytterskärgård', 'klippor'],
+  },
+
+  {
+    slug: 'langviksskaret',
+    name: 'Långvikssk​äret',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌅',
+    tagline: 'Övernattningsö med solnedgångsvyer mot Östersjön',
+    description: [
+      'Långviksskäret i södra skärgården är ett populärt övernattningsscenario för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
+    ],
+    facts: { travel_time: '3 h från Stockholm', character: 'Naturhamn, utsikt, södra', season: 'Juni–september', best_for: 'Segling, övernattning, solnedgång' },
+    activities: [
+      { icon: '🌅', name: 'Solnedgångsvyer', desc: 'Dramatisk horisont mot öppet hav.' },
+      { icon: '⛵', name: 'Ankring', desc: 'Naturlig ankringsplats med bra skydd.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Långviksskärets naturhamn', desc: 'Skyddad vik.', spots: 10 }],
+    restaurants: [],
+    tips: ['Perfekt för midsommar-firande.'],
+    related: ['fjardlang', 'nattaro', 'landsort'],
+    tags: ['solnedgång', 'segling', 'södra', 'naturhamn'],
+  },
+
+  {
+    slug: 'toro-norra',
+    name: 'Tornö',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌾',
+    tagline: 'Jordbruksö med öppna landskap och strandängar',
+    description: [
+      'Tornö i norra skärgården har ett ovanligt öppet jordbrukslandskap med strandängar och betande djur. En fridfull kontrast till klippskarabbtypiska skärgårdsöar.',
+    ],
+    facts: { travel_time: '1 h 30 min från Norrtälje', character: 'Jordbruk, lugnt, öppet landskap', season: 'Maj–september', best_for: 'Natur, stillhet, familjeutflykt' },
+    activities: [
+      { icon: '🌾', name: 'Strandängar', desc: 'Promenera längs strandängarna med betande djur.' },
+      { icon: '🐦', name: 'Fågelskådning', desc: 'Strandskator och vadare längs kusterna.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Bilfärja', from: 'Riala', time: '30 min', desc: 'Enkel bilfärja sommarsäsong.', icon: '⛴' }],
+    harbors: [{ name: 'Tornö gästbrygga', desc: 'Enkel brygga med begränsat antal platser.', spots: 8 }],
+    restaurants: [],
+    tips: ['Störa inte betande djur.', 'Ta med kikare för fågelskådning.'],
+    related: ['blido', 'singo', 'ljustero'],
+    tags: ['jordbruk', 'norra', 'strandäng', 'lugnt'],
+  },
+
+  {
+    slug: 'garnsjon',
+    name: 'Östra Lagnö',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌿',
+    tagline: 'Bilfri ö med klapperstensstränder och sommarstugor',
+    description: [
+      'Östra Lagnö är en bilfri ö i mellersta skärgården med klapperstensstränder, sommarstämning och inget jäkta. Nådd med passagerarbåt från Stavsnäs.',
+    ],
+    facts: { travel_time: '1 h 30 min från Stavsnäs', character: 'Bilfri, klappersten, lugn', season: 'Juni–september', best_for: 'Bad, avkoppling, skärgårdsliv' },
+    activities: [
+      { icon: '🏊', name: 'Klapperstensbad', desc: 'Ovanlig stenbadet längs öns östra kant.' },
+      { icon: '☀️', name: 'Solbad', desc: 'Fantastisk sollägen längs sydstranden.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Båt', from: 'Stavsnäs', time: '1 h 30 min', desc: 'Sommarlinje Waxholmsbolaget.', icon: '⛴' }],
+    harbors: [{ name: 'Östra Lagnö brygga', desc: 'Gästbrygga med enklare service.', spots: 15 }],
+    restaurants: [{ name: 'Lagnö Kafé', type: 'Kafé', desc: 'Hemlagad fika och glass. Öppet sommarsäsong.' }],
+    tips: ['Reservera plats i hamnen vid veckoslutsresande.'],
+    related: ['gallno', 'moja', 'namdo'],
+    tags: ['bilfri', 'klappersten', 'bad', 'sommar', 'mellersta'],
+  },
+
+  {
+    slug: 'storholmen',
+    name: 'Storholmen',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🌲',
+    tagline: 'Skogsklädd ö med vandringsleder och stillhet',
+    description: [
+      'Storholmen är en mellanstor skogsklädd ö med markerade vandringsleder och stämningsfulla naturmiljöer. Populärt övernattningsläge för seglare i transit.',
+    ],
+    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Skog, vandring, lugnt', season: 'Maj–september', best_for: 'Vandring, segling, övernattning' },
+    activities: [
+      { icon: '🥾', name: 'Vandring', desc: 'Markerade leder genom gammal barrskog.' },
+      { icon: '⛵', name: 'Segling', desc: 'Välskyddad hamn för övernattning.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Sommarlinje möjlig — kontrollera aktuell tidtabell.', icon: '⛵' }],
+    harbors: [{ name: 'Storholmens gästhamn', desc: 'Bra naturhamn med staket och mulltoa.', spots: 20 }],
+    restaurants: [],
+    tips: ['Eldning på anvisad plats.'],
+    related: ['gallno', 'moja', 'ingmarso'],
+    tags: ['skog', 'vandring', 'segling', 'mellersta'],
+  },
+
+  {
+    slug: 'graskar-sodra',
+    name: 'Gräskär (södra)',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌊',
+    tagline: 'Ytterskärgårdens vindpinade vilda ö',
+    description: [
+      'Gräskär söder om Ornö är en ytterskärslö med karaktär — vindpinad, klippig och absolut orört. Besöks av erfarna seglare som söker den äkta upplevelsen.',
+    ],
+    facts: { travel_time: '4 h från Stockholm', character: 'Vild, vindexponerad, södra', season: 'Juni–september', best_for: 'Erfarna seglare, natur, äventyr' },
+    activities: [
+      { icon: '⛵', name: 'Segling', desc: 'Krävande insegling — belönar erfarna.' },
+      { icon: '🌊', name: 'Hav och klippor', desc: 'Ytterskärgårdens rå dramatik.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Kräver erfarenhet. Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Gräskärs naturhamn', desc: 'Exponerad naturhamn — krävande i dåligt väder.', spots: 5 }],
+    restaurants: [],
+    tips: ['Kontrollera SMHI noggrant.', 'Ha alternativ hamn planerad.'],
+    related: ['orno', 'landsort', 'fjardlang'],
+    tags: ['ytterskärgård', 'vild', 'södra', 'erfarna seglare'],
+  },
+
+  {
+    slug: 'ostanvik',
+    name: 'Östanvik',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '🏡',
+    tagline: 'Liten ö med karaktär och sommarstämning',
+    description: [
+      'Östanvik är en charmerande liten ö med sommarstugor och ett stämningsfullt läge i mellersta skärgården. Lugnt och genuint — utan turistatmosfär.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Genuint, lugnt, sommarstugor', season: 'Juni–september', best_for: 'Avkoppling, segling, genuint liv' },
+    activities: [
+      { icon: '🏊', name: 'Bad', desc: 'Klara vatten och fina klippor.' },
+      { icon: '⛵', name: 'Ankring', desc: 'Skyddad vik för övernattning.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Östanviks naturhamn', desc: 'Liten skyddad naturhamn.', spots: 8 }],
+    restaurants: [],
+    tips: ['Respektera de som sommarbor här.'],
+    related: ['gallno', 'moja', 'namdo'],
+    tags: ['genuint', 'lugnt', 'segling', 'mellersta'],
+  },
+
+  {
+    slug: 'langskar',
+    name: 'Långskär',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🧭',
+    tagline: 'Smalt naturskär med dramatisk utsikt och seglartradition',
+    description: [
+      'Långskär är ett smalt klippskär i norra skärgården med en lång seglartradition som angöringsplats. Enkelt men välkänt bland norrtäljeseglare.',
+    ],
+    facts: { travel_time: '1 h 30 min från Norrtälje', character: 'Smalt skär, segling, tradition', season: 'Maj–september', best_for: 'Segling, angöring, natur' },
+    activities: [
+      { icon: '⛵', name: 'Segling', desc: 'Klassisk angöringsplats på norraleden.' },
+      { icon: '🌅', name: 'Soluppgångsvyer', desc: 'Öppen östhorisont mot havet.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Långskärs naturhamn', desc: 'Begränsat men skyddat på vestsidan.', spots: 6 }],
+    restaurants: [],
+    tips: ['Kolla vindprognosen — exponerat vid sydväst.'],
+    related: ['fejan', 'blido', 'arholma'],
+    tags: ['segling', 'norra', 'klippskär', 'tradition'],
+  },
+
+  {
+    slug: 'vastervik-uto',
+    name: 'Västerholm',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌺',
+    tagline: 'Blomstrande ö med gästhamn söder om Utö',
+    description: [
+      'Västerholm söder om Utö är en relativt ostörd ö med blomstrande klippor och en välkomstande gästhamn för seglare. Bra alternativ till det fullbelagda Utö under högsäsong.',
+    ],
+    facts: { travel_time: '3 h 30 min från Stockholm', character: 'Ostört, blomstrande, södra', season: 'Juni–september', best_for: 'Segling, alternativ till Utö, natur' },
+    activities: [
+      { icon: '🌺', name: 'Botanik', desc: 'Rik blomsteflora längs klippkusten.' },
+      { icon: '⛵', name: 'Segling', desc: 'Bra alternativ till trånga Utö sommartid.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser — nåbar från Utö eller Dalarö.', icon: '⛵' }],
+    harbors: [{ name: 'Västerholms gästhamn', desc: 'Välskött liten hamn med staket.', spots: 15 }],
+    restaurants: [],
+    tips: ['Bra alternativ när Utö är fullbelagt.'],
+    related: ['uto', 'nattaro', 'fjardlang'],
+    tags: ['södra', 'blomstring', 'segling', 'orört'],
+  },
+
+  {
+    slug: 'ramskar-norra',
+    name: 'Ramskär (norra)',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '⛵',
+    tagline: 'Norrtälje-skärgårdens välkända angöringsplats',
+    description: [
+      'Norra Ramskär är en känd angöringsplats i norr med bra skydd och en naturhamn som välkomnar seglare i transit mot Arholma eller norr.',
+    ],
+    facts: { travel_time: '2 h från Norrtälje', character: 'Angöring, transit, skyddat', season: 'Maj–september', best_for: 'Segling, övernattning, angöring' },
+    activities: [{ icon: '⛵', name: 'Segling', desc: 'Perfekt angöringsplats på nordledens seglarrutt.' }],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Norra Ramskärs naturhamn', desc: 'Välskyddat och rymligt.', spots: 20 }],
+    restaurants: [],
+    tips: ['Populärt i norra seglarflottans rutter mot Åland.'],
+    related: ['arholma', 'blido', 'fejan'],
+    tags: ['norra', 'segling', 'angöring', 'transit'],
+  },
+
+  {
+    slug: 'aspoja',
+    name: 'Aspö/Aspöja',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🌿',
+    tagline: 'Ostörd söderö med aspskog och klara vikar',
+    description: [
+      'Aspö är en stilla ö i södra skärgården med karakteristisk aspskog och klara vikar. Besöks av naturintresserade och lugnsökande seglare.',
+    ],
+    facts: { travel_time: '3 h från Stockholm', character: 'Skog, lugnt, genuint', season: 'Maj–september', best_for: 'Natur, stillhet, segling' },
+    activities: [
+      { icon: '🌿', name: 'Naturvandring', desc: 'Aspskog och strandnatur.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klara vikar med lite strömmar.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Aspö naturhamn', desc: 'Enkel naturhamn.', spots: 8 }],
+    restaurants: [],
+    tips: ['Ta med picnic och ta det lugnt.'],
+    related: ['orno', 'dalaro', 'morko'],
+    tags: ['skog', 'lugnt', 'södra', 'natur'],
+  },
+
+  {
+    slug: 'korsholmen',
+    name: 'Korsholmen',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
+    emoji: '✝️',
+    tagline: 'Liten kapell-ö i skärgårdens mitt med stämning',
+    description: [
+      'Korsholmen är en liten ö med ett välbevarat kapell och en stark känsla av tid som stannat. En perfekt anhalt för den som vill byta tempo.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Kapell, liten, stämningsfull', season: 'Juni–september', best_for: 'Andlig ro, natur, historia' },
+    activities: [
+      { icon: '✝️', name: 'Kapellbesök', desc: 'Litet välbevarat kapell öppet sommarsäsong.' },
+      { icon: '🌅', name: 'Kvällsvyer', desc: 'Stämningsfull utsikt vid solnedgång.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    harbors: [{ name: 'Korsholmens naturhamn', desc: 'Liten naturhamn.', spots: 6 }],
+    restaurants: [],
+    tips: ['Respektera kapellets lugn.'],
+    related: ['gallno', 'moja', 'namdo'],
+    tags: ['kapell', 'lugnt', 'mellersta', 'stämning'],
+  },
+
+  {
+    slug: 'vastana',
+    name: 'Västan-ön',
+    region: 'norra',
+    regionLabel: 'Norra skärgården',
+    emoji: '🌊',
+    tagline: 'Norra ögruppen med öppet hav och kajakstig',
+    description: [
+      'Västan-ön är en del av en nordlig ögrupp med öppet hav på väst- och nordsidan. Populärt bland kajakpaddlare som utforskar norra skärgårdens yttre delar.',
+    ],
+    facts: { travel_time: '2 h 30 min från Norrtälje', character: 'Ytterskärgård, kajak, norra', season: 'Juni–september', best_for: 'Kajak, äventyr, natur' },
+    activities: [
+      { icon: '🛶', name: 'Havskajak', desc: 'Bra utgångsläge för yttre kajakturer.' },
+      { icon: '⛵', name: 'Segling', desc: 'Ankringsplats för norra ledens seglare.' },
+    ],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt/kajak', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Västan-öns naturhamn', desc: 'Begränsad vik.', spots: 6 }],
+    restaurants: [],
+    tips: ['Kräver erfaren paddlare eller besättning vid västvind.'],
+    related: ['arholma', 'fejan', 'blido'],
+    tags: ['kajak', 'norra', 'ytterskärgård', 'äventyr'],
+  },
+
+  {
+    slug: 'storskar',
+    name: 'Storskär',
+    region: 'mellersta',
+    regionLabel: 'Ytterskärgård',
+    emoji: '🌊',
+    tagline: 'Klassisk angöring på vägen mot Sandhamn',
+    description: [
+      'Storskär är en välkänd naturhamn och angöringsplats för seglare på väg mot Sandhamn och ytterskärgården. Välskyddad med god plats.',
+    ],
+    facts: { travel_time: '2 h från Stockholm', character: 'Angöring, naturhamn, segling', season: 'Maj–september', best_for: 'Segling, övernattning' },
+    activities: [{ icon: '⛵', name: 'Segling', desc: 'Klassisk angöringsplats på Sandhamns-rutten.' }],
+    accommodation: [],
+    getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
+    harbors: [{ name: 'Storskärs naturhamn', desc: 'God plats och välskyddat.', spots: 25 }],
+    restaurants: [],
+    tips: ['Eldning tillåten på anvisad plats.', 'Sötvattentank – ta med eget.'],
+    related: ['sandhamn', 'kanholmen', 'norrora'],
+    tags: ['segling', 'angöring', 'naturhamn', 'mellersta'],
+  },
+
 ]
 
 export function getIsland(slug: string): Island | undefined {

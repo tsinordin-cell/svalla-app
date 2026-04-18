@@ -79,17 +79,43 @@ function getSeason(): string {
   return 'VINTERSKÄRGÅRD'
 }
 
+// Enkel omvänd geokodning — returnerar område-namn baserat på koordinater
+function getAreaName(lat: number, lng: number): string {
+  // Stockholms skärgård — grovt indelad
+  if (lat > 59.9)  return 'Norra skärgården'
+  if (lat > 59.55) {
+    if (lng < 18.5) return 'Vaxholm'
+    if (lng < 19.0) return 'Mellersta skärgården'
+    return 'Ytterskärgård'
+  }
+  if (lat > 59.2) {
+    if (lng < 18.3) return 'Stockholm'
+    if (lng < 18.8) return 'Värmdö'
+    return 'Sandhamn'
+  }
+  if (lat > 58.9) return 'Södra skärgården'
+  return 'Skärgården'
+}
+
+// ms → knop (1 m/s = 1.944 knop)
+function msToKnots(ms: number): number {
+  return Math.round(ms * 1.944 * 10) / 10
+}
+
 function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
   const [weather, setWeather] = useState<Weather | null>(null)
+  const [loading, setLoading] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const lastFetch = useRef<string>('')
 
   useEffect(() => {
+    // Debounce 600ms — uppdatera vid zoom/pan
     const key = `${lat.toFixed(2)},${lng.toFixed(2)}`
     if (key === lastFetch.current) return
     if (timerRef.current) clearTimeout(timerRef.current)
     timerRef.current = setTimeout(async () => {
       lastFetch.current = key
+      setLoading(true)
       try {
         const res = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lng.toFixed(4)}&current=temperature_2m,weather_code,wind_speed_10m,wind_direction_10m&wind_speed_unit=ms&timezone=auto`
@@ -103,28 +129,45 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
           windDir: c.wind_direction_10m,
         })
       } catch { /* tyst fel */ }
-    }, 800)
+      finally { setLoading(false) }
+    }, 600)
     return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [lat, lng])
 
-  if (!weather) return null
-  const { emoji } = wmoLabel(weather.code)
+  const { emoji } = weather ? wmoLabel(weather.code) : { emoji: '🌡' }
+  const areaName = getAreaName(lat, lng)
+  const kn = weather ? msToKnots(weather.windSpeed) : null
 
   return (
     <div style={{
       position: 'absolute', top: 10, right: 10, zIndex: 1100,
-      background: 'rgba(250,254,255,0.90)', backdropFilter: 'blur(10px)',
-      borderRadius: 20, padding: '5px 10px 5px 8px',
-      boxShadow: '0 1px 8px rgba(0,45,60,0.12)',
-      display: 'flex', alignItems: 'center', gap: 5,
-      border: '1px solid rgba(10,123,140,0.10)',
+      background: 'rgba(250,254,255,0.95)', backdropFilter: 'blur(12px)',
+      borderRadius: 22, padding: '6px 12px 6px 9px',
+      boxShadow: '0 2px 12px rgba(0,45,60,0.15)',
+      display: 'flex', alignItems: 'center', gap: 6,
+      border: '1px solid rgba(10,123,140,0.12)',
+      transition: 'opacity 0.3s',
+      opacity: loading ? 0.6 : 1,
       pointerEvents: 'none',
     }}>
-      <span style={{ fontSize: 14, lineHeight: 1 }}>{emoji}</span>
-      <span style={{ fontSize: 13, fontWeight: 800, color: '#1e5c82', lineHeight: 1 }}>{weather.temp}°</span>
-      <span style={{ fontSize: 10, color: '#7a9dab', fontWeight: 600 }}>
-        · 💨 {weather.windSpeed} {windDirStr(weather.windDir)}
-      </span>
+      <span style={{ fontSize: 15, lineHeight: 1 }}>{emoji}</span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+          {weather ? (
+            <>
+              <span style={{ fontSize: 14, fontWeight: 900, color: '#1e5c82', lineHeight: 1 }}>{weather.temp}°</span>
+              <span style={{ fontSize: 11, color: '#5a8090', fontWeight: 700, lineHeight: 1 }}>
+                · 💨 {kn} kn {windDirStr(weather.windDir)}
+              </span>
+            </>
+          ) : (
+            <span style={{ fontSize: 11, color: '#7a9dab' }}>Hämtar väder…</span>
+          )}
+        </div>
+        <span style={{ fontSize: 9, color: '#7a9dab', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+          📍 {areaName}
+        </span>
+      </div>
     </div>
   )
 }
