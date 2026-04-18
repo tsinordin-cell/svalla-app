@@ -9,6 +9,7 @@ import Comments from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
 import TripActions from '@/components/TripActions'
 import BackButton from '@/components/BackButton'
+import RouteMapSVG from '@/components/RouteMapSVG'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import type { Metadata } from 'next'
 
@@ -173,7 +174,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     }
   }
 
-  const hasMap = points.length >= 2
+  const hasMap       = points.length >= 2
+  const routePoints  = Array.isArray(trip.route_points) && trip.route_points.length >= 2
+    ? (trip.route_points as { lat: number; lng: number }[])
+    : null
   const username = userRow?.username ?? 'Seglare'
   const routeName = (trip.routes as { name: string } | null)?.name
 
@@ -207,10 +211,16 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   return (
     <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
 
-      {/* ── Hero image ── */}
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#a8ccd4', overflow: 'hidden' }}>
-        {trip.image && <Image src={trip.image} alt="Tur" fill style={{ objectFit: 'cover' }} priority sizes="100vw" />}
-        {!trip.image && <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, opacity: 0.3 }}>⛵</div>}
+      {/* ── Hero image / minimap ── */}
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#0b2d42', overflow: 'hidden' }}>
+        {trip.image
+          ? <Image src={trip.image} alt="Tur" fill style={{ objectFit: 'cover' }} priority sizes="100vw" />
+          : routePoints
+            ? <div style={{ position: 'absolute', inset: 0 }}>
+                <RouteMapSVG points={routePoints} w={720} h={540} />
+              </div>
+            : <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, opacity: 0.3 }}>⛵</div>
+        }
         {/* Gradient overlay */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,20,35,0.35) 0%, transparent 40%, transparent 60%, rgba(0,20,35,0.6) 100%)' }} />
 

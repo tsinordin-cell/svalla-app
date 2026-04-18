@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
+import RouteMapSVG from './RouteMapSVG'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo } from '@/lib/utils'
 
@@ -30,116 +31,6 @@ const pinnarEmoji: Record<number, string> = {
   3: '⚓⚓⚓',
 }
 
-// ── Mini GPS-karta som SVG ─────────────────────────────────────────────────────
-function MiniRouteSVG({
-  points,
-  w = 600,
-  h = 300,
-}: {
-  points: { lat: number; lng: number }[]
-  w?: number
-  h?: number
-}) {
-  if (!points || points.length < 2) return null
-
-  const lats = points.map(p => p.lat)
-  const lngs = points.map(p => p.lng)
-  const minLat = Math.min(...lats), maxLat = Math.max(...lats)
-  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
-
-  const pad = 28
-  const latRange = maxLat - minLat || 0.0005
-  const lngRange = maxLng - minLng || 0.0005
-
-  // Scale uniformly so the route fits, then center
-  const scaleX = (w - pad * 2) / lngRange
-  const scaleY = (h - pad * 2) / latRange
-  const scale  = Math.min(scaleX, scaleY)
-  const usedW  = lngRange * scale
-  const usedH  = latRange * scale
-  const ox     = (w - usedW) / 2
-  const oy     = (h - usedH) / 2
-
-  const toX = (lng: number) => ox + (lng - minLng) * scale
-  const toY = (lat: number) => oy + (maxLat - lat) * scale   // flip Y
-
-  const allPts  = points.map(p => `${toX(p.lng).toFixed(1)},${toY(p.lat).toFixed(1)}`).join(' ')
-
-  // Bright "recent" segment — last 35% of the track
-  const recentIdx = Math.max(0, Math.floor(points.length * 0.65))
-  const recentPts = points.slice(recentIdx)
-  const recStr    = recentPts.map(p => `${toX(p.lng).toFixed(1)},${toY(p.lat).toFixed(1)}`).join(' ')
-
-  const sp = points[0], ep = points[points.length - 1]
-  const sx = toX(sp.lng), sy = toY(sp.lat)
-  const ex = toX(ep.lng), ey = toY(ep.lat)
-
-  const uid = `rg-${w}-${h}`   // unique gradient id per size
-
-  return (
-    <svg
-      viewBox={`0 0 ${w} ${h}`}
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ display: 'block', width: '100%', height: '100%' }}
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <defs>
-        <linearGradient id={uid} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stopColor="#0b2d42" />
-          <stop offset="100%" stopColor="#1a5472" />
-        </linearGradient>
-      </defs>
-      {/* Background */}
-      <rect width={w} height={h} fill={`url(#${uid})`} />
-
-      {/* Ghost dots — subtle water texture */}
-      <circle cx={w * 0.15} cy={h * 0.2}  r="1.5" fill="rgba(255,255,255,0.06)" />
-      <circle cx={w * 0.75} cy={h * 0.15} r="1"   fill="rgba(255,255,255,0.06)" />
-      <circle cx={w * 0.6}  cy={h * 0.8}  r="1.5" fill="rgba(255,255,255,0.06)" />
-      <circle cx={w * 0.3}  cy={h * 0.7}  r="1"   fill="rgba(255,255,255,0.06)" />
-
-      {/* Full track — dim */}
-      <polyline
-        points={allPts}
-        fill="none"
-        stroke="rgba(255,255,255,0.22)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      {/* Recent segment — brighter */}
-      {recentPts.length >= 2 && (
-        <polyline
-          points={recStr}
-          fill="none"
-          stroke="rgba(255,255,255,0.75)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      )}
-
-      {/* Start dot — green */}
-      <circle cx={sx} cy={sy} r="5" fill="#22c55e" stroke="white" strokeWidth="2" />
-
-      {/* End dot — orange */}
-      <circle cx={ex} cy={ey} r="6" fill="#c96e2a" stroke="white" strokeWidth="2" />
-
-      {/* "GPS-rutt" label, bottom-left */}
-      <text
-        x={pad * 0.6} y={h - pad * 0.5}
-        fill="rgba(255,255,255,0.4)"
-        fontSize={h * 0.075}
-        fontFamily="system-ui,-apple-system,sans-serif"
-        fontWeight="700"
-        letterSpacing="0.5"
-      >
-        GPS-rutt
-      </text>
-    </svg>
-  )
-}
 
 export default function TripCard({ trip }: { trip: Trip }) {
   const router    = useRouter()
@@ -159,6 +50,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
   return (
     <div
       role="article"
+      className="trip-card"
       onClick={() => router.push(`/tur/${trip.id}`)}
       style={{
         background: 'var(--white)', borderRadius: 20,
@@ -166,7 +58,8 @@ export default function TripCard({ trip }: { trip: Trip }) {
         boxShadow: '0 2px 14px rgba(0,45,60,0.09)',
         border: '1px solid rgba(10,123,140,0.07)',
         cursor: 'pointer',
-        transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+        transition: 'transform 0.18s ease, box-shadow 0.18s ease',
+        WebkitTapHighlightColor: 'transparent',
       }}
       onMouseEnter={e => {
         (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-2px)'
@@ -202,7 +95,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
           {/* Rutt-strip under foto */}
           {hasRoute && (
             <div style={{ width: '100%', height: 72, position: 'relative', overflow: 'hidden' }}>
-              <MiniRouteSVG points={trip.route_points!} w={600} h={144} />
+              <RouteMapSVG points={trip.route_points!} w={600} h={144} />
               {/* Avstånd-badge */}
               {trip.distance > 0 && (
                 <div style={{
@@ -222,7 +115,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
       ) : hasRoute ? (
         /* INGEN FOTO — visa rutt som huvudbild */
         <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
-          <MiniRouteSVG points={trip.route_points!} w={600} h={300} />
+          <RouteMapSVG points={trip.route_points!} w={600} h={300} />
           {/* Gradient overlay för text */}
           <div style={{
             position: 'absolute', inset: 0,
@@ -342,8 +235,15 @@ export default function TripCard({ trip }: { trip: Trip }) {
             paddingTop: 8, borderTop: '1px solid rgba(10,123,140,0.07)',
           }}
         >
-          <LikeButton tripId={trip.id} />
-          <Comments tripId={trip.id} />
+          <LikeButton
+            tripId={trip.id}
+            initialCount={trip.likes_count}
+            initialLiked={trip.user_liked}
+          />
+          <Comments
+            tripId={trip.id}
+            initialCount={trip.comments_count}
+          />
         </div>
       </div>
     </div>

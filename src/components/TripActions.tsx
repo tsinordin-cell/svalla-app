@@ -104,13 +104,18 @@ export default function TripActions({
         onClick={() => setMenu(true)}
         style={{
           width: 36, height: 36, borderRadius: '50%',
-          background: 'rgba(10,123,140,0.08)',
-          border: 'none', cursor: 'pointer',
+          background: 'rgba(250,254,255,0.88)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid rgba(255,255,255,0.25)',
+          cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 1px 6px rgba(0,20,35,0.15)',
+          WebkitTapHighlightColor: 'transparent',
         }}
         aria-label="Alternativ"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: '#5a8090' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: '#1e5c82' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>
@@ -151,7 +156,7 @@ export default function TripActions({
         <Backdrop onClick={() => !saving && setEditing(false)}>
           <Sheet onClick={e => e.stopPropagation()}>
             <Handle />
-            <h3 style={{ fontSize: 17, fontWeight: 900, color: '#162d3a', margin: '0 0 18px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 18px', textAlign: 'center' }}>
               Redigera tur
             </h3>
 
@@ -253,7 +258,7 @@ export default function TripActions({
         <Backdrop onClick={() => !deleting && setConfirm(false)}>
           <Sheet onClick={e => e.stopPropagation()}>
             <Handle />
-            <h3 style={{ fontSize: 17, fontWeight: 900, color: '#162d3a', margin: '0 0 8px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 8px', textAlign: 'center' }}>
               Ta bort tur?
             </h3>
             <p style={{ fontSize: 13, color: '#7a9dab', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
@@ -311,8 +316,9 @@ function Sheet({ onClick, children }: { onClick?: (e: MouseEvent<HTMLDivElement>
     <div
       onClick={onClick}
       style={{
-        background: '#fff', borderRadius: '24px 24px 0 0',
-        padding: '20px 20px 40px',
+        background: 'var(--white)', borderRadius: '24px 24px 0 0',
+        padding: '20px 20px',
+        paddingBottom: 'max(40px, env(safe-area-inset-bottom, 40px))',
         width: '100%', maxWidth: 480,
         boxShadow: '0 -4px 40px rgba(0,20,35,0.15)',
         maxHeight: '90dvh', overflowY: 'auto',
@@ -346,13 +352,14 @@ function MenuItem({ icon, label, danger, onClick }: { icon: string; label: strin
 
 const labelStyle: CSSProperties = {
   display: 'block', fontSize: 10, fontWeight: 800,
-  color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px',
+  color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px',
   marginBottom: 6,
 }
 
 const inputStyle: CSSProperties = {
   width: '100%', padding: '12px 14px', borderRadius: 14,
   border: '1.5px solid rgba(10,123,140,0.15)',
-  background: '#f7fbfc', fontSize: 14, color: '#162d3a',
+  background: 'var(--bg)', fontSize: 14, color: 'var(--txt)',
   outline: 'none', boxSizing: 'border-box', marginBottom: 4,
+  fontFamily: 'inherit',
 }

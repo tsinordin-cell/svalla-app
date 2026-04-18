@@ -63,6 +63,15 @@ function ManuellForm() {
   const [err, setErr]                       = useState('')
   const [posted, setPosted]                 = useState(false)
   const [tagged, setTagged]                 = useState<TaggedUser[]>([])
+  const [routeId, setRouteId]               = useState<string | null>(null)
+  const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
+
+  // Ladda rutter
+  useEffect(() => {
+    supabase.from('routes').select('id, name').order('name').then(({ data }) => {
+      if (data) setRoutes(data)
+    })
+  }, [supabase])
 
   // Auto-open file picker on mount (per UX brief)
   useEffect(() => {
@@ -122,6 +131,7 @@ function ManuellForm() {
         duration:       parseInt(duration) || 0,
         average_speed_knots: 0,
         max_speed_knots:     0,
+        route_id:       routeId,
         started_at:     new Date().toISOString(),
         ended_at:       new Date().toISOString(),
       }).select('id').single()
@@ -358,6 +368,31 @@ function ManuellForm() {
                   ))}
                 </div>
               </div>
+
+              {/* Rutt */}
+              {routes.length > 0 && (
+                <div>
+                  <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+                    Rutt <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
+                  </label>
+                  <select
+                    value={routeId ?? ''}
+                    onChange={e => setRouteId(e.target.value || null)}
+                    style={{
+                      width: '100%', padding: '10px 12px', borderRadius: 12,
+                      border: '1.5px solid rgba(10,123,140,0.15)',
+                      background: '#fff', fontSize: 14, color: routeId ? '#162d3a' : '#a0bec8',
+                      outline: 'none', appearance: 'none', WebkitAppearance: 'none',
+                      boxSizing: 'border-box',
+                    }}
+                  >
+                    <option value="">Ingen rutt vald</option>
+                    {routes.map(r => (
+                      <option key={r.id} value={r.id}>{r.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               {/* Distans + Tid */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>

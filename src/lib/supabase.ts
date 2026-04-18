@@ -66,6 +66,10 @@ export type Trip = {
   route_points: { lat: number; lng: number }[] | null  // förenklad GPS-rutt för visning i feed
   users?: { username: string; avatar_url: string | null }
   routes?: { name: string } | null
+  // Batch-fetched social counts (avoids N+1 on feed)
+  likes_count?: number
+  comments_count?: number
+  user_liked?: boolean
 }
 
 export type User = {

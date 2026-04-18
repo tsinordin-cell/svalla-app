@@ -42,3 +42,20 @@ alter table public.follows enable row level security;
 create policy "Anyone can read follows" on public.follows for select using (true);
 create policy "Users can follow" on public.follows for insert with check (auth.uid() = follower_id);
 create policy "Users can unfollow" on public.follows for delete using (auth.uid() = follower_id);
+
+-- NOTIFICATIONS
+create table if not exists public.notifications (
+  id         uuid primary key default gen_random_uuid(),
+  user_id    uuid references public.users(id) on delete cascade not null,
+  actor_id   uuid references public.users(id) on delete cascade,
+  type       text not null check (type in ('like','comment','follow','tag')),
+  trip_id    uuid references public.trips(id) on delete cascade,
+  read       boolean default false,
+  created_at timestamptz default now()
+);
+alter table public.notifications enable row level security;
+create policy "Users can read own notifications" on public.notifications for select using (auth.uid() = user_id);
+create policy "Users can insert notifications" on public.notifications for insert with check (true);
+create policy "Users can mark read" on public.notifications for update using (auth.uid() = user_id);
+create index if not exists notifications_user_id_idx on public.notifications(user_id);
+create index if not exists notifications_created_at_idx on public.notifications(created_at desc);

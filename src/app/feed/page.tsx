@@ -46,26 +46,9 @@ export default async function FeedPage() {
     )
   }
 
-  // Hämta usernames + avatars separat från public.users
-  const userIds = [...new Set((trips ?? []).map((t: { user_id: string }) => t.user_id).filter(Boolean))]
-  const { data: userRows } = userIds.length
-    ? await supabase.from('users').select('id, username, avatar').in('id', userIds)
-    : { data: [] }
-  const userMap: Record<string, { username: string; avatar_url: string | null }> = {}
-  for (const u of userRows ?? []) {
-    if (u?.id) userMap[u.id] = { username: u.username ?? 'Seglare', avatar_url: u.avatar ?? null }
-  }
-
-  // Slå ihop trips med username + avatar
+  // Hämta följer-feed parallellt med user-lookup
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tripsWithUsers = (trips ?? []).map((t: any) => ({
-    ...t,
-    users: userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null },
-  }))
-
-  // Hämta följer-feed om inloggad
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let followingTrips: any[] = []
+  let rawFollowingTrips: any[] = []
   if (user) {
     const { data: follows } = await supabase
       .from('follows')
@@ -84,13 +67,64 @@ export default async function FeedPage() {
         .in('user_id', followingIds)
         .order('created_at', { ascending: false })
         .limit(50)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      followingTrips = (fTrips ?? []).map((t: any) => {
-        const user = userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null }
-        return { ...t, users: user }
-      })
+      rawFollowingTrips = fTrips ?? []
     }
   }
+
+  // Kombinera alla unika trip-IDs + user-IDs från båda feeds
+  const allRawTrips = [...(trips ?? []), ...rawFollowingTrips]
+  const allTripIds  = [...new Set(allRawTrips.map((t: { id: string }) => t.id))]
+  const userIds     = [...new Set(allRawTrips.map((t: { user_id: string }) => t.user_id).filter(Boolean))]
+
+  // Hämta usernames + avatars + social counts i ett parallellt block
+  const [
+    { data: userRows },
+    { data: likeRows },
+    { data: commentRows },
+    { data: userLikedRows },
+  ] = await Promise.all([
+    userIds.length
+      ? supabase.from('users').select('id, username, avatar').in('id', userIds)
+      : Promise.resolve({ data: [] }),
+    allTripIds.length
+      ? supabase.from('likes').select('trip_id').in('trip_id', allTripIds)
+      : Promise.resolve({ data: [] }),
+    allTripIds.length
+      ? supabase.from('comments').select('trip_id').in('trip_id', allTripIds)
+      : Promise.resolve({ data: [] }),
+    allTripIds.length && user
+      ? supabase.from('likes').select('trip_id').eq('user_id', user.id).in('trip_id', allTripIds)
+      : Promise.resolve({ data: [] }),
+  ])
+
+  const userMap: Record<string, { username: string; avatar_url: string | null }> = {}
+  for (const u of userRows ?? []) {
+    if (u?.id) userMap[u.id] = { username: u.username ?? 'Seglare', avatar_url: u.avatar ?? null }
+  }
+  const likeCountMap: Record<string, number> = {}
+  for (const r of likeRows ?? []) {
+    likeCountMap[r.trip_id] = (likeCountMap[r.trip_id] ?? 0) + 1
+  }
+  const commentCountMap: Record<string, number> = {}
+  for (const r of commentRows ?? []) {
+    commentCountMap[r.trip_id] = (commentCountMap[r.trip_id] ?? 0) + 1
+  }
+  const userLikedSet = new Set((userLikedRows ?? []).map((r: { trip_id: string }) => r.trip_id))
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function enrichTrip(t: any) {
+    return {
+      ...t,
+      users:          userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null },
+      likes_count:    likeCountMap[t.id] ?? 0,
+      comments_count: commentCountMap[t.id] ?? 0,
+      user_liked:     userLikedSet.has(t.id),
+    }
+  }
+
+  const tripsWithUsers = (trips ?? []).map(enrichTrip)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let followingTrips: any[] = rawFollowingTrips.map(enrichTrip)
 
   // Social proof — senaste 7 dagarna
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()

@@ -107,6 +107,78 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
   `
 }
 
+// ── Väder-widget (inbyggd i kartan — synlig även i fullscreen) ───────────────
+interface Weather { temp: number; code: number; windSpeed: number; windDir: number }
+const WMO: Record<number, { emoji: string }> = {
+  0:{emoji:'☀️'},1:{emoji:'🌤'},2:{emoji:'⛅'},3:{emoji:'☁️'},
+  45:{emoji:'🌫'},48:{emoji:'🌫'},51:{emoji:'🌦'},53:{emoji:'🌦'},
+  61:{emoji:'🌧'},63:{emoji:'🌧'},71:{emoji:'🌨'},80:{emoji:'🌦'},
+  81:{emoji:'🌦'},95:{emoji:'⛈'},
+}
+function wmoEmoji(code: number) { return (WMO[code] ?? WMO[Math.floor(code/10)*10] ?? {emoji:'🌡'}).emoji }
+function windDirStr(deg: number) { return ['N','NO','Ö','SO','S','SV','V','NV'][Math.round(deg/45)%8] }
+function getAreaName(lat: number, lng: number): string {
+  if (lat > 59.9) return 'Norra skärgården'
+  if (lat > 59.55) { if (lng < 18.5) return 'Vaxholm'; if (lng < 19.0) return 'Mellersta skärgården'; return 'Ytterskärgård' }
+  if (lat > 59.2)  { if (lng < 18.3) return 'Stockholm'; if (lng < 18.8) return 'Värmdö'; return 'Sandhamn' }
+  if (lat > 58.9)  return 'Södra skärgården'
+  return 'Skärgården'
+}
+function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
+  const [weather, setWeather] = useState<Weather | null>(null)
+  const [loading, setLoading] = useState(false)
+  const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lastFetch = useRef('')
+  useEffect(() => {
+    const key = `${lat.toFixed(2)},${lng.toFixed(2)}`
+    if (key === lastFetch.current) return
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(async () => {
+      lastFetch.current = key; setLoading(true)
+      try {
+        const res  = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(4)}&longitude=${lng.toFixed(4)}&current=temperature_2m,weather_code,wind_speed_10m,wind_direction_10m&wind_speed_unit=ms&timezone=auto`)
+        const json = await res.json(); const c = json.current
+        setWeather({ temp: Math.round(c.temperature_2m), code: c.weather_code, windSpeed: Math.round(c.wind_speed_10m*10)/10, windDir: c.wind_direction_10m })
+      } catch { /* tyst */ } finally { setLoading(false) }
+    }, 600)
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [lat, lng])
+  const kn = weather ? Math.round(weather.windSpeed * 1.944 * 10) / 10 : null
+  return (
+    <div style={{ position:'absolute', top:10, right:10, zIndex:1100, background:'rgba(250,254,255,0.95)', backdropFilter:'blur(12px)', borderRadius:22, padding:'6px 12px 6px 9px', boxShadow:'0 2px 12px rgba(0,45,60,0.15)', display:'flex', alignItems:'center', gap:6, border:'1px solid rgba(10,123,140,0.12)', opacity:loading ? 0.6 : 1, pointerEvents:'none', transition:'opacity 0.3s' }}>
+      <span style={{ fontSize:15, lineHeight:1 }}>{weather ? wmoEmoji(weather.code) : '🌡'}</span>
+      <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:5 }}>
+          {weather
+            ? <><span style={{ fontSize:14, fontWeight:900, color:'#1e5c82', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'#5a8090', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
+            : <span style={{ fontSize:11, color:'#7a9dab' }}>Hämtar väder…</span>
+          }
+        </div>
+        <span style={{ fontSize:9, color:'#7a9dab', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px' }}>📍 {getAreaName(lat, lng)}</span>
+      </div>
+    </div>
+  )
+}
+
+// ── Vänta på att CSS-länk laddas klart innan kartan skapas ──────────────────
+// Utan detta renderar Leaflet kartan med fel tile-storlekar (CSS-race condition)
+function waitForCSS(href: string, id: string): Promise<void> {
+  return new Promise(resolve => {
+    const existing = document.getElementById(id) as HTMLLinkElement | null
+    if (existing) {
+      if (existing.sheet) { resolve(); return }
+      existing.addEventListener('load', () => resolve(), { once: true })
+      return
+    }
+    const link = document.createElement('link')
+    link.id = id
+    link.rel = 'stylesheet'
+    link.href = href
+    link.addEventListener('load', () => resolve(), { once: true })
+    document.head.appendChild(link)
+  })
+}
+
 export default function PlatserMap({ restaurants, tours = [], activeId, onMarkerClick, onMapMove }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -132,7 +204,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     boende:     true,
   })
   const [showRoutes, setShowRoutes] = useState(true)
-
+  const [internalCenter, setInternalCenter] = useState({ lat: 59.35, lng: 18.8 })
 
   function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string): object {
     const pulseRing = pulse
@@ -167,27 +239,32 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
 
-    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(([L]) => {
-      // ── Leaflet CSS (kritisk — utan denna renderas kartan fel) ──
-      if (!document.getElementById('leaflet-css')) {
-        const leafletCss = document.createElement('link')
-        leafletCss.id = 'leaflet-css'
-        leafletCss.rel = 'stylesheet'
-        leafletCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css'
-        document.head.appendChild(leafletCss)
-      }
-      // ── MarkerCluster CSS ──────────────────────────────────────
-      if (!document.getElementById('mc-css')) {
-        const link1 = document.createElement('link')
-        link1.id = 'mc-css'
-        link1.rel = 'stylesheet'
-        link1.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css'
-        document.head.appendChild(link1)
+    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(async ([L]) => {
+      if (!containerRef.current) return
+
+      // ── Vänta på Leaflet CSS och MarkerCluster CSS ─────────────
+      // Utan await här renderas kartan med fel zoom + fragmenterade tiles
+      await Promise.all([
+        waitForCSS(
+          'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
+          'leaflet-css',
+        ),
+        waitForCSS(
+          'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css',
+          'mc-css',
+        ),
+      ])
+      // MarkerCluster.Default.css — bara färger, behöver inte blockera
+      if (!document.getElementById('mc-default-css')) {
         const link2 = document.createElement('link')
+        link2.id = 'mc-default-css'
         link2.rel = 'stylesheet'
         link2.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css'
         document.head.appendChild(link2)
       }
+
+      // Guard: komponenten kan ha avmonterats under await
+      if (!containerRef.current || mapRef.current) return
 
       const map = L.map(containerRef.current!, {
         center: [59.35, 18.8],  // Stockholms skärgård
@@ -213,7 +290,9 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
       // ── invalidateSize: säkerställ rätt dimensioner efter render ──
       setTimeout(() => map.invalidateSize(), 50)
-      setTimeout(() => map.invalidateSize(), 300)
+      setTimeout(() => map.invalidateSize(), 200)
+      setTimeout(() => map.invalidateSize(), 600)
+      setTimeout(() => map.invalidateSize(), 1200)
 
       // ── ResizeObserver: hantera container-resize dynamiskt ──────
       if (containerRef.current && typeof ResizeObserver !== 'undefined') {
@@ -250,6 +329,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       function reportCenter() {
         const c = map.getCenter()
         onMapMove?.(c.lat, c.lng)
+        setInternalCenter({ lat: c.lat, lng: c.lng })
       }
       map.on('moveend', reportCenter)
       map.on('zoomend', reportCenter)
@@ -460,12 +540,13 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     }}>
       <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
 
+      {/* ── Väder-widget — alltid synlig, även i fullscreen ── */}
+      <WeatherWidget lat={internalCenter.lat} lng={internalCenter.lng} />
+
       {/* ── Layer-toggles — horisontell rad, bottom-left ── */}
       <div style={{
         position: 'absolute',
-        bottom: fullscreen
-          ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)'
-          : 12,
+        bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)',
         left: 12,
         zIndex: 1000,
         display: 'flex',
@@ -521,9 +602,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         title="Visa min position"
         style={{
           position: 'absolute',
-          bottom: fullscreen
-            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 64px)'
-            : 64,
+          bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 64px)',
           right: 12, zIndex: 1000,
           width: 44, height: 44, borderRadius: '50%',
           background: userPos ? '#1e5c82' : '#fff',
@@ -554,9 +633,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         title={fullscreen ? 'Stäng fullskärm' : 'Helskärm'}
         style={{
           position: 'absolute',
-          bottom: fullscreen
-            ? 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)'
-            : 12,
+          bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)',
           right: 12,
           zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
           background: '#fff', border: 'none', cursor: 'pointer',

@@ -360,3 +360,56 @@ img {
 [data-theme="dark"] [style*="background: #e6f7ef"] {
   background: rgba(15, 158, 100, 0.12) !important;
 }
+
+/* ── TripCard — mobile active state (tap feedback) ── */
+.trip-card:active {
+  transform: scale(0.985) !important;
+  box-shadow: 0 1px 6px rgba(0,45,60,0.07) !important;
+  transition: transform 0.08s ease, box-shadow 0.08s ease !important;
+}
+
+/* ── TripActions edit form in dark mode ── */
+[data-theme="dark"] [style*="background: #f7fbfc"],
+[data-theme="dark"] [style*="background:#f7fbfc"] {
+  background: rgba(74, 184, 212, 0.06) !important;
+}
+[data-theme="dark"] [style*="color: #5a8090"],
+[data-theme="dark"] [style*="color:#5a8090"] {
+  color: #6a98aa !important;
+}
+
+/* ── Comment scrollbar hidden ── */
+[style*="scrollbarWidth: none"] {
+  -ms-overflow-style: none;
+}
+
+/* ── Load more button hover ── */
+.load-more-btn:hover {
+  background: rgba(10,123,140,0.14) !important;
+}
+
+/* ── Smooth skeleton pulse ── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+.skeleton {
+  animation: skeleton-pulse 1.4s ease-in-out infinite;
+  background: rgba(10,123,140,0.08);
+  border-radius: 8px;
+}
+
+/* ── Heart like animation ── */
+@keyframes heart-pop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.4); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+/* ── FeedTabs filter scrollbar hidden ── */
+.filter-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.filter-scroll::-webkit-scrollbar { display: none; }

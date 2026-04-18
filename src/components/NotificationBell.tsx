@@ -130,11 +130,16 @@ export default function NotificationBell() {
         }}>
           <div style={{ padding: '14px 16px 10px', borderBottom: '1px solid rgba(10,123,140,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>Notiser</span>
-            {unread > 0 && (
-              <button onClick={markAllRead} style={{ fontSize: 11, color: '#7a9dab', background: 'none', border: 'none', cursor: 'pointer' }}>
-                Markera alla som lästa
-              </button>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              {unread > 0 && (
+                <button onClick={markAllRead} style={{ fontSize: 11, color: '#7a9dab', background: 'none', border: 'none', cursor: 'pointer' }}>
+                  Markera lästa
+                </button>
+              )}
+              <Link href="/notiser" onClick={() => setOpen(false)} style={{ fontSize: 11, fontWeight: 700, color: '#1e5c82', textDecoration: 'none' }}>
+                Visa alla →
+              </Link>
+            </div>
           </div>
 
           {notifs.length === 0 ? (

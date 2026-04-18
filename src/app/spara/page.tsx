@@ -107,6 +107,11 @@ export default function SparaPage() {
   const [newAchievements, setNewAchievements] = useState<{ emoji: string; label: string }[]>([])
   const [showCelebration, setShowCelebration] = useState(false)
 
+  // ── AI analys (pre-fetched when done phase begins) ──
+  const [aiSummary,       setAiSummary]       = useState<string | null>(null)
+  const [aiLoading,       setAiLoading]       = useState(false)
+  const [includeAnalysis, setIncludeAnalysis] = useState(true)
+
   // ── Refs ──
   const watchRef         = useRef<number | null>(null)
   const timerRef         = useRef<NodeJS.Timeout | null>(null)

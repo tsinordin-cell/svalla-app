@@ -5,6 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
+import FollowListButton from '@/components/FollowListSheet'
+import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import BackButtonInline from '@/components/BackButtonInline'
 
 export const revalidate = 60
 
@@ -38,30 +41,6 @@ function formatNationality(raw: string): string {
   return raw // unknown — show as-is
 }
 
-// ── Achievements (same logic as /profil) ─────────────────────────────────────
-const ACHIEVEMENTS = [
-  { id: 'first',       emoji: '🏁', label: 'Första kastet',     check: (t: Trip[], _d: number, _s: number) => t.length >= 1 },
-  { id: 'five',        emoji: '🧭', label: 'Äventyrare',        check: (t: Trip[], _d: number, _s: number) => t.length >= 5 },
-  { id: 'ten',         emoji: '🌊', label: 'Saltvattenblod',    check: (t: Trip[], _d: number, _s: number) => t.length >= 10 },
-  { id: 'dist50',      emoji: '⚓', label: '50 NM',             check: (_t: Trip[], d: number, _s: number) => d >= 50 },
-  { id: 'dist100',     emoji: '⛵', label: '100 NM Segrare',    check: (_t: Trip[], d: number, _s: number) => d >= 100 },
-  { id: 'magic',       emoji: '✨', label: 'Magisk tur',        check: (t: Trip[], _d: number, _s: number) => t.some(x => x.pinnar_rating === 3) },
-  { id: 'explorer',    emoji: '🗺️', label: 'Kartläggaren',     check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 5 },
-  { id: 'boats',       emoji: '🚤', label: 'Multifarare',       check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.boat_type).filter(Boolean)).size >= 3 },
-  { id: 'streak3',     emoji: '🔥', label: 'Veckostrejk',       check: (_t: Trip[], _d: number, s: number) => s >= 3 },
-  { id: 'twenty',      emoji: '🏆', label: 'Havets Herre',      check: (t: Trip[], _d: number, _s: number) => t.length >= 20 },
-  { id: 'dist250',     emoji: '🌍', label: 'Oceansegrare',      check: (_t: Trip[], d: number, _s: number) => d >= 250 },
-  { id: 'dist500',     emoji: '🚀', label: 'Atlantfararen',     check: (_t: Trip[], d: number, _s: number) => d >= 500 },
-  { id: 'locs10',      emoji: '📍', label: 'Skärgårdsvandraren',check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 10 },
-  { id: 'locs25',      emoji: '🗾', label: 'Arkipelagos',       check: (t: Trip[], _d: number, _s: number) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 25 },
-  { id: 'magic3',      emoji: '🌟', label: 'Magikern',          check: (t: Trip[], _d: number, _s: number) => t.filter(x => x.pinnar_rating === 3).length >= 3 },
-  { id: 'streak8',     emoji: '⚡', label: 'Veckokrigaren',     check: (_t: Trip[], _d: number, s: number) => s >= 8 },
-  { id: 'earlybird',   emoji: '🌅', label: 'Gryningsseglaren',  check: (t: Trip[]) => t.some(x => x.started_at && new Date(x.started_at).getHours() < 7) },
-  { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',      check: (t: Trip[]) => t.some(x => x.ended_at && new Date(x.ended_at).getHours() >= 22) },
-  { id: 'speed15',     emoji: '💨', label: 'Vindridaren',       check: (t: Trip[]) => t.some((x: Trip & { max_speed_knots?: number }) => (x.max_speed_knots ?? 0) >= 15) },
-  { id: 'fifty_trips', emoji: '👑', label: 'Skärgårdskungen',   check: (t: Trip[], _d: number, _s: number) => t.length >= 50 },
-]
-
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
   const { username } = await params
   return {
@@ -69,32 +48,6 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
     description: `Se ${username}s seglarturer i skärgården på Svalla.`,
     openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${username}` },
   }
-}
-
-function getISOWeek(d: Date): string {
-  const jan1 = new Date(d.getFullYear(), 0, 1)
-  const week = Math.ceil((((d.getTime() - jan1.getTime()) / 86400000) + jan1.getDay() + 1) / 7)
-  return `${d.getFullYear()}-W${week.toString().padStart(2, '0')}`
-}
-
-function calcStreak(trips: Trip[]): number {
-  if (!trips.length) return 0
-  const weeks = new Set(trips.map(t => getISOWeek(new Date(t.created_at))))
-  const sorted = [...weeks].sort((a, b) => b.localeCompare(a))
-  const now = new Date()
-  const currentWeek = getISOWeek(now)
-  const prevWeek = getISOWeek(new Date(now.getTime() - 7 * 86400000))
-  if (!weeks.has(currentWeek) && !weeks.has(prevWeek)) return 0
-  let streak = 0
-  let check = weeks.has(currentWeek) ? currentWeek : prevWeek
-  for (const week of sorted) {
-    if (week === check) {
-      streak++
-      const [yr, wk] = check.split('-W').map(Number)
-      check = getISOWeek(new Date(yr, 0, 1 + (wk - 1) * 7 - 7))
-    } else break
-  }
-  return streak
 }
 
 export default async function PublicProfilePage({ params }: { params: Promise<{ username: string }> }) {
@@ -134,28 +87,49 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
   const streak      = calcStreak(trips)
   const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
   const magicCount  = trips.filter(t => t.pinnar_rating === 3).length
-  const unlockedAch = ACHIEVEMENTS.filter(a => a.check(trips, totalDist, streak))
+  const unlockedAch = computeUnlocked(trips, streak)
+
+  // ── Månadsstatistik — senaste 6 månader med minst 1 tur ──────────────────────
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
+  type MonthStat = {
+    key:     string   // "2025-04"
+    label:   string   // "Apr 2025"
+    count:   number
+    dist:    number
+    magic:   number
+    bestLoc: string | null
+  }
+  const monthMap: Record<string, MonthStat> = {}
+  for (const t of trips) {
+    const d = new Date(t.created_at)
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+    if (!monthMap[key]) {
+      monthMap[key] = { key, label: `${MONTH_NAMES[d.getMonth()]} ${d.getFullYear()}`, count: 0, dist: 0, magic: 0, bestLoc: null }
+    }
+    const m = monthMap[key]
+    m.count++
+    m.dist += t.distance ?? 0
+    if (t.pinnar_rating === 3) m.magic++
+    if (!m.bestLoc && t.location_name) m.bestLoc = t.location_name
+  }
+  const monthStats = Object.values(monthMap)
+    .sort((a, b) => b.key.localeCompare(a.key))
+    .slice(0, 6)
+    .reverse() // chronological for display
 
   return (
     <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
 
       {/* ── Header ── */}
       <header style={{
-        display: 'flex', alignItems: 'center', padding: '12px 16px',
+        display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
         background: 'rgba(250,254,255,0.96)',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <Link href="/feed" style={{
-          width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </Link>
-        <h1 style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82', margin: '0 0 0 12px' }}>{userRow.username}</h1>
+        <BackButtonInline fallback="/feed" />
+        <h1 style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82', margin: 0 }}>{userRow.username}</h1>
       </header>
 
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '14px 14px' }}>
@@ -185,14 +159,10 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', lineHeight: 1.1 }}>{userRow.username}</div>
-              {/* Followers / following */}
+              {/* Followers / following — tappable to open list */}
               <div style={{ display: 'flex', gap: 14, marginTop: 3, marginBottom: 4 }}>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>
-                  <strong style={{ color: '#fff', fontWeight: 900 }}>{followersCount ?? 0}</strong> följare
-                </span>
-                <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>
-                  <strong style={{ color: '#fff', fontWeight: 900 }}>{followingCount ?? 0}</strong> följer
-                </span>
+                <FollowListButton userId={userRow.id} mode="followers" count={followersCount ?? 0} />
+                <FollowListButton userId={userRow.id} mode="following" count={followingCount ?? 0} />
               </div>
               <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', display: 'flex', flexWrap: 'wrap', gap: '4px 10px' }}>
                 {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -268,6 +238,79 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             <FollowButton targetUserId={userRow.id} darkBg />
           </div>
         </div>
+
+        {/* ── Månadsstatistik ── */}
+        {monthStats.length > 0 && (
+          <div style={{ background: '#fff', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
+            <h3 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
+              📅 Aktivitet per månad
+            </h3>
+            {/* Bar chart */}
+            <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 64, marginBottom: 8 }}>
+              {(() => {
+                const maxCount = Math.max(...monthStats.map(m => m.count), 1)
+                return monthStats.map(m => (
+                  <div key={m.key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, height: '100%', justifyContent: 'flex-end' }}>
+                    <span style={{ fontSize: 9, fontWeight: 800, color: '#1e5c82' }}>
+                      {m.count}
+                    </span>
+                    <div style={{
+                      width: '100%', borderRadius: '4px 4px 0 0',
+                      background: m.magic > 0
+                        ? 'linear-gradient(to top,#1e5c82,#c96e2a)'
+                        : 'linear-gradient(to top,#2d7d8a,#1e5c82)',
+                      height: `${Math.max(8, (m.count / maxCount) * 44)}px`,
+                      transition: 'height .4s ease',
+                    }} />
+                  </div>
+                ))
+              })()}
+            </div>
+            {/* Month labels */}
+            <div style={{ display: 'flex', gap: 6 }}>
+              {monthStats.map(m => (
+                <div key={m.key} style={{ flex: 1, textAlign: 'center', fontSize: 9, fontWeight: 700, color: '#a0bec8' }}>
+                  {m.label.split(' ')[0]}
+                </div>
+              ))}
+            </div>
+            {/* Summary row for last month */}
+            {monthStats.length > 0 && (() => {
+              const latest = monthStats[monthStats.length - 1]
+              return latest.count > 0 ? (
+                <div style={{
+                  marginTop: 14, padding: '10px 14px', borderRadius: 14,
+                  background: 'rgba(10,123,140,0.05)',
+                  border: '1px solid rgba(10,123,140,0.09)',
+                  display: 'flex', gap: 16, flexWrap: 'wrap',
+                }}>
+                  <div>
+                    <div style={{ fontSize: 9, fontWeight: 700, color: '#a0bec8', textTransform: 'uppercase', letterSpacing: '0.4px' }}>{latest.label}</div>
+                    <div style={{ fontSize: 13, fontWeight: 900, color: '#1e5c82', marginTop: 1 }}>{latest.count} {latest.count === 1 ? 'tur' : 'turer'}</div>
+                  </div>
+                  {latest.dist > 0 && (
+                    <div>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: '#a0bec8', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Distans</div>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: '#1e5c82', marginTop: 1 }}>{latest.dist.toFixed(0)} NM</div>
+                    </div>
+                  )}
+                  {latest.magic > 0 && (
+                    <div>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: '#a0bec8', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Magiska</div>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: '#c96e2a', marginTop: 1 }}>⚓⚓⚓ ×{latest.magic}</div>
+                    </div>
+                  )}
+                  {latest.bestLoc && (
+                    <div>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: '#a0bec8', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Bästa plats</div>
+                      <div style={{ fontSize: 13, fontWeight: 900, color: '#1e5c82', marginTop: 1 }}>📍 {latest.bestLoc}</div>
+                    </div>
+                  )}
+                </div>
+              ) : null
+            })()}
+          </div>
+        )}
 
         {/* ── Besökta öar ── */}
         {visitedSlugs.length > 0 && (
