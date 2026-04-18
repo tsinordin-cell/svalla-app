@@ -114,15 +114,16 @@ export default function LikeButton({
       aria-pressed={liked}
       disabled={!userId}
       style={{
-        display: 'flex', alignItems: 'center', gap: 5,
-        padding: '6px 12px', borderRadius: 20, border: 'none',
-        background: liked ? 'rgba(201,110,42,0.12)' : 'rgba(10,123,140,0.06)',
-        color: liked ? 'var(--acc)' : 'var(--txt3)',
-        fontSize: 13, fontWeight: 600,
+        display: 'flex', alignItems: 'center', gap: 6,
+        padding: '9px 16px', borderRadius: 22, border: 'none',
+        background: liked ? 'rgba(201,110,42,0.13)' : 'rgba(10,123,140,0.07)',
+        color: liked ? '#c96e2a' : 'var(--txt2)',
+        fontSize: 14, fontWeight: 700,
         cursor: userId && !loading ? 'pointer' : 'default',
-        opacity: loading ? 0.7 : 1,
-        transition: 'all .15s',
+        opacity: loading ? 0.6 : 1,
+        transition: 'background .15s, color .15s',
         WebkitTapHighlightColor: 'transparent',
+        minHeight: 42,
       }}
     >
       <svg
@@ -131,15 +132,16 @@ export default function LikeButton({
         stroke="currentColor"
         strokeWidth={2}
         style={{
-          width: 16, height: 16,
-          transform: animate ? 'scale(1.35)' : 'scale(1)',
+          width: 19, height: 19,
+          transform: animate ? 'scale(1.4)' : 'scale(1)',
           transition: 'transform 0.25s cubic-bezier(0.36, 0.07, 0.19, 0.97)',
+          flexShrink: 0,
         }}
       >
         <path strokeLinecap="round" strokeLinejoin="round"
           d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
-      {count > 0 && <span>{count}</span>}
+      <span>{count > 0 ? count : 'Gilla'}</span>
     </button>
   )
 }
