@@ -4,10 +4,8 @@ import { notFound } from 'next/navigation'
 import { ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import { createClient } from '@/lib/supabase'
-import dynamic from 'next/dynamic'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
-
-const IslandWeather = dynamic(() => import('@/components/IslandWeather'), { ssr: false, loading: () => null })
+import IslandWeatherClient from '@/components/IslandWeatherClient'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -122,7 +120,7 @@ export default async function IslandPage({ params }: Props) {
               )}
               {/* Live väder — kräver koordinater */}
               {ISLAND_COORD_MAP[island.slug] && (
-                <IslandWeather
+                <IslandWeatherClient
                   lat={ISLAND_COORD_MAP[island.slug].lat}
                   lng={ISLAND_COORD_MAP[island.slug].lng}
                   islandName={island.name}

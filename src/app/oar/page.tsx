@@ -124,16 +124,13 @@ export default function OarPage() {
         display: 'flex', gap: 0, overflowX: 'auto', scrollbarWidth: 'none',
       }}>
         {SECTIONS.map(s => (
-          <a key={s.id} href={`#${s.id}`} style={{
+          <a key={s.id} href={`#${s.id}`} className="oar-tab" style={{
             flexShrink: 0, padding: '14px 16px',
             fontSize: 13, fontWeight: 600,
             color: s.color, textDecoration: 'none',
             borderBottom: `2px solid transparent`,
-            transition: '.15s',
-          }}
-          onMouseOver={e => (e.currentTarget.style.borderBottomColor = s.color)}
-          onMouseOut={e => (e.currentTarget.style.borderBottomColor = 'transparent')}
-          >
+            transition: 'border-bottom-color .15s',
+          }}>
             {s.emoji} {s.label}
           </a>
         ))}
@@ -177,25 +174,15 @@ export default function OarPage() {
               }}>
                 {islands.map(island => (
                   <Link key={island.slug} href={`/o/${island.slug}`} style={{ textDecoration: 'none' }}>
-                    <article style={{
+                    <article className="oar-card" style={{
                       background: '#fff',
                       borderRadius: 16,
                       border: '1.5px solid rgba(10,123,140,.08)',
                       padding: '16px 18px',
                       display: 'flex', alignItems: 'flex-start', gap: 14,
-                      transition: 'transform .15s, box-shadow .15s',
                       boxShadow: '0 1px 4px rgba(0,45,60,.05)',
                       cursor: 'pointer',
-                    }}
-                    onMouseOver={e => {
-                      e.currentTarget.style.transform = 'translateY(-2px)'
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,45,60,.12)'
-                    }}
-                    onMouseOut={e => {
-                      e.currentTarget.style.transform = 'translateY(0)'
-                      e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,45,60,.05)'
-                    }}
-                    >
+                    }}>
                       {/* Emoji */}
                       <div style={{
                         flexShrink: 0, width: 44, height: 44,
@@ -243,6 +230,11 @@ export default function OarPage() {
         })}
       </div>
 
+      <style>{`
+        .oar-tab:hover { border-bottom-color: currentColor !important; }
+        .oar-card { transition: transform .15s, box-shadow .15s; }
+        .oar-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,45,60,.12) !important; }
+      `}</style>
     </div>
   )
 }
