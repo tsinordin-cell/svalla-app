@@ -41,24 +41,42 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         maxZoom: 18,
       }).addTo(map)
 
-      const latlngs = waypoints.map(w => [w.lat, w.lng] as [number, number])
+      // ── Validate waypoints — skip outliers outside Stockholm archipelago ──
+      const ARCHIPELAGO_BOUNDS = { minLat: 58.5, maxLat: 60.5, minLng: 17.0, maxLng: 20.5 }
+      const validLatlngs = waypoints
+        .filter(w =>
+          w.lat >= ARCHIPELAGO_BOUNDS.minLat && w.lat <= ARCHIPELAGO_BOUNDS.maxLat &&
+          w.lng >= ARCHIPELAGO_BOUNDS.minLng && w.lng <= ARCHIPELAGO_BOUNDS.maxLng
+        )
+        .map(w => [w.lat, w.lng] as [number, number])
 
-      // ── Route line (default: blå solid) ──────────────────────────────────
+      const latlngs = validLatlngs.length >= 2 ? validLatlngs : waypoints.map(w => [w.lat, w.lng] as [number, number])
+
+      // ── Route line — dashed to indicate planned/approximate route ──────
       const polyline = L.polyline(latlngs, {
         color: '#1e5c82',
-        weight: 4,
-        opacity: 0.85,
+        weight: 3,
+        opacity: 0.7,
         lineJoin: 'round',
         lineCap: 'round',
+        dashArray: '8, 6',
       }).addTo(map)
       polylineRef.current = polyline
 
+      // Shadow line for depth
+      L.polyline(latlngs, {
+        color: 'rgba(30,92,130,0.15)',
+        weight: 7,
+        lineJoin: 'round',
+        lineCap: 'round',
+      }).addTo(map)
+
       // Click route → highlight + fitBounds
       polyline.on('click', () => {
-        polyline.setStyle({ color: '#c96e2a', weight: 5, opacity: 1 })
+        polyline.setStyle({ color: '#c96e2a', weight: 4, opacity: 1, dashArray: '10, 5' })
         map.fitBounds(bounds, { padding: [24, 24], animate: true, duration: 0.5 })
         setTimeout(() => {
-          polyline.setStyle({ color: '#1e5c82', weight: 4, opacity: 0.85 })
+          polyline.setStyle({ color: '#1e5c82', weight: 3, opacity: 0.7, dashArray: '8, 6' })
         }, 1800)
       })
 
@@ -190,8 +208,10 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         display: 'flex', alignItems: 'center', gap: 6,
         pointerEvents: 'none',
       }}>
-        <span style={{ width: 20, height: 3, background: '#1e5c82', borderRadius: 2, display: 'inline-block' }} />
-        Klicka på rutten för att zooma
+        <svg viewBox="0 0 20 4" style={{ width: 20, height: 4 }}>
+          <line x1="0" y1="2" x2="20" y2="2" stroke="#1e5c82" strokeWidth="2.5" strokeDasharray="5,4" />
+        </svg>
+        Ungefärlig sträckning
       </div>
 
       {/* Stop-lista (klickbar legend) */}

@@ -26,12 +26,14 @@ export default function LiveTrackMap({
   heading = null,
   stops = [],
 }: LiveTrackMapProps) {
-  const mapContainer = useRef<HTMLDivElement>(null)
-  const mapInstance  = useRef<any>(null)
-  const polylineRef  = useRef<any>(null)
-  const markerRef    = useRef<any>(null)
+  const mapContainer   = useRef<HTMLDivElement>(null)
+  const mapInstance    = useRef<any>(null)
+  const polylineRef    = useRef<any>(null)
+  const markerRef      = useRef<any>(null)
   const stopMarkersRef = useRef<any[]>([])
-  const LRef         = useRef<any>(null)
+  const LRef           = useRef<any>(null)
+  const userPannedRef  = useRef(false)   // true when user manually panned — pause auto-follow
+  const followTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // ── Init map once ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -51,8 +53,9 @@ export default function LiveTrackMap({
       if (mapInstance.current || !mapContainer.current) return
 
       mapInstance.current = L.map(mapContainer.current, {
-        zoomControl: false,
+        zoomControl: true,
         attributionControl: false,
+        scrollWheelZoom: false,   // prevent accidental zoom on scroll
       }).setView([59.3293, 18.0686], 13)
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -66,13 +69,14 @@ export default function LiveTrackMap({
         maxZoom: 18,
       }).addTo(mapInstance.current)
 
-      // Disable all interaction — this is a read-only tracker view
-      mapInstance.current.dragging.disable()
-      mapInstance.current.touchZoom.disable()
-      mapInstance.current.doubleClickZoom.disable()
-      mapInstance.current.scrollWheelZoom.disable()
-      mapInstance.current.boxZoom.disable()
-      mapInstance.current.keyboard.disable()
+      // When user manually pans, pause auto-follow for 8 seconds
+      mapInstance.current.on('dragstart', () => {
+        userPannedRef.current = true
+        if (followTimerRef.current) clearTimeout(followTimerRef.current)
+        followTimerRef.current = setTimeout(() => {
+          userPannedRef.current = false
+        }, 8000)
+      })
 
       setTimeout(() => mapInstance.current?.invalidateSize(), 100)
     }
@@ -167,7 +171,10 @@ export default function LiveTrackMap({
       })
 
       markerRef.current = L.marker([currentPos.lat, currentPos.lng], { icon: pulseIcon }).addTo(map)
-      map.setView([currentPos.lat, currentPos.lng], 13, { animate: true, duration: 0.8 })
+      // Only auto-follow if user hasn't manually panned
+      if (!userPannedRef.current) {
+        map.setView([currentPos.lat, currentPos.lng], map.getZoom(), { animate: true, duration: 0.8 })
+      }
     }
   }, [currentPos, bearing, heading])
 
@@ -202,6 +209,12 @@ export default function LiveTrackMap({
       stopMarkersRef.current.push(m)
     })
   }, [stops])
+
+  function recenter() {
+    if (!mapInstance.current || !currentPos) return
+    userPannedRef.current = false
+    mapInstance.current.setView([currentPos.lat, currentPos.lng], 14, { animate: true, duration: 0.6 })
+  }
 
   return (
     <div style={{ position: 'relative', width: '100%', marginBottom: 12 }}>
@@ -261,6 +274,30 @@ export default function LiveTrackMap({
         }} />
         LIVE
       </div>
+
+      {/* Re-center button — shown when user has panned */}
+      {currentPos && (
+        <button
+          onClick={recenter}
+          title="Centrera på min position"
+          style={{
+            position: 'absolute', top: 12, left: 12,
+            background: 'rgba(250,254,255,0.95)',
+            backdropFilter: 'blur(8px)',
+            border: 'none', cursor: 'pointer',
+            borderRadius: 18, padding: '5px 11px',
+            display: 'flex', alignItems: 'center', gap: 5,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+            fontSize: 11, fontWeight: 800, color: '#1e5c82',
+            zIndex: 10,
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 14, height: 14 }}>
+            <circle cx="12" cy="12" r="3" /><path strokeLinecap="round" d="M12 2v3m0 14v3M2 12h3m14 0h3" />
+          </svg>
+          Centrera
+        </button>
+      )}
 
       <style>{`
         @keyframes pulse-dot-live {

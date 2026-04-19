@@ -1,8 +1,9 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
@@ -27,8 +28,16 @@ const boatEmoji: Record<string, string> = {
 
 export default function TripCard({ trip }: { trip: Trip }) {
   const router = useRouter()
-  const [imgErr, setImgErr] = useState(false)
+  const [imgErr,   setImgErr]   = useState(false)
   const [expanded, setExpanded] = useState(false)
+  const [isOwner,  setIsOwner]  = useState(false)
+
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsOwner(!!user && user.id === trip.user_id)
+    })
+  }, [trip.user_id])
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
@@ -117,6 +126,25 @@ export default function TripCard({ trip }: { trip: Trip }) {
             borderRadius: 20, padding: '4px 9px',
             fontSize: 11, fontWeight: 800, color: '#c96e2a',
           }}>⚓⚓⚓</div>
+        )}
+
+        {/* Owner edit shortcut */}
+        {isOwner && (
+          <Link
+            href={`/tur/${trip.id}`}
+            onClick={e => e.stopPropagation()}
+            title="Redigera tur"
+            style={{
+              flexShrink: 0, width: 32, height: 32, borderRadius: '50%',
+              background: 'rgba(10,123,140,0.07)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              textDecoration: 'none',
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 16, height: 16, color: '#7a9dab' }}>
+              <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+            </svg>
+          </Link>
         )}
       </div>
 
