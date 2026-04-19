@@ -758,47 +758,50 @@ export default function SparaPage() {
   // ── TRACKING / PAUSED ──────────────────────────────────────────────────────
   if (phase === 'tracking' || phase === 'paused') {
     const mv = movementMeta(movementState)
-    return (
-      <div style={{ minHeight: '100vh', background: '#0a1a2a', display: 'flex', flexDirection: 'column', color: '#fff' }}>
+    const isTracking = phase === 'tracking'
 
-        {/* ── Full-bleed map with overlaid badges ── */}
+    return (
+      <div className="svt" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--t-bg)' }}>
+
+        {/* ── Map ── */}
         <div style={{ position: 'relative', width: '100%', flexShrink: 0 }}>
-          <LiveTrackMap
-            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
-            currentPos={currentPos}
-            speed={currentSpeed}
-            bearing={bearing}
-            heading={points.length > 0 ? (points[points.length - 1].heading) : null}
-            stops={stops.filter(s => s.type === 'stop').map(s => ({
-              lat: s.lat, lng: s.lng, type: s.type,
-              durationSeconds: s.durationSeconds,
-            }))}
-            height={300}
-          />
-          {/* Gradient fade at bottom — blends map into dark bg */}
+          {/* Wrapper controls rounded corners via CSS var */}
+          <div style={{ overflow: 'hidden', borderRadius: 'var(--t-map-radius)', margin: 'var(--t-map-margin)' }}>
+            <LiveTrackMap
+              points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+              currentPos={currentPos}
+              speed={currentSpeed}
+              bearing={bearing}
+              heading={points.length > 0 ? points[points.length - 1].heading : null}
+              stops={stops.filter(s => s.type === 'stop').map(s => ({
+                lat: s.lat, lng: s.lng, type: s.type,
+                durationSeconds: s.durationSeconds,
+              }))}
+              height={300}
+            />
+          </div>
+          {/* Bottom gradient — transparent in light mode, blends into dark bg in dark mode */}
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0, height: 72,
-            background: 'linear-gradient(to bottom, transparent, #0a1a2a)',
+            background: 'linear-gradient(to bottom, transparent, var(--t-map-fade))',
             pointerEvents: 'none', zIndex: 5,
           }} />
-
-          {/* Movement state — overlaid top-left */}
+          {/* Movement state badge */}
           <div style={{
-            position: 'absolute', top: 12, left: 12, zIndex: 15,
+            position: 'absolute', top: 12, left: 'calc(12px + var(--t-map-offset))', zIndex: 15,
             display: 'inline-flex', alignItems: 'center', gap: 6,
-            background: 'rgba(10,22,38,0.78)', backdropFilter: 'blur(10px)',
+            background: 'var(--t-move-bg)', backdropFilter: 'var(--t-move-blur)', WebkitBackdropFilter: 'var(--t-move-blur)',
             borderRadius: 20, padding: '6px 13px',
             border: `1px solid ${mv.color}40`,
           }}>
             <span style={{ fontSize: 12, fontWeight: 800, color: mv.color }}>{mv.label}</span>
-            {phase === 'tracking' && currentSpeed > 0.3 && (
+            {isTracking && currentSpeed > 0.3 && (
               <span style={{ fontSize: 11, color: mv.color, opacity: .65, fontWeight: 600 }}>
                 · {currentSpeed.toFixed(1)} kn
               </span>
             )}
           </div>
-
-          {/* Offline — overlaid top-center */}
+          {/* Offline badge */}
           {!isOnline && (
             <div style={{
               position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', zIndex: 15,
@@ -819,16 +822,19 @@ export default function SparaPage() {
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
               padding: '5px 16px', borderRadius: 20,
-              background: phase === 'tracking' ? 'rgba(15,158,100,.15)' : 'rgba(201,110,42,.15)',
-              border: `1px solid ${phase === 'tracking' ? 'rgba(15,158,100,.3)' : 'rgba(201,110,42,.35)'}`,
+              background: isTracking ? 'var(--t-status-t-bg)' : 'var(--t-status-p-bg)',
+              border: `1px solid ${isTracking ? 'var(--t-status-t-bd)' : 'var(--t-status-p-bd)'}`,
             }}>
               <span style={{
                 width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
-                background: phase === 'tracking' ? '#0f9e64' : '#c96e2a',
-                animation: phase === 'tracking' ? 'pulse-status 1.5s ease-in-out infinite' : 'none',
+                background: isTracking ? '#0f9e64' : '#c96e2a',
+                animation: isTracking ? 'pulse-status 1.5s ease-in-out infinite' : 'none',
               }} />
-              <span style={{ fontSize: 11, fontWeight: 800, color: phase === 'tracking' ? '#0f9e64' : '#c96e2a', letterSpacing: '.5px', textTransform: 'uppercase' }}>
-                {phase === 'tracking' ? 'Spårar' : 'Pausad'}
+              <span style={{
+                fontSize: 11, fontWeight: 800, letterSpacing: '.5px', textTransform: 'uppercase' as const,
+                color: isTracking ? 'var(--t-status-t-txt)' : 'var(--t-status-p-txt)',
+              }}>
+                {isTracking ? 'Spårar' : 'Pausad'}
               </span>
             </div>
           </div>
@@ -837,50 +843,50 @@ export default function SparaPage() {
           {flashInsight && (
             <div style={{
               marginBottom: 8,
-              background: 'rgba(30,92,130,.2)', border: '1px solid rgba(30,92,130,.35)',
+              background: 'var(--t-insight-bg)', border: '1px solid var(--t-insight-bd)',
               borderRadius: 14, padding: '10px 16px',
               display: 'flex', alignItems: 'center', gap: 10,
               animation: 'fadeIn .3s ease',
             }}>
               <span style={{ fontSize: 20 }}>{flashInsight.emoji}</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,.85)' }}>{flashInsight.text}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--t-insight-txt)' }}>{flashInsight.text}</span>
             </div>
           )}
 
-          {/* ── Big timer ── */}
+          {/* Big timer */}
           <div style={{ textAlign: 'center', margin: '6px 0 18px' }}>
             <div style={{
-              fontSize: 76, fontWeight: 900, color: '#fff',
-              fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-3px',
+              fontSize: 'var(--t-timer-sz)', fontWeight: 900, color: 'var(--t-timer)',
+              fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: 'var(--t-timer-ls)',
             }}>
               {formatDuration(elapsed)}
             </div>
-            <div style={{ fontSize: 9, color: 'rgba(255,255,255,.3)', marginTop: 5, textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>
+            <div style={{ fontSize: 9, color: 'var(--t-timer-sub)', marginTop: 5, textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>
               TID
             </div>
           </div>
 
-          {/* ── Stats — 4 in a row ── */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 10 }}>
-            <DarkStatBox val={dist.toFixed(2)}         unit="NM" label="Distans"  />
-            <DarkStatBox val={currentSpeed.toFixed(1)} unit="kn" label="Nu"       />
-            <DarkStatBox val={avgSpd.toFixed(1)}       unit="kn" label="Snitt"    />
-            <DarkStatBox val={maxSpd.toFixed(1)}       unit="kn" label="Max"      />
+          {/* Stats grid — 2 cols in light, 4 cols in dark (via CSS) */}
+          <div className="svt-stats" style={{ display: 'grid', gap: 8, marginBottom: 10 }}>
+            <TrackStatBox val={dist.toFixed(2)}         unit="NM" label="Distans" />
+            <TrackStatBox val={currentSpeed.toFixed(1)} unit="kn" label="Nu"      />
+            <TrackStatBox val={avgSpd.toFixed(1)}       unit="kn" label="Snitt"   />
+            <TrackStatBox val={maxSpd.toFixed(1)}       unit="kn" label="Max"     />
           </div>
 
-          {/* Bearing + meta row */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 4 }}>
+          {/* Meta row */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginBottom: 4 }}>
             {bearing !== null && currentSpeed > 0.5 && (
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', fontWeight: 600 }}>
+              <span style={{ fontSize: 11, color: 'var(--t-meta)', fontWeight: 600 }}>
                 ↑ {bearingLabel(bearing)} {Math.round(bearing)}°
               </span>
             )}
-            <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', fontWeight: 500 }}>
+            <span style={{ fontSize: 11, color: 'var(--t-meta)', fontWeight: 500 }}>
               {points.length} pts · {stops.filter(s => s.type === 'stop').length} stopp
             </span>
             {anomalyCount > 0 && (
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', fontWeight: 500 }}>
-                🔍 {anomalyCount} anomali{anomalyCount === 1 ? '' : 'er'}
+              <span style={{ fontSize: 11, color: 'var(--t-meta)', fontWeight: 500 }}>
+                🔍 {anomalyCount}
               </span>
             )}
           </div>
@@ -889,9 +895,9 @@ export default function SparaPage() {
           {gpsError && (
             <div style={{
               padding: '10px 14px', borderRadius: 12, marginTop: 8,
-              background: gpsError.startsWith('Söker') ? 'rgba(30,92,130,.2)' : 'rgba(220,38,38,.15)',
-              border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(30,92,130,.4)' : 'rgba(220,38,38,.3)'}`,
-              color: gpsError.startsWith('Söker') ? '#4db8d4' : '#f87171',
+              background: gpsError.startsWith('Söker') ? 'rgba(30,92,130,.1)' : 'rgba(220,38,38,.08)',
+              border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(30,92,130,.25)' : 'rgba(220,38,38,.22)'}`,
+              color: gpsError.startsWith('Söker') ? '#1e5c82' : '#dc2626',
               fontSize: 13, fontWeight: 600, textAlign: 'center',
             }}>
               {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
@@ -899,19 +905,20 @@ export default function SparaPage() {
           )}
         </div>
 
-        {/* ── Sticky controls bar ── */}
+        {/* ── Controls bar ── */}
         <div style={{
           padding: '14px 20px',
           paddingBottom: 'calc(env(safe-area-inset-bottom,0px) + var(--nav-h,64px) + 14px)',
-          background: 'rgba(8,16,28,0.98)',
-          backdropFilter: 'blur(16px)',
-          borderTop: '1px solid rgba(255,255,255,.07)',
+          background: 'var(--t-bar-bg)',
+          backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+          borderTop: '1px solid var(--t-bar-bd)',
           display: 'flex', flexDirection: 'column', gap: 10,
         }}>
-          {phase === 'tracking' ? (
+          {isTracking ? (
             <button onClick={handlePause} style={{
-              width: '100%', padding: '18px', borderRadius: 22, border: '1.5px solid rgba(201,110,42,.5)',
-              background: 'rgba(201,110,42,.16)', color: '#e07828',
+              width: '100%', padding: '18px', borderRadius: 22,
+              border: '1.5px solid var(--t-pause-bd)',
+              background: 'var(--t-pause-bg)', color: 'var(--t-pause-txt)',
               fontWeight: 900, fontSize: 18, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             }}>
@@ -928,14 +935,17 @@ export default function SparaPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               boxShadow: '0 4px 24px rgba(15,158,100,.4)',
             }}>
-              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}><path d="M8 5v14l11-7z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}>
+                <path d="M8 5v14l11-7z"/>
+              </svg>
               Fortsätt
             </button>
           )}
           <button onClick={handleStop} style={{
             width: '100%', padding: '15px', borderRadius: 22,
-            background: 'rgba(204,61,61,.14)', color: '#f87171',
-            border: '1.5px solid rgba(204,61,61,.3)',
+            background: 'var(--t-stop-bg)', color: 'var(--t-stop-txt)',
+            border: '1.5px solid var(--t-stop-bd)',
+            boxShadow: 'var(--t-stop-sh)',
             fontWeight: 700, fontSize: 15, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           }}>
@@ -947,6 +957,98 @@ export default function SparaPage() {
         </div>
 
         <style>{`
+          /* ── Light mode (default) ── */
+          .svt {
+            --t-bg: #f5f9fc;
+            --t-map-radius: 20px;
+            --t-map-margin: 0 16px;
+            --t-map-offset: 0px;
+            --t-map-fade: transparent;
+            --t-move-bg: rgba(240,247,250,.92);
+            --t-move-blur: blur(8px);
+            --t-timer-sz: 60px;
+            --t-timer: #1e5c82;
+            --t-timer-sub: #9ab8c7;
+            --t-timer-ls: -1px;
+            --t-stat-bg: #ffffff;
+            --t-stat-bd: rgba(10,123,140,.07);
+            --t-stat-val: #162d3a;
+            --t-stat-val-sz: 22px;
+            --t-stat-sub: rgba(90,128,144,.65);
+            --t-meta: rgba(90,128,144,.6);
+            --t-bar-bg: rgba(235,243,248,.97);
+            --t-bar-bd: rgba(30,92,130,.1);
+            --t-insight-bg: rgba(30,92,130,.08);
+            --t-insight-bd: rgba(30,92,130,.15);
+            --t-insight-txt: #1e5c82;
+            --t-pause-bg: rgba(201,110,42,.12);
+            --t-pause-bd: rgba(201,110,42,.3);
+            --t-pause-txt: #c96e2a;
+            --t-stop-bg: linear-gradient(135deg,#cc3d3d,#b02f2f);
+            --t-stop-bd: transparent;
+            --t-stop-txt: #ffffff;
+            --t-stop-sh: 0 4px 16px rgba(204,61,61,.28);
+            --t-status-t-bg: rgba(15,158,100,.1);
+            --t-status-p-bg: rgba(201,110,42,.1);
+            --t-status-t-bd: rgba(15,158,100,.25);
+            --t-status-p-bd: rgba(201,110,42,.25);
+            --t-status-t-txt: #0f9e64;
+            --t-status-p-txt: #c96e2a;
+          }
+          /* ── Dark mode overrides ── */
+          @media (prefers-color-scheme: dark) {
+            .svt {
+              --t-bg: #0a1a2a;
+              --t-map-radius: 0px;
+              --t-map-margin: 0;
+              --t-map-offset: -4px;
+              --t-map-fade: #0a1a2a;
+              --t-move-bg: rgba(10,22,38,.78);
+              --t-move-blur: blur(10px);
+              --t-timer-sz: 76px;
+              --t-timer: #ffffff;
+              --t-timer-sub: rgba(255,255,255,.3);
+              --t-timer-ls: -3px;
+              --t-stat-bg: rgba(255,255,255,.07);
+              --t-stat-bd: rgba(255,255,255,.07);
+              --t-stat-val: #ffffff;
+              --t-stat-val-sz: 20px;
+              --t-stat-sub: rgba(255,255,255,.35);
+              --t-meta: rgba(255,255,255,.22);
+              --t-bar-bg: rgba(8,16,28,.98);
+              --t-bar-bd: rgba(255,255,255,.07);
+              --t-insight-bg: rgba(30,92,130,.2);
+              --t-insight-bd: rgba(30,92,130,.35);
+              --t-insight-txt: rgba(255,255,255,.85);
+              --t-pause-bg: rgba(201,110,42,.16);
+              --t-pause-bd: rgba(201,110,42,.5);
+              --t-pause-txt: #e07828;
+              --t-stop-bg: rgba(204,61,61,.14);
+              --t-stop-bd: rgba(204,61,61,.3);
+              --t-stop-txt: #f87171;
+              --t-stop-sh: none;
+              --t-status-t-bg: rgba(15,158,100,.15);
+              --t-status-p-bg: rgba(201,110,42,.15);
+              --t-status-t-bd: rgba(15,158,100,.3);
+              --t-status-p-bd: rgba(201,110,42,.35);
+              --t-status-t-txt: #0f9e64;
+              --t-status-p-txt: #c96e2a;
+            }
+          }
+          /* Stats: 2-col light, 4-col dark */
+          .svt-stats { grid-template-columns: repeat(2,1fr); }
+          @media (prefers-color-scheme: dark) {
+            .svt-stats { grid-template-columns: repeat(4,1fr); }
+          }
+          /* Stat card */
+          .track-stat {
+            background: var(--t-stat-bg);
+            border: 1px solid var(--t-stat-bd);
+            border-radius: 16px;
+            padding: 14px 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,30,50,.04);
+          }
           @keyframes pulse-status{0%,100%{opacity:1}50%{opacity:.35}}
           @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
         `}</style>
@@ -1248,17 +1350,13 @@ function StatBox({ val, unit, label }: { val: string; unit: string; label: strin
   )
 }
 
-function DarkStatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
+function TrackStatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
   return (
-    <div style={{
-      background: 'rgba(255,255,255,.07)', borderRadius: 14,
-      padding: '10px 4px', textAlign: 'center',
-      border: '1px solid rgba(255,255,255,.07)',
-    }}>
-      <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px' }}>
+    <div className="track-stat">
+      <div style={{ fontSize: 'var(--t-stat-val-sz)', fontWeight: 900, color: 'var(--t-stat-val)', lineHeight: 1, letterSpacing: '-0.5px' }}>
         {val}
       </div>
-      <div style={{ fontSize: 9, color: 'rgba(255,255,255,.35)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
+      <div style={{ fontSize: 9, color: 'var(--t-stat-sub)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
         {unit} · {label}
       </div>
     </div>
