@@ -413,3 +413,198 @@ img {
   -ms-overflow-style: none;
 }
 .filter-scroll::-webkit-scrollbar { display: none; }
+
+/* ── Critical text — invisible in dark mode (near-black on dark cards) ── */
+[data-theme="dark"] [style*="color: #0d2a3e"],
+[data-theme="dark"] [style*="color:#0d2a3e"] {
+  color: #d0e8f4 !important;
+}
+[data-theme="dark"] [style*="color: #0d2240"],
+[data-theme="dark"] [style*="color:#0d2240"] {
+  color: #d0e8f4 !important;
+}
+
+/* ── rgba(30,92,130) — missing opacity variants ── */
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.05)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.07)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.09)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.10)"],
+[data-theme="dark"] [style*="background: rgba(30,92,130,0.12)"] {
+  background: rgba(74, 184, 212, 0.08) !important;
+}
+
+/* ── Gradient tinted boxes (AI summary, route match, info panels) ── */
+[data-theme="dark"] [style*="background: linear-gradient(135deg, rgba(30,92,130,0.07)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg,rgba(30,92,130,0.07)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, rgba(30,92,130,0.05)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg,rgba(30,92,130,0.05)"] {
+  background: rgba(74, 184, 212, 0.07) !important;
+}
+[data-theme="dark"] [style*="background: linear-gradient(135deg,rgba(15,158,100,0.08)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, rgba(15,158,100,0.08)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg,rgba(15,158,100,0.06)"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, rgba(15,158,100,0.06)"] {
+  background: rgba(15, 158, 100, 0.10) !important;
+}
+
+/* ── borderLeft hardcoded sea-blue ── */
+[data-theme="dark"] [style*="borderLeft: '3px solid #1e5c82"],
+[data-theme="dark"] [style*="border-left: 3px solid #1e5c82"] {
+  border-left-color: rgba(74, 184, 212, 0.5) !important;
+}
+
+/* ── Borders with solid sea-blue ── */
+[data-theme="dark"] [style*="border: 1px solid #1e5c82"],
+[data-theme="dark"] [style*="border: 1.5px solid #1e5c82"],
+[data-theme="dark"] [style*="border: 2px solid #1e5c82"] {
+  border-color: rgba(74, 184, 212, 0.35) !important;
+}
+
+/* ── Dividers and subtle lines ── */
+[data-theme="dark"] [style*="border-bottom: 1px solid rgba(30,92,130"],
+[data-theme="dark"] [style*="border-top: 1px solid rgba(30,92,130"],
+[data-theme="dark"] [style*="border-bottom: 1px solid rgba(10,123,140"],
+[data-theme="dark"] [style*="border-top: 1px solid rgba(10,123,140"] {
+  border-color: rgba(74, 184, 212, 0.12) !important;
+}
+
+/* ── skeleton in dark mode ── */
+[data-theme="dark"] .skeleton {
+  background: rgba(74, 184, 212, 0.08) !important;
+}
+
+/* ══════════════════════════════════════════
+   TAILWIND CLASS OVERRIDES FOR DARK MODE
+   (inline-style selectors don't catch these)
+   ══════════════════════════════════════════ */
+
+/* ── bg-white → dark card ── */
+[data-theme="dark"] .bg-white {
+  background-color: var(--white, #0f1e2c) !important;
+}
+
+/* ── bg-white with opacity variants ── */
+[data-theme="dark"] .bg-white\/96,
+[data-theme="dark"] .bg-white\/90,
+[data-theme="dark"] .bg-white\/80 {
+  background-color: rgba(15, 30, 44, 0.96) !important;
+}
+
+/* ── bg-sea-xl (light sea tint) → subtle dark teal ── */
+[data-theme="dark"] .bg-sea-xl {
+  background-color: rgba(74, 184, 212, 0.07) !important;
+}
+
+/* ── text-sea-dark (#143f5c) → readable teal ── */
+[data-theme="dark"] .text-sea-dark {
+  color: #9abccc !important;
+}
+
+/* ── text-svalla-text (#192830) → light ── */
+[data-theme="dark"] .text-svalla-text {
+  color: var(--txt, #d8eaf4) !important;
+}
+
+/* ── shadow-sm in dark ── */
+[data-theme="dark"] .shadow-sm {
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+}
+
+/* ══════════════════════════════════════════
+   RUTTER PAGE — CATEGORY BADGES & CHIPS
+   ══════════════════════════════════════════ */
+
+/* Category badge: mat (orange) */
+[data-theme="dark"] [style*="background: #fff3e6"],
+[data-theme="dark"] [style*="background:#fff3e6"] {
+  background: rgba(232,146,74,0.14) !important;
+  color: #e0924a !important;
+}
+
+/* Category badge: aktiv (green) */
+[data-theme="dark"] [style*="background: #e6f7ef"],
+[data-theme="dark"] [style*="background:#e6f7ef"] {
+  background: rgba(15,158,100,0.12) !important;
+  color: #22c55e !important;
+}
+
+/* Category badge: premium (purple) */
+[data-theme="dark"] [style*="background: #f0e6ff"],
+[data-theme="dark"] [style*="background:#f0e6ff"] {
+  background: rgba(120,80,200,0.14) !important;
+  color: #c084fc !important;
+}
+
+/* Category badge: klassisk (blue) */
+[data-theme="dark"] [style*="background: #e6f0ff"],
+[data-theme="dark"] [style*="background:#e6f0ff"] {
+  background: rgba(74,144,212,0.14) !important;
+  color: #60a5fa !important;
+}
+
+/* Highlight chips (#f0f7fa) */
+[data-theme="dark"] [style*="background: #f0f7fa"],
+[data-theme="dark"] [style*="background:#f0f7fa"] {
+  background: rgba(74, 184, 212, 0.07) !important;
+  color: #8ab8cc !important;
+}
+
+/* ── #3a6070 text (rutter usp text) ── */
+[data-theme="dark"] [style*="color: #3a6070"],
+[data-theme="dark"] [style*="color:#3a6070"] {
+  color: #8ab8cc !important;
+}
+
+/* ── #2a6a8a text (rutter best_for tags) ── */
+[data-theme="dark"] [style*="color: #2a6a8a"],
+[data-theme="dark"] [style*="color:#2a6a8a"] {
+  color: #4ab8d4 !important;
+}
+
+/* ══════════════════════════════════════════
+   LOGGA PAGE — GRADIENT FIX
+   ══════════════════════════════════════════ */
+
+/* Gradient ending in #f7fbfc → keep dark all the way */
+[data-theme="dark"] [style*="background: linear-gradient(180deg, #0e3d52"] {
+  background: linear-gradient(180deg, #0e3d52 0%, #0a2030 65%, #080e18 100%) !important;
+}
+
+/* ══════════════════════════════════════════
+   SPARA/LOGGA MANUELL — SECTION BACKGROUNDS
+   ══════════════════════════════════════════ */
+
+/* #3d7a5a text (visited islands panel) */
+[data-theme="dark"] [style*="color: #3d7a5a"],
+[data-theme="dark"] [style*="color:#3d7a5a"] {
+  color: #4caf82 !important;
+}
+
+/* rgba(122,157,171,.12) movement state STILLA badge */
+[data-theme="dark"] [style*="background: rgba(122,157,171"] {
+  background: rgba(122, 157, 171, 0.08) !important;
+}
+
+/* ── spara done-fas sidwrapper ── */
+[data-theme="dark"] .spara-done {
+  background: var(--bg, #070f18) !important;
+}
+
+/* ── Tailwind text-sea och text-svalla-text3 ── */
+[data-theme="dark"] .text-sea {
+  color: var(--sea, #4ab8d4) !important;
+}
+[data-theme="dark"] .text-svalla-text3 {
+  color: var(--txt3, #6a98aa) !important;
+}
+[data-theme="dark"] .text-svalla-text2 {
+  color: var(--txt2, #9abccc) !important;
+}
+[data-theme="dark"] .text-svalla-text {
+  color: var(--txt, #d8eaf4) !important;
+}
+
+/* ── border-sea-light (Tailwind) → dark ── */
+[data-theme="dark"] .border-sea-light\/40 {
+  border-color: rgba(74, 184, 212, 0.12) !important;
+}

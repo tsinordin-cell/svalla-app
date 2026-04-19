@@ -116,7 +116,7 @@ export default async function RutterPage({
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)' }}>
       {/* Header */}
       <header style={{
         padding: '14px 16px 10px',
@@ -164,7 +164,7 @@ export default async function RutterPage({
             <Link key={f.value} href={href(f.value, tidFilter)} style={{
               flexShrink: 0, padding: '7px 13px', borderRadius: 20,
               border: `1.5px solid ${active ? '#1e5c82' : 'rgba(10,123,140,0.2)'}`,
-              background: active ? '#1e5c82' : '#fff',
+              background: active ? '#1e5c82' : 'var(--white, #fff)',
               fontSize: 12, fontWeight: 600,
               color: active ? '#fff' : '#3a6a80',
               textDecoration: 'none', whiteSpace: 'nowrap',
@@ -228,7 +228,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
   return (
     <Link href={`/rutter/${t.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 10 }}>
       <article style={{
-        background: '#fff', borderRadius: 16,
+        background: 'var(--white, #fff)', borderRadius: 16,
         border: '1.5px solid rgba(10,123,140,0.10)',
         overflow: 'hidden',
         boxShadow: '0 1px 4px rgba(0,45,60,0.06)',
