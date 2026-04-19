@@ -25,18 +25,9 @@ export default function GlobalError({
         <h1 style={{ fontSize: 22, fontWeight: 900, color: '#1e5c82', margin: '0 0 8px' }}>
           Något gick fel
         </h1>
-        <p style={{ fontSize: 14, color: '#5a8090', margin: '0 0 16px', maxWidth: 320, lineHeight: 1.5 }}>
-          {error?.message || 'Ett oväntat fel uppstod.'}
+        <p style={{ fontSize: 14, color: '#5a8090', margin: '0 0 24px', maxWidth: 320, lineHeight: 1.5 }}>
+          Ett oväntat fel uppstod. Försök igen eller gå tillbaka till flödet.
         </p>
-        {error?.stack && (
-          <pre style={{
-            fontSize: 10, color: '#9ab8c8', margin: '0 0 20px', maxWidth: 400,
-            textAlign: 'left', background: 'rgba(0,0,0,0.04)', padding: '10px 14px',
-            borderRadius: 10, overflow: 'auto', lineHeight: 1.4, whiteSpace: 'pre-wrap',
-          }}>
-            {error.stack.slice(0, 600)}
-          </pre>
-        )}
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={reset} style={{
             padding: '12px 24px', borderRadius: 14, border: 'none', cursor: 'pointer',

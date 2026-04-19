@@ -29,10 +29,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { data: metaUser } = await supabase
     .from('users').select('username').eq('id', trip.user_id).single()
 
+  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)} NM` : null
   const title = trip.location_name
-    ? `${trip.location_name} – ${trip.distance?.toFixed(1)} NM`
-    : `Tur – ${trip.distance?.toFixed(1)} NM`
-  const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'} på ${trip.distance?.toFixed(1)} NM${trip.location_name ? ` till ${trip.location_name}` : ''}.`
+    ? `${trip.location_name}${distStr ? ` – ${distStr}` : ''}`
+    : distStr ? `Tur – ${distStr}` : 'Tur – Svalla'
+  const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'}${distStr ? ` på ${distStr}` : ''}${trip.location_name ? ` till ${trip.location_name}` : ''}.`
 
   return {
     title,

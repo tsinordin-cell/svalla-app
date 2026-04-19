@@ -613,35 +613,41 @@ export default function SparaPage() {
       } catch { /* tyst */ }
     }).catch(() => {})
 
-    // Background: AI trip summary
-    fetch('/api/trip-summary', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        distanceNM:  dist,
-        durationMin: Math.round(elapsed / 60),
-        avgSpeed:    avgSpd,
-        maxSpeed:    maxSpd,
-        boatType,
-        locationName: locationName.trim() || undefined,
-        stops: stops.map(s => ({ durationSeconds: s.durationSeconds, type: s.type })),
-        nearbyPlaces: [],
-        startTime:   startedAt,
-        endTime:     endedAt,
-        anomalyCount: anomalyCountRef.current > 0 ? anomalyCountRef.current : undefined,
-      }),
-    })
-      .then(r => r.json())
-      .then(({ summary }) => {
-        if (summary && tid) {
-          void (async () => {
-            try { await supabase.from('trips').update({ ai_summary: summary }).eq('id', tid) }
-            catch { /* tyst */ }
-          })()
-        }
+    // Background: AI trip summary — bara om användaren inte redan genererat en via knappen
+    if (!aiSummary) {
+      fetch('/api/trip-summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          distanceNM:  dist,
+          durationMin: Math.round(elapsed / 60),
+          avgSpeed:    avgSpd,
+          maxSpeed:    maxSpd,
+          boatType,
+          locationName: locationName.trim() || undefined,
+          stops: stops.map(s => ({ durationSeconds: s.durationSeconds, type: s.type })),
+          nearbyPlaces: [],
+          startTime:   startedAt,
+          endTime:     endedAt,
+          anomalyCount: anomalyCountRef.current > 0 ? anomalyCountRef.current : undefined,
+        }),
       })
-      .catch(() => {})
+        .then(r => r.json())
+        .then(({ summary }) => {
+          if (summary && tid) {
+            void (async () => {
+              try { await supabase.from('trips').update({ ai_summary: summary }).eq('id', tid) }
+              catch { /* tyst */ }
+            })()
+          }
+        })
+        .catch(() => {})
+    } else if (aiSummary && tid) {
+      // Användaren har redan genererat och ev. redigerat caption — spara den som ai_summary
+      void supabase.from('trips').update({ ai_summary: aiSummary }).eq('id', tid).then(() => {})
+    }
 
+    setSaving(false)
     // Navigera till tursidan — slight delay om celebration visas
     setTimeout(() => router.push(`/tur/${tid}`), 100)
   }

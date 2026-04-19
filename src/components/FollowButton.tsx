@@ -1,10 +1,10 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 
 export default function FollowButton({ targetUserId, darkBg = false }: { targetUserId: string; darkBg?: boolean }) {
-  const supabase = createClient()
+  const supabase = useRef(createClient()).current
   const [myId, setMyId]         = useState<string | null>(null)
   const [following, setFollowing] = useState(false)
   const [count, setCount]       = useState(0)

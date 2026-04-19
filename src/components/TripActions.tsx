@@ -90,10 +90,18 @@ export default function TripActions({
   async function handleDelete() {
     setDeleting(true)
     const supabase = createClient()
+    // Clean up related data first, then delete the trip
+    // (CASCADE should handle this in DB, but explicit cleanup is safer)
+    await Promise.all([
+      supabase.from('likes').delete().eq('trip_id', tripId),
+      supabase.from('comments').delete().eq('trip_id', tripId),
+      supabase.from('notifications').delete().eq('trip_id', tripId),
+      supabase.from('gps_points').delete().eq('trip_id', tripId),
+      supabase.from('stops').delete().eq('trip_id', tripId),
+      supabase.from('trip_tags').delete().eq('trip_id', tripId),
+    ])
     const { error } = await supabase.from('trips').delete().eq('id', tripId)
     if (error) { toast('Kunde inte radera turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
-    await supabase.from('gps_points').delete().eq('trip_id', tripId)
-    await supabase.from('stops').delete().eq('trip_id', tripId)
     router.push('/feed')
   }
 

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function BookmarkButton({ restaurantId, routeId }: Props) {
-  const supabase = createClient()
+  const supabase = useRef(createClient()).current
   const [saved,   setSaved]   = useState(false)
   const [userId,  setUserId]  = useState<string | null>(null)
   const [loading, setLoading] = useState(false)

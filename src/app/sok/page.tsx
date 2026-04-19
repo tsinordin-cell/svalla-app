@@ -65,7 +65,10 @@ export default function SokPage() {
 
   async function search(q: string) {
     setLoading(true)
-    const pattern = `%${q}%`
+    // Sanitera söktermen — strippa PostgREST-specialtecken för att undvika query injection
+    const safe    = q.replace(/[()%_,]/g, '').trim().slice(0, 100)
+    if (!safe)   { setResults([]); setSearched(true); setLoading(false); return }
+    const pattern = `%${safe}%`
 
     const [tripsRes, toursRes, placesRes, usersRes] = await Promise.all([
       supabase

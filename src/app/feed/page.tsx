@@ -46,7 +46,7 @@ export default async function FeedPage() {
     )
   }
 
-  // Hämta följer-feed parallellt med user-lookup
+  // Hämta follows + trips parallellt för inloggad användare
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let rawFollowingTrips: any[] = []
   if (user) {
@@ -69,6 +69,11 @@ export default async function FeedPage() {
         .limit(50)
       rawFollowingTrips = fTrips ?? []
     }
+  }
+
+  // Bail early on DB error — trips is guaranteed defined below this point
+  if (!trips) {
+    console.error('[feed] trips query returned null unexpectedly')
   }
 
   // Kombinera alla unika trip-IDs + user-IDs från båda feeds

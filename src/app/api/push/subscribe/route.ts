@@ -18,8 +18,17 @@ export async function POST(req: Request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const sub = await req.json()
-  const { endpoint, keys: { p256dh, auth } } = sub
+  let sub: { endpoint?: string; keys?: { p256dh?: string; auth?: string } }
+  try { sub = await req.json() } catch { return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 }) }
+
+  const endpoint = sub?.endpoint
+  const p256dh   = sub?.keys?.p256dh
+  const auth     = sub?.keys?.auth
+
+  if (!endpoint || !p256dh || !auth ||
+      typeof endpoint !== 'string' || typeof p256dh !== 'string' || typeof auth !== 'string') {
+    return NextResponse.json({ error: 'Ogiltig push-subscription' }, { status: 400 })
+  }
 
   const { error } = await supabase.from('push_subscriptions').upsert(
     { user_id: user.id, endpoint, p256dh, auth },

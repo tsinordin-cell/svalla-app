@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { timeAgoShort } from '@/lib/utils'
@@ -21,7 +21,7 @@ const TYPE_LABEL: Record<string, string> = {
 }
 
 export default function NotificationBell() {
-  const supabase = createClient()
+  const supabase = useRef(createClient()).current
   const [notifs, setNotifs] = useState<Notif[]>([])
   const [open, setOpen] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
@@ -29,32 +29,9 @@ export default function NotificationBell() {
 
   const unread = notifs.filter(n => !n.read).length
 
-  useEffect(() => {
-    let channel: ReturnType<typeof supabase.channel> | null = null
+  const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null)
 
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (!user) return
-      const uid = user.id
-      setUserId(uid)
-      load(uid)
-
-      // Realtime: ny notis → ladda om listan
-      channel = supabase
-        .channel(`notifications:${uid}`)
-        .on(
-          'postgres_changes',
-          { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },
-          () => load(uid),
-        )
-        .subscribe()
-    })
-
-    return () => {
-      if (channel) supabase.removeChannel(channel)
-    }
-  }, []) // eslint-disable-line
-
-  async function load(uid: string) {
+  const load = useCallback(async (uid: string) => {
     const { data } = await supabase
       .from('notifications')
       .select('id, type, read, created_at, trip_id, actor_id')
@@ -71,7 +48,38 @@ export default function NotificationBell() {
     for (const u of uRows ?? []) umap[u.id] = u.username
 
     setNotifs(rows.map(r => ({ ...r, actor_username: umap[r.actor_id] ?? 'Någon' })))
-  }
+  }, [supabase])
+
+  useEffect(() => {
+    let mounted = true
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!mounted || !user) return
+      const uid = user.id
+      setUserId(uid)
+      load(uid)
+
+      // Realtime: ny notis → ladda om listan
+      const ch = supabase
+        .channel(`notifications:${uid}`)
+        .on(
+          'postgres_changes',
+          { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },
+          () => { if (mounted) load(uid) },
+        )
+        .subscribe()
+      channelRef.current = ch
+    })
+
+    return () => {
+      mounted = false
+      if (channelRef.current) {
+        supabase.removeChannel(channelRef.current)
+        channelRef.current = null
+      }
+    }
+  }, [load, supabase])
+
+
 
   async function markAllRead() {
     if (!userId || unread === 0) return
@@ -93,7 +101,7 @@ export default function NotificationBell() {
   return (
     <div ref={ref} style={{ position: 'relative' }}>
       <button
-        onClick={() => { setOpen(o => !o); if (!open) markAllRead() }}
+        onClick={() => { setOpen(o => !o); if (!open && unread > 0) markAllRead() }}
         style={{
           width: 38, height: 38, borderRadius: '50%',
           background: 'rgba(10,123,140,0.08)',
