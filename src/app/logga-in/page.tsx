@@ -96,6 +96,26 @@ export default function LoggaInPage() {
       minHeight: '100dvh', display: 'flex', flexDirection: 'column',
       background: 'linear-gradient(175deg, #09253a 0%, #0e3d5c 35%, #1a5c7a 65%, #e8f4f8 100%)',
     }}>
+      {/* ── Tillbaka-knapp ── */}
+      <button
+        onClick={() => router.push('/')}
+        style={{
+          position: 'absolute', top: 16, left: 16, zIndex: 10,
+          background: 'rgba(255,255,255,0.12)',
+          border: '1px solid rgba(255,255,255,0.18)',
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          borderRadius: 12, padding: '8px 14px',
+          display: 'flex', alignItems: 'center', gap: 6,
+          color: 'rgba(255,255,255,0.85)', fontSize: 13, fontWeight: 600,
+          cursor: 'pointer', fontFamily: 'inherit',
+        }}
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Tillbaka
+      </button>
+
       {/* ── Hero ── */}
       <div style={{
         padding: '64px 24px 32px',
