@@ -1,4 +1,4 @@
-'use client' // v2
+'use client'
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
@@ -10,20 +10,9 @@ import NotificationBell from '@/components/NotificationBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 
-// ── Settings section ─────────────────────────────────────────────────────────
+// ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
   const { theme, setTheme, lang, setLang } = useTheme()
-
-  const themes: { val: Theme; sv: string; en: string; icon: string }[] = [
-    { val: 'auto',  sv: 'Auto',   en: 'Auto',  icon: '🌗' },
-    { val: 'light', sv: 'Ljust',  en: 'Light', icon: '☀️' },
-    { val: 'dark',  sv: 'Mörkt',  en: 'Dark',  icon: '🌙' },
-  ]
-  const langs: { val: Lang; label: string; flag: string }[] = [
-    { val: 'sv', label: 'Svenska', flag: '🇸🇪' },
-    { val: 'en', label: 'English', flag: '🇬🇧' },
-  ]
-
   const pill = (active: boolean): React.CSSProperties => ({
     padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
     fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 700 : 500,
@@ -32,124 +21,56 @@ function SettingsSection() {
     color: active ? '#fff' : '#3d5865',
     boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
   })
-
+  const themes: { val: Theme; label: string; icon: string }[] = [
+    { val: 'auto', label: 'Auto', icon: '🌗' },
+    { val: 'light', label: 'Ljust', icon: '☀️' },
+    { val: 'dark', label: 'Mörkt', icon: '🌙' },
+  ]
+  const langs: { val: Lang; label: string; flag: string }[] = [
+    { val: 'sv', label: 'Svenska', flag: '🇸🇪' },
+    { val: 'en', label: 'English', flag: '🇬🇧' },
+  ]
   return (
-    <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 16px', marginBottom: 12, boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
-      <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
-        {lang === 'en' ? 'Settings' : 'Inställningar'}
-      </h3>
-
-      {/* Tema */}
-      <div style={{ marginBottom: 16 }}>
-        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
-          {lang === 'en' ? 'Theme' : 'Tema'}
-        </p>
+    <div style={{ background: 'var(--white)', borderRadius: 18, padding: '18px 16px', marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+      <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
+      <div style={{ marginBottom: 14 }}>
+        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
         <div style={{ display: 'flex', gap: 6 }}>
-          {themes.map(t => (
-            <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>
-              {t.icon} {lang === 'en' ? t.en : t.sv}
-            </button>
-          ))}
+          {themes.map(t => <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>{t.icon} {t.label}</button>)}
         </div>
-        <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '6px 0 0' }}>
-          {lang === 'en'
-            ? 'Auto: dark between 20:00–06:00'
-            : 'Auto: mörkt 20:00–06:00, ljust dagtid'}
-        </p>
       </div>
-
-      {/* Språk */}
       <div>
-        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
-          {lang === 'en' ? 'Language' : 'Språk'}
-        </p>
+        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>Språk</p>
         <div style={{ display: 'flex', gap: 6 }}>
-          {langs.map(l => (
-            <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>
-              {l.flag} {l.label}
-            </button>
-          ))}
+          {langs.map(l => <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>{l.flag} {l.label}</button>)}
         </div>
       </div>
     </div>
   )
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function favoritePlats(trips: Trip[]): string | null {
-  const counts: Record<string, number> = {}
-  for (const t of trips) {
-    if (t.location_name) counts[t.location_name] = (counts[t.location_name] ?? 0) + 1
-  }
-  return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null
-}
-
-// ── Länder med flaggor ────────────────────────────────────────────────────────
-const COUNTRIES = [
-  { flag: '🇸🇪', name: 'Sverige' },
-  { flag: '🇳🇴', name: 'Norge' },
-  { flag: '🇩🇰', name: 'Danmark' },
-  { flag: '🇫🇮', name: 'Finland' },
-  { flag: '🇩🇪', name: 'Tyskland' },
-  { flag: '🇬🇧', name: 'Storbritannien' },
-  { flag: '🇳🇱', name: 'Nederländerna' },
-  { flag: '🇫🇷', name: 'Frankrike' },
-  { flag: '🇪🇸', name: 'Spanien' },
-  { flag: '🇮🇹', name: 'Italien' },
-  { flag: '🇵🇱', name: 'Polen' },
-  { flag: '🇺🇸', name: 'USA' },
-  { flag: '🇦🇺', name: 'Australien' },
-  { flag: '🇨🇦', name: 'Kanada' },
-  { flag: '🇯🇵', name: 'Japan' },
-  { flag: '🇧🇷', name: 'Brasilien' },
-  { flag: '🇦🇹', name: 'Österrike' },
-  { flag: '🇨🇭', name: 'Schweiz' },
-  { flag: '🇧🇪', name: 'Belgien' },
-  { flag: '🇵🇹', name: 'Portugal' },
-  { flag: '🇬🇷', name: 'Grekland' },
-  { flag: '🇸🇦', name: 'Saudiarabien' },
-  { flag: '🇦🇪', name: 'Förenade Arabemiraten' },
-  { flag: '🇳🇿', name: 'Nya Zeeland' },
-  { flag: '🇸🇬', name: 'Singapore' },
-  { flag: '🇭🇷', name: 'Kroatien' },
-  { flag: '🇮🇸', name: 'Island' },
-  { flag: '🇪🇪', name: 'Estland' },
-  { flag: '🇱🇻', name: 'Lettland' },
-  { flag: '🇱🇹', name: 'Litauen' },
-]
-
-// ── Edit Sheet ────────────────────────────────────────────────────────────────
+// ── Edit sheet ────────────────────────────────────────────────────────────────
 const VESSEL_TYPES = ['Segelbåt', 'Motorbåt', 'RIB', 'Katamaran', 'Segeljolle', 'Kajak', 'SUP', 'Annat']
-const PRIVACY_FIELDS: { key: string; label: string }[] = [
-  { key: 'bio',              label: 'Kort om mig' },
-  { key: 'nationality',      label: 'Land (flagga)' },
-  { key: 'experience_years', label: 'År till havs' },
-  { key: 'vessel_name',      label: 'Båtnamn' },
-  { key: 'vessel_type',      label: 'Båttyp' },
-  { key: 'vessel_model',     label: 'Båtmodell' },
-  { key: 'home_port',        label: 'Hemmahamn' },
-  { key: 'sailing_region',   label: 'Hemmafarvatten' },
+const COUNTRIES = [
+  { flag: '🇸🇪', name: 'Sverige' }, { flag: '🇳🇴', name: 'Norge' },
+  { flag: '🇩🇰', name: 'Danmark' }, { flag: '🇫🇮', name: 'Finland' },
+  { flag: '🇩🇪', name: 'Tyskland' }, { flag: '🇬🇧', name: 'Storbritannien' },
+  { flag: '🇳🇱', name: 'Nederländerna' }, { flag: '🇫🇷', name: 'Frankrike' },
+  { flag: '🇪🇸', name: 'Spanien' }, { flag: '🇮🇹', name: 'Italien' },
+  { flag: '🇵🇱', name: 'Polen' }, { flag: '🇺🇸', name: 'USA' },
+  { flag: '🇦🇺', name: 'Australien' }, { flag: '🇨🇦', name: 'Kanada' },
+  { flag: '🇭🇷', name: 'Kroatien' }, { flag: '🇮🇸', name: 'Island' },
 ]
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '20px 0 10px' }}>
-      {children}
-    </div>
-  )
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div style={{ marginBottom: 12 }}>
-      <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5, letterSpacing: '0.3px' }}>
-        {label}
-      </label>
-      {children}
-    </div>
-  )
-}
-
+const PRIVACY_FIELDS = [
+  { key: 'bio', label: 'Kort om mig' },
+  { key: 'nationality', label: 'Land' },
+  { key: 'experience_years', label: 'År till havs' },
+  { key: 'vessel_name', label: 'Båtnamn' },
+  { key: 'vessel_type', label: 'Båttyp' },
+  { key: 'vessel_model', label: 'Båtmodell' },
+  { key: 'home_port', label: 'Hemmahamn' },
+  { key: 'sailing_region', label: 'Hemmafarvatten' },
+]
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '11px 13px', borderRadius: 13,
   border: '1.5px solid rgba(10,123,140,0.18)',
@@ -157,32 +78,24 @@ const inputStyle: React.CSSProperties = {
   outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit',
 }
 
-function EditSheet({
-  user, onClose, onSaved,
-}: { user: User; onClose: () => void; onSaved: (u: User) => void }) {
-  const supabase      = createClient()
-  const fileRef       = useRef<HTMLInputElement>(null)
-
-  // Basic
-  const [username,      setUsername]      = useState(user.username)
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(user.avatar)
-  const [avatarFile,    setAvatarFile]    = useState<File | null>(null)
-
-  // Extended — cast to any since type may not have these yet
+function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void; onSaved: (u: User) => void }) {
+  const supabase  = createClient()
+  const fileRef   = useRef<HTMLInputElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const u = user as any
-  const [bio,            setBio]           = useState<string>(u.bio ?? '')
-  const [nationality,    setNationality]   = useState<string>(u.nationality ?? '')
-  const [expYears,       setExpYears]      = useState<string>(u.experience_years?.toString() ?? '')
-  const [vesselType,     setVesselType]    = useState<string>(u.vessel_type ?? '')
-  const [vesselModel,    setVesselModel]   = useState<string>(u.vessel_model ?? '')
-  const [vesselName,     setVesselName]    = useState<string>(u.vessel_name ?? '')
-  const [homePort,       setHomePort]      = useState<string>(u.home_port ?? '')
-  const [sailingRegion,  setSailingRegion] = useState<string>(u.sailing_region ?? '')
-  const [publicFields,   setPublicFields]  = useState<string[]>(
-    u.public_fields ?? ['vessel_name', 'nationality', 'home_port', 'sailing_region']
-  )
 
+  const [username,     setUsername]     = useState(user.username)
+  const [avatarPreview,setAvatarPreview]= useState<string | null>(user.avatar)
+  const [avatarFile,   setAvatarFile]   = useState<File | null>(null)
+  const [bio,          setBio]          = useState<string>(u.bio ?? '')
+  const [nationality,  setNationality]  = useState<string>(u.nationality ?? '')
+  const [expYears,     setExpYears]     = useState<string>(u.experience_years?.toString() ?? '')
+  const [vesselType,   setVesselType]   = useState<string>(u.vessel_type ?? '')
+  const [vesselModel,  setVesselModel]  = useState<string>(u.vessel_model ?? '')
+  const [vesselName,   setVesselName]   = useState<string>(u.vessel_name ?? '')
+  const [homePort,     setHomePort]     = useState<string>(u.home_port ?? '')
+  const [sailingRegion,setSailingRegion]= useState<string>(u.sailing_region ?? '')
+  const [publicFields, setPublicFields] = useState<string[]>(u.public_fields ?? ['vessel_name', 'nationality', 'home_port', 'sailing_region'])
   const [saving, setSaving] = useState(false)
   const [error,  setError]  = useState<string | null>(null)
 
@@ -195,7 +108,7 @@ function EditSheet({
     if (!trimmed || trimmed.length < 3) { setError('Aliaset måste vara minst 3 tecken.'); return }
     if (trimmed.length > 20) { setError('Aliaset får max vara 20 tecken.'); return }
     if (trimmed.includes(' ')) { setError('Aliaset får inte innehålla mellanslag.'); return }
-    if (!/^[a-z0-9_.-]+$/.test(trimmed)) { setError('Bara bokstäver (a-z), siffror och _ . - är tillåtna.'); return }
+    if (!/^[a-z0-9_.-]+$/.test(trimmed)) { setError('Bara a-z, siffror och _ . - är tillåtna.'); return }
     setSaving(true); setError(null)
 
     let avatarUrl = user.avatar
@@ -204,34 +117,20 @@ function EditSheet({
       const path = `avatars/${user.id}.${ext}`
       const { error: upErr } = await supabase.storage.from('images').upload(path, avatarFile, { upsert: true })
       if (upErr) { setError(`Kunde inte ladda upp bild: ${upErr.message}`); setSaving(false); return }
-      const { data: urlData } = supabase.storage.from('images').getPublicUrl(path)
-      avatarUrl = urlData.publicUrl
+      avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
-
     if (trimmed !== user.username) {
       const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).single()
       if (existing) { setError('Användarnamnet är redan taget.'); setSaving(false); return }
     }
-
-    const { data: updated, error: upErr } = await supabase
-      .from('users')
-      .update({
-        username: trimmed,
-        avatar: avatarUrl,
-        bio: bio.trim() || null,
-        nationality: nationality.trim() || null,
-        experience_years: expYears ? parseInt(expYears) : null,
-        vessel_type: vesselType || null,
-        vessel_model: vesselModel.trim() || null,
-        vessel_name: vesselName.trim() || null,
-        home_port: homePort.trim() || null,
-        sailing_region: sailingRegion.trim() || null,
-        public_fields: publicFields,
-      })
-      .eq('id', user.id)
-      .select()
-      .single()
-
+    const { data: updated, error: upErr } = await supabase.from('users').update({
+      username: trimmed, avatar: avatarUrl,
+      bio: bio.trim() || null, nationality: nationality.trim() || null,
+      experience_years: expYears ? parseInt(expYears) : null,
+      vessel_type: vesselType || null, vessel_model: vesselModel.trim() || null,
+      vessel_name: vesselName.trim() || null, home_port: homePort.trim() || null,
+      sailing_region: sailingRegion.trim() || null, public_fields: publicFields,
+    }).eq('id', user.id).select().single()
     if (upErr || !updated) { setError('Kunde inte spara. Försök igen.'); setSaving(false); return }
     toast('Profil sparad ✓')
     onSaved(updated as User)
@@ -240,32 +139,15 @@ function EditSheet({
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
-      <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900,
-        background: 'var(--white)', borderRadius: '24px 24px 0 0',
-        maxWidth: 520, margin: '0 auto',
-        boxShadow: '0 -4px 40px rgba(0,45,60,0.18)',
-        maxHeight: '92dvh', display: 'flex', flexDirection: 'column',
-      }}>
-        {/* Handle */}
+      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
-          <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 12px' }}>Välj vad andra ska kunna se under Sekretess</p>
         </div>
-
-        {/* Scrollable content */}
         <div style={{ overflowY: 'auto', flex: 1, padding: '0 20px' }}>
-
           {/* Avatar */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 4 }}>
-            <div onClick={() => fileRef.current?.click()} style={{
-              width: 72, height: 72, borderRadius: '50%', cursor: 'pointer',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 26, fontWeight: 900, color: '#fff', overflow: 'hidden',
-              border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative',
-            }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0' }}>
+            <div onClick={() => fileRef.current?.click()} style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative' }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -274,128 +156,74 @@ function EditSheet({
                 <span style={{ fontSize: 18 }}>📷</span>
               </div>
             </div>
-            <div>
-              <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 13, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer' }}>
-                Byt profilbild
-              </button>
-              <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '4px 0 0' }}>JPG eller PNG, max 5 MB</p>
-            </div>
+            <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 13, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer' }}>
+              Byt profilbild
+            </button>
             <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }}
               onChange={e => { const f = e.target.files?.[0]; if (f) { setAvatarFile(f); setAvatarPreview(URL.createObjectURL(f)) } }} />
           </div>
 
-          {/* ── Grundinfo ── */}
-          <SectionLabel>Grundinfo</SectionLabel>
-          <Field label="ALIAS / SMEKNAMN">
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32}
-              placeholder="Ditt alias som syns för andra"
-              style={inputStyle} />
-            <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '3px 0 0' }}>Bokstäver, siffror, _ . och - tillåtna. Används i din profil-URL.</p>
-          </Field>
-          <Field label="KORT OM MIG">
-            <textarea value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3}
-              placeholder="T.ex. Seglare sedan 1998, älskar Stockholms skärgård…"
-              style={{ ...inputStyle, resize: 'none' }} />
-            <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '3px 0 0', textAlign: 'right' }}>{bio.length}/160</p>
-          </Field>
-          <Field label="LAND">
-            <div style={{ position: 'relative' }}>
-              <select
-                value={nationality}
-                onChange={e => setNationality(e.target.value)}
-                style={{ ...inputStyle, appearance: 'none', paddingRight: 36 }}
-              >
-                <option value="">Välj land…</option>
-                {COUNTRIES.map(c => (
-                  <option key={c.name} value={`${c.flag} ${c.name}`}>
-                    {c.flag} {c.name}
-                  </option>
-                ))}
-              </select>
-              <span style={{
-                position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
-                fontSize: 16, pointerEvents: 'none',
-              }}>
-                {COUNTRIES.find(c => `${c.flag} ${c.name}` === nationality)?.flag ?? '🌍'}
-              </span>
-            </div>
-          </Field>
-          <Field label="ÅR TILL HAVS">
-            <input type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80}
-              placeholder="T.ex. 15" style={inputStyle} />
-          </Field>
-
-          {/* ── Min båt ── */}
-          <SectionLabel>⚓ Min båt</SectionLabel>
-          <Field label="BÅTNAMN">
-            <input type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60}
-              placeholder="T.ex. Albatross, Sally…" style={inputStyle} />
-          </Field>
-          <Field label="BÅTTYP">
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ALIAS</label>
+            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} style={inputStyle} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>KORT OM MIG</label>
+            <textarea value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3} placeholder="T.ex. Seglare sedan 1998…" style={{ ...inputStyle, resize: 'none' }} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>LAND</label>
+            <select value={nationality} onChange={e => setNationality(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
+              <option value="">Välj land…</option>
+              {COUNTRIES.map(c => <option key={c.name} value={`${c.flag} ${c.name}`}>{c.flag} {c.name}</option>)}
+            </select>
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ÅR TILL HAVS</label>
+            <input type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80} placeholder="15" style={inputStyle} />
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>⚓ Min båt</div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTNAMN</label>
+            <input type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60} style={inputStyle} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTTYP</label>
             <select value={vesselType} onChange={e => setVesselType(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
               <option value="">Välj typ…</option>
               {VESSEL_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
             </select>
-          </Field>
-          <Field label="MODELL / MÄRKE">
-            <input type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80}
-              placeholder="T.ex. Hallberg-Rassy 34, Beneteau 40…" style={inputStyle} />
-          </Field>
-
-          {/* ── Hemmafarvatten ── */}
-          <SectionLabel>🧭 Hemmafarvatten</SectionLabel>
-          <Field label="HEMMAHAMN">
-            <input type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80}
-              placeholder="T.ex. Sandhamn, Göteborg…" style={inputStyle} />
-          </Field>
-          <Field label="REGION / DEL AV VÄRLDEN">
-            <input type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80}
-              placeholder="T.ex. Stockholms skärgård, Medelhavet…" style={inputStyle} />
-          </Field>
-
-          {/* ── Sekretess ── */}
-          <SectionLabel>🔒 Sekretess — vad syns för andra?</SectionLabel>
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>MODELL</label>
+            <input type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80} style={inputStyle} />
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🧭 Hemmafarvatten</div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>HEMMAHAMN</label>
+            <input type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80} style={inputStyle} />
+          </div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
+            <input type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>
             {PRIVACY_FIELDS.map(({ key, label }) => (
-              <div key={key} onClick={() => togglePublic(key)} style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer',
-              }}>
+              <div key={key} onClick={() => togglePublic(key)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer' }}>
                 <span style={{ fontSize: 13, color: 'var(--txt)' }}>{label}</span>
-                <div style={{
-                  width: 40, height: 22, borderRadius: 11,
-                  background: publicFields.includes(key) ? '#1e5c82' : 'rgba(10,123,140,0.15)',
-                  position: 'relative', transition: 'background .2s',
-                }}>
-                  <div style={{
-                    position: 'absolute', top: 3, left: publicFields.includes(key) ? 21 : 3,
-                    width: 16, height: 16, borderRadius: '50%', background: 'var(--white)',
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.2)', transition: 'left .2s',
-                  }} />
+                <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? '#1e5c82' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s' }}>
+                  <div style={{ position: 'absolute', top: 3, left: publicFields.includes(key) ? 21 : 3, width: 16, height: 16, borderRadius: '50%', background: 'var(--white)', boxShadow: '0 1px 4px rgba(0,0,0,0.2)', transition: 'left .2s' }} />
                 </div>
               </div>
             ))}
           </div>
-
-          {error && (
-            <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: '#dc2626', marginBottom: 12 }}>
-              {error}
-            </div>
-          )}
+          {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: '#dc2626', marginBottom: 12 }}>{error}</div>}
         </div>
-
-        {/* Footer buttons */}
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
-          <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>
-            Avbryt
-          </button>
-          <button onClick={handleSave} disabled={saving} style={{
-            flex: 2, padding: '14px', borderRadius: 16, border: 'none',
-            background: saving ? '#7a9dab' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-            fontSize: 14, fontWeight: 800, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer',
-            boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)',
-          }}>
-            {saving ? 'Sparar…' : 'Spara ändringar'}
+          <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
+          <button onClick={handleSave} disabled={saving} style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? '#7a9dab' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 800, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+            {saving ? 'Sparar…' : 'Spara'}
           </button>
         </div>
       </div>
@@ -405,7 +233,7 @@ function EditSheet({
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function ProfilPage() {
-  const router   = useRouter()
+  const router     = useRouter()
   const [supabase] = useState(() => createClient())
   const [user,           setUser]           = useState<User | null>(null)
   const [trips,          setTrips]          = useState<Trip[]>([])
@@ -418,19 +246,12 @@ export default function ProfilPage() {
     async function load() {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) { router.push('/logga-in'); return }
-
-      const [
-        { data: profile },
-        { data: myTrips },
-        { count: fwers },
-        { count: fwing },
-      ] = await Promise.all([
+      const [{ data: profile }, { data: myTrips }, { count: fwers }, { count: fwing }] = await Promise.all([
         supabase.from('users').select('*').eq('id', authUser.id).single(),
         supabase.from('trips').select('*').eq('user_id', authUser.id).order('created_at', { ascending: false }),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', authUser.id),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', authUser.id),
       ])
-
       setUser(profile as User)
       setTrips((myTrips as Trip[]) ?? [])
       setFollowersCount(fwers ?? 0)
@@ -449,334 +270,208 @@ export default function ProfilPage() {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: 32, height: 32, borderRadius: '50%', border: '2.5px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
+        <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
       </div>
     )
   }
 
-  // ── Computed ────────────────────────────────────────────────────────────────
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const u = user as any
-  const totalDist  = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
-  const streak     = calcStreak(trips)
-  const favPlats   = favoritePlats(trips)
-  const pinnar1    = trips.filter(t => t.pinnar_rating === 1).length
-  const pinnar2    = trips.filter(t => t.pinnar_rating === 2).length
-  const pinnar3    = trips.filter(t => t.pinnar_rating === 3).length
-  const ratedTrips = pinnar1 + pinnar2 + pinnar3
+  const totalDist   = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
+  const streak      = calcStreak(trips)
+  const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
   const unlockedAch = computeUnlocked(trips, streak)
   const lockedAch   = ACHIEVEMENTS.filter(a => !unlockedAch.includes(a))
-  const uniqueLocs  = new Set(trips.map(t => t.location_name).filter(Boolean)).size
+  const pinnar3     = trips.filter(t => t.pinnar_rating === 3).length
+
+  // Monthly bars
+  const MONTHS = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
+  const monthMap: Record<string, { label: string; count: number }> = {}
+  for (const t of trips) {
+    const d   = new Date(t.created_at)
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()], count: 0 }
+    monthMap[key].count++
+  }
+  const monthBars = Object.entries(monthMap).sort(([a], [b]) => a.localeCompare(b)).slice(-6)
+  const maxBar    = Math.max(...monthBars.map(([, v]) => v.count), 1)
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}>
 
-      {/* ── Edit sheet ── */}
       {editing && user && (
-        <EditSheet
-          user={user}
-          onClose={() => setEditing(false)}
-          onSaved={updated => { setUser(updated); setEditing(false) }}
-        />
+        <EditSheet user={user} onClose={() => setEditing(false)} onSaved={updated => { setUser(updated); setEditing(false) }} />
       )}
 
-      {/* ── Header ── */}
+      {/* ── Sticky header ── */}
       <header style={{
-        display: 'flex', alignItems: 'center', padding: '12px 16px',
+        display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
         background: 'var(--header-bg, rgba(250,254,255,0.96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <h1 style={{ fontSize: 20, fontWeight: 900, color: 'var(--sea)', margin: 0 }}>Profil</h1>
+        <span style={{ fontSize: 17, fontWeight: 900, color: 'var(--sea)' }}>{user?.username ?? 'Profil'}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <NotificationBell />
-          {user?.username && (
-            <Link href={`/u/${user.username}`} style={{
-              background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.15)',
-              fontSize: 12, color: 'var(--sea)', fontWeight: 700,
-              padding: '7px 12px', borderRadius: 20, textDecoration: 'none',
-              display: 'flex', alignItems: 'center', gap: 4,
-            }}>
-              👁 Min profil
-            </Link>
-          )}
-          <button onClick={() => setEditing(true)} style={{
-            background: 'rgba(10,123,140,0.08)', border: 'none',
-            fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700,
-            padding: '7px 14px', borderRadius: 20,
-          }}>
+          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700, padding: '7px 14px', borderRadius: 20 }}>
             ✏️ Redigera
           </button>
-          <button onClick={handleSignOut} style={{
-            background: 'none', border: 'none',
-            fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 10px',
-          }}>
+          <button onClick={handleSignOut} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
             Logga ut
           </button>
         </div>
       </header>
 
-      <div style={{ maxWidth: 520, margin: '0 auto', padding: '14px 14px' }}>
+      {/* ── Cover hero ── */}
+      <div style={{
+        height: 140,
+        background: 'linear-gradient(160deg, #0d2240 0%, #1a4a5e 50%, #0a7b8c 100%)',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse 80% 80% at 60% 120%, rgba(45,125,138,0.5) 0%, transparent 60%)' }} />
+        <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0, height: 32, background: 'var(--bg)', clipPath: 'ellipse(55% 100% at 50% 100%)' }} />
+      </div>
 
-        {/* ── Identity card ── */}
-        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            {/* Avatar */}
-            <div style={{
-              width: 68, height: 68, borderRadius: '50%', flexShrink: 0,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 26, fontWeight: 900, color: '#fff', overflow: 'hidden',
-              border: '2.5px solid rgba(10,123,140,0.12)',
-            }}>
-              {user?.avatar
-                ? <Image src={user.avatar} alt="" width={68} height={68} style={{ objectFit: 'cover' }} />
-                : user?.username?.[0]?.toUpperCase() ?? '?'
-              }
-            </div>
-            {/* Name + meta */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt)', margin: '0 0 1px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {user?.username ?? 'Okänd'}
-              </h2>
-              <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '0 0 6px' }}>{user?.email}</p>
-              {/* Followers / following */}
-              <div style={{ display: 'flex', gap: 14 }}>
-                <span style={{ fontSize: 12, color: 'var(--txt2)' }}>
-                  <strong style={{ color: 'var(--txt)' }}>{followersCount}</strong> följare
-                </span>
-                <span style={{ fontSize: 12, color: 'var(--txt2)' }}>
-                  <strong style={{ color: 'var(--txt)' }}>{followingCount}</strong> följer
-                </span>
-              </div>
-            </div>
-            {/* Streak flame */}
+      <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 16px' }}>
+
+        {/* ── Avatar + actions row ── */}
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
+          <div style={{
+            width: 84, height: 84, borderRadius: '50%', flexShrink: 0,
+            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            border: '4px solid var(--bg)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 30, fontWeight: 900, color: '#fff', overflow: 'hidden',
+            boxShadow: '0 4px 20px rgba(0,45,60,0.18)',
+          }}>
+            {user?.avatar
+              ? <Image src={user.avatar} alt="" width={84} height={84} style={{ objectFit: 'cover' }} />
+              : user?.username?.[0]?.toUpperCase() ?? '?'}
+          </div>
+          <div style={{ display: 'flex', gap: 6, paddingBottom: 4, marginLeft: 'auto' }}>
             {streak > 0 && (
-              <div style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-                background: 'linear-gradient(135deg,#ff6b35,#f7931e)',
-                borderRadius: 14, padding: '8px 14px',
-                boxShadow: '0 2px 10px rgba(255,107,53,0.4)',
-                flexShrink: 0,
-              }}>
-                <span style={{ fontSize: 20 }}>🔥</span>
-                <span style={{ fontSize: 16, fontWeight: 900, color: '#fff', lineHeight: 1 }}>{streak}</span>
-                <span style={{ fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.4px' }}>VECKOR</span>
+              <div style={{ background: 'linear-gradient(135deg,#ff6b35,#f7931e)', borderRadius: 12, padding: '5px 10px', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 8px rgba(255,107,53,0.35)' }}>
+                <span style={{ fontSize: 14 }}>🔥</span>
+                <span style={{ fontSize: 13, fontWeight: 900, color: '#fff' }}>{streak}</span>
+                <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>v</span>
+              </div>
+            )}
+            {user?.username && (
+              <Link href={`/u/${user.username}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+                👁 Min sida
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {/* ── Name + bio + chips ── */}
+        <div style={{ marginBottom: 16 }}>
+          <h1 style={{ fontSize: 22, fontWeight: 900, color: 'var(--txt)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>{user?.username}</h1>
+          {u?.bio && <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 10px' }}>{u.bio}</p>}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
+            {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>⛵ {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
+            {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>🏠 {u.home_port}</span>}
+          </div>
+        </div>
+
+        {/* ── Stats bar ── */}
+        <div style={{ background: 'var(--white)', borderRadius: 18, display: 'flex', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
+          {[
+            { val: trips.length,              label: 'Turer' },
+            { val: `${totalDist.toFixed(0)}`, label: 'NM' },
+            { val: uniqueLocs,                label: 'Platser' },
+            { val: pinnar3 > 0 ? pinnar3 : trips.length, label: pinnar3 > 0 ? 'Magiska' : 'Turer' , skip: pinnar3 === 0 && false },
+            { val: followersCount,            label: 'Följare' },
+          ].map(({ val, label }, i, arr) => (
+            <div key={label} style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none' }}>
+              <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Achievements horizontal strip ── */}
+        {ACHIEVEMENTS.length > 0 && (
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Märken</div>
+              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{unlockedAch.length}/{ACHIEVEMENTS.length}</span>
+            </div>
+            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none' } as React.CSSProperties}>
+              {ACHIEVEMENTS.map(a => {
+                const unlocked = unlockedAch.includes(a)
+                return (
+                  <div key={a.id} title={a.label} style={{ flexShrink: 0, width: 52, height: 52, borderRadius: 14, background: 'var(--white)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'rgba(0,0,0,0.06)'}`, opacity: unlocked ? 1 : 0.3, filter: unlocked ? 'none' : 'grayscale(1)', boxShadow: unlocked ? '0 1px 6px rgba(0,45,60,0.07)' : 'none' }}>
+                    <span style={{ fontSize: 20 }}>{a.emoji}</span>
+                    <span style={{ fontSize: 7, fontWeight: 700, color: '#5a8090', textAlign: 'center', lineHeight: 1.2, maxWidth: 44, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.label}</span>
+                  </div>
+                )
+              })}
+            </div>
+            {lockedAch.length > 0 && (
+              <div style={{ marginTop: 8, padding: '10px 14px', background: 'rgba(201,110,42,0.06)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: 20, filter: 'grayscale(0.5)', opacity: 0.7 }}>{lockedAch[0].emoji}</span>
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: '#c96e2a' }}>Nästa: {lockedAch[0].label}</div>
+                  <div style={{ fontSize: 11, color: 'var(--txt3)' }}>{lockedAch[0].desc}</div>
+                </div>
               </div>
             )}
           </div>
+        )}
 
-          {/* Bio */}
-          {u?.bio && (
-            <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: '14px 0 0', padding: '12px 14px', background: 'rgba(10,123,140,0.04)', borderRadius: 12 }}>
-              {u.bio}
-            </p>
-          )}
-
-          {/* Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8, marginTop: 14 }}>
-            {[
-              { val: trips.length,              label: 'Turer',   emoji: '⛵' },
-              { val: `${totalDist.toFixed(1)}`, label: 'NM tot',  emoji: '🧭' },
-              { val: uniqueLocs,                label: 'Platser', emoji: '📍' },
-            ].map(({ val, label, emoji }) => (
-              <div key={label} style={{
-                background: 'rgba(10,123,140,0.05)', borderRadius: 14, padding: '12px 8px', textAlign: 'center',
-              }}>
-                <div style={{ fontSize: 18, marginBottom: 2 }}>{emoji}</div>
-                <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--sea)', lineHeight: 1 }}>{val}</div>
-                <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 3 }}>{label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Favoritplats */}
-          {favPlats && (
-            <div style={{
-              marginTop: 10, padding: '10px 14px',
-              background: 'rgba(10,123,140,0.05)', borderRadius: 12,
-              display: 'flex', alignItems: 'center', gap: 10,
-            }}>
-              <span style={{ fontSize: 18 }}>📌</span>
-              <div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Favoritplats</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--sea)' }}>{favPlats}</div>
-              </div>
+        {/* ── Activity chart ── */}
+        {monthBars.length > 0 && (
+          <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Aktivitet</div>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 56 }}>
+              {monthBars.map(([key, v]) => (
+                <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
+                  <span style={{ fontSize: 9, fontWeight: 800, color: '#1e5c82' }}>{v.count}</span>
+                  <div style={{ width: '100%', borderRadius: '4px 4px 0 0', background: 'linear-gradient(to top,#1e5c82,#2d7d8a)', height: `${Math.max(6, (v.count / maxBar) * 36)}px` }} />
+                </div>
+              ))}
             </div>
-          )}
-        </div>
-
-        {/* ── Vessel / sailor info card ── */}
-        {(u?.vessel_name || u?.vessel_type || u?.home_port || u?.nationality || u?.experience_years) && (
-          <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-            <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
-              ⚓ Min båt &amp; bakgrund
-            </h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {u?.vessel_name && (
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontSize: 16 }}>⛵</span>
-                  <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Båt</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
-                      {u.vessel_name}{u.vessel_type ? ` · ${u.vessel_type}` : ''}{u.vessel_model ? ` (${u.vessel_model})` : ''}
-                    </div>
-                  </div>
-                </div>
-              )}
-              {u?.home_port && (
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontSize: 16 }}>🏠</span>
-                  <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Hemmahamn</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
-                      {u.home_port}{u.sailing_region ? ` · ${u.sailing_region}` : ''}
-                    </div>
-                  </div>
-                </div>
-              )}
-              {(u?.nationality || u?.experience_years) && (
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontSize: 16 }}>🧭</span>
-                  <div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px' }}>Bakgrund</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)' }}>
-                      {[u.nationality, u.experience_years ? `${u.experience_years} år till havs` : null].filter(Boolean).join(' · ')}
-                    </div>
-                  </div>
-                </div>
-              )}
+            <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
+              {monthBars.map(([key, v]) => (
+                <div key={key} style={{ flex: 1, textAlign: 'center', fontSize: 9, fontWeight: 600, color: '#a0bec8' }}>{v.label}</div>
+              ))}
             </div>
           </div>
         )}
-
-        {/* ── Pinnar-breakdown ── */}
-        {ratedTrips > 0 && (
-          <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-            <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
-              ⚓ Pinnar-fördelning
-            </h3>
-            {[
-              { emoji: '⚓⚓⚓', label: 'Magisk 🔥', count: pinnar3, color: '#c96e2a' },
-              { emoji: '⚓⚓',   label: 'Bra tur!',  count: pinnar2, color: 'var(--sea)' },
-              { emoji: '⚓',    label: 'Okej',       count: pinnar1, color: 'var(--txt3)' },
-            ].map(({ emoji, label, count, color }) => (
-              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                <span style={{ fontSize: 14, width: 52 }}>{emoji}</span>
-                <div style={{ flex: 1, height: 8, background: 'rgba(10,123,140,0.08)', borderRadius: 4, overflow: 'hidden' }}>
-                  <div style={{
-                    height: '100%', borderRadius: 4, background: color,
-                    width: `${(count / ratedTrips) * 100}%`,
-                    transition: 'width 0.6s ease',
-                  }} />
-                </div>
-                <span style={{ fontSize: 13, fontWeight: 800, color, width: 20, textAlign: 'right' }}>{count}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ── Achievements ── */}
-        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 12 }}>
-          <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 14px' }}>
-            Märken · {unlockedAch.length}/{ACHIEVEMENTS.length}
-          </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
-            {ACHIEVEMENTS.map((a) => {
-              const unlocked = unlockedAch.includes(a)
-              return (
-                <div key={a.id} style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-                  padding: '10px 4px', borderRadius: 14,
-                  background: unlocked ? 'rgba(10,123,140,0.07)' : 'rgba(0,0,0,0.025)',
-                  border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'transparent'}`,
-                  opacity: unlocked ? 1 : 0.35,
-                }}>
-                  <span style={{ fontSize: 22, filter: unlocked ? 'none' : 'grayscale(1)' }}>{a.emoji}</span>
-                  <span style={{ fontSize: 9, fontWeight: 700, color: unlocked ? '#1e5c82' : '#7a9dab', textAlign: 'center', lineHeight: 1.3 }}>
-                    {a.label}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* Next badge hint */}
-          {lockedAch.length > 0 && (
-            <div style={{
-              marginTop: 14, padding: '10px 14px',
-              background: 'rgba(201,110,42,0.06)', borderRadius: 12,
-              display: 'flex', alignItems: 'center', gap: 10,
-            }}>
-              <span style={{ fontSize: 20, filter: 'grayscale(0.5)', opacity: 0.7 }}>{lockedAch[0].emoji}</span>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#c96e2a' }}>Nästa: {lockedAch[0].label}</div>
-                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>{lockedAch[0].desc}</div>
-              </div>
-            </div>
-          )}
-        </div>
 
         {/* ── Trip grid ── */}
-        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 20px', boxShadow: '0 2px 12px rgba(0,45,60,0.07)' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <div style={{ textAlign: 'center', padding: '52px 24px' }}>
               <div style={{ fontSize: 52, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 20 }}>Inga turer ännu</p>
-              <Link href="/logga" style={{
-                display: 'inline-block', padding: '12px 28px', borderRadius: 14,
-                background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-                color: '#fff', fontWeight: 700, fontSize: 14,
-                boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none',
-              }}>
+              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>Inga turer ännu</p>
+              <Link href="/logga" style={{ display: 'inline-block', padding: '12px 28px', borderRadius: 14, background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff', fontWeight: 700, fontSize: 14, boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none', marginTop: 12 }}>
                 Logga din första tur →
               </Link>
             </div>
           ) : (
             <>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                <h3 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
-                  Mina turer
-                </h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
                 <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{trips.length} st</span>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
-                {trips.map((t) => (
-                  <Link key={t.id} href={`/tur/${t.id}`} style={{
-                    position: 'relative', aspectRatio: '1 / 1', borderRadius: 12,
-                    overflow: 'hidden', background: '#a8ccd4', display: 'block',
-                  }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>
+                {trips.map(t => (
+                  <Link key={t.id} href={`/tur/${t.id}`} style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'block', borderRadius: 4 }}>
                     {t.image ? (
-                      <Image
-                        src={t.image}
-                        alt={t.location_name ?? 'Tur'}
-                        fill
-                        style={{ objectFit: 'cover' }}
-                        sizes="(max-width: 520px) 33vw, 160px"
-                      />
+                      <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
                     ) : (
-                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, opacity: 0.4 }}>⛵</div>
+                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }}>⛵</div>
                     )}
-                    {t.pinnar_rating && (
-                      <span style={{
-                        position: 'absolute', top: 4, right: 4,
-                        background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(4px)',
-                        color: '#fff', fontSize: 8, padding: '2px 5px', borderRadius: 8, fontWeight: 700,
-                      }}>
-                        {'⚓'.repeat(t.pinnar_rating)}
-                      </span>
+                    {t.pinnar_rating === 3 && (
+                      <div style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.5)', borderRadius: 6, padding: '2px 5px', fontSize: 8, fontWeight: 700, color: '#fff' }}>⚓⚓⚓</div>
                     )}
-                    {t.location_name && (
-                      <div style={{
-                        position: 'absolute', bottom: 0, left: 0, right: 0,
-                        background: 'linear-gradient(to top, rgba(0,20,35,0.65) 0%, transparent 100%)',
-                        padding: '14px 5px 5px',
-                      }}>
-                        <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {t.location_name}
-                        </p>
-                      </div>
-                    )}
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
+                      {t.location_name && <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.location_name}</p>}
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -784,9 +479,8 @@ export default function ProfilPage() {
           )}
         </div>
 
-        {/* ── Inställningar ── */}
+        {/* ── Settings ── */}
         <SettingsSection />
-
       </div>
     </div>
   )
