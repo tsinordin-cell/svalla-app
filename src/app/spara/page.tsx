@@ -759,171 +759,187 @@ export default function SparaPage() {
   if (phase === 'tracking' || phase === 'paused') {
     const mv = movementMeta(movementState)
     return (
-      <div className="min-h-screen flex flex-col">
-        <div className="flex-1 overflow-y-auto flex flex-col items-center gap-4 px-5 py-5 pb-52">
+      <div style={{ minHeight: '100vh', background: '#0a1a2a', display: 'flex', flexDirection: 'column', color: '#fff' }}>
 
-          {/* Offline banner */}
-          {!isOnline && (
-            <div style={{
-              width: '100%', background: 'rgba(201,110,42,.1)',
-              border: '1px solid rgba(201,110,42,.3)',
-              color: '#c96e2a', padding: '10px 14px',
-              borderRadius: 14, fontSize: 13, fontWeight: 600, textAlign: 'center',
-            }}>
-              📡 Offline – {offlineBuffered} GPS-punkter buffrade lokalt
-            </div>
-          )}
+        {/* ── Full-bleed map with overlaid badges ── */}
+        <div style={{ position: 'relative', width: '100%', flexShrink: 0 }}>
+          <LiveTrackMap
+            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+            currentPos={currentPos}
+            speed={currentSpeed}
+            bearing={bearing}
+            heading={points.length > 0 ? (points[points.length - 1].heading) : null}
+            stops={stops.filter(s => s.type === 'stop').map(s => ({
+              lat: s.lat, lng: s.lng, type: s.type,
+              durationSeconds: s.durationSeconds,
+            }))}
+            height={300}
+          />
+          {/* Gradient fade at bottom — blends map into dark bg */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: 72,
+            background: 'linear-gradient(to bottom, transparent, #0a1a2a)',
+            pointerEvents: 'none', zIndex: 5,
+          }} />
 
-          {/* Live map */}
-          <div style={{ width: '100%' }}>
-            <LiveTrackMap
-              points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
-              currentPos={currentPos}
-              speed={currentSpeed}
-              bearing={bearing}
-              heading={points.length > 0 ? (points[points.length - 1].heading) : null}
-              stops={stops.filter(s => s.type === 'stop').map(s => ({
-                lat: s.lat, lng: s.lng, type: s.type,
-                durationSeconds: s.durationSeconds,
-              }))}
-            />
+          {/* Movement state — overlaid top-left */}
+          <div style={{
+            position: 'absolute', top: 12, left: 12, zIndex: 15,
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            background: 'rgba(10,22,38,0.78)', backdropFilter: 'blur(10px)',
+            borderRadius: 20, padding: '6px 13px',
+            border: `1px solid ${mv.color}40`,
+          }}>
+            <span style={{ fontSize: 12, fontWeight: 800, color: mv.color }}>{mv.label}</span>
+            {phase === 'tracking' && currentSpeed > 0.3 && (
+              <span style={{ fontSize: 11, color: mv.color, opacity: .65, fontWeight: 600 }}>
+                · {currentSpeed.toFixed(1)} kn
+              </span>
+            )}
           </div>
 
-          {/* Movement state + bearing row */}
-          <div style={{ width: '100%', display: 'flex', gap: 8, alignItems: 'center' }}>
+          {/* Offline — overlaid top-center */}
+          {!isOnline && (
             <div style={{
-              flex: 1, display: 'flex', alignItems: 'center', gap: 6,
-              background: mv.bg, borderRadius: 12, padding: '9px 14px',
+              position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)', zIndex: 15,
+              background: 'rgba(201,110,42,.9)', backdropFilter: 'blur(8px)',
+              borderRadius: 16, padding: '5px 12px',
+              fontSize: 11, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap',
             }}>
-              <span style={{ fontSize: 13, fontWeight: 800, color: mv.color }}>{mv.label}</span>
-              {phase === 'tracking' && currentSpeed > 0.3 && (
-                <span style={{ fontSize: 12, color: mv.color, opacity: .7, marginLeft: 'auto', fontWeight: 600 }}>
-                  {currentSpeed.toFixed(1)} kn
-                </span>
-              )}
+              📡 {offlineBuffered} offline
             </div>
-            {bearing !== null && currentSpeed > 0.5 && (
-              <div style={{
-                background: 'rgba(10,123,140,.08)', borderRadius: 12,
-                padding: '9px 14px', flexShrink: 0,
-              }}>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#1e5c82' }}>
-                  ↑ {bearingLabel(bearing)} {Math.round(bearing)}°
-                </span>
-              </div>
-            )}
+          )}
+        </div>
+
+        {/* ── Content ── */}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0 20px 4px' }}>
+
+          {/* Status pill */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10, marginBottom: 4 }}>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 7,
+              padding: '5px 16px', borderRadius: 20,
+              background: phase === 'tracking' ? 'rgba(15,158,100,.15)' : 'rgba(201,110,42,.15)',
+              border: `1px solid ${phase === 'tracking' ? 'rgba(15,158,100,.3)' : 'rgba(201,110,42,.35)'}`,
+            }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
+                background: phase === 'tracking' ? '#0f9e64' : '#c96e2a',
+                animation: phase === 'tracking' ? 'pulse-status 1.5s ease-in-out infinite' : 'none',
+              }} />
+              <span style={{ fontSize: 11, fontWeight: 800, color: phase === 'tracking' ? '#0f9e64' : '#c96e2a', letterSpacing: '.5px', textTransform: 'uppercase' }}>
+                {phase === 'tracking' ? 'Spårar' : 'Pausad'}
+              </span>
+            </div>
           </div>
 
           {/* Flash insight */}
           {flashInsight && (
             <div style={{
-              width: '100%', background: 'rgba(30,92,130,.08)',
-              border: '1px solid rgba(30,92,130,.15)',
+              marginBottom: 8,
+              background: 'rgba(30,92,130,.2)', border: '1px solid rgba(30,92,130,.35)',
               borderRadius: 14, padding: '10px 16px',
               display: 'flex', alignItems: 'center', gap: 10,
               animation: 'fadeIn .3s ease',
             }}>
-              <span style={{ fontSize: 22 }}>{flashInsight.emoji}</span>
-              <span style={{ fontSize: 14, fontWeight: 700, color: '#1e5c82' }}>{flashInsight.text}</span>
+              <span style={{ fontSize: 20 }}>{flashInsight.emoji}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,.85)' }}>{flashInsight.text}</span>
             </div>
           )}
 
-          {/* Status pill */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            padding: '8px 18px', borderRadius: 20,
-            background: phase === 'tracking' ? 'rgba(15,158,100,.1)' : 'rgba(201,110,42,.1)',
-            color:      phase === 'tracking' ? '#0f9e64' : '#c96e2a',
-          }}>
-            <span style={{
-              width: 8, height: 8, borderRadius: '50%',
-              background: phase === 'tracking' ? '#0f9e64' : '#c96e2a',
-              animation: phase === 'tracking' ? 'pulse-status 1.5s ease-in-out infinite' : 'none',
-            }} />
-            <span style={{ fontSize: 13, fontWeight: 700 }}>
-              {phase === 'tracking' ? 'Spårar' : 'Pausad'}
+          {/* ── Big timer ── */}
+          <div style={{ textAlign: 'center', margin: '6px 0 18px' }}>
+            <div style={{
+              fontSize: 76, fontWeight: 900, color: '#fff',
+              fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-3px',
+            }}>
+              {formatDuration(elapsed)}
+            </div>
+            <div style={{ fontSize: 9, color: 'rgba(255,255,255,.3)', marginTop: 5, textTransform: 'uppercase', letterSpacing: '2px', fontWeight: 700 }}>
+              TID
+            </div>
+          </div>
+
+          {/* ── Stats — 4 in a row ── */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 10 }}>
+            <DarkStatBox val={dist.toFixed(2)}         unit="NM" label="Distans"  />
+            <DarkStatBox val={currentSpeed.toFixed(1)} unit="kn" label="Nu"       />
+            <DarkStatBox val={avgSpd.toFixed(1)}       unit="kn" label="Snitt"    />
+            <DarkStatBox val={maxSpd.toFixed(1)}       unit="kn" label="Max"      />
+          </div>
+
+          {/* Bearing + meta row */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 4 }}>
+            {bearing !== null && currentSpeed > 0.5 && (
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,.35)', fontWeight: 600 }}>
+                ↑ {bearingLabel(bearing)} {Math.round(bearing)}°
+              </span>
+            )}
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', fontWeight: 500 }}>
+              {points.length} pts · {stops.filter(s => s.type === 'stop').length} stopp
             </span>
+            {anomalyCount > 0 && (
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)', fontWeight: 500 }}>
+                🔍 {anomalyCount} anomali{anomalyCount === 1 ? '' : 'er'}
+              </span>
+            )}
           </div>
-
-          {/* Big timer */}
-          <div className="text-center">
-            <div className="text-6xl font-black text-sea tabular-nums">{formatDuration(elapsed)}</div>
-            <div className="text-xs text-svalla-text3 mt-1 uppercase tracking-widest">Tid</div>
-          </div>
-
-          {/* Stats grid */}
-          <div className="w-full grid grid-cols-2 gap-3">
-            <StatBox val={dist.toFixed(2)}      unit="NM"  label="Distans"     />
-            <StatBox val={currentSpeed.toFixed(1)} unit="kn" label="Nu"         />
-            <StatBox val={avgSpd.toFixed(1)}    unit="kn"  label="Snitt"       />
-            <StatBox val={maxSpd.toFixed(1)}    unit="kn"  label="Toppfart"    />
-          </div>
-
-          {/* Paused banner */}
-          {phase === 'paused' && (
-            <div className="w-full bg-acc-light rounded-2xl p-4 text-center border-2 border-acc/20">
-              <div className="text-2xl mb-1">⏸</div>
-              <div className="font-black text-acc text-base">Spårning pausad</div>
-              <div className="text-sm text-svalla-text2 mt-1">GPS-punkter sparas inte under paus</div>
-            </div>
-          )}
 
           {/* GPS error */}
           {gpsError && (
-            <p className="text-sm text-center rounded-xl px-4 py-2 w-full" style={{
-              color:      gpsError.startsWith('Söker') ? '#1e5c82' : '#dc2626',
-              background: gpsError.startsWith('Söker') ? 'rgba(30,92,130,.08)' : '#fef2f2',
+            <div style={{
+              padding: '10px 14px', borderRadius: 12, marginTop: 8,
+              background: gpsError.startsWith('Söker') ? 'rgba(30,92,130,.2)' : 'rgba(220,38,38,.15)',
+              border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(30,92,130,.4)' : 'rgba(220,38,38,.3)'}`,
+              color: gpsError.startsWith('Söker') ? '#4db8d4' : '#f87171',
+              fontSize: 13, fontWeight: 600, textAlign: 'center',
             }}>
               {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
-            </p>
-          )}
-
-          {/* Anomaly indicator */}
-          {anomalyCount > 0 && (
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 6,
-              background: 'rgba(122,157,171,.1)', borderRadius: 12,
-              padding: '5px 12px', fontSize: 11, color: '#5a8090', fontWeight: 600,
-            }}>
-              <span>🔍</span>
-              <span>{anomalyCount} GPS-anomali{anomalyCount === 1 ? '' : 'er'} exkluderade</span>
             </div>
           )}
-
-          <p className="text-xs text-svalla-text3">{points.length} GPS-punkter · {stops.filter(s => s.type === 'stop').length} stopp</p>
         </div>
 
         {/* ── Sticky controls bar ── */}
-        <div className="sticky bottom-0 z-10 px-5 pt-3 flex flex-col gap-3" style={{
-          background:      'rgba(235,243,248,.97)',
-          backdropFilter:  'blur(12px)',
-          borderTop:       '1px solid rgba(30,92,130,.1)',
-          paddingBottom:   'calc(env(safe-area-inset-bottom,0px) + var(--nav-h,64px) + 12px)',
+        <div style={{
+          padding: '14px 20px',
+          paddingBottom: 'calc(env(safe-area-inset-bottom,0px) + var(--nav-h,64px) + 14px)',
+          background: 'rgba(8,16,28,0.98)',
+          backdropFilter: 'blur(16px)',
+          borderTop: '1px solid rgba(255,255,255,.07)',
+          display: 'flex', flexDirection: 'column', gap: 10,
         }}>
           {phase === 'tracking' ? (
-            <button onClick={handlePause}
-              className="w-full py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-3"
-              style={{ background: 'rgba(201,110,42,.12)', color: '#c96e2a', border: '2px solid rgba(201,110,42,.3)' }}
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+            <button onClick={handlePause} style={{
+              width: '100%', padding: '18px', borderRadius: 22, border: '1.5px solid rgba(201,110,42,.5)',
+              background: 'rgba(201,110,42,.16)', color: '#e07828',
+              fontWeight: 900, fontSize: 18, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+            }}>
+              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}>
                 <rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/>
               </svg>
               Pausa
             </button>
           ) : (
-            <button onClick={handleResume}
-              className="w-full py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-3 text-white"
-              style={{ background: 'linear-gradient(135deg,#0f9e64,#0d8554)', boxShadow: '0 4px 20px rgba(15,158,100,.4)' }}
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M8 5v14l11-7z"/></svg>
+            <button onClick={handleResume} style={{
+              width: '100%', padding: '18px', borderRadius: 22, border: 'none',
+              background: 'linear-gradient(135deg,#0f9e64,#0d8554)', color: '#fff',
+              fontWeight: 900, fontSize: 18, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+              boxShadow: '0 4px 24px rgba(15,158,100,.4)',
+            }}>
+              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}><path d="M8 5v14l11-7z"/></svg>
               Fortsätt
             </button>
           )}
-          <button onClick={handleStop}
-            className="w-full py-4 rounded-2xl font-bold text-base text-white flex items-center justify-center gap-2"
-            style={{ background: 'linear-gradient(135deg,#cc3d3d,#b02f2f)', boxShadow: '0 4px 16px rgba(204,61,61,.3)' }}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+          <button onClick={handleStop} style={{
+            width: '100%', padding: '15px', borderRadius: 22,
+            background: 'rgba(204,61,61,.14)', color: '#f87171',
+            border: '1.5px solid rgba(204,61,61,.3)',
+            fontWeight: 700, fontSize: 15, cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+          }}>
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18 }}>
               <rect x="4" y="4" width="16" height="16" rx="2"/>
             </svg>
             Avsluta tur
@@ -931,7 +947,7 @@ export default function SparaPage() {
         </div>
 
         <style>{`
-          @keyframes pulse-status{0%,100%{opacity:1}50%{opacity:.4}}
+          @keyframes pulse-status{0%,100%{opacity:1}50%{opacity:.35}}
           @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
         `}</style>
       </div>
@@ -1228,6 +1244,23 @@ function StatBox({ val, unit, label }: { val: string; unit: string; label: strin
         {val}<span className="text-sm font-medium ml-1">{unit}</span>
       </div>
       <div className="text-[10px] text-svalla-text3 uppercase tracking-wide mt-1">{label}</div>
+    </div>
+  )
+}
+
+function DarkStatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
+  return (
+    <div style={{
+      background: 'rgba(255,255,255,.07)', borderRadius: 14,
+      padding: '10px 4px', textAlign: 'center',
+      border: '1px solid rgba(255,255,255,.07)',
+    }}>
+      <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px' }}>
+        {val}
+      </div>
+      <div style={{ fontSize: 9, color: 'rgba(255,255,255,.35)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
+        {unit} · {label}
+      </div>
     </div>
   )
 }

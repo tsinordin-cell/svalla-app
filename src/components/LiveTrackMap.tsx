@@ -16,6 +16,7 @@ interface LiveTrackMapProps {
   bearing?: number | null   // degrees from north (calculated from movement)
   heading?: number | null   // degrees from GPS hardware heading
   stops?: StopMarker[]
+  height?: number     // px, default 240
 }
 
 export default function LiveTrackMap({
@@ -25,6 +26,7 @@ export default function LiveTrackMap({
   bearing = null,
   heading = null,
   stops = [],
+  height = 240,
 }: LiveTrackMapProps) {
   const mapContainer   = useRef<HTMLDivElement>(null)
   const mapInstance    = useRef<any>(null)
@@ -217,13 +219,13 @@ export default function LiveTrackMap({
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', marginBottom: 12 }}>
+    <div style={{ position: 'relative', width: '100%' }}>
       <div
         ref={mapContainer}
         style={{
           width: '100%',
-          height: 240,
-          borderRadius: 20,
+          height,
+          borderRadius: 0,
           background: '#a8ccd4',
           overflow: 'hidden',
           boxShadow: '0 4px 16px rgba(0,45,60,0.12)',
