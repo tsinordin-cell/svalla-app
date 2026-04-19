@@ -33,7 +33,8 @@ export default function TripCard({ trip }: { trip: Trip }) {
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
   const dur      = formatDurationMin(trip.duration)
-  const hasRoute = Array.isArray(trip.route_points) && trip.route_points.length >= 2
+  // Require >= 0.05 NM distance so a stationary/test trip doesn't show an empty map
+  const hasRoute = Array.isArray(trip.route_points) && trip.route_points.length >= 2 && (trip.distance ?? 0) >= 0.05
   const hasPhoto = !!trip.image && !imgErr
   const hasMedia = hasPhoto || hasRoute
 
