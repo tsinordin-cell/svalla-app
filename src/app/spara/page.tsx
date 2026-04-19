@@ -97,6 +97,7 @@ export default function SparaPage() {
   const [liveInsights,   setLiveInsights]   = useState<LiveInsight[]>([])
   const [shownInsightKeys, setShownInsightKeys] = useState<Set<string>>(new Set())
   const [flashInsight,   setFlashInsight]   = useState<LiveInsight | null>(null)
+  const [statsExpanded,  setStatsExpanded]  = useState(false)
 
   // ── Recovery state ──
   const [recoverySnap, setRecoverySnap] = useState<TripSnapshot | null>(null)
@@ -759,73 +760,88 @@ export default function SparaPage() {
   if (phase === 'tracking' || phase === 'paused') {
     const mv = movementMeta(movementState)
     const isTracking = phase === 'tracking'
-    // Alltid mörk — spårningsskärmen är alltid dark-themed (som Strava)
     const BG      = '#08121e'
     const CARD    = 'rgba(255,255,255,0.06)'
     const CARD_BD = 'rgba(255,255,255,0.08)'
     const META    = 'rgba(255,255,255,0.28)'
-    const SUB     = 'rgba(255,255,255,0.38)'
+    const SUB     = 'rgba(255,255,255,0.42)'
+    const mapH    = typeof window !== 'undefined' ? window.innerHeight : 700
 
-    return (
-      <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: BG, color: '#fff' }}>
-
-        {/* ── Full-width map ── */}
-        <div style={{ position: 'relative', width: '100%', flexShrink: 0 }}>
-          <LiveTrackMap
-            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
-            currentPos={currentPos}
-            speed={currentSpeed}
-            bearing={bearing}
-            heading={points.length > 0 ? points[points.length - 1].heading : null}
-            stops={stops.filter(s => s.type === 'stop').map(s => ({
-              lat: s.lat, lng: s.lng, type: s.type,
-              durationSeconds: s.durationSeconds,
-            }))}
-            height={Math.round(typeof window !== 'undefined' ? window.innerHeight * 0.42 : 320)}
-          />
-          {/* Gradient bleed — karta flödar in i dark bakgrund */}
-          <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: 80,
-            background: `linear-gradient(to bottom, transparent, ${BG})`,
-            pointerEvents: 'none', zIndex: 5,
-          }} />
-          {/* Movement state badge — overlaid på kartan */}
-          <div style={{
-            position: 'absolute', top: 14, left: 14, zIndex: 15,
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            background: 'rgba(8,18,30,.72)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-            borderRadius: 20, padding: '6px 14px',
-            border: `1px solid ${mv.color}55`,
+    const ControlButtons = () => (
+      <div style={{ display: 'flex', gap: 10 }}>
+        {isTracking ? (
+          <button onClick={handlePause} style={{
+            flex: 1, padding: '17px', borderRadius: 20,
+            border: '1.5px solid rgba(201,110,42,.4)',
+            background: 'rgba(201,110,42,.14)', color: '#e07828',
+            fontWeight: 900, fontSize: 17, cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: mv.color, flexShrink: 0 }} />
-            <span style={{ fontSize: 11, fontWeight: 800, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
-            {isTracking && currentSpeed > 0.3 && (
-              <span style={{ fontSize: 11, color: mv.color, opacity: .6, fontWeight: 600 }}>
-                · {currentSpeed.toFixed(1)} kn
-              </span>
-            )}
-          </div>
-          {/* Offline badge */}
-          {!isOnline && (
-            <div style={{
-              position: 'absolute', top: 14, left: '50%', transform: 'translateX(-50%)', zIndex: 15,
-              background: 'rgba(201,110,42,.9)', backdropFilter: 'blur(8px)',
-              borderRadius: 16, padding: '5px 12px',
-              fontSize: 11, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap',
-            }}>
-              📡 {offlineBuffered} offline
-            </div>
-          )}
-        </div>
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 21, height: 21 }}>
+              <rect x="5" y="4" width="4" height="16" rx="1.5"/><rect x="15" y="4" width="4" height="16" rx="1.5"/>
+            </svg>
+            Pausa
+          </button>
+        ) : (
+          <button onClick={handleResume} style={{
+            flex: 1, padding: '17px', borderRadius: 20, border: 'none',
+            background: 'linear-gradient(135deg,#0f9e64,#0d8554)', color: '#fff',
+            fontWeight: 900, fontSize: 17, cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+            boxShadow: '0 4px 24px rgba(15,158,100,.45)',
+          }}>
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 21, height: 21 }}>
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Fortsätt
+          </button>
+        )}
+        <button onClick={handleStop} style={{
+          flex: 1, padding: '17px', borderRadius: 20,
+          background: 'rgba(204,61,61,.16)',
+          border: '1.5px solid rgba(204,61,61,.35)',
+          color: '#f87171',
+          fontWeight: 700, fontSize: 17, cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+        }}>
+          <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 19, height: 19 }}>
+            <rect x="4" y="4" width="16" height="16" rx="3"/>
+          </svg>
+          Avsluta
+        </button>
+      </div>
+    )
 
-        {/* ── Stats panel ── */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0 20px 8px' }}>
+    // ── EXPANDED STATS VIEW ────────────────────────────────────────────────
+    if (statsExpanded) {
+      return (
+        <div style={{ minHeight: '100dvh', background: BG, color: '#fff', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+
+          {/* Collapse button (top-right) */}
+          <button
+            onClick={() => setStatsExpanded(false)}
+            aria-label="Visa karta"
+            style={{
+              position: 'absolute', top: 16, right: 16, zIndex: 20,
+              width: 40, height: 40, borderRadius: 12,
+              background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.14)',
+              color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 17, height: 17 }}>
+              <polyline points="4 14 10 14 10 20"/>
+              <polyline points="20 10 14 10 14 4"/>
+              <line x1="10" y1="14" x2="3" y2="21"/>
+              <line x1="21" y1="3" x2="14" y2="10"/>
+            </svg>
+          </button>
 
           {/* Status pill */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 22, marginBottom: 4 }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 7,
-              padding: '5px 18px', borderRadius: 20,
+              padding: '5px 16px', borderRadius: 20,
               background: isTracking ? 'rgba(15,158,100,.15)' : 'rgba(201,110,42,.15)',
               border: `1px solid ${isTracking ? 'rgba(15,158,100,.35)' : 'rgba(201,110,42,.35)'}`,
             }}>
@@ -841,137 +857,242 @@ export default function SparaPage() {
             </div>
           </div>
 
-          {/* Flash insight */}
-          {flashInsight && (
-            <div style={{
-              marginBottom: 12,
-              background: 'rgba(30,92,130,.25)', border: '1px solid rgba(74,184,212,.25)',
-              borderRadius: 14, padding: '10px 16px',
-              display: 'flex', alignItems: 'center', gap: 10,
-              animation: 'strv-fade .3s ease',
-            }}>
-              <span style={{ fontSize: 20 }}>{flashInsight.emoji}</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,.85)' }}>{flashInsight.text}</span>
-            </div>
-          )}
+          {/* Main metrics */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 24px' }}>
 
-          {/* ── Primär metrik: TID ── */}
-          <div style={{ textAlign: 'center', marginBottom: 20 }}>
+            {/* Giant timer */}
             <div style={{
-              fontSize: 82, fontWeight: 900, color: '#ffffff',
+              fontSize: 76, fontWeight: 900, color: '#ffffff',
               fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-4px',
+              marginBottom: 6,
             }}>
               {formatDuration(elapsed)}
             </div>
-            <div style={{ fontSize: 9, color: SUB, marginTop: 6, textTransform: 'uppercase', letterSpacing: '3px', fontWeight: 700 }}>
+            <div style={{ fontSize: 9, color: SUB, letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, marginBottom: 36 }}>
               TID
             </div>
+
+            {/* Big distance */}
+            <div style={{ fontSize: 68, fontWeight: 900, color: '#ffffff', fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-3px', marginBottom: 4 }}>
+              {dist.toFixed(2)}
+            </div>
+            <div style={{ fontSize: 9, color: SUB, letterSpacing: '3px', textTransform: 'uppercase', fontWeight: 700, marginBottom: 32 }}>
+              Distans (NM)
+            </div>
+
+            {/* 3-stat row: nu · snitt · max */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8, width: '100%', maxWidth: 340 }}>
+              {[
+                { val: currentSpeed.toFixed(1), unit: 'kn', label: 'Nu' },
+                { val: avgSpd.toFixed(1),        unit: 'kn', label: 'Snitt' },
+                { val: maxSpd.toFixed(1),        unit: 'kn', label: 'Max' },
+              ].map(({ val, unit, label }) => (
+                <div key={label} style={{
+                  background: CARD, border: `1px solid ${CARD_BD}`,
+                  borderRadius: 16, padding: '14px 8px', textAlign: 'center',
+                }}>
+                  <div style={{ fontSize: 28, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px', fontVariantNumeric: 'tabular-nums' }}>{val}</div>
+                  <div style={{ fontSize: 9, color: SUB, marginTop: 4, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>{unit}</div>
+                  <div style={{ fontSize: 9, color: META, textTransform: 'uppercase', letterSpacing: '.3px', fontWeight: 600 }}>{label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Flash insight */}
+            {flashInsight && (
+              <div style={{
+                marginTop: 16, width: '100%', maxWidth: 340,
+                background: 'rgba(30,92,130,.25)', border: '1px solid rgba(74,184,212,.25)',
+                borderRadius: 14, padding: '10px 16px',
+                display: 'flex', alignItems: 'center', gap: 10,
+                animation: 'strv-fade .3s ease',
+              }}>
+                <span style={{ fontSize: 20 }}>{flashInsight.emoji}</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,.85)' }}>{flashInsight.text}</span>
+              </div>
+            )}
+
+            {/* GPS error */}
+            {gpsError && (
+              <div style={{
+                marginTop: 14, width: '100%', maxWidth: 340,
+                padding: '10px 14px', borderRadius: 12,
+                background: gpsError.startsWith('Söker') ? 'rgba(74,184,212,.1)' : 'rgba(220,38,38,.12)',
+                border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(74,184,212,.25)' : 'rgba(220,38,38,.3)'}`,
+                color: gpsError.startsWith('Söker') ? '#4ab8d4' : '#f87171',
+                fontSize: 13, fontWeight: 600, textAlign: 'center',
+              }}>
+                {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
+              </div>
+            )}
           </div>
 
-          {/* ── 4-col stats grid ── */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 6, marginBottom: 12 }}>
-            {[
-              { val: dist.toFixed(2),         unit: 'NM', label: 'Distans' },
-              { val: currentSpeed.toFixed(1), unit: 'kn', label: 'Nu'      },
-              { val: avgSpd.toFixed(1),       unit: 'kn', label: 'Snitt'   },
-              { val: maxSpd.toFixed(1),       unit: 'kn', label: 'Max'     },
-            ].map(({ val, unit, label }) => (
-              <div key={label} style={{
-                background: CARD, border: `1px solid ${CARD_BD}`,
-                borderRadius: 14, padding: '12px 4px', textAlign: 'center',
+          {/* Controls */}
+          <div style={{
+            padding: '12px 20px',
+            paddingBottom: 'calc(env(safe-area-inset-bottom,0px) + 16px)',
+            background: 'rgba(4,8,16,.95)',
+            backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+            borderTop: '1px solid rgba(255,255,255,.07)',
+          }}>
+            <ControlButtons />
+          </div>
+
+          <style>{`
+            @keyframes strv-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+            @keyframes strv-fade  { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+          `}</style>
+        </div>
+      )
+    }
+
+    // ── MAP VIEW (default) ─────────────────────────────────────────────────
+    return (
+      <div style={{ height: '100dvh', position: 'relative', overflow: 'hidden', background: BG }}>
+
+        {/* Full-screen map */}
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <LiveTrackMap
+            points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+            currentPos={currentPos}
+            speed={currentSpeed}
+            bearing={bearing}
+            heading={points.length > 0 ? points[points.length - 1].heading : null}
+            stops={stops.filter(s => s.type === 'stop').map(s => ({
+              lat: s.lat, lng: s.lng, type: s.type,
+              durationSeconds: s.durationSeconds,
+            }))}
+            height={mapH}
+          />
+        </div>
+
+        {/* Gradient bleed — karta flödar in i stats-panelen */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '48%',
+          background: `linear-gradient(to bottom, transparent, ${BG} 55%)`,
+          pointerEvents: 'none', zIndex: 5,
+        }} />
+
+        {/* Movement state badge — overlaid på kartan */}
+        <div style={{
+          position: 'absolute', top: 14, left: 14, zIndex: 15,
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          background: 'rgba(8,18,30,.72)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+          borderRadius: 20, padding: '6px 14px',
+          border: `1px solid ${mv.color}55`,
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: '50%', background: mv.color, flexShrink: 0 }} />
+          <span style={{ fontSize: 11, fontWeight: 800, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
+          {isTracking && currentSpeed > 0.3 && (
+            <span style={{ fontSize: 11, color: mv.color, opacity: .6, fontWeight: 600 }}>
+              · {currentSpeed.toFixed(1)} kn
+            </span>
+          )}
+        </div>
+
+        {/* Offline badge */}
+        {!isOnline && (
+          <div style={{
+            position: 'absolute', top: 14, left: '50%', transform: 'translateX(-50%)', zIndex: 15,
+            background: 'rgba(201,110,42,.9)', backdropFilter: 'blur(8px)',
+            borderRadius: 16, padding: '5px 12px',
+            fontSize: 11, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap',
+          }}>
+            📡 {offlineBuffered} offline
+          </div>
+        )}
+
+        {/* ── Bottom stats sheet (floating over map) ── */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          background: 'rgba(8,18,30,0.92)',
+          backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)',
+          borderRadius: '24px 24px 0 0',
+          borderTop: '1px solid rgba(255,255,255,0.09)',
+          padding: '14px 20px',
+          paddingBottom: 'calc(env(safe-area-inset-bottom,0px) + 16px)',
+          zIndex: 20,
+        }}>
+
+          {/* Drag handle */}
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.18)', margin: '0 auto 14px' }} />
+
+          {/* Title row: boat + status + expand button */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>{boatType || 'Spårar'}</span>
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 5,
+                padding: '3px 10px', borderRadius: 14,
+                background: isTracking ? 'rgba(15,158,100,.15)' : 'rgba(201,110,42,.15)',
+                border: `1px solid ${isTracking ? 'rgba(15,158,100,.3)' : 'rgba(201,110,42,.3)'}`,
               }}>
-                <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px' }}>
+                <span style={{
+                  width: 5, height: 5, borderRadius: '50%', flexShrink: 0,
+                  background: isTracking ? '#0f9e64' : '#c96e2a',
+                  animation: isTracking ? 'strv-pulse 1.4s ease-in-out infinite' : 'none',
+                }} />
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.4px',
+                  color: isTracking ? '#22c55e' : '#e07828' }}>
+                  {isTracking ? 'LIVE' : 'PAUSAD'}
+                </span>
+              </div>
+            </div>
+            {/* Expand to stats view */}
+            <button
+              onClick={() => setStatsExpanded(true)}
+              aria-label="Visa statistik"
+              style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
+                color: 'rgba(255,255,255,0.65)', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+                <polyline points="15 3 21 3 21 9"/>
+                <polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/>
+                <line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* 3-col stats: Tid | Hastighet | Distans */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', marginBottom: 14 }}>
+            {[
+              { val: formatDuration(elapsed), label: 'Tid',       align: 'left'   as const },
+              { val: currentSpeed.toFixed(1) + ' kn', label: 'Hastighet', align: 'center' as const },
+              { val: dist.toFixed(2) + ' NM', label: 'Distans',   align: 'right'  as const },
+            ].map(({ val, label, align }) => (
+              <div key={label} style={{ textAlign: align, padding: '0 2px' }}>
+                <div style={{
+                  fontSize: 24, fontWeight: 900, color: '#ffffff', lineHeight: 1,
+                  letterSpacing: '-1px', fontVariantNumeric: 'tabular-nums',
+                }}>
                   {val}
                 </div>
-                <div style={{ fontSize: 8, color: SUB, marginTop: 4, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
-                  {unit}
-                </div>
-                <div style={{ fontSize: 8, color: META, textTransform: 'uppercase', letterSpacing: '.3px', fontWeight: 600 }}>
+                <div style={{ fontSize: 10, color: META, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 600, marginTop: 4 }}>
                   {label}
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Meta row */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 4 }}>
-            {bearing !== null && currentSpeed > 0.5 && (
-              <span style={{ fontSize: 11, color: META, fontWeight: 600 }}>
-                ↑ {bearingLabel(bearing)} {Math.round(bearing)}°
-              </span>
-            )}
-            <span style={{ fontSize: 11, color: META, fontWeight: 500 }}>
-              {points.length} pts · {stops.filter(s => s.type === 'stop').length} stopp
-            </span>
-            {anomalyCount > 0 && (
-              <span style={{ fontSize: 11, color: META }}>🔍 {anomalyCount}</span>
-            )}
-          </div>
-
           {/* GPS error */}
           {gpsError && (
             <div style={{
-              padding: '10px 14px', borderRadius: 12, marginTop: 8,
+              padding: '8px 12px', borderRadius: 10, marginBottom: 10,
               background: gpsError.startsWith('Söker') ? 'rgba(74,184,212,.1)' : 'rgba(220,38,38,.12)',
               border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(74,184,212,.25)' : 'rgba(220,38,38,.3)'}`,
               color: gpsError.startsWith('Söker') ? '#4ab8d4' : '#f87171',
-              fontSize: 13, fontWeight: 600, textAlign: 'center',
+              fontSize: 12, fontWeight: 600, textAlign: 'center',
             }}>
               {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
             </div>
           )}
-        </div>
 
-        {/* ── Controls ── */}
-        <div style={{
-          padding: '12px 20px',
-          paddingBottom: 'calc(env(safe-area-inset-bottom,0px) + var(--nav-h,64px) + 12px)',
-          background: 'rgba(4,8,16,.95)',
-          backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
-          borderTop: '1px solid rgba(255,255,255,.07)',
-          display: 'flex', gap: 10,
-        }}>
-          {isTracking ? (
-            <button onClick={handlePause} style={{
-              flex: 1, padding: '18px', borderRadius: 20,
-              border: '1.5px solid rgba(201,110,42,.4)',
-              background: 'rgba(201,110,42,.14)', color: '#e07828',
-              fontWeight: 900, fontSize: 17, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-            }}>
-              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}>
-                <rect x="5" y="4" width="4" height="16" rx="1.5"/><rect x="15" y="4" width="4" height="16" rx="1.5"/>
-              </svg>
-              Pausa
-            </button>
-          ) : (
-            <button onClick={handleResume} style={{
-              flex: 1, padding: '18px', borderRadius: 20, border: 'none',
-              background: 'linear-gradient(135deg,#0f9e64,#0d8554)', color: '#fff',
-              fontWeight: 900, fontSize: 17, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-              boxShadow: '0 4px 24px rgba(15,158,100,.45)',
-            }}>
-              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 22, height: 22 }}>
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              Fortsätt
-            </button>
-          )}
-          <button onClick={handleStop} style={{
-            flex: 1, padding: '18px', borderRadius: 20,
-            background: 'rgba(204,61,61,.16)',
-            border: '1.5px solid rgba(204,61,61,.35)',
-            color: '#f87171',
-            boxShadow: 'none',
-            fontWeight: 700, fontSize: 17, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          }}>
-            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20 }}>
-              <rect x="4" y="4" width="16" height="16" rx="3"/>
-            </svg>
-            Avsluta
-          </button>
+          <ControlButtons />
         </div>
 
         <style>{`
