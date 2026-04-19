@@ -7,7 +7,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import { timeAgo } from '@/lib/utils'
 
-export const revalidate = 60
+export const revalidate = 0
 
 export default async function FeedPage() {
   const supabase = createClient()
