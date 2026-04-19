@@ -230,11 +230,10 @@ export default function SparaPage() {
           }
         }
 
-        // Speed calculation
+        // Speed calculation — prefer position-delta (consistent across devices),
+        // fall back to device-reported speed only on the very first point.
         let speedKnots = 0
-        if (pos.coords.speed != null && pos.coords.speed >= 0) {
-          speedKnots = msToKnots(pos.coords.speed)
-        } else if (lastGpsPtRef.current) {
+        if (lastGpsPtRef.current) {
           const dtHours = (now - lastGpsPtRef.current.ts) / 3_600_000
           if (dtHours > 0.0005) {
             const R = 3440.065
@@ -245,6 +244,9 @@ export default function SparaPage() {
             const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
             speedKnots = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / dtHours
           }
+        } else if (pos.coords.speed != null && pos.coords.speed >= 0) {
+          // First point — no delta available yet, use device speed
+          speedKnots = msToKnots(pos.coords.speed)
         }
 
         // Kalman smoothing
@@ -486,9 +488,9 @@ export default function SparaPage() {
       imageUrl = publicUrl
     }
 
-    // Build route_points: speed-outlier removal → Douglas-Peucker → cap at 120 pts
+    // Build route_points: accuracy filter → speed-outlier removal → Douglas-Peucker → dynamic cap
     // This removes GPS teleport jumps and micro-jitter before saving to DB
-    const routePoints = buildRoutePoints(points, 120)
+    const routePoints = buildRoutePoints(points)
 
     // Insert trip
     const { data: trip, error: tripErr } = await supabase.from('trips').insert({

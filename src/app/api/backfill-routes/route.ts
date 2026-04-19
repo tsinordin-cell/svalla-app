@@ -57,14 +57,15 @@ export async function POST(req: NextRequest) {
     if (!pts || pts.length < 2) { skipped++; continue }
 
     // 3. Map to { lat, lng, recordedAt } shape expected by buildRoutePoints
+    // Note: accuracy not stored in gps_points — filter step will pass all through
     const raw = pts.map(p => ({
       lat:        p.latitude  as number,
       lng:        p.longitude as number,
       recordedAt: p.recorded_at as string,
     }))
 
-    // 4. Run the same smoothing pipeline used in /spara
-    const routePoints = buildRoutePoints(raw, 120)
+    // 4. Run the same smoothing pipeline used in /spara (dynamic cap)
+    const routePoints = buildRoutePoints(raw)
     if (!routePoints) { skipped++; continue }
 
     // 5. Update the trip

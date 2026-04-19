@@ -2,9 +2,10 @@
  * Route smoothing and anomaly removal for GPS tracks.
  *
  * Pipeline for saved route_points:
+ *  0. filterByAccuracy     — drop points with poor GPS fix (accuracy > threshold)
  *  1. removeSpeedOutliers  — drop points implying impossible vessel speed
  *  2. douglasPeucker       — simplify shape, remove micro-jitter
- *  3. uniform cap          — final safety clamp to maxPoints
+ *  3. dynamic cap          — clamp to maxPoints scaled by trip length
  *
  * Used in /spara/page.tsx before persisting route_points to the DB.
  * Used in RouteMapSVG for display-time segment break detection.
@@ -35,6 +36,21 @@ function degDist(
   const t  = ((p.lng - a.lng) * dx + (p.lat - a.lat) * dy) / (dx * dx + dy * dy)
   const tc = Math.max(0, Math.min(1, t))
   return Math.sqrt((p.lng - a.lng - tc * dx) ** 2 + (p.lat - a.lat - tc * dy) ** 2)
+}
+
+// ── 0. Accuracy filter ───────────────────────────────────────────────────────
+/**
+ * Drop GPS points where the device reports poor fix quality.
+ * accuracy is the radius of uncertainty in metres (95% confidence).
+ * Points above maxAccuracy are noise — keep them only if they're the
+ * only data we have (i.e. don't discard to fewer than 2 points).
+ */
+export function filterByAccuracy<T extends { accuracy?: number }>(
+  points: T[],
+  maxAccuracy = 40,
+): T[] {
+  const filtered = points.filter(p => p.accuracy == null || p.accuracy <= maxAccuracy)
+  return filtered.length >= 2 ? filtered : points
 }
 
 // ── 1. Speed-outlier removal ──────────────────────────────────────────────────
@@ -93,26 +109,49 @@ export function douglasPeucker<T extends { lat: number; lng: number }>(
   return [first, last]
 }
 
+// ── Dynamic point cap ─────────────────────────────────────────────────────────
+/**
+ * Scale maxPoints based on raw input size so short trips stay detailed
+ * and long trips don't get over-compressed.
+ *
+ *  < 300 raw pts  → 150 (kort tur, behåll detaljerna)
+ *  300–999        → 250
+ *  1000–2999      → 350
+ *  ≥ 3000         → 450 (10h+ tur, ~1 pt per 80 s)
+ */
+function dynamicMaxPoints(rawCount: number): number {
+  if (rawCount < 300)  return 150
+  if (rawCount < 1000) return 250
+  if (rawCount < 3000) return 350
+  return 450
+}
+
 // ── 3. Full build pipeline ────────────────────────────────────────────────────
 /**
  * Converts a raw GpsPoint array (full tracking data) into a clean,
  * compact route_points array ready for DB storage.
  *
- * Steps: speed-outlier removal → Douglas-Peucker → uniform cap
+ * Steps: accuracy filter → speed-outlier removal → Douglas-Peucker → dynamic cap
  */
 export function buildRoutePoints(
-  raw: Array<{ lat: number; lng: number; recordedAt: string }>,
-  maxPoints = 120,
+  raw: Array<{ lat: number; lng: number; recordedAt: string; accuracy?: number }>,
+  maxPoints?: number,
 ): { lat: number; lng: number }[] | null {
   if (raw.length < 2) return null
 
+  // 0. Drop poor-accuracy fixes (>40 m)
+  const accurate = filterByAccuracy(raw, 40)
+  if (accurate.length < 2) return null
+
   // 1. Remove speed outliers (30 kn threshold)
-  const cleaned = removeSpeedOutliers(raw, 30)
+  const cleaned = removeSpeedOutliers(accurate, 30)
   if (cleaned.length < 2) return null
 
   // 2. Douglas-Peucker — thin the route while preserving shape
   const simplified = douglasPeucker(cleaned, 0.0002)
   if (simplified.length < 2) return null
+
+  const cap = maxPoints ?? dynamicMaxPoints(raw.length)
 
   const toFixed = (p: { lat: number; lng: number }) => ({
     lat: parseFloat(p.lat.toFixed(6)),
@@ -120,12 +159,12 @@ export function buildRoutePoints(
   })
 
   // 3. If within cap, return as-is
-  if (simplified.length <= maxPoints) {
+  if (simplified.length <= cap) {
     return simplified.map(toFixed)
   }
 
-  // 4. Uniform down-sample to maxPoints
-  const step    = Math.floor(simplified.length / maxPoints)
+  // 4. Uniform down-sample to cap
+  const step    = Math.floor(simplified.length / cap)
   const sampled = simplified.filter((_, i) => i % step === 0).map(toFixed)
   const last    = toFixed(simplified[simplified.length - 1])
   if (sampled[sampled.length - 1]?.lat !== last.lat) sampled.push(last)
