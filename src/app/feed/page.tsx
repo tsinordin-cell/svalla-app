@@ -152,7 +152,7 @@ export default async function FeedPage() {
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10,
         padding: '12px 16px 10px',
-        background: 'var(--header-bg, rgba(250,254,255,0.96))',
+        background: 'var(--header-bg, var(--glass-96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         boxShadow: '0 2px 12px rgba(0,45,60,0.05)',

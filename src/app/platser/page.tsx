@@ -70,7 +70,7 @@ export default async function PlatserPage() {
       <header style={{
         flexShrink: 0,
         padding: '12px 16px 10px',
-        background: 'rgba(250,254,255,0.97)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',

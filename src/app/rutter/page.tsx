@@ -120,7 +120,7 @@ export default async function RutterPage({
       {/* Header */}
       <header style={{
         padding: '14px 16px 10px',
-        background: 'rgba(250,254,255,0.96)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
@@ -155,7 +155,7 @@ export default async function RutterPage({
       <div style={{
         padding: '10px 14px 6px',
         display: 'flex', gap: 6, overflowX: 'auto', scrollbarWidth: 'none',
-        background: 'rgba(250,254,255,0.85)',
+        background: 'var(--glass-85)',
         borderBottom: '1px solid rgba(10,123,140,0.06)',
       }}>
         {FOR_FILTERS.map((f) => {
@@ -180,7 +180,7 @@ export default async function RutterPage({
       <div style={{
         padding: '6px 14px 8px',
         display: 'flex', gap: 5, overflowX: 'auto', scrollbarWidth: 'none',
-        background: 'rgba(250,254,255,0.7)',
+        background: 'var(--glass-70)',
         borderBottom: '1px solid rgba(10,123,140,0.04)',
       }}>
         {TIME_FILTERS.map((f) => {
@@ -261,7 +261,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
         {t.highlights.length > 0 && (
           <div style={{ padding: '0 14px 10px', display: 'flex', flexWrap: 'wrap', gap: 4 }}>
             {t.highlights.slice(0, 3).map((h) => (
-              <span key={h} style={{ fontSize: 11, padding: '3px 8px', borderRadius: 12, background: '#f0f7fa', color: '#3a6070' }}>
+              <span key={h} style={{ fontSize: 11, padding: '3px 8px', borderRadius: 12, background: 'var(--glass-88, #f0f7fa)', color: 'var(--txt2, #3a6070)' }}>
                 {h}
               </span>
             ))}

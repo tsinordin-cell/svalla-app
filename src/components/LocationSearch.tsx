@@ -161,7 +161,7 @@ export default function LocationSearch({
           ref={listRef}
           style={{
             position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0,
-            background: '#fff', borderRadius: 14, zIndex: 200,
+            background: 'var(--white, #fff)', borderRadius: 14, zIndex: 200,
             boxShadow: '0 8px 32px rgba(0,30,50,0.16)',
             border: '1px solid rgba(10,123,140,0.12)',
             overflow: 'hidden',

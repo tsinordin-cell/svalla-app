@@ -19,7 +19,7 @@ export default function BackButton({ fallback = '/feed' }: { fallback?: string }
       style={{
         position: 'absolute', top: 16, left: 16,
         width: 40, height: 40, borderRadius: '50%',
-        background: 'rgba(250,254,255,0.88)', backdropFilter: 'blur(8px)',
+        background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
         border: 'none', cursor: 'pointer',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}

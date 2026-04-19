@@ -201,7 +201,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
       {/* Ruttlinje-tips */}
       <div style={{
         position: 'absolute', bottom: 12, left: 12, zIndex: 500,
-        background: 'rgba(250,254,255,0.92)', backdropFilter: 'blur(8px)',
+        background: 'var(--glass-92)', backdropFilter: 'blur(8px)',
         borderRadius: 10, padding: '4px 10px',
         fontSize: 10, fontWeight: 700, color: '#5a8090',
         boxShadow: '0 1px 6px rgba(0,45,60,0.10)',

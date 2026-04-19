@@ -183,7 +183,7 @@ function ManuellForm() {
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '12px 16px',
-        background: 'rgba(250,254,255,0.96)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
@@ -429,7 +429,7 @@ function ManuellForm() {
         position: 'fixed', bottom: 'var(--nav-h)', left: 0, right: 0,
         padding: '12px 14px',
         paddingBottom: 12,
-        background: 'rgba(250,254,255,0.95)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)',
         borderTop: '1px solid rgba(10,123,140,0.10)',
       }}>

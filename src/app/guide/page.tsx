@@ -196,7 +196,7 @@ function GuideContent() {
       <div style={{
         padding: '10px 14px',
         paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 10px)',
-        background: 'rgba(250,254,255,0.95)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)',
         borderTop: '1px solid rgba(10,123,140,0.10)',
         flexShrink: 0,

@@ -112,7 +112,7 @@ export default function TripActions({
         onClick={() => setMenu(true)}
         style={{
           width: 36, height: 36, borderRadius: '50%',
-          background: 'rgba(250,254,255,0.88)',
+          background: 'var(--glass-88)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
           border: '1px solid rgba(255,255,255,0.25)',

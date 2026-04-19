@@ -46,7 +46,7 @@ export default function OnboardingModal() {
       {/* Modal */}
       <div style={{
         position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1001,
-        background: '#fff',
+        background: 'var(--white, #fff)',
         borderRadius: '28px 28px 0 0',
         padding: '8px 20px 48px',
         maxWidth: 520, margin: '0 auto',
@@ -78,7 +78,7 @@ export default function OnboardingModal() {
             }}>
               <div style={{
                 width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                background: '#fff', border: '1.5px solid rgba(10,123,140,0.12)',
+                background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 22,
               }}>{s.emoji}</div>

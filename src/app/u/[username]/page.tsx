@@ -101,7 +101,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
         display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
-        background: 'rgba(250,254,255,0.96)',
+        background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
       }}>

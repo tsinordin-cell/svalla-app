@@ -145,7 +145,7 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
   }, [lat, lng])
   const kn = weather ? Math.round(weather.windSpeed * 1.944 * 10) / 10 : null
   return (
-    <div style={{ position:'absolute', top:10, right:10, zIndex:1100, background:'rgba(250,254,255,0.95)', backdropFilter:'blur(12px)', borderRadius:22, padding:'6px 12px 6px 9px', boxShadow:'0 2px 12px rgba(0,45,60,0.15)', display:'flex', alignItems:'center', gap:6, border:'1px solid rgba(10,123,140,0.12)', opacity:loading ? 0.6 : 1, pointerEvents:'none', transition:'opacity 0.3s' }}>
+    <div style={{ position:'absolute', top:10, right:10, zIndex:1100, background:'var(--glass-96)', backdropFilter:'blur(12px)', borderRadius:22, padding:'6px 12px 6px 9px', boxShadow:'0 2px 12px rgba(0,45,60,0.15)', display:'flex', alignItems:'center', gap:6, border:'1px solid rgba(10,123,140,0.12)', opacity:loading ? 0.6 : 1, pointerEvents:'none', transition:'opacity 0.3s' }}>
       <span style={{ fontSize:15, lineHeight:1 }}>{weather ? wmoEmoji(weather.code) : '🌡'}</span>
       <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
         <div style={{ display:'flex', alignItems:'center', gap:5 }}>
@@ -636,7 +636,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)',
           right: 12,
           zIndex: 1000, width: 44, height: 44, borderRadius: '50%',
-          background: '#fff', border: 'none', cursor: 'pointer',
+          background: 'var(--white, #fff)', border: 'none', cursor: 'pointer',
           boxShadow: '0 2px 12px rgba(0,0,0,0.2)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'background .2s',

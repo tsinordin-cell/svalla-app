@@ -111,7 +111,7 @@ export default async function ToplistaPage() {
       {/* ── Header ── */}
       <header style={{
         padding: '12px 16px',
-        background: 'var(--header-bg, rgba(250,254,255,0.96))',
+        background: 'var(--header-bg, var(--glass-96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,

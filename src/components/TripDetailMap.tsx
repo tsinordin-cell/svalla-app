@@ -112,7 +112,7 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
       const LegendControl = L.Control.extend({
         onAdd() {
           const div = L.DomUtil.create('div')
-          div.style.cssText = 'background:rgba(250,254,255,0.92);border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.8;backdrop-filter:blur(8px)'
+          div.style.cssText = 'background:var(--glass-92);border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.8;backdrop-filter:blur(8px)'
           div.innerHTML = `
             <div style="font-weight:700;margin-bottom:4px;color:#192830">Hastighet</div>
             <div><span style="display:inline-block;width:10px;height:3px;background:#7a9dab;border-radius:2px;vertical-align:middle;margin-right:5px"></span>&lt; 2 kn</div>

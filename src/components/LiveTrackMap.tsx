@@ -271,7 +271,7 @@ export default function LiveTrackMap({
       }}>
         <span style={{
           width: 6, height: 6,
-          background: '#fff', borderRadius: '50%',
+          background: 'var(--white, #fff)', borderRadius: '50%',
           animation: 'pulse-dot-live 1.5s ease-in-out infinite',
         }} />
         LIVE
@@ -284,7 +284,7 @@ export default function LiveTrackMap({
           title="Centrera på min position"
           style={{
             position: 'absolute', top: 12, left: 12,
-            background: 'rgba(250,254,255,0.95)',
+            background: 'var(--glass-96)',
             backdropFilter: 'blur(8px)',
             border: 'none', cursor: 'pointer',
             borderRadius: 18, padding: '5px 11px',

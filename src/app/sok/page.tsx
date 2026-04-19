@@ -148,7 +148,7 @@ export default function SokPage() {
 
       {/* ── Header ── */}
       <div style={{
-        background: 'var(--header-bg, rgba(250,254,255,0.96))',
+        background: 'var(--header-bg, var(--glass-96))',
         backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         padding: '12px 16px',

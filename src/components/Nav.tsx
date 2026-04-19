@@ -105,7 +105,7 @@ export default function Nav() {
               position: 'absolute', bottom: -1, right: -1,
               width: 8, height: 8, borderRadius: '50%',
               background: '#22c55e',
-              border: '1.5px solid rgba(250,254,255,0.95)',
+              border: '1.5px solid var(--glass-96)',
             }} />
           )}
         </div>
@@ -137,7 +137,7 @@ export default function Nav() {
     <nav aria-label="Navigering" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
-      background: 'rgba(250,254,255,0.92)',
+      background: 'var(--glass-92)',
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)',
       borderTop: '1px solid rgba(10,123,140,0.12)',

@@ -18,6 +18,13 @@
   --green: #0f9e64;
   --red:   #cc3d3d;
   --nav-h: 64px;
+  --header-bg:  rgba(250,254,255,0.96);
+  --glass-98:   rgba(250,254,255,0.98);
+  --glass-96:   rgba(250,254,255,0.96);
+  --glass-92:   rgba(250,254,255,0.92);
+  --glass-88:   rgba(250,254,255,0.88);
+  --glass-85:   rgba(250,254,255,0.85);
+  --glass-70:   rgba(250,254,255,0.70);
 }
 
 /* ── Reset & base ── */
@@ -106,6 +113,13 @@ img {
   --card-bg2:   #132130;
   --subtle-bg:  rgba(74,184,212,0.07);
   --header-bg:  rgba(9,21,37,0.97);
+  /* Glass surface variables — replaces rgba(250,254,255,X) */
+  --glass-98:   rgba(7,15,24,0.98);
+  --glass-96:   rgba(7,15,24,0.96);
+  --glass-92:   rgba(9,21,37,0.92);
+  --glass-88:   rgba(9,21,37,0.88);
+  --glass-85:   rgba(9,21,37,0.85);
+  --glass-70:   rgba(9,21,37,0.70);
   color-scheme: dark;
 }
 

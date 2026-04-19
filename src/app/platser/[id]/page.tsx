@@ -122,7 +122,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             position: 'absolute', top: 'calc(16px + env(safe-area-inset-top, 0px))', left: 16,
             width: 40, height: 40, borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: 'rgba(250,254,255,0.88)', backdropFilter: 'blur(8px)',
+            background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
           }}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
@@ -133,7 +133,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* Bookmark button */}
         <div style={{
           position: 'absolute', top: 'calc(16px + env(safe-area-inset-top, 0px))', right: 16,
-          background: 'rgba(250,254,255,0.88)', backdropFilter: 'blur(8px)',
+          background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
           borderRadius: '50%',
         }}>
           <BookmarkButton restaurantId={r.id} />
