@@ -27,24 +27,33 @@ const PAGE_SIZE = 8
 function SkeletonCard() {
   return (
     <div style={{
-      background: 'var(--white)', borderRadius: 18, overflow: 'hidden',
-      boxShadow: '0 1px 12px rgba(0,30,50,0.07)',
+      background: 'var(--white)', borderRadius: 20, overflow: 'hidden',
+      boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
       border: '1px solid rgba(10,123,140,0.07)',
     }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 14px 9px' }}>
-        <div className="sk-pulse" style={{ width: 36, height: 36, borderRadius: '50%' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
+        <div className="sk-pulse" style={{ width: 38, height: 38, borderRadius: '50%', flexShrink: 0 }} />
         <div style={{ flex: 1 }}>
-          <div className="sk-pulse" style={{ width: 90, height: 13, borderRadius: 6, marginBottom: 5 }} />
-          <div className="sk-pulse" style={{ width: 60, height: 10, borderRadius: 6 }} />
+          <div className="sk-pulse" style={{ width: 100, height: 13, borderRadius: 6, marginBottom: 6 }} />
+          <div className="sk-pulse" style={{ width: 160, height: 10, borderRadius: 6 }} />
         </div>
       </div>
-      {/* Image */}
-      <div className="sk-pulse" style={{ width: '100%', aspectRatio: '4/5' }} />
+      {/* Stats row */}
+      <div style={{ display: 'flex', borderTop: '1px solid rgba(10,123,140,0.06)', borderBottom: '1px solid rgba(10,123,140,0.06)' }}>
+        {[80, 60, 72, 68].map((w, i) => (
+          <div key={i} style={{ flex: 1, padding: '10px 6px', textAlign: 'center', borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none' }}>
+            <div className="sk-pulse" style={{ width: w, height: 16, borderRadius: 5, margin: '0 auto 5px' }} />
+            <div className="sk-pulse" style={{ width: 40, height: 8, borderRadius: 4, margin: '0 auto' }} />
+          </div>
+        ))}
+      </div>
+      {/* Media */}
+      <div className="sk-pulse" style={{ width: '100%', aspectRatio: '3/2' }} />
       {/* Actions */}
       <div style={{ padding: '10px 14px 14px', display: 'flex', gap: 16 }}>
-        <div className="sk-pulse" style={{ width: 40, height: 16, borderRadius: 6 }} />
-        <div className="sk-pulse" style={{ width: 30, height: 16, borderRadius: 6 }} />
+        <div className="sk-pulse" style={{ width: 44, height: 16, borderRadius: 6 }} />
+        <div className="sk-pulse" style={{ width: 32, height: 16, borderRadius: 6 }} />
       </div>
     </div>
   )

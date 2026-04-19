@@ -26,177 +26,182 @@ const boatEmoji: Record<string, string> = {
 }
 
 export default function TripCard({ trip }: { trip: Trip }) {
-  const router   = useRouter()
-  const [imgErr, setImgErr]       = useState(false)
-  const [expanded, setExpanded]   = useState(false)
+  const router = useRouter()
+  const [imgErr, setImgErr] = useState(false)
+  const [expanded, setExpanded] = useState(false)
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
   const dur      = formatDurationMin(trip.duration)
   const hasRoute = Array.isArray(trip.route_points) && trip.route_points.length >= 2
   const hasPhoto = !!trip.image && !imgErr
+  const hasMedia = hasPhoto || hasRoute
 
-  // Stat chips — only show real values
-  const statChips: { val: string; icon: string }[] = []
-  if (trip.distance >= 0.1)            statChips.push({ icon: '📏', val: `${fmt(trip.distance)} NM` })
-  if (dur)                             statChips.push({ icon: '⏱', val: dur })
-  if (trip.average_speed_knots >= 0.1) statChips.push({ icon: '⚡', val: `${fmt(trip.average_speed_knots)} kn` })
+  // Stats — only non-trivial values, max 4
+  const stats: { label: string; value: string }[] = []
+  if (trip.distance >= 0.1)            stats.push({ label: 'Distans',   value: `${fmt(trip.distance)} NM` })
+  if (dur)                             stats.push({ label: 'Tid',       value: dur })
+  if (trip.average_speed_knots >= 0.1) stats.push({ label: 'Snittfart', value: `${fmt(trip.average_speed_knots)} kn` })
+  if (trip.max_speed_knots >= 0.5)     stats.push({ label: 'Toppfart',  value: `${fmt(trip.max_speed_knots)} kn` })
 
-  const MAX_CAPTION = 100
+  const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
   const captionTruncated = !expanded && caption.length > MAX_CAPTION
     ? caption.slice(0, MAX_CAPTION) + '…'
     : caption
 
   return (
-    <article
-      style={{
-        background: 'var(--white)',
-        borderRadius: 18,
-        overflow: 'hidden',
-        boxShadow: '0 1px 12px rgba(0,30,50,0.08)',
-        border: '1px solid rgba(10,123,140,0.07)',
-        WebkitTapHighlightColor: 'transparent',
-      }}
-    >
-      {/* ── 1. Header row: avatar · username · time · boat ── */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: '11px 14px 9px',
-      }}>
+    <article style={{
+      background: 'var(--white)',
+      borderRadius: 20,
+      overflow: 'hidden',
+      boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
+      border: '1px solid rgba(10,123,140,0.07)',
+      WebkitTapHighlightColor: 'transparent',
+    }}>
+
+      {/* ── 1. Header ── */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
         <Link
           href={`/u/${username}`}
           onClick={e => e.stopPropagation()}
-          style={{ display: 'flex', alignItems: 'center', gap: 9, textDecoration: 'none', flex: 1, minWidth: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flex: 1, minWidth: 0 }}
         >
           {/* Avatar */}
           <div style={{
-            width: 36, height: 36, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+            width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 13, fontWeight: 900, color: '#fff',
+            fontSize: 14, fontWeight: 900, color: '#fff',
           }}>
             {avatar
-              ? <Image src={avatar} alt={username} width={36} height={36} style={{ objectFit: 'cover' }} />
+              ? <Image src={avatar} alt={username} width={38} height={38} style={{ objectFit: 'cover' }} />
               : username[0]?.toUpperCase() ?? '?'}
           </div>
-          {/* Name + time */}
+
+          {/* Name + meta */}
           <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', lineHeight: 1.2 }}>
               {username}
             </div>
-            <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
-              {timeAgo(trip.created_at)}
+            <div style={{
+              fontSize: 11, color: 'var(--txt3)', marginTop: 2,
+              display: 'flex', alignItems: 'center', gap: 4,
+              overflow: 'hidden', whiteSpace: 'nowrap',
+            }}>
+              <span style={{ flexShrink: 0 }}>{timeAgo(trip.created_at)}</span>
               {trip.boat_type && (
-                <span style={{ marginLeft: 5, opacity: 0.7 }}>· {boatEmoji[trip.boat_type] ?? '⚓'} {trip.boat_type}</span>
+                <>
+                  <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
+                  <span style={{ flexShrink: 0 }}>{boatEmoji[trip.boat_type] ?? '⚓'} {trip.boat_type}</span>
+                </>
+              )}
+              {trip.location_name && (
+                <>
+                  <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    📍 {trip.location_name}
+                  </span>
+                </>
               )}
             </div>
           </div>
         </Link>
 
-        {/* Pinnar rating badge */}
+        {/* Pinnar badge */}
         {trip.pinnar_rating === 3 && (
           <div style={{
             flexShrink: 0,
             background: 'rgba(201,110,42,0.1)',
             borderRadius: 20, padding: '4px 9px',
             fontSize: 11, fontWeight: 800, color: '#c96e2a',
-          }}>
-            ⚓⚓⚓
-          </div>
+          }}>⚓⚓⚓</div>
         )}
       </div>
 
-      {/* ── 2. Hero image — portrait 4:5 ── */}
-      <div
-        onClick={() => router.push(`/tur/${trip.id}`)}
-        style={{
-          cursor: 'pointer',
-          position: 'relative', width: '100%', aspectRatio: '4/5',
-          background: 'linear-gradient(160deg,#0d2a3e,#1a5472)',
-          overflow: 'hidden',
-        }}
-      >
-        {hasPhoto ? (
-          <Image
-            src={trip.image}
-            alt={trip.location_name ?? `Tur av ${username}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, 640px"
-            onError={() => setImgErr(true)}
-          />
-        ) : hasRoute ? (
-          <div style={{ position: 'absolute', inset: 0 }}>
-            <RouteMapSVG points={trip.route_points!} w={600} h={750} />
-          </div>
-        ) : (
-          <div style={{
-            position: 'absolute', inset: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 72, opacity: 0.15,
-          }}>⛵</div>
-        )}
-
-        {/* Bottom gradient */}
+      {/* ── 2. Stats row ── */}
+      {stats.length > 0 && (
         <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to top, rgba(0,12,25,0.72) 0%, rgba(0,12,25,0.2) 35%, transparent 60%)',
-          pointerEvents: 'none',
-        }} />
-
-        {/* Stat chips — top left */}
-        {statChips.length > 0 && (
-          <div style={{
-            position: 'absolute', top: 12, left: 12,
-            display: 'flex', gap: 6, flexWrap: 'wrap', maxWidth: '70%',
-          }}>
-            {statChips.map(chip => (
-              <div key={chip.val} style={{
-                display: 'flex', alignItems: 'center', gap: 4,
-                background: 'rgba(0,12,25,0.55)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255,255,255,0.14)',
-                borderRadius: 20, padding: '5px 10px',
+          display: 'flex',
+          borderTop: '1px solid rgba(10,123,140,0.06)',
+          borderBottom: '1px solid rgba(10,123,140,0.06)',
+          background: 'rgba(10,123,140,0.02)',
+        }}>
+          {stats.map((s, i) => (
+            <div key={s.label} style={{
+              flex: 1,
+              padding: '10px 6px',
+              textAlign: 'center',
+              borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none',
+            }}>
+              <div style={{
+                fontSize: 16, fontWeight: 900, color: 'var(--txt)',
+                lineHeight: 1.1, letterSpacing: '-0.4px',
               }}>
-                <span style={{ fontSize: 11 }}>{chip.icon}</span>
-                <span style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>{chip.val}</span>
+                {s.value}
               </div>
-            ))}
-          </div>
-        )}
-
-        {/* Route strip top-right when both photo + route */}
-        {hasPhoto && hasRoute && (
-          <div style={{
-            position: 'absolute', top: 12, right: 12,
-            width: 56, height: 56, borderRadius: 12, overflow: 'hidden',
-            border: '1.5px solid rgba(255,255,255,0.25)',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-          }}>
-            <RouteMapSVG points={trip.route_points!} w={112} h={112} />
-          </div>
-        )}
-
-        {/* Bottom: location */}
-        {trip.location_name && (
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px 14px 14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-              <span style={{ fontSize: 12 }}>📍</span>
-              <span style={{
-                fontSize: 18, fontWeight: 900, color: '#fff',
-                textShadow: '0 1px 8px rgba(0,0,0,0.55)',
-                letterSpacing: '-0.3px',
+              <div style={{
+                fontSize: 9, color: 'var(--txt3)', marginTop: 3,
+                fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
               }}>
-                {trip.location_name}
-              </span>
+                {s.label}
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {/* ── 3. Social actions — compact icon + count ── */}
+      {/* ── 3. Media ── */}
+      {hasMedia && (
+        <div
+          onClick={() => router.push(`/tur/${trip.id}`)}
+          style={{ cursor: 'pointer' }}
+        >
+          {hasPhoto && hasRoute ? (
+            /* Both: route 55% left, photo 45% right */
+            <div style={{ display: 'flex', height: 210 }}>
+              <div style={{ flex: '0 0 55%', position: 'relative', overflow: 'hidden', background: '#0d2a3e' }}>
+                <RouteMapSVG points={trip.route_points!} w={330} h={210} />
+              </div>
+              <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+                <Image
+                  src={trip.image}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  fill
+                  className="object-cover"
+                  sizes="220px"
+                  onError={() => setImgErr(true)}
+                />
+                {/* Left-edge fade blending with route */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'linear-gradient(to right, rgba(13,42,62,0.3) 0%, transparent 35%)',
+                  pointerEvents: 'none',
+                }} />
+              </div>
+            </div>
+          ) : hasPhoto ? (
+            /* Only photo — landscape 3:2 */
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
+              <Image
+                src={trip.image}
+                alt={trip.location_name ?? `Tur av ${username}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 640px"
+                onError={() => setImgErr(true)}
+              />
+            </div>
+          ) : (
+            /* Only route — wide landscape */
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: '#0d2a3e', overflow: 'hidden' }}>
+              <RouteMapSVG points={trip.route_points!} w={600} h={262} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── 4. Actions ── */}
       <div onClick={e => e.stopPropagation()} style={{ padding: '10px 14px 4px' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <LikeButton
@@ -213,8 +218,8 @@ export default function TripCard({ trip }: { trip: Trip }) {
         </div>
       </div>
 
-      {/* ── 4. Caption ── */}
-      {caption && (
+      {/* ── 5. Caption ── */}
+      {caption ? (
         <div style={{ padding: '4px 14px 14px', fontSize: 14, color: 'var(--txt)', lineHeight: 1.55 }}>
           <span style={{ fontWeight: 800 }}>{username}</span>
           {' '}
@@ -231,9 +236,9 @@ export default function TripCard({ trip }: { trip: Trip }) {
             </button>
           )}
         </div>
+      ) : (
+        <div style={{ height: 10 }} />
       )}
-
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </article>
   )
 }
