@@ -423,6 +423,34 @@ export default function SparaPage() {
     setPhase('done')
   }
 
+  // ── AI caption generator ───────────────────────────────────────────────────
+  async function generateAiCaption() {
+    if (aiLoading) return
+    setAiLoading(true)
+    try {
+      const dist   = totalDistanceNM(points)
+      const avgSpd = avgSpeedKnots(points)
+      const maxSpd = maxSpeedKnots(points)
+      const res = await fetch('/api/trip-summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          distanceNM:  dist,
+          durationMin: Math.round(elapsed / 60),
+          avgSpeed:    avgSpd,
+          maxSpeed:    maxSpd,
+          boatType,
+          locationName: locationName.trim() || undefined,
+          stops: stops.map(s => ({ durationSeconds: s.durationSeconds, type: s.type })),
+          nearbyPlaces: [],
+        }),
+      })
+      const { summary } = await res.json()
+      if (summary) { setCaption(summary); setAiSummary(summary) }
+    } catch { /* tyst */ }
+    setAiLoading(false)
+  }
+
   // ── Save trip ──────────────────────────────────────────────────────────────
   async function handleSave() {
     if (saving) return
@@ -1071,20 +1099,57 @@ export default function SparaPage() {
 
         {/* ── Caption ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
-            Berätta om turen (valfritt)
-          </label>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+            <label style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px' }}>
+              Berätta om turen (valfritt)
+            </label>
+            <button
+              type="button"
+              onClick={generateAiCaption}
+              disabled={aiLoading}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 5,
+                padding: '5px 12px', borderRadius: 20,
+                border: '1.5px solid rgba(10,123,140,.2)',
+                background: aiSummary ? 'rgba(10,123,140,.08)' : '#fff',
+                color: '#0a7b8c', fontSize: 12, fontWeight: 700,
+                cursor: aiLoading ? 'default' : 'pointer',
+                opacity: aiLoading ? 0.7 : 1,
+                transition: 'all .15s',
+              }}
+            >
+              {aiLoading ? (
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+                    style={{ width: 13, height: 13, animation: 'spin .8s linear infinite' }}>
+                    <path strokeLinecap="round" d="M12 2a10 10 0 0 1 10 10" />
+                  </svg>
+                  Genererar…
+                </>
+              ) : (
+                <>✨ {aiSummary ? 'Generera ny' : 'AI-caption'}</>
+              )}
+            </button>
+          </div>
           <textarea
             placeholder="Vad hände? Vad var bäst?"
             value={caption} onChange={e => setCaption(e.target.value)} maxLength={280} rows={3}
             style={{
               width: '100%', padding: '12px 14px', borderRadius: 14,
-              border: '1.5px solid rgba(10,123,140,.15)',
+              border: aiSummary && caption === aiSummary
+                ? '1.5px solid rgba(10,123,140,.35)'
+                : '1.5px solid rgba(10,123,140,.15)',
               background: '#fff', fontSize: 14, color: '#162d3a', outline: 'none',
               resize: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
+              transition: 'border-color .2s',
             }}
           />
-          <div style={{ fontSize: 10, color: '#a0bec8', textAlign: 'right', marginTop: 4 }}>{caption.length}/280</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
+            {aiSummary && caption === aiSummary
+              ? <span style={{ fontSize: 10, color: '#0a7b8c', fontWeight: 700 }}>✨ AI-genererad — redigera fritt</span>
+              : <span />}
+            <span style={{ fontSize: 10, color: '#a0bec8' }}>{caption.length}/280</span>
+          </div>
         </div>
 
         {/* ── Photo (optional) ── */}
