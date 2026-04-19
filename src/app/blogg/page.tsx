@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function BloggPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '60px 20px 40px',
@@ -35,7 +35,7 @@ export default function BloggPage() {
           {POSTS_META.map(post => (
             <Link key={post.slug} href={`/blogg/${post.slug}`} style={{ textDecoration: 'none' }}>
               <article style={{
-                background: '#fff',
+                background: 'var(--white, #fff)',
                 borderRadius: 16,
                 overflow: 'hidden',
                 boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
@@ -65,7 +65,7 @@ export default function BloggPage() {
                     }}>{post.category}</span>
                     <span style={{ fontSize: 11, color: '#a0b8c4', paddingTop: 3 }}>{post.readTime}</span>
                   </div>
-                  <h2 style={{ fontSize: 15, fontWeight: 800, color: '#162d3a', margin: '0 0 10px', lineHeight: 1.3 }}>
+                  <h2 style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
                     {post.title}
                   </h2>
                   <p style={{ fontSize: 13, color: '#5a8090', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>
@@ -94,7 +94,7 @@ export default function BloggPage() {
           <p style={{ fontSize: 14, color: '#4a6a7a', margin: '0 0 8px' }}>Fler artiklar är på väg.</p>
           <p style={{ fontSize: 13, color: '#7a9dab', margin: 0 }}>
             Tips på ämnen? Maila oss på{' '}
-            <a href="mailto:hej@svalla.se" style={{ color: '#1e5c82', fontWeight: 700 }}>hej@svalla.se</a>
+            <a href="mailto:info@svalla.se" style={{ color: '#1e5c82', fontWeight: 700 }}>info@svalla.se</a>
           </p>
         </div>
       </div>

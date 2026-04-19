@@ -172,13 +172,13 @@ function ManuellForm() {
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div style={{ fontSize: 56 }}>🎉</div>
         <h2 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82' }}>Turen är loggad!</h2>
-        <p style={{ fontSize: 14, color: '#7a9dab' }}>Välkommen till {location}-gänget.</p>
+        <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)' }}>Välkommen till {location}-gänget.</p>
       </div>
     )
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 80px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 80px)' }}>
       {/* Header */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -236,7 +236,7 @@ function ManuellForm() {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 8 }}>
               <span style={{ fontSize: 48 }}>📷</span>
-              <span style={{ fontSize: 14, color: '#7a9dab', fontWeight: 600 }}>Tryck för att välja bild</span>
+              <span style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)', fontWeight: 600 }}>Tryck för att välja bild</span>
               <span style={{ fontSize: 11, color: '#a0bec8' }}>Bild krävs för att logga</span>
             </div>
           )}
@@ -275,7 +275,7 @@ function ManuellForm() {
 
           {/* ── Pinnar rating ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
+            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
               Hur var turen?
             </label>
             <div style={{ display: 'flex', gap: 8 }}>
@@ -303,7 +303,7 @@ function ManuellForm() {
 
           {/* ── Caption (optional) ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
               Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
             </label>
             <textarea
@@ -315,7 +315,7 @@ function ManuellForm() {
               style={{
                 width: '100%', padding: '12px 14px', borderRadius: 14,
                 border: '1.5px solid rgba(10,123,140,0.18)',
-                background: '#fff', fontSize: 14, color: '#162d3a',
+                background: 'var(--white, #fff)', fontSize: 14, color: 'var(--txt, #162d3a)',
                 outline: 'none', resize: 'none', fontFamily: 'inherit',
                 boxSizing: 'border-box',
               }}
@@ -327,7 +327,7 @@ function ManuellForm() {
 
           {/* ── Tagga seglare ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
               Tagga seglare <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
             </label>
             <TagInput tagged={tagged} onChange={setTagged} />
@@ -339,7 +339,7 @@ function ManuellForm() {
             onClick={() => setShowMore(!showMore)}
             style={{
               background: 'none', border: 'none', padding: '4px 0',
-              fontSize: 12, color: '#5a8090', fontWeight: 600, cursor: 'pointer',
+              fontSize: 12, color: 'var(--txt3, #5a8090)', fontWeight: 600, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 4,
             }}
           >
@@ -353,7 +353,7 @@ function ManuellForm() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '4px 0' }}>
               {/* Båttyp */}
               <div>
-                <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</label>
+                <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</label>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6 }}>
                   {BOAT_TYPES.map(bt => (
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
@@ -372,7 +372,7 @@ function ManuellForm() {
               {/* Rutt */}
               {routes.length > 0 && (
                 <div>
-                  <label style={{ fontSize: 10, fontWeight: 800, color: '#5a8090', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
                     Rutt <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
                   </label>
                   <select
@@ -381,7 +381,7 @@ function ManuellForm() {
                     style={{
                       width: '100%', padding: '10px 12px', borderRadius: 12,
                       border: '1.5px solid rgba(10,123,140,0.15)',
-                      background: '#fff', fontSize: 14, color: routeId ? '#162d3a' : '#a0bec8',
+                      background: 'var(--white, #fff)', fontSize: 14, color: routeId ? '#162d3a' : '#a0bec8',
                       outline: 'none', appearance: 'none', WebkitAppearance: 'none',
                       boxSizing: 'border-box',
                     }}
@@ -401,13 +401,13 @@ function ManuellForm() {
                   { label: 'Tid (min)', value: duration, set: setDuration, step: '1' },
                 ].map(({ label, value, set, step }) => (
                   <div key={label}>
-                    <label style={{ fontSize: 11, color: '#7a9dab', display: 'block', marginBottom: 4 }}>{label}</label>
+                    <label style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', display: 'block', marginBottom: 4 }}>{label}</label>
                     <input type="number" inputMode="decimal" step={step} min="0" placeholder="0"
                       value={value} onChange={e => set(e.target.value)}
                       style={{
                         width: '100%', padding: '10px 12px', borderRadius: 12,
                         border: '1.5px solid rgba(10,123,140,0.15)',
-                        background: '#fff', fontSize: 14, textAlign: 'center',
+                        background: 'var(--white, #fff)', fontSize: 14, textAlign: 'center',
                         outline: 'none', boxSizing: 'border-box',
                       }} />
                   </div>

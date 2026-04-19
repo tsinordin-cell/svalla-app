@@ -210,7 +210,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
 
       {/* ── Hero image / minimap ── */}
       <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#0b2d42', overflow: 'hidden' }}>
@@ -278,8 +278,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               }
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 800, color: '#162d3a' }}>{username}</div>
-              <div style={{ fontSize: 12, color: '#7a9dab' }}>
+              <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{username}</div>
+              <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)' }}>
                 {trip.boat_type}{routeName ? ` · ${routeName}` : ''}
               </div>
             </div>
@@ -289,7 +289,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {/* Caption */}
         {trip.caption && (
           <p style={{
-            fontSize: 15, color: '#2a4a5a', lineHeight: 1.65,
+            fontSize: 15, color: 'var(--txt2, #2a4a5a)', lineHeight: 1.65,
             margin: '0 0 16px', fontWeight: 400,
           }}>
             {trip.caption}
@@ -328,7 +328,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                 Svallas analys
               </span>
             </div>
-            <p style={{ fontSize: 14, color: '#2a4a5a', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
+            <p style={{ fontSize: 14, color: 'var(--txt2, #2a4a5a)', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
               {trip.ai_summary}
             </p>
           </div>
@@ -349,10 +349,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               <div style={{ fontSize: 10, fontWeight: 800, color: '#0f9e64', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
                 Rutigenkänning
               </div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a', lineHeight: 1.2 }}>
+              <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>
                 {matchedRoute.title}
               </div>
-              <div style={{ fontSize: 11, color: '#7a9dab', marginTop: 2 }}>
+              <div style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', marginTop: 2 }}>
                 {matchedRoute.start_location} → {matchedRoute.destination}
               </div>
             </div>
@@ -362,7 +362,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {/* Taggade användare */}
         {taggedUsers.length > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
-            <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>Med:</span>
+            <span style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', fontWeight: 600 }}>Med:</span>
             {taggedUsers.map((u: { id: string; username: string }) => (
               <Link key={u.id} href={`/u/${u.username}`} style={{ textDecoration: 'none' }}>
                 <span style={{
@@ -388,7 +388,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           if (stats.length === 0) return null
           return (
             <div style={{
-              background: '#fff', borderRadius: 20,
+              background: 'var(--white, #fff)', borderRadius: 20,
               boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
               display: 'flex', marginBottom: 16, overflow: 'hidden',
             }}>
@@ -397,10 +397,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                   flex: 1, padding: '14px 0', textAlign: 'center',
                   borderRight: i < stats.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none',
                 }}>
-                  <div style={{ fontSize: 20, fontWeight: 900, color: '#0d2a3e', lineHeight: 1, letterSpacing: '-0.5px' }}>
-                    {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: '#7a9dab', marginLeft: 2 }}>{unit}</span>}
+                  <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt, #0d2a3e)', lineHeight: 1, letterSpacing: '-0.5px' }}>
+                    {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, #7a9dab)', marginLeft: 2 }}>{unit}</span>}
                   </div>
-                  <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #7a9dab)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
                     {label}
                   </div>
                 </div>
@@ -424,7 +424,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <TripDetailMap points={points} stops={stops} restaurants={nearbyRestaurants} />
           </div>
         ) : (
-          <div style={{ marginBottom: 18, background: 'rgba(10,123,140,0.05)', borderRadius: 20, padding: '32px 16px', textAlign: 'center', fontSize: 13, color: '#7a9dab' }}>
+          <div style={{ marginBottom: 18, background: 'rgba(10,123,140,0.05)', borderRadius: 20, padding: '32px 16px', textAlign: 'center', fontSize: 13, color: 'var(--txt3, #7a9dab)' }}>
             Inga GPS-punkter för denna tur
           </div>
         )}
@@ -433,7 +433,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {timeline.length > 1 && (
           <div style={{ marginBottom: 18 }}>
             <SectionTitle>Tidslinje</SectionTitle>
-            <div style={{ background: '#fff', borderRadius: 20, padding: '16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
+            <div style={{ background: 'var(--white, #fff)', borderRadius: 20, padding: '16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
               {timeline.map((ev, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 2 }}>
@@ -443,8 +443,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                     )}
                   </div>
                   <div style={{ paddingBottom: 16 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#162d3a', lineHeight: 1.2 }}>{ev.label}</div>
-                    <div style={{ fontSize: 11, color: '#7a9dab', marginTop: 2 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{ev.label}</div>
+                    <div style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', marginTop: 2 }}>
                       {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : ''}
                     </div>
                   </div>
@@ -460,21 +460,21 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <SectionTitle>Stopp</SectionTitle>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {namedStops.filter(s => s.type === 'stop').map((s, i) => (
-                <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div key={i} style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7a9dab', flexShrink: 0 }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <span style={{ fontSize: 14, fontWeight: 700, color: '#162d3a' }}>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
                         {s.placeName ?? `Stopp ${i + 1}`}
                       </span>
                       {s.placeName && (
-                        <span style={{ fontSize: 10, color: '#7a9dab', display: 'block' }}>
+                        <span style={{ fontSize: 10, color: 'var(--txt3, #7a9dab)', display: 'block' }}>
                           📍 Stopp {i + 1}
                         </span>
                       )}
                     </div>
                   </div>
-                  <span style={{ fontSize: 13, color: '#7a9dab' }}>
+                  <span style={{ fontSize: 13, color: 'var(--txt3, #7a9dab)' }}>
                     {s.durationSeconds >= 60 ? `${Math.round(s.durationSeconds / 60)} min` : `${s.durationSeconds}s`}
                   </span>
                 </div>
@@ -490,9 +490,9 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {nearbyRestaurants.map(r => (
                 <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ background: '#fff', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
                     <span style={{ fontSize: 20 }}>🍽</span>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: '#162d3a', flex: 1 }}>{r.name}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)', flex: 1 }}>{r.name}</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
@@ -509,7 +509,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <h2 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
+    <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
       {children}
     </h2>
   )

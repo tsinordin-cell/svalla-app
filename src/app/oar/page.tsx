@@ -73,7 +73,7 @@ export default function OarPage() {
   const totalCount = ISLANDS.length
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)' }}>
 
       {/* ── Header ── */}
       <header style={{
@@ -118,7 +118,7 @@ export default function OarPage() {
       {/* ── Area jump links ── */}
       <div style={{
         position: 'sticky', top: 0, zIndex: 40,
-        background: 'rgba(242,248,250,.97)', backdropFilter: 'blur(12px)',
+        background: 'var(--header-bg, rgba(242,248,250,.97))', backdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(10,123,140,.1)',
         padding: '0 16px',
         display: 'flex', gap: 0, overflowX: 'auto', scrollbarWidth: 'none',
@@ -175,7 +175,7 @@ export default function OarPage() {
                 {islands.map(island => (
                   <Link key={island.slug} href={`/o/${island.slug}`} style={{ textDecoration: 'none' }}>
                     <article className="oar-card" style={{
-                      background: '#fff',
+                      background: 'var(--white, #fff)',
                       borderRadius: 16,
                       border: '1.5px solid rgba(10,123,140,.08)',
                       padding: '16px 18px',
@@ -196,7 +196,7 @@ export default function OarPage() {
                       {/* Text */}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
-                          fontSize: 15, fontWeight: 800, color: '#162d3a',
+                          fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)',
                           marginBottom: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                         }}>
                           {island.name}

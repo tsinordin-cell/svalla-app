@@ -40,7 +40,7 @@ const FAQS = [
   },
   {
     q: 'Kan jag föreslå en plats som saknas?',
-    a: 'Ja! Skicka ett mejl till hej@svalla.se med namn, ö och en kort beskrivning, så lägger vi in platsen.',
+    a: 'Ja! Skicka ett mejl till info@svalla.se med namn, ö och en kort beskrivning, så lägger vi in platsen.',
   },
   {
     q: 'Hur fungerar ruttguiden?',
@@ -56,13 +56,13 @@ const FAQS = [
   },
   {
     q: 'Hur raderar jag mitt konto?',
-    a: 'Skicka en förfrågan till hej@svalla.se, så raderar vi ditt konto och all tillhörande data inom 5 arbetsdagar.',
+    a: 'Skicka en förfrågan till info@svalla.se, så raderar vi ditt konto och all tillhörande data inom 5 arbetsdagar.',
   },
 ]
 
 export default function FaqPage() {
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '60px 20px 32px',
@@ -80,7 +80,7 @@ export default function FaqPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {FAQS.map((item, i) => (
             <details key={i} style={{
-              background: '#fff',
+              background: 'var(--white, #fff)',
               borderRadius: 14,
               boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
               overflow: 'hidden',
@@ -89,7 +89,7 @@ export default function FaqPage() {
                 padding: '18px 22px',
                 fontWeight: 700,
                 fontSize: 15,
-                color: '#162d3a',
+                color: 'var(--txt, #162d3a)',
                 cursor: 'pointer',
                 listStyle: 'none',
                 display: 'flex',
@@ -123,10 +123,10 @@ export default function FaqPage() {
         }}>
           <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>Hittade du inte svaret?</div>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', margin: '0 0 16px' }}>Vi svarar på mejl inom ett dygn.</p>
-          <a href="mailto:hej@svalla.se" style={{
+          <a href="mailto:info@svalla.se" style={{
             display: 'inline-block',
             padding: '10px 24px',
-            background: '#fff',
+            background: 'var(--white, #fff)',
             color: '#1e5c82',
             borderRadius: 20,
             fontWeight: 700,

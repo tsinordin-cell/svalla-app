@@ -94,7 +94,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
   const reviewCount = reviewStats?.length ?? 0
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
       {/* ── Hero image ── */}
       <div style={{ position: 'relative', width: '100%', height: 280, background: '#a8ccd4' }}>
@@ -163,14 +163,14 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
         {/* ── Quick info ── */}
         <div style={{
-          background: '#fff', borderRadius: 18, padding: '14px 16px', marginBottom: 14,
+          background: 'var(--white, #fff)', borderRadius: 18, padding: '14px 16px', marginBottom: 14,
           boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           display: 'flex', flexWrap: 'wrap', gap: 10,
         }}>
           {r.opening_hours && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 16 }}>🕐</span>
-              <span style={{ fontSize: 13, color: '#4a6878' }}>{r.opening_hours}</span>
+              <span style={{ fontSize: 13, color: 'var(--txt2, #4a6878)' }}>{r.opening_hours}</span>
             </div>
           )}
           {r.latitude && r.longitude && (
@@ -180,7 +180,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               rel="noopener noreferrer"
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
-                fontSize: 13, color: '#1e5c82', fontWeight: 600, textDecoration: 'none',
+                fontSize: 13, color: 'var(--sea, #1e5c82)', fontWeight: 600, textDecoration: 'none',
                 marginLeft: 'auto',
               }}
             >
@@ -200,10 +200,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             border: '1.5px solid rgba(30,92,130,0.14)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
           }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#1e5c82', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--sea, #1e5c82)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
               🌊 Varför hit?
             </div>
-            <p style={{ fontSize: 14, color: '#1e5c82', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+            <p style={{ fontSize: 14, color: 'var(--sea, #1e5c82)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
               {r.core_experience}
             </p>
           </div>
@@ -228,10 +228,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Description ── */}
         {r.description && (
           <div style={{
-            background: '#fff', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
+            background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
-            <p style={{ fontSize: 14, color: '#4a6878', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
+            <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
           </div>
         )}
 
@@ -259,7 +259,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Image gallery ── */}
         {r.images && r.images.length > 1 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Bilder
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
@@ -275,14 +275,14 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Menu ── */}
         {r.menu && (
           <div style={{
-            background: '#fff', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
+            background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
+            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
               🍽 Meny
             </h2>
             <pre style={{
-              fontSize: 13, color: '#4a6878', lineHeight: 1.6, margin: 0,
+              fontSize: 13, color: 'var(--txt2, #4a6878)', lineHeight: 1.6, margin: 0,
               whiteSpace: 'pre-wrap', fontFamily: 'inherit',
             }}>
               {r.menu}
@@ -293,23 +293,23 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Recent visits (trips linked to this spot) ── */}
         {recentTrips && recentTrips.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Senaste turer i skärgården
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
               {recentTrips.map((t: { id: string; image: string; location_name: string | null; created_at: string; users?: { username: string } | { username: string }[] | null }) => (
                 <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
                   <div style={{
-                    width: 100, background: '#fff', borderRadius: 12, overflow: 'hidden',
+                    width: 100, background: 'var(--white, #fff)', borderRadius: 12, overflow: 'hidden',
                     boxShadow: '0 2px 8px rgba(0,45,60,0.07)', border: '1px solid rgba(10,123,140,0.08)',
                   }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={t.image} alt="" style={{ width: '100%', height: 70, objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '6px 8px' }}>
-                      <div style={{ fontSize: 9, fontWeight: 700, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {Array.isArray(t.users) ? t.users[0]?.username : (t.users as { username: string } | null)?.username ?? 'Okänd'}
                       </div>
-                      <div style={{ fontSize: 8, color: '#7a9dab', marginTop: 1 }}>
+                      <div style={{ fontSize: 8, color: 'var(--txt3, #7a9dab)', marginTop: 1 }}>
                         {new Date(t.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
                       </div>
                     </div>
@@ -323,7 +323,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Rutter som passar (Phase 4: connect data) ── */}
         {nearbyTours.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               🗺 Rutter som passar
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -331,7 +331,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               {nearbyTours.map((t: any) => (
                 <Link key={t.id} href={`/rutter/${t.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
-                    background: '#fff', borderRadius: 16, padding: '13px 16px',
+                    background: 'var(--white, #fff)', borderRadius: 16, padding: '13px 16px',
                     boxShadow: '0 2px 10px rgba(0,45,60,0.07)',
                     border: '1px solid rgba(10,123,140,0.09)',
                     display: 'flex', alignItems: 'center', gap: 12,
@@ -342,10 +342,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
                     }}>⛵</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.title}
                       </div>
-                      <div style={{ fontSize: 12, color: '#7a9dab', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', marginTop: 2 }}>
                         {t.start_location} → {t.destination}
                         {t.duration_label ? ` · ${t.duration_label}` : ''}
                       </div>

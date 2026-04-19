@@ -95,7 +95,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
   const maxBar = Math.max(...monthBars.map(([, v]) => v.count), 1)
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f2f8fa', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}>
 
       {/* ── Sticky header ── */}
       <header style={{
@@ -127,7 +127,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         <div style={{
           position: 'absolute', bottom: -1, left: 0, right: 0,
           height: 32,
-          background: '#f2f8fa',
+          background: 'var(--bg, #f2f8fa)',
           clipPath: 'ellipse(55% 100% at 50% 100%)',
         }} />
       </div>
@@ -139,7 +139,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
           <div style={{
             width: 84, height: 84, borderRadius: '50%', flexShrink: 0,
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-            border: '4px solid #f2f8fa',
+            border: '4px solid var(--bg, #f2f8fa)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 30, fontWeight: 900, color: '#fff', overflow: 'hidden',
             boxShadow: '0 4px 20px rgba(0,45,60,0.18)',
@@ -167,33 +167,33 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Name + bio + chips ── */}
         <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 900, color: '#0d2240', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
+          <h1 style={{ fontSize: 22, fontWeight: 900, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
             {userRow.username}
           </h1>
           {pub.includes('bio') && u.bio && (
-            <p style={{ fontSize: 14, color: '#3d5865', lineHeight: 1.55, margin: '0 0 10px' }}>
+            <p style={{ fontSize: 14, color: 'var(--txt2, #3d5865)', lineHeight: 1.55, margin: '0 0 10px' }}>
               {u.bio}
             </p>
           )}
           {/* Info chips */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {pub.includes('nationality') && u.nationality && (
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#3d5865', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2, #3d5865)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
                 {formatNationality(u.nationality)}
               </span>
             )}
             {pub.includes('experience_years') && u.experience_years && (
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#3d5865', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2, #3d5865)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
                 ⚓ {u.experience_years} år till havs
               </span>
             )}
             {pub.includes('vessel_name') && u.vessel_name && (
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#3d5865', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2, #3d5865)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
                 ⛵ {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}
               </span>
             )}
             {pub.includes('home_port') && u.home_port && (
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#3d5865', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2, #3d5865)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>
                 🏠 {u.home_port}
               </span>
             )}
@@ -202,7 +202,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Stats bar ── */}
         <div style={{
-          background: '#fff', borderRadius: 18,
+          background: 'var(--white, #fff)', borderRadius: 18,
           display: 'flex', marginBottom: 16,
           boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
           overflow: 'hidden',
@@ -220,7 +220,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             }}>
               {el ?? (
                 <>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: '#0d2240', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                  <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt, #0d2240)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
                   <div style={{ fontSize: 9, fontWeight: 700, color: '#7a9dab', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
                 </>
               )}
@@ -240,7 +240,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 return (
                   <div key={a.id} title={a.label} style={{
                     flexShrink: 0, width: 52, height: 52,
-                    borderRadius: 14, background: '#fff',
+                    borderRadius: 14, background: 'var(--white, #fff)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     gap: 2, border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'rgba(0,0,0,0.06)'}`,
                     opacity: unlocked ? 1 : 0.3,
@@ -258,7 +258,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
-          <div style={{ background: '#fff', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
+          <div style={{ background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
             <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>
               Aktivitet
             </div>
@@ -284,7 +284,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Visited islands ── */}
         {visitedCount > 0 && (
-          <div style={{ background: '#fff', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
+          <div style={{ background: 'var(--white, #fff)', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
               <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🗺️ Besökta öar</div>
               <span style={{ fontSize: 12, fontWeight: 800, color: '#0f9e64' }}>{visitedCount} / 69</span>
@@ -296,11 +296,11 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         )}
 
         {/* ── Trip grid ── */}
-        <div style={{ background: '#fff', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+        <div style={{ background: 'var(--white, #fff)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '52px 24px' }}>
               <div style={{ fontSize: 52, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 15, fontWeight: 700, color: '#3d5865', margin: '0 0 6px' }}>Inga turer loggade ännu</p>
+              <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt2, #3d5865)', margin: '0 0 6px' }}>Inga turer loggade ännu</p>
               <p style={{ fontSize: 13, color: '#7a9dab', margin: 0, lineHeight: 1.5 }}>
                 {userRow.username} har inte loggat någon tur på Svalla än.
               </p>

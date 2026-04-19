@@ -815,7 +815,7 @@ export default function SparaPage() {
     // ── EXPANDED STATS VIEW ────────────────────────────────────────────────
     if (statsExpanded) {
       return (
-        <div style={{ minHeight: '100dvh', background: BG, color: '#fff', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+        <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: BG, color: '#fff', display: 'flex', flexDirection: 'column' }}>
 
           {/* Collapse button (top-right) */}
           <button
@@ -948,7 +948,7 @@ export default function SparaPage() {
 
     // ── MAP VIEW (default) ─────────────────────────────────────────────────
     return (
-      <div style={{ height: '100dvh', position: 'relative', overflow: 'hidden', background: BG }}>
+      <div style={{ position: 'fixed', inset: 0, zIndex: 200, overflow: 'hidden', background: BG }}>
 
         {/* Full-screen map */}
         <div style={{ position: 'absolute', inset: 0 }}>

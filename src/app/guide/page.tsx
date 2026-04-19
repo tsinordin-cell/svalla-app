@@ -64,7 +64,7 @@ function GuideContent() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: '#f7fbfc' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg, #f7fbfc)' }}>
       {/* Header */}
       <header style={{
         padding: '12px 16px',
@@ -106,28 +106,28 @@ function GuideContent() {
           <div>
             {/* Welcome */}
             <div style={{
-              background: '#fff', borderRadius: 16, padding: '16px',
+              background: 'var(--white, #fff)', borderRadius: 16, padding: '16px',
               border: '1.5px solid rgba(10,123,140,0.10)',
               marginBottom: 16,
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
               <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
               <h2 style={{ fontSize: 16, fontWeight: 900, color: '#1e5c82', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
-              <p style={{ fontSize: 13, color: '#5a8090', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0, lineHeight: 1.5 }}>
                 Jag känner till turer, restauranger och hamnar i hela Stockholms skärgård. Berätta vad du är ute efter – sällskap, tid, om du vill bada, äta eller segla – så hittar vi rätt tur.
               </p>
             </div>
 
             {/* Suggestions */}
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
                 Vanliga frågor
               </div>
               {SUGGESTIONS.map((s) => (
                 <button key={s} onClick={() => send(s)} style={{
                   display: 'block', width: '100%', textAlign: 'left',
                   padding: '11px 14px', marginBottom: 6, borderRadius: 12,
-                  background: '#fff', border: '1.5px solid rgba(10,123,140,0.10)',
+                  background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.10)',
                   fontSize: 13, color: '#1e5c82', fontWeight: 600, cursor: 'pointer',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.04)',
                 }}>
@@ -175,7 +175,7 @@ function GuideContent() {
             }}>🧭</div>
             <div style={{
               padding: '11px 14px', borderRadius: '18px 18px 18px 4px',
-              background: '#fff', border: '1.5px solid rgba(10,123,140,0.10)',
+              background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.10)',
               display: 'flex', gap: 5, alignItems: 'center',
             }}>
               {[0, 0.15, 0.3].map((d, i) => (
@@ -212,8 +212,8 @@ function GuideContent() {
             style={{
               flex: 1, padding: '11px 14px', borderRadius: 20,
               border: '1.5px solid rgba(10,123,140,0.18)',
-              background: '#fff', fontSize: 13, resize: 'none', outline: 'none',
-              fontFamily: 'inherit', color: '#162d3a',
+              background: 'var(--white, #fff)', fontSize: 13, resize: 'none', outline: 'none',
+              fontFamily: 'inherit', color: 'var(--txt, #162d3a)',
               maxHeight: 120, overflowY: 'auto',
             }}
           />
@@ -249,7 +249,7 @@ function GuideContent() {
 
 export default function GuidePage() {
   return (
-    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: '#5a8090' }}>Laddar guide…</div>}>
+    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3, #5a8090)' }}>Laddar guide…</div>}>
       <GuideContent />
     </Suspense>
   )

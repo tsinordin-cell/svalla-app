@@ -90,10 +90,10 @@ export default async function RutterPage({
   if (error) {
     console.error('[rutter]', error.message)
     return (
-      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: '#f7fbfc' }}>
+      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>
         <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Kunde inte ladda turer</h1>
-        <p style={{ fontSize: 14, color: '#7a9dab', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
+        <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
         </a>
@@ -130,7 +130,7 @@ export default async function RutterPage({
       }}>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Turer</h1>
-          <p style={{ fontSize: 11, color: '#7a9dab', margin: '2px 0 0', fontWeight: 500 }}>
+          <p style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', margin: '2px 0 0', fontWeight: 500 }}>
             {isFiltered
               ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
               : `${filtered.length} turer · Stockholms skärgård`}
@@ -243,10 +243,10 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
             }}>
               {icon} {categoryLabel}
             </span>
-            <h2 style={{ fontSize: 15, fontWeight: 900, color: '#162d3a', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
+            <h2 style={{ fontSize: 15, fontWeight: 900, color: 'var(--txt, #162d3a)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
               {t.title}
             </h2>
-            <div style={{ fontSize: 12, color: '#5a8090', marginBottom: 8 }}>{t.usp}</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3, #5a8090)', marginBottom: 8 }}>{t.usp}</div>
           </div>
           <div style={{
             flexShrink: 0, fontSize: 10, fontWeight: 700,
@@ -273,7 +273,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
           borderTop: '1px solid rgba(10,123,140,0.07)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <div style={{ fontSize: 11, color: '#5a8090', display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ fontSize: 11, color: 'var(--txt3, #5a8090)', display: 'flex', alignItems: 'center', gap: 4 }}>
             {foodStops[0] && <><span>🍽</span><span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span></>}
           </div>
           <div style={{ display: 'flex', gap: 3 }}>
@@ -294,7 +294,7 @@ function EmptyState() {
     <div style={{ textAlign: 'center', padding: '80px 20px' }}>
       <div style={{ fontSize: 52, marginBottom: 14 }}>⛵</div>
       <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Inga turer matchar</h2>
-      <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20 }}>Prova ett annat filter.</p>
+      <p style={{ fontSize: 13, color: 'var(--txt3, #7a9dab)', marginBottom: 20 }}>Prova ett annat filter.</p>
       <Link href="/rutter" style={{
         display: 'inline-block', padding: '11px 24px', borderRadius: 14,
         background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none',

@@ -52,7 +52,7 @@ export default async function IslandPage({ params }: Props) {
   const relatedIslands = ISLANDS.filter(i => island.related.includes(i.slug))
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
 
       {/* ── NAV ─────────────────────────────────────────────────── */}
       <nav style={{
@@ -164,7 +164,7 @@ export default async function IslandPage({ params }: Props) {
           <SectionHeader icon="📖" title={`Om ${island.name}`} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {island.description.map((para, i) => (
-              <p key={i} style={{ fontSize: 15, color: '#3a5a6a', lineHeight: 1.75, margin: 0 }}>{para}</p>
+              <p key={i} style={{ fontSize: 15, color: 'var(--txt2, #3a5a6a)', lineHeight: 1.75, margin: 0 }}>{para}</p>
             ))}
           </div>
         </section>
@@ -180,15 +180,15 @@ export default async function IslandPage({ params }: Props) {
             }}>
               {island.activities.map(act => (
                 <div key={act.name} style={{
-                  background: '#fff',
+                  background: 'var(--white, #fff)',
                   borderRadius: 14,
                   padding: '18px 20px',
                   boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                   borderLeft: '3px solid #2d7d8a',
                 }}>
                   <div style={{ fontSize: 22, marginBottom: 6 }}>{act.icon}</div>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: '#162d3a', marginBottom: 5 }}>{act.name}</div>
-                  <div style={{ fontSize: 13, color: '#5a8090', lineHeight: 1.6 }}>{act.desc}</div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', marginBottom: 5 }}>{act.name}</div>
+                  <div style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', lineHeight: 1.6 }}>{act.desc}</div>
                 </div>
               ))}
             </div>
@@ -202,7 +202,7 @@ export default async function IslandPage({ params }: Props) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {island.restaurants.map(r => (
                 <div key={r.name} style={{
-                  background: '#fff',
+                  background: 'var(--white, #fff)',
                   borderRadius: 14,
                   padding: '16px 20px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
@@ -222,7 +222,7 @@ export default async function IslandPage({ params }: Props) {
                   }}>🍴</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-                      <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>{r.name}</span>
+                      <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{r.name}</span>
                       <span style={{
                         fontSize: 10,
                         fontWeight: 700,
@@ -232,7 +232,7 @@ export default async function IslandPage({ params }: Props) {
                         borderRadius: 10,
                       }}>{r.type}</span>
                     </div>
-                    <p style={{ fontSize: 13, color: '#5a8090', margin: 0, lineHeight: 1.6 }}>{r.desc}</p>
+                    <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0, lineHeight: 1.6 }}>{r.desc}</p>
                   </div>
                 </div>
               ))}
@@ -251,13 +251,13 @@ export default async function IslandPage({ params }: Props) {
             }}>
               {island.accommodation.map(acc => (
                 <div key={acc.name} style={{
-                  background: '#fff',
+                  background: 'var(--white, #fff)',
                   borderRadius: 14,
                   padding: '20px',
                   boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                    <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>{acc.name}</span>
+                    <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{acc.name}</span>
                     <span style={{
                       fontSize: 10,
                       fontWeight: 700,
@@ -269,7 +269,7 @@ export default async function IslandPage({ params }: Props) {
                       marginLeft: 8,
                     }}>{acc.type}</span>
                   </div>
-                  <p style={{ fontSize: 13, color: '#5a8090', margin: 0, lineHeight: 1.6 }}>{acc.desc}</p>
+                  <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0, lineHeight: 1.6 }}>{acc.desc}</p>
                 </div>
               ))}
             </div>
@@ -283,7 +283,7 @@ export default async function IslandPage({ params }: Props) {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {island.getting_there.map(t => (
                 <div key={t.method} style={{
-                  background: '#fff',
+                  background: 'var(--white, #fff)',
                   borderRadius: 14,
                   padding: '16px 20px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
@@ -294,8 +294,8 @@ export default async function IslandPage({ params }: Props) {
                   <span style={{ fontSize: 26, lineHeight: 1, paddingTop: 2 }}>{t.icon}</span>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 3, flexWrap: 'wrap' }}>
-                      <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>{t.method}</span>
-                      {t.from && <span style={{ fontSize: 12, color: '#7a9dab' }}>från {t.from}</span>}
+                      <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{t.method}</span>
+                      {t.from && <span style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)' }}>från {t.from}</span>}
                       {t.time && (
                         <span style={{
                           fontSize: 11,
@@ -307,7 +307,7 @@ export default async function IslandPage({ params }: Props) {
                         }}>⏱ {t.time}</span>
                       )}
                     </div>
-                    <p style={{ fontSize: 13, color: '#5a8090', margin: 0, lineHeight: 1.6 }}>{t.desc}</p>
+                    <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0, lineHeight: 1.6 }}>{t.desc}</p>
                   </div>
                 </div>
               ))}
@@ -326,19 +326,19 @@ export default async function IslandPage({ params }: Props) {
             }}>
               {island.harbors.map(h => (
                 <div key={h.name} style={{
-                  background: '#fff',
+                  background: 'var(--white, #fff)',
                   borderRadius: 14,
                   padding: '20px',
                   boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>{h.name}</span>
+                    <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{h.name}</span>
                     <div style={{ display: 'flex', gap: 4 }}>
-                      {h.spots && <span style={{ fontSize: 10, color: '#7a9dab' }}>{h.spots} platser</span>}
+                      {h.spots && <span style={{ fontSize: 10, color: 'var(--txt3, #7a9dab)' }}>{h.spots} platser</span>}
                       {h.fuel && <span style={{ fontSize: 14 }}>⛽</span>}
                     </div>
                   </div>
-                  <p style={{ fontSize: 13, color: '#5a8090', margin: '0 0 10px', lineHeight: 1.6 }}>{h.desc}</p>
+                  <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: '0 0 10px', lineHeight: 1.6 }}>{h.desc}</p>
                   {h.service && h.service.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
                       {h.service.map(s => (
@@ -378,7 +378,7 @@ export default async function IslandPage({ params }: Props) {
                   borderBottom: i < island.tips.length - 1 ? '1px solid rgba(30,92,130,0.08)' : 'none',
                 }}>
                   <span style={{ fontSize: 18, lineHeight: 1.5, flexShrink: 0 }}>→</span>
-                  <p style={{ fontSize: 14, color: '#3a5a6a', margin: 0, lineHeight: 1.7 }}>{tip}</p>
+                  <p style={{ fontSize: 14, color: 'var(--txt2, #3a5a6a)', margin: 0, lineHeight: 1.7 }}>{tip}</p>
                 </div>
               ))}
             </div>
@@ -397,7 +397,7 @@ export default async function IslandPage({ params }: Props) {
               {relatedIslands.map(rel => (
                 <Link key={rel.slug} href={`/o/${rel.slug}`} style={{ textDecoration: 'none' }}>
                   <div style={{
-                    background: '#fff',
+                    background: 'var(--white, #fff)',
                     borderRadius: 14,
                     padding: '18px 20px',
                     boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
@@ -409,8 +409,8 @@ export default async function IslandPage({ params }: Props) {
                   }}>
                     <span style={{ fontSize: 26 }}>{rel.emoji}</span>
                     <div>
-                      <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a', marginBottom: 2 }}>{rel.name}</div>
-                      <div style={{ fontSize: 12, color: '#7a9dab' }}>{rel.regionLabel}</div>
+                      <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)', marginBottom: 2 }}>{rel.name}</div>
+                      <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)' }}>{rel.regionLabel}</div>
                     </div>
                     <span style={{ marginLeft: 'auto', color: '#1e5c82', fontWeight: 700, fontSize: 16 }}>→</span>
                   </div>
@@ -445,7 +445,7 @@ function SectionHeader({ icon, title }: { icon: string; title: string }) {
       <h2 style={{
         fontSize: 19,
         fontWeight: 700,
-        color: '#162d3a',
+        color: 'var(--txt, #162d3a)',
         margin: 0,
         letterSpacing: -0.2,
         fontFamily: "'Playfair Display', Georgia, serif",

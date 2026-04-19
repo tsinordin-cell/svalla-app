@@ -36,7 +36,7 @@ export default async function PlatserPage() {
   if (error) {
     console.error('[platser]', error.message)
     return (
-      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: '#f2f8fa' }}>
+      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f2f8fa)' }}>
         <div style={{ fontSize: 52 }}>⚓</div>
         <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Kunde inte ladda platser</h1>
         <p style={{ fontSize: 14, color: '#7a9dab', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
@@ -64,7 +64,7 @@ export default async function PlatserPage() {
     }))
 
   return (
-    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f2f8fa' }}>
+    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: 'var(--bg, #f2f8fa)' }}>
 
       {/* ── Sticky header ── */}
       <header style={{

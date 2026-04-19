@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 import webpush from 'web-push'
 
 webpush.setVapidDetails(
-  'mailto:hej@svalla.se',
+  'mailto:info@svalla.se',
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
   process.env.VAPID_PRIVATE_KEY!,
 )

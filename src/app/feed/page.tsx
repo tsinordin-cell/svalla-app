@@ -30,7 +30,7 @@ export default async function FeedPage() {
   if (error) {
     console.error('[feed]', error.message)
     return (
-      <div style={{ minHeight: '100vh', background: '#f2f8fa', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
+      <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
         <h2 style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
         <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>

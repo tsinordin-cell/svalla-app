@@ -1164,7 +1164,7 @@ function renderContent(content: string) {
 
     if (line.startsWith('## ')) {
       elements.push(
-        <h2 key={key++} style={{ color: '#162d3a', fontSize: 20, fontWeight: 800, marginTop: 32, marginBottom: 12 }}>
+        <h2 key={key++} style={{ color: 'var(--txt, #162d3a)', fontSize: 20, fontWeight: 800, marginTop: 32, marginBottom: 12 }}>
           {line.slice(3)}
         </h2>
       )
@@ -1176,13 +1176,13 @@ function renderContent(content: string) {
       )
     } else if (line.startsWith('**') && line.endsWith('**')) {
       elements.push(
-        <p key={key++} style={{ margin: '12px 0', fontWeight: 700, color: '#162d3a' }}>
+        <p key={key++} style={{ margin: '12px 0', fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
           {line.slice(2, -2)}
         </p>
       )
     } else if (line.startsWith('- ')) {
       elements.push(
-        <li key={key++} style={{ marginBottom: 6, marginLeft: 20, color: '#2a4a5a' }}>
+        <li key={key++} style={{ marginBottom: 6, marginLeft: 20, color: 'var(--txt2, #2a4a5a)' }}>
           {line.slice(2).replace(/\*\*(.*?)\*\*/g, '$1')}
         </li>
       )
@@ -1196,7 +1196,7 @@ function renderContent(content: string) {
           {cells.map((cell, ci) => (
             isHeader
               ? <th key={ci} style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: '#1e5c82', fontSize: 13 }}>{cell.trim()}</th>
-              : <td key={ci} style={{ padding: '8px 12px', fontSize: 13, color: '#2a4a5a' }}>{cell.trim()}</td>
+              : <td key={ci} style={{ padding: '8px 12px', fontSize: 13, color: 'var(--txt2, #2a4a5a)' }}>{cell.trim()}</td>
           ))}
         </tr>
       )
@@ -1208,9 +1208,9 @@ function renderContent(content: string) {
       // Regular paragraph – handle bold inline
       const parts = line.split(/\*\*(.*?)\*\*/g)
       elements.push(
-        <p key={key++} style={{ margin: '10px 0', color: '#2a4a5a', lineHeight: 1.75 }}>
+        <p key={key++} style={{ margin: '10px 0', color: 'var(--txt2, #2a4a5a)', lineHeight: 1.75 }}>
           {parts.map((part, pi) =>
-            pi % 2 === 1 ? <strong key={pi} style={{ color: '#162d3a' }}>{part}</strong> : part
+            pi % 2 === 1 ? <strong key={pi} style={{ color: 'var(--txt, #162d3a)' }}>{part}</strong> : part
           )}
         </p>
       )
@@ -1227,7 +1227,7 @@ function renderContent(content: string) {
       if (tableRows.length) {
         wrapped.push(
           <div key={`table-${wrapped.length}`} style={{ overflowX: 'auto', margin: '16px 0' }}>
-            <table style={{ borderCollapse: 'collapse', width: '100%', background: '#f7fbfc', borderRadius: 8 }}>
+            <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg, #f7fbfc)', borderRadius: 8 }}>
               <tbody>{tableRows}</tbody>
             </table>
           </div>
@@ -1240,7 +1240,7 @@ function renderContent(content: string) {
   if (tableRows.length) {
     wrapped.push(
       <div key={`table-${wrapped.length}`} style={{ overflowX: 'auto', margin: '16px 0' }}>
-        <table style={{ borderCollapse: 'collapse', width: '100%', background: '#f7fbfc', borderRadius: 8 }}>
+        <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg, #f7fbfc)', borderRadius: 8 }}>
           <tbody>{tableRows}</tbody>
         </table>
       </div>
@@ -1264,7 +1264,7 @@ export default async function BloggPostPage({
   if (!post) notFound()
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f7fbfc', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
       {/* Header */}
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
@@ -1301,7 +1301,7 @@ export default async function BloggPostPage({
       {/* Content */}
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
         <article style={{
-          background: '#fff',
+          background: 'var(--white, #fff)',
           borderRadius: 16,
           padding: '36px 32px',
           boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
@@ -1323,7 +1323,7 @@ export default async function BloggPostPage({
         {/* Back + CTA */}
         <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
           <Link href="/blogg" style={{
-            padding: '12px 24px', background: '#fff', color: '#1e5c82',
+            padding: '12px 24px', background: 'var(--white, #fff)', color: '#1e5c82',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             border: '1.5px solid #1e5c82',
           }}>← Fler artiklar</Link>
