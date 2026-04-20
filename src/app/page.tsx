@@ -506,7 +506,7 @@ const LANDING_HTML = `
       <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
     </div>
     <div class="destinations-grid">
-      <div class="dest-card reveal reveal-delay-1">
+      <div class="dest-card reveal reveal-delay-1" onclick="location.href='/kom-igang'" style="cursor:pointer">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f2e3b,#1a4a5e,#24697f)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="120" cy="200" rx="90" ry="45" fill="#0d2030" opacity="0.7"/><ellipse cx="220" cy="240" rx="70" ry="35" fill="#0a1f2b" opacity="0.8"/>
@@ -520,7 +520,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/fjaderholmarna" class="dest-island">Fjäderholmarna</a><a href="/o/vaxholm" class="dest-island">Vaxholm</a><a href="/o/grinda" class="dest-island">Grinda</a><a href="/o/finnhamn" class="dest-island">Finnhamn</a><span class="dest-island">Resarö</span></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-2">
+      <div class="dest-card reveal reveal-delay-2" onclick="location.href='/kom-igang'" style="cursor:pointer">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f3020,#1a5030,#2a7040)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="210" rx="75" ry="38" fill="#0a1f10" opacity="0.7"/><ellipse cx="210" cy="235" rx="85" ry="42" fill="#081510" opacity="0.8"/>
@@ -534,7 +534,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/sandhamn" class="dest-island">Sandhamn</a><a href="/o/moja" class="dest-island">Möja</a><a href="/o/ljustero" class="dest-island">Ljusterö</a><a href="/o/gallno" class="dest-island">Gällnö</a><span class="dest-island">Runmarö</span></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-3">
+      <div class="dest-card reveal reveal-delay-3" onclick="location.href='/kom-igang'" style="cursor:pointer">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#1a2a3a,#1e4060,#2a5875)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="150" cy="220" rx="100" ry="50" fill="#0d2030" opacity="0.7"/><ellipse cx="80" cy="255" rx="60" ry="28" fill="#0a1820" opacity="0.8"/>
@@ -548,7 +548,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/uto" class="dest-island">Utö</a><a href="/o/nattaro" class="dest-island">Nåttarö</a><a href="/o/orno" class="dest-island">Ornö</a><a href="/o/dalaro" class="dest-island">Dalarö</a><a href="/o/landsort" class="dest-island">Landsort</a></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-4">
+      <div class="dest-card reveal reveal-delay-4" onclick="location.href='/kom-igang'" style="cursor:pointer">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#2a1a3a,#3a2555,#4a356a)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="140" cy="215" rx="95" ry="48" fill="#1a0d2a" opacity="0.7"/><ellipse cx="240" cy="250" rx="65" ry="32" fill="#120a20" opacity="0.8"/>
