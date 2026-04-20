@@ -3,8 +3,135 @@ import { useEffect, useRef } from 'react'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    HeroAnimation — canvas + requestAnimationFrame
-   Realistisk skärgårdsmiljö: statiska öar, levande hav, båtar, fåglar, fisk
+   5 varianter: klar sommardag | gyllene timmen | midnattssol | storm | dimma
 ───────────────────────────────────────────────────────────────────────────── */
+
+export type HeroVariant = 1 | 2 | 3 | 4 | 5
+
+interface Theme {
+  /* Sky */
+  sky: [string, string, string, string]
+  /* Sun / moon */
+  sunX: number          // fraction of W
+  sunY: number          // fraction of H
+  sunR: number          // fraction of H
+  sunInner: string
+  sunOuter: string
+  glowA: number         // glow opacity
+  glowColor: string
+  /* Water */
+  water: [string, string, string, string]
+  waterHighlight: string
+  /* Islands */
+  farIsland: string
+  islandGreen: string
+  rockColor: string
+  /* Pine */
+  pineTrunk: string
+  pineBody: string
+  pineTop: string
+  /* Overlay */
+  overlay: [string, string, string, string, string]
+  /* Animation */
+  waveSpeed: number   // multiplier on t for wave calc
+  waveAmp: number     // multiplier on wave amplitudes
+  birdColor: string
+  underwaterRay: string
+  seabedTint: string
+}
+
+const THEMES: Record<HeroVariant, Theme> = {
+  // ── 1. Klar sommardag ──────────────────────────────────────────────────────
+  1: {
+    sky:          ['#4ca8e8','#72c2f5','#a8daf8','#c2e8f5'],
+    sunX: 0.73,   sunY: 0.092, sunR: 0.036,
+    sunInner:     '#fffee0', sunOuter: '#ffe070',
+    glowA: 0.55,  glowColor: '255,225,90',
+    water:        ['#2e9fd8','#1e7db8','#145a90','#0a2e58'],
+    waterHighlight:'rgba(255,255,255,0.24)',
+    farIsland:    'rgba(122,150,168,0.50)',
+    islandGreen:  '#5a8850',
+    rockColor:    '#788068',
+    pineTrunk:    '#5c3820', pineBody: '#285a28', pineTop: '#367038',
+    overlay:      ['rgba(5,20,40,0.06)','rgba(5,20,40,0.18)','rgba(5,20,40,0.26)','rgba(5,20,40,0.15)','rgba(5,20,40,0.08)'],
+    waveSpeed: 1.0, waveAmp: 1.0,
+    birdColor:    'rgba(52,78,95,0.82)',
+    underwaterRay:'120,200,248',
+    seabedTint:   'rgba(4,18,48,',
+  },
+  // ── 2. Gyllene timmen ─────────────────────────────────────────────────────
+  2: {
+    sky:          ['#d45e20','#e8904a','#f5bc72','#fde4b8'],
+    sunX: 0.78,   sunY: 0.42, sunR: 0.058,
+    sunInner:     '#fff0a0', sunOuter: '#ffb040',
+    glowA: 0.70,  glowColor: '255,160,40',
+    water:        ['#b86830','#904820','#6a2e14','#3e1408'],
+    waterHighlight:'rgba(255,200,100,0.28)',
+    farIsland:    'rgba(140,80,50,0.55)',
+    islandGreen:  '#6a7840',
+    rockColor:    '#887058',
+    pineTrunk:    '#5a3010', pineBody: '#3a5010', pineTop: '#4a6818',
+    overlay:      ['rgba(40,10,0,0.04)','rgba(40,10,0,0.16)','rgba(40,10,0,0.28)','rgba(40,10,0,0.18)','rgba(40,10,0,0.10)'],
+    waveSpeed: 0.75, waveAmp: 0.85,
+    birdColor:    'rgba(80,40,15,0.80)',
+    underwaterRay:'220,140,60',
+    seabedTint:   'rgba(40,12,4,',
+  },
+  // ── 3. Midnattssol ───────────────────────────────────────────────────────
+  3: {
+    sky:          ['#1a1248','#2e2278','#5a48a8','#9080c8'],
+    sunX: 0.60,   sunY: 0.50, sunR: 0.050,
+    sunInner:     '#fffce0', sunOuter: '#ffd080',
+    glowA: 0.45,  glowColor: '255,210,100',
+    water:        ['#182858','#102048','#0c1a38','#060e22'],
+    waterHighlight:'rgba(160,170,255,0.20)',
+    farIsland:    'rgba(60,50,90,0.60)',
+    islandGreen:  '#284858',
+    rockColor:    '#384860',
+    pineTrunk:    '#1e1a2e', pineBody: '#1a2e38', pineTop: '#243848',
+    overlay:      ['rgba(10,5,30,0.12)','rgba(10,5,30,0.28)','rgba(10,5,30,0.38)','rgba(10,5,30,0.24)','rgba(10,5,30,0.15)'],
+    waveSpeed: 0.55, waveAmp: 0.70,
+    birdColor:    'rgba(130,120,200,0.70)',
+    underwaterRay:'80,100,200',
+    seabedTint:   'rgba(5,5,25,',
+  },
+  // ── 4. Stormig himmel ────────────────────────────────────────────────────
+  4: {
+    sky:          ['#282e30','#3a4a52','#526070','#687885'],
+    sunX: 0.20,   sunY: 0.18, sunR: 0.026,
+    sunInner:     'rgba(220,220,200,0.6)', sunOuter: 'rgba(180,180,160,0.3)',
+    glowA: 0.20,  glowColor: '200,210,200',
+    water:        ['#253c48','#1c2e3a','#14202c','#0a121c'],
+    waterHighlight:'rgba(180,210,230,0.18)',
+    farIsland:    'rgba(60,75,80,0.65)',
+    islandGreen:  '#3a5040',
+    rockColor:    '#4a5850',
+    pineTrunk:    '#2a2018', pineBody: '#1e3028', pineTop: '#283c30',
+    overlay:      ['rgba(5,12,18,0.18)','rgba(5,12,18,0.32)','rgba(5,12,18,0.42)','rgba(5,12,18,0.30)','rgba(5,12,18,0.20)'],
+    waveSpeed: 1.65, waveAmp: 1.55,
+    birdColor:    'rgba(40,55,65,0.88)',
+    underwaterRay:'60,90,110',
+    seabedTint:   'rgba(4,10,18,',
+  },
+  // ── 5. Vinterdimma ───────────────────────────────────────────────────────
+  5: {
+    sky:          ['#b8ccd8','#ccdce8','#deeaf2','#edf4f8'],
+    sunX: 0.50,   sunY: 0.32, sunR: 0.068,
+    sunInner:     'rgba(255,250,240,0.9)', sunOuter: 'rgba(220,230,240,0.5)',
+    glowA: 0.90,  glowColor: '220,235,248',
+    water:        ['#8aaec0','#6890a4','#4a7088','#2e5068'],
+    waterHighlight:'rgba(255,255,255,0.18)',
+    farIsland:    'rgba(140,160,172,0.45)',
+    islandGreen:  '#6a8878',
+    rockColor:    '#788488',
+    pineTrunk:    '#4a3c38', pineBody: '#3c5048', pineTop: '#4e6258',
+    overlay:      ['rgba(180,200,215,0.28)','rgba(180,200,215,0.42)','rgba(160,185,205,0.50)','rgba(180,200,215,0.40)','rgba(180,200,215,0.30)'],
+    waveSpeed: 0.45, waveAmp: 0.55,
+    birdColor:    'rgba(80,100,115,0.65)',
+    underwaterRay:'160,190,210',
+    seabedTint:   'rgba(20,40,58,',
+  },
+}
 
 type BoatType = 'sail' | 'motor'
 interface Boat   { x: number; spd: number; type: BoatType; ph: number }
@@ -13,7 +140,9 @@ interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph:
 interface Weed   { x: number; h: number; ph: number; hue: number; w: number }
 interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
 
-export default function HeroAnimation() {
+interface Props { variant?: HeroVariant }
+
+export default function HeroAnimation({ variant = 1 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -22,6 +151,8 @@ export default function HeroAnimation() {
     const cx = cv.getContext('2d', { alpha: false })
     if (!cx) return
 
+    const th = THEMES[variant]
+
     let W = 0, H = 0, dpr = 1
     let raf = 0, last = 0, t = 0, ms = 0
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = []
@@ -29,14 +160,16 @@ export default function HeroAnimation() {
     let dolX = 0, dolPh = 0, dolOn = false, nextDol = 0
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
-    const WL = () => H * 0.52          // waterline baseline
+    const WL = () => H * 0.52
 
     /* ── Multi-sine wave ────────────────────────────────────────────────── */
     const wave = (x: number): number => {
-      const b = WL()
-      const swell  = Math.sin(x * 0.0022 + t * 0.18) * H * 0.014   // large, slow
-      const mid    = Math.sin(x * 0.0058 - t * 0.32 + 1.2) * H * 0.006
-      const ripple = Math.sin(x * 0.0145 + t * 0.62 + 2.5) * H * 0.003
+      const b  = WL()
+      const ws = th.waveSpeed
+      const wa = th.waveAmp
+      const swell  = Math.sin(x * 0.0022 + t * 0.18 * ws) * H * 0.014 * wa
+      const mid    = Math.sin(x * 0.0058 - t * 0.32 * ws + 1.2) * H * 0.006 * wa
+      const ripple = Math.sin(x * 0.0145 + t * 0.62 * ws + 2.5) * H * 0.003 * wa
       return b + swell + mid + ripple
     }
 
@@ -97,45 +230,43 @@ export default function HeroAnimation() {
 
     const drawSky = () => {
       const g = cx.createLinearGradient(0, 0, 0, H * 0.57)
-      g.addColorStop(0,   '#4ca8e8')   // vivid Nordic sky blue at top
-      g.addColorStop(0.35,'#72c2f5')
-      g.addColorStop(0.75,'#a8daf8')   // lighter near horizon
-      g.addColorStop(1,   '#c2e8f5')
+      const [s0, s1, s2, s3] = th.sky
+      g.addColorStop(0,    s0)
+      g.addColorStop(0.35, s1)
+      g.addColorStop(0.75, s2)
+      g.addColorStop(1,    s3)
       cx.fillStyle = g
       cx.fillRect(0, 0, W, H * 0.57)
     }
 
     const drawSun = () => {
-      const sx = W * 0.73, sy = H * 0.092, sr = H * 0.036
-      // outer glow
+      const sx = W * th.sunX
+      const sy = H * th.sunY
+      const sr = H * th.sunR
       const glow = cx.createRadialGradient(sx, sy, 0, sx, sy, sr * 7)
-      glow.addColorStop(0,   'rgba(255,230,100,0.55)')
-      glow.addColorStop(0.4, 'rgba(255,220,80,0.22)')
-      glow.addColorStop(1,   'rgba(255,220,80,0)')
+      glow.addColorStop(0,   `rgba(${th.glowColor},${th.glowA})`)
+      glow.addColorStop(0.4, `rgba(${th.glowColor},${(th.glowA * 0.4).toFixed(2)})`)
+      glow.addColorStop(1,   `rgba(${th.glowColor},0)`)
       cx.fillStyle = glow
       cx.beginPath(); cx.arc(sx, sy, sr * 7, 0, Math.PI * 2); cx.fill()
-      // disc
       const disc = cx.createRadialGradient(sx, sy, 0, sx, sy, sr)
-      disc.addColorStop(0, '#fffee0'); disc.addColorStop(1, '#ffe070')
+      disc.addColorStop(0, th.sunInner); disc.addColorStop(1, th.sunOuter)
       cx.fillStyle = disc; cx.beginPath(); cx.arc(sx, sy, sr, 0, Math.PI * 2); cx.fill()
     }
 
-    /* ── Far islands (distant silhouette, blue-grey, no detail) ─────────── */
+    /* ── Far islands ─────────────────────────────────────────────────────── */
     const drawFarIslands = () => {
-      cx.fillStyle = 'rgba(122,150,168,0.50)'
-      // Left group
+      cx.fillStyle = th.farIsland
       cx.beginPath()
       cx.moveTo(0, H * 0.445)
       cx.bezierCurveTo(W*0.02, H*0.30, W*0.09, H*0.265, W*0.175, H*0.315)
       cx.bezierCurveTo(W*0.23, H*0.35, W*0.27, H*0.42, W*0.30, H*0.445)
       cx.lineTo(0, H * 0.445); cx.fill()
-      // Centre
       cx.beginPath()
       cx.moveTo(W*0.37, H*0.445)
       cx.bezierCurveTo(W*0.40, H*0.265, W*0.52, H*0.215, W*0.63, H*0.295)
       cx.bezierCurveTo(W*0.70, H*0.34, W*0.745, H*0.415, W*0.76, H*0.445)
       cx.lineTo(W*0.37, H*0.445); cx.fill()
-      // Right
       cx.beginPath()
       cx.moveTo(W*0.83, H*0.445)
       cx.bezierCurveTo(W*0.85, H*0.295, W*0.94, H*0.275, W, H*0.325)
@@ -145,13 +276,13 @@ export default function HeroAnimation() {
     /* ── Pine tree ───────────────────────────────────────────────────────── */
     const pine = (x: number, y: number, h: number) => {
       const w2 = h * 0.30
-      cx.fillStyle = '#5c3820'; cx.fillRect(x - 1.5, y, 3, h * 0.16)
+      cx.fillStyle = th.pineTrunk; cx.fillRect(x - 1.5, y, 3, h * 0.16)
       cx.beginPath()
       cx.moveTo(x, y - h); cx.lineTo(x + w2, y); cx.lineTo(x - w2, y); cx.closePath()
-      cx.fillStyle = '#285a28'; cx.fill()
+      cx.fillStyle = th.pineBody; cx.fill()
       cx.beginPath()
       cx.moveTo(x, y - h*1.32); cx.lineTo(x + w2*0.62, y - h*0.40); cx.lineTo(x - w2*0.62, y - h*0.40); cx.closePath()
-      cx.fillStyle = '#367038'; cx.fill()
+      cx.fillStyle = th.pineTop; cx.fill()
     }
 
     /* ── Lighthouse ─────────────────────────────────────────────────────── */
@@ -162,7 +293,6 @@ export default function HeroAnimation() {
       cx.fillRect(x - 4, by - lh * 0.56, 8, lh * 0.12)
       cx.fillRect(x - 4, by - lh * 0.26, 8, lh * 0.12)
       cx.fillStyle = '#d0c8b0'; cx.fillRect(x - 7, by - lh - 7, 14, 8)
-      // pulsing light
       const pulse = (Math.sin(ms * 0.0018) + 1) * 0.5
       cx.fillStyle = `rgba(255,255,170,${0.55 + pulse * 0.45})`
       cx.beginPath(); cx.arc(x, by - lh - 3.5, 3.5, 0, Math.PI * 2); cx.fill()
@@ -185,81 +315,69 @@ export default function HeroAnimation() {
       cx.fillRect(x - cw*0.14, y + ch*0.2, cw*0.28, ch*0.32)
     }
 
-    /* ── Near islands (static, green, with trees/lighthouse/cottage) ─────── */
+    /* ── Near islands ────────────────────────────────────────────────────── */
     const drawNearIslands = () => {
       const wb = WL()
       cx.save()
-
-      // ── Island A — left, large ──────────────────────────────────────────
       cx.beginPath()
       cx.moveTo(-6, wb)
       cx.bezierCurveTo(W*0.01, H*0.375, W*0.075, H*0.335, W*0.145, H*0.378)
       cx.bezierCurveTo(W*0.20, H*0.41, W*0.245, H*0.475, W*0.26, wb)
       cx.lineTo(-6, wb); cx.closePath()
-      cx.fillStyle = '#5a8850'; cx.fill()
-      // Rock face left
+      cx.fillStyle = th.islandGreen; cx.fill()
       cx.beginPath()
       cx.moveTo(-6, wb); cx.lineTo(-6, H*0.458)
       cx.bezierCurveTo(W*0.01, H*0.415, W*0.038, H*0.405, W*0.058, H*0.438)
       cx.lineTo(W*0.068, wb)
-      cx.fillStyle = '#889878'; cx.fill()
-      // Trees + features
+      cx.fillStyle = th.rockColor; cx.fill()
       const tA: [number, number][] = [[W*0.04, 0.955],[W*0.08, 0.924],[W*0.11, 0.906],[W*0.155, 0.912],[W*0.195, 0.940]]
       tA.forEach(([tx, yt]) => pine(tx, wb * yt, H * 0.060))
       lighthouse(W * 0.225, wb * 0.954)
       cottage(W * 0.105, wb * 0.952, true)
-
-      // ── Island B — centre-right, medium ────────────────────────────────
       cx.beginPath()
       cx.moveTo(W*0.50, wb)
       cx.bezierCurveTo(W*0.52, H*0.375, W*0.595, H*0.325, W*0.685, H*0.375)
       cx.bezierCurveTo(W*0.745, H*0.415, W*0.785, H*0.485, W*0.80, wb)
       cx.lineTo(W*0.50, wb); cx.closePath()
-      cx.fillStyle = '#5a8850'; cx.fill()
-      // Rocky outcrop right
+      cx.fillStyle = th.islandGreen; cx.fill()
       cx.beginPath()
       cx.moveTo(W*0.80, wb)
       cx.bezierCurveTo(W*0.82, H*0.445, W*0.88, H*0.435, W*0.935, H*0.475)
       cx.lineTo(W*0.935, wb)
-      cx.fillStyle = '#7a8870'; cx.fill()
+      cx.fillStyle = th.rockColor; cx.fill()
       const tB: [number, number][] = [[W*0.535, 0.944],[W*0.575, 0.912],[W*0.635, 0.902],[W*0.72, 0.921],[W*0.768, 0.948]]
       tB.forEach(([tx, yt]) => pine(tx, wb * yt, H * 0.056))
       cottage(W * 0.655, wb * 0.935)
-
-      // ── Small rocky outcrop — centre gap ───────────────────────────────
       cx.beginPath()
       cx.moveTo(W*0.340, wb)
       cx.bezierCurveTo(W*0.350, H*0.468, W*0.370, H*0.455, W*0.395, H*0.468)
       cx.lineTo(W*0.405, wb)
-      cx.fillStyle = '#788068'; cx.fill()
-
+      cx.fillStyle = th.rockColor; cx.fill()
       cx.restore()
     }
 
-    /* ── Water surface + body ────────────────────────────────────────────── */
+    /* ── Water ───────────────────────────────────────────────────────────── */
     const drawWater = () => {
       cx.save()
-      // Main fill
       cx.beginPath()
       cx.moveTo(0, wave(0))
       for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
+      const [w0, w1, w2, w3] = th.water
       const wg = cx.createLinearGradient(0, WL() - 8, 0, H)
-      wg.addColorStop(0,   '#2e9fd8')   // bright teal at surface
-      wg.addColorStop(0.18,'#1e7db8')
-      wg.addColorStop(0.55,'#145a90')
-      wg.addColorStop(1,   '#0a2e58')
+      wg.addColorStop(0,    w0)
+      wg.addColorStop(0.18, w1)
+      wg.addColorStop(0.55, w2)
+      wg.addColorStop(1,    w3)
       cx.fillStyle = wg; cx.fill()
-      // Primary surface highlight
       cx.beginPath()
       cx.moveTo(0, wave(0))
       for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
-      cx.strokeStyle = 'rgba(255,255,255,0.24)'; cx.lineWidth = 1.8; cx.stroke()
-      // Secondary undulation (behind / slower)
+      cx.strokeStyle = th.waterHighlight; cx.lineWidth = 1.8; cx.stroke()
       cx.beginPath()
       const off = H * 0.009
       for (let x = 0; x <= W; x += 4) {
-        const y2 = wave(x) + off + Math.sin(x * 0.004 - t * 0.25 + 0.9) * H * 0.004
+        const y2 = wave(x) + off + Math.sin(x * 0.004 - t * 0.25 * th.waveSpeed + 0.9) * H * 0.004 * th.waveAmp
         x === 0 ? cx.moveTo(x, y2) : cx.lineTo(x, y2)
       }
       cx.strokeStyle = 'rgba(255,255,255,0.09)'; cx.lineWidth = 1.0; cx.stroke()
@@ -269,20 +387,18 @@ export default function HeroAnimation() {
     /* ── Underwater atmosphere ───────────────────────────────────────────── */
     const drawUnderwater = () => {
       const wb = WL()
-      // Depth gradient (transparent at surface → dark at bottom)
       const dg = cx.createLinearGradient(0, wb, 0, H)
-      dg.addColorStop(0,   'rgba(4,18,48,0)')
-      dg.addColorStop(0.35,'rgba(4,14,40,0.16)')
-      dg.addColorStop(1,   'rgba(2,8,26,0.58)')
+      dg.addColorStop(0,    `${th.seabedTint}0)`)
+      dg.addColorStop(0.35, `${th.seabedTint}0.16)`)
+      dg.addColorStop(1,    `${th.seabedTint}0.58)`)
       cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
-      // Light rays
       for (let i = 0; i < 5; i++) {
         const rx = W * (0.08 + i * 0.185) + Math.sin(t * 0.14 + i * 1.1) * 12
         cx.save(); cx.translate(rx, wb); cx.rotate(-0.06 + i * 0.03)
         const rg = cx.createLinearGradient(0, 0, 0, H * 0.30)
         const a = 0.07 + Math.sin(t * 0.38 + i) * 0.03
-        rg.addColorStop(0, `rgba(120,200,248,${a})`)
-        rg.addColorStop(1, 'rgba(120,200,248,0)')
+        rg.addColorStop(0, `rgba(${th.underwaterRay},${a})`)
+        rg.addColorStop(1, `rgba(${th.underwaterRay},0)`)
         cx.fillStyle = rg
         cx.beginPath(); cx.moveTo(-7, 0); cx.lineTo(7, 0)
         cx.lineTo(17, H*0.30); cx.lineTo(-17, H*0.30); cx.closePath(); cx.fill()
@@ -299,7 +415,7 @@ export default function HeroAnimation() {
         for (let s = 0; s < segs; s++) {
           const sg = w.h / segs
           const k = (s + 1) / segs
-          const sw = Math.sin(t * 0.95 + w.ph + s * 0.55) * 18 * k
+          const sw = Math.sin(t * 0.95 * th.waveSpeed + w.ph + s * 0.55) * 18 * k
           cx.bezierCurveTo(
             sw * 0.38 + (s % 2 === 0 ?  5 : -5), py - sg * 0.38,
             sw * 0.78 + (s % 2 === 0 ?  8 : -8), py - sg * 0.74,
@@ -336,14 +452,11 @@ export default function HeroAnimation() {
         cx.save(); cx.translate(f.x, fy)
         if (f.dir === -1) cx.scale(-1, 1)
         const a = f.sz, b2 = f.sz * 0.42
-        // Body
         cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI * 2)
         cx.fillStyle = `hsla(${f.hue},50%,44%,0.82)`; cx.fill()
-        // Tail
         cx.beginPath()
         cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.72, -b2*1.05); cx.lineTo(-a*1.72, b2*1.05); cx.closePath()
         cx.fillStyle = `hsla(${f.hue},44%,36%,0.80)`; cx.fill()
-        // Eye
         cx.beginPath(); cx.arc(a*0.53, -b2*0.12, a*0.10, 0, Math.PI * 2)
         cx.fillStyle = '#08141e'; cx.fill()
         cx.beginPath(); cx.arc(a*0.55, -b2*0.15, a*0.04, 0, Math.PI * 2)
@@ -352,7 +465,7 @@ export default function HeroAnimation() {
       })
     }
 
-    /* ── Dolphin (occasional) ────────────────────────────────────────────── */
+    /* ── Dolphin ─────────────────────────────────────────────────────────── */
     const drawDolphin = (dt: number) => {
       if (!dolOn) return
       dolX  -= 34 * dt * 0.001
@@ -390,24 +503,18 @@ export default function HeroAnimation() {
     }
 
     const drawSailboat = () => {
-      // Wake
       cx.beginPath(); cx.moveTo(-20, 6); cx.bezierCurveTo(-40, 8, -65, 9, -85, 7)
       cx.strokeStyle = 'rgba(255,255,255,0.20)'; cx.lineWidth = 1.2; cx.stroke()
-      // Hull
       cx.beginPath(); cx.moveTo(-22,8); cx.lineTo(22,8); cx.lineTo(17,0); cx.lineTo(-17,0); cx.closePath()
       cx.fillStyle = '#ead8a8'; cx.fill()
       cx.beginPath(); cx.moveTo(-17,0); cx.lineTo(17,0); cx.bezierCurveTo(15,-4,-15,-4,-17,0); cx.closePath()
       cx.fillStyle = '#d0b870'; cx.fill()
-      // Mast
       cx.strokeStyle = '#7a4e28'; cx.lineWidth = 1.5
       cx.beginPath(); cx.moveTo(0,0); cx.lineTo(0,-44); cx.stroke()
-      // Main sail
       cx.beginPath(); cx.moveTo(0,-42); cx.lineTo(23,-2); cx.lineTo(0,-2); cx.closePath()
       cx.fillStyle = 'rgba(252,248,236,0.95)'; cx.fill()
-      // Jib
       cx.beginPath(); cx.moveTo(0,-28); cx.lineTo(-17,-4); cx.lineTo(0,-4); cx.closePath()
       cx.fillStyle = 'rgba(252,248,236,0.62)'; cx.fill()
-      // Flag
       cx.beginPath(); cx.moveTo(0,-44); cx.lineTo(9,-39); cx.lineTo(0,-34); cx.closePath()
       cx.fillStyle = '#e04040'; cx.fill()
     }
@@ -434,23 +541,22 @@ export default function HeroAnimation() {
         const y = b.baseY + Math.sin(b.wingT * 0.28 + b.ph) * b.amp * 4
         const w = Math.sin(b.wingT) * 5.5
         cx.save(); cx.translate(b.x, y)
-        cx.strokeStyle = 'rgba(52,78,95,0.82)'; cx.lineWidth = 1.4; cx.lineCap = 'round'
+        cx.strokeStyle = th.birdColor; cx.lineWidth = 1.4; cx.lineCap = 'round'
         cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo(-8,-w,-16,0); cx.stroke()
         cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo( 8,-w, 16,0); cx.stroke()
         cx.restore()
       })
     }
 
-    /* ── Text-readability overlay ────────────────────────────────────────── */
+    /* ── Overlay ─────────────────────────────────────────────────────────── */
     const drawOverlay = () => {
-      // Subtle dark vignette only where hero text sits (20-65% height)
-      // Sky stays bright, sea stays vivid
       const g = cx.createLinearGradient(0, 0, 0, H)
-      g.addColorStop(0,    'rgba(5,20,40,0.08)')   // nearly transparent at top
-      g.addColorStop(0.20, 'rgba(5,20,40,0.22)')
-      g.addColorStop(0.45, 'rgba(5,20,40,0.28)')   // darkest in middle (text area)
-      g.addColorStop(0.65, 'rgba(5,20,40,0.18)')
-      g.addColorStop(1,    'rgba(5,20,40,0.10)')   // nearly transparent at bottom
+      const [o0, o1, o2, o3, o4] = th.overlay
+      g.addColorStop(0,    o0)
+      g.addColorStop(0.20, o1)
+      g.addColorStop(0.45, o2)
+      g.addColorStop(0.65, o3)
+      g.addColorStop(1,    o4)
       cx.fillStyle = g; cx.fillRect(0, 0, W, H)
     }
 
@@ -458,13 +564,12 @@ export default function HeroAnimation() {
        MAIN LOOP
     ════════════════════════════════════════════════════════════════════════ */
     const tick = (now: number) => {
-      const dt = Math.min(now - last, 50)   // cap delta to avoid jump on tab-return
+      const dt = Math.min(now - last, 50)
       last = now; ms += dt
-      t += dt * 0.001                        // t in seconds
+      t += dt * 0.001
 
       if (!dolOn && ms > nextDol) { dolOn = true; dolX = W + 80; dolPh = 0 }
 
-      // Draw order: sky → islands → water → boats (surface) → underwater → seaweed → bubbles → fish → dolphin → overlay → birds
       drawSky()
       drawSun()
       drawFarIslands()
@@ -484,7 +589,7 @@ export default function HeroAnimation() {
 
     raf = requestAnimationFrame(n => { last = n; tick(n) })
     return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [])
+  }, [variant])
 
   return (
     <canvas
