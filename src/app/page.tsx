@@ -469,17 +469,6 @@ const LANDING_HTML = `
   </div>
 </section>
 
-<div class="trust-bar">
-  <div class="trust-item"><strong>4</strong> nordiska länder</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>200+</strong> krogar & kajer</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>17</strong> ösidor med guider</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>10 sek</strong> att logga en tur</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item">🇸🇪 🇳🇴 🇩🇰 🇫🇮</div>
-</div>
 
 <section class="concept-section" id="utforska">
   <div class="section-inner">
@@ -508,75 +497,6 @@ const LANDING_HTML = `
   </div>
 </section>
 
-<section class="featured-section" id="krogar">
-  <div class="section-inner">
-    <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
-      <div>
-        <div class="section-label">Utvalda krogar</div>
-        <h2 class="section-title">Veckans favoriter</h2>
-      </div>
-      <a href="/platser" class="btn btn-teal">Visa alla krogar →</a>
-    </div>
-    <div class="krog-grid">
-      <div class="krog-card reveal reveal-delay-1" onclick="location.href='/platser'">
-        <div class="krog-card-img" style="background:linear-gradient(135deg,#1a4a5e,#2d7d8a)">
-          <div class="img-inner">🍽️</div>
-          <div class="krog-card-badge">⭐ Premium</div>
-          <div class="krog-card-open">● Öppen</div>
-        </div>
-        <div class="krog-card-body">
-          <div class="krog-card-name">Utö Värdshus</div>
-          <div class="krog-card-loc">📍 Utö, Södra Skärgården</div>
-          <div class="krog-card-row">
-            <div class="rating"><span class="stars-small">★★★★★</span><span class="rating-num">4.9</span><span class="reviews-count">(186)</span></div>
-          </div>
-          <div class="krog-card-tags"><span class="chip">Lyxig middag</span><span class="chip">Havsutsikt</span><span class="chip">Hotell</span></div>
-        </div>
-        <div class="krog-card-footer">
-          <span class="krog-card-dist">⛵ 40 km från Sthlm</span>
-          <span class="krog-card-price">från 285 kr</span>
-        </div>
-      </div>
-      <div class="krog-card reveal reveal-delay-2" onclick="location.href='/platser'">
-        <div class="krog-card-img" style="background:linear-gradient(135deg,#2d4a2e,#4a7a4e)">
-          <div class="img-inner">🥂</div>
-          <div class="krog-card-badge">⭐ Premium</div>
-          <div class="krog-card-open">● Öppen</div>
-        </div>
-        <div class="krog-card-body">
-          <div class="krog-card-name">Sandhamn Seglarhotell</div>
-          <div class="krog-card-loc">📍 Sandhamn, Stockholms yttre skärgård</div>
-          <div class="krog-card-row">
-            <div class="rating"><span class="stars-small">★★★★½</span><span class="rating-num">4.7</span><span class="reviews-count">(203)</span></div>
-          </div>
-          <div class="krog-card-tags"><span class="chip">Seglarbar</span><span class="chip">Cocktails</span><span class="chip">Ikon</span></div>
-        </div>
-        <div class="krog-card-footer">
-          <span class="krog-card-dist">⛵ 21 km</span>
-          <span class="krog-card-price">från 145 kr</span>
-        </div>
-      </div>
-      <div class="krog-card reveal reveal-delay-3" onclick="location.href='/platser'">
-        <div class="krog-card-img" style="background:linear-gradient(135deg,#3a2a1a,#6a4a2e)">
-          <div class="img-inner">🏡</div>
-          <div class="krog-card-open">● Öppen</div>
-        </div>
-        <div class="krog-card-body">
-          <div class="krog-card-name">Grinda Wärdshus</div>
-          <div class="krog-card-loc">📍 Grinda, Innerskärgården</div>
-          <div class="krog-card-row">
-            <div class="rating"><span class="stars-small">★★★★½</span><span class="rating-num">4.6</span><span class="reviews-count">(89)</span></div>
-          </div>
-          <div class="krog-card-tags"><span class="chip">Husmanskost</span><span class="chip">Historisk</span><span class="chip">Stuga</span></div>
-        </div>
-        <div class="krog-card-footer">
-          <span class="krog-card-dist">⛵ 14 km</span>
-          <span class="krog-card-price">från 125 kr</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="destinations-section" id="resmål">
   <div class="section-inner">
@@ -766,13 +686,8 @@ const LANDING_HTML = `
   </div>
 </section>
 
-<section class="nordic-section">
+<section class="nordic-section" style="display:none">
   <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label" style="color:var(--accent)">Hela Norden</div>
-      <h2 class="section-title" style="color:var(--white)">Från Stockholms skärgård till Finska öarna</h2>
-      <p class="section-sub" style="color:rgba(255,255,255,.55)">Vi expanderar nu till Norge, Danmark och Finland — en plattform för hela det nordiska skärgårdslandskapet.</p>
-    </div>
     <div class="nordic-grid">
       <div class="nordic-cell reveal">
         <div class="nordic-cell-bg" style="background:linear-gradient(160deg,#0f2e3b,#1a4a5e,#24697f)">
@@ -938,39 +853,14 @@ const LANDING_HTML = `
 <section class="stats-section">
   <div class="section-inner">
     <div class="stats-grid">
-      <div class="stat-box reveal"><span class="stat-num">4</span><div class="stat-label">Nordiska länder</div><div class="stat-sub">Sverige · Norge · Danmark · Finland</div></div>
-      <div class="stat-box reveal reveal-delay-1"><span class="stat-num">7 000+</span><div class="stat-label">Mil kustlinje</div><div class="stat-sub">Kartlagt och sökbart</div></div>
+      <div class="stat-box reveal"><span class="stat-num">200+</span><div class="stat-label">Platser & krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård</div></div>
+      <div class="stat-box reveal reveal-delay-1"><span class="stat-num">69</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, mat och upplevelser</div></div>
       <div class="stat-box reveal reveal-delay-2"><span class="stat-num">1 h</span><div class="stat-label">Att sätta upp en krogprofil</div><div class="stat-sub">Ingen teknisk kunskap krävs</div></div>
       <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundprofil är gratis för alltid</div></div>
     </div>
   </div>
 </section>
 
-<section class="testimonial-section">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Vad folk säger</div>
-      <h2 class="section-title">Röster från skärgården</h2>
-    </div>
-    <div class="testimonials">
-      <div class="testimonial reveal reveal-delay-1">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Paddlade Stockholm–Sandhamn och hade Svalla som guide hela vägen. Utan den hade jag missat tre av de bästa ställena."</div>
-        <div class="testimonial-footer"><div class="testimonial-avatar" style="background:#2d7d8a">SK</div><div><div class="testimonial-name">Sara Karlsson</div><div class="testimonial-role">Kajakpaddlare, Stockholm</div></div></div>
-      </div>
-      <div class="testimonial reveal reveal-delay-2">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Hittade ett litet café på Ljusterö som inte fanns på Google Maps. Svalla visade vägen – och det blev årets bästa fika."</div>
-        <div class="testimonial-footer"><div class="testimonial-avatar" style="background:#e8924a">AJ</div><div><div class="testimonial-name">Anna Johansson</div><div class="testimonial-role">Seglare, Nacka</div></div></div>
-      </div>
-      <div class="testimonial reveal reveal-delay-3">
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-text">"Seglade med familjen i två veckor och loggade varje stopp direkt från båten. Nu har vi ett minne för livet av den turen."</div>
-        <div class="testimonial-footer"><div class="testimonial-avatar" style="background:#1a4a5e">PH</div><div><div class="testimonial-name">Peter Holm</div><div class="testimonial-role">Seglare, Göteborg</div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="app-section" id="om">
   <div class="app-inner">
@@ -1028,7 +918,7 @@ const LANDING_HTML = `
     </div>
     <div class="footer-bottom">
       <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
-      <div class="footer-flags">🇸🇪 🇳🇴 🇩🇰 🇫🇮</div>
+      <div class="footer-flags">🇸🇪</div>
       <div class="footer-social">
         <a href="#" title="Instagram">📸</a>
         <a href="#" title="TikTok">🎵</a>
