@@ -97,9 +97,10 @@ export default function HeroAnimation() {
 
     const drawSky = () => {
       const g = cx.createLinearGradient(0, 0, 0, H * 0.57)
-      g.addColorStop(0,   '#b4d8f2')
-      g.addColorStop(0.45,'#cae4f8')
-      g.addColorStop(1,   '#a4c8dc')
+      g.addColorStop(0,   '#4ca8e8')   // vivid Nordic sky blue at top
+      g.addColorStop(0.35,'#72c2f5')
+      g.addColorStop(0.75,'#a8daf8')   // lighter near horizon
+      g.addColorStop(1,   '#c2e8f5')
       cx.fillStyle = g
       cx.fillRect(0, 0, W, H * 0.57)
     }
@@ -108,9 +109,9 @@ export default function HeroAnimation() {
       const sx = W * 0.73, sy = H * 0.092, sr = H * 0.036
       // outer glow
       const glow = cx.createRadialGradient(sx, sy, 0, sx, sy, sr * 7)
-      glow.addColorStop(0,   'rgba(255,238,150,0.26)')
-      glow.addColorStop(0.4, 'rgba(255,228,100,0.10)')
-      glow.addColorStop(1,   'rgba(255,228,100,0)')
+      glow.addColorStop(0,   'rgba(255,230,100,0.55)')
+      glow.addColorStop(0.4, 'rgba(255,220,80,0.22)')
+      glow.addColorStop(1,   'rgba(255,220,80,0)')
       cx.fillStyle = glow
       cx.beginPath(); cx.arc(sx, sy, sr * 7, 0, Math.PI * 2); cx.fill()
       // disc
@@ -244,10 +245,10 @@ export default function HeroAnimation() {
       for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const wg = cx.createLinearGradient(0, WL() - 8, 0, H)
-      wg.addColorStop(0,   '#3c92c2')
-      wg.addColorStop(0.18,'#2c72a0')
-      wg.addColorStop(0.55,'#1c5080')
-      wg.addColorStop(1,   '#0d2c56')
+      wg.addColorStop(0,   '#2e9fd8')   // bright teal at surface
+      wg.addColorStop(0.18,'#1e7db8')
+      wg.addColorStop(0.55,'#145a90')
+      wg.addColorStop(1,   '#0a2e58')
       cx.fillStyle = wg; cx.fill()
       // Primary surface highlight
       cx.beginPath()
@@ -442,11 +443,14 @@ export default function HeroAnimation() {
 
     /* ── Text-readability overlay ────────────────────────────────────────── */
     const drawOverlay = () => {
+      // Subtle dark vignette only where hero text sits (20-65% height)
+      // Sky stays bright, sea stays vivid
       const g = cx.createLinearGradient(0, 0, 0, H)
-      g.addColorStop(0,    'rgba(5,16,36,0.52)')
-      g.addColorStop(0.42, 'rgba(7,20,42,0.30)')
-      g.addColorStop(0.78, 'rgba(9,24,48,0.42)')
-      g.addColorStop(1,    'rgba(5,14,32,0.64)')
+      g.addColorStop(0,    'rgba(5,20,40,0.08)')   // nearly transparent at top
+      g.addColorStop(0.20, 'rgba(5,20,40,0.22)')
+      g.addColorStop(0.45, 'rgba(5,20,40,0.28)')   // darkest in middle (text area)
+      g.addColorStop(0.65, 'rgba(5,20,40,0.18)')
+      g.addColorStop(1,    'rgba(5,20,40,0.10)')   // nearly transparent at bottom
       cx.fillStyle = g; cx.fillRect(0, 0, W, H)
     }
 
