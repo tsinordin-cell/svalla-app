@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import HeroAnimation from '@/components/HeroAnimation'
 
 const LANDING_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -1119,5 +1120,30 @@ export default function LandingPage() {
     }
   }, [])
 
-  return <div dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
+  return (
+    <div style={{ position: 'relative' }}>
+      {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0,
+        height: '100vh',
+        zIndex: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+      }}>
+        <HeroAnimation />
+      </div>
+      <style>{`
+        /* Let the animation show through by making the static hero bg transparent */
+        .hero-bg { background: transparent !important; }
+        .hero-bg::after { display: none !important; }
+        .hero-shimmer { display: none !important; }
+        /* Keep hero section above the animation layer */
+        .hero { z-index: 1; }
+        /* Remove existing static SVG islands + waves (animation has its own) */
+        .hero-islands { display: none !important; }
+        .wave-container { display: none !important; }
+      `}</style>
+      <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
+    </div>
+  )
 }
