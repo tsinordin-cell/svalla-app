@@ -34,15 +34,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ── Statiska sidor ──────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
-    { url: base,                  priority: 1.0, changeFrequency: 'daily'   },
-    { url: `${base}/platser`,     priority: 0.9, changeFrequency: 'daily'   },
-    { url: `${base}/rutter`,      priority: 0.9, changeFrequency: 'weekly'  },
-    { url: `${base}/oar`,         priority: 0.9, changeFrequency: 'weekly'  },
-    { url: `${base}/blogg`,       priority: 0.7, changeFrequency: 'weekly'  },
-    { url: `${base}/guide`,       priority: 0.6, changeFrequency: 'monthly' },
-    { url: `${base}/om`,          priority: 0.5, changeFrequency: 'monthly' },
-    { url: `${base}/faq`,         priority: 0.5, changeFrequency: 'monthly' },
-  ].map(p => ({ ...p, lastModified: now }))
+    { url: base,                  lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
+    { url: `${base}/platser`,     lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
+    { url: `${base}/rutter`,      lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/oar`,         lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/blogg`,       lastModified: now, priority: 0.7, changeFrequency: 'weekly'  as const },
+    { url: `${base}/guide`,       lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: `${base}/om`,          lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: `${base}/faq`,         lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },
+  ]
 
   // ── Ö-sidor (statiska) ──────────────────────────────────────────
   const islandPages: MetadataRoute.Sitemap = ISLANDS.map(island => ({
