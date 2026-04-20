@@ -53,6 +53,27 @@ export default async function IslandPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
+    
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TouristAttraction',
+            name: island.name,
+            description: island.tagline,
+            url: `https://svalla.se/o/${island.slug}`,
+            ...(island.lat && island.lng ? {
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: island.lat,
+                longitude: island.lng,
+              },
+            } : {}),
+          })
+        }}
+      />
 
       {/* ── NAV ─────────────────────────────────────────────────── */}
       <nav style={{
