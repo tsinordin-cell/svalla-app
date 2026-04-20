@@ -332,6 +332,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 `
 
 const LANDING_HTML = `
+<style>${LANDING_CSS}</style>
 <nav class="lp-nav" id="mainNav">
   <a href="/" class="nav-logo">
     <svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla">
@@ -1078,12 +1079,6 @@ export default function LandingPage() {
       if (session) window.location.replace('/feed')
     })
 
-    // Injicera CSS
-    const styleEl = document.createElement('style')
-    styleEl.id = 'svalla-landing-css'
-    styleEl.textContent = LANDING_CSS
-    document.head.appendChild(styleEl)
-
     // Nav scroll-effekt
     const nav = document.getElementById('mainNav')
     const handleScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60)
@@ -1116,7 +1111,6 @@ export default function LandingPage() {
     searchInput?.addEventListener('blur', onBlur)
 
     return () => {
-      document.getElementById('svalla-landing-css')?.remove()
       clearTimeout(fallback)
       window.removeEventListener('scroll', handleScroll)
       observer.disconnect()
