@@ -1032,20 +1032,20 @@ export default function SparaPage() {
           )}
         </div>
 
-        {/* ── GPS center button — bottom right, above bottom sheet ── */}
+        {/* ── GPS center button — top right, always visible above sheet ── */}
         <button
           onClick={() => setCenterTrigger(n => n + 1)}
           aria-label="Centrera på min position"
           style={{
             position: 'absolute',
-            bottom: 'calc(env(safe-area-inset-bottom, 0px) + 220px)',
+            top: 'calc(env(safe-area-inset-top, 0px) + 14px)',
             right: 16,
             zIndex: 21,
             width: 44, height: 44, borderRadius: 22,
             background: 'rgba(255,255,255,0.95)',
             backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
             border: '1px solid rgba(0,0,0,0.08)',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.22)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             cursor: 'pointer',
           }}

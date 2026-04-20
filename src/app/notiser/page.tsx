@@ -141,7 +141,7 @@ export default function NotiserPage() {
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <button
-          onClick={() => router.back()}
+          onClick={() => window.history.length > 1 ? router.back() : router.push('/feed')}
           style={{
             width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)',
             border: 'none', cursor: 'pointer', flexShrink: 0,

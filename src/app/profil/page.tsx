@@ -262,6 +262,7 @@ export default function ProfilPage() {
   }, []) // eslint-disable-line
 
   async function handleSignOut() {
+    if (!window.confirm('Logga ut från Svalla?')) return
     await supabase.auth.signOut()
     router.push('/logga-in')
   }

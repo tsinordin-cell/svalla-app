@@ -190,6 +190,34 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         </div>
       )}
 
+      {/* ── Discovery banner — visas i alla-flödet om inloggad men följer ingen ── */}
+      {!initialLoad && isLoggedIn && followingTrips.length === 0 && tab === 'all' && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(30,92,130,0.08), rgba(45,125,138,0.06))',
+          border: '1.5px solid rgba(30,92,130,0.14)',
+          borderRadius: 18, padding: '16px 18px', marginBottom: 16,
+          display: 'flex', alignItems: 'center', gap: 14,
+        }}>
+          <div style={{ fontSize: 32, flexShrink: 0 }}>⛵</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 14, fontWeight: 800, color: '#1e5c82', marginBottom: 4 }}>
+              Följ seglare du känner
+            </div>
+            <div style={{ fontSize: 12, color: '#7a9dab', lineHeight: 1.4, marginBottom: 10 }}>
+              Se deras turer direkt i ditt flöde.
+            </div>
+            <Link href="/sok" style={{
+              display: 'inline-block', padding: '8px 18px', borderRadius: 12,
+              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              color: '#fff', fontWeight: 700, fontSize: 12, textDecoration: 'none',
+              boxShadow: '0 3px 12px rgba(30,92,130,0.25)',
+            }}>
+              Hitta seglare →
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* ── Feed list ── */}
       {!initialLoad && (
         <>
