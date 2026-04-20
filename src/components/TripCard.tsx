@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
+import ShareButton from './ShareButton'
 import RouteMapSVG from './RouteMapSVG'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo } from '@/lib/utils'
@@ -24,6 +25,42 @@ const boatEmoji: Record<string, string> = {
   'Kajak':      '🛶',
   'SUP':        '🏄',
   'Annat':      '⚓',
+}
+
+
+function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
+  if (points.length < 3) return null
+  const W = 300, H = 72
+  const lats = points.map(p => p.lat)
+  const lngs = points.map(p => p.lng)
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats)
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+  const pad = 10
+  const toX = (lng: number) => pad + ((lng - minLng) / (maxLng - minLng || 1)) * (W - pad * 2)
+  const toY = (lat: number) => H - pad - ((lat - minLat) / (maxLat - minLat || 1)) * (H - pad * 2)
+  
+  const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${toX(p.lng).toFixed(1)},${toY(p.lat).toFixed(1)}`).join(' ')
+  const start = points[0], end = points[points.length - 1]
+
+  return (
+    <div style={{
+      width: '100%', height: H, borderRadius: 10, overflow: 'hidden',
+      background: 'linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08))',
+      border: '1px solid rgba(30,92,130,0.12)',
+      marginBottom: 8,
+    }}>
+      <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
+        {/* Shadow line */}
+        <path d={d} fill="none" stroke="rgba(30,92,130,0.15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Main route line */}
+        <path d={d} fill="none" stroke="#1e5c82" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
+        {/* Start dot */}
+        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="#22c55e" stroke="white" strokeWidth="1.5" />
+        {/* End dot */}
+        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="#c96e2a" stroke="white" strokeWidth="1.5" />
+      </svg>
+    </div>
+  )
 }
 
 export default function TripCard({ trip }: { trip: Trip }) {
@@ -148,6 +185,13 @@ export default function TripCard({ trip }: { trip: Trip }) {
         )}
       </div>
 
+      {/* ── 1b. Route preview (when no media) ── */}
+      {!hasMedia && trip.route_points && trip.route_points.length >= 3 && (
+        <div style={{ padding: '12px 14px' }}>
+          <RoutePreview points={trip.route_points} />
+        </div>
+      )}
+
       {/* ── 2. Stats row ── */}
       {stats.length > 0 && (
         <div style={{
@@ -244,6 +288,9 @@ export default function TripCard({ trip }: { trip: Trip }) {
             initialCount={trip.comments_count}
             compact
           />
+          <div style={{ marginLeft: 'auto' }}>
+            <ShareButton url={`https://svalla.se/tur/${trip.id}`} title={trip.location_name ?? 'Min tur'} />
+          </div>
         </div>
       </div>
 
