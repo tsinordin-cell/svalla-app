@@ -161,10 +161,11 @@ export default function Nav() {
       zIndex: 900,
       boxShadow: '0 -1px 0 rgba(10,123,140,0.08), 0 -4px 24px rgba(0,45,60,0.08)',
       paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-      /* Force GPU layer — prevents iOS Safari from scrolling fixed nav */
-      transform: 'translate3d(0,0,0)',
-      WebkitTransform: 'translate3d(0,0,0)',
-      willChange: 'transform',
+      /* Force GPU compositing — prevents iOS Safari from dropping fixed layer during scroll */
+      transform: 'translateZ(0)',
+      WebkitTransform: 'translateZ(0)',
+      WebkitBackfaceVisibility: 'hidden',
+      backfaceVisibility: 'hidden',
     }}>
       {tabs.map((tab) => {
         const active = tab.exact ? path === tab.href : path.startsWith(tab.href)

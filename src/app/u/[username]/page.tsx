@@ -132,7 +132,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         }} />
       </div>
 
-      <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 16px' }}>
+      <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 16px', position: 'relative', zIndex: 1 }}>
 
         {/* ── Avatar + action row ── */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>

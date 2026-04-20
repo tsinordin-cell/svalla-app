@@ -79,8 +79,22 @@ export default function TripCard({ trip }: { trip: Trip }) {
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
   const dur      = formatDurationMin(trip.duration)
-  // Require >= 0.05 NM distance so a stationary/test trip doesn't show an empty map
-  const hasRoute = Array.isArray(trip.route_points) && trip.route_points.length >= 2 && (trip.distance ?? 0) >= 0.05
+
+  // Parse route_points defensively — may come as JSON string if not stored as JSONB
+  const routePoints: { lat: number; lng: number }[] | null = (() => {
+    const raw = trip.route_points
+    if (!raw) return null
+    if (Array.isArray(raw)) return raw.length >= 2 ? raw : null
+    if (typeof raw === 'string') {
+      try {
+        const parsed = JSON.parse(raw)
+        return Array.isArray(parsed) && parsed.length >= 2 ? parsed : null
+      } catch { return null }
+    }
+    return null
+  })()
+
+  const hasRoute = routePoints !== null
   const hasPhoto = !!trip.image && !imgErr
   const hasMedia = hasPhoto || hasRoute
 
@@ -186,9 +200,9 @@ export default function TripCard({ trip }: { trip: Trip }) {
       </div>
 
       {/* ── 1b. Route preview (when no media) ── */}
-      {!hasMedia && trip.route_points && trip.route_points.length >= 3 && (
+      {!hasMedia && routePoints && routePoints.length >= 3 && (
         <div style={{ padding: '12px 14px' }}>
-          <RoutePreview points={trip.route_points} />
+          <RoutePreview points={routePoints} />
         </div>
       )}
 
@@ -230,45 +244,34 @@ export default function TripCard({ trip }: { trip: Trip }) {
           onClick={() => router.push(`/tur/${trip.id}`)}
           style={{ cursor: 'pointer' }}
         >
-          {hasPhoto && hasRoute ? (
-            /* Both: route 55% left, photo 45% right */
-            <div style={{ display: 'flex', height: 210 }}>
-              <div style={{ flex: '0 0 55%', position: 'relative', overflow: 'hidden', background: '#0d2a3e' }}>
-                <RouteMapSVG points={trip.route_points!} w={330} h={210} />
-              </div>
-              <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+          {hasPhoto ? (
+            <>
+              {/* Photo — full width 3:2 */}
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
                 <Image
                   src={trip.image}
                   alt={trip.location_name ?? `Tur av ${username}`}
                   fill
                   className="object-cover"
-                  sizes="220px"
+                  sizes="(max-width: 640px) 100vw, 640px"
                   onError={() => setImgErr(true)}
                 />
-                {/* Left-edge fade blending with route */}
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: 'linear-gradient(to right, rgba(13,42,62,0.3) 0%, transparent 35%)',
-                  pointerEvents: 'none',
-                }} />
               </div>
-            </div>
-          ) : hasPhoto ? (
-            /* Only photo — landscape 3:2 */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
-              <Image
-                src={trip.image}
-                alt={trip.location_name ?? `Tur av ${username}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 640px"
-                onError={() => setImgErr(true)}
-              />
-            </div>
+              {/* Route strip below photo when GPS data exists */}
+              {hasRoute && (
+                <div style={{
+                  position: 'relative', width: '100%', height: 90,
+                  background: '#0d2a3e', overflow: 'hidden',
+                  borderTop: '1px solid rgba(255,255,255,0.05)',
+                }}>
+                  <RouteMapSVG points={routePoints!} w={600} h={90} />
+                </div>
+              )}
+            </>
           ) : (
             /* Only route — wide landscape */
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: '#0d2a3e', overflow: 'hidden' }}>
-              <RouteMapSVG points={trip.route_points!} w={600} h={262} />
+              <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>
           )}
         </div>

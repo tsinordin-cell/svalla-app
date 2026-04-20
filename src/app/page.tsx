@@ -330,6 +330,8 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
   .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
   .steps{grid-template-columns:1fr}
 }
+/* Dark mode: match footer color so no black strip appears below footer */
+[data-theme="dark"] body { background: var(--sea-dark) !important; }
 `
 
 const LANDING_HTML = `
@@ -978,7 +980,7 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', background: '#0a1f2b' }}>
       {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
