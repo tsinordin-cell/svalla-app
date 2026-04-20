@@ -1,0 +1,22 @@
+name: Weekly Digest Push
+
+on:
+  schedule:
+    # Varje måndag kl 09:00 UTC (= 11:00 sommartid, 10:00 vintertid)
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Tillåter manuell körning från GitHub Actions-UI
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger weekly digest
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET https://svalla.se/api/push/weekly-digest \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}")
+          echo "Response status: $response"
+          if [ "$response" != "200" ]; then
+            echo "Error: endpoint returned $response"
+            exit 1
+          fi
