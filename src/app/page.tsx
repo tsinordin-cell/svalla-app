@@ -451,16 +451,16 @@ const LANDING_HTML = `
       Logga dina turer. Hitta krogar, bastun och bryggor. Dela med ett community av skärgårdsmänniskor.
       Back to nature — enkelt, nordiskt, äkta.
     </p>
-    <form class="hero-search" onsubmit="event.preventDefault();const q=this.querySelector('input').value.trim();location.href='/platser'+(q?'?q='+encodeURIComponent(q):'')">
+    <form class="hero-search" onsubmit="event.preventDefault();location.href='/kom-igang'">
       <input type="text" placeholder="🔍  Sök ö, krog eller hamn..." id="heroSearchInput"/>
       <button type="submit">Utforska</button>
     </form>
     <div class="hero-search-hint">
       Populärt just nu:
-      <span onclick="location.href='/platser?q=Sandhamn'">Sandhamn</span>
-      <span onclick="location.href='/platser?q=Grinda'">Grinda</span>
-      <span onclick="location.href='/platser?q=Utö'">Utö</span>
-      <span onclick="location.href='/platser?q=Finnhamn'">Finnhamn</span>
+      <span onclick="location.href='/kom-igang'">Sandhamn</span>
+      <span onclick="location.href='/kom-igang'">Grinda</span>
+      <span onclick="location.href='/kom-igang'">Utö</span>
+      <span onclick="location.href='/kom-igang'">Finnhamn</span>
     </div>
     <div class="hero-scroll">
       <div class="hero-scroll-line"></div>
