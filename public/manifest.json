@@ -1,9 +1,14 @@
 {
+  "id": "/",
   "name": "Svalla – Skärgårdslivet, loggat",
   "short_name": "Svalla",
   "description": "Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.",
   "start_url": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "background_color": "#f2f8fa",
   "theme_color": "#1e5c82",
   "orientation": "portrait",
