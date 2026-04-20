@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import * as Sentry from '@sentry/nextjs'
 
 export default function Error({
   error,
@@ -9,10 +10,8 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log error only in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('[Svalla error]', error)
-    }
+    // Rapportera till Sentry i produktion
+    Sentry.captureException(error)
   }, [error])
 
   return (
@@ -29,11 +28,6 @@ export default function Error({
       <p style={{ fontSize: 14, color: '#5a8090', margin: '0 0 24px', maxWidth: 320, lineHeight: 1.5 }}>
         Ett oväntat fel uppstod. Försök igen eller gå tillbaka till flödet.
       </p>
-      {error?.message && (
-        <p style={{ fontSize: 11, color: '#9ab8c8', fontFamily: 'monospace', margin: '0 0 20px', maxWidth: 380, wordBreak: 'break-word' }}>
-          {error.message}
-        </p>
-      )}
       <div style={{ display: 'flex', gap: 10 }}>
         <button
           onClick={reset}

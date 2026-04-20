@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import SvallaLogo from '@/components/SvallaLogo'
 
 // Visa bara install-prompten på app-sidor
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
@@ -69,8 +70,11 @@ export default function InstallPrompt() {
         width: 44, height: 44, borderRadius: 12, flexShrink: 0,
         background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 22, border: '1.5px solid rgba(255,255,255,0.15)',
-      }}>⛵</div>
+        border: '1.5px solid rgba(255,255,255,0.15)',
+        padding: 8,
+      }}>
+        <SvallaLogo height={22} color="#ffffff" />
+      </div>
 
       {/* Text */}
       <div style={{ flex: 1, minWidth: 0 }}>

@@ -1140,10 +1140,22 @@ export async function generateMetadata({
     title: `${post.title} – Svalla`,
     description: post.excerpt,
     keywords: post.tags,
+    alternates: { canonical: `https://svalla.se/blogg/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url: `https://svalla.se/blogg/${slug}`,
+      type: 'article',
+      locale: 'sv_SE',
+      publishedTime: post.date,
+      authors: ['Svalla'],
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: ['/og-image.jpg'],
     },
   }
 }
@@ -1263,8 +1275,43 @@ export default async function BloggPostPage({
   const post = POSTS[slug]
   if (!post) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    url: `https://svalla.se/blogg/${slug}`,
+    image: 'https://svalla.se/og-image.jpg',
+    author: {
+      '@type': 'Organization',
+      name: 'Svalla',
+      url: 'https://svalla.se',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Svalla',
+      url: 'https://svalla.se',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://svalla.se/icon-192.png',
+      },
+    },
+    keywords: post.tags.join(', '),
+    inLanguage: 'sv-SE',
+    about: {
+      '@type': 'Thing',
+      name: 'Stockholms skärgård',
+    },
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Header */}
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',

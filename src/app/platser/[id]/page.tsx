@@ -12,17 +12,34 @@ export const revalidate = 60   // refresh reviews regularly
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   const supabase = createClient()
-  const { data } = await supabase.from('restaurants').select('name, description, island, image_url').eq('id', id).single()
+  const { data } = await supabase.from('restaurants').select('name, description, island, image_url, tags').eq('id', id).single()
   if (!data) return { title: 'Restaurang – Svalla' }
   const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
+  const keywords = [
+    data.name?.toLowerCase(),
+    data.island ? `${data.island.toLowerCase()} restaurang` : null,
+    'skärgårdsrestaurang',
+    'Stockholms skärgård',
+    ...(Array.isArray(data.tags) ? data.tags : []),
+  ].filter(Boolean) as string[]
   return {
     title: data.name,
     description: desc,
+    keywords,
+    alternates: { canonical: `https://svalla.se/platser/${id}` },
     openGraph: {
       title: `${data.name} – Svalla`,
       description: desc,
-      images: data.image_url ? [{ url: data.image_url, width: 1200, height: 630 }] : [],
+      images: data.image_url ? [{ url: data.image_url, width: 1200, height: 630, alt: data.name }] : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
       url: `https://svalla.se/platser/${id}`,
+      type: 'website',
+      locale: 'sv_SE',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data.name} – Svalla`,
+      description: desc,
+      images: data.image_url ? [data.image_url] : ['/og-image.jpg'],
     },
   }
 }
@@ -93,8 +110,41 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
     : null
   const reviewCount = reviewStats?.length ?? 0
 
+  // JSON-LD structured data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    name: r.name,
+    description: r.description ?? undefined,
+    url: `https://svalla.se/platser/${id}`,
+    ...(r.latitude && r.longitude ? {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: r.latitude,
+        longitude: r.longitude,
+      },
+      hasMap: `https://maps.apple.com/?q=${r.latitude},${r.longitude}`,
+    } : {}),
+    ...(r.images?.[0] ? { image: r.images[0] } : {}),
+    ...(avgRating !== null ? {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: avgRating.toFixed(1),
+        reviewCount: reviewCount,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    } : {}),
+    servesCuisine: Array.isArray(r.tags) ? r.tags.slice(0, 3) : undefined,
+    priceRange: '$$',
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ── Hero image ── */}
       <div style={{ position: 'relative', width: '100%', height: 280, background: '#a8ccd4' }}>

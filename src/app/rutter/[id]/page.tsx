@@ -12,15 +12,36 @@ export const revalidate = 300
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   const supabase = createClient()
-  const { data } = await supabase.from('tours').select('title, usp, start_location, destination').eq('id', id).single()
+  const { data } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
   if (!data) return { title: 'Rutt – Svalla' }
+  const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination} i Stockholms skärgård.`
+  const keywords = [
+    `segelrutt ${data.start_location?.toLowerCase() ?? ''}`,
+    `segla ${data.destination?.toLowerCase() ?? ''}`,
+    'stockholms skärgård rutt',
+    'båttur skärgård',
+    ...(Array.isArray(data.best_for) ? data.best_for : []),
+  ].filter(Boolean) as string[]
   return {
     title: data.title,
-    description: data.usp ?? `${data.start_location} → ${data.destination}`,
+    description: desc,
+    keywords,
+    alternates: { canonical: `https://svalla.se/rutter/${id}` },
     openGraph: {
       title: `${data.title} – Svalla`,
-      description: data.usp ?? `${data.start_location} → ${data.destination}`,
+      description: desc,
       url: `https://svalla.se/rutter/${id}`,
+      type: 'website',
+      locale: 'sv_SE',
+      images: data.cover_image
+        ? [{ url: data.cover_image, width: 1200, height: 630, alt: data.title }]
+        : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data.title} – Svalla`,
+      description: desc,
+      images: data.cover_image ? [data.cover_image] : ['/og-image.jpg'],
     },
   }
 }
@@ -56,8 +77,36 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
     )
   ).slice(0, 5)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: t.title,
+    description: t.usp ?? `${t.start_location} → ${t.destination}`,
+    url: `https://svalla.se/rutter/${id}`,
+    touristType: Array.isArray(t.best_for) ? t.best_for : ['Segling', 'Skärgård'],
+    itinerary: {
+      '@type': 'ItemList',
+      itemListElement: Array.isArray(t.highlights)
+        ? t.highlights.map((h: string, i: number) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: h,
+          }))
+        : [],
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'Svalla',
+      url: 'https://svalla.se',
+    },
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 100 }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',

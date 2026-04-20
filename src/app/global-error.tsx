@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import * as Sentry from '@sentry/nextjs'
 
 export default function GlobalError({
   error,
@@ -9,10 +10,8 @@ export default function GlobalError({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log error only in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('[Svalla global error]', error)
-    }
+    // Rapportera kritiska fel till Sentry
+    Sentry.captureException(error)
   }, [error])
 
   return (
@@ -41,7 +40,7 @@ export default function GlobalError({
           </button>
           <a href="/feed" style={{
             padding: '12px 24px', borderRadius: 14, border: '1.5px solid rgba(10,123,140,0.2)',
-            background: 'var(--white, #fff)', color: 'var(--txt2, #3d5865)', fontSize: 14, fontWeight: 600,
+            background: '#fff', color: '#3d5865', fontSize: 14, fontWeight: 600,
             textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
           }}>
             Till flödet

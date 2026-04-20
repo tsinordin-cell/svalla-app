@@ -1,4 +1,8 @@
 'use client'
+// CSS importeras direkt — ingen CDN-beroende, ingen race condition
+import 'leaflet/dist/leaflet.css'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
@@ -167,30 +171,7 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
   )
 }
 
-// ── Injicera CSS-länk och vänta tills den är redo (med timeout-fallback) ──────
-// Tidigare: load-eventet hade en race condition — om CSS laddades klart
-// innan addEventListener körde, fångades det aldrig och Promise hängde för alltid.
-// Fix: alltid resolve() senast efter maxWait ms.
-function waitForCSS(href: string, id: string, maxWait = 2000): Promise<void> {
-  return new Promise(resolve => {
-    const existing = document.getElementById(id) as HTMLLinkElement | null
-    // CSS redan laddad och parsad → resolve direkt
-    if (existing?.sheet) { resolve(); return }
-
-    const timer = setTimeout(resolve, maxWait) // garanterad resolve
-
-    if (existing) {
-      existing.addEventListener('load', () => { clearTimeout(timer); resolve() }, { once: true })
-      return
-    }
-    const link = document.createElement('link')
-    link.id   = id
-    link.rel  = 'stylesheet'
-    link.href = href
-    link.addEventListener('load', () => { clearTimeout(timer); resolve() }, { once: true })
-    document.head.appendChild(link)
-  })
-}
+// CSS laddas via direktimport ovan — waitForCSS behövs inte längre
 
 export default function PlatserMap({ restaurants, tours = [], activeId, onMarkerClick, onMapMove }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null)
@@ -252,35 +233,27 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return
 
-    Promise.all([import('leaflet'), import('leaflet.markercluster')]).then(async ([L]) => {
-      if (!containerRef.current) return
+    let initialized = false
+    let roInstance: ResizeObserver | null = null
 
-      // ── Vänta på Leaflet CSS och MarkerCluster CSS ─────────────
-      // Utan await här renderas kartan med fel zoom + fragmenterade tiles
-      await Promise.all([
-        waitForCSS(
-          'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css',
-          'leaflet-css',
-        ),
-        waitForCSS(
-          'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css',
-          'mc-css',
-        ),
+    async function initMap() {
+      // Guard: bara en initiering, och bara när containern faktiskt har dimensioner
+      if (initialized || !containerRef.current || mapRef.current) return
+      const { offsetWidth, offsetHeight } = containerRef.current
+      if (offsetWidth === 0 || offsetHeight === 0) return
+
+      initialized = true
+
+      const [L] = await Promise.all([
+        import('leaflet'),
+        import('leaflet.markercluster'),
       ])
-      // MarkerCluster.Default.css — bara färger, behöver inte blockera
-      if (!document.getElementById('mc-default-css')) {
-        const link2 = document.createElement('link')
-        link2.id = 'mc-default-css'
-        link2.rel = 'stylesheet'
-        link2.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css'
-        document.head.appendChild(link2)
-      }
 
-      // Guard: komponenten kan ha avmonterats under await
+      // Dubbelkolla att komponenten fortfarande är monterad
       if (!containerRef.current || mapRef.current) return
 
-      const map = L.map(containerRef.current!, {
-        center: [59.35, 18.8],  // Stockholms skärgård
+      const map = L.map(containerRef.current, {
+        center: [59.35, 18.8],
         zoom: 10,
         zoomControl: true,
         attributionControl: false,
@@ -293,7 +266,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         opacity: 0.85,
       }).addTo(map)
 
-      // Nautiska symboler (fyrar, grund, säkerhetsfarvatten)
       L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
         maxZoom: 18,
         opacity: 0.7,
@@ -301,19 +273,13 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
       mapRef.current = map
 
-      // ── invalidateSize: säkerställ rätt dimensioner efter render ──
-      // Kör direkt + fördröjt — täcker CSS-laddning, animations och layout-shifts
-      map.invalidateSize()
-      setTimeout(() => map.invalidateSize(), 50)
-      setTimeout(() => map.invalidateSize(), 200)
-      setTimeout(() => map.invalidateSize(), 600)
-      setTimeout(() => map.invalidateSize(), 1500)
-
-      // ── ResizeObserver: hantera container-resize dynamiskt ──────
-      if (containerRef.current && typeof ResizeObserver !== 'undefined') {
-        const ro = new ResizeObserver(() => map.invalidateSize())
-        ro.observe(containerRef.current)
-      }
+      // ── invalidateSize efter nästa frame — garanterat korrekt layout ──
+      requestAnimationFrame(() => {
+        map.invalidateSize()
+        // Extra säkerhets-invalidation för träga mobilwebbläsare
+        setTimeout(() => { if (mapRef.current) map.invalidateSize() }, 150)
+        setTimeout(() => { if (mapRef.current) map.invalidateSize() }, 500)
+      })
 
       // ── MarkerClusterGroup ──────────────────────────────────────
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -366,7 +332,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
         marker.on('click', () => onMarkerClick(r.id))
 
-        // Hover — förstora tillfälligt
         marker.on('mouseover', () => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           marker.setIcon(L.divIcon(makeIconHtml(color, 42, false, emoji) as any))
@@ -392,11 +357,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const line = (L as any).polyline(latlngs, {
-          color,
-          weight: 4,
-          opacity: 0.75,
-          lineJoin: 'round',
-          lineCap: 'round',
+          color, weight: 4, opacity: 0.75, lineJoin: 'round', lineCap: 'round',
         })
           .addTo(map)
           .bindPopup(
@@ -409,18 +370,36 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           )
 
         line.on('mouseover', () => line.setStyle({ weight: 7, opacity: 1 }))
-        line.on('mouseout', () => line.setStyle({ weight: 4, opacity: 0.75 }))
-
+        line.on('mouseout',  () => line.setStyle({ weight: 4, opacity: 0.75 }))
         polylinesRef.current[tour.id] = line
       })
-    })
+    }
+
+    // ── ResizeObserver: det rätta sättet att hantera container-dimensioner ──
+    // Initierar kartan när containern får sina första dimensioner.
+    // Därefter: kallar invalidateSize() vid varje resize (fullscreen, sidbar, etc.)
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      roInstance = new ResizeObserver(() => {
+        if (!mapRef.current) {
+          initMap()
+        } else {
+          mapRef.current.invalidateSize()
+        }
+      })
+      roInstance.observe(containerRef.current)
+    }
+
+    // Försök också direkt — om containern redan har dimensioner
+    initMap()
 
     return () => {
+      roInstance?.disconnect()
       if (mapRef.current) {
         mapRef.current.remove()
         mapRef.current = null
         clusterRef.current = null
         markersRef.current = {}
+        polylinesRef.current = {}
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
