@@ -338,16 +338,25 @@ export default function ProfilPage() {
         {/* ── Avatar + actions row ── */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
           <div style={{
-            width: 84, height: 84, borderRadius: '50%', flexShrink: 0,
+            width: 88, height: 88, borderRadius: '50%', flexShrink: 0,
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
             border: '4px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 30, fontWeight: 900, color: '#fff', overflow: 'hidden',
-            boxShadow: '0 4px 20px rgba(0,45,60,0.18)',
+            fontSize: 32, fontWeight: 900, color: '#fff',
+            overflow: 'hidden',
+            boxShadow: '0 4px 20px rgba(0,45,60,0.22)',
+            position: 'relative',
           }}>
-            {user?.avatar
-              ? <Image src={user.avatar} alt="" width={84} height={84} style={{ objectFit: 'cover' }} />
-              : user?.username?.[0]?.toUpperCase() ?? '?'}
+            {user?.avatar ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={user.avatar}
+                alt={user.username ?? 'Avatar'}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+              />
+            ) : (
+              user?.username?.[0]?.toUpperCase() ?? '?'
+            )}
           </div>
           <div style={{ display: 'flex', gap: 6, paddingBottom: 4, marginLeft: 'auto' }}>
             {streak > 0 && (
@@ -392,30 +401,62 @@ export default function ProfilPage() {
           ))}
         </div>
 
-        {/* ── Achievements horizontal strip ── */}
+        {/* ── Achievements grid ── */}
         {ACHIEVEMENTS.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Märken</div>
-              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{unlockedAch.length}/{ACHIEVEMENTS.length}</span>
+          <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+              <span style={{ fontSize: 12, fontWeight: 700, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
+                {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
+              </span>
             </div>
-            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none' } as React.CSSProperties}>
-              {ACHIEVEMENTS.map(a => {
+
+            {/* Unlocked badges first, then locked */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+              {[...unlockedAch, ...lockedAch].map(a => {
                 const unlocked = unlockedAch.includes(a)
                 return (
-                  <div key={a.id} title={a.label} style={{ flexShrink: 0, width: 52, height: 52, borderRadius: 14, background: 'var(--white)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'rgba(0,0,0,0.06)'}`, opacity: unlocked ? 1 : 0.3, filter: unlocked ? 'none' : 'grayscale(1)', boxShadow: unlocked ? '0 1px 6px rgba(0,45,60,0.07)' : 'none' }}>
-                    <span style={{ fontSize: 20 }}>{a.emoji}</span>
-                    <span style={{ fontSize: 7, fontWeight: 700, color: '#5a8090', textAlign: 'center', lineHeight: 1.2, maxWidth: 44, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.label}</span>
+                  <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                    gap: 5, padding: '12px 6px 10px',
+                    borderRadius: 16,
+                    background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
+                    border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
+                    opacity: unlocked ? 1 : 0.38,
+                    filter: unlocked ? 'none' : 'grayscale(1)',
+                    boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
+                    transition: 'all 0.2s',
+                    position: 'relative',
+                  }}>
+                    {unlocked && (
+                      <div style={{
+                        position: 'absolute', top: 5, right: 5,
+                        width: 7, height: 7, borderRadius: '50%',
+                        background: '#22c55e',
+                      }} />
+                    )}
+                    <span style={{ fontSize: 24 }}>{a.emoji}</span>
+                    <span style={{
+                      fontSize: 9, fontWeight: 700,
+                      color: unlocked ? 'var(--txt)' : 'var(--txt3)',
+                      textAlign: 'center', lineHeight: 1.3,
+                      maxWidth: 60, overflow: 'hidden',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                    } as React.CSSProperties}>{a.label}</span>
                   </div>
                 )
               })}
             </div>
+
+            {/* Next to unlock hint */}
             {lockedAch.length > 0 && (
-              <div style={{ marginTop: 8, padding: '10px 14px', background: 'rgba(201,110,42,0.06)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ fontSize: 20, filter: 'grayscale(0.5)', opacity: 0.7 }}>{lockedAch[0].emoji}</span>
+              <div style={{ marginTop: 14, padding: '11px 14px', background: 'rgba(201,110,42,0.07)', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ fontSize: 22, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#c96e2a' }}>Nästa: {lockedAch[0].label}</div>
-                  <div style={{ fontSize: 11, color: 'var(--txt3)' }}>{lockedAch[0].desc}</div>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: '#c96e2a', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
+                  <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
                 </div>
               </div>
             )}

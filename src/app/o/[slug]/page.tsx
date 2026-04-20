@@ -88,7 +88,7 @@ export default async function IslandPage({ params }: Props) {
           <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
             <SvallaLogo height={24} color="#ffffff" />
           </Link>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
+          <Link href="/oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
             ← Alla öar
           </Link>
         </div>

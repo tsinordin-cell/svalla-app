@@ -8,6 +8,7 @@ import NotificationBell from '@/components/NotificationBell'
 export default function Nav() {
   const path = usePathname()
   const [username, setUsername] = useState<string | null>(null)
+  const [avatar,   setAvatar]   = useState<string | null>(null)
 
   useEffect(() => {
     const supabase = createClient()
@@ -15,32 +16,40 @@ export default function Nav() {
       if (user) {
         supabase
           .from('users')
-          .select('username')
+          .select('username, avatar')
           .eq('id', user.id)
           .single()
-          .then(({ data }) => setUsername(data?.username ?? null))
+          .then(({ data }) => {
+            setUsername(data?.username ?? null)
+            setAvatar(data?.avatar ?? null)
+          })
       } else {
         setUsername(null)
+        setAvatar(null)
       }
     })
     // Lyssna på auth-ändringar — uppdatera username direkt vid login/logout
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       if (!session) {
         setUsername(null)
+        setAvatar(null)
       } else if (session.user) {
         supabase
           .from('users')
-          .select('username')
+          .select('username, avatar')
           .eq('id', session.user.id)
           .single()
-          .then(({ data }) => setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null))
+          .then(({ data }) => {
+            setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
+            setAvatar(data?.avatar ?? null)
+          })
       }
     })
     return () => subscription.unsubscribe()
   }, [])
 
-  // Visa bara bottom nav på app-sidor — INTE på informationssidor
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/', '/oar', '/notiser']
+  // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser']
   const EXACT_PATHS = ['/logga']
   const showNav = APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)
   if (!showNav) return null
@@ -91,8 +100,14 @@ export default function Nav() {
               color: active ? '#fff' : 'var(--sea)',
               border: active ? '2px solid var(--sea)' : '2px solid transparent',
               transition: 'all 0.2s',
+              overflow: 'hidden',
+              flexShrink: 0,
             }}>
-              {username[0].toUpperCase()}
+              {avatar
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                : username[0].toUpperCase()
+              }
             </div>
           ) : (
             <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
