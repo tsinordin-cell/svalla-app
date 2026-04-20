@@ -1,8 +1,9 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
@@ -37,7 +38,7 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
   const pad = 10
   const toX = (lng: number) => pad + ((lng - minLng) / (maxLng - minLng || 1)) * (W - pad * 2)
   const toY = (lat: number) => H - pad - ((lat - minLat) / (maxLat - minLat || 1)) * (H - pad * 2)
-  
+
   const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${toX(p.lng).toFixed(1)},${toY(p.lat).toFixed(1)}`).join(' ')
   const start = points[0], end = points[points.length - 1]
 
@@ -66,7 +67,14 @@ export default function TripCard({ trip }: { trip: Trip }) {
   const router = useRouter()
   const [imgErr,   setImgErr]   = useState(false)
   const [expanded, setExpanded] = useState(false)
+  const [isOwner,  setIsOwner]  = useState(false)
 
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsOwner(!!user && user.id === trip.user_id)
+    })
+  }, [trip.user_id])
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
@@ -83,25 +91,21 @@ export default function TripCard({ trip }: { trip: Trip }) {
   if ((trip.average_speed_knots ?? 0) > 0) stats.push({ label: 'Snittfart', value: `${fmt(trip.average_speed_knots)} kn` })
   if ((trip.max_speed_knots ?? 0) > 0)     stats.push({ label: 'Toppfart',  value: `${fmt(trip.max_speed_knots)} kn` })
 
-  const MAX_CAPTION = 160
+  const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
   const captionTruncated = !expanded && caption.length > MAX_CAPTION
     ? caption.slice(0, MAX_CAPTION) + '…'
     : caption
 
   return (
-    <article
-      className="trip-card"
-      onClick={() => router.push(`/tur/${trip.id}`)}
-      style={{
-        background: 'var(--white)',
-        borderRadius: 20,
-        overflow: 'hidden',
-        boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
-        border: '1px solid rgba(10,123,140,0.07)',
-        WebkitTapHighlightColor: 'transparent',
-        cursor: 'pointer',
-      }}>
+    <article style={{
+      background: 'var(--white)',
+      borderRadius: 20,
+      overflow: 'hidden',
+      boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
+      border: '1px solid rgba(10,123,140,0.07)',
+      WebkitTapHighlightColor: 'transparent',
+    }}>
 
       {/* ── 1. Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
@@ -161,6 +165,24 @@ export default function TripCard({ trip }: { trip: Trip }) {
           }}>⚓⚓⚓</div>
         )}
 
+        {/* Owner edit shortcut */}
+        {isOwner && (
+          <Link
+            href={`/tur/${trip.id}`}
+            onClick={e => e.stopPropagation()}
+            title="Redigera tur"
+            style={{
+              flexShrink: 0, width: 32, height: 32, borderRadius: '50%',
+              background: 'rgba(10,123,140,0.07)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              textDecoration: 'none',
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 16, height: 16, color: '#7a9dab' }}>
+              <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+            </svg>
+          </Link>
+        )}
       </div>
 
       {/* ── 1b. Route preview (when no media) ── */}
@@ -186,14 +208,14 @@ export default function TripCard({ trip }: { trip: Trip }) {
               borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none',
             }}>
               <div style={{
-                fontSize: 17, fontWeight: 900, color: 'var(--txt)',
+                fontSize: 16, fontWeight: 900, color: 'var(--txt)',
                 lineHeight: 1.1, letterSpacing: '-0.4px',
               }}>
                 {s.value}
               </div>
               <div style={{
-                fontSize: 11, color: 'var(--txt3)', marginTop: 3,
-                fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.4px',
+                fontSize: 9, color: 'var(--txt3)', marginTop: 3,
+                fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
               }}>
                 {s.label}
               </div>
@@ -204,7 +226,10 @@ export default function TripCard({ trip }: { trip: Trip }) {
 
       {/* ── 3. Media ── */}
       {hasMedia && (
-        <div style={{ cursor: 'pointer' }}>
+        <div
+          onClick={() => router.push(`/tur/${trip.id}`)}
+          style={{ cursor: 'pointer' }}
+        >
           {hasPhoto && hasRoute ? (
             /* Both: route 55% left, photo 45% right */
             <div style={{ display: 'flex', height: 210 }}>

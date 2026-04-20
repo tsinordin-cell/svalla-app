@@ -141,7 +141,7 @@ export default function NotiserPage() {
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <button
-          onClick={() => { if (typeof window !== 'undefined' && window.history.length > 1) router.back(); else router.push('/feed') }}
+          onClick={() => router.back()}
           style={{
             width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)',
             border: 'none', cursor: 'pointer', flexShrink: 0,
@@ -227,7 +227,6 @@ export default function NotiserPage() {
                         padding: '12px 14px', borderRadius: 16,
                         background: n.read ? 'var(--white)' : `${TYPE_COLOR[n.type]}`,
                         border: '1px solid rgba(10,123,140,0.08)',
-                        borderLeft: !n.read ? '3px solid #1e5c82' : '1px solid rgba(10,123,140,0.08)',
                         boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
                         WebkitTapHighlightColor: 'transparent',
                         position: 'relative',
@@ -260,12 +259,11 @@ export default function NotiserPage() {
                           </div>
                         </div>
 
-                        {/* Unread indicator */}
+                        {/* Unread dot */}
                         {!n.read && (
                           <div style={{
                             width: 8, height: 8, borderRadius: '50%',
-                            background: '#1e5c82', flexShrink: 0, marginTop: 6,
-                            boxShadow: '0 0 0 2px rgba(30,92,130,0.2)',
+                            background: '#1e5c82', flexShrink: 0, marginTop: 4,
                           }} />
                         )}
                       </div>

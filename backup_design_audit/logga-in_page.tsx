@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
-import Link from 'next/link'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -65,13 +64,13 @@ export default function LoggaInPage() {
           username: username.trim() || email.split('@')[0],
           email,
         }, { onConflict: 'id', ignoreDuplicates: true })
-        if (data.session) { 
+        if (data.session) {
           // Reset onboarding for new user
           if (typeof window !== 'undefined') {
             localStorage.removeItem('svalla_onboarded')
           }
-          router.push('/feed'); 
-          return 
+          router.push('/feed');
+          return
         }
       }
       setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
@@ -283,12 +282,12 @@ export default function LoggaInPage() {
           </button>
 
           {!isNew && (
-            <Link href="/glomt-losenord" style={{
+            <a href="/glomt-losenord" style={{
               display: 'block', textAlign: 'center', marginTop: 10,
               fontSize: 13, color: '#7a9dab', textDecoration: 'none',
             }}>
               Glömt lösenordet?
-            </Link>
+            </a>
           )}
         </div>
       </div>

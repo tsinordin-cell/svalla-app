@@ -32,7 +32,7 @@ function SettingsSection() {
   ]
   return (
     <div style={{ background: 'var(--white)', borderRadius: 18, padding: '18px 16px', marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-      <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
+      <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
       <div style={{ marginBottom: 14 }}>
         <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
         <div style={{ display: 'flex', gap: 6 }}>
@@ -262,7 +262,6 @@ export default function ProfilPage() {
   }, []) // eslint-disable-line
 
   async function handleSignOut() {
-    if (!window.confirm('Vill du logga ut?')) return
     await supabase.auth.signOut()
     router.push('/logga-in')
   }
@@ -391,8 +390,9 @@ export default function ProfilPage() {
           {[
             { val: trips.length,              label: 'Turer' },
             { val: `${totalDist.toFixed(0)}`, label: 'NM' },
+            { val: uniqueLocs,                label: 'Platser' },
+            { val: pinnar3 > 0 ? pinnar3 : trips.length, label: pinnar3 > 0 ? 'Magiska' : 'Turer' , skip: pinnar3 === 0 && false },
             { val: followersCount,            label: 'Följare' },
-            { val: followingCount,            label: 'Följer' },
           ].map(({ val, label }, i, arr) => (
             <div key={label} style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none' }}>
               <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
@@ -405,7 +405,7 @@ export default function ProfilPage() {
         {ACHIEVEMENTS.length > 0 && (
           <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
               <span style={{ fontSize: 12, fontWeight: 700, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
                 {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
               </span>
@@ -466,7 +466,7 @@ export default function ProfilPage() {
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
           <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
-            <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Aktivitet</div>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Aktivitet</div>
             <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 56 }}>
               {monthBars.map(([key, v]) => (
                 <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
@@ -496,7 +496,7 @@ export default function ProfilPage() {
           ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
-                <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
+                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
                 <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{trips.length} st</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>

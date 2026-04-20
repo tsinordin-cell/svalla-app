@@ -44,28 +44,10 @@ export default function SokPage() {
   const [loading,   setLoading]   = useState(false)
   const [searched,  setSearched]  = useState(false)
   const [activeTab, setActiveTab] = useState<FilterTab>('alla')
-  const [recentSearches, setRecentSearches] = useState<string[]>([])
   const inputRef  = useRef<HTMLInputElement>(null)
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => { inputRef.current?.focus() }, [])
-
-  // Load recent searches from localStorage
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('svalla_recent_searches')
-      if (stored) setRecentSearches(JSON.parse(stored).slice(0, 5))
-    } catch {}
-  }, [])
-
-  function saveRecentSearch(q: string) {
-    try {
-      const prev = JSON.parse(localStorage.getItem('svalla_recent_searches') ?? '[]') as string[]
-      const updated = [q, ...prev.filter((s: string) => s !== q)].slice(0, 5)
-      setRecentSearches(updated)
-      localStorage.setItem('svalla_recent_searches', JSON.stringify(updated))
-    } catch {}
-  }
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) { if (e.key === 'Escape') setQuery('') }
@@ -148,7 +130,6 @@ export default function SokPage() {
     setResults(merged)
     setSearched(true)
     setLoading(false)
-    if (merged.length > 0) saveRecentSearch(safe)
   }
 
   const filtered = activeTab === 'alla' ? results : results.filter(r => r.type === activeTab)
@@ -246,43 +227,11 @@ export default function SokPage() {
 
         {/* ── Empty state ── */}
         {!query && (
-          <div style={{ padding: '32px 0 20px' }}>
-            <div style={{ textAlign: 'center', marginBottom: 24 }}>
-              <div style={{ fontSize: 44, marginBottom: 10 }}>🔍</div>
-              <p style={{ fontSize: 14, color: 'var(--txt3)', margin: 0, lineHeight: 1.5 }}>
-                Sök bland seglare, rutter och platser i skärgården
-              </p>
-            </div>
-
-            {/* Recent searches */}
-            {recentSearches.length > 0 && (
-              <div style={{ marginBottom: 20 }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
-                  Senaste sökningar
-                </div>
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                  {recentSearches.map(s => (
-                    <button
-                      key={s}
-                      onClick={() => setQuery(s)}
-                      style={{
-                        padding: '7px 14px', borderRadius: 20,
-                        background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                        fontSize: 13, color: '#1e5c82', cursor: 'pointer', fontWeight: 600,
-                        display: 'flex', alignItems: 'center', gap: 6,
-                        WebkitTapHighlightColor: 'transparent',
-                      }}
-                    >
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 13, height: 13, opacity: 0.5 }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {s}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
+          <div style={{ textAlign: 'center', padding: '40px 0 20px' }}>
+            <div style={{ fontSize: 44, marginBottom: 10 }}>🔍</div>
+            <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 20, lineHeight: 1.5 }}>
+              Sök bland seglare, rutter och platser i skärgården
+            </p>
             <div style={{ marginBottom: 16 }}>
               <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
                 Populära platser
