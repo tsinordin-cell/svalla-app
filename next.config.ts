@@ -51,22 +51,7 @@ const nextConfig: NextConfig = {
   },
 }
 
-// Sentry aktiveras när SENTRY_AUTH_TOKEN är satt i miljön (Netlify env vars).
-// Utan token: bygg normalt utan source map-upload.
-async function buildConfig(): Promise<NextConfig> {
-  if (process.env.SENTRY_AUTH_TOKEN) {
-    const { withSentryConfig } = await import('@sentry/nextjs')
-    return withSentryConfig(nextConfig, {
-      org:     process.env.SENTRY_ORG     ?? 'svalla',
-      project: process.env.SENTRY_PROJECT ?? 'svalla-nextjs',
-      silent: true,
-      widenClientFileUpload: true,
-      hideSourceMaps: true,
-      automaticVercelMonitors: false,
-      disableLogger: true,
-    })
-  }
-  return nextConfig
-}
-
-export default buildConfig()
+// withSentryConfig kräver SENTRY_AUTH_TOKEN för source map-upload.
+// Lägg till den i Netlify env vars när Sentry-kontot är skapat.
+// Sentry runtime (error capturing) fungerar ändå via sentry.client.config.ts.
+export default nextConfig
