@@ -3,6 +3,7 @@ import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
+import HeroAnimation from '@/components/HeroAnimation'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /kom-igang — Premium onboarding flow
@@ -204,19 +205,15 @@ export default function KomIgangPage() {
         flex: '0 0 auto',
         padding: '80px 28px 36px',
         display: 'flex', flexDirection: 'column', alignItems: 'center',
-        textAlign: 'center', position: 'relative',
+        textAlign: 'center', position: 'relative', overflow: 'hidden',
+        minHeight: 340,
       }}>
-        {/* Decorative glows */}
+        {/* Live canvas background */}
+        <HeroAnimation variant={1} />
+        {/* Subtle readability gradient on top of canvas */}
         <div aria-hidden style={{
-          position: 'absolute', top: '10%', left: '8%',
-          width: 200, height: 200, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(30,92,130,0.25) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
-        <div aria-hidden style={{
-          position: 'absolute', top: '25%', right: '5%',
-          width: 150, height: 150, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(232,146,74,0.15) 0%, transparent 70%)',
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(160deg, rgba(4,16,30,0.38) 0%, rgba(8,28,48,0.28) 50%, rgba(4,16,30,0.12) 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -226,14 +223,24 @@ export default function KomIgangPage() {
           borderRadius: 20, padding: '16px 28px', marginBottom: 36,
           backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           border: '1px solid rgba(255,255,255,0.12)',
+          position: 'relative', zIndex: 1,
         }}>
           <SvallaLogo height={36} color="#ffffff" />
         </div>
 
         <Dots step={0} />
 
+        {/* Welcome intro */}
+        <p style={{
+          fontSize: 13, fontWeight: 700, letterSpacing: '0.12em',
+          textTransform: 'uppercase', color: 'rgba(180,225,255,0.75)',
+          margin: '0 0 14px', position: 'relative', zIndex: 1,
+        }}>
+          Välkommen till Svalla
+        </p>
+
         {/* Headline */}
-        <h1 style={{
+        <h1 style={{ position: 'relative', zIndex: 1,
           fontSize: 'clamp(28px, 7vw, 44px)', fontWeight: 900, color: '#fff',
           lineHeight: 1.12, letterSpacing: '-0.02em', margin: '0 0 18px',
           maxWidth: 400,
@@ -249,8 +256,8 @@ export default function KomIgangPage() {
         </h1>
 
         <p style={{
-          fontSize: 17, color: 'rgba(255,255,255,0.62)', lineHeight: 1.6,
-          margin: '0 0 8px', maxWidth: 320,
+          fontSize: 17, color: 'rgba(255,255,255,0.72)', lineHeight: 1.6,
+          margin: '0 0 8px', maxWidth: 320, position: 'relative', zIndex: 1,
         }}>
           Svalla gör båtlivet enklare och roligare.
         </p>
@@ -258,6 +265,7 @@ export default function KomIgangPage() {
         {/* Trust badges */}
         <div style={{
           display: 'flex', gap: 20, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center',
+          position: 'relative', zIndex: 1,
         }}>
           {[
             { icon: '⚓', text: 'Spåra turer' },
