@@ -1,6 +1,6 @@
 // Svalla service worker — push notifications + offline cache
 
-const CACHE = 'svalla-v2'
+const CACHE = 'svalla-v3'
 const STATIC = ['/feed', '/platser', '/rutter', '/topplista', '/logga', '/icon-192.png']
 
 self.addEventListener('install', e => {
@@ -18,16 +18,16 @@ self.addEventListener('activate', e => {
   )
 })
 
-// Fetch — network-first för API, cache-first för statiska resurser
+// Fetch — network-first för HTML, cache-first för hashed assets
 self.addEventListener('fetch', event => {
   const { request } = event
   const url = new URL(request.url)
 
   // Hoppa över externa resurser och POST
   if (request.method !== 'GET') return
-  if (!url.origin.includes(self.location.origin)) return
+  if (url.origin !== self.location.origin) return
 
-  // API-anrop: network-first
+  // API-anrop: network-first, ingen cache
   if (url.pathname.startsWith('/api/') || url.pathname.includes('supabase')) {
     event.respondWith(
       fetch(request).catch(() => new Response(JSON.stringify({ error: 'offline' }), {
@@ -37,28 +37,43 @@ self.addEventListener('fetch', event => {
     return
   }
 
-  // Statiska assets (_next/static): cache-first
+  // _next/static/chunks & _next/static/css:
+  // Cache-first är OK BARA för content-hashed filer (hash i filnamnet).
+  // HTML-sidor ska ALDRIG cachas aggressivt — de pekar på nya chunk-hashar efter deploy.
   if (url.pathname.startsWith('/_next/static/')) {
     event.respondWith(
-      caches.match(request).then(cached => cached || fetch(request).then(r => {
-        const clone = r.clone()
-        caches.open(CACHE).then(c => c.put(request, clone))
-        return r
-      }))
+      caches.match(request).then(cached => {
+        // Alltid hämta ny version i bakgrunden för att hålla cachen fräsch
+        const networkFetch = fetch(request).then(r => {
+          if (r.ok) {
+            caches.open(CACHE).then(c => c.put(request, r.clone()))
+          }
+          return r
+        })
+        // Returnera cachat direkt om det finns (hashed filnamn = immutable)
+        return cached || networkFetch
+      })
     )
     return
   }
 
-  // Sidor: stale-while-revalidate
+  // HTML-sidor: network-first — ALDRIG stale-while-revalidate.
+  // Gammal HTML + nya chunk-hashar = ChunkLoadError.
+  // Fallback till cache ENDAST vid nätverksfel (offline).
   event.respondWith(
-    caches.open(CACHE).then(async cache => {
-      const cached = await cache.match(request)
-      const networkFetch = fetch(request).then(r => {
-        if (r.ok) cache.put(request, r.clone())
+    fetch(request)
+      .then(r => {
+        // Spara i cache för offline-fallback, men hämta alltid live
+        if (r.ok) {
+          caches.open(CACHE).then(c => c.put(request, r.clone()))
+        }
         return r
-      }).catch(() => cached)
-      return cached || networkFetch
-    })
+      })
+      .catch(async () => {
+        // Offline — försök med cache
+        const cached = await caches.match(request)
+        return cached || new Response('Offline', { status: 503 })
+      })
   )
 })
 

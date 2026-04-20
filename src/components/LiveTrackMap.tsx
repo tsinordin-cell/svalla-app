@@ -41,23 +41,32 @@ export default function LiveTrackMap({
   useEffect(() => {
     if (!mapContainer.current) return
 
+    let resizeObserver: ResizeObserver | null = null
+    const t1 = { id: 0 }, t2 = { id: 0 }, t3 = { id: 0 }
+
+    const invalidate = () => { mapInstance.current?.invalidateSize() }
+
     const initMap = async () => {
       const L = (await import('leaflet')).default
       LRef.current = L
 
-      if (!document.querySelector('link[href*="leaflet"]')) {
+      // Inject Leaflet CSS and wait for it to load before initializing
+      await new Promise<void>(resolve => {
+        if (document.querySelector('link[href*="leaflet"]')) { resolve(); return }
         const link = document.createElement('link')
         link.rel = 'stylesheet'
         link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
+        link.onload = () => resolve()
+        link.onerror = () => resolve()   // continue even if CDN fails
         document.head.appendChild(link)
-      }
+      })
 
       if (mapInstance.current || !mapContainer.current) return
 
       mapInstance.current = L.map(mapContainer.current, {
         zoomControl: true,
         attributionControl: false,
-        scrollWheelZoom: false,   // prevent accidental zoom on scroll
+        scrollWheelZoom: false,
       }).setView([59.3293, 18.0686], 13)
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,13 +74,13 @@ export default function LiveTrackMap({
         maxNativeZoom: 18,
       }).addTo(mapInstance.current)
 
-      // Nautical overlay for marine context
+      // Nautical overlay
       L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
         opacity: 0.5,
         maxZoom: 18,
       }).addTo(mapInstance.current)
 
-      // When user manually pans, pause auto-follow for 8 seconds
+      // Pause auto-follow when user manually pans
       mapInstance.current.on('dragstart', () => {
         userPannedRef.current = true
         if (followTimerRef.current) clearTimeout(followTimerRef.current)
@@ -80,12 +89,24 @@ export default function LiveTrackMap({
         }, 8000)
       })
 
-      setTimeout(() => mapInstance.current?.invalidateSize(), 100)
+      // invalidateSize: immediately + staggered backups to handle CSS timing
+      invalidate()
+      t1.id = window.setTimeout(invalidate, 150) as unknown as number
+      t2.id = window.setTimeout(invalidate, 400) as unknown as number
+      t3.id = window.setTimeout(invalidate, 900) as unknown as number
+
+      // ResizeObserver: re-validate whenever container changes size (orientation, split-screen, etc.)
+      if (typeof ResizeObserver !== 'undefined' && mapContainer.current) {
+        resizeObserver = new ResizeObserver(() => invalidate())
+        resizeObserver.observe(mapContainer.current)
+      }
     }
 
     initMap().catch(() => {})
 
     return () => {
+      clearTimeout(t1.id); clearTimeout(t2.id); clearTimeout(t3.id)
+      resizeObserver?.disconnect()
       if (mapInstance.current) {
         mapInstance.current.remove()
         mapInstance.current = null
@@ -219,16 +240,13 @@ export default function LiveTrackMap({
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%' }}>
+    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
       <div
         ref={mapContainer}
         style={{
-          width: '100%',
-          height,
-          borderRadius: 0,
+          position: 'absolute',
+          inset: 0,
           background: '#a8ccd4',
-          overflow: 'hidden',
-          boxShadow: '0 4px 16px rgba(0,45,60,0.12)',
         }}
       />
 
