@@ -307,8 +307,6 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         zoomControl:        true,
         attributionControl: false,
         wheelPxPerZoomLevel: 80,
-        // Förbättrar mobilprestanda — förhindrar oavsiktlig zoomning vid scroll
-        tap:                false,
       })
 
       // ── Baskartor: OSM + OpenSeaMap nautiska lager ──────────────────────────
