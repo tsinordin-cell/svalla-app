@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Svalla – Skärgårdslivet, loggat',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Svalla – Skärgårdslivet, loggat',
     description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare.',
-    images: ['/og-image.jpg'],
+    images: ['/opengraph-image'],
   },
   manifest: '/manifest.json',
   appleWebApp: {
