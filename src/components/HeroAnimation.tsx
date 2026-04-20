@@ -199,7 +199,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       herringDir = 1; herringSpd = 8 + rnd() * 4
       dolX = W + 80; dolOn = false; nextDol = ms + 10000
       ferryX = W + 220 + rnd() * 180
-      diverOn = false; nextDiver = ms + 22000 + rnd() * 20000
+      diverOn = false; nextDiver = ms + 6000 + rnd() * 8000
     }
 
     /* ── Resize ─────────────────────────────────────────────────────────── */
@@ -221,11 +221,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     ════════════════════════════════════════════════════════════════════════ */
 
     const drawSky = () => {
-      const g = cx.createLinearGradient(0, 0, 0, H * 0.57)
+      // Only fill to waterline — prevents light-blue artifact behind water
+      const g = cx.createLinearGradient(0, 0, 0, H * 0.52)
       const [s0, s1, s2, s3] = th.sky
       g.addColorStop(0, s0); g.addColorStop(0.35, s1)
       g.addColorStop(0.75, s2); g.addColorStop(1, s3)
-      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.57)
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.52)
     }
 
     const drawSun = () => {
@@ -242,20 +243,21 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     }
 
     const drawFarIslands = () => {
+      // Low flat skärgård silhouettes — no mountains, gentle rocky profiles
       cx.fillStyle = th.farIsland
       cx.beginPath()
       cx.moveTo(0, H * 0.445)
-      cx.bezierCurveTo(W*0.02, H*0.30, W*0.09, H*0.265, W*0.175, H*0.315)
-      cx.bezierCurveTo(W*0.23, H*0.35, W*0.27, H*0.42, W*0.30, H*0.445)
+      cx.bezierCurveTo(W*0.03, H*0.395, W*0.10, H*0.375, W*0.175, H*0.395)
+      cx.bezierCurveTo(W*0.22, H*0.410, W*0.26, H*0.432, W*0.30, H*0.445)
       cx.lineTo(0, H * 0.445); cx.fill()
       cx.beginPath()
       cx.moveTo(W*0.37, H*0.445)
-      cx.bezierCurveTo(W*0.40, H*0.265, W*0.52, H*0.215, W*0.63, H*0.295)
-      cx.bezierCurveTo(W*0.70, H*0.34, W*0.745, H*0.415, W*0.76, H*0.445)
+      cx.bezierCurveTo(W*0.40, H*0.385, W*0.50, H*0.362, W*0.61, H*0.382)
+      cx.bezierCurveTo(W*0.68, H*0.398, W*0.73, H*0.425, W*0.76, H*0.445)
       cx.lineTo(W*0.37, H*0.445); cx.fill()
       cx.beginPath()
       cx.moveTo(W*0.83, H*0.445)
-      cx.bezierCurveTo(W*0.85, H*0.295, W*0.94, H*0.275, W, H*0.325)
+      cx.bezierCurveTo(W*0.87, H*0.378, W*0.93, H*0.368, W, H*0.388)
       cx.lineTo(W, H * 0.445); cx.fill()
     }
 
@@ -514,10 +516,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.bezierCurveTo(W*0.745, H*0.415, W*0.785, H*0.485, W*0.80, wb)
       cx.lineTo(W*0.50, wb); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
+      // Right rocky shore — smooth curved edge extending off-screen (no sharp line)
       cx.beginPath()
-      cx.moveTo(W*0.80, wb)
-      cx.bezierCurveTo(W*0.82, H*0.445, W*0.88, H*0.435, W*0.935, H*0.475)
-      cx.lineTo(W*0.935, wb)
+      cx.moveTo(W*0.79, wb)
+      cx.bezierCurveTo(W*0.820, H*0.445, W*0.875, H*0.432, W*0.925, H*0.462)
+      cx.bezierCurveTo(W*0.955, H*0.456, W*0.980, H*0.452, W+8, H*0.455)
+      cx.lineTo(W+8, wb)
       cx.fillStyle = th.rockColor; cx.fill()
       // Granite speckle
       cx.fillStyle = 'rgba(200,195,185,0.18)'
@@ -529,12 +533,15 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       boathouse(W * 0.516, wb)
       fishingNet(W * 0.530, W * 0.572, wb - H * 0.036)
 
-      // Small mid rock
+      // Small mid skerry — low rocky outcrop, drawn properly above water
       cx.beginPath()
-      cx.moveTo(W*0.340, wb)
-      cx.bezierCurveTo(W*0.350, H*0.468, W*0.370, H*0.455, W*0.395, H*0.468)
-      cx.lineTo(W*0.405, wb)
+      cx.moveTo(W*0.335, wb)
+      cx.bezierCurveTo(W*0.342, H*0.488, W*0.358, H*0.474, W*0.378, H*0.480)
+      cx.bezierCurveTo(W*0.393, H*0.486, W*0.404, H*0.490, W*0.412, wb)
       cx.fillStyle = th.rockColor; cx.fill()
+      // Granite speckles on skerry
+      cx.fillStyle = 'rgba(200,195,185,0.22)'
+      for (let i = 0; i < 4; i++) cx.fillRect(W*(0.348 + i*0.012), H*0.482, 2, 2)
 
       cx.restore()
     }
@@ -565,24 +572,52 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.restore()
     }
 
-    /* ── Bobbing buoy ───────────────────────────────────────────────────── */
+    /* ── Bobbing buoy — proper cylindrical nautical shape ──────────────── */
     const drawBuoy = () => {
       const bx = W * 0.42
-      const by = wave(bx) - H * 0.005
+      const bob = Math.sin(t * 0.85) * H * 0.003
+      const by  = wave(bx) - H * 0.012 + bob
       cx.save(); cx.translate(bx, by)
-      const br = H * 0.011
-      cx.beginPath(); cx.arc(0, 0, br, 0, Math.PI * 2)
+      const bw = H * 0.0075, bh = H * 0.020
+
+      // Mooring chain (draw first, behind buoy)
+      cx.strokeStyle = 'rgba(88,70,48,0.40)'; cx.lineWidth = 0.9
+      cx.beginPath(); cx.moveTo(0, bh); cx.bezierCurveTo(3, bh+H*0.018, 5, H*0.032, 4, H*0.052); cx.stroke()
+
+      // Body — upright cylinder shape (taller than wide)
+      cx.beginPath()
+      cx.moveTo(-bw, bh)
+      cx.bezierCurveTo(-bw, bh+1, bw, bh+1, bw, bh)  // flat bottom ellipse
+      cx.lineTo(bw, -bh*0.55)
+      cx.bezierCurveTo(bw, -bh*0.7, -bw, -bh*0.7, -bw, -bh*0.55)  // top
+      cx.closePath()
       cx.fillStyle = '#c83020'; cx.fill()
-      cx.strokeStyle = '#e84828'; cx.lineWidth = 1.0; cx.stroke()
-      cx.beginPath(); cx.arc(-br*0.28, -br*0.28, br*0.32, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(255,155,125,0.38)'; cx.fill()
-      // Top marker cross
-      cx.strokeStyle = '#f0e8d8'; cx.lineWidth = 1.5
-      cx.beginPath(); cx.moveTo(0, -br); cx.lineTo(0, -br*2.5); cx.stroke()
-      cx.beginPath(); cx.moveTo(-br*0.8, -br*1.9); cx.lineTo(br*0.8, -br*1.9); cx.stroke()
-      // Mooring line
-      cx.strokeStyle = 'rgba(88,70,48,0.35)'; cx.lineWidth = 0.8
-      cx.beginPath(); cx.moveTo(0, br); cx.lineTo(2, H * 0.060); cx.stroke()
+      cx.strokeStyle = 'rgba(180,40,28,0.6)'; cx.lineWidth = 0.7; cx.stroke()
+
+      // White reflective band around middle
+      cx.fillStyle = 'rgba(240,232,215,0.88)'
+      cx.fillRect(-bw, -bh*0.08, bw*2, bh*0.22)
+
+      // Conical top cap
+      cx.beginPath()
+      cx.moveTo(-bw, -bh*0.55)
+      cx.lineTo(0, -bh*1.20)
+      cx.lineTo(bw, -bh*0.55)
+      cx.closePath()
+      cx.fillStyle = '#c83020'; cx.fill()
+
+      // Mast / radar pole
+      cx.strokeStyle = '#d8c890'; cx.lineWidth = 1.2
+      cx.beginPath(); cx.moveTo(0, -bh*1.20); cx.lineTo(0, -bh*1.85); cx.stroke()
+      // Light on top
+      const pulse = (Math.sin(ms * 0.0022) + 1) * 0.5
+      cx.fillStyle = `rgba(255,255,100,${0.5 + pulse * 0.5})`
+      cx.beginPath(); cx.arc(0, -bh*1.85, 1.8, 0, Math.PI * 2); cx.fill()
+
+      // Shimmer highlight on body
+      cx.beginPath(); cx.ellipse(-bw*0.30, -bh*0.30, bw*0.26, bh*0.22, 0, 0, Math.PI * 2)
+      cx.fillStyle = 'rgba(255,155,125,0.22)'; cx.fill()
+
       cx.restore()
     }
 
@@ -633,15 +668,25 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const drawAnchor = () => {
       const ax = W * 0.32, ay = H * 0.876
       cx.save(); cx.translate(ax, ay)
-      cx.strokeStyle = 'rgba(36,46,56,0.50)'; cx.fillStyle = 'rgba(36,46,56,0.50)'
-      cx.lineWidth = 2.2; cx.lineCap = 'round'
-      cx.beginPath(); cx.arc(0, -13, 4, 0, Math.PI * 2); cx.stroke()
-      cx.beginPath(); cx.moveTo(0, -9); cx.lineTo(0, 11); cx.stroke()
-      cx.beginPath(); cx.moveTo(-9, -6); cx.lineTo(9, -6); cx.stroke()
-      cx.beginPath(); cx.moveTo(0, 11); cx.bezierCurveTo(-5, 11, -10, 6, -10, 2); cx.stroke()
-      cx.beginPath(); cx.moveTo(0, 11); cx.bezierCurveTo(5, 11, 10, 6, 10, 2); cx.stroke()
-      cx.beginPath(); cx.arc(-10, 2, 2.5, 0, Math.PI * 2); cx.fill()
-      cx.beginPath(); cx.arc(10, 2, 2.5, 0, Math.PI * 2); cx.fill()
+      // Slightly tilted, resting on seabed
+      cx.rotate(0.18)
+      cx.strokeStyle = 'rgba(95,115,130,0.68)'; cx.fillStyle = 'rgba(95,115,130,0.68)'
+      cx.lineWidth = 2.6; cx.lineCap = 'round'
+      // Ring at top
+      cx.beginPath(); cx.arc(0, -14, 4.5, 0, Math.PI * 2); cx.stroke()
+      // Shank
+      cx.beginPath(); cx.moveTo(0, -9.5); cx.lineTo(0, 12); cx.stroke()
+      // Stock (crossbar)
+      cx.beginPath(); cx.moveTo(-10, -6); cx.lineTo(10, -6); cx.stroke()
+      // Arms
+      cx.beginPath(); cx.moveTo(0, 12); cx.bezierCurveTo(-5, 12, -12, 7, -12, 2); cx.stroke()
+      cx.beginPath(); cx.moveTo(0, 12); cx.bezierCurveTo(5, 12, 12, 7, 12, 2); cx.stroke()
+      // Flukes
+      cx.beginPath(); cx.arc(-12, 2, 3, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(12, 2, 3, 0, Math.PI * 2); cx.fill()
+      // Subtle glow to stand out from seabed
+      cx.strokeStyle = 'rgba(140,165,185,0.22)'; cx.lineWidth = 5
+      cx.beginPath(); cx.moveTo(0, -9.5); cx.lineTo(0, 12); cx.stroke()
       cx.restore()
     }
 
@@ -734,7 +779,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       if (!diverOn) return
       diverX += diverDir * 20 * dt * 0.001
       if ((diverDir === -1 && diverX < -70) || (diverDir === 1 && diverX > W + 70)) {
-        diverOn = false; nextDiver = ms + 40000 + Math.random() * 25000
+        diverOn = false; nextDiver = ms + 18000 + Math.random() * 12000
       }
       cx.save(); cx.translate(diverX, diverY)
       if (diverDir === 1) cx.scale(-1, 1)
@@ -748,49 +793,79 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.restore()
     }
 
-    /* ── Porpoise + calf ─────────────────────────────────────────────────── */
+    /* ── Harbour porpoise (tumlare) — realistic, swimming slowly UNDERWATER ── */
+    const drawPorpoise = (x: number, y: number, scale: number, ph: number) => {
+      cx.save(); cx.translate(x, y); cx.scale(scale, scale)
+      // Gentle body undulation (tail wag, not whole-body bounce)
+      const bodyAngle = Math.sin(ph * 1.8) * 0.06
+      cx.rotate(bodyAngle)
+
+      // Dark dorsal side — squat oval body (no beak! tumlare = blunt nose)
+      cx.beginPath()
+      cx.moveTo(26, 0)                                   // blunt snout tip
+      cx.bezierCurveTo(28, -8, 10, -11, 0, -11)         // top of body
+      cx.bezierCurveTo(-14, -11, -26, -7, -28, 0)       // rear top
+      cx.bezierCurveTo(-26, 7, -14, 10, 0, 10)          // belly
+      cx.bezierCurveTo(10, 10, 28, 8, 26, 0)            // back to snout
+      cx.closePath()
+      cx.fillStyle = 'rgba(30,42,58,0.82)'; cx.fill()   // dark charcoal back
+
+      // White/cream belly patch — large, realistic
+      cx.beginPath()
+      cx.ellipse(4, 5, 16, 5.5, 0.10, 0, Math.PI * 2)
+      cx.fillStyle = 'rgba(215,230,235,0.72)'; cx.fill()
+
+      // Triangular dorsal fin (short, set back, sits on dark back)
+      cx.beginPath()
+      cx.moveTo(-2, -11)
+      cx.lineTo(5, -22)    // apex — blunt triangle, not tall
+      cx.lineTo(12, -11)
+      cx.closePath()
+      cx.fillStyle = 'rgba(22,34,50,0.85)'; cx.fill()
+
+      // Tail fluke — forked, animated
+      const tailWag = Math.sin(ph * 1.8 + 0.5) * 0.18
+      cx.save(); cx.translate(-28, 0); cx.rotate(tailWag)
+      cx.beginPath()
+      cx.moveTo(0, 0)
+      cx.bezierCurveTo(-5, -3, -12, -2, -14, -7)
+      cx.bezierCurveTo(-12, -2, -5, 0, 0, 0)
+      cx.bezierCurveTo(-5, 3, -12, 2, -14, 7)
+      cx.bezierCurveTo(-12, 2, -5, 3, 0, 0)
+      cx.fillStyle = 'rgba(22,34,50,0.82)'; cx.fill()
+      cx.restore()
+
+      // Pectoral fin — small, low on body
+      cx.beginPath()
+      cx.moveTo(10, 4)
+      cx.bezierCurveTo(5, 8, -2, 12, -5, 10)
+      cx.bezierCurveTo(-2, 8, 5, 5, 10, 4)
+      cx.fillStyle = 'rgba(22,34,50,0.75)'; cx.fill()
+
+      // Eye — small, near top of head
+      cx.beginPath(); cx.arc(20, -3, 1.6, 0, Math.PI * 2)
+      cx.fillStyle = '#04090f'; cx.fill()
+      cx.beginPath(); cx.arc(20.5, -3.4, 0.5, 0, Math.PI * 2)
+      cx.fillStyle = 'rgba(255,255,255,0.60)'; cx.fill()
+
+      cx.restore()
+    }
+
     const drawDolphin = (dt: number) => {
       if (!dolOn) return
-      dolX  -= 32 * dt * 0.001
-      dolPh += 2.2 * dt * 0.001
-      const dy = WL() + 10 + Math.sin(dolPh * 2.8) * 11
+      dolX  -= 16 * dt * 0.001   // slow, leisurely swim
+      dolPh += 1.4 * dt * 0.001
+      // Clearly underwater — gently undulating depth, no surface jumps
+      const dy = WL() + H * 0.072 + Math.sin(dolPh * 1.2) * H * 0.010
       if (dolX < -160) { dolOn = false; nextDol = ms + 28000 + Math.random() * 18000 }
 
-      // Calf trailing behind
-      const calfX = dolX + 54 + Math.sin(dolPh + 1.2) * 4
-      const calfY = dy + 5 + Math.sin(dolPh * 2.8 + 0.8) * 7
-      cx.save(); cx.translate(calfX, calfY)
-      cx.beginPath(); cx.ellipse(0, 0, 15, 5.5, 0, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(56,86,118,0.74)'; cx.fill()
-      cx.beginPath(); cx.ellipse(17, 1.5, 6, 2.5, 0.2, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(66,98,130,0.70)'; cx.fill()
-      cx.beginPath(); cx.moveTo(0,-5.5); cx.lineTo(5,-13); cx.lineTo(9,-5.5); cx.closePath()
-      cx.fillStyle = 'rgba(48,76,108,0.72)'; cx.fill()
-      cx.beginPath()
-      cx.moveTo(-13,0); cx.lineTo(-20,-5); cx.lineTo(-22,-2)
-      cx.lineTo(-13,0); cx.lineTo(-22,3); cx.lineTo(-20,6); cx.closePath()
-      cx.fillStyle = 'rgba(48,76,108,0.70)'; cx.fill()
-      cx.restore()
+      // Calf trailing slightly behind and below
+      const calfX = dolX + 52 + Math.sin(dolPh + 0.9) * 3
+      const calfY = dy + H * 0.025 + Math.sin(dolPh * 1.2 + 0.6) * H * 0.008
+      drawPorpoise(calfX, calfY, 0.58, dolPh + 0.4)
 
-      // Adult porpoise (rounder, shorter snout than old dolphin)
-      cx.save(); cx.translate(dolX, dy)
-      cx.beginPath(); cx.ellipse(0, 0, 27, 9, 0, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(46,73,108,0.88)'; cx.fill()
-      cx.beginPath(); cx.ellipse(28, 2, 9, 3.5, 0.15, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(60,90,125,0.85)'; cx.fill()
-      cx.beginPath(); cx.moveTo(0,-9); cx.lineTo(8,-21); cx.lineTo(13,-9); cx.closePath()
-      cx.fillStyle = 'rgba(38,66,98,0.88)'; cx.fill()
-      cx.beginPath()
-      cx.moveTo(-24,0); cx.lineTo(-35,-8); cx.lineTo(-37,-3)
-      cx.lineTo(-24,0); cx.lineTo(-37,4); cx.lineTo(-35,9); cx.closePath()
-      cx.fillStyle = 'rgba(38,66,98,0.85)'; cx.fill()
-      // Eye
-      cx.beginPath(); cx.arc(20, 0, 2.2, 0, Math.PI * 2)
-      cx.fillStyle = '#060e1a'; cx.fill()
-      // Light belly patch
-      cx.beginPath(); cx.ellipse(4, 3.5, 14, 4.5, 0, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(148,178,208,0.30)'; cx.fill()
-      cx.restore()
+      // Adult
+      drawPorpoise(dolX, dy, 1.0, dolPh)
     }
 
     /* ── Boats ───────────────────────────────────────────────────────────── */
@@ -837,14 +912,15 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillStyle = 'rgba(136,192,228,0.52)'; cx.fillRect(-5,-13,11,6)
     }
 
-    /* ── Birds ───────────────────────────────────────────────────────────── */
+    /* ── Birds — proper wing-flap, never upside-down ────────────────────── */
     const drawBirds = (dt: number) => {
       birds.forEach(b => {
         b.x    -= b.spd * dt * 0.001
         b.wingT += 2.0 * dt * 0.001
         if (b.x < -25) { b.x = W + 25; b.baseY = H * (0.06 + Math.random() * 0.10) }
         const y = b.baseY + Math.sin(b.wingT * 0.28 + b.ph) * b.amp * 4
-        const w = Math.sin(b.wingT) * 5.5
+        // Always bow wings upward (control point y always negative), vary height for flap
+        const w = 2.5 + Math.abs(Math.sin(b.wingT)) * 6.5
         cx.save(); cx.translate(b.x, y)
         cx.strokeStyle = th.birdColor; cx.lineWidth = 1.4; cx.lineCap = 'round'
         cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo(-8,-w,-16,0); cx.stroke()
@@ -881,8 +957,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawSun()
       drawFarIslands()
       drawFerry(dt)         // behind near islands
+      drawWater()           // water first — islands drawn on top so waves never overlap land
       drawNearIslands()
-      drawWater()
       drawBuoy()
       drawBoats(dt)
       drawUnderwater()
