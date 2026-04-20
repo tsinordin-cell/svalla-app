@@ -67,7 +67,7 @@ export default function InstallPrompt() {
       {/* App-ikon — exakt samma som favicon/hemskärmsikon */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/icon.png"
+        src="/icon-192.png"
         alt="Svalla"
         width={52}
         height={52}
