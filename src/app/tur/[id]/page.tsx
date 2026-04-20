@@ -57,6 +57,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   const { id } = await params
   const supabase = createClient()
 
+  // kolla om användaren är inloggad
+  const { data: { user: currentUser } } = await supabase.auth.getUser()
+  const isLoggedIn = !!currentUser
+
   // fetch trip (utan users-join — FK pekar på auth.users, ej public.users)
   const { data: trip, error } = await supabase
     .from('trips')
@@ -210,7 +214,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
 
       {/* ── Hero image / minimap ── */}
       <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#0b2d42', overflow: 'hidden' }}>
@@ -503,6 +507,39 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           </div>
         )}
       </div>
+
+      {/* ── Signup CTA — visas bara för ej inloggade ── */}
+      {!isLoggedIn && (
+        <div style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200,
+          background: 'linear-gradient(135deg, #0d2240, #1a4a5e)',
+          borderTop: '1px solid rgba(255,255,255,0.08)',
+          padding: '16px 20px',
+          paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
+          display: 'flex', alignItems: 'center', gap: 16,
+          boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
+              Logga dina egna turer
+            </div>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.3 }}>
+              GPS-tracking, statistik och skärgårdsgemenskap.
+            </div>
+          </div>
+          <Link href="/kom-igang" style={{
+            flexShrink: 0,
+            padding: '12px 20px', borderRadius: 14,
+            background: 'linear-gradient(135deg, #c96e2a, #e07828)',
+            color: '#fff', fontWeight: 800, fontSize: 14,
+            textDecoration: 'none',
+            boxShadow: '0 4px 16px rgba(201,110,42,0.45)',
+            whiteSpace: 'nowrap',
+          }}>
+            Kom igång →
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

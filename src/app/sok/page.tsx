@@ -40,14 +40,33 @@ const FILTER_TABS: { value: FilterTab; label: string }[] = [
 export default function SokPage() {
   const [supabase]  = useState(() => createClient())
   const [query,     setQuery]     = useState('')
-  const [results,   setResults]   = useState<Result[]>([])
-  const [loading,   setLoading]   = useState(false)
-  const [searched,  setSearched]  = useState(false)
-  const [activeTab, setActiveTab] = useState<FilterTab>('alla')
+  const [results,       setResults]       = useState<Result[]>([])
+  const [loading,       setLoading]       = useState(false)
+  const [searched,      setSearched]      = useState(false)
+  const [activeTab,     setActiveTab]     = useState<FilterTab>('alla')
+  const [activeSailors, setActiveSailors] = useState<{ id: string; username: string; avatar: string | null; tripCount: number }[]>([])
   const inputRef  = useRef<HTMLInputElement>(null)
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => { inputRef.current?.focus() }, [])
+
+  // Hämta aktiva seglare (senaste 7 dagarna) för empty state
+  useEffect(() => {
+    const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+    supabase
+      .from('trips')
+      .select('user_id')
+      .gte('created_at', weekAgo)
+      .then(async ({ data: recentTrips }) => {
+        if (!recentTrips || recentTrips.length === 0) return
+        const countMap: Record<string, number> = {}
+        for (const t of recentTrips) { countMap[t.user_id] = (countMap[t.user_id] ?? 0) + 1 }
+        const topIds = Object.entries(countMap).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([id]) => id)
+        const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', topIds)
+        if (!users) return
+        setActiveSailors(users.map(u => ({ ...u, tripCount: countMap[u.id] ?? 0 })))
+      })
+  }, [supabase])
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) { if (e.key === 'Escape') setQuery('') }
@@ -227,16 +246,59 @@ export default function SokPage() {
 
         {/* ── Empty state ── */}
         {!query && (
-          <div style={{ textAlign: 'center', padding: '40px 0 20px' }}>
-            <div style={{ fontSize: 44, marginBottom: 10 }}>🔍</div>
-            <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 20, lineHeight: 1.5 }}>
-              Sök bland seglare, rutter och platser i skärgården
-            </p>
+          <div style={{ padding: '24px 0 20px' }}>
+
+            {/* Aktiva seglare */}
+            {activeSailors.length > 0 && (
+              <div style={{ marginBottom: 28 }}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
+                  ⛵ Aktiva seglare denna vecka
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {activeSailors.map(s => (
+                    <Link key={s.id} href={`/u/${s.username}`} style={{ textDecoration: 'none' }}>
+                      <div style={{
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        background: 'var(--white)', borderRadius: 16, padding: '11px 14px',
+                        border: '1px solid rgba(10,123,140,0.09)',
+                        boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
+                        WebkitTapHighlightColor: 'transparent',
+                      }}>
+                        <div style={{
+                          width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
+                          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: 16, fontWeight: 900, color: '#fff', overflow: 'hidden',
+                        }}>
+                          {s.avatar
+                            ? <Image src={s.avatar} alt={s.username} width={42} height={42} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                            : s.username[0]?.toUpperCase()
+                          }
+                        </div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {s.username}
+                          </div>
+                          <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>
+                            {s.tripCount} {s.tripCount === 1 ? 'tur' : 'turer'} denna vecka
+                          </div>
+                        </div>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#c0d4dc" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Populära platser */}
             <div style={{ marginBottom: 16 }}>
               <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
                 Populära platser
               </div>
-              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {HINTS.map(hint => (
                   <button
                     key={hint}

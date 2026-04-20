@@ -60,7 +60,7 @@ function SkeletonCard() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) {
+export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) { // eslint-disable-line @typescript-eslint/no-explicit-any
   const [tab,        setTab]        = useState<'all' | 'following'>('all')
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
