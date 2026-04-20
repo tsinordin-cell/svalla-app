@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 
 // Leaflet-kartan kräver browser-API:er — skippa statisk prerender
 export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // Cache for 1 hour
 
 export default async function PlatserPage() {
   const supabase = createClient()
@@ -34,7 +35,6 @@ export default async function PlatserPage() {
     .order('name', { ascending: true })
 
   if (error) {
-    console.error('[platser]', error.message)
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f2f8fa)' }}>
         <div style={{ fontSize: 52 }}>⚓</div>

@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
 import Link from 'next/link'
+import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
 import FeedTabs from '@/components/FeedTabs'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -28,7 +29,6 @@ export default async function FeedPage() {
     .limit(50)
 
   if (error) {
-    console.error('[feed]', error.message)
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
@@ -72,9 +72,6 @@ export default async function FeedPage() {
   }
 
   // Bail early on DB error — trips is guaranteed defined below this point
-  if (!trips) {
-    console.error('[feed] trips query returned null unexpectedly')
-  }
 
   // Kombinera alla unika trip-IDs + user-IDs från båda feeds
   const allRawTrips = [...(trips ?? []), ...rawFollowingTrips]
@@ -233,10 +230,10 @@ export default async function FeedPage() {
                     width: 110, background: 'var(--white)', borderRadius: 14,
                     overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,45,60,0.08)',
                     border: '1px solid rgba(10,123,140,0.08)',
+                    position: 'relative',
                   }}>
                     {t.image
-                      // eslint-disable-next-line @next/next/no-img-element
-                      ? <img src={t.image} alt="" style={{ width: '100%', height: 72, objectFit: 'cover', display: 'block' }} />
+                      ? <Image src={t.image} alt="" fill style={{ objectFit: 'cover', display: 'block' }} sizes="110px" />
                       : <div style={{ width: '100%', height: 72, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
                     }
                     <div style={{ padding: '7px 8px' }}>
@@ -269,10 +266,10 @@ export default async function FeedPage() {
                     display: 'flex', alignItems: 'center', gap: 12,
                     boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
                     border: '1.5px solid rgba(201,110,42,0.15)',
+                    position: 'relative',
                   }}>
                     {t.image
-                      // eslint-disable-next-line @next/next/no-img-element
-                      ? <img src={t.image} alt="" style={{ width: 52, height: 52, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }} />
+                      ? <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, position: 'relative', overflow: 'hidden' }}><Image src={t.image} alt="" fill style={{ objectFit: 'cover' }} sizes="52px" /></div>
                       : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
                     }
                     <div style={{ flex: 1, minWidth: 0 }}>

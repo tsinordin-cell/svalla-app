@@ -181,19 +181,17 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('[guide api]', res.status, err)
+      console.error('[guide api]', res.status, err.substring(0, 100))
       return NextResponse.json({ error: 'Anthropic API fel' }, { status: 500 })
     }
 
     const data = await res.json()
     if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
-      console.error('[guide api] Empty content in response')
       return NextResponse.json({ reply: '' })
     }
     const text = data.content[0].text ?? ''
     return NextResponse.json({ reply: text })
   } catch (error) {
-    console.error('[guide api] Nätverksfel:', error)
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
   }
 }

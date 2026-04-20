@@ -9,7 +9,10 @@ export default function GlobalError({
   reset: () => void
 }) {
   useEffect(() => {
-    console.error('[Svalla global error]', error)
+    // Log error only in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[Svalla global error]', error)
+    }
   }, [error])
 
   return (

@@ -14,10 +14,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient }              from '@supabase/supabase-js'
 import { buildRoutePoints }          from '@/lib/routeSmooth'
+import { checkRateLimit }            from '@/lib/rateLimit'
 
 const PAGE = 50 // process N trips per call
 
 export async function POST(req: NextRequest) {
+  // Rate limit: 1 request per second for admin endpoints
+  if (!checkRateLimit('backfill-routes', 1, 1000)) {
+    return NextResponse.json({ error: 'Rate limited' }, { status: 429 })
+  }
   const auth = req.headers.get('authorization') ?? ''
   const secret = process.env.BACKFILL_SECRET ?? ''
   if (!secret || auth !== `Bearer ${secret}`) {

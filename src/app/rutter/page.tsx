@@ -88,7 +88,6 @@ export default async function RutterPage({
     supabase.from('tours').select('*', { count: 'exact', head: true }),
   ])
   if (error) {
-    console.error('[rutter]', error.message)
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>

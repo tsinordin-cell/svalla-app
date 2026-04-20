@@ -38,6 +38,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'body krävs' }, { status: 400 })
   }
 
+  // Authorize: only can send to yourself or be an admin
+  // For now, enforce that only the target user can trigger sends to themselves
+  if (user.id !== targetUserId) {
+    return NextResponse.json({ error: 'Du kan bara skicka notifieringar till dig själv' }, { status: 403 })
+  }
+
   // Hämta alla subscriptions för target-användaren
   const { data: subs } = await supabase
     .from('push_subscriptions')

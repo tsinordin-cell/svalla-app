@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('[trip-summary api]', err)
+      console.error('[trip-summary api]', err.substring(0, 100))
       return NextResponse.json({ error: 'API-fel' }, { status: 500 })
     }
 
@@ -121,7 +121,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ summary })
   } catch (error) {
-    console.error('[trip-summary error]', error)
     return NextResponse.json({ error: 'Server-fel' }, { status: 500 })
   }
 }

@@ -159,7 +159,6 @@ function ManuellForm() {
       setPosted(true)
       setTimeout(() => router.push(`/tur/${trip.id}`), 800)
     } catch (e) {
-      console.error('[manuell]', e)
       setErr('Något gick oväntat fel. Kontrollera anslutningen och försök igen.')
       setLoading(false)
     }
