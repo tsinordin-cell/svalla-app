@@ -28,7 +28,8 @@ export async function middleware(request: NextRequest) {
           getAll() {
             return cookieStore.getAll()
           },
-          setAll(cookiesToSet) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setAll(cookiesToSet: Array<{ name: string; value: string; options?: any }>) {
             const response = NextResponse.next()
             for (const { name, value, options } of cookiesToSet) {
               response.cookies.set(name, value, options)
