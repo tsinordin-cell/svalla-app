@@ -118,10 +118,17 @@ const WMO: Record<number, { emoji: string }> = {
 function wmoEmoji(code: number) { return (WMO[code] ?? WMO[Math.floor(code/10)*10] ?? {emoji:'🌡'}).emoji }
 function windDirStr(deg: number) { return ['N','NO','Ö','SO','S','SV','V','NV'][Math.round(deg/45)%8] }
 function getAreaName(lat: number, lng: number): string {
-  if (lat > 59.9) return 'Norra skärgården'
-  if (lat > 59.55) { if (lng < 18.5) return 'Vaxholm'; if (lng < 19.0) return 'Mellersta skärgården'; return 'Ytterskärgård' }
-  if (lat > 59.2)  { if (lng < 18.3) return 'Stockholm'; if (lng < 18.8) return 'Värmdö'; return 'Sandhamn' }
-  if (lat > 58.9)  return 'Södra skärgården'
+  // Norra skärgården
+  if (lat > 60.0)  return 'Arholma'
+  if (lat > 59.85) return 'Norra skärgården'
+  if (lat > 59.70) { if (lng < 18.6) return 'Norrtälje'; return 'Norrskärgård' }
+  if (lat > 59.58) { if (lng < 18.55) return 'Vaxholm'; if (lng < 18.85) return 'Ljusterö'; return 'Mellersta skärgården' }
+  // Mellersta
+  if (lat > 59.42) { if (lng < 18.55) return 'Värmdö'; if (lng < 18.85) return 'Möja'; return 'Sandhamnsleden' }
+  if (lat > 59.30) { if (lng < 18.45) return 'Stockholm'; if (lng < 18.75) return 'Ingarö'; return 'Sandhamn' }
+  // Södra
+  if (lat > 59.10) { if (lng < 18.3) return 'Södertälje'; if (lng < 18.65) return 'Ornö'; return 'Södra skärgården' }
+  if (lat > 58.90) { if (lng < 18.4) return 'Nynäshamn'; return 'Utö' }
   return 'Skärgården'
 }
 function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
@@ -160,21 +167,27 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
   )
 }
 
-// ── Vänta på att CSS-länk laddas klart innan kartan skapas ──────────────────
-// Utan detta renderar Leaflet kartan med fel tile-storlekar (CSS-race condition)
-function waitForCSS(href: string, id: string): Promise<void> {
+// ── Injicera CSS-länk och vänta tills den är redo (med timeout-fallback) ──────
+// Tidigare: load-eventet hade en race condition — om CSS laddades klart
+// innan addEventListener körde, fångades det aldrig och Promise hängde för alltid.
+// Fix: alltid resolve() senast efter maxWait ms.
+function waitForCSS(href: string, id: string, maxWait = 2000): Promise<void> {
   return new Promise(resolve => {
     const existing = document.getElementById(id) as HTMLLinkElement | null
+    // CSS redan laddad och parsad → resolve direkt
+    if (existing?.sheet) { resolve(); return }
+
+    const timer = setTimeout(resolve, maxWait) // garanterad resolve
+
     if (existing) {
-      if (existing.sheet) { resolve(); return }
-      existing.addEventListener('load', () => resolve(), { once: true })
+      existing.addEventListener('load', () => { clearTimeout(timer); resolve() }, { once: true })
       return
     }
     const link = document.createElement('link')
-    link.id = id
-    link.rel = 'stylesheet'
+    link.id   = id
+    link.rel  = 'stylesheet'
     link.href = href
-    link.addEventListener('load', () => resolve(), { once: true })
+    link.addEventListener('load', () => { clearTimeout(timer); resolve() }, { once: true })
     document.head.appendChild(link)
   })
 }
@@ -289,10 +302,12 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       mapRef.current = map
 
       // ── invalidateSize: säkerställ rätt dimensioner efter render ──
+      // Kör direkt + fördröjt — täcker CSS-laddning, animations och layout-shifts
+      map.invalidateSize()
       setTimeout(() => map.invalidateSize(), 50)
       setTimeout(() => map.invalidateSize(), 200)
       setTimeout(() => map.invalidateSize(), 600)
-      setTimeout(() => map.invalidateSize(), 1200)
+      setTimeout(() => map.invalidateSize(), 1500)
 
       // ── ResizeObserver: hantera container-resize dynamiskt ──────
       if (containerRef.current && typeof ResizeObserver !== 'undefined') {
