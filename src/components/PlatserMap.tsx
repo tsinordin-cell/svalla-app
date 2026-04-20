@@ -165,6 +165,7 @@ function getAreaName(lat: number, lng: number): string {
 function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
   const [weather, setWeather]   = useState<Weather | null>(null)
   const [loading, setLoading]   = useState(false)
+  const [fetchFailed, setFetchFailed] = useState(false)
   const timerRef    = useRef<ReturnType<typeof setTimeout> | null>(null)
   const retryRef    = useRef<ReturnType<typeof setTimeout> | null>(null)
   const abortRef    = useRef<AbortController | null>(null)
@@ -210,10 +211,13 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
           // Ignorera abort-fel (ny request startad)
           if (err instanceof Error && err.name === 'AbortError') return
           if (!isRetry) {
-            // Retry en gång efter 4 sekunder
+            // Retry en gång efter 4 sekunder med ny controller
+            const retryController = new AbortController()
+            abortRef.current = retryController
             retryRef.current = setTimeout(() => doFetch(true), 4000)
           } else {
-            setLoading(false) // Ge upp efter retry
+            setLoading(false)
+            setFetchFailed(true) // Ge upp efter retry — visa felstate
           }
         }
       }
@@ -240,7 +244,9 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
         <div style={{ display:'flex', alignItems:'center', gap:5 }}>
           {weather
             ? <><span style={{ fontSize:14, fontWeight:900, color:'#1e5c82', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'#5a8090', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
-            : <span style={{ fontSize:11, color:'#7a9dab' }}>Hämtar väder…</span>
+            : fetchFailed
+              ? <span style={{ fontSize:11, color:'#aabbc4' }}>–°</span>
+              : <span style={{ fontSize:11, color:'#7a9dab' }}>Hämtar väder…</span>
           }
         </div>
         <span style={{ fontSize:9, color:'#7a9dab', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px' }}>📍 {getAreaName(lat, lng)}</span>

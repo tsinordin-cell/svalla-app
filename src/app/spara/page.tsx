@@ -987,8 +987,8 @@ export default function SparaPage() {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 1000, overflow: 'hidden', background: '#000' }}>
 
-        {/* Full-screen map — covers entire screen */}
-        <div style={{ position: 'absolute', inset: 0 }}>
+        {/* Full-screen map — zIndex: 0 isolerar Leaflets interna z-index (400-700) från overlay-UI */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <LiveTrackMap
             points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
             currentPos={currentPos}
