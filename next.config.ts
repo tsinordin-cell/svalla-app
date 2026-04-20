@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next'
-import { withSentryConfig } from '@sentry/nextjs'
 
 const securityHeaders = [
   {
@@ -52,21 +51,22 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withSentryConfig(nextConfig, {
-  // Din Sentry org och projekt — sätt dessa när du skapat kontot
-  org: process.env.SENTRY_ORG ?? 'svalla',
-  project: process.env.SENTRY_PROJECT ?? 'svalla-nextjs',
+// Sentry aktiveras när SENTRY_AUTH_TOKEN är satt i miljön (Netlify env vars).
+// Utan token: bygg normalt utan source map-upload.
+async function buildConfig(): Promise<NextConfig> {
+  if (process.env.SENTRY_AUTH_TOKEN) {
+    const { withSentryConfig } = await import('@sentry/nextjs')
+    return withSentryConfig(nextConfig, {
+      org:     process.env.SENTRY_ORG     ?? 'svalla',
+      project: process.env.SENTRY_PROJECT ?? 'svalla-nextjs',
+      silent: true,
+      widenClientFileUpload: true,
+      hideSourceMaps: true,
+      automaticVercelMonitors: false,
+      disableLogger: true,
+    })
+  }
+  return nextConfig
+}
 
-  // Tyst build-output om inte CI
-  silent: true,
-
-  // Ladda upp source maps för bättre stack traces
-  widenClientFileUpload: true,
-  hideSourceMaps: true,
-
-  // Stäng av Vercel-specifika features
-  automaticVercelMonitors: false,
-
-  // Stäng av Sentry logger i production bundle
-  disableLogger: true,
-})
+export default buildConfig()
