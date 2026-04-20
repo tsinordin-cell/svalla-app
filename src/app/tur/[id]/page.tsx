@@ -35,20 +35,24 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     : distStr ? `Tur – ${distStr}` : 'Tur – Svalla'
   const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'}${distStr ? ` på ${distStr}` : ''}${trip.location_name ? ` till ${trip.location_name}` : ''}.`
 
+  // Dynamisk OG-bild — alltid genererad, oavsett om turen har foto eller inte
+  const ogImageUrl = `https://svalla.se/api/og/tur/${id}`
+
   return {
     title,
     description: desc,
     openGraph: {
       title: `${title} – Svalla`,
       description: desc,
-      images: trip.image ? [{ url: trip.image, width: 1200, height: 630 }] : [],
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
       url: `https://svalla.se/tur/${id}`,
+      type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
       title: `${title} – Svalla`,
       description: desc,
-      images: trip.image ? [trip.image] : [],
+      images: [ogImageUrl],
     },
   }
 }
@@ -413,11 +417,19 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           )
         })()}
 
-        {/* Social */}
+        {/* Social + dela */}
         <div id="kommentarer" style={{ marginBottom: 18 }}>
-          <div style={{ display: 'flex', gap: 8, paddingBottom: 14, borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
+          <div style={{ display: 'flex', gap: 8, paddingBottom: 14, borderBottom: '1px solid rgba(10,123,140,0.08)', alignItems: 'center' }}>
             <LikeButton tripId={trip.id} />
             <Comments tripId={trip.id} />
+            {/* Spacer */}
+            <div style={{ flex: 1 }} />
+            {/* Dela-knapp med text — mer synlig */}
+            <ShareButton
+              url={`https://svalla.se/tur/${id}`}
+              title={trip.location_name ?? 'Min tur'}
+              variant="pill"
+            />
           </div>
         </div>
 
