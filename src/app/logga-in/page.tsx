@@ -64,7 +64,14 @@ export default function LoggaInPage() {
           username: username.trim() || email.split('@')[0],
           email,
         }, { onConflict: 'id', ignoreDuplicates: true })
-        if (data.session) { router.push('/feed'); return }
+        if (data.session) { 
+          // Reset onboarding for new user
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('svalla_onboarded')
+          }
+          router.push('/feed'); 
+          return 
+        }
       }
       setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
       setIsNew(false); setLoading(false)

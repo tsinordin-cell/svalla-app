@@ -1,125 +1,374 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase'
+
+type Screen = 0 | 1 | 2
 
 export default function OnboardingModal() {
-  const [show, setShow] = useState(false)
+  const [screen, setScreen] = useState<Screen>(0)
+  const [showModal, setShowModal] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const dismissed = localStorage.getItem('svalla-onboarding-v1')
-    if (dismissed) return
-
-    const supabase = createClient()
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
-      if (!user) return // ej inloggad — visa inte
-      const { count } = await supabase
-        .from('trips')
-        .select('id', { count: 'exact', head: true })
-        .eq('user_id', user.id)
-      if ((count ?? 0) === 0) setShow(true)
-    })
+    setMounted(true)
+    // Check if onboarded before
+    const hasSeenOnboard = typeof window !== 'undefined' 
+      ? localStorage.getItem('svalla_onboarded')
+      : null
+    
+    if (!hasSeenOnboard) {
+      setShowModal(true)
+    }
   }, [])
 
-  function dismiss() {
-    localStorage.setItem('svalla-onboarding-v1', '1')
-    setShow(false)
+  if (!mounted || !showModal) return null
+
+  const handleComplete = () => {
+    localStorage.setItem('svalla_onboarded', '1')
+    setShowModal(false)
   }
 
-  if (!show) return null
+  const handleNext = () => {
+    if (screen < 2) {
+      setScreen((screen + 1) as Screen)
+    } else {
+      handleComplete()
+    }
+  }
 
-  const steps = [
-    { emoji: '⛵', title: 'Logga din tur', desc: 'Spara GPS-spår, bilder och anteckningar från dina båtturer.' },
-    { emoji: '🗺️', title: 'Utforska rutter', desc: 'Hitta inspirerande rutter och restauranger längs kusten.' },
-    { emoji: '🌊', title: 'Följ andra seglare', desc: 'Se vad andra seglar och utforskar i skärgården – och inspireras.' },
-  ]
+  const handleSkip = () => {
+    handleComplete()
+  }
 
   return (
-    <>
-      {/* Backdrop */}
-      <div onClick={dismiss} style={{
-        position: 'fixed', inset: 0,
-        background: 'rgba(0,20,35,0.55)',
-        zIndex: 1000, backdropFilter: 'blur(3px)',
-      }} />
-
-      {/* Modal */}
+    <div style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'linear-gradient(135deg, #0d2a3e 0%, #1e5c82 50%, #2d7d8a 100%)',
+      zIndex: 1100,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 'env(safe-area-inset-top, 0px) 24px env(safe-area-inset-bottom, 0px)',
+      overflow: 'hidden',
+    }}>
+      {/* Animated screens */}
       <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1001,
-        background: 'var(--white, #fff)',
-        borderRadius: '28px 28px 0 0',
-        padding: '8px 20px 48px',
-        maxWidth: 520, margin: '0 auto',
-        boxShadow: '0 -8px 48px rgba(0,45,60,0.22)',
-        animation: 'slideUp 0.35s ease',
+        position: 'relative',
+        width: '100%',
+        maxWidth: 320,
+        height: 400,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}>
-        {/* Handle */}
-        <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.15)', borderRadius: 2, margin: '12px auto 24px' }} />
-
-        {/* Hero */}
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <div style={{ fontSize: 56, marginBottom: 12 }}>⚓</div>
-          <h2 style={{ fontSize: 22, fontWeight: 900, color: '#162d3a', margin: '0 0 8px' }}>
+        {/* Screen 0: Welcome */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          textAlign: 'center',
+          opacity: screen === 0 ? 1 : 0,
+          transform: screen === 0 ? 'translateX(0)' : screen > 0 ? 'translateX(-100%)' : 'translateX(100%)',
+          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          pointerEvents: screen === 0 ? 'auto' : 'none',
+        }}>
+          <div style={{ fontSize: 80, marginBottom: 20 }}>⚓</div>
+          <h1 style={{
+            fontSize: 28,
+            fontWeight: 900,
+            color: '#fff',
+            margin: '0 0 16px',
+            letterSpacing: '-0.5px',
+          }}>
             Välkommen till Svalla
+          </h1>
+          <p style={{
+            fontSize: 14,
+            color: 'rgba(255,255,255,0.8)',
+            marginBottom: 28,
+            lineHeight: 1.7,
+          }}>
+            Logga dina turer, utforska 69 öar och följ andra seglare.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ fontSize: 22, flexShrink: 0 }}>📍</span>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Hitta öar</div>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Utforska restauranger & bryggor</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ fontSize: 22, flexShrink: 0 }}>🛥️</span>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Logga turer</div>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Spåra GPS & dela med vänner</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ fontSize: 22, flexShrink: 0 }}>👥</span>
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Följ seglare</div>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Inspireras av andras äventyr</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Screen 1: Log trips */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          textAlign: 'center',
+          opacity: screen === 1 ? 1 : 0,
+          transform: screen === 1 ? 'translateX(0)' : screen < 1 ? 'translateX(100%)' : 'translateX(-100%)',
+          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          pointerEvents: screen === 1 ? 'auto' : 'none',
+        }}>
+          <div style={{ fontSize: 80, marginBottom: 20 }}>🛥️</div>
+          <h2 style={{
+            fontSize: 28,
+            fontWeight: 900,
+            color: '#fff',
+            margin: '0 0 12px',
+            letterSpacing: '-0.5px',
+          }}>
+            Logga din första tur
           </h2>
-          <p style={{ fontSize: 14, color: '#5a8090', lineHeight: 1.5, margin: 0 }}>
-            Din digitala loggbok för skärgårdslivet
+          <p style={{
+            fontSize: 14,
+            color: 'rgba(255,255,255,0.8)',
+            marginBottom: 32,
+            lineHeight: 1.7,
+          }}>
+            Spåra GPS, fota din tur och se statistik från ditt äventyr.
+          </p>
+          
+          {/* Simple route illustration */}
+          <div style={{
+            background: 'rgba(255,255,255,0.1)',
+            borderRadius: 16,
+            padding: 24,
+            marginBottom: 32,
+            backdropFilter: 'blur(8px)',
+          }}>
+            <svg viewBox="0 0 200 120" style={{ width: '100%', height: 'auto' }}>
+              {/* Water background */}
+              <rect width="200" height="120" fill="rgba(30,92,130,0.2)" />
+              
+              {/* Route path */}
+              <path
+                d="M 30 80 Q 80 40, 120 60 T 180 40"
+                fill="none"
+                stroke="rgba(34,197,94,0.6)"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              
+              {/* Start marker */}
+              <circle cx="30" cy="80" r="6" fill="#22c55e" />
+              <text x="30" y="105" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10">
+                Start
+              </text>
+              
+              {/* End marker */}
+              <circle cx="180" cy="40" r="6" fill="#c96e2a" />
+              <text x="180" y="65" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10">
+                Slut
+              </text>
+              
+              {/* Distance label */}
+              <text x="100" y="30" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="11">
+                12.5 NM
+              </text>
+            </svg>
+          </div>
+
+          <p style={{
+            fontSize: 12,
+            color: 'rgba(255,255,255,0.6)',
+          }}>
+            Du kan börja när som helst och pausera mellan stopp
           </p>
         </div>
 
-        {/* Steps */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
-          {steps.map((s, i) => (
-            <div key={i} style={{
-              display: 'flex', alignItems: 'center', gap: 14,
-              padding: '12px 14px', borderRadius: 16,
-              background: 'rgba(10,123,140,0.04)',
-              border: '1px solid rgba(10,123,140,0.08)',
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.12)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 22,
-              }}>{s.emoji}</div>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>{s.title}</div>
-                <div style={{ fontSize: 12, color: '#7a9dab', marginTop: 2, lineHeight: 1.4 }}>{s.desc}</div>
+        {/* Screen 2: Explore */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          textAlign: 'center',
+          opacity: screen === 2 ? 1 : 0,
+          transform: screen === 2 ? 'translateX(0)' : screen < 2 ? 'translateX(100%)' : 'translateX(-100%)',
+          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          pointerEvents: screen === 2 ? 'auto' : 'none',
+        }}>
+          <div style={{ fontSize: 80, marginBottom: 20 }}>🏝️</div>
+          <h2 style={{
+            fontSize: 28,
+            fontWeight: 900,
+            color: '#fff',
+            margin: '0 0 12px',
+            letterSpacing: '-0.5px',
+          }}>
+            69 öar att utforska
+          </h2>
+          <p style={{
+            fontSize: 14,
+            color: 'rgba(255,255,255,0.8)',
+            marginBottom: 32,
+            lineHeight: 1.7,
+          }}>
+            Från Sandhamn till Vaxholm — komplett med restauranger, tips och resevägar.
+          </p>
+
+          {/* Island cards preview */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+            {[
+              { emoji: '⛵', name: 'Sandhamn', desc: 'Seglarhuvudstad' },
+              { emoji: '🍽', name: 'Vaxholm', desc: 'Mat & kultur' },
+              { emoji: '🏖', name: 'Manskär', desc: 'Strandparadis' },
+            ].map((island, i) => (
+              <div key={i} style={{
+                background: 'rgba(255,255,255,0.1)',
+                borderRadius: 12,
+                padding: '12px 16px',
+                backdropFilter: 'blur(8px)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+              }}>
+                <span style={{ fontSize: 24 }}>{island.emoji}</span>
+                <div style={{ textAlign: 'left', flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{island.name}</div>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>{island.desc}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-        {/* CTA */}
-        <Link href="/logga" onClick={dismiss} style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          width: '100%', padding: '15px 0', borderRadius: 18,
-          background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-          color: '#fff', fontWeight: 800, fontSize: 15,
-          textDecoration: 'none',
-          boxShadow: '0 4px 20px rgba(201,110,42,0.4)',
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          Logga din första tur
-        </Link>
-
-        <button onClick={dismiss} style={{
-          display: 'block', width: '100%', marginTop: 12,
-          background: 'none', border: 'none', cursor: 'pointer',
-          fontSize: 13, color: '#7a9dab', fontWeight: 600, padding: '8px 0',
-        }}>
-          Utforska först →
-        </button>
       </div>
 
-      <style>{`
-        @keyframes slideUp {
-          from { transform: translateY(100%); opacity: 0; }
-          to   { transform: translateY(0);    opacity: 1; }
-        }
-      `}</style>
-    </>
+      {/* Progress indicator */}
+      <div style={{
+        display: 'flex',
+        gap: 6,
+        marginTop: 36,
+        marginBottom: 24,
+      }}>
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            style={{
+              width: screen === i ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: screen === i ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)',
+              transition: 'all 0.3s',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Action buttons */}
+      <div style={{
+        display: 'flex',
+        gap: 10,
+        width: '100%',
+        maxWidth: 320,
+      }}>
+        {screen === 2 ? (
+          <>
+            <Link href="/platser"
+              onClick={handleComplete}
+              style={{
+                flex: 1,
+                padding: '14px 24px',
+                borderRadius: 14,
+                background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                color: '#fff',
+                fontWeight: 800,
+                fontSize: 14,
+                textDecoration: 'none',
+                textAlign: 'center',
+                boxShadow: '0 4px 16px rgba(34,197,94,0.4)',
+              }}>
+              Börja utforska →
+            </Link>
+            <button
+              onClick={handleSkip}
+              style={{
+                padding: '14px 24px',
+                borderRadius: 14,
+                background: 'rgba(255,255,255,0.15)',
+                color: '#fff',
+                fontWeight: 700,
+                fontSize: 14,
+                border: '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.25)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
+              }}
+            >
+              Hoppa över
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={handleNext}
+              style={{
+                flex: 1,
+                padding: '14px 24px',
+                borderRadius: 14,
+                background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                color: '#fff',
+                fontWeight: 800,
+                fontSize: 14,
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 16px rgba(30,92,130,0.4)',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(30,92,130,0.5)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,92,130,0.4)'
+              }}
+            >
+              Kom igång →
+            </button>
+            <button
+              onClick={handleSkip}
+              style={{
+                padding: '14px 24px',
+                borderRadius: 14,
+                background: 'rgba(255,255,255,0.1)',
+                color: 'rgba(255,255,255,0.9)',
+                fontWeight: 600,
+                fontSize: 14,
+                border: '1px solid rgba(255,255,255,0.15)',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
+              }}
+            >
+              Hoppa över
+            </button>
+          </>
+        )}
+      </div>
+    </div>
   )
 }
