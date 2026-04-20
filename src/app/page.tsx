@@ -433,44 +433,11 @@ const LANDING_HTML = `
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
-    <a href="/logga-in" class="btn btn-accent">Kom igång →</a>
+    <a href="/kom-igang" class="btn btn-accent">Kom igång →</a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-shimmer"></div>
-  <svg class="hero-islands" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="200" cy="340" rx="180" ry="55" fill="#0f2e3b" opacity="0.6"/>
-    <ellipse cx="750" cy="355" rx="220" ry="50" fill="#0f2e3b" opacity="0.7"/>
-    <ellipse cx="1250" cy="345" rx="160" ry="48" fill="#0f2e3b" opacity="0.6"/>
-    <ellipse cx="450" cy="375" rx="140" ry="42" fill="#122838" opacity="0.85"/>
-    <ellipse cx="980" cy="370" rx="185" ry="45" fill="#122838" opacity="0.85"/>
-    <path d="M0,390 Q100,350 200,365 Q320,380 380,400 L0,400 Z" fill="#0d2130"/>
-    <path d="M500,395 Q620,360 720,375 Q820,390 900,395 Q980,400 1050,392 Q1150,380 1250,390 Q1330,395 1400,400 L1400,400 L500,400 Z" fill="#0d2130"/>
-    <g fill="#1a4a3e" opacity="0.7">
-      <polygon points="190,340 200,310 210,340"/><polygon points="215,340 225,315 235,340"/>
-      <polygon points="730,355 742,322 754,355"/><polygon points="758,352 768,325 778,352"/>
-      <polygon points="1220,345 1232,318 1244,345"/>
-    </g>
-    <g transform="translate(580,355)" opacity="0.5">
-      <path d="M-22,8 L22,8 L16,-2 L-16,-2 Z" fill="#c8d0d8"/>
-      <line x1="0" y1="-2" x2="0" y2="-20" stroke="#a0aab0" stroke-width="1.5"/>
-      <path d="M0,-20 L-10,-8 L0,-8 Z" fill="#d8e0e8" opacity="0.8"/>
-    </g>
-    <g transform="translate(1280,330)" opacity="0.6">
-      <rect x="-5" y="-25" width="10" height="28" fill="#c8c8c0"/>
-      <polygon points="-7,-25 7,-25 4,-32 -4,-32" fill="#e8e8e0"/>
-      <circle cx="0" cy="-33" r="3" fill="#f0c060"/>
-    </g>
-    <path d="M100,385 Q200,378 300,383 Q400,388 500,382" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
-    <path d="M600,380 Q750,374 900,379 Q1050,384 1200,378" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
-  </svg>
-  <div class="wave-container">
-    <div class="wave wave-1"></div>
-    <div class="wave wave-2"></div>
-    <div class="wave wave-3"></div>
-  </div>
+<section class="hero" style="background:transparent">
   <div class="hero-content">
     <div class="hero-eyebrow">
       <span class="hero-eyebrow-dot"></span>
@@ -953,7 +920,7 @@ const LANDING_HTML = `
       <div class="split-feature"><div class="split-feature-icon">🧭</div><div class="split-feature-text"><h5>Hitta krogar & platser</h5><p>Bastun, bryggor och krogar längs din rutt</p></div></div>
       <div class="split-feature"><div class="split-feature-icon">🌊</div><div class="split-feature-text"><h5>Community-feed</h5><p>Se andras turer. Bli inspirerad. Ge igen.</p></div></div>
     </div>
-    <a href="/logga-in" class="btn btn-teal btn-lg">Kom igång →</a>
+    <a href="/kom-igang" class="btn btn-teal btn-lg">Kom igång →</a>
   </div>
   <div class="split-pane owner reveal reveal-delay-2">
     <div class="section-label">För krogägaren</div>
@@ -964,7 +931,7 @@ const LANDING_HTML = `
       <div class="split-feature"><div class="split-feature-icon">📊</div><div class="split-feature-text"><h5>Statistik & insikter</h5><p>Se hur gäster hittar er och varifrån de kommer</p></div></div>
       <div class="split-feature"><div class="split-feature-icon">🌟</div><div class="split-feature-text"><h5>Early Bird — 6 månader gratis</h5><p>De första 20 krogarna får Premium gratis</p></div></div>
     </div>
-    <a href="/logga-in" class="btn btn-accent btn-lg">Registrera er krog →</a>
+    <a href="/registrera-krog" class="btn btn-accent btn-lg">Registrera er krog →</a>
   </div>
 </div>
 
@@ -1015,7 +982,7 @@ const LANDING_HTML = `
         <span class="app-badge-icon">⛵</span>
         <div class="app-badge-text"><span class="small">Prova direkt i webbläsaren</span><span class="big">Öppna Svalla</span></div>
       </a>
-      <a href="/logga-in" class="app-badge">
+      <a href="/kom-igang" class="app-badge">
         <span class="app-badge-icon">👤</span>
         <div class="app-badge-text"><span class="small">Skapa konto gratis</span><span class="big">Kom igång</span></div>
       </a>
@@ -1133,15 +1100,8 @@ export default function LandingPage() {
         <HeroAnimation />
       </div>
       <style>{`
-        /* Let the animation show through by making the static hero bg transparent */
-        .hero-bg { background: transparent !important; }
-        .hero-bg::after { display: none !important; }
-        .hero-shimmer { display: none !important; }
-        /* Keep hero section above the animation layer */
-        .hero { z-index: 1; }
-        /* Remove existing static SVG islands + waves (animation has its own) */
-        .hero-islands { display: none !important; }
-        .wave-container { display: none !important; }
+        /* Hero section sits above canvas layer */
+        .hero { position: relative; z-index: 1; background: transparent !important; }
       `}</style>
       <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
     </div>

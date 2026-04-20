@@ -98,6 +98,7 @@ export default function SparaPage() {
   const [shownInsightKeys, setShownInsightKeys] = useState<Set<string>>(new Set())
   const [flashInsight,   setFlashInsight]   = useState<LiveInsight | null>(null)
   const [statsExpanded,  setStatsExpanded]  = useState(false)
+  const [centerTrigger,  setCenterTrigger]  = useState(0)
 
   // ── Recovery state ──
   const [recoverySnap, setRecoverySnap] = useState<TripSnapshot | null>(null)
@@ -999,7 +1000,7 @@ export default function SparaPage() {
               lat: s.lat, lng: s.lng, type: s.type,
               durationSeconds: s.durationSeconds,
             }))}
-            height={typeof window !== 'undefined' ? window.innerHeight : 812}
+            centerTrigger={centerTrigger}
           />
         </div>
 
@@ -1031,6 +1032,31 @@ export default function SparaPage() {
           )}
         </div>
 
+        {/* ── GPS center button — bottom right, above bottom sheet ── */}
+        <button
+          onClick={() => setCenterTrigger(n => n + 1)}
+          aria-label="Centrera på min position"
+          style={{
+            position: 'absolute',
+            bottom: 'calc(env(safe-area-inset-bottom, 0px) + 220px)',
+            right: 16,
+            zIndex: 21,
+            width: 44, height: 44, borderRadius: 22,
+            background: 'rgba(255,255,255,0.95)',
+            backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer',
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
+            <circle cx="12" cy="12" r="3" fill="#1e5c82" stroke="none"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+            <circle cx="12" cy="12" r="7"/>
+          </svg>
+        </button>
+
         {/* ── Bottom sheet — floating over map ── */}
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 20,
@@ -1058,9 +1084,12 @@ export default function SparaPage() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}
             >
-              {/* Expand arrows — exactly as in Bild 4 */}
-              <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" style={{ width: 16, height: 16 }}>
-                <path d="M14 3h5v5M3 8V3h5M8 14H3v5M19 14v5h-5"/>
+              {/* Expand — fyra hörn-brackets */}
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+                <path d="M3 8V3h5"/>
+                <path d="M17 8V3h-5"/>
+                <path d="M3 12v5h5"/>
+                <path d="M17 12v5h-5"/>
               </svg>
             </button>
           </div>

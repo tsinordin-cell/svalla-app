@@ -1,559 +1,496 @@
 'use client'
+import { useEffect, useRef } from 'react'
 
-// Speed constants — tweak here to adjust all animation timing
-const S = {
-  islandFar:  60,   // far island parallax loop (s)
-  islandMid:  40,   // mid island parallax loop (s)
-  wave1:      8,    // front wave (s)
-  wave2:      11,   // mid wave (s)
-  wave3:      15,   // back wave (s)
-  boatSail:   18,   // boat horizontal traverse (s)
-  boatBob:    3.2,  // boat vertical bob (s)
-  fish1:      14,   // fish school 1 (s)
-  fish2:      19,   // fish school 2 (s)
-  fishBig:    28,   // lone big fish (s)
-  seaweed:    2.8,  // seaweed sway (s)
-  seal:       12,   // seal bob cycle (s)
-  bird1:      22,   // bird 1 traverse (s)
-  bird2:      17,   // bird 2 traverse (s)
-  sunRay:     5,    // sun ray pulse (s)
-}
+/* ─────────────────────────────────────────────────────────────────────────────
+   HeroAnimation — canvas + requestAnimationFrame
+   Realistisk skärgårdsmiljö: statiska öar, levande hav, båtar, fåglar, fisk
+───────────────────────────────────────────────────────────────────────────── */
+
+type BoatType = 'sail' | 'motor'
+interface Boat   { x: number; spd: number; type: BoatType; ph: number }
+interface Bird   { x: number; baseY: number; spd: number; wingT: number; amp: number; ph: number }
+interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number }
+interface Weed   { x: number; h: number; ph: number; hue: number; w: number }
+interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
 
 export default function HeroAnimation() {
+  const ref = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const cv = ref.current
+    if (!cv) return
+    const cx = cv.getContext('2d', { alpha: false })
+    if (!cx) return
+
+    let W = 0, H = 0, dpr = 1
+    let raf = 0, last = 0, t = 0, ms = 0
+    let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = []
+    let weeds: Weed[] = [], bubbles: Bubble[] = []
+    let dolX = 0, dolPh = 0, dolOn = false, nextDol = 0
+
+    /* ── Layout ─────────────────────────────────────────────────────────── */
+    const WL = () => H * 0.52          // waterline baseline
+
+    /* ── Multi-sine wave ────────────────────────────────────────────────── */
+    const wave = (x: number): number => {
+      const b = WL()
+      const swell  = Math.sin(x * 0.0022 + t * 0.18) * H * 0.014   // large, slow
+      const mid    = Math.sin(x * 0.0058 - t * 0.32 + 1.2) * H * 0.006
+      const ripple = Math.sin(x * 0.0145 + t * 0.62 + 2.5) * H * 0.003
+      return b + swell + mid + ripple
+    }
+
+    /* ── Scene init ─────────────────────────────────────────────────────── */
+    const init = () => {
+      const rnd = Math.random
+      boats = [
+        { x: W * 1.1,  spd: 13, type: 'sail',  ph: 0 },
+        { x: W * 1.55, spd: 9,  type: 'motor', ph: Math.PI },
+        { x: W * 1.9,  spd: 11, type: 'sail',  ph: 1.8 },
+      ]
+      birds = Array.from({ length: 5 }, (_, i) => ({
+        x:     W * (0.05 + i * 0.20) + rnd() * 80,
+        baseY: H * (0.06 + i * 0.022 + rnd() * 0.015),
+        spd:   20 + rnd() * 14,
+        wingT: rnd() * Math.PI * 2,
+        amp:   H * (0.005 + rnd() * 0.004),
+        ph:    rnd() * Math.PI * 2,
+      }))
+      fish = Array.from({ length: 11 }, () => {
+        const dir = rnd() > 0.5 ? 1 : -1 as 1|-1
+        return {
+          x: rnd() * W, y: H * (0.60 + rnd() * 0.32),
+          spd: 10 + rnd() * 30, dir,
+          sz: 6 + rnd() * 14, ph: rnd() * Math.PI * 2, hue: 168 + rnd() * 65,
+        }
+      })
+      weeds = Array.from({ length: 26 }, (_, i) => ({
+        x: (i / 26 + (rnd() - 0.5) * 0.025) * W,
+        h: H * (0.048 + rnd() * 0.072),
+        ph: rnd() * Math.PI * 2, hue: 98 + rnd() * 42, w: 3.5 + rnd() * 4.5,
+      }))
+      bubbles = Array.from({ length: 20 }, () => ({
+        x: rnd() * W, y: H * (0.65 + rnd() * 0.35),
+        r: 0.8 + rnd() * 2.8, spd: 3 + rnd() * 7,
+        ph: rnd() * Math.PI * 2, a: 0.14 + rnd() * 0.32,
+      }))
+      dolX = W + 80; dolOn = false; nextDol = ms + 10000
+    }
+
+    /* ── Resize ─────────────────────────────────────────────────────────── */
+    const resize = () => {
+      dpr = window.devicePixelRatio || 1
+      const r = cv.getBoundingClientRect()
+      W = r.width; H = r.height
+      cv.width  = Math.round(W * dpr)
+      cv.height = Math.round(H * dpr)
+      cx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      init()
+    }
+    resize()
+    const ro = new ResizeObserver(resize)
+    ro.observe(cv)
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       DRAW HELPERS
+    ════════════════════════════════════════════════════════════════════════ */
+
+    const drawSky = () => {
+      const g = cx.createLinearGradient(0, 0, 0, H * 0.57)
+      g.addColorStop(0,   '#b4d8f2')
+      g.addColorStop(0.45,'#cae4f8')
+      g.addColorStop(1,   '#a4c8dc')
+      cx.fillStyle = g
+      cx.fillRect(0, 0, W, H * 0.57)
+    }
+
+    const drawSun = () => {
+      const sx = W * 0.73, sy = H * 0.092, sr = H * 0.036
+      // outer glow
+      const glow = cx.createRadialGradient(sx, sy, 0, sx, sy, sr * 7)
+      glow.addColorStop(0,   'rgba(255,238,150,0.26)')
+      glow.addColorStop(0.4, 'rgba(255,228,100,0.10)')
+      glow.addColorStop(1,   'rgba(255,228,100,0)')
+      cx.fillStyle = glow
+      cx.beginPath(); cx.arc(sx, sy, sr * 7, 0, Math.PI * 2); cx.fill()
+      // disc
+      const disc = cx.createRadialGradient(sx, sy, 0, sx, sy, sr)
+      disc.addColorStop(0, '#fffee0'); disc.addColorStop(1, '#ffe070')
+      cx.fillStyle = disc; cx.beginPath(); cx.arc(sx, sy, sr, 0, Math.PI * 2); cx.fill()
+    }
+
+    /* ── Far islands (distant silhouette, blue-grey, no detail) ─────────── */
+    const drawFarIslands = () => {
+      cx.fillStyle = 'rgba(122,150,168,0.50)'
+      // Left group
+      cx.beginPath()
+      cx.moveTo(0, H * 0.445)
+      cx.bezierCurveTo(W*0.02, H*0.30, W*0.09, H*0.265, W*0.175, H*0.315)
+      cx.bezierCurveTo(W*0.23, H*0.35, W*0.27, H*0.42, W*0.30, H*0.445)
+      cx.lineTo(0, H * 0.445); cx.fill()
+      // Centre
+      cx.beginPath()
+      cx.moveTo(W*0.37, H*0.445)
+      cx.bezierCurveTo(W*0.40, H*0.265, W*0.52, H*0.215, W*0.63, H*0.295)
+      cx.bezierCurveTo(W*0.70, H*0.34, W*0.745, H*0.415, W*0.76, H*0.445)
+      cx.lineTo(W*0.37, H*0.445); cx.fill()
+      // Right
+      cx.beginPath()
+      cx.moveTo(W*0.83, H*0.445)
+      cx.bezierCurveTo(W*0.85, H*0.295, W*0.94, H*0.275, W, H*0.325)
+      cx.lineTo(W, H * 0.445); cx.fill()
+    }
+
+    /* ── Pine tree ───────────────────────────────────────────────────────── */
+    const pine = (x: number, y: number, h: number) => {
+      const w2 = h * 0.30
+      cx.fillStyle = '#5c3820'; cx.fillRect(x - 1.5, y, 3, h * 0.16)
+      cx.beginPath()
+      cx.moveTo(x, y - h); cx.lineTo(x + w2, y); cx.lineTo(x - w2, y); cx.closePath()
+      cx.fillStyle = '#285a28'; cx.fill()
+      cx.beginPath()
+      cx.moveTo(x, y - h*1.32); cx.lineTo(x + w2*0.62, y - h*0.40); cx.lineTo(x - w2*0.62, y - h*0.40); cx.closePath()
+      cx.fillStyle = '#367038'; cx.fill()
+    }
+
+    /* ── Lighthouse ─────────────────────────────────────────────────────── */
+    const lighthouse = (x: number, by: number) => {
+      const lh = H * 0.058
+      cx.fillStyle = '#e8e2d4'; cx.fillRect(x - 4, by - lh, 8, lh)
+      cx.fillStyle = '#c84040'
+      cx.fillRect(x - 4, by - lh * 0.56, 8, lh * 0.12)
+      cx.fillRect(x - 4, by - lh * 0.26, 8, lh * 0.12)
+      cx.fillStyle = '#d0c8b0'; cx.fillRect(x - 7, by - lh - 7, 14, 8)
+      // pulsing light
+      const pulse = (Math.sin(ms * 0.0018) + 1) * 0.5
+      cx.fillStyle = `rgba(255,255,170,${0.55 + pulse * 0.45})`
+      cx.beginPath(); cx.arc(x, by - lh - 3.5, 3.5, 0, Math.PI * 2); cx.fill()
+      const lg = cx.createRadialGradient(x, by - lh - 3.5, 0, x, by - lh - 3.5, 22)
+      lg.addColorStop(0, `rgba(255,255,100,${0.22 * pulse})`)
+      lg.addColorStop(1, 'rgba(255,255,100,0)')
+      cx.fillStyle = lg; cx.beginPath(); cx.arc(x, by - lh - 3.5, 22, 0, Math.PI * 2); cx.fill()
+      cx.fillStyle = '#c84040'
+      cx.beginPath(); cx.moveTo(x - 8, by - lh - 7); cx.lineTo(x + 8, by - lh - 7); cx.lineTo(x, by - lh - 14); cx.closePath(); cx.fill()
+    }
+
+    /* ── Cottage ────────────────────────────────────────────────────────── */
+    const cottage = (x: number, y: number, small = false) => {
+      const cw = W * (small ? 0.017 : 0.024), ch = H * (small ? 0.019 : 0.025)
+      cx.fillStyle = small ? '#ece4cc' : '#f2ecd8'
+      cx.fillRect(x - cw/2, y, cw, ch)
+      cx.fillStyle = '#c05030'
+      cx.beginPath(); cx.moveTo(x - cw/2 - 2, y); cx.lineTo(x + cw/2 + 2, y); cx.lineTo(x, y - ch*0.65); cx.closePath(); cx.fill()
+      cx.fillStyle = 'rgba(135,195,225,0.55)'
+      cx.fillRect(x - cw*0.14, y + ch*0.2, cw*0.28, ch*0.32)
+    }
+
+    /* ── Near islands (static, green, with trees/lighthouse/cottage) ─────── */
+    const drawNearIslands = () => {
+      const wb = WL()
+      cx.save()
+
+      // ── Island A — left, large ──────────────────────────────────────────
+      cx.beginPath()
+      cx.moveTo(-6, wb)
+      cx.bezierCurveTo(W*0.01, H*0.375, W*0.075, H*0.335, W*0.145, H*0.378)
+      cx.bezierCurveTo(W*0.20, H*0.41, W*0.245, H*0.475, W*0.26, wb)
+      cx.lineTo(-6, wb); cx.closePath()
+      cx.fillStyle = '#5a8850'; cx.fill()
+      // Rock face left
+      cx.beginPath()
+      cx.moveTo(-6, wb); cx.lineTo(-6, H*0.458)
+      cx.bezierCurveTo(W*0.01, H*0.415, W*0.038, H*0.405, W*0.058, H*0.438)
+      cx.lineTo(W*0.068, wb)
+      cx.fillStyle = '#889878'; cx.fill()
+      // Trees + features
+      const tA: [number, number][] = [[W*0.04, 0.955],[W*0.08, 0.924],[W*0.11, 0.906],[W*0.155, 0.912],[W*0.195, 0.940]]
+      tA.forEach(([tx, yt]) => pine(tx, wb * yt, H * 0.060))
+      lighthouse(W * 0.225, wb * 0.954)
+      cottage(W * 0.105, wb * 0.952, true)
+
+      // ── Island B — centre-right, medium ────────────────────────────────
+      cx.beginPath()
+      cx.moveTo(W*0.50, wb)
+      cx.bezierCurveTo(W*0.52, H*0.375, W*0.595, H*0.325, W*0.685, H*0.375)
+      cx.bezierCurveTo(W*0.745, H*0.415, W*0.785, H*0.485, W*0.80, wb)
+      cx.lineTo(W*0.50, wb); cx.closePath()
+      cx.fillStyle = '#5a8850'; cx.fill()
+      // Rocky outcrop right
+      cx.beginPath()
+      cx.moveTo(W*0.80, wb)
+      cx.bezierCurveTo(W*0.82, H*0.445, W*0.88, H*0.435, W*0.935, H*0.475)
+      cx.lineTo(W*0.935, wb)
+      cx.fillStyle = '#7a8870'; cx.fill()
+      const tB: [number, number][] = [[W*0.535, 0.944],[W*0.575, 0.912],[W*0.635, 0.902],[W*0.72, 0.921],[W*0.768, 0.948]]
+      tB.forEach(([tx, yt]) => pine(tx, wb * yt, H * 0.056))
+      cottage(W * 0.655, wb * 0.935)
+
+      // ── Small rocky outcrop — centre gap ───────────────────────────────
+      cx.beginPath()
+      cx.moveTo(W*0.340, wb)
+      cx.bezierCurveTo(W*0.350, H*0.468, W*0.370, H*0.455, W*0.395, H*0.468)
+      cx.lineTo(W*0.405, wb)
+      cx.fillStyle = '#788068'; cx.fill()
+
+      cx.restore()
+    }
+
+    /* ── Water surface + body ────────────────────────────────────────────── */
+    const drawWater = () => {
+      cx.save()
+      // Main fill
+      cx.beginPath()
+      cx.moveTo(0, wave(0))
+      for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
+      cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
+      const wg = cx.createLinearGradient(0, WL() - 8, 0, H)
+      wg.addColorStop(0,   '#3c92c2')
+      wg.addColorStop(0.18,'#2c72a0')
+      wg.addColorStop(0.55,'#1c5080')
+      wg.addColorStop(1,   '#0d2c56')
+      cx.fillStyle = wg; cx.fill()
+      // Primary surface highlight
+      cx.beginPath()
+      cx.moveTo(0, wave(0))
+      for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
+      cx.strokeStyle = 'rgba(255,255,255,0.24)'; cx.lineWidth = 1.8; cx.stroke()
+      // Secondary undulation (behind / slower)
+      cx.beginPath()
+      const off = H * 0.009
+      for (let x = 0; x <= W; x += 4) {
+        const y2 = wave(x) + off + Math.sin(x * 0.004 - t * 0.25 + 0.9) * H * 0.004
+        x === 0 ? cx.moveTo(x, y2) : cx.lineTo(x, y2)
+      }
+      cx.strokeStyle = 'rgba(255,255,255,0.09)'; cx.lineWidth = 1.0; cx.stroke()
+      cx.restore()
+    }
+
+    /* ── Underwater atmosphere ───────────────────────────────────────────── */
+    const drawUnderwater = () => {
+      const wb = WL()
+      // Depth gradient (transparent at surface → dark at bottom)
+      const dg = cx.createLinearGradient(0, wb, 0, H)
+      dg.addColorStop(0,   'rgba(4,18,48,0)')
+      dg.addColorStop(0.35,'rgba(4,14,40,0.16)')
+      dg.addColorStop(1,   'rgba(2,8,26,0.58)')
+      cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
+      // Light rays
+      for (let i = 0; i < 5; i++) {
+        const rx = W * (0.08 + i * 0.185) + Math.sin(t * 0.14 + i * 1.1) * 12
+        cx.save(); cx.translate(rx, wb); cx.rotate(-0.06 + i * 0.03)
+        const rg = cx.createLinearGradient(0, 0, 0, H * 0.30)
+        const a = 0.07 + Math.sin(t * 0.38 + i) * 0.03
+        rg.addColorStop(0, `rgba(120,200,248,${a})`)
+        rg.addColorStop(1, 'rgba(120,200,248,0)')
+        cx.fillStyle = rg
+        cx.beginPath(); cx.moveTo(-7, 0); cx.lineTo(7, 0)
+        cx.lineTo(17, H*0.30); cx.lineTo(-17, H*0.30); cx.closePath(); cx.fill()
+        cx.restore()
+      }
+    }
+
+    /* ── Seaweed ─────────────────────────────────────────────────────────── */
+    const drawSeaweed = () => {
+      weeds.forEach(w => {
+        cx.save(); cx.translate(w.x, H)
+        cx.beginPath(); cx.moveTo(0, 0)
+        const segs = 7; let py = 0
+        for (let s = 0; s < segs; s++) {
+          const sg = w.h / segs
+          const k = (s + 1) / segs
+          const sw = Math.sin(t * 0.95 + w.ph + s * 0.55) * 18 * k
+          cx.bezierCurveTo(
+            sw * 0.38 + (s % 2 === 0 ?  5 : -5), py - sg * 0.38,
+            sw * 0.78 + (s % 2 === 0 ?  8 : -8), py - sg * 0.74,
+            sw, py - sg
+          )
+          py -= sg
+        }
+        cx.strokeStyle = `hsla(${w.hue},60%,30%,0.90)`
+        cx.lineWidth = w.w; cx.lineCap = 'round'; cx.stroke()
+        cx.restore()
+      })
+    }
+
+    /* ── Bubbles ─────────────────────────────────────────────────────────── */
+    const drawBubbles = (dt: number) => {
+      bubbles.forEach(b => {
+        b.y   -= b.spd * dt * 0.001
+        b.ph  += 0.0022 * dt
+        b.x   += Math.sin(b.ph) * 0.22
+        if (b.y < WL()) { b.y = H * (0.70 + Math.random() * 0.30); b.x = Math.random() * W }
+        cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, Math.PI * 2)
+        cx.strokeStyle = `rgba(172,218,255,${b.a})`; cx.lineWidth = 0.75; cx.stroke()
+      })
+    }
+
+    /* ── Fish ────────────────────────────────────────────────────────────── */
+    const drawFish = (dt: number) => {
+      fish.forEach(f => {
+        f.x += f.spd * f.dir * dt * 0.001
+        f.ph += 0.0028 * dt
+        const fy = f.y + Math.sin(f.ph) * 3.8
+        if (f.dir === 1  && f.x >  W + f.sz * 2) f.x = -f.sz * 2
+        if (f.dir === -1 && f.x < -f.sz * 2)     f.x =  W + f.sz * 2
+        cx.save(); cx.translate(f.x, fy)
+        if (f.dir === -1) cx.scale(-1, 1)
+        const a = f.sz, b2 = f.sz * 0.42
+        // Body
+        cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI * 2)
+        cx.fillStyle = `hsla(${f.hue},50%,44%,0.82)`; cx.fill()
+        // Tail
+        cx.beginPath()
+        cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.72, -b2*1.05); cx.lineTo(-a*1.72, b2*1.05); cx.closePath()
+        cx.fillStyle = `hsla(${f.hue},44%,36%,0.80)`; cx.fill()
+        // Eye
+        cx.beginPath(); cx.arc(a*0.53, -b2*0.12, a*0.10, 0, Math.PI * 2)
+        cx.fillStyle = '#08141e'; cx.fill()
+        cx.beginPath(); cx.arc(a*0.55, -b2*0.15, a*0.04, 0, Math.PI * 2)
+        cx.fillStyle = 'rgba(255,255,255,0.72)'; cx.fill()
+        cx.restore()
+      })
+    }
+
+    /* ── Dolphin (occasional) ────────────────────────────────────────────── */
+    const drawDolphin = (dt: number) => {
+      if (!dolOn) return
+      dolX  -= 34 * dt * 0.001
+      dolPh += 2.4 * dt * 0.001
+      const dy = WL() + 12 + Math.sin(dolPh * 2.6) * 13
+      if (dolX < -110) { dolOn = false; nextDol = ms + 28000 + Math.random() * 18000 }
+      cx.save(); cx.translate(dolX, dy)
+      cx.beginPath(); cx.ellipse(0, 0, 30, 10, 0, 0, Math.PI * 2)
+      cx.fillStyle = 'rgba(62,92,122,0.90)'; cx.fill()
+      cx.beginPath(); cx.ellipse(33, 2, 12, 5, 0.18, 0, Math.PI * 2)
+      cx.fillStyle = 'rgba(75,108,140,0.88)'; cx.fill()
+      cx.beginPath(); cx.moveTo(0,-10); cx.lineTo(9,-23); cx.lineTo(15,-10); cx.closePath()
+      cx.fillStyle = 'rgba(52,82,112,0.88)'; cx.fill()
+      cx.beginPath()
+      cx.moveTo(-28,0); cx.lineTo(-38,-9); cx.lineTo(-40,-4)
+      cx.lineTo(-28,0); cx.lineTo(-40,5); cx.lineTo(-38,10); cx.closePath()
+      cx.fillStyle = 'rgba(52,82,112,0.88)'; cx.fill()
+      cx.beginPath(); cx.arc(24, -1, 2.5, 0, Math.PI * 2)
+      cx.fillStyle = '#070f1a'; cx.fill()
+      cx.restore()
+    }
+
+    /* ── Boats ───────────────────────────────────────────────────────────── */
+    const drawBoats = (dt: number) => {
+      boats.forEach(b => {
+        b.x -= b.spd * dt * 0.001
+        if (b.x < -130) b.x = W + 80 + Math.random() * 350
+        const wy  = wave(b.x)
+        const bob  = Math.sin(t * 0.68 + b.ph) * 2.8
+        const tilt = Math.sin(t * 0.52 + b.ph) * 1.6 * (Math.PI / 180)
+        cx.save(); cx.translate(b.x, wy + bob); cx.rotate(tilt)
+        b.type === 'sail' ? drawSailboat() : drawMotorboat()
+        cx.restore()
+      })
+    }
+
+    const drawSailboat = () => {
+      // Wake
+      cx.beginPath(); cx.moveTo(-20, 6); cx.bezierCurveTo(-40, 8, -65, 9, -85, 7)
+      cx.strokeStyle = 'rgba(255,255,255,0.20)'; cx.lineWidth = 1.2; cx.stroke()
+      // Hull
+      cx.beginPath(); cx.moveTo(-22,8); cx.lineTo(22,8); cx.lineTo(17,0); cx.lineTo(-17,0); cx.closePath()
+      cx.fillStyle = '#ead8a8'; cx.fill()
+      cx.beginPath(); cx.moveTo(-17,0); cx.lineTo(17,0); cx.bezierCurveTo(15,-4,-15,-4,-17,0); cx.closePath()
+      cx.fillStyle = '#d0b870'; cx.fill()
+      // Mast
+      cx.strokeStyle = '#7a4e28'; cx.lineWidth = 1.5
+      cx.beginPath(); cx.moveTo(0,0); cx.lineTo(0,-44); cx.stroke()
+      // Main sail
+      cx.beginPath(); cx.moveTo(0,-42); cx.lineTo(23,-2); cx.lineTo(0,-2); cx.closePath()
+      cx.fillStyle = 'rgba(252,248,236,0.95)'; cx.fill()
+      // Jib
+      cx.beginPath(); cx.moveTo(0,-28); cx.lineTo(-17,-4); cx.lineTo(0,-4); cx.closePath()
+      cx.fillStyle = 'rgba(252,248,236,0.62)'; cx.fill()
+      // Flag
+      cx.beginPath(); cx.moveTo(0,-44); cx.lineTo(9,-39); cx.lineTo(0,-34); cx.closePath()
+      cx.fillStyle = '#e04040'; cx.fill()
+    }
+
+    const drawMotorboat = () => {
+      cx.beginPath(); cx.moveTo(-16,4); cx.bezierCurveTo(-30,6,-55,8,-72,6)
+      cx.strokeStyle = 'rgba(255,255,255,0.18)'; cx.lineWidth = 1.2; cx.stroke()
+      cx.beginPath(); cx.moveTo(-16,5); cx.lineTo(24,5); cx.lineTo(20,0); cx.lineTo(-14,0); cx.closePath()
+      cx.fillStyle = '#c8d8e4'; cx.fill()
+      cx.beginPath(); cx.moveTo(-14,0); cx.lineTo(20,0); cx.bezierCurveTo(18,-3,-12,-3,-14,0); cx.closePath()
+      cx.fillStyle = '#a8c0d0'; cx.fill()
+      cx.fillStyle = '#deeaf2'; cx.fillRect(-8,-14,16,14)
+      cx.fillStyle = '#b4c8d8'
+      cx.beginPath(); cx.moveTo(-9,-14); cx.lineTo(9,-14); cx.lineTo(14,-8); cx.lineTo(-9,-8); cx.closePath(); cx.fill()
+      cx.fillStyle = 'rgba(136,192,228,0.52)'; cx.fillRect(-5,-13,11,6)
+    }
+
+    /* ── Birds ───────────────────────────────────────────────────────────── */
+    const drawBirds = (dt: number) => {
+      birds.forEach(b => {
+        b.x    -= b.spd * dt * 0.001
+        b.wingT += 2.0 * dt * 0.001
+        if (b.x < -25) { b.x = W + 25; b.baseY = H * (0.06 + Math.random() * 0.10) }
+        const y = b.baseY + Math.sin(b.wingT * 0.28 + b.ph) * b.amp * 4
+        const w = Math.sin(b.wingT) * 5.5
+        cx.save(); cx.translate(b.x, y)
+        cx.strokeStyle = 'rgba(52,78,95,0.82)'; cx.lineWidth = 1.4; cx.lineCap = 'round'
+        cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo(-8,-w,-16,0); cx.stroke()
+        cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo( 8,-w, 16,0); cx.stroke()
+        cx.restore()
+      })
+    }
+
+    /* ── Text-readability overlay ────────────────────────────────────────── */
+    const drawOverlay = () => {
+      const g = cx.createLinearGradient(0, 0, 0, H)
+      g.addColorStop(0,    'rgba(5,16,36,0.52)')
+      g.addColorStop(0.42, 'rgba(7,20,42,0.30)')
+      g.addColorStop(0.78, 'rgba(9,24,48,0.42)')
+      g.addColorStop(1,    'rgba(5,14,32,0.64)')
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H)
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       MAIN LOOP
+    ════════════════════════════════════════════════════════════════════════ */
+    const tick = (now: number) => {
+      const dt = Math.min(now - last, 50)   // cap delta to avoid jump on tab-return
+      last = now; ms += dt
+      t += dt * 0.001                        // t in seconds
+
+      if (!dolOn && ms > nextDol) { dolOn = true; dolX = W + 80; dolPh = 0 }
+
+      // Draw order: sky → islands → water → boats (surface) → underwater → seaweed → bubbles → fish → dolphin → overlay → birds
+      drawSky()
+      drawSun()
+      drawFarIslands()
+      drawNearIslands()
+      drawWater()
+      drawBoats(dt)
+      drawUnderwater()
+      drawSeaweed()
+      drawBubbles(dt)
+      drawFish(dt)
+      drawDolphin(dt)
+      drawOverlay()
+      drawBirds(dt)
+
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(n => { last = n; tick(n) })
+    return () => { cancelAnimationFrame(raf); ro.disconnect() }
+  }, [])
+
   return (
-    <div
+    <canvas
+      ref={ref}
       aria-hidden="true"
       style={{
         position: 'absolute', inset: 0,
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        isolation: 'isolate',
-        zIndex: 0,
+        width: '100%', height: '100%',
+        display: 'block', pointerEvents: 'none',
       }}
-    >
-      <style>{`
-        /* ── Islands ── */
-        @keyframes ha-island-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-
-        /* ── Waves ── */
-        @keyframes ha-wave {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-
-        /* ── Boat ── */
-        @keyframes ha-boat-sail {
-          0%   { transform: translateX(-20%); }
-          100% { transform: translateX(120%); }
-        }
-        @keyframes ha-boat-bob {
-          0%, 100% { transform: translateY(0px) rotate(-1deg); }
-          50%       { transform: translateY(-5px) rotate(1deg); }
-        }
-
-        /* ── Fish ── */
-        @keyframes ha-fish1 {
-          0%   { transform: translateX(110vw); }
-          100% { transform: translateX(-20vw); }
-        }
-        @keyframes ha-fish2 {
-          0%   { transform: translateX(-20vw) scaleX(-1); }
-          100% { transform: translateX(110vw) scaleX(-1); }
-        }
-        @keyframes ha-fish-big {
-          0%   { transform: translateX(110vw) scaleX(-1); }
-          100% { transform: translateX(-15vw) scaleX(-1); }
-        }
-
-        /* ── Seaweed ── */
-        @keyframes ha-seaweed {
-          0%, 100% { transform: rotate(-12deg) scaleY(1); }
-          50%       { transform: rotate(12deg)  scaleY(1.04); }
-        }
-        @keyframes ha-seaweed2 {
-          0%, 100% { transform: rotate(10deg) scaleY(1); }
-          50%       { transform: rotate(-10deg) scaleY(1.04); }
-        }
-
-        /* ── Seal ── */
-        @keyframes ha-seal {
-          0%,  8% { opacity: 0; transform: translateY(8px); }
-          10%, 45% { opacity: 1; transform: translateY(0px); }
-          50%, 55% { opacity: 1; transform: translateY(-3px); }
-          60%, 65% { opacity: 1; transform: translateY(0px); }
-          70%, 100% { opacity: 0; transform: translateY(8px); }
-        }
-
-        /* ── Birds ── */
-        @keyframes ha-bird1 {
-          0%   { transform: translateX(-10vw) translateY(0px); }
-          40%  { transform: translateX(60vw)  translateY(-12px); }
-          100% { transform: translateX(115vw) translateY(5px); }
-        }
-        @keyframes ha-bird2 {
-          0%   { transform: translateX(115vw) translateY(0px); }
-          50%  { transform: translateX(40vw)  translateY(-8px); }
-          100% { transform: translateX(-10vw) translateY(4px); }
-        }
-        @keyframes ha-bird-wing {
-          0%, 100% { d: path("M0,4 Q4,0 8,4"); }
-          50%       { d: path("M0,4 Q4,8 8,4"); }
-        }
-
-        /* ── Sun rays ── */
-        @keyframes ha-sun-ray {
-          0%, 100% { opacity: 0.12; transform: scaleY(1); }
-          50%       { opacity: 0.22; transform: scaleY(1.06); }
-        }
-
-        /* ── Water shimmer ── */
-        @keyframes ha-shimmer {
-          0%   { opacity: 0.3; transform: translateX(-5px); }
-          50%  { opacity: 0.6; transform: translateX(5px); }
-          100% { opacity: 0.3; transform: translateX(-5px); }
-        }
-      `}</style>
-
-      {/* ─── 1. SKY GRADIENT ─── */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(180deg, #c8e8f8 0%, #e8f4fa 45%, #b8d8e8 100%)',
-      }} />
-
-      {/* ─── 2. SUN RAYS ─── */}
-      {[...Array(7)].map((_, i) => (
-        <div key={i} style={{
-          position: 'absolute',
-          top: '-10%',
-          left: `${28 + i * 6}%`,
-          width: 2,
-          height: '55%',
-          background: 'linear-gradient(180deg, rgba(255,240,180,0.9) 0%, rgba(255,240,180,0) 100%)',
-          transformOrigin: 'top center',
-          transform: `rotate(${-18 + i * 6}deg)`,
-          animation: `ha-sun-ray ${S.sunRay + i * 0.4}s ease-in-out ${i * 0.7}s infinite`,
-        }} />
-      ))}
-
-      {/* Sun disc */}
-      <div style={{
-        position: 'absolute',
-        top: '4%', left: '52%',
-        width: 48, height: 48,
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, #fffde0 30%, #ffe87a 70%, rgba(255,220,80,0) 100%)',
-        boxShadow: '0 0 32px 12px rgba(255,220,80,0.25)',
-        transform: 'translateX(-50%)',
-      }} />
-
-      {/* ─── 3. FAR ISLANDS (parallax) ─── */}
-      <div style={{
-        position: 'absolute',
-        bottom: '32%',
-        left: 0,
-        width: '200%',
-        height: 80,
-        animation: `ha-island-scroll ${S.islandFar}s linear infinite`,
-      }}>
-        <svg viewBox="0 0 2400 80" preserveAspectRatio="none" width="100%" height="80"
-          style={{ display: 'block' }}>
-          {/* First half */}
-          <path d="M0,80 L0,55 Q60,30 120,48 Q180,25 260,40 Q340,20 420,38 Q480,15 560,32 Q640,45 720,28 Q800,10 880,30 Q940,42 1000,20 Q1060,5 1140,22 Q1200,35 1200,80 Z"
-            fill="#a8c8b8" opacity="0.5"/>
-          {/* Second half — identical for seamless loop */}
-          <path d="M1200,80 L1200,55 Q1260,30 1320,48 Q1380,25 1460,40 Q1540,20 1620,38 Q1680,15 1760,32 Q1840,45 1920,28 Q2000,10 2080,30 Q2140,42 2200,20 Q2260,5 2340,22 Q2400,35 2400,80 Z"
-            fill="#a8c8b8" opacity="0.5"/>
-        </svg>
-      </div>
-
-      {/* ─── 4. MID ISLANDS (parallax, with trees / cottages) ─── */}
-      <div style={{
-        position: 'absolute',
-        bottom: '31%',
-        left: 0,
-        width: '200%',
-        height: 110,
-        animation: `ha-island-scroll ${S.islandMid}s linear infinite`,
-      }}>
-        <svg viewBox="0 0 2400 110" preserveAspectRatio="none" width="100%" height="110"
-          style={{ display: 'block' }}>
-          {/* Island bodies — first half */}
-          <path d="M0,110 L0,70 Q80,40 180,55 Q280,30 400,50 Q500,20 620,42 Q720,55 850,35 Q950,18 1100,38 Q1160,48 1200,110 Z"
-            fill="#7aaa8a"/>
-          {/* Trees — first half */}
-          {[80,130,200,260,450,510,660,730,860,960,1040].map((x, i) => (
-            <g key={i} transform={`translate(${x}, ${i % 3 === 0 ? 28 : i % 3 === 1 ? 22 : 32})`}>
-              <polygon points="0,-18 6,0 -6,0" fill="#2d6e4e" opacity="0.85"/>
-              <polygon points="0,-26 5,-10 -5,-10" fill="#3a8060" opacity="0.9"/>
-              <rect x="-1.5" y="0" width="3" height="6" fill="#5c3d1e" opacity="0.7"/>
-            </g>
-          ))}
-          {/* Cottage — first half */}
-          <g transform="translate(320, 36)">
-            <rect x="0" y="0" width="16" height="10" fill="#f5e0c0" opacity="0.9"/>
-            <polygon points="-2,0 18,0 8,-8" fill="#c0504a" opacity="0.9"/>
-          </g>
-          <g transform="translate(780, 24)">
-            <rect x="0" y="0" width="14" height="9" fill="#f5e0c0" opacity="0.9"/>
-            <polygon points="-2,0 16,0 7,-7" fill="#c0504a" opacity="0.9"/>
-          </g>
-          {/* Dock — first half */}
-          <line x1="420" y1="55" x2="420" y2="72" stroke="#8b6040" strokeWidth="3" opacity="0.7"/>
-          <rect x="412" y="68" width="16" height="4" fill="#8b6040" opacity="0.6" rx="1"/>
-
-          {/* Second half — identical */}
-          <path d="M1200,110 L1200,70 Q1280,40 1380,55 Q1480,30 1600,50 Q1700,20 1820,42 Q1920,55 2050,35 Q2150,18 2300,38 Q2360,48 2400,110 Z"
-            fill="#7aaa8a"/>
-          {[1280,1330,1400,1460,1650,1710,1860,1930,2060,2160,2240].map((x, i) => (
-            <g key={i+20} transform={`translate(${x}, ${i % 3 === 0 ? 28 : i % 3 === 1 ? 22 : 32})`}>
-              <polygon points="0,-18 6,0 -6,0" fill="#2d6e4e" opacity="0.85"/>
-              <polygon points="0,-26 5,-10 -5,-10" fill="#3a8060" opacity="0.9"/>
-              <rect x="-1.5" y="0" width="3" height="6" fill="#5c3d1e" opacity="0.7"/>
-            </g>
-          ))}
-          <g transform="translate(1520, 36)">
-            <rect x="0" y="0" width="16" height="10" fill="#f5e0c0" opacity="0.9"/>
-            <polygon points="-2,0 18,0 8,-8" fill="#c0504a" opacity="0.9"/>
-          </g>
-          <g transform="translate(1980, 24)">
-            <rect x="0" y="0" width="14" height="9" fill="#f5e0c0" opacity="0.9"/>
-            <polygon points="-2,0 16,0 7,-7" fill="#c0504a" opacity="0.9"/>
-          </g>
-          <line x1="1620" y1="55" x2="1620" y2="72" stroke="#8b6040" strokeWidth="3" opacity="0.7"/>
-          <rect x="1612" y="68" width="16" height="4" fill="#8b6040" opacity="0.6" rx="1"/>
-        </svg>
-      </div>
-
-      {/* ─── 5. WATER BACKGROUND ─── */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: 0, right: 0,
-        height: '33%',
-        background: 'linear-gradient(180deg, #4a9ab8 0%, #2a6a88 40%, #1a4a68 100%)',
-      }} />
-
-      {/* Water shimmer */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0, left: 0, right: 0,
-        height: '33%',
-        background: 'repeating-linear-gradient(90deg, transparent 0px, transparent 28px, rgba(255,255,255,0.04) 28px, rgba(255,255,255,0.04) 30px)',
-        animation: `ha-shimmer 4s ease-in-out infinite`,
-      }} />
-
-      {/* ─── 6. WAVE LAYERS ─── */}
-      {/* Back wave */}
-      <div style={{
-        position: 'absolute',
-        bottom: '28%',
-        left: 0,
-        width: '200%',
-        height: 28,
-        animation: `ha-wave ${S.wave3}s linear infinite`,
-        opacity: 0.45,
-      }}>
-        <svg viewBox="0 0 2400 28" preserveAspectRatio="none" width="100%" height="28">
-          <path d="M0,14 Q100,0 200,14 Q300,28 400,14 Q500,0 600,14 Q700,28 800,14 Q900,0 1000,14 Q1100,28 1200,14 L1200,28 L0,28 Z"
-            fill="#3a8aa8" opacity="0.6"/>
-          <path d="M1200,14 Q1300,0 1400,14 Q1500,28 1600,14 Q1700,0 1800,14 Q1900,28 2000,14 Q2100,0 2200,14 Q2300,28 2400,14 L2400,28 L1200,28 Z"
-            fill="#3a8aa8" opacity="0.6"/>
-        </svg>
-      </div>
-
-      {/* Mid wave */}
-      <div style={{
-        position: 'absolute',
-        bottom: '26%',
-        left: 0,
-        width: '200%',
-        height: 35,
-        animation: `ha-wave ${S.wave2}s linear infinite`,
-        opacity: 0.6,
-      }}>
-        <svg viewBox="0 0 2400 35" preserveAspectRatio="none" width="100%" height="35">
-          <path d="M0,18 Q120,2 240,18 Q360,34 480,18 Q600,2 720,18 Q840,34 960,18 Q1080,2 1200,18 L1200,35 L0,35 Z"
-            fill="#2a7898" opacity="0.65"/>
-          <path d="M1200,18 Q1320,2 1440,18 Q1560,34 1680,18 Q1800,2 1920,18 Q2040,34 2160,18 Q2280,2 2400,18 L2400,35 L1200,35 Z"
-            fill="#2a7898" opacity="0.65"/>
-        </svg>
-      </div>
-
-      {/* Front wave */}
-      <div style={{
-        position: 'absolute',
-        bottom: '24%',
-        left: 0,
-        width: '200%',
-        height: 42,
-        animation: `ha-wave ${S.wave1}s linear infinite`,
-      }}>
-        <svg viewBox="0 0 2400 42" preserveAspectRatio="none" width="100%" height="42">
-          <path d="M0,22 Q80,4 160,22 Q240,40 320,22 Q400,4 480,22 Q560,40 640,22 Q720,4 800,22 Q880,40 960,22 Q1040,4 1120,22 Q1160,32 1200,22 L1200,42 L0,42 Z"
-            fill="#1e6888" opacity="0.8"/>
-          <path d="M1200,22 Q1280,4 1360,22 Q1440,40 1520,22 Q1600,4 1680,22 Q1760,40 1840,22 Q1920,4 2000,22 Q2080,40 2160,22 Q2240,4 2320,22 Q2360,32 2400,22 L2400,42 L1200,42 Z"
-            fill="#1e6888" opacity="0.8"/>
-        </svg>
-      </div>
-
-      {/* ─── 7. SAILBOAT ─── */}
-      <div style={{
-        position: 'absolute',
-        bottom: '27%',
-        left: 0,
-        width: '100%',
-        height: 70,
-        animation: `ha-boat-sail ${S.boatSail}s linear infinite`,
-      }}>
-        {/* Bob wrapper — positioned so boat starts at left */}
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          animation: `ha-boat-bob ${S.boatBob}s ease-in-out infinite`,
-        }}>
-          <svg viewBox="0 0 72 64" width="72" height="64">
-            {/* Wake */}
-            <path d="M36,58 Q20,60 4,58" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-            <path d="M36,61 Q18,64 2,61" stroke="rgba(255,255,255,0.15)" strokeWidth="1" fill="none" strokeLinecap="round"/>
-            {/* Hull */}
-            <path d="M12,50 Q20,56 36,54 Q52,56 60,50 Q54,58 36,60 Q18,58 12,50 Z" fill="#e8d5b0"/>
-            <path d="M12,50 L18,42 L54,42 L60,50 Z" fill="#d4b870"/>
-            {/* Mast */}
-            <line x1="36" y1="42" x2="36" y2="8" stroke="#8b6040" strokeWidth="2" strokeLinecap="round"/>
-            {/* Main sail */}
-            <path d="M36,10 L58,40 L36,40 Z" fill="white" opacity="0.95"/>
-            {/* Jib */}
-            <path d="M36,16 L18,38 L36,38 Z" fill="white" opacity="0.6"/>
-            {/* Flag */}
-            <path d="M36,8 L44,11 L36,14 Z" fill="#e05050" opacity="0.9"/>
-            {/* Cabin */}
-            <rect x="30" y="38" width="12" height="6" rx="2" fill="#c8a050" opacity="0.9"/>
-          </svg>
-        </div>
-      </div>
-
-      {/* ─── 8. UNDERWATER ZONE ─── */}
-      {/* Light rays into water */}
-      {[0,1,2,3].map(i => (
-        <div key={i} style={{
-          position: 'absolute',
-          top: '67%',
-          left: `${20 + i * 18}%`,
-          width: 3,
-          height: '25%',
-          background: 'linear-gradient(180deg, rgba(120,200,240,0.18) 0%, rgba(120,200,240,0) 100%)',
-          transformOrigin: 'top center',
-          transform: `rotate(${-8 + i * 5}deg)`,
-          animation: `ha-sun-ray ${S.sunRay + i * 0.5}s ease-in-out ${i * 1.1}s infinite`,
-        }} />
-      ))}
-
-      {/* Fish school 1 (right → left) */}
-      <div style={{
-        position: 'absolute',
-        top: '72%',
-        left: 0,
-        width: '100%',
-        animation: `ha-fish1 ${S.fish1}s linear 2s infinite`,
-      }}>
-        <svg viewBox="0 0 110 22" width="110" height="22">
-          {[
-            [0,8],[14,4],[14,14],[28,8],[28,0],[28,16],[42,6],[42,12],
-          ].map(([x,y], i) => (
-            <g key={i} transform={`translate(${x},${y})`}>
-              <ellipse cx="5" cy="3" rx="5" ry="2.5" fill="#5ba8c0" opacity="0.8"/>
-              <path d="M0,3 L-4,0 L-4,6 Z" fill="#4a98b0" opacity="0.8"/>
-              <circle cx="7" cy="2" r="0.8" fill="#1a3a48" opacity="0.9"/>
-            </g>
-          ))}
-        </svg>
-      </div>
-
-      {/* Fish school 2 (left → right) */}
-      <div style={{
-        position: 'absolute',
-        top: '80%',
-        left: 0,
-        width: '100%',
-        animation: `ha-fish2 ${S.fish2}s linear 5s infinite`,
-      }}>
-        <svg viewBox="0 0 90 18" width="90" height="18">
-          {[
-            [0,6],[12,2],[12,12],[24,6],[36,4],[36,10],
-          ].map(([x,y], i) => (
-            <g key={i} transform={`translate(${x},${y})`}>
-              <ellipse cx="5" cy="3" rx="4.5" ry="2" fill="#7bbca8" opacity="0.75"/>
-              <path d="M0,3 L-3.5,0.5 L-3.5,5.5 Z" fill="#6aac98" opacity="0.75"/>
-              <circle cx="7" cy="2.2" r="0.7" fill="#1a3a48" opacity="0.9"/>
-            </g>
-          ))}
-        </svg>
-      </div>
-
-      {/* Big lone fish (abborre) */}
-      <div style={{
-        position: 'absolute',
-        top: '76%',
-        left: 0,
-        width: '100%',
-        animation: `ha-fish-big ${S.fishBig}s linear 8s infinite`,
-      }}>
-        <svg viewBox="0 0 60 28" width="60" height="28">
-          <ellipse cx="28" cy="14" rx="22" ry="9" fill="#7b9a5c" opacity="0.85"/>
-          {/* Stripes */}
-          {[14,20,26].map(x => (
-            <line key={x} x1={x} y1="7" x2={x} y2="21" stroke="#4a6a38" strokeWidth="2" opacity="0.5"/>
-          ))}
-          {/* Tail */}
-          <path d="M6,14 L0,6 L0,22 Z" fill="#6a8a4c" opacity="0.85"/>
-          {/* Fin (dorsal) */}
-          <path d="M20,6 Q28,0 36,5 L36,6" fill="#6a8a4c" opacity="0.7"/>
-          {/* Eye */}
-          <circle cx="44" cy="12" r="3" fill="#f0e8c0" opacity="0.9"/>
-          <circle cx="45" cy="11.5" r="1.5" fill="#1a2a18" opacity="0.95"/>
-          {/* Mouth */}
-          <path d="M50,14 Q52,16 50,17" stroke="#5a4a28" strokeWidth="1" fill="none" opacity="0.7"/>
-        </svg>
-      </div>
-
-      {/* ─── SEAWEED (18 stalks) ─── */}
-      {[...Array(18)].map((_, i) => {
-        const x = 3 + i * 5.4  // spread across width (%)
-        const h = 28 + (i % 5) * 8  // vary heights 28–60px
-        const hue = 120 + (i % 4) * 10
-        const delay = (i * 0.31) % S.seaweed
-        const anim = i % 2 === 0 ? 'ha-seaweed' : 'ha-seaweed2'
-        return (
-          <div key={i} style={{
-            position: 'absolute',
-            bottom: '0%',
-            left: `${x}%`,
-            width: 8,
-            height: h,
-            transformOrigin: 'bottom center',
-            animation: `${anim} ${S.seaweed + (i % 3) * 0.4}s ease-in-out ${delay}s infinite`,
-          }}>
-            <svg viewBox={`0 0 8 ${h}`} width="8" height={h} style={{ display: 'block' }}>
-              <path
-                d={`M4,${h} Q6,${h*0.75} 3,${h*0.5} Q6,${h*0.28} 4,0`}
-                stroke={`hsl(${hue},55%,38%)`}
-                strokeWidth="3"
-                fill="none"
-                strokeLinecap="round"
-                opacity="0.75"
-              />
-            </svg>
-          </div>
-        )
-      })}
-
-      {/* ─── ROCKS (bottom) ─── */}
-      <svg
-        style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: 40, display: 'block' }}
-        viewBox="0 0 1000 40"
-        preserveAspectRatio="none"
-      >
-        {[
-          [80, 40, 28, 12],
-          [160, 40, 20, 9],
-          [280, 40, 35, 14],
-          [420, 40, 24, 10],
-          [550, 40, 32, 13],
-          [680, 40, 22, 9],
-          [780, 40, 38, 16],
-          [880, 40, 26, 11],
-          [960, 40, 20, 8],
-        ].map(([cx, cy, rx, ry], i) => (
-          <ellipse key={i} cx={cx} cy={cy} rx={rx} ry={ry}
-            fill={i % 2 === 0 ? '#4a5a68' : '#3a4a58'} opacity="0.7"/>
-        ))}
-      </svg>
-
-      {/* ─── SEAL ─── */}
-      <div style={{
-        position: 'absolute',
-        bottom: '26%',
-        right: '15%',
-        animation: `ha-seal ${S.seal}s ease-in-out 3s infinite`,
-        opacity: 0,
-      }}>
-        <svg viewBox="0 0 36 22" width="36" height="22">
-          {/* Body */}
-          <ellipse cx="16" cy="14" rx="14" ry="7" fill="#7a6a5a" opacity="0.9"/>
-          {/* Head */}
-          <circle cx="28" cy="10" r="7" fill="#8a7a6a" opacity="0.9"/>
-          {/* Eye */}
-          <circle cx="31" cy="9" r="1.5" fill="#1a1a1a" opacity="0.95"/>
-          <circle cx="31.5" cy="8.5" r="0.5" fill="white" opacity="0.8"/>
-          {/* Whiskers */}
-          <line x1="34" y1="10" x2="38" y2="9"  stroke="#c0b0a0" strokeWidth="0.8" opacity="0.7"/>
-          <line x1="34" y1="11" x2="38" y2="11" stroke="#c0b0a0" strokeWidth="0.8" opacity="0.7"/>
-          <line x1="34" y1="12" x2="38" y2="13" stroke="#c0b0a0" strokeWidth="0.8" opacity="0.7"/>
-          {/* Flipper */}
-          <path d="M4,16 Q0,22 6,20 Q8,22 10,18" fill="#6a5a4a" opacity="0.8"/>
-          {/* Tail flippers */}
-          <path d="M2,12 Q-4,8 0,6" fill="#6a5a4a" opacity="0.75"/>
-          <path d="M2,14 Q-4,18 0,20" fill="#6a5a4a" opacity="0.75"/>
-        </svg>
-      </div>
-
-      {/* ─── BIRDS ─── */}
-      {/* Bird 1 */}
-      <div style={{
-        position: 'absolute',
-        top: '12%',
-        left: 0,
-        animation: `ha-bird1 ${S.bird1}s ease-in-out 1s infinite`,
-      }}>
-        <svg viewBox="0 0 20 10" width="20" height="10">
-          <path d="M0,5 Q5,0 10,5" stroke="#4a6a80" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-          <path d="M10,5 Q15,0 20,5" stroke="#4a6a80" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-        </svg>
-      </div>
-      {/* Bird 1 companion */}
-      <div style={{
-        position: 'absolute',
-        top: '10%',
-        left: 0,
-        animation: `ha-bird1 ${S.bird1}s ease-in-out 1.8s infinite`,
-        opacity: 0.7,
-      }}>
-        <svg viewBox="0 0 14 8" width="14" height="8">
-          <path d="M0,4 Q3.5,0 7,4" stroke="#4a6a80" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-          <path d="M7,4 Q10.5,0 14,4" stroke="#4a6a80" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
-        </svg>
-      </div>
-
-      {/* Bird 2 */}
-      <div style={{
-        position: 'absolute',
-        top: '8%',
-        left: 0,
-        animation: `ha-bird2 ${S.bird2}s ease-in-out 4s infinite`,
-      }}>
-        <svg viewBox="0 0 20 10" width="20" height="10">
-          <path d="M0,5 Q5,0 10,5" stroke="#5a7a90" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-          <path d="M10,5 Q15,0 20,5" stroke="#5a7a90" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-        </svg>
-      </div>
-
-      {/* ─── CONTENT READABILITY OVERLAY ─── */}
-      {/* Deep navy gradient so hero white text remains readable against the light scene */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(180deg, rgba(8,22,40,0.55) 0%, rgba(10,28,48,0.38) 40%, rgba(15,38,60,0.50) 75%, rgba(10,25,42,0.72) 100%)',
-        pointerEvents: 'none',
-      }} />
-
-      {/* ─── VIGNETTE OVERLAY ─── */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(5,18,32,0.45) 100%)',
-        pointerEvents: 'none',
-      }} />
-    </div>
+    />
   )
 }

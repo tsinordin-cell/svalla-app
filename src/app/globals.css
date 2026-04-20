@@ -55,9 +55,16 @@ body {
 }
 
 /* ── Scrollbars ── */
-::-webkit-scrollbar { width: 3px; height: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #b8d4da; border-radius: 2px; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(0,40,60,0.04); border-radius: 8px; }
+::-webkit-scrollbar-thumb {
+  background: rgba(30,92,130,0.28);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(30,92,130,0.52); background-clip: padding-box; }
+::-webkit-scrollbar-corner { background: transparent; }
 
 /* ── Horizontal scroll snap ── */
 .scroll-snap-x {
@@ -268,9 +275,16 @@ img {
   background: rgba(74, 184, 212, 0.12) !important;
 }
 
-/* ── Scrollbar ── */
+/* ── Scrollbar dark mode ── */
+[data-theme="dark"] ::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); }
 [data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: #1e3a4a;
+  background: rgba(74,184,212,0.25);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(74,184,212,0.45);
+  background-clip: padding-box;
 }
 
 /* ── OAuth buttons ── */

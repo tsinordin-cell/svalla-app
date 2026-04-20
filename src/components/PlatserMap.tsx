@@ -156,7 +156,7 @@ function getAreaName(lat: number, lng: number): string {
   if (lat > 59.70) { if (lng < 18.6) return 'Norrtälje'; return 'Norrskärgård' }
   if (lat > 59.58) { if (lng < 18.55) return 'Vaxholm'; if (lng < 18.85) return 'Ljusterö'; return 'Mellersta skärgården' }
   if (lat > 59.42) { if (lng < 18.55) return 'Värmdö'; if (lng < 18.85) return 'Möja'; return 'Sandhamnsleden' }
-  if (lat > 59.30) { if (lng < 18.45) return 'Stockholm'; if (lng < 18.75) return 'Ingarö'; return 'Sandhamn' }
+  if (lat > 59.30) { if (lng < 18.45) return 'Stockholm'; if (lng < 18.90) return 'Ingarö'; return 'Sandhamnsleden' }
   if (lat > 59.10) { if (lng < 18.3) return 'Södertälje'; if (lng < 18.65) return 'Ornö'; return 'Södra skärgården' }
   if (lat > 58.90) { if (lng < 18.4) return 'Nynäshamn'; return 'Utö' }
   return 'Skärgården'
@@ -178,6 +178,9 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
     // Rensa eventuellt pågående debounce + retry
     if (timerRef.current) clearTimeout(timerRef.current)
     if (retryRef.current) clearTimeout(retryRef.current)
+
+    // Återställ felstate direkt när position ändras
+    setFetchFailed(false)
 
     timerRef.current = setTimeout(async () => {
       // Avbryt eventuell pågående request
@@ -217,7 +220,8 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
             retryRef.current = setTimeout(() => doFetch(true), 4000)
           } else {
             setLoading(false)
-            setFetchFailed(true) // Ge upp efter retry — visa felstate
+            setFetchFailed(true)
+            lastFetch.current = '' // Tillåt ny retry om användaren kommer tillbaka
           }
         }
       }

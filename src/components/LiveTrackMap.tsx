@@ -17,6 +17,7 @@ interface LiveTrackMapProps {
   heading?: number | null   // degrees from GPS hardware heading
   stops?: StopMarker[]
   height?: number     // px, default 240
+  centerTrigger?: number  // increment to force re-center on currentPos
 }
 
 export default function LiveTrackMap({
@@ -27,6 +28,7 @@ export default function LiveTrackMap({
   heading = null,
   stops = [],
   height = 240,
+  centerTrigger = 0,
 }: LiveTrackMapProps) {
   const mapContainer   = useRef<HTMLDivElement>(null)
   const mapInstance    = useRef<any>(null)
@@ -201,6 +203,13 @@ export default function LiveTrackMap({
     }
   }, [currentPos, bearing, heading])
 
+  // ── Force re-center when centerTrigger increments ───────────────────────
+  useEffect(() => {
+    if (!centerTrigger || !mapInstance.current || !currentPos) return
+    userPannedRef.current = false
+    mapInstance.current.setView([currentPos.lat, currentPos.lng], 15, { animate: true, duration: 0.6 })
+  }, [centerTrigger]) // eslint-disable-line react-hooks/exhaustive-deps
+
   // ── Render stop markers ──────────────────────────────────────────────────
   useEffect(() => {
     const L = LRef.current
@@ -250,73 +259,19 @@ export default function LiveTrackMap({
         }}
       />
 
-      {/* Speed badge — bottom left */}
+      {/* Speed badge — bottom left — zIndex 800 > Leaflet's max 700 */}
       {speed > 0.2 && (
         <div style={{
-          position: 'absolute', bottom: 12, left: 12,
-          background: 'rgba(30,92,130,0.92)',
-          backdropFilter: 'blur(8px)',
-          color: 'white', padding: '5px 11px',
-          borderRadius: 18, fontSize: 13, fontWeight: 800, zIndex: 10,
+          position: 'absolute', bottom: 14, left: 14,
+          background: 'rgba(30,92,130,0.90)',
+          backdropFilter: 'blur(10px)',
+          color: 'white', padding: '5px 12px',
+          borderRadius: 18, fontSize: 13, fontWeight: 800, zIndex: 800,
           letterSpacing: '0.02em',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.20)',
         }}>
           {speed.toFixed(1)} kn
         </div>
-      )}
-
-      {/* Points count — bottom right */}
-      {points.length > 0 && (
-        <div style={{
-          position: 'absolute', bottom: 12, right: 12,
-          background: 'rgba(0,0,0,0.35)',
-          backdropFilter: 'blur(8px)',
-          color: 'rgba(255,255,255,.8)', padding: '4px 8px',
-          borderRadius: 10, fontSize: 10, fontWeight: 600, zIndex: 10,
-        }}>
-          {points.length} pts
-        </div>
-      )}
-
-      {/* Live indicator — top right */}
-      <div style={{
-        position: 'absolute', top: 12, right: 12,
-        display: 'flex', alignItems: 'center', gap: 5,
-        background: 'rgba(15,158,100,0.92)',
-        backdropFilter: 'blur(8px)',
-        color: 'white', padding: '5px 11px',
-        borderRadius: 18, fontSize: 11, fontWeight: 800,
-        zIndex: 10,
-      }}>
-        <span style={{
-          width: 6, height: 6,
-          background: 'var(--white, #fff)', borderRadius: '50%',
-          animation: 'pulse-dot-live 1.5s ease-in-out infinite',
-        }} />
-        LIVE
-      </div>
-
-      {/* Re-center button — shown when user has panned */}
-      {currentPos && (
-        <button
-          onClick={recenter}
-          title="Centrera på min position"
-          style={{
-            position: 'absolute', top: 12, left: 12,
-            background: 'var(--glass-96)',
-            backdropFilter: 'blur(8px)',
-            border: 'none', cursor: 'pointer',
-            borderRadius: 18, padding: '5px 11px',
-            display: 'flex', alignItems: 'center', gap: 5,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
-            fontSize: 11, fontWeight: 800, color: '#1e5c82',
-            zIndex: 10,
-          }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 14, height: 14 }}>
-            <circle cx="12" cy="12" r="3" /><path strokeLinecap="round" d="M12 2v3m0 14v3M2 12h3m14 0h3" />
-          </svg>
-          Centrera
-        </button>
       )}
 
       <style>{`
