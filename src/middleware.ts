@@ -44,7 +44,9 @@ export async function middleware(request: NextRequest) {
       data: { user },
     } = await supabase.auth.getUser()
     authenticated = !!user
-  } catch {
+  } catch (err) {
+    // Log so errors surface in Vercel function logs — don't silently swallow them
+    console.error('[middleware] auth check failed:', err)
     authenticated = false
   }
 
@@ -60,6 +62,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|public/|manifest.json|og-image.jpg|apple-touch-icon.png|icon-.*\\.png).*)',
+    '/((?!_next/static|_next/image|favicon.ico|public/|manifest.json|opengraph-image|og-image.jpg|apple-touch-icon.png|icon-.*\\.png).*)',
   ],
 }

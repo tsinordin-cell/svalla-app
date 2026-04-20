@@ -4,12 +4,7 @@ import { NextResponse } from 'next/server'
 import { checkRateLimit } from '@/lib/rateLimit'
 
 export async function POST(req: Request) {
-  // Rate limit: 10 requests per minute per user
   const cookieStore = await cookies()
-  const userId = req.headers.get('x-user-id') || 'unknown'
-  if (!checkRateLimit(`push-subscribe:${userId}`, 10, 60 * 1000)) {
-    return NextResponse.json({ error: 'Försökt för många gånger. Vänta en minut.' }, { status: 429 })
-  }
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,6 +19,11 @@ export async function POST(req: Request) {
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  // Rate limit keyed on verified user.id — not spoofable client header
+  if (!checkRateLimit(`push-subscribe:${user.id}`, 10, 60 * 1000)) {
+    return NextResponse.json({ error: 'Försökt för många gånger. Vänta en minut.' }, { status: 429 })
+  }
 
   let sub: { endpoint?: string; keys?: { p256dh?: string; auth?: string } }
   try { sub = await req.json() } catch { return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 }) }

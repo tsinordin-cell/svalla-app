@@ -178,16 +178,16 @@ export default function OGImage() {
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 14,
+            gap: 18,
             marginBottom: 28,
           }}>
-            {/* Anchor icon */}
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="5" r="3" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" />
-              <line x1="12" y1="8" x2="12" y2="20" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round" />
-              <path d="M5,13 C5,17 8.5,20 12,20 C15.5,20 19,17 19,13" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-              <line x1="5" y1="13" x2="3" y2="13" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round" />
-              <line x1="19" y1="13" x2="21" y2="13" stroke="rgba(255,255,255,0.9)" strokeWidth="1.8" strokeLinecap="round" />
+            {/* Svalla sailboat logo — matches favicon.svg */}
+            <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
+              <line x1="16" y1="5" x2="16" y2="23" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+              <path d="M16,6 L26,20 L16,20 Z" fill="white" opacity="0.95" />
+              <path d="M16,10 L8,19 L16,19 Z" fill="white" opacity="0.55" />
+              <path d="M7,23 Q11.5,21 16,23 Q20.5,21 25,23" stroke="white" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.8" />
+              <path d="M8,24.5 Q16,23 24,24.5" stroke="white" strokeWidth="0.7" fill="none" opacity="0.3" strokeLinecap="round" />
             </svg>
             <span style={{
               fontSize: 52,

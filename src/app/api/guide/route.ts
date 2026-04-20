@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 
 // Condensed tour list for context (titles + key data)
 const TOUR_CONTEXT = `
@@ -146,6 +148,24 @@ TON:
 MÅL: Gör det enkelt att välja tur. Inspirera användaren att komma ut i skärgården.`
 
 export async function POST(req: NextRequest) {
+  // Auth check — must be logged in to use AI guide (prevents API quota drain)
+  const cookieStore = await cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => cookieStore.getAll(),
+        setAll: (cs: { name: string; value: string; options?: object }[]) =>
+          cs.forEach(({ name, value, options }) => cookieStore.set(name, value, options ?? {})),
+      },
+    }
+  )
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY saknas i .env.local' }, { status: 500 })
