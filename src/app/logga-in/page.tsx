@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
-import Link from 'next/link'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -283,12 +282,12 @@ export default function LoggaInPage() {
           </button>
 
           {!isNew && (
-            <Link href="/glomt-losenord" style={{
+            <a href="/glomt-losenord" style={{
               display: 'block', textAlign: 'center', marginTop: 10,
               fontSize: 13, color: '#7a9dab', textDecoration: 'none',
             }}>
               Glömt lösenordet?
-            </Link>
+            </a>
           )}
         </div>
       </div>

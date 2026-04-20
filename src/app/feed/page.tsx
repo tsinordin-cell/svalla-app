@@ -210,7 +210,7 @@ export default async function FeedPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
               <span style={{
                 display: 'inline-flex', alignItems: 'center', gap: 4,
-                fontSize: 12, fontWeight: 800, color: 'var(--sea)',
+                fontSize: 10, fontWeight: 800, color: 'var(--sea)',
                 textTransform: 'uppercase', letterSpacing: '0.6px',
               }}>
                 <span style={{
@@ -254,7 +254,7 @@ export default async function FeedPage() {
         {/* ── Magiska turer ── */}
         {magicTrips.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               ✨ Magiska turer den här veckan
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -290,7 +290,7 @@ export default async function FeedPage() {
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0) && trips && trips.length > 0 && (
-          <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>
         )}

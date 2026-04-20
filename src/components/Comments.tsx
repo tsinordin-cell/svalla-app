@@ -3,7 +3,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { createClient } from '@/lib/supabase'
 import { timeAgoShort } from '@/lib/utils'
 import Link from 'next/link'
-import Image from 'next/image'
 
 type Comment = {
   id: string
@@ -11,7 +10,6 @@ type Comment = {
   created_at: string
   user_id: string
   username?: string
-  avatar?: string | null
   optimistic?: boolean
 }
 
@@ -60,11 +58,11 @@ export default function Comments({
     const rows = (data ?? []) as Comment[]
     const uids = [...new Set(rows.map(c => c.user_id).filter(Boolean))]
     const { data: uRows } = uids.length
-      ? await supabase.from('users').select('id, username, avatar').in('id', uids)
+      ? await supabase.from('users').select('id, username').in('id', uids)
       : { data: [] }
-    const umap: Record<string, { username: string; avatar: string | null }> = {}
-    for (const u of uRows ?? []) umap[u.id] = { username: u.username, avatar: u.avatar ?? null }
-    setComments(rows.map(c => ({ ...c, username: umap[c.user_id]?.username ?? 'Seglare', avatar: umap[c.user_id]?.avatar ?? null })))
+    const umap: Record<string, string> = {}
+    for (const u of uRows ?? []) umap[u.id] = u.username
+    setComments(rows.map(c => ({ ...c, username: umap[c.user_id] ?? 'Seglare' })))
     hasLoadedRef.current = true
   }, [supabase, tripId])
 
@@ -253,12 +251,9 @@ export default function Comments({
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         color: '#fff', fontSize: 13, fontWeight: 800,
                         boxShadow: '0 2px 6px rgba(0,60,90,0.18)',
-                        flexShrink: 0, overflow: 'hidden',
+                        flexShrink: 0,
                       }}>
-                        {c.avatar
-                          ? <Image src={c.avatar} alt={c.username ?? ''} width={34} height={34} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                          : initials
-                        }
+                        {initials}
                       </div>
                     </Link>
 
@@ -298,18 +293,15 @@ export default function Comments({
                         disabled={deleting === c.id}
                         aria-label="Radera kommentar"
                         style={{
-                          background: deleting === c.id ? 'transparent' : 'rgba(220,38,38,0.07)',
-                          border: '1px solid rgba(220,38,38,0.15)',
-                          borderRadius: 8, cursor: 'pointer',
-                          color: '#dc2626', padding: '6px 8px',
-                          opacity: deleting === c.id ? 0.3 : 0.75,
+                          background: 'none', border: 'none', cursor: 'pointer',
+                          color: 'var(--txt3)', padding: '6px',
+                          opacity: deleting === c.id ? 0.25 : 0.40,
                           flexShrink: 0, display: 'flex', alignItems: 'center',
                           WebkitTapHighlightColor: 'transparent', marginTop: 4,
                           transition: 'opacity .15s',
-                          minHeight: 32, minWidth: 32, justifyContent: 'center',
                         }}
                       >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} style={{ width: 13, height: 13 }}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 14, height: 14 }}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>

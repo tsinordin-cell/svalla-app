@@ -9,7 +9,6 @@ export default function Nav() {
   const path = usePathname()
   const [username, setUsername] = useState<string | null>(null)
   const [avatar,   setAvatar]   = useState<string | null>(null)
-  const [unreadCount, setUnreadCount] = useState(0)
 
   useEffect(() => {
     const supabase = createClient()
@@ -24,13 +23,6 @@ export default function Nav() {
             setUsername(data?.username ?? null)
             setAvatar(data?.avatar ?? null)
           })
-        // Hämta antal olästa notiser
-        supabase
-          .from('notifications')
-          .select('id', { count: 'exact', head: true })
-          .eq('user_id', user.id)
-          .eq('read', false)
-          .then(({ count }) => setUnreadCount(count ?? 0))
       } else {
         setUsername(null)
         setAvatar(null)
@@ -74,35 +66,12 @@ export default function Nav() {
       ),
     },
     {
-      href: '/notiser',
-      label: 'Notiser',
-      exact: true,
+      href: '/rutter',
+      label: 'Rutter',
       icon: (active: boolean) => (
-        <div style={{ position: 'relative' }}>
-          <svg viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} strokeWidth={active ? 0 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-          {unreadCount > 0 && (
-            <span style={{
-              position: 'absolute',
-              top: -3, right: -4,
-              minWidth: 16, height: 16,
-              borderRadius: 8,
-              background: '#e53e3e',
-              color: '#fff',
-              fontSize: 9,
-              fontWeight: 900,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '0 3px',
-              lineHeight: 1,
-              border: '1.5px solid var(--glass-96)',
-            }}>
-              {unreadCount > 9 ? '9+' : unreadCount}
-            </span>
-          )}
-        </div>
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
       ),
     },
     { href: '/logga', label: '', fab: true },
@@ -117,7 +86,7 @@ export default function Nav() {
     },
     {
       href: '/profil',
-      label: 'Profil',
+      label: username ? username.slice(0, 8) : 'Profil',
       icon: (active: boolean) => (
         <div style={{ position: 'relative' }}>
           {username ? (
@@ -166,7 +135,6 @@ export default function Nav() {
     path !== '/feed' &&
     path !== '/rutter' &&
     path !== '/profil' &&
-    path !== '/notiser' &&
     !path.startsWith('/tur/') &&
     !path.startsWith('/rutter/') &&
     !path.startsWith('/logga') &&
