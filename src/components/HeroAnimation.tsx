@@ -25,7 +25,6 @@ interface Theme {
 
 const THEMES: Record<HeroVariant, Theme> = {
   1: {
-    // Klar sommardag — dämpat Skandinaviskt blå
     sky:          ['#3d94d4','#60aee0','#92c8f0','#b0dcf2'],
     sunX: 0.73,   sunY: 0.092, sunR: 0.034,
     sunInner:     '#fffee0', sunOuter: '#ffe070',
@@ -160,12 +159,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     /* ── Scene init ─────────────────────────────────────────────────────── */
     const init = () => {
       const rnd = Math.random
-      // Two sailboats only — slow, secondary
       boats = [
         { x: W * 1.15, spd: 7, type: 'sail', ph: 0 },
         { x: W * 1.70, spd: 6, type: 'sail', ph: 1.8 },
       ]
-      // Three birds, slow and gliding
       birds = Array.from({ length: 3 }, (_, i) => ({
         x:     W * (0.08 + i * 0.34) + rnd() * 60,
         baseY: H * (0.07 + i * 0.030 + rnd() * 0.012),
@@ -174,39 +171,34 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // Four fish — varied sizes, deeper water, not evenly spread
-      fish = Array.from({ length: 4 }, (_, i) => {
-        const dir = i % 2 === 0 ? 1 : -1 as 1|-1
-        return {
-          x: rnd() * W,
-          y: H * (0.66 + rnd() * 0.26),
-          spd: 6 + rnd() * 16, dir,
-          sz: 9 + rnd() * 18, ph: rnd() * Math.PI * 2,
-          hue: 170 + rnd() * 50,
-        }
-      })
-      // Seaweed — clustered in two zones near islands, not evenly spread
+      // Varied fish — different sizes and depths
+      fish = [
+        { x: rnd()*W, y: H*0.62, spd: 7,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 188 },
+        { x: rnd()*W, y: H*0.72, spd: 11, dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 200 },
+        { x: rnd()*W, y: H*0.80, spd: 6,  dir:  1, sz: 9,  ph: rnd()*Math.PI*2, hue: 175 },
+        { x: rnd()*W, y: H*0.88, spd: 14, dir: -1, sz: 18, ph: rnd()*Math.PI*2, hue: 210 },
+      ]
+      // Reduced seaweed — 4+4, clustered near islands
       weeds = [
-        ...Array.from({ length: 7 }, (_, i) => ({
-          x: W * (0.02 + i * 0.034) + (rnd() - 0.5) * W * 0.014,
-          h: H * (0.052 + rnd() * 0.068),
-          ph: rnd() * Math.PI * 2, hue: 100 + rnd() * 38, w: 3.0 + rnd() * 3.8,
-          spd: 0.40 + rnd() * 0.70,
+        ...Array.from({ length: 4 }, (_, i) => ({
+          x: W * (0.02 + i * 0.040) + (rnd() - 0.5) * W * 0.016,
+          h: H * (0.055 + rnd() * 0.065),
+          ph: rnd() * Math.PI * 2, hue: 100 + rnd() * 38, w: 3.2 + rnd() * 4.0,
+          spd: 0.35 + rnd() * 0.60,
         })),
-        ...Array.from({ length: 7 }, (_, i) => ({
-          x: W * (0.52 + i * 0.040) + (rnd() - 0.5) * W * 0.014,
-          h: H * (0.048 + rnd() * 0.062),
-          ph: rnd() * Math.PI * 2, hue: 98 + rnd() * 38, w: 2.8 + rnd() * 3.6,
-          spd: 0.40 + rnd() * 0.70,
+        ...Array.from({ length: 4 }, (_, i) => ({
+          x: W * (0.53 + i * 0.045) + (rnd() - 0.5) * W * 0.016,
+          h: H * (0.050 + rnd() * 0.060),
+          ph: rnd() * Math.PI * 2, hue: 98 + rnd() * 38, w: 2.8 + rnd() * 3.8,
+          spd: 0.35 + rnd() * 0.60,
         })),
       ]
-      // Eight bubbles — sparse
-      bubbles = Array.from({ length: 8 }, () => ({
-        x: rnd() * W, y: H * (0.68 + rnd() * 0.32),
-        r: 0.7 + rnd() * 2.0, spd: 2.0 + rnd() * 4.5,
-        ph: rnd() * Math.PI * 2, a: 0.08 + rnd() * 0.18,
+      bubbles = Array.from({ length: 6 }, () => ({
+        x: rnd() * W, y: H * (0.70 + rnd() * 0.30),
+        r: 0.8 + rnd() * 1.8, spd: 1.8 + rnd() * 3.5,
+        ph: rnd() * Math.PI * 2, a: 0.07 + rnd() * 0.14,
       }))
-      dolX = W + 80; dolOn = false; nextDol = ms + 12000
+      dolX = W + 80; dolOn = false; nextDol = ms + 14000
     }
 
     /* ── Resize ─────────────────────────────────────────────────────────── */
@@ -227,12 +219,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
        DRAW HELPERS
     ════════════════════════════════════════════════════════════════════════ */
 
+    // Sky extends past WL() to prevent gap when wave dips below baseline
     const drawSky = () => {
-      const g = cx.createLinearGradient(0, 0, 0, H * 0.52)
+      const g = cx.createLinearGradient(0, 0, 0, H * 0.58)
       const [s0, s1, s2, s3] = th.sky
       g.addColorStop(0, s0); g.addColorStop(0.35, s1)
       g.addColorStop(0.75, s2); g.addColorStop(1, s3)
-      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.52)
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.58)
     }
 
     const drawSun = () => {
@@ -249,7 +242,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     }
 
     const drawFarIslands = () => {
-      // Low flat skärgård silhouettes
       cx.fillStyle = th.farIsland
       cx.beginPath()
       cx.moveTo(0, H * 0.445)
@@ -297,6 +289,85 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillRect(x - cw*0.13, y + ch*0.22, cw*0.26, ch*0.28)
     }
 
+    /* ── Bastu / sauna ──────────────────────────────────────────────────── */
+    const sauna = (x: number, y: number) => {
+      const sw = W * 0.032, sh = H * 0.024
+      // Horizontal log body — dark reddish brown
+      cx.fillStyle = '#5a1818'
+      cx.fillRect(x - sw/2, y - sh, sw, sh)
+      // Log grain lines
+      cx.strokeStyle = 'rgba(30,8,8,0.38)'; cx.lineWidth = 0.9
+      for (let i = 1; i <= 4; i++) {
+        cx.beginPath()
+        cx.moveTo(x - sw/2, y - sh + i * sh/5)
+        cx.lineTo(x + sw/2, y - sh + i * sh/5)
+        cx.stroke()
+      }
+      // Corner notches (vertical boards)
+      cx.fillStyle = '#3e1010'
+      cx.fillRect(x - sw/2, y - sh, 3.5, sh)
+      cx.fillRect(x + sw/2 - 3.5, y - sh, 3.5, sh)
+      // Low pitched roof
+      cx.fillStyle = '#2a1808'
+      cx.beginPath()
+      cx.moveTo(x - sw/2 - 3, y - sh)
+      cx.lineTo(x, y - sh - sh * 0.35)
+      cx.lineTo(x + sw/2 + 3, y - sh)
+      cx.closePath(); cx.fill()
+      // Chimney
+      const chimX = x + sw * 0.22
+      cx.fillStyle = '#3a2a20'
+      cx.fillRect(chimX - 3, y - sh - sh*0.35 - H*0.022, 6, H*0.022)
+      // Smoke — slow animated wisp
+      cx.save()
+      cx.strokeStyle = 'rgba(210,200,188,0.28)'; cx.lineWidth = 1.8; cx.lineCap = 'round'
+      cx.beginPath()
+      const st = t * 0.30
+      cx.moveTo(chimX, y - sh - sh*0.35 - H*0.022)
+      cx.bezierCurveTo(
+        chimX + Math.sin(st)       * 4, y - sh - sh*0.35 - H*0.034,
+        chimX + Math.sin(st + 1.0) * 6, y - sh - sh*0.35 - H*0.048,
+        chimX + Math.sin(st + 2.0) * 5, y - sh - sh*0.35 - H*0.062
+      )
+      cx.stroke()
+      cx.restore()
+    }
+
+    /* ── Fishing net ────────────────────────────────────────────────────── */
+    const fishingNet = (x: number, y: number) => {
+      const nw = W * 0.062, nh = H * 0.048
+      // Drying posts
+      cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
+      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - nh - H*0.012); cx.stroke()
+      cx.beginPath(); cx.moveTo(x + nw, y); cx.lineTo(x + nw, y - nh - H*0.012); cx.stroke()
+      // Top rope line
+      cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.6
+      cx.beginPath(); cx.moveTo(x, y - nh - H*0.006); cx.lineTo(x + nw, y - nh - H*0.006); cx.stroke()
+      // Cork floats along top rope
+      cx.fillStyle = '#d47818'
+      for (let i = 0; i <= 5; i++) {
+        const fx = x + i * nw / 5
+        cx.beginPath(); cx.ellipse(fx, y - nh - H*0.006, 3.5, 2.2, 0, 0, Math.PI * 2); cx.fill()
+      }
+      // Net — vertical threads with gentle sag
+      cx.strokeStyle = 'rgba(90,68,38,0.48)'; cx.lineWidth = 0.8
+      for (let i = 0; i <= 5; i++) {
+        const nx2 = x + i * nw / 5
+        const sag = Math.sin(i * 0.9 + t * 0.18) * H * 0.004
+        cx.beginPath()
+        cx.moveTo(nx2, y - nh - H*0.004)
+        cx.bezierCurveTo(nx2 + sag, y - nh*0.60, nx2 - sag, y - nh*0.28, nx2, y)
+        cx.stroke()
+      }
+      // Net — horizontal threads
+      for (let j = 1; j <= 3; j++) {
+        const ny2 = y - nh * (j / 3.5)
+        cx.beginPath()
+        cx.moveTo(x, ny2); cx.lineTo(x + nw, ny2)
+        cx.stroke()
+      }
+    }
+
     /* ── Sjöbod / boathouse ─────────────────────────────────────────────── */
     const boathouse = (x: number, y: number) => {
       const bw = W * 0.026, bh = H * 0.032
@@ -336,29 +407,59 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillRect(x, dTop, dLen, H * 0.003)
     }
 
+    /* ── Bathing ladder (stege) ─────────────────────────────────────────── */
+    const ladder = (x: number, waterY: number) => {
+      const lw = W * 0.009, lh = H * 0.058
+      cx.strokeStyle = 'rgba(90,58,24,0.72)'; cx.lineWidth = 1.8; cx.lineCap = 'round'
+      // Two rails
+      cx.beginPath(); cx.moveTo(x - lw/2, waterY); cx.lineTo(x - lw/2, waterY + lh); cx.stroke()
+      cx.beginPath(); cx.moveTo(x + lw/2, waterY); cx.lineTo(x + lw/2, waterY + lh); cx.stroke()
+      // Rungs
+      cx.lineWidth = 1.4
+      for (let i = 0; i <= 4; i++) {
+        const ry = waterY + i * lh / 4
+        cx.beginPath(); cx.moveTo(x - lw/2, ry); cx.lineTo(x + lw/2, ry); cx.stroke()
+      }
+    }
+
+    /* ── Short sauna dock ───────────────────────────────────────────────── */
+    const saunaDock = (x: number, waterY: number) => {
+      const dLen = W * 0.028
+      const dTop = waterY - H * 0.006
+      cx.fillStyle = '#382608'
+      ;[x + 2, x + dLen * 0.50, x + dLen - 2].forEach(px =>
+        cx.fillRect(px - 1.5, dTop, 3, H * 0.030)
+      )
+      cx.fillStyle = '#5e4020'
+      cx.fillRect(x, dTop, dLen, H * 0.007)
+    }
+
     /* ── Near islands — one coherent bay scene ───────────────────────────── */
     const drawNearIslands = () => {
       const wb = WL()
+      // Extend island shapes BELOW waterline to eliminate rendering gap
+      // Water wave can dip up to ~H*0.018 below WL — extend by H*0.024 for safety
+      const ext = H * 0.024
       cx.save()
 
       // ── LEFT ISLAND — the settlement ─────────────────────────────────────
-      // Green mass — flatter, broader
+      // Flat granite island — low profile, wide shape
       cx.beginPath()
-      cx.moveTo(-6, wb)
-      cx.bezierCurveTo(W*0.01, H*0.380, W*0.072, H*0.352, W*0.148, H*0.382)
-      cx.bezierCurveTo(W*0.205, H*0.408, W*0.248, H*0.472, W*0.265, wb)
-      cx.lineTo(-6, wb); cx.closePath()
+      cx.moveTo(-6, wb + ext)
+      cx.bezierCurveTo(W*0.010, H*0.448, W*0.058, H*0.428, W*0.138, H*0.440)
+      cx.bezierCurveTo(W*0.195, H*0.455, W*0.240, H*0.480, W*0.268, wb + ext)
+      cx.lineTo(-6, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
-      // Granite rock face along lower left shore
+      // Granite rock face — lower left shore
       cx.beginPath()
-      cx.moveTo(-6, wb)
-      cx.lineTo(-6, H*0.462)
-      cx.bezierCurveTo(W*0.012, H*0.418, W*0.040, H*0.408, W*0.062, H*0.440)
-      cx.lineTo(W*0.072, wb)
+      cx.moveTo(-6, wb + ext)
+      cx.lineTo(-6, H*0.465)
+      cx.bezierCurveTo(W*0.012, H*0.428, W*0.040, H*0.418, W*0.062, H*0.445)
+      cx.lineTo(W*0.075, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
-      // Subtle granite strata lines
+      // Subtle granite strata
       cx.strokeStyle = 'rgba(155,148,135,0.12)'; cx.lineWidth = 0.8
       for (let l = 0; l < 3; l++) {
         const ly = wb * (0.956 + l * 0.013)
@@ -368,68 +469,76 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.stroke()
       }
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), H*0.432, 2, 2)
+      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), H*0.450, 2, 2)
 
-      // Pines — 3, clustered left-center
-      pine(W*0.06,  wb * 0.958, H * 0.058)
-      pine(W*0.10,  wb * 0.928, H * 0.064)
-      pine(W*0.162, wb * 0.920, H * 0.058)
+      // Pines — 3, sparsely placed
+      pine(W*0.058, wb * 0.964, H * 0.050)
+      pine(W*0.098, wb * 0.942, H * 0.056)
+      pine(W*0.155, wb * 0.938, H * 0.050)
 
-      // Two cottages grouped — a small hamlet near shore
-      cottage(W * 0.098, wb * 0.950, true)
-      cottage(W * 0.148, wb * 0.948, false)
+      // Two cottages — small hamlet
+      cottage(W * 0.095, wb * 0.958, true)
+      cottage(W * 0.142, wb * 0.952, false)
 
-      // Dock
-      dock(W * 0.230, wb)
+      // Dock — left island
+      dock(W * 0.222, wb)
+
+      // Fishing net — drying on shore, larger and visible
+      fishingNet(W * 0.178, wb * 0.995)
 
 
-      // ── RIGHT ISLAND — rocky framing ────────────────────────────────────
-      // Green mass — lower profile than before
+      // ── RIGHT ISLAND — rocky, sauna side ─────────────────────────────────
+      // Flat rocky island — lower, wider
       cx.beginPath()
-      cx.moveTo(W*0.505, wb)
-      cx.bezierCurveTo(W*0.525, H*0.380, W*0.598, H*0.338, W*0.688, H*0.382)
-      cx.bezierCurveTo(W*0.748, H*0.418, W*0.788, H*0.482, W*0.802, wb)
-      cx.lineTo(W*0.505, wb); cx.closePath()
+      cx.moveTo(W*0.508, wb + ext)
+      cx.bezierCurveTo(W*0.528, H*0.400, W*0.595, H*0.378, W*0.682, H*0.398)
+      cx.bezierCurveTo(W*0.740, H*0.425, W*0.780, H*0.470, W*0.796, wb + ext)
+      cx.lineTo(W*0.508, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
-      // Rocky extension — smooth, curves off right edge
+      // Rocky extension — smooth to right edge
       cx.beginPath()
-      cx.moveTo(W*0.792, wb)
-      cx.bezierCurveTo(W*0.822, H*0.448, W*0.878, H*0.436, W*0.928, H*0.464)
-      cx.bezierCurveTo(W*0.956, H*0.458, W*0.982, H*0.454, W+8, H*0.456)
-      cx.lineTo(W+8, wb)
+      cx.moveTo(W*0.788, wb + ext)
+      cx.bezierCurveTo(W*0.818, H*0.452, W*0.872, H*0.440, W*0.925, H*0.462)
+      cx.bezierCurveTo(W*0.955, H*0.456, W*0.982, H*0.452, W+8, H*0.454)
+      cx.lineTo(W+8, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
-      // Granite speckle on right shore
+      // Granite speckle
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.810 + i*0.010), H*0.462, 2, 2)
+      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), H*0.464, 2, 2)
 
-      // Subtle strata lines on right rocky shore
+      // Strata lines right shore
       cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
       for (let l = 0; l < 2; l++) {
         const ly = wb * (0.962 + l * 0.014)
         cx.beginPath()
-        cx.moveTo(W*0.800, ly)
-        cx.bezierCurveTo(W*0.840, ly - H*0.002, W*0.880, ly + H*0.002, W*0.930, ly)
+        cx.moveTo(W*0.796, ly)
+        cx.bezierCurveTo(W*0.838, ly - H*0.002, W*0.878, ly + H*0.002, W*0.928, ly)
         cx.stroke()
       }
 
-      // Two pines — sparse
-      pine(W*0.572, wb * 0.918, H * 0.055)
-      pine(W*0.640, wb * 0.905, H * 0.060)
+      // Two pines
+      pine(W*0.568, wb * 0.930, H * 0.048)
+      pine(W*0.635, wb * 0.920, H * 0.054)
 
-      // Cottage + boathouse
-      cottage(W * 0.660, wb * 0.938)
-      boathouse(W * 0.520, wb)
+      // Boathouse left side
+      boathouse(W * 0.518, wb)
 
-      // ── Small mid skerry — low, subtle ───────────────────────────────────
+      // Sauna with short dock + ladder on right side
+      sauna(W * 0.740, wb * 0.968)
+      saunaDock(W * 0.758, wb)
+      ladder(W * 0.772, wb)
+
+
+      // ── Small mid skerry — low granite
       cx.beginPath()
-      cx.moveTo(W*0.338, wb)
-      cx.bezierCurveTo(W*0.344, H*0.490, W*0.360, H*0.476, W*0.380, H*0.482)
-      cx.bezierCurveTo(W*0.395, H*0.488, W*0.406, H*0.491, W*0.413, wb)
+      cx.moveTo(W*0.340, wb + ext)
+      cx.bezierCurveTo(W*0.346, H*0.492, W*0.362, H*0.480, W*0.380, H*0.485)
+      cx.bezierCurveTo(W*0.394, H*0.490, W*0.404, H*0.493, W*0.412, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
       cx.fillStyle = 'rgba(195,188,175,0.20)'
-      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.350 + i*0.014), H*0.484, 2, 2)
+      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.352 + i*0.014), H*0.486, 2, 2)
 
       cx.restore()
     }
@@ -467,8 +576,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const sx   = W * th.sunX
       const wy   = WL()
       const shimH = H * 0.22
-
-      // Elongated shimmer column aligned with sun
       const sg = cx.createLinearGradient(sx, wy, sx, wy + shimH)
       const sa = 0.10 + Math.sin(t * 1.0) * 0.03
       sg.addColorStop(0,    `rgba(${th.shimmer},${sa})`)
@@ -476,13 +583,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       sg.addColorStop(0.65, `rgba(${th.shimmer},${(sa * 0.20).toFixed(3)})`)
       sg.addColorStop(1,    `rgba(${th.shimmer},0)`)
       cx.fillStyle = sg
-
       const sw = W * 0.058 + Math.sin(t * 0.7) * W * 0.008
       cx.beginPath()
       cx.ellipse(sx, wy + shimH * 0.5, sw, shimH * 0.5, 0, 0, Math.PI * 2)
       cx.fill()
-
-      // Small surface sparkles — scattered around shimmer column
       for (let i = 0; i < 5; i++) {
         const spx = sx + Math.sin(t * 1.6 + i * 1.1) * sw * 1.5
         const spy = wy + (i / 4.5) * shimH * 0.4 + Math.sin(t * 2.0 + i) * H * 0.004
@@ -494,86 +598,44 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }
     }
 
-    /* ── Bobbing buoy ───────────────────────────────────────────────────── */
-    const drawBuoy = () => {
-      const bx = W * 0.42
-      const bob = Math.sin(t * 0.80) * H * 0.0025
-      const by  = wave(bx) - H * 0.011 + bob
-      cx.save(); cx.translate(bx, by)
-      const bw = H * 0.0072, bh = H * 0.019
-
-      // Mooring chain
-      cx.strokeStyle = 'rgba(85,68,45,0.38)'; cx.lineWidth = 0.9
-      cx.beginPath(); cx.moveTo(0, bh); cx.bezierCurveTo(3, bh+H*0.016, 5, H*0.030, 4, H*0.050); cx.stroke()
-
-      // Cylindrical body
-      cx.beginPath()
-      cx.moveTo(-bw, bh)
-      cx.bezierCurveTo(-bw, bh+1, bw, bh+1, bw, bh)
-      cx.lineTo(bw, -bh*0.52)
-      cx.bezierCurveTo(bw, -bh*0.68, -bw, -bh*0.68, -bw, -bh*0.52)
-      cx.closePath()
-      cx.fillStyle = '#b82c1e'; cx.fill()
-      cx.strokeStyle = 'rgba(165,38,26,0.55)'; cx.lineWidth = 0.7; cx.stroke()
-
-      // White band
-      cx.fillStyle = 'rgba(235,228,210,0.85)'
-      cx.fillRect(-bw, -bh*0.08, bw*2, bh*0.20)
-
-      // Conical top
-      cx.beginPath()
-      cx.moveTo(-bw, -bh*0.52)
-      cx.lineTo(0, -bh*1.15)
-      cx.lineTo(bw, -bh*0.52)
-      cx.closePath()
-      cx.fillStyle = '#b82c1e'; cx.fill()
-
-      // Pole + pulsing light
-      cx.strokeStyle = '#c8b878'; cx.lineWidth = 1.1
-      cx.beginPath(); cx.moveTo(0, -bh*1.15); cx.lineTo(0, -bh*1.80); cx.stroke()
-      const pulse = (Math.sin(ms * 0.0020) + 1) * 0.5
-      cx.fillStyle = `rgba(255,252,90,${0.45 + pulse * 0.55})`
-      cx.beginPath(); cx.arc(0, -bh*1.80, 1.7, 0, Math.PI * 2); cx.fill()
-
-      cx.restore()
-    }
-
-    /* ── Underwater atmosphere — calm, minimal ──────────────────────────── */
+    /* ── Underwater atmosphere ──────────────────────────────────────────── */
     const drawUnderwater = () => {
       const wb = WL()
+      // Blue-tinted underwater gradient — affects visual backdrop for text area
       const dg = cx.createLinearGradient(0, wb, 0, H)
       dg.addColorStop(0,    `${th.seabedTint}0)`)
-      dg.addColorStop(0.32, `${th.seabedTint}0.12)`)
-      dg.addColorStop(1,    `${th.seabedTint}0.50)`)
+      dg.addColorStop(0.25, `${th.seabedTint}0.10)`)
+      dg.addColorStop(0.65, `${th.seabedTint}0.38)`)
+      dg.addColorStop(1,    `${th.seabedTint}0.62)`)
       cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
-      // Three subtle light rays
+      // Light rays — slow, subtle
       for (let i = 0; i < 3; i++) {
-        const rx = W * (0.15 + i * 0.28) + Math.sin(t * 0.12 + i * 1.1) * 10
+        const rx = W * (0.15 + i * 0.28) + Math.sin(t * 0.10 + i * 1.1) * 8
         cx.save(); cx.translate(rx, wb); cx.rotate(-0.04 + i * 0.025)
-        const rg = cx.createLinearGradient(0, 0, 0, H * 0.28)
-        const a = 0.055 + Math.sin(t * 0.32 + i) * 0.022
+        const rg = cx.createLinearGradient(0, 0, 0, H * 0.30)
+        const a = 0.045 + Math.sin(t * 0.28 + i) * 0.018
         rg.addColorStop(0, `rgba(${th.underwaterRay},${a})`)
         rg.addColorStop(1, `rgba(${th.underwaterRay},0)`)
         cx.fillStyle = rg
-        cx.beginPath(); cx.moveTo(-6, 0); cx.lineTo(6, 0)
-        cx.lineTo(15, H*0.28); cx.lineTo(-15, H*0.28); cx.closePath(); cx.fill()
+        cx.beginPath(); cx.moveTo(-5, 0); cx.lineTo(5, 0)
+        cx.lineTo(14, H*0.30); cx.lineTo(-14, H*0.30); cx.closePath(); cx.fill()
         cx.restore()
       }
     }
 
-    /* ── Seabed rocks ───────────────────────────────────────────────────── */
+    /* ── Seabed rocks — sand and stone ─────────────────────────────────── */
     const drawSeabedRocks = () => {
       const rdata = [
-        { x: W*0.08, rw: H*0.036, rh: H*0.018 }, { x: W*0.22, rw: H*0.026, rh: H*0.014 },
-        { x: W*0.38, rw: H*0.042, rh: H*0.022 }, { x: W*0.55, rw: H*0.028, rh: H*0.015 },
-        { x: W*0.70, rw: H*0.038, rh: H*0.020 }, { x: W*0.88, rw: H*0.032, rh: H*0.016 },
+        { x: W*0.07, rw: H*0.040, rh: H*0.018 }, { x: W*0.20, rw: H*0.028, rh: H*0.013 },
+        { x: W*0.36, rw: H*0.044, rh: H*0.020 }, { x: W*0.54, rw: H*0.030, rh: H*0.014 },
+        { x: W*0.71, rw: H*0.040, rh: H*0.018 }, { x: W*0.88, rw: H*0.034, rh: H*0.015 },
       ]
       rdata.forEach(({ x, rw, rh }) => {
         const ry = H - rh * 0.5
         cx.beginPath(); cx.ellipse(x, ry, rw, rh, 0, 0, Math.PI * 2)
         cx.fillStyle = 'hsla(215,14%,25%,0.65)'; cx.fill()
         cx.beginPath(); cx.ellipse(x - rw*0.14, ry - rh*0.20, rw*0.40, rh*0.36, 0, 0, Math.PI * 2)
-        cx.fillStyle = 'hsla(215,12%,34%,0.32)'; cx.fill()
+        cx.fillStyle = 'hsla(215,12%,34%,0.30)'; cx.fill()
       })
     }
 
@@ -606,13 +668,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         b.y   -= b.spd * dt * 0.001
         b.ph  += 0.0018 * dt
         b.x   += Math.sin(b.ph) * 0.18
-        if (b.y < WL()) { b.y = H * (0.72 + Math.random() * 0.28); b.x = Math.random() * W }
+        if (b.y < WL()) { b.y = H * (0.74 + Math.random() * 0.26); b.x = Math.random() * W }
         cx.beginPath(); cx.arc(b.x, b.y, b.r, 0, Math.PI * 2)
         cx.strokeStyle = `rgba(160,212,248,${b.a})`; cx.lineWidth = 0.7; cx.stroke()
       })
     }
 
-    /* ── Fish — 4 naturalistic, varied sizes ────────────────────────────── */
+    /* ── Fish — 4 naturalistic, varied ─────────────────────────────────── */
     const drawFish = (dt: number) => {
       fish.forEach(f => {
         f.x += f.spd * f.dir * dt * 0.001
@@ -636,64 +698,66 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       })
     }
 
-    /* ── Harbour porpoise (tumlare) — underwater, slow ──────────────────── */
+    /* ── Harbour porpoise (tumlare) — compact, rounded ──────────────────── */
+    // Always travels right → left (negative x direction)
     const drawPorpoise = (x: number, y: number, scale: number, ph: number) => {
       cx.save(); cx.translate(x, y); cx.scale(scale, scale)
-      const bodyAngle = Math.sin(ph * 1.8) * 0.055
+      const bodyAngle = Math.sin(ph * 1.6) * 0.045
       cx.rotate(bodyAngle)
 
-      // Squat body — dark dorsal, no beak
+      // Compact rounded body — blunt nose, no beak
       cx.beginPath()
-      cx.moveTo(26, 0)
-      cx.bezierCurveTo(28, -8, 10, -11, 0, -11)
-      cx.bezierCurveTo(-14, -11, -26, -7, -28, 0)
-      cx.bezierCurveTo(-26, 7, -14, 10, 0, 10)
-      cx.bezierCurveTo(10, 10, 28, 8, 26, 0)
+      cx.moveTo(24, 0)
+      cx.bezierCurveTo(26, -7,  8, -10,  0, -10)
+      cx.bezierCurveTo(-13, -10, -25,  -6, -27,  0)
+      cx.bezierCurveTo(-25,  6, -13,  10,  0,  10)
+      cx.bezierCurveTo(  8,  10,  26,   7, 24,  0)
       cx.closePath()
       cx.fillStyle = 'rgba(28,40,55,0.80)'; cx.fill()
 
-      // White belly
+      // White belly patch
       cx.beginPath()
-      cx.ellipse(4, 5, 15, 5.2, 0.10, 0, Math.PI * 2)
+      cx.ellipse(2, 5, 13, 4.8, 0.08, 0, Math.PI * 2)
       cx.fillStyle = 'rgba(210,225,232,0.68)'; cx.fill()
 
-      // Short triangular dorsal fin
+      // Small triangular dorsal fin — compact
       cx.beginPath()
-      cx.moveTo(-2, -11); cx.lineTo(5, -21); cx.lineTo(12, -11); cx.closePath()
+      cx.moveTo(-1, -10); cx.lineTo(6, -18); cx.lineTo(11, -10); cx.closePath()
       cx.fillStyle = 'rgba(20,32,48,0.82)'; cx.fill()
 
       // Tail fluke
-      const tailWag = Math.sin(ph * 1.8 + 0.5) * 0.16
-      cx.save(); cx.translate(-28, 0); cx.rotate(tailWag)
+      const tailWag = Math.sin(ph * 1.6 + 0.5) * 0.14
+      cx.save(); cx.translate(-27, 0); cx.rotate(tailWag)
       cx.beginPath()
       cx.moveTo(0, 0)
-      cx.bezierCurveTo(-5, -3, -12, -2, -14, -7)
-      cx.bezierCurveTo(-12, -2, -5, 0, 0, 0)
-      cx.bezierCurveTo(-5, 3, -12, 2, -14, 7)
-      cx.bezierCurveTo(-12, 2, -5, 3, 0, 0)
+      cx.bezierCurveTo(-4, -3, -10, -2, -12, -6)
+      cx.bezierCurveTo(-10, -2, -4,  0,  0,  0)
+      cx.bezierCurveTo(-4,  3, -10,  2, -12,  6)
+      cx.bezierCurveTo(-10,  2, -4,  3,  0,  0)
       cx.fillStyle = 'rgba(20,32,48,0.80)'; cx.fill()
       cx.restore()
 
       // Pectoral fin
       cx.beginPath()
-      cx.moveTo(10, 4); cx.bezierCurveTo(5, 8, -2, 12, -5, 10); cx.bezierCurveTo(-2, 8, 5, 5, 10, 4)
+      cx.moveTo(8, 4); cx.bezierCurveTo(4, 8, -2, 11, -4, 9); cx.bezierCurveTo(-2, 7, 4, 5, 8, 4)
       cx.fillStyle = 'rgba(20,32,48,0.72)'; cx.fill()
 
       // Eye
-      cx.beginPath(); cx.arc(20, -3, 1.5, 0, Math.PI * 2); cx.fillStyle = '#03080e'; cx.fill()
-      cx.beginPath(); cx.arc(20.5, -3.4, 0.48, 0, Math.PI * 2); cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fill()
+      cx.beginPath(); cx.arc(18, -2, 1.4, 0, Math.PI * 2); cx.fillStyle = '#03080e'; cx.fill()
+      cx.beginPath(); cx.arc(18.4, -2.4, 0.45, 0, Math.PI * 2); cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fill()
 
       cx.restore()
     }
 
+    // Adult + calf, always right→left, slow gentle arc
     const drawDolphin = (dt: number) => {
       if (!dolOn) return
-      dolX  -= 15 * dt * 0.001
-      dolPh += 1.3 * dt * 0.001
-      const dy = WL() + H * 0.070 + Math.sin(dolPh * 1.2) * H * 0.009
-      if (dolX < -150) { dolOn = false; nextDol = ms + 30000 + Math.random() * 20000 }
-      // Calf
-      drawPorpoise(dolX + 50 + Math.sin(dolPh + 0.9) * 3, dy + H * 0.024, 0.56, dolPh + 0.4)
+      dolX  -= 10 * dt * 0.001          // slower than before
+      dolPh += 1.0 * dt * 0.001          // gentler oscillation
+      const dy = WL() + H * 0.068 + Math.sin(dolPh * 1.1) * H * 0.008
+      if (dolX < -160) { dolOn = false; nextDol = ms + 35000 + Math.random() * 25000 }
+      // Calf follows behind and slightly below
+      drawPorpoise(dolX + 48 + Math.sin(dolPh + 0.9) * 2, dy + H * 0.022, 0.54, dolPh + 0.4)
       // Adult
       drawPorpoise(dolX, dy, 1.0, dolPh)
     }
@@ -713,24 +777,18 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     }
 
     const drawSailboat = () => {
-      // Wake
       cx.beginPath(); cx.moveTo(-20, 6); cx.bezierCurveTo(-42, 8, -68, 9, -88, 7)
       cx.strokeStyle = 'rgba(255,255,255,0.17)'; cx.lineWidth = 1.1; cx.stroke()
-      // Hull
       cx.beginPath(); cx.moveTo(-22,8); cx.lineTo(22,8); cx.lineTo(17,0); cx.lineTo(-17,0); cx.closePath()
       cx.fillStyle = '#e0d0a0'; cx.fill()
       cx.beginPath(); cx.moveTo(-17,0); cx.lineTo(17,0); cx.bezierCurveTo(15,-4,-15,-4,-17,0); cx.closePath()
       cx.fillStyle = '#c8aa60'; cx.fill()
-      // Mast
       cx.strokeStyle = '#6e4420'; cx.lineWidth = 1.4
       cx.beginPath(); cx.moveTo(0,0); cx.lineTo(0,-44); cx.stroke()
-      // Main sail
       cx.beginPath(); cx.moveTo(0,-42); cx.lineTo(23,-2); cx.lineTo(0,-2); cx.closePath()
       cx.fillStyle = 'rgba(248,244,232,0.92)'; cx.fill()
-      // Jib
       cx.beginPath(); cx.moveTo(0,-26); cx.lineTo(-16,-4); cx.lineTo(0,-4); cx.closePath()
       cx.fillStyle = 'rgba(248,244,232,0.58)'; cx.fill()
-      // Burgee
       cx.beginPath(); cx.moveTo(0,-44); cx.lineTo(8,-39); cx.lineTo(0,-34); cx.closePath()
       cx.fillStyle = '#d83838'; cx.fill()
     }
@@ -742,7 +800,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         b.wingT += 1.8 * dt * 0.001
         if (b.x < -25) { b.x = W + 25; b.baseY = H * (0.06 + Math.random() * 0.10) }
         const y = b.baseY + Math.sin(b.wingT * 0.26 + b.ph) * b.amp * 3.8
-        // Wings always arc upward — no flip
         const w = 2.2 + Math.abs(Math.sin(b.wingT)) * 6.0
         cx.save(); cx.translate(b.x, y)
         cx.strokeStyle = th.birdColor; cx.lineWidth = 1.3; cx.lineCap = 'round'
@@ -776,7 +833,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawWater()
       drawWaterShimmer()
       drawNearIslands()
-      drawBuoy()
       drawBoats(dt)
       drawUnderwater()
       drawSeabedRocks()
