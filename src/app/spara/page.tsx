@@ -993,8 +993,8 @@ export default function SparaPage() {
     return (
       <div style={{ position: 'fixed', inset: 0, zIndex: 1000, overflow: 'hidden', background: '#000' }}>
 
-        {/* Full-screen map — zIndex: 0 isolerar Leaflets interna z-index (400-700) från overlay-UI */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        {/* Full-screen map — isolation:isolate creates a stacking context that bounds Leaflet's z-indexes */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, isolation: 'isolate' }}>
           <LiveTrackMap
             points={points.map(p => ({ lat: p.lat, lng: p.lng }))}
             currentPos={currentPos}

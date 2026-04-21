@@ -71,7 +71,7 @@ export default function LiveTrackMap({
       if (mapInstance.current || !mapContainer.current) return
 
       mapInstance.current = L.map(mapContainer.current, {
-        zoomControl: true,
+        zoomControl: false,          // remove +/- buttons; pinch-to-zoom is the mobile idiom
         attributionControl: false,
         scrollWheelZoom: false,
       }).setView([59.3293, 18.0686], 13)
@@ -258,24 +258,27 @@ export default function LiveTrackMap({
   }
 
   return (
-    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+    // isolation: isolate creates a new stacking context — Leaflet's internal z-indexes (up to 1000)
+    // are contained here and cannot bleed above parent overlays.
+    <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', isolation: 'isolate' }}>
       <div
         ref={mapContainer}
         style={{
           position: 'absolute',
           inset: 0,
           background: '#a8ccd4',
+          zIndex: 0,
         }}
       />
 
-      {/* Speed badge — bottom left — zIndex 800 > Leaflet's max 700 */}
+      {/* Speed badge — bottom left — zIndex 10 (inside isolated context, above Leaflet tiles/controls) */}
       {speed > 0.2 && (
         <div style={{
           position: 'absolute', bottom: 14, left: 14,
           background: 'rgba(30,92,130,0.90)',
           backdropFilter: 'blur(10px)',
           color: 'white', padding: '5px 12px',
-          borderRadius: 18, fontSize: 13, fontWeight: 600, zIndex: 800,
+          borderRadius: 18, fontSize: 13, fontWeight: 600, zIndex: 10,
           letterSpacing: '0.02em',
           boxShadow: '0 2px 8px rgba(0,0,0,0.20)',
         }}>
@@ -285,7 +288,7 @@ export default function LiveTrackMap({
 
       {/* Internal controls — opt-in via showInternalControls. Useful for embedded maps. */}
       {showInternalControls && (
-        <div style={{ position: 'absolute', top: 12, right: 12, zIndex: 810, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ position: 'absolute', top: 12, right: 12, zIndex: 20, display: 'flex', flexDirection: 'column', gap: 8 }}>
           <button
             onClick={recenter}
             disabled={!currentPos}
