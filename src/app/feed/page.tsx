@@ -8,6 +8,8 @@ import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
+import SuggestedUsers from '@/components/SuggestedUsers'
+import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
@@ -79,6 +81,7 @@ export default async function FeedPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <RealtimeFeedBanner />
       <OnboardingModal />
 
       {/* ── Header ── */}
@@ -243,6 +246,9 @@ export default async function FeedPage() {
             </div>
           </div>
         )}
+
+        {/* ── Hitta seglare (suggested follows — only for logged-in) ── */}
+        {user && <SuggestedUsers />}
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (

@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
@@ -13,6 +13,7 @@ import ProfileTeaserPopover from './ProfileTeaserPopover'
 import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
+import { renderMentions } from './Comments'
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)
@@ -65,11 +66,127 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
   )
 }
 
+/** CSS scroll-snap photo carousel — no external deps */
+function PhotoCarousel({
+  photos, alt, priority, onError, idx, onIdxChange, sizes,
+}: {
+  photos: string[]
+  alt: string
+  priority?: boolean
+  onError: (i: number) => void
+  idx: number
+  onIdxChange: (i: number) => void
+  sizes?: string
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const ticking   = useRef(false)
+
+  // Sync dot indicator on scroll
+  function handleScroll() {
+    if (ticking.current) return
+    ticking.current = true
+    requestAnimationFrame(() => {
+      ticking.current = false
+      const el = scrollRef.current
+      if (!el) return
+      const w = el.offsetWidth
+      const i = Math.round(el.scrollLeft / w)
+      onIdxChange(i)
+    })
+  }
+
+  function scrollTo(i: number) {
+    const el = scrollRef.current
+    if (!el) return
+    el.scrollTo({ left: i * el.offsetWidth, behavior: 'smooth' })
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {/* Scroll container */}
+      <div
+        ref={scrollRef}
+        onScroll={handleScroll}
+        onClick={e => e.stopPropagation()}
+        style={{
+          display: 'flex',
+          width: '100%', height: '100%',
+          overflowX: 'auto',
+          scrollSnapType: 'x mandatory',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        } as React.CSSProperties}
+      >
+        {photos.map((src, i) => (
+          <div key={src} style={{
+            position: 'relative',
+            flexShrink: 0,
+            width: '100%', height: '100%',
+            scrollSnapAlign: 'start',
+          }}>
+            <Image
+              src={src}
+              alt={`${alt} ${i + 1}`}
+              fill
+              className="object-cover"
+              sizes={sizes ?? '100vw'}
+              priority={priority && i === 0}
+              onError={() => onError(i)}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          position: 'absolute', bottom: 8, left: 0, right: 0,
+          display: 'flex', justifyContent: 'center', gap: 5,
+          pointerEvents: 'none',
+        }}
+      >
+        {photos.map((_, i) => (
+          <div
+            key={i}
+            onClick={e => { e.stopPropagation(); scrollTo(i) }}
+            style={{
+              width: i === idx ? 16 : 5,
+              height: 5, borderRadius: 3,
+              background: i === idx ? '#fff' : 'rgba(255,255,255,0.5)',
+              transition: 'width .2s, background .2s',
+              cursor: 'pointer',
+              pointerEvents: 'all',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Counter badge (top-right) */}
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          position: 'absolute', top: 8, right: 8,
+          background: 'rgba(0,0,0,0.45)',
+          backdropFilter: 'blur(4px)',
+          borderRadius: 20, padding: '3px 8px',
+          fontSize: 11, fontWeight: 700, color: '#fff',
+          pointerEvents: 'none',
+        }}
+      >
+        {idx + 1}/{photos.length}
+      </div>
+    </div>
+  )
+}
+
 export default function TripCard({ trip, priority = false }: { trip: Trip; priority?: boolean }) {
   const router = useRouter()
   const [imgErr,        setImgErr]        = useState(false)
   const [expanded,      setExpanded]      = useState(false)
   const [showShareDM,   setShowShareDM]   = useState(false)
+  const [photoErrors,   setPhotoErrors]   = useState<Set<number>>(new Set())
+  const [photoIdx,      setPhotoIdx]      = useState(0)
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
@@ -89,9 +206,14 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     return null
   })()
 
-  const hasRoute = routePoints !== null
-  const hasPhoto = !!trip.image && !imgErr
-  const hasMedia = hasPhoto || hasRoute
+  // All photos: primary image + extra images array
+  const allPhotos = Array.from(new Set(
+    [trip.image, ...(trip.images ?? [])].filter(Boolean) as string[]
+  )).filter((_, i) => !photoErrors.has(i))
+
+  const hasRoute  = routePoints !== null
+  const hasPhoto  = allPhotos.length > 0 && !imgErr
+  const hasMedia  = hasPhoto || hasRoute
 
   // Stats — show all available GPS data
   const stats: { label: string; value: string }[] = []
@@ -225,25 +347,37 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         </div>
       )}
 
-      {/* ── 3. Media (Strava-stil: foto + karta side-by-side) ── */}
+      {/* ── 3. Media (carousel + karta) ── */}
       {hasMedia && (
         <div>
           {hasPhoto && hasRoute ? (
-            /* Foto + karta side-by-side */
+            /* Carousel + karta side-by-side (2:1) */
             <div style={{
               display: 'flex', width: '100%', aspectRatio: '2/1',
               background: '#0d2a3e', overflow: 'hidden',
             }}>
               <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
-                <Image
-                  src={trip.image}
-                  alt={trip.location_name ?? `Tur av ${username}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 50vw, 320px"
-                  priority={priority}
-                  onError={() => setImgErr(true)}
-                />
+                {allPhotos.length > 1 ? (
+                  <PhotoCarousel
+                    photos={allPhotos}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    priority={priority}
+                    onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
+                    idx={photoIdx}
+                    onIdxChange={setPhotoIdx}
+                    sizes="(max-width: 640px) 50vw, 320px"
+                  />
+                ) : (
+                  <Image
+                    src={allPhotos[0]}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 50vw, 320px"
+                    priority={priority}
+                    onError={() => setImgErr(true)}
+                  />
+                )}
               </div>
               <div style={{
                 position: 'relative', flex: 1, overflow: 'hidden',
@@ -253,20 +387,32 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               </div>
             </div>
           ) : hasPhoto ? (
-            /* Bara foto — 3:2 full bredd */
+            /* Foto(n) — karusell eller enskilt 3:2 */
             <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
-              <Image
-                src={trip.image}
-                alt={trip.location_name ?? `Tur av ${username}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 640px"
-                priority={priority}
-                onError={() => setImgErr(true)}
-              />
+              {allPhotos.length > 1 ? (
+                <PhotoCarousel
+                  photos={allPhotos}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  priority={priority}
+                  onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
+                  idx={photoIdx}
+                  onIdxChange={setPhotoIdx}
+                  sizes="(max-width: 640px) 100vw, 640px"
+                />
+              ) : (
+                <Image
+                  src={allPhotos[0]}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 640px"
+                  priority={priority}
+                  onError={() => setImgErr(true)}
+                />
+              )}
             </div>
           ) : (
-            /* Bara rutt — bred landskap */
+            /* Bara rutt */
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: '#0d2a3e', overflow: 'hidden' }}>
               <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>
@@ -314,7 +460,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         <div style={{ padding: '4px 14px 14px', fontSize: 14, color: 'var(--txt)', lineHeight: 1.55 }}>
           <span style={{ fontWeight: 800 }}>{username}</span>
           {' '}
-          <span>{captionTruncated}</span>
+          <span>{renderMentions(captionTruncated)}</span>
           {caption.length > MAX_CAPTION && (
             <button
               onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}

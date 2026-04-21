@@ -4,14 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import TripDetailMap from '@/components/TripDetailMapClient'
+import TripHeroCarousel from '@/components/TripHeroCarousel'
 import LikeButton from '@/components/LikeButton'
-import Comments from '@/components/Comments'
+import Comments, { renderMentions } from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
 import TripActions from '@/components/TripActions'
 import TripTagger from '@/components/TripTagger'
 import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
-import RouteMapSVG from '@/components/RouteMapSVG'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import type { Metadata } from 'next'
 
@@ -190,6 +190,11 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   const routePoints  = Array.isArray(trip.route_points) && trip.route_points.length >= 2
     ? (trip.route_points as { lat: number; lng: number }[])
     : null
+
+  // All photos for carousel (primary + extras)
+  const allPhotos = Array.from(new Set(
+    [trip.image, ...(Array.isArray(trip.images) ? trip.images : [])].filter(Boolean) as string[]
+  ))
   const username = userRow?.username ?? 'Seglare'
   const routeName = (trip.routes as { name: string } | null)?.name
 
@@ -223,30 +228,29 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
 
-      {/* ── Hero image / minimap ── */}
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#0b2d42', overflow: 'hidden' }}>
-        {trip.image
-          ? <Image src={trip.image} alt="Tur" fill style={{ objectFit: 'cover' }} priority sizes="100vw" />
-          : routePoints
-            ? <div style={{ position: 'absolute', inset: 0 }}>
-                <RouteMapSVG points={routePoints} w={720} h={540} />
-              </div>
-            : <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64, opacity: 0.3 }}>⛵</div>
-        }
-        {/* Gradient overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,20,35,0.35) 0%, transparent 40%, transparent 60%, rgba(0,20,35,0.6) 100%)' }} />
+      {/* ── Hero (photo carousel + minimap fallback) ── */}
+      <div style={{ position: 'relative' }}>
+        <TripHeroCarousel
+          photos={allPhotos}
+          routePoints={routePoints}
+          locationName={trip.location_name}
+        />
 
-        {/* Back button */}
-        <BackButton fallback="/feed" />
+        {/* Back button — absolute overlay */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, pointerEvents: 'none' }}>
+          <div style={{ pointerEvents: 'all' }}>
+            <BackButton fallback="/feed" />
+          </div>
+        </div>
 
         {/* Share + actions */}
-        <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', gap: 8 }}>
+        <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', gap: 8, zIndex: 10 }}>
           <ShareButton url={`https://svalla.se/tur/${id}`} title={trip.location_name ?? 'Min tur'} />
           <TripActions tripId={trip.id} ownerId={trip.user_id} />
         </div>
 
         {/* Location + pinnar overlay at bottom */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px', zIndex: 5, pointerEvents: 'none' }}>
           {(trip.start_location || trip.location_name) && (
             <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: 4, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
               {trip.start_location
@@ -303,7 +307,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             fontSize: 15, color: 'var(--txt2, #2a4a5a)', lineHeight: 1.65,
             margin: '0 0 16px', fontWeight: 400,
           }}>
-            {trip.caption}
+            {renderMentions(trip.caption)}
           </p>
         )}
 

@@ -1,8 +1,9 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
-import Link from 'next/link'
+import { parseTokens, getActiveMention, extractMentions } from '@/lib/mentions'
 
 type Comment = {
   id: string
@@ -12,6 +13,40 @@ type Comment = {
   username?: string
   avatar?: string | null
   optimistic?: boolean
+}
+
+type MentionHit = { id: string; username: string; avatar: string | null }
+
+/** Render a comment/caption string with @mention and #hashtag links. */
+export function renderMentions(text: string) {
+  const spans = parseTokens(text)
+  return spans.map((s, i) => {
+    if (s.type === 'mention') {
+      return (
+        <Link
+          key={i}
+          href={`/u/${s.value}`}
+          onClick={e => e.stopPropagation()}
+          style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
+        >
+          @{s.value}
+        </Link>
+      )
+    }
+    if (s.type === 'hashtag') {
+      return (
+        <Link
+          key={i}
+          href={`/tagg/${s.value.toLowerCase()}`}
+          onClick={e => e.stopPropagation()}
+          style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
+        >
+          #{s.value}
+        </Link>
+      )
+    }
+    return <span key={i}>{s.value}</span>
+  })
 }
 
 export default function Comments({
@@ -28,6 +63,8 @@ export default function Comments({
   const listRef      = useRef<HTMLDivElement>(null)
   const hasLoadedRef = useRef(false)
   const channelRef   = useRef<ReturnType<typeof supabase.channel> | null>(null)
+  const debounceRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const mentionBoxRef = useRef<HTMLDivElement>(null)
 
   const [comments,    setComments]    = useState<Comment[]>([])
   const [text,        setText]        = useState('')
@@ -39,6 +76,11 @@ export default function Comments({
   const [loading,     setLoading]     = useState(false)
   const [deleting,    setDeleting]    = useState<string | null>(null)
   const [confirmDel,  setConfirmDel]  = useState<string | null>(null)
+
+  // Mention autocomplete
+  const [mentionHits,    setMentionHits]    = useState<MentionHit[]>([])
+  const [mentionAnchor,  setMentionAnchor]  = useState<{ word: string; start: number } | null>(null)
+  const [mentionActive,  setMentionActive]  = useState(0)
 
   const displayCount = hasLoadedRef.current ? comments.length : (initialCount ?? 0)
 
@@ -112,24 +154,132 @@ export default function Comments({
     }
   }, [open, userId])
 
+  // ── Mention autocomplete search ──
+  function handleTextChange(val: string) {
+    setText(val)
+    const cursor = inputRef.current?.selectionStart ?? val.length
+    const anchor = getActiveMention(val, cursor)
+    if (!anchor) {
+      setMentionHits([])
+      setMentionAnchor(null)
+      return
+    }
+    setMentionAnchor(anchor)
+    setMentionActive(0)
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+    debounceRef.current = setTimeout(async () => {
+      const q = anchor.word
+      if (q.length === 0) {
+        // Show top users on bare @
+        const { data } = await supabase
+          .from('users')
+          .select('id, username, avatar')
+          .limit(6)
+        setMentionHits((data ?? []) as MentionHit[])
+      } else {
+        const { data } = await supabase
+          .from('users')
+          .select('id, username, avatar')
+          .ilike('username', `${q}%`)
+          .limit(6)
+        setMentionHits((data ?? []) as MentionHit[])
+      }
+    }, 200)
+  }
+
+  function applyMention(hit: MentionHit) {
+    if (!mentionAnchor) return
+    const before = text.slice(0, mentionAnchor.start)
+    const after  = text.slice(mentionAnchor.start + 1 + mentionAnchor.word.length) // skip @word
+    const newText = `${before}@${hit.username} ${after}`
+    setText(newText)
+    setMentionHits([])
+    setMentionAnchor(null)
+    setTimeout(() => {
+      inputRef.current?.focus()
+      const pos = before.length + hit.username.length + 2 // after "@username "
+      inputRef.current?.setSelectionRange(pos, pos)
+    }, 0)
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (mentionHits.length > 0) {
+      if (e.key === 'ArrowDown')  { e.preventDefault(); setMentionActive(v => Math.min(v + 1, mentionHits.length - 1)); return }
+      if (e.key === 'ArrowUp')    { e.preventDefault(); setMentionActive(v => Math.max(v - 1, 0)); return }
+      if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); applyMention(mentionHits[mentionActive]); return }
+      if (e.key === 'Escape')     { setMentionHits([]); setMentionAnchor(null); return }
+    }
+    if (e.key === 'Enter' && !e.shiftKey && mentionHits.length === 0) { e.preventDefault(); post() }
+  }
+
+  // ── Send mention notifications (dedupe 60s) ──
+  async function sendMentionNotifications(content: string) {
+    const mentioned = extractMentions(content)
+    if (!mentioned.length || !userId) return
+    const { data: mentionedUsers } = await supabase
+      .from('users')
+      .select('id, username')
+      .in('username', mentioned)
+    if (!mentionedUsers?.length) return
+
+    const sixtySecondsAgo = new Date(Date.now() - 60_000).toISOString()
+    for (const mu of mentionedUsers) {
+      if (mu.id === userId) continue // don't notify self
+      // Dedupe: check if we already sent a mention notification to this user in the last 60s
+      const { data: recent } = await supabase
+        .from('notifications')
+        .select('id')
+        .eq('user_id', mu.id)
+        .eq('actor_id', userId)
+        .eq('type', 'mention')
+        .gte('created_at', sixtySecondsAgo)
+        .limit(1)
+        .maybeSingle()
+      if (recent) continue
+      await supabase.from('notifications').insert({
+        user_id:  mu.id,
+        actor_id: userId,
+        type:     'mention',
+        trip_id:  tripId,
+      })
+      fetch('/api/push/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          targetUserId: mu.id,
+          title: `${myUsername} taggade dig 🏷️`,
+          body:  content.slice(0, 80),
+          url:   `/tur/${tripId}`,
+        }),
+      }).catch(() => {})
+    }
+  }
+
   async function post(e?: React.FormEvent) {
     e?.preventDefault()
     const content = text.trim()
     if (!userId || !content || posting) return
     setPosting(true)
     setText('')
+    setMentionHits([])
+    setMentionAnchor(null)
     const tempId = `opt-${Date.now()}`
     setComments(prev => [...prev, { id: tempId, content, created_at: new Date().toISOString(), user_id: userId, username: myUsername, avatar: myAvatar, optimistic: true }])
     hasLoadedRef.current = true
-    const { error } = await supabase.from('comments').insert({ trip_id: tripId, user_id: userId, content })
+    const { error } = await supabase
+      .from('comments')
+      .insert({ trip_id: tripId, user_id: userId, content })
     if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); return }
     await load()
     setPosting(false)
+    // Trip owner notification
     supabase.from('trips').select('user_id').eq('id', tripId).single().then(({ data: trip }) => {
       if (!trip?.user_id || trip.user_id === userId) return
       supabase.from('notifications').insert({ user_id: trip.user_id, actor_id: userId, type: 'comment', trip_id: tripId })
       fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: trip.user_id, title: 'Ny kommentar 💬', body: `${myUsername}: ${content.slice(0, 60)}`, url: `/tur/${tripId}` }) }).catch(() => {})
     })
+    // Mention notifications
+    sendMentionNotifications(content)
   }
 
   async function deleteComment(id: string) {
@@ -300,7 +450,7 @@ export default function Comments({
                           </span>
                         </div>
                         <div style={{ fontSize: 14, color: 'var(--txt)', lineHeight: 1.5, wordBreak: 'break-word' }}>
-                          {c.content}
+                          {renderMentions(c.content)}
                         </div>
                       </div>
                     </div>
@@ -368,7 +518,56 @@ export default function Comments({
               borderTop: !loading && comments.length > 0
                 ? '1px solid rgba(0,40,80,0.06)'
                 : 'none',
+              position: 'relative',
             }}>
+              {/* Mention autocomplete dropdown */}
+              {mentionHits.length > 0 && (
+                <div
+                  ref={mentionBoxRef}
+                  style={{
+                    position: 'absolute', bottom: '100%', left: 12, right: 12,
+                    background: '#fff',
+                    border: '1px solid rgba(10,123,140,0.15)',
+                    borderRadius: 14,
+                    boxShadow: '0 4px 20px rgba(0,30,60,0.14)',
+                    overflow: 'hidden',
+                    zIndex: 100,
+                    marginBottom: 4,
+                  }}
+                >
+                  {mentionHits.map((hit, i) => (
+                    <div
+                      key={hit.id}
+                      onMouseDown={e => { e.preventDefault(); applyMention(hit) }}
+                      style={{
+                        display: 'flex', alignItems: 'center', gap: 10,
+                        padding: '9px 14px',
+                        cursor: 'pointer',
+                        background: i === mentionActive ? 'rgba(10,123,140,0.07)' : 'transparent',
+                        borderBottom: i < mentionHits.length - 1 ? '1px solid rgba(0,40,80,0.05)' : 'none',
+                        transition: 'background .1s',
+                      }}
+                      onMouseEnter={() => setMentionActive(i)}
+                    >
+                      <div style={{
+                        width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
+                        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 11, fontWeight: 800, color: '#fff', overflow: 'hidden',
+                      }}>
+                        {hit.avatar
+                          // eslint-disable-next-line @next/next/no-img-element
+                          ? <img src={hit.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          : hit.username[0]?.toUpperCase()}
+                      </div>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
+                        @{hit.username}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 background: '#fff',
@@ -381,8 +580,8 @@ export default function Comments({
                 <input
                   ref={inputRef}
                   value={text}
-                  onChange={e => setText(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); post() } }}
+                  onChange={e => handleTextChange(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="Skriv en kommentar…"
                   maxLength={500}
                   style={{

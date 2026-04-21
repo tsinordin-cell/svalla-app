@@ -64,6 +64,7 @@ export type Trip = {
   ended_at: string | null
   created_at: string
   route_points: { lat: number; lng: number }[] | null  // förenklad GPS-rutt för visning i feed
+  images?: string[] | null    // extra foton — karusell (jsonb array)
   users?: { username: string; avatar_url: string | null }
   routes?: { name: string } | null
   // Batch-fetched social counts (avoids N+1 on feed)

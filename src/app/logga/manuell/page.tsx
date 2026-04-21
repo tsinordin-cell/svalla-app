@@ -49,8 +49,11 @@ function ManuellForm() {
   // Pre-fill location from query param (e.g. from "Jag var här" on restaurant page)
   const prefilledPlats = searchParams.get('plats') ?? ''
 
+  const extraFileRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview]               = useState('')
   const [file, setFile]                     = useState<File | null>(null)
+  const [extraFiles,    setExtraFiles]    = useState<File[]>([])
+  const [extraPreviews, setExtraPreviews] = useState<string[]>([])
   const [location, setLocation]             = useState(prefilledPlats)
   const [startLocation, setStartLocation]   = useState('')
   const [caption, setCaption]               = useState('')
@@ -82,15 +85,35 @@ function ManuellForm() {
     const f = e.target.files?.[0]
     if (!f) return
     setErr('')
-    // Kontrollera filstorlek (max 20 MB råfil)
     if (f.size > 20 * 1024 * 1024) {
       setErr('Bilden är för stor (max 20 MB). Välj en annan bild.')
       return
     }
-    // Komprimera alltid – tar bort storleksproblem och gör upload snabbare
     const compressed = await compressImage(f)
     setFile(compressed)
     setPreview(URL.createObjectURL(compressed))
+  }
+
+  async function handleExtraFiles(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files ?? [])
+    if (!files.length) return
+    setErr('')
+    const remaining = 5 - extraFiles.length
+    const toAdd = files.slice(0, remaining)
+    const compressed = await Promise.all(
+      toAdd
+        .filter(f => f.size <= 20 * 1024 * 1024)
+        .map(f => compressImage(f))
+    )
+    setExtraFiles(prev => [...prev, ...compressed])
+    setExtraPreviews(prev => [...prev, ...compressed.map(f => URL.createObjectURL(f))])
+    // reset input so same files can be re-added after remove
+    e.target.value = ''
+  }
+
+  function removeExtraPhoto(i: number) {
+    setExtraFiles(prev => prev.filter((_, j) => j !== i))
+    setExtraPreviews(prev => prev.filter((_, j) => j !== i))
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -119,9 +142,25 @@ function ManuellForm() {
 
       const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
 
+      // Ladda upp extra bilder parallellt
+      let extraUrls: string[] = []
+      if (extraFiles.length > 0) {
+        const uploads = await Promise.all(
+          extraFiles.map(async (ef) => {
+            const eExt  = ef.name.split('.').pop() ?? 'jpg'
+            const ePath = `${user.id}-${Date.now()}-${Math.random().toString(36).slice(2)}.${eExt}`
+            const { data: eUp } = await supabase.storage.from('trips').upload(ePath, ef, { upsert: false })
+            if (!eUp) return null
+            return supabase.storage.from('trips').getPublicUrl(eUp.path).data.publicUrl
+          })
+        )
+        extraUrls = uploads.filter(Boolean) as string[]
+      }
+
       const { data: trip, error: insErr } = await supabase.from('trips').insert({
         user_id:        user.id,
         image:          publicUrl,
+        images:         extraUrls.length > 0 ? extraUrls : null,
         location_name:  location.trim().slice(0, 100),
         start_location: startLocation.trim().slice(0, 100) || null,
         caption:        caption.trim().slice(0, 280) || null,
@@ -250,6 +289,58 @@ function ManuellForm() {
           )}
         </button>
         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={handleFile} style={{ display: 'none' }} />
+        <input ref={extraFileRef} type="file" accept="image/*" multiple onChange={handleExtraFiles} style={{ display: 'none' }} />
+
+        {/* ── Extra foton (visas bara om huvud-bild är vald) ── */}
+        {preview && (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            padding: '8px 12px',
+            background: 'rgba(10,123,140,0.04)',
+            borderBottom: '1px solid rgba(10,123,140,0.08)',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+          } as React.CSSProperties}>
+            {extraPreviews.map((src, i) => (
+              <div key={i} style={{ position: 'relative', flexShrink: 0 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt="" style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 10, display: 'block' }} />
+                <button
+                  type="button"
+                  onClick={() => removeExtraPhoto(i)}
+                  style={{
+                    position: 'absolute', top: -6, right: -6,
+                    width: 18, height: 18, borderRadius: '50%',
+                    background: '#dc2626', border: '1.5px solid #fff',
+                    color: '#fff', fontSize: 10, fontWeight: 900,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    cursor: 'pointer', padding: 0,
+                  }}
+                >×</button>
+              </div>
+            ))}
+            {extraPreviews.length < 5 && (
+              <button
+                type="button"
+                onClick={() => extraFileRef.current?.click()}
+                style={{
+                  width: 56, height: 56, borderRadius: 10, flexShrink: 0,
+                  border: '2px dashed rgba(10,123,140,0.25)',
+                  background: 'rgba(10,123,140,0.04)',
+                  display: 'flex', flexDirection: 'column',
+                  alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', gap: 2,
+                }}
+              >
+                <span style={{ fontSize: 18 }}>+</span>
+                <span style={{ fontSize: 8, color: 'var(--txt3)', fontWeight: 700 }}>FOTO</span>
+              </button>
+            )}
+            <span style={{ fontSize: 10, color: 'var(--txt3)', flexShrink: 0, paddingLeft: 4 }}>
+              {extraPreviews.length}/5 extra
+            </span>
+          </div>
+        )}
 
         <div style={{ padding: '16px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
 
