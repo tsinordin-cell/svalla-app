@@ -70,14 +70,16 @@ export default function MeddelandenPage() {
   }, [supabase])
 
   async function load(userId: string) {
+    try {
     setLoading(true)
 
     // 1. mina deltagar-rader → conv ids + last_read_at
-    const { data: parts } = await supabase
+    const { data: parts, error: partsErr } = await supabase
       .from('conversation_participants')
       .select('conversation_id, last_read_at')
       .eq('user_id', userId)
 
+    if (partsErr) { setConvs([]); setLoading(false); return }
     const ids = (parts ?? []).map(p => p.conversation_id as string)
     if (ids.length === 0) { setConvs([]); setLoading(false); return }
 
@@ -85,17 +87,17 @@ export default function MeddelandenPage() {
     for (const p of parts ?? []) lastReadMap[p.conversation_id as string] = p.last_read_at as string
 
     // 2. konversationer (skippa declined — de är "bortkastade")
-    const { data: cs } = await supabase
+    const { data: cs, error: csErr } = await supabase
       .from('conversations')
       .select('id, is_group, title, status, created_by, last_message_at, last_message_preview, last_message_user_id')
       .in('id', ids)
-      .neq('status', 'declined')
       .order('last_message_at', { ascending: false })
 
-    if (!cs) { setConvs([]); setLoading(false); return }
+    if (csErr || !cs) { setConvs([]); setLoading(false); return }
+    const filtered = cs.filter(c => (c as ConvRow).status !== 'declined')
 
     // 3. för 1-till-1 — hämta motpartens info
-    const oneToOneIds = cs.filter(c => !c.is_group).map(c => c.id)
+    const oneToOneIds = filtered.filter(c => !c.is_group).map(c => c.id)
     const otherMap: Record<string, { id: string; username: string; avatar: string | null }> = {}
     if (oneToOneIds.length > 0) {
       const { data: others } = await supabase
@@ -118,7 +120,7 @@ export default function MeddelandenPage() {
 
     // 4. olästa per konversation
     const enriched: ConvRow[] = []
-    for (const c of cs) {
+    for (const c of filtered) {
       const lr = lastReadMap[c.id] ?? '1970-01-01T00:00:00Z'
       const { count } = await supabase
         .from('messages')
@@ -138,6 +140,10 @@ export default function MeddelandenPage() {
 
     setConvs(enriched)
     setLoading(false)
+    } catch {
+      setConvs([])
+      setLoading(false)
+    }
   }
 
   return (
