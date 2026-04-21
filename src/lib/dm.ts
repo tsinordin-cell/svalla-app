@@ -17,6 +17,7 @@ export async function findOrCreateDM(
   if (currentUserId === otherUserId) return null
 
   // Steg 1: hitta konversationer där BÅDA är deltagare och is_group = false
+  // Undviker join på status-kolumn som kan saknas i DB — gör enklare lookup
   const { data: mine } = await supabase
     .from('conversation_participants')
     .select('conversation_id')
@@ -24,21 +25,44 @@ export async function findOrCreateDM(
 
   const myIds = (mine ?? []).map(r => r.conversation_id as string)
   if (myIds.length > 0) {
+    // Hitta konversationer där den andra parten också deltar
     const { data: shared } = await supabase
       .from('conversation_participants')
-      .select('conversation_id, conversations!inner(is_group, status)')
+      .select('conversation_id')
       .eq('user_id', otherUserId)
       .in('conversation_id', myIds)
 
-    const oneToOne = (shared ?? []).find((r) => {
-      const c = (r as unknown as { conversations: { is_group: boolean } }).conversations
-      return c && c.is_group === false
-    })
-    if (oneToOne) {
-      const c = (oneToOne as unknown as { conversations: { status?: string } }).conversations
-      return {
-        id: oneToOne.conversation_id as string,
-        status: (c?.status as 'active' | 'request' | 'declined') ?? 'active',
+    const sharedIds = (shared ?? []).map(r => r.conversation_id as string)
+
+    if (sharedIds.length > 0) {
+      // Kolla vilka av dessa som är 1-till-1 (is_group = false)
+      // Försök med status-join — fallback utan om kolumnen saknas
+      const { data: convs } = await supabase
+        .from('conversations')
+        .select('id, is_group, status')
+        .in('id', sharedIds)
+        .eq('is_group', false)
+
+      if (convs && convs.length > 0) {
+        const conv = convs[0] as { id: string; is_group: boolean; status?: string }
+        return {
+          id: conv.id,
+          status: (conv.status as 'active' | 'request' | 'declined') ?? 'active',
+        }
+      }
+
+      // Fallback: välj utan status-kolumn
+      const { data: convsSimple } = await supabase
+        .from('conversations')
+        .select('id, is_group')
+        .in('id', sharedIds)
+        .eq('is_group', false)
+
+      if (convsSimple && convsSimple.length > 0) {
+        return {
+          id: (convsSimple[0] as { id: string }).id,
+          status: 'active',
+        }
       }
     }
   }
@@ -74,12 +98,20 @@ export async function findOrCreateDM(
   }
   if (!convId) return null
 
-  const rows = [
-    { conversation_id: convId, user_id: currentUserId, role: 'owner' as const },
-    { conversation_id: convId, user_id: otherUserId,   role: 'member' as const },
+  // Försök lägga till deltagare — med role-kolumn, annars utan
+  const rowsWithRole = [
+    { conversation_id: convId, user_id: currentUserId, role: 'owner' },
+    { conversation_id: convId, user_id: otherUserId,   role: 'member' },
   ]
-  const { error: pErr } = await supabase.from('conversation_participants').insert(rows)
-  if (pErr) return null
+  const rowsNoRole = [
+    { conversation_id: convId, user_id: currentUserId },
+    { conversation_id: convId, user_id: otherUserId },
+  ]
+  const { error: pErr1 } = await supabase.from('conversation_participants').insert(rowsWithRole)
+  if (pErr1) {
+    const { error: pErr2 } = await supabase.from('conversation_participants').insert(rowsNoRole)
+    if (pErr2) return null
+  }
 
   return { id: convId, status }
 }
