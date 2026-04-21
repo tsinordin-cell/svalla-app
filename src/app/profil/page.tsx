@@ -10,13 +10,15 @@ import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import EmptyState from '@/components/EmptyState'
+import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
   const { theme, setTheme, lang, setLang } = useTheme()
   const pill = (active: boolean): React.CSSProperties => ({
     padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
-    fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 700 : 500,
+    fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 600 : 500,
     transition: 'all 0.15s',
     background: active ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
     color: active ? '#fff' : '#3d5865',
@@ -33,15 +35,15 @@ function SettingsSection() {
   ]
   return (
     <div style={{ background: 'var(--white)', borderRadius: 18, padding: '18px 16px', marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-      <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
+      <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
       <div style={{ marginBottom: 14 }}>
-        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
+        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
         <div style={{ display: 'flex', gap: 6 }}>
           {themes.map(t => <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>{t.icon} {t.label}</button>)}
         </div>
       </div>
       <div>
-        <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>Språk</p>
+        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Språk</p>
         <div style={{ display: 'flex', gap: 6 }}>
           {langs.map(l => <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>{l.flag} {l.label}</button>)}
         </div>
@@ -143,12 +145,12 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
-          <h2 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
+          <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
         </div>
         <div style={{ overflowY: 'auto', flex: 1, padding: '0 20px' }}>
           {/* Avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0' }}>
-            <div onClick={() => fileRef.current?.click()} style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 900, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative' }}>
+            <div onClick={() => fileRef.current?.click()} style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative' }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -183,7 +185,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ÅR TILL HAVS</label>
             <input type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80} placeholder="15" style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>⚓ Min båt</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>⚓ Min båt</div>
           <div style={{ marginBottom: 12 }}>
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTNAMN</label>
             <input type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60} style={inputStyle} />
@@ -199,7 +201,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>MODELL</label>
             <input type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🧭 Hemmafarvatten</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🧭 Hemmafarvatten</div>
           <div style={{ marginBottom: 12 }}>
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>HEMMAHAMN</label>
             <input type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80} style={inputStyle} />
@@ -208,7 +210,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
             <input type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>
             {PRIVACY_FIELDS.map(({ key, label }) => (
               <div key={key} onClick={() => togglePublic(key)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer' }}>
@@ -223,7 +225,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         </div>
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
           <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
-          <button onClick={handleSave} disabled={saving} style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? '#7a9dab' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 800, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+          <button onClick={handleSave} disabled={saving} style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? '#7a9dab' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
             {saving ? 'Sparar…' : 'Spara'}
           </button>
         </div>
@@ -319,7 +321,7 @@ export default function ProfilPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
               <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(220,38,38,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>👋</div>
               <div>
-                <h2 id="logout-title" style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt)', margin: 0 }}>Logga ut?</h2>
+                <h2 id="logout-title" style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Logga ut?</h2>
                 <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '2px 0 0' }}>Du behöver logga in igen nästa gång.</p>
               </div>
             </div>
@@ -327,12 +329,12 @@ export default function ProfilPage() {
               <button onClick={() => setSignOutOpen(false)} disabled={signingOut} style={{
                 flex: 1, padding: '12px', borderRadius: 14,
                 border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)',
-                fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: signingOut ? 'not-allowed' : 'pointer',
+                fontSize: 14, fontWeight: 600, color: 'var(--txt2)', cursor: signingOut ? 'not-allowed' : 'pointer',
               }}>Avbryt</button>
               <button onClick={performSignOut} disabled={signingOut} style={{
                 flex: 1.4, padding: '12px', borderRadius: 14, border: 'none',
                 background: signingOut ? '#cf6b6b' : 'linear-gradient(135deg, #dc2626, #b91c1c)',
-                color: '#fff', fontSize: 14, fontWeight: 800, cursor: signingOut ? 'not-allowed' : 'pointer',
+                color: '#fff', fontSize: 14, fontWeight: 600, cursor: signingOut ? 'not-allowed' : 'pointer',
                 boxShadow: '0 4px 14px rgba(220,38,38,0.35)',
               }}>{signingOut ? 'Loggar ut…' : 'Logga ut'}</button>
             </div>
@@ -348,11 +350,11 @@ export default function ProfilPage() {
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <span style={{ fontSize: 17, fontWeight: 900, color: 'var(--sea)' }}>{user?.username ?? 'Profil'}</span>
+        <span style={{ fontSize: 17, fontWeight: 600, color: 'var(--sea)' }}>{user?.username ?? 'Profil'}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <MessageBell />
           <NotificationBell />
-          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700, padding: '7px 14px', borderRadius: 20 }}>
+          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600, padding: '7px 14px', borderRadius: 20 }}>
             ✏️ Redigera
           </button>
           <button onClick={() => setSignOutOpen(true)} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
@@ -380,7 +382,7 @@ export default function ProfilPage() {
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
             border: '4px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 32, fontWeight: 900, color: '#fff',
+            fontSize: 32, fontWeight: 600, color: '#fff',
             overflow: 'hidden',
             boxShadow: '0 4px 20px rgba(0,45,60,0.22)',
             position: 'relative',
@@ -400,8 +402,8 @@ export default function ProfilPage() {
             {streak > 0 && (
               <div style={{ background: 'linear-gradient(135deg,#ff6b35,#f7931e)', borderRadius: 12, padding: '5px 10px', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 8px rgba(255,107,53,0.35)' }}>
                 <span style={{ fontSize: 14 }}>🔥</span>
-                <span style={{ fontSize: 13, fontWeight: 900, color: '#fff' }}>{streak}</span>
-                <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>v</span>
+                <span style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{streak}</span>
+                <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>v</span>
               </div>
             )}
             {user?.username && (
@@ -414,7 +416,7 @@ export default function ProfilPage() {
 
         {/* ── Name + bio + chips ── */}
         <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 900, color: 'var(--txt)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>{user?.username}</h1>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>{user?.username}</h1>
           {u?.bio && <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 10px' }}>{u.bio}</p>}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
@@ -435,8 +437,8 @@ export default function ProfilPage() {
           ]).map(({ val, label, href }, i, arr) => {
             const inner = (
               <>
-                <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
-                <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
               </>
             )
             const cellStyle: React.CSSProperties = {
@@ -455,8 +457,8 @@ export default function ProfilPage() {
         {ACHIEVEMENTS.length > 0 && (
           <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
-              <span style={{ fontSize: 12, fontWeight: 700, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+              <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
                 {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
               </span>
             </div>
@@ -487,7 +489,7 @@ export default function ProfilPage() {
                     )}
                     <span style={{ fontSize: 24 }}>{a.emoji}</span>
                     <span style={{
-                      fontSize: 9, fontWeight: 700,
+                      fontSize: 9, fontWeight: 600,
                       color: unlocked ? 'var(--txt)' : 'var(--txt3)',
                       textAlign: 'center', lineHeight: 1.3,
                       maxWidth: 60, overflow: 'hidden',
@@ -505,7 +507,7 @@ export default function ProfilPage() {
               <div style={{ marginTop: 14, padding: '11px 14px', background: 'rgba(201,110,42,0.07)', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ fontSize: 22, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 800, color: '#c96e2a', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: '#c96e2a', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
                   <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
                 </div>
               </div>
@@ -516,11 +518,11 @@ export default function ProfilPage() {
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
           <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Aktivitet</div>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Aktivitet</div>
             <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 56 }}>
               {monthBars.map(([key, v]) => (
                 <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
-                  <span style={{ fontSize: 9, fontWeight: 800, color: '#1e5c82' }}>{v.count}</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: '#1e5c82' }}>{v.count}</span>
                   <div style={{ width: '100%', borderRadius: '4px 4px 0 0', background: 'linear-gradient(to top,#1e5c82,#2d7d8a)', height: `${Math.max(6, (v.count / maxBar) * 36)}px` }} />
                 </div>
               ))}
@@ -536,17 +538,17 @@ export default function ProfilPage() {
         {/* ── Trip grid ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '52px 24px' }}>
-              <div style={{ fontSize: 52, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>Inga turer ännu</p>
-              <Link href="/logga" style={{ display: 'inline-block', padding: '12px 28px', borderRadius: 14, background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff', fontWeight: 700, fontSize: 14, boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none', marginTop: 12 }}>
-                Logga din första tur →
-              </Link>
-            </div>
+            <EmptyState
+              icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+              title="Inga turer ännu"
+              body="Logga din första tur och börja bygga din historia till havs."
+              cta={{ label: 'Logga en tur', href: '/logga' }}
+              marginTop={0}
+            />
           ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
                 <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{trips.length} st</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>
@@ -586,10 +588,10 @@ export default function ProfilPage() {
             }} />
             <div style={{ fontSize: 28, flexShrink: 0, position: 'relative' }}>✨</div>
             <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
                 Svalla Wrapped
               </div>
-              <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginTop: 2 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginTop: 2 }}>
                 Se dina insights
               </div>
             </div>
