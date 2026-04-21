@@ -15,19 +15,20 @@ import { createClient } from '@supabase/supabase-js'
 import { NextResponse }  from 'next/server'
 import webpush           from 'web-push'
 
-webpush.setVapidDetails(
-  'mailto:info@svalla.se',
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-  process.env.VAPID_PRIVATE_KEY!,
-)
-
-// Service-role — kringgår Row Level Security för server-side cron
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-)
-
 export async function GET(req: Request) {
+  // ── Init (inside handler so env vars are available at runtime) ───────────
+  webpush.setVapidDetails(
+    'mailto:info@svalla.se',
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
+    process.env.VAPID_PRIVATE_KEY!,
+  )
+
+  // Service-role — kringgår Row Level Security för server-side cron
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  )
+
   // ── Auth: kräv CRON_SECRET i Authorization-header ──────────────────────
   const secret = process.env.CRON_SECRET
   if (!secret) return NextResponse.json({ error: 'CRON_SECRET saknas i env' }, { status: 500 })
