@@ -104,7 +104,7 @@ export default function TagInput({ tagged, onChange }: Props) {
           <div style={{
             position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
             width: 16, height: 16, borderRadius: '50%',
-            border: '2px solid rgba(30,92,130,0.2)', borderTopColor: '#1e5c82',
+            border: '2px solid rgba(30,92,130,0.2)', borderTopColor: 'var(--sea)',
             animation: 'spin 0.7s linear infinite',
           }} />
         )}

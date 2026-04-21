@@ -51,7 +51,7 @@ function categoryColor(cat: string[]): { bg: string; text: string } {
   if (cat.includes('aktiv'))    return { bg: '#e6f7ef', text: '#0a7040' }
   if (cat.includes('premium'))  return { bg: '#f0e6ff', text: '#6b21a8' }
   if (cat.includes('klassisk')) return { bg: '#e6f0ff', text: '#1e4da0' }
-  return { bg: 'rgba(10,123,140,0.08)', text: '#1e5c82' }
+  return { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
 }
 
 function primaryCategory(cat: string[]): string {
@@ -165,7 +165,7 @@ export default async function RutterPage({
           return (
             <Link key={f.value} href={href(f.value, tidFilter)} style={{
               flexShrink: 0, padding: '7px 13px', borderRadius: 20,
-              border: `1.5px solid ${active ? '#1e5c82' : 'rgba(10,123,140,0.2)'}`,
+              border: `1.5px solid ${active ? 'var(--sea)' : 'rgba(10,123,140,0.2)'}`,
               background: active ? 'var(--sea)' : 'var(--white, #fff)',
               fontSize: 12, fontWeight: 600,
               color: active ? '#fff' : '#3a6a80',

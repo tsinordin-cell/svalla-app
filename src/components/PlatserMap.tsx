@@ -20,7 +20,7 @@ const ROUTE_COLORS = ['#0f9e64', '#1e5c82', '#c96e2a', '#7c4d1e', '#2d7d8a', '#6
 type LayerKey = 'restaurang' | 'kafe' | 'hamn' | 'bensin' | 'boende'
 
 const LAYER_COLORS: Record<LayerKey, string> = {
-  restaurang: '#1e5c82',
+  restaurang: 'var(--sea, #1e5c82)',
   kafe:       '#7c4d1e',
   hamn:       '#c96e2a',
   bensin:     '#dc2626',
@@ -706,7 +706,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           bottom:     'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 64px)',
           right:      12, zIndex: 1000,
           width:      44, height: 44, borderRadius: '50%',
-          background: userPos ? '#1e5c82' : '#fff',
+          background: userPos ? 'var(--sea)' : 'var(--white)',
           border:     'none', cursor: locating ? 'default' : 'pointer',
           boxShadow:  '0 2px 12px rgba(0,0,0,0.22)',
           display:    'flex', alignItems: 'center', justifyContent: 'center',
@@ -717,11 +717,11 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           <div style={{
             width: 20, height: 20, borderRadius: '50%',
             border: '2px solid rgba(30,92,130,0.2)',
-            borderTopColor: '#1e5c82',
+            borderTopColor: 'var(--sea)',
             animation: 'spin 0.8s linear infinite',
           }} />
         ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke={userPos ? '#fff' : '#1e5c82'} strokeWidth={2} style={{ width: 20, height: 20 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke={userPos ? '#fff' : 'var(--sea, #1e5c82)'} strokeWidth={2} style={{ width: 20, height: 20 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
             <circle cx="12" cy="9" r="2.5" />
           </svg>

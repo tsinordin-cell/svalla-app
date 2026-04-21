@@ -27,7 +27,7 @@ const TYPE_COLOR: Record<ResultType, string>  = {
   seglare: 'rgba(124,77,30,0.10)',
   hashtag: 'rgba(168,85,247,0.10)',
 }
-const TYPE_TEXT: Record<ResultType, string> = { tur: '#1e5c82', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e', hashtag: '#7c3aed' }
+const TYPE_TEXT: Record<ResultType, string> = { tur: 'var(--sea)', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e', hashtag: '#7c3aed' }
 
 const HINTS = ['Sandhamn', 'Grinda', 'Utö', 'Vaxholm', 'Fjäderholmarna', 'Arholma', 'Nynäshamn']
 const HASHTAG_HINTS = ['#sandhamn', '#skärgård', '#segling', '#magisk', '#solnedgång']
@@ -313,7 +313,7 @@ function SokPageInner() {
                 onClick={() => setActiveTab(tab.value)}
                 style={{
                   flexShrink: 0, padding: '5px 12px', borderRadius: 20, border: 'none', cursor: 'pointer',
-                  background: activeTab === tab.value ? '#1e5c82' : 'rgba(10,123,140,0.07)',
+                  background: activeTab === tab.value ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
                   color: activeTab === tab.value ? '#fff' : '#3a6a80',
                   fontSize: 11, fontWeight: 700, transition: 'all .15s',
                   WebkitTapHighlightColor: 'transparent',

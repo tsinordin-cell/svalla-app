@@ -308,8 +308,8 @@ export default function LiveTrackMap({
               padding: 0,
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke={followOff ? '#fff' : '#1e5c82'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-              <circle cx="12" cy="12" r="3" fill={followOff ? '#fff' : '#1e5c82'} stroke="none"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke={followOff ? '#fff' : 'var(--sea, #1e5c82)'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+              <circle cx="12" cy="12" r="3" fill={followOff ? '#fff' : 'var(--sea, #1e5c82)'} stroke="none"/>
               <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
               <circle cx="12" cy="12" r="7"/>
             </svg>

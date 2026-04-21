@@ -182,7 +182,7 @@ export default function KomIgangPage() {
           backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
           borderRadius: 12, padding: '8px 14px',
           display: 'flex', alignItems: 'center', gap: 6,
-          color: light ? '#1e5c82' : 'rgba(255,255,255,0.82)',
+          color: light ? 'var(--sea)' : 'rgba(255,255,255,0.82)',
           fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
         }}
       >

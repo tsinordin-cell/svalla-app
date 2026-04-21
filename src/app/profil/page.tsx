@@ -215,7 +215,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             {PRIVACY_FIELDS.map(({ key, label }) => (
               <div key={key} onClick={() => togglePublic(key)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer' }}>
                 <span style={{ fontSize: 13, color: 'var(--txt)' }}>{label}</span>
-                <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? '#1e5c82' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s' }}>
+                <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? 'var(--sea)' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s' }}>
                   <div style={{ position: 'absolute', top: 3, left: publicFields.includes(key) ? 21 : 3, width: 16, height: 16, borderRadius: '50%', background: 'var(--white)', boxShadow: '0 1px 4px rgba(0,0,0,0.2)', transition: 'left .2s' }} />
                 </div>
               </div>

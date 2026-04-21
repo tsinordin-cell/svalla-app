@@ -170,7 +170,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               onClick={() => setBoatFilter(f.value)}
               style={{
                 flexShrink: 0, padding: '5px 13px', borderRadius: 20,
-                border: `1.5px solid ${boatFilter === f.value ? '#1e5c82' : 'rgba(10,123,140,0.12)'}`,
+                border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.12)'}`,
                 background: boatFilter === f.value ? 'var(--sea)' : 'transparent',
                 color: boatFilter === f.value ? '#fff' : 'var(--txt3)',
                 fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',

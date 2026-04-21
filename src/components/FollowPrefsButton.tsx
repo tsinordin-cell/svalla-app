@@ -141,7 +141,7 @@ function Toggle({ label, sub, value, onChange, disabled }: {
         <button onClick={() => !disabled && onChange(!value)} disabled={disabled}
           style={{
             width: 44, height: 26, borderRadius: 13, border: 'none',
-            background: value ? '#1e5c82' : 'rgba(10,123,140,0.20)',
+            background: value ? 'var(--sea)' : 'rgba(10,123,140,0.20)',
             position: 'relative', cursor: disabled ? 'not-allowed' : 'pointer',
             transition: 'background 0.15s',
           }}>

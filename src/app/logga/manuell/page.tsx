@@ -449,7 +449,7 @@ function ManuellForm() {
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
                       style={{
                         padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer',
-                        background: boatType === bt ? '#1e5c82' : 'rgba(10,123,140,0.07)',
+                        background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
                         color: boatType === bt ? '#fff' : 'var(--txt2)',
                         fontSize: 11, fontWeight: 600,
                       }}>
