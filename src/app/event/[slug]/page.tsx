@@ -1,5 +1,4 @@
 'use client'
-export const dynamic = 'force-dynamic'
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
@@ -18,8 +17,8 @@ type Attendee = {
 export default function EventDetailPage() {
   const supabase = useRef(createClient()).current
   const router = useRouter()
-  const params = useParams<{ slug: string }>()
-  const slug = params?.slug
+  const params = useParams()
+  const slug = params?.slug as string | undefined
 
   const [me, setMe] = useState<string | null>(null)
   const [ev, setEv] = useState<EventRow | null>(null)

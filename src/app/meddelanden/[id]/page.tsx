@@ -1,5 +1,4 @@
 'use client'
-export const dynamic = 'force-dynamic'
 
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
@@ -12,7 +11,8 @@ import type { Message, Conversation } from '@/lib/supabase'
 type MsgWithMeta = Message & { username?: string; avatar?: string | null; optimistic?: boolean }
 
 export default function ChatPage() {
-  const { id } = useParams<{ id: string }>()
+  const params = useParams()
+  const id = params?.id as string
   const router = useRouter()
   const supabase = useRef(createClient()).current
 

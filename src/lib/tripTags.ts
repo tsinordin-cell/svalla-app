@@ -90,7 +90,7 @@ export async function searchUsersForTag(
     .select('id, username, avatar')
     .ilike('username', `${query}%`)
     .limit(8)
-  if (excludeIds.length > 0) q = q.not('id', 'in', `(${excludeIds.map(id => `"${id}"`).join(',')})`)
+  if (excludeIds.length > 0) q = q.filter('id', 'not.in', `(${excludeIds.map(id => `"${id}"`).join(',')})`)
   const { data } = await q
   return (data ?? []).map(u => ({
     id: u.id as string,

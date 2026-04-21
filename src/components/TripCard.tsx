@@ -202,8 +202,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         )}
       </div>
 
-      {/* ── 1b. Route preview (when no media) ── */}
-      {!hasMedia && routePoints && routePoints.length >= 3 && (
+      {/* ── 1b. Route preview (when no photo but route exists) ── */}
+      {!hasPhoto && routePoints && routePoints.length >= 3 && (
         <div style={{ padding: '12px 14px' }}>
           <RoutePreview points={routePoints} />
         </div>
