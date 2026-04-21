@@ -5,14 +5,12 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-
-const PRICES: Record<string, string> = {
-  month: process.env.STRIPE_PRICE_MONTH!,
-  year: process.env.STRIPE_PRICE_YEAR!,
-}
-
 export async function POST(req: Request) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+  const PRICES: Record<string, string> = {
+    month: process.env.STRIPE_PRICE_MONTH!,
+    year: process.env.STRIPE_PRICE_YEAR!,
+  }
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

@@ -4,15 +4,16 @@ import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-)
+function getStripe() { return new Stripe(process.env.STRIPE_SECRET_KEY!) }
+function getSupabaseAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  )
+}
 
 async function upsertSubscription(sub: Stripe.Subscription) {
+  const supabaseAdmin = getSupabaseAdmin()
   const userId = sub.metadata?.supabase_user_id
   if (!userId) return
 
@@ -34,6 +35,7 @@ async function upsertSubscription(sub: Stripe.Subscription) {
 }
 
 async function deleteSubscription(sub: Stripe.Subscription) {
+  const supabaseAdmin = getSupabaseAdmin()
   const userId = sub.metadata?.supabase_user_id
   if (!userId) return
   await supabaseAdmin
@@ -43,6 +45,8 @@ async function deleteSubscription(sub: Stripe.Subscription) {
 }
 
 export async function POST(req: Request) {
+  const stripe = getStripe()
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
   const body = await req.text()
   const sig = req.headers.get('stripe-signature')
 
