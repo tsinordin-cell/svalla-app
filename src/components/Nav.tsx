@@ -220,7 +220,7 @@ export default function Nav() {
 
         if (tab.fab) {
           return (
-            <Link key={tab.href} href={tab.href} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link key={tab.href} href={tab.href} aria-label="Logga tur" className="press-feedback" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{
                 width: 56, height: 56, borderRadius: '50%',
                 background: 'linear-gradient(135deg,var(--acc),#e07828)',
@@ -237,7 +237,7 @@ export default function Nav() {
         }
 
         return (
-          <Link key={tab.href} href={tab.href} style={{
+          <Link key={tab.href} href={tab.href} aria-current={active ? 'page' : undefined} style={{
             flex: 1, display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center', gap: 2,
             textDecoration: 'none',
