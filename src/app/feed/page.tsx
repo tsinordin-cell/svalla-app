@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase'
-import type { Trip } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
@@ -9,6 +8,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
+import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 0
@@ -19,19 +19,17 @@ export default async function FeedPage() {
   // Kolla inloggad användare
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Full query — utan users-join (FK pekar på auth.users, ej public.users)
-  const { data: trips, error } = await supabase
-    .from('trips')
-    .select(`
-      id, user_id, boat_type, distance, duration,
-      average_speed_knots, max_speed_knots, image, route_id, created_at,
-      location_name, caption, pinnar_rating, started_at, ended_at, route_points,
-      routes ( name )
-    `)
-    .order('created_at', { ascending: false })
-    .limit(50)
+  // Bulk-query: ETT RPC-anrop returnerar trips + user + likes_count
+  // + comments_count + user_liked. Ersätter 4-7 separata queries.
+  // För inloggad: kör båda flödena parallellt (alla + följer).
+  const [allRes, followRes] = await Promise.all([
+    fetchFeedTrips(supabase, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
+    user
+      ? fetchFeedTrips(supabase, { viewerId: user.id, limit: 50, followOnly: true })
+      : Promise.resolve({ trips: [], error: null }),
+  ])
 
-  if (error) {
+  if (allRes.error) {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
@@ -49,87 +47,8 @@ export default async function FeedPage() {
     )
   }
 
-  // Hämta follows + trips parallellt för inloggad användare
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let rawFollowingTrips: any[] = []
-  if (user) {
-    const { data: follows } = await supabase
-      .from('follows')
-      .select('following_id')
-      .eq('follower_id', user.id)
-    const followingIds = (follows ?? []).map((f: { following_id: string }) => f.following_id)
-    if (followingIds.length > 0) {
-      const { data: fTrips } = await supabase
-        .from('trips')
-        .select(`
-          id, user_id, boat_type, distance, duration,
-          average_speed_knots, max_speed_knots, image, route_id, created_at,
-          location_name, caption, pinnar_rating, started_at, ended_at, route_points,
-          routes ( name )
-        `)
-        .in('user_id', followingIds)
-        .order('created_at', { ascending: false })
-        .limit(50)
-      rawFollowingTrips = fTrips ?? []
-    }
-  }
-
-  // Bail early on DB error — trips is guaranteed defined below this point
-
-  // Kombinera alla unika trip-IDs + user-IDs från båda feeds
-  const allRawTrips = [...(trips ?? []), ...rawFollowingTrips]
-  const allTripIds  = [...new Set(allRawTrips.map((t: { id: string }) => t.id))]
-  const userIds     = [...new Set(allRawTrips.map((t: { user_id: string }) => t.user_id).filter(Boolean))]
-
-  // Hämta usernames + avatars + social counts i ett parallellt block
-  const [
-    { data: userRows },
-    { data: likeRows },
-    { data: commentRows },
-    { data: userLikedRows },
-  ] = await Promise.all([
-    userIds.length
-      ? supabase.from('users').select('id, username, avatar').in('id', userIds)
-      : Promise.resolve({ data: [] }),
-    allTripIds.length
-      ? supabase.from('likes').select('trip_id').in('trip_id', allTripIds)
-      : Promise.resolve({ data: [] }),
-    allTripIds.length
-      ? supabase.from('comments').select('trip_id').in('trip_id', allTripIds)
-      : Promise.resolve({ data: [] }),
-    allTripIds.length && user
-      ? supabase.from('likes').select('trip_id').eq('user_id', user.id).in('trip_id', allTripIds)
-      : Promise.resolve({ data: [] }),
-  ])
-
-  const userMap: Record<string, { username: string; avatar_url: string | null }> = {}
-  for (const u of userRows ?? []) {
-    if (u?.id) userMap[u.id] = { username: u.username ?? 'Seglare', avatar_url: u.avatar ?? null }
-  }
-  const likeCountMap: Record<string, number> = {}
-  for (const r of likeRows ?? []) {
-    likeCountMap[r.trip_id] = (likeCountMap[r.trip_id] ?? 0) + 1
-  }
-  const commentCountMap: Record<string, number> = {}
-  for (const r of commentRows ?? []) {
-    commentCountMap[r.trip_id] = (commentCountMap[r.trip_id] ?? 0) + 1
-  }
-  const userLikedSet = new Set((userLikedRows ?? []).map((r: { trip_id: string }) => r.trip_id))
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function enrichTrip(t: any) {
-    return {
-      ...t,
-      users:          userMap[t.user_id] ?? { username: 'Seglare', avatar_url: null },
-      likes_count:    likeCountMap[t.id] ?? 0,
-      comments_count: commentCountMap[t.id] ?? 0,
-      user_liked:     userLikedSet.has(t.id),
-    }
-  }
-
-  const tripsWithUsers = (trips ?? []).map(enrichTrip)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let followingTrips: any[] = rawFollowingTrips.map(enrichTrip)
+  const tripsWithUsers = allRes.trips
+  const followingTrips = followRes.trips
 
   // Social proof — senaste 7 dagarna
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
@@ -324,7 +243,7 @@ export default async function FeedPage() {
         )}
 
         {/* ── Divider ── */}
-        {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && trips && trips.length > 0 && (
+        {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (
           <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>

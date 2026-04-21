@@ -241,39 +241,51 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         </div>
       )}
 
-      {/* ── 3. Media ── */}
+      {/* ── 3. Media (Strava-stil: foto + karta side-by-side) ── */}
       {hasMedia && (
         <div
           onClick={() => router.push(`/tur/${trip.id}`)}
           style={{ cursor: 'pointer' }}
         >
-          {hasPhoto ? (
-            <>
-              {/* Photo — full width 3:2 */}
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
+          {hasPhoto && hasRoute ? (
+            /* Foto + karta side-by-side */
+            <div style={{
+              display: 'flex', width: '100%', aspectRatio: '2/1',
+              background: '#0d2a3e', overflow: 'hidden',
+            }}>
+              <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
                 <Image
                   src={trip.image}
                   alt={trip.location_name ?? `Tur av ${username}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 640px"
+                  sizes="(max-width: 640px) 50vw, 320px"
                   priority={priority}
                   onError={() => setImgErr(true)}
                 />
               </div>
-              {/* Route strip below photo when GPS data exists */}
-              {hasRoute && (
-                <div style={{
-                  position: 'relative', width: '100%', height: 90,
-                  background: '#0d2a3e', overflow: 'hidden',
-                  borderTop: '1px solid rgba(255,255,255,0.05)',
-                }}>
-                  <RouteMapSVG points={routePoints!} w={600} h={90} />
-                </div>
-              )}
-            </>
+              <div style={{
+                position: 'relative', flex: 1, overflow: 'hidden',
+                borderLeft: '1px solid rgba(255,255,255,0.06)',
+              }}>
+                <RouteMapSVG points={routePoints!} w={300} h={300} />
+              </div>
+            </div>
+          ) : hasPhoto ? (
+            /* Bara foto — 3:2 full bredd */
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
+              <Image
+                src={trip.image}
+                alt={trip.location_name ?? `Tur av ${username}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 640px"
+                priority={priority}
+                onError={() => setImgErr(true)}
+              />
+            </div>
           ) : (
-            /* Only route — wide landscape */
+            /* Bara rutt — bred landskap */
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: '#0d2a3e', overflow: 'hidden' }}>
               <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>

@@ -86,22 +86,14 @@ export default function TripActions({
     router.refresh()
   }
 
-  // ── Delete ───────────────────────────────────────────────────────────────────
+  // ── Soft-delete ──────────────────────────────────────────────────────────────
+  // Sätter deleted_at. Turen försvinner direkt från feed/profil men kan
+  // återställas i 30 dagar. purge_old_deleted_trips() städar bort permanent.
   async function handleDelete() {
     setDeleting(true)
     const supabase = createClient()
-    // Clean up related data first, then delete the trip
-    // (CASCADE should handle this in DB, but explicit cleanup is safer)
-    await Promise.all([
-      supabase.from('likes').delete().eq('trip_id', tripId),
-      supabase.from('comments').delete().eq('trip_id', tripId),
-      supabase.from('notifications').delete().eq('trip_id', tripId),
-      supabase.from('gps_points').delete().eq('trip_id', tripId),
-      supabase.from('stops').delete().eq('trip_id', tripId),
-      supabase.from('trip_tags').delete().eq('trip_id', tripId),
-    ])
-    const { error } = await supabase.from('trips').delete().eq('id', tripId)
-    if (error) { toast('Kunde inte radera turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
+    const { error } = await supabase.rpc('soft_delete_trip', { p_trip_id: tripId })
+    if (error) { toast('Kunde inte ta bort turen. Försök igen.', 'error'); setDeleting(false); setConfirm(false); return }
     router.push('/feed')
   }
 
@@ -270,7 +262,7 @@ export default function TripActions({
               Ta bort tur?
             </h3>
             <p style={{ fontSize: 13, color: '#7a9dab', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
-              Turen, GPS-rutten och alla bilder raderas permanent. Det går inte att ångra.
+              Turen försvinner från flödet och din profil direkt. Den raderas permanent om 30 dagar — kontakta oss innan dess om du ångrar dig.
             </p>
             <button
               onClick={handleDelete}

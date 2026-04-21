@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import TripDetailMap from '@/components/TripDetailMap'
+import TripDetailMap from '@/components/TripDetailMapClient'
 import LikeButton from '@/components/LikeButton'
 import Comments from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
@@ -22,11 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const supabase = createClient()
   const { data: trip } = await supabase
     .from('trips')
-    .select('user_id, location_name, distance, boat_type, image')
+    .select('user_id, location_name, distance, boat_type, image, deleted_at')
     .eq('id', id)
     .single()
 
-  if (!trip) return { title: 'Tur – Svalla' }
+  if (!trip || trip.deleted_at) return { title: 'Tur – Svalla' }
 
   const { data: metaUser } = await supabase
     .from('users').select('username').eq('id', trip.user_id).single()
@@ -72,6 +72,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     .from('trips')
     .select(`*, routes(name), ai_summary`)
     .eq('id', id)
+    .is('deleted_at', null)
     .single()
   if (error || !trip) notFound()
 

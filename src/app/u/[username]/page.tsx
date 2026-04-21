@@ -62,6 +62,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
       .from('trips')
       .select('id, user_id, boat_type, distance, duration, average_speed_knots, image, location_name, caption, pinnar_rating, started_at, created_at, route_points')
       .eq('user_id', userRow.id)
+      .is('deleted_at', null)
       .order('created_at', { ascending: false }),
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),

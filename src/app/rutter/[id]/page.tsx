@@ -3,7 +3,7 @@ import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
-import RouteMap from '@/components/RouteMap'
+import RouteMap from '@/components/RouteMapClient'
 import BookmarkButton from '@/components/BookmarkButton'
 import type { Metadata } from 'next'
 

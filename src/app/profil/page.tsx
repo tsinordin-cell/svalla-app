@@ -250,7 +250,7 @@ export default function ProfilPage() {
       if (!authUser) { router.push('/logga-in'); return }
       const [{ data: profile }, { data: myTrips }, { count: fwers }, { count: fwing }] = await Promise.all([
         supabase.from('users').select('id, username, email, avatar, bio, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at').eq('id', authUser.id).single(),
-        supabase.from('trips').select('id, user_id, boat_type, distance, duration, average_speed_knots, max_speed_knots, image, location_name, caption, pinnar_rating, started_at, ended_at, created_at, route_points').eq('user_id', authUser.id).order('created_at', { ascending: false }),
+        supabase.from('trips').select('id, user_id, boat_type, distance, duration, average_speed_knots, max_speed_knots, image, location_name, caption, pinnar_rating, started_at, ended_at, created_at, route_points').eq('user_id', authUser.id).is('deleted_at', null).order('created_at', { ascending: false }),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', authUser.id),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', authUser.id),
       ])
