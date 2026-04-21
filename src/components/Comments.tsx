@@ -593,7 +593,6 @@ export default function Comments({
                 <button className="press-feedback"
                   type="submit"
                   disabled={!text.trim() || posting}
-                  className="press-feedback"
                   style={{
                     width: 38, height: 38, borderRadius: '50%', border: 'none',
                     flexShrink: 0,
