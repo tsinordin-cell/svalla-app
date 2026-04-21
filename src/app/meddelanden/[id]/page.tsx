@@ -4,7 +4,8 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { markConversationRead } from '@/lib/dm'
+import { markConversationRead, acceptDMRequest, declineDMRequest } from '@/lib/dm'
+import { toast } from '@/components/Toast'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import type { Message, Conversation } from '@/lib/supabase'
 
@@ -199,6 +200,21 @@ export default function ChatPage() {
     }
   }
 
+  async function handleAcceptRequest() {
+    if (!conv) return
+    const ok = await acceptDMRequest(supabase, conv.id)
+    if (!ok) { toast('Kunde inte acceptera förfrågan. Försök igen.', 'error'); return }
+    setConv({ ...conv, status: 'active' } as Conversation)
+    toast('Förfrågan accepterad', 'success')
+  }
+
+  async function handleDeclineRequest() {
+    if (!conv) return
+    const ok = await declineDMRequest(supabase, conv.id)
+    if (!ok) { toast('Kunde inte avvisa förfrågan. Försök igen.', 'error'); return }
+    router.push('/meddelanden')
+  }
+
   async function onPickImage(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ''
@@ -274,6 +290,62 @@ export default function ChatPage() {
           </Link>
         </div>
       </header>
+
+      {/* Request banner — mottagaren ska acceptera/avvisa */}
+      {!loading && conv?.status === 'request' && me && conv.created_by !== me && (
+        <div style={{
+          maxWidth: 520, width: '100%', margin: '12px auto 0',
+          padding: '14px 16px', borderRadius: 16,
+          background: 'linear-gradient(135deg, rgba(201,110,42,0.10), rgba(30,92,130,0.06))',
+          border: '1px solid rgba(201,110,42,0.22)',
+        }}>
+          <div style={{ fontSize: 13, color: 'var(--txt)', fontWeight: 700, marginBottom: 4 }}>
+            {otherName} vill skriva till dig
+          </div>
+          <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 12 }}>
+            Acceptera för att svara. Avvisar du försvinner konversationen och personen kan inte skriva igen.
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button
+              onClick={handleAcceptRequest}
+              style={{
+                flex: 1, padding: '10px 14px', borderRadius: 12, border: 'none',
+                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                color: '#fff', fontWeight: 800, fontSize: 13, cursor: 'pointer',
+                boxShadow: '0 2px 10px rgba(30,92,130,0.25)',
+                WebkitTapHighlightColor: 'transparent',
+              }}
+            >
+              Acceptera
+            </button>
+            <button
+              onClick={handleDeclineRequest}
+              style={{
+                flex: 1, padding: '10px 14px', borderRadius: 12,
+                border: '1px solid rgba(10,123,140,0.18)',
+                background: 'var(--white)', color: 'var(--txt)',
+                fontWeight: 700, fontSize: 13, cursor: 'pointer',
+                WebkitTapHighlightColor: 'transparent',
+              }}
+            >
+              Avvisa
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Pending-banner — jag skickade förfrågan, väntar på svar */}
+      {!loading && conv?.status === 'request' && me && conv.created_by === me && (
+        <div style={{
+          maxWidth: 520, width: '100%', margin: '12px auto 0',
+          padding: '10px 14px', borderRadius: 12,
+          background: 'rgba(122,157,171,0.10)',
+          border: '1px solid rgba(122,157,171,0.22)',
+          fontSize: 12, color: 'var(--txt3)', lineHeight: 1.5,
+        }}>
+          Förfrågan skickad. {otherName} måste acceptera för att svara.
+        </div>
+      )}
 
       {/* Messages */}
       <div ref={listRef} style={{
@@ -363,7 +435,8 @@ export default function ChatPage() {
         })}
       </div>
 
-      {/* Input */}
+      {/* Input — dold för mottagaren av en förfrågan tills de accepterat */}
+      {!loading && conv?.status === 'request' && me && conv.created_by !== me ? null : (
       <form onSubmit={send} style={{
         padding: '10px 12px 14px',
         background: 'var(--white)',
@@ -430,6 +503,7 @@ export default function ChatPage() {
           </button>
         </div>
       </form>
+      )}
 
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
     </div>

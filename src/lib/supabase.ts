@@ -125,6 +125,7 @@ export type Conversation = {
   title: string | null
   club_id: string | null
   created_by: string | null
+  status: 'active' | 'request' | 'declined'
   created_at: string
   last_message_at: string
   last_message_preview: string | null
