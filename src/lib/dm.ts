@@ -54,21 +54,36 @@ export async function findOrCreateDM(
   const status: 'active' | 'request' = mutual ? 'active' : 'request'
 
   // Steg 3: skapa ny
-  const { data: conv, error: cErr } = await supabase
+  // Försök med status-kolumn; faller tillbaka utan om kolumnen saknas i databasen ännu
+  let convId: string | null = null
+  const { data: conv1, error: cErr1 } = await supabase
     .from('conversations')
     .insert({ is_group: false, created_by: currentUserId, status })
-    .select('id, status')
+    .select('id')
     .single()
-  if (cErr || !conv) return null
+
+  if (cErr1) {
+    // Kolumnen finns troligen inte — försök utan status-fältet
+    const { data: conv2, error: cErr2 } = await supabase
+      .from('conversations')
+      .insert({ is_group: false, created_by: currentUserId })
+      .select('id')
+      .single()
+    if (cErr2 || !conv2) return null
+    convId = conv2.id as string
+  } else {
+    if (!conv1) return null
+    convId = conv1.id as string
+  }
 
   const rows = [
-    { conversation_id: conv.id, user_id: currentUserId, role: 'owner' as const },
-    { conversation_id: conv.id, user_id: otherUserId,   role: 'member' as const },
+    { conversation_id: convId, user_id: currentUserId, role: 'owner' as const },
+    { conversation_id: convId, user_id: otherUserId,   role: 'member' as const },
   ]
   const { error: pErr } = await supabase.from('conversation_participants').insert(rows)
   if (pErr) return null
 
-  return { id: conv.id as string, status: conv.status as 'active' | 'request' }
+  return { id: convId, status }
 }
 
 /** Acceptera en DM-förfrågan (mottagaren → conversation blir 'active'). */
