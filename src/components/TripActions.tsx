@@ -142,7 +142,7 @@ export default function TripActions({
               style={{
                 width: '100%', marginTop: 10, padding: '13px', borderRadius: 14,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
-                color: '#3a6a80', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
               }}
             >
               Avbryt
@@ -244,7 +244,7 @@ export default function TripActions({
               style={{
                 width: '100%', padding: '13px', borderRadius: 16,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
-                color: '#3a6a80', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
               }}
             >
               Avbryt
@@ -280,7 +280,7 @@ export default function TripActions({
               style={{
                 width: '100%', padding: '13px', borderRadius: 16,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
-                color: '#3a6a80', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
               }}
             >
               Avbryt

@@ -171,7 +171,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
                 {weather.temp}°C
               </div>
               <div style={{
-                color: '#5a8a9a',
+                color: 'var(--txt3)',
                 fontSize: 11,
                 marginTop: 3,
                 display: 'flex',

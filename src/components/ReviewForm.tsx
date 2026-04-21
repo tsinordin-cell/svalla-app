@@ -271,7 +271,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                 </div>
               </div>
               {r.text && (
-                <p style={{ fontSize: 13, color: '#4a6878', margin: 0, lineHeight: 1.5 }}>{r.text}</p>
+                <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>{r.text}</p>
               )}
             </div>
           ))}

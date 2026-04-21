@@ -247,9 +247,9 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
       <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
         <div style={{ display:'flex', alignItems:'center', gap:5 }}>
           {weather
-            ? <><span style={{ fontSize:14, fontWeight:900, color:'#1e5c82', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'var(--txt2)', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
+            ? <><span style={{ fontSize:14, fontWeight:700, color:'var(--sea)', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'var(--txt2)', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
             : fetchFailed
-              ? <span style={{ fontSize:11, color:'#aabbc4' }}>–°</span>
+              ? <span style={{ fontSize:11, color:'var(--txt3)' }}>–°</span>
               : <span style={{ fontSize:11, color:'var(--txt3)' }}>Hämtar väder…</span>
           }
         </div>
