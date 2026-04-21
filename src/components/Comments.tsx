@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { parseTokens, getActiveMention, extractMentions } from '@/lib/mentions'
+import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 
 type Comment = {
   id: string
@@ -350,10 +351,10 @@ export default function Comments({
       {open && (
         <div style={{
           marginTop: 12,
-          background: '#fff',
-          borderRadius: 20,
-          boxShadow: '0 4px 24px rgba(0,30,60,0.10), 0 1px 4px rgba(0,30,60,0.06)',
-          border: '1px solid rgba(0,40,80,0.07)',
+          background: 'var(--white)',
+          borderRadius: radius.lg,
+          boxShadow: shadow.md,
+          border: '1px solid rgba(10,123,140,0.08)',
           overflow: 'hidden',
         }}>
 
@@ -411,10 +412,8 @@ export default function Comments({
                         width: 34, height: 34, borderRadius: '50%',
                         background: grad,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: '#fff', fontSize: 12, fontWeight: 800,
-                        boxShadow: '0 2px 6px rgba(0,60,90,0.18)',
+                        color: '#fff', fontSize: fontSize.small, fontWeight: fontWeight.semibold,
                         flexShrink: 0, overflow: 'hidden', position: 'relative',
-                        letterSpacing: 0.2,
                       }}>
                         {c.avatar ? (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -438,7 +437,7 @@ export default function Comments({
                           <Link
                             href={`/u/${c.username}`}
                             onClick={e => e.stopPropagation()}
-                            style={{ fontSize: 12, fontWeight: 800, color: 'var(--sea)', textDecoration: 'none' }}
+                            style={{ fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: 'var(--sea)', textDecoration: 'none' }}
                           >
                             {c.username}
                           </Link>
@@ -526,10 +525,10 @@ export default function Comments({
                   ref={mentionBoxRef}
                   style={{
                     position: 'absolute', bottom: '100%', left: 12, right: 12,
-                    background: '#fff',
-                    border: '1px solid rgba(10,123,140,0.15)',
-                    borderRadius: 14,
-                    boxShadow: '0 4px 20px rgba(0,30,60,0.14)',
+                    background: 'var(--white)',
+                    border: '1px solid rgba(10,123,140,0.12)',
+                    borderRadius: radius.sm,
+                    boxShadow: shadow.md,
                     overflow: 'hidden',
                     zIndex: 100,
                     marginBottom: 4,
@@ -553,7 +552,7 @@ export default function Comments({
                         width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
                         background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 11, fontWeight: 800, color: '#fff', overflow: 'hidden',
+                        fontSize: 11, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
                       }}>
                         {hit.avatar
                           // eslint-disable-next-line @next/next/no-img-element
@@ -570,11 +569,11 @@ export default function Comments({
 
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 8,
-                background: '#fff',
-                borderRadius: 26,
+                background: 'var(--white)',
+                borderRadius: radius.full,
                 padding: '4px 4px 4px 16px',
-                border: '1.5px solid rgba(0,40,80,0.10)',
-                boxShadow: '0 1px 6px rgba(0,30,60,0.06)',
+                border: '1.5px solid rgba(10,123,140,0.15)',
+                boxShadow: shadow.xs,
                 transition: 'border-color .18s, box-shadow .18s',
               }}>
                 <input
