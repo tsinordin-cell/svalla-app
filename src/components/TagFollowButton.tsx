@@ -43,6 +43,9 @@ export default function TagFollowButton({ tag }: { tag: string }) {
     <button
       onClick={toggle}
       disabled={saving}
+      aria-label={following ? `Sluta följa #${tag}` : `Följ #${tag}`}
+      aria-pressed={following}
+      className="press-feedback"
       style={{
         padding: '8px 18px',
         borderRadius: 20,

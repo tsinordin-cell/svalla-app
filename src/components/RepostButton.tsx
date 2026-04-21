@@ -87,10 +87,16 @@ export default function RepostButton({
           background: 'rgba(0,0,0,0.5)',
           display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
         }} onClick={() => setOpen(false)}>
-          <div onClick={e => e.stopPropagation()} style={{
-            width: '100%', maxWidth: 520, background: 'var(--white)',
-            borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
-          }}>
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Reposta tur"
+            onClick={e => e.stopPropagation()}
+            style={{
+              width: '100%', maxWidth: 520, background: 'var(--white)',
+              borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
+            }}
+          >
             <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
             <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px' }}>Reposta denna tur</h2>
             <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 14px' }}>
@@ -104,10 +110,12 @@ export default function RepostButton({
 
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => setOpen(false)} disabled={busy}
+                className="press-feedback"
                 style={{ flex: 1, padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)', background: 'transparent', fontWeight: 700, fontSize: 14, color: 'var(--txt)', cursor: 'pointer' }}>
                 Avbryt
               </button>
               <button onClick={submitRepost} disabled={busy}
+                className="press-feedback"
                 style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
                 {busy ? 'Repostar…' : 'Reposta'}
               </button>

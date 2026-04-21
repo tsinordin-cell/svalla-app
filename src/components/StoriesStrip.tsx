@@ -84,7 +84,10 @@ export default function StoriesStrip() {
         scrollbarWidth: 'none',
       }}>
         {me && (
-          <button onClick={() => setShowUpload(true)}
+          <button
+            onClick={() => setShowUpload(true)}
+            aria-label="Lägg till story"
+            className="press-feedback"
             style={{
               flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               border: 'none', background: 'transparent', cursor: 'pointer', padding: 0,
@@ -101,7 +104,11 @@ export default function StoriesStrip() {
         )}
 
         {groups.map((g, idx) => (
-          <button key={g.user_id} onClick={() => openViewer(idx)}
+          <button
+            key={g.user_id}
+            onClick={() => openViewer(idx)}
+            aria-label={`Visa ${g.user_id === me ? 'din' : `${g.username}s`} story`}
+            className="press-feedback"
             style={{
               flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               border: 'none', background: 'transparent', cursor: 'pointer', padding: 0, maxWidth: 70,
@@ -239,8 +246,18 @@ function StoryViewer({
       {/* Content */}
       <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {/* Tap zones */}
-        <div onClick={onPrev} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '30%', zIndex: 2 }} />
-        <div onClick={onNext} style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '70%', zIndex: 2 }} />
+        <div
+          role="button" tabIndex={0} aria-label="Föregående"
+          onClick={onPrev}
+          onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onPrev()}
+          style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '30%', zIndex: 2 }}
+        />
+        <div
+          role="button" tabIndex={0} aria-label="Nästa"
+          onClick={onNext}
+          onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && onNext()}
+          style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '70%', zIndex: 2 }}
+        />
         {story.image && (
           // eslint-disable-next-line @next/next/no-img-element
           <img loading="lazy" decoding="async" src={story.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
@@ -323,13 +340,19 @@ function UploadStory({
       padding: '16px',
       boxSizing: 'border-box',
     }} onClick={onClose}>
-      <div onClick={e => e.stopPropagation()} style={{
-        width: '100%', maxWidth: 480, background: 'var(--white)',
-        borderRadius: 20, padding: 24,
-        maxHeight: '88svh', overflowY: 'auto',
-        boxSizing: 'border-box',
-        boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
-      }}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Dela story"
+        onClick={e => e.stopPropagation()}
+        style={{
+          width: '100%', maxWidth: 480, background: 'var(--white)',
+          borderRadius: 20, padding: 24,
+          maxHeight: '88svh', overflowY: 'auto',
+          boxSizing: 'border-box',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
+        }}
+      >
         <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Dela story</h2>
 
         {preview ? (
@@ -337,6 +360,8 @@ function UploadStory({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img loading="lazy" decoding="async" src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block', maxHeight: 300, objectFit: 'cover' }} />
             <button onClick={() => { setFile(null); setPreview(null) }}
+              aria-label="Ta bort vald bild"
+              className="press-feedback"
               style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
               ✕
             </button>
@@ -364,10 +389,12 @@ function UploadStory({
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} disabled={busy}
+            className="press-feedback"
             style={{ flex: 1, padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)', background: 'transparent', fontWeight: 700, fontSize: 14, color: 'var(--txt)', cursor: 'pointer' }}>
             Avbryt
           </button>
           <button onClick={submit} disabled={busy || !file}
+            className="press-feedback"
             style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
             {busy ? 'Delar…' : 'Dela'}
           </button>

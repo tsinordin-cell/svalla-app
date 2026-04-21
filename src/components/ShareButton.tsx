@@ -49,6 +49,7 @@ export default function ShareButton({ url, title, variant = 'icon' }: Props) {
     return (
       <button
         onClick={handleShare}
+        className="press-feedback"
         style={{
           display: 'flex', alignItems: 'center', gap: 6,
           padding: '7px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
@@ -71,6 +72,7 @@ export default function ShareButton({ url, title, variant = 'icon' }: Props) {
   return (
     <button
       onClick={handleShare}
+      className="press-feedback"
       style={{
         width: 32, height: 32, borderRadius: '50%',
         background: copied ? 'rgba(15,158,100,0.12)' : 'rgba(10,123,140,0.08)',
@@ -80,7 +82,6 @@ export default function ShareButton({ url, title, variant = 'icon' }: Props) {
         WebkitTapHighlightColor: 'transparent',
       }}
       aria-label={copied ? 'Kopierat!' : 'Dela tur'}
-      title={copied ? 'Kopierat!' : 'Dela tur'}
     >
       {shareIcon}
     </button>

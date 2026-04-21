@@ -123,7 +123,7 @@ export default function TripActions({
       {/* ── Action menu sheet ── */}
       {menu && !editing && !confirm && (
         <Backdrop onClick={() => setMenu(false)}>
-          <Sheet>
+          <Sheet label="Turalternativ">
             <Handle />
             <MenuItem
               icon="✏️"
@@ -139,6 +139,7 @@ export default function TripActions({
             />
             <button
               onClick={() => setMenu(false)}
+              className="press-feedback"
               style={{
                 width: '100%', marginTop: 10, padding: '13px', borderRadius: 14,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
@@ -154,7 +155,7 @@ export default function TripActions({
       {/* ── Edit sheet ── */}
       {editing && (
         <Backdrop onClick={() => !saving && setEditing(false)}>
-          <Sheet onClick={e => e.stopPropagation()}>
+          <Sheet label="Redigera tur" onClick={e => e.stopPropagation()}>
             <Handle />
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 18px', textAlign: 'center' }}>
               Redigera tur
@@ -216,7 +217,7 @@ export default function TripActions({
                   onClick={() => setBoatType(bt === boatType ? '' : bt)}
                   style={{
                     padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600,
-                    background: boatType === bt ? '#1e5c82' : 'rgba(10,123,140,0.07)',
+                    background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
                     color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >
@@ -229,6 +230,7 @@ export default function TripActions({
             <button
               onClick={handleSave}
               disabled={saving}
+              className="press-feedback"
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
                 background: saving ? 'rgba(10,123,140,0.15)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
@@ -241,6 +243,7 @@ export default function TripActions({
             <button
               onClick={() => setEditing(false)}
               disabled={saving}
+              className="press-feedback"
               style={{
                 width: '100%', padding: '13px', borderRadius: 16,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
@@ -256,7 +259,7 @@ export default function TripActions({
       {/* ── Delete confirmation ── */}
       {confirm && (
         <Backdrop onClick={() => !deleting && setConfirm(false)}>
-          <Sheet onClick={e => e.stopPropagation()}>
+          <Sheet label="Ta bort tur" onClick={e => e.stopPropagation()}>
             <Handle />
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', textAlign: 'center' }}>
               Ta bort tur?
@@ -267,6 +270,7 @@ export default function TripActions({
             <button
               onClick={handleDelete}
               disabled={deleting}
+              className="press-feedback"
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
                 background: '#dc2626', color: '#fff', fontSize: 15, fontWeight: 600,
@@ -277,6 +281,7 @@ export default function TripActions({
             </button>
             <button
               onClick={() => setConfirm(false)}
+              className="press-feedback"
               style={{
                 width: '100%', padding: '13px', borderRadius: 16,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
@@ -311,9 +316,12 @@ function Backdrop({ onClick, children }: { onClick: () => void; children: ReactN
   )
 }
 
-function Sheet({ onClick, children }: { onClick?: (e: MouseEvent<HTMLDivElement>) => void; children: ReactNode }) {
+function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivElement>) => void; children: ReactNode; label?: string }) {
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
       onClick={onClick}
       style={{
         background: 'var(--white)', borderRadius: '24px',
@@ -338,6 +346,7 @@ function MenuItem({ icon, label, danger, onClick }: { icon: string; label: strin
   return (
     <button
       onClick={onClick}
+      className="press-feedback"
       style={{
         width: '100%', padding: '14px 16px', borderRadius: 14, border: 'none',
         background: 'none', cursor: 'pointer',
