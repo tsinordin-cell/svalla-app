@@ -138,7 +138,7 @@ export default async function ToplistaPage() {
           </svg>
         </Link>
         <div>
-          <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Topplista</h1>
+          <h1 style={{ fontSize: 18, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Topplista</h1>
           <p style={{ fontSize: 11, color: '#7a9dab', margin: 0 }}>Veckans &amp; alltidens bästa seglare</p>
         </div>
       </header>
@@ -160,7 +160,7 @@ export default async function ToplistaPage() {
           ].map(({ val, label, emoji }) => (
             <div key={label} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 18, marginBottom: 2 }}>{emoji}</div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: '#fff', lineHeight: 1 }}>{val}</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{val}</div>
               <div style={{ fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 3 }}>{label}</div>
             </div>
           ))}
@@ -237,12 +237,12 @@ export default async function ToplistaPage() {
           textAlign: 'center',
         }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>🚀</div>
-          <h3 style={{ fontSize: 16, fontWeight: 900, color: '#1a3a5e', margin: '0 0 6px' }}>Klättra på listan</h3>
+          <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a3a5e', margin: '0 0 6px' }}>Klättra på listan</h3>
           <p style={{ fontSize: 13, color: '#7a9dab', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
           <Link href="/logga" style={{
             display: 'inline-block', padding: '12px 32px', borderRadius: 14,
             background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-            color: '#fff', fontWeight: 800, fontSize: 14,
+            color: '#fff', fontWeight: 600, fontSize: 14,
             boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none',
           }}>
             Logga en tur →
@@ -279,7 +279,7 @@ function LeaderboardSection({
       boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginBottom: 14,
     }}>
       <div style={{ marginBottom: 14 }}>
-        <h2 style={{ fontSize: 14, fontWeight: 900, color: 'var(--txt)', margin: '0 0 2px' }}>{title}</h2>
+        <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px' }}>{title}</h2>
         <p style={{ fontSize: 11, color: '#7a9dab', margin: 0 }}>{subtitle}</p>
       </div>
 
@@ -306,7 +306,7 @@ function LeaderboardSection({
                 <div style={{
                   width: 28, height: 28, flexShrink: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: i < 3 ? 20 : 12, fontWeight: 800,
+                  fontSize: i < 3 ? 20 : 12, fontWeight: 600,
                   color: i < 3 ? undefined : '#7a9dab',
                 }}>
                   {medal(i + 1)}
@@ -319,7 +319,7 @@ function LeaderboardSection({
                     ? `linear-gradient(135deg, ${accentColor}, ${accentColor}cc)`
                     : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 14, fontWeight: 900, color: '#fff',
+                  fontSize: 14, fontWeight: 700, color: '#fff',
                   overflow: 'hidden',
                 }}>
                   {row.avatar
@@ -331,7 +331,7 @@ function LeaderboardSection({
                 {/* Name + secondary */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
-                    fontSize: 14, fontWeight: 800, color: 'var(--txt)',
+                    fontSize: 14, fontWeight: 600, color: 'var(--txt)',
                     overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                   }}>
                     {row.username}
@@ -343,7 +343,7 @@ function LeaderboardSection({
 
                 {/* Value */}
                 <div style={{
-                  fontSize: 13, fontWeight: 900, color: accentColor,
+                  fontSize: 13, fontWeight: 700, color: accentColor,
                   whiteSpace: 'nowrap', flexShrink: 0,
                 }}>
                   {formatValue(row.value)}

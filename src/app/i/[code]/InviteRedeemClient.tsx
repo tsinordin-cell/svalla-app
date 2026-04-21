@@ -37,7 +37,7 @@ export default function InviteRedeemClient({ code }: { code: string }) {
       <div style={{ padding: 12, borderRadius: 10, background: 'rgba(200,30,30,0.08)', fontSize: 13, color: '#c03', textAlign: 'center' }}>
         Länken kunde inte lösas in. Kanske har du redan använt den.
         <div style={{ marginTop: 10 }}>
-          <Link href="/feed" style={{ fontSize: 13, fontWeight: 800, color: '#1e5c82' }}>
+          <Link href="/feed" style={{ fontSize: 13, fontWeight: 600, color: '#1e5c82' }}>
             Till feeden →
           </Link>
         </div>
@@ -53,16 +53,16 @@ export default function InviteRedeemClient({ code }: { code: string }) {
         textAlign: 'center',
       }}>
         <div style={{ fontSize: 22, marginBottom: 6 }}>✓</div>
-        <div style={{ fontSize: 14, fontWeight: 800, color: '#228c38', marginBottom: 4 }}>Länken inlöst!</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: '#228c38', marginBottom: 4 }}>Länken inlöst!</div>
         {inviterName && (
           <div style={{ fontSize: 13, color: 'var(--txt2)', marginBottom: 12 }}>
-            Du följer nu <Link href={`/u/${inviterName}`} style={{ fontWeight: 800, color: '#1e5c82' }}>@{inviterName}</Link>
+            Du följer nu <Link href={`/u/${inviterName}`} style={{ fontWeight: 600, color: '#1e5c82' }}>@{inviterName}</Link>
           </div>
         )}
         <Link href="/feed" style={{
           display: 'inline-block', padding: '10px 18px', borderRadius: 12,
           background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-          color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none',
+          color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
         }}>
           Till feeden →
         </Link>

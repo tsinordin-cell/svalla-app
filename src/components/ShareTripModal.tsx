@@ -159,7 +159,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
         {/* Header */}
         <div style={{ padding: '12px 16px 8px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)' }}>Skicka som meddelande</div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)' }}>Skicka som meddelande</div>
             <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               ⛵ {trip.location_name ?? 'Tur'}
             </div>
@@ -212,7 +212,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                     }}>
                       <div style={{
                         width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
-                        background: grad, color: '#fff', fontWeight: 800, fontSize: 14,
+                        background: grad, color: '#fff', fontWeight: 600, fontSize: 14,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         overflow: 'hidden', position: 'relative',
                       }}>
@@ -251,7 +251,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                     }}>
                       <div style={{
                         width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
-                        background: grad, color: '#fff', fontWeight: 800, fontSize: 14,
+                        background: grad, color: '#fff', fontWeight: 600, fontSize: 14,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         overflow: 'hidden', position: 'relative',
                       }}>

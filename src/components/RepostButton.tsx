@@ -92,7 +92,7 @@ export default function RepostButton({
             borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
           }}>
             <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px' }}>Reposta denna tur</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px' }}>Reposta denna tur</h2>
             <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 14px' }}>
               Den visas i ditt flöde med valfri kommentar. Ägaren får en notis.
             </p>
@@ -108,7 +108,7 @@ export default function RepostButton({
                 Avbryt
               </button>
               <button onClick={submitRepost} disabled={busy}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
                 {busy ? 'Repostar…' : 'Reposta'}
               </button>
             </div>

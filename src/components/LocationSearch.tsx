@@ -110,7 +110,7 @@ export default function LocationSearch({
     <div style={{ position: 'relative' }}>
       {label && (
         <label style={{
-          fontSize: 10, fontWeight: 800, color: '#5a8090',
+          fontSize: 10, fontWeight: 600, color: '#5a8090',
           textTransform: 'uppercase', letterSpacing: '0.6px',
           display: 'block', marginBottom: 6,
         }}>

@@ -191,7 +191,7 @@ export default function OGImage() {
             </svg>
             <span style={{
               fontSize: 52,
-              fontWeight: 900,
+              fontWeight: 700,
               color: '#ffffff',
               letterSpacing: '-0.03em',
               lineHeight: 1,

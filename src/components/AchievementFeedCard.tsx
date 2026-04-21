@@ -24,7 +24,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
             width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 14, fontWeight: 900, color: '#fff',
+            fontSize: 14, fontWeight: 700, color: '#fff',
           }}>
             {ev.avatar
               // eslint-disable-next-line @next/next/no-img-element
@@ -36,11 +36,11 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
 
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.35 }}>
-          <Link href={`/u/${ev.username}`} style={{ fontWeight: 800, color: 'var(--txt)', textDecoration: 'none' }}>
+          <Link href={`/u/${ev.username}`} style={{ fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
             @{ev.username}
           </Link>
           {' '}låste upp{' '}
-          <span style={{ fontWeight: 800, color: '#c96e2a' }}>{ev.label}</span>
+          <span style={{ fontWeight: 600, color: '#c96e2a' }}>{ev.label}</span>
         </div>
         {ev.desc && (
           <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>

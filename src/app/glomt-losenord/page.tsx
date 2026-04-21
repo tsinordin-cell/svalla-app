@@ -30,7 +30,7 @@ export default function GlomtLosenordPage() {
       {/* Branding top */}
       <div style={{ flex: '0 0 auto', padding: '60px 24px 40px', textAlign: 'center' }}>
         <div style={{ fontSize: 44, marginBottom: 8 }}>🔑</div>
-        <h1 style={{ fontSize: 32, fontWeight: 900, color: '#fff', margin: '0 0 6px', letterSpacing: '-0.5px' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 700, color: '#fff', margin: '0 0 6px', letterSpacing: '-0.5px' }}>
           Glömt lösenordet?
         </h1>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
@@ -49,7 +49,7 @@ export default function GlomtLosenordPage() {
           {sent ? (
             <div style={{ textAlign: 'center', paddingTop: 20 }}>
               <div style={{ fontSize: 56, marginBottom: 16 }}>📬</div>
-              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt, #162d3a)', marginBottom: 8 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', marginBottom: 8 }}>
                 Kolla din inkorg!
               </h2>
               <p style={{ fontSize: 14, color: 'var(--txt3, #5a8090)', lineHeight: 1.6, marginBottom: 28 }}>
@@ -59,7 +59,7 @@ export default function GlomtLosenordPage() {
               <Link href="/logga-in" style={{
                 display: 'inline-block', padding: '13px 32px', borderRadius: 16,
                 background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                color: '#fff', fontWeight: 800, fontSize: 15, textDecoration: 'none',
+                color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none',
                 boxShadow: '0 4px 16px rgba(30,92,130,0.3)',
               }}>
                 Tillbaka till inloggning
@@ -67,7 +67,7 @@ export default function GlomtLosenordPage() {
             </div>
           ) : (
             <form onSubmit={handle} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
                 Återställ lösenord
               </h2>
               <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0 }}>
@@ -100,7 +100,7 @@ export default function GlomtLosenordPage() {
                 style={{
                   padding: '15px 0', borderRadius: 16, border: 'none', cursor: 'pointer',
                   background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                  color: '#fff', fontSize: 16, fontWeight: 800,
+                  color: '#fff', fontSize: 16, fontWeight: 600,
                   boxShadow: '0 4px 20px rgba(30,92,130,0.35)',
                   opacity: loading || !email.trim() ? 0.65 : 1,
                   transition: 'opacity 0.2s',

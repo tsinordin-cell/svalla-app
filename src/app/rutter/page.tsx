@@ -93,7 +93,7 @@ export default async function RutterPage({
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>
-        <h1 style={{ fontSize: 18, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Kunde inte ladda turer</h1>
+        <h1 style={{ fontSize: 18, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Kunde inte ladda turer</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
@@ -130,7 +130,7 @@ export default async function RutterPage({
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <h1 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Turer</h1>
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Turer</h1>
           <p style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', margin: '2px 0 0', fontWeight: 500 }}>
             {isFiltered
               ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
@@ -238,14 +238,14 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
         <div style={{ padding: '13px 14px 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
           <div style={{ flex: 1 }}>
             <span style={{
-              display: 'inline-block', fontSize: 10, fontWeight: 800,
+              display: 'inline-block', fontSize: 10, fontWeight: 600,
               padding: '3px 8px', borderRadius: 20,
               background: cc.bg, color: cc.text,
               textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 5,
             }}>
               {icon} {categoryLabel}
             </span>
-            <h2 style={{ fontSize: 15, fontWeight: 900, color: 'var(--txt, #162d3a)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
+            <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
               {t.title}
             </h2>
             <div style={{ fontSize: 12, color: 'var(--txt3, #5a8090)', marginBottom: 8 }}>{t.usp}</div>

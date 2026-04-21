@@ -36,7 +36,7 @@ export default function LoggaChoicePage() {
           <SvallaLogo height={52} color="#ffffff" />
         </div>
         <h1 style={{
-          fontSize: 28, fontWeight: 900, color: '#fff',
+          fontSize: 28, fontWeight: 700, color: '#fff',
           margin: '0 0 8px', lineHeight: 1.15,
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}>
@@ -74,7 +74,7 @@ export default function LoggaChoicePage() {
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#86efac', letterSpacing: '0.5px' }}>LIVE GPS</span>
               </div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', marginBottom: 6 }}>Spåra live</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Spåra live</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.5 }}>
                 GPS loggar rutten automatiskt. Se karta, hastighet och stopp när turen är klar.
               </div>
@@ -115,7 +115,7 @@ export default function LoggaChoicePage() {
               }}>
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#f0a060', letterSpacing: '0.5px' }}>SNABB · 15 SEK</span>
               </div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: 'rgba(255,255,255,0.85)', marginBottom: 6 }}>Snabb-logg</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 6 }}>Snabb-logg</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>
                 Ladda upp en bild och ange stats manuellt. Inget GPS behövs.
               </div>

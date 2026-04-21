@@ -75,7 +75,7 @@ export default function MessageBell() {
           width: 16, height: 16, borderRadius: '50%',
           background: '#c96e2a', border: '2px solid #f2f8fa',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 9, fontWeight: 800, color: '#fff', lineHeight: 1,
+          fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
         }}>
           {unread > 9 ? '9+' : unread}
         </div>

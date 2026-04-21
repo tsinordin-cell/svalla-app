@@ -88,10 +88,10 @@ export default function InsikterPage() {
             </svg>
           </Link>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
               Svalla Wrapped
             </div>
-            <div style={{ fontSize: 15, fontWeight: 900, color: 'var(--txt)' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>
               Dina insights
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function InsikterPage() {
             style={{
               padding: '8px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
               background: shared ? '#228c38' : 'linear-gradient(135deg,#c96e2a,#e07828)',
-              color: '#fff', fontSize: 12, fontWeight: 800,
+              color: '#fff', fontSize: 12, fontWeight: 600,
               opacity: !insights || insights.total_trips === 0 ? 0.5 : 1,
               WebkitTapHighlightColor: 'transparent',
             }}
@@ -148,7 +148,7 @@ export default function InsikterPage() {
             <Link href="/logga-in" style={{
               display: 'inline-block', padding: '10px 22px', borderRadius: 14,
               background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none',
+              color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
             }}>
               Logga in
             </Link>
@@ -164,7 +164,7 @@ export default function InsikterPage() {
             <Link href="/logga" style={{
               display: 'inline-block', padding: '10px 22px', borderRadius: 14,
               background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-              color: '#fff', fontSize: 13, fontWeight: 800, textDecoration: 'none',
+              color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
             }}>
               Logga tur →
             </Link>
@@ -190,7 +190,7 @@ export default function InsikterPage() {
                     width: 44, height: 44, borderRadius: '50%', overflow: 'hidden',
                     background: 'rgba(255,255,255,0.15)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, fontWeight: 900,
+                    fontSize: 18, fontWeight: 700,
                   }}>
                     {avatar
                       ? <Image src={avatar} alt="" width={44} height={44} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
@@ -198,10 +198,10 @@ export default function InsikterPage() {
                     }
                   </div>
                   <div>
-                    <div style={{ fontSize: 11, fontWeight: 800, opacity: 0.75, textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, opacity: 0.75, textTransform: 'uppercase', letterSpacing: '0.8px' }}>
                       {scope === 'all' ? 'Hela ditt äventyr' : `Ditt år ${scope}`}
                     </div>
-                    <div style={{ fontSize: 16, fontWeight: 900 }}>
+                    <div style={{ fontSize: 16, fontWeight: 700 }}>
                       {username ? `@${username}` : 'Din sammanfattning'}
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export default function InsikterPage() {
                     color: '#fff', fontSize: 22, flexShrink: 0,
                   }}>⚓</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {insights.top_nm_trip.location_name ?? 'Okänd plats'}
                     </div>
                     <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
@@ -276,7 +276,7 @@ export default function InsikterPage() {
                     fontSize: 26,
                   }}>📆</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt)', textTransform: 'capitalize' }}>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', textTransform: 'capitalize' }}>
                       {insights.most_active_month.label}
                     </div>
                     <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
@@ -335,7 +335,7 @@ export default function InsikterPage() {
                         background: idx === 0 ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.08)',
                         color: idx === 0 ? '#fff' : '#1e5c82',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 13, fontWeight: 900, flexShrink: 0,
+                        fontSize: 13, fontWeight: 700, flexShrink: 0,
                       }}>{idx + 1}</div>
                       <div style={{ flex: 1, minWidth: 0, fontSize: 14, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {p.name}
@@ -361,7 +361,7 @@ export default function InsikterPage() {
               style={{
                 width: '100%', padding: 14, borderRadius: 16, border: 'none', cursor: 'pointer',
                 background: shared ? '#228c38' : 'linear-gradient(135deg,#c96e2a,#e07828)',
-                color: '#fff', fontSize: 14, fontWeight: 900,
+                color: '#fff', fontSize: 14, fontWeight: 700,
                 boxShadow: '0 4px 14px rgba(201,110,42,0.28)',
                 WebkitTapHighlightColor: 'transparent',
               }}
@@ -387,7 +387,7 @@ function HeroStat({ label, value }: { label: string; value: string }) {
       background: 'rgba(255,255,255,0.10)', borderRadius: 12, padding: '10px 8px',
       textAlign: 'center', backdropFilter: 'blur(4px)',
     }}>
-      <div style={{ fontSize: 22, fontWeight: 900, lineHeight: 1.1 }}>{value}</div>
+      <div style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.1 }}>{value}</div>
       <div style={{ fontSize: 10, fontWeight: 700, opacity: 0.78, textTransform: 'uppercase', letterSpacing: '0.6px', marginTop: 3 }}>
         {label}
       </div>
@@ -404,7 +404,7 @@ function SmallStat({ emoji, label, value }: { emoji: string; label: string; valu
     }}>
       <div style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt)', lineHeight: 1.1 }}>{value}</div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.1 }}>{value}</div>
         <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 2 }}>
           {label}
         </div>
@@ -416,7 +416,7 @@ function SmallStat({ emoji, label, value }: { emoji: string; label: string; valu
 function SectionTitle({ emoji, text }: { emoji: string; text: string }) {
   return (
     <div style={{
-      fontSize: 11, fontWeight: 800, color: 'var(--txt3)',
+      fontSize: 11, fontWeight: 600, color: 'var(--txt3)',
       textTransform: 'uppercase', letterSpacing: '0.6px',
       margin: '2px 2px 10px',
     }}>

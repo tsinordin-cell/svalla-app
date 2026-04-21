@@ -119,7 +119,7 @@ function CheckInPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>Checka in</h1>
+          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Checka in</h1>
         </div>
       </header>
 
@@ -187,7 +187,7 @@ function CheckInPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block' }} />
             <button onClick={() => { setImage(null); setPreview(null) }}
-              style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 800, cursor: 'pointer' }}>
+              style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
               ✕
             </button>
           </div>
@@ -214,7 +214,7 @@ function CheckInPage() {
           style={{
             width: '100%', padding: '14px 18px', borderRadius: 14, border: 'none',
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff',
-            fontWeight: 800, fontSize: 15, cursor: busy ? 'wait' : 'pointer',
+            fontWeight: 600, fontSize: 15, cursor: busy ? 'wait' : 'pointer',
             opacity: (busy || (!pos && !place.trim())) ? 0.6 : 1,
           }}>
           {busy ? 'Checkar in…' : 'Checka in'}

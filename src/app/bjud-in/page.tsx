@@ -96,7 +96,7 @@ export default function InvitePage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>Bjud in</h1>
+          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Bjud in</h1>
         </div>
       </header>
 
@@ -107,7 +107,7 @@ export default function InvitePage() {
           color: '#fff', marginBottom: 18,
           boxShadow: '0 4px 20px rgba(30,92,130,0.30)',
         }}>
-          <div style={{ fontSize: 22, fontWeight: 900, lineHeight: 1.15, marginBottom: 6 }}>
+          <div style={{ fontSize: 22, fontWeight: 700, lineHeight: 1.15, marginBottom: 6 }}>
             Få med dina seglarpolare
           </div>
           <p style={{ fontSize: 13, opacity: 0.85, lineHeight: 1.5, margin: 0 }}>
@@ -123,7 +123,7 @@ export default function InvitePage() {
               style={{
                 flex: 1, padding: '14px 18px', borderRadius: 14, border: 'none',
                 background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff',
-                fontWeight: 800, fontSize: 14, cursor: creating ? 'wait' : 'pointer',
+                fontWeight: 600, fontSize: 14, cursor: creating ? 'wait' : 'pointer',
                 opacity: creating ? 0.6 : 1,
               }}>
               {creating ? 'Skapar…' : '+ Skapa ny länk'}
@@ -164,7 +164,7 @@ export default function InvitePage() {
                 Avbryt
               </button>
               <button onClick={newInvite} disabled={creating}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: creating ? 'wait' : 'pointer', opacity: creating ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: creating ? 'wait' : 'pointer', opacity: creating ? 0.6 : 1 }}>
                 {creating ? 'Skapar…' : 'Skapa länk'}
               </button>
             </div>
@@ -205,12 +205,12 @@ export default function InvitePage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
                   <div style={{
                     fontFamily: 'ui-monospace, SF Mono, Menlo, monospace',
-                    fontSize: 17, fontWeight: 900, color: 'var(--txt)', letterSpacing: '1.5px',
+                    fontSize: 17, fontWeight: 700, color: 'var(--txt)', letterSpacing: '1.5px',
                   }}>{inv.code}</div>
                   <div style={{
                     padding: '2px 8px', borderRadius: 10,
                     background: 'rgba(10,123,140,0.06)',
-                    fontSize: 10, fontWeight: 800, color: statusColor, textTransform: 'uppercase', letterSpacing: '0.6px',
+                    fontSize: 10, fontWeight: 600, color: statusColor, textTransform: 'uppercase', letterSpacing: '0.6px',
                   }}>{status}</div>
                 </div>
                 <div style={{ fontSize: 11, color: 'var(--txt3)', marginBottom: 10, wordBreak: 'break-all' }}>
@@ -235,7 +235,7 @@ export default function InvitePage() {
                     style={{
                       flex: 1, padding: 10, borderRadius: 10, border: 'none',
                       background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                      color: '#fff', fontSize: 12, fontWeight: 800, cursor: 'pointer',
+                      color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer',
                     }}>
                     Dela
                   </button>

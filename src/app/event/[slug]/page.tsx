@@ -101,7 +101,7 @@ export default function EventDetailPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🗓️</div>
-          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#1e5c82', marginBottom: 6 }}>Eventet hittades inte</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Eventet hittades inte</h2>
           <Link href="/event" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Alla events</Link>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default function EventDetailPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h1 style={{ flex: 1, fontSize: 16, fontWeight: 800, color: 'var(--txt)', margin: 0,
+          <h1 style={{ flex: 1, fontSize: 16, fontWeight: 600, color: 'var(--txt)', margin: 0,
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {ev?.title ?? ''}
           </h1>
@@ -149,7 +149,7 @@ export default function EventDetailPage() {
             </div>
           )}
 
-          <h2 style={{ fontSize: 22, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px' }}>{ev.title}</h2>
+          <h2 style={{ fontSize: 22, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px' }}>{ev.title}</h2>
 
           <div style={{ padding: 14, borderRadius: 14, background: 'rgba(30,92,130,0.06)', marginBottom: 14 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#1e5c82', marginBottom: 4 }}>
@@ -180,7 +180,7 @@ export default function EventDetailPage() {
                   border: ev.my_status === opt.s ? `2px solid ${opt.color}` : '1px solid rgba(10,123,140,0.20)',
                   background: ev.my_status === opt.s ? opt.color : 'var(--white)',
                   color: ev.my_status === opt.s ? '#fff' : 'var(--txt)',
-                  fontWeight: 800, fontSize: 13, cursor: 'pointer',
+                  fontWeight: 600, fontSize: 13, cursor: 'pointer',
                   opacity: busy ? 0.6 : 1,
                 }}>
                 {opt.label}
@@ -190,7 +190,7 @@ export default function EventDetailPage() {
 
           {ev.description && (
             <div style={{ marginBottom: 18 }}>
-              <h3 style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>Om eventet</h3>
+              <h3 style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Om eventet</h3>
               <p style={{ fontSize: 14, color: 'var(--txt)', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>
                 {ev.description}
               </p>
@@ -198,7 +198,7 @@ export default function EventDetailPage() {
           )}
 
           <div>
-            <h3 style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px' }}>
+            <h3 style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px' }}>
               Deltagare ({ev.going_count ?? 0})
             </h3>
             {attendees.filter(a => a.status === 'going').length === 0 && (
@@ -216,7 +216,7 @@ export default function EventDetailPage() {
                       width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', position: 'relative',
                       background: avatarGradient(a.username),
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: '#fff', fontWeight: 800, fontSize: 10,
+                      color: '#fff', fontWeight: 600, fontSize: 10,
                     }}>
                       {a.avatar ? (
                         // eslint-disable-next-line @next/next/no-img-element
@@ -231,7 +231,7 @@ export default function EventDetailPage() {
 
             {attendees.filter(a => a.status === 'maybe').length > 0 && (
               <>
-                <h4 style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt3)', margin: '14px 0 8px' }}>
+                <h4 style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', margin: '14px 0 8px' }}>
                   Kanske ({ev.maybe_count ?? 0})
                 </h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>

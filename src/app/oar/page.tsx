@@ -102,7 +102,7 @@ export default function OarPage() {
             Stockholms skärgård
           </div>
           <h1 style={{
-            fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 900,
+            fontSize: 'clamp(32px, 6vw, 56px)', fontWeight: 700,
             color: '#fff', margin: '0 0 16px', lineHeight: 1.1,
             fontFamily: 'Georgia, serif',
           }}>
@@ -152,7 +152,7 @@ export default function OarPage() {
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
                     <span style={{ fontSize: 22 }}>{section.emoji}</span>
-                    <h2 style={{ fontSize: 22, fontWeight: 900, color: section.color, margin: 0 }}>
+                    <h2 style={{ fontSize: 22, fontWeight: 700, color: section.color, margin: 0 }}>
                       {section.label}
                     </h2>
                     <span style={{
@@ -196,7 +196,7 @@ export default function OarPage() {
                       {/* Text */}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
-                          fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)',
+                          fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)',
                           marginBottom: 3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                         }}>
                           {island.name}

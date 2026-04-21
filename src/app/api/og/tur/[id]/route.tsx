@@ -107,7 +107,7 @@ export async function GET(
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{
-                fontSize: 13, fontWeight: 800, letterSpacing: '3px',
+                fontSize: 13, fontWeight: 600, letterSpacing: '3px',
                 color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase',
               }}>
                 SVALLA.SE
@@ -128,13 +128,13 @@ export async function GET(
             {locLabel ? (
               <div style={{
                 fontSize: locLabel.length > 32 ? 28 : 34,
-                fontWeight: 900, color: '#fff',
+                fontWeight: 700, color: '#fff',
                 lineHeight: 1.15, letterSpacing: '-0.5px',
               }}>
                 {locLabel}
               </div>
             ) : (
-              <div style={{ fontSize: 30, fontWeight: 900, color: '#fff' }}>
+              <div style={{ fontSize: 30, fontWeight: 700, color: '#fff' }}>
                 {boatEmoji} Svalla-tur
               </div>
             )}
@@ -147,7 +147,7 @@ export async function GET(
                 width: 'fit-content',
               }}>
                 <div style={{ fontSize: 14 }}>⚓</div>
-                <div style={{ fontSize: 12, fontWeight: 800, color: '#e07828', letterSpacing: '0.5px' }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: '#e07828', letterSpacing: '0.5px' }}>
                   MAGISK TUR
                 </div>
               </div>
@@ -169,7 +169,7 @@ export async function GET(
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                    <div style={{ fontSize: 32, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>
+                    <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>
                       {val}
                     </div>
                     {unit && (
@@ -193,11 +193,11 @@ export async function GET(
                 width: 38, height: 38, borderRadius: '50%',
                 background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 16, fontWeight: 900, color: '#fff',
+                fontSize: 16, fontWeight: 700, color: '#fff',
               }}>
                 {username[0]?.toUpperCase()}
               </div>
-              <div style={{ fontSize: 16, fontWeight: 800, color: 'rgba(255,255,255,0.85)' }}>
+              <div style={{ fontSize: 16, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
                 @{username}
               </div>
             </div>

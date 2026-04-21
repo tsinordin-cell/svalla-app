@@ -144,7 +144,7 @@ export default function KlubbPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🏝️</div>
-          <h2 style={{ fontSize: 18, fontWeight: 800, color: '#1e5c82', marginBottom: 6 }}>Klubben hittades inte</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Klubben hittades inte</h2>
           <Link href="/klubbar" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Till alla klubbar</Link>
         </div>
       </div>
@@ -170,7 +170,7 @@ export default function KlubbPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <h1 style={{ flex: 1, fontSize: 16, fontWeight: 800, color: 'var(--txt)', margin: 0,
+          <h1 style={{ flex: 1, fontSize: 16, fontWeight: 600, color: 'var(--txt)', margin: 0,
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {club?.name ?? ''}
           </h1>
@@ -202,7 +202,7 @@ export default function KlubbPage() {
               width: 80, height: 80, borderRadius: 18, position: 'relative', overflow: 'hidden',
               background: avatarGradient(club.slug),
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontWeight: 800, fontSize: 28, flexShrink: 0,
+              color: '#fff', fontWeight: 600, fontSize: 28, flexShrink: 0,
             }}>
               {club.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -210,7 +210,7 @@ export default function KlubbPage() {
               ) : initialsOf(club.name)}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', margin: 0, lineHeight: 1.2 }}>{club.name}</h2>
+              <h2 style={{ fontSize: 20, fontWeight: 600, color: 'var(--txt)', margin: 0, lineHeight: 1.2 }}>{club.name}</h2>
               <div style={{ display: 'flex', gap: 10, marginTop: 6, fontSize: 12, color: 'var(--txt3)', flexWrap: 'wrap' }}>
                 <span>{club.member_count ?? 0} medlemmar</span>
                 {club.region && <span>· {club.region}</span>}
@@ -223,13 +223,13 @@ export default function KlubbPage() {
           <div style={{ padding: '4px 16px 16px', display: 'flex', gap: 8 }}>
             {!club.is_member ? (
               <button onClick={handleJoin} disabled={actionBusy}
-                style={{ flex: 1, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: 'pointer', opacity: actionBusy ? 0.6 : 1 }}>
+                style={{ flex: 1, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', opacity: actionBusy ? 0.6 : 1 }}>
                 {actionBusy ? '...' : 'Gå med'}
               </button>
             ) : (
               <>
                 <button onClick={openChat}
-                  style={{ flex: 2, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: 'pointer' }}>
+                  style={{ flex: 2, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>
                   Öppna chatt
                 </button>
                 <button onClick={handleLeave} disabled={actionBusy}
@@ -286,7 +286,7 @@ export default function KlubbPage() {
                         width: 40, height: 40, borderRadius: '50%', position: 'relative', overflow: 'hidden',
                         background: avatarGradient(m.username),
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: '#fff', fontWeight: 800, fontSize: 14, flexShrink: 0,
+                        color: '#fff', fontWeight: 600, fontSize: 14, flexShrink: 0,
                       }}>
                         {m.avatar ? (
                           // eslint-disable-next-line @next/next/no-img-element
@@ -300,7 +300,7 @@ export default function KlubbPage() {
                         </div>
                       </div>
                       {m.role !== 'member' && (
-                        <span style={{ fontSize: 10, fontWeight: 800, color: '#c96e2a', background: 'rgba(201,110,42,0.10)', borderRadius: 6, padding: '2px 6px' }}>
+                        <span style={{ fontSize: 10, fontWeight: 600, color: '#c96e2a', background: 'rgba(201,110,42,0.10)', borderRadius: 6, padding: '2px 6px' }}>
                           {m.role === 'owner' ? 'OWNER' : 'ADMIN'}
                         </span>
                       )}

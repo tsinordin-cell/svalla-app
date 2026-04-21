@@ -93,7 +93,7 @@ export default function StoriesStrip() {
               width: 60, height: 60, borderRadius: '50%',
               border: '2px dashed rgba(10,123,140,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#1e5c82', fontSize: 24, fontWeight: 800,
+              color: '#1e5c82', fontSize: 24, fontWeight: 600,
               background: 'rgba(10,123,140,0.04)',
             }}>+</div>
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)' }}>Din story</span>
@@ -119,7 +119,7 @@ export default function StoriesStrip() {
                 overflow: 'hidden', position: 'relative',
                 background: avatarGradient(g.username),
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#fff', fontWeight: 800, fontSize: 16,
+                color: '#fff', fontWeight: 600, fontSize: 16,
               }}>
                 {g.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -213,7 +213,7 @@ function StoryViewer({
             width: 32, height: 32, borderRadius: '50%', overflow: 'hidden', position: 'relative',
             background: avatarGradient(group.username),
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: '#fff', fontWeight: 800, fontSize: 12,
+            color: '#fff', fontWeight: 600, fontSize: 12,
           }}>
             {group.avatar ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -330,14 +330,14 @@ function UploadStory({
         boxSizing: 'border-box',
         boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
       }}>
-        <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 14px' }}>Dela story</h2>
+        <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Dela story</h2>
 
         {preview ? (
           <div style={{ position: 'relative', marginBottom: 14 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block', maxHeight: 300, objectFit: 'cover' }} />
             <button onClick={() => { setFile(null); setPreview(null) }}
-              style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 800, cursor: 'pointer' }}>
+              style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
               ✕
             </button>
           </div>
@@ -368,7 +368,7 @@ function UploadStory({
             Avbryt
           </button>
           <button onClick={submit} disabled={busy || !file}
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
             {busy ? 'Delar…' : 'Dela'}
           </button>
         </div>

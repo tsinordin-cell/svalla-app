@@ -201,10 +201,10 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                       inset: 0, padding: '12px 14px',
                       display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
                     }}>
-                      <div style={{ fontSize: 9, fontWeight: 800, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 3 }}>
+                      <div style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 3 }}>
                         ⚓ Veckans favorit
                       </div>
-                      <div style={{ fontSize: 16, fontWeight: 900, color: '#fff' }}>{featured.name}</div>
+                      <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>{featured.name}</div>
                       <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', marginTop: 1 }}>{featured.opening_hours ?? 'Öppettider varierar'}</div>
                     </div>
                   </div>
@@ -214,7 +214,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               {/* Trending */}
               {filter === 'alla' && !query && (
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ fontSize: 9, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>
+                  <div style={{ fontSize: 9, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>
                     Trending
                   </div>
                   <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
@@ -268,13 +268,13 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                               ? <img src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                               : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, background: getCat(r) === 'kafe' ? 'linear-gradient(135deg,#7c4d1e,#a06b30)' : getCat(r) === 'hamn' ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)' }}>
                                 <span style={{ fontSize: 20 }}>{getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}</span>
-                                <span style={{ fontSize: 9, fontWeight: 800, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{r.name[0]}</span>
+                                <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{r.name[0]}</span>
                               </div>
                             }
                           </div>
                           <div style={{ flex: 1, padding: '10px 12px', minWidth: 0 }}>
                             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4 }}>
-                              <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{r.name}</div>
+                              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{r.name}</div>
                               <span style={{
                                 flexShrink: 0, fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 18,
                                 background: getCat(r) === 'kafe' ? 'rgba(201,110,42,0.1)' : 'rgba(30,92,130,0.08)',
@@ -409,10 +409,10 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                 inset: 0, padding: '12px 14px',
                 display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
               }}>
-                <div style={{ fontSize: 9, fontWeight: 800, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 2 }}>
+                <div style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.65)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 2 }}>
                   ⚓ Veckans favorit
                 </div>
-                <div style={{ fontSize: 15, fontWeight: 900, color: '#fff' }}>{featured.name}</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{featured.name}</div>
               </div>
             </div>
           </Link>
@@ -420,7 +420,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
 
         {filter === 'alla' && !query && (
           <div style={{ marginBottom: 10 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>Trending</div>
+            <div style={{ fontSize: 9, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>Trending</div>
             <div style={{ display: 'flex', gap: 5, overflowX: 'auto', scrollbarWidth: 'none' }}>
               {TRENDING.map(t => (
                 <button key={t} onClick={() => setQuery(t)} style={{
@@ -481,7 +481,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                       }
                     </div>
                     <div style={{ flex: 1, padding: '12px 14px', minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', lineHeight: 1.25 }}>{r.name}</div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.25 }}>{r.name}</div>
                       {r.opening_hours && (
                         <div style={{ fontSize: 10, color: '#7a9dab', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
                       )}

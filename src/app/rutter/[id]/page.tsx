@@ -139,7 +139,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: 8 }}>
             {t.start_location} → {t.destination}
           </div>
-          <h1 style={{ fontSize: 26, fontWeight: 900, color: '#fff', margin: '0 0 8px', lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 8px', lineHeight: 1.2 }}>
             {t.title}
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', margin: 0 }}>{t.usp}</p>
@@ -171,7 +171,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
               <div style={{ fontSize: 18, marginBottom: 3 }}>{icon}</div>
-              <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{value}</div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{value}</div>
               <div style={{ fontSize: 10, color: '#7a9dab', fontWeight: 500, marginTop: 2 }}>{label}</div>
             </div>
           ))}
@@ -267,7 +267,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                       position: 'absolute', top: -4, right: -4,
                       width: 16, height: 16, borderRadius: '50%',
                       background: '#1e5c82', color: '#fff',
-                      fontSize: 8, fontWeight: 900,
+                      fontSize: 8, fontWeight: 700,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>{i + 1}</div>
                   </div>
@@ -292,7 +292,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             background: 'linear-gradient(135deg, rgba(201,110,42,0.08), rgba(201,110,42,0.04))',
             border: '1.5px solid rgba(201,110,42,0.2)',
           }}>
-            <div style={{ fontSize: 12, fontWeight: 800, color: '#c96e2a', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#c96e2a', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               💡 Insider-tip
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2, #4a3010)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
@@ -327,7 +327,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                     boxShadow: '0 1px 6px rgba(0,45,60,0.07)',
                     border: '1px solid rgba(10,123,140,0.09)',
                   }}>
-                    <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', marginBottom: 2 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', marginBottom: 2 }}>
                       {r.name}
                     </div>
                     {r.core_experience && (
@@ -358,7 +358,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           width: '100%', padding: '15px 0', borderRadius: 16, marginTop: 8,
           background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-          color: '#fff', fontWeight: 800, fontSize: 15,
+          color: '#fff', fontWeight: 600, fontSize: 15,
           textDecoration: 'none',
           boxShadow: '0 4px 20px rgba(201,110,42,0.4)',
         }}>
@@ -387,7 +387,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div style={{ margin: '16px 0' }}>
       <h2 style={{
-        fontSize: 12, fontWeight: 800, color: 'var(--txt3, #5a8090)',
+        fontSize: 12, fontWeight: 600, color: 'var(--txt3, #5a8090)',
         textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 10,
       }}>
         {title}

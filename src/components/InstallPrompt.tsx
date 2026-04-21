@@ -76,7 +76,7 @@ export default function InstallPrompt() {
 
       {/* Text */}
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontSize: 14, fontWeight: 800, color: '#fff', margin: '0 0 4px' }}>
+        <p style={{ fontSize: 14, fontWeight: 600, color: '#fff', margin: '0 0 4px' }}>
           Lägg till Svalla på hemskärmen
         </p>
         {isIOS ? (
@@ -90,7 +90,7 @@ export default function InstallPrompt() {
             <button onClick={installAndroid} style={{
               padding: '7px 16px', borderRadius: 20, border: 'none', cursor: 'pointer',
               background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-              color: '#fff', fontSize: 12, fontWeight: 800,
+              color: '#fff', fontSize: 12, fontWeight: 600,
             }}>
               Installera
             </button>

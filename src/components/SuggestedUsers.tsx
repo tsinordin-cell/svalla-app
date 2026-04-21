@@ -129,7 +129,7 @@ export default function SuggestedUsers() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
         <span style={{
-          fontSize: 10, fontWeight: 800, color: 'var(--sea)',
+          fontSize: 10, fontWeight: 600, color: 'var(--sea)',
           textTransform: 'uppercase', letterSpacing: '0.6px',
         }}>
           ⛵ Hitta seglare att följa
@@ -210,7 +210,7 @@ function SuggestedUserCard({
           width: 52, height: 52, borderRadius: '50%',
           background: grad,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 18, fontWeight: 900, color: '#fff',
+          fontSize: 18, fontWeight: 700, color: '#fff',
           overflow: 'hidden',
         }}>
           {user.avatar
@@ -223,7 +223,7 @@ function SuggestedUserCard({
       {/* Name */}
       <Link href={`/u/${user.username}`} style={{ textDecoration: 'none' }}>
         <div style={{
-          fontSize: 13, fontWeight: 800, color: 'var(--txt)',
+          fontSize: 13, fontWeight: 600, color: 'var(--txt)',
           textAlign: 'center', lineHeight: 1.2,
           maxWidth: 116, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         }}>

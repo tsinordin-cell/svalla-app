@@ -209,7 +209,7 @@ function ManuellForm() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div style={{ fontSize: 56 }}>🎉</div>
-        <h2 style={{ fontSize: 20, fontWeight: 900, color: '#1e5c82' }}>Turen är loggad!</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#1e5c82' }}>Turen är loggad!</h2>
         <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)' }}>Välkommen till {location}-gänget.</p>
       </div>
     )
@@ -235,7 +235,7 @@ function ManuellForm() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Snabb-logg</h1>
+        <h1 style={{ fontSize: 17, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Snabb-logg</h1>
         {/* Kasta loss always visible in header if can submit */}
         <button
           onClick={handleSubmit as unknown as React.MouseEventHandler}
@@ -312,7 +312,7 @@ function ManuellForm() {
                     position: 'absolute', top: -6, right: -6,
                     width: 18, height: 18, borderRadius: '50%',
                     background: '#dc2626', border: '1.5px solid #fff',
-                    color: '#fff', fontSize: 10, fontWeight: 900,
+                    color: '#fff', fontSize: 10, fontWeight: 700,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     cursor: 'pointer', padding: 0,
                   }}
@@ -365,7 +365,7 @@ function ManuellForm() {
 
           {/* ── Pinnar rating ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
               Hur var turen?
             </label>
             <div style={{ display: 'flex', gap: 8 }}>
@@ -393,7 +393,7 @@ function ManuellForm() {
 
           {/* ── Caption (optional) ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
               Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
             </label>
             <textarea
@@ -417,7 +417,7 @@ function ManuellForm() {
 
           {/* ── Tagga seglare ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
               Tagga seglare <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
             </label>
             <TagInput tagged={tagged} onChange={setTagged} />
@@ -443,7 +443,7 @@ function ManuellForm() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '4px 0' }}>
               {/* Båttyp */}
               <div>
-                <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</label>
+                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</label>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6 }}>
                   {BOAT_TYPES.map(bt => (
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
@@ -462,7 +462,7 @@ function ManuellForm() {
               {/* Rutt */}
               {routes.length > 0 && (
                 <div>
-                  <label style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #5a8090)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
                     Rutt <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
                   </label>
                   <select
@@ -530,7 +530,7 @@ function ManuellForm() {
             width: '100%', padding: '15px 0', borderRadius: 16, border: 'none',
             background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',
             color: canSubmit ? '#fff' : '#7a9dab',
-            fontSize: 16, fontWeight: 900, cursor: canSubmit ? 'pointer' : 'default',
+            fontSize: 16, fontWeight: 700, cursor: canSubmit ? 'pointer' : 'default',
             boxShadow: canSubmit ? '0 4px 20px rgba(201,110,42,0.4)' : 'none',
             transition: 'all 0.2s',
           }}

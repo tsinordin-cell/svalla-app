@@ -121,7 +121,7 @@ export default function RegistreraKrogPage() {
         </div>
 
         <h2 style={{
-          fontSize: 30, fontWeight: 900, color: '#fff',
+          fontSize: 30, fontWeight: 700, color: '#fff',
           margin: '0 0 14px', letterSpacing: '-0.02em',
         }}>
           Tack! Vi hör av oss snart.
@@ -151,7 +151,7 @@ export default function RegistreraKrogPage() {
             style={{
               padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
               background: 'linear-gradient(135deg, #e8924a, #f4a450)',
-              color: '#fff', fontSize: 15, fontWeight: 800, fontFamily: 'inherit',
+              color: '#fff', fontSize: 15, fontWeight: 600, fontFamily: 'inherit',
               boxShadow: '0 5px 20px rgba(232,146,74,0.35)',
             }}
           >
@@ -239,7 +239,7 @@ export default function RegistreraKrogPage() {
         </div>
 
         <h1 style={{
-          fontSize: 'clamp(24px, 6vw, 36px)', fontWeight: 900, color: '#fff',
+          fontSize: 'clamp(24px, 6vw, 36px)', fontWeight: 700, color: '#fff',
           margin: 0, letterSpacing: '-0.02em', lineHeight: 1.15, maxWidth: 380,
         }}>
           Sätt er krog på kartan
@@ -282,7 +282,7 @@ export default function RegistreraKrogPage() {
 
           {/* Section: Verksamhet */}
           <p style={{
-            fontSize: 12, fontWeight: 800, color: '#1e5c82',
+            fontSize: 12, fontWeight: 600, color: '#1e5c82',
             textTransform: 'uppercase', letterSpacing: '0.08em',
             margin: '0 0 14px',
           }}>
@@ -363,7 +363,7 @@ export default function RegistreraKrogPage() {
             {/* Divider */}
             <div style={{ margin: '4px 0' }}>
               <p style={{
-                fontSize: 12, fontWeight: 800, color: '#1e5c82',
+                fontSize: 12, fontWeight: 600, color: '#1e5c82',
                 textTransform: 'uppercase', letterSpacing: '0.08em',
                 margin: '0 0 14px',
               }}>
@@ -450,7 +450,7 @@ export default function RegistreraKrogPage() {
                 background: loading
                   ? '#7a9dab'
                   : 'linear-gradient(135deg, #e8924a, #f4a450)',
-                color: '#fff', fontSize: 16, fontWeight: 800, fontFamily: 'inherit',
+                color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
                 boxShadow: loading ? 'none' : '0 5px 22px rgba(232,146,74,0.40)',
                 transition: 'all 0.2s', letterSpacing: '0.02em',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,

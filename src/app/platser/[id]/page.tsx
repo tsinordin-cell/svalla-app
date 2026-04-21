@@ -192,7 +192,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
         {/* Name + rating overlay on hero */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 20px' }}>
-          <h1 style={{ fontSize: 24, fontWeight: 900, color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
             {r.name}
           </h1>
           {avgRating !== null && (
@@ -251,7 +251,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             border: '1.5px solid rgba(30,92,130,0.14)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
           }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--sea, #1e5c82)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--sea, #1e5c82)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
               🌊 Varför hit?
             </div>
             <p style={{ fontSize: 14, color: 'var(--sea, #1e5c82)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
@@ -299,7 +299,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         >
           <span style={{ fontSize: 28 }}>⛵</span>
           <div>
-            <div style={{ fontSize: 15, fontWeight: 900, color: '#fff' }}>Jag var här!</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Jag var här!</div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>Logga ditt besök och dela med gemenskapen</div>
           </div>
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 18, height: 18, marginLeft: 'auto', flexShrink: 0 }}>
@@ -313,7 +313,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Image gallery ── */}
         {r.images && r.images.length > 1 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Bilder
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
@@ -332,7 +332,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
               🍽 Meny
             </h2>
             <pre style={{
@@ -347,7 +347,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Recent visits (trips linked to this spot) ── */}
         {recentTrips && recentTrips.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Senaste turer i skärgården
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
@@ -377,7 +377,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Rutter som passar (Phase 4: connect data) ── */}
         {nearbyTours.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               🗺 Rutter som passar
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -396,7 +396,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
                     }}>⛵</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.title}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', marginTop: 2 }}>

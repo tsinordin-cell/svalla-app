@@ -48,7 +48,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '40px 20px' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{ fontSize: 64, marginBottom: 8 }}>⛵</div>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: 'var(--txt, #162d3a)', margin: '0 0 6px' }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 6px' }}>
             Välkommen till Svalla
           </h1>
           <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', margin: 0, lineHeight: 1.5 }}>
@@ -65,7 +65,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 22 }}>🔗</span>
-              <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>
                 Du har bjudits in
               </div>
             </div>
@@ -80,7 +80,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
                 <Link href={`/kom-igang?invite=${upper}`} style={{
                   display: 'block', padding: 14, borderRadius: 14,
                   background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-                  color: '#fff', fontSize: 15, fontWeight: 800, textAlign: 'center', textDecoration: 'none',
+                  color: '#fff', fontSize: 15, fontWeight: 600, textAlign: 'center', textDecoration: 'none',
                   boxShadow: '0 4px 14px rgba(201,110,42,0.35)',
                 }}>
                   Skapa konto
@@ -106,7 +106,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 22 }}>⚠️</span>
-              <div style={{ fontSize: 14, fontWeight: 800, color: '#c03' }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: '#c03' }}>
                 {expired ? 'Länken har gått ut' : exhausted ? 'Länken är slut' : 'Ogiltig länk'}
               </div>
             </div>
@@ -116,7 +116,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
             <Link href="/kom-igang" style={{
               display: 'block', marginTop: 14, padding: 12, borderRadius: 12,
               background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              color: '#fff', fontSize: 14, fontWeight: 800, textAlign: 'center', textDecoration: 'none',
+              color: '#fff', fontSize: 14, fontWeight: 600, textAlign: 'center', textDecoration: 'none',
             }}>
               Skapa konto ändå →
             </Link>

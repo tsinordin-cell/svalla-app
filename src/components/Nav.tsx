@@ -135,7 +135,7 @@ export default function Nav() {
                 ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)'
                 : 'rgba(10,123,140,0.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 11, fontWeight: 800,
+              fontSize: 11, fontWeight: 600,
               color: active ? '#fff' : 'var(--sea)',
               border: active ? '2px solid var(--sea)' : '2px solid transparent',
               transition: 'all 0.2s',

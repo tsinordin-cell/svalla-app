@@ -86,7 +86,7 @@ export default async function TagPage({ params }: Props) {
         </Link>
 
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--sea)', lineHeight: 1.1 }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', lineHeight: 1.1 }}>
             #{tag}
           </div>
           {!error && (
@@ -117,7 +117,7 @@ export default async function TagPage({ params }: Props) {
             textAlign: 'center', padding: '60px 24px',
           }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>🏷️</div>
-            <h2 style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', margin: '0 0 8px' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
               Inga turer ännu
             </h2>
             <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 24 }}>

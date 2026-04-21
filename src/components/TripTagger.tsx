@@ -91,7 +91,7 @@ export default function TripTagger({
   return (
     <div style={{ padding: '14px 16px', borderTop: '1px solid rgba(10,123,140,0.08)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-        <h3 style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt)', margin: 0, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+        <h3 style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: 0, textTransform: 'uppercase', letterSpacing: 0.5 }}>
           Medseglare
         </h3>
         {isOwner && (
@@ -123,7 +123,7 @@ export default function TripTagger({
                   width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', position: 'relative',
                   background: avatarGradient(t.username ?? t.tagged_user_id),
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: '#fff', fontWeight: 800, fontSize: 10,
+                  color: '#fff', fontWeight: 600, fontSize: 10,
                 }}>
                   {t.avatar ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -134,7 +134,7 @@ export default function TripTagger({
                   {t.username ?? 'okänd'}
                 </span>
               </Link>
-              {pending && <span style={{ fontSize: 9, fontWeight: 800, color: '#c96e2a' }}>OBEKRÄFTAD</span>}
+              {pending && <span style={{ fontSize: 9, fontWeight: 600, color: '#c96e2a' }}>OBEKRÄFTAD</span>}
               {(isOwner || t.tagged_user_id === currentUserId) && (
                 <button onClick={() => removeTag(t.tagged_user_id)} aria-label="Ta bort tagg"
                   style={{ border: 'none', background: 'transparent', color: 'var(--txt3)', cursor: 'pointer', fontSize: 12, padding: 0, marginLeft: 2 }}>
@@ -153,7 +153,7 @@ export default function TripTagger({
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             <button onClick={confirmTag}
-              style={{ flex: 1, padding: '6px 10px', borderRadius: 8, border: 'none', background: '#228c38', color: '#fff', fontWeight: 800, fontSize: 12, cursor: 'pointer' }}>
+              style={{ flex: 1, padding: '6px 10px', borderRadius: 8, border: 'none', background: '#228c38', color: '#fff', fontWeight: 600, fontSize: 12, cursor: 'pointer' }}>
               Bekräfta
             </button>
             <button onClick={() => currentUserId && removeTag(currentUserId)}
@@ -179,7 +179,7 @@ export default function TripTagger({
                     width: 30, height: 30, borderRadius: '50%', overflow: 'hidden', position: 'relative',
                     background: avatarGradient(u.username),
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontWeight: 800, fontSize: 11,
+                    color: '#fff', fontWeight: 600, fontSize: 11,
                   }}>
                     {u.avatar ? (
                       // eslint-disable-next-line @next/next/no-img-element

@@ -241,7 +241,7 @@ export default function KomIgangPage() {
 
         {/* Headline */}
         <h1 style={{ position: 'relative', zIndex: 1,
-          fontSize: 'clamp(28px, 7vw, 44px)', fontWeight: 900, color: '#fff',
+          fontSize: 'clamp(28px, 7vw, 44px)', fontWeight: 700, color: '#fff',
           lineHeight: 1.12, letterSpacing: '-0.02em', margin: '0 0 18px',
           maxWidth: 400,
         }}>
@@ -310,7 +310,7 @@ export default function KomIgangPage() {
             style={{
               padding: '18px', borderRadius: 16, border: 'none', cursor: 'pointer',
               background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
-              color: '#fff', fontSize: 16, fontWeight: 800, fontFamily: 'inherit',
+              color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
               boxShadow: '0 6px 24px rgba(30,92,130,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               letterSpacing: '0.02em',
@@ -403,7 +403,7 @@ export default function KomIgangPage() {
         <SvallaLogo height={30} color="rgba(255,255,255,0.9)" />
         <Dots step={1} />
         <h2 style={{
-          fontSize: 26, fontWeight: 900, color: '#fff',
+          fontSize: 26, fontWeight: 700, color: '#fff',
           margin: 0, letterSpacing: '-0.02em',
         }}>
           Skapa ditt konto
@@ -656,7 +656,7 @@ export default function KomIgangPage() {
                 marginTop: 6,
                 padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
                 background: loading ? '#7a9dab' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
-                color: '#fff', fontSize: 16, fontWeight: 800, fontFamily: 'inherit',
+                color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
                 boxShadow: loading ? 'none' : '0 5px 20px rgba(30,92,130,0.32)',
                 transition: 'all 0.2s', letterSpacing: '0.02em',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -724,7 +724,7 @@ export default function KomIgangPage() {
       <Dots step={2} />
 
       <h2 style={{
-        fontSize: 32, fontWeight: 900, color: '#fff',
+        fontSize: 32, fontWeight: 700, color: '#fff',
         margin: '0 0 12px', letterSpacing: '-0.02em',
       }}>
         Välkommen ombord!
@@ -756,7 +756,7 @@ export default function KomIgangPage() {
           style={{
             padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
             background: 'linear-gradient(135deg, #0f9e64, #0d8554)',
-            color: '#fff', fontSize: 16, fontWeight: 800, fontFamily: 'inherit',
+            color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
             boxShadow: '0 5px 20px rgba(15,158,100,0.35)',
           }}
         >

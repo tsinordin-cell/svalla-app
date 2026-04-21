@@ -179,7 +179,7 @@ export default function NotiserPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82', margin: 0 }}>Notiser</h1>
+        <h1 style={{ fontSize: 17, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Notiser</h1>
         {notifs.length > 0 && (
           <span style={{ marginLeft: 'auto', fontSize: 12, color: '#a0bec8' }}>
             {notifs.length} totalt
@@ -200,7 +200,7 @@ export default function NotiserPage() {
         {!loading && !userId && (
           <div style={{ textAlign: 'center', padding: '80px 24px' }}>
             <div style={{ fontSize: 52, marginBottom: 16 }}>🔔</div>
-            <h2 style={{ fontSize: 17, fontWeight: 800, color: 'var(--txt)', marginBottom: 8 }}>Logga in för notiser</h2>
+            <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', marginBottom: 8 }}>Logga in för notiser</h2>
             <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 24, lineHeight: 1.5 }}>
               Logga in för att se när folk gillar och kommenterar dina turer.
             </p>

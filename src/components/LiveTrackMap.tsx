@@ -275,7 +275,7 @@ export default function LiveTrackMap({
           background: 'rgba(30,92,130,0.90)',
           backdropFilter: 'blur(10px)',
           color: 'white', padding: '5px 12px',
-          borderRadius: 18, fontSize: 13, fontWeight: 800, zIndex: 800,
+          borderRadius: 18, fontSize: 13, fontWeight: 600, zIndex: 800,
           letterSpacing: '0.02em',
           boxShadow: '0 2px 8px rgba(0,0,0,0.20)',
         }}>

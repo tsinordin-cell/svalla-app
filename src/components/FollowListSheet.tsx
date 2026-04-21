@@ -107,7 +107,7 @@ export default function FollowListButton({
           WebkitTapHighlightColor: 'transparent',
         }}
       >
-        <strong style={{ color: '#fff', fontWeight: 900 }}>{count}</strong> {label}
+        <strong style={{ color: '#fff', fontWeight: 700 }}>{count}</strong> {label}
       </button>
 
       {open && (
@@ -116,7 +116,7 @@ export default function FollowListButton({
             {/* Handle */}
             <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(10,123,140,0.15)', margin: '0 auto 18px' }} />
 
-            <h3 style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt)', margin: '0 0 16px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 16px', textAlign: 'center' }}>
               {title} · {count}
             </h3>
 
@@ -148,7 +148,7 @@ export default function FollowListButton({
                         width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
                         background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 15, fontWeight: 900, color: '#fff',
+                        fontSize: 15, fontWeight: 700, color: '#fff',
                       }}>
                         {u.avatar
                           ? <Image src={u.avatar} alt={u.username} width={40} height={40} style={{ objectFit: 'cover' }} />

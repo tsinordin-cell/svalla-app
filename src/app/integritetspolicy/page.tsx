@@ -18,7 +18,7 @@ export default function IntegritetspolicyPage() {
           <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             <SvallaLogo height={26} color="#ffffff" />
           </Link>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '0 0 6px' }}>Integritetspolicy</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Integritetspolicy</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: april 2026</p>
         </div>
       </div>

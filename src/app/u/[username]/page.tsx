@@ -108,7 +108,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         borderBottom: '1px solid rgba(10,123,140,0.10)',
       }}>
         <BackButtonInline fallback="/feed" />
-        <span style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82' }}>{userRow.username}</span>
+        <span style={{ fontSize: 17, fontWeight: 700, color: '#1e5c82' }}>{userRow.username}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
           <FollowButton targetUserId={userRow.id} />
@@ -144,7 +144,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
             border: '4px solid var(--bg, #f2f8fa)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 30, fontWeight: 900, color: '#fff', overflow: 'hidden',
+            fontSize: 30, fontWeight: 700, color: '#fff', overflow: 'hidden',
             boxShadow: '0 4px 20px rgba(0,45,60,0.18)',
           }}>
             {u.avatar
@@ -162,7 +162,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
               boxShadow: '0 2px 8px rgba(255,107,53,0.35)',
             }}>
               <span style={{ fontSize: 14 }}>🔥</span>
-              <span style={{ fontSize: 13, fontWeight: 900, color: '#fff' }}>{streak}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{streak}</span>
               <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>v</span>
             </div>
           )}
@@ -170,7 +170,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Name + bio + chips ── */}
         <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 900, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
             {userRow.username}
           </h1>
           {pub.includes('bio') && u.bio && (
@@ -223,7 +223,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             }}>
               {el ?? (
                 <>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt, #0d2240)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt, #0d2240)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
                   <div style={{ fontSize: 9, fontWeight: 700, color: '#7a9dab', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
                 </>
               )}
@@ -234,7 +234,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         {/* ── Achievements horizontal strip ── */}
         {unlockedAch.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
               Märken · {unlockedAch.length}/{ACHIEVEMENTS.length}
             </div>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none' } as React.CSSProperties}>
@@ -262,13 +262,13 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
           <div style={{ background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 16px 12px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>
               Aktivitet
             </div>
             <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 56 }}>
               {monthBars.map(([key, v]) => (
                 <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
-                  <span style={{ fontSize: 9, fontWeight: 800, color: '#1e5c82' }}>{v.count}</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: '#1e5c82' }}>{v.count}</span>
                   <div style={{
                     width: '100%', borderRadius: '4px 4px 0 0',
                     background: 'linear-gradient(to top,#1e5c82,#2d7d8a)',
@@ -289,8 +289,8 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         {visitedCount > 0 && (
           <div style={{ background: 'var(--white, #fff)', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🗺️ Besökta öar</div>
-              <span style={{ fontSize: 12, fontWeight: 800, color: '#0f9e64' }}>{visitedCount} / 69</span>
+              <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🗺️ Besökta öar</div>
+              <span style={{ fontSize: 12, fontWeight: 600, color: '#0f9e64' }}>{visitedCount} / 69</span>
             </div>
             <div style={{ height: 5, background: 'rgba(15,158,100,.1)', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / 69) * 100)}%` }} />
@@ -311,7 +311,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
           ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Turer</div>
+                <div style={{ fontSize: 10, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Turer</div>
                 <span style={{ fontSize: 11, color: '#7a9dab' }}>{trips.length} st</span>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>

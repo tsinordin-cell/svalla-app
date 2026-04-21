@@ -690,7 +690,7 @@ export default function SparaPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: 20 }}>⚠️</span>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: '#c96e2a' }}>Avbruten tur hittad</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: '#c96e2a' }}>Avbruten tur hittad</div>
                   <div style={{ fontSize: 12, color: '#8a6040', marginTop: 1 }}>
                     {recoverySnap.boatType} · {formatDuration(recoverySnap.elapsed)} · sparad{' '}
                     {Math.round((Date.now() - new Date(recoverySnap.savedAt).getTime()) / 60000)} min sedan
@@ -780,7 +780,7 @@ export default function SparaPage() {
             flex: 1, padding: '17px', borderRadius: 20,
             border: '1.5px solid rgba(201,110,42,.4)',
             background: 'rgba(201,110,42,.14)', color: '#e07828',
-            fontWeight: 900, fontSize: 17, cursor: 'pointer',
+            fontWeight: 700, fontSize: 17, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
           }}>
             <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 21, height: 21 }}>
@@ -792,7 +792,7 @@ export default function SparaPage() {
           <button onClick={handleResume} style={{
             flex: 1, padding: '17px', borderRadius: 20, border: 'none',
             background: 'linear-gradient(135deg,#0f9e64,#0d8554)', color: '#fff',
-            fontWeight: 900, fontSize: 17, cursor: 'pointer',
+            fontWeight: 700, fontSize: 17, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
             boxShadow: '0 4px 24px rgba(15,158,100,.45)',
           }}>
@@ -850,7 +850,7 @@ export default function SparaPage() {
             textAlign: 'center',
           }}>
             <div style={{
-              fontSize: 72, fontWeight: 900, color: '#ffffff',
+              fontSize: 72, fontWeight: 700, color: '#ffffff',
               fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-3px',
             }}>
               {formatDuration(elapsed)}
@@ -870,7 +870,7 @@ export default function SparaPage() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 6 }}>
                 <span style={{
-                  fontSize: 64, fontWeight: 900, color: currentSpeed < 0.5 ? 'rgba(255,255,255,.3)' : '#fff',
+                  fontSize: 64, fontWeight: 700, color: currentSpeed < 0.5 ? 'rgba(255,255,255,.3)' : '#fff',
                   fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-2px',
                 }}>
                   {currentSpeed.toFixed(1)}
@@ -889,7 +889,7 @@ export default function SparaPage() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 6 }}>
                 <span style={{
-                  fontSize: 64, fontWeight: 900, color: dist < 0.01 ? 'rgba(255,255,255,.3)' : '#fff',
+                  fontSize: 64, fontWeight: 700, color: dist < 0.01 ? 'rgba(255,255,255,.3)' : '#fff',
                   fontVariantNumeric: 'tabular-nums', lineHeight: 1, letterSpacing: '-2px',
                 }}>
                   {dist.toFixed(2)}
@@ -909,7 +909,7 @@ export default function SparaPage() {
                   background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.08)',
                   borderRadius: 14, padding: '14px 8px', textAlign: 'center',
                 }}>
-                  <div style={{ fontSize: 26, fontWeight: 900, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px', fontVariantNumeric: 'tabular-nums' }}>
+                  <div style={{ fontSize: 26, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '-0.5px', fontVariantNumeric: 'tabular-nums' }}>
                     {val}
                   </div>
                   <div style={{ fontSize: 9, color: 'rgba(255,255,255,.3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
@@ -947,7 +947,7 @@ export default function SparaPage() {
                 width: '100%', padding: '19px', borderRadius: 16,
                 background: 'linear-gradient(135deg, #c96e2a, #e07828)',
                 border: 'none', color: '#fff',
-                fontWeight: 900, fontSize: 18, cursor: 'pointer',
+                fontWeight: 700, fontSize: 18, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                 boxShadow: '0 4px 24px rgba(201,110,42,.45)',
               }}>
@@ -961,7 +961,7 @@ export default function SparaPage() {
                 <button onClick={handleResume} style={{
                   flex: 2, padding: '19px', borderRadius: 16, border: 'none',
                   background: 'linear-gradient(135deg, #0f9e64, #0d8554)', color: '#fff',
-                  fontWeight: 900, fontSize: 18, cursor: 'pointer',
+                  fontWeight: 700, fontSize: 18, cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                   boxShadow: '0 4px 20px rgba(15,158,100,.4)',
                 }}>
@@ -1019,7 +1019,7 @@ export default function SparaPage() {
             border: `1px solid ${mv.color}55`,
           }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: mv.color, flexShrink: 0 }} />
-            <span style={{ fontSize: 11, fontWeight: 800, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
+            <span style={{ fontSize: 11, fontWeight: 600, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
             {currentSpeed > 0.3 && (
               <span style={{ fontSize: 11, color: mv.color, opacity: .7, fontWeight: 600 }}>
                 · {currentSpeed.toFixed(1)} kn
@@ -1081,7 +1081,7 @@ export default function SparaPage() {
 
           {/* Title row: activity name + expand button */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px 0' }}>
-            <span style={{ fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-.2px' }}>
+            <span style={{ fontSize: 16, fontWeight: 600, color: '#fff', letterSpacing: '-.2px' }}>
               {boatType || 'Båttur'}
             </span>
             <button
@@ -1120,7 +1120,7 @@ export default function SparaPage() {
             ].map(({ val, unit, label, align }) => (
               <div key={label} style={{ textAlign: align }}>
                 <div style={{
-                  fontSize: 28, fontWeight: 900, color: '#fff', lineHeight: 1,
+                  fontSize: 28, fontWeight: 700, color: '#fff', lineHeight: 1,
                   letterSpacing: '-1px', fontVariantNumeric: 'tabular-nums',
                 }}>
                   {val}
@@ -1153,7 +1153,7 @@ export default function SparaPage() {
                 width: '100%', padding: '18px', borderRadius: 16,
                 background: 'linear-gradient(135deg, #c96e2a, #e07828)',
                 border: 'none', color: '#fff',
-                fontWeight: 900, fontSize: 18, cursor: 'pointer',
+                fontWeight: 700, fontSize: 18, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                 boxShadow: '0 4px 20px rgba(201,110,42,.4)',
               }}>
@@ -1167,7 +1167,7 @@ export default function SparaPage() {
                 <button onClick={handleResume} style={{
                   flex: 2, padding: '18px', borderRadius: 16, border: 'none',
                   background: 'linear-gradient(135deg, #0f9e64, #0d8554)', color: '#fff',
-                  fontWeight: 900, fontSize: 18, cursor: 'pointer',
+                  fontWeight: 700, fontSize: 18, cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
                   boxShadow: '0 4px 20px rgba(15,158,100,.4)',
                 }}>
@@ -1219,7 +1219,7 @@ export default function SparaPage() {
             border: '1px solid rgba(255,255,255,.15)',
           }}>
             <div style={{ fontSize: 48, marginBottom: 12 }}>🏅</div>
-            <div style={{ fontSize: 20, fontWeight: 900, color: '#fff', marginBottom: 6 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>
               {newAchievements.length === 1 ? 'Nytt märke upplåst!' : `${newAchievements.length} nya märken!`}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, margin: '20px 0' }}>
@@ -1231,7 +1231,7 @@ export default function SparaPage() {
                 }}>
                   <span style={{ fontSize: 26 }}>{a.emoji}</span>
                   <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: '#fff' }}>{a.label}</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: '#fff' }}>{a.label}</div>
                     <div style={{ fontSize: 11, color: 'rgba(255,255,255,.6)', marginTop: 1 }}>Nytt märke uppnått</div>
                   </div>
                 </div>
@@ -1269,7 +1269,7 @@ export default function SparaPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
               <span style={{ fontSize: 22 }}>🗺️</span>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 900, color: '#0f9e64' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#0f9e64' }}>
                   {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
                 </div>
                 <div style={{ fontSize: 12, color: '#3d7a5a', marginTop: 1 }}>
@@ -1321,7 +1321,7 @@ export default function SparaPage() {
 
         {/* ── Rating ── */}
         <div style={{ background: 'var(--white, #fff)', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 10px rgba(0,45,60,.06)' }}>
-          <p style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', margin: '0 0 12px' }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', margin: '0 0 12px' }}>
             Hur var turen?
           </p>
           <div style={{ display: 'flex', gap: 8 }}>
@@ -1349,7 +1349,7 @@ export default function SparaPage() {
 
         {/* ── Location ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+          <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Plats (valfritt)
           </label>
           <input
@@ -1366,7 +1366,7 @@ export default function SparaPage() {
         {/* ── Caption ── */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px' }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px' }}>
               Berätta om turen (valfritt)
             </label>
             <button
@@ -1420,7 +1420,7 @@ export default function SparaPage() {
 
         {/* ── Photo (optional) ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+          <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Bild <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt)</span>
           </label>
           <button type="button" onClick={() => fileRef.current?.click()}
@@ -1493,7 +1493,7 @@ function StatBox({ val, unit, label }: { val: string; unit: string; label: strin
 function TrackStatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
   return (
     <div className="track-stat">
-      <div style={{ fontSize: 'var(--t-stat-val-sz)', fontWeight: 900, color: 'var(--t-stat-val)', lineHeight: 1, letterSpacing: '-0.5px' }}>
+      <div style={{ fontSize: 'var(--t-stat-val-sz)', fontWeight: 700, color: 'var(--t-stat-val)', lineHeight: 1, letterSpacing: '-0.5px' }}>
         {val}
       </div>
       <div style={{ fontSize: 9, color: 'var(--t-stat-sub)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>

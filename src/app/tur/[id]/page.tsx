@@ -252,7 +252,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {/* Location + pinnar overlay at bottom */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px', zIndex: 5, pointerEvents: 'none' }}>
           {(trip.start_location || trip.location_name) && (
-            <div style={{ fontSize: 22, fontWeight: 900, color: '#fff', lineHeight: 1.15, marginBottom: 4, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+            <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', lineHeight: 1.15, marginBottom: 4, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
               {trip.start_location
                 ? <>{trip.start_location} <span style={{ fontWeight: 400, opacity: 0.7 }}>→</span> {trip.location_name}</>
                 : trip.location_name
@@ -263,7 +263,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>{dateStr}</span>
             {pinnarEmoji && (
               <span style={{
-                fontSize: 11, fontWeight: 800,
+                fontSize: 11, fontWeight: 600,
                 background: trip.pinnar_rating === 3 ? 'rgba(201,110,42,0.85)' : 'rgba(30,92,130,0.75)',
                 backdropFilter: 'blur(4px)',
                 color: '#fff', padding: '3px 9px', borderRadius: 20,
@@ -284,7 +284,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
               background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 16, fontWeight: 900, color: '#fff', overflow: 'hidden',
+              fontSize: 16, fontWeight: 700, color: '#fff', overflow: 'hidden',
               border: '2px solid rgba(10,123,140,0.12)',
             }}>
               {userRow?.avatar
@@ -293,7 +293,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               }
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>{username}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>{username}</div>
               <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)' }}>
                 {trip.boat_type}{routeName ? ` · ${routeName}` : ''}
               </div>
@@ -335,7 +335,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               <span style={{ fontSize: 10 }}>✨</span>
               <span style={{
                 fontSize: 10,
-                fontWeight: 800,
+                fontWeight: 600,
                 color: '#1e5c82',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
@@ -361,10 +361,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           }}>
             <span style={{ fontSize: 22, flexShrink: 0 }}>⛵</span>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: '#0f9e64', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: '#0f9e64', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
                 Rutigenkänning
               </div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>
                 {matchedRoute.title}
               </div>
               <div style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', marginTop: 2 }}>
@@ -412,7 +412,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                   flex: 1, padding: '14px 0', textAlign: 'center',
                   borderRight: i < stats.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none',
                 }}>
-                  <div style={{ fontSize: 20, fontWeight: 900, color: 'var(--txt, #0d2a3e)', lineHeight: 1, letterSpacing: '-0.5px' }}>
+                  <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #0d2a3e)', lineHeight: 1, letterSpacing: '-0.5px' }}>
                     {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, #7a9dab)', marginLeft: 2 }}>{unit}</span>}
                   </div>
                   <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3, #7a9dab)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
@@ -546,7 +546,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
         }}>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
               Logga dina egna turer
             </div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.3 }}>
@@ -557,7 +557,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             flexShrink: 0,
             padding: '12px 20px', borderRadius: 14,
             background: 'linear-gradient(135deg, #c96e2a, #e07828)',
-            color: '#fff', fontWeight: 800, fontSize: 14,
+            color: '#fff', fontWeight: 600, fontSize: 14,
             textDecoration: 'none',
             boxShadow: '0 4px 16px rgba(201,110,42,0.45)',
             whiteSpace: 'nowrap',
@@ -572,7 +572,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
 function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
+    <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
       {children}
     </h2>
   )

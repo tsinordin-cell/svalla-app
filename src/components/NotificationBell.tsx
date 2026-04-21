@@ -121,7 +121,7 @@ export default function NotificationBell() {
             width: 16, height: 16, borderRadius: '50%',
             background: '#c96e2a', border: '2px solid #f2f8fa',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 9, fontWeight: 800, color: '#fff', lineHeight: 1,
+            fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
           }}>
             {unread > 9 ? '9+' : unread}
           </div>
@@ -137,7 +137,7 @@ export default function NotificationBell() {
           border: '1px solid rgba(10,123,140,0.10)',
         }}>
           <div style={{ padding: '14px 16px 10px', borderBottom: '1px solid rgba(10,123,140,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: 14, fontWeight: 800, color: '#162d3a' }}>Notiser</span>
+            <span style={{ fontSize: 14, fontWeight: 600, color: '#162d3a' }}>Notiser</span>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               {unread > 0 && (
                 <button onClick={markAllRead} style={{ fontSize: 11, color: '#7a9dab', background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -172,7 +172,7 @@ export default function NotificationBell() {
                   width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
                   background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 12, fontWeight: 800, color: '#fff',
+                  fontSize: 12, fontWeight: 600, color: '#fff',
                 }}>
                   {n.actor_username?.[0]?.toUpperCase() ?? '?'}
                 </div>

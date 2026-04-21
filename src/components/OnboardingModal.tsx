@@ -76,7 +76,7 @@ export default function OnboardingModal() {
           <div style={{ fontSize: 80, marginBottom: 20 }}>⚓</div>
           <h1 style={{
             fontSize: 28,
-            fontWeight: 900,
+            fontWeight: 700,
             color: '#fff',
             margin: '0 0 16px',
             letterSpacing: '-0.5px',
@@ -129,7 +129,7 @@ export default function OnboardingModal() {
           <div style={{ fontSize: 80, marginBottom: 20 }}>🛥️</div>
           <h2 style={{
             fontSize: 28,
-            fontWeight: 900,
+            fontWeight: 700,
             color: '#fff',
             margin: '0 0 12px',
             letterSpacing: '-0.5px',
@@ -206,7 +206,7 @@ export default function OnboardingModal() {
           <div style={{ fontSize: 80, marginBottom: 20 }}>🏝️</div>
           <h2 style={{
             fontSize: 28,
-            fontWeight: 900,
+            fontWeight: 700,
             color: '#fff',
             margin: '0 0 12px',
             letterSpacing: '-0.5px',
@@ -287,7 +287,7 @@ export default function OnboardingModal() {
                 borderRadius: 14,
                 background: 'linear-gradient(135deg, #22c55e, #16a34a)',
                 color: '#fff',
-                fontWeight: 800,
+                fontWeight: 600,
                 fontSize: 14,
                 textDecoration: 'none',
                 textAlign: 'center',
@@ -328,7 +328,7 @@ export default function OnboardingModal() {
                 borderRadius: 14,
                 background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
                 color: '#fff',
-                fontWeight: 800,
+                fontWeight: 600,
                 fontSize: 14,
                 border: 'none',
                 cursor: 'pointer',

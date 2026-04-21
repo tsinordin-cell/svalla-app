@@ -156,7 +156,7 @@ export default function TripActions({
         <Backdrop onClick={() => !saving && setEditing(false)}>
           <Sheet onClick={e => e.stopPropagation()}>
             <Handle />
-            <h3 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 18px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 18px', textAlign: 'center' }}>
               Redigera tur
             </h3>
 
@@ -232,7 +232,7 @@ export default function TripActions({
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
                 background: saving ? 'rgba(10,123,140,0.15)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                color: saving ? '#7a9dab' : '#fff', fontSize: 15, fontWeight: 800,
+                color: saving ? '#7a9dab' : '#fff', fontSize: 15, fontWeight: 600,
                 cursor: saving ? 'default' : 'pointer', marginBottom: 10,
               }}
             >
@@ -258,7 +258,7 @@ export default function TripActions({
         <Backdrop onClick={() => !deleting && setConfirm(false)}>
           <Sheet onClick={e => e.stopPropagation()}>
             <Handle />
-            <h3 style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt)', margin: '0 0 8px', textAlign: 'center' }}>
+            <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', textAlign: 'center' }}>
               Ta bort tur?
             </h3>
             <p style={{ fontSize: 13, color: '#7a9dab', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
@@ -269,7 +269,7 @@ export default function TripActions({
               disabled={deleting}
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
-                background: '#dc2626', color: '#fff', fontSize: 15, fontWeight: 800,
+                background: '#dc2626', color: '#fff', fontSize: 15, fontWeight: 600,
                 cursor: deleting ? 'default' : 'pointer', opacity: deleting ? 0.7 : 1, marginBottom: 10,
               }}
             >
@@ -352,7 +352,7 @@ function MenuItem({ icon, label, danger, onClick }: { icon: string; label: strin
 }
 
 const labelStyle: CSSProperties = {
-  display: 'block', fontSize: 10, fontWeight: 800,
+  display: 'block', fontSize: 10, fontWeight: 600,
   color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px',
   marginBottom: 6,
 }

@@ -25,7 +25,7 @@ export default function BloggPage() {
           <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             <SvallaLogo height={26} color="#ffffff" />
           </Link>
-          <h1 style={{ fontSize: 28, fontWeight: 900, color: '#fff', margin: '0 0 6px' }}>Skärgårdsbloggen</h1>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Skärgårdsbloggen</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Tips, guider och inspiration för Stockholms skärgård</p>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function BloggPage() {
                     }}>{post.category}</span>
                     <span style={{ fontSize: 11, color: '#a0b8c4', paddingTop: 3 }}>{post.readTime}</span>
                   </div>
-                  <h2 style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
+                  <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
                     {post.title}
                   </h2>
                   <p style={{ fontSize: 13, color: '#5a8090', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>

@@ -180,13 +180,13 @@ export default function ProfileTeaserPopover({
                         width: 64, height: 64, borderRadius: '50%',
                         background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 26, fontWeight: 900, color: '#fff',
+                        fontSize: 26, fontWeight: 700, color: '#fff',
                       }}>{data.username[0]?.toUpperCase() ?? '?'}</div>
                     )}
                   </Link>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
-                      <div style={{ fontSize: 17, fontWeight: 900, color: 'var(--txt, #162d3a)' }}>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
                         @{data.username}
                         {data.nationality && <span style={{ marginLeft: 6, fontSize: 14 }}>{data.nationality}</span>}
                       </div>
@@ -236,7 +236,7 @@ export default function ProfileTeaserPopover({
                         flex: 1, padding: 12, borderRadius: 12, border: 'none',
                         background: data.is_following ? 'rgba(10,123,140,0.10)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                         color: data.is_following ? 'var(--txt, #162d3a)' : '#fff',
-                        fontWeight: 800, fontSize: 14,
+                        fontWeight: 600, fontSize: 14,
                         cursor: followBusy ? 'wait' : 'pointer',
                         opacity: followBusy ? 0.6 : 1,
                       }}>
@@ -274,7 +274,7 @@ export default function ProfileTeaserPopover({
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ textAlign: 'center', padding: '4px 2px' }}>
-      <div style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt, #162d3a)', lineHeight: 1.1 }}>{value}</div>
+      <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt, #162d3a)', lineHeight: 1.1 }}>{value}</div>
       <div style={{ fontSize: 9, color: 'var(--txt3, #7a9dab)', marginTop: 3, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
     </div>
   )

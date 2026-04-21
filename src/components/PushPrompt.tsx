@@ -87,7 +87,7 @@ export default function PushPrompt() {
       }}>🔔</div>
 
       <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontSize: 14, fontWeight: 800, color: '#fff', margin: '0 0 4px' }}>
+        <p style={{ fontSize: 14, fontWeight: 600, color: '#fff', margin: '0 0 4px' }}>
           {done ? '✓ Notiser aktiverade!' : 'Missa inga turer i närheten'}
         </p>
         {!done && (
@@ -99,7 +99,7 @@ export default function PushPrompt() {
               <button onClick={enable} disabled={loading} style={{
                 padding: '7px 16px', borderRadius: 20, border: 'none', cursor: 'pointer',
                 background: 'linear-gradient(135deg,#c96e2a,#e07828)',
-                color: '#fff', fontSize: 12, fontWeight: 800,
+                color: '#fff', fontSize: 12, fontWeight: 600,
                 opacity: loading ? 0.7 : 1,
               }}>
                 {loading ? '…' : 'Aktivera'}

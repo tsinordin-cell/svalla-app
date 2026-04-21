@@ -40,7 +40,7 @@ function Avatar({ src, name, size = 32 }: { src: string | null | undefined; name
       width: size, height: size, borderRadius: '50%',
       background: avatarUrl(initial, name),
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      color: '#fff', fontSize: size * 0.42, fontWeight: 800, flexShrink: 0,
+      color: '#fff', fontSize: size * 0.42, fontWeight: 600, flexShrink: 0,
     }}>{initial}</div>
   )
 }
@@ -136,7 +136,7 @@ export default function PlaceSocialSection({
       >
         <span style={{ fontSize: 24 }}>📍</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt, #162d3a)' }}>Checka in här</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>Checka in här</div>
           <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', marginTop: 1 }}>
             Snabbt &quot;jag är här&quot; — utan full turlogg
           </div>
@@ -149,7 +149,7 @@ export default function PlaceSocialSection({
       {/* Besökare */}
       {!loading && visitors.length > 0 && (
         <div>
-          <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
             👥 {visitors.length} {visitors.length === 1 ? 'seglare har varit här' : 'seglare har varit här'}
           </h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -171,7 +171,7 @@ export default function PlaceSocialSection({
       {/* Senaste check-ins */}
       {!loading && checkIns.length > 0 && (
         <div>
-          <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
             📍 Senaste check-ins
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -186,7 +186,7 @@ export default function PlaceSocialSection({
                 </Link>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                    <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
+                    <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
                       @{c.username ?? 'okänd'}
                     </Link>
                     <span style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)' }}>· {timeAgo(c.created_at)}</span>
@@ -210,7 +210,7 @@ export default function PlaceSocialSection({
       {/* Omdömen */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-          <h2 style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
             ⚓ Omdömen ({reviews.length})
           </h2>
           {me && (
@@ -247,7 +247,7 @@ export default function PlaceSocialSection({
               </Link>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                  <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
+                  <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
                     @{r.username ?? 'okänd'}
                   </Link>
                   <span style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)' }}>· {timeAgo(r.created_at)}</span>
@@ -280,7 +280,7 @@ export default function PlaceSocialSection({
             borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
           }}>
             <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
-            <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
               {myReview ? 'Ändra ditt omdöme' : 'Skriv omdöme'}
             </h2>
             <p style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', margin: '0 0 16px' }}>
@@ -321,7 +321,7 @@ export default function PlaceSocialSection({
                 Avbryt
               </button>
               <button onClick={submitReview} disabled={saving || myRating < 1}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: (saving || myRating < 1) ? 'not-allowed' : 'pointer', opacity: (saving || myRating < 1) ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: (saving || myRating < 1) ? 'not-allowed' : 'pointer', opacity: (saving || myRating < 1) ? 0.6 : 1 }}>
                 {saving ? 'Sparar…' : (myReview ? 'Spara ändring' : 'Posta omdöme')}
               </button>
             </div>

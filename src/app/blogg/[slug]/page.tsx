@@ -1176,7 +1176,7 @@ function renderContent(content: string) {
 
     if (line.startsWith('## ')) {
       elements.push(
-        <h2 key={key++} style={{ color: 'var(--txt, #162d3a)', fontSize: 20, fontWeight: 800, marginTop: 32, marginBottom: 12 }}>
+        <h2 key={key++} style={{ color: 'var(--txt, #162d3a)', fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>
           {line.slice(3)}
         </h2>
       )
@@ -1336,7 +1336,7 @@ export default async function BloggPostPage({
               {new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
             </span>
           </div>
-          <h1 style={{ fontSize: 26, fontWeight: 900, color: '#fff', margin: '0 0 12px', lineHeight: 1.2 }}>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 12px', lineHeight: 1.2 }}>
             {post.emoji} {post.title}
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0, lineHeight: 1.6 }}>

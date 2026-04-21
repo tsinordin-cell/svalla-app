@@ -101,7 +101,7 @@ export default function IslandWeather({ lat, lng, islandName }: { lat: number; l
       {/* Temp + ikon */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
         <span style={{ fontSize: 18 }}>{emoji}</span>
-        <span style={{ fontSize: 15, fontWeight: 900, color: '#fff' }}>{weather.temp}°</span>
+        <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{weather.temp}°</span>
       </div>
 
       <div style={{ width: 1, height: 18, background: 'rgba(255,255,255,0.25)' }} />

@@ -114,12 +114,12 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       {/* ── Section header ── */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
         <div>
-          <h2 style={{ fontSize: 12, fontWeight: 800, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+          <h2 style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
             Omdömen
           </h2>
           {avgRating && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-              <span style={{ fontSize: 22, fontWeight: 900, color: '#1e5c82' }}>{avgRating}</span>
+              <span style={{ fontSize: 22, fontWeight: 700, color: '#1e5c82' }}>{avgRating}</span>
               <div style={{ display: 'flex', gap: 2 }}>
                 {[1,2,3,4,5].map(i => (
                   <span key={i} style={{ fontSize: 14, color: parseFloat(avgRating) >= i ? '#e8a020' : '#dde8ec' }}>⚓</span>
@@ -216,7 +216,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                 flex: 2, padding: '11px 0', borderRadius: 12, border: 'none',
                 background: rating > 0 ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.1)',
                 color: rating > 0 ? '#fff' : '#7a9dab',
-                fontSize: 13, fontWeight: 800, cursor: rating > 0 ? 'pointer' : 'default',
+                fontSize: 13, fontWeight: 600, cursor: rating > 0 ? 'pointer' : 'default',
                 boxShadow: rating > 0 ? '0 2px 10px rgba(30,92,130,0.3)' : 'none',
               }}
             >
@@ -250,7 +250,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                     width: 28, height: 28, borderRadius: '50%',
                     background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0,
+                    fontSize: 11, fontWeight: 600, color: '#fff', flexShrink: 0,
                   }}>
                     {(r.username ?? '?')[0].toUpperCase()}
                   </div>

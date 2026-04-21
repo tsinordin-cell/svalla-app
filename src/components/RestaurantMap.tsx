@@ -162,7 +162,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
             {/* Temp + vind */}
             <div>
               <div style={{
-                fontWeight: 800,
+                fontWeight: 600,
                 color: '#1a3a5e',
                 fontSize: 15,
                 lineHeight: 1.1,

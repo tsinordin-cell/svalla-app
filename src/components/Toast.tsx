@@ -54,7 +54,7 @@ export default function ToastContainer() {
           pointerEvents: 'auto',
           lineHeight: 1.3,
         }}>
-          <span style={{ fontSize: 15, fontWeight: 900, flexShrink: 0 }}>{ICONS[t.type]}</span>
+          <span style={{ fontSize: 15, fontWeight: 700, flexShrink: 0 }}>{ICONS[t.type]}</span>
           {t.message}
         </div>
       ))}

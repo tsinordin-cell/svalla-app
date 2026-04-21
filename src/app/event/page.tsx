@@ -47,7 +47,7 @@ export default function EventPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
-          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>Events</h1>
+          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Events</h1>
           <button onClick={() => me ? setShowCreate(true) : router.push('/logga-in')}
             aria-label="Skapa event"
             style={{
@@ -72,7 +72,7 @@ export default function EventPage() {
         {!loading && events.length === 0 && (
           <div style={{ padding: '60px 20px', textAlign: 'center' }}>
             <div style={{ fontSize: 48, marginBottom: 10 }}>⛵</div>
-            <h2 style={{ fontSize: 16, fontWeight: 800, color: '#1e5c82', marginBottom: 6 }}>Inga kommande events</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Inga kommande events</h2>
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>
               Regattor, gemensamma seglingar, krogbesök. Bli först att bjuda in.
             </p>
@@ -103,7 +103,7 @@ export default function EventPage() {
                 <div style={{ fontSize: 10, fontWeight: 700, opacity: 0.85, textTransform: 'uppercase' }}>
                   {new Date(ev.starts_at).toLocaleString('sv-SE', { month: 'short' })}
                 </div>
-                <div style={{ fontSize: 22, fontWeight: 800, lineHeight: 1 }}>
+                <div style={{ fontSize: 22, fontWeight: 600, lineHeight: 1 }}>
                   {new Date(ev.starts_at).getDate()}
                 </div>
                 <div style={{ fontSize: 10, fontWeight: 700, opacity: 0.85, marginTop: 2 }}>
@@ -111,7 +111,7 @@ export default function EventPage() {
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)',
+                <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)',
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {ev.title}
                 </div>
@@ -126,7 +126,7 @@ export default function EventPage() {
                   {ev.club_name && <span>· {ev.club_name}</span>}
                 </div>
                 {ev.my_status && (
-                  <div style={{ display: 'inline-block', marginTop: 6, padding: '2px 8px', borderRadius: 8, background: ev.my_status === 'going' ? 'rgba(34,140,56,0.12)' : 'rgba(201,110,42,0.12)', color: ev.my_status === 'going' ? '#228c38' : '#c96e2a', fontSize: 10, fontWeight: 800 }}>
+                  <div style={{ display: 'inline-block', marginTop: 6, padding: '2px 8px', borderRadius: 8, background: ev.my_status === 'going' ? 'rgba(34,140,56,0.12)' : 'rgba(201,110,42,0.12)', color: ev.my_status === 'going' ? '#228c38' : '#c96e2a', fontSize: 10, fontWeight: 600 }}>
                     {ev.my_status === 'going' ? 'DU GÅR' : ev.my_status === 'maybe' ? 'KANSKE' : 'AVSTÅTT'}
                   </div>
                 )}
@@ -194,7 +194,7 @@ function CreateEventModal({
         maxHeight: '90vh', overflowY: 'auto',
       }}>
         <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
-        <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa event</h2>
+        <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa event</h2>
 
         <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Titel</label>
         <input value={title} onChange={e => setTitle(e.target.value)} placeholder="T.ex. Sandhamnsregatta 2026" maxLength={80}
@@ -229,7 +229,7 @@ function CreateEventModal({
             Avbryt
           </button>
           <button onClick={submit} disabled={busy}
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
             {busy ? 'Skapar…' : 'Skapa event'}
           </button>
         </div>

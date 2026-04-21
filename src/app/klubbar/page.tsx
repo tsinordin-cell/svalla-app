@@ -103,7 +103,7 @@ export default function KlubbarPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
-          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>Klubbar</h1>
+          <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Klubbar</h1>
           <button
             onClick={() => me ? setShowCreate(true) : router.push('/logga-in')}
             aria-label="Skapa klubb"
@@ -186,25 +186,25 @@ export default function KlubbarPage() {
                 width: 56, height: 56, borderRadius: 14, flexShrink: 0, position: 'relative',
                 background: avatarGradient(c.slug),
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: '#fff', fontWeight: 800, fontSize: 18, overflow: 'hidden',
+                color: '#fff', fontWeight: 600, fontSize: 18, overflow: 'hidden',
               }}>
                 {c.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={c.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : initialsOf(c.name)}
                 {!c.is_public && (
-                  <div style={{ position: 'absolute', top: -4, right: -4, background: '#c96e2a', color: '#fff', fontSize: 9, fontWeight: 800, borderRadius: 8, padding: '2px 5px', border: '2px solid var(--white)' }}>
+                  <div style={{ position: 'absolute', top: -4, right: -4, background: '#c96e2a', color: '#fff', fontSize: 9, fontWeight: 600, borderRadius: 8, padding: '2px 5px', border: '2px solid var(--white)' }}>
                     privat
                   </div>
                 )}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     {c.name}
                   </span>
                   {c.is_member && (
-                    <span style={{ fontSize: 10, fontWeight: 800, color: '#1e5c82', background: 'rgba(30,92,130,0.10)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
+                    <span style={{ fontSize: 10, fontWeight: 600, color: '#1e5c82', background: 'rgba(30,92,130,0.10)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
                       MEDLEM
                     </span>
                   )}
@@ -250,7 +250,7 @@ function EmptyState({ emoji, title, body, cta }: {
   return (
     <div style={{ padding: '60px 20px', textAlign: 'center' }}>
       <div style={{ fontSize: 48, marginBottom: 10 }}>{emoji}</div>
-      <h2 style={{ fontSize: 16, fontWeight: 800, color: '#1e5c82', marginBottom: 6 }}>{title}</h2>
+      <h2 style={{ fontSize: 16, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>{title}</h2>
       <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>{body}</p>
       {cta && (
         cta.onClick ? (
@@ -307,7 +307,7 @@ function CreateClubModal({
         borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
       }}>
         <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
-        <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa klubb</h2>
+        <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa klubb</h2>
 
         <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Namn</label>
         <input value={name} onChange={e => setName(e.target.value)} placeholder="T.ex. Sandhamns segelsällskap" maxLength={60}
@@ -330,7 +330,7 @@ function CreateClubModal({
                 background: isPublic === opt.v ? 'rgba(30,92,130,0.06)' : 'var(--bg)',
                 cursor: 'pointer', textAlign: 'left',
               }}>
-              <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt)' }}>{opt.label}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>{opt.label}</div>
               <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{opt.sub}</div>
             </button>
           ))}
@@ -344,7 +344,7 @@ function CreateClubModal({
             Avbryt
           </button>
           <button onClick={submit} disabled={busy || name.trim().length < 2}
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 800, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || name.trim().length < 2 ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || name.trim().length < 2 ? 0.6 : 1 }}>
             {busy ? 'Skapar…' : 'Skapa klubb'}
           </button>
         </div>

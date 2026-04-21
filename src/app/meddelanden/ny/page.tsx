@@ -135,7 +135,7 @@ function NyKonversationInner() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
-            <h1 style={{ flex: 1, fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>
+            <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>
               Ny konversation
             </h1>
           </div>
@@ -178,7 +178,7 @@ function NyKonversationInner() {
         {!loading && candidates.length === 0 && (
           <div style={{ padding: '60px 20px', textAlign: 'center' }}>
             <div style={{ fontSize: 48, marginBottom: 12 }}>⛵</div>
-            <h2 style={{ fontSize: 16, fontWeight: 800, color: 'var(--sea)', marginBottom: 6 }}>
+            <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>
               Du följer inte någon ännu
             </h2>
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>
@@ -229,7 +229,7 @@ function Section({ title, subtitle, children }: { title: string; subtitle?: stri
   return (
     <section style={{ marginTop: 8 }}>
       <div style={{ padding: '14px 16px 6px' }}>
-        <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6 }}>
           {title}
         </div>
         {subtitle && (
@@ -267,7 +267,7 @@ function Row({ c, starting, onClick, isRequest }: {
         width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
         background: grad,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: '#fff', fontWeight: 800, fontSize: 15, overflow: 'hidden',
+        color: '#fff', fontWeight: 600, fontSize: 15, overflow: 'hidden',
         position: 'relative',
       }}>
         {c.avatar ? (
