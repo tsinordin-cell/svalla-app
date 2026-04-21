@@ -574,29 +574,50 @@ export default function ProfilPage() {
         </div>
 
         {/* ── Svalla Wrapped CTA ── */}
-        <Link href="/insikter" style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
+        {user?.username && (
+          <Link href={`/wrapped/${user.username}/${new Date().getFullYear()}`} style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
+            <div style={{
+              position: 'relative', overflow: 'hidden',
+              background: 'linear-gradient(135deg, #0a3a5a 0%, #1e5c82 50%, #c96e2a 180%)',
+              borderRadius: 18, padding: '16px 18px',
+              boxShadow: '0 4px 18px rgba(10,60,90,0.18)',
+              display: 'flex', alignItems: 'center', gap: 14,
+              WebkitTapHighlightColor: 'transparent',
+            }}>
+              <div aria-hidden style={{
+                position: 'absolute', inset: 0, pointerEvents: 'none',
+                background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.18) 0%, transparent 55%)',
+              }} />
+              <div style={{ fontSize: 28, flexShrink: 0, position: 'relative' }}>✨</div>
+              <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
+                  Svalla Wrapped {new Date().getFullYear()}
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginTop: 2 }}>
+                  Se din säsongsrecap
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0, position: 'relative' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
+        )}
+
+        {/* ── GPX Import ── */}
+        <Link href="/importera" style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
           <div style={{
-            position: 'relative', overflow: 'hidden',
-            background: 'linear-gradient(135deg, #0a3a5a 0%, #1e5c82 50%, #c96e2a 180%)',
-            borderRadius: 18, padding: '16px 18px',
-            boxShadow: '0 4px 18px rgba(10,60,90,0.18)',
-            display: 'flex', alignItems: 'center', gap: 14,
+            background: 'var(--white)', borderRadius: 16, padding: '13px 16px',
+            display: 'flex', alignItems: 'center', gap: 12,
+            boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
             WebkitTapHighlightColor: 'transparent',
           }}>
-            <div aria-hidden style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.18) 0%, transparent 55%)',
-            }} />
-            <div style={{ fontSize: 28, flexShrink: 0, position: 'relative' }}>✨</div>
-            <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
-                Svalla Wrapped
-              </div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginTop: 2 }}>
-                Se dina insights
-              </div>
+            <span style={{ fontSize: 22, flexShrink: 0 }}>📂</span>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Importera GPX</div>
+              <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Ladda upp turer från GPS-enhet eller annan app</div>
             </div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0, position: 'relative' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </div>
