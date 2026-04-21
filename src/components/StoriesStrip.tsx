@@ -318,17 +318,18 @@ function UploadStory({
     <div style={{
       position: 'fixed', inset: 0, zIndex: 1001,
       background: 'rgba(0,0,0,0.6)',
-      display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
       overflow: 'hidden',
+      padding: '16px',
+      boxSizing: 'border-box',
     }} onClick={onClose}>
       <div onClick={e => e.stopPropagation()} style={{
-        width: '100%', maxWidth: 520, background: 'var(--white)',
-        borderRadius: '20px 20px 0 0', padding: 20,
-        paddingBottom: 'max(24px, env(safe-area-inset-bottom, 24px))',
+        width: '100%', maxWidth: 480, background: 'var(--white)',
+        borderRadius: 20, padding: 24,
         maxHeight: '88svh', overflowY: 'auto',
         boxSizing: 'border-box',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
       }}>
-        <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 14px' }}>Dela story</h2>
 
         {preview ? (

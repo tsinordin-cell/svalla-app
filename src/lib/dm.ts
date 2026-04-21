@@ -8,6 +8,9 @@ import type { SupabaseClient } from '@supabase/supabase-js'
  * Hitta eller skapa en 1-till-1-konversation mellan två användare.
  * Om motparten INTE följer tillbaka skapas den som förfrågan (status='request'),
  * annars som aktiv ('active'). Returnerar { id, status } eller null vid fel.
+ *
+ * OBS: Kräver att migration-dm-rls-fix.sql körts i Supabase för att
+ * konversationsskaparen ska kunna lägga till motparten som deltagare.
  */
 export async function findOrCreateDM(
   supabase: SupabaseClient,
@@ -16,18 +19,85 @@ export async function findOrCreateDM(
 ): Promise<{ id: string; status: 'active' | 'request' | 'declined' } | null> {
   if (currentUserId === otherUserId) return null
 
-  // Anropar SECURITY DEFINER-funktionen som kör ovanför RLS.
-  // Funktionen hittar befintlig 1:1-konversation eller skapar en ny,
-  // inklusive båda deltagarna — oavsett RLS-policies på tabellerna.
-  const { data, error } = await supabase
-    .rpc('find_or_create_dm', { p_other_user_id: otherUserId })
+  try {
+    // 1. Hitta befintlig 1:1-konversation mellan dessa två användare
+    const { data: myParts } = await supabase
+      .from('conversation_participants')
+      .select('conversation_id')
+      .eq('user_id', currentUserId)
 
-  if (error || !data || (data as unknown[]).length === 0) return null
+    const myConvIds = (myParts ?? []).map(p => p.conversation_id as string)
 
-  const row = (data as { conv_id: string; conv_status: string }[])[0]
-  return {
-    id: row.conv_id,
-    status: (row.conv_status as 'active' | 'request' | 'declined') ?? 'active',
+    if (myConvIds.length > 0) {
+      const { data: sharedParts } = await supabase
+        .from('conversation_participants')
+        .select('conversation_id')
+        .eq('user_id', otherUserId)
+        .in('conversation_id', myConvIds)
+
+      const sharedIds = (sharedParts ?? []).map(p => p.conversation_id as string)
+
+      if (sharedIds.length > 0) {
+        const { data: existing } = await supabase
+          .from('conversations')
+          .select('id, status')
+          .in('id', sharedIds)
+          .eq('is_group', false)
+          .limit(1)
+          .maybeSingle()
+
+        if (existing) {
+          const row = existing as { id: string; status: string }
+          return {
+            id: row.id,
+            status: (row.status as 'active' | 'request' | 'declined') ?? 'active',
+          }
+        }
+      }
+    }
+
+    // 2. Avgör status: active vid ömsesidig följning, annars request
+    const { data: followsBack } = await supabase
+      .from('follows')
+      .select('follower_id')
+      .eq('follower_id', otherUserId)
+      .eq('following_id', currentUserId)
+      .maybeSingle()
+
+    const convStatus: 'active' | 'request' = followsBack ? 'active' : 'request'
+
+    // 3. Skapa konversationen (created_by = currentUser → tillåts av RLS)
+    const { data: newConv, error: convErr } = await supabase
+      .from('conversations')
+      .insert({
+        is_group: false,
+        status: convStatus,
+        created_by: currentUserId,
+        last_message_at: new Date().toISOString(),
+      })
+      .select('id')
+      .single()
+
+    if (convErr || !newConv) return null
+
+    const convId = (newConv as { id: string }).id
+
+    // 4. Lägg till skaparen som deltagare (alltid tillåtet — user_id = auth.uid())
+    await supabase
+      .from('conversation_participants')
+      .insert({ conversation_id: convId, user_id: currentUserId })
+
+    // 5. Lägg till motparten som deltagare
+    //    Kräver uppdaterad RLS-policy (migration-dm-rls-fix.sql).
+    //    Om policyn inte är körd misslyckas detta tyst — motparten kan ej se
+    //    konversationen förrän migrationen är gjord.
+    await supabase
+      .from('conversation_participants')
+      .insert({ conversation_id: convId, user_id: otherUserId })
+
+    return { id: convId, status: convStatus }
+  } catch {
+    return null
   }
 }
 
