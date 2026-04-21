@@ -590,7 +590,7 @@ export default function Comments({
                     WebkitAppearance: 'none',
                   }}
                 />
-                <button
+                <button className="press-feedback"
                   type="submit"
                   disabled={!text.trim() || posting}
                   className="press-feedback"

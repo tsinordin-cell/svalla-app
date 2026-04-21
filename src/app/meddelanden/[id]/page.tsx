@@ -715,7 +715,7 @@ export default function ChatPage() {
             />
 
             {/* Send */}
-            <button type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
+            <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
               background: text.trim() && !posting ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.08)',
               color: text.trim() && !posting ? '#fff' : 'rgba(10,40,80,0.28)',

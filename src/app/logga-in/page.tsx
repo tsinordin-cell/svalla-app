@@ -274,7 +274,7 @@ export default function LoggaInPage() {
                 {msg}
               </div>
             )}
-            <button
+            <button className="press-feedback"
               type="submit" disabled={loading}
               className="press-feedback"
               style={{

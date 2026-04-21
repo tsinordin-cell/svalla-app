@@ -650,7 +650,7 @@ export default function KomIgangPage() {
 
             {/* Submit */}
             <button
-              type="submit"
+              className="press-feedback" type="submit"
               disabled={loading || !!oauthLoading}
               style={{
                 marginTop: 6,

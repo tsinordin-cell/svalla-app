@@ -94,7 +94,7 @@ export default function GlomtLosenordPage() {
                 </p>
               )}
 
-              <button
+              <button className="press-feedback"
                 type="submit"
                 disabled={loading || !email.trim()}
                 style={{
