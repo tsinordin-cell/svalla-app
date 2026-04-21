@@ -16,104 +16,19 @@ export async function findOrCreateDM(
 ): Promise<{ id: string; status: 'active' | 'request' | 'declined' } | null> {
   if (currentUserId === otherUserId) return null
 
-  // Steg 1: hitta konversationer där BÅDA är deltagare och is_group = false
-  // Undviker join på status-kolumn som kan saknas i DB — gör enklare lookup
-  const { data: mine } = await supabase
-    .from('conversation_participants')
-    .select('conversation_id')
-    .eq('user_id', currentUserId)
+  // Anropar SECURITY DEFINER-funktionen som kör ovanför RLS.
+  // Funktionen hittar befintlig 1:1-konversation eller skapar en ny,
+  // inklusive båda deltagarna — oavsett RLS-policies på tabellerna.
+  const { data, error } = await supabase
+    .rpc('find_or_create_dm', { p_other_user_id: otherUserId })
 
-  const myIds = (mine ?? []).map(r => r.conversation_id as string)
-  if (myIds.length > 0) {
-    // Hitta konversationer där den andra parten också deltar
-    const { data: shared } = await supabase
-      .from('conversation_participants')
-      .select('conversation_id')
-      .eq('user_id', otherUserId)
-      .in('conversation_id', myIds)
+  if (error || !data || (data as unknown[]).length === 0) return null
 
-    const sharedIds = (shared ?? []).map(r => r.conversation_id as string)
-
-    if (sharedIds.length > 0) {
-      // Kolla vilka av dessa som är 1-till-1 (is_group = false)
-      // Försök med status-join — fallback utan om kolumnen saknas
-      const { data: convs } = await supabase
-        .from('conversations')
-        .select('id, is_group, status')
-        .in('id', sharedIds)
-        .eq('is_group', false)
-
-      if (convs && convs.length > 0) {
-        const conv = convs[0] as { id: string; is_group: boolean; status?: string }
-        return {
-          id: conv.id,
-          status: (conv.status as 'active' | 'request' | 'declined') ?? 'active',
-        }
-      }
-
-      // Fallback: välj utan status-kolumn
-      const { data: convsSimple } = await supabase
-        .from('conversations')
-        .select('id, is_group')
-        .in('id', sharedIds)
-        .eq('is_group', false)
-
-      if (convsSimple && convsSimple.length > 0) {
-        return {
-          id: (convsSimple[0] as { id: string }).id,
-          status: 'active',
-        }
-      }
-    }
+  const row = (data as { conv_id: string; conv_status: string }[])[0]
+  return {
+    id: row.conv_id,
+    status: (row.conv_status as 'active' | 'request' | 'declined') ?? 'active',
   }
-
-  // Steg 2: kolla om motparten följer mig tillbaka
-  const { data: mutual } = await supabase
-    .from('follows')
-    .select('follower_id')
-    .eq('follower_id', otherUserId)
-    .eq('following_id', currentUserId)
-    .maybeSingle()
-
-  const status: 'active' | 'request' = mutual ? 'active' : 'request'
-
-  // Steg 3: skapa ny
-  // Testar 3 varianter i fallande ordning — hanterar alla DB-migrationstillstånd
-  let convId: string | null = null
-  const insertVariants: Record<string, unknown>[] = [
-    { is_group: false, created_by: currentUserId, status },  // full schema (efter migration)
-    { is_group: false, created_by: currentUserId },           // utan status
-    { is_group: false },                                       // minimal fallback
-  ]
-  for (const payload of insertVariants) {
-    const { data, error } = await supabase
-      .from('conversations')
-      .insert(payload)
-      .select('id')
-      .single()
-    if (!error && data) {
-      convId = data.id as string
-      break
-    }
-  }
-  if (!convId) return null
-
-  // Försök lägga till deltagare — med role-kolumn, annars utan
-  const rowsWithRole = [
-    { conversation_id: convId, user_id: currentUserId, role: 'owner' },
-    { conversation_id: convId, user_id: otherUserId,   role: 'member' },
-  ]
-  const rowsNoRole = [
-    { conversation_id: convId, user_id: currentUserId },
-    { conversation_id: convId, user_id: otherUserId },
-  ]
-  const { error: pErr1 } = await supabase.from('conversation_participants').insert(rowsWithRole)
-  if (pErr1) {
-    const { error: pErr2 } = await supabase.from('conversation_participants').insert(rowsNoRole)
-    if (pErr2) return null
-  }
-
-  return { id: convId, status }
 }
 
 /** Acceptera en DM-förfrågan (mottagaren → conversation blir 'active'). */
