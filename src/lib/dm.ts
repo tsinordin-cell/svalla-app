@@ -102,32 +102,33 @@ export async function declineDMRequest(
   return !error
 }
 
-/** Räknar olästa meddelanden för currentUser (över alla aktiva konversationer — skippar declined). */
+/** Räknar olästa meddelanden för currentUser (över alla konversationer — robust mot saknade DB-kolumner). */
 export async function countUnreadMessages(
   supabase: SupabaseClient,
   currentUserId: string,
 ): Promise<number> {
-  const { data: parts } = await supabase
-    .from('conversation_participants')
-    .select('conversation_id, last_read_at, conversations!inner(status)')
-    .eq('user_id', currentUserId)
+  try {
+    const { data: parts } = await supabase
+      .from('conversation_participants')
+      .select('conversation_id, last_read_at')
+      .eq('user_id', currentUserId)
 
-  if (!parts || parts.length === 0) return 0
+    if (!parts || parts.length === 0) return 0
 
-  const activeIds = (parts as unknown as { conversation_id: string; last_read_at: string; conversations: { status?: string } }[])
-    .filter(p => p.conversations?.status !== 'declined')
-
-  let total = 0
-  for (const p of activeIds) {
-    const { count } = await supabase
-      .from('messages')
-      .select('id', { count: 'exact', head: true })
-      .eq('conversation_id', p.conversation_id)
-      .gt('created_at', p.last_read_at)
-      .neq('user_id', currentUserId)
-    total += count ?? 0
+    let total = 0
+    for (const p of (parts as { conversation_id: string; last_read_at: string }[])) {
+      const { count } = await supabase
+        .from('messages')
+        .select('id', { count: 'exact', head: true })
+        .eq('conversation_id', p.conversation_id)
+        .gt('created_at', p.last_read_at)
+        .neq('user_id', currentUserId)
+      total += count ?? 0
+    }
+    return total
+  } catch {
+    return 0
   }
-  return total
 }
 
 /** Markera en konversation som läst (sätter last_read_at = now()). */
