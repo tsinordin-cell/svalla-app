@@ -54,27 +54,25 @@ export async function findOrCreateDM(
   const status: 'active' | 'request' = mutual ? 'active' : 'request'
 
   // Steg 3: skapa ny
-  // Försök med status-kolumn; faller tillbaka utan om kolumnen saknas i databasen ännu
+  // Testar 3 varianter i fallande ordning — hanterar alla DB-migrationstillstånd
   let convId: string | null = null
-  const { data: conv1, error: cErr1 } = await supabase
-    .from('conversations')
-    .insert({ is_group: false, created_by: currentUserId, status })
-    .select('id')
-    .single()
-
-  if (cErr1) {
-    // Kolumnen finns troligen inte — försök utan status-fältet
-    const { data: conv2, error: cErr2 } = await supabase
+  const insertVariants: Record<string, unknown>[] = [
+    { is_group: false, created_by: currentUserId, status },  // full schema (efter migration)
+    { is_group: false, created_by: currentUserId },           // utan status
+    { is_group: false },                                       // minimal fallback
+  ]
+  for (const payload of insertVariants) {
+    const { data, error } = await supabase
       .from('conversations')
-      .insert({ is_group: false, created_by: currentUserId })
+      .insert(payload)
       .select('id')
       .single()
-    if (cErr2 || !conv2) return null
-    convId = conv2.id as string
-  } else {
-    if (!conv1) return null
-    convId = conv1.id as string
+    if (!error && data) {
+      convId = data.id as string
+      break
+    }
   }
+  if (!convId) return null
 
   const rows = [
     { conversation_id: convId, user_id: currentUserId, role: 'owner' as const },
