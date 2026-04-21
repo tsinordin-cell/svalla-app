@@ -129,6 +129,26 @@ export default function ChatPage() {
     return () => { supabase.removeChannel(ch) }
   }, [supabase, id, me, loadMessages])
 
+  // Presence — signalera att jag är aktiv i denna chatt så servern inte pushar hit
+  useEffect(() => {
+    if (!me) return
+    const stamp = () => {
+      supabase.from('user_presence').upsert(
+        { user_id: me, current_chat_id: id, updated_at: new Date().toISOString() },
+        { onConflict: 'user_id' },
+      ).then(() => {})
+    }
+    stamp()
+    const hb = setInterval(stamp, 15_000)
+    return () => {
+      clearInterval(hb)
+      supabase.from('user_presence').update({
+        current_chat_id: null,
+        updated_at: new Date().toISOString(),
+      }).eq('user_id', me).then(() => {})
+    }
+  }, [supabase, me, id])
+
   // Auto-scroll till botten
   useEffect(() => {
     if (listRef.current) {
@@ -170,8 +190,10 @@ export default function ChatPage() {
     await loadMessages(me)
     setPosting(false)
 
-    // Push-notis till övriga deltagare
-    pushToOthers(content.slice(0, 60))
+    // Push-notis till övriga deltagare. Om conv är en pending request SKAPAD AV MIG
+    // → första meddelandet blir en request-push ("X vill skriva till dig").
+    const isPendingFromMe = conv?.status === 'request' && conv?.created_by === me
+    pushToOthers(content.slice(0, 60), isPendingFromMe ? 'request' : 'message')
   }
 
   async function sendAttachment(type: 'image' | 'geo', url: string, meta: Record<string, unknown>) {
@@ -186,25 +208,22 @@ export default function ChatPage() {
     }
   }
 
-  async function pushToOthers(preview: string) {
+  async function pushToOthers(preview: string, kind: 'message' | 'request' | 'accept' = 'message') {
     if (!me) return
+    // Server avgör vem som faktiskt får push (presence, mute, throttle)
+    fetch('/api/push/dm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ conversationId: id, preview, kind }),
+    }).catch(() => {})
+
+    // In-app-notiser i notifications-tabellen — separat kanal
     const { data: parts } = await supabase
       .from('conversation_participants')
       .select('user_id')
       .eq('conversation_id', id)
       .neq('user_id', me)
-    const myName = userMapRef.current[me]?.username ?? 'Svalla'
     for (const p of parts ?? []) {
-      fetch('/api/push/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          targetUserId: p.user_id,
-          title: `💬 ${myName}`,
-          body: preview,
-          url: `/meddelanden/${id}`,
-        }),
-      }).catch(() => {})
       supabase.from('notifications').insert({
         user_id: p.user_id, actor_id: me, type: 'message',
       }).then(() => {})
@@ -217,8 +236,9 @@ export default function ChatPage() {
     if (!ok) { toast('Kunde inte acceptera förfrågan. Försök igen.', 'error'); return }
     setConv({ ...conv, status: 'active' } as Conversation)
     toast('Förfrågan accepterad', 'success')
-    // Notifiera avsändaren
+    // Notifiera avsändaren (push + in-app)
     if (conv.created_by && conv.created_by !== me) {
+      pushToOthers('Du kan nu skriva fritt', 'accept')
       supabase.from('notifications').insert({
         user_id: conv.created_by, actor_id: me, type: 'dm_accepted',
         reference_id: conv.id,
