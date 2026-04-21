@@ -10,7 +10,6 @@ import ShareButton from './ShareButton'
 import ShareTripModal from './ShareTripModal'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
-import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
@@ -299,14 +298,10 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             flexShrink: 0,
             background: 'rgba(201,110,42,0.1)',
             borderRadius: 20, padding: '4px 9px',
-            fontSize: 11, fontWeight: 800, color: '#c96e2a',
+            fontSize: 11, fontWeight: 600, color: '#c96e2a',
           }}>⚓⚓⚓</div>
         )}
 
-        {/* Owner action menu — stopPropagation so card click doesn't fire */}
-        <div onClick={e => e.stopPropagation()} style={{ flexShrink: 0 }}>
-          <TripActions tripId={trip.id} ownerId={trip.user_id} />
-        </div>
       </div>
 
       {/* ── 1b. Route preview (when no photo but route exists) ── */}
