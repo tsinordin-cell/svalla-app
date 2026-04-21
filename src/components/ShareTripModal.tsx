@@ -147,12 +147,17 @@ export default function ShareTripModal({ trip, onClose }: Props) {
         style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 300 }}
       />
       {/* Sheet */}
-      <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 301,
-        background: 'var(--white)', borderRadius: '20px 20px 0 0',
-        maxHeight: '75vh', display: 'flex', flexDirection: 'column',
-        boxShadow: '0 -4px 32px rgba(0,30,50,0.20)',
-      }}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Skicka som meddelande"
+        style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 301,
+          background: 'var(--white)', borderRadius: '20px 20px 0 0',
+          maxHeight: '75vh', display: 'flex', flexDirection: 'column',
+          boxShadow: '0 -4px 32px rgba(0,30,50,0.20)',
+        }}
+      >
         {/* Handle */}
         <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '12px auto 0' }} />
 
@@ -164,7 +169,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
               ⛵ {trip.location_name ?? 'Tur'}
             </div>
           </div>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Stäng" className="press-feedback" style={{
             width: 32, height: 32, borderRadius: '50%', border: 'none',
             background: 'rgba(10,123,140,0.07)', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -191,7 +196,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
         <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 'env(safe-area-inset-bottom, 16px)' }}>
           {loading && (
             <div style={{ padding: 40, textAlign: 'center' }}>
-              <div style={{ width: 22, height: 22, borderRadius: '50%', border: '2px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin .7s linear infinite', display: 'inline-block' }} />
+              <div style={{ width: 22, height: 22, borderRadius: '50%', border: '2px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin .7s linear infinite', display: 'inline-block' }} />
             </div>
           )}
 
@@ -203,7 +208,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                   const grad = avatarGradient(display)
                   const busy = sending === c.id
                   return (
-                    <button key={c.id} onClick={() => sendToConv(c.id)} disabled={!!sending} style={{
+                    <button key={c.id} onClick={() => sendToConv(c.id)} disabled={!!sending} className="press-feedback" style={{
                       display: 'flex', alignItems: 'center', gap: 12, width: '100%',
                       padding: '11px 16px', border: 'none', borderBottom: '1px solid rgba(10,123,140,0.06)',
                       background: 'transparent', cursor: sending ? 'default' : 'pointer',
@@ -225,7 +230,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{display}</div>
                       </div>
                       {busy
-                        ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
+                        ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
                         : <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
@@ -242,7 +247,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                   const grad = avatarGradient(f.username)
                   const busy = sending === f.id
                   return (
-                    <button key={f.id} onClick={() => sendToUser(f.id)} disabled={!!sending} style={{
+                    <button key={f.id} onClick={() => sendToUser(f.id)} disabled={!!sending} className="press-feedback" style={{
                       display: 'flex', alignItems: 'center', gap: 12, width: '100%',
                       padding: '11px 16px', border: 'none', borderBottom: '1px solid rgba(10,123,140,0.06)',
                       background: 'transparent', cursor: sending ? 'default' : 'pointer',
@@ -265,7 +270,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                         {!f.mutual && <div style={{ fontSize: 11, color: '#c96e2a', fontWeight: 600 }}>Skickas som förfrågan</div>}
                       </div>
                       {busy
-                        ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
+                        ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
                         : <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                           </svg>

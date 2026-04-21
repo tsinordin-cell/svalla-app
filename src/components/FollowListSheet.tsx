@@ -26,9 +26,12 @@ function Backdrop({ onClick, children }: { onClick: () => void; children: ReactN
   )
 }
 
-function Sheet({ onClick, children }: { onClick?: (e: MouseEvent<HTMLDivElement>) => void; children: ReactNode }) {
+function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivElement>) => void; children: ReactNode; label?: string }) {
   return (
     <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
       onClick={onClick}
       style={{
         background: 'var(--white)', borderRadius: '24px 24px 0 0',
@@ -101,6 +104,8 @@ export default function FollowListButton({
     <>
       <button
         onClick={openSheet}
+        aria-label={`Visa ${label}`}
+        className="press-feedback"
         style={{
           background: 'none', border: 'none', cursor: 'pointer', padding: 0,
           fontSize: 12, color: 'rgba(255,255,255,0.8)',
@@ -112,7 +117,7 @@ export default function FollowListButton({
 
       {open && (
         <Backdrop onClick={() => setOpen(false)}>
-          <Sheet onClick={e => e.stopPropagation()}>
+          <Sheet label={title} onClick={e => e.stopPropagation()}>
             {/* Handle */}
             <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(10,123,140,0.15)', margin: '0 auto 18px' }} />
 
@@ -122,7 +127,7 @@ export default function FollowListButton({
 
             {loading ? (
               <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', border: '2.5px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
+                <div style={{ width: 24, height: 24, borderRadius: '50%', border: '2.5px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
               </div>
             ) : users.length === 0 ? (
               <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt3)', padding: '24px 0' }}>
@@ -158,7 +163,7 @@ export default function FollowListButton({
                       <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>
                         {u.username}
                       </span>
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#c0d4dc" strokeWidth={2} style={{ width: 14, height: 14, marginLeft: 'auto', flexShrink: 0 }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 14, height: 14, marginLeft: 'auto', flexShrink: 0 }}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -169,6 +174,7 @@ export default function FollowListButton({
 
             <button
               onClick={() => setOpen(false)}
+              className="press-feedback"
               style={{
                 width: '100%', marginTop: 14, padding: '13px', borderRadius: 14,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
