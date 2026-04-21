@@ -111,12 +111,14 @@ export default function TripHeroCarousel({
                 display: 'flex', justifyContent: 'center', gap: 5,
               }}>
                 {validPhotos.map((_, i) => (
-                  <div
+                  <button
                     key={i}
                     onClick={() => scrollTo(i)}
+                    aria-label={`Foto ${i + 1}`}
+                    aria-pressed={i === idx}
                     style={{
                       width: i === idx ? 16 : 5,
-                      height: 5, borderRadius: 3,
+                      height: 5, borderRadius: 3, padding: 0, border: 'none',
                       background: i === idx ? '#fff' : 'rgba(255,255,255,0.5)',
                       transition: 'width .2s',
                       cursor: 'pointer',
@@ -154,6 +156,9 @@ export default function TripHeroCarousel({
       {/* ── Fullscreen lightbox ── */}
       {lightbox && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Foto ${lbIdx + 1} av ${validPhotos.length}`}
           onClick={() => setLightbox(false)}
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
@@ -164,6 +169,8 @@ export default function TripHeroCarousel({
           {/* Close */}
           <button
             onClick={() => setLightbox(false)}
+            aria-label="Stäng bildvisning"
+            className="press-feedback"
             style={{
               position: 'absolute', top: 16, right: 16,
               background: 'rgba(255,255,255,0.15)', border: 'none',
@@ -172,7 +179,6 @@ export default function TripHeroCarousel({
               alignItems: 'center', justifyContent: 'center',
               WebkitTapHighlightColor: 'transparent',
             }}
-            aria-label="Stäng"
           >✕</button>
 
           {/* Image */}
@@ -197,6 +203,8 @@ export default function TripHeroCarousel({
           {lbIdx > 0 && (
             <button
               onClick={e => { e.stopPropagation(); setLbIdx(v => v - 1) }}
+              aria-label="Föregående foto"
+              className="press-feedback"
               style={{
                 position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
                 background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff',
@@ -209,6 +217,8 @@ export default function TripHeroCarousel({
           {lbIdx < validPhotos.length - 1 && (
             <button
               onClick={e => { e.stopPropagation(); setLbIdx(v => v + 1) }}
+              aria-label="Nästa foto"
+              className="press-feedback"
               style={{
                 position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
                 background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff',

@@ -56,7 +56,6 @@ export default function MessageBell() {
     <Link
       href="/meddelanden"
       aria-label={unread > 0 ? `${unread} olästa meddelanden` : 'Meddelanden'}
-      title="Meddelanden"
       style={{
         width: 38, height: 38, borderRadius: '50%',
         background: 'rgba(10,123,140,0.08)',
@@ -73,7 +72,7 @@ export default function MessageBell() {
         <div style={{
           position: 'absolute', top: 4, right: 4,
           width: 16, height: 16, borderRadius: '50%',
-          background: '#c96e2a', border: '2px solid #f2f8fa',
+          background: 'var(--acc, #c96e2a)', border: '2px solid var(--bg)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
         }}>
