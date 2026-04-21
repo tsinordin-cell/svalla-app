@@ -70,6 +70,8 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
       <button
         onClick={toggle}
         disabled={loading || !myId}
+        aria-label={following ? 'Sluta följa' : 'Följ'}
+        aria-pressed={following}
         className="press-feedback"
         style={{
           padding: '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',

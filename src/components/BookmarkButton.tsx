@@ -55,7 +55,7 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
   return (
     <button
       onClick={e => { e.preventDefault(); e.stopPropagation(); toggle() }}
-      title={saved ? 'Ta bort bokmärke' : 'Spara'}
+      aria-label={saved ? 'Ta bort bokmärke' : 'Spara'}
       className="press-feedback"
       style={{
         width: 36, height: 36, borderRadius: '50%', border: 'none', cursor: 'pointer',
