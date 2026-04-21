@@ -77,7 +77,7 @@ const FILTER_CONFIG: Record<Filter, { label: string; emoji: string; color: strin
 
 export default function UpptackClient() {
   const mapRef    = useRef<HTMLDivElement>(null)
-  const leafletRef = useRef<import('leaflet') | null>(null)
+  const leafletRef = useRef<typeof import('leaflet') | null>(null)
   const mapInstanceRef = useRef<import('leaflet').Map | null>(null)
   const layerGroupRef  = useRef<import('leaflet').LayerGroup | null>(null)
   const heatLayerRef   = useRef<import('leaflet').Layer | null>(null)
