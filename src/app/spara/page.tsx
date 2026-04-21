@@ -748,7 +748,7 @@ export default function SparaPage() {
 
           <button
             type="button" disabled={!boatType} onClick={() => handleStart()}
-            className="w-full py-5 rounded-2xl text-white font-black text-lg transition-all"
+            className="w-full py-5 rounded-2xl text-white font-bold text-lg transition-all"
             style={{
               background: boatType ? 'linear-gradient(135deg,#0f9e64,#0d8554)' : 'rgba(10,123,140,0.15)',
               color:      boatType ? 'white' : '#7a9dab',
@@ -1465,7 +1465,7 @@ export default function SparaPage() {
 
         <button
           onClick={handleSave} disabled={saving}
-          className="w-full py-4 rounded-2xl text-white font-black text-base press-feedback"
+          className="w-full py-4 rounded-2xl text-white font-bold text-base press-feedback"
           style={{
             background: !saving ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,.15)',
             color:      !saving ? 'white' : 'var(--txt3)',
@@ -1482,7 +1482,7 @@ export default function SparaPage() {
 function StatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
   return (
     <div className="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <div className="text-2xl font-black text-sea leading-none">
+      <div className="text-2xl font-bold text-sea leading-none">
         {val}<span className="text-sm font-medium ml-1">{unit}</span>
       </div>
       <div className="text-[10px] text-svalla-text3 uppercase tracking-wide mt-1">{label}</div>

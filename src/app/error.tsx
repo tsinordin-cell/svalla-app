@@ -31,6 +31,7 @@ export default function Error({
       <div style={{ display: 'flex', gap: 10 }}>
         <button
           onClick={reset}
+          className="press-feedback"
           style={{
             padding: '12px 24px', borderRadius: 14, border: 'none', cursor: 'pointer',
             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
@@ -42,6 +43,7 @@ export default function Error({
         </button>
         <a
           href="/feed"
+          className="press-feedback"
           style={{
             padding: '12px 24px', borderRadius: 14, border: '1.5px solid rgba(10,123,140,0.2)',
             background: 'var(--white, #fff)', color: 'var(--txt2, #3d5865)', fontSize: 14, fontWeight: 600,
