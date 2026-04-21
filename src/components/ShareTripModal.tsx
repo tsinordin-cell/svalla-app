@@ -226,7 +226,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                       </div>
                       {busy
                         ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
-                        : <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                        : <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
                       }
@@ -266,7 +266,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                       </div>
                       {busy
                         ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
-                        : <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                        : <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
                           </svg>
                       }

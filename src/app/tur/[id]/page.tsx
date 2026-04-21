@@ -336,7 +336,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               <span style={{
                 fontSize: 10,
                 fontWeight: 600,
-                color: '#1e5c82',
+                color: 'var(--sea)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
               }}>
@@ -381,7 +381,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             {taggedUsers.map((u: { id: string; username: string }) => (
               <Link key={u.id} href={`/u/${u.username}`} style={{ textDecoration: 'none' }}>
                 <span style={{
-                  fontSize: 12, fontWeight: 700, color: '#1e5c82',
+                  fontSize: 12, fontWeight: 700, color: 'var(--sea)',
                   background: 'rgba(30,92,130,0.08)', borderRadius: 20,
                   padding: '4px 10px',
                 }}>
@@ -523,7 +523,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                   <div style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
                     <span style={{ fontSize: 20 }}>🍽</span>
                     <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)', flex: 1 }}>{r.name}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

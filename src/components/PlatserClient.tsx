@@ -9,7 +9,7 @@ import type { TourLine } from '@/app/platser/page'
 // ── Leaflet karta (lazy-load, SSR off) ──────────────────────────────────────
 const PlatserMap = dynamic(() => import('./PlatserMap'), { ssr: false, loading: () => (
   <div style={{ width: '100%', height: '100%', background: '#d4e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-    <span style={{ fontSize: 13, color: '#7a9dab' }}>Laddar karta…</span>
+    <span style={{ fontSize: 13, color: 'var(--txt3)' }}>Laddar karta…</span>
   </div>
 )})
 
@@ -145,7 +145,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             }}>
               {/* Sökfält */}
               <div style={{ position: 'relative', marginBottom: 10 }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2}
                   style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', width: 15, height: 15, pointerEvents: 'none' }}>
                   <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
                 </svg>
@@ -214,7 +214,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               {/* Trending */}
               {filter === 'alla' && !query && (
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ fontSize: 9, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>
+                  <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>
                     Trending
                   </div>
                   <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
@@ -232,7 +232,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               )}
 
               {/* Antal */}
-              <div style={{ fontSize: 10, color: '#7a9dab', fontWeight: 700, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+              <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 700, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
                 ⚓ KROGAR I SKÄRGÅRDEN · {filtered.length}
               </div>
 
@@ -240,7 +240,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               {filtered.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '40px 20px' }}>
                   <div style={{ fontSize: 40, marginBottom: 10 }}>🏝</div>
-                  <p style={{ color: '#7a9dab', fontSize: 13 }}>Inga platser matchar sökningen.</p>
+                  <p style={{ color: 'var(--txt3)', fontSize: 13 }}>Inga platser matchar sökningen.</p>
                   <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
                     marginTop: 10, padding: '8px 18px', borderRadius: 12, border: 'none',
                     background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer',
@@ -284,7 +284,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                               </span>
                             </div>
                             {r.opening_hours && (
-                              <div style={{ fontSize: 10, color: '#7a9dab', marginTop: 2 }}>🕐 {r.opening_hours}</div>
+                              <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 2 }}>🕐 {r.opening_hours}</div>
                             )}
                             {r.description && (
                               <div style={{
@@ -325,7 +325,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
         position: 'sticky', top: 0, zIndex: 200,
       }}>
         <div style={{ position: 'relative' }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2}
             style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, pointerEvents: 'none' }}>
             <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
           </svg>
@@ -346,7 +346,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             <button onClick={() => setQuery('')} style={{
               position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
               background: 'none', border: 'none', cursor: 'pointer',
-              fontSize: 16, color: '#7a9dab', padding: '4px 4px',
+              fontSize: 16, color: 'var(--txt3)', padding: '4px 4px',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>✕</button>
           )}
@@ -420,7 +420,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
 
         {filter === 'alla' && !query && (
           <div style={{ marginBottom: 10 }}>
-            <div style={{ fontSize: 9, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>Trending</div>
+            <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>Trending</div>
             <div style={{ display: 'flex', gap: 5, overflowX: 'auto', scrollbarWidth: 'none' }}>
               {TRENDING.map(t => (
                 <button key={t} onClick={() => setQuery(t)} style={{
@@ -435,14 +435,14 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
           </div>
         )}
 
-        <div style={{ fontSize: 10, color: '#7a9dab', fontWeight: 600, marginBottom: 8 }}>
+        <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 600, marginBottom: 8 }}>
           {filtered.length} platser {query ? `för "${query}"` : 'i skärgården'}
         </div>
 
         {filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '48px 20px' }}>
             <div style={{ fontSize: 44, marginBottom: 12 }}>🏝</div>
-            <p style={{ color: '#7a9dab', fontSize: 14, marginBottom: 0 }}>Inga platser matchar.</p>
+            <p style={{ color: 'var(--txt3)', fontSize: 14, marginBottom: 0 }}>Inga platser matchar.</p>
             <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
               marginTop: 16, padding: '0 24px', height: 44, borderRadius: 22, border: 'none',
               background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
@@ -483,7 +483,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     <div style={{ flex: 1, padding: '12px 14px', minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.25 }}>{r.name}</div>
                       {r.opening_hours && (
-                        <div style={{ fontSize: 10, color: '#7a9dab', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
+                        <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
                       )}
                       {r.description && (
                         <div style={{

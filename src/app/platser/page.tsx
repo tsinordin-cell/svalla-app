@@ -38,8 +38,8 @@ export default async function PlatserPage() {
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f2f8fa)' }}>
         <div style={{ fontSize: 52 }}>⚓</div>
-        <h1 style={{ fontSize: 18, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Kunde inte ladda platser</h1>
-        <p style={{ fontSize: 14, color: '#7a9dab', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
+        <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda platser</h1>
+        <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/platser" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
         </a>
@@ -76,8 +76,8 @@ export default async function PlatserPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Utforska</h1>
-          <p style={{ fontSize: 11, color: '#7a9dab', margin: '2px 0 0', fontWeight: 500 }}>
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Utforska</h1>
+          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {restaurants?.length ?? 0} platser i skärgården
           </p>
         </div>
@@ -88,7 +88,7 @@ export default async function PlatserPage() {
       ) : (
         <div style={{ textAlign: 'center', padding: '80px 20px' }}>
           <div style={{ fontSize: 52, marginBottom: 12 }}>🏝</div>
-          <p style={{ fontSize: 15, color: '#7a9dab' }}>Inga platser inlagda ännu.</p>
+          <p style={{ fontSize: 15, color: 'var(--txt3)' }}>Inga platser inlagda ännu.</p>
         </div>
       )}
     </div>

@@ -277,7 +277,7 @@ function SokPageInner() {
           </Link>
 
           <div style={{ flex: 1, position: 'relative' }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2}
               style={{ width: 16, height: 16, position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
               <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
             </svg>
@@ -297,7 +297,7 @@ function SokPageInner() {
               <button onClick={() => setQuery('')} style={{
                 position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
                 background: 'none', border: 'none', cursor: 'pointer', padding: 4,
-                color: '#7a9dab', fontSize: 16, lineHeight: 1,
+                color: 'var(--txt3)', fontSize: 16, lineHeight: 1,
                 WebkitTapHighlightColor: 'transparent',
               }}>✕</button>
             )}
@@ -398,7 +398,7 @@ function SokPageInner() {
                     style={{
                       padding: '7px 16px', borderRadius: 20,
                       background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                      fontSize: 13, color: '#1e5c82', cursor: 'pointer', fontWeight: 600,
+                      fontSize: 13, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600,
                       WebkitTapHighlightColor: 'transparent',
                     }}
                   >
@@ -470,7 +470,7 @@ function SokPageInner() {
         {/* ── Results — flat (specific tab) ── */}
         {activeTab !== 'alla' && filtered.length > 0 && !loading && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <p style={{ fontSize: 11, color: '#a0bec8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', margin: '0 0 8px 2px' }}>
+            <p style={{ fontSize: 11, color: 'var(--txt3)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px', margin: '0 0 8px 2px' }}>
               {filtered.length} träff{filtered.length !== 1 ? 'ar' : ''}
             </p>
             {filtered.map(r => <ResultRow key={`${r.type}-${r.id}`} r={r} />)}

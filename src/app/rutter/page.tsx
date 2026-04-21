@@ -93,7 +93,7 @@ export default async function RutterPage({
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>
-        <h1 style={{ fontSize: 18, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Kunde inte ladda turer</h1>
+        <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda turer</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
@@ -130,7 +130,7 @@ export default async function RutterPage({
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Turer</h1>
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Turer</h1>
           <p style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)', margin: '2px 0 0', fontWeight: 500 }}>
             {isFiltered
               ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
@@ -253,7 +253,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
           <div style={{
             flexShrink: 0, fontSize: 10, fontWeight: 700,
             padding: '4px 9px', borderRadius: 12,
-            background: 'rgba(10,123,140,0.07)', color: '#1e5c82',
+            background: 'rgba(10,123,140,0.07)', color: 'var(--sea)',
             textAlign: 'center', lineHeight: 1.3, maxWidth: 72,
           }}>
             {t.duration_label}

@@ -179,9 +179,9 @@ export default function NotiserPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 style={{ fontSize: 17, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Notiser</h1>
+        <h1 style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Notiser</h1>
         {notifs.length > 0 && (
-          <span style={{ marginLeft: 'auto', fontSize: 12, color: '#a0bec8' }}>
+          <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--txt3)' }}>
             {notifs.length} totalt
           </span>
         )}

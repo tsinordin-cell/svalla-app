@@ -140,7 +140,7 @@ export default function NotificationBell() {
             <span style={{ fontSize: 14, fontWeight: 600, color: '#162d3a' }}>Notiser</span>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               {unread > 0 && (
-                <button onClick={markAllRead} style={{ fontSize: 11, color: '#7a9dab', background: 'none', border: 'none', cursor: 'pointer' }}>
+                <button onClick={markAllRead} style={{ fontSize: 11, color: 'var(--txt3)', background: 'none', border: 'none', cursor: 'pointer' }}>
                   Markera lästa
                 </button>
               )}
@@ -151,7 +151,7 @@ export default function NotificationBell() {
           </div>
 
           {notifs.length === 0 ? (
-            <div style={{ padding: '32px 16px', textAlign: 'center', color: '#7a9dab', fontSize: 13 }}>
+            <div style={{ padding: '32px 16px', textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>
               Inga notiser ännu
             </div>
           ) : (
@@ -180,7 +180,7 @@ export default function NotificationBell() {
                   <span style={{ fontSize: 13, color: '#162d3a' }}>
                     <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type]}
                   </span>
-                  <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
+                  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
                 </div>
                 {!n.read && (
                   <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1e5c82', flexShrink: 0, marginTop: 5 }} />

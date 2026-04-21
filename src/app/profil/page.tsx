@@ -522,14 +522,14 @@ export default function ProfilPage() {
             <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 56 }}>
               {monthBars.map(([key, v]) => (
                 <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
-                  <span style={{ fontSize: 9, fontWeight: 600, color: '#1e5c82' }}>{v.count}</span>
+                  <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--sea)' }}>{v.count}</span>
                   <div style={{ width: '100%', borderRadius: '4px 4px 0 0', background: 'linear-gradient(to top,#1e5c82,#2d7d8a)', height: `${Math.max(6, (v.count / maxBar) * 36)}px` }} />
                 </div>
               ))}
             </div>
             <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
               {monthBars.map(([key, v]) => (
-                <div key={key} style={{ flex: 1, textAlign: 'center', fontSize: 9, fontWeight: 600, color: '#a0bec8' }}>{v.label}</div>
+                <div key={key} style={{ flex: 1, textAlign: 'center', fontSize: 9, fontWeight: 600, color: 'var(--txt3)' }}>{v.label}</div>
               ))}
             </div>
           </div>

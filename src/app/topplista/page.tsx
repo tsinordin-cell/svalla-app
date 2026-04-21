@@ -138,8 +138,8 @@ export default async function ToplistaPage() {
           </svg>
         </Link>
         <div>
-          <h1 style={{ fontSize: 18, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Topplista</h1>
-          <p style={{ fontSize: 11, color: '#7a9dab', margin: 0 }}>Veckans &amp; alltidens bästa seglare</p>
+          <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Topplista</h1>
+          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>Veckans &amp; alltidens bästa seglare</p>
         </div>
       </header>
 
@@ -237,8 +237,8 @@ export default async function ToplistaPage() {
           textAlign: 'center',
         }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>🚀</div>
-          <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a3a5e', margin: '0 0 6px' }}>Klättra på listan</h3>
-          <p style={{ fontSize: 13, color: '#7a9dab', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
+          <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Klättra på listan</h3>
+          <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
           <Link href="/logga" style={{
             display: 'inline-block', padding: '12px 32px', borderRadius: 14,
             background: 'linear-gradient(135deg,#c96e2a,#e07828)',
@@ -280,11 +280,11 @@ function LeaderboardSection({
     }}>
       <div style={{ marginBottom: 14 }}>
         <h2 style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px' }}>{title}</h2>
-        <p style={{ fontSize: 11, color: '#7a9dab', margin: 0 }}>{subtitle}</p>
+        <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>{subtitle}</p>
       </div>
 
       {rows.length === 0 ? (
-        <p style={{ fontSize: 13, color: '#a0bec8', textAlign: 'center', padding: '20px 0' }}>{emptyText}</p>
+        <p style={{ fontSize: 13, color: 'var(--txt3)', textAlign: 'center', padding: '20px 0' }}>{emptyText}</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
           {rows.map((row, i) => {
@@ -336,7 +336,7 @@ function LeaderboardSection({
                   }}>
                     {row.username}
                   </div>
-                  <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 1 }}>
+                  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
                     {row.secondaryLabel}
                   </div>
                 </div>

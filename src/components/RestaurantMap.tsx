@@ -163,7 +163,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
             <div>
               <div style={{
                 fontWeight: 600,
-                color: '#1a3a5e',
+                color: 'var(--txt)',
                 fontSize: 15,
                 lineHeight: 1.1,
                 letterSpacing: '-0.3px',

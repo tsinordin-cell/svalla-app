@@ -58,9 +58,9 @@ async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<
 function movementMeta(state: MovementState): { label: string; color: string; bg: string } {
   switch (state) {
     case 'SEGLING':  return { label: '⛵ SEGLING',   color: '#0f9e64', bg: 'rgba(15,158,100,.12)' }
-    case 'DRIFTAR':  return { label: '🌊 DRIFTAR',   color: '#1e5c82', bg: 'rgba(30,92,130,.12)' }
+    case 'DRIFTAR':  return { label: '🌊 DRIFTAR',   color: 'var(--sea)', bg: 'rgba(30,92,130,.12)' }
     case 'ANKRAT':   return { label: '⚓ ANKRAT',    color: '#c96e2a', bg: 'rgba(201,110,42,.12)' }
-    case 'STILLA':   return { label: '◉ STILLA',    color: '#7a9dab', bg: 'rgba(122,157,171,.12)' }
+    case 'STILLA':   return { label: '◉ STILLA',    color: 'var(--txt3)', bg: 'rgba(122,157,171,.12)' }
   }
 }
 
@@ -1321,7 +1321,7 @@ export default function SparaPage() {
 
         {/* ── Rating ── */}
         <div style={{ background: 'var(--white, #fff)', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 10px rgba(0,45,60,.06)' }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', margin: '0 0 12px' }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '0 0 12px' }}>
             Hur var turen?
           </p>
           <div style={{ display: 'flex', gap: 8 }}>
@@ -1349,7 +1349,7 @@ export default function SparaPage() {
 
         {/* ── Location ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Plats (valfritt)
           </label>
           <input
@@ -1366,7 +1366,7 @@ export default function SparaPage() {
         {/* ── Caption ── */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px' }}>
+            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px' }}>
               Berätta om turen (valfritt)
             </label>
             <button
@@ -1414,13 +1414,13 @@ export default function SparaPage() {
             {aiSummary && caption === aiSummary
               ? <span style={{ fontSize: 10, color: '#0a7b8c', fontWeight: 700 }}>✨ AI-genererad — redigera fritt</span>
               : <span />}
-            <span style={{ fontSize: 10, color: '#a0bec8' }}>{caption.length}/280</span>
+            <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{caption.length}/280</span>
           </div>
         </div>
 
         {/* ── Photo (optional) ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Bild <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt)</span>
           </label>
           <button type="button" onClick={() => fileRef.current?.click()}

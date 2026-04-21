@@ -172,7 +172,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             }}>
               <div style={{ fontSize: 18, marginBottom: 3 }}>{icon}</div>
               <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{value}</div>
-              <div style={{ fontSize: 10, color: '#7a9dab', fontWeight: 500, marginTop: 2 }}>{label}</div>
+              <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500, marginTop: 2 }}>{label}</div>
             </div>
           ))}
         </div>
@@ -202,7 +202,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               {t.best_for.map((b) => (
                 <span key={b} style={{
                   padding: '7px 14px', borderRadius: 20,
-                  background: 'rgba(30,92,130,0.08)', color: '#1e5c82',
+                  background: 'rgba(30,92,130,0.08)', color: 'var(--sea)',
                   fontSize: 13, fontWeight: 600,
                 }}>
                   {b}
@@ -273,7 +273,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                   </div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>{f.namn}</div>
-                    <div style={{ fontSize: 11, color: '#7a9dab', marginTop: 1 }}>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
                       {f.typ} {f.nara_bryggan ? '· Nära bryggan' : ''}
                     </div>
                   </div>

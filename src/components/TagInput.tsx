@@ -80,7 +80,7 @@ export default function TagInput({ tagged, onChange }: Props) {
               @{u.username}
               <button onClick={() => remove(u.id)} style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                fontSize: 13, color: '#7a9dab', padding: '0 0 0 2px', lineHeight: 1,
+                fontSize: 13, color: 'var(--txt3)', padding: '0 0 0 2px', lineHeight: 1,
               }}>✕</button>
             </div>
           ))}
@@ -143,7 +143,7 @@ export default function TagInput({ tagged, onChange }: Props) {
             position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0, zIndex: 200,
             background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 14px',
             boxShadow: '0 4px 20px rgba(0,30,50,0.14)',
-            fontSize: 13, color: '#7a9dab',
+            fontSize: 13, color: 'var(--txt3)',
           }}>
             Ingen seglare hittades
           </div>

@@ -125,7 +125,7 @@ export default function FollowListButton({
                 <div style={{ width: 24, height: 24, borderRadius: '50%', border: '2.5px solid #1e5c82', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
               </div>
             ) : users.length === 0 ? (
-              <p style={{ textAlign: 'center', fontSize: 14, color: '#a0bec8', padding: '24px 0' }}>
+              <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt3)', padding: '24px 0' }}>
                 {mode === 'followers' ? 'Inga följare ännu' : 'Följer ingen ännu'}
               </p>
             ) : (

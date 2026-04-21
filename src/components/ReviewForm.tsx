@@ -114,7 +114,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       {/* ── Section header ── */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
         <div>
-          <h2 style={{ fontSize: 12, fontWeight: 600, color: '#7a9dab', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+          <h2 style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
             Omdömen
           </h2>
           {avgRating && (
@@ -125,7 +125,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                   <span key={i} style={{ fontSize: 14, color: parseFloat(avgRating) >= i ? '#e8a020' : '#dde8ec' }}>⚓</span>
                 ))}
               </div>
-              <span style={{ fontSize: 12, color: '#7a9dab' }}>({reviews.length})</span>
+              <span style={{ fontSize: 12, color: 'var(--txt3)' }}>({reviews.length})</span>
             </div>
           )}
         </div>
@@ -197,14 +197,14 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
               fontFamily: 'inherit', boxSizing: 'border-box',
             }}
           />
-          <div style={{ fontSize: 10, color: '#a0bec8', textAlign: 'right', marginBottom: 12 }}>{text.length}/500</div>
+          <div style={{ fontSize: 10, color: 'var(--txt3)', textAlign: 'right', marginBottom: 12 }}>{text.length}/500</div>
 
           <div style={{ display: 'flex', gap: 8 }}>
             <button
               onClick={() => setShowForm(false)}
               style={{
                 flex: 1, padding: '11px 0', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.15)',
-                background: 'none', color: '#7a9dab', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                background: 'none', color: 'var(--txt3)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
               }}
             >
               Avbryt
@@ -230,7 +230,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       {reviews.length === 0 ? (
         <div style={{
           background: 'var(--white, #fff)', borderRadius: 16, padding: '24px',
-          textAlign: 'center', color: '#7a9dab', fontSize: 13,
+          textAlign: 'center', color: 'var(--txt3)', fontSize: 13,
           boxShadow: '0 1px 6px rgba(0,45,60,0.05)',
         }}>
           <div style={{ fontSize: 32, marginBottom: 8 }}>📝</div>
@@ -257,9 +257,9 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#162d3a' }}>
                       {r.username ?? 'Seglare'}
-                      {r.user_id === userId && <span style={{ fontSize: 10, color: '#7a9dab', marginLeft: 6 }}>(du)</span>}
+                      {r.user_id === userId && <span style={{ fontSize: 10, color: 'var(--txt3)', marginLeft: 6 }}>(du)</span>}
                     </div>
-                    <div style={{ fontSize: 10, color: '#a0bec8' }}>
+                    <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
                       {new Date(r.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' })}
                     </div>
                   </div>

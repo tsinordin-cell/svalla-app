@@ -213,7 +213,7 @@ export default function LoggaInPage() {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
                 <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
-                <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>eller med e-post</span>
+                <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>eller med e-post</span>
                 <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
               </div>
             </>
@@ -249,7 +249,7 @@ export default function LoggaInPage() {
                 style={{
                   position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)',
                   background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-                  color: '#7a9dab', display: 'flex', alignItems: 'center',
+                  color: 'var(--txt3)', display: 'flex', alignItems: 'center',
                 }}
                 aria-label={showPwd ? 'Dölj lösenord' : 'Visa lösenord'}
               >
@@ -304,7 +304,7 @@ export default function LoggaInPage() {
           {!isNew && (
             <a href="/glomt-losenord" style={{
               display: 'block', textAlign: 'center', marginTop: 10,
-              fontSize: 13, color: '#7a9dab', textDecoration: 'none',
+              fontSize: 13, color: 'var(--txt3)', textDecoration: 'none',
             }}>
               Glömt lösenordet?
             </a>

@@ -185,7 +185,7 @@ export default function LocationSearch({
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {p.name}
                 </div>
-                <div style={{ fontSize: 11, color: '#7a9dab', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <div style={{ fontSize: 11, color: 'var(--txt3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {p.display_name}
                 </div>
               </div>

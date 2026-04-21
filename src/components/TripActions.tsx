@@ -181,7 +181,7 @@ export default function TripActions({
               rows={3}
               style={{ ...inputStyle, resize: 'none', fontFamily: 'inherit' }}
             />
-            <div style={{ fontSize: 10, color: '#a0bec8', textAlign: 'right', marginBottom: 12 }}>{caption.length}/280</div>
+            <div style={{ fontSize: 10, color: 'var(--txt3)', textAlign: 'right', marginBottom: 12 }}>{caption.length}/280</div>
 
             {/* Pinnar */}
             <label style={labelStyle}>⚓ Hur var turen?</label>
@@ -261,7 +261,7 @@ export default function TripActions({
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', textAlign: 'center' }}>
               Ta bort tur?
             </h3>
-            <p style={{ fontSize: 13, color: '#7a9dab', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 13, color: 'var(--txt3)', textAlign: 'center', margin: '0 0 24px', lineHeight: 1.5 }}>
               Turen försvinner från flödet och din profil direkt. Den raderas permanent om 30 dagar — kontakta oss innan dess om du ångrar dig.
             </p>
             <button

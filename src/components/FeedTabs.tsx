@@ -205,7 +205,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             <div style={{ fontSize: 14, fontWeight: 600, color: '#1e5c82', marginBottom: 4 }}>
               Följ seglare du känner
             </div>
-            <div style={{ fontSize: 12, color: '#7a9dab', lineHeight: 1.4, marginBottom: 10 }}>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4, marginBottom: 10 }}>
               Se deras turer direkt i ditt flöde.
             </div>
             <Link href="/sok" style={{

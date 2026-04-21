@@ -209,7 +209,7 @@ function ManuellForm() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <div style={{ fontSize: 56 }}>🎉</div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: '#1e5c82' }}>Turen är loggad!</h2>
+        <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)' }}>Turen är loggad!</h2>
         <p style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)' }}>Välkommen till {location}-gänget.</p>
       </div>
     )
@@ -235,7 +235,7 @@ function ManuellForm() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <h1 style={{ fontSize: 17, fontWeight: 700, color: '#1e5c82', margin: 0 }}>Snabb-logg</h1>
+        <h1 style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Snabb-logg</h1>
         {/* Kasta loss always visible in header if can submit */}
         <button
           onClick={handleSubmit as unknown as React.MouseEventHandler}
@@ -275,7 +275,7 @@ function ManuellForm() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 8 }}>
               <span style={{ fontSize: 48 }}>📷</span>
               <span style={{ fontSize: 14, color: 'var(--txt3, #7a9dab)', fontWeight: 600 }}>Tryck för att välja bild</span>
-              <span style={{ fontSize: 11, color: '#a0bec8' }}>Bild krävs för att logga</span>
+              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Bild krävs för att logga</span>
             </div>
           )}
           {preview && (
@@ -410,7 +410,7 @@ function ManuellForm() {
                 boxSizing: 'border-box',
               }}
             />
-            <div style={{ fontSize: 11, color: '#a0bec8', textAlign: 'right', marginTop: 2 }}>
+            <div style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'right', marginTop: 2 }}>
               {caption.length}/280
             </div>
           </div>
