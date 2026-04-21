@@ -182,7 +182,7 @@ export default function LoggaInPage() {
         padding: '24px 20px 52px',
       }}>
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 900, color: 'var(--txt, #162d3a)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
             {isNew ? 'Skapa konto' : 'Logga in'}
           </h2>
 
@@ -279,7 +279,7 @@ export default function LoggaInPage() {
               style={{
                 padding: '15px 0', borderRadius: 14, border: 'none', cursor: 'pointer',
                 background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                color: '#fff', fontSize: 15, fontWeight: 800, marginTop: 4,
+                color: '#fff', fontSize: 15, fontWeight: 600, marginTop: 4,
                 boxShadow: '0 4px 18px rgba(30,92,130,0.30)',
                 opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s', fontFamily: 'inherit',
                 letterSpacing: '0.2px',

@@ -343,7 +343,7 @@ function SokPageInner() {
             {/* Aktiva seglare */}
             {activeSailors.length > 0 && (
               <div style={{ marginBottom: 28 }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
                   ⛵ Aktiva seglare denna vecka
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -360,7 +360,7 @@ function SokPageInner() {
                           width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
                           background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 16, fontWeight: 900, color: '#fff', overflow: 'hidden',
+                          fontSize: 16, fontWeight: 600, color: '#fff', overflow: 'hidden',
                         }}>
                           {s.avatar
                             ? <Image src={s.avatar} alt={s.username} width={42} height={42} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
@@ -387,7 +387,7 @@ function SokPageInner() {
 
             {/* Populära platser */}
             <div style={{ marginBottom: 18 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
                 Populära platser
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -410,7 +410,7 @@ function SokPageInner() {
 
             {/* Trendiga hashtags */}
             <div style={{ marginBottom: 16 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
                 Trendiga taggar
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -456,7 +456,7 @@ function SokPageInner() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             {grouped.map(({ type, items }) => (
               <section key={type}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
                   {TYPE_EMOJI[type]} {TYPE_LABEL[type]} · {items.length}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -525,7 +525,7 @@ function ResultRow({ r }: { r: Result }) {
           {r.image
             ? <Image src={r.image} alt="" width={46} height={46} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
             : r.type === 'seglare'
-              ? <span style={{ fontSize: 18, fontWeight: 900, color: '#fff' }}>{r.title[0]?.toUpperCase()}</span>
+              ? <span style={{ fontSize: 18, fontWeight: 600, color: '#fff' }}>{r.title[0]?.toUpperCase()}</span>
               : TYPE_EMOJI[r.type]
           }
         </div>
