@@ -14,6 +14,7 @@ import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
+import { radius, shadow, fontSize, fontWeight } from '@/lib/tokens'
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)
@@ -233,9 +234,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       onClick={() => router.push(`/tur/${trip.id}`)}
       style={{
         background: 'var(--white)',
-        borderRadius: 20,
+        borderRadius: radius.lg,
         overflow: 'hidden',
-        boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
+        boxShadow: shadow.sm,
         border: '1px solid rgba(10,123,140,0.07)',
         WebkitTapHighlightColor: 'transparent',
         cursor: 'pointer',
@@ -252,20 +253,20 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           {/* Avatar — long-press visar teaser */}
           <ProfileTeaserPopover username={username}>
             <div style={{
-              width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+              width: 36, height: 36, borderRadius: radius.xs, flexShrink: 0, overflow: 'hidden',
               background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14, fontWeight: 900, color: '#fff',
+              fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
             }}>
               {avatar
-                ? <Image src={avatar} alt={username} width={38} height={38} style={{ objectFit: 'cover' }} />
+                ? <Image src={avatar} alt={username} width={36} height={36} style={{ objectFit: 'cover' }} />
                 : username[0]?.toUpperCase() ?? '?'}
             </div>
           </ProfileTeaserPopover>
 
           {/* Name + meta */}
           <div style={{ minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--txt)', lineHeight: 1.2 }}>
+            <div style={{ fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold, color: 'var(--txt)', lineHeight: 1.2 }}>
               {username}
             </div>
             <div style={{
@@ -331,14 +332,14 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none',
             }}>
               <div style={{
-                fontSize: 16, fontWeight: 900, color: 'var(--txt)',
-                lineHeight: 1.1, letterSpacing: '-0.4px',
+                fontSize: fontSize.subtitle, fontWeight: fontWeight.semibold, color: 'var(--txt)',
+                lineHeight: 1.1, letterSpacing: '-0.3px',
               }}>
                 {s.value}
               </div>
               <div style={{
-                fontSize: 9, color: 'var(--txt3)', marginTop: 3,
-                fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
+                fontSize: fontSize.caption, color: 'var(--txt3)', marginTop: 3,
+                fontWeight: fontWeight.medium, textTransform: 'uppercase', letterSpacing: '0.5px',
               }}>
                 {s.label}
               </div>
@@ -457,8 +458,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* ── 5. Caption ── */}
       {caption ? (
-        <div style={{ padding: '4px 14px 14px', fontSize: 14, color: 'var(--txt)', lineHeight: 1.55 }}>
-          <span style={{ fontWeight: 800 }}>{username}</span>
+        <div style={{ padding: '4px 14px 14px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
+          <span style={{ fontWeight: fontWeight.semibold }}>{username}</span>
           {' '}
           <span>{renderMentions(captionTruncated)}</span>
           {caption.length > MAX_CAPTION && (

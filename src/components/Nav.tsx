@@ -207,11 +207,11 @@ export default function Nav() {
           return (
             <Link key={tab.href} href={tab.href} style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{
-                width: 52, height: 52, borderRadius: '50%',
+                width: 56, height: 56, borderRadius: '50%',
                 background: 'linear-gradient(135deg,var(--acc),#e07828)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 4px 20px rgba(201,110,42,0.5)',
-                marginBottom: 20,
+                boxShadow: '0 6px 24px rgba(201,110,42,0.45)',
+                marginBottom: 24,
               }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 24, height: 24 }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />

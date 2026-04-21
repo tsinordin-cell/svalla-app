@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import EmptyState from '@/components/EmptyState'
+import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 
 type Notif = {
   id:             string
@@ -228,7 +229,7 @@ export default function NotiserPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             {groups.map(({ label, items }) => (
               <section key={label}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
+                <div style={{ fontSize: fontSize.caption, fontWeight: fontWeight.semibold, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8, paddingLeft: 2 }}>
                   {label}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -239,24 +240,34 @@ export default function NotiserPage() {
                       style={{ textDecoration: 'none' }}
                     >
                       <div style={{
-                        display: 'flex', alignItems: 'flex-start', gap: 12,
-                        padding: '12px 14px', borderRadius: 16,
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        minHeight: 64, padding: '10px 14px',
+                        borderRadius: radius.md,
                         background: n.read ? 'var(--white)' : `${TYPE_COLOR[n.type]}`,
                         border: '1px solid rgba(10,123,140,0.08)',
-                        boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
+                        boxShadow: shadow.xs,
                         WebkitTapHighlightColor: 'transparent',
                         position: 'relative',
                       }}>
+                        {/* Unread bar */}
+                        {!n.read && (
+                          <div style={{
+                            position: 'absolute', left: 0, top: 12, bottom: 12,
+                            width: 3, borderRadius: '0 2px 2px 0',
+                            background: 'var(--sea)',
+                          }} />
+                        )}
+
                         {/* Actor avatar */}
                         <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
                           <div style={{
-                            width: 42, height: 42, borderRadius: '50%',
+                            width: 44, height: 44, borderRadius: '50%',
                             background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: 16, fontWeight: 900, color: '#fff', overflow: 'hidden',
+                            fontSize: fontSize.body, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
                           }}>
                             {n.actor_avatar
-                              ? <Image src={n.actor_avatar} alt={n.actor_username} width={42} height={42} style={{ objectFit: 'cover' }} />
+                              ? <Image src={n.actor_avatar} alt={n.actor_username} width={44} height={44} style={{ objectFit: 'cover' }} />
                               : n.actor_username[0]?.toUpperCase() ?? '?'
                             }
                           </div>
@@ -264,13 +275,13 @@ export default function NotiserPage() {
 
                         {/* Text */}
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.4 }}>
-                            <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ color: '#1e5c82', fontWeight: 800, textDecoration: 'none' }}>
+                          <div style={{ fontSize: fontSize.small, color: 'var(--txt)', lineHeight: 1.4 }}>
+                            <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: fontWeight.semibold, textDecoration: 'none' }}>
                               {n.actor_username}
                             </Link>
                             {' '}{TYPE_LABEL[n.type]} {TYPE_EMOJI[n.type]}
                           </div>
-                          <div style={{ fontSize: 11, color: '#a0bec8', marginTop: 3 }}>
+                          <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', marginTop: 3 }}>
                             {timeAgo(n.created_at)}
                           </div>
                         </div>
@@ -279,7 +290,7 @@ export default function NotiserPage() {
                         {!n.read && (
                           <div style={{
                             width: 8, height: 8, borderRadius: '50%',
-                            background: '#1e5c82', flexShrink: 0, marginTop: 4,
+                            background: 'var(--sea)', flexShrink: 0,
                           }} />
                         )}
                       </div>
