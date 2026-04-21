@@ -14,11 +14,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const supabase = createClient()
   const { data } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
   if (!data) return { title: 'Rutt – Svalla' }
-  const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination} i Stockholms skärgård.`
+  const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination}.`
   const keywords = [
     `segelrutt ${data.start_location?.toLowerCase() ?? ''}`,
     `segla ${data.destination?.toLowerCase() ?? ''}`,
-    'stockholms skärgård rutt',
+    'skärgårdsrutt sverige',
     'båttur skärgård',
     ...(Array.isArray(data.best_for) ? data.best_for : []),
   ].filter(Boolean) as string[]

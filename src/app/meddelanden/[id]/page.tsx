@@ -492,6 +492,7 @@ export default function ChatPage() {
         padding: `${space[4]}px ${space[3]}px`,
         maxWidth: 520, width: '100%', margin: '0 auto',
         display: 'flex', flexDirection: 'column',
+        justifyContent: 'flex-end',
       }}>
 
         {/* Loading */}

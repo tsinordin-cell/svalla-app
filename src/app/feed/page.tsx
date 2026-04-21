@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
@@ -18,7 +18,7 @@ import { fontSize, fontWeight } from '@/lib/tokens'
 export const revalidate = 0
 
 export default async function FeedPage() {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   // Kolla inloggad användare
   const { data: { user } } = await supabase.auth.getUser()

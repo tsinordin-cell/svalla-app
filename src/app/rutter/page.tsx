@@ -134,7 +134,7 @@ export default async function RutterPage({
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {isFiltered
               ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
-              : `${filtered.length} turer · Stockholms skärgård`}
+              : `${filtered.length} turer · Sverige`}
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

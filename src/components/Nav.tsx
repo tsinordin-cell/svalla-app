@@ -86,9 +86,11 @@ export default function Nav() {
   }, [path])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/meddelanden', '/upptack']
-  const EXACT_PATHS = ['/logga']
-  const showNav = APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack']
+  const EXACT_PATHS = ['/logga', '/meddelanden']
+  // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
+  const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
+    !path.match(/^\/meddelanden\/.+/)
   if (!showNav) return null
 
   const tabs = [
