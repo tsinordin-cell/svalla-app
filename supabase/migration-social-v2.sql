@@ -15,12 +15,19 @@ create table if not exists public.conversations (
   is_group                boolean not null default false,
   title                   text,                           -- null för 1-till-1
   club_id                 uuid,                           -- FK sätts nedan
+  status                  text not null default 'active'
+                            check (status in ('active', 'request', 'declined')),
   created_by              uuid references public.users(id) on delete set null,
   created_at              timestamptz not null default now(),
   last_message_at         timestamptz not null default now(),
   last_message_preview    text,
   last_message_user_id    uuid references public.users(id) on delete set null
 );
+
+-- Idempotent: lägg till status om tabellen redan finns utan kolumnen
+alter table public.conversations
+  add column if not exists status text not null default 'active'
+  check (status in ('active', 'request', 'declined'));
 
 create table if not exists public.conversation_participants (
   conversation_id uuid not null references public.conversations(id) on delete cascade,
@@ -538,6 +545,66 @@ alter table public.notifications
     'message','mention','event_invite','event_reminder',
     'club_invite','trip_tag','achievement','repost','checkin_near'
   ));
+
+-- ============================================================
+-- 13. DM RPC — accept/decline förfrågan
+-- ============================================================
+
+create or replace function public.accept_dm_request(p_conv_id uuid)
+returns void language plpgsql security definer as $$
+begin
+  update public.conversations
+  set status = 'active'
+  where id = p_conv_id
+    and public.is_conv_member(p_conv_id, auth.uid());
+end;
+$$;
+
+create or replace function public.decline_dm_request(p_conv_id uuid)
+returns void language plpgsql security definer as $$
+begin
+  update public.conversations
+  set status = 'declined'
+  where id = p_conv_id
+    and public.is_conv_member(p_conv_id, auth.uid());
+end;
+$$;
+
+-- ============================================================
+-- 14. USER_BLOCKS — blockera användare
+-- ============================================================
+
+create table if not exists public.user_blocks (
+  blocker_id  uuid not null references public.users(id) on delete cascade,
+  blocked_id  uuid not null references public.users(id) on delete cascade,
+  created_at  timestamptz not null default now(),
+  primary key (blocker_id, blocked_id),
+  check (blocker_id <> blocked_id)
+);
+
+create index if not exists user_blocks_blocked_idx on public.user_blocks(blocked_id);
+
+alter table public.user_blocks enable row level security;
+
+drop policy if exists "see own blocks"     on public.user_blocks;
+drop policy if exists "create block"       on public.user_blocks;
+drop policy if exists "remove block"       on public.user_blocks;
+create policy "see own blocks"  on public.user_blocks for select using (auth.uid() = blocker_id);
+create policy "create block"    on public.user_blocks for insert with check (auth.uid() = blocker_id);
+create policy "remove block"    on public.user_blocks for delete using (auth.uid() = blocker_id);
+
+-- Notifications: lägg till dm_accepted
+do $$ begin
+  alter table public.notifications drop constraint if exists notifications_type_check;
+  alter table public.notifications
+    add constraint notifications_type_check
+    check (type in (
+      'like','comment','follow','tag',
+      'message','mention','event_invite','event_reminder',
+      'club_invite','trip_tag','achievement','repost','checkin_near','dm_accepted'
+    ));
+exception when others then null;
+end $$;
 
 -- ============================================================
 -- KLART

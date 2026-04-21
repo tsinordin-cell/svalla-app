@@ -36,12 +36,34 @@ export default function MeddelandenPage() {
       setMe(user.id)
       load(user.id)
     })
-    // realtime — uppdatera när nya meddelanden kommer
+    // realtime — uppdatera vid nya meddelanden OCH när konversation ändras (preview, status)
     const ch = supabase
       .channel('inbox-feed')
       .on('postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'messages' },
         () => { supabase.auth.getUser().then(({ data: { user } }) => user && load(user.id)) }
+      )
+      .on('postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'conversations' },
+        (payload) => {
+          const upd = payload.new as Partial<ConvRow>
+          setConvs(prev => {
+            const updated = prev.map(c =>
+              c.id === upd.id
+                ? {
+                    ...c,
+                    last_message_preview: upd.last_message_preview ?? c.last_message_preview,
+                    last_message_at:      upd.last_message_at      ?? c.last_message_at,
+                    last_message_user_id: upd.last_message_user_id ?? c.last_message_user_id,
+                    status:               (upd.status as ConvRow['status']) ?? c.status,
+                  }
+                : c
+            )
+            return [...updated].sort(
+              (a, b) => new Date(b.last_message_at).getTime() - new Date(a.last_message_at).getTime()
+            )
+          })
+        }
       )
       .subscribe()
     return () => { supabase.removeChannel(ch) }

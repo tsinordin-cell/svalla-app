@@ -129,3 +129,33 @@ export async function markConversationRead(
     .eq('user_id', currentUserId)
     .eq('conversation_id', conversationId)
 }
+
+/** Radera ett enskilt meddelande (bara egna). */
+export async function deleteMessage(
+  supabase: SupabaseClient,
+  messageId: string,
+): Promise<boolean> {
+  const { error } = await supabase
+    .from('messages')
+    .delete()
+    .eq('id', messageId)
+  return !error
+}
+
+/**
+ * Lämna / radera en konversation för current user.
+ * För 1-till-1: tar bort deltagarraden → konversationen syns ej längre.
+ * För grupp: lämnar utan att radera för övriga.
+ */
+export async function leaveConversation(
+  supabase: SupabaseClient,
+  currentUserId: string,
+  conversationId: string,
+): Promise<boolean> {
+  const { error } = await supabase
+    .from('conversation_participants')
+    .delete()
+    .eq('user_id', currentUserId)
+    .eq('conversation_id', conversationId)
+  return !error
+}

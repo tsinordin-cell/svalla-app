@@ -8,6 +8,7 @@ import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
 import ShareButton from './ShareButton'
+import ShareTripModal from './ShareTripModal'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 import { formatDurationMin } from '@/lib/gps'
@@ -66,9 +67,10 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
 
 export default function TripCard({ trip, priority = false }: { trip: Trip; priority?: boolean }) {
   const router = useRouter()
-  const [imgErr,   setImgErr]   = useState(false)
-  const [expanded, setExpanded] = useState(false)
-  const [isOwner,  setIsOwner]  = useState(false)
+  const [imgErr,        setImgErr]        = useState(false)
+  const [expanded,      setExpanded]      = useState(false)
+  const [isOwner,       setIsOwner]       = useState(false)
+  const [showShareDM,   setShowShareDM]   = useState(false)
 
   useEffect(() => {
     const supabase = createClient()
@@ -307,6 +309,21 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             initialCount={trip.comments_count}
             compact
           />
+          {/* Skicka som DM */}
+          <button
+            onClick={() => setShowShareDM(true)}
+            aria-label="Skicka som meddelande"
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px',
+              color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 5,
+              fontSize: 13, fontWeight: 600,
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} style={{ width: 20, height: 20 }}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </button>
           <div style={{ marginLeft: 'auto' }}>
             <ShareButton url={`https://svalla.se/tur/${trip.id}`} title={trip.location_name ?? 'Min tur'} />
           </div>
@@ -333,6 +350,11 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         </div>
       ) : (
         <div style={{ height: 10 }} />
+      )}
+
+      {/* Share to DM modal */}
+      {showShareDM && (
+        <ShareTripModal trip={trip} onClose={() => setShowShareDM(false)} />
       )}
     </article>
   )

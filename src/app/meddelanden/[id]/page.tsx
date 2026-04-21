@@ -4,7 +4,8 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { markConversationRead, acceptDMRequest, declineDMRequest } from '@/lib/dm'
+import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
+import { blockUser } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import type { Message, Conversation } from '@/lib/supabase'
@@ -27,6 +28,15 @@ export default function ChatPage() {
   const [posting, setPosting] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sharingGeo, setSharingGeo] = useState(false)
+  const [otherId, setOtherId] = useState<string | null>(null)
+
+  // Long-press action sheet
+  const [actionSheet, setActionSheet] = useState<{
+    msgId: string | null
+    isOwn: boolean
+    show: boolean
+  }>({ msgId: null, isOwn: false, show: false })
+  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -66,6 +76,7 @@ export default function ChatPage() {
           setOtherName(users[0].username)
           setOtherUsername(users[0].username)
           setOtherAvatar(users[0].avatar ?? null)
+          setOtherId(users[0].id)
         } else if (c.is_group) {
           setOtherName(c.title ?? 'Gruppchatt')
         }
@@ -201,11 +212,18 @@ export default function ChatPage() {
   }
 
   async function handleAcceptRequest() {
-    if (!conv) return
+    if (!conv || !me) return
     const ok = await acceptDMRequest(supabase, conv.id)
     if (!ok) { toast('Kunde inte acceptera förfrågan. Försök igen.', 'error'); return }
     setConv({ ...conv, status: 'active' } as Conversation)
     toast('Förfrågan accepterad', 'success')
+    // Notifiera avsändaren
+    if (conv.created_by && conv.created_by !== me) {
+      supabase.from('notifications').insert({
+        user_id: conv.created_by, actor_id: me, type: 'dm_accepted',
+        reference_id: conv.id,
+      }).then(() => {})
+    }
   }
 
   async function handleDeclineRequest() {
@@ -213,6 +231,55 @@ export default function ChatPage() {
     const ok = await declineDMRequest(supabase, conv.id)
     if (!ok) { toast('Kunde inte avvisa förfrågan. Försök igen.', 'error'); return }
     router.push('/meddelanden')
+  }
+
+  async function handleDeleteMessage(msgId: string) {
+    setActionSheet({ msgId: null, isOwn: false, show: false })
+    if (!confirm('Radera meddelandet?')) return
+    const ok = await deleteMessage(supabase, msgId)
+    if (ok) {
+      setMessages(prev => prev.filter(m => m.id !== msgId))
+    } else {
+      toast('Kunde inte radera meddelandet.', 'error')
+    }
+  }
+
+  async function handleLeaveConversation() {
+    setActionSheet({ msgId: null, isOwn: false, show: false })
+    if (!me || !conv) return
+    if (!confirm('Radera konversationen? Den försvinner bara för dig.')) return
+    const ok = await leaveConversation(supabase, me, conv.id)
+    if (ok) {
+      router.push('/meddelanden')
+    } else {
+      toast('Kunde inte radera konversationen.', 'error')
+    }
+  }
+
+  async function handleBlockUser() {
+    setActionSheet({ msgId: null, isOwn: false, show: false })
+    if (!me || !otherId) return
+    if (!confirm(`Blockera ${otherName}? Du kan inte DM:a varandra längre.`)) return
+    const ok = await blockUser(supabase, me, otherId)
+    if (ok) {
+      toast(`${otherName} blockerad`, 'success')
+      router.push('/meddelanden')
+    } else {
+      toast('Något gick fel.', 'error')
+    }
+  }
+
+  function onLongPressStart(msgId: string, isOwn: boolean) {
+    longPressTimer.current = setTimeout(() => {
+      setActionSheet({ msgId, isOwn, show: true })
+    }, 500)
+  }
+
+  function onLongPressEnd() {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current)
+      longPressTimer.current = null
+    }
   }
 
   async function onPickImage(e: React.ChangeEvent<HTMLInputElement>) {
@@ -375,12 +442,21 @@ export default function ChatPage() {
           const inits = initialsOf(m.username)
 
           return (
-            <div key={m.id} style={{
-              display: 'flex', gap: 8, alignItems: 'flex-end',
-              flexDirection: mine ? 'row-reverse' : 'row',
-              marginTop: sameSender ? 2 : 10,
-              opacity: m.optimistic ? 0.6 : 1,
-            }}>
+            <div
+              key={m.id}
+              style={{
+                display: 'flex', gap: 8, alignItems: 'flex-end',
+                flexDirection: mine ? 'row-reverse' : 'row',
+                marginTop: sameSender ? 2 : 10,
+                opacity: m.optimistic ? 0.6 : 1,
+              }}
+              onMouseDown={() => onLongPressStart(m.id, mine)}
+              onMouseUp={onLongPressEnd}
+              onMouseLeave={onLongPressEnd}
+              onTouchStart={() => onLongPressStart(m.id, mine)}
+              onTouchEnd={onLongPressEnd}
+              onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: mine, show: true }) }}
+            >
               {!mine && (
                 <div style={{
                   width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
@@ -415,6 +491,35 @@ export default function ChatPage() {
                     </div>
                   </a>
                 )}
+                {m.attachment_type === 'trip' && m.attachment_meta && (() => {
+                  const meta = m.attachment_meta as { trip_id?: string; location_name?: string; distance?: number; image?: string }
+                  return (
+                    <a href={meta.trip_id ? `/tur/${meta.trip_id}` : '#'} style={{ textDecoration: 'none', display: 'block', maxWidth: 260 }}>
+                      <div style={{
+                        borderRadius: 14, overflow: 'hidden',
+                        border: '1px solid rgba(10,123,140,0.15)',
+                        background: 'var(--white)',
+                        boxShadow: '0 2px 10px rgba(0,30,50,0.08)',
+                      }}>
+                        {meta.image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={meta.image} alt="" style={{ width: '100%', height: 100, objectFit: 'cover', display: 'block' }} />
+                        )}
+                        <div style={{ padding: '8px 12px 10px' }}>
+                          <div style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600, marginBottom: 2 }}>⛵ Tur</div>
+                          <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--txt)', lineHeight: 1.3 }}>
+                            {meta.location_name ?? 'Okänd plats'}
+                          </div>
+                          {meta.distance != null && meta.distance > 0 && (
+                            <div style={{ fontSize: 11, color: 'var(--sea)', fontWeight: 700, marginTop: 3 }}>
+                              {meta.distance.toFixed(1)} NM
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </a>
+                  )
+                })()}
                 {m.content && (
                   <div style={{
                     padding: '8px 14px', borderRadius: 18,
@@ -505,7 +610,59 @@ export default function ChatPage() {
       </form>
       )}
 
+      {/* ── Action sheet (long-press) ── */}
+      {actionSheet.show && (
+        <>
+          <div
+            onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })}
+            style={{
+              position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', zIndex: 200,
+            }}
+          />
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 201,
+            background: 'var(--white)', borderRadius: '20px 20px 0 0',
+            padding: '8px 0 calc(20px + env(safe-area-inset-bottom))',
+            boxShadow: '0 -4px 32px rgba(0,30,50,0.18)',
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '4px auto 16px' }} />
+
+            {actionSheet.isOwn && actionSheet.msgId && (
+              <ActionSheetItem icon="🗑️" label="Radera meddelande" color="#dc2626"
+                onClick={() => handleDeleteMessage(actionSheet.msgId!)} />
+            )}
+            <ActionSheetItem icon="💬" label="Radera konversation" color="#dc2626"
+              onClick={handleLeaveConversation} />
+            {!conv?.is_group && otherId && (
+              <ActionSheetItem icon="🚫" label={`Blockera ${otherName}`} color="#dc2626"
+                onClick={handleBlockUser} />
+            )}
+            <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
+              onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })} />
+          </div>
+        </>
+      )}
+
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
     </div>
+  )
+}
+
+function ActionSheetItem({ icon, label, color, onClick }: {
+  icon: string; label: string; color: string; onClick: () => void
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 14,
+        width: '100%', padding: '14px 24px',
+        border: 'none', background: 'transparent',
+        cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+      }}
+    >
+      <span style={{ fontSize: 20, width: 28, textAlign: 'center' }}>{icon}</span>
+      <span style={{ fontSize: 15, fontWeight: 700, color }}>{label}</span>
+    </button>
   )
 }
