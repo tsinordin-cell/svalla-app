@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import Link from 'next/link'
+import EmptyState from '@/components/EmptyState'
 
 const BOAT_FILTERS = [
   { value: 'alla',     label: 'Alla' },
@@ -225,33 +226,28 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           {trips.length === 0 ? (
             tab === 'following' && boatFilter === 'alla' && sortKey === 'newest' ? (
               <div>
-                <div style={{ textAlign: 'center', paddingTop: 40, paddingBottom: 24 }}>
-                  <div style={{ fontSize: 52, marginBottom: 14 }}>🌊</div>
-                  <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Ingen aktivitet ännu</h2>
-                  <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>Följ seglare för att se deras turer här.</p>
-                </div>
+                <EmptyState
+                  icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>}
+                  title="Ingen aktivitet ännu"
+                  body="Följ seglare för att se deras turer här."
+                  marginTop={40}
+                />
                 <SuggestedUsers />
               </div>
             ) : tab === 'all' && boatFilter === 'alla' && sortKey === 'newest' ? (
-              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-                <div style={{ fontSize: 52, marginBottom: 14 }}>⛵</div>
-                <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Inga turer ännu</h2>
-                <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>Bli först ut. Logga en tur så syns den här.</p>
-                <Link href="/spara" style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 14, background: 'linear-gradient(135deg,#c96e2a,#e08940)', color: 'white', fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 16px rgba(201,110,42,0.3)' }}>
-                  Logga första turen →
-                </Link>
-              </div>
+              <EmptyState
+                icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+                title="Inga turer ännu"
+                body="Bli först ut. Logga en tur så syns den här."
+                cta={{ label: 'Logga en tur', href: '/logga' }}
+              />
             ) : (
-              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-                <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
-                <p style={{ fontSize: 14, color: '#7a9dab', marginBottom: 16 }}>
-                  {sortKey === 'magic' ? 'Inga magiska turer ännu' : `Inga turer med ${boatFilter} än`}
-                </p>
-                <button onClick={() => { setBoatFilter('alla'); setSortKey('newest') }}
-                  style={{ padding: '9px 20px', borderRadius: 12, border: 'none', background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer' }}>
-                  Visa alla turer
-                </button>
-              </div>
+              <EmptyState
+                icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" /></svg>}
+                title={sortKey === 'magic' ? 'Inga magiska turer' : `Inga turer med ${boatFilter}`}
+                body="Prova ett annat filter."
+                cta={{ label: 'Visa alla turer', onClick: () => { setBoatFilter('alla'); setSortKey('newest') } }}
+              />
             )
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

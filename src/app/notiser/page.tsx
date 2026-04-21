@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import EmptyState from '@/components/EmptyState'
 
 type Notif = {
   id:             string
@@ -214,20 +215,12 @@ export default function NotiserPage() {
 
         {/* ── Empty state ── */}
         {!loading && userId && notifs.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '80px 24px' }}>
-            <div style={{ fontSize: 52, marginBottom: 16 }}>🔔</div>
-            <h2 style={{ fontSize: 17, fontWeight: 800, color: 'var(--txt)', marginBottom: 8 }}>Inga notiser ännu</h2>
-            <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 24 }}>
-              Logga en tur — när folk gillar eller kommenterar den dyker det upp här.
-            </p>
-            <Link href="/logga" style={{
-              display: 'inline-block', padding: '12px 28px', borderRadius: 14,
-              background: 'linear-gradient(135deg,var(--acc),#e07828)',
-              color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none',
-            }}>
-              Logga en tur →
-            </Link>
-          </div>
+          <EmptyState
+            icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>}
+            title="Inga notiser ännu"
+            body="Logga en tur — när folk gillar eller kommenterar den dyker det upp här."
+            cta={{ label: 'Logga en tur', href: '/logga' }}
+          />
         )}
 
         {/* ── Grouped notifications ── */}

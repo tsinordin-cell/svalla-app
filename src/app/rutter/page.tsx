@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
+import EmptyState from '@/components/EmptyState'
 
 export const metadata: Metadata = {
   title: 'Rutter',
@@ -204,7 +205,7 @@ export default async function RutterPage({
       {/* Tour list */}
       <div style={{ padding: '10px 12px 100px', maxWidth: 640, margin: '0 auto' }}>
         {filtered.length === 0 ? (
-          <EmptyState />
+          <RutterEmptyState />
         ) : (
           filtered.map((t) => (
             <TourCard key={t.id} tour={t}
@@ -290,18 +291,14 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
   )
 }
 
-function EmptyState() {
+function RutterEmptyState() {
   return (
-    <div style={{ textAlign: 'center', padding: '80px 20px' }}>
-      <div style={{ fontSize: 52, marginBottom: 14 }}>⛵</div>
-      <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Inga turer matchar</h2>
-      <p style={{ fontSize: 13, color: 'var(--txt3, #7a9dab)', marginBottom: 20 }}>Prova ett annat filter.</p>
-      <Link href="/rutter" style={{
-        display: 'inline-block', padding: '11px 24px', borderRadius: 14,
-        background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none',
-      }}>
-        Visa alla turer
-      </Link>
-    </div>
+    <EmptyState
+      icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>}
+      title="Inga turer matchar"
+      body="Prova ett annat filter."
+      cta={{ label: 'Visa alla turer', href: '/rutter' }}
+      marginTop={0}
+    />
   )
 }
