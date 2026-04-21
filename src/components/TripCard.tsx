@@ -1,9 +1,8 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
@@ -11,6 +10,7 @@ import ShareButton from './ShareButton'
 import ShareTripModal from './ShareTripModal'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
+import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
 
@@ -69,15 +69,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   const router = useRouter()
   const [imgErr,        setImgErr]        = useState(false)
   const [expanded,      setExpanded]      = useState(false)
-  const [isOwner,       setIsOwner]       = useState(false)
   const [showShareDM,   setShowShareDM]   = useState(false)
-
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setIsOwner(!!user && user.id === trip.user_id)
-    })
-  }, [trip.user_id])
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
@@ -188,24 +180,10 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           }}>⚓⚓⚓</div>
         )}
 
-        {/* Owner edit shortcut */}
-        {isOwner && (
-          <Link
-            href={`/tur/${trip.id}`}
-            onClick={e => e.stopPropagation()}
-            title="Redigera tur"
-            style={{
-              flexShrink: 0, width: 32, height: 32, borderRadius: '50%',
-              background: 'rgba(10,123,140,0.07)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              textDecoration: 'none',
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 16, height: 16, color: '#7a9dab' }}>
-              <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
-            </svg>
-          </Link>
-        )}
+        {/* Owner action menu — stopPropagation so card click doesn't fire */}
+        <div onClick={e => e.stopPropagation()} style={{ flexShrink: 0 }}>
+          <TripActions tripId={trip.id} ownerId={trip.user_id} />
+        </div>
       </div>
 
       {/* ── 1b. Route preview (when no photo but route exists) ── */}

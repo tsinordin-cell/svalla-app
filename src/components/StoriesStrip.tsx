@@ -188,7 +188,7 @@ function StoryViewer({
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, zIndex: 200,
+      position: 'fixed', inset: 0, zIndex: 1001,
       background: '#000', display: 'flex', flexDirection: 'column',
     }}>
       {/* Progress bars */}
@@ -316,13 +316,14 @@ function UploadStory({
 
   return (
     <div style={{
-      position: 'fixed', inset: 0, zIndex: 200,
+      position: 'fixed', inset: 0, zIndex: 1001,
       background: 'rgba(0,0,0,0.6)',
       display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
     }} onClick={onClose}>
       <div onClick={e => e.stopPropagation()} style={{
         width: '100%', maxWidth: 520, background: 'var(--white)',
-        borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
+        borderRadius: '20px 20px 0 0', padding: 20,
+        paddingBottom: 'max(40px, env(safe-area-inset-bottom, 40px))',
       }}>
         <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 14px' }}>Dela story</h2>
