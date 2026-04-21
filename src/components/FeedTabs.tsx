@@ -126,7 +126,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               onClick={() => setTab(key)}
               style={{
                 flex: 1, padding: '9px 0', borderRadius: 10, border: 'none', cursor: 'pointer',
-                fontSize: 13, fontWeight: 800,
+                fontSize: 13, fontWeight: 600,
                 background: tab === key ? '#fff' : 'transparent',
                 color: tab === key ? '#1e5c82' : '#7a9dab',
                 boxShadow: tab === key ? '0 1px 6px rgba(0,45,60,0.12)' : 'none',
@@ -202,7 +202,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         }}>
           <div style={{ fontSize: 32, flexShrink: 0 }}>⛵</div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 800, color: '#1e5c82', marginBottom: 4 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: '#1e5c82', marginBottom: 4 }}>
               Följ seglare du känner
             </div>
             <div style={{ fontSize: 12, color: '#7a9dab', lineHeight: 1.4, marginBottom: 10 }}>
