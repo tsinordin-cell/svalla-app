@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
@@ -16,6 +16,14 @@ type Candidate = {
 }
 
 export default function NyKonversationPage() {
+  return (
+    <Suspense fallback={null}>
+      <NyKonversationInner />
+    </Suspense>
+  )
+}
+
+function NyKonversationInner() {
   const router = useRouter()
   const search = useSearchParams()
   const autoTo = search?.get('to') ?? null
