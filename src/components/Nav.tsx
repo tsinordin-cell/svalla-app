@@ -103,13 +103,28 @@ export default function Nav() {
       ),
     },
     {
-      href: '/rutter',
-      label: 'Turer',
+      href: '/notiser',
+      label: 'Notiser',
       exact: false,
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-        </svg>
+        <div style={{ position: 'relative' }}>
+          <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          {unread > 0 && (
+            <span style={{
+              position: 'absolute', top: -4, right: -4,
+              minWidth: 16, height: 16, borderRadius: 8,
+              background: '#dc2626', color: '#fff',
+              fontSize: 9, fontWeight: 700,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              lineHeight: 1, padding: '0 3px',
+              border: '1.5px solid var(--glass-92)',
+            }}>
+              {unread > 9 ? '9+' : unread}
+            </span>
+          )}
+        </div>
       ),
     },
     { href: '/logga', label: '', fab: true },
