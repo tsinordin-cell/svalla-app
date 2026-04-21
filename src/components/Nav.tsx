@@ -237,16 +237,18 @@ export default function Nav() {
         }
 
         return (
-          <Link key={tab.href} href={tab.href} aria-current={active ? 'page' : undefined} style={{
-            flex: 1, display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center', gap: 2,
-            textDecoration: 'none',
-            color: active ? 'var(--sea)' : 'var(--txt3)',
-            fontSize: 8.5, fontWeight: 600, letterSpacing: '0.25px',
-            textTransform: 'uppercase', position: 'relative',
-            WebkitTapHighlightColor: 'transparent',
-            minHeight: 44,  // touch target
-          }}>
+          <Link key={tab.href} href={tab.href} aria-current={active ? 'page' : undefined}
+            className="nav-tab-link press-feedback"
+            style={{
+              flex: 1, display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center', gap: 2,
+              textDecoration: 'none',
+              color: active ? 'var(--sea)' : 'var(--txt3)',
+              fontSize: 8.5, fontWeight: 600, letterSpacing: '0.25px',
+              textTransform: 'uppercase', position: 'relative',
+              WebkitTapHighlightColor: 'transparent',
+              minHeight: 44,
+            }}>
             {tab.icon?.(active)}
             <span style={{ maxWidth: 48, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {tab.label}
@@ -255,7 +257,7 @@ export default function Nav() {
               <span style={{
                 position: 'absolute', bottom: 6, left: '50%',
                 transform: 'translateX(-50%)',
-                background: 'var(--sea)', width: 18, height: 3, borderRadius: 2,
+                background: 'var(--sea)', width: 18, height: 3, borderRadius: '2px 2px 0 0',
               }} />
             )}
           </Link>

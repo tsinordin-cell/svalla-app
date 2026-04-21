@@ -231,6 +231,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   return (
     <article
       onClick={() => router.push(`/tur/${trip.id}`)}
+      className="trip-card card-hover"
       style={{
         background: 'var(--white)',
         borderRadius: radius.lg,

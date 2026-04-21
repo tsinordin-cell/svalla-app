@@ -159,11 +159,13 @@ export default async function FeedPage() {
                 fontSize: 10, fontWeight: 600, color: 'var(--sea)',
                 textTransform: 'uppercase', letterSpacing: '0.6px',
               }}>
-                <span style={{
-                  display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
-                  background: '#22c55e',
-                  boxShadow: '0 0 0 2px rgba(34,197,94,0.25)',
-                }} />
+                <span
+                  className="live-dot"
+                  style={{
+                    display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
+                    background: '#22c55e',
+                  }}
+                />
                 Aktivt senaste 24h · {activeNow.length} {activeNow.length === 1 ? 'tur' : 'turer'}
               </span>
             </div>
@@ -171,16 +173,17 @@ export default async function FeedPage() {
             <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}>
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {activeNow.slice(0, 8).map((t: any) => (
-                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
+                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }} className="press-feedback">
                   <div style={{
                     width: 110, background: 'var(--white)', borderRadius: 14,
                     overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,45,60,0.08)',
                     border: '1px solid rgba(10,123,140,0.08)',
-                    position: 'relative',
                   }}>
                     {t.image
-                      ? <Image src={t.image} alt="" fill style={{ objectFit: 'cover', display: 'block' }} sizes="110px" />
-                      : <div style={{ width: '100%', height: 72, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
+                      ? <div style={{ position: 'relative', height: 72, overflow: 'hidden' }}>
+                          <Image src={t.image} alt="" fill style={{ objectFit: 'cover' }} sizes="110px" />
+                        </div>
+                      : <div style={{ height: 72, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
                     }
                     <div style={{ padding: '7px 8px' }}>
                       <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
