@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 /**
  * Veckosammanfattning — anropas av valfri cron-tjänst (t.ex. cron-job.org)
  *
