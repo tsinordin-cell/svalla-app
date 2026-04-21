@@ -294,7 +294,7 @@ function SokPageInner() {
               }}
             />
             {query && (
-              <button onClick={() => setQuery('')} style={{
+              <button onClick={() => setQuery('')} aria-label="Rensa sökning" className="press-feedback" style={{
                 position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
                 background: 'none', border: 'none', cursor: 'pointer', padding: 4,
                 color: 'var(--txt3)', fontSize: 16, lineHeight: 1,

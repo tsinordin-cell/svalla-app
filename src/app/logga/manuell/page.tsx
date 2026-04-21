@@ -308,6 +308,7 @@ function ManuellForm() {
                 <button
                   type="button"
                   onClick={() => removeExtraPhoto(i)}
+                  aria-label={`Ta bort foto ${i + 1}`}
                   style={{
                     position: 'absolute', top: -6, right: -6,
                     width: 18, height: 18, borderRadius: '50%',

@@ -187,6 +187,8 @@ function CheckInPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img loading="lazy" decoding="async" src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block' }} />
             <button onClick={() => { setImage(null); setPreview(null) }}
+              aria-label="Ta bort vald bild"
+              className="press-feedback"
               style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
               ✕
             </button>
