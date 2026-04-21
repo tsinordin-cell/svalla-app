@@ -136,6 +136,14 @@ export default function TripActions({
               label="Redigera tur"
               onClick={openEdit}
             />
+            <MenuItem
+              icon="📍"
+              label="Exportera GPX"
+              onClick={() => {
+                setMenu(false)
+                window.location.href = `/api/gpx/${tripId}`
+              }}
+            />
             <div style={{ height: 1, background: 'rgba(10,123,140,0.08)', margin: '4px 0' }} />
             <MenuItem
               icon="🗑"
