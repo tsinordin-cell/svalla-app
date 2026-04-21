@@ -41,18 +41,23 @@ export default function OnboardingModal() {
   }
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      background: 'linear-gradient(135deg, #0d2a3e 0%, #1e5c82 50%, #2d7d8a 100%)',
-      zIndex: 1100,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: 'env(safe-area-inset-top, 0px) 24px env(safe-area-inset-bottom, 0px)',
-      overflow: 'hidden',
-    }}>
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Välkommen till Svalla"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'linear-gradient(135deg, #0d2a3e 0%, #1e5c82 50%, #2d7d8a 100%)',
+        zIndex: 1100,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 'env(safe-area-inset-top, 0px) 24px env(safe-area-inset-bottom, 0px)',
+        overflow: 'hidden',
+      }}
+    >
       {/* Animated screens */}
       <div style={{
         position: 'relative',
@@ -281,6 +286,7 @@ export default function OnboardingModal() {
           <>
             <Link href="/platser"
               onClick={handleComplete}
+              className="press-feedback"
               style={{
                 flex: 1,
                 padding: '14px 24px',
@@ -297,6 +303,7 @@ export default function OnboardingModal() {
             </Link>
             <button
               onClick={handleSkip}
+              className="press-feedback"
               style={{
                 padding: '14px 24px',
                 borderRadius: 14,
@@ -308,12 +315,6 @@ export default function OnboardingModal() {
                 cursor: 'pointer',
                 transition: 'all 0.2s',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.25)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-              }}
             >
               Hoppa över
             </button>
@@ -322,6 +323,7 @@ export default function OnboardingModal() {
           <>
             <button
               onClick={handleNext}
+              className="press-feedback"
               style={{
                 flex: 1,
                 padding: '14px 24px',
@@ -335,17 +337,12 @@ export default function OnboardingModal() {
                 boxShadow: '0 4px 16px rgba(30,92,130,0.4)',
                 transition: 'all 0.2s',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(30,92,130,0.5)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(30,92,130,0.4)'
-              }}
             >
               Kom igång →
             </button>
             <button
               onClick={handleSkip}
+              className="press-feedback"
               style={{
                 padding: '14px 24px',
                 borderRadius: 14,
@@ -356,12 +353,6 @@ export default function OnboardingModal() {
                 border: '1px solid rgba(255,255,255,0.15)',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
               }}
             >
               Hoppa över
