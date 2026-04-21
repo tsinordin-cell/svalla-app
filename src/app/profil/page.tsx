@@ -12,6 +12,7 @@ import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import EmptyState from '@/components/EmptyState'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
+import { isProEnabled } from '@/lib/pro'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
@@ -600,6 +601,37 @@ export default function ProfilPage() {
             </svg>
           </div>
         </Link>
+
+        {/* ── Svalla Pro CTA ── */}
+        {isProEnabled() && (
+          <Link href="/pro" style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
+            <div style={{
+              position: 'relative', overflow: 'hidden',
+              background: 'linear-gradient(135deg, #0d2a3e 0%, #1e5c82 60%, #2d7d8a 100%)',
+              borderRadius: 18, padding: '16px 18px',
+              boxShadow: '0 4px 18px rgba(10,60,90,0.18)',
+              display: 'flex', alignItems: 'center', gap: 14,
+              WebkitTapHighlightColor: 'transparent',
+            }}>
+              <div aria-hidden style={{
+                position: 'absolute', inset: 0, pointerEvents: 'none',
+                background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.14) 0%, transparent 55%)',
+              }} />
+              <div style={{ fontSize: 26, flexShrink: 0, position: 'relative' }}>⚓</div>
+              <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.70)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
+                  Svalla Pro
+                </div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginTop: 2 }}>
+                  Uppgradera din segling
+                </div>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0, position: 'relative' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
+        )}
 
         {/* ── Settings ── */}
         <SettingsSection />

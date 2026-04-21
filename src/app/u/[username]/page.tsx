@@ -11,6 +11,7 @@ import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
 import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import { isProEnabled } from '@/lib/pro'
 
 export const revalidate = 60
 
@@ -59,6 +60,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
     { count: followersCount },
     { count: followingCount },
     { data: visitedIslandsData },
+    { data: subRow },
   ] = await Promise.all([
     supabase
       .from('trips')
@@ -69,7 +71,12 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
     supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),
     supabase.from('visited_islands').select('island_slug').eq('user_id', userRow.id),
+    isProEnabled()
+      ? supabase.from('subscriptions').select('status,current_period_end').eq('user_id', userRow.id).in('status', ['active','trialing']).maybeSingle()
+      : Promise.resolve({ data: null }),
   ])
+
+  const isProUser = isProEnabled() && !!subRow && new Date((subRow as { current_period_end: string }).current_period_end) > new Date()
 
   const trips = (rawTrips ?? []) as Trip[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -173,8 +180,16 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Name + bio + chips ── */}
         <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: 7 }}>
             {userRow.username}
+            {isProUser && (
+              <span title="Svalla Pro" aria-label="Pro-användare" style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 22, height: 22, borderRadius: '50%',
+                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                color: '#fff', fontSize: 11, flexShrink: 0,
+              }}>⚓</span>
+            )}
           </h1>
           {pub.includes('bio') && u.bio && (
             <p style={{ fontSize: 14, color: 'var(--txt2, #3d5865)', lineHeight: 1.55, margin: '0 0 10px' }}>
