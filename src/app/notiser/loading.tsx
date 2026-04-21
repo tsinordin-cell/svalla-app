@@ -10,7 +10,7 @@ export default function NotiserLoading() {
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <div style={{ width: 80, height: 20, ...sk }} className="sk" />
-        <div style={{ marginLeft: 'auto', width: 68, height: 28, borderRadius: 14, ...sk }} className="sk" />
+        <div style={{ marginLeft: 'auto', width: 68, height: 28, ...sk, borderRadius: 14 }} className="sk" />
       </header>
 
       <div style={{ maxWidth: 600, margin: '0 auto', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
