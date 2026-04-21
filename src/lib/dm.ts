@@ -66,21 +66,22 @@ export async function findOrCreateDM(
 
     const convStatus: 'active' | 'request' = followsBack ? 'active' : 'request'
 
-    // 3. Skapa konversationen (created_by = currentUser → tillåts av RLS)
-    const { data: newConv, error: convErr } = await supabase
+    // 3. Skapa konversationen — generera UUID client-side för att undvika
+    //    att använda .select() efter INSERT (RLS blockerar SELECT tills
+    //    man är deltagare, vilket sker i nästa steg).
+    const convId = crypto.randomUUID()
+
+    const { error: convErr } = await supabase
       .from('conversations')
       .insert({
+        id: convId,
         is_group: false,
         status: convStatus,
         created_by: currentUserId,
         last_message_at: new Date().toISOString(),
       })
-      .select('id')
-      .single()
 
-    if (convErr || !newConv) return null
-
-    const convId = (newConv as { id: string }).id
+    if (convErr) return null
 
     // 4. Lägg till skaparen som deltagare (alltid tillåtet — user_id = auth.uid())
     await supabase
