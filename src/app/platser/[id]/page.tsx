@@ -313,7 +313,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Image gallery ── */}
         {r.images && r.images.length > 1 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Bilder
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
@@ -332,7 +332,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
-            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
               🍽 Meny
             </h2>
             <pre style={{
@@ -347,7 +347,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Recent visits (trips linked to this spot) ── */}
         {recentTrips && recentTrips.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               Senaste turer i skärgården
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
@@ -363,7 +363,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                       <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {Array.isArray(t.users) ? t.users[0]?.username : (t.users as { username: string } | null)?.username ?? 'Okänd'}
                       </div>
-                      <div style={{ fontSize: 8, color: 'var(--txt3, var(--txt3))', marginTop: 1 }}>
+                      <div style={{ fontSize: 8, color: 'var(--txt3)', marginTop: 1 }}>
                         {new Date(t.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
                       </div>
                     </div>
@@ -377,7 +377,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Rutter som passar (Phase 4: connect data) ── */}
         {nearbyTours.length > 0 && (
           <div style={{ marginBottom: 14 }}>
-            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               🗺 Rutter som passar
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -399,7 +399,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                       <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.title}
                       </div>
-                      <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
                         {t.start_location} → {t.destination}
                         {t.duration_label ? ` · ${t.duration_label}` : ''}
                       </div>

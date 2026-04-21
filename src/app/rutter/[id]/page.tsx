@@ -331,7 +331,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                       {r.name}
                     </div>
                     {r.core_experience && (
-                      <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt2))', lineHeight: 1.4, marginBottom: 4 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4, marginBottom: 4 }}>
                         {r.core_experience}
                       </div>
                     )}
@@ -387,7 +387,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div style={{ margin: '16px 0' }}>
       <h2 style={{
-        fontSize: 12, fontWeight: 600, color: 'var(--txt3, var(--txt2))',
+        fontSize: 12, fontWeight: 600, color: 'var(--txt3)',
         textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 10,
       }}>
         {title}

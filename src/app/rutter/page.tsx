@@ -94,7 +94,7 @@ export default async function RutterPage({
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>
         <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda turer</h1>
-        <p style={{ fontSize: 14, color: 'var(--txt3, var(--txt3))', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
+        <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
         </a>
@@ -131,7 +131,7 @@ export default async function RutterPage({
       }}>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Turer</h1>
-          <p style={{ fontSize: 11, color: 'var(--txt3, var(--txt3))', margin: '2px 0 0', fontWeight: 500 }}>
+          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {isFiltered
               ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
               : `${filtered.length} turer · Stockholms skärgård`}
@@ -248,7 +248,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
             <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
               {t.title}
             </h2>
-            <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt2))', marginBottom: 8 }}>{t.usp}</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 8 }}>{t.usp}</div>
           </div>
           <div style={{
             flexShrink: 0, fontSize: 10, fontWeight: 700,
@@ -275,7 +275,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
           borderTop: '1px solid rgba(10,123,140,0.07)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <div style={{ fontSize: 11, color: 'var(--txt3, var(--txt2))', display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ fontSize: 11, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 4 }}>
             {foodStops[0] && <><span>🍽</span><span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span></>}
           </div>
           <div style={{ display: 'flex', gap: 3 }}>

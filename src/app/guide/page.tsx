@@ -113,14 +113,14 @@ function GuideContent() {
             }}>
               <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
               <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
-              <p style={{ fontSize: 13, color: 'var(--txt3, var(--txt2))', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.5 }}>
                 Jag känner till turer, restauranger och hamnar i hela Stockholms skärgård. Berätta vad du är ute efter – sällskap, tid, om du vill bada, äta eller segla – så hittar vi rätt tur.
               </p>
             </div>
 
             {/* Suggestions */}
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
                 Vanliga frågor
               </div>
               {SUGGESTIONS.map((s) => (
@@ -249,7 +249,7 @@ function GuideContent() {
 
 export default function GuidePage() {
   return (
-    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3, var(--txt2))' }}>Laddar guide…</div>}>
+    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3)' }}>Laddar guide…</div>}>
       <GuideContent />
     </Suspense>
   )

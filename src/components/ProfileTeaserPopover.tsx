@@ -192,13 +192,13 @@ export default function ProfileTeaserPopover({
                       </div>
                     </Link>
                     {(data.vessel_name || data.vessel_type) && (
-                      <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
                         ⛵ {data.vessel_name ?? data.vessel_type}
                         {data.vessel_model ? ` · ${data.vessel_model}` : ''}
                       </div>
                     )}
                     {data.home_port && (
-                      <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))', marginTop: 2 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
                         ⚓ {data.home_port}
                       </div>
                     )}
@@ -275,7 +275,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ textAlign: 'center', padding: '4px 2px' }}>
       <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt, #162d3a)', lineHeight: 1.1 }}>{value}</div>
-      <div style={{ fontSize: 9, color: 'var(--txt3, var(--txt3))', marginTop: 3, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
+      <div style={{ fontSize: 9, color: 'var(--txt3)', marginTop: 3, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
     </div>
   )
 }
