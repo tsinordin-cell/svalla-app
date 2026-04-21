@@ -53,49 +53,54 @@ export default function LoggaInPage() {
     e.preventDefault()
     setLoading(true); setErr(''); setMsg('')
 
-    if (isNew) {
-      const { data, error } = await supabase.auth.signUp({
-        email, password,
-        options: { data: { username: username.trim() || email.split('@')[0] } },
-      })
-      if (error) { setErr(error.message); setLoading(false); return }
-      if (data.user) {
-        await supabase.from('users').upsert({
-          id:       data.user.id,
-          username: username.trim() || email.split('@')[0],
-          email,
-        }, { onConflict: 'id', ignoreDuplicates: true })
-        if (data.session) { 
-          // Reset onboarding for new user
-          if (typeof window !== 'undefined') {
-            localStorage.removeItem('svalla_onboarded')
+    try {
+      if (isNew) {
+        const { data, error } = await supabase.auth.signUp({
+          email, password,
+          options: { data: { username: username.trim() || email.split('@')[0] } },
+        })
+        if (error) { setErr(error.message); setLoading(false); return }
+        if (data.user) {
+          await supabase.from('users').upsert({
+            id:       data.user.id,
+            username: username.trim() || email.split('@')[0],
+            email,
+          }, { onConflict: 'id', ignoreDuplicates: true })
+          if (data.session) {
+            if (typeof window !== 'undefined') {
+              localStorage.removeItem('svalla_onboarded')
+            }
+            router.push('/feed')
+            return
           }
-          router.push('/feed'); 
-          return 
         }
-      }
-      setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
-      setIsNew(false); setLoading(false)
-    } else {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-      if (error) {
-        if (error.message.toLowerCase().includes('email not confirmed')) {
-          setErr('Mejlet är inte bekräftat. Kolla din inkorg.')
-        } else if (error.message.toLowerCase().includes('invalid login')) {
-          setErr('Fel e-post eller lösenord. Försök igen.')
-        } else {
-          setErr(error.message)
+        setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
+        setIsNew(false); setLoading(false)
+      } else {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+        if (error) {
+          if (error.message.toLowerCase().includes('email not confirmed')) {
+            setErr('Mejlet är inte bekräftat. Kolla din inkorg.')
+          } else if (error.message.toLowerCase().includes('invalid login')) {
+            setErr('Fel e-post eller lösenord. Försök igen.')
+          } else {
+            setErr(error.message)
+          }
+          setLoading(false); return
         }
-        setLoading(false); return
+        if (data.user) {
+          await supabase.from('users').upsert({
+            id:       data.user.id,
+            username: data.user.user_metadata?.username || data.user.email?.split('@')[0] || 'seglare',
+            email:    data.user.email ?? '',
+          }, { onConflict: 'id' })
+        }
+        router.push('/feed')
       }
-      if (data.user) {
-        await supabase.from('users').upsert({
-          id:       data.user.id,
-          username: data.user.user_metadata?.username || data.user.email?.split('@')[0] || 'seglare',
-          email:    data.user.email ?? '',
-        }, { onConflict: 'id' })
-      }
-      router.push('/feed')
+    } catch (ex) {
+      console.error('Login error:', ex)
+      setErr('Något gick fel. Försök igen.')
+      setLoading(false)
     }
   }
 
@@ -274,7 +279,7 @@ export default function LoggaInPage() {
                 {msg}
               </div>
             )}
-            <button className="press-feedback"
+            <button
               type="submit" disabled={loading}
               className="press-feedback"
               style={{
