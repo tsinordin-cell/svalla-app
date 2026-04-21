@@ -72,6 +72,14 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sv" suppressHydrationWarning>
+      <head>
+        {/* Preconnect to Supabase — reduces connection latency for API + image CDN */}
+        <link rel="preconnect" href="https://oiklttwylndesewauytj.supabase.co" />
+        <link rel="dns-prefetch" href="https://oiklttwylndesewauytj.supabase.co" />
+        {/* Preconnect to OSM tile servers for Leaflet maps */}
+        <link rel="dns-prefetch" href="https://tile.openstreetmap.org" />
+        <link rel="dns-prefetch" href="https://tiles.openseamap.org" />
+      </head>
       <body>
         <ThemeProvider>
           <main style={{ minHeight: '100dvh' }}>

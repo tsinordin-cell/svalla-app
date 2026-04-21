@@ -153,7 +153,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <div onClick={() => fileRef.current?.click()} style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative' }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
-                ? <img src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 : user.username[0]?.toUpperCase()}
               <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
                 <span style={{ fontSize: 18 }}>📷</span>

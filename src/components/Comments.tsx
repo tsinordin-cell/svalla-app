@@ -417,7 +417,7 @@ export default function Comments({
                       }}>
                         {c.avatar ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img loading="lazy" decoding="async" src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : initials}
                       </div>
                     </Link>
@@ -556,7 +556,7 @@ export default function Comments({
                       }}>
                         {hit.avatar
                           // eslint-disable-next-line @next/next/no-img-element
-                          ? <img src={hit.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <img loading="lazy" decoding="async" src={hit.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                           : hit.username[0]?.toUpperCase()}
                       </div>
                       <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>

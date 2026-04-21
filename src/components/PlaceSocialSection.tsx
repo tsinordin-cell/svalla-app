@@ -33,7 +33,7 @@ function Avatar({ src, name, size = 32 }: { src: string | null | undefined; name
   const initial = (name?.[0] ?? '?').toUpperCase()
   if (src) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={name} style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+    return <img loading="lazy" decoding="async" src={src} alt={name} style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
   }
   return (
     <div style={{
@@ -198,7 +198,7 @@ export default function PlaceSocialSection({
                   )}
                   {c.image && (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.image} alt="" style={{ width: '100%', maxHeight: 220, objectFit: 'cover', borderRadius: 12, marginTop: 8 }} />
+                    <img loading="lazy" decoding="async" src={c.image} alt="" style={{ width: '100%', maxHeight: 220, objectFit: 'cover', borderRadius: 12, marginTop: 8 }} />
                   )}
                 </div>
               </div>

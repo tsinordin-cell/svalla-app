@@ -28,7 +28,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
           }}>
             {ev.avatar
               // eslint-disable-next-line @next/next/no-img-element
-              ? <img src={ev.avatar} alt={ev.username} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ? <img loading="lazy" decoding="async" src={ev.avatar} alt={ev.username} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               : ev.username[0]?.toUpperCase()}
           </div>
         </Link>

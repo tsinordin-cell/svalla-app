@@ -145,7 +145,7 @@ export default function EventDetailPage() {
           {ev.image && (
             <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={ev.image} alt="" style={{ width: '100%', display: 'block' }} />
+              <img loading="lazy" decoding="async" src={ev.image} alt="" style={{ width: '100%', display: 'block' }} />
             </div>
           )}
 
@@ -220,7 +220,7 @@ export default function EventDetailPage() {
                     }}>
                       {a.avatar ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={a.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img loading="lazy" decoding="async" src={a.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : initialsOf(a.username)}
                     </div>
                     <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>{a.username}</span>

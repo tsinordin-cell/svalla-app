@@ -272,7 +272,7 @@ function Row({ c, starting, onClick, isRequest }: {
       }}>
         {c.avatar ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img loading="lazy" decoding="async" src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         ) : initials}
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>

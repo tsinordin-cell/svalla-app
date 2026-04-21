@@ -218,7 +218,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                       }}>
                         {c.other_avatar
                           // eslint-disable-next-line @next/next/no-img-element
-                          ? <img src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <img loading="lazy" decoding="async" src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                           : initialsOf(display)}
                       </div>
                       <div style={{ flex: 1, textAlign: 'left' }}>
@@ -257,7 +257,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                       }}>
                         {f.avatar
                           // eslint-disable-next-line @next/next/no-img-element
-                          ? <img src={f.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <img loading="lazy" decoding="async" src={f.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                           : initialsOf(f.username)}
                       </div>
                       <div style={{ flex: 1, textAlign: 'left' }}>

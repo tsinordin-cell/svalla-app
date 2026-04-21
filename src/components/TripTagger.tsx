@@ -127,7 +127,7 @@ export default function TripTagger({
                 }}>
                   {t.avatar ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={t.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img loading="lazy" decoding="async" src={t.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : initialsOf(t.username ?? '?')}
                 </div>
                 <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>
@@ -183,7 +183,7 @@ export default function TripTagger({
                   }}>
                     {u.avatar ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={u.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <img loading="lazy" decoding="async" src={u.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                     ) : initialsOf(u.username)}
                   </div>
                   <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>{u.username}</span>

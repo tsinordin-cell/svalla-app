@@ -206,7 +206,7 @@ export default function KlubbPage() {
             }}>
               {club.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={club.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img loading="lazy" decoding="async" src={club.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
               ) : initialsOf(club.name)}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -290,7 +290,7 @@ export default function KlubbPage() {
                       }}>
                         {m.avatar ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img loading="lazy" decoding="async" src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : initialsOf(m.username)}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -329,7 +329,7 @@ export default function KlubbPage() {
                       }}>
                         {t.image && (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={t.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img loading="lazy" decoding="async" src={t.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         )}
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>

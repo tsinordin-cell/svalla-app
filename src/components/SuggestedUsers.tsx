@@ -215,7 +215,7 @@ function SuggestedUserCard({
         }}>
           {user.avatar
             // eslint-disable-next-line @next/next/no-img-element
-            ? <img src={user.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ? <img loading="lazy" decoding="async" src={user.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             : user.username[0]?.toUpperCase()}
         </div>
       </Link>

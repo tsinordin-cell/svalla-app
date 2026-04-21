@@ -123,7 +123,7 @@ export default function StoriesStrip() {
               }}>
                 {g.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={g.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img loading="lazy" decoding="async" src={g.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : initialsOf(g.username)}
               </div>
             </div>
@@ -217,7 +217,7 @@ function StoryViewer({
           }}>
             {group.avatar ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={group.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img loading="lazy" decoding="async" src={group.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             ) : initialsOf(group.username)}
           </div>
           <span style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{group.username}</span>
@@ -243,7 +243,7 @@ function StoryViewer({
         <div onClick={onNext} style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '70%', zIndex: 2 }} />
         {story.image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={story.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+          <img loading="lazy" decoding="async" src={story.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
         )}
         {story.caption && (
           <div style={{
@@ -335,7 +335,7 @@ function UploadStory({
         {preview ? (
           <div style={{ position: 'relative', marginBottom: 14 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block', maxHeight: 300, objectFit: 'cover' }} />
+            <img loading="lazy" decoding="async" src={preview} alt="" style={{ width: '100%', borderRadius: 14, display: 'block', maxHeight: 300, objectFit: 'cover' }} />
             <button onClick={() => { setFile(null); setPreview(null) }}
               style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
               ✕

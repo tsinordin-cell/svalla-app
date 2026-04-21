@@ -192,7 +192,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                   }}>
                     {featured.images?.[0] && (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={featured.images[0]} alt={featured.name} style={{
+                      <img loading="lazy" decoding="async" src={featured.images[0]} alt={featured.name} style={{
                         width: '100%', height: 110, objectFit: 'cover', display: 'block', opacity: 0.4,
                       }} />
                     )}
@@ -265,7 +265,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                           <div style={{ width: 88, flexShrink: 0, background: '#a8ccd4' }}>
                             {r.images?.[0]
                               // eslint-disable-next-line @next/next/no-img-element
-                              ? <img src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                              ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                               : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, background: getCat(r) === 'kafe' ? 'linear-gradient(135deg,#7c4d1e,#a06b30)' : getCat(r) === 'hamn' ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)' }}>
                                 <span style={{ fontSize: 20 }}>{getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}</span>
                                 <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{r.name[0]}</span>
@@ -400,7 +400,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             }}>
               {featured.images?.[0] && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={featured.images[0]} alt={featured.name} style={{
+                <img loading="lazy" decoding="async" src={featured.images[0]} alt={featured.name} style={{
                   width: '100%', height: 100, objectFit: 'cover', display: 'block', opacity: 0.4,
                 }} />
               )}
@@ -466,7 +466,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     <div style={{ width: 88, flexShrink: 0, background: '#a8ccd4' }}>
                       {r.images?.[0]
                         // eslint-disable-next-line @next/next/no-img-element
-                        ? <img src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                         : <div style={{
                             width: '100%', height: '100%', minHeight: 80,
                             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26,

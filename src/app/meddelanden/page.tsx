@@ -456,7 +456,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
         }}>
           {c.other_avatar
             // eslint-disable-next-line @next/next/no-img-element
-            ? <img src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+            ? <img loading="lazy" decoding="async" src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             : initials
           }
         </div>

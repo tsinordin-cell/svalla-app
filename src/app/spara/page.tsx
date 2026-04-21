@@ -1432,7 +1432,7 @@ export default function SparaPage() {
           >
             {preview ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={preview} alt="preview" className="w-full h-full object-cover rounded-2xl" />
+              <img loading="lazy" decoding="async" src={preview} alt="preview" className="w-full h-full object-cover rounded-2xl" />
             ) : (
               <div className="text-center text-svalla-text3">
                 <div className="text-4xl mb-2">📷</div>

@@ -424,7 +424,7 @@ export default function ChatPage() {
             }}>
               {otherAvatar
                 // eslint-disable-next-line @next/next/no-img-element
-                ? <img src={otherAvatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                ? <img loading="lazy" decoding="async" src={otherAvatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                 : displayInitials
               }
             </div>
@@ -582,7 +582,7 @@ export default function ChatPage() {
                   }}>
                     {m.avatar
                       // eslint-disable-next-line @next/next/no-img-element
-                      ? <img src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ? <img loading="lazy" decoding="async" src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                       : inits
                     }
                   </div>
@@ -598,7 +598,7 @@ export default function ChatPage() {
                   {m.attachment_type === 'image' && m.attachment_url && (
                     <a href={m.attachment_url} target="_blank" rel="noreferrer">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={m.attachment_url} alt="" style={{ maxWidth: 240, maxHeight: 240, borderRadius: bubbleR, display: 'block' }} />
+                      <img loading="lazy" decoding="async" src={m.attachment_url} alt="" style={{ maxWidth: 240, maxHeight: 240, borderRadius: bubbleR, display: 'block' }} />
                     </a>
                   )}
 
@@ -781,7 +781,7 @@ function TripBubble({ meta }: { meta: TripMeta }) {
       }}>
         {meta.image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={meta.image} alt="" style={{ width: '100%', height: 100, objectFit: 'cover', display: 'block' }} />
+          <img loading="lazy" decoding="async" src={meta.image} alt="" style={{ width: '100%', height: 100, objectFit: 'cover', display: 'block' }} />
         )}
         <div style={{ padding: '8px 12px 10px' }}>
           <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', fontWeight: fontWeight.semibold, marginBottom: 2 }}>⛵ Tur</div>

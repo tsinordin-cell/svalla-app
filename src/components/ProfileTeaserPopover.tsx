@@ -174,7 +174,7 @@ export default function ProfileTeaserPopover({
                   <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ flexShrink: 0 }}>
                     {data.avatar ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={data.avatar} alt={data.username} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover' }} />
+                      <img loading="lazy" decoding="async" src={data.avatar} alt={data.username} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover' }} />
                     ) : (
                       <div style={{
                         width: 64, height: 64, borderRadius: '50%',

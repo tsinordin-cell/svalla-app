@@ -159,7 +159,7 @@ export default function Nav() {
             }}>
               {avatar
                 // eslint-disable-next-line @next/next/no-img-element
-                ? <img src={avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                ? <img loading="lazy" decoding="async" src={avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
                 : username[0].toUpperCase()
               }
             </div>

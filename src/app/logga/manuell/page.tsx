@@ -270,7 +270,7 @@ function ManuellForm() {
         >
           {preview ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={preview} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img loading="lazy" decoding="async" src={preview} alt="preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 8 }}>
               <span style={{ fontSize: 48 }}>📷</span>
@@ -304,7 +304,7 @@ function ManuellForm() {
             {extraPreviews.map((src, i) => (
               <div key={i} style={{ position: 'relative', flexShrink: 0 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="" style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 10, display: 'block' }} />
+                <img loading="lazy" decoding="async" src={src} alt="" style={{ width: 56, height: 56, objectFit: 'cover', borderRadius: 10, display: 'block' }} />
                 <button
                   type="button"
                   onClick={() => removeExtraPhoto(i)}
