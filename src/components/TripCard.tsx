@@ -115,14 +115,18 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     : caption
 
   return (
-    <article style={{
-      background: 'var(--white)',
-      borderRadius: 20,
-      overflow: 'hidden',
-      boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
-      border: '1px solid rgba(10,123,140,0.07)',
-      WebkitTapHighlightColor: 'transparent',
-    }}>
+    <article
+      onClick={() => router.push(`/tur/${trip.id}`)}
+      style={{
+        background: 'var(--white)',
+        borderRadius: 20,
+        overflow: 'hidden',
+        boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
+        border: '1px solid rgba(10,123,140,0.07)',
+        WebkitTapHighlightColor: 'transparent',
+        cursor: 'pointer',
+      }}
+    >
 
       {/* ── 1. Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
@@ -245,10 +249,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* ── 3. Media (Strava-stil: foto + karta side-by-side) ── */}
       {hasMedia && (
-        <div
-          onClick={() => router.push(`/tur/${trip.id}`)}
-          style={{ cursor: 'pointer' }}
-        >
+        <div>
           {hasPhoto && hasRoute ? (
             /* Foto + karta side-by-side */
             <div style={{
