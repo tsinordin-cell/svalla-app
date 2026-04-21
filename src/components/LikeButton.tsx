@@ -84,6 +84,7 @@ export default function LikeButton({
         aria-label={liked ? 'Ta bort gillning' : 'Gilla turen'}
         aria-pressed={liked}
         disabled={!userId}
+        className="press-feedback"
         style={{
           display: 'flex', alignItems: 'center', gap: 5,
           background: 'none', border: 'none', padding: '4px 0',
@@ -122,6 +123,7 @@ export default function LikeButton({
       aria-label={liked ? 'Ta bort gillning' : 'Gilla turen'}
       aria-pressed={liked}
       disabled={!userId}
+      className="press-feedback"
       style={{
         display: 'flex', alignItems: 'center', gap: 6,
         padding: '9px 16px', borderRadius: 22, border: 'none',

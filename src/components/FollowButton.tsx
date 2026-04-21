@@ -70,6 +70,7 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
       <button
         onClick={toggle}
         disabled={loading || !myId}
+        className="press-feedback"
         style={{
           padding: '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',
           fontSize: 13, fontWeight: 700, transition: 'all .15s',
@@ -86,7 +87,7 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
       {count > 0 && (
         <span style={{
           fontSize: 12, fontWeight: 600,
-          color: darkBg ? 'rgba(255,255,255,0.75)' : '#7a9dab',
+          color: darkBg ? 'rgba(255,255,255,0.75)' : 'var(--txt3)',
         }}>
           {count} följare
         </span>

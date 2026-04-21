@@ -1465,10 +1465,10 @@ export default function SparaPage() {
 
         <button
           onClick={handleSave} disabled={saving}
-          className="w-full py-4 rounded-2xl text-white font-black text-base"
+          className="w-full py-4 rounded-2xl text-white font-black text-base press-feedback"
           style={{
             background: !saving ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,.15)',
-            color:      !saving ? 'white' : '#7a9dab',
+            color:      !saving ? 'white' : 'var(--txt3)',
             boxShadow:  !saving ? '0 4px 20px rgba(201,110,42,.4)' : 'none',
           }}
         >

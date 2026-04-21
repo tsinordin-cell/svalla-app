@@ -56,6 +56,7 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
     <button
       onClick={e => { e.preventDefault(); e.stopPropagation(); toggle() }}
       title={saved ? 'Ta bort bokmärke' : 'Spara'}
+      className="press-feedback"
       style={{
         width: 36, height: 36, borderRadius: '50%', border: 'none', cursor: 'pointer',
         background: saved ? 'rgba(201,110,42,0.12)' : 'rgba(10,123,140,0.07)',
@@ -63,7 +64,7 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
         transition: 'all .15s', flexShrink: 0,
       }}
     >
-      <svg viewBox="0 0 24 24" fill={saved ? '#c96e2a' : 'none'} stroke={saved ? '#c96e2a' : '#7a9dab'} strokeWidth={2} style={{ width: 18, height: 18 }}>
+      <svg viewBox="0 0 24 24" fill={saved ? '#c96e2a' : 'none'} stroke={saved ? '#c96e2a' : 'var(--txt3)'} strokeWidth={2} style={{ width: 18, height: 18 }}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
       </svg>
     </button>

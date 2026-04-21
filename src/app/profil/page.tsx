@@ -224,8 +224,8 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
           {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: '#dc2626', marginBottom: 12 }}>{error}</div>}
         </div>
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
-          <button onClick={onClose} style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
-          <button onClick={handleSave} disabled={saving} style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? '#7a9dab' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+          <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
+          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
             {saving ? 'Sparar…' : 'Spara'}
           </button>
         </div>

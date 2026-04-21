@@ -276,6 +276,7 @@ export default function LoggaInPage() {
             )}
             <button
               type="submit" disabled={loading}
+              className="press-feedback"
               style={{
                 padding: '15px 0', borderRadius: 14, border: 'none', cursor: 'pointer',
                 background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
