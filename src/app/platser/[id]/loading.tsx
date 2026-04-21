@@ -28,7 +28,7 @@ export default function PlatserDetailLoading() {
         </div>
 
         {/* Map */}
-        <div style={{ width: '100%', height: 200, borderRadius: 20, marginBottom: 16, ...sk, background: 'rgba(10,123,140,0.08)' }} className="sk" />
+        <div style={{ width: '100%', height: 200, marginBottom: 16, ...sk, borderRadius: 20, background: 'rgba(10,123,140,0.08)' }} className="sk" />
 
         {/* Reviews */}
         {[1, 2].map(i => (
