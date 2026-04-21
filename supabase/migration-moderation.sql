@@ -124,8 +124,6 @@ begin
 end;
 $$;
 
-grant execute on function public.admin_update_report(uuid, text, text) to authenticated;
-
 -- ============================================================
 -- 5. RPC: get_moderation_queue — admin-vy med aggregerade data
 -- ============================================================
@@ -176,8 +174,6 @@ as $$
   limit p_limit
   offset p_offset;
 $$;
-
-grant execute on function public.get_moderation_queue(text, int, int) to authenticated;
 
 -- ============================================================
 -- KLART
