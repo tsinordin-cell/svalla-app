@@ -9,6 +9,7 @@ import FollowButton from '@/components/FollowButton'
 import FollowPrefsButton from '@/components/FollowPrefsButton'
 import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
+import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 
 export const revalidate = 60
@@ -113,6 +114,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
           <FollowButton targetUserId={userRow.id} />
+          <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
         </div>
       </header>
 

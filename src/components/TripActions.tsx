@@ -3,6 +3,7 @@ import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEven
 import { useRouter } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
+import ReportButton from '@/components/ReportButton'
 
 const PINNAR = [
   { value: 1, emoji: '⚓',     label: 'Okej' },
@@ -44,7 +45,12 @@ export default function TripActions({
     supabase.auth.getUser().then(({ data: { user } }) => setUserId(user?.id ?? null))
   }, [])
 
-  // Only render for the trip owner
+  // Non-owner: visa bara rapport-knapp
+  if (userId !== null && userId !== ownerId) {
+    return <NonOwnerMenu tripId={tripId} />
+  }
+
+  // Ej inloggad eller ägare — ägaren hanteras nedan
   if (userId !== ownerId) return null
 
   // ── Load current trip data into edit form ────────────────────────────────────
@@ -284,6 +290,70 @@ export default function TripActions({
               className="press-feedback"
               style={{
                 width: '100%', padding: '13px', borderRadius: 16,
+                background: 'rgba(10,123,140,0.07)', border: 'none',
+                color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+              }}
+            >
+              Avbryt
+            </button>
+          </Sheet>
+        </Backdrop>
+      )}
+    </>
+  )
+}
+
+// ── Non-owner menu (bara rapport-alternativ) ──────────────────────────────────
+
+function NonOwnerMenu({ tripId }: { tripId: string }) {
+  const [menu, setMenu] = useState(false)
+
+  return (
+    <>
+      <button
+        onClick={() => setMenu(true)}
+        aria-label="Fler alternativ"
+        style={{
+          width: 36, height: 36, borderRadius: '50%',
+          background: 'var(--glass-88)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '1px solid rgba(255,255,255,0.25)',
+          cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 1px 6px rgba(0,20,35,0.15)',
+          WebkitTapHighlightColor: 'transparent',
+        }}
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
+          <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+        </svg>
+      </button>
+
+      {menu && (
+        <Backdrop onClick={() => setMenu(false)}>
+          <Sheet label="Turens alternativ">
+            <Handle />
+            <div style={{ padding: '0 4px 4px' }}>
+              <div
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 12,
+                  padding: '14px 16px', borderRadius: 14,
+                  cursor: 'pointer',
+                }}
+                onClick={() => setMenu(false)}
+              >
+                <span style={{ fontSize: 20 }}>🚩</span>
+                <div style={{ flex: 1 }}>
+                  <ReportButton targetType="trip" targetId={tripId} label="Anmäl tur" bare />
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => setMenu(false)}
+              className="press-feedback"
+              style={{
+                width: '100%', marginTop: 6, padding: '13px', borderRadius: 14,
                 background: 'rgba(10,123,140,0.07)', border: 'none',
                 color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
               }}
