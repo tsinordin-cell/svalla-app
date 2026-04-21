@@ -58,6 +58,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn-ghost:hover{background:rgba(255,255,255,.22)}
 .btn-accent{background:var(--accent);color:var(--white)}
 .btn-accent:hover{background:var(--accent-light);transform:translateY(-1px)}
+.btn-accent:active,.btn-teal:active,.btn-ghost:active{transform:scale(0.97);transition:transform 80ms ease}
 .btn-teal{background:var(--teal);color:var(--white)}
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
 .btn-lg{padding:16px 36px;font-size:15px;border-radius:var(--r-sm)}
