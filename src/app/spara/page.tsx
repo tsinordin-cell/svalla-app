@@ -736,8 +736,8 @@ export default function SparaPage() {
                   key={bt} type="button" onClick={() => setBoatType(bt)}
                   className="py-2 px-1 rounded-xl text-xs font-medium transition-all"
                   style={{
-                    background: boatType === bt ? '#1e5c82' : 'rgba(10,123,140,0.07)',
-                    color:      boatType === bt ? 'white'   : '#3d5865',
+                    background: boatType === bt ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
+                    color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >
                   {bt}

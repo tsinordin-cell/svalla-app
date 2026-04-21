@@ -25,7 +25,7 @@ const FIELD: React.CSSProperties = {
   boxSizing: 'border-box',
   background: 'rgba(10,123,140,0.05)',
   border: '1.5px solid rgba(10,123,140,0.14)',
-  fontSize: 15, color: '#162d3a', outline: 'none',
+  fontSize: 15, color: 'var(--txt)', outline: 'none',
   fontFamily: 'inherit', transition: 'border-color 0.18s',
   WebkitAppearance: 'none', appearance: 'none',
 }

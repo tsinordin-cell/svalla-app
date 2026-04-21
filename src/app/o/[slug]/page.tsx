@@ -444,7 +444,7 @@ export default async function IslandPage({ params }: Props) {
 
       {/* ── FOOTER ──────────────────────────────────────────────── */}
       <div style={{
-        background: '#162d3a',
+        background: 'var(--txt)',
         padding: '28px 24px',
         textAlign: 'center',
       }}>

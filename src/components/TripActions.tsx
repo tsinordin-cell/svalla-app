@@ -217,7 +217,7 @@ export default function TripActions({
                   style={{
                     padding: '8px 4px', borderRadius: 10, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600,
                     background: boatType === bt ? '#1e5c82' : 'rgba(10,123,140,0.07)',
-                    color: boatType === bt ? '#fff' : '#3d5865',
+                    color: boatType === bt ? '#fff' : 'var(--txt2)',
                   }}
                 >
                   {bt}
@@ -342,7 +342,7 @@ function MenuItem({ icon, label, danger, onClick }: { icon: string; label: strin
         width: '100%', padding: '14px 16px', borderRadius: 14, border: 'none',
         background: 'none', cursor: 'pointer',
         display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left',
-        color: danger ? '#dc2626' : '#162d3a',
+        color: danger ? '#dc2626' : 'var(--txt)',
       }}
     >
       <span style={{ fontSize: 20 }}>{icon}</span>

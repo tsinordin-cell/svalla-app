@@ -21,7 +21,7 @@ function SettingsSection() {
     fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 600 : 500,
     transition: 'all 0.15s',
     background: active ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
-    color: active ? '#fff' : '#3d5865',
+    color: active ? '#fff' : 'var(--txt2)',
     boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
   })
   const themes: { val: Theme; label: string; icon: string }[] = [

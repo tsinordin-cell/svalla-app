@@ -193,7 +193,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
               width: '100%', padding: '10px 12px', borderRadius: 12,
               border: '1.5px solid rgba(10,123,140,0.15)',
               background: 'rgba(10,123,140,0.03)', fontSize: 13,
-              color: '#162d3a', outline: 'none', resize: 'none',
+              color: 'var(--txt)', outline: 'none', resize: 'none',
               fontFamily: 'inherit', boxSizing: 'border-box',
             }}
           />
@@ -255,7 +255,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                     {(r.username ?? '?')[0].toUpperCase()}
                   </div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: '#162d3a' }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>
                       {r.username ?? 'Seglare'}
                       {r.user_id === userId && <span style={{ fontSize: 10, color: 'var(--txt3)', marginLeft: 6 }}>(du)</span>}
                     </div>

@@ -133,7 +133,7 @@ export default function TagInput({ tagged, onChange }: Props) {
                     ? <Image src={u.avatar} alt={u.username} width={30} height={30} style={{ objectFit: 'cover' }} />
                     : u.username[0]?.toUpperCase()}
                 </div>
-                <span style={{ fontSize: 14, fontWeight: 700, color: '#162d3a' }}>@{u.username}</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>@{u.username}</span>
               </button>
             ))}
           </div>

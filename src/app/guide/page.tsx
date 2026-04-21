@@ -155,7 +155,7 @@ function GuideContent() {
             <div style={{
               maxWidth: '82%', padding: '11px 14px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
               background: m.role === 'user' ? 'linear-gradient(135deg, #1e5c82, #2d7d8a)' : '#fff',
-              color: m.role === 'user' ? '#fff' : '#162d3a',
+              color: m.role === 'user' ? '#fff' : 'var(--txt)',
               fontSize: 13, lineHeight: 1.55,
               border: m.role === 'assistant' ? '1.5px solid rgba(10,123,140,0.10)' : 'none',
               boxShadow: '0 1px 4px rgba(0,45,60,0.07)',

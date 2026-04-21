@@ -329,7 +329,7 @@ export default function KomIgangPage() {
                 flex: 1, padding: '14px', borderRadius: 14, cursor: 'pointer',
                 background: '#fff', border: '1.5px solid rgba(10,123,140,0.15)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                fontSize: 13, fontWeight: 600, color: '#162d3a', fontFamily: 'inherit',
+                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
                 boxShadow: '0 2px 8px rgba(0,30,50,0.07)',
                 opacity: oauthLoading === 'google' ? 0.6 : 1,
                 transition: 'opacity 0.15s',
@@ -431,7 +431,7 @@ export default function KomIgangPage() {
                 flex: 1, padding: '13px', borderRadius: 12, cursor: 'pointer',
                 background: '#fff', border: '1.5px solid rgba(10,123,140,0.15)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                fontSize: 13, fontWeight: 600, color: '#162d3a', fontFamily: 'inherit',
+                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
                 boxShadow: '0 2px 6px rgba(0,30,50,0.07)',
                 opacity: oauthLoading === 'google' ? 0.6 : 1,
               }}
@@ -479,7 +479,7 @@ export default function KomIgangPage() {
                     ...INPUT,
                     background: 'rgba(10,123,140,0.05)',
                     border: '1.5px solid rgba(10,123,140,0.14)',
-                    color: '#162d3a',
+                    color: 'var(--txt)',
                   }}
                   autoComplete="name"
                 />
@@ -497,7 +497,7 @@ export default function KomIgangPage() {
                     ...INPUT,
                     background: 'rgba(10,123,140,0.05)',
                     border: '1.5px solid rgba(10,123,140,0.14)',
-                    color: '#162d3a',
+                    color: 'var(--txt)',
                   }}
                   autoComplete="username"
                 />
@@ -520,7 +520,7 @@ export default function KomIgangPage() {
                   ...INPUT,
                   background: 'rgba(10,123,140,0.05)',
                   border: `1.5px solid ${email && !/\S+@\S+\.\S+/.test(email) ? '#dc2626' : 'rgba(10,123,140,0.14)'}`,
-                  color: '#162d3a',
+                  color: 'var(--txt)',
                 }}
                 autoComplete="email"
               />
@@ -547,7 +547,7 @@ export default function KomIgangPage() {
                     ...INPUT,
                     background: 'rgba(10,123,140,0.05)',
                     border: '1.5px solid rgba(10,123,140,0.14)',
-                    color: '#162d3a',
+                    color: 'var(--txt)',
                     paddingRight: 46,
                   }}
                   autoComplete="new-password"
@@ -605,7 +605,7 @@ export default function KomIgangPage() {
                     ...INPUT,
                     background: 'rgba(10,123,140,0.05)',
                     border: `1.5px solid ${confirmPw && password !== confirmPw ? '#dc2626' : 'rgba(10,123,140,0.14)'}`,
-                    color: '#162d3a',
+                    color: 'var(--txt)',
                     paddingRight: 46,
                   }}
                   autoComplete="new-password"

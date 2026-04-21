@@ -134,7 +134,7 @@ export default function LocationSearch({
             borderRadius: 14, boxSizing: 'border-box',
             border: `1.5px solid ${selected ? 'rgba(30,92,130,0.4)' : 'rgba(10,123,140,0.18)'}`,
             background: selected ? 'rgba(30,92,130,0.04)' : '#fff',
-            fontSize: 16, fontWeight: 600, color: '#162d3a',
+            fontSize: 16, fontWeight: 600, color: 'var(--txt)',
             outline: 'none', fontFamily: 'inherit',
             transition: 'border-color 0.15s, background 0.15s',
           }}
@@ -182,7 +182,7 @@ export default function LocationSearch({
             >
               <span style={{ fontSize: 14, flexShrink: 0 }}>📍</span>
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#162d3a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {p.name}
                 </div>
                 <div style={{ fontSize: 11, color: 'var(--txt3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

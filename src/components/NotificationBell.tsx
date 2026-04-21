@@ -137,7 +137,7 @@ export default function NotificationBell() {
           border: '1px solid rgba(10,123,140,0.10)',
         }}>
           <div style={{ padding: '14px 16px 10px', borderBottom: '1px solid rgba(10,123,140,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: 14, fontWeight: 600, color: '#162d3a' }}>Notiser</span>
+            <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Notiser</span>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               {unread > 0 && (
                 <button onClick={markAllRead} style={{ fontSize: 11, color: 'var(--txt3)', background: 'none', border: 'none', cursor: 'pointer' }}>
@@ -177,7 +177,7 @@ export default function NotificationBell() {
                   {n.actor_username?.[0]?.toUpperCase() ?? '?'}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ fontSize: 13, color: '#162d3a' }}>
+                  <span style={{ fontSize: 13, color: 'var(--txt)' }}>
                     <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type]}
                   </span>
                   <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
