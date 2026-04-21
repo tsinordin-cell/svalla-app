@@ -226,12 +226,12 @@ function ManuellForm() {
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <button onClick={() => router.back()} style={{
+        <button onClick={() => router.back()} className="press-feedback" style={{
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(10,123,140,0.07)', border: 'none', cursor: 'pointer',
         }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -526,6 +526,7 @@ function ManuellForm() {
         <button
           onClick={handleSubmit as unknown as React.MouseEventHandler}
           disabled={!canSubmit}
+          className={canSubmit ? 'press-feedback' : undefined}
           style={{
             width: '100%', padding: '15px 0', borderRadius: 16, border: 'none',
             background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',

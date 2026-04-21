@@ -103,7 +103,7 @@ export default async function FeedPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             flexShrink: 0,
           }} title="Sök">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} style={{ width: 18, height: 18 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} style={{ width: 18, height: 18 }}>
               <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
             </svg>
           </Link>

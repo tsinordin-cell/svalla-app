@@ -209,7 +209,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         pointerEvents: 'none',
       }}>
         <svg viewBox="0 0 20 4" style={{ width: 20, height: 4 }}>
-          <line x1="0" y1="2" x2="20" y2="2" stroke="#1e5c82" strokeWidth="2.5" strokeDasharray="5,4" />
+          <line x1="0" y1="2" x2="20" y2="2" stroke="var(--sea, #1e5c82)" strokeWidth="2.5" strokeDasharray="5,4" />
         </svg>
         Ungefärlig sträckning
       </div>

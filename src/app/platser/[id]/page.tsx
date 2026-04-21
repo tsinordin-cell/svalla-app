@@ -176,7 +176,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>

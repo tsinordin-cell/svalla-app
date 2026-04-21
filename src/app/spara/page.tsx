@@ -671,7 +671,7 @@ export default function SparaPage() {
       <div className="min-h-screen">
         <header className="sticky top-0 z-40 flex items-center gap-3 px-4 py-3 bg-white/96 border-b border-sea-light/40">
           <button onClick={() => router.back()} className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2.5} className="w-5 h-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -1060,8 +1060,8 @@ export default function SparaPage() {
             padding: 0,
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
-            <circle cx="12" cy="12" r="3" fill="#1e5c82" stroke="none"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
+            <circle cx="12" cy="12" r="3" fill="var(--sea, #1e5c82)" stroke="none"/>
             <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
             <circle cx="12" cy="12" r="7"/>
           </svg>

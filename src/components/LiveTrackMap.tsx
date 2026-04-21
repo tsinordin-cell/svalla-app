@@ -329,7 +329,7 @@ export default function LiveTrackMap({
                 cursor: 'pointer', padding: 0,
               }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
                 <path d="M4 9V4h5"/>
                 <path d="M20 9V4h-5"/>
                 <path d="M4 15v5h5"/>

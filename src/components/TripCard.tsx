@@ -56,7 +56,7 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
         {/* Shadow line */}
         <path d={d} fill="none" stroke="rgba(30,92,130,0.15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
         {/* Main route line */}
-        <path d={d} fill="none" stroke="#1e5c82" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
+        <path d={d} fill="none" stroke="var(--sea, #1e5c82)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
         {/* Start dot */}
         <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="#22c55e" stroke="white" strokeWidth="1.5" />
         {/* End dot */}
