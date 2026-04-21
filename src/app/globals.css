@@ -636,3 +636,20 @@ img {
 [data-theme="dark"] .border-sea-light\/40 {
   border-color: rgba(74, 184, 212, 0.12) !important;
 }
+
+/* ══════════════════════════════════════════
+   ACCESSIBILITY — prefers-reduced-motion
+   Respektera användare som har reducerad rörelse
+   påslaget i systemet. Dämpar animationer men
+   behåller visuell feedback på kritiska element.
+   ══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

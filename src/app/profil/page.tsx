@@ -241,6 +241,8 @@ export default function ProfilPage() {
   const [editing,        setEditing]        = useState(false)
   const [followersCount, setFollowersCount] = useState(0)
   const [followingCount, setFollowingCount] = useState(0)
+  const [signOutOpen,    setSignOutOpen]    = useState(false)
+  const [signingOut,     setSigningOut]     = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -261,8 +263,8 @@ export default function ProfilPage() {
     load()
   }, []) // eslint-disable-line
 
-  async function handleSignOut() {
-    if (!window.confirm('Logga ut från Svalla?')) return
+  async function performSignOut() {
+    setSigningOut(true)
     await supabase.auth.signOut()
     router.push('/logga-in')
   }
@@ -304,6 +306,39 @@ export default function ProfilPage() {
         <EditSheet user={user} onClose={() => setEditing(false)} onSaved={updated => { setUser(updated); setEditing(false) }} />
       )}
 
+      {signOutOpen && (
+        <>
+          <div onClick={() => !signingOut && setSignOutOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.55)', zIndex: 950, backdropFilter: 'blur(3px)' }} />
+          <div role="dialog" aria-modal="true" aria-labelledby="logout-title" style={{
+            position: 'fixed', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+            zIndex: 960, width: 'min(360px, calc(100vw - 32px))',
+            background: 'var(--white)', borderRadius: 22, padding: '22px 22px 16px',
+            boxShadow: '0 20px 60px rgba(0,30,60,0.35)',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(220,38,38,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>👋</div>
+              <div>
+                <h2 id="logout-title" style={{ fontSize: 16, fontWeight: 900, color: 'var(--txt)', margin: 0 }}>Logga ut?</h2>
+                <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '2px 0 0' }}>Du behöver logga in igen nästa gång.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
+              <button onClick={() => setSignOutOpen(false)} disabled={signingOut} style={{
+                flex: 1, padding: '12px', borderRadius: 14,
+                border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)',
+                fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: signingOut ? 'not-allowed' : 'pointer',
+              }}>Avbryt</button>
+              <button onClick={performSignOut} disabled={signingOut} style={{
+                flex: 1.4, padding: '12px', borderRadius: 14, border: 'none',
+                background: signingOut ? '#cf6b6b' : 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                color: '#fff', fontSize: 14, fontWeight: 800, cursor: signingOut ? 'not-allowed' : 'pointer',
+                boxShadow: '0 4px 14px rgba(220,38,38,0.35)',
+              }}>{signingOut ? 'Loggar ut…' : 'Logga ut'}</button>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* ── Sticky header ── */}
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
@@ -318,7 +353,7 @@ export default function ProfilPage() {
           <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700, padding: '7px 14px', borderRadius: 20 }}>
             ✏️ Redigera
           </button>
-          <button onClick={handleSignOut} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
+          <button onClick={() => setSignOutOpen(true)} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
             Logga ut
           </button>
         </div>
@@ -388,18 +423,30 @@ export default function ProfilPage() {
 
         {/* ── Stats bar ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, display: 'flex', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
-          {[
-            { val: trips.length,              label: 'Turer' },
-            { val: `${totalDist.toFixed(0)}`, label: 'NM' },
-            { val: uniqueLocs,                label: 'Platser' },
-            { val: pinnar3 > 0 ? pinnar3 : trips.length, label: pinnar3 > 0 ? 'Magiska' : 'Turer' , skip: pinnar3 === 0 && false },
-            { val: followersCount,            label: 'Följare' },
-          ].map(({ val, label }, i, arr) => (
-            <div key={label} style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none' }}>
-              <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
-              <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
-            </div>
-          ))}
+          {([
+            { val: trips.length,              label: 'Turer',   href: undefined as string | undefined },
+            { val: totalDist.toFixed(0),      label: 'NM',      href: undefined },
+            { val: uniqueLocs,                label: 'Platser', href: undefined },
+            ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska', href: undefined }] : []),
+            { val: followersCount, label: 'Följare', href: user?.username ? `/u/${user.username}#followers` : undefined },
+            { val: followingCount, label: 'Följer',  href: user?.username ? `/u/${user.username}#following` : undefined },
+          ]).map(({ val, label, href }, i, arr) => {
+            const inner = (
+              <>
+                <div style={{ fontSize: 18, fontWeight: 900, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+              </>
+            )
+            const cellStyle: React.CSSProperties = {
+              flex: 1, padding: '14px 0', textAlign: 'center',
+              borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none',
+              textDecoration: 'none', color: 'inherit',
+              display: 'block',
+            }
+            return href
+              ? <Link key={label} href={href} style={cellStyle}>{inner}</Link>
+              : <div key={label} style={cellStyle}>{inner}</div>
+          })}
         </div>
 
         {/* ── Achievements grid ── */}
@@ -520,6 +567,35 @@ export default function ProfilPage() {
             </>
           )}
         </div>
+
+        {/* ── Svalla Wrapped CTA ── */}
+        <Link href="/insikter" style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
+          <div style={{
+            position: 'relative', overflow: 'hidden',
+            background: 'linear-gradient(135deg, #0a3a5a 0%, #1e5c82 50%, #c96e2a 180%)',
+            borderRadius: 18, padding: '16px 18px',
+            boxShadow: '0 4px 18px rgba(10,60,90,0.18)',
+            display: 'flex', alignItems: 'center', gap: 14,
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <div aria-hidden style={{
+              position: 'absolute', inset: 0, pointerEvents: 'none',
+              background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.18) 0%, transparent 55%)',
+            }} />
+            <div style={{ fontSize: 28, flexShrink: 0, position: 'relative' }}>✨</div>
+            <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
+                Svalla Wrapped
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginTop: 2 }}>
+                Se dina insights
+              </div>
+            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0, position: 'relative' }}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </Link>
 
         {/* ── Settings ── */}
         <SettingsSection />

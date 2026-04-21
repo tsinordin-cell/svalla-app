@@ -25,7 +25,8 @@ function medal(rank: number) {
 export default async function ToplistaPage() {
   const supabase = createClient()
 
-  const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const weekAgo  = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
 
   // Hämta alla turer (utökad data för flera listor)
   const { data: allTrips } = await supabase
@@ -66,6 +67,20 @@ export default async function ToplistaPage() {
     weekByNM[t.user_id].count++
   }
   const weekTopNM = Object.entries(weekByNM)
+    .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
+    .sort((a, b) => b.nm - a.nm)
+    .slice(0, 10)
+
+  // ── Månadens topplista: NM ────────────────────────────────────────────────
+  const monthTrips = trips.filter(t => t.created_at >= monthAgo)
+  const monthByNM: Record<string, { nm: number; count: number; magic: number }> = {}
+  for (const t of monthTrips) {
+    if (!monthByNM[t.user_id]) monthByNM[t.user_id] = { nm: 0, count: 0, magic: 0 }
+    monthByNM[t.user_id].nm += t.distance ?? 0
+    monthByNM[t.user_id].count++
+    if (t.pinnar_rating === 3) monthByNM[t.user_id].magic++
+  }
+  const monthTopNM = Object.entries(monthByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
     .sort((a, b) => b.nm - a.nm)
     .slice(0, 10)
@@ -159,6 +174,16 @@ export default async function ToplistaPage() {
           formatValue={v => `${v.toFixed(1)} NM`}
           emptyText="Ingen har loggat denna vecka än"
           accentColor="#c96e2a"
+        />
+
+        {/* ── Månadens topp: NM ── */}
+        <LeaderboardSection
+          title="🌊 Månadens topp — Nautiska mil"
+          subtitle="Senaste 30 dagarna"
+          rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} ⚓⚓⚓` : ''}` }))}
+          formatValue={v => `${v.toFixed(1)} NM`}
+          emptyText="Ingen har loggat denna månad än"
+          accentColor="#2d7d8a"
         />
 
         {/* ── Alltime topp: NM ── */}

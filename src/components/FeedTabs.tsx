@@ -222,13 +222,22 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       {!initialLoad && (
         <>
           {trips.length === 0 ? (
-            tab === 'following' && boatFilter === 'alla' ? (
+            tab === 'following' && boatFilter === 'alla' && sortKey === 'newest' ? (
               <div style={{ textAlign: 'center', padding: '60px 20px' }}>
                 <div style={{ fontSize: 52, marginBottom: 14 }}>🌊</div>
                 <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Ingen aktivitet ännu</h2>
                 <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>Följ seglare för att se deras turer här.</p>
                 <Link href="/sok" style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: 'white', fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 16px rgba(30,92,130,0.3)' }}>
                   Hitta seglare →
+                </Link>
+              </div>
+            ) : tab === 'all' && boatFilter === 'alla' && sortKey === 'newest' ? (
+              <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+                <div style={{ fontSize: 52, marginBottom: 14 }}>⛵</div>
+                <h2 style={{ fontSize: 17, fontWeight: 800, color: '#1e5c82', marginBottom: 8 }}>Inga turer ännu</h2>
+                <p style={{ fontSize: 13, color: '#7a9dab', marginBottom: 20, lineHeight: 1.5 }}>Bli först ut. Logga en tur så syns den här.</p>
+                <Link href="/spara" style={{ display: 'inline-block', padding: '11px 26px', borderRadius: 14, background: 'linear-gradient(135deg,#c96e2a,#e08940)', color: 'white', fontWeight: 700, fontSize: 13, textDecoration: 'none', boxShadow: '0 4px 16px rgba(201,110,42,0.3)' }}>
+                  Logga första turen →
                 </Link>
               </div>
             ) : (
@@ -246,7 +255,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {trips.map((trip: any) => <TripCard key={trip.id} trip={trip} />)}
+              {trips.map((trip: any, idx: number) => <TripCard key={trip.id} trip={trip} priority={idx === 0} />)}
 
               {/* Infinite scroll sentinel */}
               <div ref={sentinelRef} style={{ height: 1 }} />

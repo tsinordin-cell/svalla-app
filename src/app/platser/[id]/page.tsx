@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
+import PlaceSocialSection from '@/components/PlaceSocialSection'
 import type { Metadata } from 'next'
 
 export const revalidate = 60   // refresh reviews regularly
@@ -305,6 +306,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </Link>
+
+        {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
+        <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
 
         {/* ── Image gallery ── */}
         {r.images && r.images.length > 1 && (

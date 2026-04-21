@@ -1,11 +1,12 @@
 'use client'
 export const dynamic = 'force-dynamic'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 
-type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare'
+type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare' | 'hashtag'
 type FilterTab  = 'alla' | ResultType
 
 type Result = {
@@ -17,17 +18,19 @@ type Result = {
   href:     string
 }
 
-const TYPE_LABEL: Record<ResultType, string>  = { tur: 'Logg', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare' }
-const TYPE_EMOJI: Record<ResultType, string>  = { tur: '⛵', rutt: '🗺️', plats: '🍽', seglare: '👤' }
+const TYPE_LABEL: Record<ResultType, string>  = { tur: 'Logg', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare', hashtag: 'Tagg' }
+const TYPE_EMOJI: Record<ResultType, string>  = { tur: '⛵', rutt: '🗺️', plats: '🍽', seglare: '👤', hashtag: '#' }
 const TYPE_COLOR: Record<ResultType, string>  = {
   tur:     'rgba(30,92,130,0.09)',
   rutt:    'rgba(34,197,94,0.10)',
   plats:   'rgba(201,110,42,0.10)',
   seglare: 'rgba(124,77,30,0.10)',
+  hashtag: 'rgba(168,85,247,0.10)',
 }
-const TYPE_TEXT: Record<ResultType, string> = { tur: '#1e5c82', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e' }
+const TYPE_TEXT: Record<ResultType, string> = { tur: '#1e5c82', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e', hashtag: '#7c3aed' }
 
 const HINTS = ['Sandhamn', 'Grinda', 'Utö', 'Vaxholm', 'Fjäderholmarna', 'Arholma', 'Nynäshamn']
+const HASHTAG_HINTS = ['#sandhamn', '#skärgård', '#segling', '#magisk', '#solnedgång']
 
 const FILTER_TABS: { value: FilterTab; label: string }[] = [
   { value: 'alla',    label: 'Alla' },
@@ -35,11 +38,28 @@ const FILTER_TABS: { value: FilterTab; label: string }[] = [
   { value: 'tur',     label: '⛵ Turer' },
   { value: 'plats',   label: '🍽 Platser' },
   { value: 'rutt',    label: '🗺️ Rutter' },
+  { value: 'hashtag', label: '# Taggar' },
 ]
 
+// Extrahera hashtags från en text (max 20 tecken per tagg, ASCII + nordiska)
+function extractHashtags(text: string | null | undefined): string[] {
+  if (!text) return []
+  const matches = text.match(/#[a-zA-ZåäöÅÄÖ0-9_]{2,20}/g) ?? []
+  return matches.map(m => m.toLowerCase())
+}
+
 export default function SokPage() {
+  return (
+    <Suspense fallback={null}>
+      <SokPageInner />
+    </Suspense>
+  )
+}
+
+function SokPageInner() {
+  const sp = useSearchParams()
   const [supabase]  = useState(() => createClient())
-  const [query,     setQuery]     = useState('')
+  const [query,     setQuery]     = useState(() => sp?.get('q') ?? '')
   const [results,       setResults]       = useState<Result[]>([])
   const [loading,       setLoading]       = useState(false)
   const [searched,      setSearched]      = useState(false)
@@ -49,6 +69,13 @@ export default function SokPage() {
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => { inputRef.current?.focus() }, [])
+
+  // Synka query med URL-parameter (vid hashtag-klick eller delad länk)
+  useEffect(() => {
+    const urlQ = sp?.get('q') ?? ''
+    if (urlQ && urlQ !== query) setQuery(urlQ)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sp])
 
   // Hämta aktiva seglare (senaste 7 dagarna) för empty state
   useEffect(() => {
@@ -89,38 +116,103 @@ export default function SokPage() {
     if (!safe)   { setResults([]); setSearched(true); setLoading(false); return }
     const pattern = `%${safe}%`
 
-    const [tripsRes, toursRes, placesRes, usersRes] = await Promise.all([
-      supabase
-        .from('trips')
-        .select('id, location_name, caption, boat_type, image, created_at')
-        .or(`location_name.ilike.${pattern},caption.ilike.${pattern}`)
-        .limit(10),
-      supabase
-        .from('tours')
-        .select('id, title, usp, start_location, destination')
-        .or(`title.ilike.${pattern},start_location.ilike.${pattern},destination.ilike.${pattern}`)
-        .limit(8),
-      supabase
-        .from('restaurants')
-        .select('id, name, island, image_url')
-        .or(`name.ilike.${pattern},island.ilike.${pattern}`)
-        .limit(8),
-      supabase
-        .from('users')
-        .select('id, username, avatar, home_port, sailing_region, nationality')
-        .ilike('username', pattern)
-        .limit(8),
+    // Hashtag-läge: query börjar med # → sök bara trips som matchar taggen i caption
+    const isHashtagQuery = safe.startsWith('#')
+    const hashtagTerm = isHashtagQuery ? safe.slice(1).toLowerCase() : null
+    const hashtagPattern = hashtagTerm ? `%#${hashtagTerm.replace(/[()%_,]/g, '')}%` : null
+
+    type AnyRes<T> = { data: T[] | null }
+    const empty = <T,>(): Promise<AnyRes<T>> => Promise.resolve({ data: [] as T[] })
+
+    const tripsPromise = supabase
+      .from('trips')
+      .select('id, location_name, caption, boat_type, image, created_at')
+      .or(
+        hashtagPattern
+          ? `caption.ilike.${hashtagPattern}`
+          : `location_name.ilike.${pattern},caption.ilike.${pattern},boat_type.ilike.${pattern}`,
+      )
+      .limit(20) as unknown as Promise<AnyRes<{ id: string; location_name: string | null; caption: string | null; boat_type: string | null; image: string | null; created_at: string }>>
+
+    const toursPromise = isHashtagQuery
+      ? empty<{ id: string; title: string; usp: string | null; start_location: string; destination: string }>()
+      : (supabase
+          .from('tours')
+          .select('id, title, usp, start_location, destination')
+          .or(`title.ilike.${pattern},start_location.ilike.${pattern},destination.ilike.${pattern}`)
+          .limit(8) as unknown as Promise<AnyRes<{ id: string; title: string; usp: string | null; start_location: string; destination: string }>>)
+
+    const placesPromise = isHashtagQuery
+      ? empty<{ id: string; name: string; island: string | null; image_url: string | null }>()
+      : (supabase
+          .from('restaurants')
+          .select('id, name, island, image_url')
+          .or(`name.ilike.${pattern},island.ilike.${pattern}`)
+          .limit(8) as unknown as Promise<AnyRes<{ id: string; name: string; island: string | null; image_url: string | null }>>)
+
+    type UserRow = { id: string; username: string; avatar: string | null; home_port: string | null; sailing_region: string | null; nationality: string | null; vessel_model: string | null; vessel_name: string | null; vessel_type: string | null }
+    const usersPromise = isHashtagQuery
+      ? empty<UserRow>()
+      : (supabase
+          .from('users')
+          .select('id, username, avatar, home_port, sailing_region, nationality, vessel_model, vessel_name, vessel_type')
+          .or(
+            `username.ilike.${pattern},vessel_model.ilike.${pattern},vessel_name.ilike.${pattern},vessel_type.ilike.${pattern},home_port.ilike.${pattern}`,
+          )
+          .limit(10) as unknown as Promise<AnyRes<UserRow>>)
+
+    const hashtagTripsPromise = isHashtagQuery
+      ? empty<{ caption: string | null }>()
+      : (supabase
+          .from('trips')
+          .select('caption')
+          .ilike('caption', `%#${safe.replace(/[()%_,]/g, '')}%`)
+          .limit(40) as unknown as Promise<AnyRes<{ caption: string | null }>>)
+
+    const [tripsRes, toursRes, placesRes, usersRes, tripsForHashtagsRes] = await Promise.all([
+      tripsPromise, toursPromise, placesPromise, usersPromise, hashtagTripsPromise,
     ])
 
+    // Bygg unika hashtag-resultat (fritextläge): räkna upp förekomster av matchande taggar
+    const hashtagAgg: Record<string, number> = {}
+    if (!isHashtagQuery) {
+      const needle = safe.toLowerCase()
+      const sources = [...(tripsRes.data ?? []), ...(tripsForHashtagsRes.data ?? [])]
+      for (const t of sources) {
+        for (const tag of extractHashtags(t.caption)) {
+          if (tag.includes(needle) || needle.includes(tag.replace(/^#/, ''))) {
+            hashtagAgg[tag] = (hashtagAgg[tag] ?? 0) + 1
+          }
+        }
+      }
+    }
+    const hashtagResults: Result[] = Object.entries(hashtagAgg)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([tag, count]) => ({
+        type: 'hashtag' as const,
+        id: tag,
+        title: tag,
+        subtitle: `${count} ${count === 1 ? 'tur' : 'turer'} med denna tagg`,
+        href: `/sok?q=${encodeURIComponent(tag)}`,
+      }))
+
     const merged: Result[] = [
-      ...(usersRes.data ?? []).map(u => ({
-        type: 'seglare' as const,
-        id: u.id,
-        title: u.username,
-        subtitle: [u.home_port, u.sailing_region, u.nationality].filter(Boolean).join(' · ') || 'Seglare',
-        image: u.avatar ?? undefined,
-        href: `/u/${u.username}`,
-      })),
+      ...(usersRes.data ?? []).map(u => {
+        const vesselBits = [u.vessel_name, u.vessel_model].filter(Boolean).join(' · ')
+        const subtitle = vesselBits
+          || [u.home_port, u.sailing_region, u.nationality].filter(Boolean).join(' · ')
+          || 'Seglare'
+        return {
+          type: 'seglare' as const,
+          id: u.id,
+          title: u.username,
+          subtitle,
+          image: u.avatar ?? undefined,
+          href: `/u/${u.username}`,
+        }
+      }),
+      ...hashtagResults,
       ...(toursRes.data ?? []).map(t => ({
         type: 'rutt' as const,
         id: t.id,
@@ -156,7 +248,7 @@ export default function SokPage() {
   // Group for display
   const grouped: { type: ResultType; items: Result[] }[] = []
   if (activeTab === 'alla') {
-    for (const type of ['seglare', 'rutt', 'plats', 'tur'] as ResultType[]) {
+    for (const type of ['seglare', 'hashtag', 'rutt', 'plats', 'tur'] as ResultType[]) {
       const items = results.filter(r => r.type === type)
       if (items.length > 0) grouped.push({ type, items })
     }
@@ -193,7 +285,7 @@ export default function SokPage() {
               ref={inputRef}
               value={query}
               onChange={e => { setQuery(e.target.value); setActiveTab('alla') }}
-              placeholder="Sök seglare, platser, rutter…"
+              placeholder="Sök seglare, platser, båtmodeller, #taggar…"
               style={{
                 width: '100%', padding: '10px 36px 10px 38px',
                 borderRadius: 20, border: '1.5px solid rgba(10,123,140,0.18)',
@@ -294,7 +386,7 @@ export default function SokPage() {
             )}
 
             {/* Populära platser */}
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 18 }}>
               <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
                 Populära platser
               </div>
@@ -311,6 +403,29 @@ export default function SokPage() {
                     }}
                   >
                     📍 {hint}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Trendiga hashtags */}
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 10 }}>
+                Trendiga taggar
+              </div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {HASHTAG_HINTS.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => setQuery(tag)}
+                    style={{
+                      padding: '7px 14px', borderRadius: 20,
+                      background: 'rgba(168,85,247,0.08)', border: '1.5px solid rgba(168,85,247,0.20)',
+                      fontSize: 13, color: '#7c3aed', cursor: 'pointer', fontWeight: 700,
+                      WebkitTapHighlightColor: 'transparent',
+                    }}
+                  >
+                    {tag}
                   </button>
                 ))}
               </div>

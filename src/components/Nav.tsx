@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 
@@ -9,9 +9,30 @@ export default function Nav() {
   const path = usePathname()
   const [username, setUsername] = useState<string | null>(null)
   const [avatar,   setAvatar]   = useState<string | null>(null)
+  const [unread,   setUnread]   = useState<number>(0)
+  const channelRef = useRef<ReturnType<ReturnType<typeof createClient>['channel']> | null>(null)
 
   useEffect(() => {
     const supabase = createClient()
+
+    async function loadUnread(uid: string) {
+      const { count } = await supabase
+        .from('notifications')
+        .select('*', { count: 'exact', head: true })
+        .eq('user_id', uid)
+        .eq('read', false)
+      setUnread(count ?? 0)
+    }
+
+    function subscribe(uid: string) {
+      if (channelRef.current) supabase.removeChannel(channelRef.current)
+      channelRef.current = supabase
+        .channel(`nav-notif:${uid}`)
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },
+          () => loadUnread(uid))
+        .subscribe()
+    }
+
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         supabase
@@ -23,9 +44,12 @@ export default function Nav() {
             setUsername(data?.username ?? null)
             setAvatar(data?.avatar ?? null)
           })
+        loadUnread(user.id)
+        subscribe(user.id)
       } else {
         setUsername(null)
         setAvatar(null)
+        setUnread(0)
       }
     })
     // Lyssna på auth-ändringar — uppdatera username direkt vid login/logout
@@ -33,6 +57,8 @@ export default function Nav() {
       if (!session) {
         setUsername(null)
         setAvatar(null)
+        setUnread(0)
+        if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
       } else if (session.user) {
         supabase
           .from('users')
@@ -43,10 +69,20 @@ export default function Nav() {
             setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
             setAvatar(data?.avatar ?? null)
           })
+        loadUnread(session.user.id)
+        subscribe(session.user.id)
       }
     })
-    return () => subscription.unsubscribe()
+    return () => {
+      subscription.unsubscribe()
+      if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
+    }
   }, [])
+
+  // Decay badge when user is viewing notiser-page
+  useEffect(() => {
+    if (path.startsWith('/notiser')) setUnread(0)
+  }, [path])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
   const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser']
@@ -82,6 +118,30 @@ export default function Nav() {
         <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />
         </svg>
+      ),
+    },
+    {
+      href: '/notiser',
+      label: 'Notiser',
+      icon: (active: boolean) => (
+        <div style={{ position: 'relative' }}>
+          <svg viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} strokeWidth={active ? 0 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          {username && unread > 0 && (
+            <span style={{
+              position: 'absolute', top: -3, right: -5,
+              minWidth: 16, height: 16, padding: '0 4px',
+              borderRadius: 8, background: '#dc2626',
+              color: '#fff', fontSize: 9, fontWeight: 800,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 1px 4px rgba(220,38,38,0.45)',
+              lineHeight: 1,
+            }}>
+              {unread > 99 ? '99+' : unread}
+            </span>
+          )}
+        </div>
       ),
     },
     {
@@ -128,17 +188,9 @@ export default function Nav() {
     },
   ]
 
-  // Feed har redan en notis-klocka i sin header.
-  // Tur-sidan och logga-sidorna har egna knappar i top-right — lägg inte på klockn där.
-  const showGlobalBell =
-    path !== '/' &&
-    path !== '/feed' &&
-    path !== '/rutter' &&
-    path !== '/profil' &&
-    !path.startsWith('/tur/') &&
-    !path.startsWith('/rutter/') &&
-    !path.startsWith('/logga') &&
-    !path.startsWith('/spara')
+  // Notiser nu en egen tab — global bell behövs inte längre när nav är synligt.
+  // Visas bara på info-sidor utanför app-flödet (där nav inte renderas alls — så blir falskt här).
+  const showGlobalBell = false
 
   return (
     <>
@@ -191,16 +243,16 @@ export default function Nav() {
         return (
           <Link key={tab.href} href={tab.href} style={{
             flex: 1, display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center', gap: 3,
+            alignItems: 'center', justifyContent: 'center', gap: 2,
             textDecoration: 'none',
             color: active ? 'var(--sea)' : 'var(--txt3)',
-            fontSize: 9, fontWeight: 600, letterSpacing: '0.3px',
+            fontSize: 8.5, fontWeight: 600, letterSpacing: '0.25px',
             textTransform: 'uppercase', position: 'relative',
             WebkitTapHighlightColor: 'transparent',
             minHeight: 44,  // touch target
           }}>
             {tab.icon?.(active)}
-            <span style={{ maxWidth: 52, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span style={{ maxWidth: 48, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {tab.label}
             </span>
             {active && (

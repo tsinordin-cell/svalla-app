@@ -22,3 +22,31 @@ export function timeAgoShort(dateStr: string): string {
   if (m < 1440) return `${Math.floor(m / 60)}h`
   return `${Math.floor(m / 1440)}d`
 }
+
+/** Absolut datum i svensk lokal — för title-attribut vid hover. */
+export function absoluteDate(dateStr: string): string {
+  const d = new Date(dateStr)
+  return d.toLocaleString('sv-SE', {
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+  })
+}
+
+/** Deterministisk gradient-fallback för avatar baserat på username/id. */
+export function avatarGradient(seed: string | null | undefined): string {
+  const s = (seed ?? 'svalla').toLowerCase()
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  const hue1 = h % 360
+  const hue2 = (hue1 + 40 + (h >> 8) % 80) % 360
+  return `linear-gradient(135deg, hsl(${hue1}, 55%, 42%) 0%, hsl(${hue2}, 60%, 32%) 100%)`
+}
+
+/** Initialer från username — max 2 tecken. */
+export function initialsOf(name: string | null | undefined): string {
+  const n = (name ?? '?').trim()
+  if (!n) return '?'
+  const parts = n.split(/\s+/)
+  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase()
+  return n.slice(0, 2).toUpperCase()
+}

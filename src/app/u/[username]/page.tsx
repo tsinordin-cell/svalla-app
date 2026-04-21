@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
+import FollowPrefsButton from '@/components/FollowPrefsButton'
 import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
@@ -107,7 +108,8 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
       }}>
         <BackButtonInline fallback="/feed" />
         <span style={{ fontSize: 17, fontWeight: 900, color: '#1e5c82' }}>{userRow.username}</span>
-        <div style={{ marginLeft: 'auto' }}>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
           <FollowButton targetUserId={userRow.id} />
         </div>
       </header>

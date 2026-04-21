@@ -8,6 +8,8 @@ import LikeButton from '@/components/LikeButton'
 import Comments from '@/components/Comments'
 import ShareButton from '@/components/ShareButton'
 import TripActions from '@/components/TripActions'
+import TripTagger from '@/components/TripTagger'
+import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
 import RouteMapSVG from '@/components/RouteMapSVG'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
@@ -424,6 +426,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <Comments tripId={trip.id} />
             {/* Spacer */}
             <div style={{ flex: 1 }} />
+            <RepostButton tripId={trip.id} tripOwnerId={trip.user_id} compact />
             {/* Dela-knapp med text — mer synlig */}
             <ShareButton
               url={`https://svalla.se/tur/${id}`}
@@ -431,6 +434,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               variant="pill"
             />
           </div>
+
+          <TripTagger
+            tripId={trip.id}
+            tripOwnerId={trip.user_id}
+            currentUserId={currentUser?.id ?? null}
+          />
         </div>
 
         {/* Map */}

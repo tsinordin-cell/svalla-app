@@ -594,6 +594,11 @@ export default function SparaPage() {
         if (justUnlocked.length > 0) {
           setNewAchievements(justUnlocked.map(a => ({ emoji: a.emoji, label: a.label })))
           setShowCelebration(true)
+          // Persistera achievement-events för feed + notiser
+          try {
+            const rows = justUnlocked.map(a => ({ user_id: user.id, achievement_key: a.id }))
+            await supabase.from('achievement_events').insert(rows)
+          } catch { /* dup-key tyst */ }
         }
       } catch { /* tyst */ }
     }).catch(() => {})
@@ -1035,7 +1040,9 @@ export default function SparaPage() {
         {/* ── GPS center button — top right, always visible above sheet ── */}
         <button
           onClick={() => setCenterTrigger(n => n + 1)}
+          disabled={!currentPos}
           aria-label="Centrera på min position"
+          title="Centrera"
           style={{
             position: 'absolute',
             top: 'calc(env(safe-area-inset-top, 0px) + 14px)',
@@ -1047,7 +1054,10 @@ export default function SparaPage() {
             border: '1px solid rgba(0,0,0,0.08)',
             boxShadow: '0 2px 12px rgba(0,0,0,0.22)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer',
+            cursor: currentPos ? 'pointer' : 'not-allowed',
+            opacity: currentPos ? 1 : 0.5,
+            transition: 'opacity .2s, transform .15s',
+            padding: 0,
           }}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
@@ -1076,16 +1086,23 @@ export default function SparaPage() {
             </span>
             <button
               onClick={() => setStatsExpanded(true)}
-              aria-label="Visa statistik"
+              aria-label="Visa fullständig statistik"
+              title="Expandera statistik"
               style={{
-                width: 34, height: 34, borderRadius: 8,
-                background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)',
-                color: 'rgba(255,255,255,0.8)', cursor: 'pointer',
+                width: 36, height: 36, borderRadius: 10,
+                background: 'rgba(255,255,255,0.10)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                color: 'rgba(255,255,255,0.9)', cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
+                WebkitTapHighlightColor: 'transparent',
+                transition: 'background .15s, border-color .15s, transform .12s',
+                padding: 0,
               }}
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.18)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.10)' }}
             >
               {/* Expand — fyra hörn-brackets */}
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17 }}>
                 <path d="M3 8V3h5"/>
                 <path d="M17 8V3h-5"/>
                 <path d="M3 12v5h5"/>

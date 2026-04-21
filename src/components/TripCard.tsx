@@ -9,8 +9,9 @@ import LikeButton from './LikeButton'
 import Comments from './Comments'
 import ShareButton from './ShareButton'
 import RouteMapSVG from './RouteMapSVG'
+import ProfileTeaserPopover from './ProfileTeaserPopover'
 import { formatDurationMin } from '@/lib/gps'
-import { timeAgo } from '@/lib/utils'
+import { timeAgo, absoluteDate } from '@/lib/utils'
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)
@@ -63,7 +64,7 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
   )
 }
 
-export default function TripCard({ trip }: { trip: Trip }) {
+export default function TripCard({ trip, priority = false }: { trip: Trip; priority?: boolean }) {
   const router = useRouter()
   const [imgErr,   setImgErr]   = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -128,17 +129,19 @@ export default function TripCard({ trip }: { trip: Trip }) {
           onClick={e => e.stopPropagation()}
           style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flex: 1, minWidth: 0 }}
         >
-          {/* Avatar */}
-          <div style={{
-            width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 14, fontWeight: 900, color: '#fff',
-          }}>
-            {avatar
-              ? <Image src={avatar} alt={username} width={38} height={38} style={{ objectFit: 'cover' }} />
-              : username[0]?.toUpperCase() ?? '?'}
-          </div>
+          {/* Avatar — long-press visar teaser */}
+          <ProfileTeaserPopover username={username}>
+            <div style={{
+              width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: 14, fontWeight: 900, color: '#fff',
+            }}>
+              {avatar
+                ? <Image src={avatar} alt={username} width={38} height={38} style={{ objectFit: 'cover' }} />
+                : username[0]?.toUpperCase() ?? '?'}
+            </div>
+          </ProfileTeaserPopover>
 
           {/* Name + meta */}
           <div style={{ minWidth: 0 }}>
@@ -150,7 +153,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
               display: 'flex', alignItems: 'center', gap: 4,
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
-              <span style={{ flexShrink: 0 }}>{timeAgo(trip.created_at)}</span>
+              <span title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgo(trip.created_at)}</span>
               {trip.boat_type && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
@@ -254,6 +257,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, 640px"
+                  priority={priority}
                   onError={() => setImgErr(true)}
                 />
               </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface StopMarker {
   lat: number
@@ -18,6 +18,8 @@ interface LiveTrackMapProps {
   stops?: StopMarker[]
   height?: number     // px, default 240
   centerTrigger?: number  // increment to force re-center on currentPos
+  onExpand?: () => void   // optional callback for expand button
+  showInternalControls?: boolean  // show built-in center + expand controls (default false; parent controls otherwise)
 }
 
 export default function LiveTrackMap({
@@ -29,7 +31,10 @@ export default function LiveTrackMap({
   stops = [],
   height = 240,
   centerTrigger = 0,
+  onExpand,
+  showInternalControls = false,
 }: LiveTrackMapProps) {
+  const [followOff, setFollowOff] = useState(false)
   const mapContainer   = useRef<HTMLDivElement>(null)
   const mapInstance    = useRef<any>(null)
   const polylineRef    = useRef<any>(null)
@@ -85,9 +90,11 @@ export default function LiveTrackMap({
       // Pause auto-follow when user manually pans
       mapInstance.current.on('dragstart', () => {
         userPannedRef.current = true
+        setFollowOff(true)
         if (followTimerRef.current) clearTimeout(followTimerRef.current)
         followTimerRef.current = setTimeout(() => {
           userPannedRef.current = false
+          setFollowOff(false)
         }, 8000)
       })
 
@@ -207,6 +214,7 @@ export default function LiveTrackMap({
   useEffect(() => {
     if (!centerTrigger || !mapInstance.current || !currentPos) return
     userPannedRef.current = false
+    setFollowOff(false)
     mapInstance.current.setView([currentPos.lat, currentPos.lng], 15, { animate: true, duration: 0.6 })
   }, [centerTrigger]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -245,7 +253,8 @@ export default function LiveTrackMap({
   function recenter() {
     if (!mapInstance.current || !currentPos) return
     userPannedRef.current = false
-    mapInstance.current.setView([currentPos.lat, currentPos.lng], 14, { animate: true, duration: 0.6 })
+    setFollowOff(false)
+    mapInstance.current.setView([currentPos.lat, currentPos.lng], 15, { animate: true, duration: 0.6 })
   }
 
   return (
@@ -274,10 +283,68 @@ export default function LiveTrackMap({
         </div>
       )}
 
+      {/* Internal controls — opt-in via showInternalControls. Useful for embedded maps. */}
+      {showInternalControls && (
+        <div style={{ position: 'absolute', top: 12, right: 12, zIndex: 810, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <button
+            onClick={recenter}
+            disabled={!currentPos}
+            aria-label={followOff ? 'Återställ följning' : 'Centrera på min position'}
+            title={followOff ? 'Återställ följning' : 'Centrera'}
+            style={{
+              width: 40, height: 40, borderRadius: 20,
+              background: followOff ? 'linear-gradient(135deg, var(--acc, #c96e2a), #e07828)' : 'rgba(255,255,255,0.95)',
+              backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(0,0,0,0.08)',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.18)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: currentPos ? 'pointer' : 'not-allowed',
+              opacity: currentPos ? 1 : 0.45,
+              transition: 'background .2s, transform .15s',
+              animation: followOff ? 'svm-attn 1.6s ease-in-out infinite' : 'none',
+              padding: 0,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke={followOff ? '#fff' : '#1e5c82'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+              <circle cx="12" cy="12" r="3" fill={followOff ? '#fff' : '#1e5c82'} stroke="none"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+              <circle cx="12" cy="12" r="7"/>
+            </svg>
+          </button>
+          {onExpand && (
+            <button
+              onClick={onExpand}
+              aria-label="Expandera karta"
+              title="Expandera"
+              style={{
+                width: 40, height: 40, borderRadius: 20,
+                background: 'rgba(255,255,255,0.95)',
+                backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(0,0,0,0.08)',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.18)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                cursor: 'pointer', padding: 0,
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1e5c82" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+                <path d="M4 9V4h5"/>
+                <path d="M20 9V4h-5"/>
+                <path d="M4 15v5h5"/>
+                <path d="M20 15v5h-5"/>
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
+
       <style>{`
         @keyframes pulse-dot-live {
           0%,100%{opacity:1;transform:scale(1)}
           50%{opacity:.5;transform:scale(.7)}
+        }
+        @keyframes svm-attn {
+          0%,100%{box-shadow:0 2px 10px rgba(201,110,42,0.45), 0 0 0 0 rgba(201,110,42,0.45)}
+          50%    {box-shadow:0 2px 10px rgba(201,110,42,0.45), 0 0 0 8px rgba(201,110,42,0)}
         }
       `}</style>
     </div>

@@ -73,6 +73,29 @@ export default function NotiserPage() {
   const [loading, setLoading] = useState(true)
   const [userId,  setUserId]  = useState<string | null>(null)
 
+  // Track whether THIS session navigated to /notiser (vs landed directly via push/PWA)
+  const wasNavigatedRef = useRef(false)
+  useEffect(() => {
+    // Read referrer once on mount; same-origin referrer ⇒ user came from inside the app
+    if (typeof document !== 'undefined' && document.referrer) {
+      try {
+        const ref = new URL(document.referrer)
+        if (ref.origin === window.location.origin && ref.pathname !== '/notiser') {
+          wasNavigatedRef.current = true
+        }
+      } catch { /* ignore */ }
+    }
+  }, [])
+
+  function handleBack() {
+    if (wasNavigatedRef.current) {
+      router.back()
+    } else {
+      // Direct entry (push, PWA shortcut, deep link) → safe fallback
+      router.push('/feed')
+    }
+  }
+
   useEffect(() => {
     let channel: ReturnType<typeof supabase.channel> | null = null
 
@@ -141,7 +164,7 @@ export default function NotiserPage() {
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <button
-          onClick={() => window.history.length > 1 ? router.back() : router.push('/feed')}
+          onClick={handleBack}
           style={{
             width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)',
             border: 'none', cursor: 'pointer', flexShrink: 0,

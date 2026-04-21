@@ -4,8 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
 import FeedTabs from '@/components/FeedTabs'
+import StoriesStrip from '@/components/StoriesStrip'
 import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
+import AchievementFeedCard from '@/components/AchievementFeedCard'
+import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 0
@@ -141,6 +144,19 @@ export default async function FeedPage() {
   // Magiska turer (⚓⚓⚓) de senaste 7 dagarna för highlight
   const magicTrips = thisWeek.filter((t: { pinnar_rating: number | null }) => t.pinnar_rating === 3).slice(0, 3)
 
+  // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
+  let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
+  if (user) {
+    const { data: followsForAchv } = await supabase
+      .from('follows').select('following_id').eq('follower_id', user.id)
+    const networkIds = [
+      user.id,
+      ...((followsForAchv ?? []).map((f: { following_id: string }) => f.following_id)),
+    ]
+    const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+    recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <OnboardingModal />
@@ -203,6 +219,11 @@ export default async function FeedPage() {
             </div>
           </div>
         )}
+
+        {/* ── Stories (24h) ── */}
+        <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
+          <StoriesStrip />
+        </div>
 
         {/* ── Aktivt nu (senaste 24h) ── */}
         {activeNow.length > 0 && (
@@ -288,8 +309,22 @@ export default async function FeedPage() {
           </div>
         )}
 
+        {/* ── Nya märken från nätverket ── */}
+        {recentAchievements.length > 0 && (
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontSize: 10, fontWeight: 800, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+              🏆 Nya märken i nätverket
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {recentAchievements.map(ev => (
+                <AchievementFeedCard key={ev.id} ev={ev} />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* ── Divider ── */}
-        {(activeNow.length > 0 || magicTrips.length > 0) && trips && trips.length > 0 && (
+        {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && trips && trips.length > 0 && (
           <div style={{ fontSize: 10, fontWeight: 800, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>

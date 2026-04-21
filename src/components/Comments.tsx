@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createClient } from '@/lib/supabase'
-import { timeAgoShort } from '@/lib/utils'
+import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import Link from 'next/link'
 
 type Comment = {
@@ -10,6 +10,7 @@ type Comment = {
   created_at: string
   user_id: string
   username?: string
+  avatar?: string | null
   optimistic?: boolean
 }
 
@@ -28,14 +29,16 @@ export default function Comments({
   const hasLoadedRef = useRef(false)
   const channelRef   = useRef<ReturnType<typeof supabase.channel> | null>(null)
 
-  const [comments,   setComments]   = useState<Comment[]>([])
-  const [text,       setText]       = useState('')
-  const [userId,     setUserId]     = useState<string | null>(null)
-  const [myUsername, setMyUsername] = useState('Seglare')
-  const [posting,    setPosting]    = useState(false)
-  const [open,       setOpen]       = useState(false)
-  const [loading,    setLoading]    = useState(false)
-  const [deleting,   setDeleting]   = useState<string | null>(null)
+  const [comments,    setComments]    = useState<Comment[]>([])
+  const [text,        setText]        = useState('')
+  const [userId,      setUserId]      = useState<string | null>(null)
+  const [myUsername,  setMyUsername]  = useState('Seglare')
+  const [myAvatar,    setMyAvatar]    = useState<string | null>(null)
+  const [posting,     setPosting]     = useState(false)
+  const [open,        setOpen]        = useState(false)
+  const [loading,     setLoading]     = useState(false)
+  const [deleting,    setDeleting]    = useState<string | null>(null)
+  const [confirmDel,  setConfirmDel]  = useState<string | null>(null)
 
   const displayCount = hasLoadedRef.current ? comments.length : (initialCount ?? 0)
 
@@ -43,8 +46,11 @@ export default function Comments({
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) return
       setUserId(user.id)
-      supabase.from('users').select('username').eq('id', user.id).single()
-        .then(({ data }) => { if (data?.username) setMyUsername(data.username) })
+      supabase.from('users').select('username, avatar').eq('id', user.id).single()
+        .then(({ data }) => {
+          if (data?.username) setMyUsername(data.username)
+          if (data?.avatar) setMyAvatar(data.avatar)
+        })
     })
   }, [supabase])
 
@@ -58,11 +64,15 @@ export default function Comments({
     const rows = (data ?? []) as Comment[]
     const uids = [...new Set(rows.map(c => c.user_id).filter(Boolean))]
     const { data: uRows } = uids.length
-      ? await supabase.from('users').select('id, username').in('id', uids)
+      ? await supabase.from('users').select('id, username, avatar').in('id', uids)
       : { data: [] }
-    const umap: Record<string, string> = {}
-    for (const u of uRows ?? []) umap[u.id] = u.username
-    setComments(rows.map(c => ({ ...c, username: umap[c.user_id] ?? 'Seglare' })))
+    const umap: Record<string, { username: string; avatar: string | null }> = {}
+    for (const u of uRows ?? []) umap[u.id] = { username: u.username, avatar: u.avatar ?? null }
+    setComments(rows.map(c => ({
+      ...c,
+      username: umap[c.user_id]?.username ?? 'Seglare',
+      avatar:   umap[c.user_id]?.avatar ?? null,
+    })))
     hasLoadedRef.current = true
   }, [supabase, tripId])
 
@@ -109,7 +119,7 @@ export default function Comments({
     setPosting(true)
     setText('')
     const tempId = `opt-${Date.now()}`
-    setComments(prev => [...prev, { id: tempId, content, created_at: new Date().toISOString(), user_id: userId, username: myUsername, optimistic: true }])
+    setComments(prev => [...prev, { id: tempId, content, created_at: new Date().toISOString(), user_id: userId, username: myUsername, avatar: myAvatar, optimistic: true }])
     hasLoadedRef.current = true
     const { error } = await supabase.from('comments').insert({ trip_id: tripId, user_id: userId, content })
     if (error) { setComments(prev => prev.filter(c => c.id !== tempId)); setText(content); setPosting(false); return }
@@ -235,7 +245,9 @@ export default function Comments({
               {/* Comments */}
               {comments.map((c, idx) => {
                 const isMe = c.user_id === userId
-                const initials = (c.username ?? '?')[0].toUpperCase()
+                const initials = initialsOf(c.username)
+                const grad = avatarGradient(c.username ?? c.user_id)
+                const isConfirming = confirmDel === c.id
                 return (
                   <div key={c.id} style={{
                     display: 'flex', gap: 10, marginBottom: idx < comments.length - 1 ? 14 : 6,
@@ -247,13 +259,17 @@ export default function Comments({
                     <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
                       <div style={{
                         width: 34, height: 34, borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #1a5c7a 0%, #2a8a9a 100%)',
+                        background: grad,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: '#fff', fontSize: 13, fontWeight: 800,
+                        color: '#fff', fontSize: 12, fontWeight: 800,
                         boxShadow: '0 2px 6px rgba(0,60,90,0.18)',
-                        flexShrink: 0,
+                        flexShrink: 0, overflow: 'hidden', position: 'relative',
+                        letterSpacing: 0.2,
                       }}>
-                        {initials}
+                        {c.avatar ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                        ) : initials}
                       </div>
                     </Link>
 
@@ -276,7 +292,10 @@ export default function Comments({
                           >
                             {c.username}
                           </Link>
-                          <span style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500 }}>
+                          <span
+                            title={c.optimistic ? '' : absoluteDate(c.created_at)}
+                            style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500, cursor: c.optimistic ? 'default' : 'help' }}
+                          >
                             {c.optimistic ? 'skickar…' : timeAgoShort(c.created_at)}
                           </span>
                         </div>
@@ -286,25 +305,54 @@ export default function Comments({
                       </div>
                     </div>
 
-                    {/* Delete */}
+                    {/* Delete — two-step inline confirm */}
                     {isMe && !c.optimistic && (
-                      <button
-                        onClick={e => { e.stopPropagation(); deleteComment(c.id) }}
-                        disabled={deleting === c.id}
-                        aria-label="Radera kommentar"
-                        style={{
-                          background: 'none', border: 'none', cursor: 'pointer',
-                          color: 'var(--txt3)', padding: '6px',
-                          opacity: deleting === c.id ? 0.25 : 0.40,
-                          flexShrink: 0, display: 'flex', alignItems: 'center',
-                          WebkitTapHighlightColor: 'transparent', marginTop: 4,
-                          transition: 'opacity .15s',
-                        }}
-                      >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 14, height: 14 }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
+                      isConfirming ? (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, flexShrink: 0, marginTop: 2 }}>
+                          <button
+                            onClick={e => { e.stopPropagation(); deleteComment(c.id); setConfirmDel(null) }}
+                            disabled={deleting === c.id}
+                            aria-label="Bekräfta radera"
+                            style={{
+                              background: 'rgba(220,38,38,0.10)', border: '1px solid rgba(220,38,38,0.30)',
+                              color: '#dc2626', padding: '4px 8px', borderRadius: 8,
+                              fontSize: 10, fontWeight: 800, cursor: 'pointer',
+                              WebkitTapHighlightColor: 'transparent',
+                            }}
+                          >Radera</button>
+                          <button
+                            onClick={e => { e.stopPropagation(); setConfirmDel(null) }}
+                            aria-label="Avbryt"
+                            style={{
+                              background: 'transparent', border: 'none',
+                              color: 'var(--txt3)', padding: '2px 4px',
+                              fontSize: 10, cursor: 'pointer',
+                              WebkitTapHighlightColor: 'transparent',
+                            }}
+                          >Avbryt</button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={e => { e.stopPropagation(); setConfirmDel(c.id) }}
+                          disabled={deleting === c.id}
+                          aria-label="Radera kommentar"
+                          title="Radera"
+                          style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            color: 'var(--txt3)', padding: '6px',
+                            opacity: deleting === c.id ? 0.25 : 0.45,
+                            flexShrink: 0, display: 'flex', alignItems: 'center',
+                            WebkitTapHighlightColor: 'transparent', marginTop: 4,
+                            transition: 'opacity .15s, color .15s',
+                          }}
+                          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = '#dc2626'; (e.currentTarget as HTMLButtonElement).style.opacity = '0.85' }}
+                          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--txt3)'; (e.currentTarget as HTMLButtonElement).style.opacity = '0.45' }}
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14zM10 11v6M14 11v6" />
+                          </svg>
+                        </button>
+                      )
                     )}
                   </div>
                 )

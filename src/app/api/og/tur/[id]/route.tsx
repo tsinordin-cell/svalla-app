@@ -47,10 +47,10 @@ export async function GET(
     : { data: null }
 
   // ── Stats ──────────────────────────────────────────────────────────────
-  const dist   = trip?.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
-  const dur    = trip?.duration > 0    ? fmtDur(trip.duration)         : null
-  const speed  = trip?.max_speed_knots >= 0.1 ? `${trip.max_speed_knots.toFixed(1)}` : null
-  const avgSpd = trip?.average_speed_knots >= 0.1 ? `${trip.average_speed_knots.toFixed(1)}` : null
+  const dist   = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
+  const dur    = trip && trip.duration > 0    ? fmtDur(trip.duration)         : null
+  const speed  = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? `${(trip.max_speed_knots ?? 0).toFixed(1)}` : null
+  const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? `${(trip.average_speed_knots ?? 0).toFixed(1)}` : null
   const locLabel = trip?.start_location && trip?.location_name
     ? `${trip.start_location}  →  ${trip.location_name}`
     : trip?.location_name ?? ''
@@ -60,7 +60,7 @@ export async function GET(
   const magisk    = trip?.pinnar_rating === 3
 
   // ── Route SVG path ──────────────────────────────────────────────────────
-  const routePts = Array.isArray(trip?.route_points) && trip.route_points.length >= 2
+  const routePts = trip && Array.isArray(trip.route_points) && trip.route_points.length >= 2
     ? (trip.route_points as { lat: number; lng: number }[])
     : null
   const RW = 420, RH = 440
