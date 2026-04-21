@@ -9,12 +9,12 @@ export default function UserProfileLoading() {
       <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 16px', paddingBottom: 'calc(var(--nav-h, 60px) + 16px)' }}>
         {/* Avatar + follow row */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 14, marginTop: -36, marginBottom: 16 }}>
-          <div style={{ width: 80, height: 80, borderRadius: '50%', flexShrink: 0, border: '3px solid var(--bg, #f2f8fa)', ...sk }} className="sk" />
+          <div style={{ width: 80, height: 80, flexShrink: 0, border: '3px solid var(--bg, #f2f8fa)', ...sk, borderRadius: '50%' }} className="sk" />
           <div style={{ flex: 1, paddingBottom: 4 }}>
             <div style={{ width: '40%', height: 18, marginBottom: 8, ...sk }} className="sk" />
             <div style={{ width: '25%', height: 11, ...sk }} className="sk" />
           </div>
-          <div style={{ width: 90, height: 34, borderRadius: 20, flexShrink: 0, ...sk }} className="sk" />
+          <div style={{ width: 90, height: 34, flexShrink: 0, ...sk, borderRadius: 20 }} className="sk" />
         </div>
 
         {/* Stats row */}

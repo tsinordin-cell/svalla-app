@@ -18,7 +18,7 @@ export default function PlatserLoading() {
         {/* Filter pills */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 14, overflowX: 'hidden' }}>
           {[60, 90, 80, 70, 85].map((w, i) => (
-            <div key={i} style={{ width: w, height: 30, borderRadius: 20, flexShrink: 0, ...sk }} className="sk" />
+            <div key={i} style={{ width: w, height: 30, flexShrink: 0, ...sk, borderRadius: 20 }} className="sk" />
           ))}
         </div>
         {[1,2,3].map(i => (

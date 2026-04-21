@@ -12,12 +12,12 @@ export default function ProfilLoading() {
       <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 16px', paddingBottom: 'calc(var(--nav-h, 60px) + 16px)' }}>
         {/* Avatar + name row */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 14, marginTop: -36, marginBottom: 16 }}>
-          <div style={{ width: 80, height: 80, borderRadius: '50%', flexShrink: 0, border: '3px solid var(--bg, #f2f8fa)', ...sk }} className="sk" />
+          <div style={{ width: 80, height: 80, flexShrink: 0, border: '3px solid var(--bg, #f2f8fa)', ...sk, borderRadius: '50%' }} className="sk" />
           <div style={{ flex: 1, paddingBottom: 4 }}>
             <div style={{ width: '45%', height: 18, marginBottom: 8, ...sk }} className="sk" />
             <div style={{ width: '30%', height: 12, ...sk }} className="sk" />
           </div>
-          <div style={{ width: 80, height: 34, borderRadius: 20, flexShrink: 0, ...sk }} className="sk" />
+          <div style={{ width: 80, height: 34, flexShrink: 0, ...sk, borderRadius: 20 }} className="sk" />
         </div>
 
         {/* Stats row */}
@@ -37,7 +37,7 @@ export default function ProfilLoading() {
         {/* Tab pills */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>
           {[72, 80, 68].map((w: number, i: number) => (
-            <div key={i} style={{ width: w, height: 32, borderRadius: 20, flexShrink: 0, ...sk }} className="sk" />
+            <div key={i} style={{ width: w, height: 32, flexShrink: 0, ...sk, borderRadius: 20 }} className="sk" />
           ))}
         </div>
 

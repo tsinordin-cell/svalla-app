@@ -21,12 +21,12 @@ export default function NotiserLoading() {
             padding: '14px 16px',
             boxShadow: '0 1px 8px rgba(0,30,50,0.06)',
           }}>
-            <div style={{ width: 44, height: 44, borderRadius: '50%', flexShrink: 0, ...sk }} className="sk" />
+            <div style={{ width: 44, height: 44, flexShrink: 0, ...sk, borderRadius: '50%' }} className="sk" />
             <div style={{ flex: 1 }}>
               <div style={{ width: '65%', height: 13, marginBottom: 7, ...sk }} className="sk" />
               <div style={{ width: '40%', height: 10, ...sk }} className="sk" />
             </div>
-            <div style={{ width: 36, height: 28, borderRadius: 10, flexShrink: 0, ...sk }} className="sk" />
+            <div style={{ width: 36, height: 28, flexShrink: 0, ...sk, borderRadius: 10 }} className="sk" />
           </div>
         ))}
       </div>
