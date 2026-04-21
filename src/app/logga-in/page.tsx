@@ -296,7 +296,7 @@ export default function LoggaInPage() {
             style={{
               display: 'block', width: '100%', marginTop: 18,
               background: 'none', border: 'none', cursor: 'pointer',
-              fontSize: 14, color: '#5a8090', textAlign: 'center', fontWeight: 500, fontFamily: 'inherit',
+              fontSize: 14, color: 'var(--txt2)', textAlign: 'center', fontWeight: 500, fontFamily: 'inherit',
             }}
           >
             {isNew ? 'Har redan konto? Logga in →' : 'Ny på Svalla? Skapa konto gratis →'}

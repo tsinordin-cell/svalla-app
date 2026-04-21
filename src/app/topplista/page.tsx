@@ -307,7 +307,7 @@ function LeaderboardSection({
                   width: 28, height: 28, flexShrink: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: i < 3 ? 20 : 12, fontWeight: 600,
-                  color: i < 3 ? undefined : '#7a9dab',
+                  color: i < 3 ? undefined : 'var(--txt3)',
                 }}>
                   {medal(i + 1)}
                 </div>

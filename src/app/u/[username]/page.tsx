@@ -252,7 +252,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                     boxShadow: unlocked ? '0 1px 6px rgba(0,45,60,0.07)' : 'none',
                   }}>
                     <span style={{ fontSize: 20 }}>{a.emoji}</span>
-                    <span style={{ fontSize: 7, fontWeight: 700, color: '#5a8090', textAlign: 'center', lineHeight: 1.2, maxWidth: 44, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.label}</span>
+                    <span style={{ fontSize: 7, fontWeight: 700, color: 'var(--txt2)', textAlign: 'center', lineHeight: 1.2, maxWidth: 44, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.label}</span>
                   </div>
                 )
               })}

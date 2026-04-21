@@ -751,7 +751,7 @@ export default function SparaPage() {
             className="w-full py-5 rounded-2xl text-white font-bold text-lg transition-all"
             style={{
               background: boatType ? 'linear-gradient(135deg,#0f9e64,#0d8554)' : 'rgba(10,123,140,0.15)',
-              color:      boatType ? 'white' : '#7a9dab',
+              color: boatType ? 'white' : 'var(--txt3)',
               boxShadow:  boatType ? '0 4px 20px rgba(15,158,100,0.4)' : 'none',
             }}
           >
@@ -1304,7 +1304,7 @@ export default function SparaPage() {
               marginBottom: 12, padding: '7px 12px',
               background: 'rgba(30,92,130,.06)', borderRadius: 10,
             }}>
-              <span style={{ fontSize: 12, color: '#5a8090', fontWeight: 600 }}>
+              <span style={{ fontSize: 12, color: 'var(--txt2)', fontWeight: 600 }}>
                 ↑ {bearingLabel(bearing)} — rutt från start till slut
               </span>
             </div>
@@ -1341,7 +1341,7 @@ export default function SparaPage() {
                 }}
               >
                 <span style={{ fontSize: 16 }}>{emoji}</span>
-                <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === val ? '#fff' : '#7a9dab' }}>{label}</span>
+                <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === val ? '#fff' : 'var(--txt3)' }}>{label}</span>
               </button>
             ))}
           </div>

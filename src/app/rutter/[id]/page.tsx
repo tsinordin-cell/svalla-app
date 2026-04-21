@@ -219,7 +219,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               {t.hamn_profil.map((h) => (
                 <span key={h} style={{
                   padding: '6px 12px', borderRadius: 20,
-                  background: 'rgba(10,123,140,0.06)', color: '#2d6a82',
+                  background: 'rgba(10,123,140,0.06)', color: 'var(--sea)',
                   fontSize: 12, fontWeight: 600, border: '1px solid rgba(10,123,140,0.12)',
                 }}>
                   {h}
@@ -236,7 +236,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               {t.bad_profil.map((b) => (
                 <span key={b} style={{
                   padding: '6px 12px', borderRadius: 20,
-                  background: 'rgba(0,150,180,0.07)', color: '#0a6a8a',
+                  background: 'rgba(0,150,180,0.07)', color: 'var(--sea)',
                   fontSize: 12, fontWeight: 600, border: '1px solid rgba(0,150,180,0.15)',
                 }}>
                   {b}
@@ -341,7 +341,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                           <span key={tag} style={{
                             padding: '2px 8px', borderRadius: 12,
                             background: 'rgba(10,123,140,0.07)',
-                            fontSize: 10, fontWeight: 600, color: '#2d6a82',
+                            fontSize: 10, fontWeight: 600, color: 'var(--sea)',
                           }}>{tag}</span>
                         ))}
                       </div>

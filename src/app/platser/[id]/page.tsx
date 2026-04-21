@@ -268,7 +268,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                 padding: '5px 12px', borderRadius: 20,
                 background: 'rgba(10,123,140,0.07)',
                 border: '1px solid rgba(10,123,140,0.13)',
-                fontSize: 12, fontWeight: 600, color: '#2d6a82',
+                fontSize: 12, fontWeight: 600, color: 'var(--sea)',
               }}>
                 {tag}
               </span>
@@ -404,7 +404,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                         {t.duration_label ? ` · ${t.duration_label}` : ''}
                       </div>
                     </div>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

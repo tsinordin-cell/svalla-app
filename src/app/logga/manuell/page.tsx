@@ -243,7 +243,7 @@ function ManuellForm() {
           style={{
             padding: '8px 16px', borderRadius: 20, border: 'none', cursor: canSubmit ? 'pointer' : 'default',
             background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',
-            color: canSubmit ? '#fff' : '#7a9dab',
+            color: canSubmit ? '#fff' : 'var(--txt3)',
             fontSize: 13, fontWeight: 700,
             boxShadow: canSubmit ? '0 2px 8px rgba(201,110,42,0.35)' : 'none',
             transition: 'all 0.2s',
@@ -471,7 +471,7 @@ function ManuellForm() {
                     style={{
                       width: '100%', padding: '10px 12px', borderRadius: 12,
                       border: '1.5px solid rgba(10,123,140,0.15)',
-                      background: 'var(--white, #fff)', fontSize: 14, color: routeId ? '#162d3a' : '#a0bec8',
+                      background: 'var(--white, #fff)', fontSize: 14, color: routeId ? 'var(--txt)' : 'var(--txt3)',
                       outline: 'none', appearance: 'none', WebkitAppearance: 'none',
                       boxSizing: 'border-box',
                     }}
@@ -529,7 +529,7 @@ function ManuellForm() {
           style={{
             width: '100%', padding: '15px 0', borderRadius: 16, border: 'none',
             background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',
-            color: canSubmit ? '#fff' : '#7a9dab',
+            color: canSubmit ? '#fff' : 'var(--txt3)',
             fontSize: 16, fontWeight: 700, cursor: canSubmit ? 'pointer' : 'default',
             boxShadow: canSubmit ? '0 4px 20px rgba(201,110,42,0.4)' : 'none',
             transition: 'all 0.2s',

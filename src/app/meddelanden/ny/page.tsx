@@ -142,7 +142,7 @@ function NyKonversationInner() {
 
           {/* Sökfält */}
           <div style={{ marginTop: 10, position: 'relative' }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2}
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2}
               style={{ width: 16, height: 16, position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)' }}>
               <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
             </svg>
@@ -290,7 +290,7 @@ function Row({ c, starting, onClick, isRequest }: {
           animation: 'spin .7s linear infinite', flexShrink: 0,
         }} />
       ) : (
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7a9dab" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.5} style={{ width: 16, height: 16, flexShrink: 0 }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       )}

@@ -215,7 +215,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   const timelineColors: Record<string, string> = {
     start: '#0f9e64',
     pause: '#c96e2a',
-    stop: '#7a9dab',
+    stop: 'var(--txt3)',
     end: '#cc3d3d',
   }
 
@@ -467,7 +467,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               {timeline.map((ev, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 2 }}>
-                    <div style={{ width: 12, height: 12, borderRadius: '50%', flexShrink: 0, background: timelineColors[ev.type] ?? '#7a9dab' }} />
+                    <div style={{ width: 12, height: 12, borderRadius: '50%', flexShrink: 0, background: timelineColors[ev.type] ?? 'var(--txt3)' }} />
                     {i < timeline.length - 1 && (
                       <div style={{ width: 2, flex: 1, margin: '3px 0', background: 'rgba(10,123,140,0.1)', minHeight: 20 }} />
                     )}
@@ -492,7 +492,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               {namedStops.filter(s => s.type === 'stop').map((s, i) => (
                 <div key={i} style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#7a9dab', flexShrink: 0 }} />
+                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--txt3)', flexShrink: 0 }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                       <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
                         {s.placeName ?? `Stopp ${i + 1}`}
