@@ -63,7 +63,7 @@ export default function BloggPage() {
                       padding: '3px 9px',
                       borderRadius: 20,
                     }}>{post.category}</span>
-                    <span style={{ fontSize: 11, color: '#a0b8c4', paddingTop: 3 }}>{post.readTime}</span>
+                    <span style={{ fontSize: 11, color: 'var(--txt3)', paddingTop: 3 }}>{post.readTime}</span>
                   </div>
                   <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
                     {post.title}
@@ -72,7 +72,7 @@ export default function BloggPage() {
                     {post.excerpt}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: 11, color: '#a0b8c4' }}>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)' }}>
                       {new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </div>
                     <span style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 700 }}>Läs mer →</span>
@@ -91,7 +91,7 @@ export default function BloggPage() {
           textAlign: 'center',
           border: '1px dashed rgba(30,92,130,0.2)',
         }}>
-          <p style={{ fontSize: 14, color: '#4a6a7a', margin: '0 0 8px' }}>Fler artiklar är på väg.</p>
+          <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 8px' }}>Fler artiklar är på väg.</p>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
             Tips på ämnen? Maila oss på{' '}
             <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 700 }}>info@svalla.se</a>

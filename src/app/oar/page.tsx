@@ -27,7 +27,7 @@ const SECTIONS = [
     id: 'mellersta',
     label: 'Mellersta skärgården',
     emoji: '⛵',
-    color: '#0a7b8c',
+    color: 'var(--sea)',
     bg: 'rgba(10,123,140,0.07)',
     description: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan.',
     slugs: [
@@ -220,7 +220,7 @@ export default function OarPage() {
                       </div>
 
                       {/* Arrow */}
-                      <div style={{ flexShrink: 0, color: '#c0d4dc', fontSize: 16, alignSelf: 'center' }}>›</div>
+                      <div style={{ flexShrink: 0, color: 'var(--txt3)', fontSize: 16, alignSelf: 'center' }}>›</div>
                     </article>
                   </Link>
                 ))}

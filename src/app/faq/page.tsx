@@ -103,7 +103,7 @@ export default function FaqPage() {
               <div style={{
                 padding: '0 22px 18px',
                 fontSize: 14,
-                color: '#4a6a7a',
+                color: 'var(--txt2)',
                 lineHeight: 1.7,
                 borderTop: '1px solid rgba(0,0,0,0.05)',
               }}>

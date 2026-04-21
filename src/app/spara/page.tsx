@@ -1378,7 +1378,7 @@ export default function SparaPage() {
                 padding: '5px 12px', borderRadius: 20,
                 border: '1.5px solid rgba(10,123,140,.2)',
                 background: aiSummary ? 'rgba(10,123,140,.08)' : 'var(--white, #fff)',
-                color: '#0a7b8c', fontSize: 12, fontWeight: 700,
+                color: 'var(--sea)', fontSize: 12, fontWeight: 700,
                 cursor: aiLoading ? 'default' : 'pointer',
                 opacity: aiLoading ? 0.7 : 1,
                 transition: 'all .15s',
@@ -1412,7 +1412,7 @@ export default function SparaPage() {
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
             {aiSummary && caption === aiSummary
-              ? <span style={{ fontSize: 10, color: '#0a7b8c', fontWeight: 700 }}>✨ AI-genererad — redigera fritt</span>
+              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>✨ AI-genererad — redigera fritt</span>
               : <span />}
             <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{caption.length}/280</span>
           </div>
