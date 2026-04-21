@@ -64,8 +64,8 @@ export function gpxStats(points: GpxPoint[]): { distNm: number; durationMin: num
   }
 
   let durationMin = 0
-  const t0 = points[0].time ? new Date(points[0].time).getTime() : null
-  const t1 = points[points.length - 1].time ? new Date(points[points.length - 1].time).getTime() : null
+  const t0 = points[0].time ? new Date(points[0].time!).getTime() : null
+  const t1 = points[points.length - 1].time ? new Date(points[points.length - 1].time!).getTime() : null
   if (t0 && t1) durationMin = Math.round((t1 - t0) / 60000)
 
   return { distNm: Math.round(distNm * 10) / 10, durationMin, startTime: points[0]?.time ?? null }
