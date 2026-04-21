@@ -95,7 +95,7 @@ export default async function FeedPage() {
         boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <SvallaLogo height={26} color="#1e5c82" />
+        <SvallaLogo height={26} color="var(--sea, #1e5c82)" />
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
           <Link href="/sok" style={{
             width: 38, height: 38, borderRadius: '50%',
