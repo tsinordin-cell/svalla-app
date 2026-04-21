@@ -6,6 +6,7 @@ import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
 import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
+import MessageBell from '@/components/MessageBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
@@ -102,6 +103,7 @@ export default async function FeedPage() {
               <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
             </svg>
           </Link>
+          <MessageBell />
           <NotificationBell />
           <Link href="/logga" style={{
             width: 38, height: 38, borderRadius: '50%',

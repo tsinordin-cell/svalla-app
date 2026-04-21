@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from '@/components/Toast'
 import NotificationBell from '@/components/NotificationBell'
+import MessageBell from '@/components/MessageBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 
@@ -349,6 +350,7 @@ export default function ProfilPage() {
       }}>
         <span style={{ fontSize: 17, fontWeight: 900, color: 'var(--sea)' }}>{user?.username ?? 'Profil'}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
+          <MessageBell />
           <NotificationBell />
           <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 700, padding: '7px 14px', borderRadius: 20 }}>
             ✏️ Redigera

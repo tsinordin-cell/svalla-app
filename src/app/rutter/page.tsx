@@ -3,6 +3,7 @@ import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import NotificationBell from '@/components/NotificationBell'
+import MessageBell from '@/components/MessageBell'
 
 export const metadata: Metadata = {
   title: 'Rutter',
@@ -136,6 +137,7 @@ export default async function RutterPage({
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <MessageBell />
           <NotificationBell />
           <Link href="/guide" style={{
             display: 'flex', alignItems: 'center', gap: 5,

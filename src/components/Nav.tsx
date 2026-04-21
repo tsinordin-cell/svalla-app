@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
+import MessageBell from '@/components/MessageBell'
 
 export default function Nav() {
   const path = usePathname()
@@ -173,7 +174,9 @@ export default function Nav() {
       {showGlobalBell && (
         <div style={{
           position: 'fixed', top: 12, right: 16, zIndex: 901,
+          display: 'flex', gap: 8,
         }}>
+          <MessageBell />
           <NotificationBell />
         </div>
       )}
