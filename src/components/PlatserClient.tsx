@@ -96,7 +96,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             fontSize: 10, fontWeight: 700,
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1e5c82', display: 'inline-block' }} /> Restaurang
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--sea)', display: 'inline-block' }} /> Restaurang
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#c96e2a', display: 'inline-block' }} /> Hamn/Kafé
@@ -117,7 +117,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               borderRight: 'none', borderRadius: '10px 0 0 10px',
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
               boxShadow: '-2px 0 10px rgba(0,45,60,0.10)',
-              color: '#1e5c82', fontSize: 12, fontWeight: 700,
+              color: 'var(--sea)', fontSize: 12, fontWeight: 700,
             }}
             title={sidebarOpen ? 'Dölj lista' : 'Visa lista'}
           >
@@ -168,7 +168,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                   <button key={f.value} onClick={() => setFilter(f.value)} style={{
                     flexShrink: 0, padding: '5px 12px', borderRadius: 18, border: 'none', cursor: 'pointer',
                     fontWeight: 700, fontSize: 11,
-                    background: filter === f.value ? '#1e5c82' : '#fff',
+                    background: filter === f.value ? 'var(--sea)' : '#fff',
                     color: filter === f.value ? '#fff' : '#3a6a80',
                     boxShadow: filter === f.value ? '0 2px 8px rgba(30,92,130,0.3)' : '0 1px 4px rgba(0,45,60,0.08)',
                   }}>
@@ -243,7 +243,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                   <p style={{ color: 'var(--txt3)', fontSize: 13 }}>Inga platser matchar sökningen.</p>
                   <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
                     marginTop: 10, padding: '8px 18px', borderRadius: 12, border: 'none',
-                    background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer',
+                    background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 12, cursor: 'pointer',
                   }}>Rensa filter</button>
                 </div>
               ) : (
@@ -278,7 +278,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                               <span style={{
                                 flexShrink: 0, fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 18,
                                 background: getCat(r) === 'kafe' ? 'rgba(201,110,42,0.1)' : 'rgba(30,92,130,0.08)',
-                                color: getCat(r) === 'kafe' ? '#c96e2a' : '#1e5c82',
+                                color: getCat(r) === 'kafe' ? '#c96e2a' : 'var(--sea)',
                               }}>
                                 {getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}
                               </span>
@@ -288,7 +288,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                             )}
                             {r.description && (
                               <div style={{
-                                fontSize: 11, color: '#5a8090', marginTop: 4, lineHeight: 1.4,
+                                fontSize: 11, color: 'var(--txt2)', marginTop: 4, lineHeight: 1.4,
                                 overflow: 'hidden', display: '-webkit-box',
                                 WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
                               }}>
@@ -380,7 +380,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               flexShrink: 0, padding: '0 16px', height: 36, borderRadius: 18,
               border: 'none', cursor: 'pointer',
               fontWeight: 700, fontSize: 12,
-              background: filter === f.value ? '#1e5c82' : '#fff',
+              background: filter === f.value ? 'var(--sea)' : '#fff',
               color: filter === f.value ? '#fff' : '#3a6a80',
               boxShadow: filter === f.value ? '0 2px 8px rgba(30,92,130,0.3)' : '0 1px 4px rgba(0,45,60,0.08)',
               display: 'flex', alignItems: 'center',
@@ -445,7 +445,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
             <p style={{ color: 'var(--txt3)', fontSize: 14, marginBottom: 0 }}>Inga platser matchar.</p>
             <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
               marginTop: 16, padding: '0 24px', height: 44, borderRadius: 22, border: 'none',
-              background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+              background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
             }}>Rensa filter</button>
           </div>
         ) : (
@@ -487,7 +487,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                       )}
                       {r.description && (
                         <div style={{
-                          fontSize: 11, color: '#5a8090', marginTop: 5, lineHeight: 1.45,
+                          fontSize: 11, color: 'var(--txt2)', marginTop: 5, lineHeight: 1.45,
                           overflow: 'hidden', display: '-webkit-box',
                           WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
                         }}>

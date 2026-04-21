@@ -41,14 +41,14 @@ export default function NotFound() {
 
       <h1 style={{
         fontSize: 26, fontWeight: 700,
-        color: '#1e5c82',
+        color: 'var(--sea)',
         margin: '0 0 10px', lineHeight: 1.2,
       }}>
         Den här sidan finns inte
       </h1>
 
       <p style={{
-        fontSize: 15, color: '#5a8090',
+        fontSize: 15, color: 'var(--txt2)',
         margin: '0 0 32px', maxWidth: 300, lineHeight: 1.6,
       }}>
         Rutten du följde leder ingenstans. Kanske har länken ändrats eller expired.
@@ -74,7 +74,7 @@ export default function NotFound() {
             padding: '13px 28px', borderRadius: 14,
             border: '1.5px solid rgba(10,123,140,0.2)',
             background: 'rgba(255,255,255,0.7)',
-            color: '#1e5c82', fontSize: 14, fontWeight: 600,
+            color: 'var(--sea)', fontSize: 14, fontWeight: 600,
             textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
           }}
           className="press-feedback"

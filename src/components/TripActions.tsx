@@ -115,7 +115,7 @@ export default function TripActions({
         }}
         aria-label="Alternativ"
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: '#1e5c82' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>
@@ -201,7 +201,7 @@ export default function TripActions({
                   }}
                 >
                   <span style={{ fontSize: 14 }}>{p.emoji}</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === p.value ? '#fff' : '#7a9dab' }}>{p.label}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === p.value ? '#fff' : 'var(--txt3)' }}>{p.label}</span>
                 </button>
               ))}
             </div>
@@ -232,7 +232,7 @@ export default function TripActions({
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
                 background: saving ? 'rgba(10,123,140,0.15)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                color: saving ? '#7a9dab' : '#fff', fontSize: 15, fontWeight: 600,
+                color: saving ? 'var(--txt3)' : '#fff', fontSize: 15, fontWeight: 600,
                 cursor: saving ? 'default' : 'pointer', marginBottom: 10,
               }}
             >

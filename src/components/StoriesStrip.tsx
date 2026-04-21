@@ -93,7 +93,7 @@ export default function StoriesStrip() {
               width: 60, height: 60, borderRadius: '50%',
               border: '2px dashed rgba(10,123,140,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#1e5c82', fontSize: 24, fontWeight: 600,
+              color: 'var(--sea)', fontSize: 24, fontWeight: 600,
               background: 'rgba(10,123,140,0.04)',
             }}>+</div>
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)' }}>Din story</span>

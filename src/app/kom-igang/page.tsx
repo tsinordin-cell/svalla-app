@@ -298,7 +298,7 @@ export default function KomIgangPage() {
         <div style={{ maxWidth: 400, width: '100%', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
 
           <p style={{
-            fontSize: 13, color: '#7a9dab', textAlign: 'center', fontWeight: 600,
+            fontSize: 13, color: 'var(--txt3)', textAlign: 'center', fontWeight: 600,
             letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 4,
           }}>
             Gratis · Ingen bindningstid
@@ -367,7 +367,7 @@ export default function KomIgangPage() {
           {/* Divider */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '4px 0' }}>
             <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.10)' }} />
-            <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>redan medlem?</span>
+            <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>redan medlem?</span>
             <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.10)' }} />
           </div>
 
@@ -378,7 +378,7 @@ export default function KomIgangPage() {
               padding: '15px', borderRadius: 14, cursor: 'pointer',
               background: 'transparent',
               border: '1.5px solid rgba(30,92,130,0.20)',
-              color: '#1e5c82', fontSize: 15, fontWeight: 700, fontFamily: 'inherit',
+              color: 'var(--sea)', fontSize: 15, fontWeight: 700, fontFamily: 'inherit',
               transition: 'border-color 0.15s',
             }}
           >
@@ -458,7 +458,7 @@ export default function KomIgangPage() {
           {/* Divider */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
             <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
-            <span style={{ fontSize: 12, color: '#7a9dab', fontWeight: 600 }}>eller med e-post</span>
+            <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>eller med e-post</span>
             <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
           </div>
 
@@ -467,7 +467,7 @@ export default function KomIgangPage() {
             {/* Name row */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: '#5a8090', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                   Namn
                 </label>
                 <input
@@ -485,7 +485,7 @@ export default function KomIgangPage() {
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: '#5a8090', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                   Smeknamn
                 </label>
                 <input
@@ -506,7 +506,7 @@ export default function KomIgangPage() {
 
             {/* Email */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: '#5a8090', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 E-postadress <span style={{ color: '#dc2626' }}>*</span>
               </label>
               <input
@@ -533,7 +533,7 @@ export default function KomIgangPage() {
 
             {/* Password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: '#5a8090', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 Lösenord <span style={{ color: '#dc2626' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
@@ -558,7 +558,7 @@ export default function KomIgangPage() {
                   style={{
                     position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
                     background: 'none', border: 'none', cursor: 'pointer', padding: 4,
-                    color: '#7a9dab', display: 'flex', alignItems: 'center',
+                    color: 'var(--txt3)', display: 'flex', alignItems: 'center',
                   }}
                   aria-label={showPw ? 'Dölj lösenord' : 'Visa lösenord'}
                 >
@@ -583,7 +583,7 @@ export default function KomIgangPage() {
                   </div>
                   <p style={{ fontSize: 11, color: pw.color, margin: 0, fontWeight: 700 }}>
                     {pw.label}
-                    {pw.score < 3 && <span style={{ color: '#7a9dab', fontWeight: 500 }}> · Prova siffror och specialtecken</span>}
+                    {pw.score < 3 && <span style={{ color: 'var(--txt3)', fontWeight: 500 }}> · Prova siffror och specialtecken</span>}
                   </p>
                 </div>
               )}
@@ -591,7 +591,7 @@ export default function KomIgangPage() {
 
             {/* Confirm password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: '#5a8090', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 Bekräfta lösenord <span style={{ color: '#dc2626' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
@@ -616,7 +616,7 @@ export default function KomIgangPage() {
                   style={{
                     position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
                     background: 'none', border: 'none', cursor: 'pointer', padding: 4,
-                    color: '#7a9dab', display: 'flex', alignItems: 'center',
+                    color: 'var(--txt3)', display: 'flex', alignItems: 'center',
                   }}
                   aria-label={showConfirmPw ? 'Dölj' : 'Visa'}
                 >
@@ -655,7 +655,7 @@ export default function KomIgangPage() {
               style={{
                 marginTop: 6,
                 padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
-                background: loading ? '#7a9dab' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                background: loading ? 'var(--txt3)' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
                 color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
                 boxShadow: loading ? 'none' : '0 5px 20px rgba(30,92,130,0.32)',
                 transition: 'all 0.2s', letterSpacing: '0.02em',
@@ -668,11 +668,11 @@ export default function KomIgangPage() {
               }
             </button>
 
-            <p style={{ fontSize: 12, color: '#7a9dab', textAlign: 'center', margin: '6px 0 0', lineHeight: 1.5 }}>
+            <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '6px 0 0', lineHeight: 1.5 }}>
               Genom att skapa ett konto godkänner du våra{' '}
-              <a href="/villkor" style={{ color: '#1e5c82', textDecoration: 'none', fontWeight: 600 }}>villkor</a>
+              <a href="/villkor" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>villkor</a>
               {' '}och{' '}
-              <a href="/integritet" style={{ color: '#1e5c82', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
+              <a href="/integritet" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
             </p>
           </form>
 
@@ -682,11 +682,11 @@ export default function KomIgangPage() {
             style={{
               display: 'block', width: '100%', marginTop: 18,
               background: 'none', border: 'none', cursor: 'pointer',
-              fontSize: 14, color: '#5a8090', textAlign: 'center',
+              fontSize: 14, color: 'var(--txt2)', textAlign: 'center',
               fontWeight: 500, fontFamily: 'inherit',
             }}
           >
-            Har redan konto? <span style={{ color: '#1e5c82', fontWeight: 700 }}>Logga in →</span>
+            Har redan konto? <span style={{ color: 'var(--sea)', fontWeight: 700 }}>Logga in →</span>
           </button>
         </div>
       </div>

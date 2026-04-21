@@ -112,15 +112,15 @@ function GuideContent() {
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
               <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
-              <h2 style={{ fontSize: 16, fontWeight: 700, color: '#1e5c82', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
-              <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0, lineHeight: 1.5 }}>
+              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
+              <p style={{ fontSize: 13, color: 'var(--txt3, var(--txt2))', margin: 0, lineHeight: 1.5 }}>
                 Jag känner till turer, restauranger och hamnar i hela Stockholms skärgård. Berätta vad du är ute efter – sällskap, tid, om du vill bada, äta eller segla – så hittar vi rätt tur.
               </p>
             </div>
 
             {/* Suggestions */}
             <div style={{ marginBottom: 8 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
                 Vanliga frågor
               </div>
               {SUGGESTIONS.map((s) => (
@@ -128,7 +128,7 @@ function GuideContent() {
                   display: 'block', width: '100%', textAlign: 'left',
                   padding: '11px 14px', marginBottom: 6, borderRadius: 12,
                   background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.10)',
-                  fontSize: 13, color: '#1e5c82', fontWeight: 600, cursor: 'pointer',
+                  fontSize: 13, color: 'var(--sea)', fontWeight: 600, cursor: 'pointer',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.04)',
                 }}>
                   {s} →
@@ -230,7 +230,7 @@ function GuideContent() {
               transition: 'all 0.2s',
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke={input.trim() && !loading ? 'white' : '#7a9dab'} strokeWidth={2.5} style={{ width: 18, height: 18 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke={input.trim() && !loading ? 'white' : 'var(--txt3)'} strokeWidth={2.5} style={{ width: 18, height: 18 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 19V5m-7 7l7-7 7 7" />
             </svg>
           </button>
@@ -249,7 +249,7 @@ function GuideContent() {
 
 export default function GuidePage() {
   return (
-    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3, #5a8090)' }}>Laddar guide…</div>}>
+    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3, var(--txt2))' }}>Laddar guide…</div>}>
       <GuideContent />
     </Suspense>
   )

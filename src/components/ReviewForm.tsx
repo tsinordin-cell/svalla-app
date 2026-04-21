@@ -119,7 +119,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
           </h2>
           {avgRating && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-              <span style={{ fontSize: 22, fontWeight: 700, color: '#1e5c82' }}>{avgRating}</span>
+              <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)' }}>{avgRating}</span>
               <div style={{ display: 'flex', gap: 2 }}>
                 {[1,2,3,4,5].map(i => (
                   <span key={i} style={{ fontSize: 14, color: parseFloat(avgRating) >= i ? '#e8a020' : '#dde8ec' }}>⚓</span>
@@ -134,7 +134,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
             onClick={() => setShowForm(true)}
             style={{
               padding: '8px 14px', borderRadius: 12, border: 'none', cursor: 'pointer',
-              background: 'rgba(10,123,140,0.08)', color: '#1e5c82',
+              background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
               fontSize: 12, fontWeight: 700,
             }}
           >
@@ -142,7 +142,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
           </button>
         )}
         {!userId && (
-          <a href="/logga-in" style={{ fontSize: 12, color: '#1e5c82', fontWeight: 600 }}>
+          <a href="/logga-in" style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>
             Logga in för att recensera →
           </a>
         )}
@@ -168,7 +168,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                 style={{
                   flex: 1, padding: '8px 4px', borderRadius: 12, border: 'none',
                   background: rating >= v ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
-                  color: rating >= v ? '#fff' : '#7a9dab',
+                  color: rating >= v ? '#fff' : 'var(--txt3)',
                   fontSize: 16, cursor: 'pointer', transition: 'all 0.15s',
                   boxShadow: rating >= v ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
                 }}
@@ -178,7 +178,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
             ))}
           </div>
           {rating > 0 && (
-            <p style={{ fontSize: 12, fontWeight: 700, color: '#1e5c82', textAlign: 'center', marginBottom: 12 }}>
+            <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--sea)', textAlign: 'center', marginBottom: 12 }}>
               {ANCHOR_LABELS[rating]}
             </p>
           )}
@@ -215,7 +215,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
               style={{
                 flex: 2, padding: '11px 0', borderRadius: 12, border: 'none',
                 background: rating > 0 ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.1)',
-                color: rating > 0 ? '#fff' : '#7a9dab',
+                color: rating > 0 ? '#fff' : 'var(--txt3)',
                 fontSize: 13, fontWeight: 600, cursor: rating > 0 ? 'pointer' : 'default',
                 boxShadow: rating > 0 ? '0 2px 10px rgba(30,92,130,0.3)' : 'none',
               }}

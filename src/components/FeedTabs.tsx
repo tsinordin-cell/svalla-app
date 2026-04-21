@@ -171,7 +171,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               style={{
                 flexShrink: 0, padding: '5px 13px', borderRadius: 20,
                 border: `1.5px solid ${boatFilter === f.value ? '#1e5c82' : 'rgba(10,123,140,0.12)'}`,
-                background: boatFilter === f.value ? '#1e5c82' : 'transparent',
+                background: boatFilter === f.value ? 'var(--sea)' : 'transparent',
                 color: boatFilter === f.value ? '#fff' : 'var(--txt3)',
                 fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
                 transition: 'all .12s',
@@ -202,7 +202,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         }}>
           <div style={{ fontSize: 32, flexShrink: 0 }}>⛵</div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: '#1e5c82', marginBottom: 4 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--sea)', marginBottom: 4 }}>
               Följ seglare du känner
             </div>
             <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4, marginBottom: 10 }}>

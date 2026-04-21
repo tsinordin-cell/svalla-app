@@ -147,7 +147,7 @@ export default async function ToplistaPage() {
 
         {/* ── Community stats ── */}
         <div style={{
-          background: 'linear-gradient(135deg,#1a3a5e,#1e5c82)',
+          background: 'linear-gradient(135deg,var(--txt),#1e5c82)',
           borderRadius: 20, padding: '18px 20px', marginBottom: 16,
           boxShadow: '0 6px 28px rgba(26,58,94,0.3)',
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10,

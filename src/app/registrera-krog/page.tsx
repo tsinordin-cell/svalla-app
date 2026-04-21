@@ -33,7 +33,7 @@ const FIELD: React.CSSProperties = {
 function Label({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
     <label style={{
-      fontSize: 11, fontWeight: 700, color: '#5a8090',
+      fontSize: 11, fontWeight: 700, color: 'var(--txt2)',
       letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 5,
       display: 'block',
     }}>
@@ -282,7 +282,7 @@ export default function RegistreraKrogPage() {
 
           {/* Section: Verksamhet */}
           <p style={{
-            fontSize: 12, fontWeight: 600, color: '#1e5c82',
+            fontSize: 12, fontWeight: 600, color: 'var(--sea)',
             textTransform: 'uppercase', letterSpacing: '0.08em',
             margin: '0 0 14px',
           }}>
@@ -322,7 +322,7 @@ export default function RegistreraKrogPage() {
                         ? 'rgba(30,92,130,0.45)'
                         : 'rgba(10,123,140,0.14)'}`,
                       fontSize: 13, fontWeight: 600,
-                      color: businessType === t.value ? '#1e5c82' : '#5a8090',
+                      color: businessType === t.value ? 'var(--sea)' : 'var(--txt2)',
                       textAlign: 'left', fontFamily: 'inherit',
                       transition: 'all 0.15s',
                     }}
@@ -363,7 +363,7 @@ export default function RegistreraKrogPage() {
             {/* Divider */}
             <div style={{ margin: '4px 0' }}>
               <p style={{
-                fontSize: 12, fontWeight: 600, color: '#1e5c82',
+                fontSize: 12, fontWeight: 600, color: 'var(--sea)',
                 textTransform: 'uppercase', letterSpacing: '0.08em',
                 margin: '0 0 14px',
               }}>
@@ -448,7 +448,7 @@ export default function RegistreraKrogPage() {
                 marginTop: 4,
                 padding: '17px', borderRadius: 14, border: 'none', cursor: 'pointer',
                 background: loading
-                  ? '#7a9dab'
+                  ? 'var(--txt3)'
                   : 'linear-gradient(135deg, #e8924a, #f4a450)',
                 color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
                 boxShadow: loading ? 'none' : '0 5px 22px rgba(232,146,74,0.40)',
@@ -463,7 +463,7 @@ export default function RegistreraKrogPage() {
             </button>
 
             <p style={{
-              fontSize: 12, color: '#7a9dab', textAlign: 'center',
+              fontSize: 12, color: 'var(--txt3)', textAlign: 'center',
               margin: 0, lineHeight: 1.55,
             }}>
               Vi hör av oss inom 1–2 vardagar. Ingen betalning krävs.

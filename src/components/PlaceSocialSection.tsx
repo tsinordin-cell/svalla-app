@@ -137,7 +137,7 @@ export default function PlaceSocialSection({
         <span style={{ fontSize: 24 }}>📍</span>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>Checka in här</div>
-          <div style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', marginTop: 1 }}>
+          <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))', marginTop: 1 }}>
             Snabbt &quot;jag är här&quot; — utan full turlogg
           </div>
         </div>
@@ -149,7 +149,7 @@ export default function PlaceSocialSection({
       {/* Besökare */}
       {!loading && visitors.length > 0 && (
         <div>
-          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
             👥 {visitors.length} {visitors.length === 1 ? 'seglare har varit här' : 'seglare har varit här'}
           </h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
@@ -160,7 +160,7 @@ export default function PlaceSocialSection({
                   @{v.username}
                 </div>
                 {v.visit_count > 1 && (
-                  <div style={{ fontSize: 9, color: 'var(--txt3, #7a9dab)' }}>{v.visit_count}×</div>
+                  <div style={{ fontSize: 9, color: 'var(--txt3, var(--txt3))' }}>{v.visit_count}×</div>
                 )}
               </Link>
             ))}
@@ -171,7 +171,7 @@ export default function PlaceSocialSection({
       {/* Senaste check-ins */}
       {!loading && checkIns.length > 0 && (
         <div>
-          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
             📍 Senaste check-ins
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -189,7 +189,7 @@ export default function PlaceSocialSection({
                     <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
                       @{c.username ?? 'okänd'}
                     </Link>
-                    <span style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)' }}>· {timeAgo(c.created_at)}</span>
+                    <span style={{ fontSize: 11, color: 'var(--txt3, var(--txt3))' }}>· {timeAgo(c.created_at)}</span>
                   </div>
                   {c.message && (
                     <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', margin: '4px 0 0', lineHeight: 1.45, whiteSpace: 'pre-wrap' }}>
@@ -210,7 +210,7 @@ export default function PlaceSocialSection({
       {/* Omdömen */}
       <div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, #7a9dab)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
+          <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3, var(--txt3))', textTransform: 'uppercase', letterSpacing: '0.6px', margin: 0 }}>
             ⚓ Omdömen ({reviews.length})
           </h2>
           {me && (
@@ -218,7 +218,7 @@ export default function PlaceSocialSection({
               style={{
                 padding: '6px 12px', borderRadius: 10, border: '1px solid rgba(30,92,130,0.20)',
                 background: myReview ? 'rgba(30,92,130,0.08)' : 'var(--white, #fff)',
-                fontSize: 12, fontWeight: 700, color: '#1e5c82', cursor: 'pointer',
+                fontSize: 12, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer',
               }}>
               {myReview ? 'Ändra ditt omdöme' : '+ Skriv omdöme'}
             </button>
@@ -229,7 +229,7 @@ export default function PlaceSocialSection({
           <div style={{
             padding: '20px 16px', borderRadius: 14, border: '1px dashed rgba(10,123,140,0.20)',
             background: 'rgba(10,123,140,0.03)', textAlign: 'center',
-            fontSize: 13, color: 'var(--txt3, #7a9dab)',
+            fontSize: 13, color: 'var(--txt3, var(--txt3))',
           }}>
             Bli först med att lämna ett omdöme.
           </div>
@@ -250,7 +250,7 @@ export default function PlaceSocialSection({
                   <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
                     @{r.username ?? 'okänd'}
                   </Link>
-                  <span style={{ fontSize: 11, color: 'var(--txt3, #7a9dab)' }}>· {timeAgo(r.created_at)}</span>
+                  <span style={{ fontSize: 11, color: 'var(--txt3, var(--txt3))' }}>· {timeAgo(r.created_at)}</span>
                 </div>
                 <div style={{ display: 'flex', gap: 1, marginTop: 4 }}>
                   {[1,2,3,4,5].map(i => (
@@ -283,7 +283,7 @@ export default function PlaceSocialSection({
             <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
               {myReview ? 'Ändra ditt omdöme' : 'Skriv omdöme'}
             </h2>
-            <p style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)', margin: '0 0 16px' }}>
+            <p style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))', margin: '0 0 16px' }}>
               {placeName}
             </p>
 

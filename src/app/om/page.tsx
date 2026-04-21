@@ -49,17 +49,17 @@ export default function OmPage() {
           <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 20 }}>Kontakt</h2>
           <p>
             Frågor, platstips eller samarbeten?{' '}
-            <a href="mailto:info@svalla.se" style={{ color: '#1e5c82', fontWeight: 700 }}>info@svalla.se</a>
+            <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 700 }}>info@svalla.se</a>
           </p>
         </div>
 
         <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
           <Link href="/platser" style={{
-            padding: '12px 24px', background: '#1e5c82', color: '#fff',
+            padding: '12px 24px', background: 'var(--sea)', color: '#fff',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
           }}>Utforska kartan</Link>
           <Link href="/faq" style={{
-            padding: '12px 24px', background: 'var(--white, #fff)', color: '#1e5c82',
+            padding: '12px 24px', background: 'var(--white, #fff)', color: 'var(--sea)',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             border: '1.5px solid #1e5c82',
           }}>Vanliga frågor</Link>

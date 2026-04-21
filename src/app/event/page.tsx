@@ -72,7 +72,7 @@ export default function EventPage() {
         {!loading && events.length === 0 && (
           <div style={{ padding: '60px 20px', textAlign: 'center' }}>
             <div style={{ fontSize: 48, marginBottom: 10 }}>⛵</div>
-            <h2 style={{ fontSize: 16, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Inga kommande events</h2>
+            <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Inga kommande events</h2>
             <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>
               Regattor, gemensamma seglingar, krogbesök. Bli först att bjuda in.
             </p>

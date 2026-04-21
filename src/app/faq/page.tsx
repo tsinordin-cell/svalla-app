@@ -98,7 +98,7 @@ export default function FaqPage() {
                 userSelect: 'none',
               }}>
                 {item.q}
-                <span style={{ fontSize: 20, color: '#1e5c82', flexShrink: 0, marginLeft: 12 }}>+</span>
+                <span style={{ fontSize: 20, color: 'var(--sea)', flexShrink: 0, marginLeft: 12 }}>+</span>
               </summary>
               <div style={{
                 padding: '0 22px 18px',
@@ -115,7 +115,7 @@ export default function FaqPage() {
 
         <div style={{
           marginTop: 40,
-          background: '#1e5c82',
+          background: 'var(--sea)',
           borderRadius: 16,
           padding: '28px 28px',
           color: '#fff',
@@ -127,7 +127,7 @@ export default function FaqPage() {
             display: 'inline-block',
             padding: '10px 24px',
             background: 'var(--white, #fff)',
-            color: '#1e5c82',
+            color: 'var(--sea)',
             borderRadius: 20,
             fontWeight: 700,
             fontSize: 14,

@@ -18,7 +18,7 @@ const SECTIONS = [
     id: 'inner',
     label: 'Innerskärgården',
     emoji: '⚓',
-    color: '#1e5c82',
+    color: 'var(--sea)',
     bg: 'rgba(30,92,130,0.07)',
     description: 'De närmaste öarna — lätta att nå, perfekta för en dag.',
     slugs: ['fjaderholmarna', 'vaxholm', 'grinda', 'finnhamn', 'rindo', 'resaro'],
@@ -162,7 +162,7 @@ export default function OarPage() {
                       {islands.length} öar
                     </span>
                   </div>
-                  <p style={{ fontSize: 13, color: '#5a8090', margin: 0 }}>{section.description}</p>
+                  <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0 }}>{section.description}</p>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ export default function OarPage() {
                           {island.name}
                         </div>
                         <div style={{
-                          fontSize: 12, color: '#5a8090', lineHeight: 1.4,
+                          fontSize: 12, color: 'var(--txt2)', lineHeight: 1.4,
                           display: '-webkit-box', WebkitLineClamp: 2,
                           WebkitBoxOrient: 'vertical', overflow: 'hidden',
                         }}>

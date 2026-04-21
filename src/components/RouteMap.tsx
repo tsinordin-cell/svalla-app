@@ -54,7 +54,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
 
       // ── Route line — dashed to indicate planned/approximate route ──────
       const polyline = L.polyline(latlngs, {
-        color: '#1e5c82',
+        color: 'var(--sea)',
         weight: 3,
         opacity: 0.7,
         lineJoin: 'round',
@@ -76,7 +76,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         polyline.setStyle({ color: '#c96e2a', weight: 4, opacity: 1, dashArray: '10, 5' })
         map.fitBounds(bounds, { padding: [24, 24], animate: true, duration: 0.5 })
         setTimeout(() => {
-          polyline.setStyle({ color: '#1e5c82', weight: 3, opacity: 0.7, dashArray: '8, 6' })
+          polyline.setStyle({ color: 'var(--sea)', weight: 3, opacity: 0.7, dashArray: '8, 6' })
         }, 1800)
       })
 
@@ -136,7 +136,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         const popupHtml = `
           <div style="font-family:system-ui,sans-serif;min-width:160px;max-width:220px">
             <div style="font-weight:800;font-size:14px;color:#162d3a;margin-bottom:4px">${w.name}</div>
-            ${w.description ? `<div style="font-size:12px;color:#5a8090;margin-bottom:6px;line-height:1.4">${w.description}</div>` : ''}
+            ${w.description ? `<div style="font-size:12px;color:var(--txt2);margin-bottom:6px;line-height:1.4">${w.description}</div>` : ''}
             ${w.restaurant ? `
               <div style="
                 display:flex;align-items:center;gap:5px;
@@ -203,7 +203,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         position: 'absolute', bottom: 12, left: 12, zIndex: 500,
         background: 'var(--glass-92)', backdropFilter: 'blur(8px)',
         borderRadius: 10, padding: '4px 10px',
-        fontSize: 10, fontWeight: 700, color: '#5a8090',
+        fontSize: 10, fontWeight: 700, color: 'var(--txt2)',
         boxShadow: '0 1px 6px rgba(0,45,60,0.10)',
         display: 'flex', alignItems: 'center', gap: 6,
         pointerEvents: 'none',
@@ -233,14 +233,14 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
                   display: 'flex', alignItems: 'center', gap: 5,
                   padding: '5px 10px', borderRadius: 20, border: 'none', cursor: 'pointer',
                   background: isFirst ? 'rgba(34,197,94,0.1)' : isLast ? 'rgba(201,110,42,0.1)' : 'rgba(30,92,130,0.07)',
-                  color: isFirst ? '#16a34a' : isLast ? '#c96e2a' : '#1e5c82',
+                  color: isFirst ? '#16a34a' : isLast ? '#c96e2a' : 'var(--sea)',
                   fontSize: 11, fontWeight: 700,
                   transition: 'background 0.15s',
                 }}
               >
                 <span style={{
                   width: 7, height: 7, borderRadius: '50%', flexShrink: 0,
-                  background: isFirst ? '#22c55e' : isLast ? '#c96e2a' : '#1e5c82',
+                  background: isFirst ? '#22c55e' : isLast ? '#c96e2a' : 'var(--sea)',
                   display: 'inline-block',
                 }} />
                 {w.name}

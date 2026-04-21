@@ -195,7 +195,7 @@ export default function InvitePage() {
             const expired = inv.expires_at && new Date(inv.expires_at) < new Date()
             const exhausted = inv.max_uses != null && inv.uses >= inv.max_uses
             const status = expired ? 'Utgången' : exhausted ? 'Slut' : 'Aktiv'
-            const statusColor = (expired || exhausted) ? '#7a9dab' : '#228c38'
+            const statusColor = (expired || exhausted) ? 'var(--txt3)' : '#228c38'
             return (
               <div key={inv.id} style={{
                 background: 'var(--white)', borderRadius: 16, padding: 14,

@@ -13,7 +13,7 @@ type Props = {
 
 // Interpolate color based on speed (blue=slow, green=medium, orange=fast)
 function speedColor(knots: number): string {
-  if (knots < 2) return '#7a9dab'   // slow — grey-blue
+  if (knots < 2) return 'var(--txt3)'   // slow — grey-blue
   if (knots < 8) return '#1e5c82'   // medium — sea blue
   if (knots < 15) return '#0f9e64'  // good speed — green
   return '#c96e2a'                  // fast — orange
@@ -89,7 +89,7 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
           ? `${Math.round(s.durationSeconds / 60)} min`
           : `${s.durationSeconds}s`
         const icon = L.divIcon({
-          html: `<div style="width:10px;height:10px;border-radius:50%;background:${isPause ? '#c96e2a' : '#7a9dab'};border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.25)"></div>`,
+          html: `<div style="width:10px;height:10px;border-radius:50%;background:${isPause ? '#c96e2a' : 'var(--txt3)'};border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.25)"></div>`,
           iconSize: [10, 10], iconAnchor: [5, 5], className: '',
         })
         L.marker([s.lat, s.lng], { icon })
@@ -115,7 +115,7 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
           div.style.cssText = 'background:var(--glass-92);border-radius:10px;padding:8px 10px;font-size:10px;line-height:1.8;backdrop-filter:blur(8px)'
           div.innerHTML = `
             <div style="font-weight:700;margin-bottom:4px;color:#192830">Hastighet</div>
-            <div><span style="display:inline-block;width:10px;height:3px;background:#7a9dab;border-radius:2px;vertical-align:middle;margin-right:5px"></span>&lt; 2 kn</div>
+            <div><span style="display:inline-block;width:10px;height:3px;background:var(--txt3);border-radius:2px;vertical-align:middle;margin-right:5px"></span>&lt; 2 kn</div>
             <div><span style="display:inline-block;width:10px;height:3px;background:#1e5c82;border-radius:2px;vertical-align:middle;margin-right:5px"></span>2–8 kn</div>
             <div><span style="display:inline-block;width:10px;height:3px;background:#0f9e64;border-radius:2px;vertical-align:middle;margin-right:5px"></span>8–15 kn</div>
             <div><span style="display:inline-block;width:10px;height:3px;background:#c96e2a;border-radius:2px;vertical-align:middle;margin-right:5px"></span>&gt; 15 kn</div>

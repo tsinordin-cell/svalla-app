@@ -110,7 +110,7 @@ export default function LocationSearch({
     <div style={{ position: 'relative' }}>
       {label && (
         <label style={{
-          fontSize: 10, fontWeight: 600, color: '#5a8090',
+          fontSize: 10, fontWeight: 600, color: 'var(--txt2)',
           textTransform: 'uppercase', letterSpacing: '0.6px',
           display: 'block', marginBottom: 6,
         }}>
@@ -144,7 +144,7 @@ export default function LocationSearch({
         <div style={{
           position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
           pointerEvents: 'none', fontSize: 16,
-          color: selected ? '#1e5c82' : '#a0bec8',
+          color: selected ? 'var(--sea)' : 'var(--txt3)',
         }}>
           {loading ? (
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}

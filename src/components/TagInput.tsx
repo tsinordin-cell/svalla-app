@@ -65,7 +65,7 @@ export default function TagInput({ tagged, onChange }: Props) {
             <div key={u.id} style={{
               display: 'flex', alignItems: 'center', gap: 5,
               background: 'rgba(30,92,130,0.10)', borderRadius: 20,
-              padding: '4px 10px 4px 6px', fontSize: 12, fontWeight: 600, color: '#1e5c82',
+              padding: '4px 10px 4px 6px', fontSize: 12, fontWeight: 600, color: 'var(--sea)',
             }}>
               <div style={{
                 width: 20, height: 20, borderRadius: '50%', overflow: 'hidden',

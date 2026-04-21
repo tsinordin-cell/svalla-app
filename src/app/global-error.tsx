@@ -24,10 +24,10 @@ export default function GlobalError({
         background: 'linear-gradient(175deg, #dde9f5 0%, #e4eff8 40%, #e8f0f5 100%)',
       }}>
         <div style={{ fontSize: 52, marginBottom: 16 }}>⚓</div>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: '#1e5c82', margin: '0 0 8px' }}>
+        <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)', margin: '0 0 8px' }}>
           Något gick fel
         </h1>
-        <p style={{ fontSize: 14, color: '#5a8090', margin: '0 0 24px', maxWidth: 320, lineHeight: 1.5 }}>
+        <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', maxWidth: 320, lineHeight: 1.5 }}>
           Ett oväntat fel uppstod. Försök igen eller gå tillbaka till flödet.
         </p>
         <div style={{ display: 'flex', gap: 10 }}>

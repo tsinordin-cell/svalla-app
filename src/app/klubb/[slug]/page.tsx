@@ -144,7 +144,7 @@ export default function KlubbPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🏝️</div>
-          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Klubben hittades inte</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Klubben hittades inte</h2>
           <Link href="/klubbar" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Till alla klubbar</Link>
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function KlubbPage() {
                 style={{
                   flex: 1, padding: '10px 6px', border: 'none', background: 'transparent',
                   fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                  color: tab === t ? '#1e5c82' : 'var(--txt3)',
+                  color: tab === t ? 'var(--sea)' : 'var(--txt3)',
                   borderBottom: tab === t ? '2px solid #1e5c82' : '2px solid transparent',
                   marginBottom: -1,
                 }}>

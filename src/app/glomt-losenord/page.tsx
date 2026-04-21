@@ -52,7 +52,7 @@ export default function GlomtLosenordPage() {
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', marginBottom: 8 }}>
                 Kolla din inkorg!
               </h2>
-              <p style={{ fontSize: 14, color: 'var(--txt3, #5a8090)', lineHeight: 1.6, marginBottom: 28 }}>
+              <p style={{ fontSize: 14, color: 'var(--txt3, var(--txt2))', lineHeight: 1.6, marginBottom: 28 }}>
                 Vi har skickat en återställningslänk till <strong>{email}</strong>.
                 Klicka på länken i mejlet för att välja ett nytt lösenord.
               </p>
@@ -70,7 +70,7 @@ export default function GlomtLosenordPage() {
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
                 Återställ lösenord
               </h2>
-              <p style={{ fontSize: 13, color: 'var(--txt3, #5a8090)', margin: 0 }}>
+              <p style={{ fontSize: 13, color: 'var(--txt3, var(--txt2))', margin: 0 }}>
                 Ange din e-postadress så skickar vi en länk direkt.
               </p>
 
@@ -113,7 +113,7 @@ export default function GlomtLosenordPage() {
 
           <Link href="/logga-in" style={{
             display: 'block', textAlign: 'center', marginTop: 20,
-            fontSize: 14, color: 'var(--txt3, #5a8090)', textDecoration: 'none', fontWeight: 500,
+            fontSize: 14, color: 'var(--txt3, var(--txt2))', textDecoration: 'none', fontWeight: 500,
           }}>
             ← Tillbaka till inloggning
           </Link>

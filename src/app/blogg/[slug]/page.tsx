@@ -1182,7 +1182,7 @@ function renderContent(content: string) {
       )
     } else if (line.startsWith('### ')) {
       elements.push(
-        <h3 key={key++} style={{ color: '#1e5c82', fontSize: 16, fontWeight: 700, marginTop: 24, marginBottom: 8 }}>
+        <h3 key={key++} style={{ color: 'var(--sea)', fontSize: 16, fontWeight: 700, marginTop: 24, marginBottom: 8 }}>
           {line.slice(4)}
         </h3>
       )
@@ -1207,7 +1207,7 @@ function renderContent(content: string) {
         <tr key={key++} style={{ borderBottom: '1px solid rgba(0,0,0,0.06)' }}>
           {cells.map((cell, ci) => (
             isHeader
-              ? <th key={ci} style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: '#1e5c82', fontSize: 13 }}>{cell.trim()}</th>
+              ? <th key={ci} style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: 'var(--sea)', fontSize: 13 }}>{cell.trim()}</th>
               : <td key={ci} style={{ padding: '8px 12px', fontSize: 13, color: 'var(--txt2, #2a4a5a)' }}>{cell.trim()}</td>
           ))}
         </tr>
@@ -1361,7 +1361,7 @@ export default async function BloggPostPage({
         <div style={{ display: 'flex', gap: 8, marginTop: 24, flexWrap: 'wrap' }}>
           {post.tags.map(tag => (
             <span key={tag} style={{
-              fontSize: 12, color: '#1e5c82', background: 'rgba(30,92,130,0.08)',
+              fontSize: 12, color: 'var(--sea)', background: 'rgba(30,92,130,0.08)',
               padding: '4px 12px', borderRadius: 20, fontWeight: 600,
             }}>#{tag}</span>
           ))}
@@ -1370,12 +1370,12 @@ export default async function BloggPostPage({
         {/* Back + CTA */}
         <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
           <Link href="/blogg" style={{
-            padding: '12px 24px', background: 'var(--white, #fff)', color: '#1e5c82',
+            padding: '12px 24px', background: 'var(--white, #fff)', color: 'var(--sea)',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             border: '1.5px solid #1e5c82',
           }}>← Fler artiklar</Link>
           <Link href="/platser" style={{
-            padding: '12px 24px', background: '#1e5c82', color: '#fff',
+            padding: '12px 24px', background: 'var(--sea)', color: '#fff',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
           }}>Utforska kartan →</Link>
         </div>

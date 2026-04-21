@@ -150,7 +150,7 @@ export default function LiveTrackMap({
       }
 
       polylineRef.current = L.polyline(recentPts.map(p => [p.lat, p.lng]), {
-        color: '#1e5c82',
+        color: 'var(--sea)',
         weight: 3.5,
         opacity: 0.9,
         lineCap: 'round',

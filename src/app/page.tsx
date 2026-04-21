@@ -15,7 +15,7 @@ const LANDING_CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{
-  --sea:#1a3a5e; --sea-dark:#0d2440; --sea-mid:#234e78;
+  --sea:var(--txt); --sea-dark:#0d2440; --sea-mid:#234e78;
   --teal:#1e5c82; --teal-light:#2d7aaa;
   --sand:#f4ede0; --sand-light:#faf6f0;
   --white:#ffffff; --ink:#1c2b2e; --muted:#6b8087;
@@ -238,7 +238,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .auth-m-tab{flex:1;padding:9px;border-radius:7px;border:none;background:none;cursor:pointer;font-size:13px;font-weight:700;color:#5a7a88;transition:all .15s;font-family:inherit}
 .auth-m-tab.active{background:#fff;color:#0a7b8c;box-shadow:0 1px 6px rgba(0,45,60,.1)}
 .auth-m-title{font-size:20px;font-weight:800;color:#192830;margin-bottom:4px}
-.auth-m-sub{font-size:13px;color:#7a9dab;margin-bottom:22px}
+.auth-m-sub{font-size:13px;color:var(--txt3);margin-bottom:22px}
 .auth-m-field{margin-bottom:14px}
 .auth-m-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:#3d5865;margin-bottom:5px;display:block}
 .auth-m-input{width:100%;padding:12px 14px;border:1.5px solid rgba(10,123,140,.2);border-radius:10px;font-size:14px;color:#192830;background:rgba(255,255,255,.7);outline:none;transition:all .2s;font-family:inherit}
@@ -250,7 +250,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .auth-m-divider::before,.auth-m-divider::after{content:'';flex:1;height:1px;background:rgba(10,123,140,.12)}
 .auth-m-google{width:100%;padding:11px 14px;border:1.5px solid rgba(10,123,140,.2);border-radius:10px;background:#fff;cursor:pointer;font-size:13px;font-weight:600;color:#3d5865;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .15s;font-family:inherit}
 .auth-m-google:hover{border-color:#0a7b8c;color:#0a7b8c}
-.auth-m-footer{text-align:center;font-size:12px;color:#7a9dab;margin-top:14px}
+.auth-m-footer{text-align:center;font-size:12px;color:var(--txt3);margin-top:14px}
 .auth-m-footer a{color:#0a7b8c;font-weight:600;cursor:pointer;text-decoration:none}
 .auth-m-footer a:hover{text-decoration:underline}
 .auth-m-forgot{text-align:right;font-size:12px;color:#0a7b8c;font-weight:600;cursor:pointer;margin-top:-8px;margin-bottom:4px;display:block}

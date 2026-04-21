@@ -58,7 +58,7 @@ export default function BloggPage() {
                     <span style={{
                       fontSize: 11,
                       fontWeight: 700,
-                      color: '#1e5c82',
+                      color: 'var(--sea)',
                       background: 'rgba(30,92,130,0.08)',
                       padding: '3px 9px',
                       borderRadius: 20,
@@ -68,14 +68,14 @@ export default function BloggPage() {
                   <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
                     {post.title}
                   </h2>
-                  <p style={{ fontSize: 13, color: '#5a8090', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>
+                  <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>
                     {post.excerpt}
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontSize: 11, color: '#a0b8c4' }}>
                       {new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </div>
-                    <span style={{ fontSize: 12, color: '#1e5c82', fontWeight: 700 }}>Läs mer →</span>
+                    <span style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 700 }}>Läs mer →</span>
                   </div>
                 </div>
               </article>
@@ -92,9 +92,9 @@ export default function BloggPage() {
           border: '1px dashed rgba(30,92,130,0.2)',
         }}>
           <p style={{ fontSize: 14, color: '#4a6a7a', margin: '0 0 8px' }}>Fler artiklar är på väg.</p>
-          <p style={{ fontSize: 13, color: '#7a9dab', margin: 0 }}>
+          <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
             Tips på ämnen? Maila oss på{' '}
-            <a href="mailto:info@svalla.se" style={{ color: '#1e5c82', fontWeight: 700 }}>info@svalla.se</a>
+            <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 700 }}>info@svalla.se</a>
           </p>
         </div>
       </div>

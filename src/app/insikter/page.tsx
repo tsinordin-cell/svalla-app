@@ -121,7 +121,7 @@ export default function InsikterPage() {
                 onClick={() => setScope(v)}
                 style={{
                   flexShrink: 0, padding: '6px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
-                  background: active ? '#1e5c82' : 'rgba(10,123,140,0.07)',
+                  background: active ? 'var(--sea)' : 'rgba(10,123,140,0.07)',
                   color: active ? '#fff' : '#3a6a80',
                   fontSize: 12, fontWeight: 700,
                   WebkitTapHighlightColor: 'transparent',
@@ -333,7 +333,7 @@ export default function InsikterPage() {
                       <div style={{
                         width: 28, height: 28, borderRadius: '50%',
                         background: idx === 0 ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.08)',
-                        color: idx === 0 ? '#fff' : '#1e5c82',
+                        color: idx === 0 ? '#fff' : 'var(--sea)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 13, fontWeight: 700, flexShrink: 0,
                       }}>{idx + 1}</div>

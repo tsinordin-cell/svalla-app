@@ -101,7 +101,7 @@ export default function EventDetailPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🗓️</div>
-          <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>Eventet hittades inte</h2>
+          <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Eventet hittades inte</h2>
           <Link href="/event" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Alla events</Link>
         </div>
       </div>
@@ -152,7 +152,7 @@ export default function EventDetailPage() {
           <h2 style={{ fontSize: 22, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px' }}>{ev.title}</h2>
 
           <div style={{ padding: 14, borderRadius: 14, background: 'rgba(30,92,130,0.06)', marginBottom: 14 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#1e5c82', marginBottom: 4 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)', marginBottom: 4 }}>
               📅 {formatEventDate(ev.starts_at, ev.ends_at)}
             </div>
             {ev.location_name && (

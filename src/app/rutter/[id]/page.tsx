@@ -266,7 +266,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                     <div style={{
                       position: 'absolute', top: -4, right: -4,
                       width: 16, height: 16, borderRadius: '50%',
-                      background: '#1e5c82', color: '#fff',
+                      background: 'var(--sea)', color: '#fff',
                       fontSize: 8, fontWeight: 700,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>{i + 1}</div>
@@ -331,7 +331,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                       {r.name}
                     </div>
                     {r.core_experience && (
-                      <div style={{ fontSize: 12, color: 'var(--txt3, #5a8090)', lineHeight: 1.4, marginBottom: 4 }}>
+                      <div style={{ fontSize: 12, color: 'var(--txt3, var(--txt2))', lineHeight: 1.4, marginBottom: 4 }}>
                         {r.core_experience}
                       </div>
                     )}
@@ -372,7 +372,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         <Link href={`/guide?tur=${encodeURIComponent(t.title)}`} style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           width: '100%', padding: '13px 0', borderRadius: 16, marginTop: 10,
-          background: '#1e5c82',
+          background: 'var(--sea)',
           color: '#fff', fontWeight: 700, fontSize: 13,
           textDecoration: 'none',
         }}>
@@ -387,7 +387,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div style={{ margin: '16px 0' }}>
       <h2 style={{
-        fontSize: 12, fontWeight: 600, color: 'var(--txt3, #5a8090)',
+        fontSize: 12, fontWeight: 600, color: 'var(--txt3, var(--txt2))',
         textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 10,
       }}>
         {title}

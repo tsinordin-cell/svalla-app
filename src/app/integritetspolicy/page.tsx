@@ -27,7 +27,7 @@ export default function IntegritetspolicyPage() {
         <article style={{ background: 'var(--white, #fff)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2, #2a4a5a)', fontSize: 15 }}>
 
           <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 18, marginTop: 0 }}>1. Personuppgiftsansvarig</h2>
-          <p>Svalla (svalla.se) är personuppgiftsansvarig för behandlingen av dina personuppgifter. Kontakta oss på <a href="mailto:info@svalla.se" style={{ color: '#1e5c82' }}>info@svalla.se</a> vid frågor.</p>
+          <p>Svalla (svalla.se) är personuppgiftsansvarig för behandlingen av dina personuppgifter. Kontakta oss på <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a> vid frågor.</p>
 
           <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 18 }}>2. Vilka uppgifter vi samlar in</h2>
           <p>Vi samlar in följande uppgifter när du skapar ett konto eller använder Svalla:</p>
@@ -63,15 +63,15 @@ export default function IntegritetspolicyPage() {
             <li>Rätta felaktiga uppgifter</li>
             <li>Radera ditt konto och tillhörande data</li>
             <li>Invända mot viss behandling</li>
-            <li>Lämna klagomål till <a href="https://www.imy.se" target="_blank" rel="noopener noreferrer" style={{ color: '#1e5c82' }}>Integritetsskyddsmyndigheten (IMY)</a></li>
+            <li>Lämna klagomål till <a href="https://www.imy.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>Integritetsskyddsmyndigheten (IMY)</a></li>
           </ul>
-          <p>Kontakta <a href="mailto:info@svalla.se" style={{ color: '#1e5c82' }}>info@svalla.se</a> för att utöva dina rättigheter.</p>
+          <p>Kontakta <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a> för att utöva dina rättigheter.</p>
 
           <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 18 }}>7. Cookies</h2>
           <p>Svalla använder nödvändiga sessionscookies för inloggning. Vi använder inga reklam- eller spårningscookies från tredje part.</p>
 
           <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 18 }}>8. Kontakt</h2>
-          <p>Frågor om vår integritetspolicy? Hör av dig till <a href="mailto:info@svalla.se" style={{ color: '#1e5c82' }}>info@svalla.se</a>.</p>
+          <p>Frågor om vår integritetspolicy? Hör av dig till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>.</p>
 
         </article>
       </div>

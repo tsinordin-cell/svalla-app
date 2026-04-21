@@ -204,7 +204,7 @@ export default function KlubbarPage() {
                     {c.name}
                   </span>
                   {c.is_member && (
-                    <span style={{ fontSize: 10, fontWeight: 600, color: '#1e5c82', background: 'rgba(30,92,130,0.10)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
+                    <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--sea)', background: 'rgba(30,92,130,0.10)', borderRadius: 6, padding: '2px 6px', flexShrink: 0 }}>
                       MEDLEM
                     </span>
                   )}
@@ -250,7 +250,7 @@ function EmptyState({ emoji, title, body, cta }: {
   return (
     <div style={{ padding: '60px 20px', textAlign: 'center' }}>
       <div style={{ fontSize: 48, marginBottom: 10 }}>{emoji}</div>
-      <h2 style={{ fontSize: 16, fontWeight: 600, color: '#1e5c82', marginBottom: 6 }}>{title}</h2>
+      <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>{title}</h2>
       <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>{body}</p>
       {cta && (
         cta.onClick ? (

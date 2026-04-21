@@ -485,7 +485,7 @@ function SokPageInner() {
             </p>
             <button onClick={() => setActiveTab('alla')} style={{
               marginTop: 12, padding: '8px 20px', borderRadius: 12, border: 'none',
-              background: '#1e5c82', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
+              background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, cursor: 'pointer',
             }}>
               Visa alla träffar
             </button>

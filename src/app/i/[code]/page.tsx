@@ -124,7 +124,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
         )}
 
         <div style={{ textAlign: 'center' }}>
-          <Link href="/" style={{ fontSize: 12, color: 'var(--txt3, #7a9dab)' }}>
+          <Link href="/" style={{ fontSize: 12, color: 'var(--txt3, var(--txt3))' }}>
             ← Till startsidan
           </Link>
         </div>

@@ -112,14 +112,14 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
   const tagsRow = r.tags && r.tags.length > 0
     ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">
          ${r.tags.slice(0, 4).map((tag: string) =>
-           `<span style="padding:3px 8px;background:rgba(10,123,140,0.07);border-radius:12px;font-size:10px;font-weight:600;color:#2d6a82">${tag}</span>`
+           `<span style="padding:3px 8px;background:rgba(10,123,140,0.07);border-radius:12px;font-size:10px;font-weight:600;color:var(--sea)">${tag}</span>`
          ).join('')}
        </div>`
     : ''
   return `
     <div style="font-family:system-ui,sans-serif;min-width:200px">
       <div style="font-weight:800;font-size:14px;color:#162d3a;margin-bottom:3px">${r.name}</div>
-      ${r.opening_hours ? `<div style="font-size:11px;color:#7a9dab">🕐 ${r.opening_hours}</div>` : ''}
+      ${r.opening_hours ? `<div style="font-size:11px;color:var(--txt3)">🕐 ${r.opening_hours}</div>` : ''}
       ${whyRow}
       ${tagsRow}
       ${distRow}
@@ -132,9 +132,9 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
       </div>
       <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">
         <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=driving" target="_blank" rel="noopener noreferrer"
-          style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚗 Bil</a>
+          style="padding:3px 8px;background:#f2f8fa;color:var(--txt2);border-radius:8px;font-size:11px;text-decoration:none">🚗 Bil</a>
         <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=walking" target="_blank" rel="noopener noreferrer"
-          style="padding:3px 8px;background:#f2f8fa;color:#5a8090;border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
+          style="padding:3px 8px;background:#f2f8fa;color:var(--txt2);border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
       </div>
     </div>
   `
@@ -247,13 +247,13 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
       <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
         <div style={{ display:'flex', alignItems:'center', gap:5 }}>
           {weather
-            ? <><span style={{ fontSize:14, fontWeight:900, color:'#1e5c82', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'#5a8090', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
+            ? <><span style={{ fontSize:14, fontWeight:900, color:'#1e5c82', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'var(--txt2)', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
             : fetchFailed
               ? <span style={{ fontSize:11, color:'#aabbc4' }}>–°</span>
-              : <span style={{ fontSize:11, color:'#7a9dab' }}>Hämtar väder…</span>
+              : <span style={{ fontSize:11, color:'var(--txt3)' }}>Hämtar väder…</span>
           }
         </div>
-        <span style={{ fontSize:9, color:'#7a9dab', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px' }}>📍 {getAreaName(lat, lng)}</span>
+        <span style={{ fontSize:9, color:'var(--txt3)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px' }}>📍 {getAreaName(lat, lng)}</span>
       </div>
     </div>
   )
@@ -435,7 +435,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           .bindPopup(
             `<div style="font-family:system-ui,sans-serif;min-width:180px">
               <div style="font-weight:800;font-size:13px;color:#162d3a;margin-bottom:4px">⛵ ${tour.title}</div>
-              <div style="font-size:11px;color:#7a9dab;margin-bottom:8px">${tour.start_location} → ${tour.destination}${tour.duration_label ? ' · ' + tour.duration_label : ''}</div>
+              <div style="font-size:11px;color:var(--txt3);margin-bottom:8px">${tour.start_location} → ${tour.destination}${tour.duration_label ? ' · ' + tour.duration_label : ''}</div>
               <a href="/rutter/${tour.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Se rutt →</a>
             </div>`,
             { maxWidth: 240 }
@@ -595,7 +595,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
             `<div style="font-weight:700;font-size:13px">📍 Du är här</div>
              ${nearby.size > 0
                ? `<div style="font-size:11px;color:#1e5c82;margin-top:4px">⚓ ${nearby.size} plats${nearby.size === 1 ? '' : 'er'} inom 2 NM</div>`
-               : '<div style="font-size:11px;color:#7a9dab;margin-top:4px">Inga platser inom 2 NM</div>'
+               : '<div style="font-size:11px;color:var(--txt3);margin-top:4px">Inga platser inom 2 NM</div>'
              }`
           )
           .openPopup()

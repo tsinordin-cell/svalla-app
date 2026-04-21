@@ -144,7 +144,7 @@ export default function NotificationBell() {
                   Markera lästa
                 </button>
               )}
-              <Link href="/notiser" onClick={() => setOpen(false)} style={{ fontSize: 11, fontWeight: 700, color: '#1e5c82', textDecoration: 'none' }}>
+              <Link href="/notiser" onClick={() => setOpen(false)} style={{ fontSize: 11, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none' }}>
                 Visa alla →
               </Link>
             </div>
@@ -183,7 +183,7 @@ export default function NotificationBell() {
                   <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
                 </div>
                 {!n.read && (
-                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#1e5c82', flexShrink: 0, marginTop: 5 }} />
+                  <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--sea)', flexShrink: 0, marginTop: 5 }} />
                 )}
               </Link>
             ))
