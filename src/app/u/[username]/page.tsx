@@ -3,6 +3,7 @@ import type { Trip } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import EmptyState from '@/components/EmptyState'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
 import FollowPrefsButton from '@/components/FollowPrefsButton'
@@ -301,13 +302,12 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         {/* ── Trip grid ── */}
         <div style={{ background: 'var(--white, #fff)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
           {trips.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '52px 24px' }}>
-              <div style={{ fontSize: 52, marginBottom: 12 }}>⛵</div>
-              <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt2, #3d5865)', margin: '0 0 6px' }}>Inga turer loggade ännu</p>
-              <p style={{ fontSize: 13, color: '#7a9dab', margin: 0, lineHeight: 1.5 }}>
-                {userRow.username} har inte loggat någon tur på Svalla än.
-              </p>
-            </div>
+            <EmptyState
+              icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+              title="Inga turer ännu"
+              body={`${userRow.username} har inte loggat någon tur på Svalla än.`}
+              marginTop={0}
+            />
           ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
