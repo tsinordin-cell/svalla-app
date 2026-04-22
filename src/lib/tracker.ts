@@ -13,8 +13,9 @@ export interface GpsPoint {
 export type TrackCallback = (point: GpsPoint) => void
 export type ErrorCallback = (message: string) => void
 
-let watchId: string | number | null = null
-let nativeMode = false
+// NOTERA: watchId och nativeMode är INTE module-globals längre.
+// De hanteras via closure i varje startTracking-anrop för att undvika
+// race conditions vid dubbel mount (React StrictMode, remounts).
 
 async function isNative(): Promise<boolean> {
   if (typeof window === 'undefined') return false
@@ -28,14 +29,15 @@ async function isNative(): Promise<boolean> {
 
 /**
  * Starta GPS-spårning. Returnerar en stop-funktion.
+ * Varje anrop är isolerat — watchId hanteras via closure, inte module-global.
  */
 export async function startTracking(
   onPoint: TrackCallback,
   onError: ErrorCallback,
 ): Promise<() => void> {
-  nativeMode = await isNative()
+  const native = await isNative()
 
-  if (nativeMode) {
+  if (native) {
     return startNativeTracking(onPoint, onError)
   } else {
     return startWebTracking(onPoint, onError)
@@ -55,7 +57,9 @@ async function startNativeTracking(
     return () => {}
   }
 
-  watchId = await Geolocation.watchPosition(
+  // watchId är lokal variabel — isolerad per anrop
+  let localWatchId: string | null = null
+  localWatchId = await Geolocation.watchPosition(
     { enableHighAccuracy: true, timeout: 10_000 },
     (pos, err) => {
       if (err) { onError(err.message ?? 'GPS-fel'); return }
@@ -70,9 +74,9 @@ async function startNativeTracking(
   )
 
   return async () => {
-    if (watchId !== null) {
-      await Geolocation.clearWatch({ id: watchId as string })
-      watchId = null
+    if (localWatchId !== null) {
+      await Geolocation.clearWatch({ id: localWatchId })
+      localWatchId = null
     }
   }
 }
@@ -86,7 +90,9 @@ function startWebTracking(
     return () => {}
   }
 
-  watchId = navigator.geolocation.watchPosition(
+  // localWatchId är lokal variabel — isolerad per anrop
+  let localWatchId: number | null = null
+  localWatchId = navigator.geolocation.watchPosition(
     (pos) => onPoint({
       lat:       pos.coords.latitude,
       lng:       pos.coords.longitude,
@@ -98,9 +104,9 @@ function startWebTracking(
   )
 
   return () => {
-    if (watchId !== null) {
-      navigator.geolocation.clearWatch(watchId as number)
-      watchId = null
+    if (localWatchId !== null) {
+      navigator.geolocation.clearWatch(localWatchId)
+      localWatchId = null
     }
   }
 }
@@ -109,9 +115,9 @@ function startWebTracking(
  * Hämta nuvarande position (engångsmätning).
  */
 export async function getCurrentPosition(): Promise<GpsPoint | null> {
-  nativeMode = await isNative()
+  const native = await isNative()
 
-  if (nativeMode) {
+  if (native) {
     try {
       const { Geolocation } = await import('@capacitor/geolocation')
       const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: true })
