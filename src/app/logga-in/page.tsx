@@ -1,5 +1,5 @@
 'use client' // v2
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -24,7 +24,8 @@ function WaveDivider() {
   )
 }
 
-export default function LoggaInPage() {
+// useSearchParams kräver Suspense — se LoggaInPage wrapper längst ned
+function LoginContent() {
   const router   = useRouter()
   const sp       = useSearchParams()
   const rawReturnTo = sp.get('returnTo') ?? ''
@@ -341,5 +342,14 @@ export default function LoggaInPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+// Next.js kräver Suspense kring useSearchParams() vid statisk generering
+export default function LoggaInPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginContent />
+    </Suspense>
   )
 }
