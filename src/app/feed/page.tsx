@@ -60,12 +60,19 @@ export default async function FeedPage(
   // Bulk-query: ETT RPC-anrop returnerar trips + user + likes_count
   // + comments_count + user_liked. Ersätter 4-7 separata queries.
   // För inloggad: kör båda flödena parallellt (alla + följer).
-  const [allRes, followRes] = await Promise.all([
-    fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
-    user
-      ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 50, followOnly: true })
-      : Promise.resolve({ trips: [], error: null }),
-  ])
+  let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+  let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+  try {
+    ;[allRes, followRes] = await Promise.all([
+      fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
+      user
+        ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 50, followOnly: true })
+        : Promise.resolve({ trips: [], error: null }),
+    ])
+  } catch (err) {
+    console.error('[FeedPage] fetchFeedTrips threw unexpectedly:', err)
+    return <FeedServerError />
+  }
 
   // Graciös degradering: om all-query misslyckas, visa felmeddelande.
   // Om bara follow-query misslyckas, visa ändå alla-flödet.

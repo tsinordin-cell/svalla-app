@@ -82,16 +82,25 @@ export async function fetchFeedTrips(
   supabase: SupabaseClient,
   opts: FeedFetchOptions = {},
 ): Promise<{ trips: Trip[]; error: string | null }> {
-  const { data, error } = await supabase.rpc('feed_with_counts', {
-    p_viewer:      opts.viewerId ?? null,
-    p_limit:       opts.limit ?? 50,
-    p_follow_only: opts.followOnly ?? false,
-    p_before_ts:   opts.beforeTs ?? null,
-  })
+  try {
+    const { data, error } = await supabase.rpc('feed_with_counts', {
+      p_viewer:      opts.viewerId ?? null,
+      p_limit:       opts.limit ?? 50,
+      p_follow_only: opts.followOnly ?? false,
+      p_before_ts:   opts.beforeTs ?? null,
+    })
 
-  if (error) {
-    return { trips: [], error: error.message }
+    if (error) {
+      console.error('[fetchFeedTrips] RPC error:', error.message)
+      return { trips: [], error: error.message }
+    }
+    const rows = (data ?? []) as FeedRpcRow[]
+    return { trips: rows.map(mapRpcRow), error: null }
+  } catch (err) {
+    // Nätverksfel, timeout eller oväntat undantag — returnera gracefully
+    // utan att kasta vidare och trigga error-boundary i feed/page.tsx
+    const msg = err instanceof Error ? err.message : 'Nätverksfel'
+    console.error('[fetchFeedTrips] unexpected throw:', msg)
+    return { trips: [], error: msg }
   }
-  const rows = (data ?? []) as FeedRpcRow[]
-  return { trips: rows.map(mapRpcRow), error: null }
 }
