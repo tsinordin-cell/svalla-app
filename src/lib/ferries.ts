@@ -188,7 +188,9 @@ export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise
     const stopId = await resolveStopId(route.from, apiKey)
     if (!stopId) return null
 
-    const url = `${TRAFIKLAB_BASE}/departureBoard?id=${stopId}&maxJourneys=30&format=json&accessId=${apiKey}`
+    // products=256 → HAFAS bitmask för "ferry/ship". Stora stopp som Strömkajen
+    // returnerar annars 30 SL-bussar/T-banor innan första båten, och båten filtreras bort.
+    const url = `${TRAFIKLAB_BASE}/departureBoard?id=${stopId}&maxJourneys=30&products=256&format=json&accessId=${apiKey}`
     const res = await fetch(url, { next: { revalidate: 60 } })
     if (!res.ok) return null
     const json = await res.json() as { Departure?: ResRobotDeparture[] }
@@ -199,7 +201,10 @@ export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise
       const product = Array.isArray(d.Product) ? d.Product[0] : undefined
       const productOrStop = product ?? d.ProductAtStop
       if (!isFerry(productOrStop)) continue
-      if (!matchesOperator(productOrStop, route.operator)) continue
+      // Operatörsfiltret är medvetet slappt: products=256 garanterar redan att det
+      // är en båtavgång från rätt brygga. Många Strömkajen-linjer körs formellt
+      // under "SL Pendelbåt" men är Waxholms-båtar fysiskt. Vi släpper igenom alla
+      // båtar från stoppet hellre än att visa seed-data.
       if (!d.date || !d.time) continue
 
       out.push({
