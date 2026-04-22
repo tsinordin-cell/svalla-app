@@ -20,9 +20,15 @@ export default function RealtimeFeedBanner() {
 
   // Hämta inloggad användares id — filtrera bort egna turer
   useEffect(() => {
-    supabaseRef.current.auth.getUser().then(({ data: { user } }) => {
-      setMe(user?.id ?? null)
-    })
+    supabaseRef.current.auth.getUser()
+      .then(({ data: { user } }) => {
+        setMe(user?.id ?? null)
+      })
+      .catch((err) => {
+        // Auth-session expired eller nätfel → fail gracefully, trigga inte error boundary
+        console.warn('[RealtimeFeedBanner] auth.getUser failed:', err)
+        setMe(null)
+      })
   }, [])
 
   useEffect(() => {

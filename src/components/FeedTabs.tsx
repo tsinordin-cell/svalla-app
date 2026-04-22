@@ -89,7 +89,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   const sorted = [...filtered].sort((a: any, b: any) => {
     if (sortKey === 'distance') return (b.distance ?? 0) - (a.distance ?? 0)
     if (sortKey === 'speed')    return (b.max_speed_knots ?? 0) - (a.max_speed_knots ?? 0)
-    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    // Defensivt: null/undefined/invalid created_at → 0 (undvik NaN-sort)
+    const aMs = a.created_at ? Date.parse(a.created_at) : 0
+    const bMs = b.created_at ? Date.parse(b.created_at) : 0
+    return (Number.isFinite(bMs) ? bMs : 0) - (Number.isFinite(aMs) ? aMs : 0)
   })
   const trips   = sorted.slice(0, visible)
   const hasMore = visible < sorted.length

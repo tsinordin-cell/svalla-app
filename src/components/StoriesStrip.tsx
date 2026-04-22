@@ -30,10 +30,15 @@ export default function StoriesStrip() {
   const [showUpload, setShowUpload] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) setMe(user.id)
-      load(user?.id ?? null)
-    })
+    supabase.auth.getUser()
+      .then(({ data: { user } }) => {
+        if (user) setMe(user.id)
+        load(user?.id ?? null)
+      })
+      .catch((err) => {
+        console.warn('[StoriesStrip] auth.getUser failed:', err)
+        load(null)
+      })
   }, [supabase])
 
   async function load(uid: string | null) {

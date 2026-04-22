@@ -113,7 +113,14 @@ export default function SuggestedUsers() {
     setLoading(false)
   }, [supabase])
 
-  useEffect(() => { load() }, [load])
+  useEffect(() => {
+    // Svälj alla fel — SuggestedUsers är en "nice-to-have", ska aldrig krascha feeden
+    load().catch((err) => {
+      console.warn('[SuggestedUsers] load failed:', err)
+      setLoading(false)
+      setHidden(true)
+    })
+  }, [load])
 
   // Dismiss a single suggestion optimistically
   function dismiss(uid: string) {
