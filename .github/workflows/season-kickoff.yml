@@ -1,0 +1,15 @@
+name: Season Kickoff Push
+on:
+  schedule:
+    - cron: '0 9 1 5 *'
+  workflow_dispatch:
+jobs:
+  send-kickoff:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X GET https://svalla.se/api/push/season-kickoff \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}")
+          echo "Status: $response"
+          [ "$response" = "200" ] || exit 1
