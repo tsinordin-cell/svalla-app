@@ -38,6 +38,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/platser`,     lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/rutter`,      lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     { url: `${base}/rutter?vy=oar`, lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/farjor`,      lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
+    { url: `${base}/tips`,        lastModified: now, priority: 0.8, changeFrequency: 'weekly'  as const },
     { url: `${base}/blogg`,       lastModified: now, priority: 0.7, changeFrequency: 'weekly'  as const },
     { url: `${base}/guide`,       lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const },
     { url: `${base}/om`,          lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },
@@ -63,13 +65,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Dynamiska platser från Supabase ─────────────────────────────
   let platsPages: MetadataRoute.Sitemap = []
   let rutterPages: MetadataRoute.Sitemap = []
+  let tipsPages: MetadataRoute.Sitemap = []
 
   try {
     const supabase = createClient()
 
-    const [{ data: restaurants }, { data: tours }] = await Promise.all([
+    const [{ data: restaurants }, { data: tours }, { data: articles }] = await Promise.all([
       supabase.from('restaurants').select('id, updated_at').order('id'),
       supabase.from('tours').select('id, updated_at').order('id'),
+      supabase.from('articles').select('slug, updated_at, published').eq('published', true),
     ])
 
     platsPages = (restaurants ?? []).map((r: { id: string; updated_at?: string }) => ({
@@ -85,6 +89,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.75,
     }))
+
+    tipsPages = (articles ?? []).map((a: { slug: string; updated_at?: string }) => ({
+      url: `${base}/tips/${a.slug}`,
+      lastModified: a.updated_at ? new Date(a.updated_at) : now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    }))
   } catch {
     // Om Supabase inte svarar — returnera ändå resten av sitemap
   }
@@ -95,5 +106,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogPages,
     ...platsPages,
     ...rutterPages,
+    ...tipsPages,
   ]
 }

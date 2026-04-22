@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const a = await getArticleBySlug(slug)
   if (!a) return { title: 'Artikel hittades inte — Svalla' }
+  const ogUrl = `https://svalla.se/api/og/tips/${a.slug}`
   return {
     title: `${a.title} — Svalla`,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
@@ -19,7 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: a.title,
       description: a.excerpt || '',
       url: `https://svalla.se/tips/${a.slug}`,
-      images: a.cover_image ? [{ url: a.cover_image }] : undefined,
+      images: [{ url: ogUrl, width: 1200, height: 630 }],
+      type: 'article',
+      siteName: 'Svalla',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: a.title,
+      description: a.excerpt || '',
+      images: [ogUrl],
     },
   }
 }

@@ -9,6 +9,7 @@ import MessageBell from '@/components/MessageBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
+import FeedClientBoundary from '@/components/FeedClientBoundary'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
@@ -96,19 +97,28 @@ export default async function FeedPage() {
   const magicTrips = thisWeek.filter((t: { pinnar_rating: number | null }) => t.pinnar_rating === 3).slice(0, 3)
 
   // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
+  // HELA blocket är tyst-degraderat: feeden är huvudsaken, achievements är sekundärt.
   let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
   if (user) {
     try {
-      const { data: followsForAchv } = await supabase
-        .from('follows').select('following_id').eq('follower_id', user.id)
-      const networkIds = [
-        user.id,
-        ...((followsForAchv ?? []).map((f: { following_id: string }) => f.following_id)),
-      ]
+      let networkIds: string[] = [user.id]
+      try {
+        const { data: followsForAchv, error: followsErr } = await supabase
+          .from('follows').select('following_id').eq('follower_id', user.id)
+        if (!followsErr && followsForAchv) {
+          networkIds = [
+            user.id,
+            ...followsForAchv.map((f: { following_id: string }) => f.following_id),
+          ]
+        }
+      } catch (err) {
+        console.error('[FeedPage] follows-query failed (non-blocking):', err)
+      }
       const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
       recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
-    } catch {
+    } catch (err) {
       // Degradera tyst — achievement-events är icke-kritiska
+      console.error('[FeedPage] achievements failed (non-blocking):', err)
       recentAchievements = []
     }
   }
@@ -288,11 +298,13 @@ export default async function FeedPage() {
         )}
 
         {/* ── Main feed ── */}
-        <FeedTabs
-          allTrips={tripsWithUsers}
-          followingTrips={followingTrips}
-          isLoggedIn={!!user}
-        />
+        <FeedClientBoundary>
+          <FeedTabs
+            allTrips={tripsWithUsers}
+            followingTrips={followingTrips}
+            isLoggedIn={!!user}
+          />
+        </FeedClientBoundary>
       </div>
     </div>
   )
