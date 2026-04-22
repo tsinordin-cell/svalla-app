@@ -68,7 +68,7 @@ function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | null {
 }
 
 const FILTER_CONFIG: Record<Filter, { label: string; emoji: string; color: string }> = {
-  bryggor:    { label: 'Bryggor',    emoji: '⚓', color: '#1e5c82' },
+  bryggor:    { label: 'Bryggor',    emoji: '⚓', color: 'var(--sea)' },
   krogar:     { label: 'Krogar',     emoji: '🍽', color: '#c96e2a' },
   naturhamnar:{ label: 'Naturhamnar',emoji: '🌿', color: '#0f9e64' },
   rutter:     { label: 'Rutter',     emoji: '🗺️', color: '#7c4d1e' },

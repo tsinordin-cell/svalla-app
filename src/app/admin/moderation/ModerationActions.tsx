@@ -51,7 +51,7 @@ export default function ModerationActions({ reportId }: Props) {
         <button
           onClick={() => act('reviewed')}
           disabled={!!busy}
-          style={{ ...btnBase, background: 'rgba(30,92,130,0.1)', color: '#1e5c82' }}
+          style={{ ...btnBase, background: 'rgba(30,92,130,0.1)', color: 'var(--sea)' }}
         >
           {busy === 'reviewed' ? '…' : '👁 Granskad'}
         </button>

@@ -64,6 +64,17 @@ export default function Nav() {
   // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
   const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
     !path.match(/^\/meddelanden\/.+/)
+
+  // Lägg till/ta bort body-klass för desktop sidebar-offset
+  useEffect(() => {
+    if (showNav) {
+      document.body.classList.add('has-app-nav')
+    } else {
+      document.body.classList.remove('has-app-nav')
+    }
+    return () => document.body.classList.remove('has-app-nav')
+  }, [showNav])
+
   if (!showNav) return null
 
   const tabs = [
@@ -161,7 +172,7 @@ export default function Nav() {
           <NotificationBell />
         </div>
       )}
-    <nav aria-label="Navigering" style={{
+    <nav aria-label="Navigering" className="svalla-nav" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
       background: 'var(--glass-92)',
@@ -219,7 +230,7 @@ export default function Nav() {
               {tab.label}
             </span>
             {active && (
-              <span style={{
+              <span className="nav-active-bar" style={{
                 position: 'absolute', bottom: 6, left: '50%',
                 transform: 'translateX(-50%)',
                 background: 'var(--sea)', width: 18, height: 3, borderRadius: '2px 2px 0 0',
