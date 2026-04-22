@@ -181,14 +181,22 @@ export default function ChatPage() {
   // Realtime
   useEffect(() => {
     if (!me) return
-    const ch = supabase
-      .channel(`conv:${id}`)
-      .on('postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${id}` },
-        () => { loadMessages(me) },
-      )
-      .subscribe()
-    return () => { supabase.removeChannel(ch) }
+    // Wrapped i try-catch: iOS/Safari kastar SecurityError synkront om wss:// saknas i CSP.
+    // Det sprider sig annars genom realtime-js (ingen intern try-catch) upp till React och
+    // triggar error boundary. Primärfix = wss://*.supabase.co i next.config.ts connect-src.
+    let ch: ReturnType<typeof supabase.channel> | null = null
+    try {
+      ch = supabase
+        .channel(`conv:${id}`)
+        .on('postgres_changes',
+          { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${id}` },
+          () => { loadMessages(me) },
+        )
+        .subscribe()
+    } catch {
+      // Realtime-prenumeration misslyckades — chatt fungerar utan realtid (pull-to-refresh)
+    }
+    return () => { if (ch) supabase.removeChannel(ch) }
   }, [supabase, id, me, loadMessages])
 
   // Presence — signalera att jag är aktiv i denna chatt så servern inte pushar hit
