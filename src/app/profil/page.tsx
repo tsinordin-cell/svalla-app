@@ -151,7 +151,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         <div style={{ overflowY: 'auto', flex: 1, padding: '0 20px' }}>
           {/* Avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0' }}>
-            <div onClick={() => fileRef.current?.click()} style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative' }}>
+            <button onClick={() => fileRef.current?.click()} aria-label="Byt profilbild" style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative', padding: 0, flexShrink: 0 }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -159,7 +159,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
               <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
                 <span style={{ fontSize: 18 }}>📷</span>
               </div>
-            </div>
+            </button>
             <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 13, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer' }}>
               Byt profilbild
             </button>
@@ -214,12 +214,18 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>
             {PRIVACY_FIELDS.map(({ key, label }) => (
-              <div key={key} onClick={() => togglePublic(key)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer' }}>
+              <button
+                key={key}
+                role="switch"
+                aria-checked={publicFields.includes(key)}
+                onClick={() => togglePublic(key)}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer', width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(10,123,140,0.07)', WebkitTapHighlightColor: 'transparent' }}
+              >
                 <span style={{ fontSize: 13, color: 'var(--txt)' }}>{label}</span>
-                <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? 'var(--sea)' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s' }}>
+                <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? 'var(--sea)' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s', flexShrink: 0 }}>
                   <div style={{ position: 'absolute', top: 3, left: publicFields.includes(key) ? 21 : 3, width: 16, height: 16, borderRadius: '50%', background: 'var(--white)', boxShadow: '0 1px 4px rgba(0,0,0,0.2)', transition: 'left .2s' }} />
                 </div>
-              </div>
+              </button>
             ))}
           </div>
           {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: 'var(--red)', marginBottom: 12 }}>{error}</div>}
