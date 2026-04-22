@@ -355,89 +355,9 @@ const LANDING_HTML = `
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="/platser">Utforska</a></li>
-    <li><a href="/rutter">Rutter</a></li>
-    <li><a href="/#aktiviteter">Se & Göra</a></li>
-    <li class="nav-dropdown">
-      <a href="/#resmål">Resmål</a>
-      <div class="nav-mega">
-        <div class="nav-mega-inner">
-          <div class="nav-mega-grid">
-
-            <!-- Kolumn 1: Innerskärgården + Mellersta del 1 -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Innerskärgården</div>
-              <a href="/o/fjaderholmarna" class="nav-mega-link">Fjäderholmarna</a>
-              <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
-              <a href="/o/grinda" class="nav-mega-link">Grinda</a>
-              <a href="/o/finnhamn" class="nav-mega-link">Finnhamn</a>
-              <a href="/o/rindo" class="nav-mega-link">Rindö</a>
-              <div class="nav-mega-region">Mellersta skärgården</div>
-              <a href="/o/sandhamn" class="nav-mega-link">Sandhamn</a>
-              <a href="/o/moja" class="nav-mega-link">Möja</a>
-              <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
-              <a href="/o/gallno" class="nav-mega-link">Gällnö</a>
-              <a href="/o/ingmarso" class="nav-mega-link">Ingmarsö</a>
-              <a href="/o/namdo" class="nav-mega-link">Nämdö</a>
-              <a href="/o/svartso" class="nav-mega-link">Svartsö</a>
-            </div>
-
-            <!-- Kolumn 2: Mellersta del 2 + Mälaren -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Mellersta (forts.)</div>
-              <a href="/o/runmaro" class="nav-mega-link">Runmarö</a>
-              <a href="/o/resaro" class="nav-mega-link">Resarö</a>
-              <a href="/o/husaro" class="nav-mega-link">Husarö</a>
-              <a href="/o/vindo" class="nav-mega-link">Vindö</a>
-              <a href="/o/ingaro" class="nav-mega-link">Ingarö</a>
-              <a href="/o/kanholmen" class="nav-mega-link">Kanholmen</a>
-              <a href="/o/kymmendo" class="nav-mega-link">Kymmendö</a>
-              <a href="/o/bullero" class="nav-mega-link">Bullerö</a>
-              <a href="/o/svenska-hogarna" class="nav-mega-link">Svenska Högarna</a>
-              <a href="/o/huvudskar" class="nav-mega-link">Huvudskär</a>
-              <div class="nav-mega-region">Mälaren</div>
-              <a href="/o/bjorko" class="nav-mega-link">Björkö / Birka</a>
-              <a href="/o/adelsjo" class="nav-mega-link">Adelsö</a>
-            </div>
-
-            <!-- Kolumn 3: Södra skärgården -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Södra skärgården</div>
-              <a href="/o/uto" class="nav-mega-link">Utö</a>
-              <a href="/o/nattaro" class="nav-mega-link">Nåttarö</a>
-              <a href="/o/orno" class="nav-mega-link">Ornö</a>
-              <a href="/o/dalaro" class="nav-mega-link">Dalarö</a>
-              <a href="/o/landsort" class="nav-mega-link">Landsort</a>
-              <a href="/o/fjardlang" class="nav-mega-link">Fjärdlång</a>
-              <a href="/o/toro" class="nav-mega-link">Torö</a>
-              <a href="/o/galo" class="nav-mega-link">Gålö</a>
-              <a href="/o/asko" class="nav-mega-link">Askö</a>
-              <a href="/o/smaadalaro" class="nav-mega-link">Smådalarö</a>
-              <a href="/o/morko" class="nav-mega-link">Mörkö</a>
-              <a href="/o/musko" class="nav-mega-link">Muskö</a>
-            </div>
-
-            <!-- Kolumn 4: Norra skärgården -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Norra skärgården</div>
-              <a href="/o/furusund" class="nav-mega-link">Furusund</a>
-              <a href="/o/blido" class="nav-mega-link">Blidö</a>
-              <a href="/o/arholma" class="nav-mega-link">Arholma</a>
-              <a href="/o/fejan" class="nav-mega-link">Fejan</a>
-              <a href="/o/rodloga" class="nav-mega-link">Rödlöga</a>
-              <a href="/o/singo" class="nav-mega-link">Singö</a>
-              <a href="/o/lido" class="nav-mega-link">Lidö</a>
-              <a href="/o/graddo" class="nav-mega-link">Gräddö</a>
-              <a href="/o/vaddo" class="nav-mega-link">Väddö</a>
-              <a href="/o/yxlan" class="nav-mega-link">Yxlan</a>
-              <a href="/o/ljustero" class="nav-mega-link">Ljusterö</a>
-              <a href="/rutter?vy=oar" class="nav-mega-all">Visa alla 69 öar →</a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </li>
+    <li><a href="/#resmål">Upptäck</a></li>
+    <li><a href="/platser">Karta</a></li>
+    <li><a href="/kom-igang">Planera min tur</a></li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
