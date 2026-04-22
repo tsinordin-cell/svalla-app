@@ -103,6 +103,13 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   const [saving, setSaving] = useState(false)
   const [error,  setError]  = useState<string | null>(null)
 
+  // Q4: Escape closes sheet
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   function togglePublic(key: string) {
     setPublicFields(prev => prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key])
   }
@@ -143,7 +150,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
-      <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column' }}>
+      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
@@ -169,7 +176,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
 
           <div style={{ marginBottom: 12 }}>
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ALIAS</label>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} style={inputStyle} />
+            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} autoFocus style={inputStyle} />
           </div>
           <div style={{ marginBottom: 12 }}>
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>KORT OM MIG</label>
@@ -530,7 +537,7 @@ export default function ProfilPage() {
               {monthBars.map(([key, v]) => (
                 <div key={key} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5, height: '100%', justifyContent: 'flex-end' }}>
                   <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--sea)' }}>{v.count}</span>
-                  <div style={{ width: '100%', borderRadius: '4px 4px 0 0', background: 'linear-gradient(to top,#1e5c82,#2d7d8a)', height: `${Math.max(6, (v.count / maxBar) * 36)}px` }} />
+                  <div style={{ width: '100%', borderRadius: '4px 4px 0 0', background: 'var(--sea)', height: `${Math.max(6, (v.count / maxBar) * 36)}px` }} />
                 </div>
               ))}
             </div>
@@ -632,10 +639,11 @@ export default function ProfilPage() {
         {/* ── Fler verktyg ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
           {[
-            { href: '/insikter',  icon: '📊', label: 'Insikter',   sub: 'Din seglingsstatistik och trender' },
-            { href: '/topplista', icon: '🏆', label: 'Topplista',  sub: 'Veckans och alltidens bästa seglare' },
-            { href: '/check-in',  icon: '📍', label: 'Check-in',   sub: 'Registrera dig på en plats' },
-            { href: '/bjud-in',   icon: '🔗', label: 'Bjud in',    sub: 'Skapa inbjudningslänkar' },
+            { href: '/meddelanden', icon: '💬', label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
+            { href: '/insikter',   icon: '📊', label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
+            { href: '/topplista',  icon: '🏆', label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
+            { href: '/check-in',   icon: '📍', label: 'Check-in',    sub: 'Registrera dig på en plats' },
+            { href: '/bjud-in',    icon: '🔗', label: 'Bjud in',     sub: 'Skapa inbjudningslänkar' },
           ].map(({ href, icon, label, sub }, i, arr) => (
             <Link key={href} href={href} style={{ textDecoration: 'none', display: 'block' }}>
               <div style={{
