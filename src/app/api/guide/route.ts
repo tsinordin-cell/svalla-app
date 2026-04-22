@@ -168,6 +168,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Rate limit: 10 AI-anrop per användare per minut
+  const { checkRateLimit } = await import('@/lib/rateLimit')
+  if (!checkRateLimit(`guide:${user.id}`, 10, 60_000)) {
+    return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY saknas i .env.local' }, { status: 500 })

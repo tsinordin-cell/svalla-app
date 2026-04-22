@@ -94,6 +94,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Rate limit: 5 AI-sammanfattningar per användare per minut (dyrare anrop)
+  const { checkRateLimit } = await import('@/lib/rateLimit')
+  if (!checkRateLimit(`trip-summary:${user.id}`, 5, 60_000)) {
+    return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
+  }
+
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY saknas' }, { status: 500 })
