@@ -76,48 +76,37 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     .single()
   if (error || !trip) notFound()
 
-  // hämta user separat från public.users
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('username, avatar')
-    .eq('id', trip.user_id)
-    .single()
+  // ── Parallell fetch av alla trip-relaterade data ──────────────────────────
+  const [
+    { data: userRow },
+    { data: tripTagsRaw },
+    { data: rawPoints },
+    { data: rawStops },
+    { data: toursData },
+    { data: allRestaurants },
+  ] = await Promise.all([
+    supabase.from('users').select('username, avatar').eq('id', trip.user_id).single(),
+    supabase.from('trip_tags').select('tagged_user_id').eq('trip_id', id),
+    supabase
+      .from('gps_points')
+      .select('latitude,longitude,speed_knots,heading,recorded_at')
+      .eq('trip_id', id)
+      .order('recorded_at', { ascending: true }),
+    supabase
+      .from('stops')
+      .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
+      .eq('trip_id', id)
+      .order('started_at', { ascending: true }),
+    supabase.from('tours').select('id,title,start_location,destination,waypoints').limit(100),
+    supabase.from('restaurants').select('id,name,latitude,longitude').limit(1000),
+  ])
 
-  // hämta taggade användare
-  const { data: tripTagsRaw } = await supabase
-    .from('trip_tags')
-    .select('tagged_user_id')
-    .eq('trip_id', id)
+  // hämta taggade användare (beror på tripTagsRaw ovan)
   const taggedUserIds = (tripTagsRaw ?? []).map((t: { tagged_user_id: string }) => t.tagged_user_id)
   const { data: taggedUsersRaw } = taggedUserIds.length
     ? await supabase.from('users').select('id, username').in('id', taggedUserIds)
     : { data: [] }
   const taggedUsers = taggedUsersRaw ?? []
-
-  // fetch GPS points
-  const { data: rawPoints } = await supabase
-    .from('gps_points')
-    .select('latitude,longitude,speed_knots,heading,recorded_at')
-    .eq('trip_id', id)
-    .order('recorded_at', { ascending: true })
-
-  // fetch stops (inkl. reverse-geocodat platsnamn)
-  const { data: rawStops } = await supabase
-    .from('stops')
-    .select('latitude,longitude,stop_type,started_at,ended_at,duration_seconds,place_name')
-    .eq('trip_id', id)
-    .order('started_at', { ascending: true })
-
-  // fetch tours för rutigenkänning
-  const { data: toursData } = await supabase
-    .from('tours')
-    .select('id,title,start_location,destination,waypoints')
-    .limit(100)
-
-  // fetch all restaurants (we'll filter by proximity)
-  const { data: allRestaurants } = await supabase
-    .from('restaurants')
-    .select('id,name,latitude,longitude')
 
   const points = (rawPoints ?? []).map(p => ({
     lat: p?.latitude ?? 0,
@@ -213,10 +202,10 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   ].filter(e => e.time).sort((a, b) => new Date(a.time!).getTime() - new Date(b.time!).getTime())
 
   const timelineColors: Record<string, string> = {
-    start: '#0f9e64',
-    pause: '#c96e2a',
+    start: 'var(--green)',
+    pause: 'var(--acc)',
     stop: 'var(--txt3)',
-    end: '#cc3d3d',
+    end: 'var(--red)',
   }
 
   const pinnarEmoji = trip.pinnar_rating === 3 ? '⚓⚓⚓' : trip.pinnar_rating === 2 ? '⚓⚓' : trip.pinnar_rating === 1 ? '⚓' : null
@@ -356,7 +345,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             padding: '12px 16px',
             background: 'linear-gradient(135deg,rgba(15,158,100,0.08),rgba(15,158,100,0.03))',
             borderRadius: 18,
-            borderLeft: '3px solid #0f9e64',
+            borderLeft: '3px solid var(--green)',
             display: 'flex', alignItems: 'center', gap: 12,
           }}>
             <span style={{ fontSize: 22, flexShrink: 0 }}>⛵</span>
