@@ -185,7 +185,7 @@ export default async function IslandPage({ params }: Props) {
           <SectionHeader icon="📖" title={`Om ${island.name}`} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {island.description.map((para, i) => (
-              <p key={i} style={{ fontSize: 15, color: 'var(--txt2, #3a5a6a)', lineHeight: 1.75, margin: 0 }}>{para}</p>
+              <p key={i} style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.75, margin: 0 }}>{para}</p>
             ))}
           </div>
         </section>
@@ -247,7 +247,7 @@ export default async function IslandPage({ params }: Props) {
                       <span style={{
                         fontSize: 10,
                         fontWeight: 700,
-                        color: 'var(--sea2, #2d7d8a)',
+                        color: 'var(--sea)',
                         background: 'rgba(45,125,138,0.1)',
                         padding: '2px 8px',
                         borderRadius: 10,
@@ -321,7 +321,7 @@ export default async function IslandPage({ params }: Props) {
                         <span style={{
                           fontSize: 11,
                           fontWeight: 700,
-                          color: 'var(--sea2, #2d7d8a)',
+                          color: 'var(--sea)',
                           background: 'rgba(45,125,138,0.1)',
                           padding: '2px 8px',
                           borderRadius: 10,
@@ -399,7 +399,7 @@ export default async function IslandPage({ params }: Props) {
                   borderBottom: i < island.tips.length - 1 ? '1px solid rgba(30,92,130,0.08)' : 'none',
                 }}>
                   <span style={{ fontSize: 18, lineHeight: 1.5, flexShrink: 0 }}>→</span>
-                  <p style={{ fontSize: 14, color: 'var(--txt2, #3a5a6a)', margin: 0, lineHeight: 1.7 }}>{tip}</p>
+                  <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.7 }}>{tip}</p>
                 </div>
               ))}
             </div>

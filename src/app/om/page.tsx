@@ -29,7 +29,7 @@ export default function OmPage() {
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
-        <div style={{ background: 'var(--white)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2, #2a4a5a)', fontSize: 15 }}>
+        <div style={{ background: 'var(--white)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2)', fontSize: 15 }}>
           <h2 style={{ color: 'var(--txt)', fontSize: 20, marginTop: 0 }}>Vad är Svalla?</h2>
           <p>
             Svalla är en web-app för Stockholms skärgård – byggd för dig som tar dig ut med kajak, segelbåt, motorbåt eller färja och vill ha koll på vad som finns längs vägen.

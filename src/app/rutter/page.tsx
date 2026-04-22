@@ -265,7 +265,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
         {t.highlights.length > 0 && (
           <div style={{ padding: '0 14px 10px', display: 'flex', flexWrap: 'wrap', gap: 4 }}>
             {t.highlights.slice(0, 3).map((h) => (
-              <span key={h} style={{ fontSize: 11, padding: '3px 8px', borderRadius: 12, background: 'var(--glass-88, #f0f7fa)', color: 'var(--txt2, #3a6070)' }}>
+              <span key={h} style={{ fontSize: 11, padding: '3px 8px', borderRadius: 12, background: 'var(--glass-88)', color: 'var(--txt2)' }}>
                 {h}
               </span>
             ))}

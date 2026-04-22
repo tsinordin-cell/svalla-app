@@ -221,7 +221,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
           {r.opening_hours && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 16 }}>🕐</span>
-              <span style={{ fontSize: 13, color: 'var(--txt2, #4a6878)' }}>{r.opening_hours}</span>
+              <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{r.opening_hours}</span>
             </div>
           )}
           {r.latitude && r.longitude && (
@@ -282,7 +282,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             background: 'var(--white)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
-            <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
+            <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
           </div>
         )}
 
@@ -336,7 +336,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               🍽 Meny
             </h2>
             <pre style={{
-              fontSize: 13, color: 'var(--txt2, #4a6878)', lineHeight: 1.6, margin: 0,
+              fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: 0,
               whiteSpace: 'pre-wrap', fontFamily: 'inherit',
             }}>
               {r.menu}

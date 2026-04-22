@@ -192,7 +192,7 @@ export default function PlaceSocialSection({
                     <span style={{ fontSize: 11, color: 'var(--txt3)' }}>· {timeAgo(c.created_at)}</span>
                   </div>
                   {c.message && (
-                    <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', margin: '4px 0 0', lineHeight: 1.45, whiteSpace: 'pre-wrap' }}>
+                    <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '4px 0 0', lineHeight: 1.45, whiteSpace: 'pre-wrap' }}>
                       {c.message}
                     </p>
                   )}
@@ -258,7 +258,7 @@ export default function PlaceSocialSection({
                   ))}
                 </div>
                 {r.body && (
-                  <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', margin: '6px 0 0', lineHeight: 1.45, whiteSpace: 'pre-wrap' }}>
+                  <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '6px 0 0', lineHeight: 1.45, whiteSpace: 'pre-wrap' }}>
                     {r.body}
                   </p>
                 )}

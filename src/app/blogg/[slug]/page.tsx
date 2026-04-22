@@ -1194,7 +1194,7 @@ function renderContent(content: string) {
       )
     } else if (line.startsWith('- ')) {
       elements.push(
-        <li key={key++} style={{ marginBottom: 6, marginLeft: 20, color: 'var(--txt2, #2a4a5a)' }}>
+        <li key={key++} style={{ marginBottom: 6, marginLeft: 20, color: 'var(--txt2)' }}>
           {line.slice(2).replace(/\*\*(.*?)\*\*/g, '$1')}
         </li>
       )
@@ -1208,7 +1208,7 @@ function renderContent(content: string) {
           {cells.map((cell, ci) => (
             isHeader
               ? <th key={ci} style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: 'var(--sea)', fontSize: 13 }}>{cell.trim()}</th>
-              : <td key={ci} style={{ padding: '8px 12px', fontSize: 13, color: 'var(--txt2, #2a4a5a)' }}>{cell.trim()}</td>
+              : <td key={ci} style={{ padding: '8px 12px', fontSize: 13, color: 'var(--txt2)' }}>{cell.trim()}</td>
           ))}
         </tr>
       )
@@ -1220,7 +1220,7 @@ function renderContent(content: string) {
       // Regular paragraph – handle bold inline
       const parts = line.split(/\*\*(.*?)\*\*/g)
       elements.push(
-        <p key={key++} style={{ margin: '10px 0', color: 'var(--txt2, #2a4a5a)', lineHeight: 1.75 }}>
+        <p key={key++} style={{ margin: '10px 0', color: 'var(--txt2)', lineHeight: 1.75 }}>
           {parts.map((part, pi) =>
             pi % 2 === 1 ? <strong key={pi} style={{ color: 'var(--txt)' }}>{part}</strong> : part
           )}

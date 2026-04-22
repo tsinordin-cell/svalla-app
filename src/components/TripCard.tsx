@@ -354,7 +354,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             /* Carousel + karta side-by-side (2:1) */
             <div style={{
               display: 'flex', width: '100%', aspectRatio: '2/1',
-              background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden',
+              background: 'var(--sea-d)', overflow: 'hidden',
             }}>
               <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
                 {allPhotos.length > 1 ? (
@@ -388,7 +388,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : hasPhoto ? (
             /* Foto(n) — karusell eller enskilt 3:2 */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d)', overflow: 'hidden' }}>
               {allPhotos.length > 1 ? (
                 <PhotoCarousel
                   photos={allPhotos}
@@ -413,7 +413,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : (
             /* Bara rutt */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d)', overflow: 'hidden' }}>
               <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>
           )}

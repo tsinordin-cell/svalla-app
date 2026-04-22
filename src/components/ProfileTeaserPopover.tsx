@@ -206,7 +206,7 @@ export default function ProfileTeaserPopover({
                 </div>
 
                 {data.bio && (
-                  <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', lineHeight: 1.55, margin: '0 0 14px' }}>
+                  <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 14px' }}>
                     {data.bio}
                   </p>
                 )}

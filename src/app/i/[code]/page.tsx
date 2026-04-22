@@ -44,14 +44,14 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
   const { data: { user } } = await supabase.auth.getUser()
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg,#e8f3f7 0%,#f2f8fa 100%)', paddingBottom: 40 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 40 }}>
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '40px 20px' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{ fontSize: 64, marginBottom: 8 }}>⛵</div>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>
             Välkommen till Svalla
           </h1>
-          <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', margin: 0, lineHeight: 1.5 }}>
+          <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
             En social plattform för båtliv och skärgård.
           </p>
         </div>
@@ -69,7 +69,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
                 Du har bjudits in
               </div>
             </div>
-            <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', lineHeight: 1.55, margin: '0 0 12px' }}>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 12px' }}>
               När du skapar ett konto följer du automatiskt personen som bjöd in dig.
               Inbjudningskod: <strong style={{ fontFamily: 'ui-monospace, SF Mono, Menlo, monospace', letterSpacing: '1.2px' }}>{upper}</strong>
             </p>
@@ -110,7 +110,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
                 {expired ? 'Länken har gått ut' : exhausted ? 'Länken är slut' : 'Ogiltig länk'}
               </div>
             </div>
-            <p style={{ fontSize: 13, color: 'var(--txt2, #4a6878)', lineHeight: 1.55, margin: 0 }}>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: 0 }}>
               Du kan fortfarande skapa ett konto — be personen som delade länken om en ny.
             </p>
             <Link href="/kom-igang" style={{

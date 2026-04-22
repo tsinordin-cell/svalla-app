@@ -180,7 +180,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
 
         {/* ── Name + bio + chips ── */}
         <div style={{ marginBottom: 16 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #0d2240)', margin: '0 0 4px', letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: 7 }}>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px', letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: 7 }}>
             {userRow.username}
             {isProUser && (
               <span title="Svalla Pro" aria-label="Pro-användare" style={{
@@ -241,7 +241,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
             }}>
               {el ?? (
                 <>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt, #0d2240)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
                   <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
                 </>
               )}

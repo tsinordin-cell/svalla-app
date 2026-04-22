@@ -293,7 +293,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {/* Caption */}
         {trip.caption && (
           <p style={{
-            fontSize: 15, color: 'var(--txt2, #2a4a5a)', lineHeight: 1.65,
+            fontSize: 15, color: 'var(--txt2)', lineHeight: 1.65,
             margin: '0 0 16px', fontWeight: 400,
           }}>
             {renderMentions(trip.caption)}
@@ -332,7 +332,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                 Svallas analys
               </span>
             </div>
-            <p style={{ fontSize: 14, color: 'var(--txt2, #2a4a5a)', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
+            <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
               {trip.ai_summary}
             </p>
           </div>
@@ -401,7 +401,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                   flex: 1, padding: '14px 0', textAlign: 'center',
                   borderRight: i < stats.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none',
                 }}>
-                  <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #0d2a3e)', lineHeight: 1, letterSpacing: '-0.5px' }}>
+                  <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.5px' }}>
                     {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>{unit}</span>}
                   </div>
                   <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--txt3)', marginTop: 4 }}>

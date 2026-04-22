@@ -24,7 +24,7 @@ export default function IntegritetspolicyPage() {
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
-        <article style={{ background: 'var(--white)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2, #2a4a5a)', fontSize: 15 }}>
+        <article style={{ background: 'var(--white)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2)', fontSize: 15 }}>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18, marginTop: 0 }}>1. Personuppgiftsansvarig</h2>
           <p>Svalla (svalla.se) är personuppgiftsansvarig för behandlingen av dina personuppgifter. Kontakta oss på <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a> vid frågor.</p>

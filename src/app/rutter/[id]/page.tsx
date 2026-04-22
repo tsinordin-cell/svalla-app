@@ -189,7 +189,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                   background: 'var(--white)', border: '1px solid rgba(10,123,140,0.09)',
                 }}>
                   <span style={{ fontSize: 16 }}>✦</span>
-                  <span style={{ fontSize: 13, color: 'var(--txt2, #2a4a5a)', fontWeight: 500 }}>{h}</span>
+                  <span style={{ fontSize: 13, color: 'var(--txt2)', fontWeight: 500 }}>{h}</span>
                 </div>
               ))}
             </div>
@@ -296,7 +296,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--acc)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               💡 Insider-tip
             </div>
-            <p style={{ fontSize: 13, color: 'var(--txt2, #4a3010)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
           </div>
         )}
 
@@ -308,7 +308,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                 <div key={s} style={{
                   padding: '9px 13px', borderRadius: 10,
                   background: 'rgba(10,123,140,0.04)', border: '1px solid rgba(10,123,140,0.08)',
-                  fontSize: 12, color: 'var(--txt3, #3a6070)',
+                  fontSize: 12, color: 'var(--txt3)',
                 }}>
                   {s}
                 </div>

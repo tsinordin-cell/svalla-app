@@ -507,7 +507,7 @@ img {
 
 /* ── text-svalla-text (#192830) → light ── */
 [data-theme="dark"] .text-svalla-text {
-  color: var(--txt, #d8eaf4) !important;
+  color: var(--txt) !important;
 }
 
 /* ── shadow-sm in dark ── */
@@ -600,13 +600,13 @@ img {
   color: var(--sea, #4ab8d4) !important;
 }
 [data-theme="dark"] .text-svalla-text3 {
-  color: var(--txt3, #6a98aa) !important;
+  color: var(--txt3) !important;
 }
 [data-theme="dark"] .text-svalla-text2 {
-  color: var(--txt2, #9abccc) !important;
+  color: var(--txt2) !important;
 }
 [data-theme="dark"] .text-svalla-text {
-  color: var(--txt, #d8eaf4) !important;
+  color: var(--txt) !important;
 }
 
 /* ── border-sea-light (Tailwind) → dark ── */

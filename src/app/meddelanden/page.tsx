@@ -195,7 +195,7 @@ export default function MeddelandenPage() {
               WebkitTapHighlightColor: 'transparent',
               textDecoration: 'none',
             }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt2,#3d5865)" strokeWidth={1.75} style={{ width: 20, height: 20 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt2)" strokeWidth={1.75} style={{ width: 20, height: 20 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
@@ -313,7 +313,7 @@ export default function MeddelandenPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 16px',
             }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea,#1e5c82)" strokeWidth={1.75} style={{ width: 28, height: 28 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} style={{ width: 28, height: 28 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
             </div>
@@ -327,7 +327,7 @@ export default function MeddelandenPage() {
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               height: 44, padding: `0 ${space[6]}px`,
               borderRadius: radius.full,
-              background: 'var(--sea,#1e5c82)', color: '#fff',
+              background: 'var(--sea)', color: '#fff',
               fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
             }}>
@@ -347,7 +347,7 @@ export default function MeddelandenPage() {
               style={{
                 height: 44, padding: `0 ${space[6]}px`,
                 borderRadius: radius.full, border: 'none', cursor: 'pointer',
-                background: 'var(--sea,#1e5c82)', color: '#fff',
+                background: 'var(--sea)', color: '#fff',
                 fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               }}
             >
@@ -365,7 +365,7 @@ export default function MeddelandenPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               margin: '0 auto 16px',
             }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea,#1e5c82)" strokeWidth={1.75} style={{ width: 28, height: 28 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} style={{ width: 28, height: 28 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
             </div>
@@ -379,7 +379,7 @@ export default function MeddelandenPage() {
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               height: 44, padding: `0 ${space[6]}px`,
               borderRadius: radius.full,
-              background: 'var(--sea,#1e5c82)', color: '#fff',
+              background: 'var(--sea)', color: '#fff',
               fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
             }}>
@@ -438,7 +438,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
           <div style={{
             position: 'absolute', left: 5,
             width: 8, height: 8, borderRadius: '50%',
-            background: 'var(--sea,#1e5c82)',
+            background: 'var(--sea)',
             top: '50%', transform: 'translateY(-50%)',
           }} />
         )}
@@ -543,7 +543,7 @@ function SegTab({ active, onClick, children }: { active: boolean; onClick: () =>
         flex: 1, height: '100%',
         border: 'none', cursor: 'pointer',
         borderRadius: radius.xs,
-        background: active ? 'var(--bg, #fff)' : 'transparent',
+        background: active ? 'var(--bg)' : 'transparent',
         boxShadow: active ? shadow.xs : 'none',
         fontSize: fontSize.small, fontWeight: active ? fontWeight.semibold : fontWeight.medium,
         color: active ? 'var(--txt)' : 'var(--txt3)',
