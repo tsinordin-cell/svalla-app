@@ -10,6 +10,7 @@ import AchievementFeedCard from '@/components/AchievementFeedCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
+import SummerCampaign2026Banner from '@/components/SummerCampaign2026Banner'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
@@ -134,6 +135,7 @@ export default async function FeedPage(
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {!SAFE && <RealtimeFeedBanner />}
       {!SAFE && <OnboardingModal />}
+      {!SAFE && <SummerCampaign2026Banner />}
 
       {/* ── Header ── */}
       <header style={{

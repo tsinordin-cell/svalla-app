@@ -42,7 +42,23 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',       desc: 'Logga en tur som slutar efter kl 22:00',        check: (t) => t.some(x => x.ended_at && new Date(x.ended_at).getHours() >= 22) },
   { id: 'speed15',     emoji: '💨', label: 'Vindridaren',        desc: 'Uppnå en toppfart på 15 knop',                  check: (t) => t.some(x => (x.max_speed_knots ?? 0) >= 15) },
   { id: 'fifty_trips', emoji: '👑', label: 'Skärgårdskungen',    desc: '50 loggade turer',                              check: (t) => t.length >= 50 },
+
+  // ── Sommar 2026 — säsongsmärken (maj–aug 2026) ────────────────────────────
+  { id: 's26_first',   emoji: '☀️', label: 'Sommarstart 2026',   desc: 'Loggade en tur maj–aug 2026',                   check: (t) => t.some(x => isSummer2026(x.created_at)) },
+  { id: 's26_ten',     emoji: '🏖️', label: 'Sommarseglaren',     desc: '10 turer maj–aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 10 },
+  { id: 's26_magic',   emoji: '🌞', label: 'Sommarmagi',          desc: 'En ⚓⚓⚓-tur maj–aug 2026',                    check: (t) => t.some(x => isSummer2026(x.created_at) && x.pinnar_rating === 3) },
+  { id: 's26_champ',   emoji: '🏅', label: 'Sommaräventyraren',   desc: '25 turer maj–aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 25 },
 ]
+
+// Hjälpare: avgör om ett trip-datum ligger i sommaren 2026 (maj 1 → aug 31)
+function isSummer2026(iso: string | null | undefined): boolean {
+  if (!iso) return false
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return false
+  const y = d.getUTCFullYear()
+  const m = d.getUTCMonth() // 0-indexerat → maj = 4, aug = 7
+  return y === 2026 && m >= 4 && m <= 7
+}
 
 // ── Streak — antal veckor i rad med minst en tur ──────────────────────────────
 function isoWeekKey(d: Date): string {
