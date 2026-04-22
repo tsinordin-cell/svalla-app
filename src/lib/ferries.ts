@@ -141,7 +141,7 @@ type ResRobotStopLookup = {
 async function resolveStopId(name: string, apiKey: string): Promise<string | null> {
   const cached = stopIdCache.get(name)
   if (cached) return cached
-  const url = `${TRAFIKLAB_BASE}/location.name.json?input=${encodeURIComponent(name)}&maxNo=5&format=json&accessId=${apiKey}`
+  const url = `${TRAFIKLAB_BASE}/location.name?input=${encodeURIComponent(name)}&maxNo=5&format=json&accessId=${apiKey}`
   try {
     const res = await fetch(url, { next: { revalidate: 86400 } })
     if (!res.ok) return null
@@ -188,7 +188,7 @@ export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise
     const stopId = await resolveStopId(route.from, apiKey)
     if (!stopId) return null
 
-    const url = `${TRAFIKLAB_BASE}/departureBoard.json?id=${stopId}&maxJourneys=30&format=json&accessId=${apiKey}`
+    const url = `${TRAFIKLAB_BASE}/departureBoard?id=${stopId}&maxJourneys=30&format=json&accessId=${apiKey}`
     const res = await fetch(url, { next: { revalidate: 60 } })
     if (!res.ok) return null
     const json = await res.json() as { Departure?: ResRobotDeparture[] }
