@@ -34,16 +34,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ── Statiska sidor ──────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
-    { url: base,                  lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
-    { url: `${base}/platser`,     lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
-    { url: `${base}/rutter`,      lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
-    { url: `${base}/rutter?vy=oar`, lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
-    { url: `${base}/farjor`,      lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/tips`,        lastModified: now, priority: 0.8, changeFrequency: 'weekly'  as const },
-    { url: `${base}/blogg`,       lastModified: now, priority: 0.7, changeFrequency: 'weekly'  as const },
-    { url: `${base}/guide`,       lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const },
-    { url: `${base}/om`,          lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },
-    { url: `${base}/faq`,         lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
+    { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
+    { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/rutter?vy=oar`,          lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/rutter?vy=farjor`,       lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
+    { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/boende`,                 lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/krogar-och-mat`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/bastu-och-bad`,          lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/hamnar-och-bryggor`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/vandring-och-natur`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/erbjudanden`,            lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/populara-turer`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/segelrutter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/snabbaste-vagen`,        lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/planera-tur`,            lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
+    { url: `${base}/guide`,                  lastModified: now, priority: 0.6,  changeFrequency: 'monthly' as const },
+    { url: `${base}/om`,                     lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
+    { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
   ]
 
   // ── Ö-sidor (statiska) ──────────────────────────────────────────

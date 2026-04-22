@@ -362,26 +362,26 @@ const LANDING_HTML = `
           <div class="nav-mega-grid">
             <div class="nav-mega-col">
               <div class="nav-mega-region">Snabba val</div>
-              <a href="/#resmål" class="nav-mega-link">🏝️ Alla resmål</a>
+              <a href="/resmal" class="nav-mega-link">🏝️ Alla resmål</a>
               <a href="/platser" class="nav-mega-link">🗺️ Karta över skärgården</a>
-              <a href="/#aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
-              <a href="/#boende" class="nav-mega-link">🛏️ Boende</a>
-              <a href="/#resmål" class="nav-mega-all">Se alla →</a>
+              <a href="/aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
+              <a href="/boende" class="nav-mega-link">🛏️ Boende</a>
+              <a href="/resmal" class="nav-mega-all">Se alla →</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Kategorier</div>
-              <a href="/#resmål" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
-              <a href="/#resmål" class="nav-mega-link">🛁 Bastu &amp; bad</a>
-              <a href="/#resmål" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
-              <a href="/#resmål" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
-              <a href="/#resmål" class="nav-mega-link">🎒 Erbjudanden</a>
+              <a href="/krogar-och-mat" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
+              <a href="/bastu-och-bad" class="nav-mega-link">🛁 Bastu &amp; bad</a>
+              <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
+              <a href="/vandring-och-natur" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
+              <a href="/erbjudanden" class="nav-mega-link">🎒 Erbjudanden</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Turer</div>
-              <a href="/#resmål" class="nav-mega-link">🧭 Populära turer</a>
-              <a href="/#resmål" class="nav-mega-link">⛵ Segelrutter</a>
-              <a href="/#resmål" class="nav-mega-link">🚤 Snabbaste vägen</a>
-              <a href="#" class="nav-mega-link" id="planeraDropLink">📅 Planera min tur</a>
+              <a href="/populara-turer" class="nav-mega-link">🧭 Populära turer</a>
+              <a href="/segelrutter" class="nav-mega-link">⛵ Segelrutter</a>
+              <a href="/snabbaste-vagen" class="nav-mega-link">🚤 Snabbaste vägen</a>
+              <a href="/planera-tur" class="nav-mega-link">📅 Planera min tur</a>
             </div>
           </div>
         </div>
@@ -937,7 +937,6 @@ export default function LandingPage() {
       }
     }
     document.getElementById('planeraNavBtn')?.addEventListener('click', handlePlanera)
-    document.getElementById('planeraDropLink')?.addEventListener('click', handlePlanera)
     // Close gate on backdrop click
     const gate = document.getElementById('planera-gate')
     const handleGateClick = (e: Event) => { if (e.target === gate) (gate as HTMLElement).style.display = 'none' }
@@ -965,7 +964,6 @@ export default function LandingPage() {
       searchInput?.removeEventListener('focus', onFocus)
       searchInput?.removeEventListener('blur', onBlur)
       document.getElementById('planeraNavBtn')?.removeEventListener('click', handlePlanera)
-      document.getElementById('planeraDropLink')?.removeEventListener('click', handlePlanera)
       gate?.removeEventListener('click', handleGateClick)
     }
   }, [])
