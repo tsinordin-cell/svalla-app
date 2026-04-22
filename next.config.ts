@@ -72,6 +72,32 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  async redirects() {
+    // ASCII-safe slugs — gamla ö-slugs gav 404 på Vercel edge pga URL-encoding.
+    // 301 bevarar SEO-juice för inbound links till originalslugsen.
+    return [
+      {
+        source: '/blogg/kajak-stockholms-skargard-nyb%C3%B6rjare',
+        destination: '/blogg/kajak-stockholms-skargard-nyborjare',
+        permanent: true,
+      },
+      {
+        source: '/blogg/kajak-stockholms-skargard-nybörjare',
+        destination: '/blogg/kajak-stockholms-skargard-nyborjare',
+        permanent: true,
+      },
+      {
+        source: '/blogg/segling-nyb%C3%B6rjare-guide',
+        destination: '/blogg/segling-nyborjare-guide',
+        permanent: true,
+      },
+      {
+        source: '/blogg/segling-nybörjare-guide',
+        destination: '/blogg/segling-nyborjare-guide',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 // withSentryConfig kräver SENTRY_AUTH_TOKEN för source map-upload.

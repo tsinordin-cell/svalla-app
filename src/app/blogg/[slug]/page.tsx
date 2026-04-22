@@ -57,7 +57,7 @@ Sandhamn nås med Waxholmsbåten från Strömkajen (ca 2,5 timmar) eller med sna
     `,
   },
 
-  'kajak-stockholms-skargard-nybörjare': {
+  'kajak-stockholms-skargard-nyborjare': {
     title: 'Kajak i skärgården – guide för nybörjaren',
     excerpt: 'Aldrig paddlat men vill prova? Här är allt du behöver veta: utrustning, säkerhet, bra startsträckor och vad du inte får missa.',
     category: 'Aktiviteter',
@@ -400,7 +400,7 @@ Rekommendation: res dit på fredag kväll, stanna lördag-söndag. Det är inte 
     `,
   },
 
-  'segling-nybörjare-guide': {
+  'segling-nyborjare-guide': {
     title: 'Segla för första gången – allt du behöver veta',
     excerpt: 'Drömmer du om att ta ut en segelbåt i skärgården? Ärlig guide för den som aldrig seglat.',
     category: 'Aktiviteter',

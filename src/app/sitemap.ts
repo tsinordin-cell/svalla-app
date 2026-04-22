@@ -5,14 +5,14 @@ import { createClient } from '@/lib/supabase'
 // Blogg-slugs (statisk lista — speglar posts-data.ts)
 const BLOG_SLUGS = [
   'basta-restaurangerna-sandhamn',
-  'kajak-stockholms-skargard-nybörjare',
+  'kajak-stockholms-skargard-nyborjare',
   'dolda-parlor-moja',
   'bransle-ankring-skargard',
   'sommar-skargard-tips',
   'fjaderholmarna-dagstur',
   'vaxholm-guide',
   'uto-guide',
-  'segling-nybörjare-guide',
+  'segling-nyborjare-guide',
   'basta-badplatserna',
   'vandring-orno-uto',
   'cykling-moja-gallno',

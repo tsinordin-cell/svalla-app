@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
-import { SEED_FERRY_ROUTES, mockDeparturesFor } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture } from '@/lib/ferries'
 
 export const metadata: Metadata = {
   title: 'Färjetider — Svalla',
@@ -16,8 +16,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 600
 
-export default function FarjorPage() {
-  const routes = SEED_FERRY_ROUTES
+export default async function FarjorPage() {
+  // Hämta avgångar parallellt för alla rutter. fetchDepartures faller
+  // tillbaka till seed om TRAFIKLAB_API_KEY saknas eller API:t felar.
+  const routesWithDeps = await Promise.all(
+    SEED_FERRY_ROUTES.map(async r => ({
+      route: r,
+      deps: await fetchDepartures(r, 3) as FerryDeparture[],
+    })),
+  )
+  const anyLive = routesWithDeps.some(r => r.deps.some(d => d.source === 'live'))
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
@@ -41,25 +49,40 @@ export default function FarjorPage() {
 
       {/* DATA KÄLLA-NOTIS */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '20px 20px 0' }}>
-        <div style={{
-          background: 'rgba(201,110,42,0.08)',
-          border: '1px solid rgba(201,110,42,0.25)',
-          borderRadius: 12,
-          padding: '12px 16px',
-          fontSize: 13,
-          color: 'var(--txt2)',
-          lineHeight: 1.5,
-        }}>
-          <strong style={{ color: 'var(--txt)' }}>Obs — förhandsvisning.</strong> Avgångstiderna nedan är exempeldata. Vi integrerar
-          mot Waxholmsbolagets officiella tidtabell i nästa steg. För bokning och aktuella tider, följ länken till operatören.
-        </div>
+        {anyLive ? (
+          <div style={{
+            background: 'rgba(30,92,130,0.08)',
+            border: '1px solid rgba(30,92,130,0.22)',
+            borderRadius: 12,
+            padding: '12px 16px',
+            fontSize: 13,
+            color: 'var(--txt2)',
+            lineHeight: 1.5,
+          }}>
+            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab (Waxholmsbolaget & Cinderella).
+            Uppdateras löpande. Dubbelkolla alltid mot operatören inför avgång.
+          </div>
+        ) : (
+          <div style={{
+            background: 'rgba(201,110,42,0.08)',
+            border: '1px solid rgba(201,110,42,0.25)',
+            borderRadius: 12,
+            padding: '12px 16px',
+            fontSize: 13,
+            color: 'var(--txt2)',
+            lineHeight: 1.5,
+          }}>
+            <strong style={{ color: 'var(--txt)' }}>Förhandsvisning.</strong> Live-tidtabell är under konfiguration.
+            Avgångar nedan är exempeldata — följ länken till operatören för bokning och aktuella tider.
+          </div>
+        )}
       </div>
 
       {/* ROUTES */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '28px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
-          {routes.map(r => {
-            const deps = mockDeparturesFor(r, 3)
+          {routesWithDeps.map(({ route: r, deps }) => {
+            const isLive = deps.some(d => d.source === 'live')
             return (
               <article key={r.id} style={{
                 background: 'var(--white)',
@@ -81,6 +104,24 @@ export default function FarjorPage() {
                     letterSpacing: 0.4,
                   }}>{r.operator}</span>
                   <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{r.season}</span>
+                  {isLive && (
+                    <span style={{
+                      marginLeft: 'auto',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      color: '#fff',
+                      background: '#2e7d32',
+                      padding: '2px 8px',
+                      borderRadius: 20,
+                      letterSpacing: 0.3,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 4,
+                    }}>
+                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
+                      LIVE
+                    </span>
+                  )}
                 </div>
 
                 <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>
