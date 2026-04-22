@@ -6,7 +6,7 @@ export default function NotFound() {
       minHeight: '100dvh', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       padding: 24, textAlign: 'center',
-      background: 'linear-gradient(175deg, #dde9f5 0%, #e4eff8 40%, #e8f0f5 100%)',
+      background: 'var(--bg)',
     }}>
       {/* Animated compass / anchor illustration */}
       <div style={{
@@ -16,7 +16,7 @@ export default function NotFound() {
         marginBottom: 24,
         boxShadow: '0 0 0 16px rgba(30,92,130,0.04)',
       }}>
-        <svg viewBox="0 0 48 48" fill="none" style={{ width: 52, height: 52 }}>
+        <svg aria-hidden="true" viewBox="0 0 48 48" fill="none" style={{ width: 52, height: 52 }}>
           {/* Compass rose */}
           <circle cx="24" cy="24" r="18" stroke="rgba(30,92,130,0.2)" strokeWidth="2"/>
           <circle cx="24" cy="24" r="3" fill="var(--sea, #1e5c82)"/>
@@ -51,7 +51,7 @@ export default function NotFound() {
         fontSize: 15, color: 'var(--txt2)',
         margin: '0 0 32px', maxWidth: 300, lineHeight: 1.6,
       }}>
-        Rutten du följde leder ingenstans. Kanske har länken ändrats eller expired.
+        Rutten du följde leder ingenstans. Kanske har länken ändrats eller gått ut.
       </p>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>

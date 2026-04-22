@@ -33,13 +33,15 @@ export default async function FeedPage() {
       : Promise.resolve({ trips: [], error: null }),
   ])
 
+  // Graciös degradering: om all-query misslyckas, visa felmeddelande.
+  // Om bara follow-query misslyckas, visa ändå alla-flödet.
   if (allRes.error) {
     return (
-      <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
+      <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
         <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
         <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>
-          Något gick fel. Kontrollera din anslutning och försök igen.
+          Kontrollera din anslutning och försök igen.
         </p>
         <Link href="/feed" style={{
           padding: '12px 24px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
@@ -52,7 +54,8 @@ export default async function FeedPage() {
   }
 
   const tripsWithUsers = allRes.trips
-  const followingTrips = followRes.trips
+  // Om follow-query misslyckades: fallback till tom lista (all-flödet visas ändå)
+  const followingTrips = followRes.error ? [] : followRes.trips
 
   // Social proof — senaste 7 dagarna
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
@@ -109,17 +112,6 @@ export default async function FeedPage() {
           </Link>
           <MessageBell />
           <NotificationBell />
-          <Link href="/logga" style={{
-            width: 38, height: 38, borderRadius: '50%',
-            background: 'linear-gradient(135deg,var(--acc),#e07828)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 3px 12px rgba(201,110,42,0.45)',
-            flexShrink: 0,
-          }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-          </Link>
         </div>
       </header>
 

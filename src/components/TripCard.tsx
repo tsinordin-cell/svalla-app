@@ -58,9 +58,9 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
         {/* Main route line */}
         <path d={d} fill="none" stroke="var(--sea, #1e5c82)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
         {/* Start dot */}
-        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="#22c55e" stroke="white" strokeWidth="1.5" />
+        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="var(--green, #22c55e)" stroke="white" strokeWidth="1.5" />
         {/* End dot */}
-        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="#c96e2a" stroke="white" strokeWidth="1.5" />
+        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="var(--acc, #c96e2a)" stroke="white" strokeWidth="1.5" />
       </svg>
     </div>
   )
@@ -147,9 +147,11 @@ function PhotoCarousel({
         }}
       >
         {photos.map((_, i) => (
-          <div
+          <button
             key={i}
             onClick={e => { e.stopPropagation(); scrollTo(i) }}
+            aria-label={`Bild ${i + 1} av ${photos.length}`}
+            aria-pressed={i === idx}
             style={{
               width: i === idx ? 16 : 5,
               height: 5, borderRadius: 3,
@@ -157,6 +159,7 @@ function PhotoCarousel({
               transition: 'width .2s, background .2s',
               cursor: 'pointer',
               pointerEvents: 'all',
+              border: 'none', padding: 0,
             }}
           />
         ))}
@@ -170,7 +173,7 @@ function PhotoCarousel({
           background: 'rgba(0,0,0,0.45)',
           backdropFilter: 'blur(4px)',
           borderRadius: 20, padding: '3px 8px',
-          fontSize: 11, fontWeight: 700, color: '#fff',
+          fontSize: 11, fontWeight: fontWeight.bold, color: '#fff',
           pointerEvents: 'none',
         }}
       >
@@ -244,7 +247,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     >
 
       {/* ── 1. Header ── */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 10px' }}>
         <Link
           href={`/u/${username}`}
           onClick={e => e.stopPropagation()}
@@ -307,7 +310,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* ── 1b. Route preview (when no photo but route exists) ── */}
       {!hasPhoto && routePoints && routePoints.length >= 3 && (
-        <div style={{ padding: '12px 14px' }}>
+        <div style={{ padding: '12px 16px' }}>
           <RoutePreview points={routePoints} />
         </div>
       )}
@@ -334,8 +337,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                 {s.value}
               </div>
               <div style={{
-                fontSize: fontSize.caption, color: 'var(--txt3)', marginTop: 3,
-                fontWeight: fontWeight.medium, textTransform: 'uppercase', letterSpacing: '0.5px',
+                fontSize: 12, color: 'var(--txt3)', marginTop: 3,
+                fontWeight: fontWeight.medium, letterSpacing: '0.2px',
               }}>
                 {s.label}
               </div>
@@ -351,7 +354,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             /* Carousel + karta side-by-side (2:1) */
             <div style={{
               display: 'flex', width: '100%', aspectRatio: '2/1',
-              background: '#0d2a3e', overflow: 'hidden',
+              background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden',
             }}>
               <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
                 {allPhotos.length > 1 ? (
@@ -385,7 +388,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : hasPhoto ? (
             /* Foto(n) — karusell eller enskilt 3:2 */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: '#0d2a3e', overflow: 'hidden' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden' }}>
               {allPhotos.length > 1 ? (
                 <PhotoCarousel
                   photos={allPhotos}
@@ -410,7 +413,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : (
             /* Bara rutt */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: '#0d2a3e', overflow: 'hidden' }}>
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d, #0d2a3e)', overflow: 'hidden' }}>
               <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>
           )}
@@ -418,7 +421,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       )}
 
       {/* ── 4. Actions ── */}
-      <div onClick={e => e.stopPropagation()} style={{ padding: '10px 14px 4px' }}>
+      <div onClick={e => e.stopPropagation()} style={{ padding: '10px 16px 4px' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <LikeButton
             tripId={trip.id}
@@ -454,7 +457,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* ── 5. Caption ── */}
       {caption ? (
-        <div style={{ padding: '4px 14px 14px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
+        <div style={{ padding: '4px 16px 16px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
           <span style={{ fontWeight: fontWeight.semibold }}>{username}</span>
           {' '}
           <span>{renderMentions(captionTruncated)}</span>

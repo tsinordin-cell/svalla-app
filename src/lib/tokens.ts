@@ -42,6 +42,7 @@ export const fontWeight = {
   regular:  400,
   medium:   500,
   semibold: 600,
+  bold:     700,
 } as const
 
 // ─── Shadows ─────────────────────────────────────────────────────────────────
@@ -74,6 +75,14 @@ export const avatarSize = {
 
 // ─── Touch target minimum ────────────────────────────────────────────────────
 export const touchTarget = 44
+
+// ─── Kategoripaletter (rutter/platser) ───────────────────────────────────────
+export const categoryColor = {
+  mat:      { bg: '#fff3e6', text: '#c96e2a' },
+  aktiv:    { bg: '#e6f7ef', text: '#0a7a4a' },
+  premium:  { bg: '#f0e6ff', text: '#7850c8' },
+  klassisk: { bg: '#e6f0ff', text: '#2a5cc8' },
+} as const
 
 // ─── Z-index layers ─────────────────────────────────────────────────────────
 export const zIndex = {

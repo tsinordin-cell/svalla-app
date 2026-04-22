@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
@@ -10,29 +11,29 @@ export default function Nav() {
   const path = usePathname()
   const [username, setUsername] = useState<string | null>(null)
   const [avatar,   setAvatar]   = useState<string | null>(null)
-  const [unread,   setUnread]   = useState<number>(0)
   const channelRef = useRef<ReturnType<ReturnType<typeof createClient>['channel']> | null>(null)
 
   useEffect(() => {
     const supabase = createClient()
 
-    async function loadUnread(uid: string) {
-      const { count } = await supabase
-        .from('notifications')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', uid)
-        .eq('read', false)
-      setUnread(count ?? 0)
-    }
-
-    function subscribe(uid: string) {
-      if (channelRef.current) supabase.removeChannel(channelRef.current)
-      channelRef.current = supabase
-        .channel(`nav-notif:${uid}`)
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },
-          () => loadUnread(uid))
-        .subscribe()
-    }
+    // Lyssna på auth-ändringar — uppdatera username direkt vid login/logout
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      if (!session) {
+        setUsername(null)
+        setAvatar(null)
+        if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
+      } else if (session.user) {
+        supabase
+          .from('users')
+          .select('username, avatar')
+          .eq('id', session.user.id)
+          .single()
+          .then(({ data }) => {
+            setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
+            setAvatar(data?.avatar ?? null)
+          })
+      }
+    })
 
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
@@ -45,45 +46,17 @@ export default function Nav() {
             setUsername(data?.username ?? null)
             setAvatar(data?.avatar ?? null)
           })
-        loadUnread(user.id)
-        subscribe(user.id)
       } else {
         setUsername(null)
         setAvatar(null)
-        setUnread(0)
       }
     })
-    // Lyssna på auth-ändringar — uppdatera username direkt vid login/logout
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
-      if (!session) {
-        setUsername(null)
-        setAvatar(null)
-        setUnread(0)
-        if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
-      } else if (session.user) {
-        supabase
-          .from('users')
-          .select('username, avatar')
-          .eq('id', session.user.id)
-          .single()
-          .then(({ data }) => {
-            setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
-            setAvatar(data?.avatar ?? null)
-          })
-        loadUnread(session.user.id)
-        subscribe(session.user.id)
-      }
-    })
+
     return () => {
       subscription.unsubscribe()
       if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
     }
   }, [])
-
-  // Decay badge when user is viewing notiser-page
-  useEffect(() => {
-    if (path.startsWith('/notiser')) setUnread(0)
-  }, [path])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
   const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack']
@@ -99,8 +72,10 @@ export default function Nav() {
       label: 'Upptäck',
       exact: false,
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4" />
+        // Kompassikon — tydligt "utforska/hitta"
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+          <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
         </svg>
       ),
     },
@@ -109,8 +84,11 @@ export default function Nav() {
       label: 'Turer',
       exact: false,
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6-3V7m6 13l4.553 2.276A1 1 0 0021 21.382V10.618a1 1 0 00-.553-.894L15 7m0 13V7m0 0L9 4" />
+        // Ruttikon — böjd path med start/stopp-punkter
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+          <circle cx="5" cy="6" r="2" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx="19" cy="18" r="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 8c0 5 6 3 9 8" />
         </svg>
       ),
     },
@@ -145,8 +123,7 @@ export default function Nav() {
               flexShrink: 0,
             }}>
               {avatar
-                // eslint-disable-next-line @next/next/no-img-element
-                ? <img loading="lazy" decoding="async" src={avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                ? <Image src={avatar} alt="" width={26} height={26} style={{ objectFit: 'cover', borderRadius: '50%', width: '100%', height: '100%' }} />
                 : username[0].toUpperCase()
               }
             </div>
@@ -160,7 +137,7 @@ export default function Nav() {
             <span style={{
               position: 'absolute', bottom: -1, right: -1,
               width: 8, height: 8, borderRadius: '50%',
-              background: '#22c55e',
+              background: 'var(--green)',
               border: '1.5px solid var(--glass-96)',
             }} />
           )}
@@ -169,16 +146,16 @@ export default function Nav() {
     },
   ]
 
-  // Notiser nu en egen tab — global bell behövs inte längre när nav är synligt.
-  // Visas bara på info-sidor utanför app-flödet (där nav inte renderas alls — så blir falskt här).
-  const showGlobalBell = false
+  // Visa bells på alla app-sidor UTOM /feed (som har egna bells i sin header)
+  // och chatt-sidor (där input-fältet dominerar top-rymden)
+  const showGlobalBell = username !== null && !path.startsWith('/feed') && !path.match(/^\/meddelanden/)
 
   return (
     <>
       {showGlobalBell && (
         <div style={{
-          position: 'fixed', top: 12, right: 16, zIndex: 901,
-          display: 'flex', gap: 8,
+          position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
+          display: 'flex', gap: 6,
         }}>
           <MessageBell />
           <NotificationBell />
@@ -225,13 +202,14 @@ export default function Nav() {
 
         return (
           <Link key={tab.href} href={tab.href} aria-current={active ? 'page' : undefined}
+            aria-label={`Gå till ${tab.label}`}
             className="nav-tab-link press-feedback"
             style={{
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 2,
               textDecoration: 'none',
               color: active ? 'var(--sea)' : 'var(--txt3)',
-              fontSize: 8.5, fontWeight: 600, letterSpacing: '0.25px',
+              fontSize: 10, fontWeight: 600, letterSpacing: '0.4px',
               textTransform: 'uppercase', position: 'relative',
               WebkitTapHighlightColor: 'transparent',
               minHeight: 44,

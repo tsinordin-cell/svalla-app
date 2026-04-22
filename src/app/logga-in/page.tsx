@@ -38,6 +38,20 @@ export default function LoggaInPage() {
   const [msg,          setMsg]          = useState('')
   const [showPwd,      setShowPwd]      = useState(false)
 
+  /* ── Mappa Supabase-felmeddelanden till svenska ── */
+  function mapAuthError(msg: string): string {
+    const m = msg.toLowerCase()
+    if (m.includes('rate limit') || m.includes('too many requests')) return 'För många försök. Vänta en stund och försök igen.'
+    if (m.includes('network') || m.includes('fetch')) return 'Nätverksfel. Kontrollera din anslutning och försök igen.'
+    if (m.includes('provider') || m.includes('disabled')) return 'Inloggningsmetoden är inte tillgänglig just nu.'
+    if (m.includes('user already registered') || m.includes('already registered')) return 'Den e-postadressen är redan registrerad. Logga in istället.'
+    if (m.includes('email not confirmed')) return 'Mejlet är inte bekräftat. Kolla din inkorg.'
+    if (m.includes('invalid login') || m.includes('invalid credentials')) return 'Fel e-post eller lösenord. Försök igen.'
+    if (m.includes('weak password')) return 'Lösenordet är för enkelt. Använd minst 8 tecken.'
+    if (m.includes('email')) return 'Ogiltig e-postadress.'
+    return 'Något gick fel. Försök igen.'
+  }
+
   /* ── OAuth ── */
   async function signInWith(provider: 'google' | 'apple') {
     setOauthLoading(provider); setErr('')
@@ -45,7 +59,7 @@ export default function LoggaInPage() {
       provider,
       options: { redirectTo: `${location.origin}/feed` },
     })
-    if (error) { setErr(error.message); setOauthLoading(null) }
+    if (error) { setErr(mapAuthError(error.message)); setOauthLoading(null) }
   }
 
   /* ── Email/password ── */
@@ -59,7 +73,7 @@ export default function LoggaInPage() {
           email, password,
           options: { data: { username: username.trim() || email.split('@')[0] } },
         })
-        if (error) { setErr(error.message); setLoading(false); return }
+        if (error) { setErr(mapAuthError(error.message)); setLoading(false); return }
         if (data.user) {
           await supabase.from('users').upsert({
             id:       data.user.id,
@@ -84,7 +98,7 @@ export default function LoggaInPage() {
           } else if (error.message.toLowerCase().includes('invalid login')) {
             setErr('Fel e-post eller lösenord. Försök igen.')
           } else {
-            setErr(error.message)
+            setErr(mapAuthError(error.message))
           }
           setLoading(false); return
         }
@@ -264,8 +278,13 @@ export default function LoggaInPage() {
                 }
               </button>
             </div>
+            {isNew && password.length === 0 && (
+              <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '-2px 0 0', padding: '0 4px' }}>
+                Minst 6 tecken krävs
+              </p>
+            )}
             {isNew && password.length > 0 && password.length < 6 && (
-              <p style={{ fontSize: 12, color: '#c96e2a', margin: '-2px 0 0', padding: '0 4px' }}>
+              <p style={{ fontSize: 12, color: 'var(--acc)', margin: '-2px 0 0', padding: '0 4px' }}>
                 Minst 6 tecken ({6 - password.length} till)
               </p>
             )}
