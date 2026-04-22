@@ -235,6 +235,9 @@ export default function UpptackClient() {
     }
 
     // ── POI markers ───────────────────────────────────────────────────────
+    // Expose L globally so leaflet.markercluster can attach to it
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ;(window as any).L = L
     import('leaflet.markercluster').then(() => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const mc = (L as any).markerClusterGroup({

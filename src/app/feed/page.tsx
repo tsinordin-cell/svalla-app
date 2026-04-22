@@ -73,14 +73,19 @@ export default async function FeedPage() {
   // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
   let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
   if (user) {
-    const { data: followsForAchv } = await supabase
-      .from('follows').select('following_id').eq('follower_id', user.id)
-    const networkIds = [
-      user.id,
-      ...((followsForAchv ?? []).map((f: { following_id: string }) => f.following_id)),
-    ]
-    const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
-    recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
+    try {
+      const { data: followsForAchv } = await supabase
+        .from('follows').select('following_id').eq('follower_id', user.id)
+      const networkIds = [
+        user.id,
+        ...((followsForAchv ?? []).map((f: { following_id: string }) => f.following_id)),
+      ]
+      const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+      recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
+    } catch {
+      // Degradera tyst — achievement-events är icke-kritiska
+      recentAchievements = []
+    }
   }
 
   return (

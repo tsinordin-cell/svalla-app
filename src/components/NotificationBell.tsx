@@ -52,15 +52,25 @@ export default function NotificationBell() {
 
   useEffect(() => {
     let mounted = true
+
+    // Clean up any stale channel before creating a new one
+    if (channelRef.current) {
+      supabase.removeChannel(channelRef.current)
+      channelRef.current = null
+    }
+
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!mounted || !user) return
       const uid = user.id
       setUserId(uid)
       load(uid)
 
+      // Guard: don't create a channel if already cleaned up
+      if (!mounted) return
+
       // Realtime: ny notis → ladda om listan
       const ch = supabase
-        .channel(`notifications:${uid}`)
+        .channel(`notifications:${uid}:${Date.now()}`)
         .on(
           'postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'notifications', filter: `user_id=eq.${uid}` },

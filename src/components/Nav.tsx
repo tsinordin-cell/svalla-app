@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
+import SvallaLogo from '@/components/SvallaLogo'
 
 export default function Nav() {
   const path = usePathname()
@@ -190,14 +191,19 @@ export default function Nav() {
       WebkitBackfaceVisibility: 'hidden',
       backfaceVisibility: 'hidden',
     }}>
-      {/* On desktop, cap width to prevent the nav stretching full-width */}
-      <div style={{ display: 'flex', alignItems: 'stretch', width: '100%', maxWidth: 640 }}>
+      {/* Desktop: SVALLA-logotyp längst upp i sidebaren */}
+      <div className="nav-logo-wrap">
+        <SvallaLogo height={24} color="var(--sea)" />
+      </div>
+
+      {/* Tab-lista — row på mobil/tablet, column på desktop via CSS */}
+      <div className="nav-inner" style={{ display: 'flex', alignItems: 'stretch', width: '100%', maxWidth: 640 }}>
       {tabs.map((tab) => {
         const active = tab.exact ? path === tab.href : path.startsWith(tab.href)
 
         if (tab.fab) {
           return (
-            <Link key={tab.href} href={tab.href} aria-label="Logga tur" className="press-feedback" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link key={tab.href} href={tab.href} aria-label="Logga tur" className="press-feedback nav-fab-wrap" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{
                 width: 56, height: 56, borderRadius: '50%',
                 background: 'linear-gradient(135deg,var(--acc),#e07828)',
@@ -228,7 +234,7 @@ export default function Nav() {
               minHeight: 44,
             }}>
             {tab.icon?.(active)}
-            <span style={{ maxWidth: 48, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64 }}>
               {tab.label}
             </span>
             {active && (

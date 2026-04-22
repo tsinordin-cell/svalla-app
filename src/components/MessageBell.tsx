@@ -23,15 +23,25 @@ export default function MessageBell() {
 
   useEffect(() => {
     let mounted = true
+
+    // Clean up any stale channel before creating a new one
+    if (channelRef.current) {
+      supabase.removeChannel(channelRef.current)
+      channelRef.current = null
+    }
+
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!mounted || !user) return
       const uid = user.id
       setUserId(uid)
       refresh(uid)
 
+      // Guard: don't create a channel if already cleaned up
+      if (!mounted) return
+
       // Realtime: nytt meddelande någonstans → räkna om
       const ch = supabase
-        .channel(`dm-unread:${uid}`)
+        .channel(`dm-unread:${uid}:${Date.now()}`)
         .on(
           'postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'messages' },
