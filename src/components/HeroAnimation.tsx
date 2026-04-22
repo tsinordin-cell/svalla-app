@@ -1053,22 +1053,24 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Overlay — slightly reduced mid-section for more light ──────────── */
     const drawOverlay = () => {
-      const g = cx.createLinearGradient(0, 0, 0, H)
+      // Only cover sky+water area — never darken the transparent bottom where
+      // stones and seaweed rest on the white page background
+      const ovH = WL() + H * 0.04
+      const g = cx.createLinearGradient(0, 0, 0, ovH)
       const [o0, o1, o2, o3, o4] = th.overlay
-      // Scale back the mid-section (o1/o2) slightly for a brighter, airier feel
       g.addColorStop(0,    o0)
       g.addColorStop(0.22, o1)
       g.addColorStop(0.46, o2)
       g.addColorStop(0.68, o3)
       g.addColorStop(1,    o4)
-      cx.fillStyle = g; cx.fillRect(0, 0, W, H)
-      // Soft vignette on sides only — increases depth without darkening sky
+      cx.fillStyle = g; cx.fillRect(0, 0, W, ovH)
+      // Soft vignette on sides — clipped to same height
       const vl = cx.createLinearGradient(0, 0, W * 0.18, 0)
       vl.addColorStop(0, 'rgba(5,15,28,0.18)'); vl.addColorStop(1, 'rgba(5,15,28,0)')
-      cx.fillStyle = vl; cx.fillRect(0, 0, W * 0.18, H)
+      cx.fillStyle = vl; cx.fillRect(0, 0, W * 0.18, ovH)
       const vr = cx.createLinearGradient(W, 0, W * 0.82, 0)
       vr.addColorStop(0, 'rgba(5,15,28,0.18)'); vr.addColorStop(1, 'rgba(5,15,28,0)')
-      cx.fillStyle = vr; cx.fillRect(W * 0.82, 0, W * 0.18, H)
+      cx.fillStyle = vr; cx.fillRect(W * 0.82, 0, W * 0.18, ovH)
     }
 
     /* ═══════════════════════════════════════════════════════════════════════
@@ -1079,9 +1081,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       last = now; t += dt * 0.001
 
       cx.clearRect(0, 0, W, H)
-      // Clip to waterline — nothing drawn below the surface
-      cx.save()
-      cx.beginPath(); cx.rect(0, 0, W, WL() + H * 0.025); cx.clip()
       drawSky()
       drawSun()
       drawFarIslands()
@@ -1090,9 +1089,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawWaterShimmer()
       drawFerry(dt)
       drawBoats(dt)
+      drawSeabedRocks()
+      drawSeaweed()
       drawOverlay()
       drawBirds(dt)
-      cx.restore()
 
       raf = requestAnimationFrame(tick)
     }
