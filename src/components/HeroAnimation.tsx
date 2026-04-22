@@ -171,32 +171,23 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // Varied fish — different sizes and depths
+      // 3 fish — varied sizes, different depths
       fish = [
-        { x: rnd()*W, y: H*0.62, spd: 7,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 188 },
-        { x: rnd()*W, y: H*0.72, spd: 11, dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 200 },
-        { x: rnd()*W, y: H*0.80, spd: 6,  dir:  1, sz: 9,  ph: rnd()*Math.PI*2, hue: 175 },
-        { x: rnd()*W, y: H*0.88, spd: 14, dir: -1, sz: 18, ph: rnd()*Math.PI*2, hue: 210 },
+        { x: rnd()*W, y: H*0.65, spd: 6,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 190 },
+        { x: rnd()*W, y: H*0.78, spd: 10, dir: -1, sz: 11, ph: rnd()*Math.PI*2, hue: 205 },
+        { x: rnd()*W, y: H*0.88, spd: 7,  dir:  1, sz: 15, ph: rnd()*Math.PI*2, hue: 175 },
       ]
-      // Reduced seaweed — 4+4, clustered near islands
-      weeds = [
-        ...Array.from({ length: 4 }, (_, i) => ({
-          x: W * (0.02 + i * 0.040) + (rnd() - 0.5) * W * 0.016,
-          h: H * (0.055 + rnd() * 0.065),
-          ph: rnd() * Math.PI * 2, hue: 100 + rnd() * 38, w: 3.2 + rnd() * 4.0,
-          spd: 0.35 + rnd() * 0.60,
-        })),
-        ...Array.from({ length: 4 }, (_, i) => ({
-          x: W * (0.53 + i * 0.045) + (rnd() - 0.5) * W * 0.016,
-          h: H * (0.050 + rnd() * 0.060),
-          ph: rnd() * Math.PI * 2, hue: 98 + rnd() * 38, w: 2.8 + rnd() * 3.8,
-          spd: 0.35 + rnd() * 0.60,
-        })),
-      ]
-      bubbles = Array.from({ length: 6 }, () => ({
-        x: rnd() * W, y: H * (0.70 + rnd() * 0.30),
-        r: 0.8 + rnd() * 1.8, spd: 1.8 + rnd() * 3.5,
-        ph: rnd() * Math.PI * 2, a: 0.07 + rnd() * 0.14,
+      // Sparse seaweed — 3 plants, short, natural
+      weeds = Array.from({ length: 3 }, (_, i) => ({
+        x: W * (0.09 + i * 0.36) + (rnd() - 0.5) * W * 0.05,
+        h: H * (0.028 + rnd() * 0.036),
+        ph: rnd() * Math.PI * 2, hue: 108 + rnd() * 28, w: 1.8 + rnd() * 2.2,
+        spd: 0.28 + rnd() * 0.42,
+      }))
+      bubbles = Array.from({ length: 4 }, () => ({
+        x: rnd() * W, y: H * (0.72 + rnd() * 0.28),
+        r: 0.7 + rnd() * 1.4, spd: 1.4 + rnd() * 2.8,
+        ph: rnd() * Math.PI * 2, a: 0.06 + rnd() * 0.10,
       }))
       dolX = W + 80; dolOn = false; nextDol = ms + 14000
     }
@@ -601,41 +592,77 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     /* ── Underwater atmosphere ──────────────────────────────────────────── */
     const drawUnderwater = () => {
       const wb = WL()
-      // Blue-tinted underwater gradient — affects visual backdrop for text area
+      // Deeper blue-green tint — natural, not aquarium
       const dg = cx.createLinearGradient(0, wb, 0, H)
       dg.addColorStop(0,    `${th.seabedTint}0)`)
-      dg.addColorStop(0.25, `${th.seabedTint}0.10)`)
-      dg.addColorStop(0.65, `${th.seabedTint}0.38)`)
-      dg.addColorStop(1,    `${th.seabedTint}0.62)`)
+      dg.addColorStop(0.20, `${th.seabedTint}0.08)`)
+      dg.addColorStop(0.55, `${th.seabedTint}0.32)`)
+      dg.addColorStop(1,    `${th.seabedTint}0.56)`)
       cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
-      // Light rays — slow, subtle
-      for (let i = 0; i < 3; i++) {
-        const rx = W * (0.15 + i * 0.28) + Math.sin(t * 0.10 + i * 1.1) * 8
-        cx.save(); cx.translate(rx, wb); cx.rotate(-0.04 + i * 0.025)
-        const rg = cx.createLinearGradient(0, 0, 0, H * 0.30)
-        const a = 0.045 + Math.sin(t * 0.28 + i) * 0.018
+      // Two subtle light rays — slower, narrower
+      for (let i = 0; i < 2; i++) {
+        const rx = W * (0.22 + i * 0.40) + Math.sin(t * 0.08 + i * 1.4) * 10
+        cx.save(); cx.translate(rx, wb); cx.rotate(-0.03 + i * 0.02)
+        const rg = cx.createLinearGradient(0, 0, 0, H * 0.26)
+        const a = 0.030 + Math.sin(t * 0.22 + i) * 0.012
         rg.addColorStop(0, `rgba(${th.underwaterRay},${a})`)
         rg.addColorStop(1, `rgba(${th.underwaterRay},0)`)
         cx.fillStyle = rg
-        cx.beginPath(); cx.moveTo(-5, 0); cx.lineTo(5, 0)
-        cx.lineTo(14, H*0.30); cx.lineTo(-14, H*0.30); cx.closePath(); cx.fill()
+        cx.beginPath(); cx.moveTo(-3, 0); cx.lineTo(3, 0)
+        cx.lineTo(10, H*0.26); cx.lineTo(-10, H*0.26); cx.closePath(); cx.fill()
         cx.restore()
       }
     }
 
-    /* ── Seabed rocks — sand and stone ─────────────────────────────────── */
+    /* ── Suspended particles — sediment drifting in water ─────────────── */
+    const drawParticles = () => {
+      const wb = WL()
+      cx.save()
+      for (let i = 0; i < 16; i++) {
+        const px = (W * (0.032 + i * 0.062) + Math.sin(t * 0.12 + i * 2.1) * W * 0.018) % W
+        const depth = (i * 0.065 + 0.04) % 0.78
+        const py = wb + H * (depth * 0.58) + Math.sin(t * 0.07 + i * 1.9) * H * 0.010
+        if (py >= H - 4) continue
+        const a = (0.06 + Math.sin(t * 0.25 + i * 0.8) * 0.028) * (1 - depth * 0.5)
+        cx.fillStyle = `rgba(${th.underwaterRay},${a.toFixed(3)})`
+        cx.beginPath(); cx.arc(px, py, 0.8, 0, Math.PI * 2); cx.fill()
+      }
+      cx.restore()
+    }
+
+    /* ── Seabed — sandy sediment + scattered stones ─────────────────────── */
     const drawSeabedRocks = () => {
-      const rdata = [
-        { x: W*0.07, rw: H*0.040, rh: H*0.018 }, { x: W*0.20, rw: H*0.028, rh: H*0.013 },
-        { x: W*0.36, rw: H*0.044, rh: H*0.020 }, { x: W*0.54, rw: H*0.030, rh: H*0.014 },
-        { x: W*0.71, rw: H*0.040, rh: H*0.018 }, { x: W*0.88, rw: H*0.034, rh: H*0.015 },
+      // Sandy/silty bottom gradient
+      const sg = cx.createLinearGradient(0, H * 0.86, 0, H)
+      sg.addColorStop(0, 'rgba(38,52,68,0)')
+      sg.addColorStop(0.40, 'rgba(32,46,62,0.28)')
+      sg.addColorStop(1,    'rgba(24,36,52,0.52)')
+      cx.fillStyle = sg; cx.fillRect(0, H * 0.86, W, H * 0.14)
+      // Sediment grain texture — irregular dots
+      cx.fillStyle = 'rgba(50,65,80,0.28)'
+      for (let i = 0; i < 28; i++) {
+        const gx = W * ((i * 0.037 + 0.008) % 1.0)
+        const gy = H * (0.90 + ((i * 0.031) % 0.09))
+        cx.beginPath(); cx.arc(gx, gy, 1.0 + (i % 3) * 0.5, 0, Math.PI * 2); cx.fill()
+      }
+      // Darker sediment in deeper corners
+      cx.fillStyle = 'rgba(18,28,44,0.22)'
+      cx.fillRect(0, H * 0.94, W * 0.22, H * 0.06)
+      cx.fillRect(W * 0.78, H * 0.94, W * 0.22, H * 0.06)
+      // Stones — varied sizes, natural
+      const stones = [
+        { x: W*0.06, rw: H*0.036, rh: H*0.016 }, { x: W*0.19, rw: H*0.024, rh: H*0.011 },
+        { x: W*0.34, rw: H*0.042, rh: H*0.018 }, { x: W*0.52, rw: H*0.028, rh: H*0.013 },
+        { x: W*0.70, rw: H*0.038, rh: H*0.017 }, { x: W*0.86, rw: H*0.030, rh: H*0.013 },
+        { x: W*0.43, rw: H*0.016, rh: H*0.008 }, { x: W*0.77, rw: H*0.018, rh: H*0.008 },
       ]
-      rdata.forEach(({ x, rw, rh }) => {
+      stones.forEach(({ x, rw, rh }) => {
         const ry = H - rh * 0.5
         cx.beginPath(); cx.ellipse(x, ry, rw, rh, 0, 0, Math.PI * 2)
-        cx.fillStyle = 'hsla(215,14%,25%,0.65)'; cx.fill()
-        cx.beginPath(); cx.ellipse(x - rw*0.14, ry - rh*0.20, rw*0.40, rh*0.36, 0, 0, Math.PI * 2)
-        cx.fillStyle = 'hsla(215,12%,34%,0.30)'; cx.fill()
+        cx.fillStyle = 'hsla(215,14%,22%,0.70)'; cx.fill()
+        // Highlight edge
+        cx.beginPath(); cx.ellipse(x - rw*0.16, ry - rh*0.22, rw*0.36, rh*0.32, 0, 0, Math.PI * 2)
+        cx.fillStyle = 'hsla(215,12%,36%,0.25)'; cx.fill()
       })
     }
 
@@ -705,7 +732,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const bodyAngle = Math.sin(ph * 1.6) * 0.045
       cx.rotate(bodyAngle)
 
-      // Compact rounded body — blunt nose, no beak
+      // Compact rounded body — grey-blue, not black
       cx.beginPath()
       cx.moveTo(24, 0)
       cx.bezierCurveTo(26, -7,  8, -10,  0, -10)
@@ -713,17 +740,17 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.bezierCurveTo(-25,  6, -13,  10,  0,  10)
       cx.bezierCurveTo(  8,  10,  26,   7, 24,  0)
       cx.closePath()
-      cx.fillStyle = 'rgba(28,40,55,0.80)'; cx.fill()
+      cx.fillStyle = 'rgba(88,115,138,0.88)'; cx.fill()
 
-      // White belly patch
+      // Pale belly patch
       cx.beginPath()
       cx.ellipse(2, 5, 13, 4.8, 0.08, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(210,225,232,0.68)'; cx.fill()
+      cx.fillStyle = 'rgba(218,232,240,0.72)'; cx.fill()
 
-      // Small triangular dorsal fin — compact
+      // Small triangular dorsal fin
       cx.beginPath()
       cx.moveTo(-1, -10); cx.lineTo(6, -18); cx.lineTo(11, -10); cx.closePath()
-      cx.fillStyle = 'rgba(20,32,48,0.82)'; cx.fill()
+      cx.fillStyle = 'rgba(72,98,122,0.90)'; cx.fill()
 
       // Tail fluke
       const tailWag = Math.sin(ph * 1.6 + 0.5) * 0.14
@@ -734,13 +761,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.bezierCurveTo(-10, -2, -4,  0,  0,  0)
       cx.bezierCurveTo(-4,  3, -10,  2, -12,  6)
       cx.bezierCurveTo(-10,  2, -4,  3,  0,  0)
-      cx.fillStyle = 'rgba(20,32,48,0.80)'; cx.fill()
+      cx.fillStyle = 'rgba(72,98,122,0.88)'; cx.fill()
       cx.restore()
 
       // Pectoral fin
       cx.beginPath()
       cx.moveTo(8, 4); cx.bezierCurveTo(4, 8, -2, 11, -4, 9); cx.bezierCurveTo(-2, 7, 4, 5, 8, 4)
-      cx.fillStyle = 'rgba(20,32,48,0.72)'; cx.fill()
+      cx.fillStyle = 'rgba(72,98,122,0.78)'; cx.fill()
 
       // Eye
       cx.beginPath(); cx.arc(18, -2, 1.4, 0, Math.PI * 2); cx.fillStyle = '#03080e'; cx.fill()
@@ -793,29 +820,40 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillStyle = '#d83838'; cx.fill()
     }
 
-    /* ── Three birds — slow glide ───────────────────────────────────────── */
+    /* ── Three birds — slow lazy glide ─────────────────────────────────── */
     const drawBirds = (dt: number) => {
       birds.forEach(b => {
-        b.x    -= b.spd * dt * 0.001
-        b.wingT += 1.8 * dt * 0.001
+        b.x    -= b.spd * 0.78 * dt * 0.001   // slower drift
+        b.wingT += 1.3 * dt * 0.001             // slower wingbeat
         if (b.x < -25) { b.x = W + 25; b.baseY = H * (0.06 + Math.random() * 0.10) }
-        const y = b.baseY + Math.sin(b.wingT * 0.26 + b.ph) * b.amp * 3.8
-        const w = 2.2 + Math.abs(Math.sin(b.wingT)) * 6.0
+        const y = b.baseY + Math.sin(b.wingT * 0.22 + b.ph) * b.amp * 3.5
+        const w = 1.8 + Math.abs(Math.sin(b.wingT)) * 5.2   // slightly smaller wing arc
         cx.save(); cx.translate(b.x, y)
-        cx.strokeStyle = th.birdColor; cx.lineWidth = 1.3; cx.lineCap = 'round'
+        cx.strokeStyle = th.birdColor; cx.lineWidth = 1.2; cx.lineCap = 'round'
         cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo(-8,-w,-16,0); cx.stroke()
         cx.beginPath(); cx.moveTo(0,0); cx.quadraticCurveTo( 8,-w, 16,0); cx.stroke()
         cx.restore()
       })
     }
 
-    /* ── Overlay ─────────────────────────────────────────────────────────── */
+    /* ── Overlay — slightly reduced mid-section for more light ──────────── */
     const drawOverlay = () => {
       const g = cx.createLinearGradient(0, 0, 0, H)
       const [o0, o1, o2, o3, o4] = th.overlay
-      g.addColorStop(0, o0); g.addColorStop(0.20, o1)
-      g.addColorStop(0.45, o2); g.addColorStop(0.65, o3); g.addColorStop(1, o4)
+      // Scale back the mid-section (o1/o2) slightly for a brighter, airier feel
+      g.addColorStop(0,    o0)
+      g.addColorStop(0.22, o1)
+      g.addColorStop(0.46, o2)
+      g.addColorStop(0.68, o3)
+      g.addColorStop(1,    o4)
       cx.fillStyle = g; cx.fillRect(0, 0, W, H)
+      // Soft vignette on sides only — increases depth without darkening sky
+      const vl = cx.createLinearGradient(0, 0, W * 0.18, 0)
+      vl.addColorStop(0, 'rgba(5,15,28,0.18)'); vl.addColorStop(1, 'rgba(5,15,28,0)')
+      cx.fillStyle = vl; cx.fillRect(0, 0, W * 0.18, H)
+      const vr = cx.createLinearGradient(W, 0, W * 0.82, 0)
+      vr.addColorStop(0, 'rgba(5,15,28,0.18)'); vr.addColorStop(1, 'rgba(5,15,28,0)')
+      cx.fillStyle = vr; cx.fillRect(W * 0.82, 0, W * 0.18, H)
     }
 
     /* ═══════════════════════════════════════════════════════════════════════
@@ -837,6 +875,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawUnderwater()
       drawSeabedRocks()
       drawSeaweed()
+      drawParticles()
       drawBubbles(dt)
       drawFish(dt)
       drawDolphin(dt)

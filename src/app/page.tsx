@@ -63,7 +63,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
 .btn-lg{padding:16px 36px;font-size:15px;border-radius:var(--r-sm)}
 .btn-xl{padding:18px 44px;font-size:16px;border-radius:var(--r-sm)}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;overflow:hidden;padding-top:clamp(72px,calc(50vh - 190px),380px);}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(165deg,#0a1f2b 0%,#0f2e3b 25%,#1a4a5e 55%,#1e5c72 75%,#24697f 100%);}
 .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 110%, rgba(45,125,138,.35) 0%, transparent 60%),radial-gradient(ellipse 60% 30% at 20% 80%, rgba(26,74,94,.4) 0%, transparent 50%),radial-gradient(ellipse 40% 20% at 80% 70%, rgba(36,105,127,.3) 0%, transparent 40%);}
 .hero-islands{position:absolute;bottom:0;left:0;right:0;height:45%;pointer-events:none;}
@@ -81,7 +81,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,82px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:24px;letter-spacing:-.02em;}
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:clamp(16px,2.2vw,20px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:0 auto 44px;line-height:1.65;}
+.hero-sub{font-size:clamp(16px,2.2vw,20px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:0 auto 54px;line-height:1.65;}
 .hero-search{display:flex;max-width:560px;margin:0 auto 20px;background:rgba(255,255,255,.96);border-radius:50px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.3);}
 .hero-search input{flex:1;border:none;outline:none;padding:18px 24px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:transparent;}
 .hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
