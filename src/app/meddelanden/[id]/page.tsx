@@ -93,74 +93,89 @@ export default function ChatPage() {
   useEffect(() => {
     let cancel = false
     async function boot() {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (cancel) return
-      if (!user) { router.push('/logga-in'); return }
-      setMe(user.id)
+      try {
+        const { data: authData } = await supabase.auth.getUser()
+        const user = authData?.user
+        if (cancel) return
+        if (!user) { router.push('/logga-in'); return }
+        setMe(user.id)
 
-      // Konversationsinfo
-      const { data: c } = await supabase.from('conversations').select('*').eq('id', id).single()
-      if (cancel) return
-      if (!c) { router.push('/meddelanden'); return }
-      setConv(c as Conversation)
+        // Konversationsinfo
+        const { data: c } = await supabase.from('conversations').select('*').eq('id', id).single()
+        if (cancel) return
+        if (!c) { router.push('/meddelanden'); return }
+        setConv(c as Conversation)
 
-      // Motpart (för 1-till-1) — hämta alla deltagare → visa den andra
-      const { data: parts } = await supabase
-        .from('conversation_participants')
-        .select('user_id')
-        .eq('conversation_id', id)
-      const otherIds = (parts ?? []).map(p => p.user_id).filter(u => u !== user.id)
-      if (otherIds.length > 0) {
-        const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', otherIds)
-        for (const u of users ?? []) {
-          userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
-        }
-        // egen info till cache
-        const { data: myU } = await supabase.from('users').select('username, avatar').eq('id', user.id).single()
-        if (myU) userMapRef.current[user.id] = { username: myU.username, avatar: myU.avatar ?? null }
+        // Motpart (för 1-till-1) — hämta alla deltagare → visa den andra
+        try {
+          const { data: parts } = await supabase
+            .from('conversation_participants')
+            .select('user_id')
+            .eq('conversation_id', id)
+          const otherIds = (parts ?? []).map((p: { user_id: string }) => p.user_id).filter(u => u !== user.id)
+          if (otherIds.length > 0) {
+            const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', otherIds)
+            for (const u of users ?? []) {
+              userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+            }
+            // egen info till cache
+            const { data: myU } = await supabase.from('users').select('username, avatar').eq('id', user.id).single()
+            if (myU) userMapRef.current[user.id] = { username: myU.username, avatar: myU.avatar ?? null }
 
-        if (!c.is_group && users && users[0]) {
-          setOtherName(users[0].username)
-          setOtherUsername(users[0].username)
-          setOtherAvatar(users[0].avatar ?? null)
-          setOtherId(users[0].id)
-        } else if (c.is_group) {
-          setOtherName(c.title ?? 'Gruppchatt')
-        }
+            if (!c.is_group && users && users[0]) {
+              setOtherName(users[0].username ?? 'Seglare')
+              setOtherUsername(users[0].username ?? null)
+              setOtherAvatar(users[0].avatar ?? null)
+              setOtherId(users[0].id)
+            } else if (c.is_group) {
+              setOtherName((c as Conversation).title ?? 'Gruppchatt')
+            }
+          }
+        } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
+
+        await loadMessages(user.id)
+        try { await markConversationRead(supabase, user.id, id) } catch { /* tyst */ }
+        if (!cancel) setLoading(false)
+      } catch (err) {
+        // Logga felet men låt inte en ohanterad rejection krascha sidan
+        console.error('[ChatPage] boot error:', err)
+        if (!cancel) setLoading(false)
       }
-
-      await loadMessages(user.id)
-      await markConversationRead(supabase, user.id, id)
-      setLoading(false)
     }
     boot()
     return () => { cancel = true }
   }, [id, supabase, router])
 
   const loadMessages = useCallback(async (userId: string) => {
-    const { data } = await supabase
-      .from('messages')
-      .select('*')
-      .eq('conversation_id', id)
-      .order('created_at', { ascending: true })
-      .limit(200)
-    const rows = (data ?? []) as MsgWithMeta[]
+    try {
+      const { data } = await supabase
+        .from('messages')
+        .select('*')
+        .eq('conversation_id', id)
+        .order('created_at', { ascending: true })
+        .limit(200)
+      const rows = (data ?? []) as MsgWithMeta[]
 
-    // Se till att alla user_ids finns i cache
-    const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
-    if (missing.length > 0) {
-      const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
-      for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+      // Se till att alla user_ids finns i cache
+      const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
+      if (missing.length > 0) {
+        try {
+          const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
+          for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+        } catch { /* tyst — fallback till 'Seglare' */ }
+      }
+
+      setMessages(rows.map(m => ({
+        ...m,
+        username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
+        avatar: userMapRef.current[m.user_id]?.avatar ?? null,
+      })))
+
+      // Markera läst
+      try { await markConversationRead(supabase, userId, id) } catch { /* tyst */ }
+    } catch (err) {
+      console.error('[ChatPage] loadMessages error:', err)
     }
-
-    setMessages(rows.map(m => ({
-      ...m,
-      username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
-      avatar: userMapRef.current[m.user_id]?.avatar ?? null,
-    })))
-
-    // Markera läst igen
-    await markConversationRead(supabase, userId, id)
   }, [supabase, id])
 
   // Realtime
@@ -183,7 +198,7 @@ export default function ChatPage() {
       supabase.from('user_presence').upsert(
         { user_id: me, current_chat_id: id, updated_at: new Date().toISOString() },
         { onConflict: 'user_id' },
-      ).then(() => {})
+      ).then(() => {}).catch(() => {})
     }
     stamp()
     const hb = setInterval(stamp, 15_000)
@@ -192,7 +207,7 @@ export default function ChatPage() {
       supabase.from('user_presence').update({
         current_chat_id: null,
         updated_at: new Date().toISOString(),
-      }).eq('user_id', me).then(() => {})
+      }).eq('user_id', me).then(() => {}).catch(() => {})
     }
   }, [supabase, me, id])
 
