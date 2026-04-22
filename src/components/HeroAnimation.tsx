@@ -119,7 +119,8 @@ const THEMES: Record<HeroVariant, Theme> = {
 type BoatType = 'sail'
 interface Boat   { x: number; spd: number; type: BoatType; ph: number }
 interface Bird   { x: number; baseY: number; spd: number; wingT: number; amp: number; ph: number }
-interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number }
+interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch' }
+interface Ferry  { x: number; spd: number; ph: number }
 interface Weed   { x: number; h: number; ph: number; hue: number; w: number; spd: number }
 interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
 
@@ -137,10 +138,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const th = THEMES[variant]
 
     let W = 0, H = 0, dpr = 1
-    let raf = 0, last = 0, t = 0, ms = 0
+    let raf = 0, last = 0, t = 0
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = []
     let weeds: Weed[] = [], bubbles: Bubble[] = []
-    let dolX = 0, dolPh = 0, dolOn = false, nextDol = 0
+    let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
     const WL = () => H * 0.52
@@ -162,7 +163,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       boats = [
         { x: W * 1.15, spd: 7, type: 'sail', ph: 0 },
         { x: W * 1.70, spd: 6, type: 'sail', ph: 1.8 },
+        { x: W * 2.20, spd: 5, type: 'sail', ph: 3.4 },
       ]
+      ferry = { x: W * 0.58, spd: 2.5, ph: 0 }
       birds = Array.from({ length: 3 }, (_, i) => ({
         x:     W * (0.08 + i * 0.34) + rnd() * 60,
         baseY: H * (0.07 + i * 0.030 + rnd() * 0.012),
@@ -171,11 +174,17 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // 3 fish — varied sizes, different depths
+      // 9 fish — pike (long, slow) and perch (rounder, faster)
       fish = [
-        { x: rnd()*W, y: H*0.65, spd: 6,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 190 },
-        { x: rnd()*W, y: H*0.78, spd: 10, dir: -1, sz: 11, ph: rnd()*Math.PI*2, hue: 205 },
-        { x: rnd()*W, y: H*0.88, spd: 7,  dir:  1, sz: 15, ph: rnd()*Math.PI*2, hue: 175 },
+        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'  },
+        { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'  },
+        { x: rnd()*W, y: H*0.73, spd: 5,  dir:  1, sz: 18, ph: rnd()*Math.PI*2, hue: 105, type: 'pike'  },
+        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'  },
+        { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch' },
+        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch' },
+        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch' },
+        { x: rnd()*W, y: H*0.78, spd: 6,  dir:  1, sz: 13, ph: rnd()*Math.PI*2, hue: 100, type: 'perch' },
+        { x: rnd()*W, y: H*0.67, spd: 7,  dir:  1, sz: 11, ph: rnd()*Math.PI*2, hue: 98,  type: 'perch' },
       ]
       // Sparse seaweed — 3 plants, short, natural
       weeds = Array.from({ length: 3 }, (_, i) => ({
@@ -189,7 +198,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         r: 0.7 + rnd() * 1.4, spd: 1.4 + rnd() * 2.8,
         ph: rnd() * Math.PI * 2, a: 0.06 + rnd() * 0.10,
       }))
-      dolX = W + 80; dolOn = false; nextDol = ms + 14000
     }
 
     /* ── Resize ─────────────────────────────────────────────────────────── */
@@ -248,6 +256,38 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.moveTo(W*0.825, H*0.445)
       cx.bezierCurveTo(W*0.862, H*0.382, W*0.930, H*0.372, W, H*0.390)
       cx.lineTo(W, H * 0.445); cx.fill()
+      // Small cottage silhouettes on far islands — dark, no detail
+      const cottageColor = 'rgba(45,28,18,0.55)'
+      // Island 1 (left) — two tiny huts
+      ;[W*0.08, W*0.14].forEach((cx2, i) => {
+        const cw = W * 0.012, ch = H * 0.012, cy2 = H * 0.412 - i * H * 0.004
+        cx.fillStyle = cottageColor
+        cx.fillRect(cx2 - cw/2, cy2, cw, ch)
+        cx.beginPath()
+        cx.moveTo(cx2 - cw/2 - 1, cy2); cx.lineTo(cx2 + cw/2 + 1, cy2); cx.lineTo(cx2, cy2 - ch * 0.55)
+        cx.closePath(); cx.fill()
+      })
+      // Island 2 (centre) — three tiny huts
+      ;[W*0.465, W*0.530, W*0.590].forEach((cx2, i) => {
+        const cw = W * 0.013, ch = H * 0.013, cy2 = H * 0.400 - i * H * 0.003
+        cx.fillStyle = cottageColor
+        cx.fillRect(cx2 - cw/2, cy2, cw, ch)
+        cx.beginPath()
+        cx.moveTo(cx2 - cw/2 - 1, cy2); cx.lineTo(cx2 + cw/2 + 1, cy2); cx.lineTo(cx2, cy2 - ch * 0.55)
+        cx.closePath(); cx.fill()
+      })
+      // Island 3 (right) — one hut + pine silhouette
+      const rx = W * 0.900, ry = H * 0.398
+      cx.fillStyle = cottageColor
+      cx.fillRect(rx - W*0.006, ry, W*0.012, H*0.011)
+      cx.beginPath()
+      cx.moveTo(rx - W*0.007, ry); cx.lineTo(rx + W*0.007, ry); cx.lineTo(rx, ry - H*0.010)
+      cx.closePath(); cx.fill()
+      // Pine silhouette right island
+      cx.fillStyle = 'rgba(28,42,22,0.50)'
+      cx.beginPath()
+      cx.moveTo(W*0.950, H*0.382); cx.lineTo(W*0.957, H*0.400); cx.lineTo(W*0.943, H*0.400)
+      cx.closePath(); cx.fill()
     }
 
     /* ── Pine tree ───────────────────────────────────────────────────────── */
@@ -425,6 +465,49 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillRect(x, dTop, dLen, H * 0.007)
     }
 
+    /* ── Swedish flagpole ───────────────────────────────────────────────── */
+    const flagpole = (x: number, y: number) => {
+      const ph = H * 0.055
+      cx.strokeStyle = '#b0b0b0'; cx.lineWidth = 1.4; cx.lineCap = 'round'
+      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
+      // Flag — blue with yellow cross
+      const fw = H * 0.022, fh = H * 0.015, fy2 = y - ph
+      cx.fillStyle = '#006AA7'
+      cx.fillRect(x, fy2, fw, fh)
+      // Cross: horizontal
+      cx.fillStyle = '#FECC02'
+      cx.fillRect(x, fy2 + fh * 0.38, fw, fh * 0.24)
+      // Cross: vertical (shifted left of centre — Swedish flag style)
+      cx.fillRect(x + fw * 0.28, fy2, fw * 0.20, fh)
+    }
+
+    /* ── Midsommarstång ──────────────────────────────────────────────────── */
+    const midsommarstang = (x: number, y: number) => {
+      const ph = H * 0.065
+      cx.strokeStyle = '#587830'; cx.lineWidth = 2.0; cx.lineCap = 'round'
+      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
+      // Cross piece
+      const cw = H * 0.024, cy2 = y - ph * 0.80
+      cx.strokeStyle = '#587830'; cx.lineWidth = 1.6
+      cx.beginPath(); cx.moveTo(x - cw, cy2); cx.lineTo(x + cw, cy2); cx.stroke()
+      // Green wreath at top
+      cx.fillStyle = 'rgba(72,148,48,0.78)'
+      cx.beginPath(); cx.arc(x, y - ph, H * 0.006, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(x - cw, cy2, H * 0.005, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(x + cw, cy2, H * 0.005, 0, Math.PI * 2); cx.fill()
+      // Ribbons — red and green hanging curves
+      cx.strokeStyle = 'rgba(210,48,60,0.65)'; cx.lineWidth = 0.9; cx.lineCap = 'round'
+      cx.beginPath()
+      cx.moveTo(x - cw, cy2)
+      cx.bezierCurveTo(x - cw - 4, cy2 + H*0.012, x - cw - 2, cy2 + H*0.022, x - cw, cy2 + H*0.026)
+      cx.stroke()
+      cx.strokeStyle = 'rgba(68,150,48,0.65)'
+      cx.beginPath()
+      cx.moveTo(x + cw, cy2)
+      cx.bezierCurveTo(x + cw + 4, cy2 + H*0.012, x + cw + 2, cy2 + H*0.022, x + cw, cy2 + H*0.026)
+      cx.stroke()
+    }
+
     /* ── Near islands — one coherent bay scene ───────────────────────────── */
     const drawNearIslands = () => {
       const wb = WL()
@@ -477,6 +560,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Fishing net — drying on shore, larger and visible
       fishingNet(W * 0.178, wb * 0.995)
 
+      // Flagpole — Swedish flag
+      flagpole(W * 0.120, wb * 0.950)
+
 
       // ── RIGHT ISLAND — rocky, sauna side ─────────────────────────────────
       // Flat rocky island — lower, wider
@@ -520,6 +606,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       sauna(W * 0.740, wb * 0.968)
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
+
+      // Midsommarstång
+      midsommarstang(W * 0.608, wb * 0.928)
 
 
       // ── Small mid skerry — low granite
@@ -701,95 +790,129 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       })
     }
 
-    /* ── Fish — 4 naturalistic, varied ─────────────────────────────────── */
+    /* ── Fish — pike (gädda) + perch (abborre), naturalistic ────────────── */
     const drawFish = (dt: number) => {
       fish.forEach(f => {
         f.x += f.spd * f.dir * dt * 0.001
-        f.ph += 0.0024 * dt
-        const fy = f.y + Math.sin(f.ph) * 3.5
+        f.ph += 0.0022 * dt
+        const fy = f.y + Math.sin(f.ph) * 3.0
         if (f.dir === 1  && f.x >  W + f.sz * 2) f.x = -f.sz * 2
         if (f.dir === -1 && f.x < -f.sz * 2)     f.x =  W + f.sz * 2
         cx.save(); cx.translate(f.x, fy)
         if (f.dir === -1) cx.scale(-1, 1)
-        const a = f.sz, b2 = f.sz * 0.40
-        cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI * 2)
-        cx.fillStyle = `hsla(${f.hue},44%,40%,0.78)`; cx.fill()
-        cx.beginPath()
-        cx.moveTo(-a*0.86, 0); cx.lineTo(-a*1.68, -b2*1.0); cx.lineTo(-a*1.68, b2*1.0); cx.closePath()
-        cx.fillStyle = `hsla(${f.hue},38%,32%,0.76)`; cx.fill()
-        cx.beginPath(); cx.arc(a*0.52, -b2*0.12, a*0.095, 0, Math.PI * 2)
-        cx.fillStyle = '#060e1a'; cx.fill()
-        cx.beginPath(); cx.arc(a*0.54, -b2*0.15, a*0.038, 0, Math.PI * 2)
-        cx.fillStyle = 'rgba(255,255,255,0.65)'; cx.fill()
+
+        if (f.type === 'pike') {
+          // Pike — elongated, pointed, green-grey
+          const a = f.sz, b2 = f.sz * 0.21
+          // Body
+          cx.beginPath()
+          cx.moveTo(a * 1.2, 0)
+          cx.bezierCurveTo(a * 0.7, -b2, -a * 0.5, -b2, -a * 0.9, 0)
+          cx.bezierCurveTo(-a * 0.5,  b2,  a * 0.7,  b2,  a * 1.2, 0)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},30%,32%,0.82)`; cx.fill()
+          // Dark back stripe
+          cx.beginPath()
+          cx.moveTo(a * 1.0, -b2 * 0.4)
+          cx.bezierCurveTo(a * 0.2, -b2 * 1.1, -a * 0.4, -b2 * 1.0, -a * 0.85, -b2 * 0.3)
+          cx.strokeStyle = `hsla(${f.hue},22%,18%,0.38)`; cx.lineWidth = b2 * 0.7; cx.stroke()
+          // Tail
+          cx.beginPath()
+          cx.moveTo(-a * 0.88, 0); cx.lineTo(-a * 1.65, -b2 * 1.5); cx.lineTo(-a * 1.65, b2 * 1.5)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},25%,26%,0.78)`; cx.fill()
+          // Eye — yellow iris
+          cx.beginPath(); cx.arc(a * 0.82, -b2 * 0.25, a * 0.085, 0, Math.PI * 2)
+          cx.fillStyle = '#d0b830'; cx.fill()
+          cx.beginPath(); cx.arc(a * 0.82, -b2 * 0.25, a * 0.042, 0, Math.PI * 2)
+          cx.fillStyle = '#050a10'; cx.fill()
+        } else {
+          // Perch — rounder, vertical stripes, orange fins
+          const a = f.sz, b2 = f.sz * 0.46
+          cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI * 2)
+          cx.fillStyle = `hsla(${f.hue},40%,35%,0.84)`; cx.fill()
+          // Vertical dark stripes (4)
+          cx.strokeStyle = `hsla(${f.hue},20%,16%,0.42)`; cx.lineCap = 'round'
+          for (let s = 0; s < 4; s++) {
+            const sx = a * 0.55 - s * a * 0.36
+            const hw = b2 * (0.85 - s * 0.05)
+            cx.lineWidth = a * 0.09
+            cx.beginPath(); cx.moveTo(sx, -hw); cx.lineTo(sx, hw); cx.stroke()
+          }
+          // Orange-red dorsal fin hint
+          cx.beginPath()
+          cx.moveTo(-a*0.15, -b2); cx.lineTo(-a*0.55, -b2*1.55); cx.lineTo(a*0.25, -b2)
+          cx.closePath()
+          cx.fillStyle = `hsla(18,72%,50%,0.45)`; cx.fill()
+          // Tail
+          cx.beginPath()
+          cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.52, -b2*1.1); cx.lineTo(-a*1.52, b2*1.1)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},34%,28%,0.78)`; cx.fill()
+          // Eye
+          cx.beginPath(); cx.arc(a*0.52, -b2*0.12, a*0.10, 0, Math.PI * 2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.54, -b2*0.15, a*0.040, 0, Math.PI * 2)
+          cx.fillStyle = 'rgba(255,255,255,0.62)'; cx.fill()
+        }
         cx.restore()
       })
     }
 
-    /* ── Harbour porpoise (tumlare) — compact, rounded ──────────────────── */
-    // Always travels right → left (negative x direction)
-    const drawPorpoise = (x: number, y: number, scale: number, ph: number) => {
-      cx.save(); cx.translate(x, y); cx.scale(scale, scale)
-      const bodyAngle = Math.sin(ph * 1.6) * 0.045
-      cx.rotate(bodyAngle)
-
-      // Compact rounded body — grey-blue, not black
+    /* ── Waxholmsbolaget-style ferry — white hull, yellow funnel ─────────── */
+    const drawFerry = (dt: number) => {
+      ferry.x -= ferry.spd * dt * 0.001
+      ferry.ph += 0.8 * dt * 0.001
+      if (ferry.x < -200) ferry.x = W + 200
+      const wy  = wave(ferry.x)
+      const bob = Math.sin(ferry.ph * 0.7) * 1.2
+      const tilt = Math.sin(ferry.ph * 0.55) * 0.35 * (Math.PI / 180)
+      cx.save(); cx.translate(ferry.x, wy + bob); cx.rotate(tilt)
+      // Hull
       cx.beginPath()
-      cx.moveTo(24, 0)
-      cx.bezierCurveTo(26, -7,  8, -10,  0, -10)
-      cx.bezierCurveTo(-13, -10, -25,  -6, -27,  0)
-      cx.bezierCurveTo(-25,  6, -13,  10,  0,  10)
-      cx.bezierCurveTo(  8,  10,  26,   7, 24,  0)
-      cx.closePath()
-      cx.fillStyle = 'rgba(88,115,138,0.88)'; cx.fill()
-
-      // Pale belly patch
+      cx.moveTo(-62, 0); cx.lineTo(62, 0); cx.lineTo(56, 14); cx.lineTo(-56, 14); cx.closePath()
+      cx.fillStyle = 'rgba(244,244,240,0.92)'; cx.fill()
+      cx.strokeStyle = 'rgba(150,130,100,0.45)'; cx.lineWidth = 0.8; cx.stroke()
+      // Waterline stripe — dark blue
+      cx.fillStyle = 'rgba(22,65,130,0.78)'
+      cx.fillRect(-55, 10, 110, 4)
+      // Main superstructure
       cx.beginPath()
-      cx.ellipse(2, 5, 13, 4.8, 0.08, 0, Math.PI * 2)
-      cx.fillStyle = 'rgba(218,232,240,0.72)'; cx.fill()
-
-      // Small triangular dorsal fin
+      cx.moveTo(-46, 0); cx.lineTo(-46, -12); cx.lineTo(46, -12); cx.lineTo(46, 0); cx.closePath()
+      cx.fillStyle = 'rgba(244,244,240,0.88)'; cx.fill()
+      cx.strokeStyle = 'rgba(170,155,130,0.30)'; cx.lineWidth = 0.6; cx.stroke()
+      // Upper deck
       cx.beginPath()
-      cx.moveTo(-1, -10); cx.lineTo(6, -18); cx.lineTo(11, -10); cx.closePath()
-      cx.fillStyle = 'rgba(72,98,122,0.90)'; cx.fill()
-
-      // Tail fluke
-      const tailWag = Math.sin(ph * 1.6 + 0.5) * 0.14
-      cx.save(); cx.translate(-27, 0); cx.rotate(tailWag)
+      cx.moveTo(-32, -12); cx.lineTo(-32, -20); cx.lineTo(32, -20); cx.lineTo(32, -12); cx.closePath()
+      cx.fillStyle = 'rgba(242,242,238,0.85)'; cx.fill()
+      // Portholes / windows lower deck
+      cx.fillStyle = 'rgba(110,168,210,0.52)'
+      for (let i = -3; i <= 3; i++) { if (i === 0) continue
+        cx.fillRect(i * 12 - 3, -10, 6, 5)
+      }
+      // Yellow funnel — Waxholmsbolaget
       cx.beginPath()
-      cx.moveTo(0, 0)
-      cx.bezierCurveTo(-4, -3, -10, -2, -12, -6)
-      cx.bezierCurveTo(-10, -2, -4,  0,  0,  0)
-      cx.bezierCurveTo(-4,  3, -10,  2, -12,  6)
-      cx.bezierCurveTo(-10,  2, -4,  3,  0,  0)
-      cx.fillStyle = 'rgba(72,98,122,0.88)'; cx.fill()
+      cx.moveTo(-7, -20); cx.lineTo(-9, -33); cx.lineTo(9, -33); cx.lineTo(7, -20); cx.closePath()
+      cx.fillStyle = 'rgba(238,192,28,0.92)'; cx.fill()
+      // Red band
+      cx.fillStyle = 'rgba(185,28,28,0.82)'
+      cx.fillRect(-8, -27, 16, 3.5)
+      // Smoke
+      cx.save()
+      const st = t * 0.18
+      cx.strokeStyle = 'rgba(200,195,188,0.20)'; cx.lineWidth = 2.4; cx.lineCap = 'round'
+      cx.beginPath()
+      cx.moveTo(0, -33)
+      cx.bezierCurveTo(Math.sin(st)*3, -39, Math.sin(st+0.8)*5, -45, Math.sin(st+1.6)*4, -50)
+      cx.stroke()
       cx.restore()
-
-      // Pectoral fin
-      cx.beginPath()
-      cx.moveTo(8, 4); cx.bezierCurveTo(4, 8, -2, 11, -4, 9); cx.bezierCurveTo(-2, 7, 4, 5, 8, 4)
-      cx.fillStyle = 'rgba(72,98,122,0.78)'; cx.fill()
-
-      // Eye
-      cx.beginPath(); cx.arc(18, -2, 1.4, 0, Math.PI * 2); cx.fillStyle = '#03080e'; cx.fill()
-      cx.beginPath(); cx.arc(18.4, -2.4, 0.45, 0, Math.PI * 2); cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fill()
-
+      // Bow wave
+      cx.strokeStyle = 'rgba(255,255,255,0.20)'; cx.lineWidth = 1.2
+      cx.beginPath(); cx.moveTo(62, 8); cx.lineTo(82, 10); cx.stroke()
       cx.restore()
     }
 
-    // Adult + calf, always right→left, slow gentle arc
-    const drawDolphin = (dt: number) => {
-      if (!dolOn) return
-      dolX  -= 10 * dt * 0.001          // slower than before
-      dolPh += 1.0 * dt * 0.001          // gentler oscillation
-      const dy = WL() + H * 0.068 + Math.sin(dolPh * 1.1) * H * 0.008
-      if (dolX < -160) { dolOn = false; nextDol = ms + 35000 + Math.random() * 25000 }
-      // Calf follows behind and slightly below
-      drawPorpoise(dolX + 48 + Math.sin(dolPh + 0.9) * 2, dy + H * 0.022, 0.54, dolPh + 0.4)
-      // Adult
-      drawPorpoise(dolX, dy, 1.0, dolPh)
-    }
-
-    /* ── Two sailboats — slow, rocking gently ───────────────────────────── */
+    /* ── Sailboats — slow, rocking gently ───────────────────────────────── */
     const drawBoats = (dt: number) => {
       boats.forEach(b => {
         b.x -= b.spd * dt * 0.001
@@ -861,9 +984,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     ════════════════════════════════════════════════════════════════════════ */
     const tick = (now: number) => {
       const dt = Math.min(now - last, 50)
-      last = now; ms += dt; t += dt * 0.001
-
-      if (!dolOn && ms > nextDol) { dolOn = true; dolX = W + 80; dolPh = 0 }
+      last = now; t += dt * 0.001
 
       drawSky()
       drawSun()
@@ -871,6 +992,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawWater()
       drawWaterShimmer()
       drawNearIslands()
+      drawFerry(dt)
       drawBoats(dt)
       drawUnderwater()
       drawSeabedRocks()
@@ -878,7 +1000,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawParticles()
       drawBubbles(dt)
       drawFish(dt)
-      drawDolphin(dt)
       drawOverlay()
       drawBirds(dt)
 
