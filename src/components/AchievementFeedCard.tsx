@@ -43,7 +43,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
           <span style={{ fontWeight: 600, color: 'var(--acc)' }}>{ev.label}</span>
         </div>
         {ev.desc && (
-          <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
+          <div suppressHydrationWarning style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
             {ev.desc} · {timeAgo(ev.awarded_at)}
           </div>
         )}

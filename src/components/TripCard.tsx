@@ -277,7 +277,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               display: 'flex', alignItems: 'center', gap: 4,
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
-              <span title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgo(trip.created_at)}</span>
+              <span suppressHydrationWarning title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgo(trip.created_at)}</span>
               {trip.boat_type && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
