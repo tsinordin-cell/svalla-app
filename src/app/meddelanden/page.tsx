@@ -24,18 +24,24 @@ type ConvRow = {
 type Tab = 'active' | 'requests'
 
 /** Formatera tidsstämpel: nu / 5m / 2h / Igår / Mån / 15 apr */
-function fmtTime(iso: string): string {
-  const d = new Date(iso)
-  const now = Date.now()
-  const diff = now - d.getTime()
-  const mins = Math.floor(diff / 60_000)
-  if (mins < 1) return 'nu'
-  if (mins < 60) return `${mins}m`
-  if (mins < 1440) return `${Math.floor(mins / 60)}h`
-  const days = Math.floor(mins / 1440)
-  if (days === 1) return 'Igår'
-  if (days < 7) return d.toLocaleDateString('sv-SE', { weekday: 'short' }).replace('.', '')
-  return d.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }).replace('.', '')
+function fmtTime(iso: string | null | undefined): string {
+  if (!iso) return ''
+  try {
+    const d = new Date(iso)
+    if (isNaN(d.getTime())) return ''
+    const now = Date.now()
+    const diff = now - d.getTime()
+    const mins = Math.floor(diff / 60_000)
+    if (mins < 1) return 'nu'
+    if (mins < 60) return `${mins}m`
+    if (mins < 1440) return `${Math.floor(mins / 60)}h`
+    const days = Math.floor(mins / 1440)
+    if (days === 1) return 'Igår'
+    if (days < 7) return d.toLocaleDateString('sv-SE', { weekday: 'short' }).replace('.', '')
+    return d.toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }).replace('.', '')
+  } catch {
+    return ''
+  }
 }
 
 export default function MeddelandenPage() {
@@ -54,37 +60,46 @@ export default function MeddelandenPage() {
       load(user.id)
     })
 
-    const ch = supabase
-      .channel('inbox-feed')
-      .on('postgres_changes',
-        { event: 'INSERT', schema: 'public', table: 'messages' },
-        () => { supabase.auth.getUser().then(({ data: { user } }) => user && load(user.id)) }
-      )
-      .on('postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'conversations' },
-        (payload) => {
-          const upd = payload.new as Partial<ConvRow>
-          setConvs(prev => {
-            const updated = prev.map(c =>
-              c.id === upd.id
-                ? {
-                    ...c,
-                    last_message_preview: upd.last_message_preview ?? c.last_message_preview,
-                    last_message_at: upd.last_message_at ?? c.last_message_at,
-                    last_message_user_id: upd.last_message_user_id ?? c.last_message_user_id,
-                    status: (upd.status as ConvRow['status']) ?? c.status,
+    let ch: ReturnType<typeof supabase.channel> | null = null
+    try {
+      ch = supabase
+        .channel('inbox-feed')
+        .on('postgres_changes',
+          { event: 'INSERT', schema: 'public', table: 'messages' },
+          () => { supabase.auth.getUser().then(({ data: { user } }) => user && load(user.id)) }
+        )
+        .on('postgres_changes',
+          { event: 'UPDATE', schema: 'public', table: 'conversations' },
+          (payload) => {
+            try {
+              const upd = payload.new as Partial<ConvRow>
+              setConvs(prev => {
+                const updated = prev.map(c =>
+                  c.id === upd.id
+                    ? {
+                        ...c,
+                        last_message_preview: upd.last_message_preview ?? c.last_message_preview,
+                        last_message_at: upd.last_message_at ?? c.last_message_at,
+                        last_message_user_id: upd.last_message_user_id ?? c.last_message_user_id,
+                        status: (upd.status as ConvRow['status']) ?? c.status,
+                      }
+                    : c
+                )
+                return [...updated].sort(
+                  (a, b) => {
+                    const ta = a.last_message_at ? new Date(a.last_message_at).getTime() : 0
+                    const tb = b.last_message_at ? new Date(b.last_message_at).getTime() : 0
+                    return tb - ta
                   }
-                : c
-            )
-            return [...updated].sort(
-              (a, b) => new Date(b.last_message_at).getTime() - new Date(a.last_message_at).getTime()
-            )
-          })
-        }
-      )
-      .subscribe()
+                )
+              })
+            } catch { /* tyst — låt inte realtime-event krascha sidan */ }
+          }
+        )
+        .subscribe()
+    } catch { /* realtime-subscription misslyckades — inbox fungerar ändå statiskt */ }
 
-    return () => { supabase.removeChannel(ch) }
+    return () => { if (ch) supabase.removeChannel(ch) }
   }, [supabase])
 
   async function load(userId: string) {
