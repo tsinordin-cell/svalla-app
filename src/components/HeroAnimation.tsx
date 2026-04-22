@@ -822,7 +822,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           cx.fillStyle = '#d0b830'; cx.fill()
           cx.beginPath(); cx.arc(a * 0.82, -b2 * 0.25, a * 0.042, 0, Math.PI * 2)
           cx.fillStyle = '#050a10'; cx.fill()
-        } else {
+        } else if (f.type === 'perch') {
           // Perch — rounder, vertical stripes, orange fins
           const a = f.sz, b2 = f.sz * 0.46
           cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI * 2)
