@@ -284,9 +284,10 @@ export default function Comments({
   }
 
   async function deleteComment(id: string) {
+    if (!userId) return  // guard: session kan ha gått ut
     setDeleting(id)
     setComments(prev => prev.filter(c => c.id !== id))
-    const { error } = await supabase.from('comments').delete().eq('id', id).eq('user_id', userId!)
+    const { error } = await supabase.from('comments').delete().eq('id', id).eq('user_id', userId)
     if (error) await load()
     setDeleting(null)
   }
