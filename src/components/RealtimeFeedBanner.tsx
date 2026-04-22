@@ -13,19 +13,20 @@ export default function RealtimeFeedBanner() {
   const [count,   setCount]   = useState(0)
   const [visible, setVisible] = useState(false)
   const [me,      setMe]      = useState<string | null>(null)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timerRef   = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Dela en enda Supabase-klient för båda effects (undviker dubbel WebSocket)
+  const supabaseRef = useRef(createClient())
   const router   = useRouter()
 
   // Hämta inloggad användares id — filtrera bort egna turer
   useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    supabaseRef.current.auth.getUser().then(({ data: { user } }) => {
       setMe(user?.id ?? null)
     })
   }, [])
 
   useEffect(() => {
-    const supabase = createClient()
+    const supabase = supabaseRef.current
 
     const ch = supabase
       .channel('realtime-feed-trips')
