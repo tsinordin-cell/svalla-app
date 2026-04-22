@@ -198,7 +198,7 @@ export default function ChatPage() {
       supabase.from('user_presence').upsert(
         { user_id: me, current_chat_id: id, updated_at: new Date().toISOString() },
         { onConflict: 'user_id' },
-      ).then(() => {}).catch(() => {})
+      ).then(() => {}, () => {})
     }
     stamp()
     const hb = setInterval(stamp, 15_000)
@@ -207,7 +207,7 @@ export default function ChatPage() {
       supabase.from('user_presence').update({
         current_chat_id: null,
         updated_at: new Date().toISOString(),
-      }).eq('user_id', me).then(() => {}).catch(() => {})
+      }).eq('user_id', me).then(() => {}, () => {})
     }
   }, [supabase, me, id])
 
