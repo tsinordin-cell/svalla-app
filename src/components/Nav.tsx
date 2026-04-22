@@ -179,7 +179,7 @@ export default function Nav() {
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)',
       borderTop: '1px solid rgba(10,123,140,0.12)',
-      display: 'flex', alignItems: 'stretch',
+      display: 'flex', alignItems: 'stretch', justifyContent: 'center',
       overflow: 'visible',
       zIndex: 900,
       boxShadow: '0 -1px 0 rgba(10,123,140,0.08), 0 -4px 24px rgba(0,45,60,0.08)',
@@ -190,6 +190,8 @@ export default function Nav() {
       WebkitBackfaceVisibility: 'hidden',
       backfaceVisibility: 'hidden',
     }}>
+      {/* On desktop, cap width to prevent the nav stretching full-width */}
+      <div style={{ display: 'flex', alignItems: 'stretch', width: '100%', maxWidth: 640 }}>
       {tabs.map((tab) => {
         const active = tab.exact ? path === tab.href : path.startsWith(tab.href)
 
@@ -239,6 +241,7 @@ export default function Nav() {
           </Link>
         )
       })}
+      </div>
     </nav>
     </>
   )

@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import EmptyState from '@/components/EmptyState'
+import { categoryColor as categoryColorTokens } from '@/lib/tokens'
 
 export const metadata: Metadata = {
   title: 'Rutter',
@@ -47,10 +48,10 @@ function durationMatch(label: string, filter: string): boolean {
 }
 
 function categoryColor(cat: string[]): { bg: string; text: string } {
-  if (cat.includes('mat'))      return { bg: '#fff3e6', text: '#b36000' }
-  if (cat.includes('aktiv'))    return { bg: '#e6f7ef', text: '#0a7040' }
-  if (cat.includes('premium'))  return { bg: '#f0e6ff', text: '#6b21a8' }
-  if (cat.includes('klassisk')) return { bg: '#e6f0ff', text: '#1e4da0' }
+  if (cat.includes('mat'))      return categoryColorTokens.mat
+  if (cat.includes('aktiv'))    return categoryColorTokens.aktiv
+  if (cat.includes('premium'))  return categoryColorTokens.premium
+  if (cat.includes('klassisk')) return categoryColorTokens.klassisk
   return { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
 }
 

@@ -629,6 +629,34 @@ export default function ProfilPage() {
           </div>
         </Link>
 
+        {/* ── Fler verktyg ── */}
+        <div style={{ background: 'var(--white)', borderRadius: 18, marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
+          {[
+            { href: '/insikter',  icon: '📊', label: 'Insikter',   sub: 'Din seglingsstatistik och trender' },
+            { href: '/topplista', icon: '🏆', label: 'Topplista',  sub: 'Veckans och alltidens bästa seglare' },
+            { href: '/check-in',  icon: '📍', label: 'Check-in',   sub: 'Registrera dig på en plats' },
+            { href: '/bjud-in',   icon: '🔗', label: 'Bjud in',    sub: 'Skapa inbjudningslänkar' },
+          ].map(({ href, icon, label, sub }, i, arr) => (
+            <Link key={href} href={href} style={{ textDecoration: 'none', display: 'block' }}>
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                padding: '13px 16px',
+                borderBottom: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.06)' : 'none',
+                WebkitTapHighlightColor: 'transparent',
+              }}>
+                <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{label}</div>
+                  <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{sub}</div>
+                </div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          ))}
+        </div>
+
         {/* ── Svalla Pro CTA ── */}
         {isProEnabled() && (
           <Link href="/pro" style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>

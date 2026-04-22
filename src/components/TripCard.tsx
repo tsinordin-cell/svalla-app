@@ -326,7 +326,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           {stats.map((s, i) => (
             <div key={s.label} style={{
               flex: 1,
-              padding: '10px 6px',
+              padding: '8px 8px',
               textAlign: 'center',
               borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none',
             }}>
