@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import webpush from 'web-push'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { logger } from '@/lib/logger'
 
 export async function POST(req: Request) {
   webpush.setVapidDetails(
@@ -89,7 +90,9 @@ export async function POST(req: Request) {
       .from('push_subscriptions')
       .delete()
       .in('endpoint', stale.map(s => s.endpoint))
+    logger.info('push', 'Rensade inaktuella subscriptions', { stale: stale.length })
   }
 
+  logger.info('push', 'Push skickad', { targetUserId, sent, total: subs.length })
   return NextResponse.json({ ok: true, sent })
 }

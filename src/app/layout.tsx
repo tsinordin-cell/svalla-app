@@ -7,6 +7,7 @@ import PushPrompt from '@/components/PushPrompt'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
 import ToastContainer from '@/components/Toast'
 import ThemeProvider from '@/components/ThemeProvider'
+import OfflineToast from '@/components/OfflineToast'
 // Note: Leaflet CSS is imported dynamically in client components that need it, not here
 
 export const metadata: Metadata = {
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Suspense fallback={null}><PushPrompt /></Suspense>
           <ServiceWorkerRegister />
           <ToastContainer />
+          <OfflineToast />
         </ThemeProvider>
       </body>
     </html>
