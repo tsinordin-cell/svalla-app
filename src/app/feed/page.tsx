@@ -10,7 +10,7 @@ import AchievementFeedCard from '@/components/AchievementFeedCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
-import SummerCampaign2026Banner from '@/components/SummerCampaign2026Banner'
+import SilentBoundary from '@/components/SilentBoundary'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
@@ -140,9 +140,8 @@ export default async function FeedPage(
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      {!SAFE && <RealtimeFeedBanner />}
-      {!SAFE && <OnboardingModal />}
-      {!SAFE && <SummerCampaign2026Banner />}
+      {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
+      {!SAFE && <SilentBoundary><OnboardingModal /></SilentBoundary>}
 
       {/* ── Header ── */}
       <header style={{
@@ -166,8 +165,8 @@ export default async function FeedPage(
               <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
             </svg>
           </Link>
-          <MessageBell />
-          <NotificationBell />
+          <SilentBoundary><MessageBell /></SilentBoundary>
+          <SilentBoundary><NotificationBell /></SilentBoundary>
         </div>
       </header>
 
@@ -212,7 +211,7 @@ export default async function FeedPage(
         {/* ── Stories (24h) ── */}
         {!SAFE && (
           <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
-            <StoriesStrip />
+            <SilentBoundary><StoriesStrip /></SilentBoundary>
           </div>
         )}
 
@@ -322,7 +321,7 @@ export default async function FeedPage(
         )}
 
         {/* ── Hitta seglare (suggested follows — only for logged-in) ── */}
-        {user && !SAFE && <SuggestedUsers />}
+        {user && !SAFE && <SilentBoundary><SuggestedUsers /></SilentBoundary>}
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (
