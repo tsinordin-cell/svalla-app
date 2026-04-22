@@ -1,7 +1,10 @@
 // Svalla service worker — push notifications + offline cache
 
-const CACHE = 'svalla-v3'
-const STATIC = ['/feed', '/platser', '/rutter', '/topplista', '/logga', '/icon-192.png']
+const CACHE = 'svalla-v4'
+// Cача BARA statiska assets — ALDRIG HTML-sidor eller RSC-payloads.
+// HTML-sidor är dynamiska och RSC-payloads matchar inte vanliga navigeringar —
+// att cacha dem blandar ihop formaten och kraschar React-hydreringen.
+const STATIC = ['/icon-192.png']
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -18,7 +21,7 @@ self.addEventListener('activate', e => {
   )
 })
 
-// Fetch — network-first för HTML, cache-first för hashed assets
+// Fetch — network-first för HTML + RSC, cache-first för hashed assets
 self.addEventListener('fetch', event => {
   const { request } = event
   const url = new URL(request.url)
@@ -39,41 +42,38 @@ self.addEventListener('fetch', event => {
 
   // _next/static/chunks & _next/static/css:
   // Cache-first är OK BARA för content-hashed filer (hash i filnamnet).
-  // HTML-sidor ska ALDRIG cachas aggressivt — de pekar på nya chunk-hashar efter deploy.
   if (url.pathname.startsWith('/_next/static/')) {
     event.respondWith(
       caches.match(request).then(cached => {
-        // Alltid hämta ny version i bakgrunden för att hålla cachen fräsch
         const networkFetch = fetch(request).then(r => {
           if (r.ok) {
             caches.open(CACHE).then(c => c.put(request, r.clone()))
           }
           return r
         })
-        // Returnera cachat direkt om det finns (hashed filnamn = immutable)
         return cached || networkFetch
       })
     )
     return
   }
 
-  // HTML-sidor: network-first — ALDRIG stale-while-revalidate.
-  // Gammal HTML + nya chunk-hashar = ChunkLoadError.
-  // Fallback till cache ENDAST vid nätverksfel (offline).
+  // HTML-sidor och RSC-navigeringar: network-only — ingen cache.
+  // RSC-payloads och HTML har olika format och ska ALDRIG blandas i cachen.
+  // Om nätet är nere returnerar vi ett användarvänligt felmeddelande.
   event.respondWith(
-    fetch(request)
-      .then(r => {
-        // Spara i cache för offline-fallback, men hämta alltid live
-        if (r.ok) {
-          caches.open(CACHE).then(c => c.put(request, r.clone()))
-        }
-        return r
-      })
-      .catch(async () => {
-        // Offline — försök med cache
-        const cached = await caches.match(request)
-        return cached || new Response('Offline', { status: 503 })
-      })
+    fetch(request).catch(async () => {
+      // Offline — returnera en minimalistisk offline-sida
+      return new Response(
+        `<!DOCTYPE html><html lang="sv"><head><meta charset="utf-8"><title>Svalla – Offline</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <style>body{font-family:-apple-system,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#e8f0f5;text-align:center;padding:24px}h1{color:#1e5c82;font-size:22px;margin:0 0 8px}.e{font-size:48px;display:block;margin:0 0 16px}</style>
+        </head><body><main><span class="e">⚓</span><h1>Du är offline</h1>
+        <p style="color:#5a7a8a;font-size:14px;margin:0 0 20px">Kontrollera din anslutning och försök igen.</p>
+        <a href="/feed" style="display:inline-block;padding:12px 24px;border-radius:14px;background:linear-gradient(135deg,#1e5c82,#2d7d8a);color:#fff;text-decoration:none;font-weight:600;font-size:14px">Försök igen</a>
+        </main></body></html>`,
+        { status: 503, headers: { 'Content-Type': 'text/html;charset=utf-8' } }
+      )
+    })
   )
 })
 
