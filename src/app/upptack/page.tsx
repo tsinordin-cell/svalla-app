@@ -8,14 +8,7 @@ export const metadata: Metadata = {
 
 export default function UpptackPage() {
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
-      overflow: 'hidden',
-    }}>
+    <div className="upptack-shell">
       <UpptackLoader />
     </div>
   )

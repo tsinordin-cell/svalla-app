@@ -203,18 +203,24 @@ export default function Nav() {
 
         if (tab.fab) {
           return (
-            <Link key={tab.href} href={tab.href} aria-label="Logga tur" className="press-feedback nav-fab-wrap" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{
-                width: 56, height: 56, borderRadius: '50%',
-                background: 'linear-gradient(135deg,var(--acc),#e07828)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 6px 24px rgba(201,110,42,0.45)',
-                marginBottom: 24,
-              }}>
+            <Link
+              key={tab.href}
+              href={tab.href}
+              aria-label="Logga tur"
+              className="press-feedback nav-fab-wrap"
+              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <span className="nav-fab-mobile">
                 <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 24, height: 24 }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
-              </div>
+              </span>
+              <span className="nav-fab-desktop">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.25} style={{ width: 18, height: 18 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Logga tur
+              </span>
             </Link>
           )
         }

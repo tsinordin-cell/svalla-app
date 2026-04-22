@@ -730,6 +730,22 @@ img {
   display: none;
 }
 
+/* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
+.nav-fab-mobile {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--acc), #e07828);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(201, 110, 42, 0.45);
+  margin-bottom: 24px;
+}
+.nav-fab-desktop {
+  display: none;
+}
+
 /* ── Tooltip / inline badge fade ── */
 @keyframes badgePop {
   0%   { transform: scale(0.7); opacity: 0; }
@@ -818,13 +834,142 @@ img {
     max-width: none !important;
     flex: 1 !important;
   }
-  /* FAB button — align left like other tabs */
+  /* FAB button — full-width pill i sidebaren */
   .nav-fab-wrap {
     flex: 0 0 auto !important;
-    justify-content: flex-start !important;
-    padding: 0 16px !important;
-    min-height: 48px !important;
+    justify-content: stretch !important;
+    padding: 8px 12px !important;
+    min-height: 56px !important;
   }
+  .nav-fab-mobile {
+    display: none !important;
+  }
+  .nav-fab-desktop {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--acc), #e07828);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    box-shadow: 0 4px 14px rgba(201, 110, 42, 0.3);
+    transition: filter 160ms ease, transform 160ms ease;
+  }
+  .nav-fab-wrap:hover .nav-fab-desktop {
+    filter: brightness(1.04);
+  }
+  .nav-fab-wrap:active .nav-fab-desktop {
+    transform: scale(0.98);
+  }
+}
+
+/* ── Upptäck: shell (karta fyller viewport, respekterar nav) ── */
+.upptack-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .upptack-shell {
+    left: 220px;
+    bottom: 0;
+  }
+}
+
+/* ── Upptäck: filter chip scrollbar-rensning ── */
+.upptack-chip { -webkit-tap-highlight-color: transparent; }
+[role="tablist"]::-webkit-scrollbar { display: none; }
+
+/* ── Upptäck: marker-cluster (egen styling, default-css laddas inte) ── */
+.svalla-cluster-wrap {
+  background: transparent !important;
+  border: none !important;
+}
+.svalla-cluster {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 92, 130, 0.92);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 45, 60, 0.25);
+}
+[data-theme="dark"] .svalla-cluster {
+  background: rgba(30, 92, 130, 0.95);
+  border-color: rgba(250, 254, 255, 0.85);
+}
+
+/* ── Upptäck: detaljpanel (bottom sheet på mobil, kort på desktop) ── */
+.upptack-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  background: var(--white);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 32px rgba(0, 45, 60, 0.18);
+  padding: 18px 20px 24px;
+  max-height: 60dvh;
+  overflow-y: auto;
+  animation: upptackSheetUp 200ms ease-out;
+}
+@keyframes upptackSheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* Tablet: centrerat kort istället för bottom sheet */
+@media (min-width: 768px) {
+  .upptack-sheet {
+    left: 50%;
+    right: auto;
+    bottom: 20px;
+    width: min(520px, calc(100% - 32px));
+    transform: translateX(-50%);
+    border-radius: 20px;
+    animation: upptackSheetFade 200ms ease-out;
+    max-height: 70dvh;
+  }
+  @keyframes upptackSheetFade {
+    from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+}
+
+/* Desktop: respektera sidebar (220px) och fäst till vänster ovanför kartan */
+@media (min-width: 1024px) {
+  .upptack-sheet {
+    left: 20px;
+    right: auto;
+    bottom: 20px;
+    width: min(420px, calc(100% - 40px));
+    transform: none;
+  }
+  @keyframes upptackSheetFade {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Dark mode: ljusa ytan smula */
+[data-theme="dark"] .upptack-sheet {
+  background: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* ── Motion preference ── */

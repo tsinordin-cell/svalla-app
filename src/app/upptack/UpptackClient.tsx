@@ -2,7 +2,6 @@
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
-import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { useEffect, useRef, useState, useCallback } from 'react'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'rutter' | 'heatmap'
@@ -67,12 +66,60 @@ function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | null {
   return null
 }
 
-const FILTER_CONFIG: Record<Filter, { label: string; emoji: string; color: string }> = {
-  bryggor:    { label: 'Bryggor',    emoji: '⚓', color: 'var(--sea)' },
-  krogar:     { label: 'Krogar',     emoji: '🍽', color: 'var(--acc)' },
-  naturhamnar:{ label: 'Naturhamnar',emoji: '🌿', color: 'var(--green)' },
-  rutter:     { label: 'Rutter',     emoji: '🗺️', color: '#7c4d1e' },
-  heatmap:    { label: 'Heatmap',    emoji: '🔥', color: 'var(--red)' },
+// ── Lucide-style SVG paths (stroke-linecap/linejoin: round, stroke-width: 1.75) ──
+const ICON_PATHS = {
+  anchor: '<circle cx="12" cy="5" r="3"/><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/>',
+  utensils: '<path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8"/><path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7"/><path d="m2.1 21.8 6.4-6.3"/><path d="m19 5-7 7"/>',
+  trees: '<path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19h6"/><path d="M12 19h0a3 3 0 0 0 5.7-1.2v0a3 3 0 0 0 .3-1.3V14a3 3 0 0 0-3-3"/><path d="M16 11v11"/>',
+  route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+  flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+  mapPin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  ruler: '<path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.4 2.4 0 0 1 0-3.4l2.6-2.6a2.4 2.4 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>',
+  x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+  arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+}
+
+type FilterCfg = { label: string; icon: keyof typeof ICON_PATHS; color: string }
+
+const FILTER_CONFIG: Record<Filter, FilterCfg> = {
+  bryggor:     { label: 'Bryggor',     icon: 'anchor',   color: '#1e5c82' },
+  krogar:      { label: 'Krogar',      icon: 'utensils', color: '#c96e2a' },
+  naturhamnar: { label: 'Naturhamnar', icon: 'trees',    color: '#4a7a2e' },
+  rutter:      { label: 'Rutter',      icon: 'route',    color: '#3a4a5a' },
+  heatmap:     { label: 'Heatmap',     icon: 'flame',    color: '#b84728' },
+}
+
+function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
+  name: keyof typeof ICON_PATHS
+  size?: number
+  color?: string
+  strokeWidth?: number
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill="none"
+      stroke={color}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      dangerouslySetInnerHTML={{ __html: ICON_PATHS[name] }}
+    />
+  )
+}
+
+function markerSvg(name: keyof typeof ICON_PATHS, color: string): string {
+  return `<div style="
+    width:34px;height:34px;border-radius:50%;
+    background:${color};
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    border:2px solid #fff;
+  "><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name]}</svg></div>`
 }
 
 export default function UpptackClient() {
@@ -92,8 +139,10 @@ export default function UpptackClient() {
 
   // ── Data fetch ────────────────────────────────────────────────────────────
   useEffect(() => {
-    fetch('/api/discovery?type=poi').then(r => r.json()).then(setPois)
-    fetch('/api/discovery?type=routes').then(r => r.json()).then(setRoutes)
+    let cancelled = false
+    fetch('/api/discovery?type=poi').then(r => r.json()).then(d => { if (!cancelled) setPois(d) })
+    fetch('/api/discovery?type=routes').then(r => r.json()).then(d => { if (!cancelled) setRoutes(d) })
+    return () => { cancelled = true }
   }, [])
 
   // ── Init map ──────────────────────────────────────────────────────────────
@@ -119,7 +168,7 @@ export default function UpptackClient() {
         attributionControl: false,
       })
 
-            const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
+      const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
       const tileUrl = isDark
         ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
         : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -245,28 +294,29 @@ export default function UpptackClient() {
         disableClusteringAtZoom: 14,
         spiderfyOnMaxZoom: true,
         showCoverageOnHover: false,
+        iconCreateFunction: (cluster: { getChildCount: () => number }) => {
+          const count = cluster.getChildCount()
+          return L.divIcon({
+            html: `<div class="svalla-cluster">${count}</div>`,
+            className: 'svalla-cluster-wrap',
+            iconSize: [36, 36],
+          })
+        },
       })
 
       for (const poi of pois) {
         const cat = poiCategory(poi)
         if (!cat || !filters.has(cat)) continue
 
-        const { color, emoji } = FILTER_CONFIG[cat]
-        const icon = L.divIcon({
+        const { color, icon } = FILTER_CONFIG[cat]
+        const divIcon = L.divIcon({
           className: '',
-          html: `<div style="
-            width:32px;height:32px;border-radius:50%;
-            background:${color};
-            display:flex;align-items:center;justify-content:center;
-            font-size:14px;
-            box-shadow:0 2px 8px rgba(0,0,0,0.25);
-            border:2px solid rgba(255,255,255,0.9);
-          ">${emoji}</div>`,
-          iconSize: [32, 32],
-          iconAnchor: [16, 16],
+          html: markerSvg(icon, color),
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
         })
 
-        const m = L.marker([poi.latitude, poi.longitude], { icon })
+        const m = L.marker([poi.latitude, poi.longitude], { icon: divIcon })
         m.on('click', () => setDetail({ ...poi, kind: 'poi' }))
         mc.addLayer(m)
       }
@@ -283,7 +333,7 @@ export default function UpptackClient() {
         const line = L.polyline(latlngs, {
           color: FILTER_CONFIG.rutter.color,
           weight: 3,
-          opacity: 0.7,
+          opacity: 0.8,
           dashArray: '6,4',
         })
         line.on('click', () => setDetail({ ...route, kind: 'route' }))
@@ -297,7 +347,11 @@ export default function UpptackClient() {
   function toggleFilter(f: Filter) {
     setFilters(prev => {
       const next = new Set(prev)
-      next.has(f) ? next.delete(f) : next.add(f)
+      if (next.has(f)) {
+        next.delete(f)
+      } else {
+        next.add(f)
+      }
       return next
     })
   }
@@ -310,41 +364,50 @@ export default function UpptackClient() {
       <div ref={mapRef} style={{ position: 'absolute', inset: 0 }} />
 
       {/* Filter chips */}
-      <div style={{
-        position: 'absolute', top: 12, left: '50%',
-        transform: 'translateX(-50%)',
-        display: 'flex', gap: 6, zIndex: 1000,
-        padding: '0 12px',
-        overflowX: 'auto',
-        maxWidth: '100vw',
-        WebkitOverflowScrolling: 'touch',
-        msOverflowStyle: 'none',
-      }}>
-        {(Object.entries(FILTER_CONFIG) as [Filter, typeof FILTER_CONFIG[Filter]][]).map(([key, cfg]) => {
+      <div
+        role="tablist"
+        aria-label="Filter"
+        style={{
+          position: 'absolute', top: 12, left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex', gap: 8, zIndex: 1000,
+          padding: '0 12px',
+          overflowX: 'auto',
+          maxWidth: '100vw',
+          WebkitOverflowScrolling: 'touch',
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+        }}
+      >
+        {(Object.entries(FILTER_CONFIG) as [Filter, FilterCfg][]).map(([key, cfg]) => {
           const active = filters.has(key)
           return (
             <button
               key={key}
               onClick={() => toggleFilter(key)}
-              className="press-feedback"
+              role="tab"
+              aria-selected={active}
+              className="upptack-chip press-feedback"
               style={{
-                display: 'flex', alignItems: 'center', gap: 5,
-                padding: '7px 13px',
-                borderRadius: 20,
-                border: `2px solid ${active ? cfg.color : 'rgba(255,255,255,0.6)'}`,
-                background: active ? cfg.color : 'rgba(255,255,255,0.92)',
-                color: active ? '#fff' : '#333',
-                fontSize: 12, fontWeight: 600,
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                height: 36,
+                padding: '0 14px',
+                borderRadius: 999,
+                border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
+                background: active ? cfg.color : 'var(--glass-92)',
+                color: active ? '#fff' : 'var(--txt)',
+                fontSize: 13, fontWeight: 600,
                 fontFamily: 'inherit',
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                backdropFilter: 'blur(8px)',
-                transition: 'all 0.15s',
+                boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
                 flexShrink: 0,
               }}
             >
-              <span>{cfg.emoji}</span>
+              <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
               <span>{cfg.label}</span>
             </button>
           )
@@ -353,73 +416,90 @@ export default function UpptackClient() {
 
       {/* Detail panel */}
       {detail && (
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          zIndex: 1001,
-          background: 'var(--white)',
-          borderRadius: '20px 20px 0 0',
-          boxShadow: '0 -4px 32px rgba(0,45,60,0.18)',
-          padding: '16px 20px 32px',
-          maxHeight: '50vh',
-          overflowY: 'auto',
-          animation: 'slideUp 0.2s ease',
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
+        <div
+          className="upptack-sheet"
+          role="dialog"
+          aria-label={detail.name}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', margin: '0 0 4px' }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 4px' }}>
                 {detail.kind === 'poi'
                   ? (FILTER_CONFIG[poiCategory(detail) ?? 'krogar']?.label ?? 'Plats')
                   : 'Rutt'}
               </p>
-              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: 0, lineHeight: 1.3 }}>{detail.name}</h2>
+              <h2 style={{ fontSize: 19, fontWeight: 700, color: 'var(--txt)', margin: 0, lineHeight: 1.25 }}>{detail.name}</h2>
             </div>
             <button
               onClick={() => setDetail(null)}
-              style={{ background: 'none', border: 'none', fontSize: 22, cursor: 'pointer', color: 'var(--txt3)', padding: '0 0 0 12px', lineHeight: 1 }}
-            >×</button>
+              aria-label="Stäng"
+              style={{
+                width: 36, height: 36, flexShrink: 0,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(0,45,60,0.06)', border: 'none', borderRadius: '50%',
+                cursor: 'pointer', color: 'var(--txt2)',
+              }}
+            >
+              <Icon name="x" size={18} strokeWidth={2} />
+            </button>
           </div>
 
           {detail.kind === 'poi' && detail.image_url && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={detail.image_url} alt={detail.name} style={{ width: '100%', height: 160, objectFit: 'cover', borderRadius: 12, marginBottom: 12 }} />
+            <img
+              src={detail.image_url}
+              alt={detail.name}
+              style={{
+                width: '100%',
+                aspectRatio: '3 / 2',
+                objectFit: 'cover',
+                borderRadius: 14,
+                marginBottom: 14,
+                display: 'block',
+              }}
+            />
           )}
 
           {detail.description && (
-            <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 12px' }}>{detail.description}</p>
+            <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 12px' }}>
+              {detail.description}
+            </p>
           )}
 
           {detail.kind === 'poi' && detail.island && (
-            <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 8px' }}>📍 {detail.island}</p>
+            <p style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--txt3)', margin: '0 0 10px' }}>
+              <Icon name="mapPin" size={14} color="var(--txt3)" />
+              {detail.island}
+            </p>
           )}
 
           {detail.kind === 'route' && detail.distance && (
-            <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '0 0 8px' }}>
-              📏 {detail.distance} nm{detail.difficulty ? ` · ${detail.difficulty}` : ''}
+            <p style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--txt2)', margin: '0 0 10px' }}>
+              <Icon name="ruler" size={14} color="var(--txt2)" />
+              {detail.distance} nm{detail.difficulty ? ` · ${detail.difficulty}` : ''}
             </p>
           )}
 
           {detail.kind === 'poi' && detail.slug && (
-            <a href={`/platser/${detail.slug}`} style={{
-              display: 'inline-block', marginTop: 8,
-              padding: '10px 18px', borderRadius: 12,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-              color: '#fff', fontSize: 13, fontWeight: 600,
-              textDecoration: 'none',
-            }}>
-              Visa plats →
+            <a
+              href={`/platser/${detail.slug}`}
+              style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                marginTop: 6,
+                height: 44, padding: '0 20px',
+                borderRadius: 22,
+                background: 'var(--sea)',
+                color: '#fff', fontSize: 14, fontWeight: 600,
+                textDecoration: 'none',
+                transition: 'filter 160ms ease',
+              }}
+            >
+              Visa plats
+              <Icon name="arrowRight" size={16} color="#fff" strokeWidth={2} />
             </a>
           )}
         </div>
       )}
-
-      <style>{`
-        @keyframes slideUp {
-          from { transform: translateY(100%); }
-          to   { transform: translateY(0); }
-        }
-        .map-tiles { filter: saturate(0.85) brightness(1.02); }
-        [data-theme="dark"] .map-tiles { filter: invert(1) hue-rotate(200deg) saturate(0.7) brightness(0.85); }
-      `}</style>
     </div>
   )
 }
