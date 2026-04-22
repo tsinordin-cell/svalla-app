@@ -119,7 +119,7 @@ const THEMES: Record<HeroVariant, Theme> = {
 type BoatType = 'sail'
 interface Boat   { x: number; spd: number; type: BoatType; ph: number }
 interface Bird   { x: number; baseY: number; spd: number; wingT: number; amp: number; ph: number }
-interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch' }
+interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch'|'zander'|'bream'|'cod'|'herring' }
 interface Ferry  { x: number; spd: number; ph: number }
 interface Weed   { x: number; h: number; ph: number; hue: number; w: number; spd: number }
 interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
@@ -174,17 +174,22 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // 9 fish — pike (long, slow) and perch (rounder, faster)
+      // 14 fish — gädda, abborre, gös, braxen, torsk, sill
       fish = [
-        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'  },
-        { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'  },
-        { x: rnd()*W, y: H*0.73, spd: 5,  dir:  1, sz: 18, ph: rnd()*Math.PI*2, hue: 105, type: 'pike'  },
-        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'  },
-        { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch' },
-        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch' },
-        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch' },
-        { x: rnd()*W, y: H*0.78, spd: 6,  dir:  1, sz: 13, ph: rnd()*Math.PI*2, hue: 100, type: 'perch' },
-        { x: rnd()*W, y: H*0.67, spd: 7,  dir:  1, sz: 11, ph: rnd()*Math.PI*2, hue: 98,  type: 'perch' },
+        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'    },
+        { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'    },
+        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'    },
+        { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch'   },
+        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'   },
+        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch'   },
+        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander'  },
+        { x: rnd()*W, y: H*0.82, spd: 4,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 125, type: 'zander'  },
+        { x: rnd()*W, y: H*0.78, spd: 3,  dir:  1, sz: 19, ph: rnd()*Math.PI*2, hue: 38,  type: 'bream'   },
+        { x: rnd()*W, y: H*0.88, spd: 4,  dir: -1, sz: 15, ph: rnd()*Math.PI*2, hue: 42,  type: 'bream'   },
+        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'     },
+        { x: rnd()*W, y: H*0.86, spd: 4,  dir: -1, sz: 20, ph: rnd()*Math.PI*2, hue: 165, type: 'cod'     },
+        { x: rnd()*W, y: H*0.65, spd: 10, dir:  1, sz:  9, ph: rnd()*Math.PI*2, hue: 200, type: 'herring'  },
+        { x: rnd()*W, y: H*0.70, spd: 11, dir: -1, sz:  8, ph: rnd()*Math.PI*2, hue: 205, type: 'herring'  },
       ]
       // Sparse seaweed — 3 plants, short, natural
       weeds = Array.from({ length: 3 }, (_, i) => ({
@@ -265,21 +270,20 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.moveTo(bx - bw/2 - 1, by); cx.lineTo(bx + bw/2 + 1, by); cx.lineTo(bx, by - bh * 0.60)
         cx.closePath(); cx.fill()
       }
-      // Island 1 (left) — red + ochre
-      sjobod(W*0.082, H*0.412, W*0.013, H*0.013, 'rgba(175,40,32,0.72)')
-      sjobod(W*0.140, H*0.408, W*0.013, H*0.013, 'rgba(195,155,28,0.68)')
-      // Island 2 (centre) — red, blue, ochre
-      sjobod(W*0.468, H*0.400, W*0.014, H*0.013, 'rgba(175,40,32,0.70)')
-      sjobod(W*0.532, H*0.397, W*0.014, H*0.013, 'rgba(32,80,155,0.68)')
-      sjobod(W*0.592, H*0.394, W*0.013, H*0.013, 'rgba(185,130,28,0.68)')
-      // Island 3 (right) — yellow sjöbod + pine
-      sjobod(W*0.900, H*0.398, W*0.013, H*0.012, 'rgba(195,140,22,0.70)')
-      cx.fillStyle = 'rgba(28,42,22,0.50)'
-      cx.beginPath()
-      cx.moveTo(W*0.950, H*0.382); cx.lineTo(W*0.957, H*0.400); cx.lineTo(W*0.943, H*0.400)
-      cx.closePath(); cx.fill()
-      // Midsommarstång — on outermost far right island
-      midsommarstang(W*0.872, H*0.384, 0.28)
+      // Island 1 (left) — röd · gul · blå — locked same Y
+      const bhb = H * 0.015, bwb = W * 0.015
+      sjobod(W*0.072, H*0.411, bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.113, H*0.411, bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.154, H*0.411, bwb, bhb, 'rgba(28,76,168,0.80)')
+      // Island 2 (centre) — röd · gul · blå · vit — locked same Y
+      sjobod(W*0.430, H*0.400, bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.478, H*0.400, bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.526, H*0.400, bwb, bhb, 'rgba(28,76,168,0.80)')
+      sjobod(W*0.574, H*0.400, bwb, bhb, 'rgba(228,220,206,0.78)')
+      // Island 3 (right) — gul sjöbod + midsommarstång centralt
+      sjobod(W*0.888, H*0.396, bwb, bhb, 'rgba(200,162,22,0.82)')
+      // Midsommarstång — on outermost far right island, centrally placed
+      midsommarstang(W*0.930, H*0.376, 0.36)
     }
 
     /* ── Pine tree ───────────────────────────────────────────────────────── */
@@ -619,9 +623,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const [w0, w1, w2, w3] = th.water
-      const wg = cx.createLinearGradient(0, WL() - 6, 0, H)
-      wg.addColorStop(0, w0); wg.addColorStop(0.16, w1)
-      wg.addColorStop(0.52, w2); wg.addColorStop(1, w3)
+      const s3 = th.sky[3]
+      const wg = cx.createLinearGradient(0, WL() - H * 0.018, 0, H)
+      wg.addColorStop(0,    s3)    // match sky bottom — eliminates seam
+      wg.addColorStop(0.04, w0)    // transition to water colour
+      wg.addColorStop(0.20, w1)
+      wg.addColorStop(0.55, w2)
+      wg.addColorStop(1,    w3)
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
@@ -842,6 +850,95 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           cx.fillStyle = '#050a10'; cx.fill()
           cx.beginPath(); cx.arc(a*0.54, -b2*0.15, a*0.040, 0, Math.PI * 2)
           cx.fillStyle = 'rgba(255,255,255,0.62)'; cx.fill()
+        } else if (f.type === 'zander') {
+          // Gös — slender like pike, golden-green, dark back
+          const a = f.sz, b2 = f.sz * 0.24
+          cx.beginPath()
+          cx.moveTo(a * 1.1, 0)
+          cx.bezierCurveTo(a * 0.6, -b2, -a * 0.5, -b2, -a * 0.85, 0)
+          cx.bezierCurveTo(-a * 0.5,  b2,  a * 0.6,  b2,  a * 1.1, 0)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},28%,34%,0.82)`; cx.fill()
+          // Darker back
+          cx.beginPath()
+          cx.moveTo(a*1.0, -b2*0.3)
+          cx.bezierCurveTo(a*0.2, -b2*1.05, -a*0.4, -b2*0.95, -a*0.8, -b2*0.2)
+          cx.strokeStyle = `hsla(${f.hue},18%,16%,0.40)`; cx.lineWidth = b2*0.75; cx.stroke()
+          // Tail — forked
+          cx.beginPath()
+          cx.moveTo(-a*0.82, 0); cx.lineTo(-a*1.55, -b2*1.6); cx.lineTo(-a*1.55, b2*1.6)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},22%,24%,0.76)`; cx.fill()
+          // Eye — glassy
+          cx.beginPath(); cx.arc(a*0.76, -b2*0.22, a*0.09, 0, Math.PI*2)
+          cx.fillStyle = '#c8c8b0'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.76, -b2*0.22, a*0.045, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+        } else if (f.type === 'bream') {
+          // Braxen — deep-bodied, silvery, gold tint
+          const a = f.sz * 0.75, b2 = f.sz * 0.52
+          cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI*2)
+          cx.fillStyle = `hsla(${f.hue},30%,54%,0.80)`; cx.fill()
+          // Lateral line
+          cx.beginPath(); cx.moveTo(a*0.8, -b2*0.05); cx.lineTo(-a*0.5, -b2*0.05)
+          cx.strokeStyle = `hsla(${f.hue},18%,38%,0.38)`; cx.lineWidth = 0.8; cx.stroke()
+          // Tail
+          cx.beginPath()
+          cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.55, -b2*1.2); cx.lineTo(-a*1.55, b2*1.2)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},24%,46%,0.74)`; cx.fill()
+          // Eye
+          cx.beginPath(); cx.arc(a*0.55, -b2*0.10, a*0.10, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.57, -b2*0.13, a*0.038, 0, Math.PI*2)
+          cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fill()
+        } else if (f.type === 'cod') {
+          // Torsk — stocky, olive-brown, chin barbel
+          const a = f.sz * 0.85, b2 = f.sz * 0.38
+          cx.beginPath()
+          cx.moveTo(a*1.0, 0)
+          cx.bezierCurveTo(a*0.5, -b2, -a*0.5, -b2*0.9, -a*0.9, 0)
+          cx.bezierCurveTo(-a*0.5,  b2*0.9,  a*0.5,  b2,  a*1.0, 0)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},20%,35%,0.82)`; cx.fill()
+          // Mottled spots
+          for (let sp = 0; sp < 5; sp++) {
+            cx.beginPath(); cx.arc(a*(0.5 - sp*0.22), b2*(sp%2===0?0.2:-0.2), a*0.07, 0, Math.PI*2)
+            cx.fillStyle = `hsla(${f.hue},14%,22%,0.28)`; cx.fill()
+          }
+          // Chin barbel
+          cx.beginPath(); cx.moveTo(a*0.82, b2*0.45); cx.lineTo(a*0.72, b2*0.90)
+          cx.strokeStyle = `hsla(${f.hue},10%,30%,0.55)`; cx.lineWidth = 1.2; cx.stroke()
+          // Tail
+          cx.beginPath()
+          cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.50, -b2*1.1); cx.lineTo(-a*1.50, b2*1.1)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},16%,28%,0.76)`; cx.fill()
+          // Eye
+          cx.beginPath(); cx.arc(a*0.72, -b2*0.22, a*0.10, 0, Math.PI*2)
+          cx.fillStyle = '#ffe090'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.72, -b2*0.22, a*0.048, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+        } else {
+          // Sill/herring — small, sleek, silver-blue schooling fish
+          const a = f.sz, b2 = f.sz * 0.18
+          cx.beginPath()
+          cx.moveTo(a*1.15, 0)
+          cx.bezierCurveTo(a*0.5, -b2, -a*0.6, -b2*0.8, -a*0.95, 0)
+          cx.bezierCurveTo(-a*0.6,  b2*0.8,  a*0.5,  b2,  a*1.15, 0)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},55%,64%,0.78)`; cx.fill()
+          // Silver belly sheen
+          cx.beginPath(); cx.ellipse(a*0.1, 0, a*0.55, b2*0.55, 0, 0, Math.PI*2)
+          cx.fillStyle = 'rgba(220,235,255,0.30)'; cx.fill()
+          // Forked tail
+          cx.beginPath()
+          cx.moveTo(-a*0.92, 0); cx.lineTo(-a*1.70, -b2*1.8); cx.lineTo(-a*1.52, 0)
+          cx.lineTo(-a*1.70, b2*1.8); cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},50%,52%,0.72)`; cx.fill()
+          // Eye — tiny
+          cx.beginPath(); cx.arc(a*0.88, -b2*0.18, a*0.07, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
         }
         cx.restore()
       })
