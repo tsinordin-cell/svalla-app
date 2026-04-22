@@ -21,9 +21,16 @@ export default function Error({
       <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: '0 0 8px' }}>
         Meddelandet kunde inte laddas
       </h2>
-      <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', maxWidth: 300, lineHeight: 1.5 }}>
+      <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 8px', maxWidth: 300, lineHeight: 1.5 }}>
         Konversationen gick inte att hämta. Försök igen.
       </p>
+      {error?.message && (
+        <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '0 0 16px', maxWidth: 320, lineHeight: 1.4,
+          fontFamily: 'monospace', wordBreak: 'break-all', padding: '6px 10px',
+          background: 'rgba(0,0,0,0.04)', borderRadius: 8 }}>
+          {error.message}
+        </p>
+      )}
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
         <button
           onClick={reset}
