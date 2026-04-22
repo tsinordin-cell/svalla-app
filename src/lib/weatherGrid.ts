@@ -237,6 +237,131 @@ export function windArrowHTML(w: WeatherPoint): string {
   `
 }
 
+// ── Single-point fetch (för corner-pill) ─────────────────────────────────────
+// Samma cache som gridden — nyckel är avrundad 0.01°.
+export async function fetchWeatherAt(
+  lat: number, lng: number,
+  signal?: AbortSignal,
+): Promise<WeatherPoint | null> {
+  const key = cacheKey(lat, lng)
+  const entry = cache.get(key)
+  if (entry && entry.expires > Date.now()) return entry.data
+
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat.toFixed(3)}&longitude=${lng.toFixed(3)}` +
+    `&current=temperature_2m,wind_speed_10m,wind_direction_10m,weather_code,is_day` +
+    `&wind_speed_unit=ms&timezone=Europe/Stockholm`
+
+  try {
+    const res = await fetch(url, { signal })
+    if (!res.ok) return null
+    const data = await res.json()
+    const c = data?.current
+    if (!c || typeof c.temperature_2m !== 'number') return null
+    const wp: WeatherPoint = {
+      lat, lng,
+      temp: Math.round(c.temperature_2m),
+      windSpeed: parseFloat(Number(c.wind_speed_10m).toFixed(1)),
+      windDir: Number(c.wind_direction_10m),
+      weatherCode: Number(c.weather_code ?? 0),
+      isDay: Number(c.is_day ?? 1),
+    }
+    cache.set(key, { data: wp, expires: Date.now() + CACHE_TTL })
+    return wp
+  } catch (e) {
+    if ((e as Error).name === 'AbortError') throw e
+    return null
+  }
+}
+
+// ── Reverse-geocode via Nominatim (gratis, OSM) ──────────────────────────────
+// Returnerar kort, svenskt platsnamn för visning i pill.
+// Prioritet: suburb > village > town > island > municipality > county.
+const placeCache = new Map<string, { name: string; expires: number }>()
+const PLACE_TTL = 30 * 60 * 1000  // platsnamn byts sällan — 30 min
+const PLACE_BACKOFF_MS = 1500     // Nominatim kräver ≤1 req/s
+
+let lastPlaceCall = 0
+
+export async function fetchPlaceName(
+  lat: number, lng: number,
+  signal?: AbortSignal,
+): Promise<string | null> {
+  const key = `${lat.toFixed(2)},${lng.toFixed(2)}`
+  const entry = placeCache.get(key)
+  if (entry && entry.expires > Date.now()) return entry.name
+
+  // Respektera Nominatim rate-limit: vänta om senaste anrop var < 1.5 s sedan
+  const wait = Math.max(0, PLACE_BACKOFF_MS - (Date.now() - lastPlaceCall))
+  if (wait > 0) {
+    await new Promise(r => setTimeout(r, wait))
+    if (signal?.aborted) throw new DOMException('aborted', 'AbortError')
+  }
+  lastPlaceCall = Date.now()
+
+  const url =
+    `https://nominatim.openstreetmap.org/reverse` +
+    `?lat=${lat.toFixed(4)}&lon=${lng.toFixed(4)}` +
+    `&format=jsonv2&accept-language=sv&zoom=11&addressdetails=1`
+
+  try {
+    const res = await fetch(url, {
+      signal,
+      headers: { 'Accept': 'application/json' },
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    const a = data?.address ?? {}
+    const name: string | null =
+      a.island || a.suburb || a.village || a.town || a.hamlet ||
+      a.municipality || a.city || a.county || data?.name || null
+    if (!name) return null
+
+    // Nominatim returnerar ibland långa namn ("Värmdö kommun") — korta ner
+    const clean = name
+      .replace(/\s+kommun$/i, '')
+      .replace(/\s+län$/i, '')
+      .trim()
+      .toUpperCase()
+
+    placeCache.set(key, { name: clean, expires: Date.now() + PLACE_TTL })
+    return clean
+  } catch (e) {
+    if ((e as Error).name === 'AbortError') throw e
+    return null
+  }
+}
+
+// ── Haversine-avstånd (nautiska mil) ─────────────────────────────────────────
+export function haversineNM(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number },
+): number {
+  const R_NM = 3440.065  // jordradie i NM
+  const toRad = (d: number) => (d * Math.PI) / 180
+  const dLat = toRad(b.lat - a.lat)
+  const dLng = toRad(b.lng - a.lng)
+  const lat1 = toRad(a.lat), lat2 = toRad(b.lat)
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2
+  return 2 * R_NM * Math.asin(Math.min(1, Math.sqrt(h)))
+}
+
+// ── Bäring (grader från A till B, 0 = norr) ─────────────────────────────────
+export function bearingDeg(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number },
+): number {
+  const toRad = (d: number) => (d * Math.PI) / 180
+  const toDeg = (r: number) => (r * 180) / Math.PI
+  const lat1 = toRad(a.lat), lat2 = toRad(b.lat)
+  const dLng = toRad(b.lng - a.lng)
+  const y = Math.sin(dLng) * Math.cos(lat2)
+  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng)
+  return (toDeg(Math.atan2(y, x)) + 360) % 360
+}
+
 // ── Popup-HTML (Leaflet bindPopup) ───────────────────────────────────────────
 export function windPopupHTML(w: WeatherPoint): string {
   const desc  = weatherDesc(w.weatherCode, w.isDay)

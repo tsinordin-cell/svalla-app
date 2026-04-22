@@ -3,15 +3,9 @@
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import {
-  sampleGrid,
-  fetchWeatherGrid,
-  windArrowHTML,
-  windPopupHTML,
-  type WeatherPoint,
-} from '@/lib/weatherGrid'
+import { WeatherPill, DestinationPill } from '@/components/MapCornerPills'
 
-type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'rutter' | 'vader' | 'heatmap'
+type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | 'rutter' | 'vader' | 'heatmap'
 
 interface Poi {
   id: string
@@ -49,12 +43,21 @@ interface DetailRoute extends Route {
 }
 type DetailItem = DetailPoi | DetailRoute | null
 
-function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | null {
+function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | null {
   const cats = (p.categories ?? []).map(c => c.toLowerCase())
   const t = (p.type ?? '').toLowerCase()
+  const n = (p.name ?? '').toLowerCase()
   const d = (p.description ?? '').toLowerCase()
 
-  // Bensin/fuel först — annars fångas den av bryggor
+  // Bastu först — ofta kombinerat med brygga/hamn, vill inte tappas
+  if (
+    t === 'sauna' || t === 'bastu' ||
+    cats.some(c => ['sauna', 'bastu'].includes(c)) ||
+    n.includes('bastu') || n.includes('sauna') ||
+    d.includes('bastubygg') || d.includes('vedeldad bastu') || d.includes('allmän bastu')
+  ) return 'bastu'
+
+  // Bensin/fuel — annars fångas den av bryggor
   if (
     t === 'fuel' ||
     cats.includes('fuel') ||
@@ -102,6 +105,14 @@ const ICON_PATHS = {
   bike: '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
   footprints: '<path d="M4 16v-2.38c0-.87-.14-1.7-.4-2.45-.26-.75-.32-1.48-.2-2.18.12-.7.32-1.37.6-2 .3-.65.6-1.2 1-1.67.25-.31.56-.59.93-.83.38-.24.77-.36 1.17-.36 1.3 0 2.3.98 3 2.93.7 1.96 1 4.51 1 7.64v1.5"/><path d="M20 20h-4a4 4 0 0 1-4-4V8a2 2 0 1 1 4 0v3.5"/>',
   wind: '<path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>',
+  layers: '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>',
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  plus: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  // Bastu = liten stuga med ångvågor ovanför taket
+  sauna: '<path d="M8 3c0 1 1.5 1 1.5 2.5S8 7 8 8"/><path d="M13.5 3c0 1 1.5 1 1.5 2.5S13.5 7 13.5 8"/><path d="m3 13 9-6 9 6"/><path d="M5 12v8h14v-8"/><path d="M10 20v-4h4v4"/>',
+  calendar: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+  ship: '<path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4"/><path d="M12 2v3"/>',
+  fileText: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>',
 }
 
 type FilterCfg = { label: string; icon: keyof typeof ICON_PATHS; color: string }
@@ -111,10 +122,16 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
   krogar:      { label: 'Krogar',      icon: 'utensils', color: '#c96e2a' },
   naturhamnar: { label: 'Naturhamnar', icon: 'trees',    color: '#4a7a2e' },
   bensin:      { label: 'Bensin',      icon: 'fuel',     color: '#a8381e' },
+  bastu:       { label: 'Bastu',       icon: 'sauna',    color: '#7a4f2e' },
   rutter:      { label: 'Rutter',      icon: 'route',    color: '#3a4a5a' },
   vader:       { label: 'Väder',       icon: 'wind',     color: '#0a7b8c' },
   heatmap:     { label: 'Heatmap',     icon: 'flame',    color: '#b84728' },
 }
+
+// Primära chips ligger alltid synliga i fältraden.
+// Sekundära (överlägg) göms bakom "Lager"-menyn.
+const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'naturhamnar', 'bensin', 'bastu']
+const SECONDARY_FILTERS: Filter[] = ['rutter', 'vader', 'heatmap']
 
 function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
   name: keyof typeof ICON_PATHS
@@ -155,19 +172,44 @@ export default function UpptackClient() {
   const layerGroupRef  = useRef<import('leaflet').LayerGroup | null>(null)
   const heatLayerRef   = useRef<import('leaflet').Layer | null>(null)
   const routeLayersRef = useRef<import('leaflet').Polyline[]>([])
-  const weatherLayerRef = useRef<import('leaflet').LayerGroup | null>(null)
-  const weatherAbortRef = useRef<AbortController | null>(null)
-  const weatherDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const centerDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const [filters, setFilters] = useState<Set<Filter>>(new Set(['bryggor', 'krogar', 'bensin']))
   const [pois, setPois]     = useState<Poi[]>([])
   const [routes, setRoutes] = useState<Route[]>([])
-  const [weatherPoints, setWeatherPoints] = useState<WeatherPoint[]>([])
   const [detail, setDetail] = useState<DetailItem>(null)
   const [mapReady, setMapReady] = useState(false)
   const [view, setView] = useState<'map' | 'list'>('map')
   const [query, setQuery] = useState('')
+  // Karta-center (debouncat) för väderpill & destinations-avstånd
+  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: 59.32, lng: 18.5 })
+  // Vald destination — sätts från POI-detaljpanelen
+  const [destination, setDestination] = useState<{ name: string; lat: number; lng: number; label?: string } | null>(null)
+  // Lager-meny (Rutter/Väder/Heatmap göms bakom plus-knapp)
+  const [layersOpen, setLayersOpen] = useState(false)
+  const lagerButtonRef  = useRef<HTMLButtonElement>(null)
+  const lagerPopoverRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Stäng Lager-menyn vid klick utanför eller Escape
+  useEffect(() => {
+    if (!layersOpen) return
+    const handleClick = (e: MouseEvent) => {
+      const t = e.target as Node
+      if (lagerButtonRef.current?.contains(t))  return
+      if (lagerPopoverRef.current?.contains(t)) return
+      setLayersOpen(false)
+    }
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLayersOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('keydown',   handleKey)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('keydown',   handleKey)
+    }
+  }, [layersOpen])
 
   // ── Data fetch ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -216,24 +258,14 @@ export default function UpptackClient() {
       L.control.attribution({ prefix: '© OpenStreetMap' }).addTo(map)
       L.control.zoom({ position: 'topright' }).addTo(map)
 
-      // Egen pane för väder så POI-markers alltid ligger ovanpå pilarna.
-      // Default markerPane = 600; vi lägger väder på 450 (över overlayPane 400).
-      map.createPane('weatherPane')
-      const wp = map.getPane('weatherPane')
-      if (wp) {
-        wp.style.zIndex = '450'
-        wp.style.pointerEvents = 'auto'
-      }
-
       layerGroupRef.current = L.layerGroup().addTo(map)
       mapInstanceRef.current = map
       setMapReady(true)
     })
 
     return () => {
-      weatherAbortRef.current?.abort()
       if (debounceRef.current) clearTimeout(debounceRef.current)
-      if (weatherDebounceRef.current) clearTimeout(weatherDebounceRef.current)
+      if (centerDebounceRef.current) clearTimeout(centerDebounceRef.current)
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
@@ -289,51 +321,32 @@ export default function UpptackClient() {
     })
   }, [])
 
-  // ── Väder-fetch (zoom-adaptivt rutnät → Open-Meteo batch) ────────────────
-  const fetchWeather = useCallback(async () => {
-    const map = mapInstanceRef.current
-    if (!map) return
-
-    const b    = map.getBounds()
-    const zoom = map.getZoom()
-    const points = sampleGrid(b.getSouth(), b.getWest(), b.getNorth(), b.getEast(), zoom)
-
-    // Abort pågående request — vid snabb pan/zoom
-    weatherAbortRef.current?.abort()
-    const ctrl = new AbortController()
-    weatherAbortRef.current = ctrl
-
-    try {
-      const data = await fetchWeatherGrid(points, ctrl.signal)
-      if (!ctrl.signal.aborted) setWeatherPoints(data)
-    } catch (e) {
-      if ((e as Error).name !== 'AbortError') {
-        // Tyst fail — väder är icke-kritiskt
-        console.warn('[weather] fetch failed:', e)
-      }
-    }
-  }, [])
-
-  // ── Map move debounce → re-fetch heat + weather ──────────────────────────
+  // ── Map move: uppdatera heat + center (för pills) ────────────────────────
   useEffect(() => {
     const map = mapInstanceRef.current
     if (!map || !mapReady) return
+
+    const updateCenter = () => {
+      const c = map.getCenter()
+      setMapCenter({ lat: c.lat, lng: c.lng })
+    }
 
     const handler = () => {
       if (filters.has('heatmap')) {
         if (debounceRef.current) clearTimeout(debounceRef.current)
         debounceRef.current = setTimeout(fetchHeat, 300)
       }
-      if (filters.has('vader')) {
-        if (weatherDebounceRef.current) clearTimeout(weatherDebounceRef.current)
-        weatherDebounceRef.current = setTimeout(fetchWeather, 300)
-      }
+      // Debounce center-uppdatering lite kortare — pill känns då "live"
+      if (centerDebounceRef.current) clearTimeout(centerDebounceRef.current)
+      centerDebounceRef.current = setTimeout(updateCenter, 250)
     }
 
     map.on('moveend', handler)
     map.on('zoomend', handler)
+    // Init: sätt center direkt så pillar inte står på default-koordinaten
+    updateCenter()
     return () => { map.off('moveend', handler); map.off('zoomend', handler) }
-  }, [mapReady, filters, fetchHeat, fetchWeather])
+  }, [mapReady, filters, fetchHeat])
 
   // ── Re-render markers when filters/data change ───────────────────────────
   useEffect(() => {
@@ -418,68 +431,6 @@ export default function UpptackClient() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, pois, routes, mapReady])
 
-  // ── Väder: toggle på/av + hämta initial data ─────────────────────────────
-  useEffect(() => {
-    const map = mapInstanceRef.current
-    if (!map || !mapReady) return
-
-    if (!filters.has('vader')) {
-      // Filter av: rensa layer + avbryt eventuell pågående fetch
-      weatherAbortRef.current?.abort()
-      if (weatherLayerRef.current) {
-        map.removeLayer(weatherLayerRef.current)
-        weatherLayerRef.current = null
-      }
-      setWeatherPoints([])
-      return
-    }
-
-    // Filter på men ingen data: hämta nu
-    if (weatherPoints.length === 0) {
-      fetchWeather()
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, mapReady])
-
-  // ── Väder: rendera pilar när data ändras ─────────────────────────────────
-  useEffect(() => {
-    const map = mapInstanceRef.current
-    const L   = leafletRef.current
-    if (!map || !L || !mapReady) return
-    if (!filters.has('vader')) return
-    if (weatherPoints.length === 0) return
-
-    // Rensa gamla pilar
-    if (weatherLayerRef.current) {
-      map.removeLayer(weatherLayerRef.current)
-      weatherLayerRef.current = null
-    }
-
-    const group = L.layerGroup()
-    for (const w of weatherPoints) {
-      const icon = L.divIcon({
-        className: '',
-        html: windArrowHTML(w),
-        iconSize: [32, 48],
-        iconAnchor: [16, 16],
-      })
-      const marker = L.marker([w.lat, w.lng], {
-        icon,
-        pane: 'weatherPane',
-        keyboard: false,
-        riseOnHover: false,
-      })
-      marker.bindPopup(windPopupHTML(w), {
-        closeButton: true,
-        autoPan: false,
-        className: 'svalla-weather-popup',
-      })
-      marker.addTo(group)
-    }
-    group.addTo(map)
-    weatherLayerRef.current = group
-  }, [weatherPoints, filters, mapReady])
-
   function toggleFilter(f: Filter) {
     setFilters(prev => {
       const next = new Set(prev)
@@ -500,8 +451,9 @@ export default function UpptackClient() {
     if (filters.has('krogar'))      activeCats.add('krogar')
     if (filters.has('naturhamnar')) activeCats.add('naturhamnar')
     if (filters.has('bensin'))      activeCats.add('bensin')
-    // Fallback: om inga POI-kategorier är aktiva, visa alla fyra
-    const effective = activeCats.size ? activeCats : new Set(['bryggor', 'krogar', 'naturhamnar', 'bensin'] as const)
+    if (filters.has('bastu'))       activeCats.add('bastu')
+    // Fallback: om inga POI-kategorier är aktiva, visa alla
+    const effective = activeCats.size ? activeCats : new Set(['bryggor', 'krogar', 'naturhamnar', 'bensin', 'bastu'] as const)
 
     return pois
       .map(p => ({ p, cat: poiCategory(p) }))
@@ -568,57 +520,208 @@ export default function UpptackClient() {
         })}
       </div>
 
-      {/* Filter chips */}
+      {/* Filter-rad: primära POI-chips (scrollbara) + Lager-knapp (fix) */}
       <div
         role="tablist"
         aria-label="Filter"
         style={{
-          position: 'absolute', top: 54, left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex', gap: 8, zIndex: 1000,
-          padding: '0 12px',
-          overflowX: 'auto',
-          maxWidth: '100vw',
-          WebkitOverflowScrolling: 'touch',
-          msOverflowStyle: 'none',
-          scrollbarWidth: 'none',
+          position: 'absolute', top: 54, left: 0, right: 0,
+          zIndex: 1000,
+          display: 'flex', justifyContent: 'center', alignItems: 'flex-start',
+          gap: 8, padding: '0 12px',
+          pointerEvents: 'none',
         }}
       >
-        {(Object.entries(FILTER_CONFIG) as [Filter, FilterCfg][])
-          .filter(([key]) => view === 'map' ? true : (key !== 'rutter' && key !== 'heatmap' && key !== 'vader'))
-          .map(([key, cfg]) => {
-          const active = filters.has(key)
+        {/* Scrollbar primär-rad (POI-kategorier) */}
+        <div
+          style={{
+            display: 'flex', gap: 8,
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            msOverflowStyle: 'none', scrollbarWidth: 'none',
+            pointerEvents: 'auto',
+            flexShrink: 1, minWidth: 0,
+          }}
+        >
+          {PRIMARY_FILTERS.map(key => {
+            const cfg    = FILTER_CONFIG[key]
+            const active = filters.has(key)
+            return (
+              <button
+                key={key}
+                onClick={() => toggleFilter(key)}
+                role="tab"
+                aria-selected={active}
+                className="upptack-chip press-feedback"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  height: 36, padding: '0 14px',
+                  borderRadius: 999,
+                  border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
+                  background: active ? cfg.color : 'var(--glass-92)',
+                  color: active ? '#fff' : 'var(--txt)',
+                  fontSize: 13, fontWeight: 600,
+                  fontFamily: 'inherit', cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
+                  flexShrink: 0,
+                }}
+              >
+                <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
+                <span>{cfg.label}</span>
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Lager-knapp (endast på karta) — öppnar popover med Rutter/Väder/Heatmap */}
+        {view === 'map' && (() => {
+          const activeCount = SECONDARY_FILTERS.reduce((n, k) => n + (filters.has(k) ? 1 : 0), 0)
           return (
-            <button
-              key={key}
-              onClick={() => toggleFilter(key)}
-              role="tab"
-              aria-selected={active}
-              className="upptack-chip press-feedback"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                height: 36,
-                padding: '0 14px',
-                borderRadius: 999,
-                border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
-                background: active ? cfg.color : 'var(--glass-92)',
-                color: active ? '#fff' : 'var(--txt)',
-                fontSize: 13, fontWeight: 600,
-                fontFamily: 'inherit',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
-                flexShrink: 0,
-              }}
-            >
-              <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
-              <span>{cfg.label}</span>
-            </button>
+            <div style={{ position: 'relative', flexShrink: 0, pointerEvents: 'auto' }}>
+              <button
+                ref={lagerButtonRef}
+                onClick={() => setLayersOpen(v => !v)}
+                aria-expanded={layersOpen}
+                aria-haspopup="menu"
+                aria-label="Lager"
+                className="upptack-chip press-feedback"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  height: 36, padding: '0 12px 0 14px',
+                  borderRadius: 999,
+                  border: layersOpen ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
+                  background: layersOpen ? 'var(--sea)' : 'var(--glass-92)',
+                  color: layersOpen ? '#fff' : 'var(--txt)',
+                  fontSize: 13, fontWeight: 600,
+                  fontFamily: 'inherit', cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
+                }}
+              >
+                <Icon name="layers" size={16} color={layersOpen ? '#fff' : 'var(--txt)'} />
+                <span>Lager</span>
+                {activeCount > 0 ? (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                      minWidth: 18, height: 18, padding: '0 5px',
+                      borderRadius: 999,
+                      background: layersOpen ? 'rgba(255,255,255,0.26)' : 'var(--sea)',
+                      color: '#fff',
+                      fontSize: 10, fontWeight: 800, lineHeight: 1,
+                      marginLeft: 2,
+                    }}
+                  >
+                    {activeCount}
+                  </span>
+                ) : (
+                  <Icon
+                    name="chevronDown"
+                    size={14}
+                    color={layersOpen ? '#fff' : 'var(--txt2)'}
+                    strokeWidth={2.2}
+                  />
+                )}
+              </button>
+
+              {layersOpen && (
+                <div
+                  ref={lagerPopoverRef}
+                  role="menu"
+                  aria-label="Kartlager"
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(100% + 8px)', right: 0,
+                    minWidth: 240,
+                    background: 'var(--glass-96, rgba(255,255,255,0.96))',
+                    border: '1px solid rgba(10,45,60,0.12)',
+                    borderRadius: 14,
+                    boxShadow: '0 4px 12px rgba(0,45,60,0.10), 0 16px 36px rgba(0,45,60,0.14)',
+                    backdropFilter: 'blur(14px)',
+                    WebkitBackdropFilter: 'blur(14px)',
+                    padding: 6,
+                    zIndex: 1002,
+                    animation: 'layers-pop 160ms ease',
+                  }}
+                >
+                  <div style={{
+                    padding: '6px 10px 4px',
+                    fontSize: 10, fontWeight: 700,
+                    color: 'var(--txt3, #8a9aa7)',
+                    textTransform: 'uppercase', letterSpacing: '0.6px',
+                  }}>
+                    Kartlager
+                  </div>
+                  {SECONDARY_FILTERS.map(key => {
+                    const cfg    = FILTER_CONFIG[key]
+                    const active = filters.has(key)
+                    return (
+                      <button
+                        key={key}
+                        role="menuitemcheckbox"
+                        aria-checked={active}
+                        onClick={() => toggleFilter(key)}
+                        className="press-feedback"
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: 10,
+                          width: '100%',
+                          padding: '9px 10px',
+                          background: active ? `${cfg.color}14` : 'transparent',
+                          border: 'none', borderRadius: 10,
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                          color: 'var(--txt)',
+                          fontFamily: 'inherit',
+                          fontSize: 13, fontWeight: 600,
+                          transition: 'background 140ms ease',
+                        }}
+                      >
+                        <span style={{
+                          width: 30, height: 30, borderRadius: 9,
+                          background: active ? cfg.color : 'rgba(10,45,60,0.08)',
+                          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                          flexShrink: 0,
+                          transition: 'background 140ms ease',
+                        }}>
+                          <Icon name={cfg.icon} size={15} color={active ? '#fff' : 'var(--txt2)'} />
+                        </span>
+                        <span style={{ flex: 1, lineHeight: 1.2 }}>{cfg.label}</span>
+                        {/* Toggle-switch */}
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            width: 34, height: 20, borderRadius: 999,
+                            background: active ? cfg.color : 'rgba(10,45,60,0.18)',
+                            position: 'relative', flexShrink: 0,
+                            transition: 'background 160ms ease',
+                          }}
+                        >
+                          <span style={{
+                            position: 'absolute', top: 2,
+                            left: active ? 16 : 2,
+                            width: 16, height: 16, borderRadius: '50%',
+                            background: '#fff',
+                            boxShadow: '0 1px 2px rgba(0,0,0,0.25)',
+                            transition: 'left 160ms ease',
+                          }} />
+                        </span>
+                      </button>
+                    )
+                  })}
+                  <style>{`@keyframes layers-pop { from { opacity: 0; transform: translateY(-4px) } to { opacity: 1; transform: none } }`}</style>
+                </div>
+              )}
+            </div>
           )
-        })}
+        })()}
       </div>
 
       {/* Lista-vy: scrollbar panel ovanpå kartan */}
@@ -868,23 +971,109 @@ export default function UpptackClient() {
             </p>
           )}
 
-          {detail.kind === 'poi' && detail.slug && (
-            <a
-              href={`/platser/${detail.slug}`}
-              style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                marginTop: 6,
-                height: 44, padding: '0 20px',
-                borderRadius: 22,
-                background: 'var(--sea)',
-                color: '#fff', fontSize: 14, fontWeight: 600,
-                textDecoration: 'none',
-                transition: 'filter 160ms ease',
+          <div style={{ display: 'flex', gap: 8, marginTop: 6, flexWrap: 'wrap' }}>
+            {detail.kind === 'poi' && (
+              <button
+                onClick={() => {
+                  const cat = poiCategory(detail)
+                  const label = cat ? FILTER_CONFIG[cat].label : null
+                  setDestination({
+                    name:  detail.name,
+                    lat:   detail.latitude,
+                    lng:   detail.longitude,
+                    label: label ?? undefined,
+                  })
+                  setDetail(null)
+                }}
+                className="press-feedback"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                  height: 44, padding: '0 18px',
+                  borderRadius: 22, border: 'none',
+                  background: 'var(--sea)',
+                  color: '#fff', fontSize: 14, fontWeight: 600,
+                  fontFamily: 'inherit', cursor: 'pointer',
+                }}
+              >
+                <Icon name="mapPin" size={15} color="#fff" strokeWidth={2} />
+                Sätt som destination
+              </button>
+            )}
+            {detail.kind === 'route' && detail.waypoints?.length > 0 && (
+              <button
+                onClick={() => {
+                  const last = detail.waypoints[detail.waypoints.length - 1]
+                  setDestination({
+                    name:  last.name ?? detail.name,
+                    lat:   last.lat,
+                    lng:   last.lng,
+                    label: 'Slutpunkt',
+                  })
+                  setDetail(null)
+                }}
+                className="press-feedback"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                  height: 44, padding: '0 18px',
+                  borderRadius: 22, border: 'none',
+                  background: 'var(--sea)',
+                  color: '#fff', fontSize: 14, fontWeight: 600,
+                  fontFamily: 'inherit', cursor: 'pointer',
+                }}
+              >
+                <Icon name="mapPin" size={15} color="#fff" strokeWidth={2} />
+                Sätt slutpunkt som destination
+              </button>
+            )}
+
+            {detail.kind === 'poi' && detail.slug && (
+              <a
+                href={`/platser/${detail.slug}`}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                  height: 44, padding: '0 18px',
+                  borderRadius: 22,
+                  background: 'rgba(10,45,60,0.06)',
+                  color: 'var(--txt)', fontSize: 14, fontWeight: 600,
+                  textDecoration: 'none',
+                  border: '1px solid rgba(10,45,60,0.10)',
+                }}
+              >
+                Visa plats
+                <Icon name="arrowRight" size={16} color="var(--txt)" strokeWidth={2} />
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Hörn-pills — väder & destination */}
+      {view === 'map' && (filters.has('vader') || destination) && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 100,
+            right: 12,
+            zIndex: 1000,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            gap: 8,
+            pointerEvents: 'none',  // barn (pills) har egna pointerEvents
+            maxWidth: 'calc(100vw - 24px)',
+          }}
+        >
+          {filters.has('vader') && <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />}
+          {destination && (
+            <DestinationPill
+              destination={destination}
+              mapCenter={mapCenter}
+              onGo={() => {
+                const m = mapInstanceRef.current
+                if (m) m.flyTo([destination.lat, destination.lng], Math.max(m.getZoom(), 13), { duration: 0.8 })
               }}
-            >
-              Visa plats
-              <Icon name="arrowRight" size={16} color="#fff" strokeWidth={2} />
-            </a>
+              onClear={() => setDestination(null)}
+            />
           )}
         </div>
       )}
