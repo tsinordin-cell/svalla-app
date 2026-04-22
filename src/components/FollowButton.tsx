@@ -11,22 +11,27 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
   const [loading, setLoading]   = useState(false)
 
   useEffect(() => {
+    let cancelled = false
     async function load() {
       const { data: { user } } = await supabase.auth.getUser()
+      if (cancelled) return
       setMyId(user?.id ?? null)
 
       const { count: fc } = await supabase
         .from('follows').select('*', { count: 'exact', head: true })
         .eq('following_id', targetUserId)
+      if (cancelled) return
       setCount(fc ?? 0)
 
       if (user && user.id !== targetUserId) {
         const { data } = await supabase.from('follows')
           .select('id').eq('follower_id', user.id).eq('following_id', targetUserId).single()
+        if (cancelled) return
         setFollowing(!!data)
       }
     }
     load()
+    return () => { cancelled = true }
   }, [targetUserId]) // eslint-disable-line
 
   async function toggle() {
