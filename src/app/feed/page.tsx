@@ -38,7 +38,7 @@ function FeedServerError() {
 }
 
 export default async function FeedPage(
-  { searchParams }: { searchParams?: Promise<{ safe?: string }> } = {}
+  { searchParams }: { searchParams: Promise<{ safe?: string }> }
 ) {
   // ?safe=1 → diagnostik-läge: stäng av alla klient-komponenter utom feed-listan.
   // Används för att isolera vilken komponent som ev. kraschar under hydration.
