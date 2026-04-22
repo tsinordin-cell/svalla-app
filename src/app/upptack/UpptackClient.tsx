@@ -2,7 +2,7 @@
 
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'rutter' | 'heatmap'
 
@@ -135,6 +135,8 @@ export default function UpptackClient() {
   const [routes, setRoutes] = useState<Route[]>([])
   const [detail, setDetail] = useState<DetailItem>(null)
   const [mapReady, setMapReady] = useState(false)
+  const [view, setView] = useState<'map' | 'list'>('map')
+  const [query, setQuery] = useState('')
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // ── Data fetch ────────────────────────────────────────────────────────────
@@ -356,19 +358,87 @@ export default function UpptackClient() {
     })
   }
 
+  // ── Lista-vy: filtrera POI på aktiva kategorier + sökfråga ──────────────
+  const listItems = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    const activeCats = new Set<Exclude<Filter, 'rutter' | 'heatmap'>>()
+    if (filters.has('bryggor'))     activeCats.add('bryggor')
+    if (filters.has('krogar'))      activeCats.add('krogar')
+    if (filters.has('naturhamnar')) activeCats.add('naturhamnar')
+    // Fallback: om inga POI-kategorier är aktiva, visa alla tre
+    const effective = activeCats.size ? activeCats : new Set(['bryggor', 'krogar', 'naturhamnar'] as const)
+
+    return pois
+      .map(p => ({ p, cat: poiCategory(p) }))
+      .filter(({ cat }) => cat && effective.has(cat))
+      .filter(({ p }) => {
+        if (!q) return true
+        const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
+        return hay.includes(q)
+      })
+      .sort((a, b) => a.p.name.localeCompare(b.p.name, 'sv'))
+  }, [pois, filters, query])
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
 
-      {/* Map container */}
+      {/* Map container (alltid monterad — döljs visuellt i list-vy) */}
       <div ref={mapRef} style={{ position: 'absolute', inset: 0 }} />
+
+      {/* View toggle: Karta / Lista */}
+      <div
+        role="tablist"
+        aria-label="Vy"
+        className="upptack-viewtoggle"
+        style={{
+          position: 'absolute', top: 12, left: 12, zIndex: 1001,
+          display: 'inline-flex',
+          padding: 3,
+          borderRadius: 999,
+          background: 'var(--glass-92)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+          border: '1px solid rgba(10,45,60,0.12)',
+        }}
+      >
+        {([
+          { key: 'map',  label: 'Karta', icon: 'mapPin' as const },
+          { key: 'list', label: 'Lista', icon: 'route' as const  },
+        ]).map(opt => {
+          const active = view === opt.key
+          return (
+            <button
+              key={opt.key}
+              role="tab"
+              aria-selected={active}
+              onClick={() => setView(opt.key as 'map' | 'list')}
+              className="press-feedback"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                height: 30, padding: '0 12px',
+                border: 'none', borderRadius: 999,
+                background: active ? 'var(--sea)' : 'transparent',
+                color: active ? '#fff' : 'var(--txt2)',
+                fontSize: 12, fontWeight: 700,
+                fontFamily: 'inherit', cursor: 'pointer',
+                transition: 'background 160ms ease, color 160ms ease',
+              }}
+            >
+              <Icon name={opt.icon} size={14} color={active ? '#fff' : 'var(--txt2)'} strokeWidth={2} />
+              {opt.label}
+            </button>
+          )
+        })}
+      </div>
 
       {/* Filter chips */}
       <div
         role="tablist"
         aria-label="Filter"
         style={{
-          position: 'absolute', top: 12, left: '50%',
+          position: 'absolute', top: 54, left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex', gap: 8, zIndex: 1000,
           padding: '0 12px',
@@ -379,7 +449,9 @@ export default function UpptackClient() {
           scrollbarWidth: 'none',
         }}
       >
-        {(Object.entries(FILTER_CONFIG) as [Filter, FilterCfg][]).map(([key, cfg]) => {
+        {(Object.entries(FILTER_CONFIG) as [Filter, FilterCfg][])
+          .filter(([key]) => view === 'map' ? true : (key !== 'rutter' && key !== 'heatmap'))
+          .map(([key, cfg]) => {
           const active = filters.has(key)
           return (
             <button
@@ -413,6 +485,187 @@ export default function UpptackClient() {
           )
         })}
       </div>
+
+      {/* Lista-vy: scrollbar panel ovanpå kartan */}
+      {view === 'list' && (
+        <div
+          className="upptack-listview"
+          role="region"
+          aria-label="Platser som lista"
+          style={{
+            position: 'absolute',
+            top: 100, left: 0, right: 0, bottom: 0,
+            background: 'var(--bg)',
+            zIndex: 900,
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch',
+          }}
+        >
+          {/* Sök */}
+          <div style={{
+            position: 'sticky', top: 0, zIndex: 2,
+            background: 'var(--glass-96)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            padding: '12px 14px',
+            borderBottom: '1px solid rgba(10,45,60,0.08)',
+          }}>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              height: 40, padding: '0 14px',
+              borderRadius: 999,
+              background: 'var(--white)',
+              border: '1px solid rgba(10,45,60,0.12)',
+              boxShadow: '0 1px 3px rgba(0,45,60,0.06)',
+            }}>
+              <Icon name="compass" size={16} color="var(--txt3)" />
+              <input
+                type="search"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                placeholder="Sök plats, ö, eller typ…"
+                aria-label="Sök plats"
+                style={{
+                  flex: 1, border: 'none', outline: 'none',
+                  background: 'transparent',
+                  fontSize: 14, color: 'var(--txt)',
+                  fontFamily: 'inherit',
+                }}
+              />
+              {query && (
+                <button
+                  onClick={() => setQuery('')}
+                  aria-label="Rensa sök"
+                  style={{
+                    width: 24, height: 24, border: 'none', borderRadius: '50%',
+                    background: 'rgba(0,45,60,0.06)', color: 'var(--txt2)',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    cursor: 'pointer', flexShrink: 0, padding: 0,
+                  }}
+                >
+                  <Icon name="x" size={12} strokeWidth={2} />
+                </button>
+              )}
+            </div>
+            <p style={{
+              fontSize: 11, color: 'var(--txt3)', margin: '8px 2px 0',
+              fontWeight: 500,
+            }}>
+              {listItems.length} {listItems.length === 1 ? 'plats' : 'platser'}
+              {query ? ` för "${query}"` : ''}
+            </p>
+          </div>
+
+          {/* Lista */}
+          <div style={{
+            maxWidth: 720, margin: '0 auto', padding: '10px 12px 40px',
+          }}>
+            {listItems.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--txt3)' }}>
+                <div style={{ marginBottom: 12, display: 'flex', justifyContent: 'center' }}>
+                  <Icon name="compass" size={36} color="var(--txt3)" strokeWidth={1.5} />
+                </div>
+                <p style={{ fontSize: 14, margin: 0 }}>
+                  Inga platser matchar filter eller sök.
+                </p>
+              </div>
+            ) : (
+              listItems.map(({ p, cat }) => {
+                const cfg = cat ? FILTER_CONFIG[cat] : null
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => setDetail({ ...p, kind: 'poi' })}
+                    className="upptack-listcard press-feedback"
+                    style={{
+                      display: 'flex', alignItems: 'stretch', gap: 12,
+                      width: '100%', textAlign: 'left',
+                      padding: 10, marginBottom: 8,
+                      background: 'var(--white)',
+                      border: '1px solid rgba(10,45,60,0.08)',
+                      borderRadius: 14,
+                      cursor: 'pointer',
+                      fontFamily: 'inherit', color: 'var(--txt)',
+                    }}
+                  >
+                    {/* Bild eller ikon-badge */}
+                    <div style={{
+                      flexShrink: 0,
+                      width: 72, height: 72,
+                      borderRadius: 10,
+                      background: cfg ? cfg.color : 'var(--glass-88)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      overflow: 'hidden',
+                    }}>
+                      {p.image_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={p.image_url}
+                          alt=""
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      ) : cfg ? (
+                        <Icon name={cfg.icon} size={28} color="#fff" strokeWidth={2} />
+                      ) : null}
+                    </div>
+
+                    {/* Text */}
+                    <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                      {cfg && (
+                        <span style={{
+                          display: 'inline-block',
+                          fontSize: 10, fontWeight: 700,
+                          color: cfg.color,
+                          textTransform: 'uppercase', letterSpacing: '0.6px',
+                          marginBottom: 2,
+                        }}>
+                          {cfg.label}
+                        </span>
+                      )}
+                      <span style={{
+                        fontSize: 15, fontWeight: 700, color: 'var(--txt)',
+                        lineHeight: 1.25,
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      }}>
+                        {p.name}
+                      </span>
+                      {p.island && (
+                        <span style={{
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
+                          fontSize: 12, color: 'var(--txt3)',
+                          marginTop: 2,
+                        }}>
+                          <Icon name="mapPin" size={11} color="var(--txt3)" />
+                          {p.island}
+                        </span>
+                      )}
+                      {p.description && (
+                        <span style={{
+                          fontSize: 12, color: 'var(--txt2)',
+                          lineHeight: 1.4, marginTop: 4,
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                        }}>
+                          {p.description}
+                        </span>
+                      )}
+                    </div>
+
+                    <div style={{
+                      flexShrink: 0, alignSelf: 'center',
+                      color: 'var(--txt3)',
+                    }}>
+                      <Icon name="arrowRight" size={18} strokeWidth={2} color="var(--txt3)" />
+                    </div>
+                  </button>
+                )
+              })
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Detail panel */}
       {detail && (

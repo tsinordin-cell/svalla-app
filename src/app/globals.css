@@ -972,6 +972,37 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ── Upptäck: view-toggle (Karta / Lista) ── */
+.upptack-viewtoggle { -webkit-tap-highlight-color: transparent; }
+.upptack-viewtoggle button:focus-visible {
+  outline: 2px solid var(--sea);
+  outline-offset: 2px;
+}
+
+/* ── Upptäck: list-vy ── */
+.upptack-listview { scroll-behavior: smooth; }
+.upptack-listcard {
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .upptack-listcard:hover {
+    transform: translateY(-1px);
+    border-color: rgba(10, 123, 140, 0.22) !important;
+    box-shadow: 0 4px 14px rgba(0, 45, 60, 0.08);
+  }
+}
+.upptack-listcard:active { transform: scale(0.995); }
+[data-theme="dark"] .upptack-listcard {
+  background: var(--white);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Desktop: smalare top-offset för lista (inget mobile-header) */
+@media (min-width: 1024px) {
+  .upptack-listview { top: 108px; }
+}
+
 /* ── Motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   *,
