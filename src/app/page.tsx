@@ -42,7 +42,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:720px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0}
+.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
 .nav-mega-col{padding:8px 12px}
 .nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
 .nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
@@ -355,9 +355,40 @@ const LANDING_HTML = `
     </svg>
   </a>
   <ul class="nav-links">
-    <li><a href="/#resmål">Upptäck</a></li>
+    <li class="nav-dropdown">
+      <a href="#">Upptäck</a>
+      <div class="nav-mega">
+        <div class="nav-mega-inner">
+          <div class="nav-mega-grid">
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Snabba val</div>
+              <a href="/#resmål" class="nav-mega-link">🏝️ Alla resmål</a>
+              <a href="/platser" class="nav-mega-link">🗺️ Karta över skärgården</a>
+              <a href="/#aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
+              <a href="/#boende" class="nav-mega-link">🛏️ Boende</a>
+              <a href="/#resmål" class="nav-mega-all">Se alla →</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Kategorier</div>
+              <a href="/#resmål" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
+              <a href="/#resmål" class="nav-mega-link">🛁 Bastu &amp; bad</a>
+              <a href="/#resmål" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
+              <a href="/#resmål" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
+              <a href="/#resmål" class="nav-mega-link">🎒 Erbjudanden</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Turer</div>
+              <a href="/#resmål" class="nav-mega-link">🧭 Populära turer</a>
+              <a href="/#resmål" class="nav-mega-link">⛵ Segelrutter</a>
+              <a href="/#resmål" class="nav-mega-link">🚤 Snabbaste vägen</a>
+              <a href="#" class="nav-mega-link" id="planeraDropLink">📅 Planera min tur</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
     <li><a href="/platser">Karta</a></li>
-    <li><a href="/kom-igang">Planera min tur</a></li>
+    <li><a href="#" id="planeraNavBtn">Planera min tur</a></li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
@@ -855,6 +886,19 @@ const LANDING_HTML = `
     </div>
   </div>
 </footer>
+
+<!-- Planera-gate modal -->
+<div id="planera-gate" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(10,28,40,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:400px;width:92%;position:relative;animation:authIn .25s ease;">
+    <button onclick="document.getElementById('planera-gate').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#9ab;line-height:1;">✕</button>
+    <div style="font-size:32px;margin-bottom:12px;">⛵</div>
+    <div class="auth-m-title">Planera din tur</div>
+    <div class="auth-m-sub">Logga in eller skapa ett gratis konto för att planera och spara dina turer i skärgården.</div>
+    <a href="/logga-in" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0a7b8c,#2a9a9a);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;text-align:center;text-decoration:none;box-shadow:0 4px 16px rgba(10,123,140,.3);margin-bottom:10px;">Logga in</a>
+    <a href="/logga-in" style="display:block;width:100%;padding:13px;border:1.5px solid rgba(10,123,140,.3);border-radius:10px;font-size:14px;font-weight:600;color:#0a7b8c;text-align:center;text-decoration:none;">Skapa gratis konto →</a>
+    <div class="auth-m-footer" style="margin-top:16px;">Redan inloggad? <a href="/tur/ny">Gå till planering direkt</a></div>
+  </div>
+</div>
 `
 
 export default function LandingPage() {
@@ -881,6 +925,24 @@ export default function LandingPage() {
     // Fallback: om JS laddar långsamt, visa allt efter 1.5s
     const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
 
+    // Planera min tur — login-gate
+    const handlePlanera = async (e: Event) => {
+      e.preventDefault()
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        window.location.href = '/tur/ny'
+      } else {
+        const gate = document.getElementById('planera-gate')
+        if (gate) gate.style.display = 'flex'
+      }
+    }
+    document.getElementById('planeraNavBtn')?.addEventListener('click', handlePlanera)
+    document.getElementById('planeraDropLink')?.addEventListener('click', handlePlanera)
+    // Close gate on backdrop click
+    const gate = document.getElementById('planera-gate')
+    const handleGateClick = (e: Event) => { if (e.target === gate) gate.style.display = 'none' }
+    gate?.addEventListener('click', handleGateClick)
+
     // Sök-hints
     document.querySelectorAll('.hero-search-hint span').forEach(s => {
       s.addEventListener('click', () => {
@@ -902,6 +964,9 @@ export default function LandingPage() {
       observer.disconnect()
       searchInput?.removeEventListener('focus', onFocus)
       searchInput?.removeEventListener('blur', onBlur)
+      document.getElementById('planeraNavBtn')?.removeEventListener('click', handlePlanera)
+      document.getElementById('planeraDropLink')?.removeEventListener('click', handlePlanera)
+      gate?.removeEventListener('click', handleGateClick)
     }
   }, [])
 
