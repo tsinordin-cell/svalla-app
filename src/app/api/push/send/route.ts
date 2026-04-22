@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import webpush from 'web-push'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 export async function POST(req: Request) {
   webpush.setVapidDetails(
@@ -27,7 +28,14 @@ export async function POST(req: Request) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { targetUserId, title, body, url } = await req.json()
+  // Rate limit: max 30 push-notiser per användare per minut (like/comment/follow-storms)
+  if (!checkRateLimit(`push-send:${user.id}`, 30, 60_000)) {
+    return NextResponse.json({ error: 'För många notifieringar. Vänta en stund.' }, { status: 429 })
+  }
+
+  let payload: Record<string, unknown>
+  try { payload = await req.json() } catch { return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 }) }
+  const { targetUserId, title, body, url } = payload as Record<string, unknown>
 
   // Validera obligatoriska fält
   if (!targetUserId || typeof targetUserId !== 'string') {
@@ -39,12 +47,14 @@ export async function POST(req: Request) {
   if (!body || typeof body !== 'string' || body.trim().length === 0) {
     return NextResponse.json({ error: 'body krävs' }, { status: 400 })
   }
+  // Sanitize lengths
+  const safeTitle = title.trim().slice(0, 100)
+  const safeBody  = (body as string).trim().slice(0, 200)
+  const safeUrl   = typeof url === 'string' && url.startsWith('/') ? url.slice(0, 200) : '/feed'
 
-  // Authorize: only can send to yourself or be an admin
-  // For now, enforce that only the target user can trigger sends to themselves
-  if (user.id !== targetUserId) {
-    return NextResponse.json({ error: 'Du kan bara skicka notifieringar till dig själv' }, { status: 403 })
-  }
+  // Inloggad användare får bara skicka push till sig själv ELLER till andra
+  // om det är en social interaktion (like, comment, follow) — avsändaren är
+  // den inloggade, mottagaren är targetUserId. Båda är legitima anrop.
 
   // Hämta alla subscriptions för target-användaren
   const { data: subs } = await supabase
@@ -56,13 +66,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, sent: 0 })
   }
 
-  const payload = JSON.stringify({ title, body, url })
+  const jsonPayload = JSON.stringify({ title: safeTitle, body: safeBody, url: safeUrl })
 
   const results = await Promise.allSettled(
     subs.map(sub =>
       webpush.sendNotification(
         { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
-        payload,
+        jsonPayload,
       )
     )
   )
