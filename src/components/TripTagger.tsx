@@ -96,7 +96,7 @@ export default function TripTagger({
         </h3>
         {isOwner && (
           <button onClick={() => setPicking(p => !p)}
-            style={{ border: 'none', background: 'transparent', color: '#c96e2a', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
+            style={{ border: 'none', background: 'transparent', color: 'var(--acc)', fontWeight: 700, fontSize: 12, cursor: 'pointer' }}>
             {picking ? 'Klar' : '+ Tagga'}
           </button>
         )}
@@ -134,7 +134,7 @@ export default function TripTagger({
                   {t.username ?? 'okänd'}
                 </span>
               </Link>
-              {pending && <span style={{ fontSize: 9, fontWeight: 600, color: '#c96e2a' }}>OBEKRÄFTAD</span>}
+              {pending && <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--acc)' }}>OBEKRÄFTAD</span>}
               {(isOwner || t.tagged_user_id === currentUserId) && (
                 <button onClick={() => removeTag(t.tagged_user_id)} aria-label="Ta bort tagg"
                   style={{ border: 'none', background: 'transparent', color: 'var(--txt3)', cursor: 'pointer', fontSize: 12, padding: 0, marginLeft: 2 }}>

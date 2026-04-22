@@ -289,7 +289,7 @@ export default function LoggaInPage() {
               </p>
             )}
             {err && (
-              <div style={{ fontSize: 13, color: '#cc3d3d', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
+              <div style={{ fontSize: 13, color: 'var(--red)', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
                 {err}
               </div>
             )}

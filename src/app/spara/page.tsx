@@ -57,9 +57,9 @@ async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<
 // ── Movement state label/color ────────────────────────────────────────────────
 function movementMeta(state: MovementState): { label: string; color: string; bg: string } {
   switch (state) {
-    case 'SEGLING':  return { label: '⛵ SEGLING',   color: '#0f9e64', bg: 'rgba(15,158,100,.12)' }
+    case 'SEGLING':  return { label: '⛵ SEGLING',   color: 'var(--green)', bg: 'rgba(15,158,100,.12)' }
     case 'DRIFTAR':  return { label: '🌊 DRIFTAR',   color: 'var(--sea)', bg: 'rgba(30,92,130,.12)' }
-    case 'ANKRAT':   return { label: '⚓ ANKRAT',    color: '#c96e2a', bg: 'rgba(201,110,42,.12)' }
+    case 'ANKRAT':   return { label: '⚓ ANKRAT',    color: 'var(--acc)', bg: 'rgba(201,110,42,.12)' }
     case 'STILLA':   return { label: '◉ STILLA',    color: 'var(--txt3)', bg: 'rgba(122,157,171,.12)' }
   }
 }
@@ -690,7 +690,7 @@ export default function SparaPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                 <span style={{ fontSize: 20 }}>⚠️</span>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#c96e2a' }}>Avbruten tur hittad</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--acc)' }}>Avbruten tur hittad</div>
                   <div style={{ fontSize: 12, color: '#8a6040', marginTop: 1 }}>
                     {recoverySnap.boatType} · {formatDuration(recoverySnap.elapsed)} · sparad{' '}
                     {Math.round((Date.now() - new Date(recoverySnap.savedAt).getTime()) / 60000)} min sedan
@@ -712,7 +712,7 @@ export default function SparaPage() {
                   style={{
                     padding: '10px 14px', borderRadius: 12,
                     border: '1px solid rgba(201,110,42,.3)',
-                    background: 'transparent', color: '#c96e2a',
+                    background: 'transparent', color: 'var(--acc)',
                     fontWeight: 600, fontSize: 13, cursor: 'pointer',
                   }}
                 >
@@ -1269,7 +1269,7 @@ export default function SparaPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
               <span style={{ fontSize: 22 }}>🗺️</span>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#0f9e64' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--green)' }}>
                   {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
                 </div>
                 <div style={{ fontSize: 12, color: '#3d7a5a', marginTop: 1 }}>

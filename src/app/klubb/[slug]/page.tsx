@@ -145,7 +145,7 @@ export default function KlubbPage() {
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🏝️</div>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Klubben hittades inte</h2>
-          <Link href="/klubbar" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Till alla klubbar</Link>
+          <Link href="/klubbar" style={{ color: 'var(--acc)', fontWeight: 700, fontSize: 13 }}>← Till alla klubbar</Link>
         </div>
       </div>
     )
@@ -300,7 +300,7 @@ export default function KlubbPage() {
                         </div>
                       </div>
                       {m.role !== 'member' && (
-                        <span style={{ fontSize: 10, fontWeight: 600, color: '#c96e2a', background: 'rgba(201,110,42,0.10)', borderRadius: 6, padding: '2px 6px' }}>
+                        <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', background: 'rgba(201,110,42,0.10)', borderRadius: 6, padding: '2px 6px' }}>
                           {m.role === 'owner' ? 'OWNER' : 'ADMIN'}
                         </span>
                       )}

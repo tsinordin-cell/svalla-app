@@ -88,7 +88,7 @@ export default function InsikterPage() {
             </svg>
           </Link>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+            <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.8px' }}>
               Svalla Wrapped
             </div>
             <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>

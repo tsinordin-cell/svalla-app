@@ -483,7 +483,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
             {isReq && (
               <span style={{
                 fontSize: 10, fontWeight: fontWeight.semibold,
-                color: '#c96e2a',
+                color: 'var(--acc)',
                 background: 'rgba(201,110,42,0.10)',
                 borderRadius: radius.xs, padding: '2px 6px', flexShrink: 0,
                 textTransform: 'uppercase', letterSpacing: 0.3,

@@ -71,7 +71,7 @@ export default function LoggaChoicePage() {
                 background: 'rgba(34,197,94,0.2)', borderRadius: 20,
                 padding: '4px 10px', marginBottom: 10,
               }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--green)', display: 'inline-block' }} />
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#86efac', letterSpacing: '0.5px' }}>LIVE GPS</span>
               </div>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Spåra live</div>

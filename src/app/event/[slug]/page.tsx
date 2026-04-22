@@ -102,7 +102,7 @@ export default function EventDetailPage() {
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: 48, marginBottom: 8 }}>🗓️</div>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Eventet hittades inte</h2>
-          <Link href="/event" style={{ color: '#c96e2a', fontWeight: 700, fontSize: 13 }}>← Alla events</Link>
+          <Link href="/event" style={{ color: 'var(--acc)', fontWeight: 700, fontSize: 13 }}>← Alla events</Link>
         </div>
       </div>
     )
@@ -171,7 +171,7 @@ export default function EventDetailPage() {
           <div style={{ display: 'flex', gap: 6, marginBottom: 16 }}>
             {([
               { s: 'going' as const, label: 'Jag går', color: '#228c38' },
-              { s: 'maybe' as const, label: 'Kanske', color: '#c96e2a' },
+              { s: 'maybe' as const, label: 'Kanske', color: 'var(--acc)' },
               { s: 'no' as const, label: 'Avstår', color: '#6b7280' },
             ]).map(opt => (
               <button key={opt.s} onClick={() => rsvp(ev.my_status === opt.s ? null : opt.s)} disabled={busy}

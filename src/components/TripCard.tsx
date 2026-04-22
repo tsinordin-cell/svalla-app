@@ -302,7 +302,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             flexShrink: 0,
             background: 'rgba(201,110,42,0.1)',
             borderRadius: 20, padding: '4px 9px',
-            fontSize: 11, fontWeight: 600, color: '#c96e2a',
+            fontSize: 11, fontWeight: 600, color: 'var(--acc)',
           }}>⚓⚓⚓</div>
         )}
 

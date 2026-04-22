@@ -73,7 +73,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
 
       // Click route → highlight + fitBounds
       polyline.on('click', () => {
-        polyline.setStyle({ color: '#c96e2a', weight: 4, opacity: 1, dashArray: '10, 5' })
+        polyline.setStyle({ color: 'var(--acc)', weight: 4, opacity: 1, dashArray: '10, 5' })
         map.fitBounds(bounds, { padding: [24, 24], animate: true, duration: 0.5 })
         setTimeout(() => {
           polyline.setStyle({ color: 'var(--sea)', weight: 3, opacity: 0.7, dashArray: '8, 6' })

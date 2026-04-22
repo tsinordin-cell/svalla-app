@@ -38,7 +38,7 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
       display: 'block',
     }}>
       {children}
-      {required && <span style={{ color: '#dc2626', marginLeft: 3 }}>*</span>}
+      {required && <span style={{ color: 'var(--red)', marginLeft: 3 }}>*</span>}
     </label>
   )
 }
@@ -412,7 +412,7 @@ export default function RegistreraKrogPage() {
                 autoComplete="email"
               />
               {email && !/\S+@\S+\.\S+/.test(email) && (
-                <p style={{ fontSize: 12, color: '#dc2626', margin: '4px 0 0 2px' }}>
+                <p style={{ fontSize: 12, color: 'var(--red)', margin: '4px 0 0 2px' }}>
                   Ogiltig e-postadress
                 </p>
               )}
@@ -433,7 +433,7 @@ export default function RegistreraKrogPage() {
             {/* Error */}
             {err && (
               <div style={{
-                fontSize: 13, color: '#cc3d3d', background: '#fdeaea',
+                fontSize: 13, color: 'var(--red)', background: '#fdeaea',
                 borderRadius: 12, padding: '10px 14px', textAlign: 'center',
               }}>
                 {err}

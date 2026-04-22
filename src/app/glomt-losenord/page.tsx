@@ -89,7 +89,7 @@ export default function GlomtLosenordPage() {
               />
 
               {err && (
-                <p style={{ fontSize: 13, color: '#cc3d3d', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', margin: 0, textAlign: 'center' }}>
+                <p style={{ fontSize: 13, color: 'var(--red)', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', margin: 0, textAlign: 'center' }}>
                   {err}
                 </p>
               )}

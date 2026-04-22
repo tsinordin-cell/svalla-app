@@ -222,7 +222,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
               </div>
             ))}
           </div>
-          {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: '#dc2626', marginBottom: 12 }}>{error}</div>}
+          {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: 'var(--red)', marginBottom: 12 }}>{error}</div>}
         </div>
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
           <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
@@ -485,7 +485,7 @@ export default function ProfilPage() {
                       <div style={{
                         position: 'absolute', top: 5, right: 5,
                         width: 7, height: 7, borderRadius: '50%',
-                        background: '#22c55e',
+                        background: 'var(--green)',
                       }} />
                     )}
                     <span style={{ fontSize: 24 }}>{a.emoji}</span>
@@ -508,7 +508,7 @@ export default function ProfilPage() {
               <div style={{ marginTop: 14, padding: '11px 14px', background: 'rgba(201,110,42,0.07)', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ fontSize: 22, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, color: '#c96e2a', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
                   <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
                 </div>
               </div>

@@ -292,7 +292,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             background: 'linear-gradient(135deg, rgba(201,110,42,0.08), rgba(201,110,42,0.04))',
             border: '1.5px solid rgba(201,110,42,0.2)',
           }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#c96e2a', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--acc)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
               💡 Insider-tip
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2, #4a3010)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>

@@ -361,7 +361,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           }}>
             <span style={{ fontSize: 22, flexShrink: 0 }}>⛵</span>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: '#0f9e64', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
                 Rutigenkänning
               </div>
               <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>

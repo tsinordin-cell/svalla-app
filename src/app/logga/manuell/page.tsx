@@ -508,7 +508,7 @@ function ManuellForm() {
           )}
 
           {err && (
-            <p style={{ fontSize: 13, color: '#cc3d3d', textAlign: 'center', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', margin: 0 }}>
+            <p style={{ fontSize: 13, color: 'var(--red)', textAlign: 'center', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', margin: 0 }}>
               {err}
             </p>
           )}

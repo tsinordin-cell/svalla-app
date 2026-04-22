@@ -155,7 +155,7 @@ export default async function FeedPage() {
                   className="live-dot"
                   style={{
                     display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
-                    background: '#22c55e',
+                    background: 'var(--green)',
                   }}
                 />
                 Aktivt senaste 24h · {activeNow.length} {activeNow.length === 1 ? 'tur' : 'turer'}
@@ -232,7 +232,7 @@ export default async function FeedPage() {
         {/* ── Nya märken från nätverket ── */}
         {recentAchievements.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: '#c96e2a', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
               🏆 Nya märken i nätverket
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

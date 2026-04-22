@@ -113,7 +113,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
     <>
       {/* ── Tab toggle ── */}
       {isLoggedIn && (
-        <div style={{
+        <div role="tablist" aria-label="Flödestyp" style={{
           display: 'flex', gap: 4, marginBottom: 14,
           background: 'rgba(10,123,140,0.07)', borderRadius: 14, padding: 4,
         }}>
@@ -123,11 +123,13 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           ] as const).map(({ key, label }) => (
             <button
               key={key}
+              role="tab"
+              aria-selected={tab === key}
               onClick={() => setTab(key)}
               style={{
                 flex: 1, padding: '9px 0', borderRadius: 10, border: 'none', cursor: 'pointer',
                 fontSize: 13, fontWeight: 600,
-                background: tab === key ? '#fff' : 'transparent',
+                background: tab === key ? 'var(--white)' : 'transparent',
                 color: tab === key ? 'var(--sea)' : 'var(--txt3)',
                 boxShadow: tab === key ? '0 1px 6px rgba(0,45,60,0.12)' : 'none',
                 transition: 'all .15s',

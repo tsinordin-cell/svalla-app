@@ -21,10 +21,10 @@ function passwordStrength(pw: string): { score: number; label: string; color: st
   if (/[A-Z]/.test(pw)) score++
   if (/[0-9]/.test(pw)) score++
   if (/[^A-Za-z0-9]/.test(pw)) score++
-  if (score <= 1) return { score, label: 'Svagt',   color: '#dc2626' }
-  if (score <= 2) return { score, label: 'Okej',    color: '#e8924a' }
+  if (score <= 1) return { score, label: 'Svagt',   color: 'var(--red)' }
+  if (score <= 2) return { score, label: 'Okej',    color: 'var(--acc)' }
   if (score <= 3) return { score, label: 'Bra',     color: '#eab308' }
-  if (score <= 4) return { score, label: 'Starkt',  color: '#0f9e64' }
+  if (score <= 4) return { score, label: 'Starkt',  color: 'var(--green)' }
   return               { score, label: 'Utmärkt',  color: '#059669' }
 }
 
@@ -357,7 +357,7 @@ export default function KomIgangPage() {
 
           {err && (
             <div style={{
-              fontSize: 13, color: '#cc3d3d', background: '#fdeaea',
+              fontSize: 13, color: 'var(--red)', background: '#fdeaea',
               borderRadius: 12, padding: '10px 14px', textAlign: 'center',
             }}>
               {err}
@@ -507,7 +507,7 @@ export default function KomIgangPage() {
             {/* Email */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                E-postadress <span style={{ color: '#dc2626' }}>*</span>
+                E-postadress <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <input
                 type="email"
@@ -525,7 +525,7 @@ export default function KomIgangPage() {
                 autoComplete="email"
               />
               {email && !/\S+@\S+\.\S+/.test(email) && (
-                <p style={{ fontSize: 12, color: '#dc2626', margin: 0, padding: '0 2px' }}>
+                <p style={{ fontSize: 12, color: 'var(--red)', margin: 0, padding: '0 2px' }}>
                   Ogiltig e-postadress
                 </p>
               )}
@@ -534,7 +534,7 @@ export default function KomIgangPage() {
             {/* Password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                Lösenord <span style={{ color: '#dc2626' }}>*</span>
+                Lösenord <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -592,7 +592,7 @@ export default function KomIgangPage() {
             {/* Confirm password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-                Bekräfta lösenord <span style={{ color: '#dc2626' }}>*</span>
+                Bekräfta lösenord <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
                 <input
@@ -627,12 +627,12 @@ export default function KomIgangPage() {
                 </button>
               </div>
               {confirmPw && password !== confirmPw && (
-                <p style={{ fontSize: 12, color: '#dc2626', margin: 0, padding: '0 2px' }}>
+                <p style={{ fontSize: 12, color: 'var(--red)', margin: 0, padding: '0 2px' }}>
                   Lösenorden matchar inte
                 </p>
               )}
               {confirmPw && password === confirmPw && confirmPw.length >= 6 && (
-                <p style={{ fontSize: 12, color: '#0f9e64', margin: 0, padding: '0 2px', fontWeight: 600 }}>
+                <p style={{ fontSize: 12, color: 'var(--green)', margin: 0, padding: '0 2px', fontWeight: 600 }}>
                   ✓ Matchar
                 </p>
               )}
@@ -641,7 +641,7 @@ export default function KomIgangPage() {
             {/* Error */}
             {err && (
               <div style={{
-                fontSize: 13, color: '#cc3d3d', background: '#fdeaea',
+                fontSize: 13, color: 'var(--red)', background: '#fdeaea',
                 borderRadius: 12, padding: '10px 14px', textAlign: 'center',
               }}>
                 {err}

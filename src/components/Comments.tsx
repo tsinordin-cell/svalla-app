@@ -464,7 +464,7 @@ export default function Comments({
                             aria-label="Bekräfta radera"
                             style={{
                               background: 'rgba(220,38,38,0.10)', border: '1px solid rgba(220,38,38,0.30)',
-                              color: '#dc2626', padding: '4px 8px', borderRadius: 8,
+                              color: 'var(--red)', padding: '4px 8px', borderRadius: 8,
                               fontSize: 10, fontWeight: 600, cursor: 'pointer',
                               WebkitTapHighlightColor: 'transparent',
                             }}

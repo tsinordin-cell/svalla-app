@@ -69,10 +69,10 @@ function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | null {
 
 const FILTER_CONFIG: Record<Filter, { label: string; emoji: string; color: string }> = {
   bryggor:    { label: 'Bryggor',    emoji: '⚓', color: 'var(--sea)' },
-  krogar:     { label: 'Krogar',     emoji: '🍽', color: '#c96e2a' },
-  naturhamnar:{ label: 'Naturhamnar',emoji: '🌿', color: '#0f9e64' },
+  krogar:     { label: 'Krogar',     emoji: '🍽', color: 'var(--acc)' },
+  naturhamnar:{ label: 'Naturhamnar',emoji: '🌿', color: 'var(--green)' },
   rutter:     { label: 'Rutter',     emoji: '🗺️', color: '#7c4d1e' },
-  heatmap:    { label: 'Heatmap',    emoji: '🔥', color: '#dc2626' },
+  heatmap:    { label: 'Heatmap',    emoji: '🔥', color: 'var(--red)' },
 }
 
 export default function UpptackClient() {

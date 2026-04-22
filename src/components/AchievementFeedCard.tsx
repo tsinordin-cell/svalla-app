@@ -40,7 +40,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
             @{ev.username}
           </Link>
           {' '}låste upp{' '}
-          <span style={{ fontWeight: 600, color: '#c96e2a' }}>{ev.label}</span>
+          <span style={{ fontWeight: 600, color: 'var(--acc)' }}>{ev.label}</span>
         </div>
         {ev.desc && (
           <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>

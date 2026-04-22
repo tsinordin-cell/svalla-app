@@ -254,7 +254,7 @@ export default function ImporteraPage() {
           <div style={{
             background: 'rgba(15,158,100,0.1)', border: '1px solid rgba(15,158,100,0.25)',
             borderRadius: 12, padding: '10px 14px', marginBottom: 12,
-            fontSize: 13, color: '#0f9e64', fontWeight: 600,
+            fontSize: 13, color: 'var(--green)', fontWeight: 600,
           }}>
             ✓ {savedCount} tur{savedCount > 1 ? 'er' : ''} sparad{savedCount > 1 ? 'e' : ''}
           </div>
@@ -303,17 +303,17 @@ export default function ImporteraPage() {
                   )}
 
                   {entry.status === 'error' && (
-                    <p style={{ fontSize: 13, color: '#dc2626', margin: 0 }}>{entry.errorMsg ?? 'Fel'}</p>
+                    <p style={{ fontSize: 13, color: 'var(--red)', margin: 0 }}>{entry.errorMsg ?? 'Fel'}</p>
                   )}
 
                   {entry.status === 'saved' && (
-                    <p style={{ fontSize: 13, color: '#0f9e64', margin: 0, fontWeight: 600 }}>✓ Sparad</p>
+                    <p style={{ fontSize: 13, color: 'var(--green)', margin: 0, fontWeight: 600 }}>✓ Sparad</p>
                   )}
 
                   {(isReady || entry.status === 'saving') && (
                     <>
                       {entry.duplicateWarning && (
-                        <p style={{ fontSize: 11, color: '#c96e2a', margin: '0 0 8px', fontWeight: 600 }}>
+                        <p style={{ fontSize: 11, color: 'var(--acc)', margin: '0 0 8px', fontWeight: 600 }}>
                           ⚠️ {entry.duplicateWarning}
                         </p>
                       )}

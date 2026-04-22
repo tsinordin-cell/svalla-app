@@ -308,7 +308,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
           <div style={{ background: 'var(--white, #fff)', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
               <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🗺️ Besökta öar</div>
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#0f9e64' }}>{visitedCount} / 69</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--green)' }}>{visitedCount} / 69</span>
             </div>
             <div style={{ height: 5, background: 'rgba(15,158,100,.1)', borderRadius: 4, overflow: 'hidden' }}>
               <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / 69) * 100)}%` }} />

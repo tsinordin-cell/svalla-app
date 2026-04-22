@@ -278,7 +278,7 @@ function Row({ c, starting, onClick, isRequest }: {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{c.username}</div>
         {isRequest && (
-          <div style={{ fontSize: 11, color: '#c96e2a', fontWeight: 600, marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 600, marginTop: 2 }}>
             Skickas som förfrågan
           </div>
         )}

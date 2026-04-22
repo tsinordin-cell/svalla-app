@@ -157,7 +157,7 @@ export default async function ModerationPage({
                       {/* Reason */}
                       <span style={{
                         padding: '2px 8px', borderRadius: 8,
-                        background: 'rgba(201,110,42,0.08)', color: '#c96e2a',
+                        background: 'rgba(201,110,42,0.08)', color: 'var(--acc)',
                         fontSize: 10, fontWeight: 700,
                       }}>
                         {REASON_LABELS[item.reason]}

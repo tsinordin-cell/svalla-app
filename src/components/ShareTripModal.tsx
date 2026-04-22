@@ -267,7 +267,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                       </div>
                       <div style={{ flex: 1, textAlign: 'left' }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{f.username}</div>
-                        {!f.mutual && <div style={{ fontSize: 11, color: '#c96e2a', fontWeight: 600 }}>Skickas som förfrågan</div>}
+                        {!f.mutual && <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 600 }}>Skickas som förfrågan</div>}
                       </div>
                       {busy
                         ? <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin .7s linear infinite' }} />
