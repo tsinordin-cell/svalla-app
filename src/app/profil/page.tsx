@@ -219,7 +219,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
                 role="switch"
                 aria-checked={publicFields.includes(key)}
                 onClick={() => togglePublic(key)}
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer', width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(10,123,140,0.07)', WebkitTapHighlightColor: 'transparent' }}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 0', borderBottom: '1px solid rgba(10,123,140,0.07)', cursor: 'pointer', width: '100%', background: 'none', border: 'none', WebkitTapHighlightColor: 'transparent' }}
               >
                 <span style={{ fontSize: 13, color: 'var(--txt)' }}>{label}</span>
                 <div style={{ width: 40, height: 22, borderRadius: 11, background: publicFields.includes(key) ? 'var(--sea)' : 'rgba(10,123,140,0.15)', position: 'relative', transition: 'background .2s', flexShrink: 0 }}>
