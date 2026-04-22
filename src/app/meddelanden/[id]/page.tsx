@@ -14,38 +14,49 @@ import type { Message, Conversation } from '@/lib/supabase'
 type MsgWithMeta = Message & { username?: string; avatar?: string | null; optimistic?: boolean }
 
 /** Format: "nu" / "5m" / "14:23" / "Mån 14:23" / "15 apr 14:23" */
-function fmtMsgTime(iso: string): string {
-  const d = new Date(iso)
-  const now = Date.now()
-  const diff = now - d.getTime()
-  const mins = Math.floor(diff / 60_000)
-  if (mins < 1) return 'nu'
-  if (mins < 60) return `${mins}m`
-  const hhmm = d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
-  if (mins < 1440) return hhmm
-  const days = Math.floor(mins / 1440)
-  if (days < 7) return `${d.toLocaleDateString('sv-SE', { weekday: 'short' }).replace('.', '')} ${hhmm}`
-  return `${d.getDate()} ${d.toLocaleDateString('sv-SE', { month: 'short' }).replace('.', '')} ${hhmm}`
+function fmtMsgTime(iso: string | null | undefined): string {
+  if (!iso) return ''
+  try {
+    const d = new Date(iso)
+    if (isNaN(d.getTime())) return ''
+    const now = Date.now()
+    const diff = now - d.getTime()
+    const mins = Math.floor(diff / 60_000)
+    if (mins < 1) return 'nu'
+    if (mins < 60) return `${mins}m`
+    const hhmm = d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
+    if (mins < 1440) return hhmm
+    const days = Math.floor(mins / 1440)
+    if (days < 7) return `${d.toLocaleDateString('sv-SE', { weekday: 'short' }).replace('.', '')} ${hhmm}`
+    return `${d.getDate()} ${d.toLocaleDateString('sv-SE', { month: 'short' }).replace('.', '')} ${hhmm}`
+  } catch { return '' }
 }
 
 /** Day label for separator */
-function dayLabel(iso: string): string {
-  const d = new Date(iso)
-  const today = new Date(); today.setHours(0,0,0,0)
-  const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1)
-  const msgDay = new Date(d); msgDay.setHours(0,0,0,0)
-  if (msgDay.getTime() === today.getTime()) return 'Idag'
-  if (msgDay.getTime() === yesterday.getTime()) return 'Igår'
-  const diffDays = Math.floor((today.getTime() - msgDay.getTime()) / 86_400_000)
-  if (diffDays < 7) return d.toLocaleDateString('sv-SE', { weekday: 'long' }).replace(/^\w/, c => c.toUpperCase())
-  return `${d.getDate()} ${d.toLocaleDateString('sv-SE', { month: 'long' })}`
+function dayLabel(iso: string | null | undefined): string {
+  if (!iso) return ''
+  try {
+    const d = new Date(iso)
+    if (isNaN(d.getTime())) return ''
+    const today = new Date(); today.setHours(0,0,0,0)
+    const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1)
+    const msgDay = new Date(d); msgDay.setHours(0,0,0,0)
+    if (msgDay.getTime() === today.getTime()) return 'Idag'
+    if (msgDay.getTime() === yesterday.getTime()) return 'Igår'
+    const diffDays = Math.floor((today.getTime() - msgDay.getTime()) / 86_400_000)
+    if (diffDays < 7) return d.toLocaleDateString('sv-SE', { weekday: 'long' }).replace(/^\w/, c => c.toUpperCase())
+    return `${d.getDate()} ${d.toLocaleDateString('sv-SE', { month: 'long' })}`
+  } catch { return '' }
 }
 
 function sameDay(a: string, b: string): boolean {
-  const da = new Date(a), db = new Date(b)
-  return da.getFullYear() === db.getFullYear() &&
-    da.getMonth() === db.getMonth() &&
-    da.getDate() === db.getDate()
+  try {
+    const da = new Date(a), db = new Date(b)
+    if (isNaN(da.getTime()) || isNaN(db.getTime())) return false
+    return da.getFullYear() === db.getFullYear() &&
+      da.getMonth() === db.getMonth() &&
+      da.getDate() === db.getDate()
+  } catch { return false }
 }
 
 export default function ChatPage() {
