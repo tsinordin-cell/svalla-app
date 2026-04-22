@@ -3,8 +3,15 @@
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import {
+  sampleGrid,
+  fetchWeatherGrid,
+  windArrowHTML,
+  windPopupHTML,
+  type WeatherPoint,
+} from '@/lib/weatherGrid'
 
-type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'rutter' | 'heatmap'
+type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'rutter' | 'vader' | 'heatmap'
 
 interface Poi {
   id: string
@@ -94,6 +101,7 @@ const ICON_PATHS = {
   zap: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>',
   bike: '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
   footprints: '<path d="M4 16v-2.38c0-.87-.14-1.7-.4-2.45-.26-.75-.32-1.48-.2-2.18.12-.7.32-1.37.6-2 .3-.65.6-1.2 1-1.67.25-.31.56-.59.93-.83.38-.24.77-.36 1.17-.36 1.3 0 2.3.98 3 2.93.7 1.96 1 4.51 1 7.64v1.5"/><path d="M20 20h-4a4 4 0 0 1-4-4V8a2 2 0 1 1 4 0v3.5"/>',
+  wind: '<path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>',
 }
 
 type FilterCfg = { label: string; icon: keyof typeof ICON_PATHS; color: string }
@@ -104,6 +112,7 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
   naturhamnar: { label: 'Naturhamnar', icon: 'trees',    color: '#4a7a2e' },
   bensin:      { label: 'Bensin',      icon: 'fuel',     color: '#a8381e' },
   rutter:      { label: 'Rutter',      icon: 'route',    color: '#3a4a5a' },
+  vader:       { label: 'Väder',       icon: 'wind',     color: '#0a7b8c' },
   heatmap:     { label: 'Heatmap',     icon: 'flame',    color: '#b84728' },
 }
 
@@ -146,10 +155,14 @@ export default function UpptackClient() {
   const layerGroupRef  = useRef<import('leaflet').LayerGroup | null>(null)
   const heatLayerRef   = useRef<import('leaflet').Layer | null>(null)
   const routeLayersRef = useRef<import('leaflet').Polyline[]>([])
+  const weatherLayerRef = useRef<import('leaflet').LayerGroup | null>(null)
+  const weatherAbortRef = useRef<AbortController | null>(null)
+  const weatherDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const [filters, setFilters] = useState<Set<Filter>>(new Set(['bryggor', 'krogar', 'bensin']))
   const [pois, setPois]     = useState<Poi[]>([])
   const [routes, setRoutes] = useState<Route[]>([])
+  const [weatherPoints, setWeatherPoints] = useState<WeatherPoint[]>([])
   const [detail, setDetail] = useState<DetailItem>(null)
   const [mapReady, setMapReady] = useState(false)
   const [view, setView] = useState<'map' | 'list'>('map')
@@ -203,12 +216,24 @@ export default function UpptackClient() {
       L.control.attribution({ prefix: '© OpenStreetMap' }).addTo(map)
       L.control.zoom({ position: 'topright' }).addTo(map)
 
+      // Egen pane för väder så POI-markers alltid ligger ovanpå pilarna.
+      // Default markerPane = 600; vi lägger väder på 450 (över overlayPane 400).
+      map.createPane('weatherPane')
+      const wp = map.getPane('weatherPane')
+      if (wp) {
+        wp.style.zIndex = '450'
+        wp.style.pointerEvents = 'auto'
+      }
+
       layerGroupRef.current = L.layerGroup().addTo(map)
       mapInstanceRef.current = map
       setMapReady(true)
     })
 
     return () => {
+      weatherAbortRef.current?.abort()
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      if (weatherDebounceRef.current) clearTimeout(weatherDebounceRef.current)
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
@@ -264,21 +289,51 @@ export default function UpptackClient() {
     })
   }, [])
 
-  // ── Map move debounce → re-fetch heat ────────────────────────────────────
+  // ── Väder-fetch (zoom-adaptivt rutnät → Open-Meteo batch) ────────────────
+  const fetchWeather = useCallback(async () => {
+    const map = mapInstanceRef.current
+    if (!map) return
+
+    const b    = map.getBounds()
+    const zoom = map.getZoom()
+    const points = sampleGrid(b.getSouth(), b.getWest(), b.getNorth(), b.getEast(), zoom)
+
+    // Abort pågående request — vid snabb pan/zoom
+    weatherAbortRef.current?.abort()
+    const ctrl = new AbortController()
+    weatherAbortRef.current = ctrl
+
+    try {
+      const data = await fetchWeatherGrid(points, ctrl.signal)
+      if (!ctrl.signal.aborted) setWeatherPoints(data)
+    } catch (e) {
+      if ((e as Error).name !== 'AbortError') {
+        // Tyst fail — väder är icke-kritiskt
+        console.warn('[weather] fetch failed:', e)
+      }
+    }
+  }, [])
+
+  // ── Map move debounce → re-fetch heat + weather ──────────────────────────
   useEffect(() => {
     const map = mapInstanceRef.current
     if (!map || !mapReady) return
 
     const handler = () => {
-      if (!filters.has('heatmap')) return
-      if (debounceRef.current) clearTimeout(debounceRef.current)
-      debounceRef.current = setTimeout(fetchHeat, 300)
+      if (filters.has('heatmap')) {
+        if (debounceRef.current) clearTimeout(debounceRef.current)
+        debounceRef.current = setTimeout(fetchHeat, 300)
+      }
+      if (filters.has('vader')) {
+        if (weatherDebounceRef.current) clearTimeout(weatherDebounceRef.current)
+        weatherDebounceRef.current = setTimeout(fetchWeather, 300)
+      }
     }
 
     map.on('moveend', handler)
     map.on('zoomend', handler)
     return () => { map.off('moveend', handler); map.off('zoomend', handler) }
-  }, [mapReady, filters, fetchHeat])
+  }, [mapReady, filters, fetchHeat, fetchWeather])
 
   // ── Re-render markers when filters/data change ───────────────────────────
   useEffect(() => {
@@ -363,6 +418,68 @@ export default function UpptackClient() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, pois, routes, mapReady])
 
+  // ── Väder: toggle på/av + hämta initial data ─────────────────────────────
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    if (!map || !mapReady) return
+
+    if (!filters.has('vader')) {
+      // Filter av: rensa layer + avbryt eventuell pågående fetch
+      weatherAbortRef.current?.abort()
+      if (weatherLayerRef.current) {
+        map.removeLayer(weatherLayerRef.current)
+        weatherLayerRef.current = null
+      }
+      setWeatherPoints([])
+      return
+    }
+
+    // Filter på men ingen data: hämta nu
+    if (weatherPoints.length === 0) {
+      fetchWeather()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, mapReady])
+
+  // ── Väder: rendera pilar när data ändras ─────────────────────────────────
+  useEffect(() => {
+    const map = mapInstanceRef.current
+    const L   = leafletRef.current
+    if (!map || !L || !mapReady) return
+    if (!filters.has('vader')) return
+    if (weatherPoints.length === 0) return
+
+    // Rensa gamla pilar
+    if (weatherLayerRef.current) {
+      map.removeLayer(weatherLayerRef.current)
+      weatherLayerRef.current = null
+    }
+
+    const group = L.layerGroup()
+    for (const w of weatherPoints) {
+      const icon = L.divIcon({
+        className: '',
+        html: windArrowHTML(w),
+        iconSize: [32, 48],
+        iconAnchor: [16, 16],
+      })
+      const marker = L.marker([w.lat, w.lng], {
+        icon,
+        pane: 'weatherPane',
+        keyboard: false,
+        riseOnHover: false,
+      })
+      marker.bindPopup(windPopupHTML(w), {
+        closeButton: true,
+        autoPan: false,
+        className: 'svalla-weather-popup',
+      })
+      marker.addTo(group)
+    }
+    group.addTo(map)
+    weatherLayerRef.current = group
+  }, [weatherPoints, filters, mapReady])
+
   function toggleFilter(f: Filter) {
     setFilters(prev => {
       const next = new Set(prev)
@@ -378,7 +495,7 @@ export default function UpptackClient() {
   // ── Lista-vy: filtrera POI på aktiva kategorier + sökfråga ──────────────
   const listItems = useMemo(() => {
     const q = query.trim().toLowerCase()
-    const activeCats = new Set<Exclude<Filter, 'rutter' | 'heatmap'>>()
+    const activeCats = new Set<Exclude<Filter, 'rutter' | 'vader' | 'heatmap'>>()
     if (filters.has('bryggor'))     activeCats.add('bryggor')
     if (filters.has('krogar'))      activeCats.add('krogar')
     if (filters.has('naturhamnar')) activeCats.add('naturhamnar')
@@ -468,7 +585,7 @@ export default function UpptackClient() {
         }}
       >
         {(Object.entries(FILTER_CONFIG) as [Filter, FilterCfg][])
-          .filter(([key]) => view === 'map' ? true : (key !== 'rutter' && key !== 'heatmap'))
+          .filter(([key]) => view === 'map' ? true : (key !== 'rutter' && key !== 'heatmap' && key !== 'vader'))
           .map(([key, cfg]) => {
           const active = filters.has(key)
           return (
