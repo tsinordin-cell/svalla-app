@@ -220,7 +220,7 @@ export default function Nav() {
               alignItems: 'center', justifyContent: 'center', gap: 2,
               textDecoration: 'none',
               color: active ? 'var(--sea)' : 'var(--txt3)',
-              fontSize: 10, fontWeight: 600, letterSpacing: '0.4px',
+              fontSize: 11, fontWeight: 600, letterSpacing: '0.3px',
               textTransform: 'uppercase', position: 'relative',
               WebkitTapHighlightColor: 'transparent',
               minHeight: 44,

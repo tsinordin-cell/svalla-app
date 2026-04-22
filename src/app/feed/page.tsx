@@ -115,7 +115,7 @@ export default async function FeedPage() {
         </div>
       </header>
 
-      <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 14px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+      <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 16px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
         {/* ── Social proof banner ── */}
         {thisWeek.length > 0 && (

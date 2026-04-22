@@ -84,6 +84,7 @@ export default async function RutterPage({
     .from('tours')
     .select('id, slug, title, start_location, destination, transport_types, duration_label, best_for, highlights, usp, category, food_stops, tone_tags, hamn_profil, bad_profil')
     .order('title', { ascending: true })
+    .limit(200)
 
   const [{ data: tours, error }, { count: totalCount }] = await Promise.all([
     forFilter !== 'alla' ? baseQuery.contains('best_for', [forFilter]) : baseQuery,

@@ -60,6 +60,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   const { data: allRests } = await supabase
     .from('restaurants')
     .select('id, name, latitude, longitude, tags, core_experience')
+    .limit(1000)
 
   function haversineNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
     const R = 3440.065

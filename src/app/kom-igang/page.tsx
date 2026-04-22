@@ -103,6 +103,19 @@ export default function KomIgangPage() {
 
   const pw = passwordStrength(password)
 
+  /* ── Supabase-felmeddelanden → svenska ── */
+  function swErr(msg: string): string {
+    const m = msg.toLowerCase()
+    if (m.includes('invalid login credentials') || m.includes('invalid credentials')) return 'Fel e-post eller lösenord.'
+    if (m.includes('email not confirmed'))       return 'Bekräfta din e-postadress — kolla inkorgen.'
+    if (m.includes('user already registered') || m.includes('already been registered')) return 'En användare med den e-postadressen finns redan.'
+    if (m.includes('password should be at least')) return 'Lösenordet måste vara minst 6 tecken.'
+    if (m.includes('too many requests') || m.includes('rate limit')) return 'För många försök — vänta en stund och försök igen.'
+    if (m.includes('network') || m.includes('fetch'))               return 'Nätverksfel — kontrollera din anslutning.'
+    if (m.includes('email address') && m.includes('valid'))         return 'Ogiltig e-postadress.'
+    return msg  // fall through: show as-is (already Swedish or unknown)
+  }
+
   /* ── OAuth ── */
   async function signInWithOAuth(provider: 'google' | 'apple') {
     setOauthLoading(provider); setErr('')
@@ -110,7 +123,7 @@ export default function KomIgangPage() {
       provider,
       options: { redirectTo: `${location.origin}/feed` },
     })
-    if (error) { setErr(error.message); setOauthLoading(null) }
+    if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
   }
 
   /* ── Validate step 1 ── */
@@ -137,7 +150,7 @@ export default function KomIgangPage() {
       options: { data: { username: derivedUsername, full_name: name.trim() } },
     })
 
-    if (error) { setErr(error.message); setLoading(false); return }
+    if (error) { setErr(swErr(error.message)); setLoading(false); return }
 
     if (data.user) {
       await supabase.from('users').upsert({

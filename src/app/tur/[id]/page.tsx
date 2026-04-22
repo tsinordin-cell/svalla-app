@@ -404,7 +404,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                   <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #0d2a3e)', lineHeight: 1, letterSpacing: '-0.5px' }}>
                     {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>{unit}</span>}
                   </div>
-                  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.4px' }}>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--txt3)', marginTop: 4 }}>
                     {label}
                   </div>
                 </div>
