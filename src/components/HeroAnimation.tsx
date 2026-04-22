@@ -144,7 +144,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
-    const WL = () => H * 0.52
+    const WL = () => H * 0.55
 
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
     const wave = (x: number): number => {
@@ -483,12 +483,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Midsommarstång ──────────────────────────────────────────────────── */
     const midsommarstang = (x: number, y: number) => {
-      const ph = H * 0.065
-      cx.strokeStyle = '#587830'; cx.lineWidth = 2.0; cx.lineCap = 'round'
+      const ph = H * 0.090
+      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.8; cx.lineCap = 'round'
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
       // Cross piece
-      const cw = H * 0.024, cy2 = y - ph * 0.80
-      cx.strokeStyle = '#587830'; cx.lineWidth = 1.6
+      const cw = H * 0.032, cy2 = y - ph * 0.80
+      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.2
       cx.beginPath(); cx.moveTo(x - cw, cy2); cx.lineTo(x + cw, cy2); cx.stroke()
       // Green wreath at top
       cx.fillStyle = 'rgba(72,148,48,0.78)'
