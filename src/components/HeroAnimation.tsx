@@ -29,7 +29,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunX: 0.73,   sunY: 0.092, sunR: 0.034,
     sunInner:     '#fffee0', sunOuter: '#ffe070',
     glowA: 0.48,  glowColor: '255,225,90',
-    water:        ['#2488c0','#186aa8','#104e84','#082848'],
+    water:        ['#2488c0','#186aa8','#104e84','#0a2e5a'],
     waterHighlight:'rgba(255,255,255,0.20)',
     farIsland:    'rgba(105,135,155,0.48)',
     islandGreen:  '#4e7845',
@@ -65,7 +65,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunX: 0.60,   sunY: 0.50, sunR: 0.050,
     sunInner:     '#fffce0', sunOuter: '#ffd080',
     glowA: 0.45,  glowColor: '255,210,100',
-    water:        ['#182858','#102048','#0c1a38','#060e22'],
+    water:        ['#182858','#102048','#0c1a38','#0a1440'],
     waterHighlight:'rgba(160,170,255,0.20)',
     farIsland:    'rgba(55,45,85,0.58)',
     islandGreen:  '#234050',
@@ -83,7 +83,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunX: 0.20,   sunY: 0.18, sunR: 0.026,
     sunInner:     'rgba(220,220,200,0.6)', sunOuter: 'rgba(180,180,160,0.3)',
     glowA: 0.20,  glowColor: '200,210,200',
-    water:        ['#253c48','#1c2e3a','#14202c','#0a121c'],
+    water:        ['#253c48','#1c2e3a','#14202c','#0a1828'],
     waterHighlight:'rgba(180,210,230,0.14)',
     farIsland:    'rgba(55,70,75,0.62)',
     islandGreen:  '#304438',
@@ -225,11 +225,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     // Sky extends past WL() to prevent gap when wave dips below baseline
     const drawSky = () => {
-      const g = cx.createLinearGradient(0, 0, 0, H * 0.58)
+      const g = cx.createLinearGradient(0, 0, 0, H * 0.62)
       const [s0, s1, s2, s3] = th.sky
       g.addColorStop(0, s0); g.addColorStop(0.35, s1)
       g.addColorStop(0.75, s2); g.addColorStop(1, s3)
-      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.58)
+      cx.fillStyle = g; cx.fillRect(0, 0, W, H * 0.62)
     }
 
     const drawSun = () => {
@@ -270,20 +270,18 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.moveTo(bx - bw/2 - 1, by); cx.lineTo(bx + bw/2 + 1, by); cx.lineTo(bx, by - bh * 0.60)
         cx.closePath(); cx.fill()
       }
-      // Island 1 (left) — röd · gul · blå — locked same Y
+      // Island 1 (left) — röd · gul · blå — tight west-coast row
       const bhb = H * 0.015, bwb = W * 0.015
-      sjobod(W*0.072, H*0.411, bwb, bhb, 'rgba(192,40,28,0.84)')
-      sjobod(W*0.113, H*0.411, bwb, bhb, 'rgba(200,162,22,0.82)')
-      sjobod(W*0.154, H*0.411, bwb, bhb, 'rgba(28,76,168,0.80)')
-      // Island 2 (centre) — röd · gul · blå · vit — locked same Y
-      sjobod(W*0.430, H*0.400, bwb, bhb, 'rgba(192,40,28,0.84)')
-      sjobod(W*0.478, H*0.400, bwb, bhb, 'rgba(200,162,22,0.82)')
-      sjobod(W*0.526, H*0.400, bwb, bhb, 'rgba(28,76,168,0.80)')
-      sjobod(W*0.574, H*0.400, bwb, bhb, 'rgba(228,220,206,0.78)')
-      // Island 3 (right) — gul sjöbod + midsommarstång centralt
+      sjobod(W*0.080, H*0.411, bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.099, H*0.411, bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.118, H*0.411, bwb, bhb, 'rgba(28,76,168,0.80)')
+      // Island 2 (centre) — röd · gul · blå · vit — tight west-coast row, centred
+      sjobod(W*0.474, H*0.400, bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.493, H*0.400, bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.512, H*0.400, bwb, bhb, 'rgba(28,76,168,0.80)')
+      sjobod(W*0.531, H*0.400, bwb, bhb, 'rgba(228,220,206,0.78)')
+      // Island 3 (right) — gul sjöbod
       sjobod(W*0.888, H*0.396, bwb, bhb, 'rgba(200,162,22,0.82)')
-      // Midsommarstång — on outermost far right island, centrally placed
-      midsommarstang(W*0.930, H*0.376, 0.36)
     }
 
     /* ── Pine tree ───────────────────────────────────────────────────────── */
@@ -363,35 +361,61 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     /* ── Fishing net ────────────────────────────────────────────────────── */
     const fishingNet = (x: number, y: number) => {
       const nw = W * 0.062, nh = H * 0.048
+      const cols = 13, rows = 7
       // Drying posts
       cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - nh - H*0.012); cx.stroke()
       cx.beginPath(); cx.moveTo(x + nw, y); cx.lineTo(x + nw, y - nh - H*0.012); cx.stroke()
       // Top rope line
-      cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.6
+      cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.5
       cx.beginPath(); cx.moveTo(x, y - nh - H*0.006); cx.lineTo(x + nw, y - nh - H*0.006); cx.stroke()
-      // Cork floats along top rope
+      // Cork floats
       cx.fillStyle = '#d47818'
-      for (let i = 0; i <= 5; i++) {
-        const fx = x + i * nw / 5
-        cx.beginPath(); cx.ellipse(fx, y - nh - H*0.006, 3.5, 2.2, 0, 0, Math.PI * 2); cx.fill()
+      for (let i = 0; i <= 6; i++) {
+        const fx = x + i * nw / 6
+        cx.beginPath(); cx.ellipse(fx, y - nh - H*0.006, 2.8, 1.8, 0, 0, Math.PI * 2); cx.fill()
       }
-      // Net — vertical threads with gentle sag
-      cx.strokeStyle = 'rgba(90,68,38,0.48)'; cx.lineWidth = 0.8
-      for (let i = 0; i <= 5; i++) {
-        const nx2 = x + i * nw / 5
-        const sag = Math.sin(i * 0.9 + t * 0.18) * H * 0.004
+      // Pre-compute node positions with organic irregularity
+      const nodeX = (col: number, row: number): number => {
+        const base = x + col * nw / cols
+        // subtle sag: inner columns droop slightly more
+        const sag = Math.sin(col * 0.7 + t * 0.14) * H * 0.0018 * (1 + row * 0.3)
+        return base + sag * 0.4
+      }
+      const nodeY = (col: number, row: number): number => {
+        const base = y - nh + row * nh / rows
+        // catenary-style gentle bow per column
+        const bow = Math.sin(col * Math.PI / cols) * H * 0.006
+        const wiggle = Math.sin(col * 1.1 + row * 0.9 + t * 0.20) * H * 0.0008
+        return base + bow + wiggle
+      }
+      // Vertical threads
+      cx.strokeStyle = 'rgba(88,65,36,0.42)'; cx.lineWidth = 0.35; cx.lineCap = 'round'
+      for (let c = 0; c <= cols; c++) {
         cx.beginPath()
-        cx.moveTo(nx2, y - nh - H*0.004)
-        cx.bezierCurveTo(nx2 + sag, y - nh*0.60, nx2 - sag, y - nh*0.28, nx2, y)
+        cx.moveTo(nodeX(c, 0), nodeY(c, 0))
+        for (let r = 1; r <= rows; r++) {
+          cx.lineTo(nodeX(c, r), nodeY(c, r))
+        }
         cx.stroke()
       }
-      // Net — horizontal threads
-      for (let j = 1; j <= 3; j++) {
-        const ny2 = y - nh * (j / 3.5)
+      // Horizontal threads
+      for (let r = 0; r <= rows; r++) {
         cx.beginPath()
-        cx.moveTo(x, ny2); cx.lineTo(x + nw, ny2)
+        cx.moveTo(nodeX(0, r), nodeY(0, r))
+        for (let c = 1; c <= cols; c++) {
+          cx.lineTo(nodeX(c, r), nodeY(c, r))
+        }
         cx.stroke()
+      }
+      // Knot dots at intersections — sparse, naturalistic
+      cx.fillStyle = 'rgba(72,50,24,0.55)'
+      for (let c = 0; c <= cols; c++) {
+        for (let r = 0; r <= rows; r++) {
+          cx.beginPath()
+          cx.arc(nodeX(c, r), nodeY(c, r), 0.9, 0, Math.PI * 2)
+          cx.fill()
+        }
       }
     }
 
@@ -623,12 +647,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       for (let x = 2; x <= W; x += 2) cx.lineTo(x, wave(x))
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const [w0, w1, w2, w3] = th.water
-      const s3 = th.sky[3]
-      const wg = cx.createLinearGradient(0, WL() - H * 0.018, 0, H)
-      wg.addColorStop(0,    s3)    // match sky bottom — eliminates seam
-      wg.addColorStop(0.04, w0)    // transition to water colour
-      wg.addColorStop(0.20, w1)
-      wg.addColorStop(0.55, w2)
+      const wg = cx.createLinearGradient(0, WL(), 0, H)
+      wg.addColorStop(0,    w0)
+      wg.addColorStop(0.10, w0)
+      wg.addColorStop(0.30, w1)
+      wg.addColorStop(0.60, w2)
       wg.addColorStop(1,    w3)
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
@@ -680,9 +703,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Deeper blue-green tint — natural, not aquarium
       const dg = cx.createLinearGradient(0, wb, 0, H)
       dg.addColorStop(0,    `${th.seabedTint}0)`)
-      dg.addColorStop(0.20, `${th.seabedTint}0.08)`)
-      dg.addColorStop(0.55, `${th.seabedTint}0.32)`)
-      dg.addColorStop(1,    `${th.seabedTint}0.56)`)
+      dg.addColorStop(0.20, `${th.seabedTint}0.04)`)
+      dg.addColorStop(0.55, `${th.seabedTint}0.12)`)
+      dg.addColorStop(1,    `${th.seabedTint}0.22)`)
       cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
       // Two subtle light rays — slower, narrower
       for (let i = 0; i < 2; i++) {
