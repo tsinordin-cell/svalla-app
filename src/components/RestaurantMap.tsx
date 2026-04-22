@@ -77,7 +77,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
               background:white;border-radius:50%;width:36px;height:36px;
               display:flex;align-items:center;justify-content:center;font-size:16px;
               box-shadow:0 3px 12px rgba(0,45,60,0.25);
-              border:2.5px solid var(--acc, #c96e2a);
+              border:2.5px solid var(--acc);
               cursor:pointer;
             ">🍽</div>`,
           iconSize: [36, 36],

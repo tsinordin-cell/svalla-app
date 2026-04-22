@@ -64,7 +64,7 @@ function GuideContent() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg, #f7fbfc)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg)' }}>
       {/* Header */}
       <header style={{
         padding: '12px 16px',
@@ -106,7 +106,7 @@ function GuideContent() {
           <div>
             {/* Welcome */}
             <div style={{
-              background: 'var(--white, #fff)', borderRadius: 16, padding: '16px',
+              background: 'var(--white)', borderRadius: 16, padding: '16px',
               border: '1.5px solid rgba(10,123,140,0.10)',
               marginBottom: 16,
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
@@ -127,7 +127,7 @@ function GuideContent() {
                 <button key={s} onClick={() => send(s)} style={{
                   display: 'block', width: '100%', textAlign: 'left',
                   padding: '11px 14px', marginBottom: 6, borderRadius: 12,
-                  background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.10)',
+                  background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.10)',
                   fontSize: 13, color: 'var(--sea)', fontWeight: 600, cursor: 'pointer',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.04)',
                 }}>
@@ -175,7 +175,7 @@ function GuideContent() {
             }}>🧭</div>
             <div style={{
               padding: '11px 14px', borderRadius: '18px 18px 18px 4px',
-              background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.10)',
+              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.10)',
               display: 'flex', gap: 5, alignItems: 'center',
             }}>
               {[0, 0.15, 0.3].map((d, i) => (
@@ -212,8 +212,8 @@ function GuideContent() {
             style={{
               flex: 1, padding: '11px 14px', borderRadius: 20,
               border: '1.5px solid rgba(10,123,140,0.18)',
-              background: 'var(--white, #fff)', fontSize: 13, resize: 'none', outline: 'none',
-              fontFamily: 'inherit', color: 'var(--txt, #162d3a)',
+              background: 'var(--white)', fontSize: 13, resize: 'none', outline: 'none',
+              fontFamily: 'inherit', color: 'var(--txt)',
               maxHeight: 120, overflowY: 'auto',
             }}
           />

@@ -99,7 +99,7 @@ export default function BlockButton({
             aria-label={`Blockera ${targetUsername}`}
             style={{
               width: '100%', maxWidth: 340,
-              background: 'var(--bg, #f2f8fa)',
+              background: 'var(--bg)',
               borderRadius: 20, padding: 24,
               boxShadow: '0 8px 40px rgba(0,20,30,0.2)',
             }}

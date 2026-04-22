@@ -2,7 +2,7 @@ const sk = { background: 'rgba(30,92,130,0.09)', borderRadius: 8 } as const
 
 export default function PlatserLoading() {
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg, #f2f8fa)' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)' }}>
       {/* Map skeleton — takes ~60% of viewport height */}
       <div style={{ width: '100%', height: '55vh', background: 'rgba(30,92,130,0.07)', position: 'relative' }} className="sk">
         {/* Fake map tiles hint */}
@@ -23,7 +23,7 @@ export default function PlatserLoading() {
         </div>
         {[1,2,3].map(i => (
           <div key={i} style={{
-            background: 'var(--white, #fff)', borderRadius: 18,
+            background: 'var(--white)', borderRadius: 18,
             marginBottom: 10, overflow: 'hidden',
             boxShadow: '0 1px 8px rgba(0,30,50,0.06)',
           }}>

@@ -2,7 +2,7 @@ const sk = { background: 'rgba(30,92,130,0.09)', borderRadius: 8 } as const
 
 export default function NotiserLoading() {
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg, #f2f8fa)' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)' }}>
       <header style={{
         display: 'flex', alignItems: 'center', padding: '14px 16px 12px',
         background: 'var(--glass-96, rgba(242,248,250,0.96))',
@@ -17,7 +17,7 @@ export default function NotiserLoading() {
         {[1,2,3,4,5,6].map(i => (
           <div key={i} style={{
             display: 'flex', alignItems: 'center', gap: 12,
-            background: 'var(--white, #fff)', borderRadius: 18,
+            background: 'var(--white)', borderRadius: 18,
             padding: '14px 16px',
             boxShadow: '0 1px 8px rgba(0,30,50,0.06)',
           }}>

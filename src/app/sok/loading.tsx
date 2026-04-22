@@ -2,7 +2,7 @@ const sk = { background: 'rgba(30,92,130,0.09)', borderRadius: 8 } as const
 
 export default function SokLoading() {
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg, #f2f8fa)' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)' }}>
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px',
         background: 'var(--glass-96, rgba(242,248,250,0.96))',
@@ -25,7 +25,7 @@ export default function SokLoading() {
         {[1,2,3,4,5].map(i => (
           <div key={i} style={{
             display: 'flex', alignItems: 'center', gap: 12,
-            background: 'var(--white, #fff)', borderRadius: 18,
+            background: 'var(--white)', borderRadius: 18,
             padding: '12px 14px', marginBottom: 8,
             boxShadow: '0 1px 8px rgba(0,30,50,0.06)',
           }}>

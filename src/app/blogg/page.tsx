@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function BloggPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '60px 20px 40px',
@@ -35,7 +35,7 @@ export default function BloggPage() {
           {POSTS_META.map(post => (
             <Link key={post.slug} href={`/blogg/${post.slug}`} style={{ textDecoration: 'none' }}>
               <article style={{
-                background: 'var(--white, #fff)',
+                background: 'var(--white)',
                 borderRadius: 16,
                 overflow: 'hidden',
                 boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
@@ -65,7 +65,7 @@ export default function BloggPage() {
                     }}>{post.category}</span>
                     <span style={{ fontSize: 11, color: 'var(--txt3)', paddingTop: 3 }}>{post.readTime}</span>
                   </div>
-                  <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 10px', lineHeight: 1.3 }}>
+                  <h2 style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', margin: '0 0 10px', lineHeight: 1.3 }}>
                     {post.title}
                   </h2>
                   <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 16px', flex: 1 }}>

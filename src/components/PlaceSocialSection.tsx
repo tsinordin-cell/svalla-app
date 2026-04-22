@@ -128,7 +128,7 @@ export default function PlaceSocialSection({
         href={checkInUrl}
         style={{
           display: 'flex', alignItems: 'center', gap: 12,
-          background: 'var(--white, #fff)',
+          background: 'var(--white)',
           border: '1.5px solid rgba(30,92,130,0.18)',
           borderRadius: 18, padding: '14px 18px', textDecoration: 'none',
           boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
@@ -136,12 +136,12 @@ export default function PlaceSocialSection({
       >
         <span style={{ fontSize: 24 }}>📍</span>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>Checka in här</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Checka in här</div>
           <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>
             Snabbt &quot;jag är här&quot; — utan full turlogg
           </div>
         </div>
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </Link>
@@ -156,7 +156,7 @@ export default function PlaceSocialSection({
             {visitors.slice(0, 12).map(v => (
               <Link key={v.user_id} href={`/u/${v.username}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 56 }}>
                 <Avatar src={v.avatar} name={v.username} size={48} />
-                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt, #162d3a)', marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 56 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt)', marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 56 }}>
                   @{v.username}
                 </div>
                 {v.visit_count > 1 && (
@@ -177,7 +177,7 @@ export default function PlaceSocialSection({
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {checkIns.map(c => (
               <div key={c.id} style={{
-                background: 'var(--white, #fff)', borderRadius: 16, padding: 14,
+                background: 'var(--white)', borderRadius: 16, padding: 14,
                 boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
                 display: 'flex', gap: 12,
               }}>
@@ -186,7 +186,7 @@ export default function PlaceSocialSection({
                 </Link>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                    <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
+                    <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
                       @{c.username ?? 'okänd'}
                     </Link>
                     <span style={{ fontSize: 11, color: 'var(--txt3)' }}>· {timeAgo(c.created_at)}</span>
@@ -217,7 +217,7 @@ export default function PlaceSocialSection({
             <button onClick={() => setShowReviewModal(true)}
               style={{
                 padding: '6px 12px', borderRadius: 10, border: '1px solid rgba(30,92,130,0.20)',
-                background: myReview ? 'rgba(30,92,130,0.08)' : 'var(--white, #fff)',
+                background: myReview ? 'rgba(30,92,130,0.08)' : 'var(--white)',
                 fontSize: 12, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer',
               }}>
               {myReview ? 'Ändra ditt omdöme' : '+ Skriv omdöme'}
@@ -238,7 +238,7 @@ export default function PlaceSocialSection({
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {reviews.map(r => (
             <div key={r.id} style={{
-              background: 'var(--white, #fff)', borderRadius: 16, padding: 14,
+              background: 'var(--white)', borderRadius: 16, padding: 14,
               boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
               display: 'flex', gap: 12,
             }}>
@@ -247,7 +247,7 @@ export default function PlaceSocialSection({
               </Link>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-                  <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', textDecoration: 'none' }}>
+                  <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
                     @{r.username ?? 'okänd'}
                   </Link>
                   <span style={{ fontSize: 11, color: 'var(--txt3)' }}>· {timeAgo(r.created_at)}</span>
@@ -276,11 +276,11 @@ export default function PlaceSocialSection({
           display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
         }} onClick={() => setShowReviewModal(false)}>
           <div onClick={e => e.stopPropagation()} style={{
-            width: '100%', maxWidth: 520, background: 'var(--white, #fff)',
+            width: '100%', maxWidth: 520, background: 'var(--white)',
             borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 30,
           }}>
             <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>
               {myReview ? 'Ändra ditt omdöme' : 'Skriv omdöme'}
             </h2>
             <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 16px' }}>

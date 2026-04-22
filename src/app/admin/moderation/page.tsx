@@ -50,7 +50,7 @@ export default async function ModerationPage({
     .eq('status', 'open')
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
 
       {/* Header */}
       <header style={{
@@ -110,7 +110,7 @@ export default async function ModerationPage({
         {queue.length === 0 ? (
           <div style={{
             textAlign: 'center', padding: '60px 20px',
-            background: 'var(--white, #fff)', borderRadius: 18,
+            background: 'var(--white)', borderRadius: 18,
             border: '1px solid rgba(10,123,140,0.10)',
           }}>
             <div style={{ fontSize: 48, marginBottom: 14 }}>✅</div>
@@ -125,7 +125,7 @@ export default async function ModerationPage({
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {queue.map(item => (
               <div key={item.id} style={{
-                background: 'var(--white, #fff)', borderRadius: 16,
+                background: 'var(--white)', borderRadius: 16,
                 border: item.auto_flagged
                   ? '1.5px solid rgba(200,30,30,0.25)'
                   : '1px solid rgba(10,123,140,0.10)',

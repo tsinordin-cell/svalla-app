@@ -671,7 +671,7 @@ export default function SparaPage() {
       <div className="min-h-screen">
         <header className="sticky top-0 z-40 flex items-center gap-3 px-4 py-3 bg-white/96 border-b border-sea-light/40">
           <button onClick={() => router.back()} className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} className="w-5 h-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -1060,8 +1060,8 @@ export default function SparaPage() {
             padding: 0,
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
-            <circle cx="12" cy="12" r="3" fill="var(--sea, #1e5c82)" stroke="none"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}>
+            <circle cx="12" cy="12" r="3" fill="var(--sea)" stroke="none"/>
             <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
             <circle cx="12" cy="12" r="7"/>
           </svg>
@@ -1296,7 +1296,7 @@ export default function SparaPage() {
         )}
 
         {/* ── Trip summary ── */}
-        <div style={{ background: 'var(--white, #fff)', borderRadius: 16, padding: '16px', boxShadow: '0 2px 12px rgba(0,30,50,.07)' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 16, padding: '16px', boxShadow: '0 2px 12px rgba(0,30,50,.07)' }}>
           {/* Overall bearing if available */}
           {bearing !== null && (
             <div style={{
@@ -1320,7 +1320,7 @@ export default function SparaPage() {
         </div>
 
         {/* ── Rating ── */}
-        <div style={{ background: 'var(--white, #fff)', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 10px rgba(0,45,60,.06)' }}>
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '18px 16px', boxShadow: '0 2px 10px rgba(0,45,60,.06)' }}>
           <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', margin: '0 0 12px' }}>
             Hur var turen?
           </p>
@@ -1358,7 +1358,7 @@ export default function SparaPage() {
             style={{
               width: '100%', padding: '12px 14px', borderRadius: 14,
               border: '1.5px solid rgba(10,123,140,.15)',
-              background: 'var(--white, #fff)', fontSize: 14, color: 'var(--txt, #162d3a)', outline: 'none', boxSizing: 'border-box',
+              background: 'var(--white)', fontSize: 14, color: 'var(--txt)', outline: 'none', boxSizing: 'border-box',
             }}
           />
         </div>
@@ -1377,7 +1377,7 @@ export default function SparaPage() {
                 display: 'flex', alignItems: 'center', gap: 5,
                 padding: '5px 12px', borderRadius: 20,
                 border: '1.5px solid rgba(10,123,140,.2)',
-                background: aiSummary ? 'rgba(10,123,140,.08)' : 'var(--white, #fff)',
+                background: aiSummary ? 'rgba(10,123,140,.08)' : 'var(--white)',
                 color: 'var(--sea)', fontSize: 12, fontWeight: 700,
                 cursor: aiLoading ? 'default' : 'pointer',
                 opacity: aiLoading ? 0.7 : 1,
@@ -1405,7 +1405,7 @@ export default function SparaPage() {
               border: aiSummary && caption === aiSummary
                 ? '1.5px solid rgba(10,123,140,.35)'
                 : '1.5px solid rgba(10,123,140,.15)',
-              background: 'var(--white, #fff)', fontSize: 14, color: 'var(--txt, #162d3a)', outline: 'none',
+              background: 'var(--white)', fontSize: 14, color: 'var(--txt)', outline: 'none',
               resize: 'none', fontFamily: 'inherit', boxSizing: 'border-box',
               transition: 'border-color .2s',
             }}

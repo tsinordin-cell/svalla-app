@@ -46,7 +46,7 @@ export default function Error({
           className="press-feedback"
           style={{
             padding: '12px 24px', borderRadius: 14, border: '1.5px solid rgba(10,123,140,0.2)',
-            background: 'var(--white, #fff)', color: 'var(--txt2, #3d5865)', fontSize: 14, fontWeight: 600,
+            background: 'var(--white)', color: 'var(--txt2)', fontSize: 14, fontWeight: 600,
             textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
           }}
         >

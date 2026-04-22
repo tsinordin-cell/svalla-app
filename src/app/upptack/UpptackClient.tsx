@@ -345,7 +345,7 @@ export default function UpptackClient() {
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           zIndex: 1001,
-          background: 'var(--white, #fff)',
+          background: 'var(--white)',
           borderRadius: '20px 20px 0 0',
           boxShadow: '0 -4px 32px rgba(0,45,60,0.18)',
           padding: '16px 20px 32px',

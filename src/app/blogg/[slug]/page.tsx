@@ -1176,7 +1176,7 @@ function renderContent(content: string) {
 
     if (line.startsWith('## ')) {
       elements.push(
-        <h2 key={key++} style={{ color: 'var(--txt, #162d3a)', fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>
+        <h2 key={key++} style={{ color: 'var(--txt)', fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>
           {line.slice(3)}
         </h2>
       )
@@ -1188,7 +1188,7 @@ function renderContent(content: string) {
       )
     } else if (line.startsWith('**') && line.endsWith('**')) {
       elements.push(
-        <p key={key++} style={{ margin: '12px 0', fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
+        <p key={key++} style={{ margin: '12px 0', fontWeight: 700, color: 'var(--txt)' }}>
           {line.slice(2, -2)}
         </p>
       )
@@ -1222,7 +1222,7 @@ function renderContent(content: string) {
       elements.push(
         <p key={key++} style={{ margin: '10px 0', color: 'var(--txt2, #2a4a5a)', lineHeight: 1.75 }}>
           {parts.map((part, pi) =>
-            pi % 2 === 1 ? <strong key={pi} style={{ color: 'var(--txt, #162d3a)' }}>{part}</strong> : part
+            pi % 2 === 1 ? <strong key={pi} style={{ color: 'var(--txt)' }}>{part}</strong> : part
           )}
         </p>
       )
@@ -1239,7 +1239,7 @@ function renderContent(content: string) {
       if (tableRows.length) {
         wrapped.push(
           <div key={`table-${wrapped.length}`} style={{ overflowX: 'auto', margin: '16px 0' }}>
-            <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg, #f7fbfc)', borderRadius: 8 }}>
+            <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg)', borderRadius: 8 }}>
               <tbody>{tableRows}</tbody>
             </table>
           </div>
@@ -1252,7 +1252,7 @@ function renderContent(content: string) {
   if (tableRows.length) {
     wrapped.push(
       <div key={`table-${wrapped.length}`} style={{ overflowX: 'auto', margin: '16px 0' }}>
-        <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg, #f7fbfc)', borderRadius: 8 }}>
+        <table style={{ borderCollapse: 'collapse', width: '100%', background: 'var(--bg)', borderRadius: 8 }}>
           <tbody>{tableRows}</tbody>
         </table>
       </div>
@@ -1307,7 +1307,7 @@ export default async function BloggPostPage({
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -1348,7 +1348,7 @@ export default async function BloggPostPage({
       {/* Content */}
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
         <article style={{
-          background: 'var(--white, #fff)',
+          background: 'var(--white)',
           borderRadius: 16,
           padding: '36px 32px',
           boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
@@ -1370,7 +1370,7 @@ export default async function BloggPostPage({
         {/* Back + CTA */}
         <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
           <Link href="/blogg" style={{
-            padding: '12px 24px', background: 'var(--white, #fff)', color: 'var(--sea)',
+            padding: '12px 24px', background: 'var(--white)', color: 'var(--sea)',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             border: '1.5px solid #1e5c82',
           }}>← Fler artiklar</Link>

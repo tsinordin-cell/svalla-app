@@ -149,7 +149,7 @@ export default function ProfileTeaserPopover({
           <div
             onClick={e => e.stopPropagation()}
             style={{
-              width: '100%', maxWidth: 520, background: 'var(--white, #fff)',
+              width: '100%', maxWidth: 520, background: 'var(--white)',
               borderRadius: '20px 20px 0 0', padding: 20, paddingBottom: 28,
               animation: 'slideUp 0.18s cubic-bezier(0.2, 0.8, 0.3, 1)',
             }}
@@ -186,7 +186,7 @@ export default function ProfileTeaserPopover({
                   </Link>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
-                      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
+                      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)' }}>
                         @{data.username}
                         {data.nationality && <span style={{ marginLeft: 6, fontSize: 14 }}>{data.nationality}</span>}
                       </div>
@@ -226,7 +226,7 @@ export default function ProfileTeaserPopover({
                     style={{
                       flex: 1, padding: 12, borderRadius: 12,
                       border: '1px solid rgba(10,123,140,0.20)', textAlign: 'center',
-                      fontWeight: 700, fontSize: 14, color: 'var(--txt, #162d3a)', textDecoration: 'none',
+                      fontWeight: 700, fontSize: 14, color: 'var(--txt)', textDecoration: 'none',
                     }}>
                     Visa profil
                   </Link>
@@ -235,7 +235,7 @@ export default function ProfileTeaserPopover({
                       style={{
                         flex: 1, padding: 12, borderRadius: 12, border: 'none',
                         background: data.is_following ? 'rgba(10,123,140,0.10)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
-                        color: data.is_following ? 'var(--txt, #162d3a)' : '#fff',
+                        color: data.is_following ? 'var(--txt)' : '#fff',
                         fontWeight: 600, fontSize: 14,
                         cursor: followBusy ? 'wait' : 'pointer',
                         opacity: followBusy ? 0.6 : 1,
@@ -249,7 +249,7 @@ export default function ProfileTeaserPopover({
                       style={{
                         padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        textDecoration: 'none', color: 'var(--txt, #162d3a)',
+                        textDecoration: 'none', color: 'var(--txt)',
                       }}>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 18, height: 18 }}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -274,7 +274,7 @@ export default function ProfileTeaserPopover({
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ textAlign: 'center', padding: '4px 2px' }}>
-      <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt, #162d3a)', lineHeight: 1.1 }}>{value}</div>
+      <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.1 }}>{value}</div>
       <div style={{ fontSize: 9, color: 'var(--txt3)', marginTop: 3, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{label}</div>
     </div>
   )

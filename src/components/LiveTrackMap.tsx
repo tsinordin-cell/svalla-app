@@ -296,7 +296,7 @@ export default function LiveTrackMap({
             title={followOff ? 'Återställ följning' : 'Centrera'}
             style={{
               width: 40, height: 40, borderRadius: 20,
-              background: followOff ? 'linear-gradient(135deg, var(--acc, #c96e2a), #e07828)' : 'rgba(255,255,255,0.95)',
+              background: followOff ? 'linear-gradient(135deg, var(--acc), #e07828)' : 'rgba(255,255,255,0.95)',
               backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
               border: '1px solid rgba(0,0,0,0.08)',
               boxShadow: '0 2px 10px rgba(0,0,0,0.18)',
@@ -308,8 +308,8 @@ export default function LiveTrackMap({
               padding: 0,
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke={followOff ? '#fff' : 'var(--sea, #1e5c82)'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-              <circle cx="12" cy="12" r="3" fill={followOff ? '#fff' : 'var(--sea, #1e5c82)'} stroke="none"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke={followOff ? '#fff' : 'var(--sea)'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+              <circle cx="12" cy="12" r="3" fill={followOff ? '#fff' : 'var(--sea)'} stroke="none"/>
               <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
               <circle cx="12" cy="12" r="7"/>
             </svg>
@@ -329,7 +329,7 @@ export default function LiveTrackMap({
                 cursor: 'pointer', padding: 0,
               }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
                 <path d="M4 9V4h5"/>
                 <path d="M20 9V4h-5"/>
                 <path d="M4 15v5h5"/>

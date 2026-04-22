@@ -20,7 +20,7 @@ const ROUTE_COLORS = ['#0f9e64', '#1e5c82', '#c96e2a', '#7c4d1e', '#2d7d8a', '#6
 type LayerKey = 'restaurang' | 'kafe' | 'hamn' | 'bensin' | 'boende'
 
 const LAYER_COLORS: Record<LayerKey, string> = {
-  restaurang: 'var(--sea, #1e5c82)',
+  restaurang: 'var(--sea)',
   kafe:       '#7c4d1e',
   hamn:       '#c96e2a',
   bensin:     '#dc2626',
@@ -721,7 +721,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
             animation: 'spin 0.8s linear infinite',
           }} />
         ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke={userPos ? '#fff' : 'var(--sea, #1e5c82)'} strokeWidth={2} style={{ width: 20, height: 20 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke={userPos ? '#fff' : 'var(--sea)'} strokeWidth={2} style={{ width: 20, height: 20 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
             <circle cx="12" cy="9" r="2.5" />
           </svg>
@@ -743,18 +743,18 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
           bottom:     'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 12px)',
           right:      12,
           zIndex:     1000, width: 44, height: 44, borderRadius: '50%',
-          background: 'var(--white, #fff)', border: 'none', cursor: 'pointer',
+          background: 'var(--white)', border: 'none', cursor: 'pointer',
           boxShadow:  '0 2px 12px rgba(0,0,0,0.2)',
           display:    'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'background .2s',
         }}
       >
         {fullscreen ? (
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} style={{ width: 18, height: 18 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
           </svg>
         ) : (
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} style={{ width: 18, height: 18 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
           </svg>
         )}

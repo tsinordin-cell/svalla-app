@@ -44,7 +44,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
           flexShrink: 0,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea, #1e5c82)' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>
@@ -134,7 +134,7 @@ function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivE
       aria-label={label}
       onClick={onClick}
       style={{
-        background: 'var(--white, #fff)', borderRadius: '24px 24px 0 0',
+        background: 'var(--white)', borderRadius: '24px 24px 0 0',
         padding: '20px 20px calc(24px + env(safe-area-inset-bottom, 0px))',
         width: '100%', maxWidth: 480,
         boxShadow: '0 -4px 40px rgba(0,20,35,0.15)',

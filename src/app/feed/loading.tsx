@@ -1,6 +1,6 @@
 export default function FeedLoading() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {/* Header skeleton */}
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10,
@@ -35,7 +35,7 @@ export default function FeedLoading() {
         {/* Trip card skeletons — match actual 3:2 card shape to minimise CLS */}
         {[1, 2, 3].map(i => (
           <div key={i} style={{
-            background: 'var(--white, #fff)',
+            background: 'var(--white)',
             borderRadius: 20,
             marginBottom: 14,
             overflow: 'hidden',

@@ -19,7 +19,7 @@ export default function NotFound() {
         <svg aria-hidden="true" viewBox="0 0 48 48" fill="none" style={{ width: 52, height: 52 }}>
           {/* Compass rose */}
           <circle cx="24" cy="24" r="18" stroke="rgba(30,92,130,0.2)" strokeWidth="2"/>
-          <circle cx="24" cy="24" r="3" fill="var(--sea, #1e5c82)"/>
+          <circle cx="24" cy="24" r="3" fill="var(--sea)"/>
           {/* N pointer — orange (you are here but lost) */}
           <path d="M24 7 L26.5 22 L24 20 L21.5 22 Z" fill="rgba(201,110,42,0.85)"/>
           {/* S pointer — muted */}

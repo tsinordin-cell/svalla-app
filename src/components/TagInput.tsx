@@ -96,7 +96,7 @@ export default function TagInput({ tagged, onChange }: Props) {
           style={{
             width: '100%', padding: '10px 14px', borderRadius: 14,
             border: '1.5px solid rgba(10,123,140,0.18)',
-            background: 'var(--white, #fff)', fontSize: 14, color: 'var(--txt, #162d3a)',
+            background: 'var(--white)', fontSize: 14, color: 'var(--txt)',
             outline: 'none', boxSizing: 'border-box',
           }}
         />
@@ -113,7 +113,7 @@ export default function TagInput({ tagged, onChange }: Props) {
         {open && results.length > 0 && (
           <div style={{
             position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0, zIndex: 200,
-            background: 'var(--white, #fff)', borderRadius: 14,
+            background: 'var(--white)', borderRadius: 14,
             boxShadow: '0 4px 20px rgba(0,30,50,0.14)',
             border: '1px solid rgba(10,123,140,0.12)', overflow: 'hidden',
           }}>
@@ -141,7 +141,7 @@ export default function TagInput({ tagged, onChange }: Props) {
         {open && results.length === 0 && !loading && query.trim() && (
           <div style={{
             position: 'absolute', top: 'calc(100% + 4px)', left: 0, right: 0, zIndex: 200,
-            background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 14px',
+            background: 'var(--white)', borderRadius: 14, padding: '12px 14px',
             boxShadow: '0 4px 20px rgba(0,30,50,0.14)',
             fontSize: 13, color: 'var(--txt3)',
           }}>

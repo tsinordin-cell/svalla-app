@@ -113,14 +113,14 @@ export default function NotificationBell() {
           position: 'relative', flexShrink: 0,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} style={{ width: 18, height: 18 }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
         </svg>
         {unread > 0 && (
           <div style={{
             position: 'absolute', top: 4, right: 4,
             width: 16, height: 16, borderRadius: '50%',
-            background: 'var(--acc, #c96e2a)', border: '2px solid var(--bg)',
+            background: 'var(--acc)', border: '2px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
           }}>
@@ -133,7 +133,7 @@ export default function NotificationBell() {
         <div style={{
           position: 'absolute', top: 46, right: 0, zIndex: 200,
           width: 300, maxHeight: 420, overflowY: 'auto',
-          background: 'var(--white, #fff)', borderRadius: 18,
+          background: 'var(--white)', borderRadius: 18,
           boxShadow: '0 8px 40px rgba(0,30,50,0.18)',
           border: '1px solid rgba(10,123,140,0.10)',
         }}>

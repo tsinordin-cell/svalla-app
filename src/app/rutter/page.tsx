@@ -93,7 +93,7 @@ export default async function RutterPage({
   ])
   if (error) {
     return (
-      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg, #f7fbfc)' }}>
+      <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg)' }}>
         <div style={{ fontSize: 52 }}>⛵</div>
         <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda turer</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
@@ -119,7 +119,7 @@ export default async function RutterPage({
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {/* Header */}
       <header style={{
         padding: '14px 16px 10px',
@@ -168,7 +168,7 @@ export default async function RutterPage({
             <Link key={f.value} href={href(f.value, tidFilter)} style={{
               flexShrink: 0, padding: '7px 13px', borderRadius: 20,
               border: `1.5px solid ${active ? 'var(--sea)' : 'rgba(10,123,140,0.2)'}`,
-              background: active ? 'var(--sea)' : 'var(--white, #fff)',
+              background: active ? 'var(--sea)' : 'var(--white)',
               fontSize: 12, fontWeight: 600,
               color: active ? '#fff' : '#3a6a80',
               textDecoration: 'none', whiteSpace: 'nowrap',
@@ -232,7 +232,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
   return (
     <Link href={`/rutter/${t.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 10 }}>
       <article style={{
-        background: 'var(--white, #fff)', borderRadius: 16,
+        background: 'var(--white)', borderRadius: 16,
         border: '1.5px solid rgba(10,123,140,0.10)',
         overflow: 'hidden',
         boxShadow: '0 1px 4px rgba(0,45,60,0.06)',
@@ -247,7 +247,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
             }}>
               {icon} {categoryLabel}
             </span>
-            <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
+            <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
               {t.title}
             </h2>
             <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 8 }}>{t.usp}</div>

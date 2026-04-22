@@ -62,7 +62,7 @@ const FAQS = [
 
 export default function FaqPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '60px 20px 32px',
@@ -80,7 +80,7 @@ export default function FaqPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {FAQS.map((item, i) => (
             <details key={i} style={{
-              background: 'var(--white, #fff)',
+              background: 'var(--white)',
               borderRadius: 14,
               boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
               overflow: 'hidden',
@@ -89,7 +89,7 @@ export default function FaqPage() {
                 padding: '18px 22px',
                 fontWeight: 700,
                 fontSize: 15,
-                color: 'var(--txt, #162d3a)',
+                color: 'var(--txt)',
                 cursor: 'pointer',
                 listStyle: 'none',
                 display: 'flex',
@@ -126,7 +126,7 @@ export default function FaqPage() {
           <a href="mailto:info@svalla.se" style={{
             display: 'inline-block',
             padding: '10px 24px',
-            background: 'var(--white, #fff)',
+            background: 'var(--white)',
             color: 'var(--sea)',
             borderRadius: 20,
             fontWeight: 700,

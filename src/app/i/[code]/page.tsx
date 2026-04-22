@@ -48,7 +48,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
       <div style={{ maxWidth: 520, margin: '0 auto', padding: '40px 20px' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{ fontSize: 64, marginBottom: 8 }}>⛵</div>
-          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 6px' }}>
+          <h1 style={{ fontSize: 28, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>
             Välkommen till Svalla
           </h1>
           <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', margin: 0, lineHeight: 1.5 }}>
@@ -58,14 +58,14 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
 
         {valid && (
           <div style={{
-            background: 'var(--white, #fff)', borderRadius: 20, padding: '18px 20px',
+            background: 'var(--white)', borderRadius: 20, padding: '18px 20px',
             boxShadow: '0 4px 24px rgba(0,45,60,0.10)',
             border: '1.5px solid rgba(30,92,130,0.15)',
             marginBottom: 20,
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
               <span style={{ fontSize: 22 }}>🔗</span>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>
                 Du har bjudits in
               </div>
             </div>
@@ -88,7 +88,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
                 <Link href={`/logga-in?invite=${upper}&next=/i/${upper}`} style={{
                   display: 'block', padding: 12, borderRadius: 12,
                   border: '1px solid rgba(10,123,140,0.20)', textAlign: 'center',
-                  fontSize: 13, fontWeight: 700, color: 'var(--txt, #162d3a)', textDecoration: 'none',
+                  fontSize: 13, fontWeight: 700, color: 'var(--txt)', textDecoration: 'none',
                 }}>
                   Logga in
                 </Link>
@@ -99,7 +99,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
 
         {!valid && (
           <div style={{
-            background: 'var(--white, #fff)', borderRadius: 20, padding: '18px 20px',
+            background: 'var(--white)', borderRadius: 20, padding: '18px 20px',
             boxShadow: '0 2px 12px rgba(0,45,60,0.07)',
             border: '1px solid rgba(200,30,30,0.15)',
             marginBottom: 20,

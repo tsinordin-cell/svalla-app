@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function OmPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <div style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '60px 20px 40px',
@@ -29,8 +29,8 @@ export default function OmPage() {
       </div>
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
-        <div style={{ background: 'var(--white, #fff)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2, #2a4a5a)', fontSize: 15 }}>
-          <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 20, marginTop: 0 }}>Vad är Svalla?</h2>
+        <div style={{ background: 'var(--white)', borderRadius: 16, padding: '36px 32px', boxShadow: '0 2px 16px rgba(0,0,0,0.06)', lineHeight: 1.75, color: 'var(--txt2, #2a4a5a)', fontSize: 15 }}>
+          <h2 style={{ color: 'var(--txt)', fontSize: 20, marginTop: 0 }}>Vad är Svalla?</h2>
           <p>
             Svalla är en web-app för Stockholms skärgård – byggd för dig som tar dig ut med kajak, segelbåt, motorbåt eller färja och vill ha koll på vad som finns längs vägen.
           </p>
@@ -38,7 +38,7 @@ export default function OmPage() {
             Kartan täcker hela Stockholms skärgård: från Fjäderholmarna i innerskärgården till Landsort i söder. Restauranger, caféer, gästhamnar, bränsleställen, vandrarhem och naturhamnar – allt på ett ställe.
           </p>
 
-          <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 20 }}>Varför vi byggde det</h2>
+          <h2 style={{ color: 'var(--txt)', fontSize: 20 }}>Varför vi byggde det</h2>
           <p>
             Vi tröttnade på att söka i fem olika appar för att hitta en öppen krog på Möja ett sommarkvällat. Google Maps saknar hälften, Tripadvisor har gamla data och sjökorten säger ingenting om mat.
           </p>
@@ -46,7 +46,7 @@ export default function OmPage() {
             Svalla samlar det som faktiskt spelar roll för den som är ute i skärgården – med öppettider, insidertips och äkta koordinater på rätt ö.
           </p>
 
-          <h2 style={{ color: 'var(--txt, #162d3a)', fontSize: 20 }}>Kontakt</h2>
+          <h2 style={{ color: 'var(--txt)', fontSize: 20 }}>Kontakt</h2>
           <p>
             Frågor, platstips eller samarbeten?{' '}
             <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 700 }}>info@svalla.se</a>
@@ -59,7 +59,7 @@ export default function OmPage() {
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
           }}>Utforska kartan</Link>
           <Link href="/faq" style={{
-            padding: '12px 24px', background: 'var(--white, #fff)', color: 'var(--sea)',
+            padding: '12px 24px', background: 'var(--white)', color: 'var(--sea)',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
             border: '1.5px solid #1e5c82',
           }}>Vanliga frågor</Link>

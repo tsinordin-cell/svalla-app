@@ -2,14 +2,14 @@ const sk = { background: 'rgba(30,92,130,0.09)', borderRadius: 8 } as const
 
 export default function UserProfileLoading() {
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg, #f2f8fa)' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)' }}>
       {/* Hero */}
       <div style={{ height: 180, background: 'rgba(30,92,130,0.12)' }} className="sk" />
 
       <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 16px', paddingBottom: 'calc(var(--nav-h, 60px) + 16px)' }}>
         {/* Avatar + follow row */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 14, marginTop: -36, marginBottom: 16 }}>
-          <div style={{ width: 80, height: 80, flexShrink: 0, border: '3px solid var(--bg, #f2f8fa)', ...sk, borderRadius: '50%' }} className="sk" />
+          <div style={{ width: 80, height: 80, flexShrink: 0, border: '3px solid var(--bg)', ...sk, borderRadius: '50%' }} className="sk" />
           <div style={{ flex: 1, paddingBottom: 4 }}>
             <div style={{ width: '40%', height: 18, marginBottom: 8, ...sk }} className="sk" />
             <div style={{ width: '25%', height: 11, ...sk }} className="sk" />
@@ -19,7 +19,7 @@ export default function UserProfileLoading() {
 
         {/* Stats row */}
         <div style={{
-          display: 'flex', background: 'var(--white, #fff)', borderRadius: 20,
+          display: 'flex', background: 'var(--white)', borderRadius: 20,
           marginBottom: 16, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,30,50,0.07)',
         }}>
           {[1,2,3].map((i: number) => (

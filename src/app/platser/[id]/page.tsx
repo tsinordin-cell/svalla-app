@@ -141,7 +141,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -176,7 +176,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
@@ -214,7 +214,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
         {/* ── Quick info ── */}
         <div style={{
-          background: 'var(--white, #fff)', borderRadius: 18, padding: '14px 16px', marginBottom: 14,
+          background: 'var(--white)', borderRadius: 18, padding: '14px 16px', marginBottom: 14,
           boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           display: 'flex', flexWrap: 'wrap', gap: 10,
         }}>
@@ -231,7 +231,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               rel="noopener noreferrer"
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
-                fontSize: 13, color: 'var(--sea, #1e5c82)', fontWeight: 600, textDecoration: 'none',
+                fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
                 marginLeft: 'auto',
               }}
             >
@@ -251,10 +251,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             border: '1.5px solid rgba(30,92,130,0.14)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
           }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--sea, #1e5c82)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 6 }}>
               🌊 Varför hit?
             </div>
-            <p style={{ fontSize: 14, color: 'var(--sea, #1e5c82)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+            <p style={{ fontSize: 14, color: 'var(--sea)', lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
               {r.core_experience}
             </p>
           </div>
@@ -279,7 +279,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Description ── */}
         {r.description && (
           <div style={{
-            background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
+            background: 'var(--white)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
             <p style={{ fontSize: 14, color: 'var(--txt2, #4a6878)', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
@@ -329,7 +329,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
         {/* ── Menu ── */}
         {r.menu && (
           <div style={{
-            background: 'var(--white, #fff)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
+            background: 'var(--white)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
             <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '0 0 10px' }}>
@@ -354,13 +354,13 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               {recentTrips.map((t: { id: string; image: string; location_name: string | null; created_at: string; users?: { username: string } | { username: string }[] | null }) => (
                 <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
                   <div style={{
-                    width: 100, background: 'var(--white, #fff)', borderRadius: 12, overflow: 'hidden',
+                    width: 100, background: 'var(--white)', borderRadius: 12, overflow: 'hidden',
                     boxShadow: '0 2px 8px rgba(0,45,60,0.07)', border: '1px solid rgba(10,123,140,0.08)',
                   }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img loading="lazy" decoding="async" src={t.image} alt="" style={{ width: '100%', height: 70, objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '6px 8px' }}>
-                      <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {Array.isArray(t.users) ? t.users[0]?.username : (t.users as { username: string } | null)?.username ?? 'Okänd'}
                       </div>
                       <div style={{ fontSize: 8, color: 'var(--txt3)', marginTop: 1 }}>
@@ -385,7 +385,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
               {nearbyTours.map((t: any) => (
                 <Link key={t.id} href={`/rutter/${t.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
-                    background: 'var(--white, #fff)', borderRadius: 16, padding: '13px 16px',
+                    background: 'var(--white)', borderRadius: 16, padding: '13px 16px',
                     boxShadow: '0 2px 10px rgba(0,45,60,0.07)',
                     border: '1px solid rgba(10,123,140,0.09)',
                     display: 'flex', alignItems: 'center', gap: 12,
@@ -396,7 +396,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
                     }}>⛵</div>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {t.title}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>

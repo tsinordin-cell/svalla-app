@@ -103,7 +103,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 100 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100 }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -166,13 +166,13 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             { icon: '📅', label: 'Säsong', value: t.season },
           ].map(({ icon, label, value }) => (
             <div key={label} style={{
-              background: 'var(--white, #fff)', borderRadius: 14,
+              background: 'var(--white)', borderRadius: 14,
               border: '1.5px solid rgba(10,123,140,0.10)',
               padding: '11px 12px', textAlign: 'center',
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
               <div style={{ fontSize: 18, marginBottom: 3 }}>{icon}</div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{value}</div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.2 }}>{value}</div>
               <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500, marginTop: 2 }}>{label}</div>
             </div>
           ))}
@@ -186,7 +186,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                 <div key={h} style={{
                   display: 'flex', alignItems: 'center', gap: 10,
                   padding: '10px 13px', borderRadius: 12,
-                  background: 'var(--white, #fff)', border: '1px solid rgba(10,123,140,0.09)',
+                  background: 'var(--white)', border: '1px solid rgba(10,123,140,0.09)',
                 }}>
                   <span style={{ fontSize: 16 }}>✦</span>
                   <span style={{ fontSize: 13, color: 'var(--txt2, #2a4a5a)', fontWeight: 500 }}>{h}</span>
@@ -255,7 +255,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: 12,
                   padding: '11px 13px', borderRadius: 12,
-                  background: 'var(--white, #fff)', border: '1px solid rgba(10,123,140,0.09)',
+                  background: 'var(--white)', border: '1px solid rgba(10,123,140,0.09)',
                 }}>
                   <div style={{ position: 'relative', flexShrink: 0 }}>
                     <div style={{
@@ -273,7 +273,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                     }}>{i + 1}</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>{f.namn}</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>{f.namn}</div>
                     <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
                       {f.typ} {f.nara_bryggan ? '· Nära bryggan' : ''}
                     </div>
@@ -324,11 +324,11 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               {nearbyRests.map((r: { id: string; name: string; tags?: string[]; core_experience?: string | null }) => (
                 <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
-                    background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 14px',
+                    background: 'var(--white)', borderRadius: 14, padding: '12px 14px',
                     boxShadow: '0 1px 6px rgba(0,45,60,0.07)',
                     border: '1px solid rgba(10,123,140,0.09)',
                   }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', marginBottom: 2 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 2 }}>
                       {r.name}
                     </div>
                     {r.core_experience && (

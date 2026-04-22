@@ -87,7 +87,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
             aria-label="Anmäl innehåll"
             style={{
               width: '100%', maxWidth: 480,
-              background: 'var(--bg, #f2f8fa)',
+              background: 'var(--bg)',
               borderRadius: '20px 20px 0 0',
               padding: '20px 20px calc(20px + env(safe-area-inset-bottom, 0px))',
               boxShadow: '0 -4px 32px rgba(0,20,30,0.18)',

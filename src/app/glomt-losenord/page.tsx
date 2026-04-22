@@ -40,7 +40,7 @@ export default function GlomtLosenordPage() {
 
       {/* Card */}
       <div style={{
-        flex: 1, background: 'var(--bg, #f7fbfc)',
+        flex: 1, background: 'var(--bg)',
         borderRadius: '28px 28px 0 0',
         padding: '32px 24px',
         boxShadow: '0 -8px 32px rgba(0,30,50,0.15)',
@@ -49,7 +49,7 @@ export default function GlomtLosenordPage() {
           {sent ? (
             <div style={{ textAlign: 'center', paddingTop: 20 }}>
               <div style={{ fontSize: 56, marginBottom: 16 }}>📬</div>
-              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', marginBottom: 8 }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 8 }}>
                 Kolla din inkorg!
               </h2>
               <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.6, marginBottom: 28 }}>
@@ -67,7 +67,7 @@ export default function GlomtLosenordPage() {
             </div>
           ) : (
             <form onSubmit={handle} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 4px' }}>
+              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>
                 Återställ lösenord
               </h2>
               <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
@@ -84,7 +84,7 @@ export default function GlomtLosenordPage() {
                 style={{
                   width: '100%', padding: '14px 16px', borderRadius: 16, boxSizing: 'border-box',
                   background: 'rgba(10,123,140,0.06)', border: '1.5px solid rgba(10,123,140,0.15)',
-                  fontSize: 15, color: 'var(--txt, #162d3a)', outline: 'none', fontFamily: 'inherit',
+                  fontSize: 15, color: 'var(--txt)', outline: 'none', fontFamily: 'inherit',
                 }}
               />
 

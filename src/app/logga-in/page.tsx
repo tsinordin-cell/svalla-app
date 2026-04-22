@@ -7,7 +7,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
   background: 'rgba(10,123,140,0.06)', border: '1.5px solid rgba(10,123,140,0.15)',
-  fontSize: 15, color: 'var(--txt, #162d3a)', outline: 'none', fontFamily: 'inherit',
+  fontSize: 15, color: 'var(--txt)', outline: 'none', fontFamily: 'inherit',
   transition: 'border-color 0.15s',
 }
 
@@ -18,7 +18,7 @@ function WaveDivider() {
       style={{ display: 'block', width: '100%', height: 40, marginBottom: -1 }}>
       <path
         d="M0,20 C60,35 120,5 180,20 C240,35 300,5 375,20 L375,40 L0,40 Z"
-        style={{ fill: 'var(--bg, #f0f8fb)' }}
+        style={{ fill: 'var(--bg)' }}
       />
     </svg>
   )
@@ -197,11 +197,11 @@ export default function LoggaInPage() {
       {/* ── Kort ── */}
       <div style={{
         flex: 1,
-        background: 'var(--bg, #f0f8fb)',
+        background: 'var(--bg)',
         padding: '24px 20px 52px',
       }}>
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt, #162d3a)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
             {isNew ? 'Skapa konto' : 'Logga in'}
           </h2>
 
@@ -214,9 +214,9 @@ export default function LoggaInPage() {
                 className="oauth-btn"
                 style={{
                   width: '100%', padding: '13px 16px', borderRadius: 14, marginBottom: 12,
-                  background: 'var(--white, #fff)', border: '1.5px solid rgba(10,123,140,0.15)',
+                  background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-                  fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)', cursor: 'pointer',
+                  fontSize: 15, fontWeight: 600, color: 'var(--txt)', cursor: 'pointer',
                   boxShadow: '0 2px 8px rgba(0,30,50,0.08)', transition: 'opacity 0.15s',
                   opacity: oauthLoading === 'google' ? 0.6 : 1, fontFamily: 'inherit',
                 }}

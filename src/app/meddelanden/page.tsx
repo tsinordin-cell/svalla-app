@@ -211,7 +211,7 @@ export default function MeddelandenPage() {
               display: 'flex', alignItems: 'center', gap: 6,
               height: 36, padding: `0 ${space[3]}px`,
               borderRadius: radius.sm,
-              background: 'var(--sea, #1e5c82)',
+              background: 'var(--sea)',
               color: '#fff',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold,
               textDecoration: 'none',

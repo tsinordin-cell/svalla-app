@@ -65,14 +65,14 @@ export default function MessageBell() {
         textDecoration: 'none',
       }}
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2} style={{ width: 18, height: 18 }}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
       </svg>
       {unread > 0 && (
         <div style={{
           position: 'absolute', top: 4, right: 4,
           width: 16, height: 16, borderRadius: '50%',
-          background: 'var(--acc, #c96e2a)', border: '2px solid var(--bg)',
+          background: 'var(--acc)', border: '2px solid var(--bg)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
         }}>

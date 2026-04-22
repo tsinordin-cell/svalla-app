@@ -1,6 +1,6 @@
 export default function TurLoading() {
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg, #f2f8fa)', maxWidth: 640, margin: '0 auto' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)', maxWidth: 640, margin: '0 auto' }}>
       {/* Hero image skeleton — matches full-width hero on tur/[id] */}
       <div style={{ width: '100%', aspectRatio: '4/3', background: 'rgba(13,42,62,0.85)', position: 'relative' }} className="sk">
         {/* Back button placeholder */}

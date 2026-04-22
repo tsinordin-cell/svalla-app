@@ -216,7 +216,7 @@ function ManuellForm() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f7fbfc)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 80px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 80px)' }}>
       {/* Header */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -231,7 +231,7 @@ function ManuellForm() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(10,123,140,0.07)', border: 'none', cursor: 'pointer',
         }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea, #1e5c82)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
@@ -406,7 +406,7 @@ function ManuellForm() {
               style={{
                 width: '100%', padding: '12px 14px', borderRadius: 14,
                 border: '1.5px solid rgba(10,123,140,0.18)',
-                background: 'var(--white, #fff)', fontSize: 14, color: 'var(--txt, #162d3a)',
+                background: 'var(--white)', fontSize: 14, color: 'var(--txt)',
                 outline: 'none', resize: 'none', fontFamily: 'inherit',
                 boxSizing: 'border-box',
               }}
@@ -472,7 +472,7 @@ function ManuellForm() {
                     style={{
                       width: '100%', padding: '10px 12px', borderRadius: 12,
                       border: '1.5px solid rgba(10,123,140,0.15)',
-                      background: 'var(--white, #fff)', fontSize: 14, color: routeId ? 'var(--txt)' : 'var(--txt3)',
+                      background: 'var(--white)', fontSize: 14, color: routeId ? 'var(--txt)' : 'var(--txt3)',
                       outline: 'none', appearance: 'none', WebkitAppearance: 'none',
                       boxSizing: 'border-box',
                     }}
@@ -498,7 +498,7 @@ function ManuellForm() {
                       style={{
                         width: '100%', padding: '10px 12px', borderRadius: 12,
                         border: '1.5px solid rgba(10,123,140,0.15)',
-                        background: 'var(--white, #fff)', fontSize: 14, textAlign: 'center',
+                        background: 'var(--white)', fontSize: 14, textAlign: 'center',
                         outline: 'none', boxSizing: 'border-box',
                       }} />
                   </div>

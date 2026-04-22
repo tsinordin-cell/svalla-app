@@ -132,7 +132,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
           overflow: 'hidden',
           transition: 'width 0.28s cubic-bezier(0.4,0,0.2,1)',
           borderLeft: '1px solid rgba(10,123,140,0.10)',
-          background: 'var(--bg, #f2f8fa)',
+          background: 'var(--bg)',
           display: 'flex', flexDirection: 'column',
         }}>
           <div style={{ width: 380, height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -157,7 +157,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                   style={{
                     width: '100%', paddingLeft: 32, paddingRight: 12, paddingTop: 9, paddingBottom: 9,
                     borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.15)',
-                    background: 'var(--bg, #f2f8fa)', fontSize: 16, color: 'var(--txt, #162d3a)', outline: 'none',
+                    background: 'var(--bg)', fontSize: 16, color: 'var(--txt)', outline: 'none',
                     boxSizing: 'border-box',
                   }}
                 />
@@ -221,7 +221,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     {TRENDING.map(t => (
                       <button key={t} onClick={() => setQuery(t)} style={{
                         padding: '5px 11px', borderRadius: 18, border: 'none', cursor: 'pointer',
-                        background: 'var(--white, #fff)', fontSize: 11, fontWeight: 600, color: 'var(--sea, #1e5c82)',
+                        background: 'var(--white)', fontSize: 11, fontWeight: 600, color: 'var(--sea)',
                         boxShadow: '0 1px 4px rgba(0,45,60,0.10)',
                       }}>
                         {t}
@@ -255,7 +255,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                           onMouseEnter={() => setActiveId(r.id)}
                           onMouseLeave={() => setActiveId(null)}
                           style={{
-                            background: 'var(--white, #fff)', borderRadius: 16, overflow: 'hidden',
+                            background: 'var(--white)', borderRadius: 16, overflow: 'hidden',
                             boxShadow: activeId === r.id
                               ? '0 0 0 2px #1e5c82, 0 4px 16px rgba(30,92,130,0.18)'
                               : '0 1px 6px rgba(0,45,60,0.07)',
@@ -274,7 +274,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                           </div>
                           <div style={{ flex: 1, padding: '10px 12px', minWidth: 0 }}>
                             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 4 }}>
-                              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{r.name}</div>
+                              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.2 }}>{r.name}</div>
                               <span style={{
                                 flexShrink: 0, fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 18,
                                 background: getCat(r) === 'kafe' ? 'rgba(201,110,42,0.1)' : 'rgba(30,92,130,0.08)',
@@ -338,7 +338,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               width: '100%', paddingLeft: 38, paddingRight: query ? 36 : 16,
               height: 44,  // 44px touch target
               borderRadius: 22, border: '1.5px solid rgba(10,123,140,0.15)',
-              background: 'var(--bg, #f2f8fa)', fontSize: 16, color: 'var(--txt, #162d3a)', outline: 'none',
+              background: 'var(--bg)', fontSize: 16, color: 'var(--txt)', outline: 'none',
               boxSizing: 'border-box',
             }}
           />
@@ -425,7 +425,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               {TRENDING.map(t => (
                 <button key={t} onClick={() => setQuery(t)} style={{
                   flexShrink: 0, padding: '5px 10px', borderRadius: 18, border: 'none', cursor: 'pointer',
-                  background: 'var(--white, #fff)', fontSize: 11, fontWeight: 600, color: 'var(--sea, #1e5c82)',
+                  background: 'var(--white)', fontSize: 11, fontWeight: 600, color: 'var(--sea)',
                   boxShadow: '0 1px 4px rgba(0,45,60,0.10)',
                 }}>
                   {t}
@@ -454,7 +454,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               <div key={r.id} ref={el => { cardRefs.current[r.id] = el }}>
                 <Link href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
                   <article style={{
-                    background: 'var(--white, #fff)', borderRadius: 16, overflow: 'hidden',
+                    background: 'var(--white)', borderRadius: 16, overflow: 'hidden',
                     boxShadow: activeId === r.id
                       ? '0 0 0 2px #1e5c82, 0 4px 16px rgba(30,92,130,0.12)'
                       : '0 1px 6px rgba(0,45,60,0.07)',
@@ -481,7 +481,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                       }
                     </div>
                     <div style={{ flex: 1, padding: '12px 14px', minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.25 }}>{r.name}</div>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.25 }}>{r.name}</div>
                       {r.opening_hours && (
                         <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
                       )}

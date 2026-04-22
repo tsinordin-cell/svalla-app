@@ -56,11 +56,11 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
         {/* Shadow line */}
         <path d={d} fill="none" stroke="rgba(30,92,130,0.15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
         {/* Main route line */}
-        <path d={d} fill="none" stroke="var(--sea, #1e5c82)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
+        <path d={d} fill="none" stroke="var(--sea)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
         {/* Start dot */}
-        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="var(--green, #22c55e)" stroke="white" strokeWidth="1.5" />
+        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="var(--green)" stroke="white" strokeWidth="1.5" />
         {/* End dot */}
-        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="var(--acc, #c96e2a)" stroke="white" strokeWidth="1.5" />
+        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="var(--acc)" stroke="white" strokeWidth="1.5" />
       </svg>
     </div>
   )

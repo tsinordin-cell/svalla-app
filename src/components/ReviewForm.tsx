@@ -151,11 +151,11 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       {/* ── Review form ── */}
       {showForm && (
         <div style={{
-          background: 'var(--white, #fff)', borderRadius: 18, padding: '18px 16px',
+          background: 'var(--white)', borderRadius: 18, padding: '18px 16px',
           boxShadow: '0 2px 12px rgba(0,45,60,0.08)', marginBottom: 16,
           border: '1.5px solid rgba(10,123,140,0.12)',
         }}>
-          <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt, #162d3a)', marginBottom: 12 }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
             Hur var det?
           </p>
           {/* Rating anchors */}
@@ -229,7 +229,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       {/* ── Reviews list ── */}
       {reviews.length === 0 ? (
         <div style={{
-          background: 'var(--white, #fff)', borderRadius: 16, padding: '24px',
+          background: 'var(--white)', borderRadius: 16, padding: '24px',
           textAlign: 'center', color: 'var(--txt3)', fontSize: 13,
           boxShadow: '0 1px 6px rgba(0,45,60,0.05)',
         }}>
@@ -240,7 +240,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {reviews.map(r => (
             <div key={r.id} style={{
-              background: 'var(--white, #fff)', borderRadius: 16, padding: '14px 16px',
+              background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
               boxShadow: '0 1px 6px rgba(0,45,60,0.05)',
               border: r.user_id === userId ? '1.5px solid rgba(10,123,140,0.18)' : '1px solid rgba(10,123,140,0.07)',
             }}>

@@ -215,7 +215,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f2f8fa)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
 
       {/* ── Hero (photo carousel + minimap fallback) ── */}
       <div style={{ position: 'relative' }}>
@@ -282,7 +282,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               }
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt, #162d3a)' }}>{username}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)' }}>{username}</div>
               <div style={{ fontSize: 12, color: 'var(--txt3)' }}>
                 {trip.boat_type}{routeName ? ` · ${routeName}` : ''}
               </div>
@@ -353,7 +353,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
                 Rutigenkänning
               </div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.2 }}>
                 {matchedRoute.title}
               </div>
               <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
@@ -392,7 +392,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           if (stats.length === 0) return null
           return (
             <div style={{
-              background: 'var(--white, #fff)', borderRadius: 20,
+              background: 'var(--white)', borderRadius: 20,
               boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
               display: 'flex', marginBottom: 16, overflow: 'hidden',
             }}>
@@ -452,7 +452,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {timeline.length > 1 && (
           <div style={{ marginBottom: 18 }}>
             <SectionTitle>Tidslinje</SectionTitle>
-            <div style={{ background: 'var(--white, #fff)', borderRadius: 20, padding: '16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
+            <div style={{ background: 'var(--white)', borderRadius: 20, padding: '16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)' }}>
               {timeline.map((ev, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 2 }}>
@@ -462,7 +462,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                     )}
                   </div>
                   <div style={{ paddingBottom: 16 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)', lineHeight: 1.2 }}>{ev.label}</div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.2 }}>{ev.label}</div>
                     <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
                       {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : ''}
                     </div>
@@ -479,11 +479,11 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <SectionTitle>Stopp</SectionTitle>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {namedStops.filter(s => s.type === 'stop').map((s, i) => (
-                <div key={i} style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--txt3)', flexShrink: 0 }} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)' }}>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
                         {s.placeName ?? `Stopp ${i + 1}`}
                       </span>
                       {s.placeName && (
@@ -509,9 +509,9 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {nearbyRestaurants.map(r => (
                 <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
-                  <div style={{ background: 'var(--white, #fff)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
                     <span style={{ fontSize: 20 }}>🍽</span>
-                    <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt, #162d3a)', flex: 1 }}>{r.name}</span>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', flex: 1 }}>{r.name}</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
