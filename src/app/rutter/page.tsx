@@ -7,6 +7,7 @@ import MessageBell from '@/components/MessageBell'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
 import { ISLANDS } from '@/app/o/island-data'
+import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture, type FerryRoute } from '@/lib/ferries'
 
 // ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
 const ISLAND_SECTIONS = [
@@ -155,7 +156,10 @@ export default async function RutterPage({
   searchParams: Promise<{ for?: string; tid?: string; vy?: string }>
 }) {
   const { for: forFilter = 'alla', tid: tidFilter = 'alla', vy: vyParam } = await searchParams
-  const vy: 'rutter' | 'oar' = vyParam === 'oar' ? 'oar' : 'rutter'
+  const vy: 'rutter' | 'oar' | 'farjor' =
+    vyParam === 'oar' ? 'oar'
+    : vyParam === 'farjor' ? 'farjor'
+    : 'rutter'
   const supabase = createClient()
 
   const baseQuery = supabase
@@ -215,6 +219,8 @@ export default async function RutterPage({
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {vy === 'oar'
               ? `${ISLANDS.length} öar · Stockholms skärgård`
+              : vy === 'farjor'
+                ? `${SEED_FERRY_ROUTES.length} linjer · Waxholmsbolaget & Cinderella`
               : isFiltered
                 ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
                 : `${filtered.length} turer · Sverige`}
@@ -251,6 +257,7 @@ export default async function RutterPage({
         {([
           { key: 'rutter' as const, label: 'Rutter', href: '/rutter' },
           { key: 'oar' as const,    label: 'Öar',    href: '/rutter?vy=oar' },
+          { key: 'farjor' as const, label: 'Färjor', href: '/rutter?vy=farjor' },
         ]).map(t => {
           const active = vy === t.key
           return (
@@ -280,6 +287,8 @@ export default async function RutterPage({
 
       {vy === 'oar' ? (
         <IslandsView />
+      ) : vy === 'farjor' ? (
+        <FerriesView />
       ) : (
         <>
 
@@ -350,6 +359,115 @@ export default async function RutterPage({
       </div>
         </>
       )}
+    </div>
+  )
+}
+
+async function FerriesView() {
+  const routesWithDeps = await Promise.all(
+    SEED_FERRY_ROUTES.map(async (r: FerryRoute) => ({
+      route: r,
+      deps: await fetchDepartures(r, 3) as FerryDeparture[],
+    })),
+  )
+  const anyLive = routesWithDeps.some(r => r.deps.some(d => d.source === 'live'))
+
+  return (
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '16px 16px 100px' }}>
+      {anyLive ? (
+        <div style={{
+          background: 'rgba(30,92,130,0.08)',
+          border: '1px solid rgba(30,92,130,0.22)',
+          borderRadius: 12,
+          padding: '10px 14px',
+          fontSize: 12.5,
+          color: 'var(--txt2)',
+          lineHeight: 1.5,
+          marginBottom: 14,
+        }}>
+          <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab. Dubbelkolla alltid mot operatören inför avgång.
+        </div>
+      ) : (
+        <div style={{
+          background: 'rgba(201,110,42,0.08)',
+          border: '1px solid rgba(201,110,42,0.25)',
+          borderRadius: 12,
+          padding: '10px 14px',
+          fontSize: 12.5,
+          color: 'var(--txt2)',
+          lineHeight: 1.5,
+          marginBottom: 14,
+        }}>
+          <strong style={{ color: 'var(--txt)' }}>Förhandsvisning.</strong> Live-tidtabell är under konfiguration — följ länken till operatören för aktuella tider.
+        </div>
+      )}
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
+        {routesWithDeps.map(({ route: r, deps }) => {
+          const isLive = deps.some(d => d.source === 'live')
+          const opColor = r.operator === 'Waxholmsbolaget' ? '#1e5c82' : r.operator === 'Cinderella' ? '#c96e2a' : '#2e7d32'
+          const opBg = r.operator === 'Waxholmsbolaget' ? 'rgba(30,92,130,0.08)' : r.operator === 'Cinderella' ? 'rgba(201,110,42,0.1)' : 'rgba(46,125,50,0.08)'
+          return (
+            <article key={r.id} style={{
+              background: 'var(--white)', borderRadius: 14,
+              padding: '16px 18px',
+              border: '1.5px solid rgba(10,123,140,0.10)',
+              boxShadow: '0 1px 4px rgba(0,45,60,0.06)',
+              display: 'flex', flexDirection: 'column',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span style={{
+                  fontSize: 10, fontWeight: 700, color: opColor, background: opBg,
+                  padding: '3px 9px', borderRadius: 20,
+                  textTransform: 'uppercase', letterSpacing: 0.4,
+                }}>{r.operator}</span>
+                <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{r.season}</span>
+                {isLive && (
+                  <span style={{
+                    marginLeft: 'auto', fontSize: 10, fontWeight: 700, color: '#fff',
+                    background: '#2e7d32', padding: '2px 8px', borderRadius: 20,
+                    letterSpacing: 0.3, display: 'inline-flex', alignItems: 'center', gap: 4,
+                  }}>
+                    <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
+                    LIVE
+                  </span>
+                )}
+              </div>
+              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>{r.name}</h2>
+              <p style={{ fontSize: 12, color: 'var(--txt2)', margin: '0 0 12px', lineHeight: 1.5 }}>
+                {r.stops.join(' → ')}
+              </p>
+              <div style={{ borderTop: '1px solid rgba(10,123,140,0.10)', paddingTop: 10, marginBottom: 10 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
+                  Kommande avgångar
+                </div>
+                {deps.map((d, i) => (
+                  <div key={i} style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    padding: '6px 0',
+                    borderBottom: i === deps.length - 1 ? 'none' : '1px solid rgba(10,123,140,0.08)',
+                  }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>
+                      {new Date(d.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--txt2)' }}>
+                      {d.from} → {d.to}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href={r.infoUrl} target="_blank" rel="noopener noreferrer" style={{
+                marginTop: 'auto', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                height: 36, borderRadius: 10,
+                background: 'var(--sea)', color: '#fff',
+                fontSize: 12, fontWeight: 600, textDecoration: 'none',
+              }}>
+                Öppna tidtabell hos {r.operator} →
+              </a>
+            </article>
+          )
+        })}
+      </div>
     </div>
   )
 }

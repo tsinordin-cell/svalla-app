@@ -45,7 +45,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
-    infoUrl: 'https://www.waxholmsbolaget.se/trafik-o-linjer',
+    infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
     id: 'wxb-grinda',
@@ -55,7 +55,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Strömkajen', 'Vaxholm', 'Ramsö', 'Vindö', 'Grinda'],
     operator: 'Waxholmsbolaget',
     season: 'Sommar (maj–sep)',
-    infoUrl: 'https://www.waxholmsbolaget.se/trafik-o-linjer',
+    infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
     id: 'cinderella-sandhamn',
@@ -65,7 +65,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Möja', 'Sandhamn'],
     operator: 'Cinderella',
     season: 'Sommar (maj–sep)',
-    infoUrl: 'https://www.cinderellabatarna.se/',
+    infoUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
   },
   {
     id: 'wxb-uto',
@@ -75,7 +75,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Årsta Brygga', 'Brandholmen', 'Dalarö', 'Ornö', 'Utö'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
-    infoUrl: 'https://www.waxholmsbolaget.se/trafik-o-linjer',
+    infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
     id: 'wxb-finnhamn',
@@ -85,7 +85,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
-    infoUrl: 'https://www.waxholmsbolaget.se/trafik-o-linjer',
+    infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
     id: 'wxb-moja',
@@ -95,7 +95,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
-    infoUrl: 'https://www.waxholmsbolaget.se/trafik-o-linjer',
+    infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
 ]
 
