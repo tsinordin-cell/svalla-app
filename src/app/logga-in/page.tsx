@@ -1,6 +1,6 @@
 'use client' // v2
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 
@@ -26,6 +26,10 @@ function WaveDivider() {
 
 export default function LoggaInPage() {
   const router   = useRouter()
+  const sp       = useSearchParams()
+  const rawReturnTo = sp.get('returnTo') ?? ''
+  // Whitelist: bara interna sökvägar tillåts för att undvika open redirect
+  const returnTo = rawReturnTo.startsWith('/') && !rawReturnTo.startsWith('//') ? rawReturnTo : '/feed'
   const [supabase] = useState(() => createClient())
 
   const [email,        setEmail]        = useState('')
@@ -84,7 +88,7 @@ export default function LoggaInPage() {
             if (typeof window !== 'undefined') {
               localStorage.removeItem('svalla_onboarded')
             }
-            router.push('/feed')
+            router.push(returnTo)
             return
           }
         }
@@ -109,7 +113,7 @@ export default function LoggaInPage() {
             email:    data.user.email ?? '',
           }, { onConflict: 'id' })
         }
-        router.push('/feed')
+        router.push(returnTo)
       }
     } catch (ex) {
       console.error('Login error:', ex)
