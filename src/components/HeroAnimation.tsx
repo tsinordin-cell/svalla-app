@@ -1079,6 +1079,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       last = now; t += dt * 0.001
 
       cx.clearRect(0, 0, W, H)
+      // Clip to waterline — nothing drawn below the surface
+      cx.save()
+      cx.beginPath(); cx.rect(0, 0, W, WL() + H * 0.025); cx.clip()
       drawSky()
       drawSun()
       drawFarIslands()
@@ -1087,14 +1090,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawWaterShimmer()
       drawFerry(dt)
       drawBoats(dt)
-      drawUnderwater()
-      drawSeabedRocks()
-      drawSeaweed()
-      drawParticles()
-      drawBubbles(dt)
-      drawFish(dt)
       drawOverlay()
       drawBirds(dt)
+      cx.restore()
 
       raf = requestAnimationFrame(tick)
     }
