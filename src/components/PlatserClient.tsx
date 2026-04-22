@@ -99,7 +99,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--sea)', display: 'inline-block' }} /> Restaurang
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#c96e2a', display: 'inline-block' }} /> Hamn/Kafé
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--acc)', display: 'inline-block' }} /> Hamn/Kafé
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               <span style={{ width: 20, height: 3, background: 'var(--green)', display: 'inline-block', borderRadius: 2 }} /> Rutt

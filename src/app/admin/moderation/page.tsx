@@ -71,7 +71,7 @@ export default async function ModerationPage({
                 <span style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   marginLeft: 10, minWidth: 22, height: 22, borderRadius: 11,
-                  background: '#c96e2a', color: '#fff', fontSize: 11, fontWeight: 700,
+                  background: 'var(--acc)', color: '#fff', fontSize: 11, fontWeight: 700,
                   padding: '0 6px',
                 }}>
                   {openCount}
