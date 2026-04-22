@@ -19,6 +19,24 @@ function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)
 }
 
+/**
+ * next/image kräver whitelistad domän i next.config.ts (remotePatterns).
+ * Om en bild-URL kommer från en domän som INTE finns där kraschar rendringen.
+ * Den här helpern returnerar true bara för URL:er vi vet att next/image klarar.
+ * Alla andra URL:er serveras via plain <img> längre ner i komponenten.
+ */
+function isNextImageSafe(url: string): boolean {
+  if (!url) return false
+  try {
+    const u = new URL(url)
+    if (u.hostname.endsWith('.supabase.co')) return true
+    if (u.hostname === 'images.unsplash.com') return true
+    return false
+  } catch {
+    return false
+  }
+}
+
 const boatEmoji: Record<string, string> = {
   'Motorbåt':   '🚤',
   'Segelbåt':   '⛵',
@@ -124,15 +142,27 @@ function PhotoCarousel({
             width: '100%', height: '100%',
             scrollSnapAlign: 'start',
           }}>
-            <Image
-              src={src}
-              alt={`${alt} ${i + 1}`}
-              fill
-              className="object-cover"
-              sizes={sizes ?? '100vw'}
-              priority={priority && i === 0}
-              onError={() => onError(i)}
-            />
+            {isNextImageSafe(src) ? (
+              <Image
+                src={src}
+                alt={`${alt} ${i + 1}`}
+                fill
+                className="object-cover"
+                sizes={sizes ?? '100vw'}
+                priority={priority && i === 0}
+                onError={() => onError(i)}
+              />
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={src}
+                alt={`${alt} ${i + 1}`}
+                loading={priority && i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+                onError={() => onError(i)}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -262,7 +292,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
             }}>
               {avatar
-                ? <Image src={avatar} alt={username} width={36} height={36} style={{ objectFit: 'cover' }} />
+                /* eslint-disable-next-line @next/next/no-img-element */
+                ? <img src={avatar} alt={username} width={36} height={36} loading="lazy" decoding="async" style={{ width: 36, height: 36, objectFit: 'cover', display: 'block' }} />
                 : username[0]?.toUpperCase() ?? '?'}
             </div>
           </ProfileTeaserPopover>
@@ -367,7 +398,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                     onIdxChange={setPhotoIdx}
                     sizes="(max-width: 640px) 50vw, 320px"
                   />
-                ) : (
+                ) : isNextImageSafe(allPhotos[0]) ? (
                   <Image
                     src={allPhotos[0]}
                     alt={trip.location_name ?? `Tur av ${username}`}
@@ -376,6 +407,16 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                     sizes="(max-width: 640px) 50vw, 320px"
                     priority={priority}
                     onError={() => setImgErr(true)}
+                  />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={allPhotos[0]}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    loading={priority ? 'eager' : 'lazy'}
+                    decoding="async"
+                    onError={() => setImgErr(true)}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 )}
               </div>
@@ -399,7 +440,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   onIdxChange={setPhotoIdx}
                   sizes="(max-width: 640px) 100vw, 640px"
                 />
-              ) : (
+              ) : isNextImageSafe(allPhotos[0]) ? (
                 <Image
                   src={allPhotos[0]}
                   alt={trip.location_name ?? `Tur av ${username}`}
@@ -408,6 +449,16 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   sizes="(max-width: 640px) 100vw, 640px"
                   priority={priority}
                   onError={() => setImgErr(true)}
+                />
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={allPhotos[0]}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  loading={priority ? 'eager' : 'lazy'}
+                  decoding="async"
+                  onError={() => setImgErr(true)}
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               )}
             </div>

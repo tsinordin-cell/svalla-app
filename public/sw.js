@@ -1,6 +1,6 @@
 // Svalla service worker — push notifications + offline cache
 
-const CACHE = 'svalla-v4'
+const CACHE = 'svalla-v5'
 // Cача BARA statiska assets — ALDRIG HTML-sidor eller RSC-payloads.
 // HTML-sidor är dynamiska och RSC-payloads matchar inte vanliga navigeringar —
 // att cacha dem blandar ihop formaten och kraschar React-hydreringen.
