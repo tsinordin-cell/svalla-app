@@ -131,7 +131,7 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
 // Primära chips ligger alltid synliga i fältraden.
 // Sekundära (överlägg) göms bakom "Lager"-menyn.
 const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'naturhamnar', 'bensin', 'bastu']
-const SECONDARY_FILTERS: Filter[] = ['rutter', 'vader', 'heatmap']
+const SECONDARY_FILTERS: Filter[] = ['rutter', 'heatmap']
 
 function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
   name: keyof typeof ICON_PATHS
@@ -1048,7 +1048,7 @@ export default function UpptackClient() {
       )}
 
       {/* Hörn-pills — väder & destination */}
-      {view === 'map' && (filters.has('vader') || destination) && (
+      {view === 'map' && (
         <div
           style={{
             position: 'absolute',
@@ -1063,7 +1063,7 @@ export default function UpptackClient() {
             maxWidth: 'calc(100vw - 24px)',
           }}
         >
-          {filters.has('vader') && <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />}
+          <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
           {destination && (
             <DestinationPill
               destination={destination}
