@@ -144,7 +144,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
-    const WL = () => H * 0.55
+    const WL = () => H * 0.58
 
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
     const wave = (x: number): number => {
@@ -256,38 +256,30 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.moveTo(W*0.825, H*0.445)
       cx.bezierCurveTo(W*0.862, H*0.382, W*0.930, H*0.372, W, H*0.390)
       cx.lineTo(W, H * 0.445); cx.fill()
-      // Small cottage silhouettes on far islands — dark, no detail
-      const cottageColor = 'rgba(45,28,18,0.55)'
-      // Island 1 (left) — two tiny huts
-      ;[W*0.08, W*0.14].forEach((cx2, i) => {
-        const cw = W * 0.012, ch = H * 0.012, cy2 = H * 0.412 - i * H * 0.004
-        cx.fillStyle = cottageColor
-        cx.fillRect(cx2 - cw/2, cy2, cw, ch)
+      // Colorful sjöbodar on far islands — west-coast style (red, yellow, blue, ochre)
+      const sjobod = (bx: number, by: number, bw: number, bh: number, bodyColor: string) => {
+        cx.fillStyle = bodyColor
+        cx.fillRect(bx - bw/2, by, bw, bh)
+        cx.fillStyle = 'rgba(28,14,8,0.72)'
         cx.beginPath()
-        cx.moveTo(cx2 - cw/2 - 1, cy2); cx.lineTo(cx2 + cw/2 + 1, cy2); cx.lineTo(cx2, cy2 - ch * 0.55)
+        cx.moveTo(bx - bw/2 - 1, by); cx.lineTo(bx + bw/2 + 1, by); cx.lineTo(bx, by - bh * 0.60)
         cx.closePath(); cx.fill()
-      })
-      // Island 2 (centre) — three tiny huts
-      ;[W*0.465, W*0.530, W*0.590].forEach((cx2, i) => {
-        const cw = W * 0.013, ch = H * 0.013, cy2 = H * 0.400 - i * H * 0.003
-        cx.fillStyle = cottageColor
-        cx.fillRect(cx2 - cw/2, cy2, cw, ch)
-        cx.beginPath()
-        cx.moveTo(cx2 - cw/2 - 1, cy2); cx.lineTo(cx2 + cw/2 + 1, cy2); cx.lineTo(cx2, cy2 - ch * 0.55)
-        cx.closePath(); cx.fill()
-      })
-      // Island 3 (right) — one hut + pine silhouette
-      const rx = W * 0.900, ry = H * 0.398
-      cx.fillStyle = cottageColor
-      cx.fillRect(rx - W*0.006, ry, W*0.012, H*0.011)
-      cx.beginPath()
-      cx.moveTo(rx - W*0.007, ry); cx.lineTo(rx + W*0.007, ry); cx.lineTo(rx, ry - H*0.010)
-      cx.closePath(); cx.fill()
-      // Pine silhouette right island
+      }
+      // Island 1 (left) — red + ochre
+      sjobod(W*0.082, H*0.412, W*0.013, H*0.013, 'rgba(175,40,32,0.72)')
+      sjobod(W*0.140, H*0.408, W*0.013, H*0.013, 'rgba(195,155,28,0.68)')
+      // Island 2 (centre) — red, blue, ochre
+      sjobod(W*0.468, H*0.400, W*0.014, H*0.013, 'rgba(175,40,32,0.70)')
+      sjobod(W*0.532, H*0.397, W*0.014, H*0.013, 'rgba(32,80,155,0.68)')
+      sjobod(W*0.592, H*0.394, W*0.013, H*0.013, 'rgba(185,130,28,0.68)')
+      // Island 3 (right) — yellow sjöbod + pine
+      sjobod(W*0.900, H*0.398, W*0.013, H*0.012, 'rgba(195,140,22,0.70)')
       cx.fillStyle = 'rgba(28,42,22,0.50)'
       cx.beginPath()
       cx.moveTo(W*0.950, H*0.382); cx.lineTo(W*0.957, H*0.400); cx.lineTo(W*0.943, H*0.400)
       cx.closePath(); cx.fill()
+      // Midsommarstång — on outermost far right island
+      midsommarstang(W*0.872, H*0.384, 0.28)
     }
 
     /* ── Pine tree ───────────────────────────────────────────────────────── */
@@ -482,29 +474,29 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     }
 
     /* ── Midsommarstång ──────────────────────────────────────────────────── */
-    const midsommarstang = (x: number, y: number) => {
-      const ph = H * 0.090
-      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.8; cx.lineCap = 'round'
+    const midsommarstang = (x: number, y: number, scale = 1.0) => {
+      const ph = H * 0.090 * scale
+      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.8 * scale; cx.lineCap = 'round'
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
       // Cross piece
-      const cw = H * 0.032, cy2 = y - ph * 0.80
-      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.2
+      const cw = H * 0.032 * scale, cy2 = y - ph * 0.80
+      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.2 * scale
       cx.beginPath(); cx.moveTo(x - cw, cy2); cx.lineTo(x + cw, cy2); cx.stroke()
       // Green wreath at top
       cx.fillStyle = 'rgba(72,148,48,0.78)'
-      cx.beginPath(); cx.arc(x, y - ph, H * 0.006, 0, Math.PI * 2); cx.fill()
-      cx.beginPath(); cx.arc(x - cw, cy2, H * 0.005, 0, Math.PI * 2); cx.fill()
-      cx.beginPath(); cx.arc(x + cw, cy2, H * 0.005, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(x, y - ph, H * 0.006 * scale, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(x - cw, cy2, H * 0.005 * scale, 0, Math.PI * 2); cx.fill()
+      cx.beginPath(); cx.arc(x + cw, cy2, H * 0.005 * scale, 0, Math.PI * 2); cx.fill()
       // Ribbons — red and green hanging curves
-      cx.strokeStyle = 'rgba(210,48,60,0.65)'; cx.lineWidth = 0.9; cx.lineCap = 'round'
+      cx.strokeStyle = 'rgba(210,48,60,0.65)'; cx.lineWidth = 0.9 * scale; cx.lineCap = 'round'
       cx.beginPath()
       cx.moveTo(x - cw, cy2)
-      cx.bezierCurveTo(x - cw - 4, cy2 + H*0.012, x - cw - 2, cy2 + H*0.022, x - cw, cy2 + H*0.026)
+      cx.bezierCurveTo(x - cw - 4*scale, cy2 + H*0.012*scale, x - cw - 2*scale, cy2 + H*0.022*scale, x - cw, cy2 + H*0.026*scale)
       cx.stroke()
       cx.strokeStyle = 'rgba(68,150,48,0.65)'
       cx.beginPath()
       cx.moveTo(x + cw, cy2)
-      cx.bezierCurveTo(x + cw + 4, cy2 + H*0.012, x + cw + 2, cy2 + H*0.022, x + cw, cy2 + H*0.026)
+      cx.bezierCurveTo(x + cw + 4*scale, cy2 + H*0.012*scale, x + cw + 2*scale, cy2 + H*0.022*scale, x + cw, cy2 + H*0.026*scale)
       cx.stroke()
     }
 
@@ -606,10 +598,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       sauna(W * 0.740, wb * 0.968)
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
-
-      // Midsommarstång
-      midsommarstang(W * 0.608, wb * 0.928)
-
 
       // ── Small mid skerry — low granite
       cx.beginPath()
@@ -989,9 +977,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawSky()
       drawSun()
       drawFarIslands()
+      drawNearIslands()
       drawWater()
       drawWaterShimmer()
-      drawNearIslands()
       drawFerry(dt)
       drawBoats(dt)
       drawUnderwater()
