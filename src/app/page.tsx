@@ -940,7 +940,7 @@ export default function LandingPage() {
     document.getElementById('planeraDropLink')?.addEventListener('click', handlePlanera)
     // Close gate on backdrop click
     const gate = document.getElementById('planera-gate')
-    const handleGateClick = (e: Event) => { if (e.target === gate) gate.style.display = 'none' }
+    const handleGateClick = (e: Event) => { if (e.target === gate) (gate as HTMLElement).style.display = 'none' }
     gate?.addEventListener('click', handleGateClick)
 
     // Sök-hints
