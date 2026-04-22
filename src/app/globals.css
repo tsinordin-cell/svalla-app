@@ -1003,6 +1003,24 @@ img {
   .upptack-listview { top: 108px; }
 }
 
+/* ── /rutter: Öar-flik kort ── */
+.rutter-island-card {
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .rutter-island-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(10, 123, 140, 0.22) !important;
+    box-shadow: 0 4px 14px rgba(0, 45, 60, 0.08) !important;
+  }
+}
+.rutter-island-card:active { transform: scale(0.995); }
+[data-theme="dark"] .rutter-island-card {
+  background: var(--white);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
 /* ── Motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   *,

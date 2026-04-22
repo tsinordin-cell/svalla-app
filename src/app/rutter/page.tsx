@@ -6,6 +6,59 @@ import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
+import { ISLANDS } from '@/app/o/island-data'
+
+// ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
+const ISLAND_SECTIONS = [
+  {
+    id: 'inner',
+    label: 'Innerskärgården',
+    color: 'var(--sea)',
+    bg: 'rgba(30,92,130,0.07)',
+    description: 'De närmaste öarna — lätta att nå, perfekta för en dag.',
+    slugs: ['fjaderholmarna', 'vaxholm', 'grinda', 'finnhamn', 'rindo', 'resaro'],
+  },
+  {
+    id: 'mellersta',
+    label: 'Mellersta skärgården',
+    color: 'var(--sea)',
+    bg: 'rgba(10,123,140,0.07)',
+    description: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan.',
+    slugs: [
+      'sandhamn', 'moja', 'ljustero', 'gallno', 'ingmarso', 'namdo', 'svartso',
+      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'kanholmen',
+      'svenska-hogarna', 'huvudskar', 'ramskar', 'ekno', 'ormsko', 'norrpada',
+      'lindholmen', 'garnsjon', 'storholmen', 'ostanvik', 'korsholmen', 'storskar',
+      'bjorko', 'adelsjo',
+    ],
+  },
+  {
+    id: 'södra',
+    label: 'Södra skärgården',
+    color: '#2a6e50',
+    bg: 'rgba(42,110,80,0.07)',
+    description: 'Vilda klippor, öppet hav och Utö — den dramatiska södra skärgården.',
+    slugs: [
+      'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'asko', 'galo', 'toro',
+      'fjardlang', 'smaadalaro', 'morko', 'musko', 'hasselo', 'langviksskaret',
+      'graskar-sodra', 'vastervik-uto', 'aspoja',
+    ],
+  },
+  {
+    id: 'norra',
+    label: 'Norra skärgården',
+    color: '#7a4e2d',
+    bg: 'rgba(122,78,45,0.07)',
+    description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
+    slugs: [
+      'arholma', 'furusund', 'blido', 'norrora', 'fejan', 'rodloga', 'singo',
+      'lido', 'graddo', 'vaddo', 'yxlan', 'ljusnas', 'graskar', 'iggon',
+      'toro-norra', 'langskar', 'ramskar-norra', 'vastana',
+    ],
+  },
+]
+
+const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))
 
 export const metadata: Metadata = {
   title: 'Rutter',
@@ -19,15 +72,38 @@ export const metadata: Metadata = {
 
 export const revalidate = 300
 
+// ── SVG icon paths (matchar stil från /upptack) ─────────────────────────
+const ICON_PATHS: Record<string, string> = {
+  users:      '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  heart:      '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  map:        '<polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>',
+  zap:        '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  kayak:      '<path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M5 14l14-1"/><path d="M12 4v14"/><path d="M9 8l3-3 3 3"/>',
+  sailboat:   '<path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/>',
+  anchor:     '<circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M5 15a7 7 0 0 0 14 0"/><line x1="8" y1="11" x2="16" y2="11"/>',
+  bike:       '<circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h2l2 4-3 6"/><path d="M6 17l3-6 3 6 3-11h-3"/>',
+  boot:       '<path d="M4 4h6v11h10v4H4z"/><path d="M10 4v11"/>',
+  utensils:   '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+}
+
+function Icon({ path, size = 14, stroke = 1.8, style }: { path: string; size?: number; stroke?: number; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor"
+      strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round"
+      style={{ flexShrink: 0, ...style }} aria-hidden="true"
+      dangerouslySetInnerHTML={{ __html: path }} />
+  )
+}
+
 const FOR_FILTERS = [
-  { value: 'alla',        label: 'Alla' },
-  { value: 'familj',     label: '👨‍👩‍👧 Familj' },
-  { value: 'par',        label: '💛 Par' },
-  { value: 'turist',     label: '🗺 Turist' },
-  { value: 'äventyrare', label: '⚡ Äventyr' },
-  { value: 'kajak',      label: '🛶 Kajak' },
-  { value: 'seglare',    label: '⛵ Segling' },
-  { value: 'båtfolk',    label: '⚓ Båtfolk' },
+  { value: 'alla',       label: 'Alla',    icon: null },
+  { value: 'familj',     label: 'Familj',  icon: 'users' },
+  { value: 'par',        label: 'Par',     icon: 'heart' },
+  { value: 'turist',     label: 'Turist',  icon: 'map' },
+  { value: 'äventyrare', label: 'Äventyr', icon: 'zap' },
+  { value: 'kajak',      label: 'Kajak',   icon: 'kayak' },
+  { value: 'seglare',    label: 'Segling', icon: 'sailboat' },
+  { value: 'båtfolk',    label: 'Båtfolk', icon: 'anchor' },
 ]
 
 const TIME_FILTERS = [
@@ -65,20 +141,21 @@ function primaryCategory(cat: string[]): string {
   return cat[0] ?? 'Tur'
 }
 
-function transportIcon(types: string[]): string {
-  if (types.includes('kajak'))      return '🛶'
-  if (types.includes('segelbåt'))   return '⛵'
-  if (types.includes('cykel'))      return '🚴'
-  if (types.includes('till fots'))  return '🥾'
-  return '⚓'
+function transportIconKey(types: string[]): keyof typeof ICON_PATHS {
+  if (types.includes('kajak'))      return 'kayak'
+  if (types.includes('segelbåt'))   return 'sailboat'
+  if (types.includes('cykel'))      return 'bike'
+  if (types.includes('till fots'))  return 'boot'
+  return 'anchor'
 }
 
 export default async function RutterPage({
   searchParams,
 }: {
-  searchParams: Promise<{ for?: string; tid?: string }>
+  searchParams: Promise<{ for?: string; tid?: string; vy?: string }>
 }) {
-  const { for: forFilter = 'alla', tid: tidFilter = 'alla' } = await searchParams
+  const { for: forFilter = 'alla', tid: tidFilter = 'alla', vy: vyParam } = await searchParams
+  const vy: 'rutter' | 'oar' = vyParam === 'oar' ? 'oar' : 'rutter'
   const supabase = createClient()
 
   const baseQuery = supabase
@@ -94,7 +171,9 @@ export default async function RutterPage({
   if (error) {
     return (
       <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 24px', background: 'var(--bg)' }}>
-        <div style={{ fontSize: 52 }}>⛵</div>
+        <svg viewBox="0 0 24 24" width={52} height={52} fill="none" stroke="var(--sea)" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/>
+        </svg>
         <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda turer</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
         <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
@@ -134,9 +213,11 @@ export default async function RutterPage({
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Turer</h1>
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
-            {isFiltered
-              ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
-              : `${filtered.length} turer · Sverige`}
+            {vy === 'oar'
+              ? `${ISLANDS.length} öar · Stockholms skärgård`
+              : isFiltered
+                ? `Visar ${filtered.length} av ${totalCount ?? '?'} turer`
+                : `${filtered.length} turer · Sverige`}
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -150,10 +231,57 @@ export default async function RutterPage({
             textDecoration: 'none',
             boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
           }}>
-            🧭 Guide
+            Guide
           </Link>
         </div>
       </header>
+
+      {/* Vy-toggle: Rutter / Öar */}
+      <div
+        role="tablist"
+        aria-label="Vy"
+        style={{
+          display: 'flex',
+          gap: 0,
+          padding: '0 16px',
+          background: 'var(--glass-96)',
+          borderBottom: '1px solid rgba(10,123,140,0.10)',
+        }}
+      >
+        {([
+          { key: 'rutter' as const, label: 'Rutter', href: '/rutter' },
+          { key: 'oar' as const,    label: 'Öar',    href: '/rutter?vy=oar' },
+        ]).map(t => {
+          const active = vy === t.key
+          return (
+            <Link
+              key={t.key}
+              href={t.href}
+              role="tab"
+              aria-selected={active}
+              style={{
+                flex: 1,
+                textAlign: 'center',
+                padding: '12px 0 10px',
+                fontSize: 14,
+                fontWeight: active ? 700 : 600,
+                color: active ? 'var(--sea)' : 'var(--txt3)',
+                textDecoration: 'none',
+                borderBottom: active ? '2.5px solid var(--sea)' : '2.5px solid transparent',
+                transition: 'color 160ms ease, border-color 160ms ease',
+                marginBottom: -1,
+              }}
+            >
+              {t.label}
+            </Link>
+          )
+        })}
+      </div>
+
+      {vy === 'oar' ? (
+        <IslandsView />
+      ) : (
+        <>
 
       {/* For-filter */}
       <div style={{
@@ -173,7 +301,9 @@ export default async function RutterPage({
               color: active ? '#fff' : '#3a6a80',
               textDecoration: 'none', whiteSpace: 'nowrap',
               boxShadow: active ? '0 2px 8px rgba(30,92,130,0.3)' : 'none',
+              display: 'inline-flex', alignItems: 'center', gap: 6,
             }}>
+              {f.icon && <Icon path={ICON_PATHS[f.icon]} size={13} stroke={1.9} />}
               {f.label}
             </Link>
           )
@@ -213,20 +343,116 @@ export default async function RutterPage({
             <TourCard key={t.id} tour={t}
               categoryColor={categoryColor(t.category)}
               categoryLabel={primaryCategory(t.category)}
-              icon={transportIcon(t.transport_types)}
+              iconKey={transportIconKey(t.transport_types)}
             />
           ))
         )}
       </div>
+        </>
+      )}
     </div>
   )
 }
 
-function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
+function IslandsView() {
+  return (
+    <div style={{ maxWidth: 960, margin: '0 auto', padding: '12px 16px 100px' }}>
+      {ISLAND_SECTIONS.map(section => {
+        const islands = section.slugs.map(s => islandBySlug[s]).filter(Boolean)
+        if (!islands.length) return null
+        return (
+          <section key={section.id} style={{ paddingTop: 20 }}>
+            <div style={{
+              display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+              gap: 12, marginBottom: 14,
+              paddingBottom: 10,
+              borderBottom: `1.5px solid ${section.color}22`,
+            }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                  <h2 style={{ fontSize: 17, fontWeight: 700, color: section.color, margin: 0 }}>
+                    {section.label}
+                  </h2>
+                  <span style={{
+                    fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 10,
+                    background: section.bg, color: section.color,
+                  }}>
+                    {islands.length} öar
+                  </span>
+                </div>
+                <p style={{ fontSize: 12, color: 'var(--txt2)', margin: 0, lineHeight: 1.4 }}>
+                  {section.description}
+                </p>
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gap: 10,
+            }}>
+              {islands.map(island => (
+                <Link key={island.slug} href={`/o/${island.slug}`}
+                  className="rutter-island-card"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex', alignItems: 'center', gap: 12,
+                    padding: '12px 14px',
+                    background: 'var(--white)',
+                    borderRadius: 14,
+                    border: '1px solid rgba(10,123,140,0.08)',
+                    boxShadow: '0 1px 3px rgba(0,45,60,0.05)',
+                  }}>
+                  <div style={{
+                    flexShrink: 0, width: 40, height: 40,
+                    background: section.bg, borderRadius: 10,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: section.color,
+                  }}>
+                    <svg viewBox="0 0 24 24" width={22} height={22} fill="none"
+                      stroke="currentColor" strokeWidth={1.8}
+                      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      fontSize: 14, fontWeight: 700, color: 'var(--txt)',
+                      marginBottom: 2, whiteSpace: 'nowrap',
+                      overflow: 'hidden', textOverflow: 'ellipsis',
+                    }}>
+                      {island.name}
+                    </div>
+                    <div style={{
+                      fontSize: 11, color: 'var(--txt2)', lineHeight: 1.35,
+                      display: '-webkit-box', WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical', overflow: 'hidden',
+                    }}>
+                      {island.tagline}
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 24 24" width={16} height={16} fill="none"
+                    stroke="var(--txt3)" strokeWidth={2}
+                    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+                    style={{ flexShrink: 0 }}>
+                    <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )
+      })}
+    </div>
+  )
+}
+
+function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
   tour: Tour
   categoryColor: { bg: string; text: string }
   categoryLabel: string
-  icon: string
+  iconKey: keyof typeof ICON_PATHS
 }) {
   const foodStops = Array.isArray(t.food_stops) ? t.food_stops : []
   return (
@@ -240,12 +466,14 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
         <div style={{ padding: '13px 14px 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
           <div style={{ flex: 1 }}>
             <span style={{
-              display: 'inline-block', fontSize: 10, fontWeight: 600,
+              display: 'inline-flex', alignItems: 'center', gap: 5,
+              fontSize: 10, fontWeight: 600,
               padding: '3px 8px', borderRadius: 20,
               background: cc.bg, color: cc.text,
               textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 5,
             }}>
-              {icon} {categoryLabel}
+              <Icon path={ICON_PATHS[iconKey]} size={11} stroke={2} />
+              {categoryLabel}
             </span>
             <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
               {t.title}
@@ -278,7 +506,10 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, icon }: {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
           <div style={{ fontSize: 11, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 4 }}>
-            {foodStops[0] && <><span>🍽</span><span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span></>}
+            {foodStops[0] && <>
+              <Icon path={ICON_PATHS.utensils} size={12} stroke={1.9} style={{ color: 'var(--txt3)' }} />
+              <span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span>
+            </>}
           </div>
           <div style={{ display: 'flex', gap: 3 }}>
             {t.best_for.slice(0, 3).map((b) => (

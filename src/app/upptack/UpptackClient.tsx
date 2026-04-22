@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 
-type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'rutter' | 'heatmap'
+type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'rutter' | 'heatmap'
 
 interface Poi {
   id: string
@@ -42,14 +42,21 @@ interface DetailRoute extends Route {
 }
 type DetailItem = DetailPoi | DetailRoute | null
 
-function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | null {
+function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | null {
   const cats = (p.categories ?? []).map(c => c.toLowerCase())
   const t = (p.type ?? '').toLowerCase()
   const d = (p.description ?? '').toLowerCase()
 
+  // Bensin/fuel först — annars fångas den av bryggor
   if (
-    cats.some(c => ['guest_harbor', 'harbor_stop', 'marina', 'fuel'].includes(c)) ||
-    t === 'fuel' || t === 'harbor' || t === 'marina' ||
+    t === 'fuel' ||
+    cats.includes('fuel') ||
+    d.includes('bensin') || d.includes('diesel') || d.includes('drivmedel') || d.includes('tankning') || d.includes('sjömack')
+  ) return 'bensin'
+
+  if (
+    cats.some(c => ['guest_harbor', 'harbor_stop', 'marina'].includes(c)) ||
+    t === 'harbor' || t === 'marina' ||
     d.includes('hamn') || d.includes('brygga') || d.includes('gästhamn')
   ) return 'bryggor'
 
@@ -78,6 +85,15 @@ const ICON_PATHS = {
   x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
   compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
   arrowRight: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  fuel: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
+  sailboat: '<path d="M22 18H2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4Z"/><path d="M21 14 10 2 3 14h18Z"/><path d="M10 2v16"/>',
+  kayak: '<path d="M3 7c0 4 4 10 9 10s9-6 9-10"/><path d="M12 4v3"/><circle cx="12" cy="3" r="1"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>',
+  map: '<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0Z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/>',
+  zap: '<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/>',
+  bike: '<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>',
+  footprints: '<path d="M4 16v-2.38c0-.87-.14-1.7-.4-2.45-.26-.75-.32-1.48-.2-2.18.12-.7.32-1.37.6-2 .3-.65.6-1.2 1-1.67.25-.31.56-.59.93-.83.38-.24.77-.36 1.17-.36 1.3 0 2.3.98 3 2.93.7 1.96 1 4.51 1 7.64v1.5"/><path d="M20 20h-4a4 4 0 0 1-4-4V8a2 2 0 1 1 4 0v3.5"/>',
 }
 
 type FilterCfg = { label: string; icon: keyof typeof ICON_PATHS; color: string }
@@ -86,6 +102,7 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
   bryggor:     { label: 'Bryggor',     icon: 'anchor',   color: '#1e5c82' },
   krogar:      { label: 'Krogar',      icon: 'utensils', color: '#c96e2a' },
   naturhamnar: { label: 'Naturhamnar', icon: 'trees',    color: '#4a7a2e' },
+  bensin:      { label: 'Bensin',      icon: 'fuel',     color: '#a8381e' },
   rutter:      { label: 'Rutter',      icon: 'route',    color: '#3a4a5a' },
   heatmap:     { label: 'Heatmap',     icon: 'flame',    color: '#b84728' },
 }
@@ -130,7 +147,7 @@ export default function UpptackClient() {
   const heatLayerRef   = useRef<import('leaflet').Layer | null>(null)
   const routeLayersRef = useRef<import('leaflet').Polyline[]>([])
 
-  const [filters, setFilters] = useState<Set<Filter>>(new Set(['bryggor', 'krogar']))
+  const [filters, setFilters] = useState<Set<Filter>>(new Set(['bryggor', 'krogar', 'bensin']))
   const [pois, setPois]     = useState<Poi[]>([])
   const [routes, setRoutes] = useState<Route[]>([])
   const [detail, setDetail] = useState<DetailItem>(null)
@@ -365,8 +382,9 @@ export default function UpptackClient() {
     if (filters.has('bryggor'))     activeCats.add('bryggor')
     if (filters.has('krogar'))      activeCats.add('krogar')
     if (filters.has('naturhamnar')) activeCats.add('naturhamnar')
-    // Fallback: om inga POI-kategorier är aktiva, visa alla tre
-    const effective = activeCats.size ? activeCats : new Set(['bryggor', 'krogar', 'naturhamnar'] as const)
+    if (filters.has('bensin'))      activeCats.add('bensin')
+    // Fallback: om inga POI-kategorier är aktiva, visa alla fyra
+    const effective = activeCats.size ? activeCats : new Set(['bryggor', 'krogar', 'naturhamnar', 'bensin'] as const)
 
     return pois
       .map(p => ({ p, cat: poiCategory(p) }))

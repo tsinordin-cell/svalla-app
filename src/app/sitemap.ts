@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: base,                  lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
     { url: `${base}/platser`,     lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/rutter`,      lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
-    { url: `${base}/oar`,         lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
+    { url: `${base}/rutter?vy=oar`, lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     { url: `${base}/blogg`,       lastModified: now, priority: 0.7, changeFrequency: 'weekly'  as const },
     { url: `${base}/guide`,       lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const },
     { url: `${base}/om`,          lastModified: now, priority: 0.5, changeFrequency: 'monthly' as const },

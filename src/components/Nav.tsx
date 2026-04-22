@@ -158,9 +158,13 @@ export default function Nav() {
     },
   ]
 
-  // Visa bells på alla app-sidor UTOM /feed (som har egna bells i sin header)
-  // och chatt-sidor (där input-fältet dominerar top-rymden)
-  const showGlobalBell = username !== null && !path.startsWith('/feed') && !path.match(/^\/meddelanden/)
+  // Visa bells bara på sidor som INTE har egen header med bells
+  // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
+  // /upptack har fullskärms-karta där Leaflet-kontroller bor top-right
+  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/upptack']
+  const showGlobalBell = username !== null
+    && !PAGES_WITH_OWN_BELLS.some(p => path.startsWith(p))
+    && !path.match(/^\/meddelanden/)
 
   return (
     <>
