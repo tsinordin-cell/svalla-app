@@ -1,14 +1,36 @@
 export const dynamic = 'force-dynamic'
 
 import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-)
+// Service-role client för RPC-anrop (gps_heat) som kräver service-role
+function getAdminClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false, autoRefreshToken: false } },
+  )
+}
 
 export async function GET(req: Request) {
+  // Auth krävs för alla discovery-endpoints — GPS-heatmap är känslig data
+  const cookieStore = await cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => cookieStore.getAll(),
+        setAll: (cs: { name: string; value: string; options?: object }[]) =>
+          cs.forEach(({ name, value, options }) => cookieStore.set(name, value, options ?? {})),
+      },
+    },
+  )
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
   const { searchParams } = new URL(req.url)
   const type = searchParams.get('type') ?? 'poi'
 
@@ -19,7 +41,8 @@ export async function GET(req: Request) {
     const maxLng = parseFloat(searchParams.get('max_lng') ?? '20')
     const zoom   = parseInt(searchParams.get('zoom') ?? '10', 10)
 
-    const { data, error } = await supabase.rpc('gps_heat', {
+    const admin = getAdminClient()
+    const { data, error } = await admin.rpc('gps_heat', {
       min_lat: minLat,
       min_lng: minLng,
       max_lat: maxLat,
@@ -28,7 +51,7 @@ export async function GET(req: Request) {
     })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=300' },
+      headers: { 'Cache-Control': 'private, s-maxage=3600, stale-while-revalidate=300' },
     })
   }
 
@@ -41,7 +64,7 @@ export async function GET(req: Request) {
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60' },
+      headers: { 'Cache-Control': 'private, s-maxage=300, stale-while-revalidate=60' },
     })
   }
 
@@ -54,7 +77,7 @@ export async function GET(req: Request) {
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
     return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=60' },
+      headers: { 'Cache-Control': 'private, s-maxage=300, stale-while-revalidate=60' },
     })
   }
 
