@@ -93,7 +93,11 @@ function CheckInPage() {
         image: imageUrl,
       })
       if (!res) { setErr('Kunde inte checka in. Försök igen.'); setBusy(false); return }
-      router.push(prefillReturnTo || '/feed')
+      // Whitelist: tillåt bara interna sökvägar (börjar med /) för att undvika open redirect
+      const safeDest = prefillReturnTo && prefillReturnTo.startsWith('/') && !prefillReturnTo.startsWith('//')
+        ? prefillReturnTo
+        : '/feed'
+      router.push(safeDest)
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : 'Oväntat fel')
       setBusy(false)
