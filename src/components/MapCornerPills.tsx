@@ -136,39 +136,45 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
 
   return (
     <PillShell ariaLabel={`Väder: ${data.temp}°, ${data.windSpeed} m/s ${windDirLabel(data.windDir)}${place ? ', ' + place : ''}`}>
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-        <span style={{ fontSize: 16, lineHeight: 1 }}>{desc.emoji}</span>
-        <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '-0.2px' }}>{data.temp}°</span>
-      </span>
-      <span aria-hidden="true" style={{ width: 1, height: 18, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--sea, #1e5c82)' }}>
-          <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
-          <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
-          <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
-        </svg>
-        <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '-0.1px' }}>
-          {data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}
+      {/* Väderdata — rad 1 */}
+      <span style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          {/* Temp + ikon */}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ fontSize: 16, lineHeight: 1 }}>{desc.emoji}</span>
+            <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '-0.2px' }}>{data.temp}°</span>
+          </span>
+          <span aria-hidden="true" style={{ width: 1, height: 16, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />
+          {/* Vind */}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--sea, #1e5c82)' }}>
+              <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+              <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+              <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+            </svg>
+            <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '-0.1px' }}>
+              {data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}
+            </span>
+          </span>
         </span>
-      </span>
-      {place && (
-        <>
-          <span aria-hidden="true" style={{ width: 1, height: 18, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, overflow: 'hidden' }}>
-            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--acc, #c96e2a)', flexShrink: 0 }}>
+
+        {/* Område — rad 2 (visas bara när place finns) */}
+        {place && (
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--acc, #c96e2a)', flexShrink: 0 }}>
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
             <span style={{
-              fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.4px',
+              fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
               color: 'var(--txt2, #5a7a8a)',
               overflow: 'hidden', textOverflow: 'ellipsis',
             }}>
               {place}
             </span>
           </span>
-        </>
-      )}
+        )}
+      </span>
     </PillShell>
   )
 }

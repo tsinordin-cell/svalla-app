@@ -130,7 +130,7 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
 
 // Primära chips ligger alltid synliga i fältraden.
 // Sekundära (överlägg) göms bakom "Lager"-menyn.
-const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'naturhamnar', 'bensin', 'bastu']
+const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'naturhamnar', 'bensin']
 const SECONDARY_FILTERS: Filter[] = ['rutter', 'heatmap']
 
 function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
@@ -576,6 +576,41 @@ export default function UpptackClient() {
             )
           })}
         </div>
+
+        {/* Bastu — fast chip bredvid Lager (endast på karta) */}
+        {view === 'map' && (() => {
+          const cfg    = FILTER_CONFIG['bastu']
+          const active = filters.has('bastu')
+          return (
+            <button
+              key="bastu"
+              onClick={() => toggleFilter('bastu')}
+              role="tab"
+              aria-selected={active}
+              className="upptack-chip press-feedback"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                height: 36, padding: '0 14px',
+                borderRadius: 999,
+                border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
+                background: active ? cfg.color : 'var(--glass-92)',
+                color: active ? '#fff' : 'var(--txt)',
+                fontSize: 13, fontWeight: 600,
+                fontFamily: 'inherit', cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
+                flexShrink: 0,
+                pointerEvents: 'auto',
+              }}
+            >
+              <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
+              <span>{cfg.label}</span>
+            </button>
+          )
+        })()}
 
         {/* Lager-knapp (endast på karta) — öppnar popover med Rutter/Väder/Heatmap */}
         {view === 'map' && (() => {
@@ -1047,12 +1082,12 @@ export default function UpptackClient() {
         </div>
       )}
 
-      {/* Hörn-pills — väder & destination */}
+      {/* Hörn-pills — väder & destination (nedre högra hörnet) */}
       {view === 'map' && (
         <div
           style={{
             position: 'absolute',
-            top: 100,
+            bottom: 80,   // ovanför nav-baren (~64px) + lite luft
             right: 12,
             zIndex: 1000,
             display: 'flex',
