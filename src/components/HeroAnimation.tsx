@@ -132,7 +132,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
   useEffect(() => {
     const cv = ref.current
     if (!cv) return
-    const cx = cv.getContext('2d', { alpha: false })
+    const cx = cv.getContext('2d', { alpha: true })
     if (!cx) return
 
     const th = THEMES[variant]
@@ -652,7 +652,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       wg.addColorStop(0.10, w0)
       wg.addColorStop(0.30, w1)
       wg.addColorStop(0.60, w2)
-      wg.addColorStop(1,    w3)
+      wg.addColorStop(0.84, w3)
+      wg.addColorStop(1,    'rgba(0,0,0,0)')
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
@@ -704,8 +705,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const dg = cx.createLinearGradient(0, wb, 0, H)
       dg.addColorStop(0,    `${th.seabedTint}0)`)
       dg.addColorStop(0.20, `${th.seabedTint}0.04)`)
-      dg.addColorStop(0.55, `${th.seabedTint}0.12)`)
-      dg.addColorStop(1,    `${th.seabedTint}0.22)`)
+      dg.addColorStop(0.55, `${th.seabedTint}0.08)`)
+      dg.addColorStop(1,    `${th.seabedTint}0)`)
       cx.fillStyle = dg; cx.fillRect(0, wb, W, H - wb)
       // Two subtle light rays — slower, narrower
       for (let i = 0; i < 2; i++) {
@@ -738,25 +739,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.restore()
     }
 
-    /* ── Seabed — sandy sediment + scattered stones ─────────────────────── */
+    /* ── Seabed — scattered stones (no dark fill — bottom is transparent) ── */
     const drawSeabedRocks = () => {
-      // Sandy/silty bottom gradient
-      const sg = cx.createLinearGradient(0, H * 0.86, 0, H)
-      sg.addColorStop(0, 'rgba(38,52,68,0)')
-      sg.addColorStop(0.40, 'rgba(32,46,62,0.28)')
-      sg.addColorStop(1,    'rgba(24,36,52,0.52)')
-      cx.fillStyle = sg; cx.fillRect(0, H * 0.86, W, H * 0.14)
-      // Sediment grain texture — irregular dots
-      cx.fillStyle = 'rgba(50,65,80,0.28)'
-      for (let i = 0; i < 28; i++) {
-        const gx = W * ((i * 0.037 + 0.008) % 1.0)
-        const gy = H * (0.90 + ((i * 0.031) % 0.09))
-        cx.beginPath(); cx.arc(gx, gy, 1.0 + (i % 3) * 0.5, 0, Math.PI * 2); cx.fill()
-      }
-      // Darker sediment in deeper corners
-      cx.fillStyle = 'rgba(18,28,44,0.22)'
-      cx.fillRect(0, H * 0.94, W * 0.22, H * 0.06)
-      cx.fillRect(W * 0.78, H * 0.94, W * 0.22, H * 0.06)
       // Stones — varied sizes, natural
       const stones = [
         { x: W*0.06, rw: H*0.036, rh: H*0.016 }, { x: W*0.19, rw: H*0.024, rh: H*0.011 },
@@ -1094,6 +1078,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const dt = Math.min(now - last, 50)
       last = now; t += dt * 0.001
 
+      cx.clearRect(0, 0, W, H)
       drawSky()
       drawSun()
       drawFarIslands()
