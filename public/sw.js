@@ -1,6 +1,6 @@
 // Svalla service worker — push notifications + offline cache
 
-const CACHE = 'svalla-v5'
+const CACHE = 'svalla-v6'
 // Cача BARA statiska assets — ALDRIG HTML-sidor eller RSC-payloads.
 // HTML-sidor är dynamiska och RSC-payloads matchar inte vanliga navigeringar —
 // att cacha dem blandar ihop formaten och kraschar React-hydreringen.
@@ -41,18 +41,22 @@ self.addEventListener('fetch', event => {
   }
 
   // _next/static/chunks & _next/static/css:
-  // Cache-first är OK BARA för content-hashed filer (hash i filnamnet).
+  // NETWORK-FIRST för att undvika att cross-build stale chunks serveras.
+  // Content-hashade filer byter namn per build; om SW från tidigare build
+  // hänger kvar kan dess cache innehålla chunks som inte längre matchar
+  // den serverade HTML:en — det leder till att appens bootstrap importerar
+  // symboler som inte finns i den gamla bundle:n och kastar runtime-fel
+  // under hydration (vilket landar i app/feed/error.tsx).
+  //
+  // Strategi: network-first, fall back till cache bara vid offline.
   if (url.pathname.startsWith('/_next/static/')) {
     event.respondWith(
-      caches.match(request).then(cached => {
-        const networkFetch = fetch(request).then(r => {
-          if (r.ok) {
-            caches.open(CACHE).then(c => c.put(request, r.clone()))
-          }
-          return r
-        })
-        return cached || networkFetch
-      })
+      fetch(request).then(r => {
+        if (r.ok) {
+          caches.open(CACHE).then(c => c.put(request, r.clone()))
+        }
+        return r
+      }).catch(() => caches.match(request).then(c => c || Response.error()))
     )
     return
   }

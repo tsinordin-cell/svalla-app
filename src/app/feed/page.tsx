@@ -36,7 +36,14 @@ function FeedServerError() {
   )
 }
 
-export default async function FeedPage() {
+export default async function FeedPage(
+  { searchParams }: { searchParams?: Promise<{ safe?: string }> } = {}
+) {
+  // ?safe=1 → diagnostik-läge: stäng av alla klient-komponenter utom feed-listan.
+  // Används för att isolera vilken komponent som ev. kraschar under hydration.
+  const sp = (await searchParams) ?? {}
+  const SAFE = sp.safe === '1'
+
   let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
   let user: { id: string } | null = null
 
@@ -125,8 +132,8 @@ export default async function FeedPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <RealtimeFeedBanner />
-      <OnboardingModal />
+      {!SAFE && <RealtimeFeedBanner />}
+      {!SAFE && <OnboardingModal />}
 
       {/* ── Header ── */}
       <header style={{
@@ -157,6 +164,22 @@ export default async function FeedPage() {
 
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 16px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
+        {SAFE && (
+          <div role="status" style={{
+            background: 'rgba(201,110,42,0.12)',
+            border: '1px solid rgba(201,110,42,0.35)',
+            borderRadius: 12,
+            padding: '10px 14px',
+            marginBottom: 14,
+            fontSize: 12,
+            color: 'var(--txt)',
+            lineHeight: 1.5,
+          }}>
+            <strong>Safe mode aktivt.</strong> Stories, SuggestedUsers, RealtimeFeedBanner och OnboardingModal är avstängda för diagnostik.
+            Om feeden fungerar här men inte på <a href="/feed" style={{ color: 'var(--sea)' }}>/feed</a> är buggen i en av de klient-komponenterna.
+          </div>
+        )}
+
         {/* ── Social proof banner ── */}
         {thisWeek.length > 0 && (
           <div style={{
@@ -178,9 +201,11 @@ export default async function FeedPage() {
         )}
 
         {/* ── Stories (24h) ── */}
-        <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
-          <StoriesStrip />
-        </div>
+        {!SAFE && (
+          <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
+            <StoriesStrip />
+          </div>
+        )}
 
         {/* ── Aktivt nu (senaste 24h) ── */}
         {activeNow.length > 0 && (
@@ -288,7 +313,7 @@ export default async function FeedPage() {
         )}
 
         {/* ── Hitta seglare (suggested follows — only for logged-in) ── */}
-        {user && <SuggestedUsers />}
+        {user && !SAFE && <SuggestedUsers />}
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (
