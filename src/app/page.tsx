@@ -969,7 +969,7 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <div style={{ position: 'relative', background: '#0a1f2b' }}>
+    <div style={{ position: 'relative' }}>
       {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0,
@@ -977,7 +977,9 @@ export default function LandingPage() {
         zIndex: 0,
         overflow: 'hidden',
         pointerEvents: 'none',
-      }}>
+        /* Dark bg fades to white near bottom so stones rest on white page */
+        background: 'linear-gradient(to bottom, #0a1f2b 0%, #0a1f2b 76%, white 92%)',
+      } as React.CSSProperties}>
         <HeroAnimation />
       </div>
       <style>{`

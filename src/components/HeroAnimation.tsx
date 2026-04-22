@@ -648,12 +648,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const [w0, w1, w2, w3] = th.water
       const wg = cx.createLinearGradient(0, WL(), 0, H)
-      wg.addColorStop(0,    w0)
-      wg.addColorStop(0.10, w0)
-      wg.addColorStop(0.30, w1)
-      wg.addColorStop(0.60, w2)
-      wg.addColorStop(0.84, w3)
-      wg.addColorStop(1,    'rgba(0,0,0,0)')
+      wg.addColorStop(0,     w0)
+      wg.addColorStop(0.10,  w0)
+      wg.addColorStop(0.30,  w1)
+      wg.addColorStop(0.60,  w2)
+      wg.addColorStop(0.76,  w3)          // deepest at H*0.90 — fish still in water
+      wg.addColorStop(0.833, 'rgba(0,0,0,0)') // transparent by H*0.93
+      wg.addColorStop(1,     'rgba(0,0,0,0)')
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
@@ -1087,8 +1088,12 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawNearIslands()
       drawWater()
       drawWaterShimmer()
+      drawUnderwater()
+      drawParticles()
       drawFerry(dt)
       drawBoats(dt)
+      drawFish(dt)
+      drawBubbles(dt)
       drawSeabedRocks()
       drawSeaweed()
       drawOverlay()
