@@ -17,19 +17,45 @@ import { fontSize, fontWeight } from '@/lib/tokens'
 
 export const revalidate = 0
 
-export default async function FeedPage() {
-  const supabase = await createServerSupabaseClient()
+/** Graciöst felmeddelande om servern kraschar (undviker error-boundary). */
+function FeedServerError() {
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
+      <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
+      <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
+      <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>
+        Något gick fel på servern. Prova att ladda om sidan.
+      </p>
+      <a href="/feed" style={{
+        padding: '12px 24px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+        color: '#fff', fontSize: 14, fontWeight: 600, textDecoration: 'none',
+      }}>
+        Ladda om
+      </a>
+    </div>
+  )
+}
 
-  // Kolla inloggad användare
-  const { data: { user } } = await supabase.auth.getUser()
+export default async function FeedPage() {
+  let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
+  let user: { id: string } | null = null
+
+  try {
+    supabase = await createServerSupabaseClient()
+    const { data } = await supabase.auth.getUser()
+    user = data?.user ?? null
+  } catch (err) {
+    console.error('[FeedPage] auth/client init error:', err)
+    return <FeedServerError />
+  }
 
   // Bulk-query: ETT RPC-anrop returnerar trips + user + likes_count
   // + comments_count + user_liked. Ersätter 4-7 separata queries.
   // För inloggad: kör båda flödena parallellt (alla + följer).
   const [allRes, followRes] = await Promise.all([
-    fetchFeedTrips(supabase, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
+    fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
     user
-      ? fetchFeedTrips(supabase, { viewerId: user.id, limit: 50, followOnly: true })
+      ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 50, followOnly: true })
       : Promise.resolve({ trips: [], error: null }),
   ])
 
