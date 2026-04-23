@@ -77,7 +77,6 @@ const ISLAND_COORDS: Record<string, [number, number]> = {
   'gullholmen':      [58.0050, 11.3850], 'nösund':          [58.1300, 11.5200],
   'stocken':         [58.1500, 11.6500], 'karlshamn':       [56.1700, 14.8600],
   'fjäderholmarna':  [59.3267, 18.1733], 'norrhamn':        [59.5200, 18.8500],
-  'finnboda':        [59.3100, 18.1300],
 }
 
 function sleep(ms: number) { return new Promise(r => setTimeout(r, ms)) }
