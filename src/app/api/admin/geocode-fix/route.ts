@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createClient as createServiceClient } from '@supabase/supabase-js'
 
 export const maxDuration = 300 // 5 min — Vercel Pro/Hobby max
@@ -118,7 +118,7 @@ async function geocodeIsland(islandName: string): Promise<{ lat: number; lng: nu
 
 export async function POST(req: NextRequest) {
   // ── Auth-kontroll ─────────────────────────────────────────────
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Ej inloggad' }, { status: 401 })
 
