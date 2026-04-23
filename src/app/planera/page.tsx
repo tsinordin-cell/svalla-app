@@ -128,7 +128,7 @@ export default function PlaneraTurPage() {
               {DURATIONS.map(d => (
                 <button key={d.value} onClick={() => pick(setDuration, d.value, 'group')}
                   style={{
-                    padding: '18px 14px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                    padding: '18px 14px', borderRadius: 16, cursor: 'pointer',
                     background: duration === d.value ? 'var(--grad-sea)' : 'var(--white)',
                     boxShadow: duration === d.value
                       ? '0 4px 16px rgba(10,123,140,0.35)'
@@ -158,7 +158,7 @@ export default function PlaneraTurPage() {
               {GROUPS.map(g => (
                 <button key={g.value} onClick={() => pick(setGroup, g.value, 'vibe')}
                   style={{
-                    padding: '18px 14px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                    padding: '18px 14px', borderRadius: 16, cursor: 'pointer',
                     background: group === g.value ? 'var(--grad-sea)' : 'var(--white)',
                     boxShadow: group === g.value
                       ? '0 4px 16px rgba(10,123,140,0.35)'
@@ -187,7 +187,7 @@ export default function PlaneraTurPage() {
               {VIBES.map(v => (
                 <button key={v.value} onClick={() => pick(setVibe, v.value, 'start')}
                   style={{
-                    padding: '16px 14px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                    padding: '16px 14px', borderRadius: 16, cursor: 'pointer',
                     background: vibe === v.value ? 'var(--grad-sea)' : 'var(--white)',
                     boxShadow: vibe === v.value
                       ? '0 4px 16px rgba(10,123,140,0.35)'
@@ -217,7 +217,7 @@ export default function PlaneraTurPage() {
                 <button key={s.value}
                   onClick={() => { setStart(s.value) }}
                   style={{
-                    padding: '16px 14px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                    padding: '16px 14px', borderRadius: 16, cursor: 'pointer',
                     background: start === s.value ? 'var(--grad-sea)' : 'var(--white)',
                     boxShadow: start === s.value
                       ? '0 4px 16px rgba(10,123,140,0.35)'
