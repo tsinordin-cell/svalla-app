@@ -14,6 +14,7 @@ interface Theme {
   sunInner: string; sunOuter: string
   glowA: number; glowColor: string
   water: [string, string, string, string]
+  waterFade: string   // transparent version of water[3] — prevents dark banding
   waterHighlight: string
   farIsland: string; islandGreen: string; rockColor: string
   pineTrunk: string; pineBody: string; pineTop: string
@@ -30,6 +31,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fffee0', sunOuter: '#ffe070',
     glowA: 0.48,  glowColor: '255,225,90',
     water:        ['#2488c0','#186aa8','#104e84','#0a2e5a'],
+    waterFade:    'rgba(10,46,90,',
     waterHighlight:'rgba(255,255,255,0.20)',
     farIsland:    'rgba(105,135,155,0.48)',
     islandGreen:  '#4e7845',
@@ -48,6 +50,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fff0a0', sunOuter: '#ffb040',
     glowA: 0.70,  glowColor: '255,160,40',
     water:        ['#b86830','#904820','#6a2e14','#3e1408'],
+    waterFade:    'rgba(62,20,8,',
     waterHighlight:'rgba(255,200,100,0.28)',
     farIsland:    'rgba(130,75,45,0.52)',
     islandGreen:  '#5e6838',
@@ -66,6 +69,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fffce0', sunOuter: '#ffd080',
     glowA: 0.45,  glowColor: '255,210,100',
     water:        ['#182858','#102048','#0c1a38','#0a1440'],
+    waterFade:    'rgba(10,20,64,',
     waterHighlight:'rgba(160,170,255,0.20)',
     farIsland:    'rgba(55,45,85,0.58)',
     islandGreen:  '#234050',
@@ -84,6 +88,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     'rgba(220,220,200,0.6)', sunOuter: 'rgba(180,180,160,0.3)',
     glowA: 0.20,  glowColor: '200,210,200',
     water:        ['#253c48','#1c2e3a','#14202c','#0a1828'],
+    waterFade:    'rgba(10,24,40,',
     waterHighlight:'rgba(180,210,230,0.14)',
     farIsland:    'rgba(55,70,75,0.62)',
     islandGreen:  '#304438',
@@ -102,6 +107,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     'rgba(255,250,240,0.9)', sunOuter: 'rgba(215,228,238,0.5)',
     glowA: 0.85,  glowColor: '215,232,248',
     water:        ['#82a8bc','#6088a0','#426880','#2c4e64'],
+    waterFade:    'rgba(44,78,100,',
     waterHighlight:'rgba(255,255,255,0.16)',
     farIsland:    'rgba(130,155,168,0.42)',
     islandGreen:  '#608070',
@@ -648,13 +654,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const [w0, w1, w2, w3] = th.water
       const wg = cx.createLinearGradient(0, WL(), 0, H)
-      wg.addColorStop(0,     w0)
-      wg.addColorStop(0.10,  w0)
-      wg.addColorStop(0.30,  w1)
-      wg.addColorStop(0.60,  w2)
-      wg.addColorStop(0.76,  w3)          // deepest at H*0.90 — fish still in water
-      wg.addColorStop(0.833, 'rgba(0,0,0,0)') // transparent by H*0.93
-      wg.addColorStop(1,     'rgba(0,0,0,0)')
+      wg.addColorStop(0,    w0)
+      wg.addColorStop(0.10, w0)
+      wg.addColorStop(0.30, w1)
+      wg.addColorStop(0.60, w2)
+      wg.addColorStop(0.82, w3)                       // deepest water — extend further down
+      wg.addColorStop(0.94, `${th.waterFade}0.55)`)  // begin fade — same hue, no black band
+      wg.addColorStop(1,    `${th.waterFade}0)`)
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
