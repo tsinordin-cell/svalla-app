@@ -1,11 +1,21 @@
 import Link from 'next/link'
-import type { ReactNode } from 'react'
+import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
 import AppGateLink from '@/components/AppGateLink'
 
 // App-interna filter-URL:er som kräver inloggning (ex: /platser?kategori=krog)
 function isAppGated(href: string): boolean {
   return /\?(kategori|vy)=/.test(href)
+}
+
+const siteNavLinkStyle: CSSProperties = {
+  color: 'rgba(255,255,255,0.85)',
+  fontSize: 14,
+  fontWeight: 500,
+  textDecoration: 'none',
+  padding: '8px 12px',
+  borderRadius: 8,
+  whiteSpace: 'nowrap',
 }
 
 /**
@@ -76,18 +86,48 @@ export default function CategoryLanding(props: CategoryLandingProps) {
   } = props
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 0 }}>
+      {/* WEBBPLATS-NAV — markerar sidan som "hemsida", inte app */}
+      <nav
+        style={{
+          background: heroGradient[0],
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          padding: '14px 20px',
+        }}
+      >
+        <div style={{
+          maxWidth: 1040, margin: '0 auto',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16,
+        }}>
+          <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+            <SvallaLogo height={22} color="#ffffff" />
+          </Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <Link href="/karta" style={siteNavLinkStyle}>Karta</Link>
+            <Link href="/resmal" style={siteNavLinkStyle}>Resmål</Link>
+            <Link href="/populara-turer" style={siteNavLinkStyle}>Turer</Link>
+            <Link href="/logga-in" style={siteNavLinkStyle}>Logga in</Link>
+            <Link href="/kom-igang" style={{
+              ...siteNavLinkStyle,
+              background: '#fff',
+              color: heroGradient[0],
+              fontWeight: 700,
+              padding: '8px 16px',
+              borderRadius: 22,
+              marginLeft: 6,
+            }}>Kom igång →</Link>
+          </div>
+        </div>
+      </nav>
+
       {/* HERO */}
       <header
         style={{
           background: `linear-gradient(160deg, ${heroGradient[0]} 0%, ${heroGradient[1]} 100%)`,
-          padding: '52px 20px 44px',
+          padding: '44px 20px 52px',
         }}
       >
         <div style={{ maxWidth: 1040, margin: '0 auto' }}>
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 18 }}>
-            <SvallaLogo height={26} color="#ffffff" />
-          </Link>
 
           <div
             style={{
@@ -325,6 +365,54 @@ export default function CategoryLanding(props: CategoryLandingProps) {
           </div>
         </nav>
       )}
+
+      {/* WEBBPLATS-FOOTER — signalerar tydligt att detta är en hemsida, inte app */}
+      <footer
+        style={{
+          marginTop: 64,
+          padding: '32px 20px 28px',
+          background: heroGradient[0],
+          color: 'rgba(255,255,255,0.9)',
+        }}
+      >
+        <div style={{
+          maxWidth: 1040, margin: '0 auto',
+          display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 24,
+        }}>
+          <div style={{ minWidth: 200 }}>
+            <SvallaLogo height={22} color="#ffffff" />
+            <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', margin: '12px 0 0', maxWidth: 280, lineHeight: 1.5 }}>
+              Den digitala hamnen för Stockholms skärgård — planera, upptäck och logga dina turer.
+            </p>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40 }}>
+            <FooterCol title="Utforska" links={[
+              { label: 'Karta', href: '/karta' },
+              { label: 'Alla resmål', href: '/resmal' },
+              { label: 'Populära turer', href: '/populara-turer' },
+              { label: 'Krogar & mat', href: '/krogar-och-mat' },
+            ]} />
+            <FooterCol title="Svalla" links={[
+              { label: 'Om oss', href: '/om' },
+              { label: 'FAQ', href: '/faq' },
+              { label: 'Integritet', href: '/integritetspolicy' },
+              { label: 'Kontakt', href: 'mailto:hej@svalla.se' },
+            ]} />
+            <FooterCol title="Kom igång" links={[
+              { label: 'Logga in', href: '/logga-in' },
+              { label: 'Skapa konto', href: '/kom-igang' },
+              { label: 'Pro', href: '/pro' },
+            ]} />
+          </div>
+        </div>
+        <div style={{
+          maxWidth: 1040, margin: '28px auto 0', paddingTop: 20,
+          borderTop: '1px solid rgba(255,255,255,0.1)',
+          fontSize: 12, color: 'rgba(255,255,255,0.55)',
+        }}>
+          © {new Date().getFullYear()} Svalla. Alla rättigheter förbehållna.
+        </div>
+      </footer>
     </div>
   )
 }
@@ -390,5 +478,28 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
     <Link href={item.href} style={cardStyle}>
       {cardContent}
     </Link>
+  )
+}
+
+function FooterCol({ title, links }: { title: string; links: { label: string; href: string }[] }) {
+  return (
+    <div>
+      <div style={{
+        fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)',
+        textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10,
+      }}>
+        {title}
+      </div>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {links.map(l => (
+          <li key={l.href}>
+            <Link href={l.href} style={{
+              color: 'rgba(255,255,255,0.85)',
+              fontSize: 13, textDecoration: 'none',
+            }}>{l.label}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
