@@ -146,10 +146,16 @@ Kort beskrivning (1-2 meningar)
 NÄR DU HJÄLPER ANVÄNDAREN LOGGA:
 Rubrik + loggtext + vad som var bäst + tips till andra
 
-PLATSLÄNKAR:
-- Om du nämner en plats som finns i platslistan (se dynamisk sektion nedan), länka alltid till den: [Platsnamn](https://svalla.se/platser/ID)
-- Om platsen har bokningslänk, visa den tydligt: [Boka bord →](bokningslänk)
-- Länka BARA till platser som faktiskt finns i listan — hitta inte på IDn
+PLATSLÄNKAR — VIKTIGT:
+- Länka ENDAST till platser som står ordagrant i platslistan nedan. Kopiera
+  ID:t exakt från listan — hitta ALDRIG på ett ID eller gissa.
+- Om en plats du vill nämna inte finns i listan: skriv bara namnet utan
+  länk. Länka inte "på känsla".
+- Format: [Exakt namn från listan](URL-exakt-som-står-i-listan)
+- Matcha texten i hakparentesen mot namnet i listan. Stava inte om
+  (ex: skriv "Sandhamn Seglarhotell" om listan säger så, inte
+  "Sandhamns Seglarhotell").
+- Om platsen har bokningslänk, visa den: [Boka bord →](bokningslänk-från-listan)
 
 TON:
 - Som en lokal skärgårdsperson, inte en guidebok
@@ -302,13 +308,35 @@ export async function POST(req: NextRequest) {
     .order('name', { ascending: true })
     .limit(80)
 
-  const placeLinks = (places ?? [])
-    .map((p: { id: string; name: string; island: string | null; booking_url: string | null }) => {
+  const placeList: Array<{ id: string; name: string; island: string | null; booking_url: string | null }> = places ?? []
+
+  // Validerings-set: endast dessa IDn och bokningslänkar får finnas i svaret
+  const validPlaceIds = new Set(placeList.map(p => p.id))
+  const validBookingUrls = new Set(placeList.map(p => p.booking_url).filter((x): x is string => !!x))
+
+  const placeLinks = placeList
+    .map(p => {
       const base = `https://svalla.se/platser/${p.id}`
       const booking = p.booking_url ? ` — [Boka bord](${p.booking_url})` : ''
       return `${p.name}${p.island ? ` (${p.island})` : ''}: ${base}${booking}`
     })
     .join('\n')
+
+  /** Strippa markdown-länkar där URL:en inte finns i vår whitelist. Behåll länktexten. */
+  function sanitizeLinks(text: string): string {
+    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, label, url) => {
+      // Tillåt /platser/<id> om id finns i DB
+      const platserMatch = /^https?:\/\/svalla\.se\/platser\/([0-9a-f-]+)/i.exec(url)
+      if (platserMatch && validPlaceIds.has(platserMatch[1])) return full
+      // Tillåt booking_url från DB
+      if (validBookingUrls.has(url)) return full
+      // Tillåt interna Svalla-sidor
+      if (/^https?:\/\/svalla\.se\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
+      if (/^\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
+      // Allt annat — strippa länken, behåll texten
+      return label
+    })
+  }
 
   const dynamicSystem = placeLinks
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
@@ -342,10 +370,11 @@ export async function POST(req: NextRequest) {
     }
     const data1 = await res1.json()
 
-    // Om Claude inte bad om ett verktyg — returnera text direkt
+    // Om Claude inte bad om ett verktyg — returnera text direkt (sanerad)
     if (data1.stop_reason !== 'tool_use') {
       const textBlock = (data1.content ?? []).find((c: AnthropicContent) => c.type === 'text')
-      return NextResponse.json({ reply: (textBlock as { text?: string })?.text ?? '' })
+      const raw = (textBlock as { text?: string })?.text ?? ''
+      return NextResponse.json({ reply: sanitizeLinks(raw) })
     }
 
     // Claude bad om ett verktyg — exekvera det och skicka tillbaka resultatet
@@ -380,7 +409,8 @@ export async function POST(req: NextRequest) {
     }
     const data2 = await res2.json()
     const finalTextBlock = (data2.content ?? []).find((c: AnthropicContent) => c.type === 'text')
-    return NextResponse.json({ reply: (finalTextBlock as { text?: string })?.text ?? '' })
+    const finalRaw = (finalTextBlock as { text?: string })?.text ?? ''
+    return NextResponse.json({ reply: sanitizeLinks(finalRaw) })
   } catch (error) {
     console.error('[guide api] exception', error)
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
