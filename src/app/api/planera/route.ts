@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
+import { checkRateLimit } from '@/lib/rateLimit'
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 /**
  * POST /api/planera
@@ -9,22 +12,36 @@ import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
  */
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit per IP (anrop är öppet — lazy compute triggas från publik sida)
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+      ?? req.headers.get('x-real-ip')
+      ?? 'unknown'
+    if (!checkRateLimit(`planera:${ip}`, 10, 60_000)) {
+      return NextResponse.json({ error: 'För många förfrågningar, försök igen om en minut' }, { status: 429 })
+    }
+
     const { routeId } = await req.json()
-    if (!routeId) {
-      return NextResponse.json({ error: 'routeId krävs' }, { status: 400 })
+    if (!routeId || typeof routeId !== 'string' || !UUID_RE.test(routeId)) {
+      return NextResponse.json({ error: 'Ogiltig routeId' }, { status: 400 })
     }
 
     const supabase = await createClient()
 
-    // Hämta rutten
+    // Hämta endast publicerade rutter (matchar beteendet på /planera/[id])
     const { data: route, error: routeErr } = await supabase
       .from('planned_routes')
-      .select('id, start_lat, start_lng, end_lat, end_lng, interests')
+      .select('id, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops')
       .eq('id', routeId)
-      .single()
+      .eq('status', 'published')
+      .maybeSingle()
 
     if (routeErr || !route) {
       return NextResponse.json({ error: 'Rutten hittades inte' }, { status: 404 })
+    }
+
+    // Idempotens: om stopp redan beräknats, returnera dem utan att köra om algoritmen
+    if (Array.isArray(route.suggested_stops) && route.suggested_stops.length > 0) {
+      return NextResponse.json({ stops: route.suggested_stops })
     }
 
     // Hämta alla platser
