@@ -17,40 +17,24 @@ export default function Nav() {
   useEffect(() => {
     const supabase = createClient()
 
-    // Lyssna på auth-ändringar — uppdatera username direkt vid login/logout
+    // onAuthStateChange firar INITIAL_SESSION på mount + alla senare auth-ändringar.
+    // Räcker ensamt — tidigare fanns även en getUser()-gren som gjorde samma users-query.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
       if (!session) {
         setUsername(null)
         setAvatar(null)
         if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
-      } else if (session.user) {
-        supabase
-          .from('users')
-          .select('username, avatar')
-          .eq('id', session.user.id)
-          .single()
-          .then(({ data }) => {
-            setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
-            setAvatar(data?.avatar ?? null)
-          })
+        return
       }
-    })
-
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        supabase
-          .from('users')
-          .select('username, avatar')
-          .eq('id', user.id)
-          .single()
-          .then(({ data }) => {
-            setUsername(data?.username ?? null)
-            setAvatar(data?.avatar ?? null)
-          })
-      } else {
-        setUsername(null)
-        setAvatar(null)
-      }
+      supabase
+        .from('users')
+        .select('username, avatar')
+        .eq('id', session.user.id)
+        .single()
+        .then(({ data }) => {
+          setUsername(data?.username ?? session.user.email?.split('@')[0] ?? null)
+          setAvatar(data?.avatar ?? null)
+        })
     })
 
     return () => {

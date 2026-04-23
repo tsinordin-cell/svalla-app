@@ -70,12 +70,15 @@ function ManuellForm() {
   const [routeId, setRouteId]               = useState<string | null>(null)
   const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
 
-  // Ladda rutter
+  // Ladda rutter — lazy: bara när "detaljer"-panelen expanderas
+  const [routesLoaded, setRoutesLoaded] = useState(false)
   useEffect(() => {
+    if (!showMore || routesLoaded) return
     supabase.from('routes').select('id, name').order('name').then(({ data }) => {
       if (data) setRoutes(data)
+      setRoutesLoaded(true)
     })
-  }, [supabase])
+  }, [showMore, routesLoaded, supabase])
 
   // Förifyll start/slut från planerad rutt
   useEffect(() => {
