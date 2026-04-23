@@ -658,9 +658,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       wg.addColorStop(0.10, w0)
       wg.addColorStop(0.30, w1)
       wg.addColorStop(0.60, w2)
-      wg.addColorStop(0.82, w3)                       // deepest water — extend further down
-      wg.addColorStop(0.94, `${th.waterFade}0.55)`)  // begin fade — same hue, no black band
-      wg.addColorStop(1,    `${th.waterFade}0)`)
+      wg.addColorStop(1,    w3)   // deepest water fills all the way — no seabed, no fade
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
@@ -1100,8 +1098,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawBoats(dt)
       drawFish(dt)
       drawBubbles(dt)
-      drawSeabedRocks()
-      drawSeaweed()
       drawOverlay()
       drawBirds(dt)
 
