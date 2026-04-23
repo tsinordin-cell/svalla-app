@@ -150,13 +150,15 @@ export default function MeddelandenPage() {
       }
 
       // En enda query för alla olästa meddelanden över alla konversationer.
-      // Smalnar ned scope med tidigaste last_read_at så vi inte drar hela historiken.
-      const lastReadValues = Object.values(lastReadMap)
-      const earliestLr = lastReadValues.length > 0
-        ? lastReadValues.sort()[0]
+      // Smalnar ned scope med tidigaste last_read_at BARA om alla konversationer
+      // har en last_read-entry — annars måste vi räkna från epoch för
+      // konversationer utan entry (samma beteende som tidigare per-rad-loop).
+      const filteredIds = filtered.map(c => c.id as string)
+      const allHaveLastRead = filteredIds.every(id => id in lastReadMap)
+      const earliestLr = allHaveLastRead
+        ? Object.values(lastReadMap).sort()[0]
         : '1970-01-01T00:00:00Z'
 
-      const filteredIds = filtered.map(c => c.id as string)
       const unreadByConv: Record<string, number> = {}
       if (filteredIds.length > 0) {
         const { data: potentialUnread } = await supabase
