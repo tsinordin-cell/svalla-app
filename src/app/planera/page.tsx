@@ -180,6 +180,25 @@ export default async function PlaneraPage() {
             Testa →
           </Link>
         </div>
+
+        {/* Länk till kurerade turer */}
+        <div style={{
+          background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '14px 16px',
+          border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
+          display: 'flex', alignItems: 'center', gap: 12,
+        }}>
+          <span style={{ fontSize: 22 }}>⛵</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska kurerade turer</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
+          </div>
+          <Link href="/rutter" style={{
+            fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',
+            padding: '6px 12px', borderRadius: 20, background: 'rgba(10,123,140,0.1)',
+          }}>
+            Se alla →
+          </Link>
+        </div>
       </div>
     </div>
   )

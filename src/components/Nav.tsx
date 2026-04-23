@@ -92,11 +92,10 @@ export default function Nav() {
       ),
     },
     {
-      href: '/rutter',
-      label: 'Turer',
+      href: '/planera',
+      label: 'Planera',
       exact: false,
       icon: (active: boolean) => (
-        // Ruttikon — böjd path med start/stopp-punkter
         <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <circle cx="5" cy="6" r="2" strokeLinecap="round" strokeLinejoin="round" />
           <circle cx="19" cy="18" r="2" strokeLinecap="round" strokeLinejoin="round" />
