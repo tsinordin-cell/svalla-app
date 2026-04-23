@@ -36,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
     { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
+    { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     { url: `${base}/rutter?vy=oar`,          lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     { url: `${base}/rutter?vy=farjor`,       lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },

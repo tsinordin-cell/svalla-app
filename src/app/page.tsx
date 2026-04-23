@@ -352,7 +352,7 @@ const LANDING_HTML = `
             <div class="nav-mega-col">
               <div class="nav-mega-region">Snabba val</div>
               <a href="/resmal" class="nav-mega-link">🏝️ Alla resmål</a>
-              <a href="/platser" class="nav-mega-link">🗺️ Karta över skärgården</a>
+              <a href="/karta" class="nav-mega-link">🗺️ Karta över skärgården</a>
               <a href="/aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
               <a href="/boende" class="nav-mega-link">🛏️ Boende</a>
               <a href="/resmal" class="nav-mega-all">Se alla →</a>
@@ -376,7 +376,7 @@ const LANDING_HTML = `
         </div>
       </div>
     </li>
-    <li><a href="/platser">Karta</a></li>
+    <li><a href="/karta">Karta</a></li>
     <li><a href="/planera">Planera din tur</a></li>
   </ul>
   <div class="nav-cta">
