@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import {
   listCheckInsForPlace, listPlaceVisitors, listReviewsForPlace,
@@ -32,8 +33,11 @@ function avatarUrl(initial: string, seed: string): string {
 function Avatar({ src, name, size = 32 }: { src: string | null | undefined; name: string; size?: number }) {
   const initial = (name?.[0] ?? '?').toUpperCase()
   if (src) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img loading="lazy" decoding="async" src={src} alt={name} style={{ width: size, height: size, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+    return (
+      <div style={{ width: size, height: size, borderRadius: '50%', overflow: 'hidden', position: 'relative', flexShrink: 0 }}>
+        <Image src={src} alt={name} fill sizes={`${size}px`} style={{ objectFit: 'cover' }} />
+      </div>
+    )
   }
   return (
     <div style={{
@@ -197,8 +201,9 @@ export default function PlaceSocialSection({
                     </p>
                   )}
                   {c.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img loading="lazy" decoding="async" src={c.image} alt="" style={{ width: '100%', maxHeight: 220, objectFit: 'cover', borderRadius: 12, marginTop: 8 }} />
+                    <div style={{ position: 'relative', width: '100%', height: 220, borderRadius: 12, overflow: 'hidden', marginTop: 8 }}>
+                      <Image src={c.image} alt="" fill sizes="(max-width: 640px) 100vw, 480px" style={{ objectFit: 'cover' }} />
+                    </div>
                   )}
                 </div>
               </div>
@@ -312,7 +317,7 @@ export default function PlaceSocialSection({
             <div style={{ display: 'flex', gap: 8 }}>
               {myReview && (
                 <button onClick={removeMyReview} disabled={saving}
-                  style={{ padding: 12, borderRadius: 12, border: '1px solid rgba(200,30,30,0.30)', background: 'transparent', fontWeight: 700, fontSize: 14, color: '#c03', cursor: 'pointer' }}>
+                  style={{ padding: 12, borderRadius: 12, border: '1px solid rgba(200,30,30,0.30)', background: 'transparent', fontWeight: 700, fontSize: 14, color: 'var(--red)', cursor: 'pointer' }}>
                   Ta bort
                 </button>
               )}
@@ -321,7 +326,7 @@ export default function PlaceSocialSection({
                 Avbryt
               </button>
               <button onClick={submitReview} disabled={saving || myRating < 1}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: (saving || myRating < 1) ? 'not-allowed' : 'pointer', opacity: (saving || myRating < 1) ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: (saving || myRating < 1) ? 'not-allowed' : 'pointer', opacity: (saving || myRating < 1) ? 0.6 : 1 }}>
                 {saving ? 'Sparar…' : (myReview ? 'Spara ändring' : 'Posta omdöme')}
               </button>
             </div>

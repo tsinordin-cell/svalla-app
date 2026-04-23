@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
@@ -490,8 +491,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
           marginRight: space[3],
         }}>
           {c.other_avatar
-            // eslint-disable-next-line @next/next/no-img-element
-            ? <img loading="lazy" decoding="async" src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+            ? <Image src={c.other_avatar} alt="" fill sizes="44px" style={{ objectFit: 'cover' }} />
             : initials
           }
         </div>

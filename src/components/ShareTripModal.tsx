@@ -5,6 +5,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { findOrCreateDM } from '@/lib/dm'
 import { avatarGradient, initialsOf } from '@/lib/utils'
@@ -222,8 +223,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                         overflow: 'hidden', position: 'relative',
                       }}>
                         {c.other_avatar
-                          // eslint-disable-next-line @next/next/no-img-element
-                          ? <img loading="lazy" decoding="async" src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <Image src={c.other_avatar} alt="" fill sizes="42px" style={{ objectFit: 'cover' }} />
                           : initialsOf(display)}
                       </div>
                       <div style={{ flex: 1, textAlign: 'left' }}>
@@ -261,8 +261,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
                         overflow: 'hidden', position: 'relative',
                       }}>
                         {f.avatar
-                          // eslint-disable-next-line @next/next/no-img-element
-                          ? <img loading="lazy" decoding="async" src={f.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <Image src={f.avatar} alt="" fill sizes="42px" style={{ objectFit: 'cover' }} />
                           : initialsOf(f.username)}
                       </div>
                       <div style={{ flex: 1, textAlign: 'left' }}>

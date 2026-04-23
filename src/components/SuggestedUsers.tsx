@@ -10,6 +10,7 @@
  */
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { avatarGradient } from '@/lib/utils'
 import FollowButton from './FollowButton'
@@ -215,14 +216,13 @@ function SuggestedUserCard({
       <Link href={`/u/${user.username}`} style={{ textDecoration: 'none' }}>
         <div style={{
           width: 52, height: 52, borderRadius: '50%',
-          background: grad,
+          background: grad, position: 'relative',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 18, fontWeight: 700, color: '#fff',
           overflow: 'hidden',
         }}>
           {user.avatar
-            // eslint-disable-next-line @next/next/no-img-element
-            ? <img loading="lazy" decoding="async" src={user.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ? <Image src={user.avatar} alt="" fill sizes="52px" style={{ objectFit: 'cover' }} />
             : user.username[0]?.toUpperCase()}
         </div>
       </Link>

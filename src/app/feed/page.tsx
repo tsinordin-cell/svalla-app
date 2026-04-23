@@ -1,5 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
+import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
 import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
@@ -244,8 +245,7 @@ export default async function FeedPage(
                   }}>
                     {t.image
                       ? <div style={{ position: 'relative', height: 72, overflow: 'hidden' }}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                          <Image src={t.image} alt="" fill sizes="110px" style={{ objectFit: 'cover' }} />
                         </div>
                       : <div style={{ height: 72, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
                     }
@@ -283,8 +283,7 @@ export default async function FeedPage(
                   }}>
                     {t.image
                       ? <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                          <Image src={t.image} alt="" fill sizes="52px" style={{ objectFit: 'cover' }} />
                         </div>
                       : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
                     }

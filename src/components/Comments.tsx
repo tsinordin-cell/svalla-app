@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { parseTokens, getActiveMention, extractMentions } from '@/lib/mentions'
@@ -417,8 +418,7 @@ export default function Comments({
                         flexShrink: 0, overflow: 'hidden', position: 'relative',
                       }}>
                         {c.avatar ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img loading="lazy" decoding="async" src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <Image src={c.avatar} alt="" fill sizes="34px" style={{ objectFit: 'cover' }} />
                         ) : initials}
                       </div>
                     </Link>
@@ -551,13 +551,12 @@ export default function Comments({
                     >
                       <div style={{
                         width: 30, height: 30, borderRadius: '50%', flexShrink: 0,
-                        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                        background: 'var(--grad-sea)', position: 'relative',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 11, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
                       }}>
                         {hit.avatar
-                          // eslint-disable-next-line @next/next/no-img-element
-                          ? <img loading="lazy" decoding="async" src={hit.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ? <Image src={hit.avatar} alt="" fill sizes="30px" style={{ objectFit: 'cover' }} />
                           : hit.username[0]?.toUpperCase()}
                       </div>
                       <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>

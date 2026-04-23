@@ -2,6 +2,7 @@
 import { useState, useMemo, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
@@ -193,10 +194,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     position: 'relative',
                   }}>
                     {featured.images?.[0] && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img loading="lazy" decoding="async" src={featured.images[0]} alt={featured.name} style={{
-                        width: '100%', height: 110, objectFit: 'cover', display: 'block', opacity: 0.4,
-                      }} />
+                      <div style={{ position: 'absolute', inset: 0, width: '100%', height: 110, opacity: 0.4 }}>
+                        <Image src={featured.images[0]} alt={featured.name} fill sizes="(max-width: 640px) 100vw, 400px" style={{ objectFit: 'cover' }} />
+                      </div>
                     )}
                     <div style={{
                       position: featured.images?.[0] ? 'absolute' : 'relative',
@@ -264,10 +264,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                             border: activeId === r.id ? '1px solid #1e5c82' : '1px solid rgba(10,123,140,0.07)',
                             display: 'flex', transition: 'box-shadow 0.15s',
                           }}>
-                          <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)' }}>
+                          <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)', position: 'relative' }}>
                             {r.images?.[0]
-                              // eslint-disable-next-line @next/next/no-img-element
-                              ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                              ? <Image src={r.images[0]} alt={r.name} fill sizes="88px" style={{ objectFit: 'cover' }} />
                               : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, background: getCat(r) === 'kafe' ? 'linear-gradient(135deg,#7c4d1e,#a06b30)' : getCat(r) === 'hamn' ? 'var(--grad-acc)' : 'var(--grad-sea)' }}>
                                 <span style={{ fontSize: 20 }}>{getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}</span>
                                 <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{r.name[0]}</span>
@@ -410,10 +409,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
               position: 'relative',
             }}>
               {featured.images?.[0] && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img loading="lazy" decoding="async" src={featured.images[0]} alt={featured.name} style={{
-                  width: '100%', height: 100, objectFit: 'cover', display: 'block', opacity: 0.4,
-                }} />
+                <div style={{ position: 'absolute', inset: 0, width: '100%', height: 100, opacity: 0.4 }}>
+                  <Image src={featured.images[0]} alt={featured.name} fill sizes="(max-width: 640px) 100vw, 400px" style={{ objectFit: 'cover' }} />
+                </div>
               )}
               <div style={{
                 position: featured.images?.[0] ? 'absolute' : 'relative',
@@ -474,10 +472,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     minHeight: 80,  // touch target
                     transition: 'box-shadow 0.15s',
                   }}>
-                    <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)' }}>
+                    <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)', position: 'relative' }}>
                       {r.images?.[0]
-                        // eslint-disable-next-line @next/next/no-img-element
-                        ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        ? <Image src={r.images[0]} alt={r.name} fill sizes="88px" style={{ objectFit: 'cover' }} />
                         : <div style={{
                             width: '100%', height: '100%', minHeight: 80,
                             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26,

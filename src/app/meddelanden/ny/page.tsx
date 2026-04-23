@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { findOrCreateDM } from '@/lib/dm'
 import { avatarGradient, initialsOf } from '@/lib/utils'
@@ -186,7 +187,7 @@ function NyKonversationInner() {
             </p>
             <Link href="/feed" style={{
               display: 'inline-block', padding: '10px 22px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none',
             }}>
               Till flödet →
@@ -271,8 +272,7 @@ function Row({ c, starting, onClick, isRequest }: {
         position: 'relative',
       }}>
         {c.avatar ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img loading="lazy" decoding="async" src={c.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <Image src={c.avatar} alt="" fill sizes="44px" style={{ objectFit: 'cover' }} />
         ) : initials}
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>

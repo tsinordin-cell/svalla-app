@@ -441,8 +441,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                     width: 100, background: 'var(--white)', borderRadius: 12, overflow: 'hidden',
                     boxShadow: '0 2px 8px rgba(0,45,60,0.07)', border: '1px solid rgba(10,123,140,0.08)',
                   }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img loading="lazy" decoding="async" src={t.image} alt="" style={{ width: '100%', height: 70, objectFit: 'cover', display: 'block' }} />
+                    <div style={{ position: 'relative', width: '100%', height: 70 }}>
+                      <Image src={t.image} alt="" fill sizes="100px" style={{ objectFit: 'cover' }} />
+                    </div>
                     <div style={{ padding: '6px 8px' }}>
                       <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {Array.isArray(t.users) ? t.users[0]?.username : (t.users as { username: string } | null)?.username ?? 'Okänd'}

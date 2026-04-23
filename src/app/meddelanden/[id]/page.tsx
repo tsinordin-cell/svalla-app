@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
 import { blockUser } from '@/lib/blocks'
@@ -469,8 +470,7 @@ export default function ChatPage() {
               border: '2px solid var(--white, #fff)',
             }}>
               {otherAvatar
-                // eslint-disable-next-line @next/next/no-img-element
-                ? <img loading="lazy" decoding="async" src={otherAvatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                ? <Image src={otherAvatar} alt="" fill sizes="44px" style={{ objectFit: 'cover' }} />
                 : displayInitials
               }
             </div>
@@ -634,8 +634,7 @@ export default function ChatPage() {
                     overflow: 'hidden', position: 'relative',
                   }}>
                     {m.avatar
-                      // eslint-disable-next-line @next/next/no-img-element
-                      ? <img loading="lazy" decoding="async" src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ? <Image src={m.avatar} alt="" fill sizes="28px" style={{ objectFit: 'cover' }} />
                       : inits
                     }
                   </div>
@@ -651,9 +650,10 @@ export default function ChatPage() {
                 }}>
                   {/* Image */}
                   {m.attachment_type === 'image' && m.attachment_url && (
-                    <a href={m.attachment_url} target="_blank" rel="noreferrer">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img loading="lazy" decoding="async" src={m.attachment_url} alt="" style={{ maxWidth: 240, maxHeight: 240, borderRadius: bubbleR, display: 'block' }} />
+                    <a href={m.attachment_url} target="_blank" rel="noreferrer" style={{ display: 'block' }}>
+                      <div style={{ position: 'relative', width: 240, height: 240, borderRadius: bubbleR, overflow: 'hidden' }}>
+                        <Image src={m.attachment_url} alt="" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                      </div>
                     </a>
                   )}
 
@@ -1036,8 +1036,9 @@ function TripBubble({ meta }: { meta: TripMeta }) {
         background: 'var(--white)', boxShadow: shadow.xs,
       }}>
         {meta.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img loading="lazy" decoding="async" src={meta.image} alt="" style={{ width: '100%', height: 100, objectFit: 'cover', display: 'block' }} />
+          <div style={{ position: 'relative', width: '100%', height: 100 }}>
+            <Image src={meta.image} alt="" fill sizes="260px" style={{ objectFit: 'cover' }} />
+          </div>
         )}
         <div style={{ padding: '8px 12px 10px' }}>
           <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', fontWeight: fontWeight.semibold, marginBottom: 2 }}>⛵ Tur</div>

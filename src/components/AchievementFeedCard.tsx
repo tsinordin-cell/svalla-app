@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import type { AchievementEvent } from '@/lib/achievementEvents'
 import { timeAgo } from '@/lib/utils'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
@@ -22,13 +23,12 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
         <Link href={`/u/${ev.username}`} style={{ display: 'inline-block' }}>
           <div style={{
             width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)', position: 'relative',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 14, fontWeight: 700, color: '#fff',
           }}>
             {ev.avatar
-              // eslint-disable-next-line @next/next/no-img-element
-              ? <img loading="lazy" decoding="async" src={ev.avatar} alt={ev.username} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ? <Image src={ev.avatar} alt={ev.username} fill sizes="40px" style={{ objectFit: 'cover' }} />
               : ev.username[0]?.toUpperCase()}
           </div>
         </Link>

@@ -151,15 +151,14 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
           <div style={{
             width: 84, height: 84, borderRadius: '50%', flexShrink: 0,
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)', position: 'relative',
             border: '4px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 30, fontWeight: 700, color: '#fff', overflow: 'hidden',
             boxShadow: '0 4px 20px rgba(0,45,60,0.18)',
           }}>
             {u.avatar
-              // eslint-disable-next-line @next/next/no-img-element
-              ? <img loading="lazy" decoding="async" src={u.avatar} alt={userRow.username} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ? <Image src={u.avatar} alt={userRow.username} fill sizes="84px" style={{ objectFit: 'cover' }} />
               : userRow.username[0]?.toUpperCase()}
           </div>
           {/* Streak */}
@@ -186,7 +185,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
               <span title="Svalla Pro" aria-label="Pro-användare" style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 width: 22, height: 22, borderRadius: '50%',
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: 'var(--grad-sea)',
                 color: '#fff', fontSize: 11, flexShrink: 0,
               }}>⚓</span>
             )}
@@ -289,7 +288,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                   <span style={{ fontSize: 9, fontWeight: 600, color: 'var(--sea)' }}>{v.count}</span>
                   <div style={{
                     width: '100%', borderRadius: '4px 4px 0 0',
-                    background: 'linear-gradient(to top,#1e5c82,#2d7d8a)',
+                    background: 'var(--grad-sea)',
                     height: `${Math.max(6, (v.count / maxBar) * 36)}px`,
                   }} />
                 </div>
@@ -335,7 +334,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                 {trips.map(t => (
                   <Link key={t.id} href={`/tur/${t.id}`} style={{
                     position: 'relative', aspectRatio: '1/1',
-                    overflow: 'hidden', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                    overflow: 'hidden', background: 'var(--grad-sea)',
                     display: 'block', borderRadius: 4,
                   }}>
                     {t.image ? (

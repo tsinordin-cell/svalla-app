@@ -287,13 +287,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           <ProfileTeaserPopover username={username}>
             <div style={{
               width: 36, height: 36, borderRadius: radius.xs, flexShrink: 0, overflow: 'hidden',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              position: 'relative',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
             }}>
               {avatar
-                /* eslint-disable-next-line @next/next/no-img-element */
-                ? <img src={avatar} alt={username} width={36} height={36} loading="lazy" decoding="async" style={{ width: 36, height: 36, objectFit: 'cover', display: 'block' }} />
+                ? <Image src={avatar} alt={username} fill sizes="36px" style={{ objectFit: 'cover' }} />
                 : username[0]?.toUpperCase() ?? '?'}
             </div>
           </ProfileTeaserPopover>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import {
   listActiveStoriesGrouped,
@@ -135,8 +136,7 @@ export default function StoriesStrip() {
                 color: '#fff', fontWeight: 600, fontSize: 16,
               }}>
                 {g.avatar ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img loading="lazy" decoding="async" src={g.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src={g.avatar} alt="" fill sizes="64px" style={{ objectFit: 'cover' }} />
                 ) : initialsOf(g.username)}
               </div>
             </div>
@@ -229,8 +229,7 @@ function StoryViewer({
             color: '#fff', fontWeight: 600, fontSize: 12,
           }}>
             {group.avatar ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img loading="lazy" decoding="async" src={group.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src={group.avatar} alt="" fill sizes="32px" style={{ objectFit: 'cover' }} />
             ) : initialsOf(group.username)}
           </div>
           <span style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{group.username}</span>
@@ -265,8 +264,11 @@ function StoryViewer({
           style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '70%', zIndex: 2 }}
         />
         {story.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img loading="lazy" decoding="async" src={story.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+          <Image
+            src={story.image} alt="" fill priority
+            sizes="100vw"
+            style={{ objectFit: 'contain' }}
+          />
         )}
         {story.caption && (
           <div style={{

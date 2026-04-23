@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { setAttendance, formatEventDate, type EventRow } from '@/lib/events'
@@ -143,9 +144,8 @@ export default function EventDetailPage() {
       {!loading && ev && (
         <div style={{ maxWidth: 520, margin: '0 auto', padding: 16 }}>
           {ev.image && (
-            <div style={{ borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img loading="lazy" decoding="async" src={ev.image} alt="" style={{ width: '100%', display: 'block' }} />
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
+              <Image src={ev.image} alt="" fill priority sizes="(max-width: 640px) 100vw, 520px" style={{ objectFit: 'cover' }} />
             </div>
           )}
 
@@ -219,8 +219,7 @@ export default function EventDetailPage() {
                       color: '#fff', fontWeight: 600, fontSize: 10,
                     }}>
                       {a.avatar ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img loading="lazy" decoding="async" src={a.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <Image src={a.avatar} alt="" fill sizes="24px" style={{ objectFit: 'cover' }} />
                       ) : initialsOf(a.username)}
                     </div>
                     <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>{a.username}</span>

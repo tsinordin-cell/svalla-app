@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import {
   listTagsForTrip,
@@ -126,8 +127,7 @@ export default function TripTagger({
                   color: '#fff', fontWeight: 600, fontSize: 10,
                 }}>
                   {t.avatar ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img loading="lazy" decoding="async" src={t.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <Image src={t.avatar} alt="" fill sizes="24px" style={{ objectFit: 'cover' }} />
                   ) : initialsOf(t.username ?? '?')}
                 </div>
                 <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>
@@ -182,8 +182,7 @@ export default function TripTagger({
                     color: '#fff', fontWeight: 600, fontSize: 11,
                   }}>
                     {u.avatar ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img loading="lazy" decoding="async" src={u.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <Image src={u.avatar} alt="" fill sizes="30px" style={{ objectFit: 'cover' }} />
                     ) : initialsOf(u.username)}
                   </div>
                   <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>{u.username}</span>
