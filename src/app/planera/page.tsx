@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
+import MyRoutesList from './MyRoutesList'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt — Svalla',
@@ -24,19 +25,6 @@ type PlannedRoute = {
   suggested_stops: ScoredStop[]
   status: string
   created_at: string
-}
-
-const INTEREST_EMOJI: Record<string, string> = {
-  krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
-}
-
-const INTEREST_COLOR: Record<string, { bg: string; text: string }> = {
-  krog:   { bg: 'rgba(220,38,38,0.09)',  text: '#c02020' },
-  bastu:  { bg: 'rgba(234,88,12,0.09)',  text: '#c05010' },
-  bad:    { bg: 'rgba(6,182,212,0.09)',   text: '#0077aa' },
-  brygga: { bg: 'rgba(37,99,235,0.09)',   text: '#1d4ed8' },
-  natur:  { bg: 'rgba(22,163,74,0.09)',   text: '#15803d' },
-  bensin: { bg: 'rgba(161,98,7,0.09)',    text: '#92600a' },
 }
 
 export default async function PlaneraPage() {
@@ -115,71 +103,7 @@ export default async function PlaneraPage() {
 
         {/* Mina rutter */}
         {session && myRoutes.length > 0 && (
-          <section style={{ marginBottom: 32 }}>
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--sea)', marginBottom: 14 }}>
-              Mina rutter ({myRoutes.length})
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {myRoutes.map(route => {
-                const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
-                return (
-                  <Link key={route.id} href={`/planera/${route.id}`} style={{ textDecoration: 'none' }}>
-                    <div style={{
-                      background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
-                      border: '1px solid rgba(10,123,140,0.08)',
-                      boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
-                      display: 'flex', alignItems: 'center', gap: 12,
-                    }}>
-                      {/* Rutt-ikon */}
-                      <div style={{
-                        width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                        background: 'rgba(10,123,140,0.08)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: 'var(--sea)',
-                      }}>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-                          <circle cx="5" cy="6" r="2"/><circle cx="19" cy="18" r="2"/>
-                          <path d="M5 8c0 5 6 3 9 8"/>
-                        </svg>
-                      </div>
-                      {/* Innehåll */}
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 6, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {route.start_name} → {route.end_name}
-                        </div>
-                        <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
-                          {(route.interests ?? []).map(i => {
-                            const col = INTEREST_COLOR[i] ?? { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
-                            return (
-                              <span key={i} style={{
-                                fontSize: 10, padding: '2px 7px', borderRadius: 20,
-                                background: col.bg, color: col.text, fontWeight: 700,
-                                letterSpacing: '0.02em',
-                              }}>
-                                {INTEREST_EMOJI[i] ?? '•'} {i}
-                              </span>
-                            )
-                          })}
-                          {stops.length > 0 && (
-                            <span style={{
-                              fontSize: 10, padding: '2px 7px', borderRadius: 20,
-                              background: 'rgba(10,123,140,0.06)', color: 'var(--txt3)', fontWeight: 600,
-                            }}>
-                              {stops.length} stopp
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      {/* Chevron */}
-                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6"/>
-                      </svg>
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
-          </section>
+          <MyRoutesList initialRoutes={myRoutes} />
         )}
 
         {/* Inte inloggad */}
