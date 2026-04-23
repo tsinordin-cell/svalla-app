@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { createClient } from '@/lib/supabase'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
@@ -39,23 +40,35 @@ function GuideContent() {
     : ''
   )
   const [loading, setLoading] = useState(false)
+  const [authChecked, setAuthChecked] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  // Auth-check: Thorkel kräver inloggning (förhindrar API-kostnad från bots)
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsLoggedIn(!!user)
+      setAuthChecked(true)
+    })
+  }, [])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Auto-fokusera och auto-skicka om fråga är förifylld
+  // Auto-fokusera och auto-skicka om fråga är förifylld (bara om inloggad)
   useEffect(() => {
-    if (preselectedQ) {
+    if (!authChecked) return
+    if (preselectedQ && isLoggedIn) {
       const timer = setTimeout(() => send(preselectedQ), 400)
       return () => clearTimeout(timer)
     }
     const timer = setTimeout(() => inputRef.current?.focus(), 300)
     return () => clearTimeout(timer)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [authChecked, isLoggedIn])
 
   async function send(text?: string) {
     const msg = (text ?? input).trim()
@@ -70,8 +83,17 @@ function GuideContent() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ messages: next }),
       })
-      const data = await res.json()
-      setMessages([...next, { role: 'assistant', content: data.reply ?? 'Något gick fel, försök igen.' }])
+      const data = await res.json().catch(() => ({} as { reply?: string; error?: string }))
+      if (res.status === 401) {
+        setIsLoggedIn(false)
+        setMessages([...next, { role: 'assistant', content: 'Du behöver logga in för att prata med mig — jag sparar mina bästa tips till mina egna seglare.' }])
+      } else if (res.status === 429) {
+        setMessages([...next, { role: 'assistant', content: 'Tar en paus — vänta en minut så pratar vi vidare.' }])
+      } else if (data.reply) {
+        setMessages([...next, { role: 'assistant', content: data.reply }])
+      } else {
+        setMessages([...next, { role: 'assistant', content: 'Något gick fel, försök igen.' }])
+      }
     } catch {
       setMessages([...next, { role: 'assistant', content: 'Kunde inte nå Thorkel just nu.' }])
     } finally {
@@ -213,7 +235,7 @@ function GuideContent() {
         <div ref={bottomRef} />
       </div>
 
-      {/* Input */}
+      {/* Input — eller login-CTA om inte inloggad */}
       <div style={{
         padding: '10px 14px',
         paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 10px)',
@@ -222,6 +244,17 @@ function GuideContent() {
         borderTop: '1px solid rgba(10,123,140,0.10)',
         flexShrink: 0,
       }}>
+        {authChecked && !isLoggedIn ? (
+          <Link href="/logga-in?returnTo=/guide" style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+            padding: '12px 18px', borderRadius: 20,
+            background: 'var(--grad-sea)', color: '#fff',
+            fontSize: 14, fontWeight: 700, textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(10,123,140,0.3)',
+          }}>
+            Logga in för att prata med Thorkel →
+          </Link>
+        ) : (
         <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
           <textarea
             ref={inputRef}
@@ -256,6 +289,7 @@ function GuideContent() {
             </svg>
           </button>
         </div>
+        )}
       </div>
 
       <style>{`
