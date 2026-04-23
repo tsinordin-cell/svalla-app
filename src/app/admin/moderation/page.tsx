@@ -79,9 +79,14 @@ export default async function ModerationPage({
               )}
             </h1>
           </div>
-          <a href="/feed" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>
-            ← Tillbaka
-          </a>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+            <a href="/admin/platser" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>
+              Platser
+            </a>
+            <a href="/feed" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>
+              ← Tillbaka
+            </a>
+          </div>
         </div>
       </header>
 
@@ -96,7 +101,7 @@ export default async function ModerationPage({
               style={{
                 padding: '7px 16px', borderRadius: 20, fontSize: 13, fontWeight: 600,
                 textDecoration: 'none',
-                background: statusFilter === s ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+                background: statusFilter === s ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
                 color: statusFilter === s ? '#fff' : 'var(--txt2)',
                 border: statusFilter === s ? 'none' : '1px solid rgba(10,123,140,0.15)',
               }}
@@ -140,7 +145,7 @@ export default async function ModerationPage({
                       {item.auto_flagged && (
                         <span style={{
                           padding: '2px 8px', borderRadius: 8,
-                          background: 'rgba(200,30,30,0.1)', color: '#c03',
+                          background: 'rgba(200,30,30,0.1)', color: 'var(--red)',
                           fontSize: 10, fontWeight: 700,
                         }}>
                           🤖 AUTO
@@ -175,7 +180,7 @@ export default async function ModerationPage({
                       {item.report_count > 1 && (
                         <span style={{
                           padding: '2px 8px', borderRadius: 8,
-                          background: 'rgba(200,30,30,0.08)', color: '#c03',
+                          background: 'rgba(200,30,30,0.08)', color: 'var(--red)',
                           fontSize: 10, fontWeight: 700,
                         }}>
                           {item.report_count}× rapporterat
@@ -268,7 +273,7 @@ export default async function ModerationPage({
               href={`/admin/moderation?status=${statusFilter}&page=${page + 1}`}
               style={{
                 padding: '10px 20px', borderRadius: 12, fontSize: 13, fontWeight: 600,
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', textDecoration: 'none',
+                background: 'var(--grad-sea)', color: '#fff', textDecoration: 'none',
               }}
             >
               Nästa →

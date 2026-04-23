@@ -322,7 +322,7 @@ export default function KomIgangPage() {
             onClick={() => setStep(1)}
             style={{
               padding: '18px', borderRadius: 16, border: 'none', cursor: 'pointer',
-              background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
               boxShadow: '0 6px 24px rgba(30,92,130,0.35)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -668,7 +668,7 @@ export default function KomIgangPage() {
               style={{
                 marginTop: 6,
                 padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
-                background: loading ? 'var(--txt3)' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                background: loading ? 'var(--txt3)' : 'var(--grad-sea)',
                 color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
                 boxShadow: loading ? 'none' : '0 5px 20px rgba(30,92,130,0.32)',
                 transition: 'all 0.2s', letterSpacing: '0.02em',
@@ -776,12 +776,23 @@ export default function KomIgangPage() {
           Utforska Svalla →
         </button>
         <button
-          onClick={() => router.push('/logga-in')}
+          onClick={() => router.push('/guide')}
           style={{
             padding: '14px', borderRadius: 14, cursor: 'pointer',
+            background: 'rgba(255,255,255,0.10)',
+            border: '1.5px solid rgba(255,255,255,0.22)',
+            color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit',
+          }}
+        >
+          🧭 Planera min första tur
+        </button>
+        <button
+          onClick={() => router.push('/logga-in')}
+          style={{
+            padding: '12px', borderRadius: 14, cursor: 'pointer',
             background: 'transparent',
-            border: '1.5px solid rgba(255,255,255,0.18)',
-            color: 'rgba(255,255,255,0.72)', fontSize: 14, fontWeight: 600, fontFamily: 'inherit',
+            border: 'none',
+            color: 'rgba(255,255,255,0.45)', fontSize: 12, fontFamily: 'inherit',
           }}
         >
           Logga in nu

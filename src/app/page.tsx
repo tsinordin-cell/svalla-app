@@ -191,15 +191,6 @@ section{padding:100px 40px}
 .testimonial-name{font-size:14px;font-weight:700;color:var(--ink)}
 .testimonial-role{font-size:12px;color:var(--muted)}
 .testimonial-stars{color:#f5a623;font-size:13px;margin-bottom:4px}
-.nordic-section{background:var(--sea-dark);padding:80px 40px}
-.nordic-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:4px;border-radius:var(--r);overflow:hidden;max-width:1160px;margin:48px auto 0;}
-.nordic-cell{position:relative;overflow:hidden;cursor:pointer;}
-.nordic-cell-bg{position:absolute;inset:0;transition:.5s;}
-.nordic-cell:hover .nordic-cell-bg{transform:scale(1.05)}
-.nordic-cell-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,25,35,.75),transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;}
-.nordic-cell:first-child{grid-row:1/3}
-.nordic-cell-label{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:4px;}
-.nordic-cell-sub{font-size:12px;color:rgba(255,255,255,.65)}
 .app-section{background:var(--sand);padding:100px 40px}
 .app-inner{max-width:700px;margin:0 auto;text-align:center;}
 .app-inner .section-title{margin-bottom:12px}
@@ -308,9 +299,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
   .pillars{grid-template-columns:1fr}
   .pillar:first-child,.pillar:last-child{border-radius:0}
   .testimonials{grid-template-columns:1fr}
-  .nordic-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,200px)}
-  .nordic-cell:first-child{grid-row:auto}
-  .destinations-grid{grid-template-columns:1fr 1fr}
+.destinations-grid{grid-template-columns:1fr 1fr}
   .activities-grid{grid-template-columns:1fr 1fr}
   .ferry-grid{grid-template-columns:1fr}
   .boende-grid{grid-template-columns:1fr 1fr}
@@ -388,7 +377,7 @@ const LANDING_HTML = `
       </div>
     </li>
     <li><a href="/platser">Karta</a></li>
-    <li><a href="#" id="planeraNavBtn">Planera min tur</a></li>
+    <li><a href="/planera">Planera din tur</a></li>
   </ul>
   <div class="nav-cta">
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
@@ -410,16 +399,19 @@ const LANDING_HTML = `
       Logga dina turer. Hitta krogar, bastun och bryggor. Dela med ett community av skärgårdsmänniskor.
       Back to nature — enkelt, nordiskt, äkta.
     </p>
-    <form class="hero-search" onsubmit="event.preventDefault();location.href='/kom-igang'">
+    <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
       <input type="text" placeholder="🔍  Sök ö, krog eller hamn..." id="heroSearchInput"/>
       <button type="submit">Utforska</button>
     </form>
+    <div style="text-align:center;margin-bottom:16px">
+      <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med AI →</a>
+    </div>
     <div class="hero-search-hint">
       Populärt just nu:
-      <span onclick="location.href='/kom-igang'">Sandhamn</span>
-      <span onclick="location.href='/kom-igang'">Grinda</span>
-      <span onclick="location.href='/kom-igang'">Utö</span>
-      <span onclick="location.href='/kom-igang'">Finnhamn</span>
+      <span onclick="location.href='/sok?q=Sandhamn'">Sandhamn</span>
+      <span onclick="location.href='/sok?q=Grinda'">Grinda</span>
+      <span onclick="location.href='/sok?q=Utö'">Utö</span>
+      <span onclick="location.href='/sok?q=Finnhamn'">Finnhamn</span>
     </div>
     <div class="hero-scroll">
       <div class="hero-scroll-line"></div>
@@ -465,7 +457,7 @@ const LANDING_HTML = `
       <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
     </div>
     <div class="destinations-grid">
-      <div class="dest-card reveal reveal-delay-1" onclick="location.href='/kom-igang'" style="cursor:pointer">
+      <div class="dest-card reveal reveal-delay-1" style="cursor:default">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f2e3b,#1a4a5e,#24697f)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="120" cy="200" rx="90" ry="45" fill="#0d2030" opacity="0.7"/><ellipse cx="220" cy="240" rx="70" ry="35" fill="#0a1f2b" opacity="0.8"/>
@@ -479,7 +471,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/fjaderholmarna" class="dest-island">Fjäderholmarna</a><a href="/o/vaxholm" class="dest-island">Vaxholm</a><a href="/o/grinda" class="dest-island">Grinda</a><a href="/o/finnhamn" class="dest-island">Finnhamn</a><span class="dest-island">Resarö</span></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-2" onclick="location.href='/kom-igang'" style="cursor:pointer">
+      <div class="dest-card reveal reveal-delay-2" style="cursor:default">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#0f3020,#1a5030,#2a7040)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="100" cy="210" rx="75" ry="38" fill="#0a1f10" opacity="0.7"/><ellipse cx="210" cy="235" rx="85" ry="42" fill="#081510" opacity="0.8"/>
@@ -493,7 +485,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/sandhamn" class="dest-island">Sandhamn</a><a href="/o/moja" class="dest-island">Möja</a><a href="/o/ljustero" class="dest-island">Ljusterö</a><a href="/o/gallno" class="dest-island">Gällnö</a><span class="dest-island">Runmarö</span></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-3" onclick="location.href='/kom-igang'" style="cursor:pointer">
+      <div class="dest-card reveal reveal-delay-3" style="cursor:default">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#1a2a3a,#1e4060,#2a5875)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="150" cy="220" rx="100" ry="50" fill="#0d2030" opacity="0.7"/><ellipse cx="80" cy="255" rx="60" ry="28" fill="#0a1820" opacity="0.8"/>
@@ -507,7 +499,7 @@ const LANDING_HTML = `
           <div class="dest-card-islands"><a href="/o/uto" class="dest-island">Utö</a><a href="/o/nattaro" class="dest-island">Nåttarö</a><a href="/o/orno" class="dest-island">Ornö</a><a href="/o/dalaro" class="dest-island">Dalarö</a><a href="/o/landsort" class="dest-island">Landsort</a></div>
         </div>
       </div>
-      <div class="dest-card reveal reveal-delay-4" onclick="location.href='/kom-igang'" style="cursor:pointer">
+      <div class="dest-card reveal reveal-delay-4" style="cursor:default">
         <div class="dest-card-bg" style="background:linear-gradient(160deg,#2a1a3a,#3a2555,#4a356a)">
           <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="140" cy="215" rx="95" ry="48" fill="#1a0d2a" opacity="0.7"/><ellipse cx="240" cy="250" rx="65" ry="32" fill="#120a20" opacity="0.8"/>
@@ -645,65 +637,6 @@ const LANDING_HTML = `
   </div>
 </section>
 
-<section class="nordic-section" style="display:none">
-  <div class="section-inner">
-    <div class="nordic-grid">
-      <div class="nordic-cell reveal">
-        <div class="nordic-cell-bg" style="background:linear-gradient(160deg,#0f2e3b,#1a4a5e,#24697f)">
-          <svg width="100%" height="100%" viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="200" cy="320" rx="160" ry="80" fill="#122838" opacity="0.7"/>
-            <ellipse cx="100" cy="380" rx="90" ry="40" fill="#0d2130" opacity="0.8"/>
-            <ellipse cx="310" cy="360" rx="110" ry="50" fill="#0d2130" opacity="0.8"/>
-            <g fill="#1a4a3e" opacity="0.6"><polygon points="175,315 190,270 205,315"/><polygon points="205,315 220,275 235,315"/><polygon points="235,312 248,272 261,312"/></g>
-            <path d="M0,420 Q100,395 200,410 Q300,425 400,405 L400,520 L0,520 Z" fill="#0a1f2b" opacity="0.9"/>
-            <g transform="translate(280,300)" opacity="0.5"><path d="M-18,6 L18,6 L12,-2 L-12,-2 Z" fill="#c8d0d8"/><line x1="0" y1="-2" x2="0" y2="-18" stroke="#a0a8b0" stroke-width="1.2"/><path d="M0,-18 L-9,-7 L0,-7 Z" fill="#d8e0e8" opacity="0.8"/></g>
-          </svg>
-        </div>
-        <div class="nordic-cell-overlay">
-          <div class="nordic-cell-label">🇸🇪 Stockholms skärgård</div>
-          <div class="nordic-cell-sub">Lanseras 2025 · 200+ öar · 7 000 km kustlinje</div>
-        </div>
-      </div>
-      <div class="nordic-cell reveal reveal-delay-1">
-        <div class="nordic-cell-bg" style="background:linear-gradient(160deg,#1a3a2a,#2a5a3a)">
-          <svg width="100%" height="100%" viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="150" cy="180" rx="120" ry="60" fill="#0f2820" opacity="0.8"/>
-            <path d="M0,210 Q75,195 150,205 Q225,215 300,200 L300,260 L0,260 Z" fill="#0a1a10" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="nordic-cell-overlay">
-          <div class="nordic-cell-label">🇳🇴 Norsk Kyst</div>
-          <div class="nordic-cell-sub">Kommer 2026</div>
-        </div>
-      </div>
-      <div class="nordic-cell reveal reveal-delay-2">
-        <div class="nordic-cell-bg" style="background:linear-gradient(160deg,#1a1a3a,#2a2a5a)">
-          <svg width="100%" height="100%" viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="150" cy="185" rx="110" ry="55" fill="#12122e" opacity="0.8"/>
-            <path d="M0,215 Q75,200 150,210 Q225,220 300,205 L300,260 L0,260 Z" fill="#080820" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="nordic-cell-overlay">
-          <div class="nordic-cell-label">🇩🇰 Dansk Riviera</div>
-          <div class="nordic-cell-sub">Kommer 2026</div>
-        </div>
-      </div>
-      <div class="nordic-cell reveal reveal-delay-3">
-        <div class="nordic-cell-bg" style="background:linear-gradient(160deg,#2a1a1a,#4a2a2a)">
-          <svg width="100%" height="100%" viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="150" cy="190" rx="100" ry="50" fill="#2a1010" opacity="0.8"/>
-            <path d="M0,215 Q75,200 150,210 Q225,220 300,205 L300,260 L0,260 Z" fill="#180808" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="nordic-cell-overlay">
-          <div class="nordic-cell-label">🇫🇮 Finsk Skärgård</div>
-          <div class="nordic-cell-sub">Kommer 2026</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="getting-there-section" id="ta-sig-dit">
   <div class="section-inner">
     <div class="section-header centered reveal">
@@ -814,7 +747,7 @@ const LANDING_HTML = `
     <div class="stats-grid">
       <div class="stat-box reveal"><span class="stat-num">200+</span><div class="stat-label">Platser & krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård</div></div>
       <div class="stat-box reveal reveal-delay-1"><span class="stat-num">69</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, mat och upplevelser</div></div>
-      <div class="stat-box reveal reveal-delay-2"><span class="stat-num">1 h</span><div class="stat-label">Att sätta upp en krogprofil</div><div class="stat-sub">Ingen teknisk kunskap krävs</div></div>
+      <div class="stat-box reveal reveal-delay-2"><span class="stat-num">10 sek</span><div class="stat-label">Att planera en tur med AI</div><div class="stat-sub">Berätta vad du vill — guiden fixar resten</div></div>
       <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundprofil är gratis för alltid</div></div>
     </div>
   </div>
@@ -887,18 +820,6 @@ const LANDING_HTML = `
   </div>
 </footer>
 
-<!-- Planera-gate modal -->
-<div id="planera-gate" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(10,28,40,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:400px;width:92%;position:relative;animation:authIn .25s ease;">
-    <button onclick="document.getElementById('planera-gate').style.display='none'" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#9ab;line-height:1;">✕</button>
-    <div style="font-size:32px;margin-bottom:12px;">⛵</div>
-    <div class="auth-m-title">Planera din tur</div>
-    <div class="auth-m-sub">Logga in eller skapa ett gratis konto för att planera och spara dina turer i skärgården.</div>
-    <a href="/logga-in" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#0a7b8c,#2a9a9a);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;text-align:center;text-decoration:none;box-shadow:0 4px 16px rgba(10,123,140,.3);margin-bottom:10px;">Logga in</a>
-    <a href="/logga-in" style="display:block;width:100%;padding:13px;border:1.5px solid rgba(10,123,140,.3);border-radius:10px;font-size:14px;font-weight:600;color:#0a7b8c;text-align:center;text-decoration:none;">Skapa gratis konto →</a>
-    <div class="auth-m-footer" style="margin-top:16px;">Redan inloggad? <a href="/tur/ny">Gå till planering direkt</a></div>
-  </div>
-</div>
 `
 
 export default function LandingPage() {
@@ -925,31 +846,6 @@ export default function LandingPage() {
     // Fallback: om JS laddar långsamt, visa allt efter 1.5s
     const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
 
-    // Planera min tur — login-gate
-    const handlePlanera = async (e: Event) => {
-      e.preventDefault()
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        window.location.href = '/tur/ny'
-      } else {
-        const gate = document.getElementById('planera-gate')
-        if (gate) gate.style.display = 'flex'
-      }
-    }
-    document.getElementById('planeraNavBtn')?.addEventListener('click', handlePlanera)
-    // Close gate on backdrop click
-    const gate = document.getElementById('planera-gate')
-    const handleGateClick = (e: Event) => { if (e.target === gate) (gate as HTMLElement).style.display = 'none' }
-    gate?.addEventListener('click', handleGateClick)
-
-    // Sök-hints
-    document.querySelectorAll('.hero-search-hint span').forEach(s => {
-      s.addEventListener('click', () => {
-        const input = document.querySelector('.hero-search input') as HTMLInputElement
-        if (input) input.value = s.textContent || ''
-      })
-    })
-
     // Sök-fokus
     const searchInput = document.querySelector('.hero-search input') as HTMLInputElement
     const onFocus = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 50px rgba(232,146,74,.35)' }
@@ -963,8 +859,6 @@ export default function LandingPage() {
       observer.disconnect()
       searchInput?.removeEventListener('focus', onFocus)
       searchInput?.removeEventListener('blur', onBlur)
-      document.getElementById('planeraNavBtn')?.removeEventListener('click', handlePlanera)
-      gate?.removeEventListener('click', handleGateClick)
     }
   }, [])
 

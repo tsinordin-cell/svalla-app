@@ -232,7 +232,7 @@ export default async function RutterPage({
           <Link href="/guide" style={{
             display: 'flex', alignItems: 'center', gap: 5,
             padding: '8px 14px', borderRadius: 20,
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             color: '#fff', fontSize: 12, fontWeight: 700,
             textDecoration: 'none',
             boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
@@ -631,7 +631,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
           </div>
           <div style={{ display: 'flex', gap: 3 }}>
             {t.best_for.slice(0, 3).map((b) => (
-              <span key={b} style={{ fontSize: 10, padding: '2px 6px', borderRadius: 10, background: 'rgba(30,92,130,0.07)', color: '#2a6a8a' }}>
+              <span key={b} style={{ fontSize: 10, padding: '2px 6px', borderRadius: 10, background: 'rgba(10,123,140,0.07)', color: 'var(--sea)' }}>
                 {b}
               </span>
             ))}

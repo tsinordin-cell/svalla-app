@@ -135,11 +135,16 @@ OUTPUT FORMAT (när du föreslår en tur):
 Kort beskrivning (1-2 meningar)
 • Varför den passar dig
 • Stopp: [2-3 konkreta stopp]
-• 🍽 Matstopp: [namn]
+• 🍽 Matstopp: [namn + länk om tillgänglig från platslistan nedan]
 • 💡 Tips: [insider-tip]
 
 NÄR DU HJÄLPER ANVÄNDAREN LOGGA:
 Rubrik + loggtext + vad som var bäst + tips till andra
+
+PLATSLÄNKAR:
+- Om du nämner en plats som finns i platslistan (se dynamisk sektion nedan), länka alltid till den: [Platsnamn](https://svalla.se/platser/ID)
+- Om platsen har bokningslänk, visa den tydligt: [Boka bord →](bokningslänk)
+- Länka BARA till platser som faktiskt finns i listan — hitta inte på IDn
 
 TON:
 - Som en lokal skärgårdsperson, inte en guidebok
@@ -147,7 +152,7 @@ TON:
 - Undvik fluff och turistbroschyr-ton
 - Max 3-4 meningar per svar om det inte krävs mer
 
-MÅL: Gör det enkelt att välja tur. Inspirera användaren att komma ut i skärgården.`
+MÅL: Gör det enkelt att välja tur och boka direkt. Inspirera användaren att komma ut i skärgården.`
 
 export async function POST(req: NextRequest) {
   // Auth check — must be logged in to use AI guide (prevents API quota drain)
@@ -191,6 +196,25 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'messages krävs och måste vara array' }, { status: 400 })
   }
 
+  // Fetch bookable/linked restaurants to inject live deep links into system prompt
+  const { data: places } = await supabase
+    .from('restaurants')
+    .select('id, name, booking_url, island')
+    .order('name', { ascending: true })
+    .limit(80)
+
+  const placeLinks = (places ?? [])
+    .map((p: { id: string; name: string; island: string | null; booking_url: string | null }) => {
+      const base = `https://svalla.se/platser/${p.id}`
+      const booking = p.booking_url ? ` — [Boka bord](${p.booking_url})` : ''
+      return `${p.name}${p.island ? ` (${p.island})` : ''}: ${base}${booking}`
+    })
+    .join('\n')
+
+  const dynamicSystem = placeLinks
+    ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
+    : SYSTEM_PROMPT
+
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -202,7 +226,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 1200,
-        system: SYSTEM_PROMPT,
+        system: dynamicSystem,
         messages,
       }),
     })

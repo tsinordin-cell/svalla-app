@@ -29,6 +29,9 @@ export type Restaurant = {
   source_confidence?: string | null
   image_url?: string | null
   slug?: string | null
+  contact_phone?: string | null
+  website?: string | null
+  booking_url?: string | null
 }
 
 export type Route = {

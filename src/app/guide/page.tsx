@@ -1,27 +1,43 @@
 'use client'
-import { useState, useRef, useEffect, Suspense } from 'react'
+import React, { useState, useRef, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
+function renderMarkdown(text: string): React.ReactNode[] {
+  const segments = text.split(/(\[.+?\]\(.+?\)|\*\*.+?\*\*)/g)
+  return segments.map((seg, i) => {
+    const link = seg.match(/^\[(.+?)\]\((.+?)\)$/)
+    if (link) return <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'underline' }}>{link[1]}</a>
+    const bold = seg.match(/^\*\*(.+?)\*\*$/)
+    if (bold) return <strong key={i}>{bold[1]}</strong>
+    return <span key={i}>{seg}</span>
+  })
+}
+
 const SUGGESTIONS = [
   'Vad passar för en familj med barn?',
   'Romantisk helgtur för oss två?',
+  'Var kan man boka bord i skärgården?',
   'Bra seglingsrutt en hel dag från Ingarö?',
   'Var kan man äta bra i skärgården?',
   'Nybörjare – vilken tur börjar jag med?',
   'Bästa stället att bada i ytterskärgården?',
-  'Hur långt är det till Sandhamn från Stockholm?',
-  'Äventyrlig tur med flera stopp?',
+  'Äventyrlig tur med flera stopp och matrestopp?',
 ]
 
 function GuideContent() {
   const searchParams = useSearchParams()
   const preselectedTour = searchParams.get('tur')
+  const preselectedQ = searchParams.get('fråga') ?? searchParams.get('fraga')
 
   const [messages, setMessages] = useState<Message[]>([])
-  const [input, setInput] = useState(preselectedTour ? `Berätta mer om turen: ${preselectedTour}` : '')
+  const [input, setInput] = useState(
+    preselectedQ ? preselectedQ
+    : preselectedTour ? `Berätta mer om turen: ${preselectedTour}`
+    : ''
+  )
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -30,10 +46,15 @@ function GuideContent() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Auto-fokusera inmatningsfältet vid sidladdning
+  // Auto-fokusera och auto-skicka om fråga är förifylld
   useEffect(() => {
+    if (preselectedQ) {
+      const timer = setTimeout(() => send(preselectedQ), 400)
+      return () => clearTimeout(timer)
+    }
     const timer = setTimeout(() => inputRef.current?.focus(), 300)
     return () => clearTimeout(timer)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function send(text?: string) {
@@ -68,7 +89,7 @@ function GuideContent() {
       {/* Header */}
       <header style={{
         padding: '12px 16px',
-        background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+        background: 'var(--grad-sea)',
         display: 'flex', alignItems: 'center', gap: 12,
         boxShadow: '0 2px 12px rgba(0,45,60,0.15)',
         flexShrink: 0,
@@ -147,21 +168,21 @@ function GuideContent() {
             {m.role === 'assistant' && (
               <div style={{
                 width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-                background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                background: 'var(--grad-sea)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 14, alignSelf: 'flex-end',
               }}>🧭</div>
             )}
             <div style={{
               maxWidth: '82%', padding: '11px 14px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-              background: m.role === 'user' ? 'linear-gradient(135deg, #1e5c82, #2d7d8a)' : '#fff',
+              background: m.role === 'user' ? 'var(--grad-sea)' : '#fff',
               color: m.role === 'user' ? '#fff' : 'var(--txt)',
               fontSize: 13, lineHeight: 1.55,
               border: m.role === 'assistant' ? '1.5px solid rgba(10,123,140,0.10)' : 'none',
               boxShadow: '0 1px 4px rgba(0,45,60,0.07)',
               whiteSpace: 'pre-wrap',
             }}>
-              {m.content}
+              {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
             </div>
           </div>
         ))}
@@ -170,7 +191,7 @@ function GuideContent() {
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <div style={{
               width: 32, height: 32, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
             }}>🧭</div>
             <div style={{
@@ -223,7 +244,7 @@ function GuideContent() {
             style={{
               width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
               background: input.trim() && !loading
-                ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)'
+                ? 'var(--grad-sea)'
                 : 'rgba(10,123,140,0.12)',
               border: 'none', cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',

@@ -60,7 +60,7 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack']
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide']
   const EXACT_PATHS = ['/logga', '/meddelanden']
   // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
   const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
@@ -124,7 +124,7 @@ export default function Nav() {
             <div style={{
               width: 26, height: 26, borderRadius: '50%',
               background: active
-                ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)'
+                ? 'var(--grad-sea)'
                 : 'rgba(10,123,140,0.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 11, fontWeight: 600,
@@ -161,7 +161,7 @@ export default function Nav() {
   // Visa bells bara på sidor som INTE har egen header med bells
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
   // /upptack har fullskärms-karta där Leaflet-kontroller bor top-right
-  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/upptack']
+  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil']
   const showGlobalBell = username !== null
     && !PAGES_WITH_OWN_BELLS.some(p => path.startsWith(p))
     && !path.match(/^\/meddelanden/)

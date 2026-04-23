@@ -283,16 +283,32 @@ function LoginContent() {
                 }
               </button>
             </div>
-            {isNew && password.length === 0 && (
-              <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '-2px 0 0', padding: '0 4px' }}>
-                Minst 6 tecken krävs
-              </p>
-            )}
-            {isNew && password.length > 0 && password.length < 6 && (
-              <p style={{ fontSize: 12, color: 'var(--acc)', margin: '-2px 0 0', padding: '0 4px' }}>
-                Minst 6 tecken ({6 - password.length} till)
-              </p>
-            )}
+            {isNew && password.length > 0 && (() => {
+              const hasNum = /\d/.test(password)
+              const hasSpec = /[^a-zA-Z0-9]/.test(password)
+              const strength = password.length < 6 ? 0
+                : password.length >= 12 && (hasNum || hasSpec) ? 3
+                : password.length >= 8 || hasNum ? 2
+                : 1
+              const labels = ['', 'Svagt', 'Okej', 'Starkt']
+              const colors = ['', '#dc2626', '#c96e2a', '#16a34a']
+              return (
+                <div style={{ padding: '0 4px' }}>
+                  <div style={{ display: 'flex', gap: 3, marginBottom: 3 }}>
+                    {[1,2,3].map(i => (
+                      <div key={i} style={{
+                        flex: 1, height: 3, borderRadius: 2,
+                        background: strength >= i ? colors[strength] : 'rgba(10,123,140,0.12)',
+                        transition: 'background 0.2s',
+                      }} />
+                    ))}
+                  </div>
+                  <p style={{ fontSize: 11, color: strength === 0 ? 'var(--acc)' : colors[strength], margin: 0 }}>
+                    {strength === 0 ? `${6 - password.length} tecken till` : labels[strength]}
+                  </p>
+                </div>
+              )
+            })()}
             {err && (
               <div style={{ fontSize: 13, color: 'var(--red)', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
                 {err}
@@ -308,7 +324,7 @@ function LoginContent() {
               className="press-feedback"
               style={{
                 padding: '15px 0', borderRadius: 14, border: 'none', cursor: 'pointer',
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: 'var(--grad-sea)',
                 color: '#fff', fontSize: 15, fontWeight: 600, marginTop: 4,
                 boxShadow: '0 4px 18px rgba(30,92,130,0.30)',
                 opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s', fontFamily: 'inherit',

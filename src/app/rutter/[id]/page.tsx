@@ -59,7 +59,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   // Fetch restaurants near this route's waypoints
   const { data: allRests } = await supabase
     .from('restaurants')
-    .select('id, name, latitude, longitude, tags, core_experience')
+    .select('id, name, latitude, longitude, tags, core_experience, booking_url')
     .limit(1000)
 
   function haversineNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -110,7 +110,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
       />
       {/* Hero */}
       <div style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'var(--grad-sea-hero)',
         padding: '60px 20px 32px',
         position: 'relative',
       }}>
@@ -260,7 +260,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                   <div style={{ position: 'relative', flexShrink: 0 }}>
                     <div style={{
                       width: 36, height: 36, borderRadius: '50%',
-                      background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+                      background: 'var(--grad-acc)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: 16,
                     }}>🍴</div>
@@ -321,15 +321,24 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         {nearbyRests.length > 0 && (
           <Section title="🍽 Platser längs rutten">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {nearbyRests.map((r: { id: string; name: string; tags?: string[]; core_experience?: string | null }) => (
+              {nearbyRests.map((r: { id: string; name: string; tags?: string[]; core_experience?: string | null; booking_url?: string | null }) => (
                 <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
                     background: 'var(--white)', borderRadius: 14, padding: '12px 14px',
                     boxShadow: '0 1px 6px rgba(0,45,60,0.07)',
                     border: '1px solid rgba(10,123,140,0.09)',
                   }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 2 }}>
-                      {r.name}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', flex: 1 }}>
+                        {r.name}
+                      </div>
+                      {r.booking_url && (
+                        <span style={{
+                          fontSize: 9, fontWeight: 700, padding: '2px 6px', borderRadius: 8,
+                          background: 'rgba(10,123,140,0.10)', color: 'var(--sea)',
+                          textTransform: 'uppercase', letterSpacing: '0.4px', flexShrink: 0,
+                        }}>Bokning</span>
+                      )}
                     </div>
                     {r.core_experience && (
                       <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4, marginBottom: 4 }}>
@@ -358,7 +367,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         <Link href="/logga" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           width: '100%', padding: '15px 0', borderRadius: 16, marginTop: 8,
-          background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+          background: 'var(--grad-acc)',
           color: '#fff', fontWeight: 600, fontSize: 15,
           textDecoration: 'none',
           boxShadow: '0 4px 20px rgba(201,110,42,0.4)',

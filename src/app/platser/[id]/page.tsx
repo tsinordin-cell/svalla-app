@@ -148,7 +148,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
       />
 
       {/* ── Hero image ── */}
-      <div style={{ position: 'relative', width: '100%', height: 280, background: '#a8ccd4' }}>
+      <div style={{ position: 'relative', width: '100%', height: 280, background: 'var(--sea-l)' }}>
         {r.images?.[0] ? (
           <Image
             src={r.images[0]}
@@ -244,6 +244,66 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
           )}
         </div>
 
+        {/* ── Kontakt & Bokning ── */}
+        {(r.booking_url || r.contact_phone || r.website) && (
+          <div style={{ marginBottom: 14 }}>
+            {r.booking_url && (
+              <a
+                href={r.booking_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 12,
+                  background: 'var(--grad-sea)',
+                  borderRadius: 18, padding: '16px 20px', marginBottom: 8,
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 20px rgba(10,123,140,0.35)',
+                }}
+              >
+                <span style={{ fontSize: 24 }}>📅</span>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Boka bord</div>
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>Reservera din plats online</div>
+                </div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 18, height: 18, marginLeft: 'auto', flexShrink: 0 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            )}
+            {(r.contact_phone || r.website) && (
+              <div style={{
+                background: 'var(--white)', borderRadius: 18, padding: '14px 16px',
+                boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
+                display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center',
+              }}>
+                {r.contact_phone && (
+                  <a href={`tel:${r.contact_phone}`} style={{
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
+                  }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    {r.contact_phone}
+                  </a>
+                )}
+                {r.website && (
+                  <a href={r.website} target="_blank" rel="noopener noreferrer" style={{
+                    display: 'flex', alignItems: 'center', gap: 6,
+                    fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
+                    marginLeft: r.contact_phone ? 'auto' : undefined,
+                  }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                    Hemsida
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* ── Why Layer: core_experience ── */}
         {r.core_experience && (
           <div style={{
@@ -291,7 +351,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
           href={`/logga/manuell?plats=${encodeURIComponent(r.name)}`}
           style={{
             display: 'flex', alignItems: 'center', gap: 12,
-            background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+            background: 'var(--grad-acc)',
             borderRadius: 18, padding: '16px 20px', marginBottom: 14,
             textDecoration: 'none',
             boxShadow: '0 4px 20px rgba(201,110,42,0.35)',
@@ -307,6 +367,31 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
           </svg>
         </Link>
 
+        {/* ── Plan trip CTA ── */}
+        <Link
+          href={`/guide?fråga=${encodeURIComponent(`Hjälp mig planera en tur till ${r.name}${r.island ? ` på ${r.island}` : ''}`)}`}
+          style={{
+            display: 'flex', alignItems: 'center', gap: 12,
+            background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.13)',
+            borderRadius: 18, padding: '14px 18px', marginBottom: 14,
+            textDecoration: 'none',
+            boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
+          }}
+        >
+          <div style={{
+            width: 38, height: 38, borderRadius: 11, flexShrink: 0,
+            background: 'var(--grad-sea)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17,
+          }}>🧭</div>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Planera en tur hit</div>
+            <div style={{ fontSize: 11, color: 'var(--txt3)' }}>AI-guiden hjälper dig bygga hela rutten</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, marginLeft: 'auto', flexShrink: 0 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+
         {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
         <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
 
@@ -318,7 +403,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             </h2>
             <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
               {r.images.map((img, i) => (
-                <div key={i} style={{ position: 'relative', width: 130, height: 100, flexShrink: 0, borderRadius: 12, overflow: 'hidden', background: '#a8ccd4' }}>
+                <div key={i} style={{ position: 'relative', width: 130, height: 100, flexShrink: 0, borderRadius: 12, overflow: 'hidden', background: 'var(--sea-l)' }}>
                   <Image src={img} alt={`${r.name} bild ${i + 1}`} fill style={{ objectFit: 'cover' }} sizes="130px" />
                 </div>
               ))}
@@ -392,7 +477,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                   }}>
                     <div style={{
                       width: 42, height: 42, borderRadius: 12, flexShrink: 0,
-                      background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                      background: 'var(--grad-sea)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
                     }}>⛵</div>
                     <div style={{ flex: 1, minWidth: 0 }}>

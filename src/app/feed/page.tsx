@@ -28,7 +28,7 @@ function FeedServerError() {
         Något gick fel på servern. Prova att ladda om sidan.
       </p>
       <a href="/feed" style={{
-        padding: '12px 24px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+        padding: '12px 24px', borderRadius: 14, background: 'var(--grad-sea)',
         color: '#fff', fontSize: 14, fontWeight: 600, textDecoration: 'none',
       }}>
         Ladda om
@@ -85,7 +85,7 @@ export default async function FeedPage(
           Kontrollera din anslutning och försök igen.
         </p>
         <Link href="/feed" style={{
-          padding: '12px 24px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          padding: '12px 24px', borderRadius: 14, background: 'var(--grad-sea)',
           color: '#fff', fontSize: 14, fontWeight: 600, textDecoration: 'none',
         }}>
           Försök igen
@@ -191,7 +191,7 @@ export default async function FeedPage(
         {/* ── Social proof banner ── */}
         {thisWeek.length > 0 && (
           <div style={{
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
             display: 'flex', alignItems: 'center', gap: 14,
             boxShadow: '0 4px 20px rgba(30,92,130,0.25)',
@@ -206,6 +206,32 @@ export default async function FeedPage(
               </div>
             </div>
           </div>
+        )}
+
+        {/* ── AI Guide CTA ── */}
+        {user && (
+          <Link href="/guide" style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
+            <div style={{
+              background: 'var(--white)',
+              border: '1.5px solid rgba(10,123,140,0.13)',
+              borderRadius: 16, padding: '12px 16px',
+              display: 'flex', alignItems: 'center', gap: 12,
+              boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
+            }}>
+              <div style={{
+                width: 40, height: 40, borderRadius: 12, flexShrink: 0,
+                background: 'var(--grad-sea)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
+              }}>🧭</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Skärgårdsguiden</div>
+                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Fråga om turer, mat och tips i skärgården</div>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </Link>
         )}
 
         {/* ── Stories (24h) ── */}
@@ -249,7 +275,7 @@ export default async function FeedPage(
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                         </div>
-                      : <div style={{ height: 72, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
+                      : <div style={{ height: 72, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
                     }
                     <div style={{ padding: '7px 8px' }}>
                       <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -288,7 +314,7 @@ export default async function FeedPage(
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                         </div>
-                      : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
+                      : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
                     }
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

@@ -35,8 +35,9 @@
   --glass-85:   rgba(250,254,255,0.85);
   --glass-70:   rgba(250,254,255,0.70);
   /* ── Gradient shorthands ── */
-  --grad-sea:   linear-gradient(135deg, #1e5c82, #2d7d8a);
-  --grad-acc:   linear-gradient(135deg, #c96e2a, #e07828);
+  --grad-sea:      linear-gradient(135deg, #1e5c82, #2d7d8a);
+  --grad-sea-hero: linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%);
+  --grad-acc:      linear-gradient(135deg, #c96e2a, #e07828);
 }
 
 /* ── Reset & base ── */
@@ -148,8 +149,9 @@ img {
   --glass-85:   rgba(9,21,37,0.85);
   --glass-70:   rgba(9,21,37,0.70);
   /* ── Gradient shorthands — dark ── */
-  --grad-sea:   linear-gradient(135deg, #0e2a3d, #163344);
-  --grad-acc:   linear-gradient(135deg, #9e5318, #c97030);
+  --grad-sea:      linear-gradient(135deg, #0e2a3d, #163344);
+  --grad-sea-hero: linear-gradient(160deg, #0e2a3d 0%, #163344 100%);
+  --grad-acc:      linear-gradient(135deg, #9e5318, #c97030);
   color-scheme: dark;
 }
 
@@ -345,12 +347,6 @@ img {
 }
 [data-theme="dark"] [style*="border: 1.5px solid rgba(30,92,130"] {
   border-color: rgba(74, 184, 212, 0.20) !important;
-}
-
-/* ── Gradient stat/info rows ── */
-[data-theme="dark"] [style*="background: linear-gradient(135deg,#1e5c82"],
-[data-theme="dark"] [style*="background: linear-gradient(135deg, #1e5c82"] {
-  background: linear-gradient(135deg, #0e2a3d, #163344) !important;
 }
 
 /* ── Dark card shadows ── */

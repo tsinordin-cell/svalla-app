@@ -79,7 +79,7 @@ export default function PlaneraTurPage() {
             Att planera en skärgårdstur brukar betyda att öppna fem fönster samtidigt — Waxholmsbolagets tidtabell, Booking.com, SMHI, en Facebook-grupp för tips. Svalla samlar det du behöver i <strong>ett flöde</strong>.
           </p>
           <p>
-            Verktyget fungerar för alla typer av turer: dagstur med färja, helg med egen segelbåt, veckolång rundresa med både boende och båt. Börja med tidsperiod och färdsätt, så bygger vi förslag tillsammans.
+            Ny: <strong>Fråga AI-guiden</strong> direkt — berätta vad du vill (familj med barn, romantisk helg, segling från Ingarö) och få ett personligt förslag med restauranger och bokningslänkar på 10 sekunder.
           </p>
         </>
       }
@@ -102,7 +102,7 @@ export default function PlaneraTurPage() {
           </p>
         </>
       }
-      cta={{ label: 'Öppna karta & planera', href: '/platser', secondaryLabel: 'Skapa konto', secondaryHref: '/kom-igang' }}
+      cta={{ label: '✨ Planera min tur nu', href: '/planera', secondaryLabel: '🧭 Fråga AI-guiden', secondaryHref: '/guide' }}
       related={[
         { label: 'Populära turer', href: '/populara-turer' },
         { label: 'Segelrutter', href: '/segelrutter' },

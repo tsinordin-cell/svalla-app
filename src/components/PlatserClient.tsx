@@ -8,17 +8,18 @@ import type { TourLine } from '@/app/platser/page'
 
 // ── Leaflet karta (lazy-load, SSR off) ──────────────────────────────────────
 const PlatserMap = dynamic(() => import('./PlatserMap'), { ssr: false, loading: () => (
-  <div style={{ width: '100%', height: '100%', background: '#d4e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+  <div style={{ width: '100%', height: '100%', background: 'var(--sea-l)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
     <span style={{ fontSize: 13, color: 'var(--txt3)' }}>Laddar karta…</span>
   </div>
 )})
 
 // ── Kategorier ────────────────────────────────────────────────────────────
 const FILTERS = [
-  { value: 'alla',       label: 'Alla' },
-  { value: 'restaurang', label: '🍽 Restaurang' },
-  { value: 'kafe',       label: '☕ Kafé' },
-  { value: 'hamn',       label: '⚓ Hamn' },
+  { value: 'alla',        label: 'Alla' },
+  { value: 'restaurang',  label: '🍽 Restaurang' },
+  { value: 'kafe',        label: '☕ Kafé' },
+  { value: 'hamn',        label: '⚓ Hamn' },
+  { value: 'bokningsbar', label: '📅 Boka' },
 ]
 
 function getCat(r: Restaurant): string {
@@ -58,7 +59,8 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim()
     return restaurants.filter(r => {
-      const matchF = filter === 'alla' || getCat(r) === filter
+      const matchF = filter === 'alla'
+        || (filter === 'bokningsbar' ? !!r.booking_url : getCat(r) === filter)
       const matchQ = !q || r.name.toLowerCase().includes(q) || (r.description ?? '').toLowerCase().includes(q) || (r.island ?? '').toLowerCase().includes(q)
       return matchF && matchQ
     })
@@ -186,7 +188,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                 <Link href={`/platser/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
                   <div style={{
                     borderRadius: 16, overflow: 'hidden',
-                    background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                    background: 'var(--grad-sea)',
                     boxShadow: '0 3px 14px rgba(30,92,130,0.25)',
                     position: 'relative',
                   }}>
@@ -262,11 +264,11 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                             border: activeId === r.id ? '1px solid #1e5c82' : '1px solid rgba(10,123,140,0.07)',
                             display: 'flex', transition: 'box-shadow 0.15s',
                           }}>
-                          <div style={{ width: 88, flexShrink: 0, background: '#a8ccd4' }}>
+                          <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)' }}>
                             {r.images?.[0]
                               // eslint-disable-next-line @next/next/no-img-element
                               ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                              : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, background: getCat(r) === 'kafe' ? 'linear-gradient(135deg,#7c4d1e,#a06b30)' : getCat(r) === 'hamn' ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)' }}>
+                              : <div style={{ width: '100%', height: '100%', minHeight: 72, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, background: getCat(r) === 'kafe' ? 'linear-gradient(135deg,#7c4d1e,#a06b30)' : getCat(r) === 'hamn' ? 'var(--grad-acc)' : 'var(--grad-sea)' }}>
                                 <span style={{ fontSize: 20 }}>{getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}</span>
                                 <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.3px' }}>{r.name[0]}</span>
                               </div>
@@ -283,9 +285,18 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                                 {getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}
                               </span>
                             </div>
-                            {r.opening_hours && (
-                              <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 2 }}>🕐 {r.opening_hours}</div>
-                            )}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2, flexWrap: 'wrap' }}>
+                              {r.opening_hours && (
+                                <div style={{ fontSize: 10, color: 'var(--txt3)' }}>🕐 {r.opening_hours}</div>
+                              )}
+                              {r.booking_url && (
+                                <span style={{
+                                  fontSize: 9, fontWeight: 700, padding: '2px 6px', borderRadius: 10,
+                                  background: 'rgba(10,123,140,0.10)', color: 'var(--sea)',
+                                  textTransform: 'uppercase', letterSpacing: '0.4px',
+                                }}>Bokning</span>
+                              )}
+                            </div>
                             {r.description && (
                               <div style={{
                                 fontSize: 11, color: 'var(--txt2)', marginTop: 4, lineHeight: 1.4,
@@ -394,7 +405,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
           <Link href={`/platser/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
             <div style={{
               borderRadius: 16, overflow: 'hidden',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               boxShadow: '0 3px 14px rgba(30,92,130,0.25)',
               position: 'relative',
             }}>
@@ -463,7 +474,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     minHeight: 80,  // touch target
                     transition: 'box-shadow 0.15s',
                   }}>
-                    <div style={{ width: 88, flexShrink: 0, background: '#a8ccd4' }}>
+                    <div style={{ width: 88, flexShrink: 0, background: 'var(--sea-l)' }}>
                       {r.images?.[0]
                         // eslint-disable-next-line @next/next/no-img-element
                         ? <img loading="lazy" decoding="async" src={r.images[0]} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -473,8 +484,8 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                             background: getCat(r) === 'kafe'
                               ? 'linear-gradient(135deg,#7c4d1e,#a06b30)'
                               : getCat(r) === 'hamn'
-                              ? 'linear-gradient(135deg,#c96e2a,#e07828)'
-                              : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                              ? 'var(--grad-acc)'
+                              : 'var(--grad-sea)',
                           }}>
                             {getCat(r) === 'kafe' ? '☕' : getCat(r) === 'hamn' ? '⚓' : '🍽'}
                           </div>
@@ -482,9 +493,18 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
                     </div>
                     <div style={{ flex: 1, padding: '12px 14px', minWidth: 0 }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.25 }}>{r.name}</div>
-                      {r.opening_hours && (
-                        <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>🕐 {r.opening_hours}</div>
-                      )}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3, flexWrap: 'wrap' }}>
+                        {r.opening_hours && (
+                          <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500 }}>🕐 {r.opening_hours}</div>
+                        )}
+                        {r.booking_url && (
+                          <span style={{
+                            fontSize: 9, fontWeight: 700, padding: '2px 6px', borderRadius: 10,
+                            background: 'rgba(10,123,140,0.10)', color: 'var(--sea)',
+                            textTransform: 'uppercase', letterSpacing: '0.4px',
+                          }}>Bokning</span>
+                        )}
+                      </div>
                       {r.description && (
                         <div style={{
                           fontSize: 11, color: 'var(--txt2)', marginTop: 5, lineHeight: 1.45,

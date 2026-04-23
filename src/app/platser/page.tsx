@@ -2,6 +2,8 @@ import { createClient } from '@/lib/supabase'
 import type { Restaurant } from '@/lib/supabase'
 import type { Metadata } from 'next'
 import PlatserClient from '@/components/PlatserClient'
+import MessageBell from '@/components/MessageBell'
+import NotificationBell from '@/components/NotificationBell'
 
 export type TourLine = {
   id: string
@@ -31,7 +33,7 @@ export default async function PlatserPage() {
 
   const { data: restaurants, error } = await supabase
     .from('restaurants')
-    .select('id, name, images, description, opening_hours, latitude, longitude, tags, core_experience, type, island')
+    .select('id, name, images, description, opening_hours, latitude, longitude, tags, core_experience, type, island, booking_url')
     .order('name', { ascending: true })
 
   if (error) {
@@ -80,6 +82,10 @@ export default async function PlatserPage() {
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {restaurants?.length ?? 0} platser i skärgården
           </p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <MessageBell />
+          <NotificationBell />
         </div>
       </header>
 
