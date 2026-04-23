@@ -50,6 +50,30 @@ export default async function PlaneraPage() {
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
+      {/* Delade flikar: Planera / Rutter / Öar / Färjor */}
+      <div role="tablist" style={{
+        display: 'flex', gap: 0, padding: '0 16px',
+        background: 'var(--glass-96)',
+        borderBottom: '1px solid rgba(10,123,140,0.10)',
+      }}>
+        {([
+          { label: 'Planera', href: '/planera',          active: true },
+          { label: 'Rutter',  href: '/rutter',           active: false },
+          { label: 'Öar',     href: '/rutter?vy=oar',    active: false },
+          { label: 'Färjor',  href: '/rutter?vy=farjor', active: false },
+        ]).map(t => (
+          <Link key={t.href} href={t.href} role="tab" aria-selected={t.active} style={{
+            flex: 1, textAlign: 'center', padding: '12px 0 10px',
+            fontSize: 14, fontWeight: t.active ? 700 : 600,
+            color: t.active ? 'var(--sea)' : 'var(--txt3)',
+            textDecoration: 'none',
+            borderBottom: t.active ? '2.5px solid var(--sea)' : '2.5px solid transparent',
+            transition: 'color 160ms ease, border-color 160ms ease',
+            marginBottom: -1,
+          }}>{t.label}</Link>
+        ))}
+      </div>
+
       {/* Hero */}
       <div style={{
         background: 'var(--grad-sea)',

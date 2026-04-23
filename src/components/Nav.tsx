@@ -92,9 +92,10 @@ export default function Nav() {
       ),
     },
     {
-      href: '/rutter',
-      label: 'Turer',
+      href: '/planera',
+      label: 'Planera',
       exact: false,
+      matchPaths: ['/planera', '/rutter'],
       icon: (active: boolean) => (
         <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <circle cx="5" cy="6" r="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -202,7 +203,9 @@ export default function Nav() {
       {/* Tab-lista — row på mobil/tablet, column på desktop via CSS */}
       <div className="nav-inner" style={{ display: 'flex', alignItems: 'stretch', width: '100%', maxWidth: 640 }}>
       {tabs.map((tab) => {
-        const active = tab.exact ? path === tab.href : path.startsWith(tab.href)
+        const active = tab.exact
+          ? path === tab.href
+          : (tab.matchPaths ?? [tab.href]).some(p => path.startsWith(p))
 
         if (tab.fab) {
           return (
