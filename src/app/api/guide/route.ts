@@ -3,6 +3,9 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import type { SupabaseClient } from '@supabase/supabase-js'
+import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
+import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 
 // Condensed tour list for context (titles + key data)
 const TOUR_CONTEXT = `
@@ -154,7 +157,101 @@ TON:
 - Undvik fluff och turistbroschyr-ton
 - Max 3-4 meningar per svar om det inte krävs mer
 
-MÅL: Gör det enkelt att välja tur och boka direkt. Inspirera användaren att komma ut i skärgården.`
+MÅL: Gör det enkelt att välja tur och boka direkt. Inspirera användaren att komma ut i skärgården.
+
+NÄR ANVÄNDAREN BER OM EN RIKTIG RUTT FRÅN A TILL B:
+Om användaren nämner konkret start och slutpunkt (ex: "från Stavsnäs till Sandhamn")
+samt intressen (krog, bastu, bad, brygga, natur, bensin), anropa verktyget
+plan_route för att få riktiga stopp-förslag från platsdatabasen. Presentera
+sedan resultatet som en lista av stopp med namn, ö, och anledning. Länka till
+/planera om användaren vill spara rutten.
+
+Stöttade start/slutpunkter: ${listSupportedPlaces().join(', ')}.`
+
+const TOOLS = [
+  {
+    name: 'plan_route',
+    description: 'Hämtar konkreta stopp-förslag längs en rutt från A till B baserat på användarens intressen. Använd detta när användaren ber om en faktisk rutt mellan två kända platser.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        start: {
+          type: 'string',
+          description: 'Startpunkt (ex: "Stavsnäs", "Vaxholm", "Nynäshamn"). Måste vara en av de stöttade platserna.',
+        },
+        end: {
+          type: 'string',
+          description: 'Slutpunkt/destination. Måste vara en av de stöttade platserna.',
+        },
+        interests: {
+          type: 'array',
+          items: { type: 'string', enum: ['krog', 'bastu', 'bad', 'brygga', 'natur', 'bensin'] },
+          description: 'Användarens intressen för stopp längs rutten.',
+        },
+      },
+      required: ['start', 'end', 'interests'],
+    },
+  },
+]
+
+type AnthropicContent =
+  | { type: 'text'; text: string }
+  | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
+
+type ToolResult = { stops: Array<{ name: string; island: string | null; reason: string; distance_from_line_km: number }> } | { error: string }
+
+async function executeTool(
+  name: string,
+  input: Record<string, unknown>,
+  supabase: SupabaseClient,
+): Promise<ToolResult> {
+  if (name !== 'plan_route') return { error: `Okänt verktyg: ${name}` }
+
+  const { start, end, interests } = input as { start?: string; end?: string; interests?: string[] }
+  if (!start || !end || !Array.isArray(interests)) {
+    return { error: 'Ogiltiga argument till plan_route' }
+  }
+
+  const startPlace = resolvePlaceName(start)
+  const endPlace = resolvePlaceName(end)
+  if (!startPlace) return { error: `Kunde inte känna igen startplatsen "${start}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }
+  if (!endPlace) return { error: `Kunde inte känna igen slutplatsen "${end}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }
+
+  // Hämta alla platser från DB
+  const { data: places } = await supabase
+    .from('restaurants')
+    .select('id, name, latitude, longitude, type, categories, tags, island')
+
+  const allPlaces: PlaceInput[] = (places ?? []).map((p: {
+    id: string; name: string; latitude: number; longitude: number;
+    type: string | null; categories: string[] | null; tags: string[] | null; island: string | null;
+  }) => ({
+    id: p.id,
+    name: p.name,
+    lat: p.latitude,
+    lng: p.longitude,
+    type: p.type ?? null,
+    categories: p.categories ?? null,
+    tags: p.tags ?? null,
+    island: p.island ?? null,
+  }))
+
+  const stops = suggestStops(
+    { lat: startPlace.lat, lng: startPlace.lng },
+    { lat: endPlace.lat, lng: endPlace.lng },
+    interests as Interest[],
+    allPlaces,
+  )
+
+  return {
+    stops: stops.map(s => ({
+      name: s.name,
+      island: s.island,
+      reason: s.reason,
+      distance_from_line_km: s.distance_from_line_km,
+    })),
+  }
+}
 
 export async function POST(req: NextRequest) {
   // Auth check — must be logged in to prata med Thorkel (prevents API quota drain)
@@ -217,11 +314,11 @@ export async function POST(req: NextRequest) {
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
     : SYSTEM_PROMPT
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+  async function callClaude(msgs: unknown[]): Promise<Response> {
+    return fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
-        'x-api-key': apiKey,
+        'x-api-key': apiKey!,
         'anthropic-version': '2023-06-01',
         'content-type': 'application/json',
       },
@@ -229,23 +326,63 @@ export async function POST(req: NextRequest) {
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 1200,
         system: dynamicSystem,
-        messages,
+        tools: TOOLS,
+        messages: msgs,
       }),
     })
+  }
 
-    if (!res.ok) {
-      const err = await res.text()
-      console.error('[guide api]', res.status, err.substring(0, 100))
+  try {
+    // Första anropet — Claude kan antingen svara direkt eller begära ett verktyg
+    const res1 = await callClaude(messages)
+    if (!res1.ok) {
+      const err = await res1.text()
+      console.error('[guide api]', res1.status, err.substring(0, 200))
       return NextResponse.json({ error: 'Anthropic API fel' }, { status: 500 })
     }
+    const data1 = await res1.json()
 
-    const data = await res.json()
-    if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
-      return NextResponse.json({ reply: '' })
+    // Om Claude inte bad om ett verktyg — returnera text direkt
+    if (data1.stop_reason !== 'tool_use') {
+      const textBlock = (data1.content ?? []).find((c: AnthropicContent) => c.type === 'text')
+      return NextResponse.json({ reply: (textBlock as { text?: string })?.text ?? '' })
     }
-    const text = data.content[0].text ?? ''
-    return NextResponse.json({ reply: text })
+
+    // Claude bad om ett verktyg — exekvera det och skicka tillbaka resultatet
+    const toolUse = (data1.content ?? []).find((c: AnthropicContent) => c.type === 'tool_use') as
+      | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
+      | undefined
+    if (!toolUse) {
+      return NextResponse.json({ reply: 'Kunde inte tolka Thorkels svar. Försök igen.' })
+    }
+
+    const toolResult = await executeTool(toolUse.name, toolUse.input, supabase)
+
+    // Andra anropet — skicka med tool_result så Claude kan formulera svar
+    const followUpMessages = [
+      ...messages,
+      { role: 'assistant', content: data1.content },
+      {
+        role: 'user',
+        content: [{
+          type: 'tool_result',
+          tool_use_id: toolUse.id,
+          content: JSON.stringify(toolResult),
+        }],
+      },
+    ]
+
+    const res2 = await callClaude(followUpMessages)
+    if (!res2.ok) {
+      const err = await res2.text()
+      console.error('[guide api] tool-result follow-up', res2.status, err.substring(0, 200))
+      return NextResponse.json({ error: 'Anthropic API fel (tool follow-up)' }, { status: 500 })
+    }
+    const data2 = await res2.json()
+    const finalTextBlock = (data2.content ?? []).find((c: AnthropicContent) => c.type === 'text')
+    return NextResponse.json({ reply: (finalTextBlock as { text?: string })?.text ?? '' })
   } catch (error) {
+    console.error('[guide api] exception', error)
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
   }
 }
