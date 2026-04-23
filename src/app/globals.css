@@ -10,6 +10,11 @@
   --acc:   #c96e2a;
   --acc-d: #9e5318;
   --acc-l: #fdf0e5;
+  /* ── Thorkel-palette — skeppare från Möja ── */
+  --thor:       #2b3e56;  /* mörkblå uniform */
+  --thor-d:     #1a2738;  /* hover/pressed */
+  --thor-l:     #e5ebf3;  /* chat-bubbla bg (ljust) */
+  --thor-cream: #efe4cc;  /* skägg, accent */
   --txt:   #192830;
   --txt2:  #3d5865;
   --txt3:  #7a9dab;
@@ -122,6 +127,11 @@ img {
   --acc:        #e8924a;
   --acc-d:      #c97030;
   --acc-l:      #2a1a0e;
+  /* Thorkel — mörkt läge */
+  --thor:       #4d6b8c;
+  --thor-d:     #3a5272;
+  --thor-l:     #152334;
+  --thor-cream: #efe4cc;
   --txt:        #d8eaf4;
   --txt2:       #9abccc;
   --txt3:       #6a98aa;

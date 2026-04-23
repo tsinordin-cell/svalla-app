@@ -3,6 +3,9 @@ import React, { useState, useRef, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
+import { THORKEL } from '@/lib/thorkel/persona'
+import { THORKEL_COPY } from '@/lib/thorkel/copy'
 
 type Message = { role: 'user' | 'assistant'; content: string }
 
@@ -108,32 +111,35 @@ function GuideContent() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg)' }}>
-      {/* Header */}
+      {/* Header — Thorkel-palett (marinblå, ingen gradient) */}
       <header style={{
         padding: '12px 16px',
-        background: 'var(--grad-sea)',
+        background: 'var(--thor)',
         display: 'flex', alignItems: 'center', gap: 12,
-        boxShadow: '0 2px 12px rgba(0,45,60,0.15)',
+        boxShadow: '0 2px 12px rgba(10,20,35,0.25)',
         flexShrink: 0,
       }}>
         <Link href="/feed" style={{
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: 'rgba(255,255,255,0.15)',
+          background: 'rgba(255,255,255,0.12)',
         }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 17, height: 17 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>🧭 Thorkel</div>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)' }}>Vår guide i skärgården</div>
+        <ThorkelAvatar size={36} />
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{THORKEL.name}</div>
+          <div style={{ fontSize: 11, color: 'rgba(239,228,204,0.75)', fontStyle: 'italic' }}>
+            {THORKEL.title} · {THORKEL.bio}
+          </div>
         </div>
         {messages.length > 0 && (
           <button
             onClick={() => { setMessages([]); setInput('') }}
             style={{
-              background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer',
+              background: 'rgba(255,255,255,0.12)', border: 'none', cursor: 'pointer',
               padding: '6px 12px', borderRadius: 20, color: '#fff',
               fontSize: 11, fontWeight: 700, flexShrink: 0,
             }}
@@ -147,17 +153,29 @@ function GuideContent() {
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px 14px 8px' }}>
         {messages.length === 0 && (
           <div>
-            {/* Welcome */}
+            {/* Welcome — stor avatar, bio, stoisk intro */}
             <div style={{
-              background: 'var(--white)', borderRadius: 16, padding: '16px',
-              border: '1.5px solid rgba(10,123,140,0.10)',
+              background: 'var(--white)', borderRadius: 16, padding: '24px 20px 20px',
+              border: '1px solid rgba(43,62,86,0.12)',
               marginBottom: 16,
-              boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
+              boxShadow: '0 2px 10px rgba(10,20,35,0.06)',
+              textAlign: 'center',
             }}>
-              <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
-              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', margin: '0 0 6px' }}>Hej! Jag heter Thorkel.</h2>
-              <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.5 }}>
-                Jag har hängt i Stockholms skärgård i hela mitt liv och känner varje vik, krog och hamn. Berätta vad du är ute efter – sällskap, tid, bad, mat eller segling – så hittar vi rätt tur.
+              <div style={{ display: 'inline-block', marginBottom: 10 }}>
+                <ThorkelAvatar size={80} priority />
+              </div>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px' }}>
+                {THORKEL.name}
+              </h2>
+              <div style={{ fontSize: 12, color: 'var(--txt2)', fontStyle: 'italic', marginBottom: 14 }}>
+                {THORKEL.title} · {THORKEL.bio}
+              </div>
+              <p style={{
+                fontSize: 14, color: 'var(--txt)', margin: 0,
+                lineHeight: 1.7,
+                maxWidth: 380, marginLeft: 'auto', marginRight: 'auto',
+              }}>
+                {THORKEL_COPY.intros[0]}
               </p>
             </div>
 
@@ -188,20 +206,17 @@ function GuideContent() {
             gap: 8, marginBottom: 12,
           }}>
             {m.role === 'assistant' && (
-              <div style={{
-                width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-                background: 'var(--grad-sea)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 14, alignSelf: 'flex-end',
-              }}>🧭</div>
+              <div style={{ flexShrink: 0, alignSelf: 'flex-end' }}>
+                <ThorkelAvatar size={32} />
+              </div>
             )}
             <div style={{
-              maxWidth: '82%', padding: '11px 14px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-              background: m.role === 'user' ? 'var(--grad-sea)' : '#fff',
+              maxWidth: '82%', padding: '12px 15px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+              background: m.role === 'user' ? 'var(--thor)' : 'var(--thor-l)',
               color: m.role === 'user' ? '#fff' : 'var(--txt)',
-              fontSize: 13, lineHeight: 1.55,
-              border: m.role === 'assistant' ? '1.5px solid rgba(10,123,140,0.10)' : 'none',
-              boxShadow: '0 1px 4px rgba(0,45,60,0.07)',
+              fontSize: 14, lineHeight: 1.7,
+              border: m.role === 'assistant' ? '1px solid rgba(43,62,86,0.12)' : 'none',
+              boxShadow: m.role === 'assistant' ? '0 1px 4px rgba(10,20,35,0.05)' : 'none',
               whiteSpace: 'pre-wrap',
             }}>
               {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
@@ -211,19 +226,15 @@ function GuideContent() {
 
         {loading && (
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+            <ThorkelAvatar size={32} />
             <div style={{
-              width: 32, height: 32, borderRadius: '50%',
-              background: 'var(--grad-sea)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
-            }}>🧭</div>
-            <div style={{
-              padding: '11px 14px', borderRadius: '18px 18px 18px 4px',
-              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.10)',
+              padding: '12px 15px', borderRadius: '18px 18px 18px 4px',
+              background: 'var(--thor-l)', border: '1px solid rgba(43,62,86,0.12)',
               display: 'flex', gap: 5, alignItems: 'center',
             }}>
               {[0, 0.15, 0.3].map((d, i) => (
                 <span key={i} style={{
-                  width: 7, height: 7, borderRadius: '50%', background: 'var(--txt3)',
+                  width: 7, height: 7, borderRadius: '50%', background: 'var(--thor)',
                   display: 'inline-block',
                   animation: 'bounce 1.2s infinite',
                   animationDelay: `${d}s`,
@@ -248,9 +259,9 @@ function GuideContent() {
           <Link href="/logga-in?returnTo=/guide" style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
             padding: '12px 18px', borderRadius: 20,
-            background: 'var(--grad-sea)', color: '#fff',
+            background: 'var(--thor)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
-            boxShadow: '0 2px 8px rgba(10,123,140,0.3)',
+            boxShadow: '0 2px 8px rgba(10,20,35,0.25)',
           }}>
             Logga in för att prata med Thorkel →
           </Link>
@@ -277,8 +288,8 @@ function GuideContent() {
             style={{
               width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
               background: input.trim() && !loading
-                ? 'var(--grad-sea)'
-                : 'rgba(10,123,140,0.12)',
+                ? 'var(--thor)'
+                : 'rgba(43,62,86,0.12)',
               border: 'none', cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               transition: 'all 0.2s',
