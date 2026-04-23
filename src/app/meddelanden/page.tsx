@@ -149,24 +149,41 @@ export default function MeddelandenPage() {
         }
       }
 
-      const enriched: ConvRow[] = []
-      for (const c of filtered) {
-        const lr = lastReadMap[c.id] ?? '1970-01-01T00:00:00Z'
-        const { count } = await supabase
+      // En enda query för alla olästa meddelanden över alla konversationer.
+      // Smalnar ned scope med tidigaste last_read_at så vi inte drar hela historiken.
+      const lastReadValues = Object.values(lastReadMap)
+      const earliestLr = lastReadValues.length > 0
+        ? lastReadValues.sort()[0]
+        : '1970-01-01T00:00:00Z'
+
+      const filteredIds = filtered.map(c => c.id as string)
+      const unreadByConv: Record<string, number> = {}
+      if (filteredIds.length > 0) {
+        const { data: potentialUnread } = await supabase
           .from('messages')
-          .select('id', { count: 'exact', head: true })
-          .eq('conversation_id', c.id)
-          .gt('created_at', lr)
+          .select('conversation_id, created_at')
+          .in('conversation_id', filteredIds)
           .neq('user_id', userId)
+          .gt('created_at', earliestLr)
+        for (const m of potentialUnread ?? []) {
+          const convId = m.conversation_id as string
+          const lr = lastReadMap[convId] ?? '1970-01-01T00:00:00Z'
+          if ((m.created_at as string) > lr) {
+            unreadByConv[convId] = (unreadByConv[convId] ?? 0) + 1
+          }
+        }
+      }
+
+      const enriched: ConvRow[] = filtered.map(c => {
         const o = otherMap[c.id]
-        enriched.push({
+        return {
           ...(c as ConvRow),
           other_username: o?.username,
           other_avatar: o?.avatar ?? null,
           other_id: o?.id,
-          unread: count ?? 0,
-        })
-      }
+          unread: unreadByConv[c.id] ?? 0,
+        }
+      })
 
       setConvs(enriched)
       setLoading(false)
