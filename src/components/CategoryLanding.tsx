@@ -1,6 +1,12 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import AppGateLink from '@/components/AppGateLink'
+
+// App-interna filter-URL:er som kräver inloggning (ex: /platser?kategori=krog)
+function isAppGated(href: string): boolean {
+  return /\?(kategori|vy)=/.test(href)
+}
 
 /**
  * CategoryLanding — delad mall för SEO-landningssidor under dropdown-menyn.
@@ -324,22 +330,20 @@ export default function CategoryLanding(props: CategoryLandingProps) {
 }
 
 function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
-  return (
-    <Link
-      href={item.href}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 8,
-        padding: '18px 18px 16px',
-        borderRadius: 14,
-        background: 'var(--white)',
-        boxShadow: '0 1px 8px rgba(0,0,0,0.04)',
-        border: '1px solid var(--border)',
-        textDecoration: 'none',
-        transition: 'transform 120ms ease, box-shadow 120ms ease',
-      }}
-    >
+  const cardStyle = {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: 8,
+    padding: '18px 18px 16px',
+    borderRadius: 14,
+    background: 'var(--white)',
+    boxShadow: '0 1px 8px rgba(0,0,0,0.04)',
+    border: '1px solid var(--border)',
+    textDecoration: 'none',
+    transition: 'transform 120ms ease, box-shadow 120ms ease',
+  }
+  const cardContent = (
+    <>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         {item.icon && (
           <span
@@ -371,6 +375,20 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
       <p style={{ margin: 0, fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
         {item.description}
       </p>
+    </>
+  )
+  // Om länken går in i appens filtrerade vyer (/platser?kategori=X,
+  // /rutter?vy=X osv), gate:a den bakom login via AppGateLink.
+  if (isAppGated(item.href)) {
+    return (
+      <AppGateLink href={item.href} style={cardStyle}>
+        {cardContent}
+      </AppGateLink>
+    )
+  }
+  return (
+    <Link href={item.href} style={cardStyle}>
+      {cardContent}
     </Link>
   )
 }
