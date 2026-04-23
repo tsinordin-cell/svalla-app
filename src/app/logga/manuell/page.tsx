@@ -47,7 +47,8 @@ function ManuellForm() {
   const fileRef      = useRef<HTMLInputElement>(null)
 
   // Pre-fill location from query param (e.g. from "Jag var här" on restaurant page)
-  const prefilledPlats = searchParams.get('plats') ?? ''
+  const prefilledPlats   = searchParams.get('plats') ?? ''
+  const plannedRouteId   = searchParams.get('planned_route_id') ?? null
 
   const extraFileRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview]               = useState('')
@@ -75,6 +76,21 @@ function ManuellForm() {
       if (data) setRoutes(data)
     })
   }, [supabase])
+
+  // Förifyll start/slut från planerad rutt
+  useEffect(() => {
+    if (!plannedRouteId) return
+    supabase
+      .from('planned_routes')
+      .select('start_name, end_name')
+      .eq('id', plannedRouteId)
+      .single()
+      .then(({ data }) => {
+        if (!data) return
+        if (data.start_name) setStartLocation(data.start_name)
+        if (data.end_name)   setLocation(data.end_name)
+      })
+  }, [plannedRouteId, supabase])
 
   // Auto-open file picker on mount (per UX brief)
   useEffect(() => {
@@ -181,6 +197,14 @@ function ManuellForm() {
         return
       }
 
+      // Länka trip till planerad rutt
+      if (plannedRouteId) {
+        await supabase
+          .from('planned_routes')
+          .update({ trip_id: trip.id })
+          .eq('id', plannedRouteId)
+      }
+
       // Tagga seglare + skicka notiser
       if (tagged.length > 0) {
         await supabase.from('trip_tags').insert(
@@ -242,7 +266,7 @@ function ManuellForm() {
           disabled={!canSubmit}
           style={{
             padding: '8px 16px', borderRadius: 20, border: 'none', cursor: canSubmit ? 'pointer' : 'default',
-            background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',
+            background: canSubmit ? 'var(--grad-acc)' : 'rgba(10,123,140,0.10)',
             color: canSubmit ? '#fff' : 'var(--txt3)',
             fontSize: 13, fontWeight: 700,
             boxShadow: canSubmit ? '0 2px 8px rgba(201,110,42,0.35)' : 'none',
@@ -377,7 +401,7 @@ function ManuellForm() {
                   onClick={() => setPinnar(pinnar === p.value ? null : p.value)}
                   style={{
                     flex: 1, padding: '10px 4px', borderRadius: 14, border: 'none',
-                    background: pinnar === p.value ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+                    background: pinnar === p.value ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
                     color: pinnar === p.value ? '#fff' : '#3a6070',
                     fontSize: 12, fontWeight: 700, cursor: 'pointer',
                     transition: 'all 0.15s',
@@ -530,7 +554,7 @@ function ManuellForm() {
           className={canSubmit ? 'press-feedback' : undefined}
           style={{
             width: '100%', padding: '15px 0', borderRadius: 16, border: 'none',
-            background: canSubmit ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.10)',
+            background: canSubmit ? 'var(--grad-acc)' : 'rgba(10,123,140,0.10)',
             color: canSubmit ? '#fff' : 'var(--txt3)',
             fontSize: 16, fontWeight: 700, cursor: canSubmit ? 'pointer' : 'default',
             boxShadow: canSubmit ? '0 4px 20px rgba(201,110,42,0.4)' : 'none',

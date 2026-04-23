@@ -55,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/planera-tur`,            lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
+    { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/guide`,                  lastModified: now, priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${base}/om`,                     lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
     { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
@@ -80,14 +81,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let platsPages: MetadataRoute.Sitemap = []
   let rutterPages: MetadataRoute.Sitemap = []
   let tipsPages: MetadataRoute.Sitemap = []
+  let planeraPages: MetadataRoute.Sitemap = []
 
   try {
     const supabase = createClient()
 
-    const [{ data: restaurants }, { data: tours }, { data: articles }] = await Promise.all([
+    const [{ data: restaurants }, { data: tours }, { data: articles }, { data: plannedRoutes }] = await Promise.all([
       supabase.from('restaurants').select('id, updated_at').order('id'),
       supabase.from('tours').select('id, updated_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
+      supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
     ])
 
     platsPages = (restaurants ?? []).map((r: { id: string; updated_at?: string }) => ({
@@ -110,6 +113,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.75,
     }))
+
+    planeraPages = (plannedRoutes ?? []).map((r: { id: string; updated_at?: string }) => ({
+      url: `${base}/planera/${r.id}`,
+      lastModified: r.updated_at ? new Date(r.updated_at) : now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }))
   } catch {
     // Om Supabase inte svarar — returnera ändå resten av sitemap
   }
@@ -121,5 +131,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...platsPages,
     ...rutterPages,
     ...tipsPages,
+    ...planeraPages,
   ]
 }
