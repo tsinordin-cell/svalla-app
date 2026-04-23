@@ -81,7 +81,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
     itemsTitle = 'Populärt just nu',
     itemsDescription,
     deeperContent,
-    cta = { label: 'Öppna kartan', href: '/platser', secondaryLabel: 'Kom igång gratis', secondaryHref: '/kom-igang' },
+    cta = { label: 'Öppna kartan', href: '/kom-igang' },
     related,
   } = props
 

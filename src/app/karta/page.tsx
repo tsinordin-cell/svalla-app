@@ -106,7 +106,7 @@ export default function KartaPage() {
           </p>
         </>
       }
-      cta={{ label: '🗺️ Öppna kartan', href: '/platser', secondaryLabel: '✨ Skapa konto (gratis)', secondaryHref: '/kom-igang' }}
+      cta={{ label: '🗺️ Öppna kartan', href: '/kom-igang' }}
       related={[
         { label: 'Alla resmål', href: '/resmal' },
         { label: 'Populära turer', href: '/populara-turer' },
