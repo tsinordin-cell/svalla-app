@@ -67,6 +67,8 @@ function SokPageInner() {
   const [activeSailors, setActiveSailors] = useState<{ id: string; username: string; avatar: string | null; tripCount: number }[]>([])
   const inputRef  = useRef<HTMLInputElement>(null)
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // Race-skydd: gamla söksvar ska inte överskriva nyare resultat
+  const latestSearchIdRef = useRef(0)
 
   useEffect(() => { inputRef.current?.focus() }, [])
 
@@ -110,6 +112,7 @@ function SokPageInner() {
   }, [query]) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function search(q: string) {
+    const searchId = ++latestSearchIdRef.current
     setLoading(true)
     // Sanitera söktermen — strippa PostgREST-specialtecken för att undvika query injection
     const safe    = q.replace(/[()%_,]/g, '').trim().slice(0, 100)
@@ -238,6 +241,8 @@ function SokPageInner() {
       })),
     ]
 
+    // Race-skydd: ignorera resultat om en nyare sökning redan startat
+    if (searchId !== latestSearchIdRef.current) return
     setResults(merged)
     setSearched(true)
     setLoading(false)
@@ -358,7 +363,7 @@ function SokPageInner() {
                       }}>
                         <div style={{
                           width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
-                          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                          background: 'var(--grad-sea)',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontSize: 16, fontWeight: 600, color: '#fff', overflow: 'hidden',
                         }}>
@@ -517,7 +522,7 @@ function ResultRow({ r }: { r: Result }) {
           borderRadius: r.type === 'seglare' ? '50%' : 12,
           flexShrink: 0,
           background: r.type === 'seglare'
-            ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)'
+            ? 'var(--grad-sea)'
             : TYPE_COLOR[r.type],
           overflow: 'hidden',
           display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,

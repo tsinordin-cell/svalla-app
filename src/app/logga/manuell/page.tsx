@@ -87,7 +87,7 @@ function ManuellForm() {
       .from('planned_routes')
       .select('start_name, end_name')
       .eq('id', plannedRouteId)
-      .single()
+      .maybeSingle()
       .then(({ data }) => {
         if (!data) return
         if (data.start_name) setStartLocation(data.start_name)

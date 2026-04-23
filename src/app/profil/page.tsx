@@ -21,7 +21,7 @@ function SettingsSection() {
     padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
     fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 600 : 500,
     transition: 'all 0.15s',
-    background: active ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+    background: active ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
     color: active ? '#fff' : 'var(--txt2)',
     boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
   })
@@ -131,7 +131,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
     if (trimmed !== user.username) {
-      const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).single()
+      const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).maybeSingle()
       if (existing) { setError('Användarnamnet är redan taget.'); setSaving(false); return }
     }
     const { data: updated, error: upErr } = await supabase.from('users').update({
@@ -158,7 +158,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         <div style={{ overflowY: 'auto', flex: 1, padding: '0 20px' }}>
           {/* Avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0' }}>
-            <button onClick={() => fileRef.current?.click()} aria-label="Byt profilbild" style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative', padding: 0, flexShrink: 0 }}>
+            <button onClick={() => fileRef.current?.click()} aria-label="Byt profilbild" style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative', padding: 0, flexShrink: 0 }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -239,7 +239,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         </div>
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
           <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
-          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'var(--grad-sea)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
             {saving ? 'Sparar…' : 'Spara'}
           </button>
         </div>
@@ -393,7 +393,7 @@ export default function ProfilPage() {
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
           <div style={{
             width: 88, height: 88, borderRadius: '50%', flexShrink: 0,
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             border: '4px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 32, fontWeight: 600, color: '#fff',
@@ -567,7 +567,7 @@ export default function ProfilPage() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>
                 {trips.map(t => (
-                  <Link key={t.id} href={`/tur/${t.id}`} style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'block', borderRadius: 4 }}>
+                  <Link key={t.id} href={`/tur/${t.id}`} style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', background: 'var(--grad-sea)', display: 'block', borderRadius: 4 }}>
                     {t.image ? (
                       <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
                     ) : (

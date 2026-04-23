@@ -135,7 +135,7 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Ej inloggad' }, { status: 401 })
 
-  const { data: userRow } = await supabase.from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await supabase.from('users').select('is_admin').eq('id', user.id).maybeSingle()
   if (!userRow?.is_admin) return NextResponse.json({ error: 'Ej admin' }, { status: 403 })
 
   // ── Service role client för writes ───────────────────────────
