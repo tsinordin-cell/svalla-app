@@ -12,6 +12,7 @@ type Place = {
 }
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'error'
+type AutoFixState = 'idle' | 'running' | 'done' | 'error' | 'no_key'
 
 // Skärgårdscentrum — Stockholms skärgård
 const DEFAULT_CENTER: [number, number] = [59.35, 18.85]
@@ -31,6 +32,8 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
   const [filter, setFilter]         = useState<'all' | 'missing' | 'changed'>('all')
   const [search, setSearch]         = useState('')
   const [localPlaces, setLocalPlaces] = useState<Place[]>(places)
+  const [autoFixState, setAutoFixState] = useState<AutoFixState>('idle')
+  const [autoFixResult, setAutoFixResult] = useState<{fixed: number; cantFix: number; noCoords: number; total: number} | null>(null)
 
   // ── Initiering av karta ──────────────────────────────────────────
   useEffect(() => {
@@ -200,6 +203,31 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
     setTimeout(() => setSaveState('idle'), 2000)
   }
 
+  // ── Auto-fix via API ─────────────────────────────────────────────
+  async function handleAutoFix() {
+    if (!confirm('Kör automatisk koordinatfix för alla platser i vatten? Tar ~5 min.')) return
+    setAutoFixState('running')
+    setAutoFixResult(null)
+    try {
+      const res = await fetch('/api/admin/geocode-fix', { method: 'POST' })
+      const data = await res.json()
+      if (!res.ok) {
+        if (data.error?.includes('SERVICE_ROLE_KEY')) {
+          setAutoFixState('no_key')
+        } else {
+          setAutoFixState('error')
+        }
+        return
+      }
+      setAutoFixResult({ fixed: data.fixed, cantFix: data.cantFix, noCoords: data.noCoords, total: data.total })
+      setAutoFixState('done')
+      // Reload sidan för att visa uppdaterade koordinater
+      setTimeout(() => window.location.reload(), 2000)
+    } catch {
+      setAutoFixState('error')
+    }
+  }
+
   // ── Filtrera platslista ──────────────────────────────────────────
   const filtered = localPlaces.filter(p => {
     const matchSearch = !search ||
@@ -232,9 +260,40 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
           <h1 style={{ fontSize: 16, fontWeight: 700, color: '#90caf9', margin: '0 0 2px' }}>
             Koordinatkorrigering
           </h1>
-          <p style={{ fontSize: 12, color: '#64748b', margin: 0 }}>
+          <p style={{ fontSize: 12, color: '#64748b', margin: '0 0 10px' }}>
             {localPlaces.length} platser · {missingCount} saknar koordinater · {savedIds.size} korrigerade idag
           </p>
+
+          {/* Auto-fix knapp */}
+          {autoFixState === 'no_key' ? (
+            <div style={{ background: '#7f1d1d', borderRadius: 6, padding: '8px 10px', fontSize: 11, color: '#fca5a5', lineHeight: 1.5 }}>
+              <b>SUPABASE_SERVICE_ROLE_KEY saknas</b><br/>
+              Lägg till i Vercel → Settings → Environment Variables → Redeploy
+            </div>
+          ) : autoFixState === 'done' && autoFixResult ? (
+            <div style={{ background: '#14532d', borderRadius: 6, padding: '8px 10px', fontSize: 11, color: '#86efac' }}>
+              ✓ Klart! {autoFixResult.fixed} platser fixade · {autoFixResult.cantFix} kräver manuell hantering · Laddar om...
+            </div>
+          ) : autoFixState === 'error' ? (
+            <div style={{ background: '#7f1d1d', borderRadius: 6, padding: '8px 10px', fontSize: 11, color: '#fca5a5' }}>
+              Något gick fel. Försök igen eller kolla server-loggar.
+            </div>
+          ) : (
+            <button
+              onClick={handleAutoFix}
+              disabled={autoFixState === 'running'}
+              style={{
+                width: '100%', padding: '8px 0', borderRadius: 6,
+                border: 'none', cursor: autoFixState === 'running' ? 'wait' : 'pointer',
+                background: autoFixState === 'running' ? '#1e3a5f' : '#1d4ed8',
+                color: 'white', fontSize: 12, fontWeight: 600,
+              }}
+            >
+              {autoFixState === 'running'
+                ? '⏳ Kör auto-fix... (~5 min)'
+                : '🤖 Kör automatisk fix av alla platser'}
+            </button>
+          )}
         </div>
 
         {/* Sök */}
