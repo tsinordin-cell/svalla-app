@@ -102,7 +102,7 @@ export default function PlaneraTurPage() {
           </p>
         </>
       }
-      cta={{ label: '✨ Planera min tur nu', href: '/planera', secondaryLabel: '🧭 Fråga Thorkel', secondaryHref: '/guide' }}
+      cta={{ label: '✨ Planera min tur nu', href: '/planera', secondaryLabel: 'Fråga Thorkel', secondaryHref: '/guide' }}
       related={[
         { label: 'Populära turer', href: '/populara-turer' },
         { label: 'Segelrutter', href: '/segelrutter' },

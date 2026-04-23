@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
 import PlaceSocialSection from '@/components/PlaceSocialSection'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
 export const revalidate = 60   // refresh reviews regularly
@@ -378,11 +379,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
           }}
         >
-          <div style={{
-            width: 38, height: 38, borderRadius: 11, flexShrink: 0,
-            background: 'var(--grad-sea)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17,
-          }}>🧭</div>
+          <div style={{ flexShrink: 0 }}>
+            <ThorkelAvatar size={38} />
+          </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Planera en tur hit</div>
             <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Thorkel hjälper dig bygga hela rutten</div>

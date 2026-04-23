@@ -11,6 +11,7 @@ import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
@@ -218,11 +219,9 @@ export default async function FeedPage(
               display: 'flex', alignItems: 'center', gap: 12,
               boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
             }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                background: 'var(--grad-sea)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
-              }}>🧭</div>
+              <div style={{ flexShrink: 0 }}>
+                <ThorkelAvatar size={40} />
+              </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Fråga Thorkel</div>
                 <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Vår skärgårdsguide – fråga om turer, mat och tips</div>

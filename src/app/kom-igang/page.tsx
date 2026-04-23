@@ -784,7 +784,7 @@ export default function KomIgangPage() {
             color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit',
           }}
         >
-          🧭 Planera min första tur
+          Planera min första tur
         </button>
         <button
           onClick={() => router.push('/logga-in')}

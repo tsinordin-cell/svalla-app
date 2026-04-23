@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import MyRoutesList from './MyRoutesList'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt — Svalla',
@@ -152,7 +153,7 @@ export default async function PlaneraPage() {
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ fontSize: 22 }}>🧭</span>
+          <ThorkelAvatar size={36} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Fråga Thorkel</div>
             <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
