@@ -1027,6 +1027,11 @@ img {
   border-color: rgba(255, 255, 255, 0.07);
 }
 
+/* ── Leaflet dark-mode: lyfta upp Carto dark_all så havet syns ── */
+[data-theme="dark"] .leaflet-tile-pane {
+  filter: brightness(1.45) contrast(0.92) saturate(1.15);
+}
+
 /* ── Motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   *,
