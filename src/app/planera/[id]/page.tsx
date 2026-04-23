@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import PlaneraCTA from './PlaneraCTA'
 

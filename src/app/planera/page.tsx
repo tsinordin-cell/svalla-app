@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 
 export const metadata: Metadata = {
