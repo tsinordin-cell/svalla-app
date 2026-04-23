@@ -255,9 +255,10 @@ export default async function RutterPage({
         }}
       >
         {([
-          { key: 'rutter' as const, label: 'Rutter', href: '/rutter' },
-          { key: 'oar' as const,    label: 'Öar',    href: '/rutter?vy=oar' },
-          { key: 'farjor' as const, label: 'Färjor', href: '/rutter?vy=farjor' },
+          { key: 'rutter' as const,  label: 'Rutter',  href: '/rutter' },
+          { key: 'oar' as const,     label: 'Öar',     href: '/rutter?vy=oar' },
+          { key: 'farjor' as const,  label: 'Färjor',  href: '/rutter?vy=farjor' },
+          { key: 'planera' as const, label: 'Planera', href: '/planera' },
         ]).map(t => {
           const active = vy === t.key
           return (

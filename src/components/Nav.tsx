@@ -92,8 +92,8 @@ export default function Nav() {
       ),
     },
     {
-      href: '/planera',
-      label: 'Planera',
+      href: '/rutter',
+      label: 'Turer',
       exact: false,
       icon: (active: boolean) => (
         <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
