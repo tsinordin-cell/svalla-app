@@ -7,15 +7,12 @@ import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
-import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
-import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
-import { fontSize, fontWeight } from '@/lib/tokens'
 
 export const revalidate = 0
 
@@ -189,8 +186,8 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── Social proof banner ── */}
-        {thisWeek.length > 0 && (
+        {/* ── Social proof banner ── visas först när rörelsen är tydlig (≥3 turer) */}
+        {thisWeek.length >= 3 && (
           <div style={{
             background: 'var(--grad-sea)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
@@ -207,30 +204,6 @@ export default async function FeedPage(
               </div>
             </div>
           </div>
-        )}
-
-        {/* ── Thorkel CTA ── */}
-        {user && (
-          <Link href="/guide" style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
-            <div style={{
-              background: 'var(--white)',
-              border: '1.5px solid rgba(10,123,140,0.13)',
-              borderRadius: 16, padding: '12px 16px',
-              display: 'flex', alignItems: 'center', gap: 12,
-              boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
-            }}>
-              <div style={{ flexShrink: 0 }}>
-                <ThorkelAvatar size={40} />
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Fråga Thorkel</div>
-                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Vår skärgårdsguide – fråga om turer, mat och tips</div>
-              </div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
         )}
 
         {/* ── Stories (24h) ── */}
@@ -344,9 +317,6 @@ export default async function FeedPage(
             </div>
           </div>
         )}
-
-        {/* ── Hitta seglare (suggested follows — only for logged-in) ── */}
-        {user && !SAFE && <SilentBoundary><SuggestedUsers /></SilentBoundary>}
 
         {/* ── Divider ── */}
         {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (

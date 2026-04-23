@@ -255,6 +255,11 @@ export default function UpptackClient() {
         className: 'map-tiles',
       }).addTo(map)
 
+      // Sjökort-overlay (OpenSeaMap)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      }).addTo(map)
+
       L.control.attribution({ prefix: '© OpenStreetMap' }).addTo(map)
       L.control.zoom({ position: 'topright' }).addTo(map)
 

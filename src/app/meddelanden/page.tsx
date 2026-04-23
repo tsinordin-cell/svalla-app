@@ -449,8 +449,9 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
   const isPending = c.status === 'request' && c.created_by === me
   const isReq     = c.status === 'request' && c.created_by !== me
 
+  const isEmpty = !c.last_message_preview
   const preview = (() => {
-    if (!c.last_message_preview) return 'Skriv första meddelandet'
+    if (isEmpty) return 'Skriv första meddelandet'
     const prefix = isFromMe ? 'Du: ' : ''
     return prefix + c.last_message_preview
   })()
@@ -477,10 +478,10 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
           }} />
         )}
 
-        {/* Avatar — square 44px */}
+        {/* Avatar — rund 44px */}
         <div style={{
           width: 44, height: 44, flexShrink: 0,
-          borderRadius: radius.sm,
+          borderRadius: '50%',
           background: grad,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: '#fff', fontWeight: fontWeight.semibold,
@@ -535,8 +536,10 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
             <span style={{
               flex: 1, minWidth: 0,
               fontSize: fontSize.small,
+              fontStyle: isEmpty ? 'italic' : 'normal',
               fontWeight: unread > 0 ? fontWeight.medium : fontWeight.regular,
               color: unread > 0 ? 'var(--txt)' : 'var(--txt3)',
+              opacity: isEmpty ? 0.6 : 1,
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             }}>
               {preview}
@@ -598,7 +601,7 @@ function SkeletonRow() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', height: 72, paddingLeft: space[4], paddingRight: space[4] }}>
       <div style={{
-        width: 44, height: 44, borderRadius: radius.sm, flexShrink: 0,
+        width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
         background: 'var(--surface-2, rgba(10,123,140,0.06))',
         marginRight: space[3],
         animation: 'shimmer 1.6s ease-in-out infinite',

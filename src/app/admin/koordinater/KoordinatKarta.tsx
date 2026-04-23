@@ -62,6 +62,11 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
         maxZoom: 19,
       }).addTo(map)
 
+      // Sjökort-overlay (OpenSeaMap)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      }).addTo(map)
+
       mapInstance.current = map
       renderMarkers(L, map, places)
     })

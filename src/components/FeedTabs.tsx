@@ -68,7 +68,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
   const [visible,    setVisible]    = useState(PAGE_SIZE)
   const [initialLoad, setInitialLoad] = useState(true)
+  const [showBoatSheet, setShowBoatSheet] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
+
+  const activeBoat = BOAT_FILTERS.find(f => f.value === boatFilter) ?? BOAT_FILTERS[0]
 
   // Simulate initial load skeleton (trips arrive from server, but render takes a tick)
   useEffect(() => {
@@ -145,10 +148,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
         </div>
       )}
 
-      {/* ── Filters — sort + boat type in one row ── */}
+      {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
-        {/* Sort pills */}
-        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', marginBottom: 7, paddingBottom: 2, scrollbarWidth: 'none' }}>
+        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
           {SORT_OPTIONS.map(s => (
             <button
               key={s.value}
@@ -166,28 +168,78 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               {s.label}
             </button>
           ))}
-        </div>
-        {/* Boat type pills */}
-        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
-          {BOAT_FILTERS.map(f => (
-            <button
-              key={f.value}
-              onClick={() => setBoatFilter(f.value)}
-              style={{
-                flexShrink: 0, padding: '5px 13px', borderRadius: 20,
-                border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.12)'}`,
-                background: boatFilter === f.value ? 'var(--sea)' : 'transparent',
-                color: boatFilter === f.value ? '#fff' : 'var(--txt3)',
-                fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
-                transition: 'all .12s',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-            >
-              {f.label}
-            </button>
-          ))}
+          <button
+            onClick={() => setShowBoatSheet(true)}
+            aria-label="Filtrera båttyp"
+            style={{
+              flexShrink: 0, padding: '5px 13px', borderRadius: 20,
+              border: `1.5px solid ${boatFilter !== 'alla' ? 'var(--sea)' : 'rgba(10,123,140,0.12)'}`,
+              background: boatFilter !== 'alla' ? 'var(--sea)' : 'transparent',
+              color: boatFilter !== 'alla' ? '#fff' : 'var(--txt3)',
+              fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              transition: 'all .12s',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            {boatFilter === 'alla' ? 'Båttyp' : activeBoat.label}
+            <span style={{ fontSize: 9, opacity: 0.8 }}>▾</span>
+          </button>
         </div>
       </div>
+
+      {/* ── Bottom sheet: båttyp ── */}
+      {showBoatSheet && (
+        <div
+          onClick={() => setShowBoatSheet(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 1002,
+            background: 'rgba(0,0,0,0.45)',
+            display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+          }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Välj båttyp"
+            onClick={e => e.stopPropagation()}
+            style={{
+              width: '100%', maxWidth: 640,
+              background: 'var(--white)',
+              borderTopLeftRadius: 20, borderTopRightRadius: 20,
+              padding: '18px 18px calc(env(safe-area-inset-bottom, 0px) + 18px)',
+              boxShadow: '0 -8px 40px rgba(0,0,0,0.15)',
+            }}
+          >
+            <div style={{
+              width: 40, height: 4, borderRadius: 2,
+              background: 'rgba(10,123,140,0.18)',
+              margin: '0 auto 14px',
+            }} />
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
+              Filtrera båttyp
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {BOAT_FILTERS.map(f => (
+                <button
+                  key={f.value}
+                  onClick={() => { setBoatFilter(f.value); setShowBoatSheet(false) }}
+                  style={{
+                    padding: '9px 16px', borderRadius: 22,
+                    border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.15)'}`,
+                    background: boatFilter === f.value ? 'var(--sea)' : 'transparent',
+                    color: boatFilter === f.value ? '#fff' : 'var(--txt)',
+                    fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Skeleton loading ── */}
       {initialLoad && (
@@ -215,7 +267,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             </div>
             <Link href="/sok" style={{
               display: 'inline-block', padding: '8px 18px', borderRadius: 12,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontWeight: 700, fontSize: 12, textDecoration: 'none',
               boxShadow: '0 3px 12px rgba(30,92,130,0.25)',
             }}>

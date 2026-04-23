@@ -49,6 +49,11 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         maxZoom: 18,
       }).addTo(map)
 
+      // Sjökort-overlay (OpenSeaMap)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      }).addTo(map)
+
       // ── Validate waypoints — skip outliers outside Stockholm archipelago ──
       const ARCHIPELAGO_BOUNDS = { minLat: 58.5, maxLat: 60.5, minLng: 17.0, maxLng: 20.5 }
       const validLatlngs = waypoints
@@ -202,7 +207,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         style={{
           width: '100%', height, borderRadius: 18, overflow: 'hidden',
           border: '1px solid rgba(10,123,140,0.15)',
-          background: '#d4e8f0',
+          background: 'var(--sea-l)',
         }}
       />
 

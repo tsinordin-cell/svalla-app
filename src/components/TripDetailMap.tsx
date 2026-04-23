@@ -61,6 +61,11 @@ export default function TripDetailMap({ points, stops, restaurants = [] }: Props
         maxZoom: 18,
       }).addTo(map)
 
+      // Sjökort-overlay (OpenSeaMap) — Svallas visuella signatur
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      }).addTo(map)
+
       // draw colored segments based on speed
       for (let i = 1; i < points.length; i++) {
         const a = points[i - 1]

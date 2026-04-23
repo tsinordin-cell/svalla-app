@@ -9,6 +9,7 @@ import { blockUser } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import { absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
+import { reverseGeocode } from '@/lib/reverse-geocode'
 import type { Message, Conversation } from '@/lib/supabase'
 
 type MsgWithMeta = Message & { username?: string; avatar?: string | null; optimistic?: boolean }
@@ -390,9 +391,12 @@ export default function ChatPage() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords
+        // Reverse-geocoda i bakgrunden så bubblan visar "Sandhamn" istället för
+        // "59.2891°, 18.9134°". Degraderar tyst — bubblan fungerar utan namn.
+        const location_name = await reverseGeocode(latitude, longitude)
         await sendAttachment('geo',
           `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=15/${latitude}/${longitude}`,
-          { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy },
+          { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy, location_name },
         )
         setSharingGeo(false)
       },
@@ -421,40 +425,48 @@ export default function ChatPage() {
   return (
     <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
 
-      {/* ── Header ── */}
+      {/* ── Header — iOS-style: avatar ovan, namn under, centrerat ── */}
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
         background: 'var(--glass-96)',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
-        height: 56,
-        display: 'flex', alignItems: 'center',
-        padding: '0 14px',
+        padding: '6px 8px 10px',
       }}>
-        <div style={{ maxWidth: 520, margin: '0 auto', width: '100%', display: 'flex', alignItems: 'center', gap: 10 }}>
-          {/* Back — 44×44 touch target, no circle bg */}
+        <div style={{
+          maxWidth: 520, margin: '0 auto', width: '100%',
+          position: 'relative',
+          minHeight: 74,
+        }}>
+          {/* Back — absolut vänster, stör inte centreringen */}
           <Link href="/meddelanden" aria-label="Tillbaka" style={{
-            width: 44, height: 44, flexShrink: 0,
+            position: 'absolute', left: 0, top: 10,
+            width: 40, height: 40,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             borderRadius: radius.sm,
             WebkitTapHighlightColor: 'transparent',
+            zIndex: 1,
           }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
 
-          {/* Avatar + name — tappable to profile */}
+          {/* Centrerad avatar + namn — tappable till profil */}
           <Link href={otherUsername ? `/u/${otherUsername}` : '#'} style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            flex: 1, minWidth: 0, textDecoration: 'none',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            gap: 2,
+            padding: '4px 48px 0',
+            textDecoration: 'none',
           }}>
             <div style={{
-              width: 32, height: 32, borderRadius: radius.xs, flexShrink: 0,
+              width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
               background: displayGrad, color: '#fff',
-              fontWeight: fontWeight.semibold, fontSize: fontSize.small,
+              fontWeight: fontWeight.semibold, fontSize: fontSize.body,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               overflow: 'hidden', position: 'relative',
+              boxShadow: '0 2px 10px rgba(0,45,60,0.18)',
+              border: '2px solid var(--white, #fff)',
             }}>
               {otherAvatar
                 // eslint-disable-next-line @next/next/no-img-element
@@ -462,13 +474,19 @@ export default function ChatPage() {
                 : displayInitials
               }
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{
-                fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 3,
+              maxWidth: '100%',
+            }}>
+              <span style={{
+                fontSize: fontSize.small, fontWeight: fontWeight.semibold,
                 color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               }}>
                 {otherName}
-              </div>
+              </span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.25} style={{ width: 11, height: 11, flexShrink: 0 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </Link>
         </div>
@@ -623,9 +641,11 @@ export default function ChatPage() {
                   </div>
                 )}
 
-                {/* Bubble column */}
+                {/* Bubble column — geo-bubblor bryter ut 75%-buren för bred kartvy */}
                 <div style={{
-                  maxWidth: '75%', display: 'flex', flexDirection: 'column',
+                  maxWidth: m.attachment_type === 'geo' ? '88%' : '75%',
+                  width: m.attachment_type === 'geo' ? '88%' : 'auto',
+                  display: 'flex', flexDirection: 'column',
                   alignItems: m.mine ? 'flex-end' : 'flex-start',
                   gap: 3,
                 }}>
@@ -639,22 +659,11 @@ export default function ChatPage() {
 
                   {/* Geo */}
                   {m.attachment_type === 'geo' && m.attachment_meta && (
-                    <a href={m.attachment_url ?? '#'} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-                      <div style={{
-                        padding: '10px 14px', borderRadius: bubbleR,
-                        background: m.mine ? 'var(--grad-sea)' : 'rgba(10,40,80,0.06)',
-                        color: m.mine ? '#fff' : 'var(--txt)',
-                        fontSize: fontSize.body, lineHeight: 1.4,
-                        display: 'flex', alignItems: 'center', gap: 8,
-                        boxShadow: m.mine ? shadow.sm : 'none',
-                      }}>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                          <circle cx="12" cy="9" r="2.5" />
-                        </svg>
-                        <span>Delad position</span>
-                      </div>
-                    </a>
+                    <LocationBubble
+                      meta={m.attachment_meta as GeoMeta}
+                      href={m.attachment_url}
+                      mine={m.mine}
+                    />
                   )}
 
                   {/* Trip card — no IIFE, extracted component */}
@@ -666,7 +675,7 @@ export default function ChatPage() {
                   {m.content && (
                     <div style={{
                       padding: '9px 14px', borderRadius: bubbleR,
-                      background: m.mine ? 'var(--grad-sea)' : 'rgba(10,40,80,0.06)',
+                      background: m.mine ? 'var(--sea)' : 'var(--surface-2, rgba(10,123,140,0.07))',
                       color: m.mine ? '#fff' : 'var(--txt)',
                       fontSize: fontSize.body, lineHeight: 1.4, wordBreak: 'break-word',
                       boxShadow: m.mine ? shadow.sm : 'none',
@@ -752,8 +761,8 @@ export default function ChatPage() {
             {/* Send */}
             <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
-              background: text.trim() && !posting ? 'var(--grad-sea)' : 'rgba(10,40,80,0.08)',
-              color: text.trim() && !posting ? '#fff' : 'rgba(10,40,80,0.28)',
+              background: text.trim() && !posting ? 'var(--sea)' : 'var(--surface-2, rgba(10,40,80,0.08))',
+              color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: text.trim() && !posting ? 'pointer' : 'default',
               boxShadow: text.trim() && !posting ? shadow.sm : 'none',
@@ -799,6 +808,218 @@ export default function ChatPage() {
       )}
 
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  )
+}
+
+// ── Location bubble ──────────────────────────────────────────────────────────
+// Inline kartförhandsvisning för delade positioner: OSM-bas + OpenSeaMap-sjömärken
+// som overlay. Responsiv bredd (fyller chatkolumnen). Action-knappar under.
+type GeoMeta = { lat?: number; lng?: number; accuracy?: number; location_name?: string }
+
+function LocationBubble({ meta, href, mine }: { meta: GeoMeta; href: string | null; mine: boolean }) {
+  const lat = typeof meta.lat === 'number' ? meta.lat : null
+  const lng = typeof meta.lng === 'number' ? meta.lng : null
+  const hasCoords = lat !== null && lng !== null
+
+  const boxRef = useRef<HTMLDivElement>(null)
+  const [W, setW] = useState(340)
+  const H = 180
+  const Z = 14
+
+  useEffect(() => {
+    if (!boxRef.current) return
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0]?.contentRect.width
+      if (w && w > 100) setW(Math.floor(w))
+    })
+    ro.observe(boxRef.current)
+    return () => ro.disconnect()
+  }, [])
+
+  // Räkna ut tile-koordinater och pin:ens pixelposition inom en 3×3-komposit,
+  // så pin:en alltid hamnar i viewport-mitten oavsett bredd.
+  let tile0X = 0, tile0Y = 0, compLeft = 0, compTop = 0
+  if (hasCoords) {
+    const n = Math.pow(2, Z)
+    const xf = ((lng + 180) / 360) * n
+    const yf = ((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) / 2) * n
+    const xi = Math.floor(xf)
+    const yi = Math.floor(yf)
+    const pinInTileX = (xf - xi) * 256
+    const pinInTileY = (yf - yi) * 256
+    // 3×3 grid med center-tile = (xi, yi). Pin i kompositen (768×768) = (256+pinInTileX, 256+pinInTileY)
+    tile0X = xi - 1
+    tile0Y = yi - 1
+    compLeft = W / 2 - (256 + pinInTileX)
+    compTop  = H / 2 - (256 + pinInTileY)
+  }
+
+  async function copyCoords(e: React.MouseEvent) {
+    e.preventDefault(); e.stopPropagation()
+    if (!hasCoords) return
+    try {
+      await navigator.clipboard.writeText(`${lat.toFixed(5)}, ${lng.toFixed(5)}`)
+      toast('Koordinater kopierade', 'success')
+    } catch {
+      toast('Kunde inte kopiera', 'error')
+    }
+  }
+
+  // OpenSeaMap ger faktisk sjökorts-vy (grynnor, fyrar) — mer relevant för seglare än OSM
+  const seamarkHref = hasCoords ? `https://map.openseamap.org/?zoom=14&mlat=${lat}&mlon=${lng}&lat=${lat}&lon=${lng}` : null
+  const extHref = href
+
+  return (
+    <div style={{
+      width: '100%',
+      display: 'flex', flexDirection: 'column',
+      gap: 6,
+    }}>
+      {/* Map — tappbar öppnar OSM för full navigering */}
+      <a
+        href={extHref ?? '#'}
+        target={extHref ? '_blank' : undefined}
+        rel={extHref ? 'noreferrer' : undefined}
+        style={{ textDecoration: 'none', display: 'block' }}
+      >
+        <div ref={boxRef} style={{
+          width: '100%',
+          height: H,
+          borderRadius: 18,
+          overflow: 'hidden',
+          position: 'relative',
+          background: 'rgba(10,40,80,0.06)',
+          border: '1px solid rgba(10,123,140,0.14)',
+          boxShadow: mine ? shadow.sm : shadow.xs,
+        }}>
+          {hasCoords ? (
+            <>
+              {/* OSM base + OpenSeaMap overlay — 3×3 grid */}
+              <div style={{
+                position: 'absolute',
+                left: compLeft, top: compTop,
+                width: 768, height: 768,
+              }}>
+                {[0, 1, 2].map(dy =>
+                  [0, 1, 2].map(dx => (
+                    <div key={`${dx}_${dy}`} style={{
+                      position: 'absolute',
+                      left: dx * 256, top: dy * 256,
+                      width: 256, height: 256,
+                    }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`https://tile.openstreetmap.org/${Z}/${tile0X + dx}/${tile0Y + dy}.png`}
+                        alt=""
+                        loading="lazy" decoding="async"
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+                      />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`https://tiles.openseamap.org/seamark/${Z}/${tile0X + dx}/${tile0Y + dy}.png`}
+                        alt=""
+                        loading="lazy" decoding="async"
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'none' }}
+                      />
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Pin */}
+              <div style={{
+                position: 'absolute', left: '50%', top: '50%',
+                transform: 'translate(-50%, -100%)',
+                filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.55))',
+                pointerEvents: 'none',
+              }}>
+                <svg viewBox="0 0 24 32" width={34} height={45} fill="none">
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 8.5 12 20 12 20s12-11.5 12-20C24 5.373 18.627 0 12 0z" fill="var(--sea)" />
+                  <circle cx="12" cy="12" r="5" fill="#fff" />
+                </svg>
+              </div>
+
+              {/* Accuracy chip uppe till höger (om finns) */}
+              {typeof meta.accuracy === 'number' && meta.accuracy > 0 && (
+                <div style={{
+                  position: 'absolute', top: 8, right: 8,
+                  padding: '3px 8px', borderRadius: radius.full,
+                  background: 'rgba(7,15,24,0.78)', color: '#fff',
+                  fontSize: 10, fontWeight: fontWeight.semibold,
+                  letterSpacing: 0.2,
+                  backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+                }}>
+                  ±{Math.round(meta.accuracy)} m
+                </div>
+              )}
+
+              {/* Label bar längst ner */}
+              <div style={{
+                position: 'absolute', left: 0, right: 0, bottom: 0,
+                padding: '18px 12px 10px',
+                background: 'linear-gradient(180deg, rgba(7,15,24,0) 0%, rgba(7,15,24,0.78) 100%)',
+                color: '#fff',
+                display: 'flex', alignItems: 'center', gap: 7,
+              }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+                <span style={{
+                  fontSize: fontSize.small, fontWeight: fontWeight.semibold,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
+                  {meta.location_name ?? `${lat.toFixed(4)}°, ${lng.toFixed(4)}°`}
+                </span>
+              </div>
+            </>
+          ) : (
+            <div style={{
+              width: '100%', height: '100%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              color: 'var(--txt3)',
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                <circle cx="12" cy="9" r="2.5" />
+              </svg>
+              <span style={{ fontSize: fontSize.small }}>Delad position</span>
+            </div>
+          )}
+        </div>
+      </a>
+
+      {/* Action row */}
+      {hasCoords && (
+        <div style={{ display: 'flex', gap: 6 }}>
+          {seamarkHref && (
+            <a href={seamarkHref} target="_blank" rel="noreferrer" style={{
+              flex: 1, textAlign: 'center',
+              padding: '8px 10px', borderRadius: radius.full,
+              background: 'var(--surface-2, rgba(10,123,140,0.08))',
+              color: 'var(--sea)',
+              fontSize: fontSize.caption, fontWeight: fontWeight.semibold,
+              textDecoration: 'none',
+              border: '1px solid rgba(10,123,140,0.14)',
+            }}>
+              Öppna sjökort
+            </a>
+          )}
+          <button onClick={copyCoords} style={{
+            flex: 1,
+            padding: '8px 10px', borderRadius: radius.full,
+            background: 'var(--surface-2, rgba(10,123,140,0.08))',
+            color: 'var(--txt)',
+            fontSize: fontSize.caption, fontWeight: fontWeight.semibold,
+            border: '1px solid rgba(10,123,140,0.14)',
+            cursor: 'pointer',
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            Kopiera koordinater
+          </button>
+        </div>
+      )}
     </div>
   )
 }

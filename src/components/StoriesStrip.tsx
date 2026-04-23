@@ -79,7 +79,8 @@ export default function StoriesStrip() {
 
   if (loading) return null
   const hasStories = groups.length > 0
-  if (!hasStories && !me) return null
+  // Göm hela strippen när ingen har stories — flödet ska vara huvudsaken.
+  if (!hasStories) return null
 
   return (
     <>
@@ -390,7 +391,7 @@ function UploadStory({
         <input value={location} onChange={e => setLocation(e.target.value)} placeholder="Plats (valfritt)" maxLength={60}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 14, background: 'var(--bg)', color: 'var(--txt)' }} />
 
-        {err && <div style={{ color: '#c03', fontSize: 12, marginBottom: 10 }}>{err}</div>}
+        {err && <div style={{ color: 'var(--red)', fontSize: 12, marginBottom: 10 }}>{err}</div>}
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} disabled={busy}
@@ -400,7 +401,7 @@ function UploadStory({
           </button>
           <button onClick={submit} disabled={busy || !file}
             className="press-feedback"
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
             {busy ? 'Delar…' : 'Dela'}
           </button>
         </div>
