@@ -92,6 +92,23 @@ export type TourWaypoint = {
   restaurant?: string
 }
 
+export type PlannedRoute = {
+  id: string
+  user_id: string | null
+  start_name: string
+  end_name: string
+  start_lat: number
+  start_lng: number
+  end_lat: number
+  end_lng: number
+  interests: string[]
+  suggested_stops: import('./planner').ScoredStop[]
+  status: 'draft' | 'published' | 'completed'
+  trip_id: string | null
+  created_at: string
+  updated_at: string
+}
+
 export type Tour = {
   id: string
   slug: string
