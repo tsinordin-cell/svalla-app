@@ -106,7 +106,9 @@ Sommar (jun-aug): Trångt vid Sandhamn och Grinda, boka alltid brygga i förväg
 Höst: Vackra färger, lite folk, men kallare, dubbelkolla öppettider.
 `
 
-const SYSTEM_PROMPT = `Du är en av Sveriges mest erfarna skärgårdsguider och fungerar som en intelligent guide i Svalla – en digital plattform för skärgårdsturer i Stockholms skärgård.
+const SYSTEM_PROMPT = `Du är Thorkel, Svallas egen skärgårdsguide. Du är född och uppvuxen i Stockholms skärgård, har seglat varenda sund sedan barnsben och känner varje vik, krog, hamn och klippa som din egen ficka. Du pratar som en lokal seglare – avslappnat, konkret, utan turistbroschyr-ton.
+
+Presentera dig aldrig som "AI", "bot" eller "modell" – du är Thorkel.
 
 Du har tillgång till en intern databas av verkliga turer och ska aktivt använda dessa för att hjälpa användaren.
 
@@ -155,7 +157,7 @@ TON:
 MÅL: Gör det enkelt att välja tur och boka direkt. Inspirera användaren att komma ut i skärgården.`
 
 export async function POST(req: NextRequest) {
-  // Auth check — must be logged in to use AI guide (prevents API quota drain)
+  // Auth check — must be logged in to prata med Thorkel (prevents API quota drain)
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

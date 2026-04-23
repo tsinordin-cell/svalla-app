@@ -1393,7 +1393,7 @@ export default function SparaPage() {
                   Genererar…
                 </>
               ) : (
-                <>✨ {aiSummary ? 'Generera ny' : 'AI-caption'}</>
+                <>✨ {aiSummary ? 'Generera ny' : 'Fråga Thorkel'}</>
               )}
             </button>
           </div>
@@ -1412,7 +1412,7 @@ export default function SparaPage() {
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
             {aiSummary && caption === aiSummary
-              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>✨ AI-genererad — redigera fritt</span>
+              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>✨ Thorkel skrev denna — redigera fritt</span>
               : <span />}
             <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{caption.length}/280</span>
           </div>

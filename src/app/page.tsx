@@ -404,7 +404,7 @@ const LANDING_HTML = `
       <button type="submit">Utforska</button>
     </form>
     <div style="text-align:center;margin-bottom:16px">
-      <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med AI →</a>
+      <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
     </div>
     <div class="hero-search-hint">
       Populärt just nu:
@@ -747,7 +747,7 @@ const LANDING_HTML = `
     <div class="stats-grid">
       <div class="stat-box reveal"><span class="stat-num">200+</span><div class="stat-label">Platser & krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård</div></div>
       <div class="stat-box reveal reveal-delay-1"><span class="stat-num">69</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, mat och upplevelser</div></div>
-      <div class="stat-box reveal reveal-delay-2"><span class="stat-num">10 sek</span><div class="stat-label">Att planera en tur med AI</div><div class="stat-sub">Berätta vad du vill — guiden fixar resten</div></div>
+      <div class="stat-box reveal reveal-delay-2"><span class="stat-num">10 sek</span><div class="stat-label">Att planera en tur med Thorkel</div><div class="stat-sub">Berätta vad du vill — vår skärgårdsguide fixar resten</div></div>
       <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundprofil är gratis för alltid</div></div>
     </div>
   </div>

@@ -386,7 +386,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           color: '#fff', fontWeight: 700, fontSize: 13,
           textDecoration: 'none',
         }}>
-          🧭 Fråga guiden om den här turen
+          🧭 Fråga Thorkel om den här turen
         </Link>
       </div>
     </div>

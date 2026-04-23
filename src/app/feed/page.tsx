@@ -208,7 +208,7 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── AI Guide CTA ── */}
+        {/* ── Thorkel CTA ── */}
         {user && (
           <Link href="/guide" style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
             <div style={{
@@ -224,8 +224,8 @@ export default async function FeedPage(
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
               }}>🧭</div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Skärgårdsguiden</div>
-                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Fråga om turer, mat och tips i skärgården</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Fråga Thorkel</div>
+                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Vår skärgårdsguide – fråga om turer, mat och tips</div>
               </div>
               <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

@@ -271,7 +271,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           <Link href={`/u/${username}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
             <div style={{
               width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 16, fontWeight: 700, color: '#fff', overflow: 'hidden',
               border: '2px solid rgba(10,123,140,0.12)',
@@ -329,7 +329,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                 textTransform: 'uppercase',
                 letterSpacing: '0.5px',
               }}>
-                Svallas analys
+                Thorkels analys
               </span>
             </div>
             <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0, fontStyle: 'italic' }}>
@@ -545,7 +545,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           <Link href="/kom-igang" style={{
             flexShrink: 0,
             padding: '12px 20px', borderRadius: 14,
-            background: 'linear-gradient(135deg, #c96e2a, #e07828)',
+            background: 'var(--grad-acc)',
             color: '#fff', fontWeight: 600, fontSize: 14,
             textDecoration: 'none',
             boxShadow: '0 4px 16px rgba(201,110,42,0.45)',

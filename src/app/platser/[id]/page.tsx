@@ -385,7 +385,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
           }}>🧭</div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Planera en tur hit</div>
-            <div style={{ fontSize: 11, color: 'var(--txt3)' }}>AI-guiden hjälper dig bygga hela rutten</div>
+            <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Thorkel hjälper dig bygga hela rutten</div>
           </div>
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, marginLeft: 'auto', flexShrink: 0 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

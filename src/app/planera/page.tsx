@@ -222,7 +222,7 @@ export default async function PlaneraPage() {
           </div>
         )}
 
-        {/* Länk till AI-guide */}
+        {/* Länk till Thorkel */}
         <div style={{
           background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '14px 16px',
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
@@ -230,8 +230,8 @@ export default async function PlaneraPage() {
         }}>
           <span style={{ fontSize: 22 }}>🧭</span>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Vill du ha ett AI-förslag?</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — guiden svarar på sekunder.</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Fråga Thorkel</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
           </div>
           <Link href="/guide" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',

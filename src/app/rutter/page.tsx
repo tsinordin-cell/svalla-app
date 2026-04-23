@@ -237,7 +237,7 @@ export default async function RutterPage({
             textDecoration: 'none',
             boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
           }}>
-            Guide
+            Thorkel
           </Link>
         </div>
       </header>

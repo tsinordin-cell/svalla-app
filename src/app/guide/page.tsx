@@ -73,7 +73,7 @@ function GuideContent() {
       const data = await res.json()
       setMessages([...next, { role: 'assistant', content: data.reply ?? 'Något gick fel, försök igen.' }])
     } catch {
-      setMessages([...next, { role: 'assistant', content: 'Kunde inte nå guiden just nu.' }])
+      setMessages([...next, { role: 'assistant', content: 'Kunde inte nå Thorkel just nu.' }])
     } finally {
       setLoading(false)
       setTimeout(() => inputRef.current?.focus(), 100)
@@ -104,8 +104,8 @@ function GuideContent() {
           </svg>
         </Link>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>🧭 Skärgårdsguiden</div>
-          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)' }}>Fråga om turer, restauranger och tips</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>🧭 Thorkel</div>
+          <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)' }}>Vår guide i skärgården</div>
         </div>
         {messages.length > 0 && (
           <button
@@ -133,9 +133,9 @@ function GuideContent() {
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
               <div style={{ fontSize: 28, marginBottom: 8 }}>👋</div>
-              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', margin: '0 0 6px' }}>Hej! Jag är Svallas guide.</h2>
+              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)', margin: '0 0 6px' }}>Hej! Jag heter Thorkel.</h2>
               <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.5 }}>
-                Jag känner till turer, restauranger och hamnar i hela Stockholms skärgård. Berätta vad du är ute efter – sällskap, tid, om du vill bada, äta eller segla – så hittar vi rätt tur.
+                Jag har hängt i Stockholms skärgård i hela mitt liv och känner varje vik, krog och hamn. Berätta vad du är ute efter – sällskap, tid, bad, mat eller segling – så hittar vi rätt tur.
               </p>
             </div>
 
@@ -270,7 +270,7 @@ function GuideContent() {
 
 export default function GuidePage() {
   return (
-    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3)' }}>Laddar guide…</div>}>
+    <Suspense fallback={<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100dvh', color: 'var(--txt3)' }}>Laddar Thorkel…</div>}>
       <GuideContent />
     </Suspense>
   )
