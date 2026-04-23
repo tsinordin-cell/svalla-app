@@ -123,7 +123,7 @@ export async function getMyReports(
 ): Promise<Report[]> {
   const { data } = await supabase
     .from('reports')
-    .select('*')
+    .select('id, reporter_id, target_type, target_id, reason, note, status, auto_flagged, created_at, reviewed_by, reviewed_at')
     .eq('reporter_id', userId)
     .order('created_at', { ascending: false })
   return (data ?? []) as Report[]

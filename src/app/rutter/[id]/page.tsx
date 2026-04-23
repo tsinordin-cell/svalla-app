@@ -50,7 +50,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   const { id } = await params
   const supabase = createClient()
 
-  const { data, error } = await supabase.from('tours').select('*').eq('id', id).single()
+  const { data, error } = await supabase.from('tours').select(
+    'id, title, start_location, destination, transport_types, duration_label, best_for, highlights, food_stops, season, usp, hamn_profil, bad_profil, log_suggestions, insider_tip, waypoints'
+  ).eq('id', id).single()
   if (error || !data) notFound()
   const t = data as Tour
 

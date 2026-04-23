@@ -51,7 +51,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
   const { data, error } = await supabase
     .from('restaurants')
-    .select('*')
+    .select('id, name, latitude, longitude, images, menu, opening_hours, description, tags, core_experience, island, contact_phone, website, booking_url')
     .eq('id', id)
     .single()
 

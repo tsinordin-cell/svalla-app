@@ -101,7 +101,7 @@ export default function ChatPage() {
         setMe(user.id)
 
         // Konversationsinfo
-        const { data: c } = await supabase.from('conversations').select('*').eq('id', id).single()
+        const { data: c } = await supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).single()
         if (cancel) return
         if (!c) { router.push('/meddelanden'); return }
         setConv(c as Conversation)
@@ -491,7 +491,7 @@ export default function ChatPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={handleAcceptRequest} style={{
                 flex: 1, padding: '10px 14px', borderRadius: radius.sm, border: 'none',
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff',
+                background: 'var(--grad-sea)', color: '#fff',
                 fontWeight: fontWeight.semibold, fontSize: fontSize.small,
                 cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
               }}>Acceptera</button>
@@ -642,7 +642,7 @@ export default function ChatPage() {
                     <a href={m.attachment_url ?? '#'} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                       <div style={{
                         padding: '10px 14px', borderRadius: bubbleR,
-                        background: m.mine ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.06)',
+                        background: m.mine ? 'var(--grad-sea)' : 'rgba(10,40,80,0.06)',
                         color: m.mine ? '#fff' : 'var(--txt)',
                         fontSize: fontSize.body, lineHeight: 1.4,
                         display: 'flex', alignItems: 'center', gap: 8,
@@ -666,7 +666,7 @@ export default function ChatPage() {
                   {m.content && (
                     <div style={{
                       padding: '9px 14px', borderRadius: bubbleR,
-                      background: m.mine ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.06)',
+                      background: m.mine ? 'var(--grad-sea)' : 'rgba(10,40,80,0.06)',
                       color: m.mine ? '#fff' : 'var(--txt)',
                       fontSize: fontSize.body, lineHeight: 1.4, wordBreak: 'break-word',
                       boxShadow: m.mine ? shadow.sm : 'none',
@@ -752,7 +752,7 @@ export default function ChatPage() {
             {/* Send */}
             <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
-              background: text.trim() && !posting ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.08)',
+              background: text.trim() && !posting ? 'var(--grad-sea)' : 'rgba(10,40,80,0.08)',
               color: text.trim() && !posting ? '#fff' : 'rgba(10,40,80,0.28)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: text.trim() && !posting ? 'pointer' : 'default',
