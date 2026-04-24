@@ -63,7 +63,6 @@ function SkeletonCard() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) { // eslint-disable-line @typescript-eslint/no-explicit-any
-  const [tab,        setTab]        = useState<'all' | 'following'>('all')
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
   const [visible,    setVisible]    = useState(PAGE_SIZE)
@@ -80,9 +79,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   }, [])
 
   // Reset visible on filter change
-  useEffect(() => { setVisible(PAGE_SIZE) }, [tab, boatFilter, sortKey])
+  useEffect(() => { setVisible(PAGE_SIZE) }, [boatFilter, sortKey])
 
-  const base = tab === 'following' ? followingTrips : allTrips
+  const base = allTrips
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let filtered = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,37 +116,6 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
 
   return (
     <>
-      {/* ── Tab toggle ── */}
-      {isLoggedIn && (
-        <div role="tablist" aria-label="Flödestyp" style={{
-          display: 'flex', gap: 4, marginBottom: 14,
-          background: 'rgba(10,123,140,0.07)', borderRadius: 14, padding: 4,
-        }}>
-          {([
-            { key: 'all',       label: 'Alla turer' },
-            { key: 'following', label: 'Följer' },
-          ] as const).map(({ key, label }) => (
-            <button
-              key={key}
-              role="tab"
-              aria-selected={tab === key}
-              onClick={() => setTab(key)}
-              style={{
-                flex: 1, padding: '9px 0', borderRadius: 10, border: 'none', cursor: 'pointer',
-                fontSize: 13, fontWeight: 600,
-                background: tab === key ? 'var(--white)' : 'transparent',
-                color: tab === key ? 'var(--sea)' : 'var(--txt3)',
-                boxShadow: tab === key ? '0 1px 6px rgba(0,45,60,0.12)' : 'none',
-                transition: 'all .15s',
-                WebkitTapHighlightColor: 'transparent',
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
-
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
         <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
@@ -252,7 +220,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       )}
 
       {/* ── Discovery — seglare att följa, visas om inloggad men följer ingen ── */}
-      {!initialLoad && isLoggedIn && followingTrips.length === 0 && tab === 'all' && (
+      {!initialLoad && isLoggedIn && followingTrips.length === 0 && (
         <SuggestedUsers />
       )}
 
@@ -260,17 +228,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       {!initialLoad && (
         <>
           {trips.length === 0 ? (
-            tab === 'following' && boatFilter === 'alla' && sortKey === 'newest' ? (
-              <div>
-                <EmptyState
-                  icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>}
-                  title="Ingen aktivitet ännu"
-                  body="Följ seglare för att se deras turer här."
-                  marginTop={40}
-                />
-                <SuggestedUsers />
-              </div>
-            ) : tab === 'all' && boatFilter === 'alla' && sortKey === 'newest' ? (
+            boatFilter === 'alla' && sortKey === 'newest' ? (
               <EmptyState
                 icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
                 title="Inga turer ännu"

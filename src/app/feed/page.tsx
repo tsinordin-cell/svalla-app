@@ -1,6 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
-import Image from 'next/image'
 import OnboardingModal from '@/components/OnboardingModal'
 import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
@@ -13,7 +12,6 @@ import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
-import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 30
 
@@ -129,13 +127,6 @@ export default async function FeedPage(
   const uniqueUsers = new Set(thisWeek.map((t: { user_id: string }) => t.user_id)).size
   const uniquePlaces = new Set(thisWeek.map((t: { location_name: string | null }) => t.location_name).filter(Boolean)).size
 
-  // Aktivt nu — senaste 24h
-  const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-  const activeNow = tripsWithUsers.filter(t => t.created_at > dayAgo)
-
-  // Magiska turer (⚓⚓⚓) de senaste 7 dagarna för highlight
-  const magicTrips = thisWeek.filter((t: { pinnar_rating: number | null }) => t.pinnar_rating === 3).slice(0, 3)
-
   // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
   // HELA blocket är tyst-degraderat: feeden är huvudsaken, achievements är sekundärt.
   let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
@@ -170,7 +161,7 @@ export default async function FeedPage(
 
       {/* ── Ambient gradient — wraps header + top content ── */}
       <div style={{
-        background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 22%, #dbe6e7 52%, var(--bg) 100%)',
+        background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 25%, #dbe6e7 55%, var(--bg) 100%)',
         backgroundAttachment: 'local',
       }}>
         {/* ── Header ── */}
@@ -201,13 +192,20 @@ export default async function FeedPage(
 
         {/* ── Greeting ── */}
         {feedUsername && (
-          <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 4px' }}>
+          <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 8px' }}>
             <div style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
               {getTimeLabel()}
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+            <div style={{ fontSize: 32, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
               {getGreeting()}, {feedUsername}
             </div>
+          </div>
+        )}
+
+        {/* ── Stories strip — direkt under greeting ── */}
+        {!SAFE && (
+          <div style={{ paddingBottom: 4 }}>
+            <SilentBoundary><StoriesStrip /></SilentBoundary>
           </div>
         )}
       </div>
@@ -250,102 +248,6 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── Stories (24h) ── */}
-        {!SAFE && (
-          <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
-            <SilentBoundary><StoriesStrip /></SilentBoundary>
-          </div>
-        )}
-
-        {/* ── Aktivt nu (senaste 24h) ── */}
-        {activeNow.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4,
-                fontSize: 10, fontWeight: 600, color: 'var(--sea)',
-                textTransform: 'uppercase', letterSpacing: '0.6px',
-              }}>
-                <span
-                  className="live-dot"
-                  style={{
-                    display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
-                    background: 'var(--green)',
-                  }}
-                />
-                Aktivt senaste 24h · {activeNow.length} {activeNow.length === 1 ? 'tur' : 'turer'}
-              </span>
-            </div>
-            {/* Horizontal scroll med mini-kort */}
-            <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {activeNow.slice(0, 8).map((t: any) => (
-                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }} className="press-feedback">
-                  <div style={{
-                    width: 110, background: 'var(--white)', borderRadius: 14,
-                    overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,45,60,0.08)',
-                    border: '1px solid rgba(10,123,140,0.08)',
-                  }}>
-                    {t.image
-                      ? <div style={{ position: 'relative', height: 72, overflow: 'hidden' }}>
-                          <Image src={t.image} alt="" fill sizes="110px" style={{ objectFit: 'cover' }} />
-                        </div>
-                      : <div style={{ height: 72, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
-                    }
-                    <div style={{ padding: '7px 8px' }}>
-                      <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {t.location_name ?? 'Okänd plats'}
-                      </div>
-                      <div style={{ fontSize: 9, color: 'var(--txt3)', marginTop: 1 }}>
-                        {timeAgo(t.created_at)}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ── Magiska turer ── */}
-        {magicTrips.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
-              ✨ Magiska turer den här veckan
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {magicTrips.map((t: any) => (
-                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none' }}>
-                  <div style={{
-                    background: 'var(--white)', borderRadius: 16, padding: '10px 14px',
-                    display: 'flex', alignItems: 'center', gap: 12,
-                    boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
-                    border: '1.5px solid rgba(201,110,42,0.15)',
-                    position: 'relative',
-                  }}>
-                    {t.image
-                      ? <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
-                          <Image src={t.image} alt="" fill sizes="52px" style={{ objectFit: 'cover' }} />
-                        </div>
-                      : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
-                    }
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {t.location_name ?? 'Okänd plats'}
-                      </div>
-                      <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
-                        av {t.users?.username ?? 'Okänd'}
-                      </div>
-                    </div>
-                    <span style={{ fontSize: 16, flexShrink: 0 }}>⚓⚓⚓</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* ── Nya märken från nätverket ── */}
         {recentAchievements.length > 0 && (
           <div style={{ marginBottom: 16 }}>
@@ -361,7 +263,7 @@ export default async function FeedPage(
         )}
 
         {/* ── Divider ── */}
-        {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (
+        {recentAchievements.length > 0 && tripsWithUsers.length > 0 && (
           <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>

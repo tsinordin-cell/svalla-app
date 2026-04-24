@@ -251,13 +251,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   const hasPhoto  = allPhotos.length > 0 && !imgErr
   const hasMedia  = hasPhoto || hasRoute
 
-  // Stats — only show speed when there's meaningful distance (avoids GPS-noise phantoms)
   const meaningfulDist = trip.distance >= 0.1
-  const stats: { label: string; value: string; unit?: string }[] = []
-  if (meaningfulDist)                                                stats.push({ label: 'Distans',   value: fmt(trip.distance),            unit: 'NM' })
-  if (dur)                                                           stats.push({ label: 'Tid',       value: dur })
-  if (meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5)     stats.push({ label: 'Snittfart', value: fmt(trip.average_speed_knots), unit: 'kn' })
-  if (meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5)         stats.push({ label: 'Toppfart',  value: fmt(trip.max_speed_knots),     unit: 'kn' })
+  const statsRow = [
+    { label: 'Distans', value: meaningfulDist ? fmt(trip.distance) : '—', unit: 'NM' },
+    { label: 'Tid',     value: dur || '—' },
+    { label: 'Snitt',   value: meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5 ? fmt(trip.average_speed_knots) : '—', unit: 'kn' },
+    { label: 'Topp',    value: meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5 ? fmt(trip.max_speed_knots) : '—', unit: 'kn' },
+  ]
 
   const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
@@ -480,41 +480,40 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       )}
 
       {/* ── 3. Stats row ── */}
-      {stats.length > 0 && (
-        <div style={{
-          display: 'flex',
-          borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
-          borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
-          background: '#fafcfd',
-        }}>
-          {stats.map((s, i) => (
-            <div key={s.label} style={{
-              flex: 1,
-              padding: '12px 8px 11px',
-              textAlign: 'center',
-              borderLeft: i > 0 ? '1px solid var(--hairline, rgba(22,45,58,0.08))' : 'none',
+      <div style={{
+        display: 'flex',
+        borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+        borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+        background: '#fafcfd',
+      }}>
+        {statsRow.map((s, i) => (
+          <div key={s.label} style={{
+            flex: 1,
+            padding: '12px 8px 11px',
+            textAlign: 'center',
+            borderLeft: i > 0 ? '1px solid var(--hairline, rgba(22,45,58,0.08))' : 'none',
+          }}>
+            <div style={{
+              fontSize: 22, fontWeight: 750,
+              color: s.value === '—' ? 'var(--ink-soft, #8ea7b1)' : 'var(--ink, #162d3a)',
+              lineHeight: 1, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums',
             }}>
-              <div style={{
-                fontSize: 20, fontWeight: 750, color: 'var(--ink, #162d3a)',
-                lineHeight: 1, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums',
-              }}>
-                {s.value}
-                {s.unit && (
-                  <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--ink-muted, #6a8a96)', marginLeft: 2 }}>
-                    {s.unit}
-                  </span>
-                )}
-              </div>
-              <div style={{
-                fontSize: 10, color: 'var(--ink-soft, #8ea7b1)', marginTop: 3,
-                fontWeight: 500, letterSpacing: '0.09em', textTransform: 'uppercase',
-              }}>
-                {s.label}
-              </div>
+              {s.value}
+              {s.unit && s.value !== '—' && (
+                <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--ink-muted, #6a8a96)', marginLeft: 2 }}>
+                  {s.unit}
+                </span>
+              )}
             </div>
-          ))}
-        </div>
-      )}
+            <div style={{
+              fontSize: 10.5, color: 'var(--ink-soft, #8ea7b1)', marginTop: 3,
+              fontWeight: 500, letterSpacing: '0.09em', textTransform: 'uppercase',
+            }}>
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
 
       {/* ── 4. Caption ── */}
       {caption ? (
