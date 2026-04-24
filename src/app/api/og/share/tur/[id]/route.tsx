@@ -19,7 +19,7 @@ function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: numbe
   const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
   const ranLat = maxLat - minLat || 0.001
   const ranLng = maxLng - minLng || 0.001
-  const pad = 0.14
+  const pad = 0.12
   return pts.map((p, i) => {
     const x = (((p.lng - minLng) / ranLng) * (1 - pad * 2) + pad) * W
     const y = H - (((p.lat - minLat) / ranLat) * (1 - pad * 2) + pad) * H
@@ -54,7 +54,10 @@ export async function GET(
   const from   = trip?.start_location ?? null
   const username  = userRow?.username ?? 'Seglare'
   const boatEmoji = trip?.boat_type === 'Segelbåt' ? '⛵' : trip?.boat_type === 'Motorbåt' ? '🚤' : trip?.boat_type === 'Kajak' ? '🛶' : '⛵'
+  const boatLabel = trip?.boat_type ?? 'Tur'
   const magisk = trip?.pinnar_rating === 3
+
+  const locLabel = from && loc ? `${from} → ${loc}` : loc ?? from ?? ''
 
   const routePts = trip && Array.isArray(trip.route_points) && trip.route_points.length >= 2
     ? (trip.route_points as { lat: number; lng: number }[])
@@ -62,7 +65,7 @@ export async function GET(
   const RW = 900, RH = 700
   const routePath = routePts ? buildRoutePath(routePts, RW, RH) : ''
 
-  const stats = [
+  const statBoxes = [
     dist  && { val: dist,    unit: 'NM',  label: 'DISTANS' },
     dur   && { val: dur,     unit: '',    label: 'TID' },
     spd   && { val: spd,     unit: 'kn',  label: 'TOPPFART' },
@@ -81,8 +84,8 @@ export async function GET(
       }}>
         {/* Background glow */}
         <div style={{
-          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'radial-gradient(circle at 50% 45%, rgba(20,90,160,0.28) 0%, transparent 65%)',
+          position: 'absolute', inset: 0,
+          background: 'radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30,100,160,0.18) 0%, transparent 70%)',
           display: 'flex',
         }} />
 
@@ -92,7 +95,7 @@ export async function GET(
           padding: '80px 80px 0',
           position: 'relative', zIndex: 2,
         }}>
-          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase' }}>
+          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.35)' }}>
             SVALLA.SE
           </div>
           <div style={{
@@ -100,18 +103,18 @@ export async function GET(
             background: 'rgba(255,255,255,0.07)', borderRadius: 40, padding: '10px 24px',
           }}>
             <div style={{ fontSize: 30 }}>{boatEmoji}</div>
-            <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.60)' }}>{trip?.boat_type ?? 'Tur'}</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.60)' }}>{boatLabel}</div>
           </div>
         </div>
 
-        {/* Route map — center of card */}
+        {/* Route map — center */}
         <div style={{
           flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 1,
           padding: '60px 60px 0',
         }}>
           {routePath ? (
-            <svg width={RW * 0.88} height={RH * 0.88} viewBox={`0 0 ${RW} ${RH}`}>
+            <svg width={RW * 0.88} height={RH * 0.88} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'relative', zIndex: 1 }}>
               <path d={routePath} stroke="rgba(80,170,230,0.18)" strokeWidth={20} fill="none" strokeLinecap="round" strokeLinejoin="round" />
               <path d={routePath} stroke="rgba(110,200,255,0.80)" strokeWidth={7} fill="none" strokeLinecap="round" strokeLinejoin="round" />
               <circle cx={routePath.split(' ')[1]} cy={routePath.split(' ')[2]} r={14} fill="#0f9e64" />
@@ -122,23 +125,14 @@ export async function GET(
         </div>
 
         {/* Location */}
-        <div style={{ padding: '0 80px', position: 'relative', zIndex: 2 }}>
-          {(loc || from) ? (
-            <div>
-              {from && (
-                <div style={{ fontSize: 26, color: 'rgba(255,255,255,0.45)', fontWeight: 500, marginBottom: 8 }}>
-                  Från {from}
-                </div>
-              )}
-              {loc && (
-                <div style={{
-                  fontSize: loc.length > 20 ? 68 : 84,
-                  fontWeight: 800, color: '#fff',
-                  letterSpacing: '-2px', lineHeight: 1.05,
-                }}>
-                  {loc}
-                </div>
-              )}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '48px 80px 0', position: 'relative', zIndex: 2 }}>
+          {locLabel ? (
+            <div style={{
+              fontSize: locLabel.length > 20 ? 68 : 84,
+              fontWeight: 800, color: '#fff',
+              letterSpacing: '-2px', lineHeight: 1.05,
+            }}>
+              {locLabel}
             </div>
           ) : (
             <div style={{ fontSize: 72, fontWeight: 800, color: '#fff', letterSpacing: '-2px' }}>
@@ -149,7 +143,7 @@ export async function GET(
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
               background: 'rgba(201,110,42,0.22)', border: '1px solid rgba(201,110,42,0.50)',
-              borderRadius: 40, padding: '10px 24px', marginTop: 20,
+              borderRadius: 40, padding: '10px 24px', marginTop: 8,
             }}>
               <div style={{ fontSize: 22 }}>⚓</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#e07828', letterSpacing: '1px' }}>MAGISK TUR</div>
@@ -158,9 +152,9 @@ export async function GET(
         </div>
 
         {/* Stats row */}
-        {stats.length > 0 && (
+        {statBoxes.length > 0 && (
           <div style={{ display: 'flex', gap: 20, padding: '48px 80px 0' }}>
-            {stats.map(({ val, unit, label }) => (
+            {statBoxes.map(({ val, unit, label }) => (
               <div key={label} style={{
                 flex: 1,
                 background: 'rgba(255,255,255,0.06)',
@@ -170,7 +164,7 @@ export async function GET(
               }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
                   <div style={{ fontSize: 58, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-2px' }}>{val}</div>
-                  {unit && <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(100,200,240,0.70)' }}>{unit}</div>}
+                  {unit ? <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(100,200,240,0.70)' }}>{unit}</div> : null}
                 </div>
                 <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.30)', letterSpacing: '2px' }}>{label}</div>
               </div>
@@ -191,7 +185,7 @@ export async function GET(
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 28, fontWeight: 800, color: '#fff',
             }}>
-              {username[0]?.toUpperCase()}
+              {username[0]?.toUpperCase() ?? 'S'}
             </div>
             <div style={{ fontSize: 28, fontWeight: 700, color: 'rgba(255,255,255,0.80)' }}>
               @{username}
@@ -201,7 +195,7 @@ export async function GET(
             fontSize: 20, fontWeight: 700,
             color: 'rgba(100,180,230,0.40)', letterSpacing: '0.5px',
           }}>
-            Loggat med Svalla ⚓
+            Loggat med Svalla
           </div>
         </div>
       </div>
