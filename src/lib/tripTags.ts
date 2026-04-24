@@ -57,6 +57,13 @@ export async function addTripTag(
     console.error('[addTripTag]', error.code, error.message)
     return { ok: false, errorMessage: error.message }
   }
+  // Fire-and-forget notification — don't let it block or fail the tag operation
+  supabase.from('notifications').insert({
+    user_id: taggedUserId,
+    actor_id: currentUserId,
+    type: 'tag',
+    trip_id: tripId,
+  }).then(() => {})
   return { ok: true }
 }
 

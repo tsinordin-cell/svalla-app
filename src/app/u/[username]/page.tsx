@@ -44,8 +44,16 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
   }
 }
 
-export default async function PublicProfilePage({ params }: { params: Promise<{ username: string }> }) {
+export default async function PublicProfilePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ username: string }>
+  searchParams: Promise<{ tab?: string }>
+}) {
   const { username } = await params
+  const { tab } = await searchParams
+  const activeTab = tab === 'taggad' ? 'taggad' : 'turer'
   // Server component → server-klient som forwardar auth-cookies.
   // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
   // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
@@ -64,6 +72,7 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
     { count: followingCount },
     { data: visitedIslandsData },
     { data: subRow },
+    { data: taggedTripIds },
   ] = await Promise.all([
     supabase
       .from('trips')
@@ -77,7 +86,20 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
     isProEnabled()
       ? supabase.from('subscriptions').select('status,current_period_end').eq('user_id', userRow.id).in('status', ['active','trialing']).maybeSingle()
       : Promise.resolve({ data: null }),
+    supabase.from('trip_tags').select('trip_id').eq('tagged_user_id', userRow.id),
   ])
+
+  // Fetch the actual trip data for tagged trips
+  const taggedIds = (taggedTripIds ?? []).map((r: { trip_id: string }) => r.trip_id)
+  const { data: rawTaggedTrips } = taggedIds.length
+    ? await supabase
+        .from('trips')
+        .select('id, user_id, boat_type, distance, duration, average_speed_knots, image, location_name, caption, pinnar_rating, started_at, created_at, route_points')
+        .in('id', taggedIds)
+        .is('deleted_at', null)
+        .order('created_at', { ascending: false })
+    : { data: [] }
+  const taggedTrips = (rawTaggedTrips ?? []) as Trip[]
 
   const isProUser = isProEnabled() && !!subRow && new Date((subRow as { current_period_end: string }).current_period_end) > new Date()
 
@@ -318,23 +340,56 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
           </div>
         )}
 
-        {/* ── Trip grid ── */}
+        {/* ── Trip grid with tabs ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-          {trips.length === 0 ? (
-            <EmptyState
-              icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
-              title="Inga turer ännu"
-              body={`${userRow.username} har inte loggat någon tur på Svalla än.`}
-              marginTop={0}
-            />
-          ) : (
-            <>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
-                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Turer</div>
-                <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{trips.length} st</span>
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>
-                {trips.map(t => (
+
+          {/* Tab bar */}
+          <div style={{ display: 'flex', borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
+            {[
+              { key: 'turer',  label: 'Turer',    count: trips.length },
+              ...(taggedTrips.length > 0 ? [{ key: 'taggad', label: 'Taggad i', count: taggedTrips.length }] : []),
+            ].map(({ key, label, count }) => {
+              const active = activeTab === key
+              return (
+                <Link
+                  key={key}
+                  href={key === 'turer' ? `/u/${username}` : `/u/${username}?tab=${key}`}
+                  style={{
+                    flex: 1, textAlign: 'center', textDecoration: 'none',
+                    padding: '13px 8px 11px',
+                    fontSize: 12, fontWeight: 700,
+                    color: active ? 'var(--sea)' : 'var(--txt3)',
+                    borderBottom: active ? '2px solid var(--sea)' : '2px solid transparent',
+                    transition: 'color .15s',
+                  }}
+                >
+                  {label}
+                  <span style={{ marginLeft: 5, fontSize: 11, fontWeight: 400, opacity: 0.75 }}>
+                    {count}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+
+          {/* Grid content */}
+          {(() => {
+            const displayTrips = activeTab === 'taggad' ? taggedTrips : trips
+            if (displayTrips.length === 0) {
+              return (
+                <EmptyState
+                  icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+                  title={activeTab === 'taggad' ? 'Inte taggad i några turer' : 'Inga turer ännu'}
+                  body={activeTab === 'taggad'
+                    ? `${userRow.username} har inte blivit taggad i någon tur ännu.`
+                    : `${userRow.username} har inte loggat någon tur på Svalla än.`}
+                  marginTop={0}
+                />
+              )
+            }
+            return (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '2px 2px 2px' }}>
+                {displayTrips.map(t => (
                   <Link key={t.id} href={`/tur/${t.id}`} style={{
                     position: 'relative', aspectRatio: '1/1',
                     overflow: 'hidden', background: 'var(--grad-sea)',
@@ -360,8 +415,8 @@ export default async function PublicProfilePage({ params }: { params: Promise<{ 
                   </Link>
                 ))}
               </div>
-            </>
-          )}
+            )
+          })()}
         </div>
       </div>
     </div>
