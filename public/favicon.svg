@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Bakgrund: rundad, lite ljusare än tidigare -->
+  <rect width="32" height="32" rx="7" fill="#1a5a80"/>
+
+  <!-- Mast -->
+  <line x1="16" y1="5" x2="16" y2="23" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Storsegel (höger, stort) -->
+  <path d="M16,6 L26,20 L16,20 Z" fill="white" opacity="0.95"/>
+
+  <!-- Focksegel (vänster, litet) -->
+  <path d="M16,10 L8,19 L16,19 Z" fill="white" opacity="0.55"/>
+
+  <!-- Skrovlinje -->
+  <path d="M7,23 Q11.5,21 16,23 Q20.5,21 25,23" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Vatten/skugga under skrov -->
+  <path d="M8,24.5 Q16,23 24,24.5" stroke="white" stroke-width="0.7" fill="none" opacity="0.3" stroke-linecap="round"/>
+</svg>

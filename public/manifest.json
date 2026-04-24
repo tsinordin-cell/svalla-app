@@ -1,0 +1,60 @@
+{
+  "id": "/",
+  "name": "Svalla – Skärgårdslivet, loggat",
+  "short_name": "Svalla",
+  "description": "Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.",
+  "start_url": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "background_color": "#f2f8fa",
+  "theme_color": "#1e5c82",
+  "orientation": "portrait",
+  "lang": "sv",
+  "categories": ["navigation", "lifestyle", "sports"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "label": "Svalla feed"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Logga tur",
+      "short_name": "Logga",
+      "description": "Spåra eller logga en ny tur",
+      "url": "/logga",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Utforska platser",
+      "short_name": "Platser",
+      "description": "Hitta restauranger och bryggor",
+      "url": "/platser",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

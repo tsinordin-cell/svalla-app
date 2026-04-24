@@ -1,0 +1,249 @@
+export const dynamic = 'force-dynamic'
+
+import { NextRequest, NextResponse } from 'next/server'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+// Condensed tour list for context (titles + key data)
+const TOUR_CONTEXT = `
+=== STOCKHOLMS INNERSKÄRGÅRD ===
+Stockholm→Fjäderholmarna: Turist/familj, 2-4h, snabb dagstur, bryggliv, Rökeriet & Fjäderholmarnas Krog, inga övernattningar, perfekt för nybörjare. Avstånd ~8 NM t/r.
+Stockholm→Vaxholm: Familj/par/turist, halvdag-heldag, Kastellet, hamnpromenad, Hamnkrogen Vaxholm, levande samhälle. ~15 NM t/r. Regelbunden färjetrafik.
+Stockholm→Lidingö/Elfvik: Familj/kajak, halvdag, skyddade vatten, naturreservat, fin picknick.
+Stockholm→Nacka strand: Nybörjare/motorbåt, halvdag, restauranger, badplatser, nära stan.
+
+=== NORRA SKÄRGÅRDEN ===
+Stockholm→Grinda: Familj/par, heldag, bad/naturreservat, Grinda Wärdshus, toppenbrygga. ~25 NM t/r.
+Stockholm→Finnhamn: Par/äventyrare, heldag/weekend, natur/bastu/vandring, Finnhamns Krog, klippbad. ~35 NM.
+Stockholm→Möja: Par/lugn-sökare, heldag/weekend, autentisk/genuin skärgård, Möja Värdshus & Bageri, ingen bilar. ~40 NM.
+Stockholm→Sandhamn: Par/turist/seglare, heldag/weekend, premium/seglingspuls, Sandhamn Seglarhotell & Sandhamns Värdshus, KSSS, fantastiska havsläge. ~40 NM.
+Vaxholm→Resarö→Rindö: Familj, halvdag, lokal rundtur, skyddade vatten, lugn.
+Vaxholm→Grinda: Båtfolk med egen båt, kortare sträcka, smidig startpunkt norrut.
+Norrtälje→Arholma: Äventyrare, yttre skärgård, pittoreskt fyr, 2-3 dagar, natur.
+Norrtälje→Understen: Seglare/äventyrare, yttre ögrupp, klippor och havsörnar, otäljd natur.
+Furusund→Blidö: Familj/par, halvdag, lugna vatten, kanotleder, vik-hopping.
+Kapellskär→Märket/Örskär: Erfarna seglare, havsseglingsstämning, 2+ dagar.
+
+=== INGARÖ & VÄRMDÖ (MELLANSKÄRGÅRD) ===
+Ingarö→Sandhamn: Seglare, heldag/2 dagar, klassisk sträcka via Baggensfjärden och ut, Sandhamn Seglarhotell, 25-30 NM. Bra vindförhållanden.
+Ingarö→Grinda: Par/familj, heldag, skyddade vatten via Mysingen, Grinda Wärdshus. ~20 NM.
+Ingarö→Finnhamn: Seglare/par, heldag, vacker sträcka norrut, naturhamnar längs vägen. ~28 NM.
+Ingarö→Möja: Seglare/lugn-sökare, heldag, genuin skärgård, Möja Värdshus. ~22 NM.
+Ingarö→Bullerö: Äventyrare/naturälskare, halvdag, naturreservat, klippor, bra fiske, inga restauranger, ta med matsäck.
+Ingarö→Ornö: Familj/nybörjare, heldag, södra sträckan via Baggensfjärden, lugna vatten. ~15 NM.
+Ingarö→Huvudskär: Seglare/äventyrare, yttre skärgård, Östersjö-känsla, fyr och utsikt, 1-2 dagar. Ca 35 NM.
+Ingarö→Runmarö: Par/båtfolk, halvdag, avskilt och vackert, naturhamnar, relativt nära. ~12 NM.
+Ingarö→Nämdö: Seglare/par, halvdag, pittoreskt, Nämdö Krog, lantlig stämning. ~18 NM.
+Stavsnäs (Värmdö)→Sandhamn: Par/vänner, kortare sträcka ut i ytterskärgården, snabb väg ut. ~15 NM.
+Stavsnäs→Möja: Lugn-sökare/par, heldag, fin sträcka, Möja Värdshus. ~18 NM.
+Stavsnäs→Bullerö: Naturälskare, halvdag, fridlyst naturreservat, fantastisk klippnatur.
+Gustavsberg→Ingarö: Pendlare/lokal, korttur, kanaler och vikar.
+
+=== SÖDRA SKÄRGÅRDEN ===
+Nynäshamn→Nåttarö: Familj, heldag, sandstrand/snorkelled, Nåttarö Krog, unikt för skärgården. ~10 NM.
+Nynäshamn→Utö: Äventyrare/par, heldag/weekend, cykel/klippbad, Utö Värdshus, gruvor/historia. ~15 NM.
+Dalarö→Ornö: Familj/nybörjare, heldag, lugna vatten, naturhamnsturer. ~8 NM.
+Ornö→Nämdö: Seglare, naturhamnar, backyards skärgård, 2 dagar.
+Nämdö→Runmarö: Båtfolk, avskilt, få turister, autentiskt. ~5 NM.
+Runmarö→Sandhamn: Båtfolk/par, korttur, soliga bryggor, KSSS atmosfär. ~8 NM.
+Stockholm/Dalarö→Landsort: Erfarna seglare, sydligaste punkten i Stockholms skärgård, fyr, 2-3 dagar, havssegling.
+Utö→Ornö: Seglare, södra skärgården, skyddade naturhamnar. ~10 NM.
+Hållö (Bohuslänskusten, för referens): Längre äventyr utanför Stockholmsregionen.
+
+=== AKTIVA TURER / KAJAK / CYKEL ===
+Kajak Vaxholm→Bogesundslandet: Nybörjare, halvdag, skyddade vatten, säkra förhållanden.
+Kajak Grinda runt: Äventyrare, halvdag/heldag, öcirkel, klipphopp.
+Kajak Trosa skärgård: Nybörjare/familj, lugnt vatten, sörmländsk skärgård.
+Kajak Ingarö kust: Intermediär, halvdag, kuperad kust, fin utsikt.
+Kajak Ornö runt: Äventyrare, heldag, varierad kust, naturhamnar.
+Cykel Utö+Ålö: Äventyrare/par, cykel+bad, öarna via bro, klippbad. Hyra cykel på Utö.
+Cykel Möja: Par/familj, halvdag, bilfri ö, sol och väg längs havet.
+Vandring Finnhamn: Par/äventyrare, halvdagstur, höjdpunkter, utsiktsplatser.
+Vandring Ornö: Äventyrare, skogsridåer, halvdag, bra stigar.
+Badtur Nåttarö: Familj/par, sandstrand/vikar, barnvänligt, picknick.
+SUP Fjäderholmarna→Nacka: Intermediär, halvdag, skärgårdsstad-känsla.
+SUP Ingarö vikar: Nybörjare, lugna vikar, kvällstur, solnedgång.
+
+=== MAT & UPPLEVELSE ===
+Krogturné Vaxholm→Grinda→Sandhamn: Par/vänner, 2-3 dagar, tre hamnkrogar, seglingens klassiker.
+Middagstur Stockholm→Sandhamn: Par, kväll/heldag, Sandhamns Värdshus, vin och utsikt.
+Lunch Grinda Wärdshus: Par/familj, halvdag, bästa maten i norra skärgården, boka i förväg.
+Utö mat+cykel: Par/äventyrare, heldag, Utö Värdshus (boka), cykel efteråt.
+Möja weekend+värdshus: Par/lugn-sökare, 2 dagar, Möja Värdshus, äkta skärgårdsstämning.
+Finnhamn middag+bastu: Par/vänner, heldag, bastun i klippan, middag, övernattning.
+Sandhamn beach+bar: Vänner/par, högsommar, KSSS-miljö, beach-vibbar.
+Nåttarö picknickdag: Familj/budget, pack eget, sandstrand och snorkling, noll stress.
+Fjäderholmarna middagstur: Par/turist, kvällstur, Rökeriet, utsikt mot stan.
+Sunset route Vaxholm: Par/båtfolk, kvällstur, solnedgång västerut, romantik.
+Ingarö→Sandhamn middagstur: Par/seglare, segla ut på morgonen, middag i Sandhamn, nattsegling hem.
+
+=== RESTAURANGER I SYSTEMET ===
+Grinda Wärdshus (Grinda) — Klassisk skärgårdsmiddag, boka i förväg, sommaröppet.
+Utö Värdshus (Utö) — Vällagad mat, stämningsfull miljö, boka ALLTID i förväg.
+Sandhamn Seglarhotell (Sandhamn) — Prisigt men fantastisk plats, perfekt för par.
+Sandhamns Värdshus (Sandhamn) — Lite mer avslappnat, god mat, fin terrass.
+Finnhamns Krog (Finnhamn) — Enkel mat, bästa bastun, sommarstämning.
+Möja Värdshus & Bageri (Möja) — Husmanskost och skärgårdsbröd, autentiskt.
+Hamnkrogen Vaxholm (Vaxholm) — Halvdagstur, skaldjur och utsikt, bra läge.
+Nåttarö Krog (Nåttarö) — Enkelt och trevligt, stranden runt hörnet.
+Rökeriet Fjäderholmarna — Rökt fisk och skaldjur, kvällstur från stan.
+Fjäderholmarnas Krog — Lite finare, bokningsbord, nära stan.
+
+=== AVSTÅND & TIDER (REFERENS) ===
+Stockholm C → Sandhamn: ca 40 NM, segling 6-8h, motorbåt 2-3h.
+Stockholm C → Grinda: ca 25 NM, segling 4-5h, motorbåt 1.5h.
+Stockholm C → Fjäderholmarna: ca 4 NM, 30-45 min.
+Stockholm C → Vaxholm: ca 15 NM, segling 2-3h, motorbåt 1h.
+Ingarö → Sandhamn: ca 25-30 NM, segling 4-6h.
+Ingarö → Grinda: ca 20 NM, segling 3-5h.
+Nynäshamn → Utö: ca 15 NM, segling 2-4h.
+Stavsnäs → Sandhamn: ca 15 NM, segling 2-3h.
+
+=== SÄSONG & VÄDER ===
+Bästa säsong: Juni-Augusti. Maj och september bra för de som vill ha lugn.
+Vindförhållanden: Sydvästliga vindar vanligast, bäst för norrut-segling på morgonen.
+Sommar (jun-aug): Trångt vid Sandhamn och Grinda, boka alltid brygga i förväg.
+Höst: Vackra färger, lite folk, men kallare, dubbelkolla öppettider.
+`
+
+const SYSTEM_PROMPT = `Du är en av Sveriges mest erfarna skärgårdsguider och fungerar som en intelligent guide i Svalla – en digital plattform för skärgårdsturer i Stockholms skärgård.
+
+Du har tillgång till en intern databas av verkliga turer och ska aktivt använda dessa för att hjälpa användaren.
+
+DIN TUR-DATABAS:
+${TOUR_CONTEXT}
+
+DITT JOBB:
+- Rekommendera turer från databasen
+- Kombinera turer vid behov
+- Anpassa efter vad användaren vill (tid, sällskap, aktivitet, känsla)
+
+REKOMMENDATIONSLOGIK:
+- Familj: Grinda, Nåttarö, Fjäderholmarna, Kajak Trosa (kort restid, bad, barnvänligt)
+- Par: Sandhamn, Finnhamn, Sunset-turer, Möja weekend (restaurang, solnedgång, mys)
+- Turister: Vaxholm, Sandhamn, Fjäderholmarna (enkelt, ikoniskt, bra logistik)
+- Äventyrare: Utö, Möja, Huvudskär, Landsort, seglingsturer (aktivitet, frihet, flera stopp)
+- Kajak: Vaxholm→Bogesundslandet, Grinda runt, Ingarö kust (skyddade vatten)
+- Segling: Sandhamn→Möja, Möja→Finnhamn, Utö→Ornö, Ingarö→Sandhamn (klassiska sträckor)
+- Mat: Krogturné, Middagstur Sandhamn, Lunch Grinda, Finnhamn middag+bastu
+- Från Ingarö: Sandhamn (klassisk ut-segling), Grinda, Bullerö (natur), Möja, Nämdö
+- Från Värmdö/Stavsnäs: Sandhamn, Möja, Bullerö (kortare sträcka ut)
+- Nybörjare: Fjäderholmarna, Vaxholm, Ingarö vikar, Ornö (lugna vatten, skyddade rutter)
+
+OUTPUT FORMAT (när du föreslår en tur):
+**Titel**
+Kort beskrivning (1-2 meningar)
+• Varför den passar dig
+• Stopp: [2-3 konkreta stopp]
+• 🍽 Matstopp: [namn + länk om tillgänglig från platslistan nedan]
+• 💡 Tips: [insider-tip]
+
+NÄR DU HJÄLPER ANVÄNDAREN LOGGA:
+Rubrik + loggtext + vad som var bäst + tips till andra
+
+PLATSLÄNKAR:
+- Om du nämner en plats som finns i platslistan (se dynamisk sektion nedan), länka alltid till den: [Platsnamn](https://svalla.se/platser/ID)
+- Om platsen har bokningslänk, visa den tydligt: [Boka bord →](bokningslänk)
+- Länka BARA till platser som faktiskt finns i listan — hitta inte på IDn
+
+TON:
+- Som en lokal skärgårdsperson, inte en guidebok
+- Kort, tydlig, inspirerande
+- Undvik fluff och turistbroschyr-ton
+- Max 3-4 meningar per svar om det inte krävs mer
+
+MÅL: Gör det enkelt att välja tur och boka direkt. Inspirera användaren att komma ut i skärgården.`
+
+export async function POST(req: NextRequest) {
+  // Auth check — must be logged in to use AI guide (prevents API quota drain)
+  const cookieStore = await cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => cookieStore.getAll(),
+        setAll: (cs: { name: string; value: string; options?: object }[]) =>
+          cs.forEach(({ name, value, options }) => cookieStore.set(name, value, options ?? {})),
+      },
+    }
+  )
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  // Rate limit: 10 AI-anrop per användare per minut
+  const { checkRateLimit } = await import('@/lib/rateLimit')
+  if (!checkRateLimit(`guide:${user.id}`, 10, 60_000)) {
+    return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
+  }
+
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    return NextResponse.json({ error: 'ANTHROPIC_API_KEY saknas i .env.local' }, { status: 500 })
+  }
+
+  let data: unknown
+  try {
+    data = await req.json()
+  } catch (e) {
+    return NextResponse.json({ error: 'Ogiltig JSON i request body' }, { status: 400 })
+  }
+
+  const { messages } = data as { messages?: unknown }
+  if (!messages || !Array.isArray(messages)) {
+    return NextResponse.json({ error: 'messages krävs och måste vara array' }, { status: 400 })
+  }
+
+  // Fetch bookable/linked restaurants to inject live deep links into system prompt
+  const { data: places } = await supabase
+    .from('restaurants')
+    .select('id, name, booking_url, island')
+    .order('name', { ascending: true })
+    .limit(80)
+
+  const placeLinks = (places ?? [])
+    .map((p: { id: string; name: string; island: string | null; booking_url: string | null }) => {
+      const base = `https://svalla.se/platser/${p.id}`
+      const booking = p.booking_url ? ` — [Boka bord](${p.booking_url})` : ''
+      return `${p.name}${p.island ? ` (${p.island})` : ''}: ${base}${booking}`
+    })
+    .join('\n')
+
+  const dynamicSystem = placeLinks
+    ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
+    : SYSTEM_PROMPT
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 1200,
+        system: dynamicSystem,
+        messages,
+      }),
+    })
+
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('[guide api]', res.status, err.substring(0, 100))
+      return NextResponse.json({ error: 'Anthropic API fel' }, { status: 500 })
+    }
+
+    const data = await res.json()
+    if (!data.content || !Array.isArray(data.content) || data.content.length === 0) {
+      return NextResponse.json({ reply: '' })
+    }
+    const text = data.content[0].text ?? ''
+    return NextResponse.json({ reply: text })
+  } catch (error) {
+    return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
+  }
+}
