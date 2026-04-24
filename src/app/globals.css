@@ -246,6 +246,11 @@ img {
   color: rgba(74, 184, 212, 0.55) !important;
 }
 
+/* ── Karta i dark mode — invertera OSM-tiles till mörk stil ── */
+[data-theme="dark"] .route-map-tile {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* ── Subtle tinted backgrounds ── */
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.04)"],
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.05)"],

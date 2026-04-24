@@ -492,8 +492,10 @@ export default function SparaPage() {
     }, { onConflict: 'id', ignoreDuplicates: true })
 
     const dist    = totalDistanceNM(points)
-    const avgSpd  = avgSpeedKnots(points)
-    const maxSpd  = maxSpeedKnots(points)
+    // Nollställ hastigheterna om rutten saknar mätbar förflyttning —
+    // GPS Doppler kan rapportera hög hastighet utan att koordinaterna ändras (brus).
+    const avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
+    const maxSpd  = dist >= 0.01 ? maxSpeedKnots(points) : 0
     const startedAt = startTimeRef.current?.toISOString() ?? new Date().toISOString()
     const endedAt   = new Date().toISOString()
 

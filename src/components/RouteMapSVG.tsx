@@ -40,10 +40,16 @@ export default function RouteMapSVG({
     return ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * Math.pow(2, z)
   }
 
+  // ── Minimum span-kontroll — om punkterna täcker < ~60 m har vi troligen
+  //     GPS-brus utan rörelse. Rendera inte (ser ut som en prick i ett parkeringsgarage).
+  const latSpan = maxLat - minLat
+  const lngSpan = maxLng - minLng
+  if (latSpan < 0.0005 && lngSpan < 0.0005) return null
+
   // ── Välj zoom: största z där ruttens pixel-span ryms i ~85% av viewporten.
-  //     Short-hand: försök från z=17 neråt (max-zoom-behavior för korta turer
-  //     som en 0.1 NM-spurt — undvik att den syns som en pixel).
-  let Z = 17
+  //     Startar på z=15 (max) för att undvika att korta turer hamnar på
+  //     gatu-nivå och visar parkeringsplatser i stället för kustlinje.
+  let Z = 15
   for (; Z >= 3; Z--) {
     const spanX = (lngToTileX(maxLng, Z) - lngToTileX(minLng, Z)) * 256
     const spanY = (latToTileY(minLat, Z) - latToTileY(maxLat, Z)) * 256
@@ -109,6 +115,7 @@ export default function RouteMapSVG({
                 src={`https://tile.openstreetmap.org/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
                 alt=""
                 loading="lazy" decoding="async"
+                className="route-map-tile"
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -116,6 +123,7 @@ export default function RouteMapSVG({
                 src={`https://tiles.openseamap.org/seamark/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
                 alt=""
                 loading="lazy" decoding="async"
+                className="route-map-tile"
                 style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'none' }}
               />
             </div>
