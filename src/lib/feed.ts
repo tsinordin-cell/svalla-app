@@ -78,6 +78,43 @@ export type FeedFetchOptions = {
  * @param opts.followOnly true = bara turer från personer viewer följer
  * @param opts.beforeTs   pagination-cursor — turer äldre än denna timestamp
  */
+/**
+ * Enriches trips with confirmed tagged crew members.
+ * One batch query for all trip IDs — avoids N+1.
+ */
+export async function enrichWithTags(
+  supabase: SupabaseClient,
+  trips: Trip[],
+): Promise<Trip[]> {
+  if (trips.length === 0) return trips
+  const ids = trips.map(t => t.id)
+
+  const { data: tagRows } = await supabase
+    .from('trip_tags')
+    .select('trip_id, tagged_user_id')
+    .in('trip_id', ids)
+    .eq('confirmed', true)
+  if (!tagRows || tagRows.length === 0) return trips
+
+  const userIds = [...new Set(tagRows.map(r => r.tagged_user_id as string))]
+  const { data: users } = await supabase
+    .from('users').select('id, username, avatar').in('id', userIds)
+  const userMap: Record<string, { username: string; avatar: string | null }> = {}
+  for (const u of users ?? []) {
+    userMap[u.id as string] = { username: u.username as string, avatar: (u.avatar ?? null) as string | null }
+  }
+
+  const tagsByTrip: Record<string, { username: string; avatar: string | null }[]> = {}
+  for (const row of tagRows) {
+    const u = userMap[row.tagged_user_id as string]
+    if (!u) continue
+    if (!tagsByTrip[row.trip_id as string]) tagsByTrip[row.trip_id as string] = []
+    tagsByTrip[row.trip_id as string].push(u)
+  }
+
+  return trips.map(t => ({ ...t, tagged_users: tagsByTrip[t.id] ?? [] }))
+}
+
 export async function fetchFeedTrips(
   supabase: SupabaseClient,
   opts: FeedFetchOptions = {},

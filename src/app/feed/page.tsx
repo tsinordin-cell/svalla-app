@@ -12,7 +12,7 @@ import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
-import { fetchFeedTrips } from '@/lib/feed'
+import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 0
@@ -93,9 +93,11 @@ export default async function FeedPage(
     )
   }
 
-  const tripsWithUsers = allRes.trips
-  // Om follow-query misslyckades: fallback till tom lista (all-flödet visas ändå)
-  const followingTrips = followRes.error ? [] : followRes.trips
+  // Enrich both feeds with confirmed tagged crew (one batch query each)
+  const [tripsWithUsers, followingTrips] = await Promise.all([
+    enrichWithTags(supabase!, allRes.trips),
+    enrichWithTags(supabase!, followRes.error ? [] : followRes.trips),
+  ])
 
   // Social proof — senaste 7 dagarna
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()

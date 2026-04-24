@@ -516,7 +516,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* ── 5. Caption ── */}
       {caption ? (
-        <div style={{ padding: '4px 16px 16px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
+        <div style={{ padding: '4px 16px 10px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
           <span style={{ fontWeight: fontWeight.semibold }}>{username}</span>
           {' '}
           <span>{renderMentions(captionTruncated)}</span>
@@ -533,7 +533,31 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           )}
         </div>
       ) : (
-        <div style={{ height: 10 }} />
+        <div style={{ height: 8 }} />
+      )}
+
+      {/* ── 6. Tagged crew ── */}
+      {trip.tagged_users && trip.tagged_users.length > 0 && (
+        <div
+          onClick={e => e.stopPropagation()}
+          style={{ padding: '0 16px 14px', fontSize: 13, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 13, height: 13, flexShrink: 0, opacity: 0.6 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+          </svg>
+          <span>med</span>
+          {trip.tagged_users.map((u, i) => (
+            <span key={u.username}>
+              {i > 0 && <span style={{ marginRight: 4 }}>&</span>}
+              <Link
+                href={`/u/${u.username}`}
+                style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
+              >
+                @{u.username}
+              </Link>
+            </span>
+          ))}
+        </div>
       )}
 
       {/* Share to DM modal */}
