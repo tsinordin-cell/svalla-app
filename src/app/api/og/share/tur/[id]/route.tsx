@@ -81,8 +81,8 @@ export async function GET(
       }}>
         {/* Background glow */}
         <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse 100% 60% at 50% 45%, rgba(20,90,160,0.22) 0%, transparent 70%)',
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'radial-gradient(circle at 50% 45%, rgba(20,90,160,0.28) 0%, transparent 65%)',
           display: 'flex',
         }} />
 
@@ -149,7 +149,7 @@ export async function GET(
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
               background: 'rgba(201,110,42,0.22)', border: '1px solid rgba(201,110,42,0.50)',
-              borderRadius: 40, padding: '10px 24px', width: 'fit-content', marginTop: 20,
+              borderRadius: 40, padding: '10px 24px', marginTop: 20,
             }}>
               <div style={{ fontSize: 22 }}>⚓</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#e07828', letterSpacing: '1px' }}>MAGISK TUR</div>

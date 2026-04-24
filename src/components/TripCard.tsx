@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
-import ShareButton from './ShareButton'
+import TripShareModal from './TripShareModal'
 import ShareTripModal from './ShareTripModal'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
@@ -509,7 +509,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </svg>
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <ShareButton url={`https://svalla.se/tur/${trip.id}`} title={trip.location_name ?? 'Min tur'} />
+            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} />
           </div>
         </div>
       </div>
