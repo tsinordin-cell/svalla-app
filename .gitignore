@@ -29,3 +29,4 @@ yarn-error.log*
 .netlify
 .next 2/
 .github/workflows/
+node_modules/
