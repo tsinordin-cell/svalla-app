@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
+import { IconCompass, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
 
 export default function Nav() {
   const path = usePathname()
@@ -68,11 +69,7 @@ export default function Nav() {
       label: 'Upptäck',
       exact: false,
       icon: (active: boolean) => (
-        // Kompassikon — tydligt "utforska/hitta"
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
-        </svg>
+        <IconCompass size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     {
@@ -81,11 +78,7 @@ export default function Nav() {
       exact: false,
       matchPaths: ['/planera', '/rutter'],
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <circle cx="5" cy="6" r="2" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="19" cy="18" r="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 8c0 5 6 3 9 8" />
-        </svg>
+        <IconRoute size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     { href: '/logga', label: '', fab: true },
@@ -94,9 +87,7 @@ export default function Nav() {
       label: 'Flöde',
       exact: false,
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
+        <IconHome size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     {
@@ -124,9 +115,7 @@ export default function Nav() {
               }
             </div>
           ) : (
-            <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <IconUser size={22} stroke={active ? 2 : 1.75} />
           )}
           {/* Online dot when logged in */}
           {username && (
@@ -201,15 +190,11 @@ export default function Nav() {
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
             >
               <span className="nav-fab-mobile">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.2} style={{ width: 24, height: 24 }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
+                <IconPlus size={26} stroke={2.4} color="white" />
               </span>
               <span className="nav-fab-label">Logga tur</span>
               <span className="nav-fab-desktop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.2} style={{ width: 18, height: 18 }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-                </svg>
+                <IconPlus size={18} stroke={2.2} color="white" />
                 Logga tur
               </span>
             </Link>
@@ -225,7 +210,7 @@ export default function Nav() {
               alignItems: 'center', justifyContent: 'center', gap: 2,
               textDecoration: 'none',
               color: active ? 'var(--teal, #0a7b8c)' : 'var(--txt3)',
-              fontSize: 10.5, fontWeight: active ? 600 : 500,
+              fontSize: 11, fontWeight: active ? 600 : 500,
               position: 'relative',
               WebkitTapHighlightColor: 'transparent',
               minHeight: 44,

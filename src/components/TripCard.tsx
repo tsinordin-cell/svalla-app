@@ -369,7 +369,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               gap: 3,
-              padding: '0 14px',
+              padding: '0 16px',
               marginBottom: 12,
             }}>
               <div
@@ -469,7 +469,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : (
             /* Bara rutt */
-            <div style={{ padding: '0 14px', marginBottom: 12 }}>
+            <div style={{ padding: '0 16px', marginBottom: 12 }}>
               <div
                 style={{ position: 'relative', width: '100%', aspectRatio: '16/7', borderRadius: 14, overflow: 'hidden', background: 'var(--map-preview-bg)', cursor: 'zoom-in' }}
                 onClick={e => { e.stopPropagation(); setLightbox('map') }}

@@ -405,6 +405,11 @@ img {
   background: rgba(15, 158, 100, 0.12) !important;
 }
 
+/* ── TripCard — GPU compositing layer ── */
+.trip-card {
+  will-change: transform;
+}
+
 /* ── TripCard — mobile active state (tap feedback) ── */
 .trip-card:active {
   transform: scale(0.985) !important;
@@ -761,16 +766,17 @@ img {
 
 /* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
 .nav-fab-mobile {
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
   background: linear-gradient(180deg, #0fa0b4 0%, #0a7b8c 55%, #075e6d 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(10, 123, 140, 0.40);
+  box-shadow: 0 8px 20px rgba(10, 123, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   position: relative;
   overflow: hidden;
+  margin-top: -18px;
 }
 .nav-fab-mobile::before {
   content: '';
@@ -778,16 +784,16 @@ img {
   top: 0;
   left: 4px;
   right: 4px;
-  height: 40%;
-  border-radius: 14px 14px 0 0;
+  height: 38%;
+  border-radius: 16px 16px 0 0;
   background: rgba(255, 255, 255, 0.18);
   pointer-events: none;
 }
 .nav-fab-label {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--ink-muted, #6a8a96);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 .nav-fab-desktop {
   display: none;
