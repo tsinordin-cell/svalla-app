@@ -800,6 +800,9 @@ img {
 
 /* ── Desktop nav — left sidebar ≥1024px ── */
 @media (min-width: 1024px) {
+  /* Ingen bottom-nav på desktop → nollställ nav-h */
+  :root { --nav-h: 0px; }
+
   /* Push content right to make room for sidebar */
   body.has-app-nav > main {
     padding-left: 220px;
@@ -1055,6 +1058,37 @@ img {
 /* ── Leaflet dark-mode: lyfta upp Carto dark_all så havet syns ── */
 [data-theme="dark"] .leaflet-tile-pane {
   filter: brightness(1.45) contrast(0.92) saturate(1.15);
+}
+
+/* ── Feed desktop layout ── */
+.feed-layout-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px);
+}
+.feed-desktop-panel { display: none; }
+
+/* Feed header logo — dold på desktop (finns i sidebaren) */
+@media (min-width: 1024px) {
+  .feed-header-logo { display: none; }
+}
+
+/* Feed 2-kolumn vid ≥1280px */
+@media (min-width: 1280px) {
+  body.has-app-nav .feed-layout-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 640px) 280px;
+    gap: 28px;
+    max-width: 980px;
+    padding-bottom: 32px;
+  }
+  .feed-desktop-panel {
+    display: block;
+    position: sticky;
+    top: 20px;
+    align-self: start;
+  }
 }
 
 /* ── Motion preference ── */

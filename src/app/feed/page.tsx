@@ -11,6 +11,7 @@ import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
+import SuggestedUsers from '@/components/SuggestedUsers'
 import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
@@ -175,7 +176,7 @@ export default async function FeedPage(
           borderBottom: '1px solid rgba(22,45,58,0.06)',
           position: 'sticky', top: 0, zIndex: 50,
         }}>
-          <SvallaLogo height={26} color="var(--sea)" />
+          <span className="feed-header-logo"><SvallaLogo height={26} color="var(--sea)" /></span>
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
             <Link href="/sok" aria-label="Sök" style={{
               width: 38, height: 38, borderRadius: '50%',
@@ -215,7 +216,8 @@ export default async function FeedPage(
         )}
       </div>
 
-      <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 16px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+      <div className="feed-layout-wrap">
+        <div className="feed-main-col">
 
         {SAFE && (
           <div role="status" style={{
@@ -282,7 +284,18 @@ export default async function FeedPage(
             isLoggedIn={!!user}
           />
         </FeedClientBoundary>
-      </div>
+        </div>{/* feed-main-col */}
+
+        {/* ── Desktop right panel — visas bara vid ≥1280px via CSS ── */}
+        {!!user && (
+          <aside className="feed-desktop-panel">
+            <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.7px', marginBottom: 14 }}>
+              Hitta seglare
+            </div>
+            <SilentBoundary><SuggestedUsers /></SilentBoundary>
+          </aside>
+        )}
+      </div>{/* feed-layout-wrap */}
     </div>
   )
 }
