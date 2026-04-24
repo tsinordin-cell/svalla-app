@@ -13,7 +13,7 @@ import TripTagger from '@/components/TripTagger'
 import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
-import { getTripWeather, windDirectionLabel } from '@/lib/weather'
+import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
 
 export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-request DB calls)
@@ -129,6 +129,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         trip.ended_at,
       )
     : null
+
+  // Sampla vind längs rutten för kartpilar (~10 jämnt fördelade punkter).
+  // Matchar varje GPS-positions timestamp mot närmaste tim-data.
+  const windSamples = weather?.hourly.length
+    ? buildWindArrowSamples(points, weather.hourly, 10)
+    : []
 
   const stops = (rawStops ?? []).map(s => ({
     lat: s?.latitude ?? 0,
@@ -540,7 +546,12 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         {hasMap ? (
           <div style={{ marginBottom: 18 }}>
             <SectionTitle>Rutt</SectionTitle>
-            <TripDetailMap points={points} stops={stops} restaurants={nearbyRestaurants} />
+            <TripDetailMap
+              points={points}
+              stops={stops}
+              restaurants={nearbyRestaurants}
+              windSamples={windSamples}
+            />
           </div>
         ) : (
           <div style={{ marginBottom: 18, background: 'rgba(10,123,140,0.05)', borderRadius: 20, padding: '32px 16px', textAlign: 'center', fontSize: 13, color: 'var(--txt3)' }}>

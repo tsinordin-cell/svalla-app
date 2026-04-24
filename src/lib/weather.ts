@@ -9,6 +9,15 @@
  * Vågor finns bara via Marine API de senaste ~92 dagarna.
  */
 
+export type HourlyWind = {
+  /** ISO-timestamp i UTC */
+  timeIso: string
+  /** Millisekunder sedan epoch (pre-parsed för snabb matching mot GPS-points) */
+  timeMs: number
+  speedMs: number
+  directionDeg: number
+}
+
 export type TripWeather = {
   wind: {
     speedMs: number          // medel m/s över turens tidsspann
@@ -20,6 +29,8 @@ export type TripWeather = {
   wave: {
     heightM: number          // medel vågHöjd i meter
   } | null
+  /** Per-timme-data mellan start och end — används av kartan för att rita vind-pilar. */
+  hourly: HourlyWind[]
   /** Indikerar datakälla — för debug och UI-fallbacks */
   source: 'archive' | 'archive+marine' | 'marine' | 'empty'
 }
@@ -89,7 +100,7 @@ export async function getTripWeather(
   endAt?: string | null,
 ): Promise<TripWeather> {
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-    return { wind: null, wave: null, source: 'empty' }
+    return { wind: null, wave: null, hourly: [], source: 'empty' }
   }
 
   const effectiveEnd = endAt ?? startAt
@@ -98,6 +109,7 @@ export async function getTripWeather(
 
   // ── Vind (ERA5 archive, finns för alla datum sedan 1940) ───────────────
   let windResult: TripWeather['wind'] = null
+  let hourlyWind: HourlyWind[] = []
   try {
     const url = new URL('https://archive-api.open-meteo.com/v1/archive')
     url.searchParams.set('latitude', lat.toFixed(4))
@@ -119,6 +131,17 @@ export async function getTripWeather(
         const speeds = use.map(i => h.wind_speed_10m[i])
         const dirs = use.map(i => h.wind_direction_10m[i])
         const gusts = h.wind_gusts_10m ? use.map(i => (h.wind_gusts_10m as (number | null)[])[i]) : []
+
+        // Bygg per-timme-array för kart-pilarna (filtrera tomma timmar).
+        hourlyWind = use
+          .map((i): HourlyWind | null => {
+            const s = h.wind_speed_10m[i]
+            const d = h.wind_direction_10m[i]
+            if (s == null || d == null) return null
+            const t = h.time[i]
+            return { timeIso: t, timeMs: new Date(t + 'Z').getTime(), speedMs: s, directionDeg: d }
+          })
+          .filter((x): x is HourlyWind => x !== null)
 
         const speedMs = avg(speeds)
         const directionDeg = avgDirection(dirs)
@@ -174,7 +197,69 @@ export async function getTripWeather(
     : waveResult ? 'marine'
     : 'empty'
 
-  return { wind: windResult, wave: waveResult, source }
+  return { wind: windResult, wave: waveResult, hourly: hourlyWind, source }
+}
+
+/**
+ * Plocka ~N jämnt fördelade punkter längs en rutt och matcha dem mot
+ * hourly-vinddata. Returnerar en sampel-array med lat/lng + närmaste timmes
+ * vind, redo att renderas som pilar på kartan.
+ *
+ * Antagande: vind varierar lite över en typisk 5-20 NM skärgårdstur, så vi
+ * använder samma hourly-data (från startpunkten) för alla sampel. Mer
+ * exakt modell skulle kräva en fetch per sampel — oacceptabelt för skala.
+ */
+export type WindArrowSample = {
+  lat: number
+  lng: number
+  timeMs: number
+  speedMs: number
+  directionDeg: number
+}
+
+export function buildWindArrowSamples<T extends { lat: number; lng: number; recordedAt?: string }>(
+  points: T[],
+  hourly: HourlyWind[],
+  targetCount = 10,
+): WindArrowSample[] {
+  if (points.length === 0 || hourly.length === 0) return []
+
+  // Antal sampel: minst 3, max targetCount, beroende på ruttens längd.
+  const n = Math.min(targetCount, Math.max(3, Math.floor(points.length / 8)))
+  if (points.length < n) return []
+
+  const samples: WindArrowSample[] = []
+  for (let i = 0; i < n; i++) {
+    const frac = n === 1 ? 0.5 : i / (n - 1)
+    const idx = Math.floor(frac * (points.length - 1))
+    const p = points[idx]
+    const pointMs = p.recordedAt ? new Date(p.recordedAt).getTime() : hourly[0].timeMs
+
+    // Hitta närmaste timme i hourly-arrayen
+    let best = hourly[0]
+    let bestDelta = Math.abs(best.timeMs - pointMs)
+    for (let j = 1; j < hourly.length; j++) {
+      const d = Math.abs(hourly[j].timeMs - pointMs)
+      if (d < bestDelta) { best = hourly[j]; bestDelta = d }
+    }
+
+    samples.push({
+      lat: p.lat,
+      lng: p.lng,
+      timeMs: best.timeMs,
+      speedMs: best.speedMs,
+      directionDeg: best.directionDeg,
+    })
+  }
+  return samples
+}
+
+/** Svensk Beaufort-liknande färgkodning av vindstyrka för kartpilar. */
+export function windColor(speedMs: number): string {
+  if (speedMs < 5)  return '#16a34a'  // grön — stiltje/lätt
+  if (speedMs < 10) return '#eab308'  // gul — frisk
+  if (speedMs < 15) return '#ea580c'  // orange — hård
+  return '#dc2626'                     // röd — storm
 }
 
 /** Konvertera grader till svensk kompass-förkortning (N, NO, O, ...) */
