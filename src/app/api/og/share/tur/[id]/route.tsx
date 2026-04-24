@@ -161,7 +161,7 @@ export async function GET(
                 {username[0]?.toUpperCase() ?? 'S'}
               </div>
               <div style={{ fontSize: 28, fontWeight: 700, color: 'rgba(255,255,255,0.80)' }}>
-                @{username}
+                {`@${username}`}
               </div>
             </div>
             <div style={{
