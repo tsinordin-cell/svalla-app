@@ -10,6 +10,7 @@ import ShareButton from './ShareButton'
 import ShareTripModal from './ShareTripModal'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
+import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
@@ -336,6 +337,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             fontSize: 11, fontWeight: 600, color: 'var(--acc)',
           }}>⚓⚓⚓</div>
         )}
+
+        {/* Tre-punkts-meny — egna inlägg: redigera/radera/exportera.
+            Andras inlägg: rapportera. Ej inloggade: ingen knapp.
+            TripActions löser själva synlighetslogiken. */}
+        <div onClick={e => e.stopPropagation()} style={{ flexShrink: 0 }}>
+          <TripActions tripId={trip.id} ownerId={trip.user_id} />
+        </div>
 
       </div>
 
