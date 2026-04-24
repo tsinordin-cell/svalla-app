@@ -426,19 +426,33 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           if (stats.length === 0) return null
           return (
             <div style={{
-              background: 'var(--white)', borderRadius: 20,
-              boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
-              display: 'flex', marginBottom: 16, overflow: 'hidden',
+              background: 'var(--navy, #070f18)',
+              borderRadius: 20,
+              boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
+              display: 'flex',
+              marginBottom: 16,
+              marginTop: -20,
+              overflow: 'hidden',
             }}>
               {stats.map(({ val, unit, label }, i) => (
                 <div key={label} style={{
-                  flex: 1, padding: '14px 0', textAlign: 'center',
-                  borderRight: i < stats.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none',
+                  flex: 1, padding: '16px 0', textAlign: 'center',
+                  borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
                 }}>
-                  <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.5px' }}>
-                    {val}{unit && <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>{unit}</span>}
+                  <div style={{
+                    fontSize: 22, fontWeight: 750, color: '#fff',
+                    lineHeight: 1, letterSpacing: '-0.02em',
+                    fontVariantNumeric: 'tabular-nums',
+                    display: 'inline-flex', alignItems: 'baseline', gap: 2,
+                  }}>
+                    {val}
+                    {unit && <span style={{ fontSize: 11, fontWeight: 500, color: 'rgba(255,255,255,0.5)', marginLeft: 2 }}>{unit}</span>}
+                    {label === 'Toppfart' && val && <span style={{ fontSize: 10, color: 'var(--amber, #c96e2a)', marginLeft: 2 }}>↗</span>}
                   </div>
-                  <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--txt3)', marginTop: 4 }}>
+                  <div style={{
+                    fontSize: 10.5, fontWeight: 500, color: 'rgba(255,255,255,0.4)',
+                    marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.09em',
+                  }}>
                     {label}
                   </div>
                 </div>

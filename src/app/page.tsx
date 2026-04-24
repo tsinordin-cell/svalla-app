@@ -103,9 +103,9 @@ section{padding:100px 40px}
 .section-header{margin-bottom:56px}
 .section-header.centered{text-align:center}
 .section-header.centered .section-sub{margin:0 auto}
-.concept-section{background:var(--white)}
+.concept-section{background:var(--sand)}
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:8px}
-.pillar{padding:52px 40px;background:var(--sand-light);transition:.3s;cursor:default;}
+.pillar{padding:52px 40px;background:var(--white);transition:.3s;cursor:default;}
 .pillar:hover{background:var(--white);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .pillar:first-child{border-radius:var(--r) 0 0 var(--r)}
 .pillar:last-child{border-radius:0 var(--r) var(--r) 0}
@@ -115,7 +115,7 @@ section{padding:100px 40px}
 .pillar-icon.accent{background:rgba(232,146,74,.1)}
 .pillar h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--sea);margin-bottom:12px}
 .pillar p{font-size:14.5px;color:var(--muted);line-height:1.65}
-.featured-section{background:var(--sand-light)}
+.featured-section{background:var(--sand)}
 .krog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .krog-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .krog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
@@ -147,10 +147,10 @@ section{padding:100px 40px}
 .step-num{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent);margin:0 auto 20px;}
 .step h4{font-size:16px;font-weight:600;color:var(--white);margin-bottom:10px}
 .step p{font-size:13.5px;color:rgba(255,255,255,.6);line-height:1.6}
-.routes-section{background:var(--white)}
+.routes-section{background:var(--sand)}
 .routes-scroll{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
 .routes-scroll::-webkit-scrollbar{display:none}
-.route-card{flex-shrink:0;width:280px;border-radius:var(--r);overflow:hidden;background:var(--sand-light);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
+.route-card{flex-shrink:0;width:280px;border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .route-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .route-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
 .route-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,94,.85);color:var(--white);font-size:10px;font-weight:700;border-radius:5px;padding:3px 9px;backdrop-filter:blur(4px);}
@@ -181,7 +181,7 @@ section{padding:100px 40px}
 .stat-num{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,54px);font-weight:800;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:8px;}
 .stat-label{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5}
 .stat-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px}
-.testimonial-section{background:var(--sand-light)}
+.testimonial-section{background:var(--sand)}
 .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .testimonial{background:var(--white);border-radius:var(--r);padding:32px 28px;box-shadow:var(--shadow);position:relative;}
 .testimonial::before{content:'"';font-family:'Playfair Display',serif;font-size:72px;color:rgba(45,125,138,.1);position:absolute;top:12px;left:20px;line-height:1;}
@@ -248,7 +248,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .auth-m-forgot{text-align:right;font-size:12px;color:#0a7b8c;font-weight:600;cursor:pointer;margin-top:-8px;margin-bottom:4px;display:block}
 @keyframes authIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 /* ── Destinations ── */
-.destinations-section{background:var(--white)}
+.destinations-section{background:var(--sand)}
 .destinations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .dest-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .dest-card:hover .dest-card-bg{transform:scale(1.05)}
@@ -262,7 +262,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* ── Activities ── */
-.activities-section{background:var(--sand-light)}
+.activities-section{background:var(--sand)}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .activity-card{background:var(--white);border-radius:var(--r);padding:32px 28px;box-shadow:var(--shadow);transition:.3s}
 .activity-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -345,7 +345,7 @@ const LANDING_HTML = `
   </a>
   <ul class="nav-links">
     <li class="nav-dropdown">
-      <a href="/upptack">Upptäck</a>
+      <a href="#">Upptäck</a>
       <div class="nav-mega">
         <div class="nav-mega-inner">
           <div class="nav-mega-grid">
@@ -812,7 +812,9 @@ const LANDING_HTML = `
       <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
       <div class="footer-flags">🇸🇪</div>
       <div class="footer-social">
-        <a href="https://www.instagram.com/svalla.app" target="_blank" rel="noopener noreferrer" title="Instagram">📸</a>
+        <a href="#" title="Instagram">📸</a>
+        <a href="#" title="TikTok">🎵</a>
+        <a href="#" title="Facebook">👤</a>
       </div>
     </div>
   </div>

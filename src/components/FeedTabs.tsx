@@ -4,6 +4,7 @@ import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
+import Pill from '@/components/ui/Pill'
 
 const BOAT_FILTERS = [
   { value: 'alla',     label: 'Alla' },
@@ -118,43 +119,25 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
     <>
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
-        <div className="filter-scroll" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
+        <div className="filter-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
           {SORT_OPTIONS.map(s => (
-            <button
+            <Pill
               key={s.value}
+              active={sortKey === s.value}
               onClick={() => setSortKey(s.value)}
-              style={{
-                flexShrink: 0, padding: '5px 14px', borderRadius: 999,
-                border: `1.5px solid ${sortKey === s.value ? '#0a7b8c' : 'rgba(22,45,58,0.10)'}`,
-                background: sortKey === s.value ? '#0a7b8c' : '#fff',
-                color: sortKey === s.value ? '#fff' : 'var(--ink-muted, #6a8a96)',
-                boxShadow: sortKey === s.value ? '0 2px 8px rgba(10,123,140,0.25)' : 'none',
-                fontSize: 11, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
-                transition: 'all .12s',
-                WebkitTapHighlightColor: 'transparent',
-              }}
+              style={s.value === 'magic' && sortKey !== s.value ? { color: 'var(--amber, #c96e2a)' } : undefined}
             >
               {s.label}
-            </button>
+            </Pill>
           ))}
-          <button
+          <Pill
+            active={boatFilter !== 'alla'}
             onClick={() => setShowBoatSheet(true)}
             aria-label="Filtrera båttyp"
-            style={{
-              flexShrink: 0, padding: '5px 14px', borderRadius: 999,
-              border: `1.5px solid ${boatFilter !== 'alla' ? '#0a7b8c' : 'rgba(22,45,58,0.10)'}`,
-              background: boatFilter !== 'alla' ? '#0a7b8c' : '#fff',
-              color: boatFilter !== 'alla' ? '#fff' : 'var(--ink-muted, #6a8a96)',
-              boxShadow: boatFilter !== 'alla' ? '0 2px 8px rgba(10,123,140,0.25)' : 'none',
-              fontSize: 11, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
-              display: 'inline-flex', alignItems: 'center', gap: 4,
-              transition: 'all .12s',
-              WebkitTapHighlightColor: 'transparent',
-            }}
           >
             {boatFilter === 'alla' ? 'Båttyp' : activeBoat.label}
-            <span style={{ fontSize: 9, opacity: 0.8 }}>▾</span>
-          </button>
+            <span style={{ fontSize: 9, opacity: 0.7, marginLeft: 2 }}>▾</span>
+          </Pill>
         </div>
       </div>
 

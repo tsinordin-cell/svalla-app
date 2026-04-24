@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Svalla</string>
-    <string name="title_activity_main">Svalla</string>
-    <string name="package_name">se.svalla.app</string>
-    <string name="custom_url_scheme">se.svalla.app</string>
-</resources>
