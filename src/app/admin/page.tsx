@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
@@ -31,7 +31,7 @@ const ADMIN_TOOLS = [
 ]
 
 export default async function AdminPage() {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin')

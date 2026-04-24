@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 
@@ -37,7 +37,7 @@ export default async function IslandPage({ params }: Props) {
   if (!island) notFound()
 
   // Hämta antal unika besökare för denna ö
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
   const { count: visitorCount } = await supabase
     .from('visited_islands')
     .select('*', { count: 'exact', head: true })
@@ -235,7 +235,7 @@ export default async function IslandPage({ params }: Props) {
                     minWidth: 36,
                     height: 36,
                     borderRadius: 10,
-                    background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                    background: 'var(--grad-sea)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

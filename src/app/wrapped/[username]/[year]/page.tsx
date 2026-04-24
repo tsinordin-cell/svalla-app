@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { Trip } from '@/lib/supabase'
@@ -66,7 +66,7 @@ export default async function WrappedPage({ params }: Props) {
   const yr = parseInt(year, 10)
   if (isNaN(yr) || yr < 2020 || yr > new Date().getFullYear() + 1) notFound()
 
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data: userRow } = await supabase
     .from('users')

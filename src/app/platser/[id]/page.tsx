@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ export const revalidate = 60   // refresh reviews regularly
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
   const { data } = await supabase.from('restaurants').select('name, description, island, image_url, tags').eq('id', id).single()
   if (!data) return { title: 'Restaurang – Svalla' }
   const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data, error } = await supabase
     .from('restaurants')

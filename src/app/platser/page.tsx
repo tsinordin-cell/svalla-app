@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import type { Metadata } from 'next'
 import PlatserClient from '@/components/PlatserClient'
@@ -29,7 +29,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 3600 // Cache for 1 hour
 
 export default async function PlatserPage() {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data: restaurants, error } = await supabase
     .from('restaurants')

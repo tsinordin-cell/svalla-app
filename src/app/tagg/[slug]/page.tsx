@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Trip } from '@/lib/supabase'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -22,7 +22,7 @@ export default async function TagPage({ params }: Props) {
   const { slug } = await params
   const tag = decodeURIComponent(slug).toLowerCase()
 
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   // Hämta turer vars caption innehåller #tag (word-boundary via regex i JS efter fetch)
   const { data: rawTrips, error } = await supabase
@@ -126,7 +126,7 @@ export default async function TagPage({ params }: Props) {
             <Link href="/logga" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '12px 24px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
             }}>
               Logga tur

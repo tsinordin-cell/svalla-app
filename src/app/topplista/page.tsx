@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
@@ -23,7 +23,7 @@ function medal(rank: number) {
 }
 
 export default async function ToplistaPage() {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const weekAgo  = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
   const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
@@ -147,7 +147,7 @@ export default async function ToplistaPage() {
 
         {/* ── Community stats ── */}
         <div style={{
-          background: 'linear-gradient(135deg,var(--txt),#1e5c82)',
+          background: 'linear-gradient(135deg,var(--txt),var(--sea))',
           borderRadius: 20, padding: '18px 20px', marginBottom: 16,
           boxShadow: '0 6px 28px rgba(26,58,94,0.3)',
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10,
@@ -241,7 +241,7 @@ export default async function ToplistaPage() {
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
           <Link href="/logga" style={{
             display: 'inline-block', padding: '12px 32px', borderRadius: 14,
-            background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+            background: 'var(--grad-acc)',
             color: '#fff', fontWeight: 600, fontSize: 14,
             boxShadow: '0 4px 16px rgba(201,110,42,0.4)', textDecoration: 'none',
           }}>
@@ -317,7 +317,7 @@ function LeaderboardSection({
                   width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
                   background: isTop3
                     ? `linear-gradient(135deg, ${accentColor}, ${accentColor}cc)`
-                    : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                    : 'var(--grad-sea)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 14, fontWeight: 700, color: '#fff',
                   overflow: 'hidden',

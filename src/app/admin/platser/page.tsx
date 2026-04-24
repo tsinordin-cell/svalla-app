@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import PlatsAdminClient from './PlatsAdminClient'
 
@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function AdminPlatserPage() {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/platser')

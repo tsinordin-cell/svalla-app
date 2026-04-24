@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -160,7 +160,7 @@ export default async function RutterPage({
     vyParam === 'oar' ? 'oar'
     : vyParam === 'farjor' ? 'farjor'
     : 'rutter'
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const baseQuery = supabase
     .from('tours')
