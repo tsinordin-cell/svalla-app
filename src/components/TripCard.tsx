@@ -9,6 +9,7 @@ import LikeButton from './LikeButton'
 import Comments from './Comments'
 import TripShareModal from './TripShareModal'
 import ShareTripModal from './ShareTripModal'
+import { IconShare } from '@/components/ui/icons'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 import TripActions from './TripActions'
@@ -68,13 +69,13 @@ function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
   return (
     <div style={{
       width: '100%', height: H, borderRadius: 10, overflow: 'hidden',
-      background: 'linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08))',
-      border: '1px solid rgba(30,92,130,0.12)',
+      background: 'var(--route-preview-bg)',
+      border: '1px solid var(--sea-12)',
       marginBottom: 8,
     }}>
       <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
         {/* Shadow line */}
-        <path d={d} fill="none" stroke="rgba(30,92,130,0.15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d={d} fill="none" stroke="var(--sea-15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
         {/* Main route line */}
         <path d={d} fill="none" stroke="var(--sea)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
         {/* Start dot */}
@@ -378,7 +379,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   borderRadius: '14px 4px 4px 14px',
                   overflow: 'hidden',
                   position: 'relative',
-                  background: 'rgba(10,123,140,0.12)',
+                  background: 'var(--teal-12)',
                   cursor: 'zoom-in',
                 }}
                 onClick={e => { e.stopPropagation(); setLightbox('photo') }}
@@ -432,7 +433,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           ) : hasPhoto ? (
             /* Foto(n) — karusell eller enskilt 4:3 */
             <div
-              style={{ position: 'relative', width: '100%', aspectRatio: '4/3', background: 'rgba(10,123,140,0.12)', overflow: 'hidden', cursor: 'zoom-in' }}
+              style={{ position: 'relative', width: '100%', aspectRatio: '4/3', background: 'var(--teal-12)', overflow: 'hidden', cursor: 'zoom-in' }}
               onClick={e => { e.stopPropagation(); setLightbox('photo') }}
             >
               {allPhotos.length > 1 ? (
@@ -562,9 +563,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 22, height: 22 }}>
-              <path d="M12 3.2 V 15 M 7.5 7.5 L 12 3 L 16.5 7.5 M 5 13.5 V 19 A 2 2 0 0 0 7 21 H 17 A 2 2 0 0 0 19 19 V 13.5"/>
-            </svg>
+            <IconShare size={22} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
             <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} />

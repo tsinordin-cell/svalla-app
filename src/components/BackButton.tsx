@@ -1,5 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { IconChevronLeft } from '@/components/ui/icons'
 
 export default function BackButton({ fallback = '/feed' }: { fallback?: string }) {
   const router = useRouter()
@@ -25,9 +26,7 @@ export default function BackButton({ fallback = '/feed' }: { fallback?: string }
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-      </svg>
+      <IconChevronLeft size={18} stroke={2.5} color="var(--sea)" />
     </button>
   )
 }

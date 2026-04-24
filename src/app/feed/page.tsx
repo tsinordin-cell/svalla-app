@@ -11,6 +11,7 @@ import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
+import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
@@ -176,15 +177,13 @@ export default async function FeedPage(
         }}>
           <SvallaLogo height={26} color="var(--sea)" />
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Link href="/sok" style={{
+            <Link href="/sok" aria-label="Sök" style={{
               width: 38, height: 38, borderRadius: '50%',
               background: 'rgba(22,45,58,0.06)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0,
-            }} title="Sök">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
-                <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
-              </svg>
+            }}>
+              <IconSearch size={18} stroke={2} color="var(--sea)" />
             </Link>
             <SilentBoundary><MessageBell /></SilentBoundary>
             <SilentBoundary><NotificationBell /></SilentBoundary>

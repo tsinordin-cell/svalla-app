@@ -100,7 +100,7 @@ export default function Nav() {
               width: 26, height: 26, borderRadius: '50%',
               background: active
                 ? 'var(--grad-sea)'
-                : 'rgba(10,123,140,0.15)',
+                : 'var(--teal-15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 11, fontWeight: 600,
               color: active ? '#fff' : 'var(--sea)',

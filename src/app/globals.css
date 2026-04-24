@@ -64,6 +64,13 @@
   --radius-pill:     999px;
   --map-preview-bg:  #e8efe3;
   --stats-row-bg:    #fafcfd;
+  /* ── Alpha surface tokens — replaces hardcoded rgba in components ── */
+  --teal-12:          rgba(10,123,140,0.12);
+  --teal-15:          rgba(10,123,140,0.15);
+  --sea-12:           rgba(30,92,130,0.12);
+  --sea-15:           rgba(30,92,130,0.15);
+  --acc-12:           rgba(201,110,42,0.12);
+  --route-preview-bg: linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08));
 }
 
 /* ── Reset & base ── */
@@ -186,6 +193,13 @@ img {
   --grad-acc:      linear-gradient(135deg, #9e5318, #c97030);
   --map-preview-bg: #0d1a12;
   --stats-row-bg:   #0b1822;
+  /* ── Alpha surface tokens — dark overrides ── */
+  --teal-12:          rgba(74,184,212,0.11);
+  --teal-15:          rgba(74,184,212,0.14);
+  --sea-12:           rgba(78,156,194,0.14);
+  --sea-15:           rgba(78,156,194,0.16);
+  --acc-12:           rgba(232,146,74,0.14);
+  --route-preview-bg: linear-gradient(135deg, rgba(74,184,212,0.05), rgba(74,184,212,0.09));
   color-scheme: dark;
 }
 
