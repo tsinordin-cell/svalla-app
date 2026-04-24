@@ -80,12 +80,15 @@ export default function ChatPage() {
   const [otherId, setOtherId] = useState<string | null>(null)
   const [otherReadAt, setOtherReadAt] = useState<string | null>(null)
 
-  // Long-press action sheet
+  // Long-press action sheet (per meddelande)
   const [actionSheet, setActionSheet] = useState<{
     msgId: string | null
     isOwn: boolean
     show: boolean
   }>({ msgId: null, isOwn: false, show: false })
+
+  // Konversationsmeny (⋯ i headern)
+  const [convMenu, setConvMenu] = useState(false)
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const listRef = useRef<HTMLDivElement>(null)
@@ -362,6 +365,7 @@ export default function ChatPage() {
 
   async function handleLeaveConversation() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
+    setConvMenu(false)
     if (!me || !conv) return
     if (!confirm('Radera konversationen? Den försvinner bara för dig.')) return
     const ok = await leaveConversation(supabase, me, conv.id)
@@ -374,6 +378,7 @@ export default function ChatPage() {
 
   async function handleBlockUser() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
+    setConvMenu(false)
     if (!me || !otherId) return
     if (!confirm(`Blockera ${otherName}? Du kan inte DM:a varandra längre.`)) return
     const ok = await blockUser(supabase, me, otherId)
@@ -490,6 +495,24 @@ export default function ChatPage() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
+
+          {/* ⋯ — absolut höger, konversationsmeny */}
+          <button
+            onClick={() => setConvMenu(true)}
+            aria-label="Mer"
+            style={{
+              position: 'absolute', right: 0, top: 10,
+              width: 40, height: 40,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              borderRadius: radius.sm, border: 'none', background: 'transparent',
+              cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+              zIndex: 1,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20, color: 'var(--sea)' }}>
+              <circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" />
+            </svg>
+          </button>
 
           {/* Centrerad avatar + namn — tappable till profil */}
           <Link href={otherUsername ? `/u/${otherUsername}` : '#'} style={{
@@ -655,15 +678,7 @@ export default function ChatPage() {
                   flexDirection: m.mine ? 'row-reverse' : 'row',
                   marginTop: m.sameAsPrev ? 2 : 12,
                   opacity: m.optimistic ? 0.6 : 1,
-                  cursor: m.mine ? 'pointer' : 'default',
                 }}
-                onMouseDown={() => onLongPressStart(m.id, m.mine)}
-                onMouseUp={onLongPressEnd}
-                onMouseLeave={onLongPressEnd}
-                onTouchStart={() => onLongPressStart(m.id, m.mine)}
-                onTouchEnd={onLongPressEnd}
-                onClick={() => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) }}
-                onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
               >
                 {/* Avatar — others only, hidden when not last in group */}
                 {!m.mine && (
@@ -682,14 +697,25 @@ export default function ChatPage() {
                   </div>
                 )}
 
-                {/* Bubble column — geo-bubblor bryter ut 75%-buren för bred kartvy */}
-                <div style={{
-                  maxWidth: m.attachment_type === 'geo' ? '88%' : '75%',
-                  width: m.attachment_type === 'geo' ? '88%' : 'auto',
-                  display: 'flex', flexDirection: 'column',
-                  alignItems: m.mine ? 'flex-end' : 'flex-start',
-                  gap: 3,
-                }}>
+                {/* Bubble column — händelsehanterare här så bara bubblan triggar */}
+                <div
+                  style={{
+                    maxWidth: m.attachment_type === 'geo' ? '88%' : '75%',
+                    width: m.attachment_type === 'geo' ? '88%' : 'auto',
+                    display: 'flex', flexDirection: 'column',
+                    alignItems: m.mine ? 'flex-end' : 'flex-start',
+                    gap: 3,
+                    cursor: m.mine ? 'pointer' : 'default',
+                    userSelect: 'none',
+                  }}
+                  onMouseDown={() => onLongPressStart(m.id, m.mine)}
+                  onMouseUp={onLongPressEnd}
+                  onMouseLeave={onLongPressEnd}
+                  onTouchStart={() => onLongPressStart(m.id, m.mine)}
+                  onTouchEnd={onLongPressEnd}
+                  onClick={() => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) }}
+                  onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
+                >
                   {/* Image */}
                   {m.attachment_type === 'image' && m.attachment_url && (
                     <a href={m.attachment_url} target="_blank" rel="noreferrer" style={{ display: 'block' }}>
@@ -838,7 +864,7 @@ export default function ChatPage() {
         </form>
       )}
 
-      {/* ── Action sheet (long-press) ── */}
+      {/* ── Meddelandets action sheet (lång tryckning / tap på eget meddelande) ── */}
       {actionSheet.show && (
         <>
           <div
@@ -856,14 +882,34 @@ export default function ChatPage() {
               <ActionSheetItem icon="🗑️" label="Radera meddelande" color="#dc2626"
                 onClick={() => handleDeleteMessage(actionSheet.msgId!)} />
             )}
-            <ActionSheetItem icon="💬" label="Radera konversation" color="#dc2626"
+            <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
+              onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })} />
+          </div>
+        </>
+      )}
+
+      {/* ── Konversationsmeny (⋯ i headern) ── */}
+      {convMenu && (
+        <>
+          <div
+            onClick={() => setConvMenu(false)}
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', zIndex: 200 }}
+          />
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 201,
+            background: 'var(--white)', borderRadius: `${radius.lg}px ${radius.lg}px 0 0`,
+            padding: `8px 0 calc(20px + env(safe-area-inset-bottom))`,
+            boxShadow: shadow.md,
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '4px auto 16px' }} />
+            <ActionSheetItem icon="🗑️" label="Radera konversation" color="#dc2626"
               onClick={handleLeaveConversation} />
             {!conv?.is_group && otherId && (
               <ActionSheetItem icon="🚫" label={`Blockera ${otherName}`} color="#dc2626"
                 onClick={handleBlockUser} />
             )}
             <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
-              onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })} />
+              onClick={() => setConvMenu(false)} />
           </div>
         </>
       )}
