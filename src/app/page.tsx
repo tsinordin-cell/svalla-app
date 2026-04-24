@@ -345,7 +345,7 @@ const LANDING_HTML = `
   </a>
   <ul class="nav-links">
     <li class="nav-dropdown">
-      <a href="#">Upptäck</a>
+      <a href="/upptack">Upptäck</a>
       <div class="nav-mega">
         <div class="nav-mega-inner">
           <div class="nav-mega-grid">
@@ -812,9 +812,7 @@ const LANDING_HTML = `
       <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
       <div class="footer-flags">🇸🇪</div>
       <div class="footer-social">
-        <a href="#" title="Instagram">📸</a>
-        <a href="#" title="TikTok">🎵</a>
-        <a href="#" title="Facebook">👤</a>
+        <a href="https://www.instagram.com/svalla.app" target="_blank" rel="noopener noreferrer" title="Instagram">📸</a>
       </div>
     </div>
   </div>

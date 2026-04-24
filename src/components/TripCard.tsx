@@ -253,11 +253,11 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
   // Stats — only show speed when there's meaningful distance (avoids GPS-noise phantoms)
   const meaningfulDist = trip.distance >= 0.1
-  const stats: { label: string; value: string }[] = []
-  if (meaningfulDist)                                                stats.push({ label: 'Distans',   value: `${fmt(trip.distance)} NM` })
+  const stats: { label: string; value: string; unit?: string }[] = []
+  if (meaningfulDist)                                                stats.push({ label: 'Distans',   value: fmt(trip.distance),            unit: 'NM' })
   if (dur)                                                           stats.push({ label: 'Tid',       value: dur })
-  if (meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5)     stats.push({ label: 'Snittfart', value: `${fmt(trip.average_speed_knots)} kn` })
-  if (meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5)         stats.push({ label: 'Toppfart',  value: `${fmt(trip.max_speed_knots)} kn` })
+  if (meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5)     stats.push({ label: 'Snittfart', value: fmt(trip.average_speed_knots), unit: 'kn' })
+  if (meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5)         stats.push({ label: 'Toppfart',  value: fmt(trip.max_speed_knots),     unit: 'kn' })
 
   const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
@@ -270,48 +270,47 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       onClick={() => router.push(`/tur/${trip.id}`)}
       className="trip-card card-hover"
       style={{
-        background: 'var(--surface-1, #fafeff)',
-        borderRadius: radius.lg,
+        background: 'var(--surface, #ffffff)',
+        borderRadius: 22,
         overflow: 'hidden',
-        boxShadow: '0 1px 0 rgba(10,123,140,0.06), 0 2px 8px rgba(0,45,60,0.06), 0 4px 20px rgba(0,45,60,0.04)',
-        border: '1px solid rgba(10,123,140,0.09)',
+        boxShadow: 'var(--shadow-card, 0 4px 24px rgba(0,45,60,0.10))',
+        border: '1px solid rgba(22,45,58,0.04)',
         WebkitTapHighlightColor: 'transparent',
         cursor: 'pointer',
       }}
     >
 
       {/* ── 1. Header ── */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 16px 11px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px 14px' }}>
         <Link
           href={`/u/${username}`}
           onClick={e => e.stopPropagation()}
-          style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flex: 1, minWidth: 0 }}
+          style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1, minWidth: 0 }}
         >
           {/* Avatar — long-press visar teaser */}
           <ProfileTeaserPopover username={username}>
             <div style={{
-              width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
+              width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
               position: 'relative',
               background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
-              border: '2px solid rgba(255,255,255,0.9)',
-              boxShadow: '0 1px 4px rgba(0,45,60,0.12)',
+              border: '1px solid rgba(22,45,58,0.06)',
             }}>
               {avatar
-                ? <Image src={avatar} alt={username} fill sizes="36px" style={{ objectFit: 'cover' }} />
+                ? <Image src={avatar} alt={username} fill sizes="40px" style={{ objectFit: 'cover' }} />
                 : username[0]?.toUpperCase() ?? '?'}
             </div>
           </ProfileTeaserPopover>
 
           {/* Name + meta */}
           <div style={{ minWidth: 0 }}>
-            <div style={{ fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold, color: 'var(--txt)', lineHeight: 1.2 }}>
+            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink, #162d3a)', lineHeight: 1.2 }}>
               {username}
             </div>
             <div style={{
-              fontSize: 11, color: 'var(--txt3)', marginTop: 2,
-              display: 'flex', alignItems: 'center', gap: 4,
+              fontSize: 12.5, color: 'var(--ink-muted, #6a8a96)', marginTop: 2, fontWeight: 500,
+              display: 'flex', alignItems: 'center', gap: 5,
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
               <span suppressHydrationWarning title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgo(trip.created_at)}</span>
@@ -333,14 +332,21 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           </div>
         </Link>
 
-        {/* Pinnar badge */}
+        {/* Magisk badge */}
         {trip.pinnar_rating === 3 && (
           <div style={{
             flexShrink: 0,
-            background: 'rgba(201,110,42,0.1)',
-            borderRadius: 20, padding: '4px 9px',
-            fontSize: 11, fontWeight: 600, color: 'var(--acc)',
-          }}>⚓⚓⚓</div>
+            display: 'inline-flex', alignItems: 'center', gap: 5,
+            padding: '4px 10px 4px 8px',
+            borderRadius: 999,
+            background: 'var(--amber-50, #fbefe4)',
+            border: '1px solid rgba(201,110,42,0.18)',
+            color: 'var(--amber, #c96e2a)',
+            fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
+          }}>
+            <span style={{ fontSize: 10, letterSpacing: '-1px' }}>⚓⚓⚓</span>
+            Magisk tur
+          </div>
         )}
 
         {/* Tre-punkts-meny — egna inlägg: redigera/radera/exportera.
@@ -352,56 +358,27 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       </div>
 
-      {/* ── 1b. Route preview (when no photo but route exists) ── */}
-      {!hasPhoto && routePoints && routePoints.length >= 3 && (
-        <div style={{ padding: '12px 16px' }}>
-          <RoutePreview points={routePoints} />
-        </div>
-      )}
-
-      {/* ── 2. Stats row ── */}
-      {stats.length > 0 && (
-        <div style={{
-          display: 'flex',
-          borderTop: '1px solid rgba(10,123,140,0.07)',
-          borderBottom: '1px solid rgba(10,123,140,0.07)',
-          background: 'rgba(10,123,140,0.025)',
-        }}>
-          {stats.map((s, i) => (
-            <div key={s.label} style={{
-              flex: 1,
-              padding: '9px 8px 8px',
-              textAlign: 'center',
-              borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.07)' : 'none',
-            }}>
-              <div style={{
-                fontSize: fontSize.subtitle, fontWeight: fontWeight.bold, color: 'var(--txt)',
-                lineHeight: 1.1, letterSpacing: '-0.5px', fontVariantNumeric: 'tabular-nums',
-              }}>
-                {s.value}
-              </div>
-              <div style={{
-                fontSize: 11, color: 'var(--txt3)', marginTop: 2,
-                fontWeight: fontWeight.medium, letterSpacing: '0.3px', textTransform: 'uppercase',
-              }}>
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* ── 3. Media (carousel + karta) ── */}
+      {/* ── 2. Media (foto + karta) ── */}
       {hasMedia && (
         <div>
           {hasPhoto && hasRoute ? (
-            /* Carousel + karta side-by-side (2:1) */
+            /* 50/50 grid med padding och rundade inre hörn */
             <div style={{
-              display: 'flex', width: '100%', aspectRatio: '2/1',
-              background: 'var(--sea-d)', overflow: 'hidden',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 3,
+              padding: '0 14px',
+              marginBottom: 12,
             }}>
               <div
-                style={{ position: 'relative', flex: 1, overflow: 'hidden', cursor: 'zoom-in' }}
+                style={{
+                  aspectRatio: '1/1',
+                  borderRadius: '14px 4px 4px 14px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  background: 'rgba(10,123,140,0.12)',
+                  cursor: 'zoom-in',
+                }}
                 onClick={e => { e.stopPropagation(); setLightbox('photo') }}
               >
                 {allPhotos.length > 1 ? (
@@ -438,8 +415,11 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               </div>
               <div
                 style={{
-                  position: 'relative', flex: 1, overflow: 'hidden',
-                  borderLeft: '1px solid rgba(255,255,255,0.06)',
+                  aspectRatio: '1/1',
+                  borderRadius: '4px 14px 14px 4px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  background: '#e8efe3',
                   cursor: 'zoom-in',
                 }}
                 onClick={e => { e.stopPropagation(); setLightbox('map') }}
@@ -448,9 +428,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               </div>
             </div>
           ) : hasPhoto ? (
-            /* Foto(n) — karusell eller enskilt 3:2 */
+            /* Foto(n) — karusell eller enskilt 4:3 */
             <div
-              style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d)', overflow: 'hidden', cursor: 'zoom-in' }}
+              style={{ position: 'relative', width: '100%', aspectRatio: '4/3', background: 'rgba(10,123,140,0.12)', overflow: 'hidden', cursor: 'zoom-in' }}
               onClick={e => { e.stopPropagation(); setLightbox('photo') }}
             >
               {allPhotos.length > 1 ? (
@@ -487,19 +467,78 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : (
             /* Bara rutt */
-            <div
-              style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d)', overflow: 'hidden', cursor: 'zoom-in' }}
-              onClick={e => { e.stopPropagation(); setLightbox('map') }}
-            >
-              <RouteMapSVG points={routePoints!} w={600} h={262} />
+            <div style={{ padding: '0 14px', marginBottom: 12 }}>
+              <div
+                style={{ position: 'relative', width: '100%', aspectRatio: '16/7', borderRadius: 14, overflow: 'hidden', background: '#e8efe3', cursor: 'zoom-in' }}
+                onClick={e => { e.stopPropagation(); setLightbox('map') }}
+              >
+                <RouteMapSVG points={routePoints!} w={600} h={262} />
+              </div>
             </div>
           )}
         </div>
       )}
 
-      {/* ── 4. Actions ── */}
-      <div onClick={e => e.stopPropagation()} style={{ padding: '11px 16px 4px' }}>
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      {/* ── 3. Stats row ── */}
+      {stats.length > 0 && (
+        <div style={{
+          display: 'flex',
+          borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+          borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+          background: '#fafcfd',
+        }}>
+          {stats.map((s, i) => (
+            <div key={s.label} style={{
+              flex: 1,
+              padding: '12px 8px 11px',
+              textAlign: 'center',
+              borderLeft: i > 0 ? '1px solid var(--hairline, rgba(22,45,58,0.08))' : 'none',
+            }}>
+              <div style={{
+                fontSize: 20, fontWeight: 750, color: 'var(--ink, #162d3a)',
+                lineHeight: 1, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums',
+              }}>
+                {s.value}
+                {s.unit && (
+                  <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--ink-muted, #6a8a96)', marginLeft: 2 }}>
+                    {s.unit}
+                  </span>
+                )}
+              </div>
+              <div style={{
+                fontSize: 10, color: 'var(--ink-soft, #8ea7b1)', marginTop: 3,
+                fontWeight: 500, letterSpacing: '0.09em', textTransform: 'uppercase',
+              }}>
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* ── 4. Caption ── */}
+      {caption ? (
+        <div style={{ padding: '14px 22px 4px', fontSize: 14, color: 'var(--ink, #162d3a)', lineHeight: 1.55 }}>
+          <span style={{ fontWeight: 600 }}>{username}</span>
+          {' '}
+          <span>{renderMentions(captionTruncated)}</span>
+          {caption.length > MAX_CAPTION && (
+            <button
+              onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: 13, color: 'var(--ink-muted, #6a8a96)', padding: '0 0 0 4px', fontWeight: 500,
+              }}
+            >
+              {expanded ? 'Visa mindre' : 'Visa mer'}
+            </button>
+          )}
+        </div>
+      ) : null}
+
+      {/* ── 5. Actions ── */}
+      <div onClick={e => e.stopPropagation()} style={{ padding: '12px 22px 16px' }}>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
           <LikeButton
             tripId={trip.id}
             initialCount={trip.likes_count}
@@ -517,13 +556,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             aria-label="Skicka som meddelande"
             style={{
               background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px',
-              color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 5,
+              color: 'var(--ink-soft, #8ea7b1)', display: 'flex', alignItems: 'center', gap: 5,
               fontSize: 13, fontWeight: 600,
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} style={{ width: 20, height: 20 }}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 22, height: 22 }}>
+              <path d="M12 3.2 V 15 M 7.5 7.5 L 12 3 L 16.5 7.5 M 5 13.5 V 19 A 2 2 0 0 0 7 21 H 17 A 2 2 0 0 0 19 19 V 13.5"/>
             </svg>
           </button>
           <div style={{ marginLeft: 'auto' }}>
@@ -532,33 +571,11 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         </div>
       </div>
 
-      {/* ── 5. Caption ── */}
-      {caption ? (
-        <div style={{ padding: '4px 16px 10px', fontSize: fontSize.body, color: 'var(--txt)', lineHeight: 1.55 }}>
-          <span style={{ fontWeight: fontWeight.semibold }}>{username}</span>
-          {' '}
-          <span>{renderMentions(captionTruncated)}</span>
-          {caption.length > MAX_CAPTION && (
-            <button
-              onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                fontSize: 13, color: 'var(--txt3)', padding: '0 0 0 4px', fontWeight: 600,
-              }}
-            >
-              {expanded ? 'Visa mindre' : 'Visa mer'}
-            </button>
-          )}
-        </div>
-      ) : (
-        <div style={{ height: 8 }} />
-      )}
-
       {/* ── 6. Tagged crew ── */}
       {trip.tagged_users && trip.tagged_users.length > 0 && (
         <div
           onClick={e => e.stopPropagation()}
-          style={{ padding: '0 16px 14px', fontSize: 13, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}
+          style={{ padding: '0 22px 14px', fontSize: 12.5, color: 'var(--ink-muted, #6a8a96)', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 13, height: 13, flexShrink: 0, opacity: 0.6 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />

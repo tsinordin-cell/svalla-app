@@ -43,6 +43,25 @@
   --grad-sea:      linear-gradient(135deg, #1e5c82, #2d7d8a);
   --grad-sea-hero: linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%);
   --grad-acc:      linear-gradient(135deg, #c96e2a, #e07828);
+  /* ── Design uplift tokens ── */
+  --surface:         #ffffff;
+  --ink:             #162d3a;
+  --ink-muted:       #6a8a96;
+  --ink-soft:        #8ea7b1;
+  --teal:            #0a7b8c;
+  --teal-600:        #086979;
+  --teal-50:         #e6f1f3;
+  --navy:            #070f18;
+  --amber:           #c96e2a;
+  --amber-50:        #fbefe4;
+  --hairline:        rgba(22,45,58,0.08);
+  --hairline-strong: rgba(22,45,58,0.12);
+  --shadow-card:     0 4px 24px rgba(0,45,60,0.10);
+  --shadow-soft:     0 1px 3px rgba(0,45,60,0.06), 0 4px 16px rgba(0,45,60,0.05);
+  --shadow-lifted:   0 10px 30px rgba(0,45,60,0.12);
+  --radius-card:     22px;
+  --radius-inner:    14px;
+  --radius-pill:     999px;
 }
 
 /* ── Reset & base ── */

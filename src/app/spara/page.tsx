@@ -117,6 +117,7 @@ export default function SparaPage() {
   // ── AI analys (pre-fetched when done phase begins) ──
   const [aiSummary,       setAiSummary]       = useState<string | null>(null)
   const [aiLoading,       setAiLoading]       = useState(false)
+  const [aiErr,           setAiErr]           = useState(false)
   const [includeAnalysis, setIncludeAnalysis] = useState(true)
 
   // ── Refs ──
@@ -439,6 +440,7 @@ export default function SparaPage() {
   async function generateAiCaption() {
     if (aiLoading) return
     setAiLoading(true)
+    setAiErr(false)
     try {
       const dist   = totalDistanceNM(points)
       const avgSpd = avgSpeedKnots(points)
@@ -459,7 +461,8 @@ export default function SparaPage() {
       })
       const { summary } = await res.json()
       if (summary) { setCaption(summary); setAiSummary(summary) }
-    } catch { /* tyst */ }
+      else setAiErr(true)
+    } catch { setAiErr(true) }
     setAiLoading(false)
   }
 
@@ -1410,6 +1413,11 @@ export default function SparaPage() {
               )}
             </button>
           </div>
+          {aiErr && (
+            <p style={{ margin: '4px 0 0', fontSize: 11, color: 'var(--err, #c0392b)' }}>
+              Kunde inte generera — försök igen
+            </p>
+          )}
           <textarea
             placeholder="Vad hände? Vad var bäst?"
             value={caption} onChange={e => setCaption(e.target.value)} maxLength={280} rows={3}
