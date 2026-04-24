@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,7 +20,9 @@ export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-req
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
-  const supabase = createClient()
+  // Även metadata-generatorn behöver server-client för att läsa trip:en
+  // (samma RLS-skäl som för själva sidan).
+  const supabase = await createServerSupabaseClient()
   const { data: trip } = await supabase
     .from('trips')
     .select('user_id, location_name, distance, boat_type, image, deleted_at')
@@ -62,7 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function TurPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const supabase = createClient()
+  // Server-client forwardar auth-cookies så RLS tillåter läsning av
+  // användarens nysparade turer direkt efter redirect från /spara eller
+  // /logga/manuell. Browser-client här orsakar 404 pga session-miss.
+  const supabase = await createServerSupabaseClient()
 
   // kolla om användaren är inloggad
   const { data: { user: currentUser } } = await supabase.auth.getUser()
