@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -78,6 +78,7 @@ export default function ChatPage() {
   const [loading, setLoading] = useState(true)
   const [sharingGeo, setSharingGeo] = useState(false)
   const [otherId, setOtherId] = useState<string | null>(null)
+  const [otherReadAt, setOtherReadAt] = useState<string | null>(null)
 
   // Long-press action sheet
   const [actionSheet, setActionSheet] = useState<{
@@ -90,6 +91,7 @@ export default function ChatPage() {
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
+  const longPressDidFire = useRef(false)
 
   // Bootstrap
   useEffect(() => {
@@ -136,6 +138,16 @@ export default function ChatPage() {
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
         await loadMessages(user.id)
+        // Hämta motpartens last_read_at för läskvitens
+        try {
+          const { data: rp } = await supabase
+            .from('conversation_participants')
+            .select('last_read_at')
+            .eq('conversation_id', id)
+            .neq('user_id', user.id)
+            .single()
+          if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
+        } catch { /* tyst */ }
         try { await markConversationRead(supabase, user.id, id) } catch { /* tyst */ }
         if (!cancel) setLoading(false)
       } catch (err) {
@@ -193,6 +205,18 @@ export default function ChatPage() {
         .on('postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${id}` },
           () => { loadMessages(me) },
+        )
+        .on('postgres_changes',
+          { event: 'UPDATE', schema: 'public', table: 'conversation_participants', filter: `conversation_id=eq.${id}` },
+          async () => {
+            const { data: rp } = await supabase
+              .from('conversation_participants')
+              .select('last_read_at')
+              .eq('conversation_id', id)
+              .neq('user_id', me)
+              .single()
+            if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
+          },
         )
         .subscribe()
     } catch {
@@ -362,9 +386,11 @@ export default function ChatPage() {
   }
 
   function onLongPressStart(msgId: string, isOwn: boolean) {
+    longPressDidFire.current = false
     longPressTimer.current = setTimeout(() => {
+      longPressDidFire.current = true
       setActionSheet({ msgId, isOwn, show: true })
-    }, 500)
+    }, 450)
   }
 
   function onLongPressEnd() {
@@ -423,8 +449,20 @@ export default function ChatPage() {
     return { ...m, mine, sameAsPrev, sameAsNext, needsDaySep, isLastInGroup }
   })
 
+  const lastReadMsgId = useMemo(() => {
+    if (!otherReadAt || !me) return null
+    const readTime = new Date(otherReadAt).getTime()
+    let result: string | null = null
+    for (const m of messages) {
+      if (m.user_id === me && !m.optimistic && new Date(m.created_at).getTime() <= readTime) {
+        result = m.id
+      }
+    }
+    return result
+  }, [otherReadAt, messages, me])
+
   return (
-    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
+    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)', overflow: 'hidden' }}>
 
       {/* ── Header — iOS-style: avatar ovan, namn under, centrerat ── */}
       <header style={{
@@ -615,12 +653,14 @@ export default function ChatPage() {
                   flexDirection: m.mine ? 'row-reverse' : 'row',
                   marginTop: m.sameAsPrev ? 2 : 12,
                   opacity: m.optimistic ? 0.6 : 1,
+                  cursor: m.mine ? 'pointer' : 'default',
                 }}
                 onMouseDown={() => onLongPressStart(m.id, m.mine)}
                 onMouseUp={onLongPressEnd}
                 onMouseLeave={onLongPressEnd}
                 onTouchStart={() => onLongPressStart(m.id, m.mine)}
                 onTouchEnd={onLongPressEnd}
+                onClick={() => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) }}
                 onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
               >
                 {/* Avatar — others only, hidden when not last in group */}
@@ -674,11 +714,14 @@ export default function ChatPage() {
                   {/* Text bubble */}
                   {m.content && (
                     <div style={{
-                      padding: '9px 14px', borderRadius: bubbleR,
-                      background: m.mine ? 'var(--sea)' : 'var(--surface-2, rgba(10,123,140,0.07))',
+                      padding: '10px 15px', borderRadius: bubbleR,
+                      background: m.mine
+                        ? 'linear-gradient(135deg, #0a7b8c 0%, #085f6e 100%)'
+                        : 'rgba(10,123,140,0.09)',
+                      border: m.mine ? 'none' : '1px solid rgba(10,123,140,0.12)',
                       color: m.mine ? '#fff' : 'var(--txt)',
-                      fontSize: fontSize.body, lineHeight: 1.4, wordBreak: 'break-word',
-                      boxShadow: m.mine ? shadow.sm : 'none',
+                      fontSize: fontSize.body, lineHeight: 1.45, wordBreak: 'break-word',
+                      boxShadow: m.mine ? '0 2px 10px rgba(10,123,140,0.30)' : 'none',
                     }}>
                       {m.content}
                     </div>
@@ -693,6 +736,20 @@ export default function ChatPage() {
                       {m.optimistic ? 'skickar…' : fmtMsgTime(m.created_at)}
                     </span>
                   )}
+
+                  {/* Read receipt — "Sett" under the last read own message */}
+                  {m.mine && m.id === lastReadMsgId && (
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: 3,
+                      padding: '0 4px',
+                    }}>
+                      <svg viewBox="0 0 22 10" width={16} height={7} fill="none">
+                        <path d="M1 5.5l3 3.5L9 1" stroke="var(--sea)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M8 5.5l3 3.5L17 1" stroke="var(--sea)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 600, letterSpacing: '0.2px' }}>Sett</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -703,12 +760,14 @@ export default function ChatPage() {
       {/* ── Input bar — hidden for request receiver until accepted ── */}
       {!(conv?.status === 'request' && me && conv.created_by !== me) && (
         <form onSubmit={send} style={{
-          background: 'var(--white)',
+          background: 'var(--glass-96)',
+          backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
           borderTop: '1px solid rgba(10,123,140,0.10)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          flexShrink: 0,
         }}>
           <div style={{
-            maxWidth: 520, margin: '0 auto', height: 56,
+            maxWidth: 520, margin: '0 auto', height: 60,
             display: 'flex', alignItems: 'center',
             gap: space[2], padding: `0 ${space[3]}px`,
           }}>
