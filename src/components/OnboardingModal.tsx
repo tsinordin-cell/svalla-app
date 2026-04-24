@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-type Screen = 0 | 1 | 2
+type Screen = 0 | 1 | 2 | 3
 
 export default function OnboardingModal() {
   const [screen, setScreen] = useState<Screen>(0)
@@ -29,7 +29,7 @@ export default function OnboardingModal() {
   }
 
   const handleNext = () => {
-    if (screen < 2) {
+    if (screen < 3) {
       setScreen((screen + 1) as Screen)
     } else {
       handleComplete()
@@ -198,6 +198,45 @@ export default function OnboardingModal() {
           </p>
         </div>
 
+        {/* Screen 3: Find community */}
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          textAlign: 'center',
+          opacity: screen === 3 ? 1 : 0,
+          transform: screen === 3 ? 'translateX(0)' : screen < 3 ? 'translateX(100%)' : 'translateX(-100%)',
+          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          pointerEvents: screen === 3 ? 'auto' : 'none',
+        }}>
+          <div style={{ fontSize: 80, marginBottom: 20 }}>👥</div>
+          <h2 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 12px', letterSpacing: '-0.5px' }}>
+            Hitta din gemenskap
+          </h2>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginBottom: 32, lineHeight: 1.7 }}>
+            Följ seglare du känner — deras turer syns direkt i ditt flöde.
+            Sök på namn, hemmastrand eller hamn.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
+            {[
+              { emoji: '🔍', title: 'Sök på namn', desc: 'Hitta folk du känner från bryggan' },
+              { emoji: '⛵', title: 'Följ aktiva seglare', desc: 'Bli inspirerad av andras äventyr' },
+              { emoji: '🔔', title: 'Få notiser', desc: 'Håll koll när de loggar nya turer' },
+            ].map((item, i) => (
+              <div key={i} style={{
+                background: 'rgba(255,255,255,0.10)',
+                borderRadius: 14, padding: '14px 18px',
+                display: 'flex', alignItems: 'center', gap: 14,
+              }}>
+                <span style={{ fontSize: 26, flexShrink: 0 }}>{item.emoji}</span>
+                <div style={{ textAlign: 'left' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{item.title}</div>
+                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.60)' }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Screen 2: Explore */}
         <div style={{
           position: 'absolute',
@@ -261,7 +300,7 @@ export default function OnboardingModal() {
         marginTop: 36,
         marginBottom: 24,
       }}>
-        {[0, 1, 2].map((i) => (
+        {[0, 1, 2, 3].map((i) => (
           <div
             key={i}
             style={{
@@ -282,38 +321,29 @@ export default function OnboardingModal() {
         width: '100%',
         maxWidth: 320,
       }}>
-        {screen === 2 ? (
+        {screen === 3 ? (
           <>
-            <Link href="/platser"
+            <Link href="/sok"
               onClick={handleComplete}
               className="press-feedback"
               style={{
-                flex: 1,
-                padding: '14px 24px',
-                borderRadius: 14,
-                background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-                color: '#fff',
-                fontWeight: 600,
-                fontSize: 14,
-                textDecoration: 'none',
-                textAlign: 'center',
-                boxShadow: '0 4px 16px rgba(34,197,94,0.4)',
+                flex: 1, padding: '14px 24px', borderRadius: 14,
+                background: 'linear-gradient(135deg, #0a7b8c, #1e5c82)',
+                color: '#fff', fontWeight: 700, fontSize: 14,
+                textDecoration: 'none', textAlign: 'center',
+                boxShadow: '0 4px 16px rgba(10,123,140,0.5)',
               }}>
-              Börja utforska →
+              Sök seglare →
             </Link>
             <button
               onClick={handleSkip}
               className="press-feedback"
               style={{
-                padding: '14px 24px',
-                borderRadius: 14,
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
-                fontWeight: 700,
-                fontSize: 14,
+                padding: '14px 24px', borderRadius: 14,
+                background: 'rgba(255,255,255,0.15)', color: '#fff',
+                fontWeight: 700, fontSize: 14,
                 border: '1px solid rgba(255,255,255,0.2)',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
               }}
             >
               Hoppa över
@@ -328,7 +358,7 @@ export default function OnboardingModal() {
                 flex: 1,
                 padding: '14px 24px',
                 borderRadius: 14,
-                background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                background: 'var(--grad-sea)',
                 color: '#fff',
                 fontWeight: 600,
                 fontSize: 14,

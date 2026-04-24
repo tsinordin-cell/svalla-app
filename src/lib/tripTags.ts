@@ -57,13 +57,29 @@ export async function addTripTag(
     console.error('[addTripTag]', error.code, error.message)
     return { ok: false, errorMessage: error.message }
   }
-  // Fire-and-forget notification — don't let it block or fail the tag operation
+  // Fire-and-forget: in-app notification + push
   supabase.from('notifications').insert({
     user_id: taggedUserId,
     actor_id: currentUserId,
     type: 'tag',
     trip_id: tripId,
   }).then(() => {})
+
+  supabase.from('users').select('username').eq('id', currentUserId).single()
+    .then(({ data }) => {
+      if (!data?.username) return
+      fetch('/api/push/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          targetUserId: taggedUserId,
+          title: 'Du är taggad i en tur 🏷️',
+          body: `${data.username} taggade dig`,
+          url: `/tur/${tripId}`,
+        }),
+      }).catch(() => {})
+    })
+
   return { ok: true }
 }
 

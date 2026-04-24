@@ -275,6 +275,26 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
         {/* Share + actions */}
         <div style={{ position: 'absolute', top: 16, right: 16, display: 'flex', gap: 8, zIndex: 10 }}>
+          {/* Download story card */}
+          <a
+            href={`/api/og/share/tur/${id}`}
+            download={`svalla-tur-${id}.png`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Ladda ner Story-bild"
+            style={{
+              width: 38, height: 38, borderRadius: '50%',
+              background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(8px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0, textDecoration: 'none',
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} style={{ width: 17, height: 17 }}>
+              <rect x="3" y="3" width="18" height="18" rx="3" ry="3" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 15l-5-5L5 21" />
+            </svg>
+          </a>
           <ShareButton url={`https://svalla.se/tur/${id}`} title={trip.location_name ?? 'Min tur'} />
           <TripActions tripId={trip.id} ownerId={trip.user_id} />
         </div>
