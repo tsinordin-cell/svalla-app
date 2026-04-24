@@ -360,7 +360,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         )}
 
         {/* AI Summary */}
-        {trip.ai_summary && (
+        {trip.ai_summary && trip.ai_summary !== trip.caption && (
           <div style={{
             margin: '0 0 18px',
             padding: '16px 18px',
