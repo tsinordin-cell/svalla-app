@@ -251,12 +251,14 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   const hasPhoto  = allPhotos.length > 0 && !imgErr
   const hasMedia  = hasPhoto || hasRoute
 
-  const meaningfulDist = trip.distance >= 0.1
+  const distNum = trip.distance ?? 0
+  const avgNum  = trip.average_speed_knots ?? 0
+  const maxNum  = trip.max_speed_knots ?? 0
   const statsRow = [
-    { label: 'Distans', value: meaningfulDist ? fmt(trip.distance) : '—', unit: 'NM' },
+    { label: 'Distans', value: distNum >= 0.01 ? fmt(distNum) : '—', unit: 'NM' },
     { label: 'Tid',     value: dur || '—' },
-    { label: 'Snitt',   value: meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5 ? fmt(trip.average_speed_knots) : '—', unit: 'kn' },
-    { label: 'Topp',    value: meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5 ? fmt(trip.max_speed_knots) : '—', unit: 'kn' },
+    { label: 'Snitt',   value: avgNum >= 0.5 ? fmt(avgNum) : '—', unit: 'kn' },
+    { label: 'Topp',    value: maxNum >= 0.5 ? fmt(maxNum) : '—', unit: 'kn' },
   ]
 
   const MAX_CAPTION = 120
