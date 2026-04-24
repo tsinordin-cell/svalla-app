@@ -45,11 +45,11 @@ export default function FeedWeatherRow() {
     <div style={{
       maxWidth: 640, margin: '0 auto', padding: '2px 20px 10px',
       display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'nowrap', overflow: 'hidden',
-      fontSize: 13, color: 'rgba(22,45,58,0.55)', fontWeight: 500,
+      fontSize: 13, color: 'var(--txt3)', fontWeight: 500,
     }}>
       <span style={{ fontSize: 15, lineHeight: 1, flexShrink: 0 }}>{desc.emoji}</span>
-      <span style={{ fontWeight: 700, color: 'rgba(22,45,58,0.70)', flexShrink: 0 }}>{data.temp}°</span>
-      <span style={{ opacity: 0.3, flexShrink: 0 }}>·</span>
+      <span style={{ fontWeight: 700, color: 'var(--txt2)', flexShrink: 0 }}>{data.temp}°</span>
+      <span style={{ opacity: 0.4, flexShrink: 0 }}>·</span>
       <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="var(--sea)" strokeWidth={2}
         strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flexShrink: 0 }}>
         <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
@@ -59,10 +59,10 @@ export default function FeedWeatherRow() {
       <span style={{ flexShrink: 0 }}>{data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}</span>
       {place && (
         <>
-          <span style={{ opacity: 0.3, flexShrink: 0 }}>·</span>
+          <span style={{ opacity: 0.4, flexShrink: 0 }}>·</span>
           <span style={{
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            fontWeight: 600, color: 'rgba(22,45,58,0.55)',
+            fontWeight: 600, color: 'var(--txt2)',
           }}>{place}</span>
         </>
       )}
