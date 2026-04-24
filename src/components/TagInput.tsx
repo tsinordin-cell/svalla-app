@@ -69,7 +69,7 @@ export default function TagInput({ tagged, onChange }: Props) {
             }}>
               <div style={{
                 width: 20, height: 20, borderRadius: '50%', overflow: 'hidden',
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: 'var(--grad-sea)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 10, fontWeight: 700, color: '#fff', flexShrink: 0,
               }}>
@@ -125,7 +125,7 @@ export default function TagInput({ tagged, onChange }: Props) {
               }}>
                 <div style={{
                   width: 30, height: 30, borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
-                  background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                  background: 'var(--grad-sea)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 12, fontWeight: 700, color: '#fff',
                 }}>

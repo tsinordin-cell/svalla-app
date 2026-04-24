@@ -34,7 +34,7 @@ export default function Error({
           className="press-feedback"
           style={{
             padding: '12px 24px', borderRadius: 14, border: 'none', cursor: 'pointer',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             color: '#fff', fontSize: 14, fontWeight: 700,
             boxShadow: '0 4px 16px rgba(30,92,130,0.3)',
           }}

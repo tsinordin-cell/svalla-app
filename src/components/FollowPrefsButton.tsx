@@ -117,7 +117,7 @@ export default function FollowPrefsButton({
                 Avbryt
               </button>
               <button onClick={save} disabled={saving}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: saving ? 'wait' : 'pointer', opacity: saving ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: saving ? 'wait' : 'pointer', opacity: saving ? 0.6 : 1 }}>
                 {saving ? 'Sparar…' : 'Spara'}
               </button>
             </div>

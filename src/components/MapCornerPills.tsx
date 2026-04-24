@@ -202,7 +202,7 @@ export function DestinationPill({
         aria-hidden="true"
         style={{
           width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          background: 'var(--grad-sea)',
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 2px 6px rgba(30,92,130,0.25)',
         }}

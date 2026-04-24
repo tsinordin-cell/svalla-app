@@ -81,7 +81,7 @@ export default function PushPrompt() {
     }}>
       <div style={{
         width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+        background: 'var(--grad-sea)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: 22, border: '1.5px solid rgba(255,255,255,0.15)',
       }}>🔔</div>
@@ -98,7 +98,7 @@ export default function PushPrompt() {
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={enable} disabled={loading} style={{
                 padding: '7px 16px', borderRadius: 20, border: 'none', cursor: 'pointer',
-                background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+                background: 'var(--grad-acc)',
                 color: '#fff', fontSize: 12, fontWeight: 600,
                 opacity: loading ? 0.7 : 1,
               }}>

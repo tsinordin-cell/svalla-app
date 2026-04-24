@@ -63,7 +63,7 @@ export default function TripHeroCarousel({
 
   return (
     <>
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: '#0b2d42', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', maxHeight: 360, background: 'var(--sea-d)', overflow: 'hidden' }}>
         {hasPhotos ? (
           <>
             {/* Scroll container */}

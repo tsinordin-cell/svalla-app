@@ -100,7 +100,7 @@ export default function InsikterPage() {
             disabled={!insights || insights.total_trips === 0}
             style={{
               padding: '8px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
-              background: shared ? '#228c38' : 'linear-gradient(135deg,#c96e2a,#e07828)',
+              background: shared ? '#228c38' : 'var(--grad-acc)',
               color: '#fff', fontSize: 12, fontWeight: 600,
               opacity: !insights || insights.total_trips === 0 ? 0.5 : 1,
               WebkitTapHighlightColor: 'transparent',
@@ -147,7 +147,7 @@ export default function InsikterPage() {
             <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>Logga in för att se dina insights.</p>
             <Link href="/logga-in" style={{
               display: 'inline-block', padding: '10px 22px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
             }}>
               Logga in
@@ -163,7 +163,7 @@ export default function InsikterPage() {
             </p>
             <Link href="/logga" style={{
               display: 'inline-block', padding: '10px 22px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+              background: 'var(--grad-acc)',
               color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
             }}>
               Logga tur →
@@ -229,7 +229,7 @@ export default function InsikterPage() {
                 }}>
                   <div style={{
                     width: 52, height: 52, borderRadius: 14,
-                    background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+                    background: 'var(--grad-acc)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: '#fff', fontSize: 22, flexShrink: 0,
                   }}>⚓</div>
@@ -308,7 +308,7 @@ export default function InsikterPage() {
                         <div style={{ height: 8, borderRadius: 8, background: 'rgba(10,123,140,0.09)', overflow: 'hidden' }}>
                           <div style={{
                             width: `${Math.max(4, b.share * 100)}%`, height: '100%',
-                            background: 'linear-gradient(90deg,#1e5c82,#2d7d8a)',
+                            background: 'var(--grad-sea)',
                             borderRadius: 8,
                           }} />
                         </div>
@@ -332,7 +332,7 @@ export default function InsikterPage() {
                     }}>
                       <div style={{
                         width: 28, height: 28, borderRadius: '50%',
-                        background: idx === 0 ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,0.08)',
+                        background: idx === 0 ? 'var(--grad-acc)' : 'rgba(10,123,140,0.08)',
                         color: idx === 0 ? '#fff' : 'var(--sea)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 13, fontWeight: 700, flexShrink: 0,
@@ -360,7 +360,7 @@ export default function InsikterPage() {
               onClick={share}
               style={{
                 width: '100%', padding: 14, borderRadius: 16, border: 'none', cursor: 'pointer',
-                background: shared ? '#228c38' : 'linear-gradient(135deg,#c96e2a,#e07828)',
+                background: shared ? '#228c38' : 'var(--grad-acc)',
                 color: '#fff', fontSize: 14, fontWeight: 700,
                 boxShadow: '0 4px 14px rgba(201,110,42,0.28)',
                 WebkitTapHighlightColor: 'transparent',

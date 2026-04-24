@@ -55,7 +55,7 @@ export default function ShareButton({ url, title, variant = 'icon' }: Props) {
           padding: '7px 14px', borderRadius: 20, border: 'none', cursor: 'pointer',
           background: copied
             ? 'rgba(15,158,100,0.85)'
-            : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            : 'var(--grad-sea)',
           color: '#fff', fontSize: 12, fontWeight: 700,
           transition: 'all 0.2s',
           WebkitTapHighlightColor: 'transparent',

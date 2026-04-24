@@ -76,14 +76,6 @@ function GoogleIcon() {
   )
 }
 
-/* ── Apple SVG ── */
-function AppleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 814 1000" style={{ flexShrink: 0 }}>
-      <path fill="currentColor" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105.4-57.8-155.3-127.4C46 790.8 0 663 0 541c0-207.6 134.7-317 268-317 63.7 0 116.7 40.8 156.5 40.8 38.8 0 100-43.1 174.5-43.1 28.2 0 130.3 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
-    </svg>
-  )
-}
 
 type LiveStats = { turer: number; seglare: number; platser: number }
 
@@ -106,7 +98,7 @@ function KomIgangInner() {
   const [showPw,        setShowPw]        = useState(false)
   const [showConfirmPw, setShowConfirmPw] = useState(false)
   const [loading,       setLoading]       = useState(false)
-  const [oauthLoading,  setOauthLoading]  = useState<'google' | 'apple' | null>(null)
+  const [oauthLoading,  setOauthLoading]  = useState<'google' | null>(null)
   const [err,           setErr]           = useState('')
   const [hasSession,    setHasSession]    = useState(false)
   const [stats,         setStats]         = useState<LiveStats | null>(null)
@@ -151,11 +143,14 @@ function KomIgangInner() {
   }
 
   /* ── OAuth ── */
-  async function signInWithOAuth(provider: 'google' | 'apple') {
-    setOauthLoading(provider); setErr('')
+  async function signInWithOAuth() {
+    setOauthLoading('google'); setErr('')
     const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: { redirectTo: `${location.origin}/feed` },
+      provider: 'google',
+      options: {
+        redirectTo: `${location.origin}/feed`,
+        queryParams: { access_type: 'offline', prompt: 'consent' },
+      },
     })
     if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
   }
@@ -416,39 +411,22 @@ function KomIgangInner() {
           </button>
 
           {/* Social login */}
-          <div style={{ display: 'flex', gap: 10 }}>
-            <button
-              onClick={() => signInWithOAuth('google')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '14px', borderRadius: 14, cursor: 'pointer',
-                background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
-                boxShadow: '0 2px 8px rgba(0,30,50,0.07)',
-                opacity: oauthLoading === 'google' ? 0.6 : 1,
-                transition: 'opacity 0.15s',
-              }}
-            >
-              <GoogleIcon />
-              {oauthLoading === 'google' ? '…' : 'Google'}
-            </button>
-            <button
-              onClick={() => signInWithOAuth('apple')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '14px', borderRadius: 14, cursor: 'pointer',
-                background: '#000', border: '1.5px solid #000',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                fontSize: 13, fontWeight: 600, color: '#fff', fontFamily: 'inherit',
-                opacity: oauthLoading === 'apple' ? 0.6 : 1,
-                transition: 'opacity 0.15s',
-              }}
-            >
-              <AppleIcon />
-              {oauthLoading === 'apple' ? '…' : 'Apple'}
-            </button>
-          </div>
+          <button
+            onClick={() => signInWithOAuth()}
+            disabled={!!oauthLoading}
+            style={{
+              width: '100%', padding: '14px', borderRadius: 14, cursor: 'pointer',
+              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              fontSize: 14, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
+              boxShadow: '0 2px 8px rgba(0,30,50,0.07)',
+              opacity: oauthLoading === 'google' ? 0.6 : 1,
+              transition: 'opacity 0.15s',
+            }}
+          >
+            <GoogleIcon />
+            {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
+          </button>
 
           {err && (
             <div style={{
@@ -518,37 +496,22 @@ function KomIgangInner() {
         <div style={{ maxWidth: 420, margin: '0 auto' }}>
 
           {/* Social login row */}
-          <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
-            <button
-              onClick={() => signInWithOAuth('google')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '13px', borderRadius: 12, cursor: 'pointer',
-                background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
-                boxShadow: '0 2px 6px rgba(0,30,50,0.07)',
-                opacity: oauthLoading === 'google' ? 0.6 : 1,
-              }}
-            >
-              <GoogleIcon />
-              {oauthLoading === 'google' ? '…' : 'Google'}
-            </button>
-            <button
-              onClick={() => signInWithOAuth('apple')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '13px', borderRadius: 12, cursor: 'pointer',
-                background: '#000', border: 'none',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                fontSize: 13, fontWeight: 600, color: '#fff', fontFamily: 'inherit',
-                opacity: oauthLoading === 'apple' ? 0.6 : 1,
-              }}
-            >
-              <AppleIcon />
-              {oauthLoading === 'apple' ? '…' : 'Apple'}
-            </button>
-          </div>
+          <button
+            onClick={() => signInWithOAuth()}
+            disabled={!!oauthLoading}
+            style={{
+              width: '100%', padding: '13px', borderRadius: 12, cursor: 'pointer',
+              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+              fontSize: 14, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
+              boxShadow: '0 2px 6px rgba(0,30,50,0.07)',
+              opacity: oauthLoading === 'google' ? 0.6 : 1,
+              marginBottom: 20,
+            }}
+          >
+            <GoogleIcon />
+            {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
+          </button>
 
           {/* Divider */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>

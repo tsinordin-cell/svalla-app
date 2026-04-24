@@ -128,7 +128,7 @@ export default function ProPage() {
               padding: '16px',
               borderRadius: 16,
               border: 'none',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff',
               fontSize: 16,
               fontWeight: 700,

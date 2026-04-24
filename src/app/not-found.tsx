@@ -59,7 +59,7 @@ export default function NotFound() {
           href="/feed"
           style={{
             padding: '13px 28px', borderRadius: 14, border: 'none',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             color: '#fff', fontSize: 14, fontWeight: 700,
             boxShadow: '0 4px 16px rgba(30,92,130,0.3)',
             textDecoration: 'none', display: 'inline-flex', alignItems: 'center',

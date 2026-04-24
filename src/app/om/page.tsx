@@ -16,7 +16,7 @@ export default function OmPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <div style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'var(--grad-sea-hero)',
         padding: '60px 20px 40px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>

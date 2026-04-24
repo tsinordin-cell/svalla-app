@@ -34,7 +34,7 @@ export default function InviteRedeemClient({ code }: { code: string }) {
 
   if (status === 'error') {
     return (
-      <div style={{ padding: 12, borderRadius: 10, background: 'rgba(200,30,30,0.08)', fontSize: 13, color: '#c03', textAlign: 'center' }}>
+      <div style={{ padding: 12, borderRadius: 10, background: 'rgba(200,30,30,0.08)', fontSize: 13, color: 'var(--red)', textAlign: 'center' }}>
         Länken kunde inte lösas in. Kanske har du redan använt den.
         <div style={{ marginTop: 10 }}>
           <Link href="/feed" style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)' }}>
@@ -61,7 +61,7 @@ export default function InviteRedeemClient({ code }: { code: string }) {
         )}
         <Link href="/feed" style={{
           display: 'inline-block', padding: '10px 18px', borderRadius: 12,
-          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          background: 'var(--grad-sea)',
           color: '#fff', fontSize: 13, fontWeight: 600, textDecoration: 'none',
         }}>
           Till feeden →

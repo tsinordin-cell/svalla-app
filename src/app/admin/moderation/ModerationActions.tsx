@@ -70,7 +70,7 @@ export default function ModerationActions({ reportId }: Props) {
           {busy === 'dismissed' ? '…' : '✕ Avfärda'}
         </button>
       </div>
-      {err && <div style={{ fontSize: 11, color: '#c03', marginTop: 4 }}>{err}</div>}
+      {err && <div style={{ fontSize: 11, color: 'var(--red)', marginTop: 4 }}>{err}</div>}
     </div>
   )
 }

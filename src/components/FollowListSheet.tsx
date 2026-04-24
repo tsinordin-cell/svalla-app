@@ -151,7 +151,7 @@ export default function FollowListButton({
                     }}>
                       <div style={{
                         width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
-                        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                        background: 'var(--grad-sea)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 15, fontWeight: 700, color: '#fff',
                       }}>

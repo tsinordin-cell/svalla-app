@@ -369,7 +369,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
             className: '',
             html: `<div style="
               width:36px;height:36px;border-radius:50%;
-              background:linear-gradient(135deg,#1e5c82,#2d7d8a);
+              background:var(--grad-sea);
               border:2.5px solid #fff;
               box-shadow:0 2px 10px rgba(0,0,0,0.25);
               display:flex;align-items:center;justify-content:center;

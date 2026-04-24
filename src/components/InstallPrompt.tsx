@@ -89,7 +89,7 @@ export default function InstallPrompt() {
           <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
             <button onClick={installAndroid} style={{
               padding: '7px 16px', borderRadius: 20, border: 'none', cursor: 'pointer',
-              background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+              background: 'var(--grad-acc)',
               color: '#fff', fontSize: 12, fontWeight: 600,
             }}>
               Installera

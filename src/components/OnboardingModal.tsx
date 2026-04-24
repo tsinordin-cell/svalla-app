@@ -69,20 +69,27 @@ export default function OnboardingModal() {
   const [savingBoat,   setSavingBoat]   = useState(false)
   const [loadingUsers, setLoadingUsers] = useState(false)
 
-  // Kolla om onboarding ska visas
+  // Kolla om onboarding ska visas (hanterar både email-signup och OAuth)
   useEffect(() => {
     setMounted(true)
     if (typeof window === 'undefined') return
-    if (!localStorage.getItem('svalla_onboarded')) setShow(true)
-  }, [])
-
-  // Hämta inloggad användare
-  useEffect(() => {
-    if (!show) return
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) setMyId(data.user.id)
+    // Om användaren explicit stängt/klarat onboarding på denna enhet → visa inte
+    if (localStorage.getItem('svalla_onboarded')) return
+    supabase.auth.getUser().then(async ({ data }) => {
+      if (!data.user) return
+      setMyId(data.user.id)
+      // Kolla DB: ny användare (< 10 min) eller saknar boat_type → visa onboarding
+      const { data: userRow } = await supabase
+        .from('users')
+        .select('boat_type, created_at')
+        .eq('id', data.user.id)
+        .single()
+      const isNewUser = userRow?.created_at
+        ? Date.now() - new Date(userRow.created_at).getTime() < 10 * 60 * 1000
+        : false
+      if (!userRow?.boat_type || isNewUser) setShow(true)
     })
-  }, [show, supabase])
+  }, [supabase])
 
   // Hämta föreslagna seglare (steg 2)
   useEffect(() => {

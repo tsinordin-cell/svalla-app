@@ -181,7 +181,7 @@ export default function NotificationBell() {
               >
                 <div style={{
                   width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                  background: 'var(--grad-sea)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 12, fontWeight: 600, color: '#fff',
                 }}>

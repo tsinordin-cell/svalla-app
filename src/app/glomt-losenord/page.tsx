@@ -58,7 +58,7 @@ export default function GlomtLosenordPage() {
               </p>
               <Link href="/logga-in" style={{
                 display: 'inline-block', padding: '13px 32px', borderRadius: 16,
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: 'var(--grad-sea)',
                 color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none',
                 boxShadow: '0 4px 16px rgba(30,92,130,0.3)',
               }}>
@@ -99,7 +99,7 @@ export default function GlomtLosenordPage() {
                 disabled={loading || !email.trim()}
                 style={{
                   padding: '15px 0', borderRadius: 16, border: 'none', cursor: 'pointer',
-                  background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                  background: 'var(--grad-sea)',
                   color: '#fff', fontSize: 16, fontWeight: 600,
                   boxShadow: '0 4px 20px rgba(30,92,130,0.35)',
                   opacity: loading || !email.trim() ? 0.65 : 1,

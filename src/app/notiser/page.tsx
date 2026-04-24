@@ -206,7 +206,7 @@ export default function NotiserPage() {
             </p>
             <Link href="/logga-in" style={{
               display: 'inline-block', padding: '12px 28px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none',
             }}>
               Logga in →
@@ -262,7 +262,7 @@ export default function NotiserPage() {
                         <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
                           <div style={{
                             width: 44, height: 44, borderRadius: '50%',
-                            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                            background: 'var(--grad-sea)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             fontSize: fontSize.body, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
                           }}>
