@@ -13,6 +13,7 @@ import TripTagger from '@/components/TripTagger'
 import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
+import { getTripWeather, windDirectionLabel } from '@/lib/weather'
 import type { Metadata } from 'next'
 
 export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-request DB calls)
@@ -116,6 +117,18 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     accuracy: 0,
     recordedAt: p?.recorded_at ?? new Date().toISOString(),
   }))
+
+  // Historiska väderförhållanden vid turens start — berikar sidan med
+  // kontext (vind, gust, våg). Degraderar tyst om API:t inte svarar.
+  // Cache 24h via Next fetch-cache (väder för en historisk timestamp är immutabelt).
+  const weather = points.length > 0 && trip.started_at
+    ? await getTripWeather(
+        points[0].lat,
+        points[0].lng,
+        trip.started_at,
+        trip.ended_at,
+      )
+    : null
 
   const stops = (rawStops ?? []).map(s => ({
     lat: s?.latitude ?? 0,
@@ -419,6 +432,86 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             </div>
           )
         })()}
+
+        {/* Väder — historiska förhållanden vid turens tidpunkt (ERA5 archive + Marine).
+            Visas bara om vi fick minst vind-data, annars hoppas sektionen över. */}
+        {weather && weather.wind && (
+          <div style={{ marginBottom: 16 }}>
+            <SectionTitle>Förhållanden</SectionTitle>
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(30,92,130,0.06), rgba(74,184,212,0.04))',
+              border: '1px solid rgba(30,92,130,0.10)',
+              borderRadius: 20,
+              padding: '14px 16px',
+              display: 'flex', alignItems: 'center', gap: 16,
+            }}>
+              {/* Vind-kompass — pil pekar åt varifrån vinden blåser */}
+              <div style={{
+                width: 48, height: 48, borderRadius: '50%',
+                background: 'var(--white)',
+                border: '1.5px solid rgba(30,92,130,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0, position: 'relative',
+                boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
+              }} title={`Vind från ${windDirectionLabel(weather.wind.directionDeg)} (${Math.round(weather.wind.directionDeg)}°)`}>
+                <svg viewBox="0 0 24 24" fill="none"
+                  style={{
+                    width: 22, height: 22,
+                    transform: `rotate(${weather.wind.directionDeg}deg)`,
+                  }}>
+                  <path d="M12 3 L12 21 M12 3 L7 9 M12 3 L17 9"
+                    stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span style={{
+                  position: 'absolute', top: -4, right: -4,
+                  fontSize: 9, fontWeight: 700,
+                  background: 'var(--sea)', color: '#fff',
+                  padding: '2px 5px', borderRadius: 8,
+                  letterSpacing: '0.2px',
+                }}>
+                  {windDirectionLabel(weather.wind.directionDeg)}
+                </span>
+              </div>
+
+              {/* Huvudvärden */}
+              <div style={{ flex: 1, minWidth: 0, display: 'flex', gap: 18, flexWrap: 'wrap' }}>
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
+                    {weather.wind.speedMs.toFixed(1)}
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m/s</span>
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
+                    Vind
+                  </div>
+                </div>
+
+                {weather.wind.gustMaxMs != null && weather.wind.gustMaxMs > weather.wind.speedMs + 0.5 && (
+                  <div>
+                    <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
+                      {weather.wind.gustMaxMs.toFixed(1)}
+                      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m/s</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
+                      Byvind
+                    </div>
+                  </div>
+                )}
+
+                {weather.wave && weather.wave.heightM > 0.05 && (
+                  <div>
+                    <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>
+                      {weather.wave.heightM.toFixed(1)}
+                      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', marginLeft: 2 }}>m</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3, fontWeight: 500 }}>
+                      Våghöjd
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Social + dela */}
         <div id="kommentarer" style={{ marginBottom: 18 }}>
