@@ -462,7 +462,7 @@ export default function ChatPage() {
   }, [otherReadAt, messages, me])
 
   return (
-    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)', overflow: 'hidden' }}>
+    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
 
       {/* ── Header — iOS-style: avatar ovan, namn under, centrerat ── */}
       <header style={{
