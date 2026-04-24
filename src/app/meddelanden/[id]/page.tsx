@@ -579,15 +579,17 @@ export default function ChatPage() {
       {/* ── Message list ── */}
       <div ref={listRef} style={{
         flex: 1, overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch' as never,
         padding: `${space[4]}px ${space[3]}px`,
         maxWidth: 520, width: '100%', margin: '0 auto',
         display: 'flex', flexDirection: 'column',
-        justifyContent: 'flex-end',
       }}>
+        {/* Spacer — pushes messages to bottom when list is short, collapses when list is long */}
+        <div style={{ flex: 1 }} />
 
         {/* Loading */}
         {loading && (
-          <div style={{ padding: 40, textAlign: 'center', margin: 'auto' }}>
+          <div style={{ padding: 40, textAlign: 'center' }}>
             <div style={{
               width: 22, height: 22, borderRadius: '50%',
               border: '2.5px solid var(--sea)', borderTopColor: 'transparent',
