@@ -69,7 +69,7 @@ export default function Nav() {
       exact: false,
       icon: (active: boolean) => (
         // Kompassikon — tydligt "utforska/hitta"
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <circle cx="12" cy="12" r="9" strokeLinecap="round" strokeLinejoin="round" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z" />
         </svg>
@@ -81,7 +81,7 @@ export default function Nav() {
       exact: false,
       matchPaths: ['/planera', '/rutter'],
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.25 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <circle cx="5" cy="6" r="2" strokeLinecap="round" strokeLinejoin="round" />
           <circle cx="19" cy="18" r="2" strokeLinecap="round" strokeLinejoin="round" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 8c0 5 6 3 9 8" />
@@ -94,7 +94,7 @@ export default function Nav() {
       label: 'Flöde',
       exact: false,
       icon: (active: boolean) => (
-        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+        <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       ),
@@ -124,7 +124,7 @@ export default function Nav() {
               }
             </div>
           ) : (
-            <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2.5 : 1.8} stroke="currentColor" style={{ width: 22, height: 22 }}>
+            <svg viewBox="0 0 24 24" fill="none" strokeWidth={active ? 2 : 1.75} stroke="currentColor" style={{ width: 22, height: 22 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           )}
@@ -164,9 +164,9 @@ export default function Nav() {
     <nav aria-label="Navigering" className="svalla-nav" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
-      background: 'var(--glass-96)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
+      background: 'rgba(255,255,255,0.86)',
+      backdropFilter: 'saturate(1.4) blur(20px)',
+      WebkitBackdropFilter: 'saturate(1.4) blur(20px)',
       borderTop: '1px solid rgba(10,123,140,0.10)',
       display: 'flex', alignItems: 'stretch', justifyContent: 'center',
       overflow: 'visible',
@@ -198,15 +198,16 @@ export default function Nav() {
               href={tab.href}
               aria-label="Logga tur"
               className="press-feedback nav-fab-wrap"
-              style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
             >
               <span className="nav-fab-mobile">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 24, height: 24 }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.2} style={{ width: 24, height: 24 }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
               </span>
+              <span className="nav-fab-label">Logga tur</span>
               <span className="nav-fab-desktop">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.25} style={{ width: 18, height: 18 }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.2} style={{ width: 18, height: 18 }}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
                 Logga tur
@@ -223,9 +224,9 @@ export default function Nav() {
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 2,
               textDecoration: 'none',
-              color: active ? 'var(--sea)' : 'var(--txt3)',
-              fontSize: 11, fontWeight: 600, letterSpacing: '0.3px',
-              textTransform: 'uppercase', position: 'relative',
+              color: active ? 'var(--teal, #0a7b8c)' : 'var(--txt3)',
+              fontSize: 10.5, fontWeight: active ? 600 : 500,
+              position: 'relative',
               WebkitTapHighlightColor: 'transparent',
               minHeight: 44,
             }}>
@@ -234,10 +235,10 @@ export default function Nav() {
               {tab.label}
             </span>
             {active && (
-              <span className="nav-active-bar" style={{
-                position: 'absolute', bottom: 6, left: '50%',
+              <span style={{
+                position: 'absolute', bottom: 4, left: '50%',
                 transform: 'translateX(-50%)',
-                background: 'var(--sea)', width: 18, height: 3, borderRadius: '2px 2px 0 0',
+                background: 'var(--teal, #0a7b8c)', width: 4, height: 4, borderRadius: '50%',
               }} />
             )}
           </Link>

@@ -101,10 +101,10 @@ export default function StoriesStrip() {
             }}>
             <div style={{
               width: 60, height: 60, borderRadius: '50%',
-              border: '2px dashed rgba(10,123,140,0.35)',
+              border: '2px dashed rgba(10,123,140,0.30)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'var(--sea)', fontSize: 24, fontWeight: 600,
-              background: 'rgba(10,123,140,0.04)',
+              color: 'var(--teal, #0a7b8c)', fontSize: 22, fontWeight: 300,
+              background: 'rgba(10,123,140,0.06)',
             }}>+</div>
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)' }}>Din story</span>
           </button>
@@ -120,12 +120,12 @@ export default function StoriesStrip() {
               flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               border: 'none', background: 'transparent', cursor: 'pointer', padding: 0, maxWidth: 70,
             }}>
-            <div style={{
+            <div className={g.viewed_all ? undefined : 'story-ring-live'} style={{
               width: 64, height: 64, borderRadius: '50%',
               padding: 2.5,
               background: g.viewed_all
-                ? 'rgba(10,123,140,0.20)'
-                : 'linear-gradient(135deg,#1e5c82 0%,#2d7d8a 50%,#c96e2a 100%)',
+                ? 'rgba(10,123,140,0.15)'
+                : 'conic-gradient(from 0deg, #22c55e, #0a7b8c, #22c55e)',
             }}>
               <div style={{
                 width: '100%', height: '100%', borderRadius: '50%',
@@ -149,6 +149,11 @@ export default function StoriesStrip() {
           </button>
         ))}
       </div>
+
+      <style>{`
+        @keyframes spin-ring { to { transform: rotate(360deg); } }
+        .story-ring-live { animation: spin-ring 3s linear infinite; }
+      `}</style>
 
       {viewerGroup !== null && groups[viewerGroup] && (
         <StoryViewer

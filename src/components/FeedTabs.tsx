@@ -156,11 +156,12 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               key={s.value}
               onClick={() => setSortKey(s.value)}
               style={{
-                flexShrink: 0, padding: '5px 13px', borderRadius: 20,
-                border: `1.5px solid ${sortKey === s.value ? 'rgba(10,123,140,0.5)' : 'rgba(10,123,140,0.12)'}`,
-                background: sortKey === s.value ? 'rgba(10,123,140,0.1)' : 'transparent',
-                color: sortKey === s.value ? 'var(--sea)' : 'var(--txt3)',
-                fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+                flexShrink: 0, padding: '5px 14px', borderRadius: 999,
+                border: `1.5px solid ${sortKey === s.value ? '#0a7b8c' : 'rgba(22,45,58,0.10)'}`,
+                background: sortKey === s.value ? '#0a7b8c' : '#fff',
+                color: sortKey === s.value ? '#fff' : 'var(--ink-muted, #6a8a96)',
+                boxShadow: sortKey === s.value ? '0 2px 8px rgba(10,123,140,0.25)' : 'none',
+                fontSize: 11, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
                 transition: 'all .12s',
                 WebkitTapHighlightColor: 'transparent',
               }}
@@ -172,11 +173,12 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             onClick={() => setShowBoatSheet(true)}
             aria-label="Filtrera båttyp"
             style={{
-              flexShrink: 0, padding: '5px 13px', borderRadius: 20,
-              border: `1.5px solid ${boatFilter !== 'alla' ? 'var(--sea)' : 'rgba(10,123,140,0.12)'}`,
-              background: boatFilter !== 'alla' ? 'var(--sea)' : 'transparent',
-              color: boatFilter !== 'alla' ? '#fff' : 'var(--txt3)',
-              fontSize: 11, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+              flexShrink: 0, padding: '5px 14px', borderRadius: 999,
+              border: `1.5px solid ${boatFilter !== 'alla' ? '#0a7b8c' : 'rgba(22,45,58,0.10)'}`,
+              background: boatFilter !== 'alla' ? '#0a7b8c' : '#fff',
+              color: boatFilter !== 'alla' ? '#fff' : 'var(--ink-muted, #6a8a96)',
+              boxShadow: boatFilter !== 'alla' ? '0 2px 8px rgba(10,123,140,0.25)' : 'none',
+              fontSize: 11, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
               display: 'inline-flex', alignItems: 'center', gap: 4,
               transition: 'all .12s',
               WebkitTapHighlightColor: 'transparent',

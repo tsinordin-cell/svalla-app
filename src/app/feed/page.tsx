@@ -17,6 +17,25 @@ import { timeAgo } from '@/lib/utils'
 
 export const revalidate = 30
 
+function getGreeting(): string {
+  const h = new Date().getHours()
+  if (h < 5)  return 'God natt'
+  if (h < 10) return 'God morgon'
+  if (h < 13) return 'God förmiddag'
+  if (h < 17) return 'God eftermiddag'
+  if (h < 21) return 'God kväll'
+  return 'God natt'
+}
+
+function getTimeLabel(): string {
+  const h = new Date().getHours()
+  if (h >= 5  && h < 8)  return '🌅 GRYNING'
+  if (h >= 8  && h < 12) return '☀ MORGON'
+  if (h >= 12 && h < 17) return '⛵ EFTERMIDDAG'
+  if (h >= 17 && h < 20) return '🌆 KVÄLL'
+  return '🌙 NATT'
+}
+
 /** Graciöst felmeddelande om servern kraschar (undviker error-boundary). */
 function FeedServerError() {
   return (
@@ -47,10 +66,15 @@ export default async function FeedPage(
   let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
   let user: { id: string } | null = null
 
+  let feedUsername: string | null = null
   try {
     supabase = await createServerSupabaseClient()
     const { data } = await supabase.auth.getUser()
     user = data?.user ?? null
+    if (user) {
+      const { data: profile } = await supabase.from('users').select('username').eq('id', user.id).single()
+      feedUsername = profile?.username ?? null
+    }
   } catch (err) {
     console.error('[FeedPage] auth/client init error:', err)
     return <FeedServerError />
@@ -144,32 +168,49 @@ export default async function FeedPage(
       {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
       {!SAFE && <SilentBoundary><OnboardingModal /></SilentBoundary>}
 
-      {/* ── Header ── */}
-      <header style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: '13px 16px 11px',
-        background: 'var(--glass-96)',
-        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(10,123,140,0.09)',
-        boxShadow: '0 1px 0 rgba(10,123,140,0.06), 0 2px 16px rgba(0,45,60,0.05)',
-        position: 'sticky', top: 0, zIndex: 50,
+      {/* ── Ambient gradient — wraps header + top content ── */}
+      <div style={{
+        background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 22%, #dbe6e7 52%, var(--bg) 100%)',
+        backgroundAttachment: 'local',
       }}>
-        <SvallaLogo height={26} color="var(--sea)" />
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Link href="/sok" style={{
-            width: 38, height: 38, borderRadius: '50%',
-            background: 'rgba(10,123,140,0.08)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            flexShrink: 0,
-          }} title="Sök">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
-              <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
-            </svg>
-          </Link>
-          <SilentBoundary><MessageBell /></SilentBoundary>
-          <SilentBoundary><NotificationBell /></SilentBoundary>
-        </div>
-      </header>
+        {/* ── Header ── */}
+        <header style={{
+          display: 'flex', alignItems: 'center', gap: 10,
+          padding: '13px 16px 11px',
+          background: 'rgba(255,255,255,0.55)',
+          backdropFilter: 'saturate(1.4) blur(20px)', WebkitBackdropFilter: 'saturate(1.4) blur(20px)',
+          borderBottom: '1px solid rgba(22,45,58,0.06)',
+          position: 'sticky', top: 0, zIndex: 50,
+        }}>
+          <SvallaLogo height={26} color="var(--sea)" />
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Link href="/sok" style={{
+              width: 38, height: 38, borderRadius: '50%',
+              background: 'rgba(22,45,58,0.06)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0,
+            }} title="Sök">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
+                <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
+              </svg>
+            </Link>
+            <SilentBoundary><MessageBell /></SilentBoundary>
+            <SilentBoundary><NotificationBell /></SilentBoundary>
+          </div>
+        </header>
+
+        {/* ── Greeting ── */}
+        {feedUsername && (
+          <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 4px' }}>
+            <div style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
+              {getTimeLabel()}
+            </div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              {getGreeting()}, {feedUsername}
+            </div>
+          </div>
+        )}
+      </div>
 
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 16px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
