@@ -189,23 +189,41 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
   const durationSecs = (trip.duration ?? 0) * 60
 
-  // timeline events
-  const timeline = [
-    { type: 'start', label: 'Kasta loss', time: trip.started_at },
-    ...stops
+  // Fusionerad tidslinje: start + alla pauses/stopp (med plats + varaktighet) + end
+  type TimelineEvent = {
+    type: 'start' | 'pause' | 'stop' | 'end'
+    label: string
+    time: string | null
+    durationSeconds?: number
+    placeName?: string
+  }
+  const timeline: TimelineEvent[] = [
+    { type: 'start', label: 'Kasta loss', time: trip.started_at, placeName: trip.start_location ?? undefined },
+    ...namedStops
       .filter(s => s.type === 'pause')
-      .map(s => ({ type: 'pause', label: 'Paus', time: s.startedAt })),
-    ...stops
+      .map<TimelineEvent>(s => ({ type: 'pause', label: 'Paus', time: s.startedAt, durationSeconds: s.durationSeconds, placeName: s.placeName })),
+    ...namedStops
       .filter(s => s.type === 'stop')
-      .map(s => ({ type: 'stop', label: `Stopp (${Math.round(s.durationSeconds / 60)} min)`, time: s.startedAt })),
-    { type: 'end', label: 'Ankrar', time: trip.ended_at },
-  ].filter(e => e.time).sort((a, b) => new Date(a.time!).getTime() - new Date(b.time!).getTime())
+      .map<TimelineEvent>(s => ({ type: 'stop', label: 'Stopp', time: s.startedAt, durationSeconds: s.durationSeconds, placeName: s.placeName })),
+    { type: 'end', label: 'Ankrar', time: trip.ended_at, placeName: trip.location_name ?? undefined },
+  ]
+    .filter(e => e.time)
+    .sort((a, b) => new Date(a.time!).getTime() - new Date(b.time!).getTime())
 
   const timelineColors: Record<string, string> = {
     start: 'var(--green)',
     pause: 'var(--acc)',
     stop: 'var(--txt3)',
     end: 'var(--red)',
+  }
+
+  function fmtDuration(sec: number): string {
+    if (sec < 60) return `${sec}s`
+    const min = Math.round(sec / 60)
+    if (min < 60) return `${min} min`
+    const h = Math.floor(min / 60)
+    const m = min % 60
+    return m > 0 ? `${h} h ${m} min` : `${h} h`
   }
 
   const pinnarEmoji = trip.pinnar_rating === 3 ? '⚓⚓⚓' : trip.pinnar_rating === 2 ? '⚓⚓' : trip.pinnar_rating === 1 ? '⚓' : null
@@ -238,8 +256,22 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           <TripActions tripId={trip.id} ownerId={trip.user_id} />
         </div>
 
-        {/* Location + pinnar overlay at bottom */}
+        {/* Location + pinnar + matched-route overlay at bottom */}
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 14px', zIndex: 5, pointerEvents: 'none' }}>
+          {matchedRoute && (
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              fontSize: 10, fontWeight: 700, letterSpacing: '0.6px', textTransform: 'uppercase',
+              background: 'rgba(15,158,100,0.92)',
+              backdropFilter: 'blur(6px)',
+              color: '#fff', padding: '4px 10px', borderRadius: 20,
+              marginBottom: 8,
+              boxShadow: '0 2px 10px rgba(0,0,0,0.25)',
+            }}>
+              <span aria-hidden>⛵</span>
+              <span>Matchar rutt · {matchedRoute.title}</span>
+            </div>
+          )}
           {(trip.start_location || trip.location_name) && (
             <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', lineHeight: 1.15, marginBottom: 4, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
               {trip.start_location
@@ -338,31 +370,6 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           </div>
         )}
 
-        {/* ── Rutigenkänning ── */}
-        {matchedRoute && (
-          <div style={{
-            margin: '0 0 16px',
-            padding: '12px 16px',
-            background: 'linear-gradient(135deg,rgba(15,158,100,0.08),rgba(15,158,100,0.03))',
-            borderRadius: 18,
-            borderLeft: '3px solid var(--green)',
-            display: 'flex', alignItems: 'center', gap: 12,
-          }}>
-            <span style={{ fontSize: 22, flexShrink: 0 }}>⛵</span>
-            <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--green)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 3 }}>
-                Rutigenkänning
-              </div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.2 }}>
-                {matchedRoute.title}
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
-                {matchedRoute.start_location} → {matchedRoute.destination}
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Taggade användare */}
         {taggedUsers.length > 0 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
@@ -448,7 +455,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
           </div>
         )}
 
-        {/* Timeline */}
+        {/* Tidslinje — samlar start, pauses, stopp och ankomst med plats + varaktighet */}
         {timeline.length > 1 && (
           <div style={{ marginBottom: 18 }}>
             <SectionTitle>Tidslinje</SectionTitle>
@@ -461,41 +468,24 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
                       <div style={{ width: 2, flex: 1, margin: '3px 0', background: 'rgba(10,123,140,0.1)', minHeight: 20 }} />
                     )}
                   </div>
-                  <div style={{ paddingBottom: 16 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.2 }}>{ev.label}</div>
-                    <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
-                      {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : ''}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Stops */}
-        {namedStops.filter(s => s.type === 'stop').length > 0 && (
-          <div style={{ marginBottom: 18 }}>
-            <SectionTitle>Stopp</SectionTitle>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {namedStops.filter(s => s.type === 'stop').map((s, i) => (
-                <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--txt3)', flexShrink: 0 }} />
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                      <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
-                        {s.placeName ?? `Stopp ${i + 1}`}
-                      </span>
-                      {s.placeName && (
-                        <span style={{ fontSize: 10, color: 'var(--txt3)', display: 'block' }}>
-                          📍 Stopp {i + 1}
-                        </span>
+                  <div style={{ paddingBottom: 16, flex: 1, minWidth: 0, display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.25 }}>
+                        {ev.label}
+                        {ev.placeName && (
+                          <span style={{ fontWeight: 400, color: 'var(--txt2)' }}>{` · ${ev.placeName}`}</span>
+                        )}
+                      </div>
+                      {(ev.type === 'pause' || ev.type === 'stop') && ev.durationSeconds != null && ev.durationSeconds >= 30 && (
+                        <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
+                          {fmtDuration(ev.durationSeconds)}
+                        </div>
                       )}
                     </div>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
+                      {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : ''}
+                    </span>
                   </div>
-                  <span style={{ fontSize: 13, color: 'var(--txt3)' }}>
-                    {s.durationSeconds >= 60 ? `${Math.round(s.durationSeconds / 60)} min` : `${s.durationSeconds}s`}
-                  </span>
                 </div>
               ))}
             </div>
@@ -523,38 +513,52 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
         )}
       </div>
 
-      {/* ── Signup CTA — visas bara för ej inloggade ── */}
-      {!isLoggedIn && (
-        <div style={{
-          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200,
-          background: 'linear-gradient(135deg, #0d2240, #1a4a5e)',
-          borderTop: '1px solid rgba(255,255,255,0.08)',
-          padding: '16px 20px',
-          paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
-          display: 'flex', alignItems: 'center', gap: 16,
-          boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
-        }}>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
-              Logga dina egna turer
-            </div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.3 }}>
-              GPS-tracking, statistik och skärgårdsgemenskap.
-            </div>
-          </div>
-          <Link href="/kom-igang" style={{
-            flexShrink: 0,
-            padding: '12px 20px', borderRadius: 14,
-            background: 'var(--grad-acc)',
-            color: '#fff', fontWeight: 600, fontSize: 14,
-            textDecoration: 'none',
-            boxShadow: '0 4px 16px rgba(201,110,42,0.45)',
-            whiteSpace: 'nowrap',
+      {/* ── Signup CTA — personifierad för ej inloggade ── */}
+      {!isLoggedIn && (() => {
+        // Välj en personifierad hook baserat på vad turen berättar.
+        // 1. Har pinnar-rating 3: framhäv den magiska turen
+        // 2. Har location_name: knyt till platsen
+        // 3. Fallback: knyt till seglaren
+        const headline = trip.pinnar_rating === 3
+          ? `Inspirerad av ${username}s magiska tur?`
+          : trip.location_name
+            ? `Upptäck ${trip.location_name} i Svalla`
+            : `Följ ${username}s turer`
+        const sub = trip.location_name
+          ? `Sjökort, GPS-spårning och seglare som ${username} i hela skärgården.`
+          : `GPS-spårning, sjökort och skärgårdsgemenskap på ett ställe.`
+        return (
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200,
+            background: 'linear-gradient(135deg, #0d2240, #1a4a5e)',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+            padding: '16px 20px',
+            paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
+            display: 'flex', alignItems: 'center', gap: 16,
+            boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
           }}>
-            Kom igång →
-          </Link>
-        </div>
-      )}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
+                {headline}
+              </div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.3 }}>
+                {sub}
+              </div>
+            </div>
+            <Link href={`/kom-igang?ref=tur&from=${encodeURIComponent(username)}`} style={{
+              flexShrink: 0,
+              padding: '12px 20px', borderRadius: 14,
+              background: 'var(--grad-acc)',
+              color: '#fff', fontWeight: 600, fontSize: 14,
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(201,110,42,0.45)',
+              whiteSpace: 'nowrap',
+            }}>
+              Kom igång →
+            </Link>
+          </div>
+        )
+      })()}
     </div>
   )
 }
