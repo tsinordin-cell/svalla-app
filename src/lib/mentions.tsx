@@ -1,7 +1,8 @@
 /**
  * Mention & hashtag parsing helpers.
- * Pure functions — no React imports, works in both server and client.
+ * Works in both server and client components.
  */
+import Link from 'next/link'
 
 export type MentionSpan = {
   type: 'mention' | 'hashtag' | 'text'
@@ -71,12 +72,7 @@ export function getActiveMention(text: string, cursorPos: number): { word: strin
 }
 
 // ── Render mentions as plain JSX ─────────────────────────────────────────
-// Server-safe: pure funktion utan event handlers (onClick), kan kallas
-// både från server och client components. Komponenter som behöver egna
-// click-handlers (t.ex. TripCard i feeden som stopPropagation:ar för att
-// kortets outer-link inte ska kapa klicket) använder egna wrappers.
-import Link from 'next/link'
-
+// Server-safe: ingen onClick, fungerar i server och client components.
 export function renderMentions(text: string) {
   const spans = parseTokens(text)
   return spans.map((s, i) => {
