@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import { getModerationQueue } from '@/lib/moderation'
 import { REASON_LABELS, TARGET_TYPE_LABELS, STATUS_LABELS } from '@/lib/moderation'
@@ -22,7 +22,7 @@ export default async function ModerationPage({
 }: {
   searchParams: Promise<{ status?: string; page?: string }>
 }) {
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   // Auth guard — måste vara admin
   const { data: { user } } = await supabase.auth.getUser()

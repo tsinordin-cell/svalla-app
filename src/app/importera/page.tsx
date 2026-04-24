@@ -204,7 +204,7 @@ export default function ImporteraPage() {
             className="press-feedback"
             style={{
               marginLeft: 'auto', padding: '8px 16px', borderRadius: 12,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontSize: 13, fontWeight: 700,
               border: 'none', cursor: 'pointer', fontFamily: 'inherit',
             }}
@@ -352,7 +352,7 @@ export default function ImporteraPage() {
                           className="press-feedback"
                           style={{
                             padding: '7px 16px', borderRadius: 10,
-                            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                            background: 'var(--grad-sea)',
                             color: '#fff', fontSize: 13, fontWeight: 700,
                             border: 'none', cursor: entry.status === 'saving' ? 'not-allowed' : 'pointer',
                             fontFamily: 'inherit', opacity: entry.status === 'saving' ? 0.7 : 1,

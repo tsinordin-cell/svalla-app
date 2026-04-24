@@ -88,7 +88,7 @@ export default function RealtimeFeedBanner() {
         padding: '10px 18px',
         borderRadius: 24,
         border: 'none',
-        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+        background: 'var(--grad-sea)',
         color: '#fff',
         fontSize: 13, fontWeight: 600,
         boxShadow: '0 4px 20px rgba(30,92,130,0.45)',

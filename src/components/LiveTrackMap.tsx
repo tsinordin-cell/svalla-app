@@ -274,7 +274,7 @@ export default function LiveTrackMap({
         style={{
           position: 'absolute',
           inset: 0,
-          background: '#a8ccd4',
+          background: 'var(--sea-l)',
           zIndex: 0,
         }}
       />

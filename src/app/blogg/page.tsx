@@ -18,7 +18,7 @@ export default function BloggPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <div style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'var(--grad-sea-hero)',
         padding: '60px 20px 40px',
       }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>
@@ -46,7 +46,7 @@ export default function BloggPage() {
                 flexDirection: 'column',
               }}>
                 <div style={{
-                  background: 'linear-gradient(135deg, #1e5c82 0%, #2d7d8a 100%)',
+                  background: 'var(--grad-sea)',
                   padding: '28px 24px',
                   fontSize: 40,
                   textAlign: 'center',

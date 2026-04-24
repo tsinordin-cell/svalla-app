@@ -31,7 +31,7 @@ export default async function FarjorPage() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
       {/* HERO */}
       <div style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'var(--grad-sea-hero)',
         padding: '52px 20px 40px',
       }}>
         <div style={{ maxWidth: 960, margin: '0 auto' }}>

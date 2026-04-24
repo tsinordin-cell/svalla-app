@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -11,7 +11,7 @@ export const revalidate = 300
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
   const { data } = await supabase.from('tours').select('title, usp, start_location, destination, best_for, cover_image').eq('id', id).single()
   if (!data) return { title: 'Rutt – Svalla' }
   const desc = data.usp ?? `Segelrutt ${data.start_location} → ${data.destination}.`
@@ -48,9 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function TourPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
-  const { data, error } = await supabase.from('tours').select('*').eq('id', id).single()
+  const { data, error } = await supabase.from('tours').select(
+    'id, title, start_location, destination, transport_types, duration_label, best_for, highlights, food_stops, season, usp, hamn_profil, bad_profil, log_suggestions, insider_tip, waypoints'
+  ).eq('id', id).single()
   if (error || !data) notFound()
   const t = data as Tour
 
@@ -386,7 +388,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           color: '#fff', fontWeight: 700, fontSize: 13,
           textDecoration: 'none',
         }}>
-          🧭 Fråga guiden om den här turen
+          Fråga Thorkel om den här turen
         </Link>
       </div>
     </div>

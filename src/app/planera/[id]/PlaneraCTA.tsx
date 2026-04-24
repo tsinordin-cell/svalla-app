@@ -25,7 +25,7 @@ export default function PlaneraCTA({ routeId, hasDoneIt }: { routeId: string; ha
     const supabase = createClient()
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) {
-      router.push(`/logga-in?redirect=/planera/${routeId}`)
+      router.push(`/logga-in?returnTo=/planera/${routeId}`)
       return
     }
     router.push(`/logga?planned_route_id=${routeId}`)

@@ -134,8 +134,8 @@ export async function GET(
                 {locLabel}
               </div>
             ) : (
-              <div style={{ fontSize: 30, fontWeight: 700, color: '#fff' }}>
-                {boatEmoji} Svalla-tur
+              <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', display: 'flex' }}>
+                {`${boatEmoji} Svalla-tur`}
               </div>
             )}
             {magisk && (
@@ -198,7 +198,7 @@ export async function GET(
                 {username[0]?.toUpperCase()}
               </div>
               <div style={{ fontSize: 16, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
-                @{username}
+                {`@${username}`}
               </div>
             </div>
             <div style={{

@@ -119,8 +119,8 @@ export async function GET(
                   {author}
                 </div>
                 {readingMin ? (
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>
-                    {readingMin} min läsning
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', display: 'flex' }}>
+                    {`${readingMin} min läsning`}
                   </div>
                 ) : null}
               </div>

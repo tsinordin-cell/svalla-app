@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,13 +6,14 @@ import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
 import PlaceSocialSection from '@/components/PlaceSocialSection'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
 export const revalidate = 60   // refresh reviews regularly
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
   const { data } = await supabase.from('restaurants').select('name, description, island, image_url, tags').eq('id', id).single()
   if (!data) return { title: 'Restaurang – Svalla' }
   const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
@@ -47,11 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const { data, error } = await supabase
     .from('restaurants')
-    .select('*')
+    .select('id, name, latitude, longitude, images, menu, opening_hours, description, tags, core_experience, island, contact_phone, website, booking_url')
     .eq('id', id)
     .single()
 
@@ -378,14 +379,12 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
             boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
           }}
         >
-          <div style={{
-            width: 38, height: 38, borderRadius: 11, flexShrink: 0,
-            background: 'var(--grad-sea)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17,
-          }}>🧭</div>
+          <div style={{ flexShrink: 0 }}>
+            <ThorkelAvatar size={38} />
+          </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Planera en tur hit</div>
-            <div style={{ fontSize: 11, color: 'var(--txt3)' }}>AI-guiden hjälper dig bygga hela rutten</div>
+            <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Thorkel hjälper dig bygga hela rutten</div>
           </div>
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, marginLeft: 'auto', flexShrink: 0 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -442,8 +441,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
                     width: 100, background: 'var(--white)', borderRadius: 12, overflow: 'hidden',
                     boxShadow: '0 2px 8px rgba(0,45,60,0.07)', border: '1px solid rgba(10,123,140,0.08)',
                   }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img loading="lazy" decoding="async" src={t.image} alt="" style={{ width: '100%', height: 70, objectFit: 'cover', display: 'block' }} />
+                    <div style={{ position: 'relative', width: '100%', height: 70 }}>
+                      <Image src={t.image} alt="" fill sizes="100px" style={{ objectFit: 'cover' }} />
+                    </div>
                     <div style={{ padding: '6px 8px' }}>
                       <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {Array.isArray(t.users) ? t.users[0]?.username : (t.users as { username: string } | null)?.username ?? 'Okänd'}

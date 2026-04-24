@@ -46,7 +46,7 @@ export default async function TipsArticlePage({ params }: Props) {
       <div style={{
         background: a.cover_image
           ? `linear-gradient(to bottom, rgba(12,36,54,0.45), rgba(12,36,54,0.75)), url(${a.cover_image}) center/cover`
-          : 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+          : 'var(--grad-sea-hero)',
         padding: '48px 20px 56px',
       }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>

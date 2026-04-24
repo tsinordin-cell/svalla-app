@@ -59,7 +59,7 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
       className="press-feedback"
       style={{
         width: 36, height: 36, borderRadius: '50%', border: 'none', cursor: 'pointer',
-        background: saved ? 'rgba(201,110,42,0.12)' : 'rgba(10,123,140,0.07)',
+        background: saved ? 'var(--acc-12)' : 'var(--surface-2)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         transition: 'all .15s', flexShrink: 0,
       }}

@@ -12,6 +12,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { getProfileTeaser, type ProfileTeaser } from '@/lib/profileTeaser'
 
@@ -173,12 +174,13 @@ export default function ProfileTeaserPopover({
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                   <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ flexShrink: 0 }}>
                     {data.avatar ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img loading="lazy" decoding="async" src={data.avatar} alt={data.username} style={{ width: 64, height: 64, borderRadius: '50%', objectFit: 'cover' }} />
+                      <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden', position: 'relative' }}>
+                        <Image src={data.avatar} alt={data.username} fill sizes="64px" style={{ objectFit: 'cover' }} />
+                      </div>
                     ) : (
                       <div style={{
                         width: 64, height: 64, borderRadius: '50%',
-                        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                        background: 'var(--grad-sea)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         fontSize: 26, fontWeight: 700, color: '#fff',
                       }}>{data.username[0]?.toUpperCase() ?? '?'}</div>
@@ -234,7 +236,7 @@ export default function ProfileTeaserPopover({
                     <button onClick={toggleFollow} disabled={followBusy}
                       style={{
                         flex: 1, padding: 12, borderRadius: 12, border: 'none',
-                        background: data.is_following ? 'rgba(10,123,140,0.10)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                        background: data.is_following ? 'rgba(10,123,140,0.10)' : 'var(--grad-sea)',
                         color: data.is_following ? 'var(--txt)' : '#fff',
                         fontWeight: 600, fontSize: 14,
                         cursor: followBusy ? 'wait' : 'pointer',

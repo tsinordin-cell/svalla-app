@@ -1,14 +1,16 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
 import { blockUser } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import { absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
+import { reverseGeocode } from '@/lib/reverse-geocode'
 import type { Message, Conversation } from '@/lib/supabase'
 
 type MsgWithMeta = Message & { username?: string; avatar?: string | null; optimistic?: boolean }
@@ -76,18 +78,28 @@ export default function ChatPage() {
   const [loading, setLoading] = useState(true)
   const [sharingGeo, setSharingGeo] = useState(false)
   const [otherId, setOtherId] = useState<string | null>(null)
+  const [otherReadAt, setOtherReadAt] = useState<string | null>(null)
 
-  // Long-press action sheet
+  // Long-press action sheet (per meddelande)
   const [actionSheet, setActionSheet] = useState<{
     msgId: string | null
     isOwn: boolean
     show: boolean
   }>({ msgId: null, isOwn: false, show: false })
+
+  // Konversationsmeny (⋯ i headern)
+  const [convMenu, setConvMenu] = useState(false)
+
+  // Bekräftelsedialog — ersätter native confirm()
+  const [confirmSheet, setConfirmSheet] = useState<{
+    title: string; body: string; label: string; onConfirm: () => Promise<void>
+  } | null>(null)
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
+  const longPressDidFire = useRef(false)
 
   // Bootstrap
   useEffect(() => {
@@ -101,7 +113,7 @@ export default function ChatPage() {
         setMe(user.id)
 
         // Konversationsinfo
-        const { data: c } = await supabase.from('conversations').select('*').eq('id', id).single()
+        const { data: c } = await supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).single()
         if (cancel) return
         if (!c) { router.push('/meddelanden'); return }
         setConv(c as Conversation)
@@ -134,6 +146,16 @@ export default function ChatPage() {
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
         await loadMessages(user.id)
+        // Hämta motpartens last_read_at för läskvitens
+        try {
+          const { data: rp } = await supabase
+            .from('conversation_participants')
+            .select('last_read_at')
+            .eq('conversation_id', id)
+            .neq('user_id', user.id)
+            .single()
+          if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
+        } catch { /* tyst */ }
         try { await markConversationRead(supabase, user.id, id) } catch { /* tyst */ }
         if (!cancel) setLoading(false)
       } catch (err) {
@@ -192,6 +214,18 @@ export default function ChatPage() {
           { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${id}` },
           () => { loadMessages(me) },
         )
+        .on('postgres_changes',
+          { event: 'UPDATE', schema: 'public', table: 'conversation_participants', filter: `conversation_id=eq.${id}` },
+          async () => {
+            const { data: rp } = await supabase
+              .from('conversation_participants')
+              .select('last_read_at')
+              .eq('conversation_id', id)
+              .neq('user_id', me)
+              .single()
+            if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
+          },
+        )
         .subscribe()
     } catch {
       // Realtime-prenumeration misslyckades — chatt fungerar utan realtid (pull-to-refresh)
@@ -219,12 +253,14 @@ export default function ChatPage() {
     }
   }, [supabase, me, id])
 
-  // Auto-scroll till botten
+  // Auto-scroll till botten — beror på BÅDE messages.length och loading.
+  // Meddelandena renderas bara när !loading, så vi måste vänta tills
+  // loading blir false innan scrollHeight är korrekt.
   useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight
-    }
-  }, [messages.length])
+    if (loading || !listRef.current) return
+    const el = listRef.current
+    requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
+  }, [messages.length, loading])
 
   async function send(e?: React.FormEvent) {
     e?.preventDefault()
@@ -325,44 +361,66 @@ export default function ChatPage() {
 
   async function handleDeleteMessage(msgId: string) {
     setActionSheet({ msgId: null, isOwn: false, show: false })
-    if (!confirm('Radera meddelandet?')) return
-    const ok = await deleteMessage(supabase, msgId)
-    if (ok) {
-      setMessages(prev => prev.filter(m => m.id !== msgId))
-    } else {
-      toast('Kunde inte radera meddelandet.', 'error')
-    }
+    setConfirmSheet({
+      title: 'Radera meddelande',
+      body: 'Meddelandet tas bort permanent.',
+      label: 'Radera',
+      onConfirm: async () => {
+        const ok = await deleteMessage(supabase, msgId)
+        if (ok) {
+          setMessages(prev => prev.filter(m => m.id !== msgId))
+        } else {
+          toast('Kunde inte radera meddelandet.', 'error')
+        }
+      },
+    })
   }
 
   async function handleLeaveConversation() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
+    setConvMenu(false)
     if (!me || !conv) return
-    if (!confirm('Radera konversationen? Den försvinner bara för dig.')) return
-    const ok = await leaveConversation(supabase, me, conv.id)
-    if (ok) {
-      router.push('/meddelanden')
-    } else {
-      toast('Kunde inte radera konversationen.', 'error')
-    }
+    setConfirmSheet({
+      title: 'Radera konversation',
+      body: 'Konversationen försvinner bara för dig.',
+      label: 'Radera',
+      onConfirm: async () => {
+        const ok = await leaveConversation(supabase, me, conv.id)
+        if (ok) {
+          router.push('/meddelanden')
+        } else {
+          toast('Kunde inte radera konversationen.', 'error')
+        }
+      },
+    })
   }
 
   async function handleBlockUser() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
+    setConvMenu(false)
     if (!me || !otherId) return
-    if (!confirm(`Blockera ${otherName}? Du kan inte DM:a varandra längre.`)) return
-    const ok = await blockUser(supabase, me, otherId)
-    if (ok) {
-      toast(`${otherName} blockerad`, 'success')
-      router.push('/meddelanden')
-    } else {
-      toast('Något gick fel.', 'error')
-    }
+    setConfirmSheet({
+      title: `Blockera ${otherName}`,
+      body: 'Du och den här personen kan inte längre skicka meddelanden till varandra.',
+      label: 'Blockera',
+      onConfirm: async () => {
+        const ok = await blockUser(supabase, me, otherId)
+        if (ok) {
+          toast(`${otherName} blockerad`, 'success')
+          router.push('/meddelanden')
+        } else {
+          toast('Något gick fel.', 'error')
+        }
+      },
+    })
   }
 
   function onLongPressStart(msgId: string, isOwn: boolean) {
+    longPressDidFire.current = false
     longPressTimer.current = setTimeout(() => {
+      longPressDidFire.current = true
       setActionSheet({ msgId, isOwn, show: true })
-    }, 500)
+    }, 450)
   }
 
   function onLongPressEnd() {
@@ -390,9 +448,12 @@ export default function ChatPage() {
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords
+        // Reverse-geocoda i bakgrunden så bubblan visar "Sandhamn" istället för
+        // "59.2891°, 18.9134°". Degraderar tyst — bubblan fungerar utan namn.
+        const location_name = await reverseGeocode(latitude, longitude)
         await sendAttachment('geo',
           `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=15/${latitude}/${longitude}`,
-          { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy },
+          { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy, location_name },
         )
         setSharingGeo(false)
       },
@@ -418,57 +479,100 @@ export default function ChatPage() {
     return { ...m, mine, sameAsPrev, sameAsNext, needsDaySep, isLastInGroup }
   })
 
-  return (
-    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
+  const lastReadMsgId = useMemo(() => {
+    if (!otherReadAt || !me) return null
+    const readTime = new Date(otherReadAt).getTime()
+    let result: string | null = null
+    for (const m of messages) {
+      if (m.user_id === me && !m.optimistic && new Date(m.created_at).getTime() <= readTime) {
+        result = m.id
+      }
+    }
+    return result
+  }, [otherReadAt, messages, me])
 
-      {/* ── Header ── */}
+  return (
+    <div style={{ height: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
+
+      {/* ── Header — iOS-style: avatar ovan, namn under, centrerat ── */}
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
         background: 'var(--glass-96)',
         backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
-        height: 56,
-        display: 'flex', alignItems: 'center',
-        padding: '0 14px',
+        padding: '6px 8px 10px',
       }}>
-        <div style={{ maxWidth: 520, margin: '0 auto', width: '100%', display: 'flex', alignItems: 'center', gap: 10 }}>
-          {/* Back — 44×44 touch target, no circle bg */}
+        <div style={{
+          maxWidth: 520, margin: '0 auto', width: '100%',
+          position: 'relative',
+          minHeight: 74,
+        }}>
+          {/* Back — absolut vänster, stör inte centreringen */}
           <Link href="/meddelanden" aria-label="Tillbaka" style={{
-            width: 44, height: 44, flexShrink: 0,
+            position: 'absolute', left: 0, top: 10,
+            width: 40, height: 40,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             borderRadius: radius.sm,
             WebkitTapHighlightColor: 'transparent',
+            zIndex: 1,
           }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </Link>
 
-          {/* Avatar + name — tappable to profile */}
+          {/* ⋯ — absolut höger, konversationsmeny */}
+          <button
+            onClick={() => setConvMenu(true)}
+            aria-label="Mer"
+            style={{
+              position: 'absolute', right: 0, top: 10,
+              width: 40, height: 40,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              borderRadius: radius.sm, border: 'none', background: 'transparent',
+              cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+              zIndex: 1,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20, color: 'var(--sea)' }}>
+              <circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" />
+            </svg>
+          </button>
+
+          {/* Centrerad avatar + namn — tappable till profil */}
           <Link href={otherUsername ? `/u/${otherUsername}` : '#'} style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            flex: 1, minWidth: 0, textDecoration: 'none',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            gap: 2,
+            padding: '4px 48px 0',
+            textDecoration: 'none',
           }}>
             <div style={{
-              width: 32, height: 32, borderRadius: radius.xs, flexShrink: 0,
+              width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
               background: displayGrad, color: '#fff',
-              fontWeight: fontWeight.semibold, fontSize: fontSize.small,
+              fontWeight: fontWeight.semibold, fontSize: fontSize.body,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               overflow: 'hidden', position: 'relative',
+              boxShadow: '0 2px 10px rgba(0,45,60,0.18)',
+              border: '2px solid var(--white, #fff)',
             }}>
               {otherAvatar
-                // eslint-disable-next-line @next/next/no-img-element
-                ? <img loading="lazy" decoding="async" src={otherAvatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                ? <Image src={otherAvatar} alt="" fill sizes="44px" style={{ objectFit: 'cover' }} />
                 : displayInitials
               }
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{
-                fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 3,
+              maxWidth: '100%',
+            }}>
+              <span style={{
+                fontSize: fontSize.small, fontWeight: fontWeight.semibold,
                 color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               }}>
                 {otherName}
-              </div>
+              </span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.25} style={{ width: 11, height: 11, flexShrink: 0 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </Link>
         </div>
@@ -491,7 +595,7 @@ export default function ChatPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={handleAcceptRequest} style={{
                 flex: 1, padding: '10px 14px', borderRadius: radius.sm, border: 'none',
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff',
+                background: 'var(--grad-sea)', color: '#fff',
                 fontWeight: fontWeight.semibold, fontSize: fontSize.small,
                 cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
               }}>Acceptera</button>
@@ -523,15 +627,17 @@ export default function ChatPage() {
       {/* ── Message list ── */}
       <div ref={listRef} style={{
         flex: 1, overflowY: 'auto',
+        WebkitOverflowScrolling: 'touch' as never,
         padding: `${space[4]}px ${space[3]}px`,
         maxWidth: 520, width: '100%', margin: '0 auto',
         display: 'flex', flexDirection: 'column',
-        justifyContent: 'flex-end',
       }}>
+        {/* Spacer — pushes messages to bottom when list is short, collapses when list is long */}
+        <div style={{ flex: 1 }} />
 
         {/* Loading */}
         {loading && (
-          <div style={{ padding: 40, textAlign: 'center', margin: 'auto' }}>
+          <div style={{ padding: 40, textAlign: 'center' }}>
             <div style={{
               width: 22, height: 22, borderRadius: '50%',
               border: '2.5px solid var(--sea)', borderTopColor: 'transparent',
@@ -598,12 +704,6 @@ export default function ChatPage() {
                   marginTop: m.sameAsPrev ? 2 : 12,
                   opacity: m.optimistic ? 0.6 : 1,
                 }}
-                onMouseDown={() => onLongPressStart(m.id, m.mine)}
-                onMouseUp={onLongPressEnd}
-                onMouseLeave={onLongPressEnd}
-                onTouchStart={() => onLongPressStart(m.id, m.mine)}
-                onTouchEnd={onLongPressEnd}
-                onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
               >
                 {/* Avatar — others only, hidden when not last in group */}
                 {!m.mine && (
@@ -616,45 +716,47 @@ export default function ChatPage() {
                     overflow: 'hidden', position: 'relative',
                   }}>
                     {m.avatar
-                      // eslint-disable-next-line @next/next/no-img-element
-                      ? <img loading="lazy" decoding="async" src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      ? <Image src={m.avatar} alt="" fill sizes="28px" style={{ objectFit: 'cover' }} />
                       : inits
                     }
                   </div>
                 )}
 
-                {/* Bubble column */}
-                <div style={{
-                  maxWidth: '75%', display: 'flex', flexDirection: 'column',
-                  alignItems: m.mine ? 'flex-end' : 'flex-start',
-                  gap: 3,
-                }}>
+                {/* Bubble column — händelsehanterare här så bara bubblan triggar */}
+                <div
+                  style={{
+                    maxWidth: m.attachment_type === 'geo' ? '88%' : '75%',
+                    width: m.attachment_type === 'geo' ? '88%' : 'auto',
+                    display: 'flex', flexDirection: 'column',
+                    alignItems: m.mine ? 'flex-end' : 'flex-start',
+                    gap: 3,
+                    cursor: m.mine ? 'pointer' : 'default',
+                    userSelect: 'none',
+                  }}
+                  onMouseDown={() => onLongPressStart(m.id, m.mine)}
+                  onMouseUp={onLongPressEnd}
+                  onMouseLeave={onLongPressEnd}
+                  onTouchStart={() => onLongPressStart(m.id, m.mine)}
+                  onTouchEnd={onLongPressEnd}
+                  onClick={() => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) }}
+                  onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
+                >
                   {/* Image */}
                   {m.attachment_type === 'image' && m.attachment_url && (
-                    <a href={m.attachment_url} target="_blank" rel="noreferrer">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img loading="lazy" decoding="async" src={m.attachment_url} alt="" style={{ maxWidth: 240, maxHeight: 240, borderRadius: bubbleR, display: 'block' }} />
+                    <a href={m.attachment_url} target="_blank" rel="noreferrer" style={{ display: 'block' }}>
+                      <div style={{ position: 'relative', width: 240, height: 240, borderRadius: bubbleR, overflow: 'hidden' }}>
+                        <Image src={m.attachment_url} alt="" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                      </div>
                     </a>
                   )}
 
                   {/* Geo */}
                   {m.attachment_type === 'geo' && m.attachment_meta && (
-                    <a href={m.attachment_url ?? '#'} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
-                      <div style={{
-                        padding: '10px 14px', borderRadius: bubbleR,
-                        background: m.mine ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.06)',
-                        color: m.mine ? '#fff' : 'var(--txt)',
-                        fontSize: fontSize.body, lineHeight: 1.4,
-                        display: 'flex', alignItems: 'center', gap: 8,
-                        boxShadow: m.mine ? shadow.sm : 'none',
-                      }}>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-                          <circle cx="12" cy="9" r="2.5" />
-                        </svg>
-                        <span>Delad position</span>
-                      </div>
-                    </a>
+                    <LocationBubble
+                      meta={m.attachment_meta as GeoMeta}
+                      href={m.attachment_url}
+                      mine={m.mine}
+                    />
                   )}
 
                   {/* Trip card — no IIFE, extracted component */}
@@ -665,11 +767,14 @@ export default function ChatPage() {
                   {/* Text bubble */}
                   {m.content && (
                     <div style={{
-                      padding: '9px 14px', borderRadius: bubbleR,
-                      background: m.mine ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.06)',
+                      padding: '10px 15px', borderRadius: bubbleR,
+                      background: m.mine
+                        ? 'linear-gradient(135deg, #0a7b8c 0%, #085f6e 100%)'
+                        : 'rgba(10,123,140,0.09)',
+                      border: m.mine ? 'none' : '1px solid rgba(10,123,140,0.12)',
                       color: m.mine ? '#fff' : 'var(--txt)',
-                      fontSize: fontSize.body, lineHeight: 1.4, wordBreak: 'break-word',
-                      boxShadow: m.mine ? shadow.sm : 'none',
+                      fontSize: fontSize.body, lineHeight: 1.45, wordBreak: 'break-word',
+                      boxShadow: m.mine ? '0 2px 10px rgba(10,123,140,0.30)' : 'none',
                     }}>
                       {m.content}
                     </div>
@@ -684,6 +789,20 @@ export default function ChatPage() {
                       {m.optimistic ? 'skickar…' : fmtMsgTime(m.created_at)}
                     </span>
                   )}
+
+                  {/* Read receipt — "Sett" under the last read own message */}
+                  {m.mine && m.id === lastReadMsgId && (
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: 3,
+                      padding: '0 4px',
+                    }}>
+                      <svg viewBox="0 0 22 10" width={16} height={7} fill="none">
+                        <path d="M1 5.5l3 3.5L9 1" stroke="var(--sea)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M8 5.5l3 3.5L17 1" stroke="var(--sea)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 600, letterSpacing: '0.2px' }}>Sett</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -694,12 +813,14 @@ export default function ChatPage() {
       {/* ── Input bar — hidden for request receiver until accepted ── */}
       {!(conv?.status === 'request' && me && conv.created_by !== me) && (
         <form onSubmit={send} style={{
-          background: 'var(--white)',
+          background: 'var(--glass-96)',
+          backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
           borderTop: '1px solid rgba(10,123,140,0.10)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          flexShrink: 0,
         }}>
           <div style={{
-            maxWidth: 520, margin: '0 auto', height: 56,
+            maxWidth: 520, margin: '0 auto', height: 60,
             display: 'flex', alignItems: 'center',
             gap: space[2], padding: `0 ${space[3]}px`,
           }}>
@@ -737,7 +858,16 @@ export default function ChatPage() {
               value={text}
               onChange={e => setText(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
-              placeholder="Skriv ett meddelande…"
+              onFocus={() => {
+                setTimeout(() => {
+                  listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
+                }, 350)
+              }}
+              placeholder={
+                conv?.status === 'request' && conv?.created_by === me
+                  ? 'Lägg till ett meddelande till förfrågan…'
+                  : 'Skriv ett meddelande…'
+              }
               maxLength={2000}
               autoComplete="off"
               style={{
@@ -752,8 +882,8 @@ export default function ChatPage() {
             {/* Send */}
             <button className="press-feedback" type="submit" disabled={!text.trim() || posting} aria-label="Skicka" style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
-              background: text.trim() && !posting ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,40,80,0.08)',
-              color: text.trim() && !posting ? '#fff' : 'rgba(10,40,80,0.28)',
+              background: text.trim() && !posting ? 'var(--sea)' : 'var(--surface-2, rgba(10,40,80,0.08))',
+              color: text.trim() && !posting ? '#fff' : 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               cursor: text.trim() && !posting ? 'pointer' : 'default',
               boxShadow: text.trim() && !posting ? shadow.sm : 'none',
@@ -768,7 +898,7 @@ export default function ChatPage() {
         </form>
       )}
 
-      {/* ── Action sheet (long-press) ── */}
+      {/* ── Meddelandets action sheet (lång tryckning / tap på eget meddelande) ── */}
       {actionSheet.show && (
         <>
           <div
@@ -786,19 +916,300 @@ export default function ChatPage() {
               <ActionSheetItem icon="🗑️" label="Radera meddelande" color="#dc2626"
                 onClick={() => handleDeleteMessage(actionSheet.msgId!)} />
             )}
-            <ActionSheetItem icon="💬" label="Radera konversation" color="#dc2626"
-              onClick={handleLeaveConversation} />
-            {!conv?.is_group && otherId && (
-              <ActionSheetItem icon="🚫" label={`Blockera ${otherName}`} color="#dc2626"
-                onClick={handleBlockUser} />
-            )}
             <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
               onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })} />
           </div>
         </>
       )}
 
+      {/* ── Konversationsmeny (⋯ i headern) ── */}
+      {convMenu && (
+        <>
+          <div
+            onClick={() => setConvMenu(false)}
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', zIndex: 200 }}
+          />
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 201,
+            background: 'var(--white)', borderRadius: `${radius.lg}px ${radius.lg}px 0 0`,
+            padding: `8px 0 calc(20px + env(safe-area-inset-bottom))`,
+            boxShadow: shadow.md,
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '4px auto 16px' }} />
+            <ActionSheetItem icon="🗑️" label="Radera konversation" color="#dc2626"
+              onClick={handleLeaveConversation} />
+            {!conv?.is_group && otherId && (
+              <ActionSheetItem icon="🚫" label={`Blockera ${otherName}`} color="#dc2626"
+                onClick={handleBlockUser} />
+            )}
+            <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
+              onClick={() => setConvMenu(false)} />
+          </div>
+        </>
+      )}
+
+      {/* ── Bekräftelsedialog — ersätter native confirm() ── */}
+      {confirmSheet && (
+        <>
+          <div
+            onClick={() => setConfirmSheet(null)}
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.40)', zIndex: 210 }}
+          />
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 211,
+            background: 'var(--white)', borderRadius: `${radius.lg}px ${radius.lg}px 0 0`,
+            padding: `20px 24px calc(28px + env(safe-area-inset-bottom))`,
+            boxShadow: shadow.md,
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '0 auto 20px' }} />
+            <div style={{ fontSize: fontSize.subtitle, fontWeight: fontWeight.semibold, color: 'var(--txt)', marginBottom: 6 }}>
+              {confirmSheet.title}
+            </div>
+            <div style={{ fontSize: fontSize.body, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 24 }}>
+              {confirmSheet.body}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <button
+                onClick={async () => { const s = confirmSheet; setConfirmSheet(null); await s.onConfirm() }}
+                style={{
+                  padding: '14px', borderRadius: radius.md, border: 'none',
+                  background: '#dc2626', color: '#fff',
+                  fontSize: fontSize.body, fontWeight: fontWeight.semibold,
+                  cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                {confirmSheet.label}
+              </button>
+              <button
+                onClick={() => setConfirmSheet(null)}
+                style={{
+                  padding: '14px', borderRadius: radius.md,
+                  border: '1px solid rgba(10,123,140,0.15)',
+                  background: 'transparent', color: 'var(--txt)',
+                  fontSize: fontSize.body, fontWeight: fontWeight.medium,
+                  cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                Avbryt
+              </button>
+            </div>
+          </div>
+        </>
+      )}
+
       <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+    </div>
+  )
+}
+
+// ── Location bubble ──────────────────────────────────────────────────────────
+// Inline kartförhandsvisning för delade positioner: OSM-bas + OpenSeaMap-sjömärken
+// som overlay. Responsiv bredd (fyller chatkolumnen). Action-knappar under.
+type GeoMeta = { lat?: number; lng?: number; accuracy?: number; location_name?: string }
+
+function LocationBubble({ meta, href, mine }: { meta: GeoMeta; href: string | null; mine: boolean }) {
+  const lat = typeof meta.lat === 'number' ? meta.lat : null
+  const lng = typeof meta.lng === 'number' ? meta.lng : null
+  const hasCoords = lat !== null && lng !== null
+
+  const boxRef = useRef<HTMLDivElement>(null)
+  const [W, setW] = useState(340)
+  const H = 180
+  const Z = 14
+
+  useEffect(() => {
+    if (!boxRef.current) return
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0]?.contentRect.width
+      if (w && w > 100) setW(Math.floor(w))
+    })
+    ro.observe(boxRef.current)
+    return () => ro.disconnect()
+  }, [])
+
+  // Räkna ut tile-koordinater och pin:ens pixelposition inom en 3×3-komposit,
+  // så pin:en alltid hamnar i viewport-mitten oavsett bredd.
+  let tile0X = 0, tile0Y = 0, compLeft = 0, compTop = 0
+  if (hasCoords) {
+    const n = Math.pow(2, Z)
+    const xf = ((lng + 180) / 360) * n
+    const yf = ((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) / 2) * n
+    const xi = Math.floor(xf)
+    const yi = Math.floor(yf)
+    const pinInTileX = (xf - xi) * 256
+    const pinInTileY = (yf - yi) * 256
+    // 3×3 grid med center-tile = (xi, yi). Pin i kompositen (768×768) = (256+pinInTileX, 256+pinInTileY)
+    tile0X = xi - 1
+    tile0Y = yi - 1
+    compLeft = W / 2 - (256 + pinInTileX)
+    compTop  = H / 2 - (256 + pinInTileY)
+  }
+
+  async function copyCoords(e: React.MouseEvent) {
+    e.preventDefault(); e.stopPropagation()
+    if (!hasCoords) return
+    try {
+      await navigator.clipboard.writeText(`${lat.toFixed(5)}, ${lng.toFixed(5)}`)
+      toast('Koordinater kopierade', 'success')
+    } catch {
+      toast('Kunde inte kopiera', 'error')
+    }
+  }
+
+  // OpenSeaMap ger faktisk sjökorts-vy (grynnor, fyrar) — mer relevant för seglare än OSM
+  const seamarkHref = hasCoords ? `https://map.openseamap.org/?zoom=14&mlat=${lat}&mlon=${lng}&lat=${lat}&lon=${lng}` : null
+  const extHref = href
+
+  return (
+    <div style={{
+      width: '100%',
+      display: 'flex', flexDirection: 'column',
+      gap: 6,
+    }}>
+      {/* Map — tappbar öppnar OSM för full navigering */}
+      <a
+        href={extHref ?? '#'}
+        target={extHref ? '_blank' : undefined}
+        rel={extHref ? 'noreferrer' : undefined}
+        style={{ textDecoration: 'none', display: 'block' }}
+      >
+        <div ref={boxRef} style={{
+          width: '100%',
+          height: H,
+          borderRadius: 18,
+          overflow: 'hidden',
+          position: 'relative',
+          background: 'rgba(10,40,80,0.06)',
+          border: '1px solid rgba(10,123,140,0.14)',
+          boxShadow: mine ? shadow.sm : shadow.xs,
+        }}>
+          {hasCoords ? (
+            <>
+              {/* OSM base + OpenSeaMap overlay — 3×3 grid */}
+              <div style={{
+                position: 'absolute',
+                left: compLeft, top: compTop,
+                width: 768, height: 768,
+              }}>
+                {[0, 1, 2].map(dy =>
+                  [0, 1, 2].map(dx => (
+                    <div key={`${dx}_${dy}`} style={{
+                      position: 'absolute',
+                      left: dx * 256, top: dy * 256,
+                      width: 256, height: 256,
+                    }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`https://tile.openstreetmap.org/${Z}/${tile0X + dx}/${tile0Y + dy}.png`}
+                        alt=""
+                        loading="lazy" decoding="async"
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+                      />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`https://tiles.openseamap.org/seamark/${Z}/${tile0X + dx}/${tile0Y + dy}.png`}
+                        alt=""
+                        loading="lazy" decoding="async"
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'none' }}
+                      />
+                    </div>
+                  ))
+                )}
+              </div>
+
+              {/* Pin */}
+              <div style={{
+                position: 'absolute', left: '50%', top: '50%',
+                transform: 'translate(-50%, -100%)',
+                filter: 'drop-shadow(0 3px 8px rgba(0,0,0,0.55))',
+                pointerEvents: 'none',
+              }}>
+                <svg viewBox="0 0 24 32" width={34} height={45} fill="none">
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 8.5 12 20 12 20s12-11.5 12-20C24 5.373 18.627 0 12 0z" fill="var(--sea)" />
+                  <circle cx="12" cy="12" r="5" fill="#fff" />
+                </svg>
+              </div>
+
+              {/* Accuracy chip uppe till höger (om finns) */}
+              {typeof meta.accuracy === 'number' && meta.accuracy > 0 && (
+                <div style={{
+                  position: 'absolute', top: 8, right: 8,
+                  padding: '3px 8px', borderRadius: radius.full,
+                  background: 'rgba(7,15,24,0.78)', color: '#fff',
+                  fontSize: 10, fontWeight: fontWeight.semibold,
+                  letterSpacing: 0.2,
+                  backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+                }}>
+                  ±{Math.round(meta.accuracy)} m
+                </div>
+              )}
+
+              {/* Label bar längst ner */}
+              <div style={{
+                position: 'absolute', left: 0, right: 0, bottom: 0,
+                padding: '18px 12px 10px',
+                background: 'linear-gradient(180deg, rgba(7,15,24,0) 0%, rgba(7,15,24,0.78) 100%)',
+                color: '#fff',
+                display: 'flex', alignItems: 'center', gap: 7,
+              }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                  <circle cx="12" cy="9" r="2.5" />
+                </svg>
+                <span style={{
+                  fontSize: fontSize.small, fontWeight: fontWeight.semibold,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
+                  {meta.location_name ?? `${lat.toFixed(4)}°, ${lng.toFixed(4)}°`}
+                </span>
+              </div>
+            </>
+          ) : (
+            <div style={{
+              width: '100%', height: '100%',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              color: 'var(--txt3)',
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                <circle cx="12" cy="9" r="2.5" />
+              </svg>
+              <span style={{ fontSize: fontSize.small }}>Delad position</span>
+            </div>
+          )}
+        </div>
+      </a>
+
+      {/* Action row */}
+      {hasCoords && (
+        <div style={{ display: 'flex', gap: 6 }}>
+          {seamarkHref && (
+            <a href={seamarkHref} target="_blank" rel="noreferrer" style={{
+              flex: 1, textAlign: 'center',
+              padding: '8px 10px', borderRadius: radius.full,
+              background: 'var(--surface-2, rgba(10,123,140,0.08))',
+              color: 'var(--sea)',
+              fontSize: fontSize.caption, fontWeight: fontWeight.semibold,
+              textDecoration: 'none',
+              border: '1px solid rgba(10,123,140,0.14)',
+            }}>
+              Öppna sjökort
+            </a>
+          )}
+          <button onClick={copyCoords} style={{
+            flex: 1,
+            padding: '8px 10px', borderRadius: radius.full,
+            background: 'var(--surface-2, rgba(10,123,140,0.08))',
+            color: 'var(--txt)',
+            fontSize: fontSize.caption, fontWeight: fontWeight.semibold,
+            border: '1px solid rgba(10,123,140,0.14)',
+            cursor: 'pointer',
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            Kopiera koordinater
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -815,8 +1226,9 @@ function TripBubble({ meta }: { meta: TripMeta }) {
         background: 'var(--white)', boxShadow: shadow.xs,
       }}>
         {meta.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img loading="lazy" decoding="async" src={meta.image} alt="" style={{ width: '100%', height: 100, objectFit: 'cover', display: 'block' }} />
+          <div style={{ position: 'relative', width: '100%', height: 100 }}>
+            <Image src={meta.image} alt="" fill sizes="260px" style={{ objectFit: 'cover' }} />
+          </div>
         )}
         <div style={{ padding: '8px 12px 10px' }}>
           <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', fontWeight: fontWeight.semibold, marginBottom: 2 }}>⛵ Tur</div>

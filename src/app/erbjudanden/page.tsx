@@ -101,7 +101,7 @@ export default function ErbjudandenPage() {
           </p>
         </>
       }
-      cta={{ label: 'Alla platser på kartan', href: '/platser', secondaryLabel: 'Kom igång gratis', secondaryHref: '/kom-igang' }}
+      cta={{ label: 'Alla platser på kartan', href: '/kom-igang' }}
       related={[
         { label: 'Evenemang', href: '/evenemang' },
         { label: 'Boende', href: '/boende' },

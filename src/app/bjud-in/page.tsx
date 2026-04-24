@@ -103,7 +103,7 @@ export default function InvitePage() {
       <div style={{ maxWidth: 520, margin: '0 auto', padding: 16 }}>
         <div style={{
           padding: '18px 20px', borderRadius: 18,
-          background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          background: 'var(--grad-sea)',
           color: '#fff', marginBottom: 18,
           boxShadow: '0 4px 20px rgba(30,92,130,0.30)',
         }}>
@@ -122,7 +122,7 @@ export default function InvitePage() {
             <button onClick={newInvite} disabled={creating}
               style={{
                 flex: 1, padding: '14px 18px', borderRadius: 14, border: 'none',
-                background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff',
+                background: 'var(--grad-acc)', color: '#fff',
                 fontWeight: 600, fontSize: 14, cursor: creating ? 'wait' : 'pointer',
                 opacity: creating ? 0.6 : 1,
               }}>
@@ -164,7 +164,7 @@ export default function InvitePage() {
                 Avbryt
               </button>
               <button onClick={newInvite} disabled={creating}
-                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#c96e2a,#e07828)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: creating ? 'wait' : 'pointer', opacity: creating ? 0.6 : 1 }}>
+                style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-acc)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: creating ? 'wait' : 'pointer', opacity: creating ? 0.6 : 1 }}>
                 {creating ? 'Skapar…' : 'Skapa länk'}
               </button>
             </div>
@@ -234,7 +234,7 @@ export default function InvitePage() {
                   <button onClick={() => shareLink(inv.code)}
                     style={{
                       flex: 1, padding: 10, borderRadius: 10, border: 'none',
-                      background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                      background: 'var(--grad-sea)',
                       color: '#fff', fontSize: 12, fontWeight: 600, cursor: 'pointer',
                     }}>
                     Dela
@@ -243,7 +243,7 @@ export default function InvitePage() {
                     style={{
                       padding: '10px 12px', borderRadius: 10,
                       border: '1px solid rgba(200,30,30,0.25)', background: 'transparent',
-                      fontSize: 12, color: '#c03', cursor: 'pointer',
+                      fontSize: 12, color: 'var(--red)', cursor: 'pointer',
                     }}>
                     🗑
                   </button>

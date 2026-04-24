@@ -52,7 +52,7 @@ export default function EventPage() {
             aria-label="Skapa event"
             style={{
               width: 36, height: 36, borderRadius: '50%', flexShrink: 0, border: 'none',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer',
             }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
@@ -78,7 +78,7 @@ export default function EventPage() {
             </p>
             {me && (
               <button onClick={() => setShowCreate(true)}
-                style={{ padding: '10px 22px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 700, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+                style={{ padding: '10px 22px', borderRadius: 14, background: 'var(--grad-sea)', color: '#fff', fontWeight: 700, fontSize: 13, border: 'none', cursor: 'pointer' }}>
                 Skapa event
               </button>
             )}
@@ -96,7 +96,7 @@ export default function EventPage() {
             }}>
               <div style={{
                 width: 64, flexShrink: 0, borderRadius: 12,
-                background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: 'var(--grad-sea)',
                 color: '#fff', display: 'flex', flexDirection: 'column',
                 alignItems: 'center', justifyContent: 'center', padding: '8px 4px',
               }}>
@@ -221,7 +221,7 @@ function CreateEventModal({
         <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Vad händer? Samling? Anmälan?" maxLength={500} rows={3}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)', resize: 'vertical', fontFamily: 'inherit' }} />
 
-        {err && <div style={{ color: '#c03', fontSize: 12, marginBottom: 10 }}>{err}</div>}
+        {err && <div style={{ color: 'var(--red)', fontSize: 12, marginBottom: 10 }}>{err}</div>}
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} disabled={busy}
@@ -229,7 +229,7 @@ function CreateEventModal({
             Avbryt
           </button>
           <button onClick={submit} disabled={busy}
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy ? 0.6 : 1 }}>
             {busy ? 'Skapar…' : 'Skapa event'}
           </button>
         </div>

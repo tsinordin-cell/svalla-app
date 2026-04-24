@@ -209,7 +209,7 @@ export default function TripActions({
                   style={{
                     flex: 1, padding: '10px 4px', borderRadius: 12, border: 'none', cursor: 'pointer',
                     background: pinnar === p.value
-                      ? p.value === 3 ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)'
+                      ? p.value === 3 ? 'var(--grad-acc)' : 'var(--grad-sea)'
                       : 'rgba(10,123,140,0.07)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3,
                     transition: 'all 0.15s',
@@ -247,7 +247,7 @@ export default function TripActions({
               className="press-feedback"
               style={{
                 width: '100%', padding: '14px', borderRadius: 16, border: 'none',
-                background: saving ? 'rgba(10,123,140,0.15)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                background: saving ? 'rgba(10,123,140,0.15)' : 'var(--grad-sea)',
                 color: saving ? 'var(--txt3)' : '#fff', fontSize: 15, fontWeight: 600,
                 cursor: saving ? 'default' : 'pointer', marginBottom: 10,
               }}

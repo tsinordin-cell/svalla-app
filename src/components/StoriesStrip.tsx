@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import {
   listActiveStoriesGrouped,
@@ -79,7 +80,8 @@ export default function StoriesStrip() {
 
   if (loading) return null
   const hasStories = groups.length > 0
-  if (!hasStories && !me) return null
+  // Göm hela strippen när ingen har stories — flödet ska vara huvudsaken.
+  if (!hasStories) return null
 
   return (
     <>
@@ -99,16 +101,19 @@ export default function StoriesStrip() {
             }}>
             <div style={{
               width: 60, height: 60, borderRadius: '50%',
-              border: '2px dashed rgba(10,123,140,0.35)',
+              border: '2px dashed rgba(10,123,140,0.30)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'var(--sea)', fontSize: 24, fontWeight: 600,
-              background: 'rgba(10,123,140,0.04)',
+              color: 'var(--teal, #0a7b8c)', fontSize: 22, fontWeight: 300,
+              background: 'rgba(10,123,140,0.06)',
             }}>+</div>
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)' }}>Din story</span>
           </button>
         )}
 
-        {groups.map((g, idx) => (
+        {groups.map((g, idx) => {
+          const isLive = !g.viewed_all &&
+            (Date.now() - new Date(g.stories[0].created_at).getTime()) < 2 * 60 * 60 * 1000
+          return (
           <button
             key={g.user_id}
             onClick={() => openViewer(idx)}
@@ -118,12 +123,14 @@ export default function StoriesStrip() {
               flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               border: 'none', background: 'transparent', cursor: 'pointer', padding: 0, maxWidth: 70,
             }}>
-            <div style={{
+            <div className={isLive ? 'story-ring-live' : undefined} style={{
               width: 64, height: 64, borderRadius: '50%',
               padding: 2.5,
               background: g.viewed_all
-                ? 'rgba(10,123,140,0.20)'
-                : 'linear-gradient(135deg,#1e5c82 0%,#2d7d8a 50%,#c96e2a 100%)',
+                ? 'rgba(10,123,140,0.15)'
+                : isLive
+                  ? 'conic-gradient(from 0deg, #22c55e, #0a7b8c, #22c55e)'
+                  : 'var(--teal, #0a7b8c)',
             }}>
               <div style={{
                 width: '100%', height: '100%', borderRadius: '50%',
@@ -134,8 +141,7 @@ export default function StoriesStrip() {
                 color: '#fff', fontWeight: 600, fontSize: 16,
               }}>
                 {g.avatar ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img loading="lazy" decoding="async" src={g.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src={g.avatar} alt="" fill sizes="64px" style={{ objectFit: 'cover' }} />
                 ) : initialsOf(g.username)}
               </div>
             </div>
@@ -146,8 +152,13 @@ export default function StoriesStrip() {
               {g.user_id === me ? 'Du' : g.username}
             </span>
           </button>
-        ))}
+        )})}
       </div>
+
+      <style>{`
+        @keyframes spin-ring { to { transform: rotate(360deg); } }
+        .story-ring-live { animation: spin-ring 3s linear infinite; }
+      `}</style>
 
       {viewerGroup !== null && groups[viewerGroup] && (
         <StoryViewer
@@ -228,8 +239,7 @@ function StoryViewer({
             color: '#fff', fontWeight: 600, fontSize: 12,
           }}>
             {group.avatar ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img loading="lazy" decoding="async" src={group.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <Image src={group.avatar} alt="" fill sizes="32px" style={{ objectFit: 'cover' }} />
             ) : initialsOf(group.username)}
           </div>
           <span style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{group.username}</span>
@@ -264,8 +274,11 @@ function StoryViewer({
           style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '70%', zIndex: 2 }}
         />
         {story.image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img loading="lazy" decoding="async" src={story.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+          <Image
+            src={story.image} alt="" fill priority
+            sizes="100vw"
+            style={{ objectFit: 'contain' }}
+          />
         )}
         {story.caption && (
           <div style={{
@@ -390,7 +403,7 @@ function UploadStory({
         <input value={location} onChange={e => setLocation(e.target.value)} placeholder="Plats (valfritt)" maxLength={60}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 14, background: 'var(--bg)', color: 'var(--txt)' }} />
 
-        {err && <div style={{ color: '#c03', fontSize: 12, marginBottom: 10 }}>{err}</div>}
+        {err && <div style={{ color: 'var(--red)', fontSize: 12, marginBottom: 10 }}>{err}</div>}
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} disabled={busy}
@@ -400,7 +413,7 @@ function UploadStory({
           </button>
           <button onClick={submit} disabled={busy || !file}
             className="press-feedback"
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || !file ? 0.6 : 1 }}>
             {busy ? 'Delar…' : 'Dela'}
           </button>
         </div>

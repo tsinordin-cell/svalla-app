@@ -1,12 +1,16 @@
 'use client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
 
-export default function LoggaChoicePage() {
+function LoggaChoice() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const plannedRouteId = searchParams.get('planned_route_id')
+  const suffix = plannedRouteId ? `?planned_route_id=${plannedRouteId}` : ''
 
   return (
-    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #0e3d52 0%, #1a5570 40%, #f7fbfc 100%)' }}>
+    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #0a1e2c 0%, #0d3a48 45%, #0a7b8c 100%)' }}>
 
       {/* Header */}
       <header style={{
@@ -52,7 +56,7 @@ export default function LoggaChoicePage() {
 
         {/* GPS tracking – primary */}
         <button
-          onClick={() => router.push('/spara')}
+          onClick={() => router.push(`/spara${suffix}`)}
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
             background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))',
@@ -94,7 +98,7 @@ export default function LoggaChoicePage() {
 
         {/* Manual quick-log */}
         <button
-          onClick={() => router.push('/logga/manuell')}
+          onClick={() => router.push(`/logga/manuell${suffix}`)}
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
             background: 'rgba(255,255,255,0.10)',
@@ -144,4 +148,8 @@ export default function LoggaChoicePage() {
       </div>
     </div>
   )
+}
+
+export default function LoggaChoicePage() {
+  return <Suspense><LoggaChoice /></Suspense>
 }

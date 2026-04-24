@@ -6,7 +6,7 @@
  *
  * Server-komponent: läser koden + visar statiskt innehåll.
  */
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import InviteRedeemClient from './InviteRedeemClient'
@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic'
 export default async function InvitePage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params
   const upper = code.toUpperCase()
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   // Spara koden i cookie så den kan lösas in efter signup
   const cookieStore = await cookies()
@@ -79,7 +79,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <Link href={`/kom-igang?invite=${upper}`} style={{
                   display: 'block', padding: 14, borderRadius: 14,
-                  background: 'linear-gradient(135deg,#c96e2a,#e07828)',
+                  background: 'var(--grad-acc)',
                   color: '#fff', fontSize: 15, fontWeight: 600, textAlign: 'center', textDecoration: 'none',
                   boxShadow: '0 4px 14px rgba(201,110,42,0.35)',
                 }}>
@@ -106,7 +106,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
               <span style={{ fontSize: 22 }}>⚠️</span>
-              <div style={{ fontSize: 14, fontWeight: 600, color: '#c03' }}>
+              <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--red)' }}>
                 {expired ? 'Länken har gått ut' : exhausted ? 'Länken är slut' : 'Ogiltig länk'}
               </div>
             </div>
@@ -115,7 +115,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
             </p>
             <Link href="/kom-igang" style={{
               display: 'block', marginTop: 14, padding: 12, borderRadius: 12,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontSize: 14, fontWeight: 600, textAlign: 'center', textDecoration: 'none',
             }}>
               Skapa konto ändå →

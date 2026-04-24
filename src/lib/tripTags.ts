@@ -43,16 +43,44 @@ export async function addTripTag(
   currentUserId: string,
   tripId: string,
   taggedUserId: string,
-): Promise<boolean> {
-  if (currentUserId === taggedUserId) return false
+): Promise<{ ok: boolean; errorMessage?: string }> {
+  if (currentUserId === taggedUserId) return { ok: false, errorMessage: 'Kan inte tagga dig själv' }
   const { error } = await supabase
     .from('trip_tags')
     .insert({
       trip_id: tripId,
       tagged_user_id: taggedUserId,
       tagged_by_user_id: currentUserId,
+      confirmed: true,
     })
-  return !error
+  if (error) {
+    console.error('[addTripTag]', error.code, error.message)
+    return { ok: false, errorMessage: error.message }
+  }
+  // Fire-and-forget: in-app notification + push
+  supabase.from('notifications').insert({
+    user_id: taggedUserId,
+    actor_id: currentUserId,
+    type: 'tag',
+    trip_id: tripId,
+  }).then(() => {})
+
+  supabase.from('users').select('username').eq('id', currentUserId).single()
+    .then(({ data }) => {
+      if (!data?.username) return
+      fetch('/api/push/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          targetUserId: taggedUserId,
+          title: 'Du är taggad i en tur 🏷️',
+          body: `${data.username} taggade dig`,
+          url: `/tur/${tripId}`,
+        }),
+      }).catch(() => {})
+    })
+
+  return { ok: true }
 }
 
 export async function removeTripTag(
@@ -90,7 +118,7 @@ export async function searchUsersForTag(
     .select('id, username, avatar')
     .ilike('username', `${query}%`)
     .limit(8)
-  if (excludeIds.length > 0) q = q.filter('id', 'not.in', `(${excludeIds.map(id => `"${id}"`).join(',')})`)
+  if (excludeIds.length > 0) q = q.not('id', 'in', `(${excludeIds.join(',')})`)
   const { data } = await q
   return (data ?? []).map(u => ({
     id: u.id as string,

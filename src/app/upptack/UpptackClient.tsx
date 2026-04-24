@@ -129,9 +129,9 @@ const FILTER_CONFIG: Record<Filter, FilterCfg> = {
 }
 
 // Primära chips ligger alltid synliga i fältraden.
-// Sekundära (överlägg) göms bakom "Lager"-menyn.
-const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'naturhamnar', 'bensin']
-const SECONDARY_FILTERS: Filter[] = ['rutter', 'heatmap']
+// Sekundära (POI och överlägg) göms bakom "Lager"-menyn.
+const PRIMARY_FILTERS:   Filter[] = ['bryggor', 'krogar', 'bensin']
+const SECONDARY_FILTERS: Filter[] = ['naturhamnar', 'bastu', 'rutter', 'heatmap']
 
 function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
   name: keyof typeof ICON_PATHS
@@ -253,6 +253,11 @@ export default function UpptackClient() {
         attribution: tileAttr,
         maxZoom: 18,
         className: 'map-tiles',
+      }).addTo(map)
+
+      // Sjökort-overlay (OpenSeaMap)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
       }).addTo(map)
 
       L.control.attribution({ prefix: '© OpenStreetMap' }).addTo(map)
@@ -554,13 +559,13 @@ export default function UpptackClient() {
                 aria-selected={active}
                 className="upptack-chip press-feedback"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  height: 36, padding: '0 14px',
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  height: 30, padding: '0 11px',
                   borderRadius: 999,
                   border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
                   background: active ? cfg.color : 'var(--glass-92)',
                   color: active ? '#fff' : 'var(--txt)',
-                  fontSize: 13, fontWeight: 600,
+                  fontSize: 12, fontWeight: 600,
                   fontFamily: 'inherit', cursor: 'pointer',
                   whiteSpace: 'nowrap',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
@@ -570,49 +575,14 @@ export default function UpptackClient() {
                   flexShrink: 0,
                 }}
               >
-                <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
+                <Icon name={cfg.icon} size={14} color={active ? '#fff' : 'var(--txt)'} />
                 <span>{cfg.label}</span>
               </button>
             )
           })}
         </div>
 
-        {/* Bastu — fast chip bredvid Lager (endast på karta) */}
-        {view === 'map' && (() => {
-          const cfg    = FILTER_CONFIG['bastu']
-          const active = filters.has('bastu')
-          return (
-            <button
-              key="bastu"
-              onClick={() => toggleFilter('bastu')}
-              role="tab"
-              aria-selected={active}
-              className="upptack-chip press-feedback"
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                height: 36, padding: '0 14px',
-                borderRadius: 999,
-                border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
-                background: active ? cfg.color : 'var(--glass-92)',
-                color: active ? '#fff' : 'var(--txt)',
-                fontSize: 13, fontWeight: 600,
-                fontFamily: 'inherit', cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
-                flexShrink: 0,
-                pointerEvents: 'auto',
-              }}
-            >
-              <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
-              <span>{cfg.label}</span>
-            </button>
-          )
-        })()}
-
-        {/* Lager-knapp (endast på karta) — öppnar popover med Rutter/Väder/Heatmap */}
+        {/* Lager-knapp (endast på karta) — öppnar popover med Naturhamnar/Bastu/Rutter/Heatmap */}
         {view === 'map' && (() => {
           const activeCount = SECONDARY_FILTERS.reduce((n, k) => n + (filters.has(k) ? 1 : 0), 0)
           return (
@@ -625,13 +595,13 @@ export default function UpptackClient() {
                 aria-label="Lager"
                 className="upptack-chip press-feedback"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  height: 36, padding: '0 12px 0 14px',
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  height: 30, padding: '0 10px 0 11px',
                   borderRadius: 999,
                   border: layersOpen ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
                   background: layersOpen ? 'var(--sea)' : 'var(--glass-92)',
                   color: layersOpen ? '#fff' : 'var(--txt)',
-                  fontSize: 13, fontWeight: 600,
+                  fontSize: 12, fontWeight: 600,
                   fontFamily: 'inherit', cursor: 'pointer',
                   whiteSpace: 'nowrap',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
@@ -640,7 +610,7 @@ export default function UpptackClient() {
                   transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
                 }}
               >
-                <Icon name="layers" size={16} color={layersOpen ? '#fff' : 'var(--txt)'} />
+                <Icon name="layers" size={14} color={layersOpen ? '#fff' : 'var(--txt)'} />
                 <span>Lager</span>
                 {activeCount > 0 ? (
                   <span

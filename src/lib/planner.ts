@@ -131,6 +131,12 @@ const INTEREST_PATTERNS: Record<Interest, {
   },
 }
 
+// Matchar ett ord exakt i ett namn (hanterar svenska sammansatta ord)
+// "hamn" matchar "Grinda Hamn" men INTE "Hamnkrogen"
+function nameHasWord(name: string, word: string): boolean {
+  return new RegExp(`(^|[\\s\\-&/])${word}([\\s\\-&/]|$)`).test(name)
+}
+
 export function matchesInterest(place: PlaceInput, interests: Interest[]): Interest | null {
   const t = (place.type ?? '').toLowerCase()
   const cats = (place.categories ?? []).map(c => c.toLowerCase())
@@ -142,7 +148,7 @@ export function matchesInterest(place: PlaceInput, interests: Interest[]): Inter
     if (
       p.types.some(x => t.includes(x)) ||
       p.cats.some(x => cats.includes(x)) ||
-      p.tags.some(x => tags.includes(x) || name.includes(x))
+      p.tags.some(x => tags.includes(x) || nameHasWord(name, x))
     ) {
       return interest
     }

@@ -18,7 +18,7 @@ export default function ProBadge({ size = 14 }: Props) {
         width: size + 6,
         height: size + 6,
         borderRadius: '50%',
-        background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+        background: 'var(--grad-sea)',
         color: '#fff',
         fontSize: size - 2,
         lineHeight: 1,

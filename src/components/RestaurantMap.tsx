@@ -73,6 +73,10 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
         ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
         : '&copy; OpenStreetMap contributors'
       L.tileLayer(tileUrl, { attribution: tileAttr, maxZoom: 16 }).addTo(map)
+      // Sjökort-overlay (OpenSeaMap)
+      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      }).addTo(map)
       L.control.zoom({ position: 'bottomright' }).addTo(map)
 
       restaurants.forEach(r => {

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { joinClub, leaveClub, getOrCreateClubChat, type ClubBasic } from '@/lib/clubs'
@@ -177,7 +178,7 @@ export default function KlubbPage() {
           {club?.is_member && (
             <button onClick={openChat} aria-label="Öppna klubb-chatt" style={{
               width: 36, height: 36, borderRadius: '50%', flexShrink: 0, border: 'none',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer',
             }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} style={{ width: 18, height: 18 }}>
@@ -205,8 +206,7 @@ export default function KlubbPage() {
               color: '#fff', fontWeight: 600, fontSize: 28, flexShrink: 0,
             }}>
               {club.image ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img loading="lazy" decoding="async" src={club.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Image src={club.image} alt="" fill sizes="80px" style={{ objectFit: 'cover' }} />
               ) : initialsOf(club.name)}
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -223,13 +223,13 @@ export default function KlubbPage() {
           <div style={{ padding: '4px 16px 16px', display: 'flex', gap: 8 }}>
             {!club.is_member ? (
               <button onClick={handleJoin} disabled={actionBusy}
-                style={{ flex: 1, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', opacity: actionBusy ? 0.6 : 1 }}>
+                style={{ flex: 1, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer', opacity: actionBusy ? 0.6 : 1 }}>
                 {actionBusy ? '...' : 'Gå med'}
               </button>
             ) : (
               <>
                 <button onClick={openChat}
-                  style={{ flex: 2, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>
+                  style={{ flex: 2, padding: '12px 18px', borderRadius: 14, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>
                   Öppna chatt
                 </button>
                 <button onClick={handleLeave} disabled={actionBusy}
@@ -289,8 +289,7 @@ export default function KlubbPage() {
                         color: '#fff', fontWeight: 600, fontSize: 14, flexShrink: 0,
                       }}>
                         {m.avatar ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img loading="lazy" decoding="async" src={m.avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <Image src={m.avatar} alt="" fill sizes="40px" style={{ objectFit: 'cover' }} />
                         ) : initialsOf(m.username)}
                       </div>
                       <div style={{ flex: 1 }}>
@@ -325,11 +324,10 @@ export default function KlubbPage() {
                     }}>
                       <div style={{
                         width: 60, height: 60, borderRadius: 10, overflow: 'hidden', flexShrink: 0,
-                        background: 'rgba(10,123,140,0.08)',
+                        background: 'rgba(10,123,140,0.08)', position: 'relative',
                       }}>
                         {t.image && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img loading="lazy" decoding="async" src={t.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <Image src={t.image} alt="" fill sizes="60px" style={{ objectFit: 'cover' }} />
                         )}
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>

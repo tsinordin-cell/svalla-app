@@ -8,7 +8,7 @@ const ICONS: Record<ToastType, string> = { success: '✓', error: '✕', info: '
 const BG: Record<ToastType, string> = {
   success: 'linear-gradient(135deg,#1a5c3a,#2a8a58)',
   error:   'linear-gradient(135deg,#8b1a1a,#c03030)',
-  info:    'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+  info:    'var(--grad-sea)',
 }
 
 /** Trigger a toast from any client component */

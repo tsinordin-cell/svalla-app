@@ -1,6 +1,6 @@
 'use client'
-import { useState, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useCallback, useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import HeroAnimation from '@/components/HeroAnimation'
@@ -76,18 +76,18 @@ function GoogleIcon() {
   )
 }
 
-/* ── Apple SVG ── */
-function AppleIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 814 1000" style={{ flexShrink: 0 }}>
-      <path fill="currentColor" d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105.4-57.8-155.3-127.4C46 790.8 0 663 0 541c0-207.6 134.7-317 268-317 63.7 0 116.7 40.8 156.5 40.8 38.8 0 100-43.1 174.5-43.1 28.2 0 130.3 2.6 198.3 99.2zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"/>
-    </svg>
-  )
-}
 
-export default function KomIgangPage() {
+type LiveStats = { turer: number; seglare: number; platser: number }
+
+function KomIgangInner() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [supabase] = useState(() => createClient())
+
+  // Referral-kontext: kommer användaren hit via en delad tur?
+  // Tur-sidans CTA skickar ?ref=tur&from=username för att kunna personifiera onboarding.
+  const refSource = searchParams?.get('ref') ?? null
+  const fromUser  = searchParams?.get('from') ?? null
 
   const [step,          setStep]          = useState<Step>(0)
   const [name,          setName]          = useState('')
@@ -98,10 +98,36 @@ export default function KomIgangPage() {
   const [showPw,        setShowPw]        = useState(false)
   const [showConfirmPw, setShowConfirmPw] = useState(false)
   const [loading,       setLoading]       = useState(false)
-  const [oauthLoading,  setOauthLoading]  = useState<'google' | 'apple' | null>(null)
+  const [oauthLoading,  setOauthLoading]  = useState<'google' | null>(null)
   const [err,           setErr]           = useState('')
+  const [hasSession,    setHasSession]    = useState(false)
+  const [stats,         setStats]         = useState<LiveStats | null>(null)
 
   const pw = passwordStrength(password)
+
+  // Live social proof — siffror från senaste 7 dagar. Om fetch misslyckas
+  // degraderar vi tyst och visar trust-badges istället.
+  useEffect(() => {
+    let cancel = false
+    ;(async () => {
+      try {
+        const weekAgo = new Date(Date.now() - 7 * 86400_000).toISOString()
+        const { data } = await supabase
+          .from('trips')
+          .select('user_id, location_name')
+          .gte('created_at', weekAgo)
+          .is('deleted_at', null)
+          .limit(500)
+        if (cancel || !data || data.length === 0) return
+        const seglare = new Set(data.map(t => t.user_id)).size
+        const platser = new Set(data.map(t => t.location_name).filter(Boolean)).size
+        setStats({ turer: data.length, seglare, platser })
+      } catch {
+        // Tyst degradering — trust-badges visas som fallback
+      }
+    })()
+    return () => { cancel = true }
+  }, [supabase])
 
   /* ── Supabase-felmeddelanden → svenska ── */
   function swErr(msg: string): string {
@@ -117,11 +143,14 @@ export default function KomIgangPage() {
   }
 
   /* ── OAuth ── */
-  async function signInWithOAuth(provider: 'google' | 'apple') {
-    setOauthLoading(provider); setErr('')
+  async function signInWithOAuth() {
+    setOauthLoading('google'); setErr('')
     const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: { redirectTo: `${location.origin}/feed` },
+      provider: 'google',
+      options: {
+        redirectTo: `${location.origin}/feed`,
+        queryParams: { access_type: 'offline', prompt: 'consent' },
+      },
     })
     if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
   }
@@ -163,12 +192,11 @@ export default function KomIgangPage() {
         localStorage.removeItem('svalla_onboarded')
       }
 
-      if (data.session) {
-        setStep(2)
-      } else {
-        // Email confirmation required
-        setStep(2)
-      }
+      // Spara om session redan finns — avgör UI:n på step 2.
+      // Session = omedelbart inloggad (eller email-confirm avstängt).
+      // Ingen session = användare måste bekräfta via mail innan hen kan logga in.
+      setHasSession(!!data.session)
+      setStep(2)
     }
     setLoading(false)
   }
@@ -243,6 +271,22 @@ export default function KomIgangPage() {
 
         <Dots step={0} />
 
+        {/* Referral brödsmula — visas när användaren kom via en delad tur */}
+        {fromUser && (
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 7,
+            fontSize: 12, fontWeight: 600,
+            background: 'rgba(201,110,42,0.18)',
+            border: '1px solid rgba(201,110,42,0.35)',
+            color: 'rgba(255,220,188,0.95)',
+            padding: '6px 12px', borderRadius: 20,
+            marginBottom: 14, position: 'relative', zIndex: 1,
+          }}>
+            <span aria-hidden>⚓</span>
+            Du kommer via @{fromUser}s tur
+          </div>
+        )}
+
         {/* Welcome intro */}
         <p style={{
           fontSize: 13, fontWeight: 700, letterSpacing: '0.12em',
@@ -275,27 +319,60 @@ export default function KomIgangPage() {
           Svalla gör båtlivet enklare och roligare.
         </p>
 
-        {/* Trust badges */}
-        <div style={{
-          display: 'flex', gap: 20, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center',
-          position: 'relative', zIndex: 1,
-        }}>
-          {[
-            { icon: '⚓', text: 'Spåra turer' },
-            { icon: '🗺️', text: 'Hitta platser' },
-            { icon: '🤝', text: 'Community' },
-          ].map(({ icon, text }) => (
-            <div key={text} style={{
-              display: 'flex', alignItems: 'center', gap: 6,
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 20, padding: '6px 14px',
-              fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
+        {/* Social proof — live-siffror från senaste 7 dagar.
+            Om fetch inte returnerat data visas trust-badges som fallback. */}
+        {stats && stats.turer > 0 ? (
+          <div style={{
+            display: 'flex', gap: 24, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center',
+            position: 'relative', zIndex: 1,
+          }}>
+            {[
+              { val: stats.turer, label: stats.turer === 1 ? 'tur' : 'turer' },
+              { val: stats.seglare, label: stats.seglare === 1 ? 'seglare' : 'seglare' },
+              { val: stats.platser, label: stats.platser === 1 ? 'plats' : 'platser' },
+            ].map(({ val, label }) => (
+              <div key={label} style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', lineHeight: 1 }}>
+                  {val}
+                </div>
+                <div style={{
+                  fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.55)',
+                  textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: 4,
+                }}>
+                  {label}
+                </div>
+              </div>
+            ))}
+            <div style={{
+              flexBasis: '100%', textAlign: 'center',
+              fontSize: 10, color: 'rgba(255,255,255,0.4)', fontWeight: 500,
+              marginTop: 2,
             }}>
-              <span>{icon}</span> {text}
+              loggade senaste veckan
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div style={{
+            display: 'flex', gap: 20, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center',
+            position: 'relative', zIndex: 1,
+          }}>
+            {[
+              { icon: '⚓', text: 'Spåra turer' },
+              { icon: '🗺️', text: 'Hitta platser' },
+              { icon: '🤝', text: 'Community' },
+            ].map(({ icon, text }) => (
+              <div key={text} style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 20, padding: '6px 14px',
+                fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
+              }}>
+                <span>{icon}</span> {text}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Wave */}
@@ -334,39 +411,22 @@ export default function KomIgangPage() {
           </button>
 
           {/* Social login */}
-          <div style={{ display: 'flex', gap: 10 }}>
-            <button
-              onClick={() => signInWithOAuth('google')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '14px', borderRadius: 14, cursor: 'pointer',
-                background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
-                boxShadow: '0 2px 8px rgba(0,30,50,0.07)',
-                opacity: oauthLoading === 'google' ? 0.6 : 1,
-                transition: 'opacity 0.15s',
-              }}
-            >
-              <GoogleIcon />
-              {oauthLoading === 'google' ? '…' : 'Google'}
-            </button>
-            <button
-              onClick={() => signInWithOAuth('apple')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '14px', borderRadius: 14, cursor: 'pointer',
-                background: '#000', border: '1.5px solid #000',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                fontSize: 13, fontWeight: 600, color: '#fff', fontFamily: 'inherit',
-                opacity: oauthLoading === 'apple' ? 0.6 : 1,
-                transition: 'opacity 0.15s',
-              }}
-            >
-              <AppleIcon />
-              {oauthLoading === 'apple' ? '…' : 'Apple'}
-            </button>
-          </div>
+          <button
+            onClick={() => signInWithOAuth()}
+            disabled={!!oauthLoading}
+            style={{
+              width: '100%', padding: '14px', borderRadius: 14, cursor: 'pointer',
+              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+              fontSize: 14, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
+              boxShadow: '0 2px 8px rgba(0,30,50,0.07)',
+              opacity: oauthLoading === 'google' ? 0.6 : 1,
+              transition: 'opacity 0.15s',
+            }}
+          >
+            <GoogleIcon />
+            {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
+          </button>
 
           {err && (
             <div style={{
@@ -436,37 +496,22 @@ export default function KomIgangPage() {
         <div style={{ maxWidth: 420, margin: '0 auto' }}>
 
           {/* Social login row */}
-          <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
-            <button
-              onClick={() => signInWithOAuth('google')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '13px', borderRadius: 12, cursor: 'pointer',
-                background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                fontSize: 13, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
-                boxShadow: '0 2px 6px rgba(0,30,50,0.07)',
-                opacity: oauthLoading === 'google' ? 0.6 : 1,
-              }}
-            >
-              <GoogleIcon />
-              {oauthLoading === 'google' ? '…' : 'Google'}
-            </button>
-            <button
-              onClick={() => signInWithOAuth('apple')}
-              disabled={!!oauthLoading}
-              style={{
-                flex: 1, padding: '13px', borderRadius: 12, cursor: 'pointer',
-                background: '#000', border: 'none',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                fontSize: 13, fontWeight: 600, color: '#fff', fontFamily: 'inherit',
-                opacity: oauthLoading === 'apple' ? 0.6 : 1,
-              }}
-            >
-              <AppleIcon />
-              {oauthLoading === 'apple' ? '…' : 'Apple'}
-            </button>
-          </div>
+          <button
+            onClick={() => signInWithOAuth()}
+            disabled={!!oauthLoading}
+            style={{
+              width: '100%', padding: '13px', borderRadius: 12, cursor: 'pointer',
+              background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
+              fontSize: 14, fontWeight: 600, color: 'var(--txt)', fontFamily: 'inherit',
+              boxShadow: '0 2px 6px rgba(0,30,50,0.07)',
+              opacity: oauthLoading === 'google' ? 0.6 : 1,
+              marginBottom: 20,
+            }}
+          >
+            <GoogleIcon />
+            {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
+          </button>
 
           {/* Divider */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
@@ -747,36 +792,59 @@ export default function KomIgangPage() {
         fontSize: 16, color: 'rgba(255,255,255,0.62)',
         margin: '0 0 8px', maxWidth: 300, lineHeight: 1.6,
       }}>
-        Ditt konto är skapat. Du är redo att börja logga turer.
+        {fromUser
+          ? <>Du är ett klick från att följa <span style={{ color: '#fff', fontWeight: 600 }}>@{fromUser}</span>.</>
+          : 'Ditt konto är skapat. Du är redo att börja logga turer.'
+        }
       </p>
 
-      {/* Check confirmation email notice */}
-      <div style={{
-        background: 'rgba(15,158,100,0.12)',
-        border: '1px solid rgba(15,158,100,0.25)',
-        borderRadius: 14, padding: '12px 18px', marginTop: 12, marginBottom: 32,
-        maxWidth: 340,
-      }}>
-        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.5 }}>
-          📬 Kolla din e-post och bekräfta ditt konto — sedan är du redo att segla.
-        </p>
-      </div>
+      {/* E-post-bekräftelse-notis — visas BARA när session saknas (email confirm krävs).
+          När session finns är användaren redan inloggad och behöver inte bekräfta något. */}
+      {!hasSession && (
+        <div style={{
+          background: 'rgba(15,158,100,0.12)',
+          border: '1px solid rgba(15,158,100,0.25)',
+          borderRadius: 14, padding: '12px 18px', marginTop: 12, marginBottom: 32,
+          maxWidth: 340,
+        }}>
+          <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.5 }}>
+            📬 Kolla din e-post och bekräfta ditt konto — sedan är du redo att segla.
+          </p>
+        </div>
+      )}
+
+      {/* Spacer när inget notis visas för att matcha layouten */}
+      {hasSession && <div style={{ height: 32 }} />}
 
       {/* CTA buttons */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', maxWidth: 320 }}>
+        {fromUser ? (
+          <button
+            onClick={() => router.push(`/u/${fromUser}`)}
+            style={{
+              padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
+              background: 'linear-gradient(135deg, #0f9e64, #0d8554)',
+              color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
+              boxShadow: '0 5px 20px rgba(15,158,100,0.35)',
+            }}
+          >
+            Följ @{fromUser} →
+          </button>
+        ) : (
+          <button
+            onClick={() => router.push('/feed')}
+            style={{
+              padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
+              background: 'linear-gradient(135deg, #0f9e64, #0d8554)',
+              color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
+              boxShadow: '0 5px 20px rgba(15,158,100,0.35)',
+            }}
+          >
+            Utforska Svalla →
+          </button>
+        )}
         <button
-          onClick={() => router.push('/feed')}
-          style={{
-            padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
-            background: 'linear-gradient(135deg, #0f9e64, #0d8554)',
-            color: '#fff', fontSize: 16, fontWeight: 600, fontFamily: 'inherit',
-            boxShadow: '0 5px 20px rgba(15,158,100,0.35)',
-          }}
-        >
-          Utforska Svalla →
-        </button>
-        <button
-          onClick={() => router.push('/guide')}
+          onClick={() => router.push(fromUser ? '/feed' : '/guide')}
           style={{
             padding: '14px', borderRadius: 14, cursor: 'pointer',
             background: 'rgba(255,255,255,0.10)',
@@ -784,19 +852,11 @@ export default function KomIgangPage() {
             color: '#fff', fontSize: 14, fontWeight: 600, fontFamily: 'inherit',
           }}
         >
-          🧭 Planera min första tur
+          {fromUser ? 'Utforska Svalla' : 'Planera min första tur'}
         </button>
-        <button
-          onClick={() => router.push('/logga-in')}
-          style={{
-            padding: '12px', borderRadius: 14, cursor: 'pointer',
-            background: 'transparent',
-            border: 'none',
-            color: 'rgba(255,255,255,0.45)', fontSize: 12, fontFamily: 'inherit',
-          }}
-        >
-          Logga in nu
-        </button>
+        {/* "Logga in"-knappen försvinner när session redan finns — då är du inloggad.
+            Om session saknas (email-confirm krävs) hjälper det ändå inte att gå till /logga-in
+            förrän mailet är bekräftat, så vi tar bort helt. */}
       </div>
 
       <style>{`
@@ -806,5 +866,19 @@ export default function KomIgangPage() {
         }
       `}</style>
     </div>
+  )
+}
+
+// Next 15 kräver Suspense-boundary runt useSearchParams för korrekt streaming.
+export default function KomIgangPage() {
+  return (
+    <Suspense fallback={
+      <div style={{
+        minHeight: '100dvh',
+        background: 'linear-gradient(160deg, #061824 0%, #0c2e45 30%, #155070 60%, #1e6880 100%)',
+      }} />
+    }>
+      <KomIgangInner />
+    </Suspense>
   )
 }

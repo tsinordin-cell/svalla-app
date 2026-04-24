@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
+import MyRoutesList from './MyRoutesList'
+import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt — Svalla',
@@ -26,10 +28,6 @@ type PlannedRoute = {
   created_at: string
 }
 
-const INTEREST_EMOJI: Record<string, string> = {
-  krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
-}
-
 export default async function PlaneraPage() {
   const supabase = await createClient()
   const { data: { session } } = await supabase.auth.getSession()
@@ -50,6 +48,30 @@ export default async function PlaneraPage() {
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
+      {/* Delade flikar: Planera / Rutter / Öar / Färjor */}
+      <div role="tablist" style={{
+        display: 'flex', gap: 0, padding: '0 16px',
+        background: 'var(--glass-96)',
+        borderBottom: '1px solid rgba(10,123,140,0.10)',
+      }}>
+        {([
+          { label: 'Planera', href: '/planera',          active: true },
+          { label: 'Rutter',  href: '/rutter',           active: false },
+          { label: 'Öar',     href: '/rutter?vy=oar',    active: false },
+          { label: 'Färjor',  href: '/rutter?vy=farjor', active: false },
+        ]).map(t => (
+          <Link key={t.href} href={t.href} role="tab" aria-selected={t.active} style={{
+            flex: 1, textAlign: 'center', padding: '12px 0 10px',
+            fontSize: 14, fontWeight: t.active ? 700 : 600,
+            color: t.active ? 'var(--sea)' : 'var(--txt3)',
+            textDecoration: 'none',
+            borderBottom: t.active ? '2.5px solid var(--sea)' : '2.5px solid transparent',
+            transition: 'color 160ms ease, border-color 160ms ease',
+            marginBottom: -1,
+          }}>{t.label}</Link>
+        ))}
+      </div>
+
       {/* Hero */}
       <div style={{
         background: 'var(--grad-sea)',
@@ -82,44 +104,7 @@ export default async function PlaneraPage() {
 
         {/* Mina rutter */}
         {session && myRoutes.length > 0 && (
-          <section style={{ marginBottom: 32 }}>
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--sea)', marginBottom: 14 }}>
-              Mina rutter ({myRoutes.length})
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {myRoutes.map(route => {
-                const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
-                return (
-                  <Link key={route.id} href={`/planera/${route.id}`} style={{ textDecoration: 'none' }}>
-                    <div style={{
-                      background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
-                      border: '1px solid rgba(10,123,140,0.08)',
-                      boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
-                    }}>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
-                        {route.start_name} → {route.end_name}
-                      </div>
-                      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: stops.length > 0 ? 8 : 0 }}>
-                        {(route.interests ?? []).map(i => (
-                          <span key={i} style={{
-                            fontSize: 11, padding: '3px 8px', borderRadius: 20,
-                            background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', fontWeight: 700,
-                          }}>
-                            {INTEREST_EMOJI[i] ?? '•'} {i}
-                          </span>
-                        ))}
-                      </div>
-                      {stops.length > 0 && (
-                        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>
-                          {stops.length} stopp · {stops[0]?.name}{stops.length > 1 ? ` + ${stops.length - 1} till` : ''}
-                        </div>
-                      )}
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
-          </section>
+          <MyRoutesList initialRoutes={myRoutes} />
         )}
 
         {/* Inte inloggad */}
@@ -162,16 +147,16 @@ export default async function PlaneraPage() {
           </div>
         )}
 
-        {/* Länk till AI-guide */}
+        {/* Länk till Thorkel */}
         <div style={{
           background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '14px 16px',
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ fontSize: 22 }}>🧭</span>
+          <ThorkelAvatar size={36} />
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Vill du ha ett AI-förslag?</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — guiden svarar på sekunder.</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Fråga Thorkel</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
           </div>
           <Link href="/guide" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',

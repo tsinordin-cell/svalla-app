@@ -21,7 +21,7 @@ function SettingsSection() {
     padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
     fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 600 : 500,
     transition: 'all 0.15s',
-    background: active ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+    background: active ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
     color: active ? '#fff' : 'var(--txt2)',
     boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
   })
@@ -67,6 +67,7 @@ const COUNTRIES = [
 ]
 const PRIVACY_FIELDS = [
   { key: 'bio', label: 'Kort om mig' },
+  { key: 'website', label: 'Hemsida' },
   { key: 'nationality', label: 'Land' },
   { key: 'experience_years', label: 'År till havs' },
   { key: 'vessel_name', label: 'Båtnamn' },
@@ -99,6 +100,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   const [vesselName,   setVesselName]   = useState<string>(u.vessel_name ?? '')
   const [homePort,     setHomePort]     = useState<string>(u.home_port ?? '')
   const [sailingRegion,setSailingRegion]= useState<string>(u.sailing_region ?? '')
+  const [website,      setWebsite]      = useState<string>(u.website ?? '')
   const [publicFields, setPublicFields] = useState<string[]>(u.public_fields ?? ['vessel_name', 'nationality', 'home_port', 'sailing_region'])
   const [saving, setSaving] = useState(false)
   const [error,  setError]  = useState<string | null>(null)
@@ -131,7 +133,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
     if (trimmed !== user.username) {
-      const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).single()
+      const { data: existing } = await supabase.from('users').select('id').eq('username', trimmed).neq('id', user.id).maybeSingle()
       if (existing) { setError('Användarnamnet är redan taget.'); setSaving(false); return }
     }
     const { data: updated, error: upErr } = await supabase.from('users').update({
@@ -140,7 +142,9 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
       experience_years: expYears ? parseInt(expYears) : null,
       vessel_type: vesselType || null, vessel_model: vesselModel.trim() || null,
       vessel_name: vesselName.trim() || null, home_port: homePort.trim() || null,
-      sailing_region: sailingRegion.trim() || null, public_fields: publicFields,
+      sailing_region: sailingRegion.trim() || null,
+      website: website.trim() || null,
+      public_fields: publicFields,
     }).eq('id', user.id).select().single()
     if (upErr || !updated) { setError('Kunde inte spara. Försök igen.'); setSaving(false); return }
     toast('Profil sparad ✓')
@@ -158,7 +162,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         <div style={{ overflowY: 'auto', flex: 1, padding: '0 20px' }}>
           {/* Avatar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0' }}>
-            <button onClick={() => fileRef.current?.click()} aria-label="Byt profilbild" style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative', padding: 0, flexShrink: 0 }}>
+            <button onClick={() => fileRef.current?.click()} aria-label="Byt profilbild" style={{ width: 72, height: 72, borderRadius: '50%', cursor: 'pointer', background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 600, color: '#fff', overflow: 'hidden', border: '2.5px dashed rgba(10,123,140,0.3)', position: 'relative', padding: 0, flexShrink: 0 }}>
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -218,6 +222,11 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
             <input type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🌐 Hemsida</div>
+          <div style={{ marginBottom: 12 }}>
+            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>URL</label>
+            <input type="url" value={website} onChange={e => setWebsite(e.target.value)} maxLength={200} placeholder="https://…" style={inputStyle} />
+          </div>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>
             {PRIVACY_FIELDS.map(({ key, label }) => (
@@ -239,7 +248,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
         </div>
         <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
           <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
-          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'var(--grad-sea)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
             {saving ? 'Sparar…' : 'Spara'}
           </button>
         </div>
@@ -266,7 +275,7 @@ export default function ProfilPage() {
       const { data: { user: authUser } } = await supabase.auth.getUser()
       if (!authUser) { router.push('/logga-in'); return }
       const [{ data: profile }, { data: myTrips }, { count: fwers }, { count: fwing }] = await Promise.all([
-        supabase.from('users').select('id, username, email, avatar, bio, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at').eq('id', authUser.id).single(),
+        supabase.from('users').select('id, username, email, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields, created_at').eq('id', authUser.id).single(),
         supabase.from('trips').select('id, user_id, boat_type, distance, duration, average_speed_knots, max_speed_knots, image, location_name, caption, pinnar_rating, started_at, ended_at, created_at, route_points').eq('user_id', authUser.id).is('deleted_at', null).order('created_at', { ascending: false }),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', authUser.id),
         supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', authUser.id),
@@ -393,7 +402,7 @@ export default function ProfilPage() {
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
           <div style={{
             width: 88, height: 88, borderRadius: '50%', flexShrink: 0,
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             border: '4px solid var(--bg)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 32, fontWeight: 600, color: '#fff',
@@ -432,6 +441,11 @@ export default function ProfilPage() {
         <div style={{ marginBottom: 16 }}>
           <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>{user?.username}</h1>
           {u?.bio && <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 10px' }}>{u.bio}</p>}
+          {u?.website && (
+            <a href={u.website} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none', marginBottom: 8 }}>
+              🌐 {u.website.replace(/^https?:\/\//, '')}
+            </a>
+          )}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
             {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>⛵ {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
@@ -567,7 +581,7 @@ export default function ProfilPage() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '0 2px 2px' }}>
                 {trips.map(t => (
-                  <Link key={t.id} href={`/tur/${t.id}`} style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'block', borderRadius: 4 }}>
+                  <Link key={t.id} href={`/tur/${t.id}`} style={{ position: 'relative', aspectRatio: '1/1', overflow: 'hidden', background: 'var(--grad-sea)', display: 'block', borderRadius: 4 }}>
                     {t.image ? (
                       <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
                     ) : (

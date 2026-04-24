@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import type React from 'react'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import PlaneraCTA from './PlaneraCTA'
@@ -32,6 +33,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const INTEREST_EMOJI: Record<string, string> = {
   krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
+}
+
+const STOP_ICON: Record<string, React.ReactNode> = {
+  'Krog längs rutten': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+    </svg>
+  ),
+  'Bastu längs rutten': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <path d="M4 22V12a8 8 0 0 1 16 0v10"/><path d="M4 15h16"/><path d="M10 9v3"/><path d="M14 9v3"/>
+    </svg>
+  ),
+  'Badplats längs rutten': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <path d="M2 12h20"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><circle cx="12" cy="5" r="2"/><path d="M12 7v5"/>
+    </svg>
+  ),
+  'Brygga att lägga till vid': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="12"/><path d="M5 19l7-7 7 7"/><path d="M3 22h18"/>
+    </svg>
+  ),
+  'Naturupplevelse längs rutten': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M9.1 15.1C9.68 13.58 10.82 12.33 12.5 11.5c2.97-1.48 6.06-.5 7.5 2.5-3 2-5.5 3-10 1.1z"/>
+    </svg>
+  ),
+  'Bränslestopp längs rutten': (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+      <path d="M3 22V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v16"/><path d="M3 11h11"/><path d="M14 6h1a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L19 6"/>
+    </svg>
+  ),
 }
 
 export default async function PlaneraIdPage({ params }: Props) {
@@ -132,12 +166,16 @@ export default async function PlaneraIdPage({ params }: Props) {
                     transition: 'box-shadow 0.15s',
                   }}>
                     <div style={{
-                      width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
-                      background: 'rgba(10,123,140,0.08)',
+                      width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
+                      background: 'rgba(10,123,140,0.10)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 13, fontWeight: 800, color: 'var(--sea)',
+                      color: 'var(--sea)',
                     }}>
-                      {idx + 1}
+                      {STOP_ICON[stop.reason] ?? (
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
+                          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                        </svg>
+                      )}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>{stop.name}</div>

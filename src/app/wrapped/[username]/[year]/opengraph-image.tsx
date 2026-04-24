@@ -104,7 +104,7 @@ export default async function Image({
         position: 'relative',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 28 }}>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>⚓</div>
+          <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>⚓</div>
           <span style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.5)', letterSpacing: '1px', textTransform: 'uppercase' }}>Svalla Wrapped {year}</span>
         </div>
 

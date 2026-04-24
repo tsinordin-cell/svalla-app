@@ -33,7 +33,7 @@ export default function GlobalError({
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={reset} style={{
             padding: '12px 24px', borderRadius: 14, border: 'none', cursor: 'pointer',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             color: '#fff', fontSize: 14, fontWeight: 700,
           }}>
             Försök igen

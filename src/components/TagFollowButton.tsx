@@ -52,7 +52,7 @@ export default function TagFollowButton({ tag }: { tag: string }) {
         border: following ? '1.5px solid rgba(10,123,140,0.3)' : 'none',
         background: following
           ? 'rgba(10,123,140,0.07)'
-          : 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+          : 'var(--grad-sea)',
         color: following ? 'var(--sea)' : '#fff',
         fontSize: 13, fontWeight: 700,
         cursor: saving ? 'default' : 'pointer',

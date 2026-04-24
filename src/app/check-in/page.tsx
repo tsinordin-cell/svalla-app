@@ -152,7 +152,7 @@ function CheckInPage() {
               ) : (
                 <>
                   <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Söker position…</div>
-                  {geoErr && <div style={{ fontSize: 11, color: '#c03', marginTop: 2 }}>{geoErr}</div>}
+                  {geoErr && <div style={{ fontSize: 11, color: 'var(--red)', marginTop: 2 }}>{geoErr}</div>}
                 </>
               )}
             </div>
@@ -211,7 +211,7 @@ function CheckInPage() {
         )}
 
         {err && (
-          <div style={{ padding: 10, borderRadius: 10, background: 'rgba(200,30,30,0.08)', color: '#c03', fontSize: 12, marginBottom: 12 }}>
+          <div style={{ padding: 10, borderRadius: 10, background: 'rgba(200,30,30,0.08)', color: 'var(--red)', fontSize: 12, marginBottom: 12 }}>
             {err}
           </div>
         )}
@@ -219,7 +219,7 @@ function CheckInPage() {
         <button onClick={submit} disabled={busy || (!pos && !place.trim())}
           style={{
             width: '100%', padding: '14px 18px', borderRadius: 14, border: 'none',
-            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff',
+            background: 'var(--grad-sea)', color: '#fff',
             fontWeight: 600, fontSize: 15, cursor: busy ? 'wait' : 'pointer',
             opacity: (busy || (!pos && !place.trim())) ? 0.6 : 1,
           }}>

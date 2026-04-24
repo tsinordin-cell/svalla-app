@@ -10,22 +10,27 @@
   --acc:   #c96e2a;
   --acc-d: #9e5318;
   --acc-l: #fdf0e5;
+  /* ── Thorkel-palette — skeppare från Möja ── */
+  --thor:       #2b3e56;  /* mörkblå uniform */
+  --thor-d:     #1a2738;  /* hover/pressed */
+  --thor-l:     #e5ebf3;  /* chat-bubbla bg (ljust) */
+  --thor-cream: #efe4cc;  /* skägg, accent */
   --txt:   #192830;
   --txt2:  #3d5865;
   --txt3:  #7a9dab;
-  --bg:    #e9f4f7;
+  --bg:    #f2f8fa;
   --white: #fafeff;
-  --green: #0f9e64;
-  --red:   #cc3d3d;
-  --nav-h: 64px;
+  --green: #22c55e;
+  --red:   #ef4444;
+  --nav-h: 100px;
   /* ── Surface system ── */
   --surface-1:  rgba(250,254,255,1);
   --surface-2:  rgba(10,123,140,0.06);
   --surface-3:  rgba(10,123,140,0.10);
   /* ── Elevation shadows ── */
-  --shadow-xs:  0 1px 2px rgba(0,0,0,.04);
-  --shadow-sm:  0 2px 6px rgba(0,0,0,.06);
-  --shadow-md:  0 8px 24px rgba(0,0,0,.08);
+  --shadow-xs:  0 1px 2px rgba(0,45,60,.04), 0 1px 1px rgba(0,45,60,.02);
+  --shadow-sm:  0 1px 0 rgba(0,45,60,.04), 0 2px 8px rgba(0,45,60,.06), 0 4px 16px rgba(0,45,60,.04);
+  --shadow-md:  0 2px 0 rgba(0,45,60,.03), 0 8px 24px rgba(0,45,60,.09), 0 16px 40px rgba(0,45,60,.05);
   /* ── Glass surfaces ── */
   --header-bg:  rgba(250,254,255,0.96);
   --glass-98:   rgba(250,254,255,0.98);
@@ -38,6 +43,34 @@
   --grad-sea:      linear-gradient(135deg, #1e5c82, #2d7d8a);
   --grad-sea-hero: linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%);
   --grad-acc:      linear-gradient(135deg, #c96e2a, #e07828);
+  /* ── Design uplift tokens ── */
+  --surface:         #ffffff;
+  --ink:             #162d3a;
+  --ink-muted:       #6a8a96;
+  --ink-soft:        #8ea7b1;
+  --teal:            #0a7b8c;
+  --teal-600:        #086979;
+  --teal-50:         #e6f1f3;
+  --navy:            #070f18;
+  --amber:           #c96e2a;
+  --amber-50:        #fbefe4;
+  --hairline:        rgba(22,45,58,0.08);
+  --hairline-strong: rgba(22,45,58,0.12);
+  --shadow-card:     0 4px 24px rgba(0,45,60,0.10);
+  --shadow-soft:     0 1px 3px rgba(0,45,60,0.06), 0 4px 16px rgba(0,45,60,0.05);
+  --shadow-lifted:   0 10px 30px rgba(0,45,60,0.12);
+  --radius-card:     22px;
+  --radius-inner:    14px;
+  --radius-pill:     999px;
+  --map-preview-bg:  #e8efe3;
+  --stats-row-bg:    #fafcfd;
+  /* ── Alpha surface tokens — replaces hardcoded rgba in components ── */
+  --teal-12:          rgba(10,123,140,0.12);
+  --teal-15:          rgba(10,123,140,0.15);
+  --sea-12:           rgba(30,92,130,0.12);
+  --sea-15:           rgba(30,92,130,0.15);
+  --acc-12:           rgba(201,110,42,0.12);
+  --route-preview-bg: linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08));
 }
 
 /* ── Reset & base ── */
@@ -56,10 +89,11 @@ html, body {
 }
 
 body {
-  background: linear-gradient(175deg, #dde9f5 0%, #e4eff8 40%, #e8f0f5 100%) fixed;
+  background: #f2f8fa;
   color: var(--txt);
-  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
   min-height: 100dvh;
+  text-rendering: optimizeLegibility;
 }
 
 /* ── Spinner animation ── */
@@ -122,6 +156,11 @@ img {
   --acc:        #e8924a;
   --acc-d:      #c97030;
   --acc-l:      #2a1a0e;
+  /* Thorkel — mörkt läge */
+  --thor:       #4d6b8c;
+  --thor-d:     #3a5272;
+  --thor-l:     #152334;
+  --thor-cream: #efe4cc;
   --txt:        #d8eaf4;
   --txt2:       #9abccc;
   --txt3:       #6a98aa;
@@ -152,11 +191,36 @@ img {
   --grad-sea:      linear-gradient(135deg, #0e2a3d, #163344);
   --grad-sea-hero: linear-gradient(160deg, #0e2a3d 0%, #163344 100%);
   --grad-acc:      linear-gradient(135deg, #9e5318, #c97030);
+  --map-preview-bg: #0d1a12;
+  --stats-row-bg:   #0b1822;
+  /* ── Alpha surface tokens — dark overrides ── */
+  --teal-12:          rgba(74,184,212,0.11);
+  --teal-15:          rgba(74,184,212,0.14);
+  --sea-12:           rgba(78,156,194,0.14);
+  --sea-15:           rgba(78,156,194,0.16);
+  --acc-12:           rgba(232,146,74,0.14);
+  --route-preview-bg: linear-gradient(135deg, rgba(74,184,212,0.05), rgba(74,184,212,0.09));
+  /* ── Design uplift tokens — dark overrides ── */
+  --surface:         #0f1e2c;
+  --ink:             #d0e8f4;
+  --ink-muted:       #8ab8cc;
+  --ink-soft:        #6a98aa;
+  --teal:            #4ab8d4;
+  --teal-600:        #2d9ab8;
+  --teal-50:         #0e2a3d;
+  --navy:            #d8eaf4;
+  --amber:           #e8924a;
+  --amber-50:        #2a1a0e;
+  --hairline:        rgba(74,184,212,0.10);
+  --hairline-strong: rgba(74,184,212,0.16);
+  --shadow-card:     0 4px 24px rgba(0,0,0,0.35);
+  --shadow-soft:     0 1px 3px rgba(0,0,0,0.20), 0 4px 16px rgba(0,0,0,0.18);
+  --shadow-lifted:   0 10px 30px rgba(0,0,0,0.40);
   color-scheme: dark;
 }
 
 [data-theme="dark"] body {
-  background: linear-gradient(175deg, #060d15 0%, #091525 40%, #0b1a28 100%) fixed;
+  background: linear-gradient(175deg, #050c14 0%, #080f1a 40%, #0a1826 70%, #0c1c2c 100%) fixed;
 }
 
 /* ── Nav ── */
@@ -172,24 +236,20 @@ img {
   border-bottom-color: rgba(74, 184, 212, 0.10) !important;
 }
 
-/* ── Page backgrounds ── */
-[data-theme="dark"] [style*="background: #f2f8fa"],
-[data-theme="dark"] [style*="background:#f2f8fa"] {
-  background: #070f18 !important;
-}
-[data-theme="dark"] [style*="background: #f7fbfc"],
-[data-theme="dark"] [style*="background:#f7fbfc"] {
-  background: #070f18 !important;
-}
-/* ── White cards → dark cards ── */
-[data-theme="dark"] [style*="background: #fff"],
-[data-theme="dark"] [style*="background:#fff"],
-[data-theme="dark"] [style*="background: white"],
-[data-theme="dark"] [style*="background: rgb(255, 255, 255)"] {
-  background: #0f1e2c !important;
+/* ── Feed ambient gradient (top section) ── */
+[data-theme="dark"] .feed-ambient-top {
+  background: linear-gradient(180deg, #07141f 0%, #091824 30%, #0c1e2e 60%, var(--bg) 100%) !important;
 }
 
+/* ── Feed time label ── */
+[data-theme="dark"] .feed-time-label {
+  color: rgba(74, 184, 212, 0.55) !important;
+}
 
+/* ── Karta i dark mode — invertera OSM-tiles till mörk stil ── */
+[data-theme="dark"] .route-map-tile {
+  filter: invert(1) hue-rotate(180deg);
+}
 
 /* ── Subtle tinted backgrounds ── */
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.04)"],
@@ -198,26 +258,6 @@ img {
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.07)"],
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.08)"] {
   background: rgba(74, 184, 212, 0.06) !important;
-}
-
-
-
-/* ── Box shadows ── */
-
-
-/* ── Text colors ── */
-[data-theme="dark"] [style*="color: #162d3a"],
-[data-theme="dark"] [style*="color:#162d3a"] {
-  color: #d0e8f4 !important;
-}
-
-[data-theme="dark"] [style*="color: #1e5c82"],
-[data-theme="dark"] [style*="color:#1e5c82"] {
-  color: #4ab8d4 !important;
-}
-[data-theme="dark"] [style*="color: #3d5865"],
-[data-theme="dark"] [style*="color:#3d5865"] {
-  color: #8ab8cc !important;
 }
 
 
@@ -248,14 +288,13 @@ img {
 
 /* ── Borders ── */
 [data-theme="dark"] [style*="border: 1px solid rgba(10,123,140"],
-[data-theme="dark"] [style*="border: 1.5px solid rgba(10,123,140"],
-[data-theme="dark"] [style*="borderBottom: '1px solid rgba(10,123,140"] {
+[data-theme="dark"] [style*="border: 1.5px solid rgba(10,123,140"] {
   border-color: rgba(74, 184, 212, 0.14) !important;
 }
 
 /* ── Backdrop blur panels ── */
-[data-theme="dark"] [style*="backdropFilter: 'blur"] {
-  background: rgba(9, 21, 35, 0.95) !important;
+[data-theme="dark"] [style*="backdrop-filter"] {
+  background: rgba(9, 21, 35, 0.90) !important;
 }
 
 /* ── Dividers ── */
@@ -299,30 +338,6 @@ img {
   border-color: rgba(74, 184, 212, 0.15) !important;
 }
 
-/* ── Extra page backgrounds ── */
-[data-theme="dark"] [style*="background: #f0f8fb"],
-[data-theme="dark"] [style*="background:#f0f8fb"] {
-  background: #070f18 !important;
-}
-
-
-/* ── Sticky bottom CTA & frosted panels ── */
-
-
-/* ── More text colors ── */
-[data-theme="dark"] [style*="color: #2a4a5a"],
-[data-theme="dark"] [style*="color:#2a4a5a"] {
-  color: #b0d4e8 !important;
-}
-[data-theme="dark"] [style*="color: #3a6070"],
-[data-theme="dark"] [style*="color:#3a6070"] {
-  color: #8ab8cc !important;
-}
-[data-theme="dark"] [style*="color: #192830"],
-[data-theme="dark"] [style*="color:#192830"] {
-  color: #d0e8f4 !important;
-}
-
 /* ── Accent-tinted backgrounds ── */
 [data-theme="dark"] [style*="background: rgba(201,110,42,0.10)"],
 [data-theme="dark"] [style*="background: rgba(201,110,42,0.15)"] {
@@ -340,9 +355,7 @@ img {
 
 /* ── Borders — more variants ── */
 [data-theme="dark"] [style*="border-top: 1px solid rgba(10,123,140"],
-[data-theme="dark"] [style*="border-bottom: 1px solid rgba(10,123,140"],
-[data-theme="dark"] [style*="borderTop: '1px solid rgba(10,123,140"],
-[data-theme="dark"] [style*="borderLeft: '3px solid rgba(10,123,140"] {
+[data-theme="dark"] [style*="border-bottom: 1px solid rgba(10,123,140"] {
   border-color: rgba(74, 184, 212, 0.14) !important;
 }
 [data-theme="dark"] [style*="border: 1.5px solid rgba(30,92,130"] {
@@ -371,8 +384,12 @@ img {
   background: rgba(15, 158, 100, 0.12) !important;
 }
 
+/* ── TripCard — GPU compositing layer ── */
+.trip-card {
+  will-change: transform;
+}
+
 /* ── TripCard — mobile active state (tap feedback) ── */
-.trip-card { will-change: transform; }
 .trip-card:active {
   transform: scale(0.985) !important;
   box-shadow: 0 1px 6px rgba(0,45,60,0.07) !important;
@@ -449,7 +466,6 @@ img {
 }
 
 /* ── borderLeft hardcoded sea-blue ── */
-[data-theme="dark"] [style*="borderLeft: '3px solid #1e5c82"],
 [data-theme="dark"] [style*="border-left: 3px solid #1e5c82"] {
   border-left-color: rgba(74, 184, 212, 0.5) !important;
 }
@@ -708,11 +724,11 @@ img {
 /* ── Desktop card hover lift ── */
 @media (hover: hover) {
   .card-hover {
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition: transform 0.20s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.20s cubic-bezier(0.2,0.8,0.2,1);
   }
   .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(0,45,60,0.13) !important;
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 2px 0 rgba(10,123,140,0.06), 0 8px 28px rgba(0,45,60,0.11), 0 16px 48px rgba(0,45,60,0.06) !important;
   }
 }
 
@@ -728,15 +744,34 @@ img {
 
 /* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
 .nav-fab-mobile {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--acc), #e07828);
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #0fa0b4 0%, #0a7b8c 55%, #075e6d 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 24px rgba(201, 110, 42, 0.45);
-  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(10, 123, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+  margin-top: -18px;
+}
+.nav-fab-mobile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 38%;
+  border-radius: 16px 16px 0 0;
+  background: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+.nav-fab-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-muted, #6a8a96);
+  letter-spacing: 0.02em;
 }
 .nav-fab-desktop {
   display: none;
@@ -849,12 +884,12 @@ img {
     height: 40px;
     padding: 0 16px;
     border-radius: 20px;
-    background: linear-gradient(135deg, var(--acc), #e07828);
+    background: linear-gradient(135deg, #0fa0b4, #0a7b8c);
     color: #fff;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0;
-    box-shadow: 0 4px 14px rgba(201, 110, 42, 0.3);
+    box-shadow: 0 4px 14px rgba(10, 123, 140, 0.3);
     transition: filter 160ms ease, transform 160ms ease;
   }
   .nav-fab-wrap:hover .nav-fab-desktop {
@@ -1015,6 +1050,11 @@ img {
 [data-theme="dark"] .rutter-island-card {
   background: var(--white);
   border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* ── Leaflet dark-mode: lyfta upp Carto dark_all så havet syns ── */
+[data-theme="dark"] .leaflet-tile-pane {
+  filter: brightness(1.45) contrast(0.92) saturate(1.15);
 }
 
 /* ── Motion preference ── */

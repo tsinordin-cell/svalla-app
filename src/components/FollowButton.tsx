@@ -85,7 +85,7 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
             ? darkBg
               ? { background: 'rgba(255,255,255,0.18)', border: '1.5px solid rgba(255,255,255,0.35)', color: '#fff', boxShadow: 'none' }
               : { background: 'rgba(10,123,140,0.08)', border: '1.5px solid rgba(10,123,140,0.20)', color: 'var(--sea)', boxShadow: 'none' }
-            : { background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', border: '1.5px solid transparent', color: '#fff', boxShadow: '0 2px 10px rgba(30,92,130,0.3)' }
+            : { background: 'var(--grad-sea)', border: '1.5px solid transparent', color: '#fff', boxShadow: '0 2px 10px rgba(30,92,130,0.3)' }
           ),
         }}
       >

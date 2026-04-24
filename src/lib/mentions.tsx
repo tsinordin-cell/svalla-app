@@ -1,7 +1,8 @@
 /**
  * Mention & hashtag parsing helpers.
- * Pure functions — no React imports, works in both server and client.
+ * Works in both server and client components.
  */
+import Link from 'next/link'
 
 export type MentionSpan = {
   type: 'mention' | 'hashtag' | 'text'
@@ -68,4 +69,35 @@ export function getActiveMention(text: string, cursorPos: number): { word: strin
   // Don't trigger with empty @ or very long words
   if (word.length > 30) return null
   return { word, start }
+}
+
+// ── Render mentions as plain JSX ─────────────────────────────────────────
+// Server-safe: ingen onClick, fungerar i server och client components.
+export function renderMentions(text: string) {
+  const spans = parseTokens(text)
+  return spans.map((s, i) => {
+    if (s.type === 'mention') {
+      return (
+        <Link
+          key={i}
+          href={`/u/${s.value}`}
+          style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
+        >
+          @{s.value}
+        </Link>
+      )
+    }
+    if (s.type === 'hashtag') {
+      return (
+        <Link
+          key={i}
+          href={`/tagg/${s.value.toLowerCase()}`}
+          style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
+        >
+          #{s.value}
+        </Link>
+      )
+    }
+    return <span key={i}>{s.value}</span>
+  })
 }

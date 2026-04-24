@@ -45,7 +45,7 @@ const securityHeaders = [
       // Stripe-domäner tillagda för checkout/portal.
       // wss://*.supabase.co KRÄVS separat — Safari/WebKit mappar INTE https:// → wss://
       // (Chrome gör det, därav att desktop fungerar men iOS kraschar med SecurityError).
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4508000000000000.ingest.sentry.io https://api.open-meteo.com https://api.stripe.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4508000000000000.ingest.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org",
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
       "frame-ancestors 'self'",
     ].join('; '),

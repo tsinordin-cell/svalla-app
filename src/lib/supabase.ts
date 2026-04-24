@@ -74,6 +74,8 @@ export type Trip = {
   likes_count?: number
   comments_count?: number
   user_liked?: boolean
+  // Confirmed tagged crew members (enriched after feed fetch)
+  tagged_users?: { username: string; avatar: string | null }[]
 }
 
 export type User = {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
@@ -149,24 +150,43 @@ export default function MeddelandenPage() {
         }
       }
 
-      const enriched: ConvRow[] = []
-      for (const c of filtered) {
-        const lr = lastReadMap[c.id] ?? '1970-01-01T00:00:00Z'
-        const { count } = await supabase
+      // En enda query för alla olästa meddelanden över alla konversationer.
+      // Smalnar ned scope med tidigaste last_read_at BARA om alla konversationer
+      // har en last_read-entry — annars måste vi räkna från epoch för
+      // konversationer utan entry (samma beteende som tidigare per-rad-loop).
+      const filteredIds = filtered.map(c => c.id as string)
+      const allHaveLastRead = filteredIds.every(id => id in lastReadMap)
+      const earliestLr = allHaveLastRead
+        ? Object.values(lastReadMap).sort()[0]
+        : '1970-01-01T00:00:00Z'
+
+      const unreadByConv: Record<string, number> = {}
+      if (filteredIds.length > 0) {
+        const { data: potentialUnread } = await supabase
           .from('messages')
-          .select('id', { count: 'exact', head: true })
-          .eq('conversation_id', c.id)
-          .gt('created_at', lr)
+          .select('conversation_id, created_at')
+          .in('conversation_id', filteredIds)
           .neq('user_id', userId)
+          .gt('created_at', earliestLr)
+        for (const m of potentialUnread ?? []) {
+          const convId = m.conversation_id as string
+          const lr = lastReadMap[convId] ?? '1970-01-01T00:00:00Z'
+          if ((m.created_at as string) > lr) {
+            unreadByConv[convId] = (unreadByConv[convId] ?? 0) + 1
+          }
+        }
+      }
+
+      const enriched: ConvRow[] = filtered.map(c => {
         const o = otherMap[c.id]
-        enriched.push({
+        return {
           ...(c as ConvRow),
           other_username: o?.username,
           other_avatar: o?.avatar ?? null,
           other_id: o?.id,
-          unread: count ?? 0,
-        })
-      }
+          unread: unreadByConv[c.id] ?? 0,
+        }
+      })
 
       setConvs(enriched)
       setLoading(false)
@@ -430,8 +450,9 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
   const isPending = c.status === 'request' && c.created_by === me
   const isReq     = c.status === 'request' && c.created_by !== me
 
+  const isEmpty = !c.last_message_preview
   const preview = (() => {
-    if (!c.last_message_preview) return 'Skriv första meddelandet'
+    if (isEmpty) return 'Skriv första meddelandet'
     const prefix = isFromMe ? 'Du: ' : ''
     return prefix + c.last_message_preview
   })()
@@ -458,10 +479,10 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
           }} />
         )}
 
-        {/* Avatar — square 44px */}
+        {/* Avatar — rund 44px */}
         <div style={{
           width: 44, height: 44, flexShrink: 0,
-          borderRadius: radius.sm,
+          borderRadius: '50%',
           background: grad,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: '#fff', fontWeight: fontWeight.semibold,
@@ -470,8 +491,7 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
           marginRight: space[3],
         }}>
           {c.other_avatar
-            // eslint-disable-next-line @next/next/no-img-element
-            ? <img loading="lazy" decoding="async" src={c.other_avatar} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+            ? <Image src={c.other_avatar} alt="" fill sizes="44px" style={{ objectFit: 'cover' }} />
             : initials
           }
         </div>
@@ -516,8 +536,10 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
             <span style={{
               flex: 1, minWidth: 0,
               fontSize: fontSize.small,
+              fontStyle: isEmpty ? 'italic' : 'normal',
               fontWeight: unread > 0 ? fontWeight.medium : fontWeight.regular,
               color: unread > 0 ? 'var(--txt)' : 'var(--txt3)',
+              opacity: isEmpty ? 0.6 : 1,
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             }}>
               {preview}
@@ -579,7 +601,7 @@ function SkeletonRow() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', height: 72, paddingLeft: space[4], paddingRight: space[4] }}>
       <div style={{
-        width: 44, height: 44, borderRadius: radius.sm, flexShrink: 0,
+        width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
         background: 'var(--surface-2, rgba(10,123,140,0.06))',
         marginRight: space[3],
         animation: 'shimmer 1.6s ease-in-out infinite',

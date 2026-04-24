@@ -7,16 +7,34 @@ import SvallaLogo from '@/components/SvallaLogo'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
-import SuggestedUsers from '@/components/SuggestedUsers'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
+import FeedWeatherRow from '@/components/FeedWeatherRow'
+import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
-import { fetchFeedTrips } from '@/lib/feed'
-import { timeAgo } from '@/lib/utils'
-import { fontSize, fontWeight } from '@/lib/tokens'
+import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
-export const revalidate = 0
+export const revalidate = 120
+
+function getGreeting(): string {
+  const h = new Date().getHours()
+  if (h < 5)  return 'God natt'
+  if (h < 10) return 'God morgon'
+  if (h < 13) return 'God förmiddag'
+  if (h < 17) return 'God eftermiddag'
+  if (h < 21) return 'God kväll'
+  return 'God natt'
+}
+
+function getTimeLabel(): string {
+  const h = new Date().getHours()
+  if (h >= 5  && h < 8)  return '🌅 GRYNING'
+  if (h >= 8  && h < 12) return '☀ MORGON'
+  if (h >= 12 && h < 17) return '⛵ EFTERMIDDAG'
+  if (h >= 17 && h < 20) return '🌆 KVÄLL'
+  return '🌙 NATT'
+}
 
 /** Graciöst felmeddelande om servern kraschar (undviker error-boundary). */
 function FeedServerError() {
@@ -48,10 +66,15 @@ export default async function FeedPage(
   let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
   let user: { id: string } | null = null
 
+  let feedUsername: string | null = null
   try {
     supabase = await createServerSupabaseClient()
     const { data } = await supabase.auth.getUser()
     user = data?.user ?? null
+    if (user) {
+      const { data: profile } = await supabase.from('users').select('username').eq('id', user.id).single()
+      feedUsername = profile?.username ?? null
+    }
   } catch (err) {
     console.error('[FeedPage] auth/client init error:', err)
     return <FeedServerError />
@@ -94,22 +117,17 @@ export default async function FeedPage(
     )
   }
 
-  const tripsWithUsers = allRes.trips
-  // Om follow-query misslyckades: fallback till tom lista (all-flödet visas ändå)
-  const followingTrips = followRes.error ? [] : followRes.trips
+  // Enrich both feeds with confirmed tagged crew (one batch query each)
+  const [tripsWithUsers, followingTrips] = await Promise.all([
+    enrichWithTags(supabase!, allRes.trips),
+    enrichWithTags(supabase!, followRes.error ? [] : followRes.trips),
+  ])
 
   // Social proof — senaste 7 dagarna
   const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
   const thisWeek = tripsWithUsers.filter(t => t.created_at > weekAgo)
   const uniqueUsers = new Set(thisWeek.map((t: { user_id: string }) => t.user_id)).size
   const uniquePlaces = new Set(thisWeek.map((t: { location_name: string | null }) => t.location_name).filter(Boolean)).size
-
-  // Aktivt nu — senaste 24h
-  const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-  const activeNow = tripsWithUsers.filter(t => t.created_at > dayAgo)
-
-  // Magiska turer (⚓⚓⚓) de senaste 7 dagarna för highlight
-  const magicTrips = thisWeek.filter((t: { pinnar_rating: number | null }) => t.pinnar_rating === 3).slice(0, 3)
 
   // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
   // HELA blocket är tyst-degraderat: feeden är huvudsaken, achievements är sekundärt.
@@ -143,32 +161,59 @@ export default async function FeedPage(
       {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
       {!SAFE && <SilentBoundary><OnboardingModal /></SilentBoundary>}
 
-      {/* ── Header ── */}
-      <header style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: '12px 16px 10px',
-        background: 'var(--header-bg, var(--glass-96))',
-        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
-        position: 'sticky', top: 0, zIndex: 50,
+      {/* ── Ambient gradient — wraps header + top content ── */}
+      <div className="feed-ambient-top" style={{
+        background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 25%, #dbe6e7 55%, var(--bg) 100%)',
+        backgroundAttachment: 'local',
       }}>
-        <SvallaLogo height={26} color="var(--sea)" />
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Link href="/sok" style={{
-            width: 38, height: 38, borderRadius: '50%',
-            background: 'rgba(10,123,140,0.08)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            flexShrink: 0,
-          }} title="Sök">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
-              <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
-            </svg>
-          </Link>
-          <SilentBoundary><MessageBell /></SilentBoundary>
-          <SilentBoundary><NotificationBell /></SilentBoundary>
-        </div>
-      </header>
+        {/* ── Header ── */}
+        <header style={{
+          display: 'flex', alignItems: 'center', gap: 10,
+          padding: '13px 16px 11px',
+          background: 'rgba(255,255,255,0.55)',
+          backdropFilter: 'saturate(1.4) blur(20px)', WebkitBackdropFilter: 'saturate(1.4) blur(20px)',
+          borderBottom: '1px solid rgba(22,45,58,0.06)',
+          position: 'sticky', top: 0, zIndex: 50,
+        }}>
+          <SvallaLogo height={26} color="var(--sea)" />
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Link href="/sok" aria-label="Sök" style={{
+              width: 38, height: 38, borderRadius: '50%',
+              background: 'rgba(22,45,58,0.06)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              flexShrink: 0,
+            }}>
+              <IconSearch size={18} stroke={2} color="var(--sea)" />
+            </Link>
+            <SilentBoundary><MessageBell /></SilentBoundary>
+            <SilentBoundary><NotificationBell /></SilentBoundary>
+          </div>
+        </header>
+
+        {/* ── Greeting ── */}
+        {feedUsername && (
+          <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 8px' }}>
+            <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
+              {getTimeLabel()}
+            </div>
+            <div style={{ fontSize: 32, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+              {getGreeting()}, {feedUsername}
+            </div>
+          </div>
+        )}
+
+        {/* ── Weather row — direkt under greeting ── */}
+        {!SAFE && feedUsername && (
+          <SilentBoundary><FeedWeatherRow /></SilentBoundary>
+        )}
+
+        {/* ── Stories strip — direkt under greeting ── */}
+        {!SAFE && (
+          <div style={{ paddingBottom: 4 }}>
+            <SilentBoundary><StoriesStrip /></SilentBoundary>
+          </div>
+        )}
+      </div>
 
       <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 16px', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
 
@@ -188,8 +233,8 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── Social proof banner ── */}
-        {thisWeek.length > 0 && (
+        {/* ── Social proof banner ── visas först när rörelsen är tydlig (≥3 turer) */}
+        {thisWeek.length >= 3 && (
           <div style={{
             background: 'var(--grad-sea)',
             borderRadius: 18, padding: '14px 18px', marginBottom: 14,
@@ -208,130 +253,6 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── AI Guide CTA ── */}
-        {user && (
-          <Link href="/guide" style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
-            <div style={{
-              background: 'var(--white)',
-              border: '1.5px solid rgba(10,123,140,0.13)',
-              borderRadius: 16, padding: '12px 16px',
-              display: 'flex', alignItems: 'center', gap: 12,
-              boxShadow: '0 2px 8px rgba(0,45,60,0.05)',
-            }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 12, flexShrink: 0,
-                background: 'var(--grad-sea)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
-              }}>🧭</div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 1 }}>Skärgårdsguiden</div>
-                <div style={{ fontSize: 11, color: 'var(--txt3)' }}>Fråga om turer, mat och tips i skärgården</div>
-              </div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          </Link>
-        )}
-
-        {/* ── Stories (24h) ── */}
-        {!SAFE && (
-          <div style={{ marginBottom: 10, marginLeft: -16, marginRight: -16 }}>
-            <SilentBoundary><StoriesStrip /></SilentBoundary>
-          </div>
-        )}
-
-        {/* ── Aktivt nu (senaste 24h) ── */}
-        {activeNow.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4,
-                fontSize: 10, fontWeight: 600, color: 'var(--sea)',
-                textTransform: 'uppercase', letterSpacing: '0.6px',
-              }}>
-                <span
-                  className="live-dot"
-                  style={{
-                    display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
-                    background: 'var(--green)',
-                  }}
-                />
-                Aktivt senaste 24h · {activeNow.length} {activeNow.length === 1 ? 'tur' : 'turer'}
-              </span>
-            </div>
-            {/* Horizontal scroll med mini-kort */}
-            <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 6, scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {activeNow.slice(0, 8).map((t: any) => (
-                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }} className="press-feedback">
-                  <div style={{
-                    width: 110, background: 'var(--white)', borderRadius: 14,
-                    overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,45,60,0.08)',
-                    border: '1px solid rgba(10,123,140,0.08)',
-                  }}>
-                    {t.image
-                      ? <div style={{ position: 'relative', height: 72, overflow: 'hidden' }}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                        </div>
-                      : <div style={{ height: 72, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>⛵</div>
-                    }
-                    <div style={{ padding: '7px 8px' }}>
-                      <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {t.location_name ?? 'Okänd plats'}
-                      </div>
-                      <div style={{ fontSize: 9, color: 'var(--txt3)', marginTop: 1 }}>
-                        {timeAgo(t.created_at)}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* ── Magiska turer ── */}
-        {magicTrips.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
-              ✨ Magiska turer den här veckan
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {magicTrips.map((t: any) => (
-                <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none' }}>
-                  <div style={{
-                    background: 'var(--white)', borderRadius: 16, padding: '10px 14px',
-                    display: 'flex', alignItems: 'center', gap: 12,
-                    boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
-                    border: '1.5px solid rgba(201,110,42,0.15)',
-                    position: 'relative',
-                  }}>
-                    {t.image
-                      ? <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={t.image} alt="" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                        </div>
-                      : <div style={{ width: 52, height: 52, borderRadius: 10, flexShrink: 0, background: 'var(--grad-sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>⛵</div>
-                    }
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {t.location_name ?? 'Okänd plats'}
-                      </div>
-                      <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 1 }}>
-                        av {t.users?.username ?? 'Okänd'}
-                      </div>
-                    </div>
-                    <span style={{ fontSize: 16, flexShrink: 0 }}>⚓⚓⚓</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* ── Nya märken från nätverket ── */}
         {recentAchievements.length > 0 && (
           <div style={{ marginBottom: 16 }}>
@@ -346,11 +267,8 @@ export default async function FeedPage(
           </div>
         )}
 
-        {/* ── Hitta seglare (suggested follows — only for logged-in) ── */}
-        {user && !SAFE && <SilentBoundary><SuggestedUsers /></SilentBoundary>}
-
         {/* ── Divider ── */}
-        {(activeNow.length > 0 || magicTrips.length > 0 || recentAchievements.length > 0) && tripsWithUsers.length > 0 && (
+        {recentAchievements.length > 0 && tripsWithUsers.length > 0 && (
           <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
             Alla turer
           </div>

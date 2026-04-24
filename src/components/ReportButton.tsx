@@ -50,7 +50,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
           className="press-feedback"
           style={{
             background: 'none', border: 'none', cursor: 'pointer',
-            fontSize: 13, color: '#c03', padding: '0 0', textAlign: 'left', width: '100%',
+            fontSize: 13, color: 'var(--red)', padding: '0 0', textAlign: 'left', width: '100%',
           }}
         >
           {label}
@@ -62,7 +62,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
           aria-label={`Anmäl ${targetType}`}
           style={{
             padding: '8px 14px', borderRadius: 10, border: '1px solid rgba(200,30,30,0.3)',
-            background: 'rgba(200,30,30,0.05)', color: '#c03', fontSize: 13,
+            background: 'rgba(200,30,30,0.05)', color: 'var(--red)', fontSize: 13,
             fontWeight: 600, cursor: 'pointer',
           }}
         >
@@ -113,7 +113,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
                   className="press-feedback"
                   style={{
                     padding: '12px 32px', borderRadius: 12, border: 'none',
-                    background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff',
+                    background: 'var(--grad-sea)', color: '#fff',
                     fontWeight: 600, fontSize: 14, cursor: 'pointer',
                   }}
                 >
@@ -181,7 +181,7 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
                 {err && (
                   <div style={{
                     padding: 10, borderRadius: 10, marginBottom: 12,
-                    background: 'rgba(200,30,30,0.08)', color: '#c03', fontSize: 12,
+                    background: 'rgba(200,30,30,0.08)', color: 'var(--red)', fontSize: 12,
                   }}>
                     {err}
                   </div>

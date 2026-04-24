@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -160,7 +160,7 @@ export default async function RutterPage({
     vyParam === 'oar' ? 'oar'
     : vyParam === 'farjor' ? 'farjor'
     : 'rutter'
-  const supabase = createClient()
+  const supabase = await createServerSupabaseClient()
 
   const baseQuery = supabase
     .from('tours')
@@ -237,7 +237,7 @@ export default async function RutterPage({
             textDecoration: 'none',
             boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
           }}>
-            Guide
+            Thorkel
           </Link>
         </div>
       </header>
@@ -255,9 +255,10 @@ export default async function RutterPage({
         }}
       >
         {([
-          { key: 'rutter' as const, label: 'Rutter', href: '/rutter' },
-          { key: 'oar' as const,    label: 'Öar',    href: '/rutter?vy=oar' },
-          { key: 'farjor' as const, label: 'Färjor', href: '/rutter?vy=farjor' },
+          { key: 'planera' as const, label: 'Planera', href: '/planera' },
+          { key: 'rutter' as const,  label: 'Rutter',  href: '/rutter' },
+          { key: 'oar' as const,     label: 'Öar',     href: '/rutter?vy=oar' },
+          { key: 'farjor' as const,  label: 'Färjor',  href: '/rutter?vy=farjor' },
         ]).map(t => {
           const active = vy === t.key
           return (

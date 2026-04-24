@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { createClub, type ClubBasic } from '@/lib/clubs'
@@ -109,7 +110,7 @@ export default function KlubbarPage() {
             aria-label="Skapa klubb"
             style={{
               width: 36, height: 36, borderRadius: '50%', flexShrink: 0, border: 'none',
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff',
               cursor: 'pointer',
             }}>
@@ -128,7 +129,7 @@ export default function KlubbarPage() {
               style={{
                 flex: 1, padding: '8px 10px', border: 'none',
                 borderRadius: 10,
-                background: tab === t ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.06)',
+                background: tab === t ? 'var(--grad-sea)' : 'rgba(10,123,140,0.06)',
                 color: tab === t ? '#fff' : 'var(--txt)',
                 fontWeight: 700, fontSize: 13, cursor: 'pointer',
               }}>
@@ -189,8 +190,7 @@ export default function KlubbarPage() {
                 color: '#fff', fontWeight: 600, fontSize: 18, overflow: 'hidden',
               }}>
                 {c.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img loading="lazy" decoding="async" src={c.image} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <Image src={c.image} alt="" fill sizes="56px" style={{ objectFit: 'cover' }} />
                 ) : initialsOf(c.name)}
                 {!c.is_public && (
                   <div style={{ position: 'absolute', top: -4, right: -4, background: 'var(--acc)', color: '#fff', fontSize: 9, fontWeight: 600, borderRadius: 8, padding: '2px 5px', border: '2px solid var(--white)' }}>
@@ -254,11 +254,11 @@ function EmptyState({ emoji, title, body, cta }: {
       <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>{body}</p>
       {cta && (
         cta.onClick ? (
-          <button onClick={cta.onClick} style={{ padding: '10px 22px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 700, fontSize: 13, border: 'none', cursor: 'pointer' }}>
+          <button onClick={cta.onClick} style={{ padding: '10px 22px', borderRadius: 14, background: 'var(--grad-sea)', color: '#fff', fontWeight: 700, fontSize: 13, border: 'none', cursor: 'pointer' }}>
             {cta.label}
           </button>
         ) : (
-          <Link href={cta.href} style={{ display: 'inline-block', padding: '10px 22px', borderRadius: 14, background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+          <Link href={cta.href} style={{ display: 'inline-block', padding: '10px 22px', borderRadius: 14, background: 'var(--grad-sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
             {cta.label}
           </Link>
         )
@@ -336,7 +336,7 @@ function CreateClubModal({
           ))}
         </div>
 
-        {err && <div style={{ color: '#c03', fontSize: 12, marginBottom: 10 }}>{err}</div>}
+        {err && <div style={{ color: 'var(--red)', fontSize: 12, marginBottom: 10 }}>{err}</div>}
 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} disabled={busy}
@@ -344,7 +344,7 @@ function CreateClubModal({
             Avbryt
           </button>
           <button onClick={submit} disabled={busy || name.trim().length < 2}
-            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || name.trim().length < 2 ? 0.6 : 1 }}>
+            style={{ flex: 2, padding: 12, borderRadius: 12, border: 'none', background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 14, cursor: busy ? 'wait' : 'pointer', opacity: busy || name.trim().length < 2 ? 0.6 : 1 }}>
             {busy ? 'Skapar…' : 'Skapa klubb'}
           </button>
         </div>

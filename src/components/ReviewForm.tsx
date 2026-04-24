@@ -39,7 +39,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
       // Fetch reviews för denna restaurang (utan users-join)
       const { data } = await supabase
         .from('reviews')
-        .select('*')
+        .select('id, user_id, rating, text, created_at')
         .eq('place_id', restaurantId)
         .order('created_at', { ascending: false })
 
@@ -87,7 +87,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
     // Refresh (utan users-join)
     const { data } = await supabase
       .from('reviews')
-      .select('*')
+      .select('id, user_id, rating, text, created_at')
       .eq('place_id', restaurantId)
       .order('created_at', { ascending: false })
     const refreshRaw = (data ?? []) as Review[]
@@ -167,7 +167,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                 onClick={() => setRating(rating === v ? 0 : v)}
                 style={{
                   flex: 1, padding: '8px 4px', borderRadius: 12, border: 'none',
-                  background: rating >= v ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.07)',
+                  background: rating >= v ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
                   color: rating >= v ? '#fff' : 'var(--txt3)',
                   fontSize: 16, cursor: 'pointer', transition: 'all 0.15s',
                   boxShadow: rating >= v ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
@@ -214,7 +214,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
               disabled={rating === 0 || loading}
               style={{
                 flex: 2, padding: '11px 0', borderRadius: 12, border: 'none',
-                background: rating > 0 ? 'linear-gradient(135deg,#1e5c82,#2d7d8a)' : 'rgba(10,123,140,0.1)',
+                background: rating > 0 ? 'var(--grad-sea)' : 'rgba(10,123,140,0.1)',
                 color: rating > 0 ? '#fff' : 'var(--txt3)',
                 fontSize: 13, fontWeight: 600, cursor: rating > 0 ? 'pointer' : 'default',
                 boxShadow: rating > 0 ? '0 2px 10px rgba(30,92,130,0.3)' : 'none',
@@ -248,7 +248,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{
                     width: 28, height: 28, borderRadius: '50%',
-                    background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                    background: 'var(--grad-sea)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 11, fontWeight: 600, color: '#fff', flexShrink: 0,
                   }}>

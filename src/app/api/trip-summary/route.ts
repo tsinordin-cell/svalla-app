@@ -19,64 +19,111 @@ interface TripData {
   nearbyPlaces: string[]
   startTime?: string
   endTime?: string
-  anomalyCount?: number   // antal filtrerade GPS-anomalier
-  routeMatch?: string     // matchad känd rutt (om rutigenkänning hittat match)
+  anomalyCount?: number
+  routeMatch?: string
 }
 
-const SYSTEM_PROMPT = `Du är en personlig loggsassistent för Svalla – appen för skärgårdslivet i Sverige. Du skriver korta, personliga, levande turberättelser som känns som om de skrivs av en erfaren seglare med passion för skärgården.
+// ── Thorkels persona ────────────────────────────────────────────────────────
+const SYSTEM_PROMPT = `Du är Thorkel — Svallaappens navigatör och berättare. En gammal skärgårdssjöman: kortfattad, poetisk, saltad. Du slösar aldrig ord men fångar alltid känslan.
 
-Skriv på svenska. Max 2-3 meningar. Inga rubriker. Ingen markdown. Naturlig, varm ton som fångar känslan och stämningen av just den här turen.
+Du skriver turberättelser i tre distinkta stilar. Varje variant är exakt 1–2 korta meningar, på svenska, utan rubriker, markdown eller listor.
 
-Fokusera på:
-- Det unika med just denna tur (distans, väder, miljö, stoppens karaktär)
-- En känsla av äventyr och glädje
-- Naturliga detaljer (vatten, ljus, vindar)
-- Korta, lättlästa meningar
+STILAR:
+• Poetisk — Sinnesintryck och atmosfär. Ljus, vatten, vind, tystnad. Nästan lyrisk.
+• Rakt på — Lakonisk seglartalk. Kärnfullt och ärligt. Inga utfyllnadsord, inga adjektiv av lyx.
+• Social — Lättsam, varm och delningsbar. Gärna med en liten krok eller glimt i ögat.
 
-Exempel:
-"En perfekt höstdag på vägen till Finnhamn – lugna vatten och både fisk och bastu. Vindarna var på vår sida hela vägen."
-"Sandhamn tur med ungdomskompaniet – sol, segel och godis på bryggan. Precis sådan här dag tänker vi på vintern."`
+Svara EXAKT i detta format — tre varianter separerade med tre bindestreck på egen rad:
+[poetisk variant]
+---
+[rakt-på variant]
+---
+[social variant]`
 
+// ── Tonstyrning baserat på turens karaktär ──────────────────────────────────
+function tripToneHints(data: TripData): string {
+  const hints: string[] = []
+
+  // Distans
+  if (data.distanceNM > 25)       hints.push('lång äventyrlig tur')
+  else if (data.distanceNM < 1.5) hints.push('kort lokal utflykt')
+  else if (data.distanceNM > 12)  hints.push('ordentlig dagstur')
+
+  // Hastighet
+  if (data.maxSpeed > 15)                                        hints.push('snabb och sportig körning')
+  else if (data.maxSpeed < 2.5 && data.boatType === 'Segelbåt') hints.push('lugn seglats i svag vind')
+  else if (data.avgSpeed < 1.5)                                  hints.push('mys-tempo, inga bråttom')
+
+  // Stopp-karaktär
+  const realStops = data.stops.filter(s => s.durationSeconds > 300)
+  if (realStops.length > 4)   hints.push('utforskande med många stopp')
+  else if (realStops.length === 0 && data.distanceNM > 3) hints.push('non-stop direktsträcka')
+
+  // Tid på dagen
+  if (data.startTime) {
+    const h = new Date(data.startTime).getHours()
+    if (h < 6)        hints.push('natten, extremt tidigt')
+    else if (h < 8)   hints.push('tidig morgontur i soluppgången')
+    else if (h > 20)  hints.push('kvällstur i skymningen')
+    else if (h > 16)  hints.push('sen eftermiddag')
+  }
+
+  // Årstid
+  if (data.startTime) {
+    const m = new Date(data.startTime).getMonth() + 1
+    if (m >= 6 && m <= 8)        hints.push('högsommar')
+    else if (m === 5 || m === 9) hints.push('vår/höst-skärgård')
+    else if (m >= 10 || m <= 3)  hints.push('kall årstid, ovanlig tur')
+  }
+
+  return hints.length > 0
+    ? `\nTonstyrning: ${hints.join(' · ')}`
+    : ''
+}
+
+// ── Bygg användarmeddelande ─────────────────────────────────────────────────
 function buildUserMessage(data: TripData): string {
-  const date = data.startTime ? new Date(data.startTime).toLocaleDateString('sv-SE', { weekday: 'long', month: 'long', day: 'numeric' }) : 'idag'
-  const hour = data.startTime ? new Date(data.startTime).getHours() : 'okänd tid'
+  const date = data.startTime
+    ? new Date(data.startTime).toLocaleDateString('sv-SE', {
+        weekday: 'long', month: 'long', day: 'numeric',
+      })
+    : 'idag'
+  const hour = data.startTime ? new Date(data.startTime).getHours() : null
 
-  let msg = `Här är min tur på Svalla:
-  
-• Datum: ${date}, start ${hour}h
+  let msg = `Tur att berättarskriva:
+
+• Datum: ${date}${hour !== null ? `, kl. ${hour}:00` : ''}
 • Båt: ${data.boatType}
 • Distans: ${data.distanceNM.toFixed(1)} NM
-• Tid: ${Math.round(data.durationMin)} minuter
-• Medelhastighet: ${data.avgSpeed.toFixed(1)} knop
-• Toppfart: ${data.maxSpeed.toFixed(1)} knop`
+• Tid: ${Math.round(data.durationMin)} min
+• Snittfart: ${data.avgSpeed.toFixed(1)} kn · Toppfart: ${data.maxSpeed.toFixed(1)} kn`
 
   if (data.locationName) {
-    msg += `\n• Plats/destination: ${data.locationName}`
+    msg += `\n• Destination: ${data.locationName}`
   }
 
-  if (data.stops.length > 0) {
-    const stopCount = data.stops.length
-    const totalStopTime = data.stops.reduce((sum, s) => sum + s.durationSeconds, 0)
-    msg += `\n• Stopp: ${stopCount} st, totalt ${Math.round(totalStopTime / 60)} min`
+  const realStops = data.stops.filter(s => s.durationSeconds > 60)
+  if (realStops.length > 0) {
+    const named = realStops.flatMap(s => (s.name ? [s.name] : []))
+    msg += `\n• Stopp: ${realStops.length} st`
+    if (named.length > 0) msg += ` (${named.join(', ')})`
   }
 
-  if (data.nearbyPlaces && data.nearbyPlaces.length > 0) {
+  if (data.nearbyPlaces?.length > 0) {
     msg += `\n• Passerade: ${data.nearbyPlaces.join(', ')}`
   }
   if (data.routeMatch) {
-    msg += `\n• Rutten matchar känd sträcka: ${data.routeMatch}`
-  }
-  if (data.anomalyCount && data.anomalyCount > 0) {
-    msg += `\n• GPS-kvalitet: ${data.anomalyCount} anomala punkter filtrerades bort`
+    msg += `\n• Rutt: ${data.routeMatch}`
   }
 
-  msg += `\n\nSkriv en kort, varm turberättelse baserat på denna data. Fånga känslan, inte bara fakta.`
+  msg += tripToneHints(data)
+  msg += `\n\nSkriv nu tre varianter (poetisk / rakt på / social) enligt formatet i din instruktion.`
 
   return msg
 }
 
+// ── Route handler ───────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
-  // Auth check — must be logged in to generate AI trip summary
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -85,7 +132,9 @@ export async function POST(req: NextRequest) {
       cookies: {
         getAll: () => cookieStore.getAll(),
         setAll: (cs: { name: string; value: string; options?: object }[]) =>
-          cs.forEach(({ name, value, options }) => cookieStore.set(name, value, options ?? {})),
+          cs.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options ?? {})
+          ),
       },
     }
   )
@@ -94,10 +143,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Rate limit: 5 AI-sammanfattningar per användare per minut (dyrare anrop)
   const { checkRateLimit } = await import('@/lib/rateLimit')
   if (!checkRateLimit(`trip-summary:${user.id}`, 5, 60_000)) {
-    return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
+    return NextResponse.json(
+      { error: 'För många förfrågningar. Vänta en stund.' },
+      { status: 429 }
+    )
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY
@@ -124,31 +175,37 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
-        max_tokens: 350,
+        max_tokens: 600,
         system: SYSTEM_PROMPT,
-        messages: [
-          {
-            role: 'user',
-            content: userMessage,
-          },
-        ],
+        messages: [{ role: 'user', content: userMessage }],
       }),
     })
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('[trip-summary api]', err.substring(0, 100))
+      console.error('[trip-summary api]', err.substring(0, 120))
       return NextResponse.json({ error: 'API-fel' }, { status: 500 })
     }
 
     const result = await res.json()
     if (!result.content || !Array.isArray(result.content) || result.content.length === 0) {
-      return NextResponse.json({ summary: '' })
+      return NextResponse.json({ summary: '', summaries: [] })
     }
-    const summary = result.content[0].text ?? ''
 
-    return NextResponse.json({ summary })
-  } catch (error) {
+    const raw: string = (result.content[0].text ?? '').trim()
+
+    // Parse tre varianter separerade med ---
+    const parts = raw
+      .split(/\n---\n/)
+      .map((s: string) => s.trim())
+      .filter(Boolean)
+
+    // Om modellen av någon anledning inte levererar tre varianter — fall back
+    const summaries: string[] = parts.length >= 2 ? parts.slice(0, 3) : [raw]
+    const summary = summaries[0]
+
+    return NextResponse.json({ summary, summaries })
+  } catch {
     return NextResponse.json({ error: 'Server-fel' }, { status: 500 })
   }
 }

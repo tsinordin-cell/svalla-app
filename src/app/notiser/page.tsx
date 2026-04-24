@@ -10,7 +10,7 @@ import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 
 type Notif = {
   id:             string
-  type:           'like' | 'comment' | 'follow' | 'tag'
+  type:           'like' | 'comment' | 'follow' | 'tag' | 'mention'
   read:           boolean
   created_at:     string
   trip_id:        string | null
@@ -24,6 +24,7 @@ const TYPE_LABEL: Record<string, string> = {
   comment: 'kommenterade din tur',
   follow:  'börjar följa dig',
   tag:     'taggade dig i en tur',
+  mention: 'nämnde dig i en kommentar',
 }
 
 const TYPE_EMOJI: Record<string, string> = {
@@ -31,6 +32,7 @@ const TYPE_EMOJI: Record<string, string> = {
   comment: '💬',
   follow:  '👋',
   tag:     '🏷️',
+  mention: '@',
 }
 
 const TYPE_COLOR: Record<string, string> = {
@@ -38,6 +40,7 @@ const TYPE_COLOR: Record<string, string> = {
   comment: 'rgba(30,92,130,0.10)',
   follow:  'rgba(34,197,94,0.10)',
   tag:     'rgba(124,77,30,0.10)',
+  mention: 'rgba(30,92,130,0.08)',
 }
 
 function groupByDate(notifs: Notif[]): { label: string; items: Notif[] }[] {
@@ -206,7 +209,7 @@ export default function NotiserPage() {
             </p>
             <Link href="/logga-in" style={{
               display: 'inline-block', padding: '12px 28px', borderRadius: 14,
-              background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+              background: 'var(--grad-sea)',
               color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none',
             }}>
               Logga in →
@@ -262,7 +265,7 @@ export default function NotiserPage() {
                         <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
                           <div style={{
                             width: 44, height: 44, borderRadius: '50%',
-                            background: 'linear-gradient(135deg,#1e5c82,#2d7d8a)',
+                            background: 'var(--grad-sea)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
                             fontSize: fontSize.body, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
                           }}>

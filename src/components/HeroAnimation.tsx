@@ -14,6 +14,7 @@ interface Theme {
   sunInner: string; sunOuter: string
   glowA: number; glowColor: string
   water: [string, string, string, string]
+  waterFade: string   // transparent version of water[3] — prevents dark banding
   waterHighlight: string
   farIsland: string; islandGreen: string; rockColor: string
   pineTrunk: string; pineBody: string; pineTop: string
@@ -30,6 +31,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fffee0', sunOuter: '#ffe070',
     glowA: 0.48,  glowColor: '255,225,90',
     water:        ['#2488c0','#186aa8','#104e84','#0a2e5a'],
+    waterFade:    'rgba(10,46,90,',
     waterHighlight:'rgba(255,255,255,0.20)',
     farIsland:    'rgba(105,135,155,0.48)',
     islandGreen:  '#4e7845',
@@ -48,6 +50,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fff0a0', sunOuter: '#ffb040',
     glowA: 0.70,  glowColor: '255,160,40',
     water:        ['#b86830','#904820','#6a2e14','#3e1408'],
+    waterFade:    'rgba(62,20,8,',
     waterHighlight:'rgba(255,200,100,0.28)',
     farIsland:    'rgba(130,75,45,0.52)',
     islandGreen:  '#5e6838',
@@ -66,6 +69,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     '#fffce0', sunOuter: '#ffd080',
     glowA: 0.45,  glowColor: '255,210,100',
     water:        ['#182858','#102048','#0c1a38','#0a1440'],
+    waterFade:    'rgba(10,20,64,',
     waterHighlight:'rgba(160,170,255,0.20)',
     farIsland:    'rgba(55,45,85,0.58)',
     islandGreen:  '#234050',
@@ -84,6 +88,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     'rgba(220,220,200,0.6)', sunOuter: 'rgba(180,180,160,0.3)',
     glowA: 0.20,  glowColor: '200,210,200',
     water:        ['#253c48','#1c2e3a','#14202c','#0a1828'],
+    waterFade:    'rgba(10,24,40,',
     waterHighlight:'rgba(180,210,230,0.14)',
     farIsland:    'rgba(55,70,75,0.62)',
     islandGreen:  '#304438',
@@ -102,6 +107,7 @@ const THEMES: Record<HeroVariant, Theme> = {
     sunInner:     'rgba(255,250,240,0.9)', sunOuter: 'rgba(215,228,238,0.5)',
     glowA: 0.85,  glowColor: '215,232,248',
     water:        ['#82a8bc','#6088a0','#426880','#2c4e64'],
+    waterFade:    'rgba(44,78,100,',
     waterHighlight:'rgba(255,255,255,0.16)',
     farIsland:    'rgba(130,155,168,0.42)',
     islandGreen:  '#608070',
@@ -119,10 +125,11 @@ const THEMES: Record<HeroVariant, Theme> = {
 type BoatType = 'sail'
 interface Boat   { x: number; spd: number; type: BoatType; ph: number }
 interface Bird   { x: number; baseY: number; spd: number; wingT: number; amp: number; ph: number }
-interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch'|'zander'|'bream'|'cod'|'herring' }
+interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch'|'zander'|'bream'|'cod'|'herring'|'flounder'|'eel'|'sculpin' }
 interface Ferry  { x: number; spd: number; ph: number }
 interface Weed   { x: number; h: number; ph: number; hue: number; w: number; spd: number }
 interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
+interface Whale  { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; isAdult: boolean }
 
 interface Props { variant?: HeroVariant }
 
@@ -139,7 +146,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     let W = 0, H = 0, dpr = 1
     let raf = 0, last = 0, t = 0
-    let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = []
+    let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = [], whales: Whale[] = []
     let weeds: Weed[] = [], bubbles: Bubble[] = []
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
 
@@ -174,22 +181,37 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // 14 fish — gädda, abborre, gös, braxen, torsk, sill
+      // 20 fish — gädda, abborre, gös, braxen, torsk, sill, flundra, ål, simpa
       fish = [
-        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'    },
-        { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'    },
-        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'    },
-        { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch'   },
-        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'   },
-        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch'   },
-        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander'  },
-        { x: rnd()*W, y: H*0.82, spd: 4,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 125, type: 'zander'  },
-        { x: rnd()*W, y: H*0.78, spd: 3,  dir:  1, sz: 19, ph: rnd()*Math.PI*2, hue: 38,  type: 'bream'   },
-        { x: rnd()*W, y: H*0.88, spd: 4,  dir: -1, sz: 15, ph: rnd()*Math.PI*2, hue: 42,  type: 'bream'   },
-        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'     },
-        { x: rnd()*W, y: H*0.86, spd: 4,  dir: -1, sz: 20, ph: rnd()*Math.PI*2, hue: 165, type: 'cod'     },
+        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'     },
+        { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'     },
+        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'     },
+        { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch'    },
+        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'    },
+        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch'    },
+        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander'   },
+        { x: rnd()*W, y: H*0.82, spd: 4,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 125, type: 'zander'   },
+        { x: rnd()*W, y: H*0.78, spd: 3,  dir:  1, sz: 19, ph: rnd()*Math.PI*2, hue: 38,  type: 'bream'    },
+        { x: rnd()*W, y: H*0.88, spd: 4,  dir: -1, sz: 15, ph: rnd()*Math.PI*2, hue: 42,  type: 'bream'    },
+        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'      },
+        { x: rnd()*W, y: H*0.86, spd: 4,  dir: -1, sz: 20, ph: rnd()*Math.PI*2, hue: 165, type: 'cod'      },
         { x: rnd()*W, y: H*0.65, spd: 10, dir:  1, sz:  9, ph: rnd()*Math.PI*2, hue: 200, type: 'herring'  },
         { x: rnd()*W, y: H*0.70, spd: 11, dir: -1, sz:  8, ph: rnd()*Math.PI*2, hue: 205, type: 'herring'  },
+        // Nya arter
+        { x: rnd()*W, y: H*0.87, spd: 2,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 38,  type: 'flounder' },
+        { x: rnd()*W, y: H*0.92, spd: 2,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 44,  type: 'flounder' },
+        { x: rnd()*W, y: H*0.79, spd: 2,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 88,  type: 'eel'      },
+        { x: rnd()*W, y: H*0.84, spd: 2,  dir: -1, sz: 19, ph: rnd()*Math.PI*2, hue: 80,  type: 'eel'      },
+        { x: rnd()*W, y: H*0.89, spd: 3,  dir:  1, sz: 13, ph: rnd()*Math.PI*2, hue: 28,  type: 'sculpin'  },
+        { x: rnd()*W, y: H*0.93, spd: 2,  dir: -1, sz: 11, ph: rnd()*Math.PI*2, hue: 32,  type: 'sculpin'  },
+      ]
+      // 2 tumlare families — adult + baby (same spd = swim in formation)
+      const p0x = rnd() * W * 0.45, p1x = W * 0.52 + rnd() * W * 0.40
+      whales = [
+        { x: p0x,      y: H*0.665, spd: 2.8, dir:  1 as 1, sz: 34, ph: rnd()*Math.PI*2,     isAdult: true  },
+        { x: p0x - 24, y: H*0.690, spd: 2.8, dir:  1 as 1, sz: 15, ph: rnd()*Math.PI*2+1.0, isAdult: false },
+        { x: p1x,      y: H*0.718, spd: 2.5, dir: -1 as -1, sz: 30, ph: rnd()*Math.PI*2,    isAdult: true  },
+        { x: p1x + 24, y: H*0.742, spd: 2.5, dir: -1 as -1, sz: 13, ph: rnd()*Math.PI*2+0.8, isAdult: false },
       ]
       // Sparse seaweed — 3 plants, short, natural
       weeds = Array.from({ length: 3 }, (_, i) => ({
@@ -648,13 +670,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.lineTo(W, H); cx.lineTo(0, H); cx.closePath()
       const [w0, w1, w2, w3] = th.water
       const wg = cx.createLinearGradient(0, WL(), 0, H)
-      wg.addColorStop(0,     w0)
-      wg.addColorStop(0.10,  w0)
-      wg.addColorStop(0.30,  w1)
-      wg.addColorStop(0.60,  w2)
-      wg.addColorStop(0.76,  w3)          // deepest at H*0.90 — fish still in water
-      wg.addColorStop(0.833, 'rgba(0,0,0,0)') // transparent by H*0.93
-      wg.addColorStop(1,     'rgba(0,0,0,0)')
+      wg.addColorStop(0,    w0)
+      wg.addColorStop(0.10, w0)
+      wg.addColorStop(0.30, w1)
+      wg.addColorStop(0.60, w2)
+      wg.addColorStop(1,    w3)   // deepest water fills all the way — no seabed, no fade
       cx.fillStyle = wg; cx.fill()
       // Surface highlight line
       cx.beginPath()
@@ -927,7 +947,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           cx.fillStyle = '#ffe090'; cx.fill()
           cx.beginPath(); cx.arc(a*0.72, -b2*0.22, a*0.048, 0, Math.PI*2)
           cx.fillStyle = '#050a10'; cx.fill()
-        } else {
+        } else if (f.type === 'herring') {
           // Sill/herring — small, sleek, silver-blue schooling fish
           const a = f.sz, b2 = f.sz * 0.18
           cx.beginPath()
@@ -947,7 +967,170 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           // Eye — tiny
           cx.beginPath(); cx.arc(a*0.88, -b2*0.18, a*0.07, 0, Math.PI*2)
           cx.fillStyle = '#050a10'; cx.fill()
+        } else if (f.type === 'flounder') {
+          // Flundra — flat, wide, sandy-brown camouflage, slow bottom dweller
+          const a = f.sz * 1.25, b2 = f.sz * 0.58
+          // Main flat body
+          cx.beginPath(); cx.ellipse(0, 0, a, b2, 0, 0, Math.PI*2)
+          cx.fillStyle = `hsla(${f.hue},28%,46%,0.82)`; cx.fill()
+          // Darker dorsal edge
+          cx.beginPath(); cx.ellipse(0, -b2*0.22, a*0.92, b2*0.42, 0, 0, Math.PI)
+          cx.fillStyle = `hsla(${f.hue},22%,32%,0.25)`; cx.fill()
+          // Camouflage spots — 7 irregular blotches
+          const sp = [[0.40,-0.25],[0.10,-0.40],[-0.22,-0.20],[0.28,0.28],[-0.10,0.35],[-0.42,0.10],[0.58,0.10]]
+          sp.forEach(([sx,sy]) => {
+            cx.beginPath(); cx.ellipse(a*sx, b2*sy, a*0.10, b2*0.14, sx*0.8, 0, Math.PI*2)
+            cx.fillStyle = `hsla(${f.hue},18%,28%,0.30)`; cx.fill()
+          })
+          // Tail fin — rounded
+          cx.beginPath()
+          cx.moveTo(-a*0.90, 0); cx.lineTo(-a*1.48, -b2*0.80); cx.lineTo(-a*1.48, b2*0.80)
+          cx.closePath(); cx.fillStyle = `hsla(${f.hue},22%,38%,0.75)`; cx.fill()
+          // Both eyes on same side (top) — characteristic flounder feature
+          cx.beginPath(); cx.arc(a*0.56, -b2*0.26, a*0.09, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.72, -b2*0.36, a*0.08, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.58, -b2*0.28, a*0.035, 0, Math.PI*2)
+          cx.fillStyle = 'rgba(255,255,255,0.50)'; cx.fill()
+        } else if (f.type === 'eel') {
+          // Ål — long sinuous body, dark olive-brown, subtle wave motion
+          const len = f.sz * 4.2
+          const thick = f.sz * 0.14
+          const sway = Math.sin(f.ph * 2.8) * f.sz * 0.90
+          const sway2 = Math.sin(f.ph * 2.8 + 1.1) * f.sz * 0.55
+          // Body — two-tone: dark back, pale belly
+          cx.beginPath()
+          cx.moveTo(len*0.48, -thick*0.5)
+          cx.bezierCurveTo(len*0.15, -thick*0.5 - sway2, -len*0.15, -thick*0.5 + sway, -len*0.48, -thick*0.3)
+          cx.lineTo(-len*0.48, thick*0.3)
+          cx.bezierCurveTo(-len*0.15, thick*0.5 + sway, len*0.15, thick*0.5 - sway2, len*0.48, thick*0.5)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},20%,26%,0.86)`; cx.fill()
+          // Pale ventral stripe
+          cx.beginPath()
+          cx.moveTo(len*0.35, thick*0.1)
+          cx.bezierCurveTo(len*0.10, thick*0.1 + sway2*0.6, -len*0.10, thick*0.1 - sway*0.6, -len*0.40, thick*0.15)
+          cx.strokeStyle = `hsla(${f.hue},14%,48%,0.38)`
+          cx.lineWidth = thick * 0.9; cx.lineCap = 'round'; cx.stroke()
+          // Head — slightly wider, rounded snout
+          cx.beginPath(); cx.ellipse(len*0.48, 0, thick*2.0, thick*1.3, 0, 0, Math.PI*2)
+          cx.fillStyle = `hsla(${f.hue},20%,22%,0.90)`; cx.fill()
+          // Eye — small, set back from snout
+          cx.beginPath(); cx.arc(len*0.44, -thick*0.55, thick*0.72, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(len*0.45, -thick*0.58, thick*0.28, 0, Math.PI*2)
+          cx.fillStyle = 'rgba(255,255,255,0.42)'; cx.fill()
+          // Dorsal fin — thin ridge along top
+          cx.beginPath()
+          cx.moveTo(len*0.20, -thick*1.0 - sway2*0.15)
+          cx.bezierCurveTo(0, -thick*1.1 + sway*0.12, -len*0.20, -thick*1.0 - sway*0.10, -len*0.44, -thick*0.8)
+          cx.strokeStyle = `hsla(${f.hue},16%,32%,0.38)`
+          cx.lineWidth = thick * 0.6; cx.stroke()
+        } else if (f.type === 'sculpin') {
+          // Simpa (sjurygg) — big head, tapered body, spiny, mottled bottom-dweller
+          const a = f.sz * 0.92, b2 = f.sz * 0.48
+          // Body — wide at head, tapers sharply
+          cx.beginPath()
+          cx.moveTo(a*0.85, 0)
+          cx.bezierCurveTo(a*0.55, -b2, -a*0.20, -b2*0.72, -a*0.92, -b2*0.18)
+          cx.lineTo(-a*0.92, b2*0.18)
+          cx.bezierCurveTo(-a*0.20, b2*0.72, a*0.55, b2, a*0.85, 0)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},22%,36%,0.84)`; cx.fill()
+          // Mottled patches — 5 irregular blotches
+          ;[[0.38,0.12],[0.12,-0.18],[-0.18,0.10],[0.55,-0.10],[-0.42,-0.08]].forEach(([sx,sy]) => {
+            cx.beginPath(); cx.ellipse(a*sx, b2*sy, a*0.10, b2*0.18, sx*0.5, 0, Math.PI*2)
+            cx.fillStyle = `hsla(${f.hue},14%,22%,0.30)`; cx.fill()
+          })
+          // Spiny dorsal fin — jagged
+          cx.beginPath(); cx.moveTo(a*0.62, -b2)
+          for (let s = 0; s < 6; s++) {
+            const fx = a*(0.62 - s*0.22)
+            cx.lineTo(fx + a*0.04, -b2*(1.35 + (s%2)*0.28))
+            cx.lineTo(fx - a*0.07, -b2)
+          }
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},16%,28%,0.42)`; cx.fill()
+          // Pectoral fin — wide, fan-like
+          cx.beginPath()
+          cx.moveTo(a*0.40, b2*0.55)
+          cx.bezierCurveTo(a*0.55, b2*1.20, a*0.10, b2*1.35, -a*0.05, b2*0.80)
+          cx.closePath()
+          cx.fillStyle = `hsla(${f.hue},18%,32%,0.48)`; cx.fill()
+          // Tail
+          cx.beginPath()
+          cx.moveTo(-a*0.88, 0); cx.lineTo(-a*1.42, -b2*0.95); cx.lineTo(-a*1.42, b2*0.95)
+          cx.closePath(); cx.fillStyle = `hsla(${f.hue},18%,28%,0.76)`; cx.fill()
+          // Big characteristic eye — gold-green iris
+          cx.beginPath(); cx.arc(a*0.55, -b2*0.30, a*0.14, 0, Math.PI*2)
+          cx.fillStyle = `hsla(${f.hue+40},40%,52%,0.85)`; cx.fill()
+          cx.beginPath(); cx.arc(a*0.55, -b2*0.30, a*0.065, 0, Math.PI*2)
+          cx.fillStyle = '#050a10'; cx.fill()
+          cx.beginPath(); cx.arc(a*0.57, -b2*0.33, a*0.028, 0, Math.PI*2)
+          cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fill()
         }
+        cx.restore()
+      })
+    }
+
+    /* ── Tumlare (harbour porpoise) — adult + baby pairs ───────────────── */
+    const drawWhales = (dt: number) => {
+      whales.forEach(w => {
+        w.x += w.spd * w.dir * dt * 0.001
+        w.ph += 0.0010 * dt
+        const wy = w.y + Math.sin(w.ph) * 2.0
+        if (w.dir ===  1 && w.x >  W + w.sz * 4) w.x = -w.sz * 4
+        if (w.dir === -1 && w.x < -w.sz * 4)     w.x =  W + w.sz * 4
+        cx.save()
+        cx.translate(w.x, wy)
+        if (w.dir === -1) cx.scale(-1, 1)   // always face direction of travel
+        const a = w.sz, bh = w.sz * 0.34
+        // ── Body + integrated dorsal fin (top silhouette) ──────────────────
+        cx.beginPath()
+        cx.moveTo(a*0.92, 0)                                           // nose tip
+        // top arc: nose → front base of dorsal fin
+        cx.bezierCurveTo( a*0.60, -bh*0.78,  a*0.12, -bh*0.90,  a*0.05, -bh*0.92)
+        // dorsal fin rise: front base → apex (centred on back)
+        cx.bezierCurveTo( a*0.00, -bh*0.94, -a*0.10, -bh*1.64, -a*0.16, -bh*1.64)
+        // dorsal fin sweep back down: apex → rear base
+        cx.bezierCurveTo(-a*0.22, -bh*1.64, -a*0.34, -bh*1.00, -a*0.44, -bh*0.92)
+        // continue top arc: rear dorsal base → tail stock
+        cx.bezierCurveTo(-a*0.58, -bh*0.84, -a*0.72, -bh*0.44, -a*0.78, -bh*0.22)
+        cx.lineTo(-a*0.88, 0)
+        cx.lineTo(-a*0.78,  bh*0.22)
+        cx.bezierCurveTo(-a*0.25,  bh*1.05,  a*0.55,  bh*0.72,  a*0.92,  0)
+        cx.closePath()
+        const bg = cx.createLinearGradient(0, -bh*1.7, 0, bh)
+        bg.addColorStop(0,    'hsla(210,22%,20%,0.92)')
+        bg.addColorStop(0.50, 'hsla(210,18%,32%,0.88)')
+        bg.addColorStop(0.78, 'hsla(205,14%,54%,0.82)')
+        bg.addColorStop(1,    'hsla(35,18%,80%,0.70)')
+        cx.fillStyle = bg; cx.fill()
+        // ── Tail flukes — horizontal, two lobes ──────────────────────────
+        cx.beginPath()
+        cx.moveTo(-a*0.86, -bh*0.06)
+        cx.bezierCurveTo(-a*1.05, -bh*0.18, -a*1.38, -bh*0.55, -a*1.55, -bh*0.38)
+        cx.bezierCurveTo(-a*1.42, -bh*0.10, -a*1.12,  bh*0.04, -a*1.00,  0)
+        cx.bezierCurveTo(-a*1.12,  bh*0.04, -a*1.42,  bh*0.10, -a*1.55,  bh*0.38)
+        cx.bezierCurveTo(-a*1.38,  bh*0.55, -a*1.05,  bh*0.18, -a*0.86,  bh*0.06)
+        cx.closePath()
+        cx.fillStyle = 'hsla(210,22%,18%,0.90)'; cx.fill()
+        // ── Pale belly patch ─────────────────────────────────────────────
+        cx.beginPath()
+        cx.ellipse(a*0.18, bh*0.30, a*0.52, bh*0.32, -0.15, 0, Math.PI*2)
+        cx.fillStyle = 'hsla(40,18%,82%,0.28)'; cx.fill()
+        // ── Pectoral fin — small, under front belly ───────────────────────
+        cx.beginPath()
+        cx.moveTo(a*0.35, bh*0.50)
+        cx.bezierCurveTo(a*0.50, bh*0.92, a*0.12, bh*0.98, a*0.05, bh*0.58)
+        cx.closePath()
+        cx.fillStyle = 'hsla(210,20%,22%,0.72)'; cx.fill()
+        // ── Eye — small, dark, with highlight ────────────────────────────
+        cx.beginPath(); cx.arc(a*0.60, -bh*0.20, a*0.058, 0, Math.PI*2)
+        cx.fillStyle = 'hsla(210,14%,10%,0.92)'; cx.fill()
+        cx.beginPath(); cx.arc(a*0.622, -bh*0.224, a*0.022, 0, Math.PI*2)
+        cx.fillStyle = 'rgba(255,255,255,0.52)'; cx.fill()
         cx.restore()
       })
     }
@@ -1093,9 +1276,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       drawFerry(dt)
       drawBoats(dt)
       drawFish(dt)
+      drawWhales(dt)
       drawBubbles(dt)
-      drawSeabedRocks()
-      drawSeaweed()
       drawOverlay()
       drawBirds(dt)
 
