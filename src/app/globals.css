@@ -382,7 +382,6 @@ img {
 }
 
 /* ── TripCard — mobile active state (tap feedback) ── */
-.trip-card { will-change: transform; }
 .trip-card:active {
   transform: scale(0.985) !important;
   box-shadow: 0 1px 6px rgba(0,45,60,0.07) !important;
