@@ -197,16 +197,16 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
     durationSeconds?: number
     placeName?: string
   }
-  const timeline: TimelineEvent[] = [
-    { type: 'start', label: 'Kasta loss', time: trip.started_at, placeName: trip.start_location ?? undefined },
+  const timeline: TimelineEvent[] = ([
+    { type: 'start' as const, label: 'Kasta loss', time: trip.started_at, placeName: trip.start_location ?? undefined },
     ...namedStops
       .filter(s => s.type === 'pause')
       .map<TimelineEvent>(s => ({ type: 'pause', label: 'Paus', time: s.startedAt, durationSeconds: s.durationSeconds, placeName: s.placeName })),
     ...namedStops
       .filter(s => s.type === 'stop')
       .map<TimelineEvent>(s => ({ type: 'stop', label: 'Stopp', time: s.startedAt, durationSeconds: s.durationSeconds, placeName: s.placeName })),
-    { type: 'end', label: 'Ankrar', time: trip.ended_at, placeName: trip.location_name ?? undefined },
-  ]
+    { type: 'end' as const, label: 'Ankrar', time: trip.ended_at, placeName: trip.location_name ?? undefined },
+  ] satisfies TimelineEvent[])
     .filter(e => e.time)
     .sort((a, b) => new Date(a.time!).getTime() - new Date(b.time!).getTime())
 
