@@ -110,7 +110,10 @@ export default function StoriesStrip() {
           </button>
         )}
 
-        {groups.map((g, idx) => (
+        {groups.map((g, idx) => {
+          const isLive = !g.viewed_all &&
+            (Date.now() - new Date(g.stories[0].created_at).getTime()) < 2 * 60 * 60 * 1000
+          return (
           <button
             key={g.user_id}
             onClick={() => openViewer(idx)}
@@ -120,12 +123,14 @@ export default function StoriesStrip() {
               flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
               border: 'none', background: 'transparent', cursor: 'pointer', padding: 0, maxWidth: 70,
             }}>
-            <div className={g.viewed_all ? undefined : 'story-ring-live'} style={{
+            <div className={isLive ? 'story-ring-live' : undefined} style={{
               width: 64, height: 64, borderRadius: '50%',
               padding: 2.5,
               background: g.viewed_all
                 ? 'rgba(10,123,140,0.15)'
-                : 'conic-gradient(from 0deg, #22c55e, #0a7b8c, #22c55e)',
+                : isLive
+                  ? 'conic-gradient(from 0deg, #22c55e, #0a7b8c, #22c55e)'
+                  : 'var(--teal, #0a7b8c)',
             }}>
               <div style={{
                 width: '100%', height: '100%', borderRadius: '50%',
@@ -147,7 +152,7 @@ export default function StoriesStrip() {
               {g.user_id === me ? 'Du' : g.username}
             </span>
           </button>
-        ))}
+        )})}
       </div>
 
       <style>{`

@@ -10,6 +10,7 @@ import AchievementFeedCard from '@/components/AchievementFeedCard'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SilentBoundary from '@/components/SilentBoundary'
+import FeedWeatherRow from '@/components/FeedWeatherRow'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
@@ -200,6 +201,11 @@ export default async function FeedPage(
               {getGreeting()}, {feedUsername}
             </div>
           </div>
+        )}
+
+        {/* ── Weather row — direkt under greeting ── */}
+        {!SAFE && feedUsername && (
+          <SilentBoundary><FeedWeatherRow /></SilentBoundary>
         )}
 
         {/* ── Stories strip — direkt under greeting ── */}
