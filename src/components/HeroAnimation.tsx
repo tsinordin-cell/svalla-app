@@ -1086,27 +1086,27 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.translate(w.x, wy)
         if (w.dir === -1) cx.scale(-1, 1)   // always face direction of travel
         const a = w.sz, bh = w.sz * 0.34
-        // ── Body — dark blue-grey back → cream belly ─────────────────────
+        // ── Body + integrated dorsal fin (top silhouette) ──────────────────
         cx.beginPath()
-        cx.moveTo(a*0.92, 0)
-        cx.bezierCurveTo( a*0.60, -bh*0.78, -a*0.25, -bh*0.90, -a*0.78, -bh*0.22)
+        cx.moveTo(a*0.92, 0)                                           // nose tip
+        // top arc: nose → front base of dorsal fin
+        cx.bezierCurveTo( a*0.60, -bh*0.78,  a*0.12, -bh*0.90,  a*0.05, -bh*0.92)
+        // dorsal fin rise: front base → apex (centred on back)
+        cx.bezierCurveTo( a*0.00, -bh*0.94, -a*0.10, -bh*1.64, -a*0.16, -bh*1.64)
+        // dorsal fin sweep back down: apex → rear base
+        cx.bezierCurveTo(-a*0.22, -bh*1.64, -a*0.34, -bh*1.00, -a*0.44, -bh*0.92)
+        // continue top arc: rear dorsal base → tail stock
+        cx.bezierCurveTo(-a*0.58, -bh*0.84, -a*0.72, -bh*0.44, -a*0.78, -bh*0.22)
         cx.lineTo(-a*0.88, 0)
         cx.lineTo(-a*0.78,  bh*0.22)
         cx.bezierCurveTo(-a*0.25,  bh*1.05,  a*0.55,  bh*0.72,  a*0.92,  0)
         cx.closePath()
-        const bg = cx.createLinearGradient(0, -bh, 0, bh)
+        const bg = cx.createLinearGradient(0, -bh*1.7, 0, bh)
         bg.addColorStop(0,    'hsla(210,22%,20%,0.92)')
         bg.addColorStop(0.50, 'hsla(210,18%,32%,0.88)')
         bg.addColorStop(0.78, 'hsla(205,14%,54%,0.82)')
         bg.addColorStop(1,    'hsla(35,18%,80%,0.70)')
         cx.fillStyle = bg; cx.fill()
-        // ── Dorsal fin — small triangle, 1/3 from head ───────────────────
-        cx.beginPath()
-        cx.moveTo( a*0.08, -bh*0.88)
-        cx.lineTo(-a*0.22, -bh*1.54)   // apex points up-back
-        cx.lineTo(-a*0.48, -bh*0.88)
-        cx.closePath()
-        cx.fillStyle = 'hsla(210,22%,18%,0.90)'; cx.fill()
         // ── Tail flukes — horizontal, two lobes ──────────────────────────
         cx.beginPath()
         cx.moveTo(-a*0.86, -bh*0.06)
