@@ -581,59 +581,101 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       {/* Lightbox */}
       {lightbox && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setLightbox(null)}
-          style={{
-            position: 'fixed', inset: 0, zIndex: 2000,
-            background: 'rgba(0,0,0,0.92)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          {lightbox === 'photo' && (
-            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '60px 16px 40px' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={allPhotos[photoIdx] ?? allPhotos[0]}
-                alt=""
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: 8, display: 'block' }}
-              />
-            </div>
-          )}
-          {lightbox === 'map' && routePoints && (
-            <div
-              onClick={e => e.stopPropagation()}
-              style={{
-                width: 'calc(100vw - 32px)', maxWidth: 520,
-                aspectRatio: '1/1',
-                borderRadius: 16, overflow: 'hidden',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-              }}
-            >
-              <RouteMapSVG points={routePoints} w={520} h={520} />
-            </div>
-          )}
-          {/* Close button */}
-          <button
-            onClick={e => { e.stopPropagation(); setLightbox(null) }}
-            aria-label="Stäng"
+        <>
+          <style>{`
+            @keyframes _lb_fade { from { opacity:0 } to { opacity:1 } }
+            @keyframes _lb_scale { from { opacity:0;transform:scale(0.94) } to { opacity:1;transform:scale(1) } }
+            @keyframes _lb_slide { from { opacity:0;transform:translateY(22px) } to { opacity:1;transform:translateY(0) } }
+          `}</style>
+          <div
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setLightbox(null)}
             style={{
-              position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 16px)', right: 16,
-              width: 40, height: 40, borderRadius: '50%',
-              background: 'rgba(255,255,255,0.15)',
-              border: '1px solid rgba(255,255,255,0.2)',
-              cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontSize: 18,
-              WebkitTapHighlightColor: 'transparent',
+              position: 'fixed', inset: 0, zIndex: 2000,
+              background: '#000',
+              animation: '_lb_fade 0.18s ease',
             }}
           >
-            ✕
-          </button>
-        </div>
+            {/* Close button */}
+            <button
+              onClick={e => { e.stopPropagation(); setLightbox(null) }}
+              aria-label="Stäng"
+              style={{
+                position: 'absolute',
+                top: 'calc(env(safe-area-inset-top, 0px) + 12px)', right: 14,
+                zIndex: 20,
+                width: 36, height: 36, borderRadius: '50%',
+                background: 'rgba(255,255,255,0.13)',
+                border: '1px solid rgba(255,255,255,0.20)',
+                cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                WebkitTapHighlightColor: 'transparent',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" strokeWidth={2.5} style={{ width: 15, height: 15 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Photo */}
+            {lightbox === 'photo' && (
+              <div
+                style={{
+                  position: 'absolute', inset: 0,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  padding: 'calc(env(safe-area-inset-top, 0px) + 58px) 0 calc(env(safe-area-inset-bottom, 0px) + 16px)',
+                  animation: '_lb_scale 0.22s cubic-bezier(0.34,1.2,0.64,1)',
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={allPhotos[photoIdx] ?? allPhotos[0]}
+                  alt=""
+                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
+                />
+              </div>
+            )}
+
+            {/* Map */}
+            {lightbox === 'map' && routePoints && (
+              <div
+                onClick={e => e.stopPropagation()}
+                style={{
+                  position: 'absolute', inset: 0,
+                  display: 'flex', flexDirection: 'column',
+                  animation: '_lb_slide 0.24s cubic-bezier(0.16,1,0.3,1)',
+                }}
+              >
+                <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+                  <RouteMapSVG points={routePoints} w={400} h={800} />
+                </div>
+                {(trip.location_name || trip.start_location) && (
+                  <div style={{
+                    padding: '16px 20px calc(env(safe-area-inset-bottom, 0px) + 24px)',
+                    background: 'rgba(4,12,24,0.90)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                    borderTop: '1px solid rgba(255,255,255,0.07)',
+                  }}>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '-0.3px' }}>
+                      {trip.start_location && trip.location_name
+                        ? `${trip.start_location} → ${trip.location_name}`
+                        : (trip.location_name ?? trip.start_location)}
+                    </div>
+                    {trip.distance >= 0.1 && (
+                      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.42)', marginTop: 3 }}>
+                        {`${trip.distance.toFixed(1)} NM`}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </>
       )}
     </article>
   )
