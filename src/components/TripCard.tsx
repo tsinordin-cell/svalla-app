@@ -585,8 +585,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         <>
           <style>{`
             @keyframes _lb_fade { from { opacity:0 } to { opacity:1 } }
-            @keyframes _lb_scale { from { opacity:0;transform:scale(0.94) } to { opacity:1;transform:scale(1) } }
             @keyframes _lb_slide { from { opacity:0;transform:translateY(22px) } to { opacity:1;transform:translateY(0) } }
+            .lb-scroll { scrollbar-width:none; -ms-overflow-style:none; }
+            .lb-scroll::-webkit-scrollbar { display:none; }
           `}</style>
           <div
             role="dialog"
@@ -621,23 +622,70 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               </svg>
             </button>
 
-            {/* Photo */}
+            {/* Photo — horizontal scroll-snap, native swipe */}
             {lightbox === 'photo' && (
-              <div
-                style={{
-                  position: 'absolute', inset: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  padding: 'calc(env(safe-area-inset-top, 0px) + 58px) 0 calc(env(safe-area-inset-bottom, 0px) + 16px)',
-                  animation: '_lb_scale 0.22s cubic-bezier(0.34,1.2,0.64,1)',
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={allPhotos[photoIdx] ?? allPhotos[0]}
-                  alt=""
-                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
-                />
-              </div>
+              <>
+                <div
+                  className="lb-scroll"
+                  ref={el => { if (el) el.scrollLeft = photoIdx * el.clientWidth }}
+                  onScroll={e => {
+                    const el = e.currentTarget
+                    const idx = Math.round(el.scrollLeft / el.clientWidth)
+                    if (idx !== photoIdx) setPhotoIdx(idx)
+                  }}
+                  style={{
+                    position: 'absolute',
+                    top: 'calc(env(safe-area-inset-top, 0px) + 52px)',
+                    bottom: allPhotos.length > 1
+                      ? 'calc(env(safe-area-inset-bottom, 0px) + 44px)'
+                      : 'calc(env(safe-area-inset-bottom, 0px) + 16px)',
+                    left: 0, right: 0,
+                    overflowX: 'auto', overflowY: 'hidden',
+                    scrollSnapType: 'x mandatory',
+                    display: 'flex',
+                    WebkitOverflowScrolling: 'touch',
+                  }}
+                >
+                  {allPhotos.map((src, i) => (
+                    <div
+                      key={i}
+                      onClick={() => setLightbox(null)}
+                      style={{
+                        flexShrink: 0, width: '100vw', height: '100%',
+                        scrollSnapAlign: 'start',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={src}
+                        alt=""
+                        onClick={e => e.stopPropagation()}
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {allPhotos.length > 1 && (
+                  <div style={{
+                    position: 'absolute',
+                    bottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)',
+                    left: 0, right: 0,
+                    display: 'flex', justifyContent: 'center', gap: 6,
+                    pointerEvents: 'none',
+                  }}>
+                    {allPhotos.map((_, i) => (
+                      <div key={i} style={{
+                        height: 6,
+                        width: i === photoIdx ? 18 : 6,
+                        borderRadius: 3,
+                        background: i === photoIdx ? '#fff' : 'rgba(255,255,255,0.35)',
+                        transition: 'width 0.2s ease',
+                      }} />
+                    ))}
+                  </div>
+                )}
+              </>
             )}
 
             {/* Map */}
