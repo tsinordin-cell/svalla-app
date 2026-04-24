@@ -1,394 +1,397 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { createClient } from '@/lib/supabase'
 
-type Screen = 0 | 1 | 2 | 3
+// ── Typer ─────────────────────────────────────────────────────────────────────
+type Step = 1 | 2 | 3
 
+interface SuggestedUser {
+  id: string
+  username: string
+  avatar: string | null
+  trip_count: number
+}
+
+// ── Båtval-alternativ ─────────────────────────────────────────────────────────
+const BOAT_OPTIONS = [
+  { value: 'Segelbåt', label: 'Segelbåt',                       emoji: '⛵', desc: 'Kryss och slör' },
+  { value: 'Motorbåt', label: 'Motorbåt',                       emoji: '🚤', desc: 'Gas och frihet' },
+  { value: 'Kajak',    label: 'Kajak / Kanot',                  emoji: '🛶', desc: 'Nära vattnet' },
+  { value: 'Charter',  label: 'Chartrar eller åker med vänner', emoji: '🤝', desc: 'Utan egen båt' },
+]
+
+// ── Stegindikator ─────────────────────────────────────────────────────────────
+function StepDots({ current, total }: { current: number; total: number }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 4 }}>
+      {Array.from({ length: total }).map((_, i) => (
+        <div key={i} style={{
+          width: i + 1 === current ? 24 : 8,
+          height: 8, borderRadius: 4,
+          background: i + 1 === current ? 'rgba(255,255,255,0.90)' : 'rgba(255,255,255,0.25)',
+          transition: 'all 0.3s',
+        }} />
+      ))}
+    </div>
+  )
+}
+
+// ── Overlay-wrapper ──────────────────────────────────────────────────────────
+const OVERLAY: React.CSSProperties = {
+  position: 'fixed', inset: 0, zIndex: 1100,
+  background: 'linear-gradient(160deg, #081828 0%, #0d2a40 45%, #0e3a52 100%)',
+  display: 'flex', flexDirection: 'column', alignItems: 'center',
+  overflowY: 'auto',
+  padding: 'env(safe-area-inset-top,16px) 20px env(safe-area-inset-bottom,32px)',
+}
+
+const SKIP_BTN: React.CSSProperties = {
+  padding: '15px 20px', borderRadius: 14,
+  border: '1px solid rgba(255,255,255,0.15)',
+  background: 'rgba(255,255,255,0.06)',
+  color: 'rgba(255,255,255,0.55)',
+  fontSize: 14, fontWeight: 500, cursor: 'pointer', fontFamily: 'inherit',
+}
+
+// ── Huvudkomponent ────────────────────────────────────────────────────────────
 export default function OnboardingModal() {
-  const [screen, setScreen] = useState<Screen>(0)
-  const [showModal, setShowModal] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const router   = useRouter()
+  const [supabase] = useState(() => createClient())
 
+  const [show,         setShow]         = useState(false)
+  const [mounted,      setMounted]      = useState(false)
+  const [step,         setStep]         = useState<Step>(1)
+  const [boatType,     setBoatType]     = useState<string | null>(null)
+  const [users,        setUsers]        = useState<SuggestedUser[]>([])
+  const [followed,     setFollowed]     = useState<Set<string>>(new Set())
+  const [myId,         setMyId]         = useState<string | null>(null)
+  const [savingBoat,   setSavingBoat]   = useState(false)
+  const [loadingUsers, setLoadingUsers] = useState(false)
+
+  // Kolla om onboarding ska visas
   useEffect(() => {
     setMounted(true)
-    // Check if onboarded before
-    const hasSeenOnboard = typeof window !== 'undefined' 
-      ? localStorage.getItem('svalla_onboarded')
-      : null
-    
-    if (!hasSeenOnboard) {
-      setShowModal(true)
-    }
+    if (typeof window === 'undefined') return
+    if (!localStorage.getItem('svalla_onboarded')) setShow(true)
   }, [])
 
-  if (!mounted || !showModal) return null
+  // Hämta inloggad användare
+  useEffect(() => {
+    if (!show) return
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user) setMyId(data.user.id)
+    })
+  }, [show, supabase])
 
-  const handleComplete = () => {
+  // Hämta föreslagna seglare (steg 2)
+  useEffect(() => {
+    if (step !== 2 || !myId) return
+    setLoadingUsers(true)
+    supabase
+      .from('users')
+      .select('id, username, avatar')
+      .neq('id', myId)
+      .limit(30)
+      .then(async ({ data: allUsers }) => {
+        if (!allUsers?.length) { setLoadingUsers(false); return }
+        const { data: counts } = await supabase
+          .from('trips')
+          .select('user_id')
+          .in('user_id', allUsers.map(u => u.id))
+          .is('deleted_at', null)
+        const countMap: Record<string, number> = {}
+        counts?.forEach(r => { countMap[r.user_id] = (countMap[r.user_id] ?? 0) + 1 })
+        const sorted = allUsers
+          .map(u => ({ ...u, trip_count: countMap[u.id] ?? 0 }))
+          .filter(u => u.trip_count > 0)
+          .sort((a, b) => b.trip_count - a.trip_count)
+          .slice(0, 6)
+        setUsers(sorted)
+        setLoadingUsers(false)
+      })
+  }, [step, myId, supabase])
+
+  if (!mounted || !show) return null
+
+  const finish = () => {
     localStorage.setItem('svalla_onboarded', '1')
-    setShowModal(false)
+    setShow(false)
   }
 
-  const handleNext = () => {
-    if (screen < 3) {
-      setScreen((screen + 1) as Screen)
+  const handleBoatSelect = async (value: string) => {
+    setBoatType(value)
+    if (!myId) return
+    setSavingBoat(true)
+    await supabase.from('users').update({ boat_type: value }).eq('id', myId)
+    setSavingBoat(false)
+  }
+
+  const toggleFollow = async (targetId: string) => {
+    if (!myId) return
+    const isFollowing = followed.has(targetId)
+    const next = new Set(followed)
+    if (isFollowing) {
+      next.delete(targetId)
+      setFollowed(next)
+      await supabase.from('follows').delete().eq('follower_id', myId).eq('following_id', targetId)
     } else {
-      handleComplete()
+      next.add(targetId)
+      setFollowed(next)
+      await supabase.from('follows').insert({ follower_id: myId, following_id: targetId })
     }
   }
 
-  const handleSkip = () => {
-    handleComplete()
-  }
+  // ══════════════════════════════════════════════════════════════════════════
+  // STEG 1 — Hur tar du dig ut?
+  // ══════════════════════════════════════════════════════════════════════════
+  if (step === 1) return (
+    <div style={OVERLAY} role="dialog" aria-modal="true" aria-label="Välkommen till Svalla">
+      <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
 
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Välkommen till Svalla"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'linear-gradient(135deg, #0d2a3e 0%, #1e5c82 50%, #2d7d8a 100%)',
-        zIndex: 1100,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'env(safe-area-inset-top, 0px) 24px env(safe-area-inset-bottom, 0px)',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Animated screens */}
-      <div style={{
-        position: 'relative',
-        width: '100%',
-        maxWidth: 320,
-        height: 400,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        {/* Screen 0: Welcome */}
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          textAlign: 'center',
-          opacity: screen === 0 ? 1 : 0,
-          transform: screen === 0 ? 'translateX(0)' : screen > 0 ? 'translateX(-100%)' : 'translateX(100%)',
-          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          pointerEvents: screen === 0 ? 'auto' : 'none',
-        }}>
-          <div style={{ fontSize: 80, marginBottom: 20 }}>⚓</div>
-          <h1 style={{
-            fontSize: 28,
-            fontWeight: 700,
-            color: '#fff',
-            margin: '0 0 16px',
-            letterSpacing: '-0.5px',
-          }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>⚓</div>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.4px' }}>
             Välkommen till Svalla
           </h1>
-          <p style={{
-            fontSize: 14,
-            color: 'rgba(255,255,255,0.8)',
-            marginBottom: 28,
-            lineHeight: 1.7,
-          }}>
-            Logga dina turer, utforska 69 öar och följ andra seglare.
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.6 }}>
+            Hur tar du dig ut i skärgården?
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>📍</span>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Hitta öar</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Utforska restauranger & bryggor</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>🛥️</span>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Logga turer</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Spåra GPS & dela med vänner</div>
-              </div>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>👥</span>
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Följ seglare</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Inspireras av andras äventyr</div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Screen 1: Log trips */}
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          textAlign: 'center',
-          opacity: screen === 1 ? 1 : 0,
-          transform: screen === 1 ? 'translateX(0)' : screen < 1 ? 'translateX(100%)' : 'translateX(-100%)',
-          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          pointerEvents: screen === 1 ? 'auto' : 'none',
-        }}>
-          <div style={{ fontSize: 80, marginBottom: 20 }}>🛥️</div>
-          <h2 style={{
-            fontSize: 28,
-            fontWeight: 700,
-            color: '#fff',
-            margin: '0 0 12px',
-            letterSpacing: '-0.5px',
-          }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
+          {BOAT_OPTIONS.map(opt => {
+            const active = boatType === opt.value
+            return (
+              <button key={opt.value} onClick={() => handleBoatSelect(opt.value)}
+                className="press-feedback"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 16,
+                  padding: '16px 20px', borderRadius: 18, border: 'none',
+                  cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: 'inherit',
+                  background: active
+                    ? 'linear-gradient(135deg, rgba(30,92,130,0.80), rgba(45,125,138,0.70))'
+                    : 'rgba(255,255,255,0.07)',
+                  outline: active ? '2px solid rgba(100,200,240,0.60)' : '2px solid transparent',
+                  transition: 'all 0.18s',
+                }}
+              >
+                <span style={{ fontSize: 32, flexShrink: 0 }}>{opt.emoji}</span>
+                <div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 2 }}>
+                    {opt.label}
+                  </div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)' }}>
+                    {opt.desc}
+                  </div>
+                </div>
+                {active && (
+                  <div style={{ marginLeft: 'auto', flexShrink: 0 }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(100,220,255,0.90)"
+                      strokeWidth={2.5} style={{ width: 20, height: 20 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                )}
+              </button>
+            )
+          })}
+        </div>
+
+        <StepDots current={1} total={3} />
+
+        <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
+          <button onClick={() => boatType && setStep(2)} disabled={!boatType || savingBoat}
+            className="press-feedback"
+            style={{
+              flex: 1, padding: '15px 0', borderRadius: 14, border: 'none',
+              cursor: boatType ? 'pointer' : 'not-allowed', fontFamily: 'inherit',
+              background: boatType
+                ? 'linear-gradient(135deg, #1e5c82, #2d7d8a)'
+                : 'rgba(255,255,255,0.10)',
+              color: boatType ? '#fff' : 'rgba(255,255,255,0.30)',
+              fontSize: 15, fontWeight: 600,
+              boxShadow: boatType ? '0 4px 18px rgba(30,92,130,0.35)' : 'none',
+              transition: 'all 0.2s',
+            }}
+          >
+            {savingBoat ? '…' : 'Nästa →'}
+          </button>
+          <button onClick={finish} style={SKIP_BTN}>Hoppa över</button>
+        </div>
+      </div>
+    </div>
+  )
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // STEG 2 — Följ seglare
+  // ══════════════════════════════════════════════════════════════════════════
+  if (step === 2) return (
+    <div style={OVERLAY} role="dialog" aria-modal="true">
+      <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
+
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>👥</div>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.3px' }}>
+            Följ seglare
+          </h2>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.6 }}>
+            Deras turer dyker upp direkt i ditt flöde.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
+          {loadingUsers
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  padding: '14px 18px', borderRadius: 16,
+                  background: 'rgba(255,255,255,0.05)',
+                }}>
+                  <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'rgba(255,255,255,0.10)', flexShrink: 0 }} />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ width: 100, height: 12, borderRadius: 6, background: 'rgba(255,255,255,0.10)', marginBottom: 6 }} />
+                    <div style={{ width: 60, height: 10, borderRadius: 6, background: 'rgba(255,255,255,0.06)' }} />
+                  </div>
+                  <div style={{ width: 64, height: 34, borderRadius: 20, background: 'rgba(255,255,255,0.08)' }} />
+                </div>
+              ))
+            : users.length === 0
+              ? <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.45)', fontSize: 14, padding: '32px 0' }}>
+                  Inga seglare att visa just nu.
+                </p>
+              : users.map(u => {
+                  const isFollowing = followed.has(u.id)
+                  return (
+                    <div key={u.id} style={{
+                      display: 'flex', alignItems: 'center', gap: 14,
+                      padding: '14px 18px', borderRadius: 16,
+                      background: 'rgba(255,255,255,0.06)',
+                    }}>
+                      <div style={{
+                        width: 42, height: 42, borderRadius: '50%', flexShrink: 0,
+                        background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 17, fontWeight: 700, color: '#fff', overflow: 'hidden',
+                      }}>
+                        {u.avatar
+                          // eslint-disable-next-line @next/next/no-img-element
+                          ? <img src={u.avatar} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          : u.username[0]?.toUpperCase()
+                        }
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 15, fontWeight: 600, color: '#fff', marginBottom: 2 }}>
+                          @{u.username}
+                        </div>
+                        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)' }}>
+                          {u.trip_count} {u.trip_count === 1 ? 'tur' : 'turer'}
+                        </div>
+                      </div>
+                      <button onClick={() => toggleFollow(u.id)} className="press-feedback"
+                        style={{
+                          padding: '8px 18px', borderRadius: 20, border: 'none',
+                          cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0,
+                          fontSize: 13, fontWeight: 600,
+                          background: isFollowing ? 'rgba(100,200,240,0.15)' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                          color: isFollowing ? 'rgba(100,200,240,0.80)' : '#fff',
+                          outline: isFollowing ? '1px solid rgba(100,200,240,0.30)' : 'none',
+                          transition: 'all 0.18s',
+                        }}
+                      >
+                        {isFollowing ? '✓ Följer' : 'Följ'}
+                      </button>
+                    </div>
+                  )
+                })
+          }
+        </div>
+
+        <StepDots current={2} total={3} />
+
+        <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
+          <button onClick={() => setStep(3)} className="press-feedback"
+            style={{
+              flex: 1, padding: '15px 0', borderRadius: 14, border: 'none',
+              cursor: 'pointer', fontFamily: 'inherit',
+              background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+              color: '#fff', fontSize: 15, fontWeight: 600,
+              boxShadow: '0 4px 18px rgba(30,92,130,0.35)',
+            }}
+          >
+            {followed.size > 0 ? `Följer ${followed.size} — Nästa →` : 'Nästa →'}
+          </button>
+          <button onClick={finish} style={SKIP_BTN}>Hoppa över</button>
+        </div>
+      </div>
+    </div>
+  )
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // STEG 3 — Logga din första tur
+  // ══════════════════════════════════════════════════════════════════════════
+  return (
+    <div style={OVERLAY} role="dialog" aria-modal="true">
+      <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
+
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>🗺️</div>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.3px' }}>
             Logga din första tur
           </h2>
-          <p style={{
-            fontSize: 14,
-            color: 'rgba(255,255,255,0.8)',
-            marginBottom: 32,
-            lineHeight: 1.7,
-          }}>
-            Spåra GPS, fota din tur och se statistik från ditt äventyr.
-          </p>
-          
-          {/* Simple route illustration */}
-          <div style={{
-            background: 'rgba(255,255,255,0.1)',
-            borderRadius: 16,
-            padding: 24,
-            marginBottom: 32,
-            backdropFilter: 'blur(8px)',
-          }}>
-            <svg viewBox="0 0 200 120" style={{ width: '100%', height: 'auto' }}>
-              {/* Water background */}
-              <rect width="200" height="120" fill="rgba(30,92,130,0.2)" />
-              
-              {/* Route path */}
-              <path
-                d="M 30 80 Q 80 40, 120 60 T 180 40"
-                fill="none"
-                stroke="rgba(34,197,94,0.6)"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-              
-              {/* Start marker */}
-              <circle cx="30" cy="80" r="6" fill="#22c55e" />
-              <text x="30" y="105" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10">
-                Start
-              </text>
-              
-              {/* End marker */}
-              <circle cx="180" cy="40" r="6" fill="#c96e2a" />
-              <text x="180" y="65" textAnchor="middle" fill="rgba(255,255,255,0.8)" fontSize="10">
-                Slut
-              </text>
-              
-              {/* Distance label */}
-              <text x="100" y="30" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="11">
-                12.5 NM
-              </text>
-            </svg>
-          </div>
-
-          <p style={{
-            fontSize: 12,
-            color: 'rgba(255,255,255,0.6)',
-          }}>
-            Du kan börja när som helst och pausera mellan stopp
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.6 }}>
+            Välj hur du vill börja.
           </p>
         </div>
 
-        {/* Screen 3: Find community */}
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          textAlign: 'center',
-          opacity: screen === 3 ? 1 : 0,
-          transform: screen === 3 ? 'translateX(0)' : screen < 3 ? 'translateX(100%)' : 'translateX(-100%)',
-          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          pointerEvents: screen === 3 ? 'auto' : 'none',
-        }}>
-          <div style={{ fontSize: 80, marginBottom: 20 }}>👥</div>
-          <h2 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 12px', letterSpacing: '-0.5px' }}>
-            Hitta din gemenskap
-          </h2>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginBottom: 32, lineHeight: 1.7 }}>
-            Följ seglare du känner — deras turer syns direkt i ditt flöde.
-            Sök på namn, hemmastrand eller hamn.
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
-            {[
-              { emoji: '🔍', title: 'Sök på namn', desc: 'Hitta folk du känner från bryggan' },
-              { emoji: '⛵', title: 'Följ aktiva seglare', desc: 'Bli inspirerad av andras äventyr' },
-              { emoji: '🔔', title: 'Få notiser', desc: 'Håll koll när de loggar nya turer' },
-            ].map((item, i) => (
-              <div key={i} style={{
-                background: 'rgba(255,255,255,0.10)',
-                borderRadius: 14, padding: '14px 18px',
-                display: 'flex', alignItems: 'center', gap: 14,
-              }}>
-                <span style={{ fontSize: 26, flexShrink: 0 }}>{item.emoji}</span>
-                <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{item.title}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.60)' }}>{item.desc}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
+          {[
+            { emoji: '📍', title: 'Spåra tur live',      desc: 'GPS-loggning direkt från telefonen',      href: '/logga'    },
+            { emoji: '📂', title: 'Importera GPX / FIT', desc: 'Ladda upp från Garmin, Navionics m.fl.',  href: '/importera' },
+            { emoji: '🌊', title: 'Utforska flödet',     desc: 'Se vad andra seglare gjort',               href: '/feed'     },
+          ].map(item => (
+            <button key={item.href}
+              onClick={() => { finish(); router.push(item.href) }}
+              className="press-feedback"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 18,
+                padding: '20px 22px', borderRadius: 18, border: 'none',
+                cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: 'inherit',
+                background: item.href === '/logga'
+                  ? 'linear-gradient(135deg, rgba(30,92,130,0.75), rgba(45,125,138,0.65))'
+                  : 'rgba(255,255,255,0.07)',
+                outline: item.href === '/logga'
+                  ? '1px solid rgba(100,200,240,0.25)'
+                  : '1px solid rgba(255,255,255,0.10)',
+              }}
+            >
+              <span style={{ fontSize: 36, flexShrink: 0 }}>{item.emoji}</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 3 }}>
+                  {item.title}
+                </div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.60)', lineHeight: 1.5 }}>
+                  {item.desc}
                 </div>
               </div>
-            ))}
-          </div>
+              <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.40)', flexShrink: 0 }}>→</span>
+            </button>
+          ))}
         </div>
 
-        {/* Screen 2: Explore */}
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          textAlign: 'center',
-          opacity: screen === 2 ? 1 : 0,
-          transform: screen === 2 ? 'translateX(0)' : screen < 2 ? 'translateX(100%)' : 'translateX(-100%)',
-          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-          pointerEvents: screen === 2 ? 'auto' : 'none',
-        }}>
-          <div style={{ fontSize: 80, marginBottom: 20 }}>🏝️</div>
-          <h2 style={{
-            fontSize: 28,
-            fontWeight: 700,
-            color: '#fff',
-            margin: '0 0 12px',
-            letterSpacing: '-0.5px',
-          }}>
-            69 öar att utforska
-          </h2>
-          <p style={{
-            fontSize: 14,
-            color: 'rgba(255,255,255,0.8)',
-            marginBottom: 32,
-            lineHeight: 1.7,
-          }}>
-            Från Sandhamn till Vaxholm — komplett med restauranger, tips och resevägar.
-          </p>
+        <StepDots current={3} total={3} />
 
-          {/* Island cards preview */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
-            {[
-              { emoji: '⛵', name: 'Sandhamn', desc: 'Seglarhuvudstad' },
-              { emoji: '🍽', name: 'Vaxholm', desc: 'Mat & kultur' },
-              { emoji: '🏖', name: 'Manskär', desc: 'Strandparadis' },
-            ].map((island, i) => (
-              <div key={i} style={{
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: 12,
-                padding: '12px 16px',
-                backdropFilter: 'blur(8px)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-              }}>
-                <span style={{ fontSize: 24 }}>{island.emoji}</span>
-                <div style={{ textAlign: 'left', flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{island.name}</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>{island.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Progress indicator */}
-      <div style={{
-        display: 'flex',
-        gap: 6,
-        marginTop: 36,
-        marginBottom: 24,
-      }}>
-        {[0, 1, 2, 3].map((i) => (
-          <div
-            key={i}
-            style={{
-              width: screen === i ? 24 : 8,
-              height: 8,
-              borderRadius: 4,
-              background: screen === i ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.3)',
-              transition: 'all 0.3s',
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Action buttons */}
-      <div style={{
-        display: 'flex',
-        gap: 10,
-        width: '100%',
-        maxWidth: 320,
-      }}>
-        {screen === 3 ? (
-          <>
-            <Link href="/sok"
-              onClick={handleComplete}
-              className="press-feedback"
-              style={{
-                flex: 1, padding: '14px 24px', borderRadius: 14,
-                background: 'linear-gradient(135deg, #0a7b8c, #1e5c82)',
-                color: '#fff', fontWeight: 700, fontSize: 14,
-                textDecoration: 'none', textAlign: 'center',
-                boxShadow: '0 4px 16px rgba(10,123,140,0.5)',
-              }}>
-              Sök seglare →
-            </Link>
-            <button
-              onClick={handleSkip}
-              className="press-feedback"
-              style={{
-                padding: '14px 24px', borderRadius: 14,
-                background: 'rgba(255,255,255,0.15)', color: '#fff',
-                fontWeight: 700, fontSize: 14,
-                border: '1px solid rgba(255,255,255,0.2)',
-                cursor: 'pointer',
-              }}
-            >
-              Hoppa över
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={handleNext}
-              className="press-feedback"
-              style={{
-                flex: 1,
-                padding: '14px 24px',
-                borderRadius: 14,
-                background: 'var(--grad-sea)',
-                color: '#fff',
-                fontWeight: 600,
-                fontSize: 14,
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(30,92,130,0.4)',
-                transition: 'all 0.2s',
-              }}
-            >
-              Kom igång →
-            </button>
-            <button
-              onClick={handleSkip}
-              className="press-feedback"
-              style={{
-                padding: '14px 24px',
-                borderRadius: 14,
-                background: 'rgba(255,255,255,0.1)',
-                color: 'rgba(255,255,255,0.9)',
-                fontWeight: 600,
-                fontSize: 14,
-                border: '1px solid rgba(255,255,255,0.15)',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-              }}
-            >
-              Hoppa över
-            </button>
-          </>
-        )}
+        <button onClick={finish}
+          style={{
+            display: 'block', width: '100%', marginTop: 16,
+            padding: '15px 0', borderRadius: 14, cursor: 'pointer', fontFamily: 'inherit',
+            border: '1px solid rgba(255,255,255,0.15)',
+            background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.55)',
+            fontSize: 14, fontWeight: 500,
+          }}
+        >
+          Gå till flödet
+        </button>
       </div>
     </div>
   )
