@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Trip } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -46,7 +46,10 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
 
 export default async function PublicProfilePage({ params }: { params: Promise<{ username: string }> }) {
   const { username } = await params
-  const supabase = createClient()
+  // Server component → server-klient som forwardar auth-cookies.
+  // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
+  // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
+  const supabase = await createServerSupabaseClient()
 
   const { data: userRow, error: userErr } = await supabase
     .from('users')
