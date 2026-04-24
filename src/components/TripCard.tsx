@@ -221,6 +221,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   const [showShareDM,   setShowShareDM]   = useState(false)
   const [photoErrors,   setPhotoErrors]   = useState<Set<number>>(new Set())
   const [photoIdx,      setPhotoIdx]      = useState(0)
+  const [lightbox,      setLightbox]      = useState<'photo' | 'map' | null>(null)
 
   const username = trip.users?.username ?? 'Okänd'
   const avatar   = trip.users?.avatar_url
@@ -395,7 +396,10 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               display: 'flex', width: '100%', aspectRatio: '2/1',
               background: 'var(--sea-d)', overflow: 'hidden',
             }}>
-              <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+              <div
+                style={{ position: 'relative', flex: 1, overflow: 'hidden', cursor: 'zoom-in' }}
+                onClick={e => { e.stopPropagation(); setLightbox('photo') }}
+              >
                 {allPhotos.length > 1 ? (
                   <PhotoCarousel
                     photos={allPhotos}
@@ -428,16 +432,23 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   />
                 )}
               </div>
-              <div style={{
-                position: 'relative', flex: 1, overflow: 'hidden',
-                borderLeft: '1px solid rgba(255,255,255,0.06)',
-              }}>
+              <div
+                style={{
+                  position: 'relative', flex: 1, overflow: 'hidden',
+                  borderLeft: '1px solid rgba(255,255,255,0.06)',
+                  cursor: 'zoom-in',
+                }}
+                onClick={e => { e.stopPropagation(); setLightbox('map') }}
+              >
                 <RouteMapSVG points={routePoints!} w={300} h={300} />
               </div>
             </div>
           ) : hasPhoto ? (
             /* Foto(n) — karusell eller enskilt 3:2 */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d)', overflow: 'hidden' }}>
+            <div
+              style={{ position: 'relative', width: '100%', aspectRatio: '3/2', background: 'var(--sea-d)', overflow: 'hidden', cursor: 'zoom-in' }}
+              onClick={e => { e.stopPropagation(); setLightbox('photo') }}
+            >
               {allPhotos.length > 1 ? (
                 <PhotoCarousel
                   photos={allPhotos}
@@ -472,7 +483,10 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           ) : (
             /* Bara rutt */
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d)', overflow: 'hidden' }}>
+            <div
+              style={{ position: 'relative', width: '100%', aspectRatio: '16/7', background: 'var(--sea-d)', overflow: 'hidden', cursor: 'zoom-in' }}
+              onClick={e => { e.stopPropagation(); setLightbox('map') }}
+            >
               <RouteMapSVG points={routePoints!} w={600} h={262} />
             </div>
           )}
@@ -563,6 +577,63 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       {/* Share to DM modal */}
       {showShareDM && (
         <ShareTripModal trip={trip} onClose={() => setShowShareDM(false)} />
+      )}
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setLightbox(null)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 2000,
+            background: 'rgba(0,0,0,0.92)',
+            backdropFilter: 'blur(6px)',
+            WebkitBackdropFilter: 'blur(6px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          {lightbox === 'photo' && (
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '60px 16px 40px' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={allPhotos[photoIdx] ?? allPhotos[0]}
+                alt=""
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', borderRadius: 8, display: 'block' }}
+              />
+            </div>
+          )}
+          {lightbox === 'map' && routePoints && (
+            <div
+              onClick={e => e.stopPropagation()}
+              style={{
+                width: 'calc(100vw - 32px)', maxWidth: 520,
+                aspectRatio: '1/1',
+                borderRadius: 16, overflow: 'hidden',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              }}
+            >
+              <RouteMapSVG points={routePoints} w={520} h={520} />
+            </div>
+          )}
+          {/* Close button */}
+          <button
+            onClick={e => { e.stopPropagation(); setLightbox(null) }}
+            aria-label="Stäng"
+            style={{
+              position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 16px)', right: 16,
+              width: 40, height: 40, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.15)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: '#fff', fontSize: 18,
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            ✕
+          </button>
+        </div>
       )}
     </article>
   )
