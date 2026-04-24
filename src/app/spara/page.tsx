@@ -80,8 +80,8 @@ export default function SparaPage() {
   const [elapsed,       setElapsed]       = useState(0)
   const [currentSpeed,  setCurrentSpeed]  = useState(0)
   const [gpsError,      setGpsError]      = useState('')
-  const [file,          setFile]          = useState<File | null>(null)
-  const [preview,       setPreview]       = useState('')
+  const [mediaFiles,    setMediaFiles]    = useState<File[]>([])
+  const [mediaPreviews, setMediaPreviews] = useState<string[]>([])
   const [saving,        setSaving]        = useState(false)
   const [tripId,        setTripId]        = useState<string | null>(null)
   const [err,           setErr]           = useState('')
@@ -116,6 +116,7 @@ export default function SparaPage() {
 
   // ── AI analys (pre-fetched when done phase begins) ──
   const [aiSummary,       setAiSummary]       = useState<string | null>(null)
+  const [aiVariants,      setAiVariants]      = useState<string[]>([])
   const [aiLoading,       setAiLoading]       = useState(false)
   const [aiErr,           setAiErr]           = useState(false)
   const [includeAnalysis, setIncludeAnalysis] = useState(true)
@@ -441,6 +442,7 @@ export default function SparaPage() {
     if (aiLoading) return
     setAiLoading(true)
     setAiErr(false)
+    setAiVariants([])
     try {
       const dist   = totalDistanceNM(points)
       const avgSpd = avgSpeedKnots(points)
@@ -457,11 +459,20 @@ export default function SparaPage() {
           locationName: locationName.trim() || undefined,
           stops: stops.map(s => ({ durationSeconds: s.durationSeconds, type: s.type })),
           nearbyPlaces: [],
+          startTime: startTimeRef.current?.toISOString(),
         }),
       })
-      const { summary } = await res.json()
-      if (summary) { setCaption(summary); setAiSummary(summary) }
-      else setAiErr(true)
+      const { summary, summaries } = await res.json()
+      if (summaries && summaries.length > 1) {
+        // Thorkel returnerade tre varianter — visa picker, fyll inte auto
+        setAiVariants(summaries)
+      } else if (summary) {
+        // Fallback: en enda variant — fyll direkt som tidigare
+        setCaption(summary)
+        setAiSummary(summary)
+      } else {
+        setAiErr(true)
+      }
     } catch { setAiErr(true) }
     setAiLoading(false)
   }
@@ -486,20 +497,23 @@ export default function SparaPage() {
     const startedAt = startTimeRef.current?.toISOString() ?? new Date().toISOString()
     const endedAt   = new Date().toISOString()
 
-    // Upload photo (optional — use placeholder if none provided)
-    let imageUrl = ''
-    if (file) {
-      const ext      = file.name.split('.').pop() ?? 'jpg'
-      const filename = `${user.id}-${Date.now()}.${ext}`
+    // Upload media files (images + videos, max 3)
+    const uploadedUrls: string[] = []
+    for (let i = 0; i < mediaFiles.length; i++) {
+      const f   = mediaFiles[i]
+      const ext = f.name.split('.').pop() ?? 'jpg'
+      const filename = `${user.id}-${Date.now()}-${i}.${ext}`
       const { data: upload, error: upErr } = await supabase.storage
-        .from('trips').upload(filename, file, { upsert: false })
+        .from('trips').upload(filename, f, { upsert: false })
       if (upErr || !upload) {
-        setErr('Kunde inte ladda upp bilden: ' + (upErr?.message ?? 'okänt fel'))
+        setErr(`Kunde inte ladda upp fil ${i + 1}: ` + (upErr?.message ?? 'okänt fel'))
         setSaving(false); return
       }
       const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
-      imageUrl = publicUrl
+      uploadedUrls.push(publicUrl)
     }
+    const imageUrl   = uploadedUrls[0] ?? ''
+    const extraUrls  = uploadedUrls.slice(1)
 
     // Build route_points: accuracy filter → speed-outlier removal → Douglas-Peucker → dynamic cap
     // This removes GPS teleport jumps and micro-jitter before saving to DB
@@ -514,6 +528,7 @@ export default function SparaPage() {
       average_speed_knots:  parseFloat(avgSpd.toFixed(1)),
       max_speed_knots:      parseFloat(maxSpd.toFixed(1)),
       image:                imageUrl || null,
+      images:               extraUrls.length ? extraUrls : null,
       started_at:           startedAt,
       ended_at:             endedAt,
       pinnar_rating:        pinnar > 0 ? pinnar : null,
@@ -673,6 +688,7 @@ export default function SparaPage() {
     }
 
     setSaving(false)
+    fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
     // Navigera till tursidan — slight delay om celebration visas
     setTimeout(() => router.push(`/tur/${tid}`), 100)
   }
@@ -1418,9 +1434,63 @@ export default function SparaPage() {
               Kunde inte generera — försök igen
             </p>
           )}
+
+          {/* ── Thorkels tre varianter ── */}
+          {aiVariants.length > 0 && (
+            <div style={{ marginBottom: 10 }}>
+              <div style={{
+                fontSize: 10, fontWeight: 700, color: 'var(--txt3)',
+                textTransform: 'uppercase', letterSpacing: '.5px',
+                marginBottom: 8,
+              }}>
+                ✨ Thorkels förslag — välj en
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {(['🌊 Poetisk', '⚓ Rakt på', '🎣 Social'] as const).map((label, i) => {
+                  const variant = aiVariants[i]
+                  if (!variant) return null
+                  const isSelected = caption === variant
+                  return (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => { setCaption(variant); setAiSummary(variant) }}
+                      style={{
+                        textAlign: 'left', padding: '11px 14px', borderRadius: 14,
+                        border: `1.5px solid ${isSelected ? 'var(--sea)' : 'rgba(10,123,140,.14)'}`,
+                        background: isSelected ? 'rgba(10,123,140,.07)' : 'var(--white)',
+                        cursor: 'pointer', transition: 'all .15s',
+                        WebkitTapHighlightColor: 'transparent',
+                      }}
+                    >
+                      <div style={{
+                        fontSize: 10, fontWeight: 700,
+                        color: isSelected ? 'var(--sea)' : 'var(--txt3)',
+                        textTransform: 'uppercase', letterSpacing: '.4px',
+                        marginBottom: 5,
+                        display: 'flex', alignItems: 'center', gap: 6,
+                      }}>
+                        {label}
+                        {isSelected && (
+                          <span style={{
+                            background: 'var(--sea)', color: '#fff',
+                            borderRadius: 10, padding: '1px 7px', fontSize: 9,
+                          }}>VALD</span>
+                        )}
+                      </div>
+                      <div style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.55 }}>
+                        {variant}
+                      </div>
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )}
+
           <textarea
-            placeholder="Vad hände? Vad var bäst?"
-            value={caption} onChange={e => setCaption(e.target.value)} maxLength={280} rows={3}
+            placeholder={aiVariants.length > 0 ? 'Välj ett förslag ovan eller skriv själv…' : 'Vad hände? Vad var bäst?'}
+            value={caption} onChange={e => { setCaption(e.target.value); }} maxLength={280} rows={3}
             style={{
               width: '100%', padding: '12px 14px', borderRadius: 14,
               border: aiSummary && caption === aiSummary
@@ -1439,35 +1509,106 @@ export default function SparaPage() {
           </div>
         </div>
 
-        {/* ── Photo (optional) ── */}
+        {/* ── Media — up to 3 images or short videos ── */}
         <div>
           <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
-            Bild <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt)</span>
+            Bilagor <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt · max 3)</span>
           </label>
-          <button type="button" onClick={() => fileRef.current?.click()}
-            className="w-full h-44 rounded-2xl overflow-hidden flex items-center justify-center"
-            style={{
-              background: preview ? 'transparent' : 'rgba(10,123,140,.06)',
-              border:     preview ? 'none' : '2px dashed rgba(10,123,140,.2)',
-            }}
-          >
-            {preview ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img loading="lazy" decoding="async" src={preview} alt="preview" className="w-full h-full object-cover rounded-2xl" />
-            ) : (
-              <div className="text-center text-svalla-text3">
-                <div className="text-4xl mb-2">📷</div>
-                <div className="text-sm font-medium">Lägg till en bild (valfritt)</div>
-              </div>
-            )}
-          </button>
-          <input ref={fileRef} type="file" accept="image/*" className="hidden"
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+            {[0, 1, 2].map(i => {
+              const hasFile = i < mediaPreviews.length
+              const previewSrc = mediaPreviews[i]
+              const isVid = hasFile && mediaFiles[i]?.type.startsWith('video/')
+              const isAddSlot = !hasFile && i === mediaPreviews.length && mediaPreviews.length < 3
+              return (
+                <div key={i} style={{ position: 'relative', aspectRatio: '1', borderRadius: 14, overflow: 'hidden' }}>
+                  {hasFile ? (
+                    <>
+                      {isVid ? (
+                        <video
+                          src={previewSrc}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          muted playsInline
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={previewSrc}
+                          alt=""
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMediaFiles(prev => prev.filter((_, idx) => idx !== i))
+                          setMediaPreviews(prev => prev.filter((_, idx) => idx !== i))
+                        }}
+                        style={{
+                          position: 'absolute', top: 5, right: 5,
+                          width: 24, height: 24, borderRadius: '50%',
+                          background: 'rgba(0,0,0,0.62)', border: 'none',
+                          color: '#fff', cursor: 'pointer',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          fontSize: 14, fontWeight: 700, lineHeight: 1,
+                        }}
+                        aria-label="Ta bort"
+                      >×</button>
+                    </>
+                  ) : isAddSlot ? (
+                    <button
+                      type="button"
+                      onClick={() => fileRef.current?.click()}
+                      style={{
+                        width: '100%', height: '100%',
+                        background: 'rgba(10,123,140,.06)',
+                        border: '2px dashed rgba(10,123,140,.2)',
+                        borderRadius: 14, cursor: 'pointer',
+                        display: 'flex', flexDirection: 'column',
+                        alignItems: 'center', justifyContent: 'center', gap: 4,
+                      }}
+                    >
+                      <span style={{ fontSize: 26 }}>📷</span>
+                      <span style={{ fontSize: 11, color: 'var(--txt3)', fontWeight: 600 }}>Bild/video</span>
+                    </button>
+                  ) : (
+                    <div style={{
+                      width: '100%', height: '100%',
+                      background: 'rgba(10,123,140,.03)',
+                      border: '2px dashed rgba(10,123,140,.07)',
+                      borderRadius: 14,
+                    }} />
+                  )}
+                </div>
+              )
+            })}
+          </div>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*,video/*"
+            style={{ display: 'none' }}
             onChange={async e => {
               const f = e.target.files?.[0]
-              if (f) {
+              e.target.value = ''   // reset so same file can be re-selected
+              if (!f || mediaFiles.length >= 3) return
+              if (f.type.startsWith('video/') && f.size > 100 * 1024 * 1024) {
+                setErr('Video är för stor (max 100 MB)'); return
+              }
+              if (f.type.startsWith('video/')) {
+                // Video: object URL is fine (no compression needed)
+                const url = URL.createObjectURL(f)
+                setMediaFiles(prev => [...prev, f])
+                setMediaPreviews(prev => [...prev, url])
+              } else {
+                // Image: compress → FileReader → stable base64 data-URL (fixes blank preview bug)
                 const compressed = await compressImage(f)
-                setFile(compressed)
-                setPreview(URL.createObjectURL(compressed))
+                const reader = new FileReader()
+                reader.onload = () => {
+                  setMediaFiles(prev => [...prev, compressed])
+                  setMediaPreviews(prev => [...prev, reader.result as string])
+                }
+                reader.readAsDataURL(compressed)
               }
             }}
           />

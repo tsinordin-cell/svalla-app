@@ -70,6 +70,12 @@ function ManuellForm() {
   const [routeId, setRouteId]               = useState<string | null>(null)
   const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
 
+  // ── Thorkel AI ──
+  const [aiVariants,  setAiVariants]  = useState<string[]>([])
+  const [aiSummary,   setAiSummary]   = useState<string | null>(null)
+  const [aiLoading,   setAiLoading]   = useState(false)
+  const [aiErr,       setAiErr]       = useState(false)
+
   // Ladda rutter — lazy: bara när "detaljer"-panelen expanderas
   const [routesLoaded, setRoutesLoaded] = useState(false)
   useEffect(() => {
@@ -110,7 +116,10 @@ function ManuellForm() {
     }
     const compressed = await compressImage(f)
     setFile(compressed)
-    setPreview(URL.createObjectURL(compressed))
+    // Use FileReader for a stable base64 data-URL (avoids revoked blob URL bugs)
+    const reader = new FileReader()
+    reader.onload = () => setPreview(reader.result as string)
+    reader.readAsDataURL(compressed)
   }
 
   async function handleExtraFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -124,8 +133,16 @@ function ManuellForm() {
         .filter(f => f.size <= 20 * 1024 * 1024)
         .map(f => compressImage(f))
     )
+    // Stable base64 previews via FileReader
+    const newPreviews = await Promise.all(
+      compressed.map(f => new Promise<string>(resolve => {
+        const r = new FileReader()
+        r.onload = () => resolve(r.result as string)
+        r.readAsDataURL(f)
+      }))
+    )
     setExtraFiles(prev => [...prev, ...compressed])
-    setExtraPreviews(prev => [...prev, ...compressed.map(f => URL.createObjectURL(f))])
+    setExtraPreviews(prev => [...prev, ...newPreviews])
     // reset input so same files can be re-added after remove
     e.target.value = ''
   }
@@ -133,6 +150,40 @@ function ManuellForm() {
   function removeExtraPhoto(i: number) {
     setExtraFiles(prev => prev.filter((_, j) => j !== i))
     setExtraPreviews(prev => prev.filter((_, j) => j !== i))
+  }
+
+  async function generateAiCaption() {
+    if (aiLoading) return
+    setAiLoading(true)
+    setAiErr(false)
+    setAiVariants([])
+    try {
+      const res = await fetch('/api/trip-summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          distanceNM:  parseFloat(distance) || 0,
+          durationMin: parseInt(duration)   || 0,
+          avgSpeed:    0,
+          maxSpeed:    0,
+          boatType:    boatType || 'Okänd',
+          locationName: location.trim() || undefined,
+          stops:        [],
+          nearbyPlaces: [],
+          startTime:    new Date().toISOString(),
+        }),
+      })
+      const { summary, summaries } = await res.json()
+      if (summaries && summaries.length > 1) {
+        setAiVariants(summaries)
+      } else if (summary) {
+        setCaption(summary)
+        setAiSummary(summary)
+      } else {
+        setAiErr(true)
+      }
+    } catch { setAiErr(true) }
+    setAiLoading(false)
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -223,6 +274,7 @@ function ManuellForm() {
       }
 
       setPosted(true)
+      fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
       setTimeout(() => router.push(`/tur/${trip.id}`), 800)
     } catch (e) {
       setErr('Något gick oväntat fel. Kontrollera anslutningen och försök igen.')
@@ -419,27 +471,119 @@ function ManuellForm() {
             </div>
           </div>
 
-          {/* ── Caption (optional) ── */}
+          {/* ── Caption (optional) + Thorkel ── */}
           <div>
-            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
-              Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
-            </label>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
+              </label>
+              <button
+                type="button"
+                onClick={generateAiCaption}
+                disabled={aiLoading}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 5,
+                  padding: '5px 12px', borderRadius: 20,
+                  border: '1.5px solid rgba(10,123,140,.2)',
+                  background: aiSummary ? 'rgba(10,123,140,.08)' : 'var(--white)',
+                  color: 'var(--sea)', fontSize: 12, fontWeight: 700,
+                  cursor: aiLoading ? 'default' : 'pointer',
+                  opacity: aiLoading ? 0.7 : 1,
+                }}
+              >
+                {aiLoading ? (
+                  <>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}
+                      style={{ width: 13, height: 13, animation: 'spin .8s linear infinite' }}>
+                      <path strokeLinecap="round" d="M12 2a10 10 0 0 1 10 10" />
+                    </svg>
+                    Genererar…
+                  </>
+                ) : (
+                  <>✨ {aiVariants.length > 0 ? 'Generera ny' : 'Fråga Thorkel'}</>
+                )}
+              </button>
+            </div>
+
+            {aiErr && (
+              <p style={{ margin: '0 0 6px', fontSize: 11, color: 'var(--err, #c0392b)' }}>
+                Kunde inte generera — försök igen
+              </p>
+            )}
+
+            {/* Thorkels tre varianter */}
+            {aiVariants.length > 0 && (
+              <div style={{ marginBottom: 8 }}>
+                <div style={{
+                  fontSize: 10, fontWeight: 700, color: 'var(--txt3)',
+                  textTransform: 'uppercase', letterSpacing: '.5px', marginBottom: 6,
+                }}>
+                  ✨ Thorkels förslag — välj en
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {(['🌊 Poetisk', '⚓ Rakt på', '🎣 Social'] as const).map((label, i) => {
+                    const variant = aiVariants[i]
+                    if (!variant) return null
+                    const isSelected = caption === variant
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => { setCaption(variant); setAiSummary(variant) }}
+                        style={{
+                          textAlign: 'left', padding: '10px 13px', borderRadius: 12,
+                          border: `1.5px solid ${isSelected ? 'var(--sea)' : 'rgba(10,123,140,.14)'}`,
+                          background: isSelected ? 'rgba(10,123,140,.07)' : 'var(--white)',
+                          cursor: 'pointer', transition: 'all .15s',
+                          WebkitTapHighlightColor: 'transparent',
+                        }}
+                      >
+                        <div style={{
+                          fontSize: 10, fontWeight: 700,
+                          color: isSelected ? 'var(--sea)' : 'var(--txt3)',
+                          textTransform: 'uppercase', letterSpacing: '.4px',
+                          marginBottom: 4,
+                          display: 'flex', alignItems: 'center', gap: 6,
+                        }}>
+                          {label}
+                          {isSelected && (
+                            <span style={{
+                              background: 'var(--sea)', color: '#fff',
+                              borderRadius: 10, padding: '1px 7px', fontSize: 9,
+                            }}>VALD</span>
+                          )}
+                        </div>
+                        <div style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.55 }}>
+                          {variant}
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
             <textarea
-              placeholder="Seglade hit i morgonsol, drack kaffe i solen och hoppade i…"
+              placeholder={aiVariants.length > 0 ? 'Välj ett förslag ovan eller skriv själv…' : 'Seglade hit i morgonsol, drack kaffe i solen och hoppade i…'}
               value={caption}
               onChange={e => setCaption(e.target.value)}
               maxLength={280}
               rows={3}
               style={{
                 width: '100%', padding: '12px 14px', borderRadius: 14,
-                border: '1.5px solid rgba(10,123,140,0.18)',
+                border: aiSummary && caption === aiSummary
+                  ? '1.5px solid rgba(10,123,140,.35)'
+                  : '1.5px solid rgba(10,123,140,0.18)',
                 background: 'var(--white)', fontSize: 14, color: 'var(--txt)',
                 outline: 'none', resize: 'none', fontFamily: 'inherit',
                 boxSizing: 'border-box',
               }}
             />
-            <div style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'right', marginTop: 2 }}>
-              {caption.length}/280
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 2 }}>
+              {aiSummary && caption === aiSummary
+                ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>✨ Thorkel skrev denna — redigera fritt</span>
+                : <span />}
+              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>{caption.length}/280</span>
             </div>
           </div>
 

@@ -15,7 +15,7 @@ import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
-export const revalidate = 30
+export const revalidate = 120
 
 function getGreeting(): string {
   const h = new Date().getHours()
