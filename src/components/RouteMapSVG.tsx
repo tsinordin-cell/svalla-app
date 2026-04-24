@@ -1,11 +1,15 @@
-'use client'
 import { useId } from 'react'
 import { buildSvgPath } from '@/lib/routeSmooth'
 
 /**
- * Renders a GPS route as an SVG path on a light map-style background.
- * Strava-inspired: light terrain background, bold orange route line.
- * Anomalous jumps are detected and rendered as breaks (no lines across land).
+ * Rutt-preview med riktig OSM-karta i bakgrunden + OpenSeaMap-overlay.
+ * Väljer zoom automatiskt så rutten fyller ~80% av viewporten, och
+ * projicerar GPS-punkter till pixel-koordinater i samma koordinatsystem
+ * som tiles — så SVG-linjen landar exakt på kartan.
+ *
+ * Renderas helt med <img>-taggar + inline SVG ⇒ fungerar i SSR och
+ * kräver inget JS. Browsern cachar OSM-tiles så samma komposition är
+ * ~gratis vid återanvändning.
  */
 export default function RouteMapSVG({
   points,
@@ -17,98 +21,136 @@ export default function RouteMapSVG({
   h?: number
 }) {
   const uid = useId().replace(/:/g, '')
-
   if (!points || points.length < 2) return null
 
-  const lats = points.map(p => p.lat)
-  const lngs = points.map(p => p.lng)
-  const minLat = Math.min(...lats), maxLat = Math.max(...lats)
-  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+  // ── Bounds ──
+  let minLat = points[0].lat, maxLat = points[0].lat
+  let minLng = points[0].lng, maxLng = points[0].lng
+  for (const p of points) {
+    if (p.lat < minLat) minLat = p.lat
+    if (p.lat > maxLat) maxLat = p.lat
+    if (p.lng < minLng) minLng = p.lng
+    if (p.lng > maxLng) maxLng = p.lng
+  }
 
-  const pad      = 32
-  const latRange = maxLat - minLat || 0.0005
-  const lngRange = maxLng - minLng || 0.0005
+  // ── Mercator: lat/lng → kontinuerliga tile-koord vid zoom z ──
+  const lngToTileX = (lng: number, z: number) => ((lng + 180) / 360) * Math.pow(2, z)
+  const latToTileY = (lat: number, z: number) => {
+    const r = (lat * Math.PI) / 180
+    return ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * Math.pow(2, z)
+  }
 
-  const scaleX = (w - pad * 2) / lngRange
-  const scaleY = (h - pad * 2) / latRange
-  const scale  = Math.min(scaleX, scaleY)
-  const usedW  = lngRange * scale
-  const usedH  = latRange * scale
-  const ox     = (w - usedW) / 2
-  const oy     = (h - usedH) / 2
+  // ── Välj zoom: största z där ruttens pixel-span ryms i ~85% av viewporten.
+  //     Short-hand: försök från z=17 neråt (max-zoom-behavior för korta turer
+  //     som en 0.1 NM-spurt — undvik att den syns som en pixel).
+  let Z = 17
+  for (; Z >= 3; Z--) {
+    const spanX = (lngToTileX(maxLng, Z) - lngToTileX(minLng, Z)) * 256
+    const spanY = (latToTileY(minLat, Z) - latToTileY(maxLat, Z)) * 256
+    if (spanX <= w * 0.85 && spanY <= h * 0.85) break
+  }
 
-  const toX = (lng: number) => ox + (lng - minLng) * scale
-  const toY = (lat: number) => oy + (maxLat - lat) * scale
+  // ── Projicera bounds-mitten till pixel-koord i tile-grid:et ──
+  const cx = (lngToTileX(minLng, Z) + lngToTileX(maxLng, Z)) / 2
+  const cy = (latToTileY(minLat, Z) + latToTileY(maxLat, Z)) / 2
 
-  const fullPath = buildSvgPath(points, toX, toY)
+  // 3×3 tile-grid (768px) centrerad runt rutten. Täcker > 85%-ytan
+  // i alla zoom-nivåer som pickZoom väljer.
+  const tx0 = Math.floor(cx) - 1
+  const ty0 = Math.floor(cy) - 1
+
+  // Offset där top-left-hörnet av tile-griddet ska placeras så rutt-mitten
+  // hamnar på (w/2, h/2) i viewporten.
+  const gridLeft = w / 2 - (cx - tx0) * 256
+  const gridTop  = h / 2 - (cy - ty0) * 256
+
+  // ── Projicera varje GPS-punkt till viewport-pixel ──
+  const project = (lat: number, lng: number): [number, number] => [
+    gridLeft + (lngToTileX(lng, Z) - tx0) * 256,
+    gridTop  + (latToTileY(lat, Z) - ty0) * 256,
+  ]
+
+  const fullPath = buildSvgPath(
+    points,
+    lng => project(0, lng)[0],  // x från lng
+    lat => project(lat, 0)[1],  // y från lat
+  )
 
   const sp = points[0], ep = points[points.length - 1]
-  const sx = toX(sp.lng), sy = toY(sp.lat)
-  const ex = toX(ep.lng), ey = toY(ep.lat)
+  const [sx, sy] = project(sp.lat, sp.lng)
+  const [ex, ey] = project(ep.lat, ep.lng)
 
-  // Stroke width scales with map size — thicker on larger renders
   const strokeW = Math.max(2.5, Math.min(4, w / 120))
 
   return (
-    <svg
-      viewBox={`0 0 ${w} ${h}`}
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ display: 'block', width: '100%', height: '100%' }}
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <defs>
-        {/* Light map-style background — matches Strava aesthetic */}
-        <linearGradient id={`bg-${uid}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stopColor="#e8f0f5" />
-          <stop offset="100%" stopColor="#d4e6ef" />
-        </linearGradient>
-        {/* Route glow filter */}
-        <filter id={`glow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="2" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+    <div style={{
+      position: 'relative',
+      width: '100%', height: '100%',
+      overflow: 'hidden',
+      background: 'linear-gradient(135deg, #e8f0f5, #d4e6ef)', // fallback medan tiles laddar
+    }}>
+      {/* OSM-tiles 3×3 + OpenSeaMap-overlay. loading=lazy för att hålla
+          above-the-fold feed-cards snabba; priority kommer från TripCard vid behov. */}
+      <div style={{
+        position: 'absolute',
+        left: gridLeft - 256,
+        top:  gridTop  - 256,
+        width: 768, height: 768,
+      }}>
+        {[0, 1, 2].map(dy =>
+          [0, 1, 2].map(dx => (
+            <div key={`${dx}_${dy}`} style={{
+              position: 'absolute',
+              left: dx * 256, top: dy * 256,
+              width: 256, height: 256,
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://tile.openstreetmap.org/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
+                alt=""
+                loading="lazy" decoding="async"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`https://tiles.openseamap.org/seamark/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
+                alt=""
+                loading="lazy" decoding="async"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block', pointerEvents: 'none' }}
+              />
+            </div>
+          ))
+        )}
+      </div>
 
-      {/* Background */}
-      <rect width={w} height={h} fill={`url(#bg-${uid})`} />
+      {/* Rutt + markers ovanpå tiles */}
+      <svg
+        viewBox={`0 0 ${w} ${h}`}
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        <defs>
+          {/* Glöd-filter för rutten så den lyfter över kartan */}
+          <filter id={`glow-${uid}`} x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-      {/* Subtle grid lines — map feel */}
-      {[0.25, 0.5, 0.75].map(f => (
-        <line key={`h${f}`} x1="0" y1={h * f} x2={w} y2={h * f} stroke="rgba(10,80,120,0.06)" strokeWidth="1" />
-      ))}
-      {[0.25, 0.5, 0.75].map(f => (
-        <line key={`v${f}`} x1={w * f} y1="0" x2={w * f} y2={h} stroke="rgba(10,80,120,0.06)" strokeWidth="1" />
-      ))}
+        {/* Skugga under rutten för djup */}
+        <path d={fullPath} fill="none" stroke="rgba(0,0,0,0.35)" strokeWidth={strokeW + 2.5} strokeLinecap="round" strokeLinejoin="round" />
+        {/* Huvudlinje — Strava-orange */}
+        <path d={fullPath} fill="none" stroke="#e8520a" strokeWidth={strokeW} strokeLinecap="round" strokeLinejoin="round" filter={`url(#glow-${uid})`} />
 
-      {/* Route shadow — depth */}
-      <path
-        d={fullPath}
-        fill="none"
-        stroke="rgba(180,90,20,0.25)"
-        strokeWidth={strokeW + 3}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      {/* Main route line — bold orange like Strava */}
-      <path
-        d={fullPath}
-        fill="none"
-        stroke="#e8520a"
-        strokeWidth={strokeW}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        filter={`url(#glow-${uid})`}
-      />
-
-      {/* Start dot — green */}
-      <circle cx={sx} cy={sy} r="5" fill="#22c55e" stroke="white" strokeWidth="2.5" />
-
-      {/* End dot — red/orange */}
-      <circle cx={ex} cy={ey} r="6" fill="#e8520a" stroke="white" strokeWidth="2.5" />
-    </svg>
+        {/* Start-prick (grön) */}
+        <circle cx={sx} cy={sy} r={Math.max(4, strokeW + 1)} fill="#22c55e" stroke="white" strokeWidth="2" />
+        {/* Slut-prick (orange, aningen större för hierarki) */}
+        <circle cx={ex} cy={ey} r={Math.max(5, strokeW + 1.5)} fill="#e8520a" stroke="white" strokeWidth="2" />
+      </svg>
+    </div>
   )
 }
