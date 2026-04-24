@@ -559,13 +559,13 @@ export default function UpptackClient() {
                 aria-selected={active}
                 className="upptack-chip press-feedback"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  height: 36, padding: '0 14px',
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  height: 30, padding: '0 11px',
                   borderRadius: 999,
                   border: active ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
                   background: active ? cfg.color : 'var(--glass-92)',
                   color: active ? '#fff' : 'var(--txt)',
-                  fontSize: 13, fontWeight: 600,
+                  fontSize: 12, fontWeight: 600,
                   fontFamily: 'inherit', cursor: 'pointer',
                   whiteSpace: 'nowrap',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
@@ -575,7 +575,7 @@ export default function UpptackClient() {
                   flexShrink: 0,
                 }}
               >
-                <Icon name={cfg.icon} size={16} color={active ? '#fff' : 'var(--txt)'} />
+                <Icon name={cfg.icon} size={14} color={active ? '#fff' : 'var(--txt)'} />
                 <span>{cfg.label}</span>
               </button>
             )
@@ -595,13 +595,13 @@ export default function UpptackClient() {
                 aria-label="Lager"
                 className="upptack-chip press-feedback"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  height: 36, padding: '0 12px 0 14px',
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  height: 30, padding: '0 10px 0 11px',
                   borderRadius: 999,
                   border: layersOpen ? '1px solid transparent' : '1px solid rgba(10,45,60,0.12)',
                   background: layersOpen ? 'var(--sea)' : 'var(--glass-92)',
                   color: layersOpen ? '#fff' : 'var(--txt)',
-                  fontSize: 13, fontWeight: 600,
+                  fontSize: 12, fontWeight: 600,
                   fontFamily: 'inherit', cursor: 'pointer',
                   whiteSpace: 'nowrap',
                   boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
@@ -610,7 +610,7 @@ export default function UpptackClient() {
                   transition: 'background 160ms ease, color 160ms ease, border-color 160ms ease',
                 }}
               >
-                <Icon name="layers" size={16} color={layersOpen ? '#fff' : 'var(--txt)'} />
+                <Icon name="layers" size={14} color={layersOpen ? '#fff' : 'var(--txt)'} />
                 <span>Lager</span>
                 {activeCount > 0 ? (
                   <span

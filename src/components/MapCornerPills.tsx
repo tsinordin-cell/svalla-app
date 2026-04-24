@@ -36,9 +36,9 @@ function PillShell({
         pointerEvents: 'auto',
         display: 'inline-flex',
         alignItems: 'center',
-        gap: 10,
-        padding: '8px 12px',
-        paddingRight: onClose ? 6 : 12,
+        gap: 8,
+        padding: '6px 10px',
+        paddingRight: onClose ? 4 : 10,
         border: '1px solid rgba(10,45,60,0.12)',
         borderRadius: 999,
         background: 'var(--glass-96, rgba(255,255,255,0.94))',
@@ -49,8 +49,8 @@ function PillShell({
         fontFamily: 'inherit',
         cursor: onClick ? 'pointer' : 'default',
         WebkitTapHighlightColor: 'transparent',
-        minHeight: 40,
-        maxWidth: 260,
+        minHeight: 34,
+        maxWidth: 240,
         whiteSpace: 'nowrap',
       }}
     >
@@ -140,19 +140,19 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
       <span style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
           {/* Temp + ikon */}
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <span style={{ fontSize: 16, lineHeight: 1 }}>{desc.emoji}</span>
-            <span style={{ fontSize: 15, fontWeight: 700, letterSpacing: '-0.2px' }}>{data.temp}°</span>
-          </span>
-          <span aria-hidden="true" style={{ width: 1, height: 16, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />
-          {/* Vind */}
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--sea, #1e5c82)' }}>
+            <span style={{ fontSize: 14, lineHeight: 1 }}>{desc.emoji}</span>
+            <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '-0.2px' }}>{data.temp}°</span>
+          </span>
+          <span aria-hidden="true" style={{ width: 1, height: 14, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />
+          {/* Vind */}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--sea, #1e5c82)' }}>
               <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
               <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
               <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
             </svg>
-            <span style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '-0.1px' }}>
+            <span style={{ fontSize: 11.5, fontWeight: 700, letterSpacing: '-0.1px' }}>
               {data.windSpeed.toFixed(1)} m/s {windDirLabel(data.windDir)}
             </span>
           </span>
@@ -166,7 +166,7 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
               <circle cx="12" cy="10" r="3" />
             </svg>
             <span style={{
-              fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
+              fontSize: 9.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
               color: 'var(--txt2, #5a7a8a)',
               overflow: 'hidden', textOverflow: 'ellipsis',
             }}>
