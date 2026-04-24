@@ -251,12 +251,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
   const hasPhoto  = allPhotos.length > 0 && !imgErr
   const hasMedia  = hasPhoto || hasRoute
 
-  // Stats — show all available GPS data
+  // Stats — only show speed when there's meaningful distance (avoids GPS-noise phantoms)
+  const meaningfulDist = trip.distance >= 0.1
   const stats: { label: string; value: string }[] = []
-  if (trip.distance >= 0.01)               stats.push({ label: 'Distans',   value: `${fmt(trip.distance)} NM` })
-  if (dur)                                 stats.push({ label: 'Tid',       value: dur })
-  if ((trip.average_speed_knots ?? 0) > 0) stats.push({ label: 'Snittfart', value: `${fmt(trip.average_speed_knots)} kn` })
-  if ((trip.max_speed_knots ?? 0) > 0)     stats.push({ label: 'Toppfart',  value: `${fmt(trip.max_speed_knots)} kn` })
+  if (meaningfulDist)                                                stats.push({ label: 'Distans',   value: `${fmt(trip.distance)} NM` })
+  if (dur)                                                           stats.push({ label: 'Tid',       value: dur })
+  if (meaningfulDist && (trip.average_speed_knots ?? 0) >= 0.5)     stats.push({ label: 'Snittfart', value: `${fmt(trip.average_speed_knots)} kn` })
+  if (meaningfulDist && (trip.max_speed_knots ?? 0) >= 0.5)         stats.push({ label: 'Toppfart',  value: `${fmt(trip.max_speed_knots)} kn` })
 
   const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
