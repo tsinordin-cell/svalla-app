@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
@@ -579,8 +580,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         <ShareTripModal trip={trip} onClose={() => setShowShareDM(false)} />
       )}
 
-      {/* Lightbox */}
-      {lightbox && (
+      {/* Lightbox — portal till document.body för att undvika transform-stacking-context */}
+      {lightbox && createPortal(
         <>
           <style>{`
             @keyframes _lb_fade { from { opacity:0 } to { opacity:1 } }
@@ -675,7 +676,8 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               </div>
             )}
           </div>
-        </>
+        </>,
+        document.body
       )}
     </article>
   )
