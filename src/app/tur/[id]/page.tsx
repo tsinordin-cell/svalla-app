@@ -17,8 +17,6 @@ import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
 
-export const revalidate = 30  // refresh every 30s (fresh enough, avoids per-request DB calls)
-
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   // Även metadata-generatorn behöver server-client för att läsa trip:en
