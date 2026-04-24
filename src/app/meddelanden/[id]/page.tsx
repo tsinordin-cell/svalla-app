@@ -253,12 +253,14 @@ export default function ChatPage() {
     }
   }, [supabase, me, id])
 
-  // Auto-scroll till botten
+  // Auto-scroll till botten — beror på BÅDE messages.length och loading.
+  // Meddelandena renderas bara när !loading, så vi måste vänta tills
+  // loading blir false innan scrollHeight är korrekt.
   useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight
-    }
-  }, [messages.length])
+    if (loading || !listRef.current) return
+    const el = listRef.current
+    requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
+  }, [messages.length, loading])
 
   async function send(e?: React.FormEvent) {
     e?.preventDefault()
