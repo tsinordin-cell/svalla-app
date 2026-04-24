@@ -15,7 +15,7 @@ import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 import { timeAgo } from '@/lib/utils'
 
-export const revalidate = 0
+export const revalidate = 30
 
 /** Graciöst felmeddelande om servern kraschar (undviker error-boundary). */
 function FeedServerError() {

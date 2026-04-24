@@ -595,7 +595,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             onClick={() => setLightbox(null)}
             style={{
               position: 'fixed', inset: 0, zIndex: 2000,
-              background: '#000',
+              background: 'rgba(4,14,26,0.96)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
               animation: '_lb_fade 0.18s ease',
             }}
           >

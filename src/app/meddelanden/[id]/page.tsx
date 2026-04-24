@@ -89,6 +89,11 @@ export default function ChatPage() {
 
   // Konversationsmeny (⋯ i headern)
   const [convMenu, setConvMenu] = useState(false)
+
+  // Bekräftelsedialog — ersätter native confirm()
+  const [confirmSheet, setConfirmSheet] = useState<{
+    title: string; body: string; label: string; onConfirm: () => Promise<void>
+  } | null>(null)
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const listRef = useRef<HTMLDivElement>(null)
@@ -354,40 +359,58 @@ export default function ChatPage() {
 
   async function handleDeleteMessage(msgId: string) {
     setActionSheet({ msgId: null, isOwn: false, show: false })
-    if (!confirm('Radera meddelandet?')) return
-    const ok = await deleteMessage(supabase, msgId)
-    if (ok) {
-      setMessages(prev => prev.filter(m => m.id !== msgId))
-    } else {
-      toast('Kunde inte radera meddelandet.', 'error')
-    }
+    setConfirmSheet({
+      title: 'Radera meddelande',
+      body: 'Meddelandet tas bort permanent.',
+      label: 'Radera',
+      onConfirm: async () => {
+        const ok = await deleteMessage(supabase, msgId)
+        if (ok) {
+          setMessages(prev => prev.filter(m => m.id !== msgId))
+        } else {
+          toast('Kunde inte radera meddelandet.', 'error')
+        }
+      },
+    })
   }
 
   async function handleLeaveConversation() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
     setConvMenu(false)
     if (!me || !conv) return
-    if (!confirm('Radera konversationen? Den försvinner bara för dig.')) return
-    const ok = await leaveConversation(supabase, me, conv.id)
-    if (ok) {
-      router.push('/meddelanden')
-    } else {
-      toast('Kunde inte radera konversationen.', 'error')
-    }
+    setConfirmSheet({
+      title: 'Radera konversation',
+      body: 'Konversationen försvinner bara för dig.',
+      label: 'Radera',
+      onConfirm: async () => {
+        const ok = await leaveConversation(supabase, me, conv.id)
+        if (ok) {
+          router.push('/meddelanden')
+        } else {
+          toast('Kunde inte radera konversationen.', 'error')
+        }
+      },
+    })
   }
 
   async function handleBlockUser() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
     setConvMenu(false)
     if (!me || !otherId) return
-    if (!confirm(`Blockera ${otherName}? Du kan inte DM:a varandra längre.`)) return
-    const ok = await blockUser(supabase, me, otherId)
-    if (ok) {
-      toast(`${otherName} blockerad`, 'success')
-      router.push('/meddelanden')
-    } else {
-      toast('Något gick fel.', 'error')
-    }
+    setConfirmSheet({
+      title: `Blockera ${otherName}`,
+      body: 'Du och den här personen kan inte längre skicka meddelanden till varandra.',
+      label: 'Blockera',
+      onConfirm: async () => {
+        const ok = await blockUser(supabase, me, otherId)
+        if (ok) {
+          toast(`${otherName} blockerad`, 'success')
+          router.push('/meddelanden')
+        } else {
+          toast('Något gick fel.', 'error')
+        }
+      },
+    })
   }
 
   function onLongPressStart(msgId: string, isOwn: boolean) {
@@ -833,7 +856,16 @@ export default function ChatPage() {
               value={text}
               onChange={e => setText(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
-              placeholder="Skriv ett meddelande…"
+              onFocus={() => {
+                setTimeout(() => {
+                  listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
+                }, 350)
+              }}
+              placeholder={
+                conv?.status === 'request' && conv?.created_by === me
+                  ? 'Lägg till ett meddelande till förfrågan…'
+                  : 'Skriv ett meddelande…'
+              }
               maxLength={2000}
               autoComplete="off"
               style={{
@@ -910,6 +942,55 @@ export default function ChatPage() {
             )}
             <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
               onClick={() => setConvMenu(false)} />
+          </div>
+        </>
+      )}
+
+      {/* ── Bekräftelsedialog — ersätter native confirm() ── */}
+      {confirmSheet && (
+        <>
+          <div
+            onClick={() => setConfirmSheet(null)}
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.40)', zIndex: 210 }}
+          />
+          <div style={{
+            position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 211,
+            background: 'var(--white)', borderRadius: `${radius.lg}px ${radius.lg}px 0 0`,
+            padding: `20px 24px calc(28px + env(safe-area-inset-bottom))`,
+            boxShadow: shadow.md,
+          }}>
+            <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '0 auto 20px' }} />
+            <div style={{ fontSize: fontSize.subtitle, fontWeight: fontWeight.semibold, color: 'var(--txt)', marginBottom: 6 }}>
+              {confirmSheet.title}
+            </div>
+            <div style={{ fontSize: fontSize.body, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 24 }}>
+              {confirmSheet.body}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <button
+                onClick={async () => { const s = confirmSheet; setConfirmSheet(null); await s.onConfirm() }}
+                style={{
+                  padding: '14px', borderRadius: radius.md, border: 'none',
+                  background: '#dc2626', color: '#fff',
+                  fontSize: fontSize.body, fontWeight: fontWeight.semibold,
+                  cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                {confirmSheet.label}
+              </button>
+              <button
+                onClick={() => setConfirmSheet(null)}
+                style={{
+                  padding: '14px', borderRadius: radius.md,
+                  border: '1px solid rgba(10,123,140,0.15)',
+                  background: 'transparent', color: 'var(--txt)',
+                  fontSize: fontSize.body, fontWeight: fontWeight.medium,
+                  cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+                }}
+              >
+                Avbryt
+              </button>
+            </div>
           </div>
         </>
       )}
