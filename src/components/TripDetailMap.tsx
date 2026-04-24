@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import 'leaflet/dist/leaflet.css'
 import type { WindArrowSample } from '@/lib/weather'
 import { windColor, windDirectionLabel } from '@/lib/weather'
 

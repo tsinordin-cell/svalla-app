@@ -32,6 +32,7 @@ export default function TripTagger({
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<UserLite[]>([])
   const [searching, setSearching] = useState(false)
+  const [tagError, setTagError] = useState<string | null>(null)
 
   const isOwner = currentUserId === tripOwnerId
   const myTag = tags.find(t => t.tagged_user_id === currentUserId)
@@ -61,8 +62,12 @@ export default function TripTagger({
 
   async function addTag(u: UserLite) {
     if (!currentUserId) return
-    const ok = await addTripTag(supabase, currentUserId, tripId, u.id)
-    if (!ok) return
+    setTagError(null)
+    const { ok, errorMessage } = await addTripTag(supabase, currentUserId, tripId, u.id)
+    if (!ok) {
+      setTagError(errorMessage ?? 'Kunde inte tagga användaren')
+      return
+    }
     setTags(prev => [...prev, {
       trip_id: tripId,
       tagged_user_id: u.id,
@@ -169,6 +174,7 @@ export default function TripTagger({
           <input value={query} onChange={e => setQuery(e.target.value)} autoFocus
             placeholder="Sök användarnamn…"
             style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 13, background: 'var(--bg)', color: 'var(--txt)' }} />
+          {tagError && <div style={{ fontSize: 11, color: '#dc2626', marginTop: 6 }}>{tagError}</div>}
           {searching && <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 6 }}>Söker…</div>}
           {results.length > 0 && (
             <div style={{ marginTop: 8, border: '1px solid rgba(10,123,140,0.10)', borderRadius: 10, overflow: 'hidden' }}>

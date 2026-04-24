@@ -43,8 +43,8 @@ export async function addTripTag(
   currentUserId: string,
   tripId: string,
   taggedUserId: string,
-): Promise<boolean> {
-  if (currentUserId === taggedUserId) return false
+): Promise<{ ok: boolean; errorMessage?: string }> {
+  if (currentUserId === taggedUserId) return { ok: false, errorMessage: 'Kan inte tagga dig själv' }
   const { error } = await supabase
     .from('trip_tags')
     .insert({
@@ -52,7 +52,11 @@ export async function addTripTag(
       tagged_user_id: taggedUserId,
       tagged_by_user_id: currentUserId,
     })
-  return !error
+  if (error) {
+    console.error('[addTripTag]', error.code, error.message)
+    return { ok: false, errorMessage: error.message }
+  }
+  return { ok: true }
 }
 
 export async function removeTripTag(
@@ -90,7 +94,7 @@ export async function searchUsersForTag(
     .select('id, username, avatar')
     .ilike('username', `${query}%`)
     .limit(8)
-  if (excludeIds.length > 0) q = q.filter('id', 'not.in', `(${excludeIds.map(id => `"${id}"`).join(',')})`)
+  if (excludeIds.length > 0) q = q.not('id', 'in', `(${excludeIds.join(',')})`)
   const { data } = await q
   return (data ?? []).map(u => ({
     id: u.id as string,
