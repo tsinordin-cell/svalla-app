@@ -419,7 +419,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   borderRadius: '4px 14px 14px 4px',
                   overflow: 'hidden',
                   position: 'relative',
-                  background: '#e8efe3',
+                  background: 'var(--map-preview-bg)',
                   cursor: 'zoom-in',
                 }}
                 onClick={e => { e.stopPropagation(); setLightbox('map') }}
@@ -469,7 +469,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             /* Bara rutt */
             <div style={{ padding: '0 14px', marginBottom: 12 }}>
               <div
-                style={{ position: 'relative', width: '100%', aspectRatio: '16/7', borderRadius: 14, overflow: 'hidden', background: '#e8efe3', cursor: 'zoom-in' }}
+                style={{ position: 'relative', width: '100%', aspectRatio: '16/7', borderRadius: 14, overflow: 'hidden', background: 'var(--map-preview-bg)', cursor: 'zoom-in' }}
                 onClick={e => { e.stopPropagation(); setLightbox('map') }}
               >
                 <RouteMapSVG points={routePoints!} w={600} h={262} />
@@ -484,7 +484,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         display: 'flex',
         borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
         borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
-        background: '#fafcfd',
+        background: 'var(--stats-row-bg)',
       }}>
         {statsRow.map((s, i) => (
           <div key={s.label} style={{

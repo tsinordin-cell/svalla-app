@@ -18,11 +18,11 @@
   --txt:   #192830;
   --txt2:  #3d5865;
   --txt3:  #7a9dab;
-  --bg:    #e9f4f7;
+  --bg:    #f2f8fa;
   --white: #fafeff;
-  --green: #0f9e64;
-  --red:   #cc3d3d;
-  --nav-h: 76px;
+  --green: #22c55e;
+  --red:   #ef4444;
+  --nav-h: 100px;
   /* ── Surface system ── */
   --surface-1:  rgba(250,254,255,1);
   --surface-2:  rgba(10,123,140,0.06);
@@ -62,6 +62,8 @@
   --radius-card:     22px;
   --radius-inner:    14px;
   --radius-pill:     999px;
+  --map-preview-bg:  #e8efe3;
+  --stats-row-bg:    #fafcfd;
 }
 
 /* ── Reset & base ── */
@@ -80,7 +82,7 @@ html, body {
 }
 
 body {
-  background: linear-gradient(175deg, #e0ecf6 0%, #e6f1f8 35%, #eaf2f7 70%, #ecf3f8 100%) fixed;
+  background: #f2f8fa;
   color: var(--txt);
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
   min-height: 100dvh;
@@ -182,6 +184,8 @@ img {
   --grad-sea:      linear-gradient(135deg, #0e2a3d, #163344);
   --grad-sea-hero: linear-gradient(160deg, #0e2a3d 0%, #163344 100%);
   --grad-acc:      linear-gradient(135deg, #9e5318, #c97030);
+  --map-preview-bg: #0d1a12;
+  --stats-row-bg:   #0b1822;
   color-scheme: dark;
 }
 
