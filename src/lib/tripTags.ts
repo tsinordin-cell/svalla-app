@@ -51,6 +51,7 @@ export async function addTripTag(
       trip_id: tripId,
       tagged_user_id: taggedUserId,
       tagged_by_user_id: currentUserId,
+      confirmed: true,
     })
   if (error) {
     console.error('[addTripTag]', error.code, error.message)

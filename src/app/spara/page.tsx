@@ -17,6 +17,8 @@ import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/l
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
+import { addTripTag } from '@/lib/tripTags'
+import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -109,6 +111,8 @@ export default function SparaPage() {
   // ── Achievement celebration ──
   const [newAchievements, setNewAchievements] = useState<{ emoji: string; label: string }[]>([])
   const [showCelebration, setShowCelebration] = useState(false)
+  const [taggedCrew,      setTaggedCrew]      = useState<CrewUser[]>([])
+  const [currentUserId,   setCurrentUserId]   = useState('')
 
   // ── AI analys (pre-fetched when done phase begins) ──
   const [aiSummary,       setAiSummary]       = useState<string | null>(null)
@@ -130,6 +134,10 @@ export default function SparaPage() {
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
 
   // ── Keep pointsRef in sync ──
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setCurrentUserId(data.user?.id ?? ''))
+  }, [supabase])
+
   useEffect(() => { pointsRef.current = points }, [points])
 
   // ── Check for crash recovery on mount ─────────────────────────────────────
@@ -519,6 +527,11 @@ export default function SparaPage() {
     const tid = trip.id
     setTripId(tid)
     clearTripSnapshot()
+
+    // Insert tagged crew
+    if (taggedCrew.length > 0) {
+      await Promise.all(taggedCrew.map(u => addTripTag(supabase, user.id, tid, u.id)))
+    }
 
     // Batch insert GPS points (500 at a time)
     for (let i = 0; i < points.length; i += 500) {
@@ -945,7 +958,7 @@ export default function SparaPage() {
             {isTracking ? (
               <button onClick={handlePause} style={{
                 width: '100%', padding: '19px', borderRadius: 16,
-                background: 'linear-gradient(135deg, #c96e2a, #e07828)',
+                background: 'var(--grad-acc)',
                 border: 'none', color: '#fff',
                 fontWeight: 700, fontSize: 18, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -1151,7 +1164,7 @@ export default function SparaPage() {
             {isTracking ? (
               <button onClick={handlePause} style={{
                 width: '100%', padding: '18px', borderRadius: 16,
-                background: 'linear-gradient(135deg, #c96e2a, #e07828)',
+                background: 'var(--grad-acc)',
                 border: 'none', color: '#fff',
                 fontWeight: 700, fontSize: 18, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -1212,7 +1225,7 @@ export default function SparaPage() {
           animation: 'fadeIn .3s ease',
         }} onClick={() => setShowCelebration(false)}>
           <div style={{
-            background: 'linear-gradient(170deg,#1e5c82,#2d7d8a)',
+            background: 'var(--grad-sea)',
             borderRadius: 28, padding: '32px 28px',
             maxWidth: 340, width: '100%', textAlign: 'center',
             boxShadow: '0 8px 40px rgba(0,45,80,.5)',
@@ -1334,7 +1347,7 @@ export default function SparaPage() {
                 style={{
                   flex: 1, padding: '12px 4px', borderRadius: 14, border: 'none', cursor: 'pointer',
                   background: pinnar === val
-                    ? (val === 3 ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'linear-gradient(135deg,#1e5c82,#2d7d8a)')
+                    ? (val === 3 ? 'var(--grad-acc)' : 'var(--grad-sea)')
                     : 'rgba(10,123,140,.07)',
                   boxShadow: pinnar === val ? '0 3px 12px rgba(30,92,130,.3)' : 'none',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, transition: 'all .15s',
@@ -1452,6 +1465,20 @@ export default function SparaPage() {
           />
         </div>
 
+        {/* ── Medseglare ── */}
+        <div>
+          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+            Medseglare <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt)</span>
+          </label>
+          <CrewPicker
+            supabase={supabase}
+            currentUserId={currentUserId}
+            selected={taggedCrew}
+            onSelect={u => setTaggedCrew(prev => [...prev, u])}
+            onRemove={id => setTaggedCrew(prev => prev.filter(u => u.id !== id))}
+          />
+        </div>
+
         {err && (
           <div className="rounded-2xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">
             <strong>Fel:</strong> {err}
@@ -1467,7 +1494,7 @@ export default function SparaPage() {
           onClick={handleSave} disabled={saving}
           className="w-full py-4 rounded-2xl text-white font-bold text-base press-feedback"
           style={{
-            background: !saving ? 'linear-gradient(135deg,#c96e2a,#e07828)' : 'rgba(10,123,140,.15)',
+            background: !saving ? 'var(--grad-acc)' : 'rgba(10,123,140,.15)',
             color:      !saving ? 'white' : 'var(--txt3)',
             boxShadow:  !saving ? '0 4px 20px rgba(201,110,42,.4)' : 'none',
           }}

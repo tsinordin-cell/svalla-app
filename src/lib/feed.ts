@@ -93,7 +93,6 @@ export async function enrichWithTags(
     .from('trip_tags')
     .select('trip_id, tagged_user_id')
     .in('trip_id', ids)
-    .eq('confirmed', true)
   if (!tagRows || tagRows.length === 0) return trips
 
   const userIds = [...new Set(tagRows.map(r => r.tagged_user_id as string))]
