@@ -270,18 +270,18 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       onClick={() => router.push(`/tur/${trip.id}`)}
       className="trip-card card-hover"
       style={{
-        background: 'var(--white)',
+        background: 'var(--surface-1, #fafeff)',
         borderRadius: radius.lg,
         overflow: 'hidden',
-        boxShadow: shadow.sm,
-        border: '1px solid rgba(10,123,140,0.07)',
+        boxShadow: '0 1px 0 rgba(10,123,140,0.06), 0 2px 8px rgba(0,45,60,0.06), 0 4px 20px rgba(0,45,60,0.04)',
+        border: '1px solid rgba(10,123,140,0.09)',
         WebkitTapHighlightColor: 'transparent',
         cursor: 'pointer',
       }}
     >
 
       {/* ── 1. Header ── */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px 10px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '13px 16px 11px' }}>
         <Link
           href={`/u/${username}`}
           onClick={e => e.stopPropagation()}
@@ -290,11 +290,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
           {/* Avatar — long-press visar teaser */}
           <ProfileTeaserPopover username={username}>
             <div style={{
-              width: 36, height: 36, borderRadius: radius.xs, flexShrink: 0, overflow: 'hidden',
+              width: 38, height: 38, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
               position: 'relative',
               background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
+              border: '2px solid rgba(255,255,255,0.9)',
+              boxShadow: '0 1px 4px rgba(0,45,60,0.12)',
             }}>
               {avatar
                 ? <Image src={avatar} alt={username} fill sizes="36px" style={{ objectFit: 'cover' }} />
@@ -361,26 +363,26 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       {stats.length > 0 && (
         <div style={{
           display: 'flex',
-          borderTop: '1px solid rgba(10,123,140,0.06)',
-          borderBottom: '1px solid rgba(10,123,140,0.06)',
-          background: 'rgba(10,123,140,0.02)',
+          borderTop: '1px solid rgba(10,123,140,0.07)',
+          borderBottom: '1px solid rgba(10,123,140,0.07)',
+          background: 'rgba(10,123,140,0.025)',
         }}>
           {stats.map((s, i) => (
             <div key={s.label} style={{
               flex: 1,
-              padding: '8px 8px',
+              padding: '9px 8px 8px',
               textAlign: 'center',
-              borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.06)' : 'none',
+              borderLeft: i > 0 ? '1px solid rgba(10,123,140,0.07)' : 'none',
             }}>
               <div style={{
-                fontSize: fontSize.subtitle, fontWeight: fontWeight.semibold, color: 'var(--txt)',
-                lineHeight: 1.1, letterSpacing: '-0.3px',
+                fontSize: fontSize.subtitle, fontWeight: fontWeight.bold, color: 'var(--txt)',
+                lineHeight: 1.1, letterSpacing: '-0.5px', fontVariantNumeric: 'tabular-nums',
               }}>
                 {s.value}
               </div>
               <div style={{
-                fontSize: 12, color: 'var(--txt3)', marginTop: 3,
-                fontWeight: fontWeight.medium, letterSpacing: '0.2px',
+                fontSize: 11, color: 'var(--txt3)', marginTop: 2,
+                fontWeight: fontWeight.medium, letterSpacing: '0.3px', textTransform: 'uppercase',
               }}>
                 {s.label}
               </div>
@@ -496,7 +498,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       )}
 
       {/* ── 4. Actions ── */}
-      <div onClick={e => e.stopPropagation()} style={{ padding: '10px 16px 4px' }}>
+      <div onClick={e => e.stopPropagation()} style={{ padding: '11px 16px 4px' }}>
         <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
           <LikeButton
             tripId={trip.id}

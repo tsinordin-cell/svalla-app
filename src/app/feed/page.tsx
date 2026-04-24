@@ -147,11 +147,11 @@ export default async function FeedPage(
       {/* ── Header ── */}
       <header style={{
         display: 'flex', alignItems: 'center', gap: 10,
-        padding: '12px 16px 10px',
-        background: 'var(--header-bg, var(--glass-96))',
-        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
+        padding: '13px 16px 11px',
+        background: 'var(--glass-96)',
+        backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(10,123,140,0.09)',
+        boxShadow: '0 1px 0 rgba(10,123,140,0.06), 0 2px 16px rgba(0,45,60,0.05)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
         <SvallaLogo height={26} color="var(--sea)" />

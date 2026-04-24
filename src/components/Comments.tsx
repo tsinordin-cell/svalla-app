@@ -296,6 +296,8 @@ export default function Comments({
         @keyframes cmt-sheet    { from { transform:translateY(100%) } to { transform:translateY(0) } }
         @keyframes cmt-spin     { to { transform:rotate(360deg) } }
         .cmt-list::-webkit-scrollbar { display:none }
+        .cmt-close-btn:hover { background: rgba(0,40,80,0.10) !important; }
+        [data-theme="dark"] .cmt-close-btn:hover { background: rgba(74,184,212,0.18) !important; }
       `}</style>
 
       {/* Backdrop */}
@@ -303,10 +305,10 @@ export default function Comments({
         onClick={() => setOpen(false)}
         style={{
           position: 'fixed', inset: 0, zIndex: 1400,
-          background: 'rgba(0,0,0,0.48)',
-          backdropFilter: 'blur(3px)',
-          WebkitBackdropFilter: 'blur(3px)',
-          animation: 'cmt-backdrop 0.22s ease',
+          background: 'rgba(4,14,26,0.52)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
+          animation: 'cmt-backdrop 0.20s ease',
         }}
       />
 
@@ -316,27 +318,27 @@ export default function Comments({
         style={{
           position: 'fixed', bottom: 0, left: 0, right: 0,
           zIndex: 1401,
-          background: 'var(--bg, #fff)',
-          borderRadius: '20px 20px 0 0',
+          background: 'var(--surface-1, #fafeff)',
+          borderRadius: '24px 24px 0 0',
           maxHeight: '82vh',
           display: 'flex', flexDirection: 'column',
-          animation: 'cmt-sheet 0.32s cubic-bezier(0.16,1,0.3,1)',
-          boxShadow: '0 -8px 40px rgba(0,0,0,0.18)',
+          animation: 'cmt-sheet 0.34s cubic-bezier(0.16,1,0.3,1)',
+          boxShadow: '0 -1px 0 rgba(10,123,140,0.08), 0 -8px 32px rgba(0,45,60,0.12), 0 -24px 64px rgba(0,30,50,0.08)',
         }}
       >
         {/* Drag handle */}
-        <div style={{ padding: '12px 0 4px', display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
-          <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,40,80,0.12)' }} />
+        <div style={{ padding: '14px 0 6px', display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ width: 40, height: 4, borderRadius: 4, background: 'rgba(10,123,140,0.15)' }} />
         </div>
 
         {/* Header */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '4px 20px 14px',
-          borderBottom: '1px solid rgba(0,40,80,0.07)',
+          padding: '2px 20px 14px',
+          borderBottom: '1px solid rgba(10,123,140,0.08)',
           flexShrink: 0,
         }}>
-          <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>
+          <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', letterSpacing: '-0.2px' }}>
             {comments.length > 0
               ? `${comments.length} kommentar${comments.length !== 1 ? 'er' : ''}`
               : 'Kommentarer'}
@@ -344,14 +346,16 @@ export default function Comments({
           <button
             onClick={() => setOpen(false)}
             aria-label="Stäng"
+            className="cmt-close-btn"
             style={{
-              background: 'rgba(0,40,80,0.06)', border: 'none', borderRadius: '50%',
-              width: 30, height: 30, cursor: 'pointer',
+              background: 'rgba(10,123,140,0.07)', border: 'none', borderRadius: '50%',
+              width: 32, height: 32, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               WebkitTapHighlightColor: 'transparent',
+              transition: 'background 0.15s ease',
             }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt2)" strokeWidth={2.5} style={{ width: 14, height: 14 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt2)" strokeWidth={2.5} style={{ width: 13, height: 13 }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -419,12 +423,16 @@ export default function Comments({
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
                       background: isMe
-                        ? 'linear-gradient(135deg, #eaf6fa 0%, #ddf0f5 100%)'
-                        : 'rgba(0,40,80,0.04)',
-                      borderRadius: isMe ? '18px 18px 6px 18px' : '18px 18px 18px 6px',
-                      padding: '10px 14px',
-                      border: isMe ? '1px solid rgba(10,123,140,0.12)' : '1px solid rgba(0,40,80,0.06)',
-                      boxShadow: '0 1px 4px rgba(0,30,60,0.05)',
+                        ? 'linear-gradient(145deg, rgba(10,123,140,0.09) 0%, rgba(30,92,130,0.06) 100%)'
+                        : 'rgba(10,123,140,0.05)',
+                      borderRadius: isMe ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                      padding: '9px 14px 10px',
+                      border: isMe
+                        ? '1px solid rgba(10,123,140,0.14)'
+                        : '1px solid rgba(10,123,140,0.08)',
+                      boxShadow: isMe
+                        ? '0 1px 4px rgba(0,60,90,0.07), 0 2px 8px rgba(10,100,130,0.04)'
+                        : '0 1px 3px rgba(0,30,60,0.04)',
                     }}>
                       <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
                         <Link
@@ -494,9 +502,10 @@ export default function Comments({
         {/* Input */}
         <div style={{
           flexShrink: 0,
-          borderTop: '1px solid rgba(0,40,80,0.07)',
-          padding: 'calc(10px) 12px calc(env(safe-area-inset-bottom, 0px) + 12px)',
+          borderTop: '1px solid rgba(10,123,140,0.08)',
+          padding: '10px 14px calc(env(safe-area-inset-bottom, 0px) + 14px)',
           position: 'relative',
+          background: 'var(--surface-1, #fafeff)',
         }}>
           {/* Mention autocomplete */}
           {mentionHits.length > 0 && (
@@ -544,10 +553,11 @@ export default function Comments({
               <div style={{
                 flex: 1,
                 display: 'flex', alignItems: 'center',
-                background: 'rgba(0,40,80,0.05)',
+                background: 'rgba(10,123,140,0.05)',
                 borderRadius: radius.full,
                 padding: '4px 4px 4px 16px',
-                border: '1.5px solid rgba(10,123,140,0.12)',
+                border: '1.5px solid rgba(10,123,140,0.14)',
+                transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
               }}>
                 <input
                   ref={inputRef}
@@ -569,13 +579,15 @@ export default function Comments({
                   style={{
                     width: 36, height: 36, borderRadius: '50%', border: 'none', flexShrink: 0,
                     background: text.trim() && !posting
-                      ? 'linear-gradient(135deg, var(--sea) 0%, #2a8a9a 100%)'
-                      : 'rgba(0,40,80,0.08)',
-                    color: text.trim() && !posting ? '#fff' : 'rgba(0,40,80,0.30)',
+                      ? 'linear-gradient(135deg, #1a6b96 0%, #2a8c9e 100%)'
+                      : 'rgba(10,123,140,0.10)',
+                    color: text.trim() && !posting ? '#fff' : 'rgba(10,80,100,0.35)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     cursor: text.trim() && !posting ? 'pointer' : 'default',
-                    transition: 'background .18s, color .18s',
-                    boxShadow: text.trim() && !posting ? '0 2px 8px rgba(10,100,130,0.30)' : 'none',
+                    transition: 'background .18s ease, color .18s ease, box-shadow .18s ease, transform .1s ease',
+                    boxShadow: text.trim() && !posting
+                      ? '0 2px 10px rgba(10,100,130,0.35), 0 1px 3px rgba(10,80,110,0.2)'
+                      : 'none',
                     WebkitTapHighlightColor: 'transparent',
                   }}
                 >

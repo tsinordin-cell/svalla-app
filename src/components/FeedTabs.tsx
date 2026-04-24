@@ -29,9 +29,9 @@ const PAGE_SIZE = 8
 function SkeletonCard() {
   return (
     <div style={{
-      background: 'var(--white)', borderRadius: 20, overflow: 'hidden',
-      boxShadow: '0 2px 16px rgba(0,30,50,0.09)',
-      border: '1px solid rgba(10,123,140,0.07)',
+      background: 'var(--surface-1, #fafeff)', borderRadius: 20, overflow: 'hidden',
+      boxShadow: '0 1px 0 rgba(10,123,140,0.06), 0 2px 8px rgba(0,45,60,0.06)',
+      border: '1px solid rgba(10,123,140,0.09)',
     }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px 10px' }}>
@@ -205,16 +205,16 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             onClick={e => e.stopPropagation()}
             style={{
               width: '100%', maxWidth: 640,
-              background: 'var(--white)',
-              borderTopLeftRadius: 20, borderTopRightRadius: 20,
-              padding: '18px 18px calc(env(safe-area-inset-bottom, 0px) + 18px)',
-              boxShadow: '0 -8px 40px rgba(0,0,0,0.15)',
+              background: 'var(--surface-1, #fafeff)',
+              borderTopLeftRadius: 24, borderTopRightRadius: 24,
+              padding: '14px 18px calc(env(safe-area-inset-bottom, 0px) + 20px)',
+              boxShadow: '0 -1px 0 rgba(10,123,140,0.08), 0 -8px 32px rgba(0,45,60,0.12)',
             }}
           >
             <div style={{
-              width: 40, height: 4, borderRadius: 2,
-              background: 'rgba(10,123,140,0.18)',
-              margin: '0 auto 14px',
+              width: 40, height: 4, borderRadius: 4,
+              background: 'rgba(10,123,140,0.14)',
+              margin: '0 auto 16px',
             }} />
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>
               Filtrera båttyp
