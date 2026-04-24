@@ -35,7 +35,8 @@ export type TripWeather = {
   source: 'archive' | 'archive+marine' | 'marine' | 'empty'
 }
 
-type HourlyWind = {
+// Shape av Open-Meteos hourly-block i archive-svaret. Intern, exporteras inte.
+type OpenMeteoHourlyResponse = {
   time: string[]
   wind_speed_10m: (number | null)[]
   wind_direction_10m: (number | null)[]
@@ -122,7 +123,7 @@ export async function getTripWeather(
 
     const res = await fetch(url.toString(), { next: { revalidate: 24 * 3600 } })
     if (res.ok) {
-      const data = (await res.json()) as { hourly?: HourlyWind }
+      const data = (await res.json()) as { hourly?: OpenMeteoHourlyResponse }
       const h = data.hourly
       if (h?.time && h.time.length > 0) {
         const idx = filterByRange(h.time, startAt, effectiveEnd)
