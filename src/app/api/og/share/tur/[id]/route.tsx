@@ -59,7 +59,7 @@ export async function GET(
 
     console.log('[share-og] E statBoxes=', statBoxes.length, 'locLabel=', locLabel)
 
-    const img = new ImageResponse(
+    const imgResp = new ImageResponse(
       (
         <div style={{
           width: W, height: H,
@@ -176,8 +176,10 @@ export async function GET(
       { width: W, height: H }
     )
 
-    console.log('[share-og] F ImageResponse built')
-    return img
+    console.log('[share-og] F consuming stream (Satori renders here)')
+    const buf = await imgResp.arrayBuffer()
+    console.log('[share-og] G done, bytes=', buf.byteLength)
+    return new Response(buf, { headers: { 'content-type': 'image/png' } })
   } catch (err) {
     console.error('[share-og] CRASH:', err)
     const msg = err instanceof Error ? `${err.message}\n\n${err.stack}` : String(err)
