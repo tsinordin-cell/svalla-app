@@ -34,17 +34,23 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
+  console.log('[share-og] START id=', id)
   const supabase = createClient()
+  console.log('[share-og] supabase client created')
 
-  const { data: trip } = await supabase
+  const { data: trip, error: tripError } = await supabase
     .from('trips')
     .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating')
     .eq('id', id)
     .single()
 
+  console.log('[share-og] trip fetched, error=', tripError?.message ?? null, 'hasTrip=', !!trip)
+
   const { data: userRow } = trip
     ? await supabase.from('users').select('username').eq('id', trip.user_id).single()
     : { data: null }
+
+  console.log('[share-og] userRow fetched, username=', userRow?.username ?? null)
 
   const dist   = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
   const dur    = trip && trip.duration > 0    ? fmtDur(trip.duration)         : null
@@ -72,8 +78,13 @@ export async function GET(
     !spd && avgSpd && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
   ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
-  return new ImageResponse(
-    (
+  console.log('[share-og] routePath=', routePath.slice(0, 40), 'statBoxes=', statBoxes.length, 'locLabel=', locLabel.slice(0, 30))
+  console.log('[share-og] calling ImageResponse W=', W, 'H=', H)
+
+  let imgResp: ImageResponse
+  try {
+    imgResp = new ImageResponse(
+      (
       <div style={{
         width: W, height: H,
         display: 'flex', flexDirection: 'column',
@@ -200,6 +211,12 @@ export async function GET(
         </div>
       </div>
     ),
-    { width: W, height: H }
-  )
+      { width: W, height: H }
+    )
+  } catch (e) {
+    console.error('[share-og] ImageResponse constructor threw:', (e as Error)?.message)
+    throw e
+  }
+  console.log('[share-og] ImageResponse created OK, returning')
+  return imgResp
 }
