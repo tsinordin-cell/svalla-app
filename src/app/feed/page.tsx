@@ -162,7 +162,7 @@ export default async function FeedPage(
       {!SAFE && <SilentBoundary><OnboardingModal /></SilentBoundary>}
 
       {/* ── Ambient gradient — wraps header + top content ── */}
-      <div style={{
+      <div className="feed-ambient-top" style={{
         background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 25%, #dbe6e7 55%, var(--bg) 100%)',
         backgroundAttachment: 'local',
       }}>
@@ -193,7 +193,7 @@ export default async function FeedPage(
         {/* ── Greeting ── */}
         {feedUsername && (
           <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 8px' }}>
-            <div style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
+            <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
               {getTimeLabel()}
             </div>
             <div style={{ fontSize: 32, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>

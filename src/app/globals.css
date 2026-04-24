@@ -236,6 +236,16 @@ img {
   border-bottom-color: rgba(74, 184, 212, 0.10) !important;
 }
 
+/* ── Feed ambient gradient (top section) ── */
+[data-theme="dark"] .feed-ambient-top {
+  background: linear-gradient(180deg, #07141f 0%, #091824 30%, #0c1e2e 60%, var(--bg) 100%) !important;
+}
+
+/* ── Feed time label ── */
+[data-theme="dark"] .feed-time-label {
+  color: rgba(74, 184, 212, 0.55) !important;
+}
+
 /* ── Subtle tinted backgrounds ── */
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.04)"],
 [data-theme="dark"] [style*="background: rgba(10,123,140,0.05)"],
