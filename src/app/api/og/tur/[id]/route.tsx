@@ -134,8 +134,8 @@ export async function GET(
                 {locLabel}
               </div>
             ) : (
-              <div style={{ fontSize: 30, fontWeight: 700, color: '#fff' }}>
-                {boatEmoji} Svalla-tur
+              <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', display: 'flex' }}>
+                {`${boatEmoji} Svalla-tur`}
               </div>
             )}
             {magisk && (
