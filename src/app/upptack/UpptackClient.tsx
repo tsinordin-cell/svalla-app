@@ -214,8 +214,14 @@ export default function UpptackClient() {
   // ── Data fetch ────────────────────────────────────────────────────────────
   useEffect(() => {
     let cancelled = false
-    fetch('/api/discovery?type=poi').then(r => r.json()).then(d => { if (!cancelled) setPois(d) })
-    fetch('/api/discovery?type=routes').then(r => r.json()).then(d => { if (!cancelled) setRoutes(d) })
+    fetch('/api/discovery?type=poi')
+      .then(r => r.json())
+      .then(d => { if (!cancelled && Array.isArray(d)) setPois(d) })
+      .catch(() => {})
+    fetch('/api/discovery?type=routes')
+      .then(r => r.json())
+      .then(d => { if (!cancelled && Array.isArray(d)) setRoutes(d) })
+      .catch(() => {})
     return () => { cancelled = true }
   }, [])
 
