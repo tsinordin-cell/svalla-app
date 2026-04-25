@@ -62,40 +62,6 @@ const boatEmoji: Record<string, string> = {
 }
 
 
-function RoutePreview({ points }: { points: { lat: number; lng: number }[] }) {
-  if (points.length < 3) return null
-  const W = 300, H = 72
-  const lats = points.map(p => p.lat)
-  const lngs = points.map(p => p.lng)
-  const minLat = Math.min(...lats), maxLat = Math.max(...lats)
-  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
-  const pad = 10
-  const toX = (lng: number) => pad + ((lng - minLng) / (maxLng - minLng || 1)) * (W - pad * 2)
-  const toY = (lat: number) => H - pad - ((lat - minLat) / (maxLat - minLat || 1)) * (H - pad * 2)
-  
-  const d = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${toX(p.lng).toFixed(1)},${toY(p.lat).toFixed(1)}`).join(' ')
-  const start = points[0], end = points[points.length - 1]
-
-  return (
-    <div style={{
-      width: '100%', height: H, borderRadius: 10, overflow: 'hidden',
-      background: 'var(--route-preview-bg)',
-      border: '1px solid var(--sea-12)',
-      marginBottom: 8,
-    }}>
-      <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
-        {/* Shadow line */}
-        <path d={d} fill="none" stroke="var(--sea-15)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-        {/* Main route line */}
-        <path d={d} fill="none" stroke="var(--sea)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="none" opacity="0.85" />
-        {/* Start dot */}
-        <circle cx={toX(start.lng)} cy={toY(start.lat)} r="4" fill="var(--green)" stroke="white" strokeWidth="1.5" />
-        {/* End dot */}
-        <circle cx={toX(end.lng)} cy={toY(end.lat)} r="4.5" fill="var(--acc)" stroke="white" strokeWidth="1.5" />
-      </svg>
-    </div>
-  )
-}
 
 /** CSS scroll-snap photo carousel — no external deps */
 function PhotoCarousel({

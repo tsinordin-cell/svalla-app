@@ -29,7 +29,7 @@ export default function LiveTrackMap({
   bearing = null,
   heading = null,
   stops = [],
-  height = 240,
+  height: _height = 240,
   centerTrigger = 0,
   onExpand,
   showInternalControls = false,

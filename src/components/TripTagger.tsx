@@ -34,7 +34,6 @@ export default function TripTagger({
   const [tagError, setTagError] = useState<string | null>(null)
 
   const isOwner = currentUserId === tripOwnerId
-  const myTag = tags.find(t => t.tagged_user_id === currentUserId)
 
   useEffect(() => {
     let cancelled = false

@@ -13,8 +13,6 @@ type Props = {
   preselectedQuestion?: string
 }
 
-type Message = { role: 'user' | 'assistant'; content: string }
-
 /**
  * Overlay från entry-points som inte är /guide (floating chip på /rutter,
  * CTA på /planera-tur, etc.). Konsumerar samma /api/guide som dedikerade

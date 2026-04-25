@@ -152,7 +152,7 @@ export default async function PlaneraIdPage({ params }: Props) {
               {resolvedStops.length} stopp längs rutten
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {resolvedStops.map((stop, idx) => (
+              {resolvedStops.map(stop => (
                 <Link
                   key={stop.id}
                   href={`/platser/${stop.id}`}

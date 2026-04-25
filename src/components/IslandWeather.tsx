@@ -44,7 +44,7 @@ function beaufort(ms: number): string {
   return 'Orkanstyrka'
 }
 
-export default function IslandWeather({ lat, lng, islandName }: { lat: number; lng: number; islandName: string }) {
+export default function IslandWeather({ lat, lng }: { lat: number; lng: number; islandName?: string }) {
   const [weather, setWeather] = useState<WeatherData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(false)

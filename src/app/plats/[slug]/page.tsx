@@ -83,9 +83,6 @@ function isMarina(type: string | null) {
 function isEatery(type: string | null) {
   return type === 'restaurant' || type === 'cafe' || type === 'bar'
 }
-function isFuel(type: string | null) {
-  return type === 'fuel' || type === 'fuel_station'
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params

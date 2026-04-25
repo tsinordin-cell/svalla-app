@@ -523,33 +523,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.fillRect(x + fw * 0.28, fy2, fw * 0.20, fh)
     }
 
-    /* ── Midsommarstång ──────────────────────────────────────────────────── */
-    const midsommarstang = (x: number, y: number, scale = 1.0) => {
-      const ph = H * 0.090 * scale
-      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.8 * scale; cx.lineCap = 'round'
-      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
-      // Cross piece
-      const cw = H * 0.032 * scale, cy2 = y - ph * 0.80
-      cx.strokeStyle = '#4a6e28'; cx.lineWidth = 2.2 * scale
-      cx.beginPath(); cx.moveTo(x - cw, cy2); cx.lineTo(x + cw, cy2); cx.stroke()
-      // Green wreath at top
-      cx.fillStyle = 'rgba(72,148,48,0.78)'
-      cx.beginPath(); cx.arc(x, y - ph, H * 0.006 * scale, 0, Math.PI * 2); cx.fill()
-      cx.beginPath(); cx.arc(x - cw, cy2, H * 0.005 * scale, 0, Math.PI * 2); cx.fill()
-      cx.beginPath(); cx.arc(x + cw, cy2, H * 0.005 * scale, 0, Math.PI * 2); cx.fill()
-      // Ribbons — red and green hanging curves
-      cx.strokeStyle = 'rgba(210,48,60,0.65)'; cx.lineWidth = 0.9 * scale; cx.lineCap = 'round'
-      cx.beginPath()
-      cx.moveTo(x - cw, cy2)
-      cx.bezierCurveTo(x - cw - 4*scale, cy2 + H*0.012*scale, x - cw - 2*scale, cy2 + H*0.022*scale, x - cw, cy2 + H*0.026*scale)
-      cx.stroke()
-      cx.strokeStyle = 'rgba(68,150,48,0.65)'
-      cx.beginPath()
-      cx.moveTo(x + cw, cy2)
-      cx.bezierCurveTo(x + cw + 4*scale, cy2 + H*0.012*scale, x + cw + 2*scale, cy2 + H*0.022*scale, x + cw, cy2 + H*0.026*scale)
-      cx.stroke()
-    }
-
     /* ── Near islands — one coherent bay scene ───────────────────────────── */
     const drawNearIslands = () => {
       const wb = WL()
@@ -758,48 +731,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.beginPath(); cx.arc(px, py, 0.8, 0, Math.PI * 2); cx.fill()
       }
       cx.restore()
-    }
-
-    /* ── Seabed — scattered stones (no dark fill — bottom is transparent) ── */
-    const drawSeabedRocks = () => {
-      // Stones — varied sizes, natural
-      const stones = [
-        { x: W*0.06, rw: H*0.036, rh: H*0.016 }, { x: W*0.19, rw: H*0.024, rh: H*0.011 },
-        { x: W*0.34, rw: H*0.042, rh: H*0.018 }, { x: W*0.52, rw: H*0.028, rh: H*0.013 },
-        { x: W*0.70, rw: H*0.038, rh: H*0.017 }, { x: W*0.86, rw: H*0.030, rh: H*0.013 },
-        { x: W*0.43, rw: H*0.016, rh: H*0.008 }, { x: W*0.77, rw: H*0.018, rh: H*0.008 },
-      ]
-      stones.forEach(({ x, rw, rh }) => {
-        const ry = H - rh * 0.5
-        cx.beginPath(); cx.ellipse(x, ry, rw, rh, 0, 0, Math.PI * 2)
-        cx.fillStyle = 'hsla(215,14%,22%,0.70)'; cx.fill()
-        // Highlight edge
-        cx.beginPath(); cx.ellipse(x - rw*0.16, ry - rh*0.22, rw*0.36, rh*0.32, 0, 0, Math.PI * 2)
-        cx.fillStyle = 'hsla(215,12%,36%,0.25)'; cx.fill()
-      })
-    }
-
-    /* ── Seaweed — clustered, natural sway ──────────────────────────────── */
-    const drawSeaweed = () => {
-      weeds.forEach(w => {
-        cx.save(); cx.translate(w.x, H)
-        cx.beginPath(); cx.moveTo(0, 0)
-        const segs = 6; let py = 0
-        for (let s = 0; s < segs; s++) {
-          const sg = w.h / segs
-          const k = (s + 1) / segs
-          const sw = Math.sin(t * 0.85 * w.spd + w.ph + s * 0.52) * 16 * k
-          cx.bezierCurveTo(
-            sw * 0.36 + (s % 2 === 0 ?  4 : -4), py - sg * 0.36,
-            sw * 0.75 + (s % 2 === 0 ?  7 : -7), py - sg * 0.72,
-            sw, py - sg
-          )
-          py -= sg
-        }
-        cx.strokeStyle = `hsla(${w.hue},52%,28%,0.85)`
-        cx.lineWidth = w.w; cx.lineCap = 'round'; cx.stroke()
-        cx.restore()
-      })
     }
 
     /* ── Bubbles — sparse ───────────────────────────────────────────────── */

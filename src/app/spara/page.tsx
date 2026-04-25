@@ -91,12 +91,12 @@ export default function SparaPage() {
   const [isOnline,      setIsOnline]      = useState(true)
   const [offlineBuffered, setOfflineBuffered] = useState(0)
   const [currentPos,    setCurrentPos]    = useState<{ lat: number; lng: number } | null>(null)
-  const [anomalyCount,  setAnomalyCount]  = useState(0)
+  const [, setAnomalyCount]               = useState(0) // value bara via anomalyCountRef
 
   // ── New GPS intelligence state ──
   const [movementState,  setMovementState]  = useState<MovementState>('STILLA')
   const [bearing,        setBearing]        = useState<number | null>(null)
-  const [liveInsights,   setLiveInsights]   = useState<LiveInsight[]>([])
+  const [, setLiveInsights]                 = useState<LiveInsight[]>([]) // visas via flashInsight
   const [shownInsightKeys, setShownInsightKeys] = useState<Set<string>>(new Set())
   const [flashInsight,   setFlashInsight]   = useState<LiveInsight | null>(null)
   const [statsExpanded,  setStatsExpanded]  = useState(false)
@@ -119,7 +119,6 @@ export default function SparaPage() {
   const [aiVariants,      setAiVariants]      = useState<string[]>([])
   const [aiLoading,       setAiLoading]       = useState(false)
   const [aiErr,           setAiErr]           = useState(false)
-  const [includeAnalysis, setIncludeAnalysis] = useState(true)
 
   // ── Refs ──
   const watchRef         = useRef<number | null>(null)
@@ -800,57 +799,6 @@ export default function SparaPage() {
   if (phase === 'tracking' || phase === 'paused') {
     const mv = movementMeta(movementState)
     const isTracking = phase === 'tracking'
-    const BG      = '#08121e'
-    const CARD    = 'rgba(255,255,255,0.06)'
-    const CARD_BD = 'rgba(255,255,255,0.08)'
-    const META    = 'rgba(255,255,255,0.28)'
-    const SUB     = 'rgba(255,255,255,0.42)'
-    const mapH    = typeof window !== 'undefined' ? window.innerHeight : 700
-
-    const ControlButtons = () => (
-      <div style={{ display: 'flex', gap: 10 }}>
-        {isTracking ? (
-          <button onClick={handlePause} style={{
-            flex: 1, padding: '17px', borderRadius: 20,
-            border: '1.5px solid rgba(201,110,42,.4)',
-            background: 'rgba(201,110,42,.14)', color: '#e07828',
-            fontWeight: 700, fontSize: 17, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-          }}>
-            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 21, height: 21 }}>
-              <rect x="5" y="4" width="4" height="16" rx="1.5"/><rect x="15" y="4" width="4" height="16" rx="1.5"/>
-            </svg>
-            Pausa
-          </button>
-        ) : (
-          <button onClick={handleResume} style={{
-            flex: 1, padding: '17px', borderRadius: 20, border: 'none',
-            background: 'linear-gradient(135deg,#0f9e64,#0d8554)', color: '#fff',
-            fontWeight: 700, fontSize: 17, cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-            boxShadow: '0 4px 24px rgba(15,158,100,.45)',
-          }}>
-            <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 21, height: 21 }}>
-              <path d="M8 5v14l11-7z"/>
-            </svg>
-            Fortsätt
-          </button>
-        )}
-        <button onClick={handleStop} style={{
-          flex: 1, padding: '17px', borderRadius: 20,
-          background: 'rgba(204,61,61,.16)',
-          border: '1.5px solid rgba(204,61,61,.35)',
-          color: '#f87171',
-          fontWeight: 700, fontSize: 17, cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-        }}>
-          <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 19, height: 19 }}>
-            <rect x="4" y="4" width="16" height="16" rx="3"/>
-          </svg>
-          Avsluta
-        </button>
-      </div>
-    )
 
     // ── EXPANDED STATS VIEW — pure black, Garmin/Nike-stil ───────────────────
     if (statsExpanded) {
@@ -1669,30 +1617,6 @@ export default function SparaPage() {
         >
           {saving ? 'Sparar…' : 'Spara och visa tur →'}
         </button>
-      </div>
-    </div>
-  )
-}
-
-function StatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
-  return (
-    <div className="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <div className="text-2xl font-bold text-sea leading-none">
-        {val}<span className="text-sm font-medium ml-1">{unit}</span>
-      </div>
-      <div className="text-[10px] text-svalla-text3 uppercase tracking-wide mt-1">{label}</div>
-    </div>
-  )
-}
-
-function TrackStatBox({ val, unit, label }: { val: string; unit: string; label: string }) {
-  return (
-    <div className="track-stat">
-      <div style={{ fontSize: 'var(--t-stat-val-sz)', fontWeight: 700, color: 'var(--t-stat-val)', lineHeight: 1, letterSpacing: '-0.5px' }}>
-        {val}
-      </div>
-      <div style={{ fontSize: 9, color: 'var(--t-stat-sub)', marginTop: 4, textTransform: 'uppercase', letterSpacing: '.5px', fontWeight: 700 }}>
-        {unit} · {label}
       </div>
     </div>
   )

@@ -86,7 +86,6 @@ function KomIgangInner() {
 
   // Referral-kontext: kommer användaren hit via en delad tur?
   // Tur-sidans CTA skickar ?ref=tur&from=username för att kunna personifiera onboarding.
-  const refSource = searchParams?.get('ref') ?? null
   const fromUser  = searchParams?.get('from') ?? null
 
   const [step,          setStep]          = useState<Step>(0)

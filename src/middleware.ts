@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
 const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista']
-const PUBLIC_ROUTES = ['/platser', '/oar', '/rutter', '/om', '/faq', '/guide', '/integritetspolicy']
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
@@ -28,7 +27,7 @@ export async function middleware(request: NextRequest) {
           getAll() {
             return cookieStore.getAll()
           },
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+           
           setAll(cookiesToSet: Array<{ name: string; value: string; options?: any }>) {
             const response = NextResponse.next()
             for (const { name, value, options } of cookiesToSet) {

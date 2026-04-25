@@ -261,7 +261,7 @@ export default async function PublicProfilePage({
             { val: trips.length,              label: 'Turer' },
             { val: `${totalDist.toFixed(0)}`, label: 'NM' },
             { val: uniqueLocs,                label: 'Platser' },
-          ].map(({ val, label }, i) => (
+          ].map(({ val, label }) => (
             <div key={label} style={{
               flex: 1, padding: '14px 0', textAlign: 'center',
               borderRight: '1px solid rgba(10,123,140,0.07)',

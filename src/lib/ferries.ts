@@ -103,13 +103,6 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
 
 const TRAFIKLAB_BASE = 'https://api.resrobot.se/v2.1'
 
-// Operatörskoder enligt Trafiklab (HAFAS). Filtrerar bort SL-buss etc.
-const OPERATOR_CODES: Record<FerryRoute['operator'], string[]> = {
-  Waxholmsbolaget: ['WAB', 'WAXHOLMSBOLAGET'],
-  Cinderella:      ['CIN', 'CINDERELLA', 'STRÖMMA'],
-  SL:              ['SL'],
-}
-
 // Hafas-kategori för båt — catOutS === 'BÅT' eller product class 256 (ferry)
 function isFerry(productOrCat: unknown): boolean {
   if (!productOrCat || typeof productOrCat !== 'object') return false
@@ -118,15 +111,6 @@ function isFerry(productOrCat: unknown): boolean {
   if (cat.includes('BÅT') || cat.includes('BAT') || cat.includes('FERRY') || cat.includes('SHIP')) return true
   const cls = typeof o.cls === 'number' ? o.cls : parseInt(String(o.cls ?? ''), 10)
   return cls === 256 // HAFAS class bit for ferries/ships
-}
-
-function matchesOperator(productOrStop: unknown, operator: FerryRoute['operator']): boolean {
-  if (!productOrStop || typeof productOrStop !== 'object') return false
-  const o = productOrStop as { operatorCode?: string; operator?: string }
-  const code = (o.operatorCode ?? '').toUpperCase()
-  const name = (o.operator ?? '').toUpperCase()
-  const allowed = OPERATOR_CODES[operator] ?? []
-  return allowed.some(c => code.includes(c) || name.includes(c))
 }
 
 // In-memory-cache för stop-ID-lookups (återanvänds inom samma serverinstans)

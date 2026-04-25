@@ -405,7 +405,7 @@ export async function POST(req: NextRequest) {
   let data: unknown
   try {
     data = await req.json()
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: 'Ogiltig JSON i request body' }, { status: 400 })
   }
 

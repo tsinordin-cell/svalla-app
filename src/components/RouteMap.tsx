@@ -12,7 +12,6 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
   const mapRef         = useRef<any>(null)       // eslint-disable-line @typescript-eslint/no-explicit-any
   const polylineRef    = useRef<any>(null)       // eslint-disable-line @typescript-eslint/no-explicit-any
   const initializedRef = useRef(false)
-  const [activeStop, setActiveStop] = useState<TourWaypoint | null>(null)
 
   useEffect(() => {
     if (!containerRef.current || initializedRef.current || waypoints.length < 2) return

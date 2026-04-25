@@ -460,7 +460,7 @@ export default function ProfilPage() {
             { val: totalDist.toFixed(0), label: 'NM'      },
             { val: uniqueLocs,           label: 'Platser' },
             ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska' }] : []),
-          ]).map(({ val, label }, i, arr) => (
+          ]).map(({ val, label }) => (
             <div key={label} style={{
               flex: 1, padding: '14px 0', textAlign: 'center',
               borderRight: '1px solid rgba(10,123,140,0.07)',
