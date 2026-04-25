@@ -3,7 +3,6 @@
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import { useRouter } from 'next/navigation'
 import { WeatherPill, DestinationPill } from '@/components/MapCornerPills'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | 'rutter' | 'vader' | 'heatmap'
@@ -167,7 +166,6 @@ function markerSvg(name: keyof typeof ICON_PATHS, color: string): string {
 }
 
 export default function UpptackClient() {
-  const router    = useRouter()
   const mapRef    = useRef<HTMLDivElement>(null)
   const leafletRef = useRef<typeof import('leaflet') | null>(null)
   const mapInstanceRef = useRef<import('leaflet').Map | null>(null)
@@ -411,13 +409,7 @@ export default function UpptackClient() {
         })
 
         const m = L.marker([poi.latitude, poi.longitude], { icon: divIcon })
-        m.on('click', () => {
-          if (poi.slug) {
-            router.push(`/plats/${poi.slug}`)
-          } else {
-            setDetail({ ...poi, kind: 'poi' })
-          }
-        })
+        m.on('click', () => setDetail({ ...poi, kind: 'poi' }))
         mc.addLayer(m)
       }
 
@@ -826,7 +818,7 @@ export default function UpptackClient() {
                 return (
                   <button
                     key={p.id}
-                    onClick={() => p.slug ? router.push(`/plats/${p.slug}`) : setDetail({ ...p, kind: 'poi' })}
+                    onClick={() => setDetail({ ...p, kind: 'poi' })}
                     className="upptack-listcard press-feedback"
                     style={{
                       display: 'flex', alignItems: 'stretch', gap: 12,
