@@ -231,13 +231,13 @@ export default async function ModerationPage({
                     )}
                     {item.target_type === 'user' && (
                       <a
-                        href={`/u/[se_target_id]?id=${item.target_id}`}
-                        onClick={e => { e.preventDefault(); window.open(`/admin/moderation/user/${item.target_id}`) }}
+                        href={`/admin/moderation/user/${item.target_id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={{
                           padding: '6px 12px', borderRadius: 10, fontSize: 12, fontWeight: 600,
                           background: 'rgba(10,123,140,0.07)', color: 'var(--sea)',
                           textDecoration: 'none', display: 'block', whiteSpace: 'nowrap',
-                          cursor: 'pointer',
                         }}
                       >
                         Visa användare ↗
