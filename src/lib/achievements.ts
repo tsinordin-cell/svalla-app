@@ -38,8 +38,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'locs25',      emoji: '🗾', label: 'Arkipelagos',        desc: 'Besökt 25 unika platser',                       check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 25 },
   { id: 'magic3',      emoji: '🌟', label: 'Magikern',           desc: '3 magiska ⚓⚓⚓-upplevelser',                   check: (t) => t.filter(x => x.pinnar_rating === 3).length >= 3 },
   { id: 'streak8',     emoji: '⚡', label: 'Veckokrigaren',      desc: '8 veckor i rad med minst en tur',               check: (_t, _d, s) => s >= 8 },
-  { id: 'earlybird',   emoji: '🌅', label: 'Gryningsseglaren',   desc: 'Logga en tur som startar före kl 07:00',        check: (t) => t.some(x => x.started_at && new Date(x.started_at).getHours() < 7) },
-  { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',       desc: 'Logga en tur som slutar efter kl 22:00',        check: (t) => t.some(x => x.ended_at && new Date(x.ended_at).getHours() >= 22) },
+  { id: 'earlybird',   emoji: '🌅', label: 'Gryningsseglaren',   desc: 'Logga en tur som startar före kl 07:00',        check: (t) => t.some(x => x.started_at && new Date(x.started_at).getUTCHours() < 7) },
+  { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',       desc: 'Logga en tur som slutar efter kl 22:00',        check: (t) => t.some(x => x.ended_at && new Date(x.ended_at).getUTCHours() >= 22) },
   { id: 'speed15',     emoji: '💨', label: 'Vindridaren',        desc: 'Uppnå en toppfart på 15 knop',                  check: (t) => t.some(x => (x.max_speed_knots ?? 0) >= 15) },
   { id: 'fifty_trips', emoji: '👑', label: 'Skärgårdskungen',    desc: '50 loggade turer',                              check: (t) => t.length >= 50 },
 

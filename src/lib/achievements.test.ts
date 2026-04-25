@@ -151,27 +151,20 @@ describe('computeUnlocked', () => {
     expect(unlocked8.some(a => a.id === 'streak8')).toBe(true)
   })
 
-  it('unlocks "earlybird" for pre-07:00 start (local time)', () => {
-    // Build timestamp using local time so getHours() returns 5 regardless of timezone
-    const d = new Date(2024, 6, 1) // 2024-07-01 local midnight
-    d.setHours(5, 30, 0, 0)
-    const trips = [trip({ started_at: d.toISOString() })]
+  it('unlocks "earlybird" for pre-07:00 UTC start', () => {
+    const trips = [trip({ started_at: '2024-07-01T05:30:00Z' })]
     const unlocked = computeUnlocked(trips)
     expect(unlocked.some(a => a.id === 'earlybird')).toBe(true)
   })
 
-  it('does not unlock "earlybird" for 08:00 start (local time)', () => {
-    const d = new Date(2024, 6, 1)
-    d.setHours(8, 0, 0, 0)
-    const trips = [trip({ started_at: d.toISOString() })]
+  it('does not unlock "earlybird" for 08:00 UTC start', () => {
+    const trips = [trip({ started_at: '2024-07-01T08:00:00Z' })]
     const unlocked = computeUnlocked(trips)
     expect(unlocked.some(a => a.id === 'earlybird')).toBe(false)
   })
 
-  it('unlocks "nightsail" for post-22:00 end (local time)', () => {
-    const d = new Date(2024, 6, 1)
-    d.setHours(23, 0, 0, 0)
-    const trips = [trip({ ended_at: d.toISOString() })]
+  it('unlocks "nightsail" for post-22:00 UTC end', () => {
+    const trips = [trip({ ended_at: '2024-07-01T22:30:00Z' })]
     const unlocked = computeUnlocked(trips)
     expect(unlocked.some(a => a.id === 'nightsail')).toBe(true)
   })
