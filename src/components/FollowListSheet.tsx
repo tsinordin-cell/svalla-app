@@ -52,10 +52,12 @@ export default function FollowListButton({
   userId,
   mode,
   count,
+  dark = true,
 }: {
   userId: string
   mode:   'followers' | 'following'
   count:  number
+  dark?:  boolean
 }) {
   const [open,    setOpen]    = useState(false)
   const [users,   setUsers]   = useState<ListUser[]>([])
@@ -108,11 +110,12 @@ export default function FollowListButton({
         className="press-feedback"
         style={{
           background: 'none', border: 'none', cursor: 'pointer', padding: 0,
-          fontSize: 12, color: 'rgba(255,255,255,0.8)',
+          textAlign: 'center',
           WebkitTapHighlightColor: 'transparent',
         }}
       >
-        <strong style={{ color: '#fff', fontWeight: 700 }}>{count}</strong> {label}
+        <div style={{ fontSize: 18, fontWeight: 600, color: dark ? '#fff' : 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{count}</div>
+        <div style={{ fontSize: 9, fontWeight: 600, color: dark ? 'rgba(255,255,255,0.7)' : 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
       </button>
 
       {open && (

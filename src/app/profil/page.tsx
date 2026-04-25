@@ -13,6 +13,7 @@ import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import EmptyState from '@/components/EmptyState'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 import { isProEnabled } from '@/lib/pro'
+import FollowListButton from '@/components/FollowListSheet'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
@@ -456,29 +457,29 @@ export default function ProfilPage() {
         {/* ── Stats bar ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, display: 'flex', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
           {([
-            { val: trips.length,              label: 'Turer',   href: undefined as string | undefined },
-            { val: totalDist.toFixed(0),      label: 'NM',      href: undefined },
-            { val: uniqueLocs,                label: 'Platser', href: undefined },
-            ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska', href: undefined }] : []),
-            { val: followersCount, label: 'Följare', href: user?.username ? `/u/${user.username}#followers` : undefined },
-            { val: followingCount, label: 'Följer',  href: user?.username ? `/u/${user.username}#following` : undefined },
-          ]).map(({ val, label, href }, i, arr) => {
-            const inner = (
-              <>
-                <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
-                <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
-              </>
-            )
-            const cellStyle: React.CSSProperties = {
+            { val: trips.length,         label: 'Turer'   },
+            { val: totalDist.toFixed(0), label: 'NM'      },
+            { val: uniqueLocs,           label: 'Platser' },
+            ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska' }] : []),
+          ]).map(({ val, label }, i, arr) => (
+            <div key={label} style={{
               flex: 1, padding: '14px 0', textAlign: 'center',
-              borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none',
-              textDecoration: 'none', color: 'inherit',
-              display: 'block',
-            }
-            return href
-              ? <Link key={label} href={href} style={cellStyle}>{inner}</Link>
-              : <div key={label} style={cellStyle}>{inner}</div>
-          })}
+              borderRight: '1px solid rgba(10,123,140,0.07)',
+            }}>
+              <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+              <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+            </div>
+          ))}
+          {user && (
+            <>
+              <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: '1px solid rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FollowListButton userId={user.id} mode="followers" count={followersCount} dark={false} />
+              </div>
+              <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FollowListButton userId={user.id} mode="following" count={followingCount} dark={false} />
+              </div>
+            </>
+          )}
         </div>
 
         {/* ── Achievements grid ── */}
