@@ -261,50 +261,52 @@ export default async function PublicProfilePage({
             { val: trips.length,              label: 'Turer' },
             { val: `${totalDist.toFixed(0)}`, label: 'NM' },
             { val: uniqueLocs,                label: 'Platser' },
-            { val: followersCount ?? 0,       label: 'Följare',  el: <FollowListButton userId={userRow.id} mode="followers" count={followersCount ?? 0} /> },
-            { val: followingCount ?? 0,       label: 'Följer',   el: <FollowListButton userId={userRow.id} mode="following" count={followingCount ?? 0} /> },
-          ].map(({ val, label, el }, i, arr) => (
+          ].map(({ val, label }, i) => (
             <div key={label} style={{
               flex: 1, padding: '14px 0', textAlign: 'center',
-              borderRight: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.07)' : 'none',
+              borderRight: '1px solid rgba(10,123,140,0.07)',
             }}>
-              {el ?? (
-                <>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
-                  <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
-                </>
-              )}
+              <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
             </div>
           ))}
+          <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: '1px solid rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <FollowListButton userId={userRow.id} mode="followers" count={followersCount ?? 0} dark={false} />
+          </div>
+          <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <FollowListButton userId={userRow.id} mode="following" count={followingCount ?? 0} dark={false} />
+          </div>
         </div>
 
-        {/* ── Achievements horizontal strip ── */}
-        {unlockedAch.length > 0 && (
-          <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
-              Märken · {unlockedAch.length}/{ACHIEVEMENTS.length}
-            </div>
-            <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4, scrollbarWidth: 'none' } as React.CSSProperties}>
-              {ACHIEVEMENTS.map(a => {
-                const unlocked = unlockedAch.includes(a)
-                return (
-                  <div key={a.id} title={a.label} style={{
-                    flexShrink: 0, width: 52, height: 52,
-                    borderRadius: 14, background: 'var(--white)',
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                    gap: 2, border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.18)' : 'rgba(0,0,0,0.06)'}`,
-                    opacity: unlocked ? 1 : 0.3,
-                    filter: unlocked ? 'none' : 'grayscale(1)',
-                    boxShadow: unlocked ? '0 1px 6px rgba(0,45,60,0.07)' : 'none',
-                  }}>
-                    <span style={{ fontSize: 20 }}>{a.emoji}</span>
-                    <span style={{ fontSize: 7, fontWeight: 700, color: 'var(--txt2)', textAlign: 'center', lineHeight: 1.2, maxWidth: 44, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.label}</span>
-                  </div>
-                )
-              })}
-            </div>
+        {/* ── Achievements grid ── */}
+        <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+            <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+            <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
+              {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
+            </span>
           </div>
-        )}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+            {[...ACHIEVEMENTS.filter(a => unlockedAch.includes(a)), ...ACHIEVEMENTS.filter(a => !unlockedAch.includes(a))].map(a => {
+              const unlocked = unlockedAch.includes(a)
+              return (
+                <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                  gap: 5, padding: '12px 6px 10px',
+                  borderRadius: 16,
+                  background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
+                  border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
+                  opacity: unlocked ? 1 : 0.38,
+                  filter: unlocked ? 'none' : 'grayscale(1)',
+                  boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
+                }}>
+                  <span style={{ fontSize: 22 }}>{a.emoji}</span>
+                  <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt2)', textAlign: 'center', lineHeight: 1.2 }}>{a.label}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
 
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
