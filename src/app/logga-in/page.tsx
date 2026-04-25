@@ -309,7 +309,7 @@ function LoginContent() {
               )
             })()}
             {err && (
-              <div style={{ fontSize: 13, color: 'var(--red)', background: '#fdeaea', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
+              <div style={{ fontSize: 13, color: 'var(--red)', background: 'rgba(239,68,68,0.10)', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
                 {err}
               </div>
             )}
