@@ -220,7 +220,7 @@ export default function Nav() {
               {tab.label}
             </span>
             {active && (
-              <span style={{
+              <span className="nav-active-bar" style={{
                 position: 'absolute', bottom: 4, left: '50%',
                 transform: 'translateX(-50%)',
                 background: 'var(--teal, #0a7b8c)', width: 4, height: 4, borderRadius: '50%',

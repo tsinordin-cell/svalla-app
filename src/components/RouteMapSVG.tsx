@@ -36,64 +36,8 @@ export default function RouteMapSVG({
     return ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * Math.pow(2, z)
   }
 
-  // ── Minimum span-kontroll — om punkterna täcker < ~60 m har vi GPS-brus
-  //    utan rörelse. Visa platskarta Z=13 med en prick i stället för rutt.
-  const latSpan = maxLat - minLat
-  const lngSpan = maxLng - minLng
-  if (latSpan < 0.0005 && lngSpan < 0.0005) {
-    const Z0 = 13
-    const lngToX0 = (lng: number) => ((lng + 180) / 360) * Math.pow(2, Z0)
-    const latToY0 = (lat: number) => {
-      const r = (lat * Math.PI) / 180
-      return ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * Math.pow(2, Z0)
-    }
-    const cx0 = lngToX0(points[0].lng)
-    const cy0 = latToY0(points[0].lat)
-    const tx0 = Math.floor(cx0) - 1
-    const ty0 = Math.floor(cy0) - 1
-    // SVG-koordinater: cx0 ska landa på (w/2, h/2)
-    const gl = w / 2 - (cx0 - tx0) * 256
-    const gt = h / 2 - (cy0 - ty0) * 256
-
-    return (
-      <svg
-        viewBox={`0 0 ${w} ${h}`}
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-        preserveAspectRatio="xMidYMid meet"
-      >
-        {/* Havs-blå fallback-bakgrund */}
-        <rect x={0} y={0} width={w} height={h} fill="#d4e6ef" />
-        {/* 3×3 OSM + OpenSeaMap tiles */}
-        {[0, 1, 2].map(dy => [0, 1, 2].map(dx => (
-          <g key={`${dx}_${dy}`}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <image
-              href={`https://tile.openstreetmap.org/${Z0}/${tx0 + dx}/${ty0 + dy}.png`}
-              x={gl + dx * 256} y={gt + dy * 256}
-              width={256} height={256}
-              preserveAspectRatio="none"
-              className="route-map-tile"
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <image
-              href={`https://tiles.openseamap.org/seamark/${Z0}/${tx0 + dx}/${ty0 + dy}.png`}
-              x={gl + dx * 256} y={gt + dy * 256}
-              width={256} height={256}
-              preserveAspectRatio="none"
-              className="route-map-tile"
-              style={{ pointerEvents: 'none' }}
-            />
-          </g>
-        )))}
-        {/* Plats-markör */}
-        <circle cx={w / 2} cy={h / 2} r={7} fill="#e8520a" stroke="white" strokeWidth="2.5" />
-      </svg>
-    )
-  }
-
-  // ── Välj zoom ──
-  let Z = 15
+  // ── Välj zoom — börja på Z=17 så korta rutter (hamn, 20-100m) syns ordentligt ──
+  let Z = 17
   for (; Z >= 3; Z--) {
     const spanX = (lngToTileX(maxLng, Z) - lngToTileX(minLng, Z)) * 256
     const spanY = (latToTileY(minLat, Z) - latToTileY(maxLat, Z)) * 256

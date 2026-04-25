@@ -820,30 +820,37 @@ img {
     align-items: stretch !important;
     justify-content: flex-start !important;
     border-top: none !important;
-    border-right: 1px solid rgba(10,123,140,0.12) !important;
+    border-right: 1px solid rgba(10,123,140,0.10) !important;
     border-radius: 0 !important;
-    padding: 24px 8px 24px !important;
+    padding: 20px 10px 20px !important;
     gap: 2px;
     overflow-y: auto;
   }
   /* Tabs go horizontal: icon + label side-by-side */
   .nav-tab-link {
     flex: 0 0 auto !important;
-    min-height: 48px !important;
+    min-height: 44px !important;
     flex-direction: row !important;
     justify-content: flex-start !important;
-    padding: 0 16px !important;
-    gap: 12px !important;
-    font-size: 13px !important;
+    padding: 0 14px !important;
+    gap: 11px !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
     text-transform: none !important;
     letter-spacing: 0 !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
     width: 100%;
+    transition: background 0.12s ease, color 0.12s ease !important;
   }
   .nav-tab-link:hover {
-    background: rgba(10,123,140,0.06);
+    background: rgba(10,123,140,0.07) !important;
   }
-  /* Bottom-dot indicator → left bar */
+  /* Active tab — highlight background */
+  .nav-tab-link[aria-current="page"] {
+    background: var(--teal-12) !important;
+    font-weight: 600 !important;
+  }
+  /* Mobile bottom-dot → desktop left bar */
   .nav-active-bar {
     position: absolute !important;
     left: 0 !important;
@@ -851,14 +858,14 @@ img {
     bottom: auto !important;
     transform: translateY(-50%) !important;
     width: 3px !important;
-    height: 20px !important;
+    height: 18px !important;
     border-radius: 0 2px 2px 0 !important;
   }
   /* SVALLA logo in sidebar — show on desktop */
   .nav-logo-wrap {
     display: flex !important;
     align-items: center !important;
-    padding: 0 16px 20px !important;
+    padding: 4px 14px 18px !important;
     flex-shrink: 0 !important;
   }
   /* Inner tab list — stack vertically to fill sidebar */
@@ -867,15 +874,20 @@ img {
     align-items: stretch !important;
     max-width: none !important;
     flex: 1 !important;
+    display: flex !important;
   }
   /* FAB button — full-width pill i sidebaren */
   .nav-fab-wrap {
     flex: 0 0 auto !important;
     justify-content: stretch !important;
-    padding: 8px 12px !important;
-    min-height: 56px !important;
+    padding: 4px 2px 4px !important;
+    min-height: auto !important;
+    margin: 8px 0 6px !important;
   }
   .nav-fab-mobile {
+    display: none !important;
+  }
+  .nav-fab-label {
     display: none !important;
   }
   .nav-fab-desktop {
@@ -884,22 +896,28 @@ img {
     justify-content: center;
     gap: 8px;
     width: 100%;
-    height: 40px;
+    height: 42px;
     padding: 0 16px;
-    border-radius: 20px;
+    border-radius: 10px;
     background: linear-gradient(135deg, #0fa0b4, #0a7b8c);
     color: #fff;
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0;
-    box-shadow: 0 4px 14px rgba(10, 123, 140, 0.3);
+    box-shadow: 0 3px 10px rgba(10, 123, 140, 0.28);
     transition: filter 160ms ease, transform 160ms ease;
   }
   .nav-fab-wrap:hover .nav-fab-desktop {
-    filter: brightness(1.04);
+    filter: brightness(1.06);
   }
   .nav-fab-wrap:active .nav-fab-desktop {
     transform: scale(0.98);
+  }
+  /* Profile tab pushed to bottom of sidebar */
+  .nav-inner > :last-child {
+    margin-top: auto !important;
+    border-top: 1px solid rgba(10,123,140,0.08) !important;
+    padding-top: 8px !important;
   }
 }
 
