@@ -100,8 +100,8 @@ export async function GET(req: Request) {
 
     // Samla stale subscriptions
     userSubs.forEach((sub, i) => {
-      const r = results[i]!
-      if (r.status === 'rejected' && ((r as PromiseRejectedResult).reason as { statusCode?: number }).statusCode === 410) {
+      const r = results[i]
+      if (r.status === 'rejected' && (r.reason as { statusCode?: number }).statusCode === 410) {
         staleEndpoints.push(sub.endpoint)
       }
     })

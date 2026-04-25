@@ -27,7 +27,7 @@ function weatherDesc(code: number, isDay: number): { emoji: string; text: string
 // Vindriktning i grader → kompassriktning (svenska)
 function windDirLabel(deg: number): string {
   const dirs = ['N', 'NNO', 'NO', 'ONO', 'O', 'OSO', 'SO', 'SSO', 'S', 'SSV', 'SV', 'VSV', 'V', 'VNV', 'NV', 'NNV']
-  return dirs[Math.round(deg / 22.5) % 16]!
+  return dirs[Math.round(deg / 22.5) % 16]
 }
 
 // Beaufort-skala (seglare föredrar detta)

@@ -82,8 +82,8 @@ export async function POST(req: Request) {
 
   // Ta bort subscriptions som returnerat 410 Gone (inaktuella)
   const stale = subs.filter((_, i) => {
-    const r = results[i]!
-    return r.status === 'rejected' && ((r as PromiseRejectedResult).reason as { statusCode?: number }).statusCode === 410
+    const r = results[i]
+    return r.status === 'rejected' && (r.reason as { statusCode?: number }).statusCode === 410
   })
   if (stale.length > 0) {
     await supabase

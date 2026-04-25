@@ -182,7 +182,7 @@ export default function Comments({
     if (mentionHits.length > 0) {
       if (e.key === 'ArrowDown')  { e.preventDefault(); setMentionActive(v => Math.min(v + 1, mentionHits.length - 1)); return }
       if (e.key === 'ArrowUp')    { e.preventDefault(); setMentionActive(v => Math.max(v - 1, 0)); return }
-      if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); applyMention(mentionHits[mentionActive]!); return }
+      if (e.key === 'Enter' || e.key === 'Tab') { e.preventDefault(); applyMention(mentionHits[mentionActive]); return }
       if (e.key === 'Escape')     { setMentionHits([]); setMentionAnchor(null); return }
     }
     if (e.key === 'Enter' && !e.shiftKey && mentionHits.length === 0) { e.preventDefault(); post() }

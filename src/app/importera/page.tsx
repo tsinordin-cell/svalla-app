@@ -79,8 +79,8 @@ export default function ImporteraPage() {
     setFiles(prev => [...prev, ...newEntries])
 
     for (let i = 0; i < gpxFiles.length; i++) {
-      const file = gpxFiles[i]!
-      const entry = newEntries[i]!
+      const file = gpxFiles[i]
+      const entry = newEntries[i]
       try {
         const text = await file.text()
         const tracks = parseGpx(text)
@@ -115,7 +115,7 @@ export default function ImporteraPage() {
           distNm: stats.distNm,
           durationMin: stats.durationMin,
           startTime: stats.startTime,
-          caption: tracks[0]?.name !== 'Import' ? tracks[0]!.name : e.caption,
+          caption: tracks[0]?.name !== 'Import' ? tracks[0].name : e.caption,
           duplicateWarning,
         }))
       } catch {

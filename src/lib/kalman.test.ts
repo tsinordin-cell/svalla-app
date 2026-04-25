@@ -29,7 +29,7 @@ describe('KalmanFilter', () => {
     for (let i = 0; i < 20; i++) estimates.push(f.update(59.5))
     // Each successive estimate should be >= previous (converging upward)
     for (let i = 1; i < estimates.length; i++) {
-      expect(estimates[i]!).toBeGreaterThanOrEqual(estimates[i - 1]! - 1e-10)
+      expect(estimates[i]).toBeGreaterThanOrEqual(estimates[i - 1] - 1e-10)
     }
   })
 

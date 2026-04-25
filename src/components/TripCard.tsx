@@ -380,9 +380,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                     onIdxChange={setPhotoIdx}
                     sizes="(max-width: 640px) 50vw, 320px"
                   />
-                ) : isNextImageSafe(allPhotos[0]!) ? (
+                ) : isNextImageSafe(allPhotos[0]) ? (
                   <Image
-                    src={allPhotos[0]!}
+                    src={allPhotos[0]}
                     alt={trip.location_name ?? `Tur av ${username}`}
                     fill
                     className="object-cover"
@@ -393,7 +393,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                 ) : (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
-                    src={allPhotos[0]!}
+                    src={allPhotos[0]}
                     alt={trip.location_name ?? `Tur av ${username}`}
                     loading={priority ? 'eager' : 'lazy'}
                     decoding="async"
@@ -432,9 +432,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   onIdxChange={setPhotoIdx}
                   sizes="(max-width: 640px) 100vw, 640px"
                 />
-              ) : isNextImageSafe(allPhotos[0]!) ? (
+              ) : isNextImageSafe(allPhotos[0]) ? (
                 <Image
-                  src={allPhotos[0]!}
+                  src={allPhotos[0]}
                   alt={trip.location_name ?? `Tur av ${username}`}
                   fill
                   className="object-cover"
@@ -445,7 +445,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               ) : (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
-                  src={allPhotos[0]!}
+                  src={allPhotos[0]}
                   alt={trip.location_name ?? `Tur av ${username}`}
                   loading={priority ? 'eager' : 'lazy'}
                   decoding="async"

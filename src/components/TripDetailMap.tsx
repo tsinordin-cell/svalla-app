@@ -122,8 +122,8 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
 
       // Färgade polyline-segment efter fart
       for (let i = 1; i < points.length; i++) {
-        const a = points[i - 1]!
-        const b = points[i]!
+        const a = points[i - 1]
+        const b = points[i]
         const spd = ((a.speedKnots ?? 0) + (b.speedKnots ?? 0)) / 2
         L.polyline(
           [[a.lat, a.lng], [b.lat, b.lng]],
@@ -136,7 +136,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
         html: `<div style="width:14px;height:14px;border-radius:50%;background:#0f9e64;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
         iconSize: [14, 14], iconAnchor: [7, 7], className: '',
       })
-      L.marker([points[0]!.lat, points[0]!.lng], { icon: startIcon })
+      L.marker([points[0].lat, points[0].lng], { icon: startIcon })
         .bindTooltip('Start', { direction: 'top', offset: [0, -8] }).addTo(map)
 
       // END
@@ -144,7 +144,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
         html: `<div style="width:14px;height:14px;border-radius:50%;background:#cc3d3d;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
         iconSize: [14, 14], iconAnchor: [7, 7], className: '',
       })
-      L.marker([points[points.length - 1]!.lat, points[points.length - 1]!.lng], { icon: endIcon })
+      L.marker([points[points.length - 1].lat, points[points.length - 1].lng], { icon: endIcon })
         .bindTooltip('Slut', { direction: 'top', offset: [0, -8] }).addTo(map)
 
       // STOPS

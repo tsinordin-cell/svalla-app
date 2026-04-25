@@ -62,7 +62,7 @@ export function extractHashtags(text: string): string[] {
 export function getActiveMention(text: string, cursorPos: number): { word: string; start: number } | null {
   // Walk backwards from cursor to find unbroken @-word
   let i = cursorPos - 1
-  while (i >= 0 && /[a-zA-Z0-9_]/.test(text.charAt(i))) i--
+  while (i >= 0 && /[a-zA-Z0-9_]/.test(text[i])) i--
   if (i < 0 || text[i] !== '@') return null
   const start = i
   const word = text.slice(start + 1, cursorPos)

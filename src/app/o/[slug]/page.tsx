@@ -142,8 +142,8 @@ export default async function IslandPage({ params }: Props) {
               {/* Live väder — kräver koordinater */}
               {ISLAND_COORD_MAP[island.slug] && (
                 <IslandWeatherClient
-                  lat={ISLAND_COORD_MAP[island.slug]!.lat}
-                  lng={ISLAND_COORD_MAP[island.slug]!.lng}
+                  lat={ISLAND_COORD_MAP[island.slug].lat}
+                  lng={ISLAND_COORD_MAP[island.slug].lng}
                   islandName={island.name}
                 />
               )}

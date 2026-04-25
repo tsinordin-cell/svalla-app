@@ -50,10 +50,10 @@ function groupByDate(notifs: Notif[]): { label: string; items: Notif[] }[] {
 
   for (const n of notifs) {
     const age = now - new Date(n.created_at).getTime()
-    if (age < day)        groups['Idag']!.push(n)
-    else if (age < 2*day) groups['Igår']!.push(n)
-    else if (age < 7*day) groups['Den här veckan']!.push(n)
-    else                  groups['Äldre']!.push(n)
+    if (age < day)        groups['Idag'].push(n)
+    else if (age < 2*day) groups['Igår'].push(n)
+    else if (age < 7*day) groups['Den här veckan'].push(n)
+    else                  groups['Äldre'].push(n)
   }
 
   return Object.entries(groups)

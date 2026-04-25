@@ -60,17 +60,15 @@ export function gpxStats(points: GpxPoint[]): { distNm: number; durationMin: num
 
   let distNm = 0
   for (let i = 1; i < points.length; i++) {
-    distNm += haversineNm(points[i - 1]!.lat, points[i - 1]!.lng, points[i]!.lat, points[i]!.lng)
+    distNm += haversineNm(points[i - 1].lat, points[i - 1].lng, points[i].lat, points[i].lng)
   }
 
   let durationMin = 0
-  const first = points[0]!
-  const lastPt = points[points.length - 1]!
-  const t0 = first.time ? new Date(first.time).getTime() : null
-  const t1 = lastPt.time ? new Date(lastPt.time).getTime() : null
+  const t0 = points[0].time ? new Date(points[0].time!).getTime() : null
+  const t1 = points[points.length - 1].time ? new Date(points[points.length - 1].time!).getTime() : null
   if (t0 && t1) durationMin = Math.round((t1 - t0) / 60000)
 
-  return { distNm: Math.round(distNm * 10) / 10, durationMin, startTime: first.time ?? null }
+  return { distNm: Math.round(distNm * 10) / 10, durationMin, startTime: points[0]?.time ?? null }
 }
 
 function haversineNm(lat1: number, lon1: number, lat2: number, lon2: number): number {

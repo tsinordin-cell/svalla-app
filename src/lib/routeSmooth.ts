@@ -67,10 +67,10 @@ export function removeSpeedOutliers<T extends { lat: number; lng: number; record
   maxKnots = 30,
 ): T[] {
   if (points.length < 2) return points
-  const result: T[] = [points[0]!]
+  const result: T[] = [points[0]]
   for (let i = 1; i < points.length; i++) {
-    const prev = result[result.length - 1]!
-    const curr = points[i]!
+    const prev = result[result.length - 1]
+    const curr = points[i]
     const dtH  = (new Date(curr.recordedAt).getTime() - new Date(prev.recordedAt).getTime()) / 3_600_000
     if (dtH <= 0) continue
     const implied = distNM(prev, curr) / dtH
@@ -93,11 +93,11 @@ export function douglasPeucker<T extends { lat: number; lng: number }>(
 
   let maxDist = 0
   let maxIdx  = 0
-  const first = points[0]!
-  const last  = points[points.length - 1]!
+  const first = points[0]
+  const last  = points[points.length - 1]
 
   for (let i = 1; i < points.length - 1; i++) {
-    const d = degDist(points[i]!, first, last)
+    const d = degDist(points[i], first, last)
     if (d > maxDist) { maxDist = d; maxIdx = i }
   }
 
@@ -166,7 +166,7 @@ export function buildRoutePoints(
   // 4. Uniform down-sample to cap
   const step    = Math.floor(simplified.length / cap)
   const sampled = simplified.filter((_, i) => i % step === 0).map(toFixed)
-  const last    = toFixed(simplified[simplified.length - 1]!)
+  const last    = toFixed(simplified[simplified.length - 1])
   if (sampled[sampled.length - 1]?.lat !== last.lat) sampled.push(last)
 
   return sampled
@@ -186,36 +186,36 @@ export function splitAtAnomalies(
   pts: { lat: number; lng: number }[],
   factor = 8,
 ): { lat: number; lng: number }[][] {
-  if (pts.length < 2) return pts.length === 1 ? [[pts[0]!]] : []
+  if (pts.length < 2) return pts.length === 1 ? [[pts[0]]] : []
 
   // Segment lengths in degrees
   const lens: number[] = []
   for (let i = 1; i < pts.length; i++) {
-    const dx = pts[i]!.lng - pts[i - 1]!.lng
-    const dy = pts[i]!.lat - pts[i - 1]!.lat
+    const dx = pts[i].lng - pts[i - 1].lng
+    const dy = pts[i].lat - pts[i - 1].lat
     lens.push(Math.sqrt(dx * dx + dy * dy))
   }
 
   // Median segment length
   const sorted = [...lens].sort((a, b) => a - b)
-  const median = sorted[Math.floor(sorted.length / 2)]!
+  const median = sorted[Math.floor(sorted.length / 2)]
   const threshold = median * factor
 
   // Split
   const segments: { lat: number; lng: number }[][] = []
-  let current: { lat: number; lng: number }[] = [pts[0]!]
+  let current: { lat: number; lng: number }[] = [pts[0]]
 
   for (let i = 1; i < pts.length; i++) {
-    if (lens[i - 1]! > threshold && median > 0) {
+    if (lens[i - 1] > threshold && median > 0) {
       if (current.length >= 2) segments.push(current)
-      current = [pts[i]!]
+      current = [pts[i]]
     } else {
-      current.push(pts[i]!)
+      current.push(pts[i])
     }
   }
   if (current.length >= 2) segments.push(current)
   else if (current.length === 1 && segments.length > 0) {
-    segments[segments.length - 1]!.push(current[0]!)
+    segments[segments.length - 1].push(current[0])
   }
 
   return segments.length > 0 ? segments : [pts]

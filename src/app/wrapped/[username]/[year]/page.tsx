@@ -193,7 +193,7 @@ export default async function WrappedPage({ params }: Props) {
                     background: cnt > 0 ? 'linear-gradient(180deg,#2d7d8a,#1e5c82)' : 'rgba(10,123,140,0.08)',
                     transition: 'height 0.3s',
                   }} />
-                  <span style={{ fontSize: 7, color: 'var(--txt3)', textTransform: 'uppercase' }}>{MONTHS[i]!.slice(0, 1)}</span>
+                  <span style={{ fontSize: 7, color: 'var(--txt3)', textTransform: 'uppercase' }}>{MONTHS[i].slice(0, 1)}</span>
                 </div>
               )
             })}

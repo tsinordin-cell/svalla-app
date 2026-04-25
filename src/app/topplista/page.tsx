@@ -63,8 +63,8 @@ export default async function ToplistaPage() {
   const weekByNM: Record<string, { nm: number; count: number }> = {}
   for (const t of weekTrips) {
     if (!weekByNM[t.user_id]) weekByNM[t.user_id] = { nm: 0, count: 0 }
-    weekByNM[t.user_id]!.nm += t.distance ?? 0
-    weekByNM[t.user_id]!.count++
+    weekByNM[t.user_id].nm += t.distance ?? 0
+    weekByNM[t.user_id].count++
   }
   const weekTopNM = Object.entries(weekByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
@@ -76,9 +76,9 @@ export default async function ToplistaPage() {
   const monthByNM: Record<string, { nm: number; count: number; magic: number }> = {}
   for (const t of monthTrips) {
     if (!monthByNM[t.user_id]) monthByNM[t.user_id] = { nm: 0, count: 0, magic: 0 }
-    monthByNM[t.user_id]!.nm += t.distance ?? 0
-    monthByNM[t.user_id]!.count++
-    if (t.pinnar_rating === 3) monthByNM[t.user_id]!.magic++
+    monthByNM[t.user_id].nm += t.distance ?? 0
+    monthByNM[t.user_id].count++
+    if (t.pinnar_rating === 3) monthByNM[t.user_id].magic++
   }
   const monthTopNM = Object.entries(monthByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))

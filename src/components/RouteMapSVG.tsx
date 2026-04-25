@@ -20,8 +20,8 @@ export default function RouteMapSVG({
   if (!points || points.length < 2) return null
 
   // ── Bounds ──
-  let minLat = points[0]!.lat, maxLat = points[0]!.lat
-  let minLng = points[0]!.lng, maxLng = points[0]!.lng
+  let minLat = points[0].lat, maxLat = points[0].lat
+  let minLng = points[0].lng, maxLng = points[0].lng
   for (const p of points) {
     if (p.lat < minLat) minLat = p.lat
     if (p.lat > maxLat) maxLat = p.lat
@@ -65,7 +65,7 @@ export default function RouteMapSVG({
     lat => project(lat, 0)[1],
   )
 
-  const sp = points[0]!, ep = points[points.length - 1]!
+  const sp = points[0], ep = points[points.length - 1]
   const [sx, sy] = project(sp.lat, sp.lng)
   const [ex, ey] = project(ep.lat, ep.lng)
 

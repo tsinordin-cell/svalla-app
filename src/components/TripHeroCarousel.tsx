@@ -99,8 +99,8 @@ export default function TripHeroCarousel({
 
   // ── Grid mode: 2 or 3 photos, no route ──
   if (useGrid) {
-    const first  = validPhotos[0]!
-    const second = validPhotos[1]!
+    const first  = validPhotos[0]
+    const second = validPhotos[1]
     const third  = validPhotos[2] ?? null
 
     return (
@@ -170,11 +170,11 @@ export default function TripHeroCarousel({
           >
             <button onClick={() => setLightbox(false)} aria-label="Stäng" className="press-feedback" style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', width: 40, height: 40, borderRadius: '50%', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTapHighlightColor: 'transparent' }}>✕</button>
             <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 900, height: 'min(90vh, 700px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              {isVideo(validPhotos[lbIdx]!) ? (
+              {isVideo(validPhotos[lbIdx]) ? (
                 // eslint-disable-next-line jsx-a11y/media-has-caption
-                <video key={validPhotos[lbIdx]!} src={validPhotos[lbIdx]!} controls playsInline autoPlay style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 8 }} />
+                <video key={validPhotos[lbIdx]} src={validPhotos[lbIdx]} controls playsInline autoPlay style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 8 }} />
               ) : (
-                <Image src={validPhotos[lbIdx]!} alt={locationName ?? `Foto ${lbIdx + 1}`} fill style={{ objectFit: 'contain' }} sizes="100vw" />
+                <Image src={validPhotos[lbIdx]} alt={locationName ?? `Foto ${lbIdx + 1}`} fill style={{ objectFit: 'contain' }} sizes="100vw" />
               )}
             </div>
             {lbIdx > 0 && <button onClick={e => { e.stopPropagation(); setLbIdx(v => v - 1) }} aria-label="Föregående" className="press-feedback" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', width: 44, height: 44, borderRadius: '50%', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTapHighlightColor: 'transparent' }}>‹</button>}
@@ -328,11 +328,11 @@ export default function TripHeroCarousel({
               display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            {isVideo(validPhotos[lbIdx]!) ? (
+            {isVideo(validPhotos[lbIdx]) ? (
               // eslint-disable-next-line jsx-a11y/media-has-caption
               <video
-                key={validPhotos[lbIdx]!}
-                src={validPhotos[lbIdx]!}
+                key={validPhotos[lbIdx]}
+                src={validPhotos[lbIdx]}
                 controls
                 playsInline
                 autoPlay
@@ -340,7 +340,7 @@ export default function TripHeroCarousel({
               />
             ) : (
               <Image
-                src={validPhotos[lbIdx]!}
+                src={validPhotos[lbIdx]}
                 alt={locationName ?? `Foto ${lbIdx + 1}`}
                 fill
                 style={{ objectFit: 'contain' }}

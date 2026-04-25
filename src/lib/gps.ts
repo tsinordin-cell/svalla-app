@@ -40,7 +40,7 @@ export function distanceNM(lat1: number, lng1: number, lat2: number, lng2: numbe
 export function totalDistanceNM(points: GpsPoint[]): number {
   let d = 0
   for (let i = 1; i < points.length; i++) {
-    d += distanceNM(points[i - 1]!.lat, points[i - 1]!.lng, points[i]!.lat, points[i]!.lng)
+    d += distanceNM(points[i - 1].lat, points[i - 1].lng, points[i].lat, points[i].lng)
   }
   return d
 }
@@ -71,7 +71,7 @@ export function detectStops(points: GpsPoint[]): StopEvent[] {
   let stopLng = 0
 
   for (let i = 0; i < points.length; i++) {
-    const p = points[i]!
+    const p = points[i]
     if (p.speedKnots < STOP_THRESHOLD_KNOTS) {
       if (stopStart === null) {
         stopStart = i
@@ -80,16 +80,16 @@ export function detectStops(points: GpsPoint[]): StopEvent[] {
       }
     } else {
       if (stopStart !== null) {
-        const startTime = new Date(points[stopStart]!.recordedAt).getTime()
-        const endTime = new Date(points[i - 1]!.recordedAt).getTime()
+        const startTime = new Date(points[stopStart].recordedAt).getTime()
+        const endTime = new Date(points[i - 1].recordedAt).getTime()
         const dur = (endTime - startTime) / 1000
         if (dur >= MIN_STOP_SECONDS) {
           stops.push({
             lat: stopLat,
             lng: stopLng,
             type: 'stop',
-            startedAt: points[stopStart]!.recordedAt,
-            endedAt: points[i - 1]!.recordedAt,
+            startedAt: points[stopStart].recordedAt,
+            endedAt: points[i - 1].recordedAt,
             durationSeconds: Math.round(dur),
           })
         }
@@ -100,16 +100,16 @@ export function detectStops(points: GpsPoint[]): StopEvent[] {
 
   // Check if trip ended with a stop (final points have speed < 0.3)
   if (stopStart !== null && points.length > 0) {
-    const startTime = new Date(points[stopStart]!.recordedAt).getTime()
-    const endTime = new Date(points[points.length - 1]!.recordedAt).getTime()
+    const startTime = new Date(points[stopStart].recordedAt).getTime()
+    const endTime = new Date(points[points.length - 1].recordedAt).getTime()
     const dur = (endTime - startTime) / 1000
     if (dur >= MIN_STOP_SECONDS) {
       stops.push({
         lat: stopLat,
         lng: stopLng,
         type: 'stop',
-        startedAt: points[stopStart]!.recordedAt,
-        endedAt: points[points.length - 1]!.recordedAt,
+        startedAt: points[stopStart].recordedAt,
+        endedAt: points[points.length - 1].recordedAt,
         durationSeconds: Math.round(dur),
       })
     }
@@ -218,7 +218,7 @@ export function calculateBearing(lat1: number, lng1: number, lat2: number, lng2:
 
 export function bearingLabel(deg: number): string {
   const d = ['N','NNO','NO','ONO','O','OSO','SO','SSO','S','SSV','SV','VSV','V','VNV','NV','NNV']
-  return d[Math.round(deg / 22.5) % 16]!
+  return d[Math.round(deg / 22.5) % 16]
 }
 
 // ── Rörelsestatus ─────────────────────────────────────────────────────────────
@@ -284,7 +284,7 @@ export function computeRouteStats(
 ): RouteStats {
   const stoppedSec = stops.reduce((s, x) => s + x.durationSeconds, 0)
   const bearing = points.length >= 2
-    ? calculateBearing(points[0]!.lat, points[0]!.lng, points[points.length - 1]!.lat, points[points.length - 1]!.lng)
+    ? calculateBearing(points[0].lat, points[0].lng, points[points.length - 1].lat, points[points.length - 1].lng)
     : null
   return {
     distanceNM: totalDistanceNM(points),

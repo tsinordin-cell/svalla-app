@@ -902,7 +902,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           // Camouflage spots — 7 irregular blotches
           const sp = [[0.40,-0.25],[0.10,-0.40],[-0.22,-0.20],[0.28,0.28],[-0.10,0.35],[-0.42,0.10],[0.58,0.10]]
           sp.forEach(([sx,sy]) => {
-            cx.beginPath(); cx.ellipse(a*sx!, b2*sy!, a*0.10, b2*0.14, sx!*0.8, 0, Math.PI*2)
+            cx.beginPath(); cx.ellipse(a*sx, b2*sy, a*0.10, b2*0.14, sx*0.8, 0, Math.PI*2)
             cx.fillStyle = `hsla(${f.hue},18%,28%,0.30)`; cx.fill()
           })
           // Tail fin — rounded
@@ -963,7 +963,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
           cx.fillStyle = `hsla(${f.hue},22%,36%,0.84)`; cx.fill()
           // Mottled patches — 5 irregular blotches
           ;[[0.38,0.12],[0.12,-0.18],[-0.18,0.10],[0.55,-0.10],[-0.42,-0.08]].forEach(([sx,sy]) => {
-            cx.beginPath(); cx.ellipse(a*sx!, b2*sy!, a*0.10, b2*0.18, sx!*0.5, 0, Math.PI*2)
+            cx.beginPath(); cx.ellipse(a*sx, b2*sy, a*0.10, b2*0.18, sx*0.5, 0, Math.PI*2)
             cx.fillStyle = `hsla(${f.hue},14%,22%,0.30)`; cx.fill()
           })
           // Spiny dorsal fin — jagged

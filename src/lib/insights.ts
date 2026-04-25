@@ -64,8 +64,7 @@ function longestStreakWeeks(trips: InsightTrip[]): number {
   let best = 1, cur = 1
   for (let i = 1; i < sorted.length; i++) {
     // räkna om veckan direkt innan finns
-    const wParts = sorted[i]!.split('-W')
-    const y = Number(wParts[0]), w = Number(wParts[1])
+    const [y, w] = sorted[i].split('-W').map(Number)
     const prevDate = new Date(y, 0, 1 + (w - 1) * 7 - 7)
     if (weeks.has(isoWeekKey(prevDate))) {
       cur++
@@ -135,7 +134,7 @@ export async function computeInsights(
   }
   let most_active_month: Insights['most_active_month'] = undefined
   if (Object.keys(monthCounts).length > 0) {
-    const [k, v] = Object.entries(monthCounts).sort((a, b) => b[1]! - a[1]!)[0]!
+    const [k, v] = Object.entries(monthCounts).sort((a, b) => b[1] - a[1])[0]
     most_active_month = { key: k, label: monthLabel(k), count: v }
   }
 

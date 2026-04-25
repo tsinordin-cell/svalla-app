@@ -139,7 +139,7 @@ export async function getTripWeather(
             const s = h.wind_speed_10m[i]
             const d = h.wind_direction_10m[i]
             if (s == null || d == null) return null
-            const t = h.time[i]!
+            const t = h.time[i]
             return { timeIso: t, timeMs: new Date(t + 'Z').getTime(), speedMs: s, directionDeg: d }
           })
           .filter((x): x is HourlyWind => x !== null)
@@ -233,15 +233,15 @@ export function buildWindArrowSamples<T extends { lat: number; lng: number; reco
   for (let i = 0; i < n; i++) {
     const frac = n === 1 ? 0.5 : i / (n - 1)
     const idx = Math.floor(frac * (points.length - 1))
-    const p = points[idx]!
-    const pointMs = p.recordedAt ? new Date(p.recordedAt).getTime() : hourly[0]!.timeMs
+    const p = points[idx]
+    const pointMs = p.recordedAt ? new Date(p.recordedAt).getTime() : hourly[0].timeMs
 
     // Hitta närmaste timme i hourly-arrayen
-    let best = hourly[0]!
+    let best = hourly[0]
     let bestDelta = Math.abs(best.timeMs - pointMs)
     for (let j = 1; j < hourly.length; j++) {
-      const d = Math.abs(hourly[j]!.timeMs - pointMs)
-      if (d < bestDelta) { best = hourly[j]!; bestDelta = d }
+      const d = Math.abs(hourly[j].timeMs - pointMs)
+      if (d < bestDelta) { best = hourly[j]; bestDelta = d }
     }
 
     samples.push({
@@ -267,5 +267,5 @@ export function windColor(speedMs: number): string {
 export function windDirectionLabel(deg: number): string {
   const dirs = ['N', 'NO', 'O', 'SO', 'S', 'SV', 'V', 'NV']
   const idx = Math.round(deg / 45) % 8
-  return dirs[idx]!
+  return dirs[idx]
 }

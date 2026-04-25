@@ -440,7 +440,7 @@ export async function POST(req: NextRequest) {
     return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, label, url) => {
       // Tillåt /platser/<id> om id finns i DB
       const platserMatch = /^https?:\/\/svalla\.se\/platser\/([0-9a-f-]+)/i.exec(url)
-      if (platserMatch && validPlaceIds.has(platserMatch[1]!)) return full
+      if (platserMatch && validPlaceIds.has(platserMatch[1])) return full
       // Tillåt booking_url från DB
       if (validBookingUrls.has(url)) return full
       // Tillåt interna Svalla-sidor

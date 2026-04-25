@@ -104,8 +104,8 @@ export default function SuggestedUsers() {
       .slice(0, MAX_SUGGESTIONS)
       .map(s => ({
         id: s.uid,
-        username: profileMap[s.uid]!.username,
-        avatar: profileMap[s.uid]!.avatar,
+        username: profileMap[s.uid].username,
+        avatar: profileMap[s.uid].avatar,
         tripCount: s.tripCount,
         recentCount: s.recentCount,
       }))

@@ -59,15 +59,15 @@ export default function StoriesStrip() {
   function closeViewer() { setViewerGroup(null) }
   function nextStory() {
     if (viewerGroup === null) return
-    const g = groups[viewerGroup]!
+    const g = groups[viewerGroup]
     if (viewerIdx + 1 < g.stories.length) {
-      const next = g.stories[viewerIdx + 1]!
+      const next = g.stories[viewerIdx + 1]
       setViewerIdx(viewerIdx + 1)
       if (me) recordStoryView(supabase, me, next.id)
     } else if (viewerGroup + 1 < groups.length) {
       setViewerGroup(viewerGroup + 1)
       setViewerIdx(0)
-      const s = groups[viewerGroup + 1]!.stories[0]!
+      const s = groups[viewerGroup + 1].stories[0]
       if (me) recordStoryView(supabase, me, s.id)
     } else closeViewer()
   }
@@ -75,7 +75,7 @@ export default function StoriesStrip() {
     if (viewerIdx > 0) setViewerIdx(viewerIdx - 1)
     else if (viewerGroup !== null && viewerGroup > 0) {
       setViewerGroup(viewerGroup - 1)
-      setViewerIdx(groups[viewerGroup - 1]!.stories.length - 1)
+      setViewerIdx(groups[viewerGroup - 1].stories.length - 1)
     }
   }
 
@@ -113,7 +113,7 @@ export default function StoriesStrip() {
 
         {groups.map((g, idx) => {
           const isLive = !g.viewed_all &&
-            (Date.now() - new Date(g.stories[0]!.created_at).getTime()) < 2 * 60 * 60 * 1000
+            (Date.now() - new Date(g.stories[0].created_at).getTime()) < 2 * 60 * 60 * 1000
           return (
           <button
             key={g.user_id}
@@ -206,7 +206,7 @@ function StoryViewer({
   useEffect(() => {
     const t = setTimeout(onNext, 5000)
     return () => clearTimeout(t)
-  }, [story?.id, onNext])
+  }, [story.id, onNext])
 
   if (!story) return null
 

@@ -107,9 +107,8 @@ export async function enrichWithTags(
   for (const row of tagRows) {
     const u = userMap[row.tagged_user_id as string]
     if (!u) continue
-    const tripId = row.trip_id as string
-    if (!tagsByTrip[tripId]) tagsByTrip[tripId] = []
-    tagsByTrip[tripId]!.push(u)
+    if (!tagsByTrip[row.trip_id as string]) tagsByTrip[row.trip_id as string] = []
+    tagsByTrip[row.trip_id as string].push(u)
   }
 
   return trips.map(t => ({ ...t, tagged_users: tagsByTrip[t.id] ?? [] }))

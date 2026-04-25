@@ -127,7 +127,7 @@ describe('gpxStats', () => {
       { lat: 60.0, lng: 18.0 },
     ]
     const { distNm } = gpxStats(pts)
-    const twoLeg = gpxStats([pts[0]!, pts[2]!]).distNm
+    const twoLeg = gpxStats([pts[0], pts[2]]).distNm
     expect(Math.abs(distNm - twoLeg)).toBeLessThan(1)
   })
 })
