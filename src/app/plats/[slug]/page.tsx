@@ -267,30 +267,40 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
         )}
 
         {/* ── Eatery: Meny ── */}
-        {isEatery(p.type) && p.menu && (
+        {isEatery(p.type) && (
           <div style={{ marginBottom: 22 }}>
             <SectionTitle>Meny</SectionTitle>
-            <details style={{
-              background: 'var(--surface-1)', borderRadius: 'var(--radius-inner)',
-              border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
-              overflow: 'hidden',
-            }}>
-              <summary style={{
-                display: 'flex', alignItems: 'center', gap: 10,
-                padding: '12px 14px', cursor: 'pointer',
-                fontSize: 14, fontWeight: 600, color: 'var(--txt)',
-                listStyle: 'none', userSelect: 'none',
+            {p.website ? (
+              <a href={p.website} target="_blank" rel="noopener noreferrer" style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                background: 'var(--surface-1)', borderRadius: 'var(--radius-inner)',
+                border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
+                padding: '14px 16px', textDecoration: 'none',
               }}>
-                <span style={{ fontSize: 18 }}>{typeInfo?.emoji ?? '🍽'}</span>
-                <span style={{ flex: 1 }}>Visa meny</span>
-                <span style={{ fontSize: 16, color: 'var(--txt3)' }}>›</span>
-              </summary>
-              <div style={{ padding: '0 14px 14px', borderTop: '1px solid var(--hairline)' }}>
-                <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.65, margin: '12px 0 0', whiteSpace: 'pre-line' }}>
-                  {p.menu}
+                <span style={{ fontSize: 22 }}>🌐</span>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', margin: '0 0 2px' }}>
+                    Se meny på hemsidan
+                  </p>
+                  <p style={{ fontSize: 12, color: 'var(--txt3)', margin: 0 }}>
+                    Öppnar restaurangens webbplats
+                  </p>
+                </div>
+                <span style={{ fontSize: 18, color: 'var(--txt3)' }}>›</span>
+              </a>
+            ) : (
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                background: 'var(--surface-1)', borderRadius: 'var(--radius-inner)',
+                border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
+                padding: '14px 16px',
+              }}>
+                <span style={{ fontSize: 22 }}>🌐</span>
+                <p style={{ fontSize: 13, color: 'var(--txt3)', fontStyle: 'italic', margin: 0 }}>
+                  Meny finns på restaurangens hemsida – länk saknas ännu.
                 </p>
               </div>
-            </details>
+            )}
           </div>
         )}
 
@@ -299,14 +309,20 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
           <div style={{ marginBottom: 22 }}>
             <SectionTitle>Öppettider</SectionTitle>
             <div style={{
-              display: 'flex', alignItems: 'flex-start', gap: 10,
               background: 'var(--surface-1)', borderRadius: 'var(--radius-inner)',
               padding: '12px 14px', border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
             }}>
-              <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>🕐</span>
-              <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-line' }}>
-                {p.opening_hours}
-              </p>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>🕐</span>
+                <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-line' }}>
+                  {p.opening_hours}
+                </p>
+              </div>
+              {isEatery(p.type) && (
+                <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '10px 0 0', fontStyle: 'italic', paddingLeft: 28 }}>
+                  Kontrollera aktuella tider direkt med stället.
+                </p>
+              )}
             </div>
           </div>
         )}
