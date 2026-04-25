@@ -25,15 +25,18 @@ export default function InstallPrompt() {
     }
 
     // Android / Chrome — fånga beforeinstallprompt
+    let timer: ReturnType<typeof setTimeout> | null = null
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handler = (e: any) => {
       e.preventDefault()
       setDeferredPrompt(e)
-      const t = setTimeout(() => setShow(true), 5000)
-      return () => clearTimeout(t)
+      timer = setTimeout(() => setShow(true), 5000)
     }
     window.addEventListener('beforeinstallprompt', handler)
-    return () => window.removeEventListener('beforeinstallprompt', handler)
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler)
+      if (timer) clearTimeout(timer)
+    }
   }, [])
 
   function dismiss() {
