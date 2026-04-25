@@ -743,7 +743,7 @@ export default function ChatPage() {
                 >
                   {/* Image */}
                   {m.attachment_type === 'image' && m.attachment_url && (
-                    <a href={m.attachment_url} target="_blank" rel="noreferrer" style={{ display: 'block' }}>
+                    <a href={m.attachment_url} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
                       <div style={{ position: 'relative', width: 240, height: 240, borderRadius: bubbleR, overflow: 'hidden' }}>
                         <Image src={m.attachment_url} alt="" fill sizes="240px" style={{ objectFit: 'cover' }} />
                       </div>
@@ -1184,7 +1184,7 @@ function LocationBubble({ meta, href, mine }: { meta: GeoMeta; href: string | nu
       {hasCoords && (
         <div style={{ display: 'flex', gap: 6 }}>
           {seamarkHref && (
-            <a href={seamarkHref} target="_blank" rel="noreferrer" style={{
+            <a href={seamarkHref} target="_blank" rel="noopener noreferrer" style={{
               flex: 1, textAlign: 'center',
               padding: '8px 10px', borderRadius: radius.full,
               background: 'var(--surface-2, rgba(10,123,140,0.08))',
