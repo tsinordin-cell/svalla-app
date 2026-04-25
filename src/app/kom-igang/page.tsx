@@ -170,7 +170,7 @@ function KomIgangInner() {
     if (validationErr) { setErr(validationErr); return }
 
     setLoading(true); setErr('')
-    const derivedUsername = username.trim() || name.trim().split(' ')[0].toLowerCase() || email.split('@')[0]
+    const derivedUsername = username.trim() || name.trim().split(' ')[0]!.toLowerCase() || email.split('@')[0]!
 
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),

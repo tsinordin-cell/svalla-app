@@ -114,15 +114,15 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         iconSize: [16, 16], iconAnchor: [8, 8],
       })
 
-      L.marker(latlngs[0], { icon: startIcon })
+      L.marker(latlngs[0]!, { icon: startIcon })
         .addTo(map)
-        .bindTooltip(waypoints[0].name ?? 'Start', {
+        .bindTooltip(waypoints[0]!.name ?? 'Start', {
           permanent: false, direction: 'top', className: 'svalla-tooltip',
         })
 
-      L.marker(latlngs[latlngs.length - 1], { icon: endIcon })
+      L.marker(latlngs[latlngs.length - 1]!, { icon: endIcon })
         .addTo(map)
-        .bindTooltip(waypoints[waypoints.length - 1].name ?? 'Mål', {
+        .bindTooltip(waypoints[waypoints.length - 1]!.name ?? 'Mål', {
           permanent: false, direction: 'top', className: 'svalla-tooltip',
         })
 
@@ -231,7 +231,7 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
         <div style={{
           marginTop: 10, display: 'flex', gap: 6, flexWrap: 'wrap',
         }}>
-          {[waypoints[0], ...namedStops, waypoints[waypoints.length - 1]].filter(w => w.name).map((w, i, arr) => {
+          {[waypoints[0]!, ...namedStops, waypoints[waypoints.length - 1]!].filter(w => w?.name).map((w, i, arr) => {
             const isFirst = i === 0
             const isLast  = i === arr.length - 1
             return (

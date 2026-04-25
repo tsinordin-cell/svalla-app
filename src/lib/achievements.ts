@@ -86,7 +86,8 @@ export function calcStreak(trips: TripForAch[]): number {
     if (week === check) {
       streak++
       // Step back one week
-      const [yr, wk] = check.split('-W').map(Number)
+      const parts = check.split('-W')
+      const yr = Number(parts[0]), wk = Number(parts[1])
       const d = new Date(yr, 0, 1 + (wk - 1) * 7 - 7)
       check = isoWeekKey(d)
     } else {

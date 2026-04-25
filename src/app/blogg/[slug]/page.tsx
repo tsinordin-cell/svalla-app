@@ -1172,7 +1172,7 @@ function renderContent(content: string) {
   let key = 0
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
+    const line = lines[i]!
 
     if (line.startsWith('## ')) {
       elements.push(

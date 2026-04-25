@@ -252,7 +252,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 11, fontWeight: 600, color: '#fff', flexShrink: 0,
                   }}>
-                    {(r.username ?? '?')[0].toUpperCase()}
+                    {(r.username ?? '?')[0]!.toUpperCase()}
                   </div>
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt)' }}>

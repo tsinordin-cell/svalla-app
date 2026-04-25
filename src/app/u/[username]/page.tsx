@@ -121,9 +121,9 @@ export default async function PublicProfilePage({
   for (const t of trips) {
     const d   = new Date(t.created_at)
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()], count: 0, dist: 0 }
-    monthMap[key].count++
-    monthMap[key].dist += t.distance ?? 0
+    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()]!, count: 0, dist: 0 }
+    monthMap[key]!.count++
+    monthMap[key]!.dist += t.distance ?? 0
   }
   const monthBars = Object.entries(monthMap)
     .sort(([a], [b]) => a.localeCompare(b))
