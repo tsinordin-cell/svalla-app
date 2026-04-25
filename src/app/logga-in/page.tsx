@@ -81,13 +81,14 @@ function LoginContent() {
           email, password,
           options: { data: { username: username.trim() || email.split('@')[0] } },
         })
-        if (error) { setErr(mapAuthError(error.message)); setLoading(false); return }
+        if (error) { setErr(mapAuthError(error.message)); return }
         if (data.user) {
-          await supabase.from('users').upsert({
+          // Icke-blockerande — databasen har trigger för detta
+          supabase.from('users').upsert({
             id:       data.user.id,
             username: username.trim() || email.split('@')[0],
             email,
-          }, { onConflict: 'id', ignoreDuplicates: true })
+          }, { onConflict: 'id', ignoreDuplicates: true }).then(() => {})
           if (data.session) {
             if (typeof window !== 'undefined') {
               localStorage.removeItem('svalla_onboarded')
@@ -97,7 +98,7 @@ function LoginContent() {
           }
         }
         setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
-        setIsNew(false); setLoading(false)
+        setIsNew(false)
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) {
@@ -108,20 +109,22 @@ function LoginContent() {
           } else {
             setErr(mapAuthError(error.message))
           }
-          setLoading(false); return
+          return
         }
+        // Icke-blockerande — trigger hanterar users-raden
         if (data.user) {
-          await supabase.from('users').upsert({
+          supabase.from('users').upsert({
             id:       data.user.id,
             username: data.user.user_metadata?.username || data.user.email?.split('@')[0] || 'seglare',
             email:    data.user.email ?? '',
-          }, { onConflict: 'id' })
+          }, { onConflict: 'id' }).then(() => {})
         }
         router.push(returnTo)
       }
     } catch (ex) {
       console.error('Login error:', ex)
       setErr('Något gick fel. Försök igen.')
+    } finally {
       setLoading(false)
     }
   }
