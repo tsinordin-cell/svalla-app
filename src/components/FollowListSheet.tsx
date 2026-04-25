@@ -19,7 +19,6 @@ function Backdrop({ onClick, children }: { onClick: () => void; children: ReactN
         background: 'rgba(0,20,35,0.5)',
         backdropFilter: 'blur(4px)',
         display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-        paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px))',
       }}
     >
       {children}
@@ -36,11 +35,11 @@ function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivE
       onClick={onClick}
       style={{
         background: 'var(--white)', borderRadius: '24px 24px 0 0',
-        padding: '20px 20px',
-        paddingBottom: '24px',
+        padding: '20px 20px 24px',
         width: '100%', maxWidth: 480,
         boxShadow: '0 -4px 40px rgba(0,20,35,0.15)',
-        maxHeight: '75dvh', overflowY: 'auto',
+        maxHeight: '70dvh', overflowY: 'auto',
+        marginBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px))',
       }}
     >
       {children}

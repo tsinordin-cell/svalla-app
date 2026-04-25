@@ -56,6 +56,20 @@ export default function SokPage() {
   )
 }
 
+const RECENT_KEY = 'svalla_recent_searches'
+const MAX_RECENT = 5
+
+function loadRecent(): string[] {
+  try { return JSON.parse(localStorage.getItem(RECENT_KEY) ?? '[]') } catch { return [] }
+}
+function saveRecent(term: string) {
+  const prev = loadRecent().filter(s => s !== term)
+  localStorage.setItem(RECENT_KEY, JSON.stringify([term, ...prev].slice(0, MAX_RECENT)))
+}
+function removeRecent(term: string) {
+  localStorage.setItem(RECENT_KEY, JSON.stringify(loadRecent().filter(s => s !== term)))
+}
+
 function SokPageInner() {
   const sp = useSearchParams()
   const [supabase]  = useState(() => createClient())
@@ -65,10 +79,13 @@ function SokPageInner() {
   const [searched,      setSearched]      = useState(false)
   const [activeTab,     setActiveTab]     = useState<FilterTab>('alla')
   const [activeSailors, setActiveSailors] = useState<{ id: string; username: string; avatar: string | null; tripCount: number }[]>([])
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
   const inputRef  = useRef<HTMLInputElement>(null)
   const timerRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
   // Race-skydd: gamla söksvar ska inte överskriva nyare resultat
   const latestSearchIdRef = useRef(0)
+
+  useEffect(() => { setRecentSearches(loadRecent()) }, [])
 
   useEffect(() => { inputRef.current?.focus() }, [])
 
@@ -114,6 +131,8 @@ function SokPageInner() {
   async function search(q: string) {
     const searchId = ++latestSearchIdRef.current
     setLoading(true)
+    saveRecent(q.trim())
+    setRecentSearches(loadRecent())
     // Sanitera söktermen — strippa PostgREST-specialtecken för att undvika query injection
     const safe    = q.replace(/[()%_,]/g, '').trim().slice(0, 100)
     if (!safe)   { setResults([]); setSearched(true); setLoading(false); return }
@@ -385,6 +404,53 @@ function SokPageInner() {
                         </svg>
                       </div>
                     </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Senaste sökningar */}
+            {recentSearches.length > 0 && (
+              <div style={{ marginBottom: 24 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+                  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    Senaste sökningar
+                  </div>
+                  <button
+                    onClick={() => { localStorage.removeItem(RECENT_KEY); setRecentSearches([]) }}
+                    style={{ background: 'none', border: 'none', fontSize: 11, color: 'var(--txt3)', cursor: 'pointer', padding: '2px 4px' }}
+                  >
+                    Rensa
+                  </button>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {recentSearches.map(term => (
+                    <div key={term} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <button
+                        onClick={() => { setQuery(term); setActiveTab('alla') }}
+                        style={{
+                          flex: 1, display: 'flex', alignItems: 'center', gap: 10,
+                          background: 'var(--white)', border: '1px solid rgba(10,123,140,0.09)',
+                          borderRadius: 14, padding: '10px 14px', cursor: 'pointer', textAlign: 'left',
+                          boxShadow: '0 1px 4px rgba(0,45,60,0.04)',
+                          WebkitTapHighlightColor: 'transparent',
+                        }}
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 14, height: 14, flexShrink: 0 }}>
+                          <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35" />
+                        </svg>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', flex: 1 }}>{term}</span>
+                      </button>
+                      <button
+                        onClick={() => { removeRecent(term); setRecentSearches(loadRecent()) }}
+                        aria-label={`Ta bort ${term}`}
+                        style={{
+                          background: 'none', border: 'none', cursor: 'pointer', padding: '8px',
+                          color: 'var(--txt3)', fontSize: 14, lineHeight: 1, flexShrink: 0,
+                          WebkitTapHighlightColor: 'transparent',
+                        }}
+                      >✕</button>
+                    </div>
                   ))}
                 </div>
               </div>
