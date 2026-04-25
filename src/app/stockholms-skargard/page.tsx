@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Stockholms skärgård — Logga turer, hitta platser | Svalla',
-  description: 'Utforska Stockholms skärgård med Svalla. Logga dina båtturer, hitta restauranger, naturhamnar och bryggor bland tusentals öar. Gratis att komma igång.',
+  description: 'Utforska Stockholms skärgård med Svalla. Logga båtturer, skärgårdsliv och segelrutter. Hitta Sandhamn, Utö, Vaxholm och hundratals naturhamnar.',
   keywords: [
     'stockholms skärgård',
     'skärgårdsapp stockholm',
@@ -11,6 +11,11 @@ export const metadata: Metadata = {
     'segla stockholms skärgård',
     'naturhamnar stockholm',
     'restauranger skärgården',
+    'logga båttur',
+    'skärgårdsliv',
+    'sandhamn guide',
+    'utö guide',
+    'vaxholm guide',
     'sandhamn',
     'utö',
     'grinda',
@@ -83,10 +88,16 @@ export default function StockholmsSkargardPage() {
       intro={
         <>
           <p>
-            Stockholms skärgård är världsunik — <strong>30 000 öar och skär</strong>, hundratals krogar, naturhamnar och bryggor som öppnar varje sommar. Att hålla koll på allt var omöjligt. Tills nu.
+            Stockholms skärgård är världsunik — <strong>30 000 öar och skär</strong>, hundratals krogar, naturhamnar och bryggor som öppnar varje sommar. Från Fjäderholmarna bara 15 minuter från Slussen till Landsort i södern finns ett helt universum av möjligheter för den som älskar att segla, ankra och uppleva Sveriges vackraste kustlandskap.
           </p>
           <p>
-            Svalla samlar skärgårdslivet på ett ställe. Logga dina turer med GPS, hitta restauranger och naturhamnar på kartan, och dela upplevelserna med andra som är ute på samma vatten.
+            Att hålla koll på allt var omöjligt förr. Var ligger den bästa restaurangen? Vilka naturhamnar är egna för en skärgårdsmiddag? Hur gick det för dina vänner på deras senaste segeltur? Svalla samlar allt på ett ställe — en app skapad av seglare för seglare.
+          </p>
+          <p>
+            Logga dina turer med GPS och spara varje minne. Hitta testade restauranger, bryggor och ankringsplatser på en detaljerad karta. Följ andra seglare i realtid och dela dina bästa tips med ett community som förstår skärgårdslivet. Med Svalla blir varje säsong längre, varje tur mer minnesvärd.
+          </p>
+          <p>
+            Oavsett om du är nybörjare som vill utforska Innerskärgården eller erfaren seglare på väg till Utö eller Sandhamn — Svalla är din guide genom Sveriges skönaste vatten.
           </p>
         </>
       }
@@ -99,13 +110,82 @@ export default function StockholmsSkargardPage() {
             Stockholms skärgård — från innerskärgård till ytterskärgård
           </h2>
           <p>
-            <strong>Innerskärgården</strong> (Fjäderholmarna, Vaxholm, Värmdö) är perfekt för dagsutflykter och nykomlingar. Välskyddade vatten, tätt med platser och enkelt att ta sig ut från Stockholm.
+            Stockholms skärgård är uppdelad i tre distinktiva områden, var och en med sin egen karaktär, framkomliga vägar och typ av äventyr. Oavsett din erfarenhetsnivå finns det perfekta destinationer och ankringsplatser väntar på dig.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Innerskärgården — perfekt för nybörjare
+          </h3>
+          <p>
+            Innerskärgården är skärgårdens mest lättillgängliga del. Hit tar det bara 15 minuter från Slussen till <strong>Fjäderholmarna</strong>, där du hittar flera restauranger och ett populärt naturhamnsbad. För första gången ute i skärgården? Fjäderholmarna är startpunkten.
           </p>
           <p>
-            <strong>Mellanskärgården</strong> (Möja, Runmarö, Nämdö, Ornö) erbjuder ett steg till — längre segel, mer natur och färre turister. Svalla har detaljerade guider för alla större öar.
+            <strong>Vaxholm</strong> ligger bara drygt 30 minuter ut och erbjuder historia, kultur och gästhamn. Den berömda Vaxholm fästning från 1600-talet trots sitt massiva utseende är väl värd ett besök till fots. Restauranger och affärer gör det enkelt att tillbringa en hel dag här. <strong>Nämdö</strong> är nästa naturliga steg — fortfarande väl skyddad vatten men med mer avskildhet än Fjäderholmarna.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Mellanskärgården — det bästa av två världar
+          </h3>
+          <p>
+            Mellanskärgården är där skärgårdslivet blomstrar. Här hittar du möjligheter till längre segelrutter utan att behöva riskvärdera väder på samma sätt som ytterskärgården. En klassisk veckas segling från Stockholm kan ta dig till <strong>Möja</strong>, <strong>Runmarö</strong>, <strong>Ornö</strong> och <strong>Nämdö</strong> — varje ö med sina egna charm och naturhamnsekvivalent.
           </p>
           <p>
-            <strong>Ytterskärgården</strong> (Sandhamn, Utö, Landsort, Huvudskär) kräver erfarenhet och väderplanering men belönar med råare natur och ikoniska krogar. Perfekt att logga med GPS.
+            Möja lockar med vildmark och enkla naturhamnar perfekta för meditation på sjön. Runmarö erbjuder bättre utsikt över öppen hav samtidigt som det fortfarande är väl skyddat. Ornö är känd för sina klassiska vikar — särskilt <strong>Klasärterna</strong> räknas bland de vackraste naturhamnarna i hela skärgården. Nämdö fulländar resan med <strong>Kyrkogårdsfjärden</strong>, en fjärd så fin att många seglare gör den till sitt favorithakningsställe.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Ytterskärgården — för den erfarne seglaren
+          </h3>
+          <p>
+            Ytterskärgården kräver respekt och planering, men belönar med oförglömliga upplevelser. <strong>Sandhamn</strong> är skärgårdens mest ikoniska destination — hem för Kungliga Svenska Segelällskapet (KSSS) och det legendariska Sandhamns Värdshus. Hit tar det ungefär 35 sjömil från Stockholm (ca 65 km), vilket med god vind tar 5–8 timmar att segl. Det är värt varje minut.
+          </p>
+          <p>
+            <strong>Utö</strong> i söder är unik — en före detta gruva som idag är en pittoresk by med Utö Värdshus, där du kan njuta av middag med havet som doplats. <strong>Landsort</strong> ligger ännu längre söderut och är Sveriges sydligaste punkt till sjöss — en rå och vacker destination för erfarna seglare. <strong>Huvudskär</strong> erbjuder ungefär samma vildmark och känsla av äventyr längre västerut, med små vikar och ankringsplatser som bara finns på kartan för den som vet var de ska titta.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Bästa säsongen för Stockholms skärgård
+          </h3>
+          <p>
+            Säsongen i Stockholm börjar när vattnet blir isfritt, vanligtvis i april, men sommaren är när skärgården kommer till liv.
+          </p>
+          <p>
+            <strong>Maj och juni</strong> är trevligt — luften är varm, men vattnet är fortfarande fritt från sommartourister. Restaurangerna börjar öppna, och du kan logga turer utan att konkurrera om ankringsplatser. <strong>Juli</strong> är högsäsongen. Alla är ute, vattnet är varmt, men det är viktigt att boka hamnar i god tid. Redan i slutet av juni kan populära platser som Sandhamn och Utö vara fulla.
+          </p>
+          <p>
+            <strong>Augusti och september</strong> är hemligt tips för många seglare. Vattnet är som varmast, skolorna har börjat, och skärgården blir plötsligt lugn igen. Restauranger håller öppet fram till slutet av augusti, ofta med längre öppettider än tidigare på sommaren. Det är den perfekta tiden för en längre skärgårdstur där du kan ankra var du vill utan att stöta på tiotusentals andra båtar.
+          </p>
+
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '28px 0 12px' }}>
+            Vanliga frågor om Stockholms skärgård
+          </h2>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Behöver man båtlicens för att segla i Stockholms skärgård?
+          </h3>
+          <p>
+            Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand. En grund i sjörätt, väderintolkning och navigationall kan spara ditt liv.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Hur längt är det att segl från Stockholm till Sandhamn?
+          </h3>
+          <p>
+            Det är ungefär 35 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Vilka är de bästa naturhamnarna i Stockholms skärgård?
+          </h3>
+          <p>
+            <strong>Klasärterna på Ornö</strong>, <strong>Kyrkogårdsfjärden på Nämdö</strong> och de vackra vikarna runt <strong>Huvudskär</strong> räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker milj — lugnt vatten, fin natur och enkelt att ankra. Med Svalla kan du boka på många ställen i förväg, vilket gör planeringen enklare.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            När öppnar krogarna i skärgården?
+          </h3>
+          <p>
+            Majoriteten av restaurangerna i skärgården öppnar runt midsommar och stänger i slutet av augusti — samma årstid då sommarstugor fylls och segellingarna blomstrar. <strong>Fjäderholmarna</strong> är ett undantag och håller öppet längre än de flesta andra, ofta från våren och långt in på hösten. För de senaste öppettiderna och några restaurangers specialöppningar under hösten, kollar du bäst på Svalla eller att ringa i förväg.
           </p>
         </>
       }
