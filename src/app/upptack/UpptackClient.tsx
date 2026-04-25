@@ -280,7 +280,7 @@ export default function UpptackClient() {
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [])
 
   // ── Heatmap fetch on map move ─────────────────────────────────────────────

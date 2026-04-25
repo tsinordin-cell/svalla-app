@@ -401,7 +401,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         const color = LAYER_COLORS[cat]
         const emoji = LAYER_LABELS[cat]
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         const marker = L.marker([r.latitude, r.longitude], {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           icon: L.divIcon(makeIconHtml(color, 34, false, emoji) as any),
@@ -517,7 +517,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         }
       }
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [activeId, nearbyIds])
 
   // ── Layer-synk (cluster-aware) ───────────────────────────────────────────
