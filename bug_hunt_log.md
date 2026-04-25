@@ -1,91 +1,123 @@
-# Bug Hunt-logg — startade 2026-04-25
+# Slutrapport
 
-## ⏸ STOPPAD — väntar på Tom
+**Status:** KLAR
+**Total tid:** ~75 min (inkl. Node v25 paus + omstart)
+**Total fixar:** 9
+**Total commits (mina):** 8 + 1 logg
+**Bundle före/efter:** N/A — `next build` blockerat av Node v25 / Next 15.3.6
+**Build-tid:** N/A
+**TypeScript:** PASS (0 errors före och efter)
+**Lint:** N/A — ESLint inte konfigurerat
+**Tester:** Vitest också blockerat av Node v25
 
-Pass 1 (Build & TypeScript-fel) blockerades direkt av en miljö-bug
-som inte ligger i Tom's källkod.
+## Vad som blev bättre
 
-### Problemet
+### Pass 2 — Runtime
+- `admin/moderation/page.tsx`: onClick + window.open i SERVER-komponent
+  (kraschar runtime). Trasig href-template `/u/[se_target_id]`. Bytt
+  till ren `<a>`.
+- `components/InstallPrompt.tsx`: timer-cleanup returnerades från
+  event-handlern istället för useEffect — clearTimeout kördes aldrig.
+  Timern överlevde unmount och kunde sätta state på död komponent.
 
-`next build` kraschar med:
+### Pass 3 — Dead code (587 rader bort)
+- `components/ProBadge.tsx` — oanvänd
+- `components/ShareButton.tsx` — oanvänd
+- `components/RestaurantMap.tsx` — oanvänd
+- `components/RestaurantMapClient.tsx` — oanvänd wrapper
+- `components/ui/IconButton.tsx` — oanvänd
+- `lib/tracker.ts` — duplikat av `lib/gps.ts` (GpsPoint-typen exporteras
+  båda ställen, men bara `lib/gps` används)
+- `lib/map-tiles.ts` — exporterar tile-helpers ingen importerar
 
-```
-Error: Cannot find module 'next/dist/compiled/string_decoder'
-Require stack:
-- node_modules/next/dist/build/webpack-config.js
-```
+### Pass 4 — Performance
+- `lib/dm.ts countUnreadMessages`: N+1 sequential count-queries
+  parallelliserade via Promise.all. Påverkar olästa-bjällran på
+  varje sidladdning för användare med flera konversationer.
 
-Roten: `node_modules/next/dist/compiled/string_decoder/` saknar
-`package.json` (har bara `LICENSE` och `string_decoder.js`). Andra
-peer-mappar i samma katalog (`punycode`, `buffer`, m.fl.) HAR
-package.json. Det är alltså inte en återinstallationsfix —
-`npm install next@15.3.6` kör om utan att lägga tillbaka filen.
+### Pass 5 — Polish
+- `app/i/[code]/page.tsx`: lade till metadata + OG-tags + robots:noindex.
+  Inbjudningslänkar fick tidigare bara fallback-titeln från root layout
+  vid delning i Slack/iMessage.
+- `app/meddelanden/[id]/page.tsx`: två externa länkar saknade `noopener`
+  — minor reverse tabnabbing-yta.
 
-Sannolik orsak: **Node v25.8.1** kombinerat med **Next 15.3.6**.
-Node 25 har strikt module-resolution som kräver `package.json`
-eller `index.js` för directory-import. Tidigare Node-versioner
-gissade `<dir>/<dir-name>.js`. Next 15.3.6 paketerade inte
-package.json för string_decoder eftersom äldre Node hanterade det
-på äldre vis.
+## Sidor som polerades
+- `/admin/moderation` — fix
+- `/i/[code]` — metadata
+- `/meddelanden/[id]` — säkerhet
 
-### Verifiering
+## Skippade items (kräver Tom's beslut)
 
-```bash
-$ node --version
-v25.8.1
+- **Node v25 + Next 15.3.6**: `next build` och `npm test` kraschar
+  båda pga `next/dist/compiled/string_decoder` saknar `package.json`.
+  TypeScript är ren. Lösningar:
+  1. `nvm use 22` (säkrast, ingen kodändring)
+  2. Uppgradera Next till 15.4+
+  3. patch-package
+  4. `.nvmrc` med "22"
+- **ESLint inte konfigurerat**: `next lint` finns i package.json men
+  ingen `.eslintrc.*` eller `eslint.config.*`. Vill du att jag
+  konfigurerar Strict-läget?
+- **`<img>` istället för `<Image>`** i 6 platser (avatarer, previews):
+  alla är blob:/object URLs där Next/Image inte fungerar. Inte ett bug.
+- **`countUnreadMessages` har en SQL-baserad ompackning** som vore
+  ännu snabbare än `Promise.all` — kräver Supabase-RPC, så utanför
+  scope.
 
-$ ls node_modules/next/dist/compiled/string_decoder/
-LICENSE
-string_decoder.js          # ← ingen package.json
+## Rekommenderade nästa steg
 
-$ ls node_modules/next/dist/compiled/punycode/
-package.json               # ← finns här (fungerar)
-punycode.js
+1. **Fixa Node-versionen** så att build/test fungerar igen — annars
+   missar du klassen av buggar bara CI-pipelinen kan fånga.
+2. **Konfigurera ESLint Strict** — du kommer hitta fler döda imports
+   och saknade hook-deps som tsc inte ser.
+3. **Bundle-analys när build går igen** — Pass 4 kunde inte göras
+   ordentligt. Sannolika kandidater: Leaflet-bundle på sidor som
+   inte behöver karta, Sentry-init för stora.
 
-$ node -e "require.resolve('next/dist/compiled/string_decoder')"
-Error: Cannot find module ...
-```
+---
 
-### Möjliga lösningar (Tom väljer)
+## Pass-loggar
 
-1. **Downgrade Node till 22 LTS eller 20 LTS** (säkrast, ingen kodändring)
-2. **Uppgradera Next** till en patch-version som inkluderar package.json
-   för string_decoder (15.3.7+ eller 15.4+)
-3. **Patch via `patch-package`** för att lägga till
-   `package.json` i `node_modules/next/dist/compiled/string_decoder`
-   (snabbt men bräckligt — låser oss vid en patch)
-4. **Skapa `.nvmrc`** med "22" så att alla i teamet använder rätt Node
+### Pass 1 — Build & TypeScript-fel
+- Hittade: 1 (miljö, inte kod)
+- Fixade: 0 (Tom väljer fix; tsc clean)
+- Skippade: 1 (Node v25 + Next 15.3.6 string_decoder)
+- Commits: 577bd11
+- TypeScript: PASS (0 errors)
+- Build: FAIL (miljö)
 
-### Vad jag har gjort
+### Pass 2 — Runtime-buggar
+- Hittade: 2
+- Fixade: 2
+- Commits: 60b11cf, ef7f85a
 
-- Inget i Tom's kod
-- Försökt `npm install next@15.3.6` (gjorde ingen skillnad)
-- Killade en hängd build-process från tidigare session
+### Pass 3 — Dead code
+- Hittade: 7 oanvända filer
+- Fixade: 7 (587 rader bort)
+- Commits: 3fc0848, ab46f96, 099fb77
 
-### TS-status (separat verifierat)
+### Pass 4 — Performance & bundle
+- Hittade: 1 N+1-loop
+- Fixade: 1 (parallellisering)
+- Skippade: bundle-analys (build trasig)
+- Commits: deb2f8c
 
-`npx tsc --noEmit` → **0 errors**. Tom's kod är typsäker.
+### Pass 5 — Polish per sida
+- Hittade: 2 (saknad metadata, missande noopener)
+- Fixade: 2
+- Commits: c6d3be1, 6ce432d
 
-### Lint-status
+### Pass 6 — Verifiering
+- TypeScript: PASS (0 errors)
+- Lint: N/A
+- Tester: blockerade av Node v25
 
-`next lint` är inte konfigurerat alls (ingen `.eslintrc`, ingen
-`eslint.config.*`). Skriptet finns i package.json men det finns
-ingen config. Tom: vill du att vi konfigurerar Strict-läget?
+---
 
-### Fixar gjorda innan stopp
+## Tidigare paus-anteckning (för kontext)
 
-- `bug_hunt_log.md` skapad
-- Inga commits
-
-### Vad du kan göra när du är tillbaka
-
-Snabbtest:
-
-```bash
-cd svalla-app
-nvm use 22 && npm run build
-```
-
-Om det funkar — säg till så fortsätter jag med Pass 1–6 utan
-omstart. Hela TS-checken är redan ren så jag misstänker att Pass 1
-i praktiken är klar och vi kan hoppa direkt till Pass 2.
+Pass 1 blockerades initialt av miljö-buggen. Efter Tom's "kör alla
+pass utan att pausa" fortsatte jag med pass 2–6 baserat på enbart
+tsc + statisk kod-analys. Allt i listan ovan är verifierat genom
+TypeScript och kodgranskning. Build-verifiering kräver Node-fix.
