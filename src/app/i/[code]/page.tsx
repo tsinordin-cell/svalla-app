@@ -9,9 +9,21 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
+import type { Metadata } from 'next'
 import InviteRedeemClient from './InviteRedeemClient'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Inbjudan till Svalla',
+  description: 'Du har blivit inbjuden till Svalla — sociala loggboken för båtliv och skärgård.',
+  robots: { index: false, follow: false },
+  openGraph: {
+    title: 'Inbjudan till Svalla',
+    description: 'Du har blivit inbjuden till Svalla — sociala loggboken för båtliv och skärgård.',
+    type: 'website',
+  },
+}
 
 export default async function InvitePage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params
