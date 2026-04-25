@@ -176,8 +176,9 @@ export default function TripActions({
             </h3>
 
             {/* Location */}
-            <label style={labelStyle}>📍 Plats</label>
+            <label htmlFor="trip-edit-location" style={labelStyle}>📍 Plats</label>
             <input
+              id="trip-edit-location"
               type="text"
               value={location}
               onChange={e => setLocation(e.target.value)}
@@ -187,8 +188,9 @@ export default function TripActions({
             />
 
             {/* Caption */}
-            <label style={{ ...labelStyle, marginTop: 12 }}>💬 Berätta om turen</label>
+            <label htmlFor="trip-edit-caption" style={{ ...labelStyle, marginTop: 12 }}>💬 Berätta om turen</label>
             <textarea
+              id="trip-edit-caption"
               value={caption}
               onChange={e => setCaption(e.target.value)}
               placeholder="Vad hände? Vad var bäst?"
@@ -199,8 +201,9 @@ export default function TripActions({
             <div style={{ fontSize: 10, color: 'var(--txt3)', textAlign: 'right', marginBottom: 12 }}>{caption.length}/280</div>
 
             {/* Pinnar */}
-            <label style={labelStyle}>⚓ Hur var turen?</label>
-            <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+            <div role="group" aria-labelledby="trip-edit-pinnar-label">
+              <span id="trip-edit-pinnar-label" style={labelStyle}>⚓ Hur var turen?</span>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
               {PINNAR.map(p => (
                 <button
                   key={p.value}
@@ -219,12 +222,14 @@ export default function TripActions({
                   <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === p.value ? '#fff' : 'var(--txt3)' }}>{p.label}</span>
                 </button>
               ))}
+              </div>
             </div>
 
             {/* Boat type */}
-            <label style={labelStyle}>🚤 Båttyp</label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 18 }}>
-              {BOAT_TYPES.map(bt => (
+            <div role="group" aria-labelledby="trip-edit-boat-type-label">
+              <span id="trip-edit-boat-type-label" style={labelStyle}>🚤 Båttyp</span>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 18 }}>
+                {BOAT_TYPES.map(bt => (
                 <button
                   key={bt}
                   type="button"
@@ -237,7 +242,8 @@ export default function TripActions({
                 >
                   {bt}
                 </button>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Save */}

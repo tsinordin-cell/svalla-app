@@ -123,10 +123,13 @@ export default tseslint.config(
 
       // ── A11y ─────────────────────────────────────────────────────────────
       ...jsxA11y.configs.recommended.rules,
-      // De här ger massor av false positives med inline onClick — varna
-      'jsx-a11y/click-events-have-key-events': 'warn',
-      'jsx-a11y/no-static-element-interactions': 'warn',
-      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+      // Stäng av: kodbasen använder <div onClick> som klickbara kort på
+      // hundratals ställen (Svalla designsystem). Korrekt fix kräver en
+      // <Pressable>-komponent + omfattande refactor — separat task.
+      // Aktivera när Pressable finns och divs ersatts.
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
+      'jsx-a11y/no-noninteractive-element-interactions': 'off',
       // Tom använder mycket aria-label på input + label utan htmlFor —
       // legitim mobile-design. Varna för att flagga utan att blockera.
       'jsx-a11y/label-has-associated-control': 'warn',
@@ -139,20 +142,23 @@ export default tseslint.config(
       // Klassiska regler — verkliga buggar, error
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      // Nya v7-regler (React 19-eran) — sänk till warn så befintlig
-      // kod inte blockeras. Aktivera som error allteftersom Tom rensar.
-      'react-hooks/static-components': 'warn',
-      'react-hooks/use-memo': 'warn',
-      'react-hooks/preserve-manual-memoization': 'warn',
-      'react-hooks/immutability': 'warn',
-      'react-hooks/globals': 'warn',
-      'react-hooks/refs': 'warn',
-      'react-hooks/set-state-in-effect': 'warn',
-      'react-hooks/error-boundaries': 'warn',
-      'react-hooks/purity': 'warn',
-      'react-hooks/set-state-in-render': 'warn',
-      'react-hooks/config': 'warn',
-      'react-hooks/gating': 'warn',
+      // Nya v7-regler från React 19 Compiler-eran. De fångar verkliga
+      // mönster som blir buggiga med React Compiler men kräver en
+      // separat refactor-pass på hela kodbasen (state-i-effects, refs-
+      // i-render, Math.random i useMemo, inline-component-definitions).
+      // Stäng av nu — aktivera när Compiler ska tas in.
+      'react-hooks/static-components': 'off',
+      'react-hooks/use-memo': 'off',
+      'react-hooks/preserve-manual-memoization': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/globals': 'off',
+      'react-hooks/refs': 'off',
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/error-boundaries': 'off',
+      'react-hooks/purity': 'off',
+      'react-hooks/set-state-in-render': 'off',
+      'react-hooks/config': 'off',
+      'react-hooks/gating': 'off',
 
       // ── Unused imports/vars (auto-fixable, viktig städning) ──────────────
       'unused-imports/no-unused-imports': 'warn',

@@ -143,18 +143,18 @@ export default function InvitePage() {
             boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
           }}>
             <div style={{ marginBottom: 12 }}>
-              <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
+              <label htmlFor="invite-max-uses" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
                 Max antal användningar (valfritt)
               </label>
-              <input type="number" min="1" value={maxUses} onChange={e => setMaxUses(e.target.value)}
+              <input id="invite-max-uses" type="number" min="1" value={maxUses} onChange={e => setMaxUses(e.target.value)}
                 placeholder="Tom = obegränsat"
                 style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, background: 'var(--bg)', color: 'var(--txt)' }} />
             </div>
             <div style={{ marginBottom: 14 }}>
-              <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
+              <label htmlFor="invite-expires" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
                 Löper ut om (dagar, valfritt)
               </label>
-              <input type="number" min="1" value={expiresInDays} onChange={e => setExpiresInDays(e.target.value)}
+              <input id="invite-expires" type="number" min="1" value={expiresInDays} onChange={e => setExpiresInDays(e.target.value)}
                 placeholder="Tom = ingen utgångstid"
                 style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, background: 'var(--bg)', color: 'var(--txt)' }} />
             </div>

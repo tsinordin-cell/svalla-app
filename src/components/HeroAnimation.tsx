@@ -127,7 +127,6 @@ interface Boat   { x: number; spd: number; type: BoatType; ph: number }
 interface Bird   { x: number; baseY: number; spd: number; wingT: number; amp: number; ph: number }
 interface Fish   { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; hue: number; type: 'pike'|'perch'|'zander'|'bream'|'cod'|'herring'|'flounder'|'eel'|'sculpin' }
 interface Ferry  { x: number; spd: number; ph: number }
-interface Weed   { x: number; h: number; ph: number; hue: number; w: number; spd: number }
 interface Bubble { x: number; y: number; r: number; spd: number; ph: number; a: number }
 interface Whale  { x: number; y: number; spd: number; dir: 1|-1; sz: number; ph: number; isAdult: boolean }
 
@@ -147,7 +146,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     let W = 0, H = 0, dpr = 1
     let raf = 0, last = 0, t = 0
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = [], whales: Whale[] = []
-    let weeds: Weed[] = [], bubbles: Bubble[] = []
+    let bubbles: Bubble[] = []
     let ferry: Ferry = { x: 0, spd: 0, ph: 0 }
 
     /* ── Layout ─────────────────────────────────────────────────────────── */
@@ -213,13 +212,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         { x: p1x,      y: H*0.718, spd: 2.5, dir: -1 as -1, sz: 30, ph: rnd()*Math.PI*2,    isAdult: true  },
         { x: p1x + 24, y: H*0.742, spd: 2.5, dir: -1 as -1, sz: 13, ph: rnd()*Math.PI*2+0.8, isAdult: false },
       ]
-      // Sparse seaweed — 3 plants, short, natural
-      weeds = Array.from({ length: 3 }, (_, i) => ({
-        x: W * (0.09 + i * 0.36) + (rnd() - 0.5) * W * 0.05,
-        h: H * (0.028 + rnd() * 0.036),
-        ph: rnd() * Math.PI * 2, hue: 108 + rnd() * 28, w: 1.8 + rnd() * 2.2,
-        spd: 0.28 + rnd() * 0.42,
-      }))
       bubbles = Array.from({ length: 4 }, () => ({
         x: rnd() * W, y: H * (0.72 + rnd() * 0.28),
         r: 0.7 + rnd() * 1.4, spd: 1.4 + rnd() * 2.8,

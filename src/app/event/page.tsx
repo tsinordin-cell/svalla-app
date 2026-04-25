@@ -196,29 +196,29 @@ function CreateEventModal({
         <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa event</h2>
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Titel</label>
-        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="T.ex. Sandhamnsregatta 2026" maxLength={80}
+        <label htmlFor="ev-title" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Titel</label>
+        <input id="ev-title" value={title} onChange={e => setTitle(e.target.value)} placeholder="T.ex. Sandhamnsregatta 2026" maxLength={80}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)' }} />
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Plats</label>
-        <input value={location} onChange={e => setLocation(e.target.value)} placeholder="T.ex. Sandhamn KSSS" maxLength={80}
+        <label htmlFor="ev-location" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Plats</label>
+        <input id="ev-location" value={location} onChange={e => setLocation(e.target.value)} placeholder="T.ex. Sandhamn KSSS" maxLength={80}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)' }} />
 
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Starttid</label>
-            <input type="datetime-local" value={startsAt} onChange={e => setStartsAt(e.target.value)}
+            <label htmlFor="ev-starts-at" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Starttid</label>
+            <input id="ev-starts-at" type="datetime-local" value={startsAt} onChange={e => setStartsAt(e.target.value)}
               style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 13, background: 'var(--bg)', color: 'var(--txt)' }} />
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Sluttid (valfritt)</label>
-            <input type="datetime-local" value={endsAt} onChange={e => setEndsAt(e.target.value)}
+            <label htmlFor="ev-ends-at" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Sluttid (valfritt)</label>
+            <input id="ev-ends-at" type="datetime-local" value={endsAt} onChange={e => setEndsAt(e.target.value)}
               style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 13, background: 'var(--bg)', color: 'var(--txt)' }} />
           </div>
         </div>
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Beskrivning</label>
-        <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Vad händer? Samling? Anmälan?" maxLength={500} rows={3}
+        <label htmlFor="ev-description" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Beskrivning</label>
+        <textarea id="ev-description" value={description} onChange={e => setDescription(e.target.value)} placeholder="Vad händer? Samling? Anmälan?" maxLength={500} rows={3}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)', resize: 'vertical', fontFamily: 'inherit' }} />
 
         {err && <div style={{ color: 'var(--red)', fontSize: 12, marginBottom: 10 }}>{err}</div>}

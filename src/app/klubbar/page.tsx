@@ -25,6 +25,7 @@ export default function KlubbarPage() {
       if (user) setMe(user.id)
       load(user?.id ?? null)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supabase])
 
   async function load(userId: string | null) {
@@ -309,16 +310,16 @@ function CreateClubModal({
         <div style={{ width: 40, height: 4, background: 'rgba(10,123,140,0.20)', borderRadius: 2, margin: '0 auto 16px' }} />
         <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 14px' }}>Skapa klubb</h2>
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Namn</label>
-        <input value={name} onChange={e => setName(e.target.value)} placeholder="T.ex. Sandhamns segelsällskap" maxLength={60}
+        <label htmlFor="club-name" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Namn</label>
+        <input id="club-name" value={name} onChange={e => setName(e.target.value)} placeholder="T.ex. Sandhamns segelsällskap" maxLength={60}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)' }} />
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Beskrivning</label>
-        <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Vilka är ni? Vad delar ni?" maxLength={200} rows={2}
+        <label htmlFor="club-description" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Beskrivning</label>
+        <textarea id="club-description" value={description} onChange={e => setDescription(e.target.value)} placeholder="Vilka är ni? Vad delar ni?" maxLength={200} rows={2}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)', resize: 'vertical', fontFamily: 'inherit' }} />
 
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Region (valfritt)</label>
-        <input value={region} onChange={e => setRegion(e.target.value)} placeholder="T.ex. Stockholms skärgård" maxLength={40}
+        <label htmlFor="club-region" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>Region (valfritt)</label>
+        <input id="club-region" value={region} onChange={e => setRegion(e.target.value)} placeholder="T.ex. Stockholms skärgård" maxLength={40}
           style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 12, background: 'var(--bg)', color: 'var(--txt)' }} />
 
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>

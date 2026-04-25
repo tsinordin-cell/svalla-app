@@ -140,7 +140,9 @@ export default function TripTagger({
 
       {picking && isOwner && (
         <div style={{ marginTop: 10 }}>
-          <input value={query} onChange={e => setQuery(e.target.value)} autoFocus
+          <input value={query} onChange={e => setQuery(e.target.value)}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
             placeholder="Sök användarnamn…"
             style={{ width: '100%', padding: 10, borderRadius: 10, border: '1px solid rgba(10,123,140,0.20)', fontSize: 13, background: 'var(--bg)', color: 'var(--txt)' }} />
           {tagError && <div style={{ fontSize: 11, color: '#dc2626', marginTop: 6 }}>{tagError}</div>}

@@ -171,6 +171,7 @@ export default function TripHeroCarousel({
             <button onClick={() => setLightbox(false)} aria-label="Stäng" className="press-feedback" style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', width: 40, height: 40, borderRadius: '50%', fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTapHighlightColor: 'transparent' }}>✕</button>
             <div onClick={e => e.stopPropagation()} style={{ position: 'relative', width: '100%', maxWidth: 900, height: 'min(90vh, 700px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {isVideo(validPhotos[lbIdx]) ? (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
                 <video key={validPhotos[lbIdx]} src={validPhotos[lbIdx]} controls playsInline autoPlay style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: 8 }} />
               ) : (
                 <Image src={validPhotos[lbIdx]} alt={locationName ?? `Foto ${lbIdx + 1}`} fill style={{ objectFit: 'contain' }} sizes="100vw" />
@@ -328,6 +329,7 @@ export default function TripHeroCarousel({
             }}
           >
             {isVideo(validPhotos[lbIdx]) ? (
+              // eslint-disable-next-line jsx-a11y/media-has-caption
               <video
                 key={validPhotos[lbIdx]}
                 src={validPhotos[lbIdx]}

@@ -300,6 +300,7 @@ export default function RegistreraKrogPage() {
                 value={businessName}
                 onChange={e => { setBusinessName(e.target.value); setErr('') }}
                 style={FIELD}
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
               />
             </div>

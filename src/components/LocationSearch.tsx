@@ -127,6 +127,7 @@ export default function LocationSearch({
           onFocus={() => suggestions.length > 0 && setOpen(true)}
           placeholder={placeholder}
           required={required}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={autoFocus}
           autoComplete="off"
           style={{

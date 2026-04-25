@@ -444,10 +444,10 @@ function ManuellForm() {
           />
 
           {/* ── Pinnar rating ── */}
-          <div>
-            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
+          <div role="group" aria-labelledby="pinnar-label">
+            <span id="pinnar-label" style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
               Hur var turen?
-            </label>
+            </span>
             <div style={{ display: 'flex', gap: 8 }}>
               {PINNAR.map(p => (
                 <button
@@ -474,7 +474,7 @@ function ManuellForm() {
           {/* ── Caption (optional) + Thorkel ── */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-              <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+              <label htmlFor="manuell-caption" style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
                 Berätta kort <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
               </label>
               <button
@@ -564,6 +564,7 @@ function ManuellForm() {
             )}
 
             <textarea
+              id="manuell-caption"
               placeholder={aiVariants.length > 0 ? 'Välj ett förslag ovan eller skriv själv…' : 'Seglade hit i morgonsol, drack kaffe i solen och hoppade i…'}
               value={caption}
               onChange={e => setCaption(e.target.value)}
@@ -588,10 +589,10 @@ function ManuellForm() {
           </div>
 
           {/* ── Tagga seglare ── */}
-          <div>
-            <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+          <div role="group" aria-labelledby="tag-label">
+            <span id="tag-label" style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
               Tagga seglare <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
-            </label>
+            </span>
             <TagInput tagged={tagged} onChange={setTagged} />
           </div>
 
@@ -614,8 +615,8 @@ function ManuellForm() {
           {showMore && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '4px 0' }}>
               {/* Båttyp */}
-              <div>
-                <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</label>
+              <div role="group" aria-labelledby="boat-type-label">
+                <span id="boat-type-label" style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>Båttyp</span>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6 }}>
                   {BOAT_TYPES.map(bt => (
                     <button key={bt} type="button" onClick={() => setBoatType(bt === boatType ? '' : bt)}
@@ -634,10 +635,11 @@ function ManuellForm() {
               {/* Rutt */}
               {routes.length > 0 && (
                 <div>
-                  <label style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
+                  <label htmlFor="manuell-route" style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 6 }}>
                     Rutt <span style={{ fontWeight: 400, textTransform: 'none' }}>(valfritt)</span>
                   </label>
                   <select
+                    id="manuell-route"
                     value={routeId ?? ''}
                     onChange={e => setRouteId(e.target.value || null)}
                     style={{

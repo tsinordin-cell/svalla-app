@@ -164,18 +164,18 @@ function CheckInPage() {
         </div>
 
         {/* Plats */}
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
+        <label htmlFor="ci-place" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
           Plats (valfritt)
         </label>
-        <input value={place} onChange={e => setPlace(e.target.value)} placeholder="T.ex. Sandhamn, Grinda, Möja"
+        <input id="ci-place" value={place} onChange={e => setPlace(e.target.value)} placeholder="T.ex. Sandhamn, Grinda, Möja"
           maxLength={60}
           style={{ width: '100%', padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 14, background: 'var(--bg)', color: 'var(--txt)' }} />
 
         {/* Meddelande */}
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
+        <label htmlFor="ci-message" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
           Vad gör du här? (valfritt)
         </label>
-        <textarea value={message} onChange={e => setMessage(e.target.value)} placeholder="Morronkaffe på bryggan, sol på stilla vatten…"
+        <textarea id="ci-message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Morronkaffe på bryggan, sol på stilla vatten…"
           maxLength={280} rows={3}
           style={{ width: '100%', padding: 12, borderRadius: 12, border: '1px solid rgba(10,123,140,0.20)', fontSize: 14, marginBottom: 6, background: 'var(--bg)', color: 'var(--txt)', resize: 'vertical', fontFamily: 'inherit' }} />
         <div style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'right', marginBottom: 14 }}>
@@ -183,7 +183,7 @@ function CheckInPage() {
         </div>
 
         {/* Bild */}
-        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 6 }}>
+        <label htmlFor="ci-image" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 6 }}>
           Bild (valfritt)
         </label>
         {preview ? (
@@ -206,7 +206,7 @@ function CheckInPage() {
             <div style={{ fontSize: 24, marginBottom: 6 }}>📸</div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Lägg till bild</div>
             <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>JPG eller PNG, max 8 MB</div>
-            <input type="file" accept="image/*" onChange={onPickImage} style={{ display: 'none' }} />
+            <input id="ci-image" type="file" accept="image/*" onChange={onPickImage} style={{ display: 'none' }} />
           </label>
         )}
 

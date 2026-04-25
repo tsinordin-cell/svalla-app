@@ -158,10 +158,11 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
                 </div>
 
                 {/* Fritext */}
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
+                <label htmlFor="report-note" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 4 }}>
                   Ytterligare detaljer (valfritt)
                 </label>
                 <textarea
+                  id="report-note"
                   value={note}
                   onChange={e => setNote(e.target.value)}
                   placeholder="Beskriv varför du anmäler…"

@@ -97,7 +97,7 @@ export default function SparaPage() {
   const [movementState,  setMovementState]  = useState<MovementState>('STILLA')
   const [bearing,        setBearing]        = useState<number | null>(null)
   const [, setLiveInsights]                 = useState<LiveInsight[]>([]) // visas via flashInsight
-  const [shownInsightKeys, setShownInsightKeys] = useState<Set<string>>(new Set())
+  const [, setShownInsightKeys] = useState<Set<string>>(new Set()) // tracking-only via setter
   const [flashInsight,   setFlashInsight]   = useState<LiveInsight | null>(null)
   const [statsExpanded,  setStatsExpanded]  = useState(false)
   const [centerTrigger,  setCenterTrigger]  = useState(0)
@@ -759,10 +759,10 @@ export default function SparaPage() {
             <strong>GPS aktiveras</strong> när du startar. Turen loggas automatiskt med karta, stopp och hastighet.
           </div>
 
-          <div>
-            <label className="text-xs font-semibold text-svalla-text2 uppercase tracking-wide mb-2 block">
+          <div role="group" aria-labelledby="spara-boat-type-label">
+            <span id="spara-boat-type-label" className="text-xs font-semibold text-svalla-text2 uppercase tracking-wide mb-2 block">
               Välj båttyp <span className="text-red-500">*</span>
-            </label>
+            </span>
             <div className="grid grid-cols-4 gap-2">
               {BOAT_TYPES.map(bt => (
                 <button
@@ -1331,10 +1331,11 @@ export default function SparaPage() {
 
         {/* ── Location ── */}
         <div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+          <label htmlFor="spara-location" style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Plats (valfritt)
           </label>
           <input
+            id="spara-location"
             type="text" placeholder="t.ex. Sandhamn, Fjäderholmarna…"
             value={locationName} onChange={e => setLocationName(e.target.value)} maxLength={80}
             style={{
@@ -1348,7 +1349,7 @@ export default function SparaPage() {
         {/* ── Caption ── */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-            <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px' }}>
+            <label htmlFor="spara-caption" style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px' }}>
               Berätta om turen (valfritt)
             </label>
             <button
@@ -1439,6 +1440,7 @@ export default function SparaPage() {
           )}
 
           <textarea
+            id="spara-caption"
             placeholder={aiVariants.length > 0 ? 'Välj ett förslag ovan eller skriv själv…' : 'Vad hände? Vad var bäst?'}
             value={caption} onChange={e => { setCaption(e.target.value); }} maxLength={280} rows={3}
             style={{
@@ -1460,10 +1462,10 @@ export default function SparaPage() {
         </div>
 
         {/* ── Media — up to 3 images or short videos ── */}
-        <div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+        <div role="group" aria-labelledby="spara-media-label">
+          <span id="spara-media-label" style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Bilagor <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt · max 3)</span>
-          </label>
+          </span>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
             {[0, 1, 2].map(i => {
               const hasFile = i < mediaPreviews.length
@@ -1582,10 +1584,10 @@ export default function SparaPage() {
         </div>
 
         {/* ── Medseglare ── */}
-        <div>
-          <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
+        <div role="group" aria-labelledby="spara-crew-label">
+          <span id="spara-crew-label" style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
             Medseglare <span style={{ fontWeight: 400, textTransform: 'none', opacity: .6 }}>(valfritt)</span>
-          </label>
+          </span>
           <CrewPicker
             supabase={supabase}
             currentUserId={currentUserId}

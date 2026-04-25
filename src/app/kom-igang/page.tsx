@@ -524,10 +524,11 @@ function KomIgangInner() {
             {/* Name row */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                <label htmlFor="signup-name" style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                   Namn
                 </label>
                 <input
+                  id="signup-name"
                   type="text"
                   placeholder="Anna"
                   value={name}
@@ -542,10 +543,11 @@ function KomIgangInner() {
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                <label htmlFor="signup-username" style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                   Smeknamn
                 </label>
                 <input
+                  id="signup-username"
                   type="text"
                   placeholder="seglaren"
                   value={username}
@@ -563,15 +565,17 @@ function KomIgangInner() {
 
             {/* Email */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label htmlFor="signup-email" style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 E-postadress <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <input
+                id="signup-email"
                 type="email"
                 placeholder="din@email.com"
                 value={email}
                 onChange={e => { setEmail(e.target.value); setErr('') }}
                 required
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
                 style={{
                   ...INPUT,
@@ -590,11 +594,12 @@ function KomIgangInner() {
 
             {/* Password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label htmlFor="signup-password" style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 Lösenord <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
                 <input
+                  id="signup-password"
                   type={showPw ? 'text' : 'password'}
                   placeholder="Minst 6 tecken"
                   value={password}
@@ -648,11 +653,12 @@ function KomIgangInner() {
 
             {/* Confirm password */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+              <label htmlFor="signup-confirm-password" style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
                 Bekräfta lösenord <span style={{ color: 'var(--red)' }}>*</span>
               </label>
               <div style={{ position: 'relative' }}>
                 <input
+                  id="signup-confirm-password"
                   type={showConfirmPw ? 'text' : 'password'}
                   placeholder="Upprepa lösenordet"
                   value={confirmPw}

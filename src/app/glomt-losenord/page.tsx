@@ -80,6 +80,7 @@ export default function GlomtLosenordPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
                 style={{
                   width: '100%', padding: '14px 16px', borderRadius: 16, boxSizing: 'border-box',

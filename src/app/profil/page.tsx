@@ -179,53 +179,54 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
           </div>
 
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ALIAS</label>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} autoFocus style={inputStyle} />
+            <label htmlFor="pf-username" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ALIAS</label>
+            {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
+            <input id="pf-username" type="text" value={username} onChange={e => setUsername(e.target.value)} maxLength={32} autoFocus style={inputStyle} />
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>KORT OM MIG</label>
-            <textarea value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3} placeholder="T.ex. Seglare sedan 1998…" style={{ ...inputStyle, resize: 'none' }} />
+            <label htmlFor="pf-bio" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>KORT OM MIG</label>
+            <textarea id="pf-bio" value={bio} onChange={e => setBio(e.target.value)} maxLength={160} rows={3} placeholder="T.ex. Seglare sedan 1998…" style={{ ...inputStyle, resize: 'none' }} />
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>LAND</label>
-            <select value={nationality} onChange={e => setNationality(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
+            <label htmlFor="pf-nationality" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>LAND</label>
+            <select id="pf-nationality" value={nationality} onChange={e => setNationality(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
               <option value="">Välj land…</option>
               {COUNTRIES.map(c => <option key={c.name} value={`${c.flag} ${c.name}`}>{c.flag} {c.name}</option>)}
             </select>
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ÅR TILL HAVS</label>
-            <input type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80} placeholder="15" style={inputStyle} />
+            <label htmlFor="pf-exp-years" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ÅR TILL HAVS</label>
+            <input id="pf-exp-years" type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80} placeholder="15" style={inputStyle} />
           </div>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>⚓ Min båt</div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTNAMN</label>
-            <input type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60} style={inputStyle} />
+            <label htmlFor="pf-vessel-name" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTNAMN</label>
+            <input id="pf-vessel-name" type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60} style={inputStyle} />
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTTYP</label>
-            <select value={vesselType} onChange={e => setVesselType(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
+            <label htmlFor="pf-vessel-type" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTTYP</label>
+            <select id="pf-vessel-type" value={vesselType} onChange={e => setVesselType(e.target.value)} style={{ ...inputStyle, appearance: 'none' }}>
               <option value="">Välj typ…</option>
               {VESSEL_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>MODELL</label>
-            <input type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80} style={inputStyle} />
+            <label htmlFor="pf-vessel-model" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>MODELL</label>
+            <input id="pf-vessel-model" type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🧭 Hemmafarvatten</div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>HEMMAHAMN</label>
-            <input type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80} style={inputStyle} />
+            <label htmlFor="pf-home-port" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>HEMMAHAMN</label>
+            <input id="pf-home-port" type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
-            <input type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
+            <label htmlFor="pf-region" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
+            <input id="pf-region" type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🌐 Hemsida</div>
           <div style={{ marginBottom: 12 }}>
-            <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>URL</label>
-            <input type="url" value={website} onChange={e => setWebsite(e.target.value)} maxLength={200} placeholder="https://…" style={inputStyle} />
+            <label htmlFor="pf-website" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>URL</label>
+            <input id="pf-website" type="url" value={website} onChange={e => setWebsite(e.target.value)} maxLength={200} placeholder="https://…" style={inputStyle} />
           </div>
           <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>

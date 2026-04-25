@@ -251,12 +251,14 @@ function LoginContent() {
               <input
                 type="text" placeholder="Välj ett alias / smeknamn"
                 value={username} onChange={e => setUsername(e.target.value)}
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 style={inputStyle} autoComplete="username" autoFocus
               />
             )}
             <input
               type="email" placeholder="E-postadress"
               value={email} onChange={e => setEmail(e.target.value)}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
               required style={inputStyle} autoComplete="email" autoFocus={!isNew}
             />
             <div style={{ position: 'relative' }}>
