@@ -202,7 +202,7 @@ section{padding:100px 40px}
 .app-badge-text .big{font-size:14px;font-weight:700;display:block}
 footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 32px}
 .footer-inner{max-width:1160px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
 .footer-brand .logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .footer-brand .logo span{color:var(--accent)}
 .footer-brand p{font-size:13.5px;line-height:1.65;max-width:280px}
@@ -324,17 +324,6 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
   .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
   .steps{grid-template-columns:1fr}
 }
-/* ── Regions ── */
-.regions-section{background:var(--white)}
-.regions-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
-.region-card{background:var(--sand);border-radius:var(--r);padding:28px 22px;text-decoration:none;color:inherit;display:block;transition:.3s;border:1px solid rgba(30,92,130,.07)}
-.region-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(30,92,130,.15)}
-.region-card-icon{font-size:32px;margin-bottom:14px}
-.region-card h3{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--sea);margin-bottom:8px;line-height:1.25}
-.region-card p{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px}
-.region-card-link{font-size:12.5px;font-weight:700;color:var(--teal)}
-@media(max-width:900px){.regions-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.regions-grid{grid-template-columns:1fr 1fr}}
 /* Dark mode: match footer color so no black strip appears below footer */
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
 `
@@ -772,48 +761,6 @@ const LANDING_HTML = `
 </section>
 
 
-<section class="regions-section" id="regioner">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Sveriges kust</div>
-      <h2 class="section-title">Utforska hela Sverige med Svalla</h2>
-      <p class="section-sub">Från Stockholms skärgård till Blekinges kust — Svalla täcker alla svenska farvatten. Välj din region och börja logga.</p>
-    </div>
-    <div class="regions-grid">
-      <a href="/stockholms-skargard" class="region-card reveal reveal-delay-1">
-        <div class="region-card-icon">🏝️</div>
-        <h3>Stockholms skärgård</h3>
-        <p>30 000 öar, 80 mil kust — landets folkrikaste skärgård med allt från Fjäderholmarna till Landsort.</p>
-        <span class="region-card-link">Utforska →</span>
-      </a>
-      <a href="/bohuslan" class="region-card reveal reveal-delay-2">
-        <div class="region-card-icon">🌊</div>
-        <h3>Bohuslän</h3>
-        <p>Västkustens klippor, hummer och Marstrand — en skärgård med helt annan karaktär och tradition.</p>
-        <span class="region-card-link">Utforska →</span>
-      </a>
-      <a href="/gotland" class="region-card reveal reveal-delay-3">
-        <div class="region-card-icon">🏰</div>
-        <h3>Gotland</h3>
-        <p>Östersjöns pärla — passagen dit, Visby ringmur och Fårö för den som söker det äkta seglaräventyret.</p>
-        <span class="region-card-link">Utforska →</span>
-      </a>
-      <a href="/aland" class="region-card reveal reveal-delay-4">
-        <div class="region-card-icon">⛵</div>
-        <h3>Åland</h3>
-        <p>Skärgårdshavet med 6 500 öar — Östersjöns bäst bevarade hemlighet, en dag från Stockholm.</p>
-        <span class="region-card-link">Utforska →</span>
-      </a>
-      <a href="/blekinge-skargard" class="region-card reveal reveal-delay-1">
-        <div class="region-card-icon">🌿</div>
-        <h3>Blekinges skärgård</h3>
-        <p>Karlskrona UNESCO-världsarv och Hanö ute till havs — Sveriges sydligaste och mest underskattade kust.</p>
-        <span class="region-card-link">Utforska →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <section class="app-section" id="om">
   <div class="app-inner">
     <div class="section-label" style="text-align:center">Webbapp · Fungerar som en app</div>
@@ -856,16 +803,6 @@ const LANDING_HTML = `
           <li><a href="/logga-in">Skapa konto</a></li>
           <li><a href="/profil">Min profil</a></li>
           <li><a href="/logga">Logga tur</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Regioner</h5>
-        <ul>
-          <li><a href="/stockholms-skargard">Stockholms skärgård</a></li>
-          <li><a href="/bohuslan">Bohuslän</a></li>
-          <li><a href="/gotland">Gotland</a></li>
-          <li><a href="/aland">Åland</a></li>
-          <li><a href="/blekinge-skargard">Blekinges skärgård</a></li>
         </ul>
       </div>
       <div class="footer-col">
