@@ -208,8 +208,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // 2 tumlare families — adult + baby (same spd = swim in formation)
       const p0x = rnd() * W * 0.45, p1x = W * 0.52 + rnd() * W * 0.40
       whales = [
-        { x: p0x,      y: H*0.665, spd: 2.8, dir:  1 as 1, sz: 34, ph: rnd()*Math.PI*2,     isAdult: true  },
-        { x: p0x - 24, y: H*0.690, spd: 2.8, dir:  1 as 1, sz: 15, ph: rnd()*Math.PI*2+1.0, isAdult: false },
+        { x: p0x,      y: H*0.665, spd: 2.8, dir:  1 as const, sz: 34, ph: rnd()*Math.PI*2,     isAdult: true  },
+        { x: p0x - 24, y: H*0.690, spd: 2.8, dir:  1 as const, sz: 15, ph: rnd()*Math.PI*2+1.0, isAdult: false },
         { x: p1x,      y: H*0.718, spd: 2.5, dir: -1 as -1, sz: 30, ph: rnd()*Math.PI*2,    isAdult: true  },
         { x: p1x + 24, y: H*0.742, spd: 2.5, dir: -1 as -1, sz: 13, ph: rnd()*Math.PI*2+0.8, isAdult: false },
       ]

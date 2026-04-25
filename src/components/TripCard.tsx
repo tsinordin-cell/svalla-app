@@ -16,7 +16,7 @@ import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
 import { timeAgo, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
-import { radius, shadow, fontSize, fontWeight } from '@/lib/tokens'
+import { fontSize, fontWeight } from '@/lib/tokens'
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec)

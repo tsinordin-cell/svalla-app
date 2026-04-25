@@ -11,7 +11,6 @@ import MessageBell from '@/components/MessageBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import EmptyState from '@/components/EmptyState'
-import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
 

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
-import { listUpcomingEvents, createEvent, formatEventDate, type EventRow } from '@/lib/events'
+import { listUpcomingEvents, createEvent, type EventRow } from '@/lib/events'
 
 export default function EventPage() {
   const supabase = useRef(createClient()).current

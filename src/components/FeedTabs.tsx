@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
-import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
 import Pill from '@/components/ui/Pill'
 
@@ -62,7 +61,7 @@ function SkeletonCard() {
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) { // eslint-disable-line @typescript-eslint/no-explicit-any
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')

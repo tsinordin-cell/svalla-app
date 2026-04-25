@@ -54,7 +54,7 @@ export default function EventDetailPage() {
       .eq('event_id', e.id)
       .order('joined_at', { ascending: true })
     const userIds = [...new Set((atts ?? []).map(a => a.user_id as string))]
-    let userMap: Record<string, { username: string; avatar: string | null }> = {}
+    const userMap: Record<string, { username: string; avatar: string | null }> = {}
     if (userIds.length > 0) {
       const { data: us } = await supabase.from('users').select('id, username, avatar').in('id', userIds)
       for (const u of us ?? []) {

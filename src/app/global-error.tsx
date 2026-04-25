@@ -15,7 +15,7 @@ export default function GlobalError({
   }, [error])
 
   return (
-    <html>
+    <html lang="sv">
       <body style={{
         margin: 0, minHeight: '100vh',
         display: 'flex', flexDirection: 'column',

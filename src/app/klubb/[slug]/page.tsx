@@ -67,7 +67,7 @@ export default function KlubbPage() {
       .eq('club_id', c.id)
       .order('joined_at', { ascending: true })
     const memberIds = (mems ?? []).map(m => m.user_id as string)
-    let userMap: Record<string, { username: string; avatar: string | null }> = {}
+    const userMap: Record<string, { username: string; avatar: string | null }> = {}
     if (memberIds.length > 0) {
       const { data: us } = await supabase
         .from('users').select('id, username, avatar').in('id', memberIds)

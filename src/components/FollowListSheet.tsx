@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef, type ReactNode, type MouseEvent } from 'react'
+import { useState, useRef, type ReactNode, type MouseEvent } from 'react'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'

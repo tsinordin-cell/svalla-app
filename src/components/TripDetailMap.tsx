@@ -228,7 +228,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
 
     if (!showWind || windSamples.length === 0) return
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+     
     const layer = L.layerGroup()
     for (const s of windSamples) {
       const time = new Date(s.timeMs).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
