@@ -133,17 +133,19 @@ export async function countUnreadMessages(
 
     if (!parts || parts.length === 0) return 0
 
-    let total = 0
-    for (const p of (parts as { conversation_id: string; last_read_at: string }[])) {
-      const { count } = await supabase
-        .from('messages')
-        .select('id', { count: 'exact', head: true })
-        .eq('conversation_id', p.conversation_id)
-        .gt('created_at', p.last_read_at)
-        .neq('user_id', currentUserId)
-      total += count ?? 0
-    }
-    return total
+    // Kör alla count-queries parallellt — sekventiellt blev N rundresor
+    // till databasen vilket märks tydligt i bjällran på sida-laddning.
+    const results = await Promise.all(
+      (parts as { conversation_id: string; last_read_at: string }[]).map(p =>
+        supabase
+          .from('messages')
+          .select('id', { count: 'exact', head: true })
+          .eq('conversation_id', p.conversation_id)
+          .gt('created_at', p.last_read_at)
+          .neq('user_id', currentUserId)
+      )
+    )
+    return results.reduce((sum, { count }) => sum + (count ?? 0), 0)
   } catch {
     return 0
   }
