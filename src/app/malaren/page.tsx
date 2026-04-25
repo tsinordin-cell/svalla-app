@@ -180,10 +180,10 @@ export default function MalarenPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
-        { label: 'Krogar & mat', href: '/krogar-och-mat' },
+        { label: 'Segelrutter', href: '/segelrutter' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
-        { label: 'Alla destinationer', href: '/resmal' },
+        { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
+        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
       ]}
     />
   )

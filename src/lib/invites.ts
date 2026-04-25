@@ -30,9 +30,9 @@ function generateCode(len = 8): string {
   if (cryptoObj && 'getRandomValues' in cryptoObj) {
     const buf = new Uint32Array(len)
     cryptoObj.getRandomValues(buf)
-    for (let i = 0; i < len; i++) s += ALPHABET[buf[i] % ALPHABET.length]
+    for (let i = 0; i < len; i++) s += ALPHABET[buf[i]! % ALPHABET.length]!
   } else {
-    for (let i = 0; i < len; i++) s += ALPHABET[Math.floor(Math.random() * ALPHABET.length)]
+    for (let i = 0; i < len; i++) s += ALPHABET[Math.floor(Math.random() * ALPHABET.length)]!
   }
   return s
 }

@@ -70,7 +70,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   const [showBoatSheet, setShowBoatSheet] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
-  const activeBoat = BOAT_FILTERS.find(f => f.value === boatFilter) ?? BOAT_FILTERS[0]
+  const activeBoat = BOAT_FILTERS.find(f => f.value === boatFilter) ?? BOAT_FILTERS[0]!
 
   // Simulate initial load skeleton (trips arrive from server, but render takes a tick)
   useEffect(() => {

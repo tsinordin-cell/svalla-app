@@ -111,7 +111,7 @@ export default function Nav() {
             }}>
               {avatar
                 ? <Image src={avatar} alt="" width={26} height={26} style={{ objectFit: 'cover', borderRadius: '50%', width: '100%', height: '100%' }} />
-                : username[0].toUpperCase()
+                : username[0]!.toUpperCase()
               }
             </div>
           ) : (

@@ -193,10 +193,10 @@ export default function AlandPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
-        { label: 'Gotland', href: '/gotland' },
         { label: 'Segelrutter', href: '/segelrutter' },
-        { label: 'Alla destinationer', href: '/resmal' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
+        { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
   )

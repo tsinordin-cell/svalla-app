@@ -191,10 +191,10 @@ export default function StockholmsSkargardPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Krogar & mat', href: '/krogar-och-mat' },
-        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
         { label: 'Segelrutter', href: '/segelrutter' },
-        { label: 'Alla destinationer', href: '/resmal' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Aktiviteter', href: '/aktiviteter' },
+        { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
   )

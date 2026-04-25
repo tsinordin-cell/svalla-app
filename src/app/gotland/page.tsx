@@ -174,9 +174,9 @@ export default function GotlandPage() {
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
         { label: 'Segelrutter', href: '/segelrutter' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Aktiviteter', href: '/aktiviteter' },
         { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
-        { label: 'Åland', href: '/aland' },
-        { label: 'Alla destinationer', href: '/resmal' },
       ]}
     />
   )

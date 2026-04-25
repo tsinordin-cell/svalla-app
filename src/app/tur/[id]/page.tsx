@@ -127,8 +127,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   // Cache 24h via Next fetch-cache (väder för en historisk timestamp är immutabelt).
   const weather = points.length > 0 && trip.started_at
     ? await getTripWeather(
-        points[0].lat,
-        points[0].lng,
+        points[0]!.lat,
+        points[0]!.lng,
         trip.started_at,
         trip.ended_at,
       )
@@ -181,8 +181,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
   let matchedRoute: (TourRow & { score: number }) | null = null
 
   if (points.length >= 10 && toursData && toursData.length > 0) {
-    const tripStart = points[0]
-    const tripEnd   = points[points.length - 1]
+    const tripStart = points[0]!
+    const tripEnd   = points[points.length - 1]!
     let bestScore   = Infinity
 
     for (const tour of (toursData as TourRow[])) {

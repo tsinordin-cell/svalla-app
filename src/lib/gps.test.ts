@@ -146,8 +146,8 @@ describe('detectStops', () => {
     ]
     const stops = detectStops(pts)
     expect(stops).toHaveLength(1)
-    expect(stops[0].type).toBe('stop')
-    expect(stops[0].durationSeconds).toBeGreaterThanOrEqual(180)
+    expect(stops[0]!.type).toBe('stop')
+    expect(stops[0]!.durationSeconds).toBeGreaterThanOrEqual(180)
   })
 
   it('ignores brief pause under 2 min', () => {
@@ -178,8 +178,8 @@ describe('detectStops', () => {
       gptAt(59.5, 19.0, 5, 10),
     ]
     const stops = detectStops(pts)
-    expect(stops[0].lat).toBe(59.5)
-    expect(stops[0].lng).toBe(19.0)
+    expect(stops[0]!.lat).toBe(59.5)
+    expect(stops[0]!.lng).toBe(19.0)
   })
 })
 

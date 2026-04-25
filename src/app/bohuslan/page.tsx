@@ -237,9 +237,9 @@ export default function BohuslanPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Krogar & mat', href: '/krogar-och-mat' },
         { label: 'Segelrutter', href: '/segelrutter' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Aktiviteter', href: '/aktiviteter' },
         { label: 'Alla destinationer', href: '/resmal' },
       ]}
     />

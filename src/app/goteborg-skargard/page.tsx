@@ -176,10 +176,10 @@ export default function GoteborgSkargardPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
+        { label: 'Segelrutter', href: '/segelrutter' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Aktiviteter', href: '/aktiviteter' },
         { label: 'Bohuslän', href: '/bohuslan' },
-        { label: 'Västerhavet', href: '/vasterhav' },
-        { label: 'Krogar & mat', href: '/krogar-och-mat' },
-        { label: 'Alla destinationer', href: '/resmal' },
       ]}
     />
   )

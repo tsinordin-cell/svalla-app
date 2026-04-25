@@ -167,10 +167,10 @@ export default function BlekingeSkargardPage() {
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Gotland', href: '/gotland' },
         { label: 'Segelrutter', href: '/segelrutter' },
-        { label: 'Krogar & mat', href: '/krogar-och-mat' },
-        { label: 'Alla destinationer', href: '/resmal' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Aktiviteter', href: '/aktiviteter' },
+        { label: 'Gotland', href: '/gotland' },
       ]}
     />
   )

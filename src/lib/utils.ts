@@ -47,6 +47,6 @@ export function initialsOf(name: string | null | undefined): string {
   const n = (name ?? '?').trim()
   if (!n) return '?'
   const parts = n.split(/\s+/)
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase()
+  if (parts.length >= 2) return (parts[0]![0]! + parts[1]![0]!).toUpperCase()
   return n.slice(0, 2).toUpperCase()
 }

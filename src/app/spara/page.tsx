@@ -401,7 +401,7 @@ export default function SparaPage() {
     kalmanRef.current?.reset()
     setPhase('paused')
     if (points.length > 0) {
-      const last = points[points.length - 1]
+      const last = points[points.length - 1]!
       setStops(prev => [...prev, {
         lat: last.lat, lng: last.lng, type: 'pause',
         startedAt: new Date().toISOString(), durationSeconds: 0,
@@ -416,7 +416,7 @@ export default function SparaPage() {
       setStops(prev => {
         const updated = [...prev]
         updated[updated.length - 1] = {
-          ...updated[updated.length - 1],
+          ...updated[updated.length - 1]!,
           endedAt: new Date().toISOString(),
           durationSeconds: dur,
         }
@@ -501,7 +501,7 @@ export default function SparaPage() {
     // Upload media files (images + videos, max 3)
     const uploadedUrls: string[] = []
     for (let i = 0; i < mediaFiles.length; i++) {
-      const f   = mediaFiles[i]
+      const f   = mediaFiles[i]!
       const ext = f.name.split('.').pop() ?? 'jpg'
       const filename = `${user.id}-${Date.now()}-${i}.${ext}`
       const { data: upload, error: upErr } = await supabase.storage
@@ -982,7 +982,7 @@ export default function SparaPage() {
             currentPos={currentPos}
             speed={currentSpeed}
             bearing={bearing}
-            heading={points.length > 0 ? points[points.length - 1].heading : null}
+            heading={points.length > 0 ? points[points.length - 1]!.heading : null}
             stops={stops.filter(s => s.type === 'stop').map(s => ({
               lat: s.lat, lng: s.lng, type: s.type,
               durationSeconds: s.durationSeconds,

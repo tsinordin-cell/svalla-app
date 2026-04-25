@@ -1013,7 +1013,7 @@ export default function UpptackClient() {
             {detail.kind === 'route' && detail.waypoints?.length > 0 && (
               <button
                 onClick={() => {
-                  const last = detail.waypoints[detail.waypoints.length - 1]
+                  const last = detail.waypoints[detail.waypoints.length - 1]!
                   setDestination({
                     name:  last.name ?? detail.name,
                     lat:   last.lat,
