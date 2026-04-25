@@ -59,8 +59,8 @@ function poiCategory(p: Poi): 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 
 
   // Bensin/fuel — annars fångas den av bryggor
   if (
-    t === 'fuel' ||
-    cats.includes('fuel') ||
+    t === 'fuel' || t === 'fuel_station' ||
+    cats.includes('fuel') || cats.includes('bransle') ||
     d.includes('bensin') || d.includes('diesel') || d.includes('drivmedel') || d.includes('tankning') || d.includes('sjömack')
   ) return 'bensin'
 
