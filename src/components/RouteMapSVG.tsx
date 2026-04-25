@@ -89,7 +89,7 @@ export default function RouteMapSVG({
       </defs>
 
       {/* Fallback-bakgrund */}
-      <rect x={0} y={0} width={w} height={h} fill="#d4e6ef" />
+      <rect x={0} y={0} width={w} height={h} style={{ fill: 'var(--map-preview-bg)' }} />
 
       {/* 3×3 OSM + OpenSeaMap tiles — samma koordinatsystem som rutten */}
       {[0, 1, 2].map(dy => [0, 1, 2].map(dx => (

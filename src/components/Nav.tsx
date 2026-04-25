@@ -153,14 +153,14 @@ export default function Nav() {
     <nav aria-label="Navigering" className="svalla-nav" style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
-      background: 'rgba(255,255,255,0.86)',
+      background: 'var(--nav-bg)',
       backdropFilter: 'saturate(1.4) blur(20px)',
       WebkitBackdropFilter: 'saturate(1.4) blur(20px)',
-      borderTop: '1px solid rgba(10,123,140,0.10)',
+      borderTop: '1px solid var(--nav-border)',
       display: 'flex', alignItems: 'stretch', justifyContent: 'center',
       overflow: 'visible',
       zIndex: 900,
-      boxShadow: '0 -1px 0 rgba(10,123,140,0.06), 0 -4px 28px rgba(0,45,60,0.07)',
+      boxShadow: 'var(--nav-shadow)',
       paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       /* Force GPU compositing — prevents iOS Safari from dropping fixed layer during scroll */
       transform: 'translateZ(0)',

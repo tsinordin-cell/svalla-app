@@ -297,7 +297,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         borderRadius: 22,
         overflow: 'hidden',
         boxShadow: 'var(--shadow-card, 0 4px 24px rgba(0,45,60,0.10))',
-        border: '1px solid rgba(22,45,58,0.04)',
+        border: '1px solid var(--hairline)',
         WebkitTapHighlightColor: 'transparent',
         cursor: 'pointer',
       }}
@@ -318,7 +318,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               background: 'var(--grad-sea)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: '#fff',
-              border: '1px solid rgba(22,45,58,0.06)',
+              border: '1px solid var(--hairline)',
             }}>
               {avatar
                 ? <Image src={avatar} alt={username} fill sizes="40px" style={{ objectFit: 'cover' }} />
