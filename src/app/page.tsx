@@ -202,7 +202,7 @@ section{padding:100px 40px}
 .app-badge-text .big{font-size:14px;font-weight:700;display:block}
 footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 32px}
 .footer-inner{max-width:1160px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:56px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
 .footer-brand .logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:12px;display:flex;align-items:center;gap:6px}
 .footer-brand .logo span{color:var(--accent)}
 .footer-brand p{font-size:13.5px;line-height:1.65;max-width:280px}
@@ -378,6 +378,9 @@ const LANDING_HTML = `
               <a href="/gotland" class="nav-mega-link">🏰 Gotland</a>
               <a href="/aland" class="nav-mega-link">⛵ Åland</a>
               <a href="/blekinge-skargard" class="nav-mega-link">🌿 Blekinges skärgård</a>
+              <a href="/vasterhav" class="nav-mega-link">🌊 Västerhavet</a>
+              <a href="/malaren" class="nav-mega-link">🏞️ Mälaren</a>
+              <a href="/goteborg-skargard" class="nav-mega-link">⚓ Göteborgs skärgård</a>
             </div>
           </div>
         </div>
@@ -812,6 +815,19 @@ const LANDING_HTML = `
           <li><a href="/faq">Vanliga frågor</a></li>
           <li><a href="/blogg">Skärgårdsbloggen</a></li>
           <li><a href="/integritetspolicy">Integritetspolicy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Regioner</h5>
+        <ul>
+          <li><a href="/stockholms-skargard">Stockholms skärgård</a></li>
+          <li><a href="/bohuslan">Bohuslän</a></li>
+          <li><a href="/gotland">Gotland</a></li>
+          <li><a href="/aland">Åland</a></li>
+          <li><a href="/blekinge-skargard">Blekinges skärgård</a></li>
+          <li><a href="/vasterhav">Västerhavet</a></li>
+          <li><a href="/malaren">Mälaren</a></li>
+          <li><a href="/goteborg-skargard">Göteborgs skärgård</a></li>
         </ul>
       </div>
     </div>
