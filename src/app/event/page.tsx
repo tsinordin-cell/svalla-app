@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
@@ -14,19 +14,19 @@ export default function EventPage() {
   const [loading, setLoading] = useState(true)
   const [showCreate, setShowCreate] = useState(false)
 
+  const load = useCallback(async (userId: string | null) => {
+    setLoading(true)
+    const rows = await listUpcomingEvents(supabase, { userId, limit: 30 })
+    setEvents(rows)
+    setLoading(false)
+  }, [supabase])
+
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) setMe(user.id)
       load(user?.id ?? null)
     })
-  }, [supabase])
-
-  async function load(userId: string | null) {
-    setLoading(true)
-    const rows = await listUpcomingEvents(supabase, { userId, limit: 30 })
-    setEvents(rows)
-    setLoading(false)
-  }
+  }, [supabase, load])
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100 }}>

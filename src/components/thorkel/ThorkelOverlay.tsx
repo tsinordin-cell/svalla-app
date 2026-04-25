@@ -51,10 +51,12 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
 
   const placeholder = useMemo(
     () => THORKEL_COPY.placeholders[Math.floor(Math.random() * THORKEL_COPY.placeholders.length)],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [open], // nytt exempel varje gång overlay öppnas
   )
   const loadingText = useMemo(
     () => THORKEL_COPY.loading[Math.floor(Math.random() * THORKEL_COPY.loading.length)],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [loading],
   )
 

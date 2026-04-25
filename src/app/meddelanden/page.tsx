@@ -101,6 +101,7 @@ export default function MeddelandenPage() {
     } catch { /* realtime-subscription misslyckades — inbox fungerar ändå statiskt */ }
 
     return () => { if (ch) supabase.removeChannel(ch) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supabase])
 
   async function load(userId: string) {

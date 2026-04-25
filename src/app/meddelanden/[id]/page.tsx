@@ -166,6 +166,7 @@ export default function ChatPage() {
     }
     boot()
     return () => { cancel = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, supabase, router])
 
   const loadMessages = useCallback(async (userId: string) => {

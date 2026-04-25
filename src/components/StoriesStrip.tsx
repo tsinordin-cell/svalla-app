@@ -40,6 +40,7 @@ export default function StoriesStrip() {
         console.warn('[StoriesStrip] auth.getUser failed:', err)
         load(null)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supabase])
 
   async function load(uid: string | null) {

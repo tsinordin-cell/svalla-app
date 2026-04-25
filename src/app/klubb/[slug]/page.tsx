@@ -49,6 +49,7 @@ export default function KlubbPage() {
       if (user) setMe(user.id)
       load(user?.id ?? null)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supabase, slug])
 
   async function load(userId: string | null) {
