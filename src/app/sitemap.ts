@@ -41,6 +41,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/rutter?vy=oar`,          lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     { url: `${base}/rutter?vy=farjor`,       lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    // Region-landningssidor — SEO-marknadsföring, driver till signup
+    { url: `${base}/stockholms-skargard`,    lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
+    { url: `${base}/bohuslan`,               lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/gotland`,                lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/aland`,                  lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    { url: `${base}/blekinge-skargard`,      lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
     { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },

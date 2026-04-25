@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import * as Sentry from '@sentry/nextjs'
 
 export default function Error({
@@ -84,7 +85,7 @@ export default function Error({
         >
           Rensa cache & ladda om
         </button>
-        <a
+        <Link
           href="/"
           className="press-feedback"
           style={{
@@ -96,7 +97,7 @@ export default function Error({
           }}
         >
           Startsidan
-        </a>
+        </Link>
       </div>
 
       {/* Debug-info — endast synligt när man klickar */}

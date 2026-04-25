@@ -86,7 +86,7 @@ export default function InstallPrompt() {
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.4 }}>
             Tryck på{' '}
             <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 13 }}>⎋</span>
-            {' '}och välj <strong style={{ color: 'rgba(255,255,255,0.85)' }}>"Lägg till på hemskärmen"</strong>
+            {' '}och välj <strong style={{ color: 'rgba(255,255,255,0.85)' }}>&quot;Lägg till på hemskärmen&quot;</strong>
           </p>
         ) : (
           <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>

@@ -1,6 +1,7 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import PlatserClient from '@/components/PlatserClient'
 import MessageBell from '@/components/MessageBell'
 import NotificationBell from '@/components/NotificationBell'
@@ -42,9 +43,9 @@ export default async function PlatserPage() {
         <div style={{ fontSize: 52 }}>⚓</div>
         <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda platser</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
-        <a href="/platser" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+        <Link href="/platser" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
-        </a>
+        </Link>
       </div>
     )
   }

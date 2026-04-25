@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
 import HeroAnimation, { HeroVariant } from '@/components/HeroAnimation'
 
 const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[] = [
@@ -199,7 +200,7 @@ export default function HeroPreviewPage() {
               {VARIANTS.find(v => v.id === selected)?.emoji} Du har valt: <em style={{ fontStyle: 'normal', color: 'rgba(120,200,255,1)' }}>{VARIANTS.find(v => v.id === selected)?.name}</em>
             </p>
             <p style={{ color: 'rgba(180,215,245,0.55)', fontSize: 13, margin: 0 }}>
-              Säg "Aktivera variant {selected}" så byter jag startsidan till detta tema direkt.
+              Säg &quot;Aktivera variant {selected}&quot; så byter jag startsidan till detta tema direkt.
             </p>
           </div>
           <button
@@ -218,12 +219,12 @@ export default function HeroPreviewPage() {
 
       {/* Back link */}
       <div style={{ textAlign: 'center', marginTop: 40 }}>
-        <a
+        <Link
           href="/"
           style={{ color: 'rgba(120,180,220,0.55)', fontSize: 13, textDecoration: 'none' }}
         >
           ← Tillbaka till startsidan
-        </a>
+        </Link>
       </div>
     </div>
   )

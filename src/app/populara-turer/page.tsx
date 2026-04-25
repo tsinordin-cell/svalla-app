@@ -102,7 +102,7 @@ export default function PopularaTurerPage() {
             Saknar din favorittur?
           </h2>
           <p>
-            Logga den i Svalla-appen och tagga den som "delningsbar" — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är kurerade av redaktionen men bygger helt på användar-data.
+            Logga den i Svalla-appen och tagga den som &quot;delningsbar&quot; — den hamnar automatiskt i sökningen och kan bli utvald här. Populära turer är kurerade av redaktionen men bygger helt på användar-data.
           </p>
         </>
       }

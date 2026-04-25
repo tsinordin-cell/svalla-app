@@ -180,9 +180,9 @@ export default async function RutterPage({
         </svg>
         <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Kunde inte ladda turer</h1>
         <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', margin: 0 }}>Kontrollera din anslutning och försök igen.</p>
-        <a href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
+        <Link href="/rutter" style={{ padding: '11px 24px', borderRadius: 14, background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13, textDecoration: 'none' }}>
           Försök igen
-        </a>
+        </Link>
       </div>
     )
   }

@@ -659,7 +659,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       const off = H * 0.008
       for (let x = 0; x <= W; x += 4) {
         const y2 = wave(x) + off + Math.sin(x * 0.0035 - t * 0.22 * th.waveSpeed + 0.9) * H * 0.0035 * th.waveAmp
-        x === 0 ? cx.moveTo(x, y2) : cx.lineTo(x, y2)
+        if (x === 0) cx.moveTo(x, y2); else cx.lineTo(x, y2)
       }
       cx.strokeStyle = 'rgba(255,255,255,0.07)'; cx.lineWidth = 0.9; cx.stroke()
       cx.restore()

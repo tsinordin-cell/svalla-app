@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import Link from 'next/link'
 import * as Sentry from '@sentry/nextjs'
 
 export default function Error({
@@ -43,7 +44,7 @@ export default function Error({
         >
           Försök igen
         </button>
-        <a
+        <Link
           href="/meddelanden"
           className="press-feedback"
           style={{
@@ -55,7 +56,7 @@ export default function Error({
           }}
         >
           Inkorgen
-        </a>
+        </Link>
       </div>
     </div>
   )
