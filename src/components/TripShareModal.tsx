@@ -8,6 +8,7 @@ interface Props {
   url: string
   variant?: 'icon' | 'pill'
   hasPhoto?: boolean
+  hasRoute?: boolean
 }
 
 // Detect Android
@@ -16,12 +17,12 @@ function isAndroid() {
   return /Android/.test(navigator.userAgent)
 }
 
-export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true }: Props) {
+export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true, hasRoute = false }: Props) {
   const [open, setOpen]       = useState(false)
   const [loading, setLoading] = useState(false)
   const [step, setStep]       = useState<'main' | 'saved'>('main')
   const [imgLoaded, setImgLoaded] = useState(false)
-  const [styleMode, setStyleMode] = useState<'photo' | 'map'>(hasPhoto ? 'photo' : 'map')
+  const [styleMode, setStyleMode] = useState<'photo' | 'map'>(hasPhoto ? 'photo' : hasRoute ? 'map' : 'photo')
 
   const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
 
@@ -195,29 +196,31 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
                     pointerEvents: 'none',
                   }} />
 
-                  {/* Style toggle */}
-                  <div style={{
-                    display: 'flex', borderRadius: 20, overflow: 'hidden',
-                    border: '1px solid rgba(255,255,255,0.12)',
-                    background: 'rgba(0,0,0,0.30)', position: 'relative', zIndex: 1,
-                  }}>
-                    {(['photo', 'map'] as const).map(mode => (
-                      <button
-                        key={mode}
-                        onClick={() => setStyleMode(mode)}
-                        style={{
-                          padding: '8px 22px', border: 'none', cursor: 'pointer',
-                          fontSize: 13, fontWeight: 700, letterSpacing: '0.2px',
-                          background: styleMode === mode ? 'rgba(255,255,255,0.18)' : 'transparent',
-                          color: styleMode === mode ? '#fff' : 'rgba(255,255,255,0.45)',
-                          transition: 'background 0.15s, color 0.15s',
-                          borderRadius: 20,
-                        }}
-                      >
-                        {mode === 'photo' ? '📸 Foto' : '🗺️ Karta'}
-                      </button>
-                    ))}
-                  </div>
+                  {/* Style toggle — only show if both modes are available */}
+                  {hasPhoto && hasRoute && (
+                    <div style={{
+                      display: 'flex', borderRadius: 20, overflow: 'hidden',
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      background: 'rgba(0,0,0,0.30)', position: 'relative', zIndex: 1,
+                    }}>
+                      {(['photo', 'map'] as const).map(mode => (
+                        <button
+                          key={mode}
+                          onClick={() => setStyleMode(mode)}
+                          style={{
+                            padding: '8px 22px', border: 'none', cursor: 'pointer',
+                            fontSize: 13, fontWeight: 700, letterSpacing: '0.2px',
+                            background: styleMode === mode ? 'rgba(255,255,255,0.18)' : 'transparent',
+                            color: styleMode === mode ? '#fff' : 'rgba(255,255,255,0.45)',
+                            transition: 'background 0.15s, color 0.15s',
+                            borderRadius: 20,
+                          }}
+                        >
+                          {mode === 'photo' ? '📸 Foto' : '🗺️ Karta'}
+                        </button>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Large card preview */}
                   <div style={{ position: 'relative', width: '50%', maxWidth: 160 }}>
