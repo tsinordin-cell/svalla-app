@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
+import { sendPushToUsers } from '@/lib/push-server'
 
 /** POST /api/forum/posts — skapa svar på tråd */
 export async function POST(req: NextRequest) {
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest) {
     // Verifiera att tråden finns och inte är låst
     const { data: thread, error: threadError } = await supabase
       .from('forum_threads')
-      .select('id, is_locked, user_id')
+      .select('id, is_locked, user_id, title, category_id')
       .eq('id', threadId)
       .eq('in_spam_queue', false)
       .single()
@@ -65,15 +66,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Kunde inte spara svaret.' }, { status: 500 })
     }
 
-    // Skicka forum_reply-notis till trådens skapare (om det inte är samma person)
-    if (!inSpamQueue && thread.user_id && thread.user_id !== user.id) {
-      await supabase.from('notifications').insert({
-        user_id:      thread.user_id,
-        actor_id:     user.id,
-        type:         'forum_reply',
-        reference_id: threadId,
-      }).then(({ error }) => {
-        if (error) console.error('[forum/posts] notification error:', error)
+    // Notifiera thread-ägare + tidigare deltagare (fire-and-forget)
+    if (!inSpamQueue) {
+      void notifyForumParticipants({
+        threadId,
+        threadTitle:    thread.title,
+        threadOwnerId:  thread.user_id,
+        categoryId:     thread.category_id,
+        posterId:       user.id,
+        supabase,
       })
     }
 
@@ -84,5 +85,72 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error('[forum/posts] unexpected error:', err)
     return NextResponse.json({ error: 'Serverfel.' }, { status: 500 })
+  }
+}
+
+// ── Push notifications ──────────────────────────────────────────────────────
+
+interface NotifyParams {
+  threadId:      string
+  threadTitle:   string
+  threadOwnerId: string
+  categoryId:    string
+  posterId:      string
+  supabase:      Awaited<ReturnType<typeof createServerSupabaseClient>>
+}
+
+async function notifyForumParticipants({
+  threadId, threadTitle, threadOwnerId, categoryId, posterId, supabase,
+}: NotifyParams): Promise<void> {
+  try {
+    // Poster's username for notification text
+    const { data: posterRow } = await supabase
+      .from('users')
+      .select('username')
+      .eq('id', posterId)
+      .maybeSingle()
+    const posterName = (posterRow?.username as string | undefined) ?? 'Någon'
+
+    // Previous participants who replied to this thread (distinct, approved only)
+    const { data: prevPosts } = await supabase
+      .from('forum_posts')
+      .select('user_id')
+      .eq('thread_id', threadId)
+      .eq('in_spam_queue', false)
+      .neq('user_id', posterId)
+
+    const prevParticipants = [...new Set((prevPosts ?? []).map((p: { user_id: string }) => p.user_id))]
+
+    // Collect recipients: thread owner + past participants, excluding poster
+    const recipientSet = new Set<string>()
+    if (threadOwnerId !== posterId) recipientSet.add(threadOwnerId)
+    prevParticipants
+      .filter(uid => uid !== threadOwnerId) // owner already added
+      .slice(0, 19)
+      .forEach(uid => recipientSet.add(uid))
+
+    if (recipientSet.size === 0) return
+
+    // Also insert DB notifications for thread owner
+    if (threadOwnerId !== posterId) {
+      await supabase.from('notifications').insert({
+        user_id:      threadOwnerId,
+        actor_id:     posterId,
+        type:         'forum_reply',
+        reference_id: threadId,
+      })
+    }
+
+    const shortTitle = threadTitle.length > 55
+      ? threadTitle.slice(0, 55) + '…'
+      : threadTitle
+
+    await sendPushToUsers([...recipientSet], {
+      title: '💬 Nytt svar i forumet',
+      body:  `${posterName} svarade i "${shortTitle}"`,
+      url:   `/forum/${categoryId}/${threadId}`,
+    })
+  } catch (err) {
+    console.error('[forum/posts] notifyForumParticipants error:', err)
   }
 }
