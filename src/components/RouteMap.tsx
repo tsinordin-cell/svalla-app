@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import type { TourWaypoint } from '@/lib/supabase'
+import type { Map as LeafletMap, Polyline } from 'leaflet'
 
 interface Props {
   waypoints: TourWaypoint[]
@@ -9,8 +10,8 @@ interface Props {
 
 export default function RouteMap({ waypoints, height = '320px' }: Props) {
   const containerRef   = useRef<HTMLDivElement>(null)
-  const mapRef         = useRef<any>(null)       // eslint-disable-line @typescript-eslint/no-explicit-any
-  const polylineRef    = useRef<any>(null)       // eslint-disable-line @typescript-eslint/no-explicit-any
+  const mapRef         = useRef<LeafletMap | null>(null)
+  const polylineRef    = useRef<Polyline | null>(null)
   const initializedRef = useRef(false)
 
   useEffect(() => {

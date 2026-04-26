@@ -3,6 +3,8 @@
  * Sjökorts-overlay (OpenSeaMap) är Svallas visuella signatur — gör det lätt
  * för Leaflet-komponenter att lägga på den utan duplicering.
  */
+import type { Map as LeafletMap } from 'leaflet'
+type LeafletNS = typeof import('leaflet')
 
 export const OSM_TILE_LIGHT = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 export const OSM_TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
@@ -31,8 +33,7 @@ export function baseTile(): { url: string; attr: string } {
  * Lägg till bas + seamark-overlay på en Leaflet-karta.
  * Körs i useEffect efter init.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function addSvallaTiles(L: any, map: any): void {
+export function addSvallaTiles(L: LeafletNS, map: LeafletMap): void {
   const { url, attr } = baseTile()
   L.tileLayer(url, { attribution: attr, maxZoom: 18 }).addTo(map)
   L.tileLayer(SEAMARK_TILE, {

@@ -4,8 +4,17 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { useEffect, useRef, useState } from 'react'
+import type { Map as LeafletMap, Marker, Polyline, MarkerClusterGroup, MarkerCluster, DivIconOptions } from 'leaflet'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
+
+type MarkerEntry = {
+  marker:     Marker
+  cat:        LayerKey
+  restaurant: Restaurant
+  isActive:   boolean
+  nearby:     boolean
+}
 
 interface Props {
   restaurants: Restaurant[]
@@ -66,7 +75,7 @@ function etaStr(nm: number): string {
 }
 
 // Flytt från komponent-scope → modul-scope: ingen re-skapning per render
-function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string): object {
+function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string): DivIconOptions {
   const pulseRing = pulse
     ? `<div style="
           position:absolute;top:50%;left:50%;
@@ -262,16 +271,11 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
 // ── Huvudkomponent ────────────────────────────────────────────────────────────
 export default function PlatserMap({ restaurants, tours = [], activeId, onMarkerClick, onMapMove }: Props) {
   const containerRef  = useRef<HTMLDivElement>(null)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mapRef        = useRef<any>(null)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const markersRef    = useRef<Record<string, any>>({})
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const clusterRef    = useRef<any>(null)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const polylinesRef  = useRef<Record<string, any>>({})
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const userMarkerRef = useRef<any>(null)
+  const mapRef        = useRef<LeafletMap | null>(null)
+  const markersRef    = useRef<Record<string, MarkerEntry>>({})
+  const clusterRef    = useRef<MarkerClusterGroup | null>(null)
+  const polylinesRef  = useRef<Record<string, Polyline>>({})
+  const userMarkerRef = useRef<Marker | null>(null)
   const [fullscreen,  setFullscreen]  = useState(false)
   const [locating,    setLocating]    = useState(false)
   const [locateError, setLocateError] = useState<string | null>(null)
@@ -351,8 +355,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       })
 
       // ── MarkerClusterGroup med prestandainställningar ───────────────────────
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const cluster = (L as any).markerClusterGroup({
+      const cluster = L.markerClusterGroup({
         maxClusterRadius:        48,
         showCoverageOnHover:     false,
         // chunkedLoading: delar upp rendering i chunks → förhindrar UI-frysning vid många markörer
@@ -362,8 +365,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         // Sluta clustra vid zoom 16 — visar individuella markörer nära
         disableClusteringAtZoom: 16,
         spiderfyOnMaxZoom:       true,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        iconCreateFunction: (c: any) => {
+        iconCreateFunction: (c: MarkerCluster) => {
           const count = c.getChildCount()
           return L.divIcon({
             className: '',
@@ -403,23 +405,20 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
          
         const marker = L.marker([r.latitude, r.longitude], {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          icon: L.divIcon(makeIconHtml(color, 34, false, emoji) as any),
+          icon: L.divIcon(makeIconHtml(color, 34, false, emoji)),
         })
           .bindPopup(buildPopupHtml(r, userPosRef.current), { maxWidth: 280, keepInView: true })
 
         marker.on('click', () => onMarkerClick(r.id))
 
         marker.on('mouseover', () => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          marker.setIcon(L.divIcon(makeIconHtml(color, 42, false, emoji) as any))
+          marker.setIcon(L.divIcon(makeIconHtml(color, 42, false, emoji)))
         })
         marker.on('mouseout', () => {
           // FIX: Läs nearby-state från markersRef (inte stale closure)
           const entry = markersRef.current[r.id]
           if (!entry?.isActive) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            marker.setIcon(L.divIcon(makeIconHtml(color, 34, entry?.nearby ?? false, emoji) as any))
+            marker.setIcon(L.divIcon(makeIconHtml(color, 34, entry?.nearby ?? false, emoji)))
           }
         })
 
@@ -432,11 +431,9 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
       tours.forEach((tour, i) => {
         if (!tour.waypoints || tour.waypoints.length < 2) return
         const color = ROUTE_COLORS[i % ROUTE_COLORS.length]
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const latlngs = tour.waypoints.map((wp: any) => [wp.lat, wp.lng])
+        const latlngs: [number, number][] = tour.waypoints.map(wp => [wp.lat, wp.lng])
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const line = (L as any).polyline(latlngs, {
+        const line = L.polyline(latlngs, {
           color, weight: 4, opacity: 0.75, lineJoin: 'round', lineCap: 'round',
         })
           .addTo(map)
@@ -492,28 +489,25 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     if (!mapRef.current) return
     import('leaflet').then(L => {
       for (const [id, entry] of Object.entries(markersRef.current)) {
-        const { marker, cat, restaurant } = entry as { marker: unknown; cat: LayerKey; restaurant: Restaurant; isActive: boolean; nearby: boolean }
+        const { marker, cat, restaurant } = entry
         const color    = LAYER_COLORS[cat]
         const emoji    = LAYER_LABELS[cat]
         const isActive = id === activeId
         const pulse    = nearbyIds.has(id) && !isActive
 
         // Uppdatera nearby i markersRef (fixar mouseout stale closure)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ;(markersRef.current[id] as any).nearby   = nearbyIds.has(id)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ;(markersRef.current[id] as any).isActive = isActive
+        const cur = markersRef.current[id]
+        if (cur) {
+          cur.nearby   = nearbyIds.has(id)
+          cur.isActive = isActive
+        }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ;(marker as any).setIcon(L.divIcon(makeIconHtml(color, isActive ? 44 : 34, pulse, emoji) as any))
+        marker.setIcon(L.divIcon(makeIconHtml(color, isActive ? 44 : 34, pulse, emoji)))
 
         if (isActive) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          mapRef.current.panTo((marker as any).getLatLng(), { animate: true })
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ;(marker as any).setPopupContent(buildPopupHtml(restaurant, userPosRef.current))
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ;(marker as any).openPopup()
+          mapRef.current?.panTo(marker.getLatLng(), { animate: true })
+          marker.setPopupContent(buildPopupHtml(restaurant, userPosRef.current))
+          marker.openPopup()
         }
       }
     })
@@ -527,14 +521,11 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
     const cluster = clusterRef.current
 
     for (const [id, entry] of Object.entries(markersRef.current)) {
-      const { marker, cat } = entry as { marker: unknown; cat: LayerKey }
+      const { marker, cat } = entry
       const show = visibleIds.has(id) && layers[cat]
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const hasLayer = cluster.hasLayer(marker as any)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (show  && !hasLayer) cluster.addLayer(marker as any)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (!show && hasLayer)  cluster.removeLayer(marker as any)
+      const hasLayer = cluster.hasLayer(marker)
+      if (show  && !hasLayer) cluster.addLayer(marker)
+      if (!show && hasLayer)  cluster.removeLayer(marker)
     }
   }, [restaurants, layers])
 
@@ -542,10 +533,8 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
   useEffect(() => {
     if (!mapRef.current) return
     for (const line of Object.values(polylinesRef.current)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (showRoutes  && !mapRef.current.hasLayer(line)) (line as any).addTo(mapRef.current)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (!showRoutes &&  mapRef.current.hasLayer(line)) mapRef.current.removeLayer(line as any)
+      if (showRoutes  && !mapRef.current.hasLayer(line)) line.addTo(mapRef.current)
+      if (!showRoutes &&  mapRef.current.hasLayer(line)) mapRef.current.removeLayer(line)
     }
   }, [showRoutes])
 
@@ -577,12 +566,12 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         setNearbyIds(nearby)
 
         for (const { marker, restaurant } of Object.values(markersRef.current)) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ;(marker as any).setPopupContent(buildPopupHtml(restaurant as Restaurant, newPos))
+          marker.setPopupContent(buildPopupHtml(restaurant, newPos))
         }
 
         const L   = await import('leaflet')
         const map = mapRef.current
+        if (!map) return
         if (userMarkerRef.current) map.removeLayer(userMarkerRef.current)
 
         const userIcon = L.divIcon({

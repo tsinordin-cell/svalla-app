@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { logger } from '@/lib/logger'
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
@@ -79,7 +80,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ stops })
   } catch (err) {
-    console.error('[api/planera]', err)
+    logger.error('planera', 'unhandled exception', { error: String(err) })
     return NextResponse.json({ error: 'Serverfel' }, { status: 500 })
   }
 }

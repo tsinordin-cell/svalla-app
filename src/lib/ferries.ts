@@ -10,6 +10,8 @@
  * så att /farjor-sidan och /api/ferries aldrig kraschar.
  */
 
+import { logger } from './logger'
+
 export type FerrySource = 'live' | 'seed'
 
 export type FerryDeparture = {
@@ -138,7 +140,7 @@ async function resolveStopId(name: string, apiKey: string): Promise<string | nul
     stopIdCache.set(name, id)
     return id
   } catch (err) {
-    console.warn('[ferries] stop lookup failed for', name, err)
+    logger.warn('ferries', 'stop lookup failed', { name, error: err })
     return null
   }
 }
@@ -205,7 +207,7 @@ export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise
 
     return out.length > 0 ? out : null
   } catch (err) {
-    console.warn('[ferries] live departures failed for', route.id, err)
+    logger.warn('ferries', 'live departures failed', { routeId: route.id, error: err })
     return null
   }
 }

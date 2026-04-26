@@ -6,6 +6,7 @@
  *  - bara den taggade kan confirmera
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
+import { logger } from './logger'
 
 export type TripTag = {
   trip_id: string
@@ -54,7 +55,7 @@ export async function addTripTag(
       confirmed: true,
     })
   if (error) {
-    console.error('[addTripTag]', error.code, error.message)
+    logger.error('tripTags', 'addTripTag failed', { code: error.code, message: error.message })
     return { ok: false, errorMessage: error.message }
   }
   // Fire-and-forget: in-app notification + push

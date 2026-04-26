@@ -2,14 +2,18 @@
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt(): Promise<void>
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+}
+
 // Visa bara install-prompten på app-sidor
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
 export default function InstallPrompt() {
   const [show, setShow] = useState(false)
   const [isIOS, setIsIOS] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -26,10 +30,9 @@ export default function InstallPrompt() {
 
     // Android / Chrome — fånga beforeinstallprompt
     let timer: ReturnType<typeof setTimeout> | null = null
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handler = (e: any) => {
+    const handler = (e: Event) => {
       e.preventDefault()
-      setDeferredPrompt(e)
+      setDeferredPrompt(e as BeforeInstallPromptEvent)
       timer = setTimeout(() => setShow(true), 5000)
     }
     window.addEventListener('beforeinstallprompt', handler)
