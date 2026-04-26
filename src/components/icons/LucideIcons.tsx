@@ -4,7 +4,7 @@
  */
 import type { SVGProps } from 'react'
 
-type IconProps = SVGProps<SVGSVGElement> & { size?: number; stroke?: number }
+type IconProps = Omit<SVGProps<SVGSVGElement>, 'stroke'> & { size?: number; stroke?: number }
 
 function icon(paths: React.ReactNode) {
   return function Icon({ size = 24, stroke = 2, style, ...rest }: IconProps) {
