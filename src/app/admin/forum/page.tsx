@@ -52,7 +52,8 @@ export default async function AdminForumPage({
     : { data: [] }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const umap = new Map((users ?? []).map((u: any) => [u.id, u]))
-  const enriched = items.map(i => ({ ...i, author: umap.get(i.user_id) }))
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const enriched = items.map(i => ({ ...i, author: umap.get(i.user_id) })) as Array<Record<string, any>>
 
   // Räkna totalt i kön
   const [{ count: threadCount }, { count: postCount }] = await Promise.all([
