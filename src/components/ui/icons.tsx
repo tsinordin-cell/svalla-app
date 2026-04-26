@@ -242,6 +242,21 @@ export const IconMap: React.FC<IconProps> = (p) => (
 )
 
 // Two overlapping chat bubbles — forum / community
+export const IconHelm: React.FC<IconProps> = (p) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="3" />
+    <circle cx="12" cy="12" r="9" />
+    <line x1="12" y1="3" x2="12" y2="9" />
+    <line x1="12" y1="15" x2="12" y2="21" />
+    <line x1="3" y1="12" x2="9" y2="12" />
+    <line x1="15" y1="12" x2="21" y2="12" />
+    <line x1="5.6" y1="5.6" x2="9.5" y2="9.5" />
+    <line x1="14.5" y1="14.5" x2="18.4" y2="18.4" />
+    <line x1="18.4" y1="5.6" x2="14.5" y2="9.5" />
+    <line x1="9.5" y1="14.5" x2="5.6" y2="18.4" />
+  </Icon>
+)
+
 export const IconForum: React.FC<IconProps> = (p) => (
   <Icon {...p}>
     <path d="M3.5 5.5 A 1.5 1.5 0 0 1 5 4 H 15 A 1.5 1.5 0 0 1 16.5 5.5 V 11 A 1.5 1.5 0 0 1 15 12.5 H 9.5 L 7 14.8 V 12.5 H 5 A 1.5 1.5 0 0 1 3.5 11 Z" />

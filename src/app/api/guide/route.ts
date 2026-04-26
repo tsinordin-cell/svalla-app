@@ -108,9 +108,36 @@ Bästa säsong: Juni-Augusti. Maj och september bra för de som vill ha lugn.
 Vindförhållanden: Sydvästliga vindar vanligast, bäst för norrut-segling på morgonen.
 Sommar (jun-aug): Trångt vid Sandhamn och Grinda, boka alltid brygga i förväg.
 Höst: Vackra färger, lite folk, men kallare, dubbelkolla öppettider.
+
+=== BOHUSLÄN ===
+Göteborg→Marstrand: Familj/par/turist, halvdag-heldag, Carlstens fästning, hamnliv, Marstrand Hotel & Restaurang, klassisk semesterö. ~15 NM. Regelbunden färja från Koön.
+Göteborg→Vrångö: Familj/nybörjare, halvdag, sydligaste Göteborgs skärgård, bilfri ö, klippbad, fin natur. ~12 NM med båt.
+Göteborg→Styrsö: Familj, halvdag, bilfri ö, populär badortsö, god mat. ~10 NM.
+Lysekil→Gullholmen: Par/äventyrare, halvdag, Bohusläns äldsta fiskeläge, trångt och pittoreskt. ~8 NM.
+Lysekil→Käringön: Par/lugn-sökare, halvdag, charmigt fiskeläge, kafékultur, klippor. ~15 NM.
+Smögen→Kungshamn: Turist/familj, dagstur, Smögenbryggan, skaldjur, livlig hamn. ~5 NM.
+Smögen→Hållö: Äventyrare, halvdag, naturreservat, vildmark, fyr, sälskådning. ~8 NM.
+Fjällbacka→Väderöarna: Äventyrare/seglare, heldag/weekend, yttersta Bohuslän, otäljd natur, sälkolonier. ~15 NM.
+Grebbestad→Kosteröarna: Seglare/äventyrare, 1-2 dagar, Nordkoster/Sydkoster, nationalpark, klart vatten, hummer. ~25 NM.
+Grundsund→Fiskebäckskil: Par/turist, halvdag, pittoreskaste hamnarna i Bohuslän, konstnärshistoria. ~3 NM.
+
+=== GOTLAND ===
+Visby hamn→Ljugarn: Seglare, heldag, ostkunsten, vackra raukar vid Tjelvars grav. ~25 NM.
+Visby→Fårö: Seglare/par, heldag/övernattning, Bergmans ö, raukar, vild natur, Fårö Krog. ~20 NM norrut.
+Visby→Lickershamn: Seglare, dagstur norrut, Jungfrun — Gotlands vackraste rauk, klippbad. ~18 NM.
+Visby→Klintehamn: Seglare/familj, halvdag, gateway till Karlsöarna (Lilla/Stora Karlsö), koloni av tordmular. ~20 NM söderut.
+Visby→Herrvik: Seglare, halvdag, fin naturhamn på ostkusten, lugnt. ~30 NM.
+Gotland runtsegling: Erfarna seglare, 5-7 dagar, ca 180 NM runt ön, varierande hamnar.
+
+=== BLEKINGE ===
+Karlskrona→Tjurkö: Familj/par, halvdag, bilfri skärgårdsö, lugna vatten, kanotleder. ~6 NM.
+Karlskrona→Sturkö: Familj/nybörjare, halvdag, bron gör biltur möjlig men fint att segla dit. ~8 NM.
+Karlskrona→Utklippan: Äventyrare/seglare, heldag, yttersta Blekinge, fyr och fyrvaktarbostad, havsörnar. ~18 NM.
+Karlskrona→Hanö: Seglare/äventyrare, heldag/övernattning, pittoreskt med engelsk historia, sälskådning. ~22 NM.
+Ronneby hamn→Hästholmen: Familj, halvdag, naturhamnar i inre Blekinges skärgård. ~10 NM.
 `
 
-const SYSTEM_PROMPT = `Du är Thorkel, en 70-årig skeppare och skärgårdsguide från Möja i Stockholms skärgård. Du var lots utanför Sandhamn i tio år och driver nu egna charterturer plus ett litet vandrarhem tillsammans med din fru. Du bär vit kaptens-keps och mörkblå uniform, och luktar lite salt och tjära.
+const SYSTEM_PROMPT = `Du är Thorkel, en 70-årig skeppare och skärgårdsguide från Möja i Stockholms skärgård. Du var lots utanför Sandhamn i tio år och har seglat längs hela Sveriges kust — från Kosterfjorden i Bohuslän till Karlsöarna utanför Gotland och Utklippan i Blekinge. Du driver nu egna charterturer plus ett litet vandrarhem tillsammans med din fru. Du bär vit kaptens-keps och mörkblå uniform, och luktar lite salt och tjära.
 
 Du är en äkta gammal havsbuse. Skarpsinnig, direkt och med en gnutta humor som inte alla fattar. Du älskar skärgården på riktigt — inte som turistbroschyr utan som hem. Du kan hålla ett tal om rätt ankringsteknik i tjugo minuter men blir kortfattad om vädret.
 

@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconCompass, IconForum, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconHelm, IconForum, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
 
 export default function Nav() {
   const path = usePathname()
@@ -65,11 +65,12 @@ export default function Nav() {
 
   const tabs = [
     {
-      href: '/upptack',
-      label: 'Upptäck',
+      href: '/guide',
+      label: 'Thorkel',
       exact: false,
+      matchPaths: ['/guide'],
       icon: (active: boolean) => (
-        <IconCompass size={22} stroke={active ? 2 : 1.75} />
+        <IconHelm size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     {
