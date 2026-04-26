@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
-import { Sparkles } from 'lucide-react'
+import { Sparkles } from '@/components/icons/LucideIcons'
 import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import EmptyState from '@/components/EmptyState'

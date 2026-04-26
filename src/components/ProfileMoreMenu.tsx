@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, type ReactNode, type MouseEvent } from 'react'
-import { Ban, Flag } from 'lucide-react'
+import { Ban, Flag } from '@/components/icons/LucideIcons'
 import { createClient } from '@/lib/supabase'
 import ReportButton from '@/components/ReportButton'
 import BlockButton from '@/components/BlockButton'

@@ -1,13 +1,19 @@
 'use client'
 import React, { useState, useRef, useEffect, Suspense } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
+import type { PlanData } from '@/app/api/guide/route'
 
-type Message = { role: 'user' | 'assistant'; content: string }
+type Message = {
+  role: 'user' | 'assistant'
+  content: string
+  followUps?: string[]
+  planData?: PlanData | null
+}
 
 function renderMarkdown(text: string): React.ReactNode[] {
   const segments = text.split(/(\[.+?\]\(.+?\)|\*\*.+?\*\*)/g)
@@ -33,6 +39,7 @@ const SUGGESTIONS = [
 
 function GuideContent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const preselectedTour = searchParams.get('tur')
   const preselectedQ = searchParams.get('fråga') ?? searchParams.get('fraga')
 
@@ -45,10 +52,10 @@ function GuideContent() {
   const [loading, setLoading] = useState(false)
   const [authChecked, setAuthChecked] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [savingPlan, setSavingPlan] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
-  // Auth-check: Thorkel kräver inloggning (förhindrar API-kostnad från bots)
   useEffect(() => {
     const supabase = createClient()
     supabase.auth.getUser().then(({ data: { user } }) => {
@@ -61,7 +68,6 @@ function GuideContent() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Auto-fokusera och auto-skicka om fråga är förifylld (bara om inloggad)
   useEffect(() => {
     if (!authChecked) return
     if (preselectedQ && isLoggedIn) {
@@ -73,32 +79,114 @@ function GuideContent() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authChecked, isLoggedIn])
 
+  async function savePlan(planData: PlanData) {
+    setSavingPlan(true)
+    try {
+      const res = await fetch('/api/planera/create', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(planData),
+      })
+      const json = await res.json()
+      if (json.id) router.push(`/planera/${json.id}`)
+    } catch { /* silent */ } finally {
+      setSavingPlan(false)
+    }
+  }
+
   async function send(text?: string) {
     const msg = (text ?? input).trim()
     if (!msg || loading) return
     setInput('')
-    const next: Message[] = [...messages, { role: 'user', content: msg }]
-    setMessages(next)
+
+    const userMsg: Message = { role: 'user', content: msg }
+    const apiMessages = [...messages, userMsg]
+    const assistantIdx = apiMessages.length
+
+    // Add user message + empty assistant slot immediately for streaming display
+    setMessages([...apiMessages, { role: 'assistant', content: '' }])
     setLoading(true)
+
     try {
       const res = await fetch('/api/guide', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ messages: next }),
+        body: JSON.stringify({
+          messages: apiMessages.map(m => ({ role: m.role, content: m.content })),
+        }),
       })
-      const data = await res.json().catch(() => ({} as { reply?: string; error?: string }))
+
       if (res.status === 401) {
         setIsLoggedIn(false)
-        setMessages([...next, { role: 'assistant', content: 'Du behöver logga in för att prata med mig — jag sparar mina bästa tips till mina egna seglare.' }])
-      } else if (res.status === 429) {
-        setMessages([...next, { role: 'assistant', content: 'Tar en paus — vänta en minut så pratar vi vidare.' }])
-      } else if (data.reply) {
-        setMessages([...next, { role: 'assistant', content: data.reply }])
+        setMessages(prev => {
+          const u = [...prev]
+          u[assistantIdx] = { role: 'assistant', content: 'Du behöver logga in för att prata med mig — jag sparar mina bästa tips till mina egna seglare.' }
+          return u
+        })
+        return
+      }
+      if (res.status === 429) {
+        setMessages(prev => {
+          const u = [...prev]
+          u[assistantIdx] = { role: 'assistant', content: 'Tar en paus — vänta en minut så pratar vi vidare.' }
+          return u
+        })
+        return
+      }
+
+      if (res.body && res.headers.get('content-type')?.includes('text/event-stream')) {
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let buffer = ''
+        let accText = ''
+
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          buffer += decoder.decode(value, { stream: true })
+          const lines = buffer.split('\n')
+          buffer = lines.pop() ?? ''
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue
+            try {
+              const event = JSON.parse(line.slice(6)) as { t?: string; done?: boolean; followUps?: string[]; planData?: PlanData | null }
+              if (event.t !== undefined) {
+                accText += event.t
+                setMessages(prev => {
+                  const u = [...prev]
+                  u[assistantIdx] = { role: 'assistant', content: accText }
+                  return u
+                })
+              } else if (event.done) {
+                setMessages(prev => {
+                  const u = [...prev]
+                  u[assistantIdx] = {
+                    role: 'assistant',
+                    content: accText,
+                    followUps: event.followUps ?? [],
+                    planData: event.planData ?? null,
+                  }
+                  return u
+                })
+              }
+            } catch { /* ignore malformed SSE line */ }
+          }
+        }
       } else {
-        setMessages([...next, { role: 'assistant', content: 'Något gick fel, försök igen.' }])
+        // Fallback for non-stream JSON (shouldn't happen for 200 responses)
+        const data = await res.json().catch(() => ({} as { reply?: string }))
+        setMessages(prev => {
+          const u = [...prev]
+          u[assistantIdx] = { role: 'assistant', content: data.reply ?? 'Något gick fel, försök igen.' }
+          return u
+        })
       }
     } catch {
-      setMessages([...next, { role: 'assistant', content: 'Kunde inte nå Thorkel just nu.' }])
+      setMessages(prev => {
+        const u = [...prev]
+        u[assistantIdx] = { role: 'assistant', content: 'Kunde inte nå Thorkel just nu.' }
+        return u
+      })
     } finally {
       setLoading(false)
       setTimeout(() => inputRef.current?.focus(), 100)
@@ -109,9 +197,12 @@ function GuideContent() {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() }
   }
 
+  const lastMsg = messages[messages.length - 1]
+  const showLoadingDots = loading && !(lastMsg?.role === 'assistant' && lastMsg?.content)
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg)' }}>
-      {/* Header — Thorkel-palett (marinblå, ingen gradient) */}
+      {/* Header */}
       <header style={{
         padding: '12px 16px',
         background: 'var(--thor)',
@@ -153,7 +244,6 @@ function GuideContent() {
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px 14px 8px' }}>
         {messages.length === 0 && (
           <div>
-            {/* Welcome — stor avatar, bio, stoisk intro */}
             <div style={{
               background: 'var(--white)', borderRadius: 16, padding: '24px 20px 20px',
               border: '1px solid rgba(43,62,86,0.12)',
@@ -179,7 +269,6 @@ function GuideContent() {
               </p>
             </div>
 
-            {/* Suggestions */}
             <div style={{ marginBottom: 8 }}>
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
                 Vanliga frågor
@@ -210,21 +299,62 @@ function GuideContent() {
                 <ThorkelAvatar size={32} />
               </div>
             )}
-            <div style={{
-              maxWidth: '82%', padding: '12px 15px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-              background: m.role === 'user' ? 'var(--thor)' : 'var(--thor-l)',
-              color: m.role === 'user' ? '#fff' : 'var(--txt)',
-              fontSize: 14, lineHeight: 1.7,
-              border: m.role === 'assistant' ? '1px solid rgba(43,62,86,0.12)' : 'none',
-              boxShadow: m.role === 'assistant' ? '0 1px 4px rgba(10,20,35,0.05)' : 'none',
-              whiteSpace: 'pre-wrap',
-            }}>
-              {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: '82%' }}>
+              <div style={{
+                padding: '12px 15px',
+                borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                background: m.role === 'user' ? 'var(--thor)' : 'var(--thor-l)',
+                color: m.role === 'user' ? '#fff' : 'var(--txt)',
+                fontSize: 14, lineHeight: 1.7,
+                border: m.role === 'assistant' ? '1px solid rgba(43,62,86,0.12)' : 'none',
+                boxShadow: m.role === 'assistant' ? '0 1px 4px rgba(10,20,35,0.05)' : 'none',
+                whiteSpace: 'pre-wrap',
+              }}>
+                {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
+              </div>
+
+              {/* Follow-up suggestion chips */}
+              {m.role === 'assistant' && m.followUps && m.followUps.length > 0 && (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {m.followUps.map((q, qi) => (
+                    <button key={qi} onClick={() => send(q)} style={{
+                      padding: '5px 11px', borderRadius: 14,
+                      background: 'var(--white)',
+                      border: '1.5px solid rgba(43,62,86,0.15)',
+                      fontSize: 12, color: 'var(--thor)', fontWeight: 600,
+                      cursor: 'pointer',
+                      boxShadow: '0 1px 3px rgba(10,20,35,0.05)',
+                    }}>
+                      {q}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Save as plan button — shown when Thorkel ran the route planner */}
+              {m.role === 'assistant' && m.planData && (
+                <button
+                  onClick={() => savePlan(m.planData!)}
+                  disabled={savingPlan}
+                  style={{
+                    padding: '8px 16px', borderRadius: 20,
+                    background: savingPlan ? 'rgba(10,123,140,0.4)' : 'var(--sea)',
+                    color: '#fff',
+                    border: 'none', cursor: savingPlan ? 'default' : 'pointer',
+                    fontSize: 13, fontWeight: 700,
+                    alignSelf: 'flex-start',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {savingPlan ? 'Sparar…' : 'Spara som plan →'}
+                </button>
+              )}
             </div>
           </div>
         ))}
 
-        {loading && (
+        {/* Loading dots — only show before first streaming chunk arrives */}
+        {showLoadingDots && (
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <ThorkelAvatar size={32} />
             <div style={{

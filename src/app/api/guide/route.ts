@@ -347,24 +347,63 @@ type AnthropicContent =
 
 type ToolResult = { stops: Array<{ name: string; island: string | null; reason: string; distance_from_line_km: number }> } | { error: string }
 
+export type PlanData = {
+  startName: string
+  endName: string
+  startLat: number
+  startLng: number
+  endLat: number
+  endLng: number
+  interests: string[]
+}
+
+function extractFollowUps(raw: string): { text: string; followUps: string[] } {
+  const re = /\n?FÖLJDFRÅGOR:\s*([^\n]+)/i
+  const m = re.exec(raw)
+  if (!m) return { text: raw, followUps: [] }
+  const text = raw.slice(0, m.index).trim()
+  const followUps = m[1]!.split('|').map(q => q.trim()).filter(Boolean)
+  return { text, followUps }
+}
+
+function makeStream(text: string, followUps: string[], planData: PlanData | null): Response {
+  const encoder = new TextEncoder()
+  const stream = new ReadableStream({
+    async start(controller) {
+      const chunkSize = 20
+      for (let i = 0; i < text.length; i += chunkSize) {
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ t: text.slice(i, i + chunkSize) })}\n\n`))
+        await new Promise(r => setTimeout(r, 16))
+      }
+      controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData })}\n\n`))
+      controller.close()
+    },
+  })
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+    },
+  })
+}
+
 async function executeTool(
   name: string,
   input: Record<string, unknown>,
   supabase: SupabaseClient,
-): Promise<ToolResult> {
-  if (name !== 'plan_route') return { error: `Okänt verktyg: ${name}` }
+): Promise<{ result: ToolResult; planData: PlanData | null }> {
+  if (name !== 'plan_route') return { result: { error: `Okänt verktyg: ${name}` }, planData: null }
 
   const { start, end, interests } = input as { start?: string; end?: string; interests?: string[] }
   if (!start || !end || !Array.isArray(interests)) {
-    return { error: 'Ogiltiga argument till plan_route' }
+    return { result: { error: 'Ogiltiga argument till plan_route' }, planData: null }
   }
 
   const startPlace = resolvePlaceName(start)
   const endPlace = resolvePlaceName(end)
-  if (!startPlace) return { error: `Kunde inte känna igen startplatsen "${start}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }
-  if (!endPlace) return { error: `Kunde inte känna igen slutplatsen "${end}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }
+  if (!startPlace) return { result: { error: `Kunde inte känna igen startplatsen "${start}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null }
+  if (!endPlace) return { result: { error: `Kunde inte känna igen slutplatsen "${end}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null }
 
-  // Hämta alla platser från DB
   const { data: places } = await supabase
     .from('restaurants')
     .select('id, name, latitude, longitude, type, categories, tags, island')
@@ -390,18 +429,30 @@ async function executeTool(
     allPlaces,
   )
 
+  const planData: PlanData = {
+    startName: start,
+    endName: end,
+    startLat: startPlace.lat,
+    startLng: startPlace.lng,
+    endLat: endPlace.lat,
+    endLng: endPlace.lng,
+    interests,
+  }
+
   return {
-    stops: stops.map(s => ({
-      name: s.name,
-      island: s.island,
-      reason: s.reason,
-      distance_from_line_km: s.distance_from_line_km,
-    })),
+    result: {
+      stops: stops.map(s => ({
+        name: s.name,
+        island: s.island,
+        reason: s.reason,
+        distance_from_line_km: s.distance_from_line_km,
+      })),
+    },
+    planData,
   }
 }
 
 export async function POST(req: NextRequest) {
-  // Auth check — must be logged in to prata med Thorkel (prevents API quota drain)
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -419,7 +470,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // Rate limit: 10 AI-anrop per användare per minut
   const { checkRateLimit } = await import('@/lib/rateLimit')
   if (!checkRateLimit(`guide:${user.id}`, 10, 60_000)) {
     return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
@@ -442,6 +492,28 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'messages krävs och måste vara array' }, { status: 400 })
   }
 
+  // Sanitize messages — strip any extra frontend fields before sending to Anthropic
+  const cleanMessages = (messages as Array<{ role?: unknown; content?: unknown }>)
+    .filter(m => m.role === 'user' || m.role === 'assistant')
+    .map(m => ({ role: m.role as string, content: typeof m.content === 'string' ? m.content : '' }))
+
+  // Fetch user's last 5 trips for personalized context
+  const { data: recentTrips } = await supabase
+    .from('trips')
+    .select('title, location_name, distance, created_at')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(5)
+
+  let tripCtx = ''
+  if (recentTrips && recentTrips.length > 0) {
+    tripCtx = '\n\n=== ANVÄNDARENS SENASTE TURER (använd för personalisering) ===\n' +
+      (recentTrips as Array<{ title?: string | null; location_name?: string | null; distance?: number | null }>)
+        .map(t => `- ${t.title ?? 'Namnlös tur'}${t.location_name ? ` — ${t.location_name}` : ''}${t.distance != null ? ` (${Math.round(t.distance)} NM)` : ''}`)
+        .join('\n') +
+      '\nOm relevant: referera till deras tidigare turer när du ger råd.'
+  }
+
   // Fetch bookable/linked restaurants to inject live deep links into system prompt
   const { data: places } = await supabase
     .from('restaurants')
@@ -451,7 +523,6 @@ export async function POST(req: NextRequest) {
 
   const placeList: Array<{ id: string; name: string; island: string | null; booking_url: string | null }> = places ?? []
 
-  // Validerings-set: endast dessa IDn och bokningslänkar får finnas i svaret
   const validPlaceIds = new Set(placeList.map(p => p.id))
   const validBookingUrls = new Set(placeList.map(p => p.booking_url).filter((x): x is string => !!x))
 
@@ -463,25 +534,22 @@ export async function POST(req: NextRequest) {
     })
     .join('\n')
 
-  /** Strippa markdown-länkar där URL:en inte finns i vår whitelist. Behåll länktexten. */
   function sanitizeLinks(text: string): string {
     return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, label, url) => {
-      // Tillåt /platser/<id> om id finns i DB
       const platserMatch = /^https?:\/\/svalla\.se\/platser\/([0-9a-f-]+)/i.exec(url)
       if (platserMatch && validPlaceIds.has(platserMatch[1]!)) return full
-      // Tillåt booking_url från DB
       if (validBookingUrls.has(url)) return full
-      // Tillåt interna Svalla-sidor
       if (/^https?:\/\/svalla\.se\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
       if (/^\/(planera|karta|resmal|populara-turer|segelrutter|kom-igang|logga-in)(\/|$|\?)/i.test(url)) return full
-      // Allt annat — strippa länken, behåll texten
       return label
     })
   }
 
-  const dynamicSystem = placeLinks
+  const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta, relevanta följdfrågor som du tror användaren kan vilja veta mer om. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort fråga ett? | Kort fråga två? | Kort fråga tre?\nMax 8 ord per fråga. Frågorna ska följa naturligt från samtalet.`
+
+  const dynamicSystem = (placeLinks
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
-    : SYSTEM_PROMPT
+    : SYSTEM_PROMPT) + tripCtx + followUpProtocol
 
   async function callClaude(msgs: unknown[]): Promise<Response> {
     return fetch('https://api.anthropic.com/v1/messages', {
@@ -502,8 +570,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    // Första anropet — Claude kan antingen svara direkt eller begära ett verktyg
-    const res1 = await callClaude(messages)
+    const res1 = await callClaude(cleanMessages)
     if (!res1.ok) {
       const err = await res1.text()
       logger.error('guide', 'Anthropic API error', { status: res1.status, body: err.substring(0, 200) })
@@ -511,26 +578,25 @@ export async function POST(req: NextRequest) {
     }
     const data1 = await res1.json()
 
-    // Om Claude inte bad om ett verktyg — returnera text direkt (sanerad)
     if (data1.stop_reason !== 'tool_use') {
       const textBlock = (data1.content ?? []).find((c: AnthropicContent) => c.type === 'text')
       const raw = (textBlock as { text?: string })?.text ?? ''
-      return NextResponse.json({ reply: sanitizeLinks(raw) })
+      const sanitized = sanitizeLinks(raw)
+      const { text, followUps } = extractFollowUps(sanitized)
+      return makeStream(text, followUps, null)
     }
 
-    // Claude bad om ett verktyg — exekvera det och skicka tillbaka resultatet
     const toolUse = (data1.content ?? []).find((c: AnthropicContent) => c.type === 'tool_use') as
       | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
       | undefined
     if (!toolUse) {
-      return NextResponse.json({ reply: 'Kunde inte tolka Thorkels svar. Försök igen.' })
+      return makeStream('Kunde inte tolka Thorkels svar. Försök igen.', [], null)
     }
 
-    const toolResult = await executeTool(toolUse.name, toolUse.input, supabase)
+    const { result: toolResult, planData } = await executeTool(toolUse.name, toolUse.input, supabase)
 
-    // Andra anropet — skicka med tool_result så Claude kan formulera svar
     const followUpMessages = [
-      ...messages,
+      ...cleanMessages,
       { role: 'assistant', content: data1.content },
       {
         role: 'user',
@@ -551,7 +617,9 @@ export async function POST(req: NextRequest) {
     const data2 = await res2.json()
     const finalTextBlock = (data2.content ?? []).find((c: AnthropicContent) => c.type === 'text')
     const finalRaw = (finalTextBlock as { text?: string })?.text ?? ''
-    return NextResponse.json({ reply: sanitizeLinks(finalRaw) })
+    const finalSanitized = sanitizeLinks(finalRaw)
+    const { text: finalText, followUps: finalFollowUps } = extractFollowUps(finalSanitized)
+    return makeStream(finalText, finalFollowUps, planData)
   } catch (error) {
     logger.error('guide', 'unhandled exception', { error: String(error) })
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })

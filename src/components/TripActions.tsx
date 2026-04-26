@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { Pencil, MapPin, Trash2, MessageCircle, Flag } from 'lucide-react'
+import { Pencil, MapPin, Trash2, MessageCircle, Flag } from '@/components/icons/LucideIcons'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Fish, Cloud, Wrench, BookOpen, ShoppingBag } from 'lucide-react'
+import { Fish, Cloud, Wrench, BookOpen, ShoppingBag } from '@/components/icons/LucideIcons'
 import { IconSailboat, IconMotorboat, IconKayak, IconAnchor } from '@/components/icons/SvallaIcons'
 
 const CATEGORY_ICONS: Record<string, ReactNode> = {
