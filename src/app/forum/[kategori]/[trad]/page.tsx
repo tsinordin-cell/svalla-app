@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getThreadById, getPostsByThread, getCategoryById, formatForumDate } from '@/lib/forum'
 import ForumReplyForm from './ForumReplyForm'
+import ForumPostActions from './ForumPostActions'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
@@ -21,13 +23,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ForumTradPage({ params }: Props) {
   const { kategori, trad } = await params
-  const [thread, posts, cat] = await Promise.all([
+  const supabase = await createServerSupabaseClient()
+
+  const [thread, posts, cat, { data: { user } }] = await Promise.all([
     getThreadById(trad),
     getPostsByThread(trad),
     getCategoryById(kategori),
+    supabase.auth.getUser(),
   ])
 
   if (!thread || !cat) notFound()
+
+  const currentUserId = user?.id ?? null
 
   return (
     <main style={{
@@ -82,6 +89,17 @@ export default async function ForumTradPage({ params }: Props) {
           }}>
             {thread.body}
           </div>
+          {/* Edit/delete för OP */}
+          <ForumPostActions
+            postId={thread.id}
+            threadId={thread.id}
+            authorId={thread.user_id}
+            currentUserId={currentUserId}
+            initialBody={thread.body}
+            initialTitle={thread.title}
+            isThread
+            categoryId={kategori}
+          />
         </div>
 
         {/* Svar */}
@@ -114,6 +132,13 @@ export default async function ForumTradPage({ params }: Props) {
                 }}>
                   {post.body}
                 </div>
+                {/* Edit/delete för egna svar */}
+                <ForumPostActions
+                  postId={post.id}
+                  authorId={post.user_id}
+                  currentUserId={currentUserId}
+                  initialBody={post.body}
+                />
               </div>
             ))}
           </div>

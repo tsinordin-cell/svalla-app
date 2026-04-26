@@ -32,9 +32,10 @@ export default async function ForumPage() {
         </p>
       </div>
 
-      {/* CTA — ny tråd */}
-      <div style={{ padding: '16px 16px 0' }}>
+      {/* CTA — ny tråd + sök */}
+      <div style={{ padding: '16px 16px 0', display: 'flex', gap: 10 }}>
         <Link href="/forum/ny-trad" style={{
+          flex: 1,
           display: 'flex',
           alignItems: 'center',
           gap: 10,
@@ -49,6 +50,23 @@ export default async function ForumPage() {
         }}>
           <span style={{ fontSize: 20, lineHeight: 1 }}>✏️</span>
           Starta en ny diskussion
+        </Link>
+        <Link href="/forum/sok" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 48,
+          height: 48,
+          background: 'var(--card-bg, #fff)',
+          border: '1px solid var(--border, rgba(10,123,140,0.15))',
+          borderRadius: 14,
+          textDecoration: 'none',
+          flexShrink: 0,
+        }}>
+          <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
         </Link>
       </div>
 

@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     // Verifiera att tråden finns och inte är låst
     const { data: thread, error: threadError } = await supabase
       .from('forum_threads')
-      .select('id, is_locked')
+      .select('id, is_locked, user_id')
       .eq('id', threadId)
       .eq('in_spam_queue', false)
       .single()
@@ -63,6 +63,18 @@ export async function POST(req: NextRequest) {
     if (insertError || !post) {
       console.error('[forum/posts] insert error:', insertError)
       return NextResponse.json({ error: 'Kunde inte spara svaret.' }, { status: 500 })
+    }
+
+    // Skicka forum_reply-notis till trådens skapare (om det inte är samma person)
+    if (!inSpamQueue && thread.user_id && thread.user_id !== user.id) {
+      await supabase.from('notifications').insert({
+        user_id:      thread.user_id,
+        actor_id:     user.id,
+        type:         'forum_reply',
+        reference_id: threadId,
+      }).then(({ error }) => {
+        if (error) console.error('[forum/posts] notification error:', error)
+      })
     }
 
     return NextResponse.json({
