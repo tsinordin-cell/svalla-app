@@ -270,6 +270,7 @@ export default function ProfilPage() {
   const [followingCount, setFollowingCount] = useState(0)
   const [signOutOpen,    setSignOutOpen]    = useState(false)
   const [signingOut,     setSigningOut]     = useState(false)
+  const [showAllBadges,  setShowAllBadges]  = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -455,94 +456,125 @@ export default function ProfilPage() {
         </div>
 
         {/* ── Stats bar ── */}
-        <div style={{ background: 'var(--white)', borderRadius: 18, display: 'flex', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
-          {([
-            { val: trips.length,         label: 'Turer'   },
-            { val: totalDist.toFixed(0), label: 'NM'      },
-            { val: uniqueLocs,           label: 'Platser' },
-            ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska' }] : []),
-          ]).map(({ val, label }) => (
-            <div key={label} style={{
-              flex: 1, padding: '14px 0', textAlign: 'center',
-              borderRight: '1px solid rgba(10,123,140,0.07)',
-            }}>
-              <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
-              <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
-            </div>
-          ))}
+        <div style={{ background: 'var(--white)', borderRadius: 18, marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
+          <div style={{ display: 'flex' }}>
+            {([
+              { val: trips.length,         label: 'Turer'   },
+              { val: totalDist.toFixed(0), label: 'NM'      },
+              { val: uniqueLocs,           label: 'Platser' },
+              ...(pinnar3 > 0 ? [{ val: pinnar3, label: 'Magiska' }] : []),
+            ]).map(({ val, label }) => (
+              <div key={label} style={{
+                flex: 1, padding: '14px 0', textAlign: 'center',
+                borderRight: '1px solid rgba(10,123,140,0.07)',
+              }}>
+                <div style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+                <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+              </div>
+            ))}
+          </div>
           {user && (
-            <>
-              <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: '1px solid rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ borderTop: '1px solid rgba(10,123,140,0.07)', display: 'flex' }}>
+              <div style={{ flex: 1, padding: '10px 0', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: '1px solid rgba(10,123,140,0.07)' }}>
                 <FollowListButton userId={user.id} mode="followers" count={followersCount} dark={false} />
               </div>
-              <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: 1, padding: '10px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <FollowListButton userId={user.id} mode="following" count={followingCount} dark={false} />
               </div>
-            </>
+            </div>
           )}
         </div>
 
         {/* ── Achievements grid ── */}
-        {ACHIEVEMENTS.length > 0 && (
-          <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
-              <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
-                {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
-              </span>
-            </div>
-
-            {/* Unlocked badges first, then locked */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-              {[...unlockedAch, ...lockedAch].map(a => {
-                const unlocked = unlockedAch.includes(a)
-                return (
-                  <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                    gap: 5, padding: '12px 6px 10px',
-                    borderRadius: 16,
-                    background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
-                    border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-                    opacity: unlocked ? 1 : 0.38,
-                    filter: unlocked ? 'none' : 'grayscale(1)',
-                    boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
-                    transition: 'all 0.2s',
-                    position: 'relative',
-                  }}>
-                    {unlocked && (
-                      <div style={{
-                        position: 'absolute', top: 5, right: 5,
-                        width: 7, height: 7, borderRadius: '50%',
-                        background: 'var(--green)',
-                      }} />
-                    )}
-                    <span style={{ fontSize: 24 }}>{a.emoji}</span>
-                    <span style={{
-                      fontSize: 9, fontWeight: 600,
-                      color: unlocked ? 'var(--txt)' : 'var(--txt3)',
-                      textAlign: 'center', lineHeight: 1.3,
-                      maxWidth: 60, overflow: 'hidden',
-                      display: '-webkit-box',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                    } as React.CSSProperties}>{a.label}</span>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Next to unlock hint */}
-            {lockedAch.length > 0 && (
-              <div style={{ marginTop: 14, padding: '11px 14px', background: 'rgba(201,110,42,0.07)', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ fontSize: 22, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
-                  <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
-                </div>
+        {ACHIEVEMENTS.length > 0 && (() => {
+          const LOCKED_DEFAULT = 4
+          const visibleLocked = showAllBadges ? lockedAch : lockedAch.slice(0, LOCKED_DEFAULT)
+          const hiddenCount   = lockedAch.length - LOCKED_DEFAULT
+          const badgesToShow  = [...unlockedAch, ...visibleLocked]
+          return (
+            <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+                <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
+                  {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
+                </span>
               </div>
-            )}
-          </div>
-        )}
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+                {badgesToShow.map(a => {
+                  const unlocked = unlockedAch.includes(a)
+                  return (
+                    <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                      gap: 4, padding: '9px 4px 7px',
+                      borderRadius: 14,
+                      background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
+                      border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
+                      opacity: unlocked ? 1 : 0.38,
+                      filter: unlocked ? 'none' : 'grayscale(1)',
+                      boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
+                      position: 'relative',
+                    }}>
+                      {unlocked && (
+                        <div style={{
+                          position: 'absolute', top: 5, right: 5,
+                          width: 6, height: 6, borderRadius: '50%',
+                          background: 'var(--green)',
+                        }} />
+                      )}
+                      <span style={{ fontSize: 20 }}>{a.emoji}</span>
+                      <span style={{
+                        fontSize: 9, fontWeight: 600,
+                        color: unlocked ? 'var(--txt)' : 'var(--txt3)',
+                        textAlign: 'center', lineHeight: 1.3,
+                        maxWidth: 56, overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                      } as React.CSSProperties}>{a.label}</span>
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* Expand / collapse */}
+              {!showAllBadges && hiddenCount > 0 && (
+                <button onClick={() => setShowAllBadges(true)} style={{
+                  display: 'block', width: '100%', marginTop: 10,
+                  padding: '9px', borderRadius: 12,
+                  border: '1.5px solid rgba(10,123,140,0.12)',
+                  background: 'rgba(10,123,140,0.04)',
+                  fontSize: 12, fontWeight: 600, color: 'var(--sea)',
+                  cursor: 'pointer', fontFamily: 'inherit',
+                }}>
+                  Visa {hiddenCount} fler märken
+                </button>
+              )}
+              {showAllBadges && lockedAch.length > LOCKED_DEFAULT && (
+                <button onClick={() => setShowAllBadges(false)} style={{
+                  display: 'block', width: '100%', marginTop: 10,
+                  padding: '9px', borderRadius: 12,
+                  border: 'none', background: 'none',
+                  fontSize: 12, fontWeight: 600, color: 'var(--txt3)',
+                  cursor: 'pointer', fontFamily: 'inherit',
+                }}>
+                  Visa färre
+                </button>
+              )}
+
+              {/* Next to unlock hint */}
+              {lockedAch.length > 0 && (
+                <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <span style={{ fontSize: 20, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
+                  <div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )
+        })()}
 
         {/* ── Activity chart ── */}
         {monthBars.length > 0 && (
