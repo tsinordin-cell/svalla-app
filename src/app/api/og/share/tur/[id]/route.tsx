@@ -50,7 +50,6 @@ async function fetchTileB64(tx: number, ty: number, z: number): Promise<string |
     const t = setTimeout(() => ctrl.abort(), 4000)
     const res = await fetch(`https://tile.openstreetmap.org/${z}/${ntx}/${ty}.png`, {
       headers: { 'User-Agent': 'Svalla/1.0 (+https://svalla.se)' },
-      // @ts-expect-error next-specific cache option
       next: { revalidate: 86400 },
       signal: ctrl.signal,
     })
