@@ -130,6 +130,38 @@ export async function GET(
     !spd && avgSpd && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
   ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
+  // ── MAP MODE — no route fallback ────────────────────────────────────────
+
+  if (style === 'map' && !routePts) {
+    return new ImageResponse(
+      (
+        <div style={{
+          width: W, height: H,
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          background: 'linear-gradient(170deg, #060e18 0%, #0a2235 50%, #071420 100%)',
+          gap: 28,
+        }}>
+          <div style={{ fontSize: 120, display: 'flex' }}>{boatEmoji}</div>
+          <div style={{ fontSize: 72, fontWeight: 800, color: '#fff', letterSpacing: '-2px', display: 'flex' }}>
+            {locLabel || `${boatEmoji} Svalla-tur`}
+          </div>
+          <div style={{ fontSize: 34, color: 'rgba(255,255,255,0.35)', display: 'flex' }}>Ingen GPS-data för den här turen</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 20 }}>
+            <svg viewBox="0 0 20 22" width={40} height={40} style={{ display: 'flex' }}>
+              <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round"/>
+              <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.55)"/>
+              <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.30)"/>
+              <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.40)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            </svg>
+            <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: '6px', color: 'rgba(255,255,255,0.55)', display: 'flex' }}>SVALLA</div>
+          </div>
+        </div>
+      ),
+      { width: W, height: H }
+    )
+  }
+
   // ── MAP MODE ────────────────────────────────────────────────────────────
 
   if (style === 'map' && routePts) {
@@ -242,7 +274,7 @@ export async function GET(
           {/* ── Bottom info panel ── */}
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0,
-            padding: '0 72px calc(env(safe-area-inset-bottom, 0px) + 72px)',
+            padding: '0 72px 72px',
             display: 'flex', flexDirection: 'column',
             background: 'linear-gradient(to bottom, transparent 0%, #0a1018 25%)',
           }}>
@@ -252,8 +284,14 @@ export async function GET(
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
               paddingBottom: 32,
             }}>
-              <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.50)' }}>
-                SVALLA.SE
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <svg viewBox="0 0 20 22" width={30} height={30} style={{ display: 'flex' }}>
+                  <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.55)" strokeWidth="1.6" strokeLinecap="round"/>
+                  <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.55)"/>
+                  <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.30)"/>
+                  <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.40)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+                </svg>
+                <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.50)' }}>SVALLA</div>
               </div>
               <div style={{
                 display: 'flex', alignItems: 'center', gap: 10,
@@ -389,8 +427,14 @@ export async function GET(
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '80px 80px 0', position: 'relative', zIndex: 2,
         }}>
-          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.60)' }}>
-            SVALLA.SE
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <svg viewBox="0 0 20 22" width={36} height={36} style={{ display: 'flex' }}>
+              <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.70)" strokeWidth="1.6" strokeLinecap="round"/>
+              <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.70)"/>
+              <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.40)"/>
+              <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.55)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+            </svg>
+            <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.70)' }}>SVALLA</div>
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12,
