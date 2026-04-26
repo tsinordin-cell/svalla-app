@@ -1,16 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import { haversineKm, crossTrack } from '@/lib/planner'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
-
-const PlaneraMap = dynamic(() => import('./PlaneraMap'), { ssr: false, loading: () => (
-  <div style={{ height: 260, borderRadius: 18, background: 'var(--sea-xl,#e8f2fa)', marginBottom: 20, border: '1px solid rgba(10,123,140,0.1)' }} />
-)})
+import PlaneraMap from './PlaneraMapDynamic'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -215,11 +211,15 @@ export default async function PlaneraIdPage({ params }: Props) {
                 const short = REASON_SHORT[stop.reason] ?? stop.reason
                 const color = REASON_COLOR[stop.reason] ?? '#1e5c82'
                 const bg    = REASON_BG[stop.reason]    ?? 'rgba(10,123,140,0.08)'
+                const isFar = stop.distance_from_line_km > 5
+                const distLabel = stop.distance_from_line_km < 1
+                  ? '<1 km'
+                  : `${stop.distance_from_line_km} km`
                 return (
                   <Link key={stop.id} href={`/platser/${stop.id}`} style={{ textDecoration: 'none' }}>
                     <div style={{
                       background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
-                      border: '1px solid rgba(10,123,140,0.08)',
+                      border: `1px solid ${isFar ? 'rgba(232,146,74,0.2)' : 'rgba(10,123,140,0.08)'}`,
                       boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
                       display: 'flex', alignItems: 'center', gap: 14,
                     }}>
@@ -255,10 +255,12 @@ export default async function PlaneraIdPage({ params }: Props) {
                       </div>
 
                       <div style={{ flexShrink: 0, textAlign: 'right' }}>
-                        <div style={{ fontSize: 11, color: 'var(--txt3)', whiteSpace: 'nowrap' }}>
-                          {stop.distance_from_line_km} km
+                        <div style={{ fontSize: 11, color: isFar ? '#e8924a' : 'var(--txt3)', fontWeight: isFar ? 700 : 400, whiteSpace: 'nowrap' }}>
+                          {distLabel}
                         </div>
-                        <div style={{ fontSize: 10, color: 'var(--txt3)', opacity: 0.7 }}>från rutten</div>
+                        <div style={{ fontSize: 10, color: isFar ? '#e8924a' : 'var(--txt3)', opacity: 0.7 }}>
+                          {isFar ? 'omväg' : 'från rutten'}
+                        </div>
                       </div>
 
                       <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
