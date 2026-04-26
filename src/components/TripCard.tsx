@@ -552,7 +552,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             <IconShare size={22} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} />
+            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} />
           </div>
         </div>
       </div>
