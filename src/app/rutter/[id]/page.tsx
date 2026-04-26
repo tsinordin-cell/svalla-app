@@ -110,6 +110,18 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+            { '@type': 'ListItem', position: 2, name: 'Segelrutter', item: 'https://svalla.se/rutter' },
+            { '@type': 'ListItem', position: 3, name: t.title, item: `https://svalla.se/rutter/${id}` },
+          ],
+        }) }}
+      />
       {/* Hero */}
       <div style={{
         background: 'var(--grad-sea-hero)',
