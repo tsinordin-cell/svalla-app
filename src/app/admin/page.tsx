@@ -28,14 +28,6 @@ const ADMIN_TOOLS = [
     badge: null,
     color: '#7c3aed',
   },
-  {
-    href:  '/admin/forum',
-    icon:  '💬',
-    title: 'Forum — spam-kö',
-    desc:  'Granska och godkänn nya användares trådar och svar',
-    badge: null,
-    color: '#0a7b8c',
-  },
 ]
 
 export default async function AdminPage() {

@@ -34,11 +34,10 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     async function init() {
       const L = (await import('leaflet')).default
 
-      const allLats = [startLat, endLat, ...stops.map(s => s.lat)]
-      const allLngs = [startLng, endLng, ...stops.map(s => s.lng)]
+      // Bounds only from route endpoints — stops are overlays and must not affect zoom
       const bounds = L.latLngBounds(
-        [Math.min(...allLats) - 0.02, Math.min(...allLngs) - 0.02],
-        [Math.max(...allLats) + 0.02, Math.max(...allLngs) + 0.02],
+        [Math.min(startLat, endLat), Math.min(startLng, endLng)],
+        [Math.max(startLat, endLat), Math.max(startLng, endLng)],
       )
 
       const map = L.map(containerRef.current!, {
@@ -108,7 +107,7 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
       }
 
       L.control.zoom({ position: 'bottomright' }).addTo(map)
-      map.fitBounds(bounds, { padding: [24, 24] })
+      map.fitBounds(bounds, { padding: [48, 40], maxZoom: 13 })
     }
 
     init().catch(console.error)
@@ -124,7 +123,7 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
       <div
         ref={containerRef}
         style={{
-          width: '100%', height: 260, borderRadius: 18, overflow: 'hidden',
+          width: '100%', height: 300, borderRadius: 18, overflow: 'hidden',
           border: '1px solid rgba(10,123,140,0.15)',
           background: 'var(--sea-xl, #e8f2fa)',
         }}

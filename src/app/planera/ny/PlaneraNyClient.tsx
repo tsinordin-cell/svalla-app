@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { DEPARTURES, type Departure, type Interest } from '@/lib/planner'
+import { DEPARTURES, haversineKm, type Departure, type Interest } from '@/lib/planner'
 
 const INTERESTS: { value: Interest; label: string; emoji: string }[] = [
   { value: 'krog',   label: 'Krog & mat',      emoji: '🍽' },
@@ -67,9 +67,11 @@ export default function PlaneraNyClient() {
   // Region-gruppering
   const regions = Array.from(new Set(DEPARTURES.map(d => d.region)))
 
-  function DepartureGrid({ onSelect, selected }: {
+  function DepartureGrid({ onSelect, selected, disabledId, fromDep }: {
     onSelect: (d: Departure) => void
     selected: Departure | null
+    disabledId?: string
+    fromDep?: Departure | null
   }) {
     return (
       <div>
@@ -79,24 +81,43 @@ export default function PlaneraNyClient() {
               {region}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-              {DEPARTURES.filter(d => d.region === region).map(d => (
-                <button
-                  key={d.id}
-                  onClick={() => onSelect(d)}
-                  style={{
-                    padding: '12px 14px', borderRadius: 14,
-                    border: selected?.id === d.id ? 'none' : '1px solid rgba(10,123,140,0.12)',
-                    background: selected?.id === d.id ? 'var(--grad-sea)' : 'var(--white)',
-                    boxShadow: selected?.id === d.id ? '0 4px 16px rgba(10,123,140,0.3)' : '0 1px 6px rgba(0,45,60,0.06)',
-                    cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8,
-                  } as React.CSSProperties}
-                >
-                  <span style={{ fontSize: 18 }}>{d.emoji}</span>
-                  <span style={{ fontSize: 13, fontWeight: 700, color: selected?.id === d.id ? '#fff' : 'var(--txt)' }}>
-                    {d.name}
-                  </span>
-                </button>
-              ))}
+              {DEPARTURES.filter(d => d.region === region).map(d => {
+                const isSelected  = selected?.id === d.id
+                const isDisabled  = d.id === disabledId
+                const km = fromDep && !isDisabled
+                  ? Math.round(haversineKm(fromDep.lat, fromDep.lng, d.lat, d.lng))
+                  : null
+                return (
+                  <button
+                    key={d.id}
+                    onClick={() => !isDisabled && onSelect(d)}
+                    disabled={isDisabled}
+                    style={{
+                      padding: '12px 14px', borderRadius: 14,
+                      border: isSelected ? 'none' : '1px solid rgba(10,123,140,0.12)',
+                      background: isDisabled
+                        ? 'rgba(0,0,0,0.04)'
+                        : isSelected ? 'var(--grad-sea)' : 'var(--white)',
+                      boxShadow: isSelected ? '0 4px 16px rgba(10,123,140,0.3)' : '0 1px 6px rgba(0,45,60,0.06)',
+                      cursor: isDisabled ? 'not-allowed' : 'pointer',
+                      textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8,
+                      opacity: isDisabled ? 0.4 : 1,
+                    } as React.CSSProperties}
+                  >
+                    <span style={{ fontSize: 18 }}>{d.emoji}</span>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : 'var(--txt)', lineHeight: 1.2 }}>
+                        {d.name}
+                      </div>
+                      {km !== null && (
+                        <div style={{ fontSize: 10, color: isSelected ? 'rgba(255,255,255,0.75)' : 'var(--txt3)', marginTop: 1 }}>
+                          ~{km} km
+                        </div>
+                      )}
+                    </div>
+                  </button>
+                )
+              })}
             </div>
           </div>
         ))}
@@ -155,6 +176,7 @@ export default function PlaneraNyClient() {
               onSelect={(d) => { setStartDep(d); setStep('end') }}
               selected={startDep}
             />
+
           </div>
         )}
 
@@ -166,12 +188,10 @@ export default function PlaneraNyClient() {
               Från <strong>{startDep?.name}</strong> — välj destination.
             </p>
             <DepartureGrid
-              onSelect={(d) => {
-                if (d.id === startDep?.id) return
-                setEndDep(d)
-                setStep('interests')
-              }}
+              onSelect={(d) => { setEndDep(d); setStep('interests') }}
               selected={endDep}
+              disabledId={startDep?.id}
+              fromDep={startDep}
             />
           </div>
         )}
@@ -185,13 +205,36 @@ export default function PlaneraNyClient() {
             </p>
 
             {/* Rutt-sammanfattning */}
-            <div style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', marginBottom: 20, border: '1px solid rgba(10,123,140,0.1)', display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)' }}>{startDep?.name}</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18, flexShrink: 0 }}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
-              </svg>
-              <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--sea)' }}>{endDep?.name}</span>
-            </div>
+            {startDep && endDep && (() => {
+              const km = Math.round(haversineKm(startDep.lat, startDep.lng, endDep.lat, endDep.lng))
+              const tripType = km < 20 ? 'Kort dagstur' : km < 50 ? 'Dagstur' : km < 100 ? 'Helgtur' : 'Flerdagstur'
+              return (
+                <div style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', marginBottom: 20, border: '1px solid rgba(10,123,140,0.1)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{startDep.name}</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+                      </svg>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{endDep.name}</span>
+                    </div>
+                    <button
+                      onClick={() => { setStartDep(endDep); setEndDep(startDep) }}
+                      title="Byt riktning"
+                      style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '50%', border: '1px solid rgba(10,123,140,0.15)', background: 'var(--bg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 14, height: 14 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div style={{ display: 'flex', gap: 6, marginTop: 8 }}>
+                    <span style={{ background: 'rgba(10,123,140,0.08)', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 800, color: 'var(--sea)' }}>~{km} km</span>
+                    <span style={{ background: 'rgba(10,123,140,0.05)', borderRadius: 20, padding: '2px 10px', fontSize: 11, fontWeight: 600, color: 'var(--txt3)' }}>{tripType}</span>
+                  </div>
+                </div>
+              )
+            })()}
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 24 }}>
               {INTERESTS.map(i => (

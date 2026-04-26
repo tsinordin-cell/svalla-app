@@ -1,9 +1,20 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function PlaneraShare({ routeId }: { routeId: string }) {
   const [copied, setCopied] = useState(false)
+  const [hasNativeShare, setHasNativeShare] = useState(false)
   const url = `https://svalla.se/planera/${routeId}`
+
+  useEffect(() => {
+    setHasNativeShare(!!navigator.share)
+  }, [])
+
+  async function handleShare() {
+    try {
+      await navigator.share({ title: 'Rutt på Svalla', text: 'Kolla in den här skärgårdsrutten på Svalla', url })
+    } catch { /* användaren avbröt */ }
+  }
 
   function copy() {
     navigator.clipboard.writeText(url).then(() => {
@@ -20,27 +31,46 @@ export default function PlaneraShare({ routeId }: { routeId: string }) {
       border: '1px solid rgba(10,123,140,0.08)',
     }}>
       <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 10 }}>📤 Dela rutten</div>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        <div style={{
-          flex: 1, fontSize: 12, color: 'var(--txt3)', background: 'var(--bg)',
-          padding: '10px 12px', borderRadius: 10, fontFamily: 'monospace',
-          wordBreak: 'break-all', minWidth: 0,
-        }}>
-          svalla.se/planera/{routeId}
-        </div>
+
+      {hasNativeShare ? (
         <button
-          onClick={copy}
+          onClick={handleShare}
           style={{
-            flexShrink: 0, padding: '10px 14px', borderRadius: 10, border: 'none',
-            background: copied ? 'rgba(42,157,92,0.12)' : 'rgba(10,123,140,0.08)',
-            color: copied ? '#2a9d5c' : 'var(--sea)',
-            fontSize: 12, fontWeight: 700, cursor: 'pointer',
-            transition: 'all 0.2s',
+            width: '100%', padding: '11px', borderRadius: 10, border: 'none',
+            background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
+            fontSize: 13, fontWeight: 700, cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
           }}
         >
-          {copied ? '✓ Kopierad' : 'Kopiera'}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 16, height: 16 }}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+          Dela rutten
         </button>
-      </div>
+      ) : (
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <div style={{
+            flex: 1, fontSize: 12, color: 'var(--txt3)', background: 'var(--bg)',
+            padding: '10px 12px', borderRadius: 10, fontFamily: 'monospace',
+            wordBreak: 'break-all', minWidth: 0,
+          }}>
+            svalla.se/planera/{routeId}
+          </div>
+          <button
+            onClick={copy}
+            style={{
+              flexShrink: 0, padding: '10px 14px', borderRadius: 10, border: 'none',
+              background: copied ? 'rgba(42,157,92,0.12)' : 'rgba(10,123,140,0.08)',
+              color: copied ? '#2a9d5c' : 'var(--sea)',
+              fontSize: 12, fontWeight: 700, cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+          >
+            {copied ? '✓ Kopierad' : 'Kopiera'}
+          </button>
+        </div>
+      )}
+
       <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
         <a
           href={waUrl}
@@ -51,7 +81,6 @@ export default function PlaneraShare({ routeId }: { routeId: string }) {
             padding: '9px 14px', borderRadius: 10,
             background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.2)',
             color: '#128c3e', fontSize: 12, fontWeight: 700, textDecoration: 'none',
-            transition: 'background 0.15s',
           }}
         >
           <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 14, height: 14 }}>
