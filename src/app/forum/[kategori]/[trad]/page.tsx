@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getThreadById, getPostsByThread, getCategoryById, formatForumDate } from '@/lib/forum'
 import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
+import ForumLikeButton from './ForumLikeButton'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
@@ -25,16 +26,16 @@ export default async function ForumTradPage({ params }: Props) {
   const { kategori, trad } = await params
   const supabase = await createServerSupabaseClient()
 
-  const [thread, posts, cat, { data: { user } }] = await Promise.all([
+  const { data: { user } } = await supabase.auth.getUser()
+  const currentUserId = user?.id ?? null
+
+  const [thread, posts, cat] = await Promise.all([
     getThreadById(trad),
-    getPostsByThread(trad),
+    getPostsByThread(trad, currentUserId),
     getCategoryById(kategori),
-    supabase.auth.getUser(),
   ])
 
   if (!thread || !cat) notFound()
-
-  const currentUserId = user?.id ?? null
 
   return (
     <main style={{
@@ -109,18 +110,20 @@ export default async function ForumTradPage({ params }: Props) {
               {posts.length} svar
             </h2>
             {posts.map((post, i) => (
-              <div key={post.id} style={{
+              <div key={post.id} id={`post-${post.id}`} style={{
                 padding: '14px 16px',
                 background: 'var(--card-bg, #fff)',
                 borderRadius: 14,
                 border: '1px solid var(--border, rgba(10,123,140,0.1))',
                 boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+                scrollMarginTop: 80,
               }}>
                 <PostHeader
                   username={post.author?.username ?? 'Okänd'}
                   avatar={post.author?.avatar ?? null}
                   date={post.created_at}
                   index={i + 1}
+                  postId={post.id}
                 />
                 <div style={{
                   fontSize: 14,
@@ -132,13 +135,21 @@ export default async function ForumTradPage({ params }: Props) {
                 }}>
                   {post.body}
                 </div>
-                {/* Edit/delete för egna svar */}
-                <ForumPostActions
-                  postId={post.id}
-                  authorId={post.user_id}
-                  currentUserId={currentUserId}
-                  initialBody={post.body}
-                />
+                {/* Like + edit/delete */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+                  <ForumLikeButton
+                    postId={post.id}
+                    initialCount={post.like_count ?? 0}
+                    initialLiked={post.liked_by_user ?? false}
+                    currentUserId={currentUserId}
+                  />
+                  <ForumPostActions
+                    postId={post.id}
+                    authorId={post.user_id}
+                    currentUserId={currentUserId}
+                    initialBody={post.body}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -165,13 +176,14 @@ export default async function ForumTradPage({ params }: Props) {
 }
 
 function PostHeader({
-  username, avatar, date, isOP, index,
+  username, avatar, date, isOP, index, postId,
 }: {
   username: string
   avatar: string | null
   date: string
   isOP?: boolean
   index?: number
+  postId?: string
 }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -200,7 +212,16 @@ function PostHeader({
               padding: '1px 5px', borderRadius: 4,
             }}>OP</span>
           )}
-          {index !== undefined && (
+          {index !== undefined && postId && (
+            <a
+              href={`#post-${postId}`}
+              style={{ fontSize: 11, color: 'var(--txt3)', textDecoration: 'none' }}
+              title="Länk till detta svar"
+            >
+              #{index}
+            </a>
+          )}
+          {index !== undefined && !postId && (
             <span style={{ fontSize: 11, color: 'var(--txt3)' }}>#{index}</span>
           )}
         </div>

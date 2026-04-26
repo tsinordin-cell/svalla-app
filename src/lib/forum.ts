@@ -43,6 +43,8 @@ export interface ForumPost {
   created_at: string
   // enriched
   author?: { username: string; avatar: string | null } | null
+  like_count?: number
+  liked_by_user?: boolean
 }
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
@@ -81,7 +83,7 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
     const supabase = await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_threads')
-      .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, in_spam_queue, created_at')
+      .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at')
       .eq('category_id', categoryId)
       .eq('in_spam_queue', false)
       .order('is_pinned', { ascending: false })
@@ -90,17 +92,25 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
 
     if (!data) return []
 
-    // Enrich with author names
-    const userIds = [...new Set(data.map(t => t.user_id))]
+    // Enrich with author names + last reply authors
+    const authorIds = [...new Set(data.map(t => t.user_id))]
+    const lastReplyIds = data
+      .map(t => t.last_reply_user_id)
+      .filter((id): id is string => !!id && !authorIds.includes(id))
+    const allUserIds = [...new Set([...authorIds, ...lastReplyIds])]
+
     const { data: users } = await supabase
       .from('users')
       .select('id, username, avatar')
-      .in('id', userIds)
+      .in('id', allUserIds)
 
     const userMap = new Map((users ?? []).map((u: { id: string; username: string; avatar: string | null }) => [u.id, u]))
     return data.map(t => ({
       ...t,
       author: userMap.get(t.user_id) ?? null,
+      last_reply_author: t.last_reply_user_id
+        ? (userMap.get(t.last_reply_user_id) ? { username: userMap.get(t.last_reply_user_id)!.username } : null)
+        : null,
     })) as ForumThread[]
   } catch {
     return []
@@ -130,7 +140,7 @@ export async function getThreadById(id: string): Promise<ForumThread | null> {
   }
 }
 
-export async function getPostsByThread(threadId: string): Promise<ForumPost[]> {
+export async function getPostsByThread(threadId: string, userId?: string | null): Promise<ForumPost[]> {
   try {
     const supabase = await createServerSupabaseClient()
     const { data } = await supabase
@@ -143,16 +153,36 @@ export async function getPostsByThread(threadId: string): Promise<ForumPost[]> {
 
     if (!data) return []
 
+    const postIds = data.map(p => p.id)
     const userIds = [...new Set(data.map(p => p.user_id))]
-    const { data: users } = await supabase
-      .from('users')
-      .select('id, username, avatar')
-      .in('id', userIds)
 
-    const userMap = new Map((users ?? []).map((u: { id: string; username: string; avatar: string | null }) => [u.id, u]))
+    // Batch: authors + like counts + user-liked
+    const [usersResult, likeCountsResult, userLikedResult] = await Promise.all([
+      supabase.from('users').select('id, username, avatar').in('id', userIds),
+      postIds.length > 0
+        ? supabase.from('forum_post_likes').select('post_id').in('post_id', postIds)
+        : Promise.resolve({ data: [] }),
+      userId && postIds.length > 0
+        ? supabase.from('forum_post_likes').select('post_id').in('post_id', postIds).eq('user_id', userId)
+        : Promise.resolve({ data: [] }),
+    ])
+
+    const userMap = new Map((usersResult.data ?? []).map((u: { id: string; username: string; avatar: string | null }) => [u.id, u]))
+
+    // Count likes per post
+    const likeCountMap = new Map<string, number>()
+    for (const row of (likeCountsResult.data ?? [])) {
+      likeCountMap.set(row.post_id, (likeCountMap.get(row.post_id) ?? 0) + 1)
+    }
+
+    // Set of posts liked by current user
+    const likedByUser = new Set((userLikedResult.data ?? []).map((r: { post_id: string }) => r.post_id))
+
     return data.map(p => ({
       ...p,
       author: userMap.get(p.user_id) ?? null,
+      like_count: likeCountMap.get(p.id) ?? 0,
+      liked_by_user: likedByUser.has(p.id),
     })) as ForumPost[]
   } catch {
     return []

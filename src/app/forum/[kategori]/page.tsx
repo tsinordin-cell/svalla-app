@@ -117,7 +117,7 @@ export default async function ForumKategoriPage({ params }: Props) {
                 <div style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 8, lineHeight: 1.4, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                   {thread.body}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: 'var(--txt3)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 12, color: 'var(--txt3)', flexWrap: 'wrap' }}>
                   {thread.author && (
                     <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                       <AvatarMini username={thread.author.username} avatar={thread.author.avatar} />
@@ -135,6 +135,11 @@ export default async function ForumKategoriPage({ params }: Props) {
                         </svg>
                         {thread.reply_count}
                       </span>
+                      {thread.last_reply_author && (
+                        <span style={{ color: 'var(--txt3)', fontStyle: 'italic' }}>
+                          av {thread.last_reply_author.username}
+                        </span>
+                      )}
                     </>
                   )}
                   {thread.is_locked && <span>🔒</span>}
