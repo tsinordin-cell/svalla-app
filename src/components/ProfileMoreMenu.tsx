@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, type ReactNode, type MouseEvent } from 'react'
+import { Ban, Flag } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 import ReportButton from '@/components/ReportButton'
 import BlockButton from '@/components/BlockButton'
@@ -61,7 +62,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
 
             {/* Block */}
             {loadedBlocked && (
-              <MenuRow icon="🚫">
+              <MenuRow icon={<Ban size={18} />}>
                 <BlockButton
                   targetUserId={targetUserId}
                   targetUsername={targetUsername}
@@ -74,7 +75,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
             <div style={{ height: 1, background: 'rgba(10,123,140,0.08)', margin: '4px 0' }} />
 
             {/* Report */}
-            <MenuRow icon="🚩">
+            <MenuRow icon={<Flag size={18} style={{ color: '#dc2626' }} />}>
               <ReportButton
                 targetType="user"
                 targetId={targetUserId}
@@ -101,10 +102,10 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
   )
 }
 
-function MenuRow({ icon, children }: { icon: string; children: ReactNode }) {
+function MenuRow({ icon, children }: { icon: ReactNode; children: ReactNode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 4px' }}>
-      <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
+      <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</span>
       <div style={{ flex: 1 }}>{children}</div>
     </div>
   )

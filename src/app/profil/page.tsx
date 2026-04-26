@@ -13,6 +13,8 @@ import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
+import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, MapPin, Link2, LogOut, Home, Sun, Moon, SunMoon } from 'lucide-react'
+import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
@@ -25,10 +27,10 @@ function SettingsSection() {
     color: active ? '#fff' : 'var(--txt2)',
     boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
   })
-  const themes: { val: Theme; label: string; icon: string }[] = [
-    { val: 'auto', label: 'Auto', icon: '🌗' },
-    { val: 'light', label: 'Ljust', icon: '☀️' },
-    { val: 'dark', label: 'Mörkt', icon: '🌙' },
+  const themes = [
+    { val: 'auto'  as Theme, label: 'Auto',  icon: <SunMoon size={13} /> },
+    { val: 'light' as Theme, label: 'Ljust',  icon: <Sun size={13} /> },
+    { val: 'dark'  as Theme, label: 'Mörkt',  icon: <Moon size={13} /> },
   ]
   const langs: { val: Lang; label: string; flag: string }[] = [
     { val: 'sv', label: 'Svenska', flag: '🇸🇪' },
@@ -40,7 +42,11 @@ function SettingsSection() {
       <div style={{ marginBottom: 14 }}>
         <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
         <div style={{ display: 'flex', gap: 6 }}>
-          {themes.map(t => <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>{t.icon} {t.label}</button>)}
+          {themes.map(t => (
+            <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>{t.icon} {t.label}</span>
+            </button>
+          ))}
         </div>
       </div>
       <div>
@@ -168,7 +174,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
                 ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 : user.username[0]?.toUpperCase()}
               <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
-                <span style={{ fontSize: 18 }}>📷</span>
+                <Camera size={18} color="#fff" />
               </div>
             </button>
             <button onClick={() => fileRef.current?.click()} style={{ padding: '8px 16px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 13, fontWeight: 700, color: 'var(--sea)', cursor: 'pointer' }}>
@@ -198,7 +204,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label htmlFor="pf-exp-years" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>ÅR TILL HAVS</label>
             <input id="pf-exp-years" type="number" value={expYears} onChange={e => setExpYears(e.target.value)} min={0} max={80} placeholder="15" style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>⚓ Min båt</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px', display: 'flex', alignItems: 'center', gap: 5 }}><IconAnchor size={11} /> Min båt</div>
           <div style={{ marginBottom: 12 }}>
             <label htmlFor="pf-vessel-name" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>BÅTNAMN</label>
             <input id="pf-vessel-name" type="text" value={vesselName} onChange={e => setVesselName(e.target.value)} maxLength={60} style={inputStyle} />
@@ -214,7 +220,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label htmlFor="pf-vessel-model" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>MODELL</label>
             <input id="pf-vessel-model" type="text" value={vesselModel} onChange={e => setVesselModel(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🧭 Hemmafarvatten</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px', display: 'flex', alignItems: 'center', gap: 5 }}><IconCompass size={11} /> Hemmafarvatten</div>
           <div style={{ marginBottom: 12 }}>
             <label htmlFor="pf-home-port" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>HEMMAHAMN</label>
             <input id="pf-home-port" type="text" value={homePort} onChange={e => setHomePort(e.target.value)} maxLength={80} style={inputStyle} />
@@ -223,12 +229,12 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             <label htmlFor="pf-region" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>REGION</label>
             <input id="pf-region" type="text" value={sailingRegion} onChange={e => setSailingRegion(e.target.value)} maxLength={80} style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🌐 Hemsida</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px', display: 'flex', alignItems: 'center', gap: 5 }}><Globe size={11} /> Hemsida</div>
           <div style={{ marginBottom: 12 }}>
             <label htmlFor="pf-website" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: 'var(--txt2)', marginBottom: 5 }}>URL</label>
             <input id="pf-website" type="url" value={website} onChange={e => setWebsite(e.target.value)} maxLength={200} placeholder="https://…" style={inputStyle} />
           </div>
-          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px' }}>🔒 Sekretess</div>
+          <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '16px 0 10px', display: 'flex', alignItems: 'center', gap: 5 }}><Lock size={11} /> Sekretess</div>
           <div style={{ background: 'rgba(10,123,140,0.04)', borderRadius: 16, padding: '4px 12px', marginBottom: 20 }}>
             {PRIVACY_FIELDS.map(({ key, label }) => (
               <button
@@ -344,7 +350,7 @@ export default function ProfilPage() {
             boxShadow: '0 20px 60px rgba(0,30,60,0.35)',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(220,38,38,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>👋</div>
+              <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(220,38,38,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><LogOut size={20} style={{ color: '#dc2626' }} /></div>
               <div>
                 <h2 id="logout-title" style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>Logga ut?</h2>
                 <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '2px 0 0' }}>Du behöver logga in igen nästa gång.</p>
@@ -379,8 +385,8 @@ export default function ProfilPage() {
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <MessageBell />
           <NotificationBell />
-          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600, padding: '7px 14px', borderRadius: 20 }}>
-            ✏️ Redigera
+          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600, padding: '7px 14px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+            <Pencil size={12} /> Redigera
           </button>
           <button onClick={() => setSignOutOpen(true)} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
             Logga ut
@@ -426,14 +432,14 @@ export default function ProfilPage() {
           <div style={{ display: 'flex', gap: 6, paddingBottom: 4, marginLeft: 'auto' }}>
             {streak > 0 && (
               <div style={{ background: 'linear-gradient(135deg,#ff6b35,#f7931e)', borderRadius: 12, padding: '5px 10px', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '0 2px 8px rgba(255,107,53,0.35)' }}>
-                <span style={{ fontSize: 14 }}>🔥</span>
+                <Flame size={14} color="#fff" />
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{streak}</span>
                 <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>v</span>
               </div>
             )}
             {user?.username && (
-              <Link href={`/u/${user.username}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
-                👁 Min sida
+              <Link href={`/u/${user.username}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
+                <Eye size={12} /> Min sida
               </Link>
             )}
           </div>
@@ -445,13 +451,13 @@ export default function ProfilPage() {
           {u?.bio && <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 10px' }}>{u.bio}</p>}
           {u?.website && (
             <a href={u.website} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none', marginBottom: 8 }}>
-              🌐 {u.website.replace(/^https?:\/\//, '')}
+              <Globe size={13} /> {u.website.replace(/^https?:\/\//, '')}
             </a>
           )}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
-            {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>⛵ {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
-            {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>🏠 {u.home_port}</span>}
+            {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IconSailboat size={12} /> {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
+            {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Home size={12} /> {u.home_port}</span>}
           </div>
         </div>
 
@@ -494,7 +500,7 @@ export default function ProfilPage() {
           return (
             <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'flex', alignItems: 'center', gap: 5 }}><Award size={11} /> Märken</div>
                 <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
                   {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
                 </span>
@@ -621,10 +627,12 @@ export default function ProfilPage() {
                     {t.image ? (
                       <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
                     ) : (
-                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }}>⛵</div>
+                      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0.4 }}><IconSailboat size={24} /></div>
                     )}
                     {t.pinnar_rating === 3 && (
-                      <div style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.5)', borderRadius: 6, padding: '2px 5px', fontSize: 8, fontWeight: 700, color: '#fff' }}>⚓⚓⚓</div>
+                      <div style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.5)', borderRadius: 6, padding: '2px 5px', display: 'flex', gap: 1, alignItems: 'center' }}>
+                        {[0,1,2].map(i => <IconAnchor key={i} size={7} style={{ color: '#fff' }} />)}
+                      </div>
                     )}
                     <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
                       {t.location_name && <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.location_name}</p>}
@@ -651,7 +659,7 @@ export default function ProfilPage() {
                 position: 'absolute', inset: 0, pointerEvents: 'none',
                 background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.18) 0%, transparent 55%)',
               }} />
-              <div style={{ fontSize: 28, flexShrink: 0, position: 'relative' }}>✨</div>
+              <div style={{ flexShrink: 0, position: 'relative', display: 'flex', alignItems: 'center' }}><Sparkles size={28} color="#fff" /></div>
               <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
                 <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
                   Svalla Wrapped {new Date().getFullYear()}
@@ -675,7 +683,7 @@ export default function ProfilPage() {
             boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
             WebkitTapHighlightColor: 'transparent',
           }}>
-            <span style={{ fontSize: 22, flexShrink: 0 }}>📂</span>
+            <FolderOpen size={22} style={{ flexShrink: 0, color: 'var(--sea)' }} />
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Importera GPX</div>
               <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Ladda upp turer från GPS-enhet eller annan app</div>
@@ -689,11 +697,11 @@ export default function ProfilPage() {
         {/* ── Fler verktyg ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
           {[
-            { href: '/meddelanden', icon: '💬', label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
-            { href: '/insikter',   icon: '📊', label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
-            { href: '/topplista',  icon: '🏆', label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
-            { href: '/check-in',   icon: '📍', label: 'Check-in',    sub: 'Registrera dig på en plats' },
-            { href: '/bjud-in',    icon: '🔗', label: 'Bjud in',     sub: 'Skapa inbjudningslänkar' },
+            { href: '/meddelanden', icon: <MessageCircle size={20} style={{ color: 'var(--sea)' }} />, label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
+            { href: '/insikter',   icon: <BarChart2 size={20} style={{ color: 'var(--sea)' }} />,    label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
+            { href: '/topplista',  icon: <Trophy size={20} style={{ color: 'var(--sea)' }} />,       label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
+            { href: '/check-in',   icon: <MapPin size={20} style={{ color: 'var(--sea)' }} />,       label: 'Check-in',    sub: 'Registrera dig på en plats' },
+            { href: '/bjud-in',    icon: <Link2 size={20} style={{ color: 'var(--sea)' }} />,        label: 'Bjud in',     sub: 'Skapa inbjudningslänkar' },
           ].map(({ href, icon, label, sub }, i, arr) => (
             <Link key={href} href={href} style={{ textDecoration: 'none', display: 'block' }}>
               <div style={{
@@ -702,7 +710,7 @@ export default function ProfilPage() {
                 borderBottom: i < arr.length - 1 ? '1px solid rgba(10,123,140,0.06)' : 'none',
                 WebkitTapHighlightColor: 'transparent',
               }}>
-                <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
+                <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{label}</div>
                   <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{sub}</div>
@@ -730,7 +738,7 @@ export default function ProfilPage() {
                 position: 'absolute', inset: 0, pointerEvents: 'none',
                 background: 'radial-gradient(circle at 85% -20%, rgba(255,255,255,0.14) 0%, transparent 55%)',
               }} />
-              <div style={{ fontSize: 26, flexShrink: 0, position: 'relative' }}>⚓</div>
+              <div style={{ flexShrink: 0, position: 'relative', display: 'flex', alignItems: 'center' }}><IconAnchor size={26} style={{ color: '#fff' }} /></div>
               <div style={{ flex: 1, minWidth: 0, position: 'relative' }}>
                 <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.70)', textTransform: 'uppercase', letterSpacing: '0.7px' }}>
                   Svalla Pro

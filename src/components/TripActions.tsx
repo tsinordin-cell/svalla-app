@@ -1,14 +1,16 @@
 'use client'
 import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import { Pencil, MapPin, Trash2, MessageCircle, Flag } from 'lucide-react'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
+import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
 
 const PINNAR = [
-  { value: 1, emoji: '⚓',     label: 'Okej' },
-  { value: 2, emoji: '⚓⚓',   label: 'Bra!' },
-  { value: 3, emoji: '⚓⚓⚓', label: 'Magisk 🔥' },
+  { value: 1, anchors: 1, label: 'Okej' },
+  { value: 2, anchors: 2, label: 'Bra!' },
+  { value: 3, anchors: 3, label: 'Magisk' },
 ]
 
 interface TripData {
@@ -132,12 +134,12 @@ export default function TripActions({
           <Sheet label="Turalternativ">
             <Handle />
             <MenuItem
-              icon="✏️"
+              icon={<Pencil size={19} />}
               label="Redigera tur"
               onClick={openEdit}
             />
             <MenuItem
-              icon="📍"
+              icon={<MapPin size={19} />}
               label="Exportera GPX"
               onClick={() => {
                 setMenu(false)
@@ -146,7 +148,7 @@ export default function TripActions({
             />
             <div style={{ height: 1, background: 'rgba(10,123,140,0.08)', margin: '4px 0' }} />
             <MenuItem
-              icon="🗑"
+              icon={<Trash2 size={19} />}
               label="Ta bort tur"
               danger
               onClick={() => { setMenu(false); setConfirm(true) }}
@@ -176,7 +178,11 @@ export default function TripActions({
             </h3>
 
             {/* Location */}
-            <label htmlFor="trip-edit-location" style={labelStyle}>📍 Plats</label>
+            <label htmlFor="trip-edit-location" style={labelStyle}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <MapPin size={11} strokeWidth={2} /> Plats
+              </span>
+            </label>
             <input
               id="trip-edit-location"
               type="text"
@@ -188,7 +194,11 @@ export default function TripActions({
             />
 
             {/* Caption */}
-            <label htmlFor="trip-edit-caption" style={{ ...labelStyle, marginTop: 12 }}>💬 Berätta om turen</label>
+            <label htmlFor="trip-edit-caption" style={{ ...labelStyle, marginTop: 12 }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                <MessageCircle size={11} strokeWidth={2} /> Berätta om turen
+              </span>
+            </label>
             <textarea
               id="trip-edit-caption"
               value={caption}
@@ -202,7 +212,11 @@ export default function TripActions({
 
             {/* Pinnar */}
             <div role="group" aria-labelledby="trip-edit-pinnar-label">
-              <span id="trip-edit-pinnar-label" style={labelStyle}>⚓ Hur var turen?</span>
+              <span id="trip-edit-pinnar-label" style={labelStyle}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <IconAnchor size={11} strokeWidth={2} /> Hur var turen?
+                </span>
+              </span>
               <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
               {PINNAR.map(p => (
                 <button
@@ -218,7 +232,15 @@ export default function TripActions({
                     transition: 'all 0.15s',
                   }}
                 >
-                  <span style={{ fontSize: 14 }}>{p.emoji}</span>
+                  <span style={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                    {Array.from({ length: p.anchors }).map((_, i) => (
+                      <IconAnchor
+                        key={i}
+                        size={13}
+                        style={{ color: pinnar === p.value ? '#fff' : 'var(--sea)' }}
+                      />
+                    ))}
+                  </span>
                   <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === p.value ? '#fff' : 'var(--txt3)' }}>{p.label}</span>
                 </button>
               ))}
@@ -227,7 +249,11 @@ export default function TripActions({
 
             {/* Boat type */}
             <div role="group" aria-labelledby="trip-edit-boat-type-label">
-              <span id="trip-edit-boat-type-label" style={labelStyle}>🚤 Båttyp</span>
+              <span id="trip-edit-boat-type-label" style={labelStyle}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <IconMotorboat size={11} strokeWidth={2} /> Båttyp
+                </span>
+              </span>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginBottom: 18 }}>
                 {BOAT_TYPES.map(bt => (
                 <button
@@ -297,7 +323,11 @@ export default function TripActions({
                 cursor: deleting ? 'default' : 'pointer', opacity: deleting ? 0.7 : 1, marginBottom: 10,
               }}
             >
-              {deleting ? 'Raderar…' : '🗑 Ja, ta bort'}
+              {deleting ? 'Raderar…' : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7, justifyContent: 'center' }}>
+                  <Trash2 size={15} /> Ja, ta bort
+                </span>
+              )}
             </button>
             <button
               onClick={() => setConfirm(false)}
@@ -357,7 +387,7 @@ function NonOwnerMenu({ tripId }: { tripId: string }) {
                 }}
                 onClick={() => setMenu(false)}
               >
-                <span style={{ fontSize: 20 }}>🚩</span>
+                <Flag size={20} style={{ color: '#dc2626', flexShrink: 0 }} />
                 <div style={{ flex: 1 }}>
                   <ReportButton targetType="trip" targetId={tripId} label="Anmäl tur" bare />
                 </div>
@@ -426,7 +456,7 @@ function Handle() {
   return <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(10,123,140,0.15)', margin: '0 auto 18px' }} />
 }
 
-function MenuItem({ icon, label, danger, onClick }: { icon: string; label: string; danger?: boolean; onClick: () => void }) {
+function MenuItem({ icon, label, danger, onClick }: { icon: ReactNode; label: string; danger?: boolean; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -438,7 +468,9 @@ function MenuItem({ icon, label, danger, onClick }: { icon: string; label: strin
         color: danger ? '#dc2626' : 'var(--txt)',
       }}
     >
-      <span style={{ fontSize: 20 }}>{icon}</span>
+      <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        {icon}
+      </span>
       <span style={{ fontSize: 15, fontWeight: 700 }}>{label}</span>
     </button>
   )

@@ -1,27 +1,31 @@
 'use client'
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import { Sparkles } from 'lucide-react'
 import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import EmptyState from '@/components/EmptyState'
 import Pill from '@/components/ui/Pill'
+import { IconSailboat, IconMotorboat, IconKayak, IconRIB, IconSUP } from '@/components/icons/SvallaIcons'
 import type { Trip } from '@/lib/supabase'
 
-const BOAT_FILTERS = [
-  { value: 'alla',     label: 'Alla' },
-  { value: 'Segelbåt', label: '⛵ Segel' },
-  { value: 'Motorbåt', label: '🚤 Motor' },
-  { value: 'Kajak',    label: '🛶 Kajak' },
-  { value: 'RIB',      label: '🛥️ RIB' },
-  { value: 'SUP',      label: '🏄 SUP' },
+type BoatFilter = { value: string; label: string; icon: ReactNode | null }
+
+const BOAT_FILTERS: BoatFilter[] = [
+  { value: 'alla',     label: 'Alla',  icon: null },
+  { value: 'Segelbåt', label: 'Segel', icon: <IconSailboat size={13} /> },
+  { value: 'Motorbåt', label: 'Motor', icon: <IconMotorboat size={13} /> },
+  { value: 'Kajak',    label: 'Kajak', icon: <IconKayak size={13} /> },
+  { value: 'RIB',      label: 'RIB',   icon: <IconRIB size={13} /> },
+  { value: 'SUP',      label: 'SUP',   icon: <IconSUP size={13} /> },
 ]
 
 type SortKey = 'newest' | 'distance' | 'speed' | 'magic'
 
-const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+const SORT_OPTIONS: { value: SortKey; label: string; icon?: ReactNode }[] = [
   { value: 'newest',   label: 'Nyast' },
   { value: 'distance', label: 'Längst' },
   { value: 'speed',    label: 'Snabbast' },
-  { value: 'magic',    label: '✨ Magiska' },
+  { value: 'magic',    label: 'Magiska', icon: <Sparkles size={12} /> },
 ]
 
 const PAGE_SIZE = 8
@@ -62,7 +66,7 @@ function SkeletonCard() {
   )
 }
 
- 
+
 export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: Trip[]; followingTrips: Trip[]; isLoggedIn: boolean }) {
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
@@ -124,7 +128,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
               onClick={() => setSortKey(s.value)}
               style={s.value === 'magic' && sortKey !== s.value ? { color: 'var(--amber, #c96e2a)' } : undefined}
             >
-              {s.label}
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                {s.icon}
+                {s.label}
+              </span>
             </Pill>
           ))}
           <Pill
@@ -132,8 +139,11 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             onClick={() => setShowBoatSheet(true)}
             aria-label="Filtrera båttyp"
           >
-            {boatFilter === 'alla' ? 'Båttyp' : activeBoat.label}
-            <span style={{ fontSize: 9, opacity: 0.7, marginLeft: 2 }}>▾</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              {boatFilter !== 'alla' && activeBoat.icon}
+              {boatFilter === 'alla' ? 'Båttyp' : activeBoat.label}
+              <span style={{ fontSize: 9, opacity: 0.7 }}>▾</span>
+            </span>
           </Pill>
         </div>
       </div>
@@ -181,8 +191,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
                     color: boatFilter === f.value ? '#fff' : 'var(--txt)',
                     fontSize: 13, fontWeight: 600, cursor: 'pointer',
                     WebkitTapHighlightColor: 'transparent',
+                    display: 'flex', alignItems: 'center', gap: 6,
                   }}
                 >
+                  {f.icon}
                   {f.label}
                 </button>
               ))}
