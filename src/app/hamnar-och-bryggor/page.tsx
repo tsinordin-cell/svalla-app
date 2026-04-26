@@ -164,10 +164,10 @@ export default function HamnarOchBryggorPage() {
             <strong>Kanal 16</strong> är <strong>nödkanalen</strong> — används endast för nödrop och initial kontakt. När du har kontakt med någon, flyttar du omedelbar till en arbetkanal.
           </p>
           <p>
-            <strong>Kanaler 9, 10, 11, 12</strong> är klassiska <strong>hamnradiokanaler</strong>. De flesta svenska gästhamnar övervakar en av dessa. Exempel: "Sandhamn Gästhamn, detta är segelyacht Västra vinden på kanal 10, vi närmar oss från väster, kan du bekräfta?" Hamnmästare svarar sedan med instruktioner — vilken kaj, vilket djup, samt priset.
+            <strong>Kanaler 9, 10, 11, 12</strong> är klassiska <strong>hamnradiokanaler</strong>. De flesta svenska gästhamnar övervakar en av dessa. Exempel: &quot;Sandhamn Gästhamn, detta är segelyacht Västra vinden på kanal 10, vi närmar oss från väster, kan du bekräfta?&quot; Hamnmästare svarar sedan med instruktioner — vilken kaj, vilket djup, samt priset.
           </p>
           <p>
-            <strong>Hur anropar du på VHF?</strong> Säg namnet på hamnen två gånger, sedan ditt båtnamn två gånger, därefter din position eller riktning. Var tydlig och långsam. Många båtförarar är inte modersmålstalare — använd enkel svenska eller engelska. Exempel: "Visby hamn, Visby hamn, detta är segelbåten Solglint, Solglint, vi är två sjömil väster om hamnen, kan du bekräfta mottagning?"
+            <strong>Hur anropar du på VHF?</strong> Säg namnet på hamnen två gånger, sedan ditt båtnamn två gånger, därefter din position eller riktning. Var tydlig och långsam. Många båtförarar är inte modersmålstalare — använd enkel svenska eller engelska. Exempel: &quot;Visby hamn, Visby hamn, detta är segelbåten Solglint, Solglint, vi är två sjömil väster om hamnen, kan du bekräfta mottagning?&quot;
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>

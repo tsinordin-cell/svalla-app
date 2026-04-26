@@ -9,12 +9,6 @@ interface Props {
   variant?: 'icon' | 'pill'
 }
 
-// Detect iOS — Instagram Stories requires save-to-photos flow on iOS
-function isIOS() {
-  if (typeof navigator === 'undefined') return false
-  return /iPad|iPhone|iPod/.test(navigator.userAgent)
-}
-
 // Detect Android
 function isAndroid() {
   if (typeof navigator === 'undefined') return false
