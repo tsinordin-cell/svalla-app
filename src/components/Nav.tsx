@@ -71,7 +71,7 @@ export default function Nav() {
       exact: false,
       matchPaths: ['/upptack'],
       icon: (active: boolean) => (
-        <IconCompass size={22} stroke={active ? 2 : 1.75} />
+        <IconCompass size={22} strokeWidth={active ? 2 : 1.75} />
       ),
     },
     {
