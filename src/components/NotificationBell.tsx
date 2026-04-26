@@ -6,18 +6,21 @@ import { timeAgoShort } from '@/lib/utils'
 
 type Notif = {
   id: string
-  type: 'like' | 'comment' | 'follow' | 'tag'
+  type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | 'forum_like' | string
   read: boolean
   created_at: string
   trip_id: string | null
+  reference_id: string | null
   actor_username?: string
 }
 
 const TYPE_LABEL: Record<string, string> = {
-  like:    'gillade din tur ❤️',
-  comment: 'kommenterade din tur 💬',
-  follow:  'börjar följa dig 👋',
-  tag:     'taggade dig i en tur 🏷️',
+  like:         'gillade din tur ❤️',
+  comment:      'kommenterade din tur 💬',
+  follow:       'börjar följa dig 👋',
+  tag:          'taggade dig i en tur 🏷️',
+  forum_reply:  'svarade i din forumtråd 💬',
+  forum_like:   'gillade ditt foruminlägg ❤️',
 }
 
 export default function NotificationBell() {
@@ -34,7 +37,7 @@ export default function NotificationBell() {
   const load = useCallback(async (uid: string) => {
     const { data } = await supabase
       .from('notifications')
-      .select('id, type, read, created_at, trip_id, actor_id')
+      .select('id, type, read, created_at, trip_id, reference_id, actor_id')
       .eq('user_id', uid)
       .order('created_at', { ascending: false })
       .limit(20)
@@ -169,7 +172,13 @@ export default function NotificationBell() {
             notifs.map(n => (
               <Link
                 key={n.id}
-                href={n.trip_id ? `/tur/${n.trip_id}` : '#'}
+                href={
+                  (n.type === 'forum_reply' || n.type === 'forum_like') && n.reference_id
+                    ? `/forum/t/${n.reference_id}`
+                    : n.trip_id
+                    ? `/tur/${n.trip_id}`
+                    : '#'
+                }
                 onClick={() => setOpen(false)}
                 style={{
                   display: 'flex', alignItems: 'flex-start', gap: 10,

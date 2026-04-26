@@ -129,7 +129,7 @@ async function geocodeIsland(islandName: string): Promise<{ lat: number; lng: nu
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(_req: NextRequest) {
   // ── Auth-kontroll ─────────────────────────────────────────────
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()

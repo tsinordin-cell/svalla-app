@@ -47,6 +47,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland`,                lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/aland`,                  lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/blekinge-skargard`,      lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    { url: `${base}/vasterhav`,              lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/malaren`,               lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    { url: `${base}/goteborg-skargard`,     lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
     { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
@@ -57,12 +60,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/vandring-och-natur`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/erbjudanden`,            lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
     { url: `${base}/populara-turer`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
-    { url: `${base}/segelrutter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    { url: `${base}/segelrutter`,            lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/nyborjare-segling`,      lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/snabbaste-vagen`,        lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
     { url: `${base}/planera-tur`,            lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
     { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
+    { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
     { url: `${base}/guide`,                  lastModified: now, priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${base}/om`,                     lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
     { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
@@ -89,15 +94,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let rutterPages: MetadataRoute.Sitemap = []
   let tipsPages: MetadataRoute.Sitemap = []
   let planeraPages: MetadataRoute.Sitemap = []
+  let forumCatPages: MetadataRoute.Sitemap = []
+  let forumThreadPages: MetadataRoute.Sitemap = []
 
   try {
     const supabase = createClient()
 
-    const [{ data: restaurants }, { data: tours }, { data: articles }, { data: plannedRoutes }] = await Promise.all([
+    const [{ data: restaurants }, { data: tours }, { data: articles }, { data: plannedRoutes }, { data: forumCats }, { data: forumThreads }] = await Promise.all([
       supabase.from('restaurants').select('id, updated_at').order('id'),
       supabase.from('tours').select('id, updated_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
       supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
+      supabase.from('forum_categories').select('id'),
+      supabase.from('forum_threads').select('id, category_id, last_reply_at').eq('in_spam_queue', false).order('last_reply_at', { ascending: false }).limit(500),
     ])
 
     platsPages = (restaurants ?? []).map((r: { id: string; updated_at?: string }) => ({
@@ -127,6 +136,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     }))
+
+    forumCatPages = (forumCats ?? []).map((c: { id: string }) => ({
+      url: `${base}/forum/${c.id}`,
+      lastModified: now,
+      changeFrequency: 'daily' as const,
+      priority: 0.75,
+    }))
+
+    forumThreadPages = (forumThreads ?? []).map((t: { id: string; category_id: string; last_reply_at?: string }) => ({
+      url: `${base}/forum/${t.category_id}/${t.id}`,
+      lastModified: t.last_reply_at ? new Date(t.last_reply_at) : now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.65,
+    }))
   } catch {
     // Om Supabase inte svarar — returnera ändå resten av sitemap
   }
@@ -139,5 +162,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...rutterPages,
     ...tipsPages,
     ...planeraPages,
+    ...forumCatPages,
+    ...forumThreadPages,
   ]
 }

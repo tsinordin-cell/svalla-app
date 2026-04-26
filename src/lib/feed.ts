@@ -8,6 +8,7 @@
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { Trip } from './supabase'
+import { logger } from './logger'
 
 /** Raw rad från RPC — flat shape, joinas till Trip-formen i mapRpcRow. */
 type FeedRpcRow = {
@@ -107,8 +108,9 @@ export async function enrichWithTags(
   for (const row of tagRows) {
     const u = userMap[row.tagged_user_id as string]
     if (!u) continue
-    if (!tagsByTrip[row.trip_id as string]) tagsByTrip[row.trip_id as string] = []
-    tagsByTrip[row.trip_id as string].push(u)
+    const tripId = row.trip_id as string
+    if (!tagsByTrip[tripId]) tagsByTrip[tripId] = []
+    tagsByTrip[tripId]!.push(u)
   }
 
   return trips.map(t => ({ ...t, tagged_users: tagsByTrip[t.id] ?? [] }))
@@ -127,7 +129,7 @@ export async function fetchFeedTrips(
     })
 
     if (error) {
-      console.error('[fetchFeedTrips] RPC error:', error.message)
+      logger.error('feed', 'RPC error', { message: error.message })
       return { trips: [], error: error.message }
     }
     const rows = (data ?? []) as FeedRpcRow[]
@@ -136,7 +138,7 @@ export async function fetchFeedTrips(
     // Nätverksfel, timeout eller oväntat undantag — returnera gracefully
     // utan att kasta vidare och trigga error-boundary i feed/page.tsx
     const msg = err instanceof Error ? err.message : 'Nätverksfel'
-    console.error('[fetchFeedTrips] unexpected throw:', msg)
+    logger.error('feed', 'unexpected throw', { message: msg })
     return { trips: [], error: msg }
   }
 }

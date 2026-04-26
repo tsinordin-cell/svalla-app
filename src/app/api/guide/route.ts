@@ -6,6 +6,7 @@ import { cookies } from 'next/headers'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
+import { logger } from '@/lib/logger'
 
 // Condensed tour list for context (titles + key data)
 const TOUR_CONTEXT = `
@@ -440,7 +441,7 @@ export async function POST(req: NextRequest) {
     return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (full, label, url) => {
       // Tillåt /platser/<id> om id finns i DB
       const platserMatch = /^https?:\/\/svalla\.se\/platser\/([0-9a-f-]+)/i.exec(url)
-      if (platserMatch && validPlaceIds.has(platserMatch[1])) return full
+      if (platserMatch && validPlaceIds.has(platserMatch[1]!)) return full
       // Tillåt booking_url från DB
       if (validBookingUrls.has(url)) return full
       // Tillåt interna Svalla-sidor
@@ -478,7 +479,7 @@ export async function POST(req: NextRequest) {
     const res1 = await callClaude(messages)
     if (!res1.ok) {
       const err = await res1.text()
-      console.error('[guide api]', res1.status, err.substring(0, 200))
+      logger.error('guide', 'Anthropic API error', { status: res1.status, body: err.substring(0, 200) })
       return NextResponse.json({ error: 'Anthropic API fel' }, { status: 500 })
     }
     const data1 = await res1.json()
@@ -517,7 +518,7 @@ export async function POST(req: NextRequest) {
     const res2 = await callClaude(followUpMessages)
     if (!res2.ok) {
       const err = await res2.text()
-      console.error('[guide api] tool-result follow-up', res2.status, err.substring(0, 200))
+      logger.error('guide', 'tool-result follow-up error', { status: res2.status, body: err.substring(0, 200) })
       return NextResponse.json({ error: 'Anthropic API fel (tool follow-up)' }, { status: 500 })
     }
     const data2 = await res2.json()
@@ -525,7 +526,7 @@ export async function POST(req: NextRequest) {
     const finalRaw = (finalTextBlock as { text?: string })?.text ?? ''
     return NextResponse.json({ reply: sanitizeLinks(finalRaw) })
   } catch (error) {
-    console.error('[guide api] exception', error)
+    logger.error('guide', 'unhandled exception', { error: String(error) })
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })
   }
 }

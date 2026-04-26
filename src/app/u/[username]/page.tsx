@@ -12,6 +12,7 @@ import BackButtonInline from '@/components/BackButtonInline'
 import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import { isProEnabled } from '@/lib/pro'
+import { formatForumDate } from '@/lib/forum'
 
 export const revalidate = 60
 
@@ -53,7 +54,7 @@ export default async function PublicProfilePage({
 }) {
   const { username } = await params
   const { tab } = await searchParams
-  const activeTab = tab === 'taggad' ? 'taggad' : 'turer'
+  const activeTab = tab === 'taggad' ? 'taggad' : tab === 'forum' ? 'forum' : 'turer'
   // Server component → server-klient som forwardar auth-cookies.
   // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
   // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
@@ -73,6 +74,8 @@ export default async function PublicProfilePage({
     { data: visitedIslandsData },
     { data: subRow },
     { data: taggedTripIds },
+    { data: forumThreadsRaw },
+    { data: forumPostsRaw },
   ] = await Promise.all([
     supabase
       .from('trips')
@@ -87,6 +90,21 @@ export default async function PublicProfilePage({
       ? supabase.from('subscriptions').select('status,current_period_end').eq('user_id', userRow.id).in('status', ['active','trialing']).maybeSingle()
       : Promise.resolve({ data: null }),
     supabase.from('trip_tags').select('trip_id').eq('tagged_user_id', userRow.id),
+    supabase
+      .from('forum_threads')
+      .select('id, title, category_id, created_at, reply_count')
+      .eq('user_id', userRow.id)
+      .eq('in_spam_queue', false)
+      .eq('is_deleted', false)
+      .order('created_at', { ascending: false })
+      .limit(20),
+    supabase
+      .from('forum_posts')
+      .select('id, body, created_at, thread_id, forum_threads(id, title, category_id)')
+      .eq('user_id', userRow.id)
+      .eq('in_spam_queue', false)
+      .order('created_at', { ascending: false })
+      .limit(20),
   ])
 
   // Fetch the actual trip data for tagged trips
@@ -103,6 +121,13 @@ export default async function PublicProfilePage({
 
   const isProUser = isProEnabled() && !!subRow && new Date((subRow as { current_period_end: string }).current_period_end) > new Date()
 
+  // Forum-aktivitet
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const forumThreads = (forumThreadsRaw ?? []) as any[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const forumPosts   = (forumPostsRaw ?? []) as any[]
+  const forumCount   = forumThreads.length + forumPosts.length
+
   const trips = (rawTrips ?? []) as Trip[]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const pub: string[] = (userRow as any).public_fields ?? []
@@ -115,15 +140,22 @@ export default async function PublicProfilePage({
   const unlockedAch = computeUnlocked(trips, streak)
   const visitedCount = (visitedIslandsData ?? []).length
 
+  // Wrapped — find most recent year with trips (current or previous)
+  const currentYear = new Date().getFullYear()
+  const tripYears = new Set(trips.map(t => new Date(t.started_at ?? t.created_at).getFullYear()))
+  const wrappedYear = tripYears.has(currentYear) ? currentYear : tripYears.has(currentYear - 1) ? currentYear - 1 : null
+  const wrappedTrips = wrappedYear ? trips.filter(t => new Date(t.started_at ?? t.created_at).getFullYear() === wrappedYear) : []
+  const wrappedDist  = wrappedTrips.reduce((a, t) => a + (t.distance ?? 0), 0)
+
   // Monthly bar chart — last 6 months
   const MONTHS = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
   const monthMap: Record<string, { label: string; count: number; dist: number }> = {}
   for (const t of trips) {
     const d   = new Date(t.created_at)
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()], count: 0, dist: 0 }
-    monthMap[key].count++
-    monthMap[key].dist += t.distance ?? 0
+    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()]!, count: 0, dist: 0 }
+    monthMap[key]!.count++
+    monthMap[key]!.dist += t.distance ?? 0
   }
   const monthBars = Object.entries(monthMap)
     .sort(([a], [b]) => a.localeCompare(b))
@@ -347,6 +379,41 @@ export default async function PublicProfilePage({
           </div>
         )}
 
+        {/* ── Wrapped teaser ── */}
+        {wrappedYear && wrappedTrips.length >= 3 && (
+          <Link href={`/wrapped/${username}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
+            <div style={{
+              background: 'linear-gradient(135deg, #0d2240 0%, #1a4a5e 55%, #0a7b8c 100%)',
+              borderRadius: 18, padding: '18px 20px',
+              position: 'relative', overflow: 'hidden',
+              boxShadow: '0 4px 18px rgba(10,60,90,0.20)',
+            }}>
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse 65% 80% at 85% 50%, rgba(45,125,138,0.35) 0%, transparent 65%)',
+                pointerEvents: 'none',
+              }} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
+                <div>
+                  <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.50)', textTransform: 'uppercase', letterSpacing: '1.8px', marginBottom: 6 }}>
+                    Säsongsrecap {wrappedYear}
+                  </div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px', lineHeight: 1.1 }}>
+                    {wrappedTrips.length} turer · {wrappedDist.toFixed(0)} nm
+                  </div>
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
+                    Se helårssummeringen
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 11, height: 11, opacity: 0.7 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5.5L15.5 12L9 18.5" />
+                    </svg>
+                  </div>
+                </div>
+                <div style={{ fontSize: 44, lineHeight: 1 }}>⚓</div>
+              </div>
+            </div>
+          </Link>
+        )}
+
         {/* ── Trip grid with tabs ── */}
         <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
 
@@ -355,6 +422,7 @@ export default async function PublicProfilePage({
             {[
               { key: 'turer',  label: 'Turer',    count: trips.length },
               ...(taggedTrips.length > 0 ? [{ key: 'taggad', label: 'Taggad i', count: taggedTrips.length }] : []),
+              ...(forumCount > 0 ? [{ key: 'forum', label: 'Forum', count: forumCount }] : []),
             ].map(({ key, label, count }) => {
               const active = activeTab === key
               return (
@@ -379,8 +447,14 @@ export default async function PublicProfilePage({
             })}
           </div>
 
-          {/* Grid content */}
-          {(() => {
+          {/* Tab content */}
+          {activeTab === 'forum' ? (
+            <ForumActivityTab
+              threads={forumThreads}
+              posts={forumPosts}
+              username={userRow.username}
+            />
+          ) : (() => {
             const displayTrips = activeTab === 'taggad' ? taggedTrips : trips
             if (displayTrips.length === 0) {
               return (
@@ -426,6 +500,150 @@ export default async function PublicProfilePage({
           })()}
         </div>
       </div>
+    </div>
+  )
+}
+
+// ── Forum-aktivitets-flik ────────────────────────────────────────────────────
+function ForumActivityTab({
+  threads,
+  posts,
+  username,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  threads: any[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  posts: any[]
+  username: string
+}) {
+  if (threads.length === 0 && posts.length === 0) {
+    return (
+      <div style={{ padding: '32px 16px', textAlign: 'center', color: 'var(--txt3)', fontSize: 14 }}>
+        <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="rgba(10,123,140,0.25)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 8 }}>
+          <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
+        </svg>
+        <div>{username} har inte skrivit i forumet än.</div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ padding: '12px' }}>
+
+      {/* ── Trådar ── */}
+      {threads.length > 0 && (
+        <div style={{ marginBottom: posts.length > 0 ? 16 : 0 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8, paddingLeft: 4 }}>
+            Trådar
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {threads.map((t) => (
+              <Link
+                key={t.id}
+                href={`/forum/${t.category_id}/${t.id}`}
+                style={{ textDecoration: 'none' }}
+              >
+                <div style={{
+                  padding: '12px 14px',
+                  background: 'rgba(10,123,140,0.04)',
+                  borderRadius: 14,
+                  border: '1px solid rgba(10,123,140,0.09)',
+                  display: 'flex', alignItems: 'flex-start', gap: 10,
+                  WebkitTapHighlightColor: 'transparent',
+                }}>
+                  {/* Thread icon */}
+                  <div style={{
+                    width: 30, height: 30, borderRadius: 8, flexShrink: 0,
+                    background: 'rgba(10,123,140,0.10)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    marginTop: 1,
+                  }}>
+                    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
+                    </svg>
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{
+                      fontSize: 13, fontWeight: 600, color: 'var(--txt)',
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      marginBottom: 3,
+                    }}>
+                      {t.title}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, color: 'var(--txt3)' }}>
+                      <span>{formatForumDate(t.created_at)}</span>
+                      {t.reply_count > 0 && (
+                        <>
+                          <span>·</span>
+                          <span>{t.reply_count} svar</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 4 }}>
+                    <path d="M9 5.5L15.5 12L9 18.5" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Svar ── */}
+      {posts.length > 0 && (
+        <div>
+          <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8, paddingLeft: 4 }}>
+            Svar
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {posts.map((p) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const thread = Array.isArray(p.forum_threads) ? p.forum_threads[0] : p.forum_threads as any
+              const href = thread?.id && thread?.category_id
+                ? `/forum/${thread.category_id}/${thread.id}#post-${p.id}`
+                : '/forum'
+              const threadTitle = thread?.title ?? 'Okänd tråd'
+              const bodyPreview = (p.body as string).slice(0, 100).replace(/\s+/g, ' ').trim()
+
+              return (
+                <Link key={p.id} href={href} style={{ textDecoration: 'none' }}>
+                  <div style={{
+                    padding: '12px 14px',
+                    background: 'var(--card-bg, rgba(10,123,140,0.02))',
+                    borderRadius: 14,
+                    border: '1px solid rgba(10,123,140,0.09)',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}>
+                    {/* Thread name */}
+                    <div style={{ fontSize: 11, color: 'var(--sea)', fontWeight: 600, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 5.5L15.5 12L9 18.5" />
+                      </svg>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {threadTitle}
+                      </span>
+                    </div>
+                    {/* Body excerpt */}
+                    <div style={{
+                      fontSize: 13, color: 'var(--txt)', lineHeight: 1.5,
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                    } as React.CSSProperties}>
+                      {bodyPreview}{(p.body as string).length > 100 ? '…' : ''}
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 5 }}>
+                      {formatForumDate(p.created_at)}
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

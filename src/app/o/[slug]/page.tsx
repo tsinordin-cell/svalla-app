@@ -74,6 +74,18 @@ export default async function IslandPage({ params }: Props) {
           })
         }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+            { '@type': 'ListItem', position: 2, name: 'Öar', item: 'https://svalla.se/rutter?vy=oar' },
+            { '@type': 'ListItem', position: 3, name: island.name, item: `https://svalla.se/o/${slug}` },
+          ],
+        }) }}
+      />
 
       {/* ── NAV ─────────────────────────────────────────────────── */}
       <nav style={{
@@ -142,8 +154,8 @@ export default async function IslandPage({ params }: Props) {
               {/* Live väder — kräver koordinater */}
               {ISLAND_COORD_MAP[island.slug] && (
                 <IslandWeatherClient
-                  lat={ISLAND_COORD_MAP[island.slug].lat}
-                  lng={ISLAND_COORD_MAP[island.slug].lng}
+                  lat={ISLAND_COORD_MAP[island.slug]!.lat}
+                  lng={ISLAND_COORD_MAP[island.slug]!.lng}
                   islandName={island.name}
                 />
               )}

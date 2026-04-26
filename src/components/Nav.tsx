@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconCompass, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconCompass, IconForum, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
 
 export default function Nav() {
   const path = usePathname()
@@ -45,7 +45,7 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide']
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide', '/forum']
   const EXACT_PATHS = ['/logga', '/meddelanden']
   // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
   const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
@@ -73,12 +73,12 @@ export default function Nav() {
       ),
     },
     {
-      href: '/planera',
-      label: 'Planera',
+      href: '/forum',
+      label: 'Forum',
       exact: false,
-      matchPaths: ['/planera', '/rutter'],
+      matchPaths: ['/forum'],
       icon: (active: boolean) => (
-        <IconRoute size={22} stroke={active ? 2 : 1.75} />
+        <IconForum size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     { href: '/logga', label: '', fab: true },
@@ -111,7 +111,7 @@ export default function Nav() {
             }}>
               {avatar
                 ? <Image src={avatar} alt="" width={26} height={26} style={{ objectFit: 'cover', borderRadius: '50%', width: '100%', height: '100%' }} />
-                : username[0].toUpperCase()
+                : username[0]!.toUpperCase()
               }
             </div>
           ) : (
@@ -134,7 +134,7 @@ export default function Nav() {
   // Visa bells bara på sidor som INTE har egen header med bells
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
   // /upptack har fullskärms-karta där Leaflet-kontroller bor top-right
-  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil']
+  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum']
   const showGlobalBell = username !== null
     && !PAGES_WITH_OWN_BELLS.some(p => path.startsWith(p))
     && !path.match(/^\/meddelanden/)

@@ -1,8 +1,11 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
+import type { Map as LeafletMap, LayerGroup } from 'leaflet'
 import type { WindArrowSample } from '@/lib/weather'
 import { windColor, windDirectionLabel } from '@/lib/weather'
+
+type LeafletNS = typeof import('leaflet')
 
 type Point = { lat: number; lng: number; speedKnots?: number }
 type Stop = { lat: number; lng: number; type: string; durationSeconds: number }
@@ -63,12 +66,9 @@ function windArrowHtml(sample: WindArrowSample): string {
 export default function TripDetailMap({ points, stops, restaurants = [], windSamples = [] }: Props) {
   const mapRef = useRef<HTMLDivElement>(null)
   const initializedRef = useRef(false)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mapInstanceRef = useRef<any>(null)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const windLayerRef = useRef<any>(null)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const LRef = useRef<any>(null)
+  const mapInstanceRef = useRef<LeafletMap | null>(null)
+  const windLayerRef = useRef<LayerGroup | null>(null)
+  const LRef = useRef<LeafletNS | null>(null)
 
   // Visa vindpilar som default. Toggle:n har inget localStorage — medvetet
   // enkelt, om folk vill persistera det kan vi lägga på senare.
@@ -83,8 +83,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
     if (!mapRef.current || initializedRef.current || points.length < 2) return
     initializedRef.current = true
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let map: any = null
+    let map: LeafletMap | null = null
 
     async function init() {
       const L = (await import('leaflet')).default
@@ -122,8 +121,8 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
 
       // Färgade polyline-segment efter fart
       for (let i = 1; i < points.length; i++) {
-        const a = points[i - 1]
-        const b = points[i]
+        const a = points[i - 1]!
+        const b = points[i]!
         const spd = ((a.speedKnots ?? 0) + (b.speedKnots ?? 0)) / 2
         L.polyline(
           [[a.lat, a.lng], [b.lat, b.lng]],
@@ -136,7 +135,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
         html: `<div style="width:14px;height:14px;border-radius:50%;background:#0f9e64;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
         iconSize: [14, 14], iconAnchor: [7, 7], className: '',
       })
-      L.marker([points[0].lat, points[0].lng], { icon: startIcon })
+      L.marker([points[0]!.lat, points[0]!.lng], { icon: startIcon })
         .bindTooltip('Start', { direction: 'top', offset: [0, -8] }).addTo(map)
 
       // END
@@ -144,7 +143,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
         html: `<div style="width:14px;height:14px;border-radius:50%;background:#cc3d3d;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
         iconSize: [14, 14], iconAnchor: [7, 7], className: '',
       })
-      L.marker([points[points.length - 1].lat, points[points.length - 1].lng], { icon: endIcon })
+      L.marker([points[points.length - 1]!.lat, points[points.length - 1]!.lng], { icon: endIcon })
         .bindTooltip('Slut', { direction: 'top', offset: [0, -8] }).addTo(map)
 
       // STOPS
@@ -159,7 +158,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
         })
         L.marker([s.lat, s.lng], { icon })
           .bindTooltip(`${isPause ? 'Paus' : 'Stopp'} · ${dur}`, { direction: 'top', offset: [0, -6] })
-          .addTo(map)
+          .addTo(map!)
       })
 
       // RESTAURANGER
@@ -169,7 +168,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
           iconSize: [28, 28], iconAnchor: [14, 14], className: '',
         })
         L.marker([r.latitude, r.longitude], { icon })
-          .bindTooltip(r.name, { direction: 'top', offset: [0, -14] }).addTo(map)
+          .bindTooltip(r.name, { direction: 'top', offset: [0, -14] }).addTo(map!)
       })
 
       // Legend: fart + vind

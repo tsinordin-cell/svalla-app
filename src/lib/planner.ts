@@ -176,8 +176,8 @@ export function suggestStops(
 ): ScoredStop[] {
   const totalDistKm = haversineKm(start.lat, start.lng, end.lat, end.lng)
 
-  // Adaptiv korridor: bredare för kortare turer (man avviker mer), smalare för långa
-  const corridorKm = opts.corridorKm ?? Math.max(6, Math.min(20, totalDistKm * 0.35))
+  // Adaptiv korridor: max 8 km från rutten (en detour på 8 km = 16 km extra)
+  const corridorKm = opts.corridorKm ?? Math.max(3, Math.min(8, totalDistKm * 0.22))
   const maxStops = opts.maxStops ?? 8
 
   const candidates: ScoredStop[] = []
@@ -242,22 +242,33 @@ export type Departure = {
 
 export const DEPARTURES: Departure[] = [
   // Stockholm / Innerskärgård
-  { id: 'stromkajen',    name: 'Strömkajen',       lat: 59.3238, lng: 18.0776, region: 'Stockholm',       emoji: '🏙' },
-  { id: 'nacka-strand',  name: 'Nacka Strand',     lat: 59.3195, lng: 18.1454, region: 'Stockholm',       emoji: '⚓' },
+  { id: 'stromkajen',    name: 'Strömkajen',        lat: 59.3238, lng: 18.0776, region: 'Stockholm',      emoji: '🏙' },
+  { id: 'nacka-strand',  name: 'Nacka Strand',      lat: 59.3195, lng: 18.1454, region: 'Stockholm',      emoji: '⚓' },
+  { id: 'gustavsberg',   name: 'Gustavsberg',       lat: 59.3283, lng: 18.3820, region: 'Stockholm',      emoji: '🛥' },
   { id: 'vaxholm',       name: 'Vaxholm',           lat: 59.4024, lng: 18.3512, region: 'Innerskärgård',  emoji: '🏰' },
+  { id: 'ljustero',      name: 'Ljusterö',          lat: 59.5540, lng: 18.6870, region: 'Innerskärgård',  emoji: '🌲' },
   { id: 'grinda',        name: 'Grinda',            lat: 59.4602, lng: 18.7167, region: 'Innerskärgård',  emoji: '🌿' },
+  { id: 'svartso',       name: 'Svartsö',           lat: 59.4730, lng: 18.7250, region: 'Innerskärgård',  emoji: '🪨' },
   { id: 'finnhamn',      name: 'Finnhamn',          lat: 59.5430, lng: 18.8240, region: 'Innerskärgård',  emoji: '🛶' },
   // Mellersta
-  { id: 'stavsnäs',      name: 'Stavsnäs',          lat: 59.1895, lng: 18.6823, region: 'Mellersta',      emoji: '🚢' },
-  { id: 'sandhamn',      name: 'Sandhamn',          lat: 59.2820, lng: 18.9130, region: 'Mellersta',      emoji: '⛵' },
-  { id: 'möja',          name: 'Möja',              lat: 59.4545, lng: 18.9110, region: 'Mellersta',      emoji: '🏝' },
   { id: 'ingaro',        name: 'Ingarö',            lat: 59.2472, lng: 18.5861, region: 'Mellersta',      emoji: '⚓' },
+  { id: 'stavsnäs',      name: 'Stavsnäs',          lat: 59.1895, lng: 18.6823, region: 'Mellersta',      emoji: '🚢' },
+  { id: 'husaro',        name: 'Husarö',            lat: 59.5195, lng: 18.9840, region: 'Mellersta',      emoji: '🏝' },
+  { id: 'möja',          name: 'Möja',              lat: 59.4545, lng: 18.9110, region: 'Mellersta',      emoji: '🌊' },
+  { id: 'sandhamn',      name: 'Sandhamn',          lat: 59.2820, lng: 18.9130, region: 'Mellersta',      emoji: '⛵' },
   // Södra
-  { id: 'nynashamn',     name: 'Nynäshamn',         lat: 58.9038, lng: 17.9475, region: 'Södra',          emoji: '⛴' },
   { id: 'dalaroe',       name: 'Dalarö',            lat: 59.1298, lng: 18.4003, region: 'Södra',          emoji: '🎣' },
-  { id: 'uto',           name: 'Utö',               lat: 58.9590, lng: 18.3017, region: 'Södra',          emoji: '🏖' },
+  { id: 'orno',          name: 'Ornö',              lat: 58.9773, lng: 18.4550, region: 'Södra',          emoji: '🌿' },
+  { id: 'nattaro',       name: 'Nåttarö',           lat: 58.8455, lng: 17.8742, region: 'Södra',          emoji: '🏖' },
+  { id: 'uto',           name: 'Utö',               lat: 58.9590, lng: 18.3017, region: 'Södra',          emoji: '⛵' },
+  { id: 'nynashamn',     name: 'Nynäshamn',         lat: 58.9038, lng: 17.9475, region: 'Södra',          emoji: '⛴' },
+  { id: 'landsort',      name: 'Landsort',          lat: 58.7440, lng: 17.8640, region: 'Södra',          emoji: '🔦' },
   // Norra
+  { id: 'sollenkroka',   name: 'Sollenkroka',       lat: 59.7050, lng: 18.8090, region: 'Norra',          emoji: '⚓' },
   { id: 'norrtälje',     name: 'Norrtälje',         lat: 59.7579, lng: 18.7077, region: 'Norra',          emoji: '🗺' },
-  { id: 'furusund',      name: 'Furusund',          lat: 59.6653, lng: 18.9217, region: 'Norra',          emoji: '⚓' },
+  { id: 'furusund',      name: 'Furusund',          lat: 59.6653, lng: 18.9217, region: 'Norra',          emoji: '🌅' },
+  { id: 'blido',         name: 'Blidö',             lat: 59.6200, lng: 18.8700, region: 'Norra',          emoji: '🏡' },
+  { id: 'rodloga',       name: 'Rödlöga',           lat: 59.8180, lng: 19.0650, region: 'Norra',          emoji: '🪸' },
+  { id: 'kapellskar',    name: 'Kapellskär',        lat: 59.7245, lng: 19.0740, region: 'Norra',          emoji: '⛴' },
   { id: 'arholma',       name: 'Arholma',           lat: 59.8532, lng: 19.1345, region: 'Norra',          emoji: '🌊' },
 ]

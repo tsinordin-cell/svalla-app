@@ -139,6 +139,14 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
     } : {}),
     servesCuisine: Array.isArray(r.tags) ? r.tags.slice(0, 3) : undefined,
     priceRange: '$$',
+    ...(r.island ? {
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: r.island,
+        addressCountry: 'SE',
+      },
+    } : {}),
+    ...(r.contact_phone ? { telephone: r.contact_phone } : {}),
   }
 
   return (
@@ -146,6 +154,18 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+            { '@type': 'ListItem', position: 2, name: 'Platser', item: 'https://svalla.se/platser' },
+            { '@type': 'ListItem', position: 3, name: r.name, item: `https://svalla.se/platser/${id}` },
+          ],
+        }) }}
       />
 
       {/* ── Hero image ── */}

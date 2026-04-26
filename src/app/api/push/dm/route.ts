@@ -156,9 +156,9 @@ export async function POST(req: Request) {
 
   // Cleanup döda subs
   const stale = subs.filter((_, i) => {
-    const r = results[i]
+    const r = results[i]!
     if (r.status !== 'rejected') return false
-    const code = (r.reason as { statusCode?: number }).statusCode
+    const code = ((r as PromiseRejectedResult).reason as { statusCode?: number }).statusCode
     return code === 410 || code === 404
   })
   if (stale.length > 0) {

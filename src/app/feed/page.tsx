@@ -262,6 +262,13 @@ export default async function FeedPage(
           </div>
         )}
 
+        {/* ── Hitta seglare — mobil/tablet (dold på desktop via CSS, syns där i right panel) ── */}
+        {!!user && (
+          <div className="feed-suggested-mobile">
+            <SilentBoundary><SuggestedUsers /></SilentBoundary>
+          </div>
+        )}
+
         {/* ── Main feed ── */}
         <FeedClientBoundary>
           <FeedTabs
@@ -275,9 +282,7 @@ export default async function FeedPage(
         {/* ── Desktop right panel — visas bara vid ≥1280px via CSS ── */}
         {!!user && (
           <aside className="feed-desktop-panel">
-            <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.7px', marginBottom: 14 }}>
-              Hitta seglare
-            </div>
+            {/* SuggestedUsers har sin egen header, ingen extra label här */}
             <SilentBoundary><SuggestedUsers /></SilentBoundary>
           </aside>
         )}

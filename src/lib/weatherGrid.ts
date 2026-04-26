@@ -108,7 +108,7 @@ export function windDirLabel(deg: number): string {
     'N', 'NNO', 'NO', 'ONO', 'O', 'OSO', 'SO', 'SSO',
     'S', 'SSV', 'SV', 'VSV', 'V', 'VNV', 'NV', 'NNV',
   ]
-  return dirs[Math.round(deg / 22.5) % 16]
+  return dirs[Math.round(deg / 22.5) % 16]!
 }
 
 // ── WMO-kod → emoji + svensk text ────────────────────────────────────────────
@@ -173,7 +173,7 @@ export async function fetchWeatherGrid(
     const fresh: WeatherPoint[] = []
 
     for (let i = 0; i < toFetch.length; i++) {
-      const p = toFetch[i]
+      const p = toFetch[i]!
       const r = responses[i]
       const c = r?.current
       if (!c || typeof c.temperature_2m !== 'number') continue

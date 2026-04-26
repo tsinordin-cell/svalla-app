@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from './supabase-server'
+import { logger } from './logger'
 
 export type ArticleRow = {
   id: string
@@ -33,7 +34,7 @@ export async function listPublishedArticles(): Promise<ArticleRow[]> {
     .order('published_at', { ascending: false, nullsFirst: false })
     .limit(50)
   if (error) {
-    console.error('[articles] listPublishedArticles failed', error)
+    logger.error('articles', 'listPublishedArticles failed', { error })
     return []
   }
   return (data as ArticleRow[]) ?? []
@@ -50,7 +51,7 @@ export async function getArticleBySlug(slug: string): Promise<ArticleRow | null>
     .eq('slug', slug)
     .maybeSingle()
   if (error) {
-    console.error('[articles] getArticleBySlug failed', error)
+    logger.error('articles', 'getArticleBySlug failed', { error })
     return null
   }
   return (data as ArticleRow | null) ?? null

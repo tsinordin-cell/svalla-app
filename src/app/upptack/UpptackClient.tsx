@@ -3,6 +3,7 @@
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import Link from 'next/link'
 import { WeatherPill, DestinationPill } from '@/components/MapCornerPills'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | 'rutter' | 'vader' | 'heatmap'
@@ -280,7 +281,7 @@ export default function UpptackClient() {
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [])
 
   // ── Heatmap fetch on map move ─────────────────────────────────────────────
@@ -529,6 +530,25 @@ export default function UpptackClient() {
             </button>
           )
         })}
+
+        {/* Planera — navigerar till /planera */}
+        <Link
+          href="/planera"
+          className="press-feedback"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            height: 30, padding: '0 12px',
+            border: 'none', borderRadius: 999,
+            background: 'transparent',
+            color: 'var(--txt2)',
+            fontSize: 12, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'background 160ms ease, color 160ms ease',
+          }}
+        >
+          <Icon name="calendar" size={14} color="var(--txt2)" strokeWidth={2} />
+          Planera
+        </Link>
       </div>
 
       {/* Filter-rad: primära POI-chips (scrollbara) + Lager-knapp (fix) */}
@@ -1013,7 +1033,7 @@ export default function UpptackClient() {
             {detail.kind === 'route' && detail.waypoints?.length > 0 && (
               <button
                 onClick={() => {
-                  const last = detail.waypoints[detail.waypoints.length - 1]
+                  const last = detail.waypoints[detail.waypoints.length - 1]!
                   setDestination({
                     name:  last.name ?? detail.name,
                     lat:   last.lat,

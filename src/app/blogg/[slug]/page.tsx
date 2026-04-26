@@ -1172,7 +1172,7 @@ function renderContent(content: string) {
   let key = 0
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
+    const line = lines[i]!
 
     if (line.startsWith('## ')) {
       elements.push(
@@ -1262,6 +1262,33 @@ function renderContent(content: string) {
   return wrapped
 }
 
+// ─── Region crosslinks per post ───────────────────────────────────────────────
+
+const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
+  'basta-restaurangerna-sandhamn':     [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'kajak-stockholms-skargard-nyborjare': [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'dolda-parlor-moja':                 [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'bransle-ankring-skargard':          [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/hamnar-och-bryggor', label: '⚓ Hamnar & bryggor' }],
+  'sommar-skargard-tips':              [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'fjaderholmarna-dagstur':            [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'vaxholm-guide':                     [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'uto-guide':                         [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'segling-nyborjare-guide':           [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/nyborjarguider', label: '📚 Nybörjarguider' }, { href: '/segelrutter', label: '🗺 Segelrutter' }],
+  'basta-badplatserna':                [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'vandring-orno-uto':                 [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'cykling-moja-gallno':               [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'fiske-skargard-guide':              [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'gasthamnar-guide':                  [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/hamnar-och-bryggor', label: '⚓ Hamnar & bryggor' }],
+  'vinter-skargard':                   [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'barnfamilj-skargard':               [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'svenska-hoar-sandhamn':             [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'grilla-naturhamn':                  [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'norrtelje-norra-skargard':          [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }],
+  'packlista-bat':                     [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/hamnar-och-bryggor', label: '⚓ Hamnar & bryggor' }],
+  'havsbastu-guide':                   [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/aktiviteter', label: '🎯 Aktiviteter i skärgården' }],
+  'segling-klassiska-leder':           [{ href: '/stockholms-skargard', label: '🏝 Stockholms skärgård' }, { href: '/segelrutter', label: '🗺 Segelrutter' }],
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 import React from 'react'
@@ -1274,6 +1301,8 @@ export default async function BloggPostPage({
   const { slug } = await params
   const post = POSTS[slug]
   if (!post) notFound()
+
+  const relatedLinks = REGION_LINKS[slug] ?? []
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -1311,6 +1340,18 @@ export default async function BloggPostPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+            { '@type': 'ListItem', position: 2, name: 'Bloggen', item: 'https://svalla.se/blogg' },
+            { '@type': 'ListItem', position: 3, name: post.title, item: `https://svalla.se/blogg/${slug}` },
+          ],
+        }) }}
       />
       {/* Header */}
       <div style={{
@@ -1366,6 +1407,24 @@ export default async function BloggPostPage({
             }}>#{tag}</span>
           ))}
         </div>
+
+        {/* Region crosslinks */}
+        {relatedLinks.length > 0 && (
+          <div style={{ marginTop: 24 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
+              Utforska mer
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {relatedLinks.map(link => (
+                <Link key={link.href} href={link.href} style={{
+                  padding: '8px 16px', borderRadius: 20, textDecoration: 'none',
+                  background: 'rgba(30,92,130,0.07)', border: '1.5px solid rgba(30,92,130,0.15)',
+                  color: 'var(--sea)', fontSize: 13, fontWeight: 600,
+                }}>{link.label}</Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Back + CTA */}
         <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>

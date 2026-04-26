@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { logger } from '@/lib/logger'
 
 interface TripData {
   distanceNM: number
@@ -183,7 +184,7 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const err = await res.text()
-      console.error('[trip-summary api]', err.substring(0, 120))
+      logger.error('trip-summary', 'API error', { body: err.substring(0, 120) })
       return NextResponse.json({ error: 'API-fel' }, { status: 500 })
     }
 

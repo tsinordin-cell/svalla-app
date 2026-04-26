@@ -4,6 +4,7 @@ import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import EmptyState from '@/components/EmptyState'
 import Pill from '@/components/ui/Pill'
+import type { Trip } from '@/lib/supabase'
 
 const BOAT_FILTERS = [
   { value: 'alla',     label: 'Alla' },
@@ -62,7 +63,7 @@ function SkeletonCard() {
 }
 
  
-export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: any[]; followingTrips: any[]; isLoggedIn: boolean }) { // eslint-disable-line @typescript-eslint/no-explicit-any
+export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { allTrips: Trip[]; followingTrips: Trip[]; isLoggedIn: boolean }) {
   const [boatFilter, setBoatFilter] = useState('alla')
   const [sortKey,    setSortKey]    = useState<SortKey>('newest')
   const [visible,    setVisible]    = useState(PAGE_SIZE)
@@ -70,7 +71,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   const [showBoatSheet, setShowBoatSheet] = useState(false)
   const sentinelRef = useRef<HTMLDivElement>(null)
 
-  const activeBoat = BOAT_FILTERS.find(f => f.value === boatFilter) ?? BOAT_FILTERS[0]
+  const activeBoat = BOAT_FILTERS.find(f => f.value === boatFilter) ?? BOAT_FILTERS[0]!
 
   // Simulate initial load skeleton (trips arrive from server, but render takes a tick)
   useEffect(() => {
@@ -82,13 +83,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
   useEffect(() => { setVisible(PAGE_SIZE) }, [boatFilter, sortKey])
 
   const base = allTrips
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let filtered = boatFilter === 'alla' ? base : base.filter((t: any) => t.boat_type === boatFilter)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  if (sortKey === 'magic') filtered = filtered.filter((t: any) => t.pinnar_rating === 3)
+  let filtered = boatFilter === 'alla' ? base : base.filter(t => t.boat_type === boatFilter)
+  if (sortKey === 'magic') filtered = filtered.filter(t => t.pinnar_rating === 3)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const sorted = [...filtered].sort((a: any, b: any) => {
+  const sorted = [...filtered].sort((a, b) => {
     if (sortKey === 'distance') return (b.distance ?? 0) - (a.distance ?? 0)
     if (sortKey === 'speed')    return (b.max_speed_knots ?? 0) - (a.max_speed_knots ?? 0)
     // Defensivt: null/undefined/invalid created_at → 0 (undvik NaN-sort)
@@ -227,8 +225,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             )
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {trips.map((trip: any, idx: number) => <TripCard key={trip.id} trip={trip} priority={idx === 0} />)}
+              {trips.map((trip, idx) => <TripCard key={trip.id} trip={trip} priority={idx === 0} />)}
 
               {/* Infinite scroll sentinel */}
               <div ref={sentinelRef} style={{ height: 1 }} />

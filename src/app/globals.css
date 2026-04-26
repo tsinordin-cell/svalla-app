@@ -1092,6 +1092,8 @@ img {
   padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px);
 }
 .feed-desktop-panel { display: none; }
+/* Hitta seglare i main column — synlig på mobil/tablet */
+.feed-suggested-mobile { display: block; }
 
 /* Feed header logo — dold på desktop (finns i sidebaren) */
 @media (min-width: 1024px) {
@@ -1113,6 +1115,8 @@ img {
     top: 20px;
     align-self: start;
   }
+  /* Dölj mobil-versionen på desktop — visas i right panel istället */
+  .feed-suggested-mobile { display: none; }
 }
 
 /* ── Motion preference ── */

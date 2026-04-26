@@ -313,7 +313,7 @@ export default async function RutterPage({
               boxShadow: active ? '0 2px 8px rgba(30,92,130,0.3)' : 'none',
               display: 'inline-flex', alignItems: 'center', gap: 6,
             }}>
-              {f.icon && <Icon path={ICON_PATHS[f.icon]} size={13} stroke={1.9} />}
+              {f.icon && <Icon path={ICON_PATHS[f.icon]!} size={13} stroke={1.9} />}
               {f.label}
             </Link>
           )
@@ -477,7 +477,7 @@ function IslandsView() {
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '12px 16px 100px' }}>
       {ISLAND_SECTIONS.map(section => {
-        const islands = section.slugs.map(s => islandBySlug[s]).filter(Boolean)
+        const islands = section.slugs.map(s => islandBySlug[s]).filter((x): x is NonNullable<typeof x> => !!x)
         if (!islands.length) return null
         return (
           <section key={section.id} style={{ paddingTop: 20 }}>
@@ -591,7 +591,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
               background: cc.bg, color: cc.text,
               textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 5,
             }}>
-              <Icon path={ICON_PATHS[iconKey]} size={11} stroke={2} />
+              <Icon path={ICON_PATHS[iconKey]!} size={11} stroke={2} />
               {categoryLabel}
             </span>
             <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
@@ -626,7 +626,7 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
         }}>
           <div style={{ fontSize: 11, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 4 }}>
             {foodStops[0] && <>
-              <Icon path={ICON_PATHS.utensils} size={12} stroke={1.9} style={{ color: 'var(--txt3)' }} />
+              <Icon path={ICON_PATHS.utensils!} size={12} stroke={1.9} style={{ color: 'var(--txt3)' }} />
               <span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span>
             </>}
           </div>

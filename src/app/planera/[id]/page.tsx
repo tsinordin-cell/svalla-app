@@ -1,12 +1,58 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import type React from 'react'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
+import { haversineKm, crossTrack } from '@/lib/planner'
 import PlaneraCTA from './PlaneraCTA'
+import PlaneraShare from './PlaneraShare'
+import PlaneraMap from './PlaneraMapDynamic'
 
 type Props = { params: Promise<{ id: string }> }
+
+// ── Display helpers ────────────────────────────────────────────────────────
+
+const INTEREST_EMOJI: Record<string, string> = {
+  krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
+}
+
+const REASON_EMOJI: Record<string, string> = {
+  'Krog längs rutten':          '🍽',
+  'Bastu längs rutten':         '🛁',
+  'Badplats längs rutten':      '🏊',
+  'Brygga att lägga till vid':  '⚓',
+  'Naturupplevelse längs rutten': '🌿',
+  'Bränslestopp längs rutten':  '⛽',
+}
+
+const REASON_SHORT: Record<string, string> = {
+  'Krog längs rutten':          'Krog',
+  'Bastu längs rutten':         'Bastu',
+  'Badplats längs rutten':      'Badplats',
+  'Brygga att lägga till vid':  'Gästhamn',
+  'Naturupplevelse längs rutten': 'Natur',
+  'Bränslestopp längs rutten':  'Bränsle',
+}
+
+const REASON_COLOR: Record<string, string> = {
+  'Krog längs rutten':          '#e8924a',
+  'Bastu längs rutten':         '#d97706',
+  'Badplats längs rutten':      '#2d7aaa',
+  'Brygga att lägga till vid':  '#1a4a5e',
+  'Naturupplevelse längs rutten': '#2a9d5c',
+  'Bränslestopp längs rutten':  '#c96e2a',
+}
+
+const REASON_BG: Record<string, string> = {
+  'Krog längs rutten':          'rgba(232,146,74,0.12)',
+  'Bastu längs rutten':         'rgba(217,119,6,0.12)',
+  'Badplats längs rutten':      'rgba(45,122,170,0.12)',
+  'Brygga att lägga till vid':  'rgba(26,74,94,0.10)',
+  'Naturupplevelse längs rutten': 'rgba(42,157,92,0.12)',
+  'Bränslestopp längs rutten':  'rgba(201,110,42,0.12)',
+}
+
+// ── Metadata ───────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
@@ -19,54 +65,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .single()
 
   if (!data) return { title: 'Rutt — Svalla' }
+  const desc = `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`
+  const ogImage = `https://svalla.se/api/og/planera/${id}`
   return {
     title: `${data.start_name} → ${data.end_name} — Svalla`,
-    description: `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`,
+    description: desc,
     openGraph: {
-      title: `${data.start_name} → ${data.end_name}`,
-      description: 'Planerad skärgårdsrutt med kurerade stopp — skapad med Svalla.',
+      title: `${data.start_name} → ${data.end_name} — Svalla`,
+      description: desc,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: `${data.start_name} → ${data.end_name}` }],
       url: `https://svalla.se/planera/${id}`,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${data.start_name} → ${data.end_name} — Svalla`,
+      description: desc,
+      images: [ogImage],
     },
     alternates: { canonical: `https://svalla.se/planera/${id}` },
   }
 }
 
-const INTEREST_EMOJI: Record<string, string> = {
-  krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
-}
-
-const STOP_ICON: Record<string, React.ReactNode> = {
-  'Krog längs rutten': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-    </svg>
-  ),
-  'Bastu längs rutten': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <path d="M4 22V12a8 8 0 0 1 16 0v10"/><path d="M4 15h16"/><path d="M10 9v3"/><path d="M14 9v3"/>
-    </svg>
-  ),
-  'Badplats längs rutten': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <path d="M2 12h20"/><path d="M2 17c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M2 22c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><circle cx="12" cy="5" r="2"/><path d="M12 7v5"/>
-    </svg>
-  ),
-  'Brygga att lägga till vid': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="12"/><path d="M5 19l7-7 7 7"/><path d="M3 22h18"/>
-    </svg>
-  ),
-  'Naturupplevelse längs rutten': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M9.1 15.1C9.68 13.58 10.82 12.33 12.5 11.5c2.97-1.48 6.06-.5 7.5 2.5-3 2-5.5 3-10 1.1z"/>
-    </svg>
-  ),
-  'Bränslestopp längs rutten': (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-      <path d="M3 22V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v16"/><path d="M3 11h11"/><path d="M14 6h1a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L19 6"/>
-    </svg>
-  ),
-}
+// ── Page ───────────────────────────────────────────────────────────────────
 
 export default async function PlaneraIdPage({ params }: Props) {
   const { id } = await params
@@ -74,7 +95,7 @@ export default async function PlaneraIdPage({ params }: Props) {
 
   const { data: route } = await supabase
     .from('planned_routes')
-    .select('id, start_name, end_name, interests, suggested_stops, status, created_at, user_id, trip_id')
+    .select('id, start_name, end_name, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops, status, created_at, user_id, trip_id')
     .eq('id', id)
     .single()
 
@@ -83,7 +104,7 @@ export default async function PlaneraIdPage({ params }: Props) {
   const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
   const interests: string[] = Array.isArray(route.interests) ? route.interests : []
 
-  // Om inga stopp ännu — kör algoritmen nu (lazy)
+  // Lazy-compute stops if empty
   let resolvedStops = stops
   if (stops.length === 0) {
     try {
@@ -94,11 +115,30 @@ export default async function PlaneraIdPage({ params }: Props) {
         cache: 'no-store',
       })
       if (res.ok) {
-        const json = await res.json()
+        const json = await res.json() as { stops?: ScoredStop[] }
         resolvedStops = json.stops ?? []
       }
     } catch { /* fortsätt utan stopp */ }
   }
+
+  // Sort stops geographically along the route (start → end)
+  const sortedStops = [...resolvedStops].sort((a, b) => {
+    const { t: ta } = crossTrack(a.lat, a.lng, route.start_lat, route.start_lng, route.end_lat, route.end_lng)
+    const { t: tb } = crossTrack(b.lat, b.lng, route.start_lat, route.start_lng, route.end_lat, route.end_lng)
+    return ta - tb
+  })
+
+  const totalKm = Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
+
+  // Map stop data (only what PlaneraMap needs)
+  const mapStops = sortedStops.map(s => ({
+    lat: s.lat,
+    lng: s.lng,
+    name: s.name,
+    reason: s.reason,
+    color: REASON_COLOR[s.reason] ?? '#1e5c82',
+    emoji: REASON_EMOJI[s.reason] ?? '📍',
+  }))
 
   return (
     <div style={{
@@ -112,7 +152,7 @@ export default async function PlaneraIdPage({ params }: Props) {
         paddingTop: 'calc(14px + env(safe-area-inset-top, 0px))',
       }}>
         <div style={{ maxWidth: 560, margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
             <Link href="/planera" style={{
               width: 34, height: 34, borderRadius: '50%',
               background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
@@ -121,11 +161,21 @@ export default async function PlaneraIdPage({ params }: Props) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </Link>
-            <div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Planerad rutt</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                Planerad rutt
+              </div>
               <h1 style={{ fontSize: 20, fontWeight: 800, color: '#fff', margin: 0, lineHeight: 1.2 }}>
                 {route.start_name} → {route.end_name}
               </h1>
+            </div>
+            {/* Total distance badge */}
+            <div style={{
+              flexShrink: 0, background: 'rgba(255,255,255,0.15)',
+              borderRadius: 20, padding: '4px 12px',
+              fontSize: 13, fontWeight: 800, color: '#fff',
+            }}>
+              ~{totalKm} km
             </div>
           </div>
 
@@ -145,54 +195,91 @@ export default async function PlaneraIdPage({ params }: Props) {
 
       <div style={{ padding: '20px 16px', maxWidth: 560, margin: '0 auto' }}>
 
-        {/* Stopp-lista */}
-        {resolvedStops.length > 0 ? (
+        {/* Map */}
+        <PlaneraMap
+          startLat={route.start_lat}
+          startLng={route.start_lng}
+          startName={route.start_name}
+          endLat={route.end_lat}
+          endLng={route.end_lng}
+          endName={route.end_name}
+          stops={mapStops}
+        />
+
+        {/* Stop list */}
+        {sortedStops.length > 0 ? (
           <>
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--sea)', marginBottom: 14 }}>
-              {resolvedStops.length} stopp längs rutten
+            <div style={{
+              fontSize: 12, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase',
+              color: 'var(--sea)', marginBottom: 14,
+            }}>
+              {sortedStops.length} stopp längs rutten
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {resolvedStops.map(stop => (
-                <Link
-                  key={stop.id}
-                  href={`/platser/${stop.id}`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div style={{
-                    background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
-                    border: '1px solid rgba(10,123,140,0.08)',
-                    boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
-                    display: 'flex', alignItems: 'center', gap: 14,
-                    transition: 'box-shadow 0.15s',
-                  }}>
+              {sortedStops.map((stop, idx) => {
+                const emoji = REASON_EMOJI[stop.reason] ?? '📍'
+                const short = REASON_SHORT[stop.reason] ?? stop.reason
+                const color = REASON_COLOR[stop.reason] ?? '#1e5c82'
+                const bg    = REASON_BG[stop.reason]    ?? 'rgba(10,123,140,0.08)'
+                const isFar = stop.distance_from_line_km > 5
+                const distLabel = stop.distance_from_line_km < 1
+                  ? '<1 km'
+                  : `${stop.distance_from_line_km} km`
+                return (
+                  <Link key={stop.id} href={`/platser/${stop.id}`} style={{ textDecoration: 'none' }}>
                     <div style={{
-                      width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
-                      background: 'rgba(10,123,140,0.10)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: 'var(--sea)',
+                      background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
+                      border: `1px solid ${isFar ? 'rgba(232,146,74,0.2)' : 'rgba(10,123,140,0.08)'}`,
+                      boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
+                      display: 'flex', alignItems: 'center', gap: 14,
                     }}>
-                      {STOP_ICON[stop.reason] ?? (
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 18, height: 18 }}>
-                          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-                        </svg>
-                      )}
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>{stop.name}</div>
-                      <div style={{ fontSize: 12, color: 'var(--txt3)', display: 'flex', gap: 8 }}>
-                        {stop.island && <span>{stop.island}</span>}
-                        <span>· {stop.reason}</span>
+                      {/* Step number + emoji */}
+                      <div style={{
+                        width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
+                        background: bg,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: 18, position: 'relative',
+                      }}>
+                        {emoji}
+                        <span style={{
+                          position: 'absolute', top: -4, right: -4,
+                          width: 16, height: 16, borderRadius: '50%',
+                          background: color, color: '#fff',
+                          fontSize: 9, fontWeight: 800,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          border: '1.5px solid var(--white)',
+                        }}>
+                          {idx + 1}
+                        </span>
                       </div>
+
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {stop.name}
+                        </div>
+                        <div style={{ fontSize: 12, color: 'var(--txt3)', display: 'flex', gap: 6, alignItems: 'center' }}>
+                          {stop.island && <span>{stop.island}</span>}
+                          {stop.island && <span>·</span>}
+                          <span style={{ color, fontWeight: 600 }}>{short}</span>
+                        </div>
+                      </div>
+
+                      <div style={{ flexShrink: 0, textAlign: 'right' }}>
+                        <div style={{ fontSize: 11, color: isFar ? '#e8924a' : 'var(--txt3)', fontWeight: isFar ? 700 : 400, whiteSpace: 'nowrap' }}>
+                          {distLabel}
+                        </div>
+                        <div style={{ fontSize: 10, color: isFar ? '#e8924a' : 'var(--txt3)', opacity: 0.7 }}>
+                          {isFar ? 'omväg' : 'från rutten'}
+                        </div>
+                      </div>
+
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6" />
+                      </svg>
                     </div>
-                    <div style={{ fontSize: 11, color: 'var(--txt3)', flexShrink: 0 }}>
-                      {stop.distance_from_line_km} km
-                    </div>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 16, height: 16, flexShrink: 0 }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6" />
-                    </svg>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              })}
             </div>
           </>
         ) : (
@@ -208,26 +295,17 @@ export default async function PlaneraIdPage({ params }: Props) {
           </div>
         )}
 
-        {/* CTA: Jag gjorde den här turen */}
+        {/* CTA */}
         <PlaneraCTA routeId={route.id} hasDoneIt={!!route.trip_id} />
 
-        {/* Dela */}
-        <div style={{
-          marginTop: 20, background: 'var(--white)', borderRadius: 16, padding: '16px',
-          border: '1px solid rgba(10,123,140,0.08)',
-        }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 8 }}>📤 Dela rutten</div>
-          <div style={{
-            fontSize: 12, color: 'var(--txt3)', background: 'var(--bg)',
-            padding: '10px 12px', borderRadius: 10, fontFamily: 'monospace',
-            wordBreak: 'break-all',
-          }}>
-            svalla.se/planera/{route.id}
-          </div>
-        </div>
+        {/* Share */}
+        <PlaneraShare routeId={route.id} />
 
-        {/* Planera ny */}
-        <Link href="/planera/ny" style={{ display: 'block', marginTop: 16, textAlign: 'center', fontSize: 13, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}>
+        {/* Plan new route */}
+        <Link href="/planera/ny" style={{
+          display: 'block', marginTop: 16, textAlign: 'center',
+          fontSize: 13, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none',
+        }}>
           + Planera en ny rutt
         </Link>
       </div>

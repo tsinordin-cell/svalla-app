@@ -3,18 +3,23 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Åland — Segla dit från Sverige, logga turen | Svalla',
-  description: 'Planera din seglingstur till Åland med Svalla. Hitta gästhamnar i Mariehamn, naturhamnar i skärgårdshavet och krogar på öarna. Klassisk segelrutt.',
+  description: 'Seglingsguide till Åland: Mariehamn gästhamn, skärgårdshavets 6500 öar, Kökar & Föglö. Logga din rutt med GPS.',
   keywords: [
     'segla åland',
     'åland båt',
     'mariehamn hamn',
+    'mariehamn gästhamn',
     'ålands skärgård',
     'segla åland från stockholm',
     'åland gästhamn',
     'skärgårdshavet segling',
+    'skärgårdshavet guide',
     'åland restaurang',
     'eckerö åland',
     'föglö åland',
+    'föglö segling',
+    'kökar segling',
+    'åland segelrutt guide',
     'åland sommar',
   ],
   openGraph: {
@@ -80,10 +85,13 @@ export default function AlandPage() {
       intro={
         <>
           <p>
-            Åland och skärgårdshavet är Östersjöns bäst bevarade hemlighet. <strong>6 500 öar</strong>, kristallklart vatten och en unik blandning av svensk och finsk kultur — allt tillgängligt med en segletur från Stockholm.
+            Åland och skärgårdshavet är Östersjöns bäst bevarade hemlighet. <strong>6 500 öar</strong>, kristallklart vatten och en unik blandning av svensk och finsk kultur — allt tillgängligt med en segletur från Stockholm. Passagen från Kapellskär eller Sandhamn tar 12–15 timmar genom öppet hav, men mötet med skärgårdshavets lugna vatten gör resan värd varje minut.
           </p>
           <p>
-            Svalla låter dig logga passagen dit, navigera bland skärgårdshavets oändliga öar och hitta de bästa gästhamnarna och restaurangerna längs vägen.
+            Mariehamn är åländskt seglarliv själv: välutrustad gästhamn i Västra hamnen, klassiska restauranger längs Torggatan, och museer som Pommern och Ålands Sjöfartsmuseum. Men den riktiga skattskistan ligger i öarna själva — från Föglö och Kökar i söder till Brändö och Kumlinge i öst, där allemansrätten låter dig ankra fritt på tusentals öar.
+          </p>
+          <p>
+            Svalla låter dig logga passagen dit, navigera bland skärgårdshavets oändliga öar med exakta positioner, och hitta de bästa gästhamnarna och restaurangerna längs vägen. Planera med sjökort från Finlands sjöfartsverks kartor, logga varje mil och spara en minne av Östersjöns klassiska segelrutt.
           </p>
         </>
       }
@@ -96,22 +104,99 @@ export default function AlandPage() {
             Passagen från Sverige till Åland
           </h2>
           <p>
-            <strong>Från Stockholms skärgård</strong> tar passagen vanligtvis 12–18 timmar. Utgångspunkterna är Sandhamn eller Kapellskär. Öppet hav med ostadigt väder — planera med marginal och logga med GPS hela vägen.
+            Från Kapellskär räknar du med 12–15 timmar på passagen — ungefär 70 sjömil över öppet hav. Från Sandhamn och Stockholms skärgård blir resan något längre, men många seglare startar därifrån för att samla erfarenhet före de större vattnena. Här börjar det klassiska — först genom Norrström och längs gränsen mellan Sverige och Finland, sedan ut i Ålands hav där vinden kan bli krånglig vid sydlig riktning och strömmen stark omkring Ålands södra spets.
           </p>
           <p>
-            <strong>Föglö och Kökar</strong> är perfekta första stopp i skärgårdshavet — lugna vatten, välkomna hamnar och den unika känslan av att vara halvvägs. Svalla-kartan visar djup och faciliteter för alla hamnar.
+            Det är här Svalla blir ovärderlig. Logga din exakta position från start till målhamn — GPS-spårningen visar varje minut av resan, och du kan senare granska vägen du tog, möta andra seglare som gjort samma passage och bygga upp en färdbok på alla dina Östersjöresor. Under passagen rekommenderas att ha uppdaterad sjökarta, men väl fram till Ålands hav möter du skärgårdshavets första öar.
           </p>
           <p>
-            <strong>Tullfritt</strong> gäller inte längre vid inresa men Åland erbjuder ändå lägre priser på många varor. Mariehamn har välutrustat varv om båten behöver service under resan.
+            <strong>Föglö och Kökar</strong> är perfekta första stopp i skärgårdshavet — de ligger på vägen in och erbjuder lugna vatten efter det stundtals oroliga mötet med det öppna havet. Kökar är åländskt sommarparadis med sin historiska kyrka och sydligaste läge. Föglö är känd som cykelön och lockad med sin charmiga gästhamn. Härifrån kan du välja väg vidare: någon fortsätter direkt till Mariehamn och civilisationen, medan andra kryper längre in i skärgårdshavet mot Brändö, Kumlinge och Finnlands närmare vattnar.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Öppet hav och växlande väder
+          </h3>
+          <p>
+            Ålands hav kan på sina ställen överstiga 200 meter djupt — en helt annan miljö än Stockholms grunda skärgård. Det betyder att väder och sjö utvecklas snabbare här. En sydlig vind som du knappt märker vid Sandhamn kan bli rejäl på vägen över, och strömmen omkring Åland är stark nog att påverka både fart och kurs. Planera alltid med tid över, ha uppdaterade väderrapporter och logga din fart tillsammans med GPS-position så att du kan se efteråt om du höll räkningen.
+          </p>
+
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+            Mariehamn — Ålands huvudstad
+          </h2>
+          <p>
+            Mariehamn är åländskt seglarliv själv. Västra hamnen erbjuder en välutrustad gästhamn med el, vatten och dusch — en naturlig rastpunkt både för seglare på väg in och ut. Här ligger museet Pommern, ett imponerande fyrmastigt segelfartyg från 1921 som du kan besöka och gå ombord på. Ålands Sjöfartsmuseum berättar historien om handel, båtbygge och äventyr på Östersjön.
+          </p>
+          <p>
+            Torggatan löper längs vattnet och är fylld av restauranger, kaféer och små butiker — många med ett unikt finsk-svensk utbud. En klassisk åländsk kväll innebär att ankra i hamnen, ta en promenad längs vattnet och välja mellan allt från fisksoppa till moderna menyer. I Västra hamnen finns också varvet där större båtservice och mindre reparationer kan göras om din båt behöver något under resan.
+          </p>
+          <p>
+            Mariehamn är också naturlig utgångspunkt för vidare utforskning: härifrån är det bara några timmars segling till Åbo (Turku) i Finland, många öar att ankra på i närheten, och en helt annan världel väster om staden där Eckerö och gamla postvägen väcker äventyrskänslor.
+          </p>
+
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+            Skärgårdshavet — 6 500 öar att utforska
+          </h2>
+          <p>
+            Ålands skärgård är inte bara ett antal — det är ett helt universum av ankringsstäder, många helt orörda och tillgängliga genom allemansrätten. <strong>Kökar</strong> i söder är historiens puls: gamla kyrkan står på höjden, små handelshus återspeglar århundraden av handel, och vattnet omkring är klassiskt åländskt. <strong>Föglö</strong> är cykelöns hjärta, med cykelvägar som binder öns byar samman och en gästhamn där många seglare återkommer år efter år.
+          </p>
+          <p>
+            Väster om Mariehamn ligger <strong>Eckerö</strong> med sin legendariska gamla postväg och fina sandstrand — en helt annan miljö än det östra skärgårdshavet. <strong>Kumlinge och Brändö</strong> i öster pushes segling ännu längre — här möter du Finlands sjöväg, smalare sund och en känsla av att vara verkligen långt borta från civilisationen. Många ankringsstäder ger obeskrivlig ensamhet, bara skärgårdshavets ljud och friheten att välja nästa morgonutsegling helt efter vind och lust.
+          </p>
+          <p>
+            Allemansrätten gäller fullt ut — du kan ankra på praktiskt vilken obebodd ö som helst, och många öar bjuder på naturliga sandstränder, bäckar med dricksvatten och tystnad. Svallas interaktiva karta och djupdata hjälper dig planera vägen mellan öarna, undvika grunder och hitta de bästa naturhamnarna — många seglare använder appen för att logga alla sina ankringsstäder och senare minnas exakt vilka öar de älskade.
+          </p>
+
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+            Praktisk info för Ålandsresan
+          </h2>
+          <p>
+            <strong>Tull och regler:</strong> Åland är ett självstyrande landskap med eget juridiskt status, räknat som ett separat tullområde. När du seglar från Sverige måste du anmäla ankomst till tullmyndigheten vid inresa — denna anmälan gäller främst varor ombord men är obligatorisk. Kontrollera aktuella regler hos Ålands tullverk innan du seglar för att undvika problem vid ankomst. Tullfritt handel gäller inte längre, men Åland erbjuder ändå ofta lägre priser än Sverige på många varor.
+          </p>
+          <p>
+            <strong>VHF och sjökort:</strong> Om du planerar att segla i finskt farvatten (vilket många gör på väg vidare till Turku eller längre omkring öarna) krävs en VHF-licens. Denna är relativt enkel att få och rekommenderas för all segling på detta område. Sjökartor från Finlands sjöfartsverks (FPA) kartserie är absolut nödvändiga för skärgårdshavet — Svallas digitala kartbas bygger på dessa officiella data, men många föredrar också papperskartor som backup ombord.
+          </p>
+          <p>
+            <strong>Bunkring och service:</strong> Mariehamn erbjuder fullständig bunkring för både diesel och bensin, liksom dricksvatten och el vid gästhamnen. De flesta större gästhamnar (Föglö, Kökar, Brändö) har också bunkring eller kan ordna det dagen innan. Varsamt planera så att du inte blir utan bränsle långt ute i skärgården — ett par extra liter diesel lönar sig alltid på Åland.
+          </p>
+
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+            Vanliga frågor
+          </h2>
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Behöver man visum eller pass för att segla till Åland?
+          </h3>
+          <p>
+            Nej, du behöver inte visum eller särskilt pass för att segla till Åland från Sverige. Du behöver dock ett giltigt ID-kort eller pass för identifikation. Det viktigaste är att anmäla din båts ankomst till tullmyndigheten vid inresa — denna anmälan gäller främst varor ombord men är obligatorisk för alla båtar från utlandet (i detta fall från Sverige).
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Hur djupt är Ålands hav?
+          </h3>
+          <p>
+            Ålands hav varierar från omkring 30–50 meter på grunt vatten till över 200 meter på de djupaste ställena — betydligt djupare än många delen av Stockholms skärgård. Sundet mot Finland i öster är dock grundare och kräver noggrann navigation med sjökart. Svalls kartdata visar djupen för alla områden, men en uppdaterad officiell sjökarta är absolut nödvändig för säker segling.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Kan man segla vidare till Finland från Åland?
+          </h3>
+          <p>
+            Ja, absolut. Åbo (Turku) ligger ungefär 6 timmar segling öst om Mariehamn — en populär nästa etapp för många seglare. Från Mariehamn kan du också välja många vägar vidare: söder omkring Kökar, väster till svenska vatten, eller öst genom skärgårdshavet mot Brändö och vidare till Finland. Många klassiska Östersjöseglare gör Åland till en etapp på en längre resa genom Östersjön.
+          </p>
+
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+            Vad kostar gästhamn i Mariehamn?
+          </h3>
+          <p>
+            Gästhamnarna i Mariehamn kostar normalt 150–250 kronor per natt beroende på båtens längd. De flesta hamnar inkluderar el och dusch i priset. Det är värt att höra av sig dagen innan för att säkra en bra plats under högsäsong (juli-augusti). Mindre gästhamnar ute på öarna som Föglö och Kökar kan vara något billigare och erbjuder ofta en mer intim känsla — perfekt om du vill längre bort från huvudstaden.
           </p>
         </>
       }
       cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
       related={[
-        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
-        { label: 'Gotland', href: '/gotland' },
         { label: 'Segelrutter', href: '/segelrutter' },
-        { label: 'Alla destinationer', href: '/resmal' },
+        { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
+        { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
+        { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
   )

@@ -54,9 +54,9 @@ export default function PlatsAdminClient({ restaurants }: { restaurants: PlatsRo
     // Update local state so the row reflects new values without reload
     const idx = restaurants.findIndex(r => r.id === id)
     if (idx !== -1) {
-      restaurants[idx].contact_phone = form.contact_phone.trim() || null
-      restaurants[idx].website = form.website.trim() || null
-      restaurants[idx].booking_url = form.booking_url.trim() || null
+      restaurants[idx]!.contact_phone = form.contact_phone.trim() || null
+      restaurants[idx]!.website = form.website.trim() || null
+      restaurants[idx]!.booking_url = form.booking_url.trim() || null
     }
   }
 
