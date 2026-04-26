@@ -1,6 +1,21 @@
 import Link from 'next/link'
 import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
+import { Fish, Cloud, Wrench, BookOpen, ShoppingBag } from 'lucide-react'
+import { IconSailboat, IconMotorboat, IconKayak, IconAnchor } from '@/components/icons/SvallaIcons'
+
+const CATEGORY_ICONS: Record<string, ReactNode> = {
+  '⛵': <IconSailboat size={26} />,
+  '🚤': <IconMotorboat size={26} />,
+  '🎣': <Fish size={26} />,
+  '🛶': <IconKayak size={26} />,
+  '⛅': <Cloud size={26} />,
+  '🔧': <Wrench size={26} />,
+  '⚓': <IconAnchor size={26} />,
+  '👋': <BookOpen size={26} />,
+  '💰': <ShoppingBag size={26} />,
+}
 
 export const metadata: Metadata = {
   title: 'Forum — Svalla',
@@ -115,10 +130,10 @@ export default async function ForumPage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 22,
+              color: 'var(--sea)',
               flexShrink: 0,
             }}>
-              {cat.icon}
+              {CATEGORY_ICONS[cat.icon] ?? cat.icon}
             </span>
 
             {/* Text */}
