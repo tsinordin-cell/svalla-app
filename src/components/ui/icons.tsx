@@ -240,3 +240,11 @@ export const IconMap: React.FC<IconProps> = (p) => (
     <path d="M15 6.5 V 19.5" />
   </Icon>
 )
+
+// Two overlapping chat bubbles — forum / community
+export const IconForum: React.FC<IconProps> = (p) => (
+  <Icon {...p}>
+    <path d="M3.5 5.5 A 1.5 1.5 0 0 1 5 4 H 15 A 1.5 1.5 0 0 1 16.5 5.5 V 11 A 1.5 1.5 0 0 1 15 12.5 H 9.5 L 7 14.8 V 12.5 H 5 A 1.5 1.5 0 0 1 3.5 11 Z" />
+    <path d="M16.5 7.5 H 19 A 1.5 1.5 0 0 1 20.5 9 V 14.5 A 1.5 1.5 0 0 1 19 16 H 17.5 V 17.8 L 15.5 16 H 12 A 1.5 1.5 0 0 1 10.5 14.5 V 12.5" />
+  </Icon>
+)

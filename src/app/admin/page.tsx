@@ -1,5 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
@@ -53,8 +54,19 @@ export default async function AdminPage() {
   if (!userRow?.is_admin) redirect('/feed')
 
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg)', padding: '32px 16px 80px' }}>
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)', padding: '20px 16px 80px' }}>
       <div style={{ maxWidth: 600, margin: '0 auto' }}>
+        {/* Back navigation */}
+        <Link href="/feed" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          fontSize: 13, color: 'var(--txt3)', textDecoration: 'none',
+          marginBottom: 20,
+        }}>
+          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 5.5L8.5 12L15 18.5" />
+          </svg>
+          Tillbaka till appen
+        </Link>
         <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)', margin: '0 0 4px' }}>
           Admin
         </h1>

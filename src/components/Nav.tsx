@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconCompass, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconCompass, IconForum, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
 
 export default function Nav() {
   const path = usePathname()
@@ -73,12 +73,12 @@ export default function Nav() {
       ),
     },
     {
-      href: '/planera',
-      label: 'Planera',
+      href: '/forum',
+      label: 'Forum',
       exact: false,
-      matchPaths: ['/planera', '/rutter'],
+      matchPaths: ['/forum'],
       icon: (active: boolean) => (
-        <IconRoute size={22} stroke={active ? 2 : 1.75} />
+        <IconForum size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     { href: '/logga', label: '', fab: true },

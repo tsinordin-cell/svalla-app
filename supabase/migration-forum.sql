@@ -99,36 +99,43 @@ ALTER TABLE forum_threads    ENABLE ROW LEVEL SECURITY;
 ALTER TABLE forum_posts      ENABLE ROW LEVEL SECURITY;
 
 -- Kategorier: alla kan läsa
+DROP POLICY IF EXISTS "forum_categories_public_read" ON forum_categories;
 CREATE POLICY "forum_categories_public_read"
   ON forum_categories FOR SELECT USING (true);
 
 -- Trådar: alla kan läsa godkända; ägaren ser sina egna även i kö
+DROP POLICY IF EXISTS "forum_threads_public_read" ON forum_threads;
 CREATE POLICY "forum_threads_public_read"
   ON forum_threads FOR SELECT
   USING (in_spam_queue = false OR user_id = auth.uid());
 
 -- Trådar: inloggad kan skapa
+DROP POLICY IF EXISTS "forum_threads_insert" ON forum_threads;
 CREATE POLICY "forum_threads_insert"
   ON forum_threads FOR INSERT
   WITH CHECK (auth.uid() IS NOT NULL AND user_id = auth.uid());
 
 -- Trådar: ägaren kan uppdatera (redigera) sin tråd
+DROP POLICY IF EXISTS "forum_threads_update_own" ON forum_threads;
 CREATE POLICY "forum_threads_update_own"
   ON forum_threads FOR UPDATE
   USING (user_id = auth.uid())
   WITH CHECK (user_id = auth.uid());
 
 -- Svar: alla kan läsa godkända
+DROP POLICY IF EXISTS "forum_posts_public_read" ON forum_posts;
 CREATE POLICY "forum_posts_public_read"
   ON forum_posts FOR SELECT
   USING (in_spam_queue = false OR user_id = auth.uid());
 
 -- Svar: inloggad kan skapa
+DROP POLICY IF EXISTS "forum_posts_insert" ON forum_posts;
 CREATE POLICY "forum_posts_insert"
   ON forum_posts FOR INSERT
   WITH CHECK (auth.uid() IS NOT NULL AND user_id = auth.uid());
 
 -- Svar: ägaren kan mjuk-radera
+DROP POLICY IF EXISTS "forum_posts_soft_delete" ON forum_posts;
 CREATE POLICY "forum_posts_soft_delete"
   ON forum_posts FOR UPDATE
   USING (user_id = auth.uid())
