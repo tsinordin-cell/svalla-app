@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
-import { getUserForumPostCount, STATIC_CATEGORIES } from '@/lib/forum'
+import { getUserForumPostCount } from '@/lib/forum'
+import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
 /** POST /api/forum/threads — skapa ny tråd */
 export async function POST(req: NextRequest) {

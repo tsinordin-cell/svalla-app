@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
-import { STATIC_CATEGORIES } from '@/lib/forum'
+import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',

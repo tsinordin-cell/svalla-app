@@ -1,21 +1,19 @@
 /**
  * Forum helpers — Svalla.se
  * Server-side helpers that talk to Supabase forum_* tables.
+ * ⚠️  Importera INTE denna fil i 'use client'-komponenter — den använder next/headers.
+ *     Använd '@/lib/forum-categories' för statisk data i klient-komponenter.
  */
 
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// Re-exportera typer + statisk data från den client-säkra filen
+export type { ForumCategory } from '@/lib/forum-categories'
+export { STATIC_CATEGORIES } from '@/lib/forum-categories'
+import type { ForumCategory } from '@/lib/forum-categories'
+import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
-export interface ForumCategory {
-  id: string
-  name: string
-  description: string | null
-  icon: string
-  sort_order: number
-  thread_count: number
-  post_count: number
-}
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 export interface ForumThread {
   id: string
@@ -46,20 +44,6 @@ export interface ForumPost {
   // enriched
   author?: { username: string; avatar: string | null } | null
 }
-
-// ─── Static fallback (shown before SQL migration is run) ─────────────────────
-
-export const STATIC_CATEGORIES: ForumCategory[] = [
-  { id: 'segling',          name: 'Segling',            description: 'Segelteknik, rutter, rigg och utrustning',      icon: '⛵',  sort_order: 1, thread_count: 0, post_count: 0 },
-  { id: 'motorbat',         name: 'Motorbåt',           description: 'Motorteknik, bränsle, navigation och service',  icon: '🚤', sort_order: 2, thread_count: 0, post_count: 0 },
-  { id: 'fiske',            name: 'Fiske',              description: 'Fiskeplatser, regler, spön och drag',           icon: '🎣', sort_order: 3, thread_count: 0, post_count: 0 },
-  { id: 'paddling',         name: 'Paddling',           description: 'Kajak, SUP, kanot — allt som paddlas',          icon: '🛶', sort_order: 4, thread_count: 0, post_count: 0 },
-  { id: 'vader-sakerhet',   name: 'Väder & säkerhet',   description: 'SMHI-tips, passageplanering och nödlägen',      icon: '🌤️', sort_order: 5, thread_count: 0, post_count: 0 },
-  { id: 'teknik-underhall', name: 'Teknik & underhåll', description: 'Motor, elektronik, rigg och verkstad',          icon: '🔧', sort_order: 6, thread_count: 0, post_count: 0 },
-  { id: 'hamnar-bryggor',   name: 'Hamnar & bryggor',   description: 'Gästhamnstips, avgifter, ankringsplatser',      icon: '⚓', sort_order: 7, thread_count: 0, post_count: 0 },
-  { id: 'nybörjare',        name: 'Nybörjare',          description: 'Inga dumma frågor — fråga allt här',            icon: '👋', sort_order: 8, thread_count: 0, post_count: 0 },
-  { id: 'loppis',           name: 'Loppis & köp/sälj',  description: 'Utrustning, båtar, delar och evenemang',        icon: '💰', sort_order: 9, thread_count: 0, post_count: 0 },
-]
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
