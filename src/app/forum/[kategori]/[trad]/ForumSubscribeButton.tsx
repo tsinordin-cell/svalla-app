@@ -40,12 +40,12 @@ export default function ForumSubscribeButton({ threadId, initialSubscribed, curr
         padding: '7px 14px',
         borderRadius: 20,
         border: subscribed
-          ? '1.5px solid var(--sea)'
-          : '1.5px solid rgba(10,123,140,0.2)',
+          ? '1.5px solid rgba(255,255,255,0.85)'
+          : '1.5px solid rgba(255,255,255,0.45)',
         background: subscribed
-          ? 'rgba(10,123,140,0.08)'
-          : 'transparent',
-        color: subscribed ? 'var(--sea)' : 'var(--txt3)',
+          ? 'rgba(255,255,255,0.22)'
+          : 'rgba(255,255,255,0.12)',
+        color: '#fff',
         fontSize: 13,
         fontWeight: 600,
         cursor: loading ? 'default' : 'pointer',
@@ -57,8 +57,8 @@ export default function ForumSubscribeButton({ threadId, initialSubscribed, curr
       <svg
         width={14} height={14}
         viewBox="0 0 24 24"
-        fill={subscribed ? 'var(--sea)' : 'none'}
-        stroke={subscribed ? 'var(--sea)' : 'currentColor'}
+        fill={subscribed ? '#fff' : 'none'}
+        stroke="#fff"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -89,14 +89,24 @@ export default async function ForumTradPage({ params }: Props) {
         padding: 'calc(env(safe-area-inset-top, 0px) + 14px) 16px 22px',
         color: '#fff',
       }}>
-        {/* Breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 12, marginBottom: 12 }}>
-          <Link href="/forum" style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>Forum</Link>
-          <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 5.5L15.5 12L9 18.5" />
-          </svg>
-          <Link href={`/forum/${cat.id}`} style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}>
+        {/* Breadcrumb + back button */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+          <Link href={`/forum/${cat.id}`} style={{
+            display: 'inline-flex', alignItems: 'center', gap: 5,
+            padding: '5px 12px 5px 8px',
+            borderRadius: 20,
+            background: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.25)',
+            color: '#fff', textDecoration: 'none',
+            fontSize: 12, fontWeight: 600,
+          }}>
+            <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M15 5.5L8.5 12L15 18.5" />
+            </svg>
             {cat.icon} {cat.name}
+          </Link>
+          <Link href="/forum" style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
+            Forum
           </Link>
         </div>
 
