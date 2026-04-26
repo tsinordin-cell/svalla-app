@@ -1,0 +1,293 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Thorkel — skeppare, Möja">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="hat" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#2d4a6e"/>
+      <stop offset="55%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#12253e"/>
+    </linearGradient>
+    <linearGradient id="hat-side" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#17304e"/>
+      <stop offset="100%" stop-color="#284c72"/>
+    </linearGradient>
+    <radialGradient id="skin" cx="45%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#f4d0a8"/>
+      <stop offset="100%" stop-color="#d89f74"/>
+    </radialGradient>
+    <linearGradient id="beard" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#f7f3eb"/>
+      <stop offset="60%" stop-color="#e8e1d1"/>
+      <stop offset="100%" stop-color="#d3cab6"/>
+    </linearGradient>
+    <linearGradient id="jacket" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#2a4668"/>
+      <stop offset="100%" stop-color="#152845"/>
+    </linearGradient>
+    <linearGradient id="sweater" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#ece0c4"/>
+      <stop offset="100%" stop-color="#d4c8a8"/>
+    </linearGradient>
+    <clipPath id="round">
+      <circle cx="60" cy="60" r="58"/>
+    </clipPath>
+  </defs>
+
+  <!-- Krämig bakgrund (oljemåleri-kraftig) -->
+  <circle cx="60" cy="60" r="58" fill="#efe4cc"/>
+
+  <g clip-path="url(#round)">
+
+    <!-- Subtil varmare vignette runt kanterna -->
+    <circle cx="60" cy="60" r="58" fill="none" stroke="#c9b68a" stroke-width="6" opacity="0.18"/>
+
+    <!-- ═════════════════════════════════════════
+         STICKAD TRÖJA — krämfärgad ribb
+         ═════════════════════════════════════════ -->
+    <path d="M 20 120 L 20 100 Q 28 90 48 88 L 72 88 Q 92 90 100 100 L 100 120 Z"
+          fill="url(#sweater)"/>
+    <!-- Ribbstickning — vertikala linjer -->
+    <g stroke="#bca984" stroke-width="0.6" opacity="0.55">
+      <line x1="32" y1="95" x2="32" y2="120"/>
+      <line x1="38" y1="95" x2="38" y2="120"/>
+      <line x1="44" y1="94" x2="44" y2="120"/>
+      <line x1="50" y1="93" x2="50" y2="120"/>
+      <line x1="56" y1="93" x2="56" y2="120"/>
+      <line x1="64" y1="93" x2="64" y2="120"/>
+      <line x1="70" y1="93" x2="70" y2="120"/>
+      <line x1="76" y1="94" x2="76" y2="120"/>
+      <line x1="82" y1="95" x2="82" y2="120"/>
+      <line x1="88" y1="95" x2="88" y2="120"/>
+    </g>
+    <!-- Polokrage-topp (liten krage ovanför jackans V) -->
+    <path d="M 50 90 Q 60 85 70 90 L 70 96 Q 60 92 50 96 Z"
+          fill="#e4d7b8" stroke="#b8a37c" stroke-width="0.4"/>
+
+    <!-- ═════════════════════════════════════════
+         OLJEROCK — mörkblå jacka över tröjan
+         ═════════════════════════════════════════ -->
+    <path d="M 8 120
+             L 12 105
+             Q 22 95 38 93
+             L 46 98
+             L 60 110
+             L 74 98
+             L 82 93
+             Q 98 95 108 105
+             L 112 120 Z"
+          fill="url(#jacket)"/>
+
+    <!-- Jackans V-öppning (mörkare botten) -->
+    <path d="M 46 98 L 60 111 L 74 98 L 70 97 L 60 108 L 50 97 Z"
+          fill="#0c1a30" opacity="0.6"/>
+
+    <!-- Knapp på jackan -->
+    <circle cx="66" cy="112" r="1.6" fill="#6a4e24"/>
+    <circle cx="66" cy="112" r="1.0" fill="#8a6a36"/>
+
+    <!-- ═════════════════════════════════════════
+         HALS (skymtas bakom skägg)
+         ═════════════════════════════════════════ -->
+    <path d="M 48 82 L 72 82 L 70 92 L 50 92 Z" fill="#d89f74"/>
+
+    <!-- ═════════════════════════════════════════
+         HUVUD — oval, något lutat
+         ═════════════════════════════════════════ -->
+    <ellipse cx="59" cy="56" rx="24" ry="28" fill="url(#skin)"/>
+
+    <!-- Öron (vänster syns bakom skägg, höger under hatten) -->
+    <ellipse cx="36" cy="58" rx="3" ry="5" fill="#d89f74"/>
+    <path d="M 35 57 Q 34 59 36 61" stroke="#a87050" stroke-width="0.5" fill="none" opacity="0.6"/>
+
+    <!-- Solbränna / varm kind-ton -->
+    <ellipse cx="45" cy="60" rx="5.5" ry="3.5" fill="#dc7c55" opacity="0.35"/>
+    <ellipse cx="72" cy="60" rx="5.5" ry="3.5" fill="#dc7c55" opacity="0.35"/>
+
+    <!-- Leende-rynkor under ögonen (erfaren sjöman) -->
+    <path d="M 41 58 Q 45 57 49 58" stroke="#a06842" stroke-width="0.7" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M 69 58 Q 73 57 77 58" stroke="#a06842" stroke-width="0.7" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M 41 62 Q 44 61.5 47 62" stroke="#a06842" stroke-width="0.5" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <path d="M 71 62 Q 74 61.5 77 62" stroke="#a06842" stroke-width="0.5" fill="none" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- Panna-rynka (milt) -->
+    <path d="M 50 44 Q 59 42 68 44" stroke="#a87050" stroke-width="0.5" fill="none" opacity="0.35"/>
+
+    <!-- ═════════════════════════════════════════
+         ÖGON — gråblå, vakna
+         ═════════════════════════════════════════ -->
+    <ellipse cx="49" cy="53" rx="3.5" ry="2.8" fill="#ffffff"/>
+    <ellipse cx="70" cy="53" rx="3.5" ry="2.8" fill="#ffffff"/>
+    <circle cx="49.5" cy="53.5" r="2.0" fill="#5a7a95"/>
+    <circle cx="70.5" cy="53.5" r="2.0" fill="#5a7a95"/>
+    <circle cx="49.5" cy="53.5" r="1.1" fill="#12253e"/>
+    <circle cx="70.5" cy="53.5" r="1.1" fill="#12253e"/>
+    <circle cx="50.1" cy="52.9" r="0.55" fill="#ffffff"/>
+    <circle cx="71.1" cy="52.9" r="0.55" fill="#ffffff"/>
+
+    <!-- ÖGONBRYN — vita/grå, yviga -->
+    <path d="M 43 48 Q 48 45 55 48" stroke="#f4efe1" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <path d="M 65 48 Q 72 45 77 48" stroke="#f4efe1" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <!-- Enstaka mörkare hårstrån i ögonbrynen -->
+    <path d="M 44 47.5 Q 48 45.5 52 47" stroke="#c8bfa8" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+    <path d="M 68 47.5 Q 72 45.5 76 47" stroke="#c8bfa8" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+
+    <!-- ═════════════════════════════════════════
+         NÄSA
+         ═════════════════════════════════════════ -->
+    <path d="M 59 57 Q 56 64 56.5 69 Q 58 71 60 71 Q 62 71 63 69 Q 63.5 64 60.5 57 Z"
+          fill="#d89f74" opacity="0.98"/>
+    <ellipse cx="58" cy="69.5" rx="1" ry="0.65" fill="#a86844" opacity="0.55"/>
+    <ellipse cx="61.5" cy="69.5" rx="1" ry="0.65" fill="#a86844" opacity="0.55"/>
+    <path d="M 58.8 61 Q 58.8 65 58.8 68" stroke="#f4d0a8" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+    <!-- ═════════════════════════════════════════
+         MUSTASCH — vit, yvig, välvd
+         ═════════════════════════════════════════ -->
+    <path d="M 42 72
+             Q 50 77 60 76
+             Q 70 77 78 72
+             Q 76 82 60 82
+             Q 44 82 42 72 Z"
+          fill="url(#beard)"/>
+    <!-- Mustaschens mittskårka -->
+    <path d="M 58 76 Q 60 80 62 76" stroke="#c8bfa8" stroke-width="0.5" fill="none" opacity="0.5"/>
+
+    <!-- ═════════════════════════════════════════
+         SKÄGG — vitt, fylligt, ner till halsen
+         ═════════════════════════════════════════ -->
+    <path d="M 36 66
+             C 30 76 28 88 32 96
+             C 38 102 46 105 60 105
+             C 74 105 82 102 88 96
+             C 92 88 90 76 84 66
+             C 82 70 78 72 74 73
+             Q 68 75 60 75
+             Q 52 75 46 73
+             C 42 72 38 70 36 66 Z"
+          fill="url(#beard)"/>
+
+    <!-- Skäggets textur — varma vita strimmor för volym -->
+    <g stroke="#c8bfa8" stroke-width="0.55" fill="none" opacity="0.55">
+      <path d="M 38 78 Q 40 90 38 102"/>
+      <path d="M 46 82 Q 47 94 46 104"/>
+      <path d="M 54 84 Q 54 96 54 105"/>
+      <path d="M 60 85 Q 60 96 60 105"/>
+      <path d="M 66 84 Q 66 96 66 105"/>
+      <path d="M 74 82 Q 73 94 74 104"/>
+      <path d="M 82 78 Q 80 90 82 102"/>
+    </g>
+    <!-- Skuggade partier för 3D-känsla -->
+    <g stroke="#a59c84" stroke-width="0.45" fill="none" opacity="0.4">
+      <path d="M 42 86 Q 42 96 42 102"/>
+      <path d="M 78 86 Q 78 96 78 102"/>
+      <path d="M 50 90 Q 50 100 50 104"/>
+      <path d="M 70 90 Q 70 100 70 104"/>
+    </g>
+    <!-- Nedre skäggkant (ljus, fluffig) -->
+    <path d="M 32 96 Q 60 108 88 96" stroke="#ffffff" stroke-width="0.8" fill="none" opacity="0.5"/>
+
+    <!-- Mun — liten glimt mellan mustasch och skägg -->
+    <path d="M 54 79 Q 60 82 66 79" stroke="#8a4a30" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+    <!-- ═════════════════════════════════════════
+         PIPA — brun, mellan mun och höger kant
+         Sticker ut från mungipan snett nedåt-höger
+         ═════════════════════════════════════════ -->
+    <!-- Röken — tunn grå stril uppåt -->
+    <path d="M 94 68 Q 96 62 94 56 Q 92 50 94 44"
+          stroke="#b8b8b8" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.55"/>
+    <path d="M 96 58 Q 98 52 96 46"
+          stroke="#cfcfcf" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Pipskaft (mörkt brun, slanker) -->
+    <path d="M 66 80 Q 76 78 84 76 L 85 78 Q 77 80 67 82 Z"
+          fill="#4a2d18"/>
+    <!-- Pip-munstycke (mörkare, vid läppen) -->
+    <ellipse cx="67" cy="81" rx="2.2" ry="1.4" fill="#2d1a0e"/>
+
+    <!-- Pipskål (rundad, varm brun) -->
+    <ellipse cx="88" cy="74" rx="4.5" ry="5" fill="#6a3a1c"/>
+    <ellipse cx="88" cy="74" rx="4.5" ry="5" fill="url(#hat-side)" opacity="0.0"/>
+    <!-- Pipskålens glöd (orange i toppen) -->
+    <ellipse cx="88" cy="70.5" rx="2.5" ry="1.2" fill="#d4722a"/>
+    <ellipse cx="88" cy="70.5" rx="1.6" ry="0.7" fill="#f0b060" opacity="0.85"/>
+    <!-- Pipskålens skugga -->
+    <path d="M 86 78 Q 88 80 90 78" stroke="#2d1a0e" stroke-width="0.6" fill="none" opacity="0.6"/>
+
+    <!-- ═════════════════════════════════════════
+         SYDVÄST — blå, brett brätte
+         Formen: rundad kupa + nedböjt brätte
+         ═════════════════════════════════════════ -->
+
+    <!-- Brättet bakre/höger sida (hänger ner) -->
+    <path d="M 84 42
+             Q 96 46 100 54
+             Q 98 58 94 60
+             Q 88 58 84 54 Z"
+          fill="url(#hat-side)"/>
+
+    <!-- Brättet vänstra sida (hänger ner framför örat) -->
+    <path d="M 34 42
+             Q 22 46 20 54
+             Q 22 58 26 60
+             Q 32 58 36 54 Z"
+          fill="url(#hat-side)"/>
+
+    <!-- Brättet framtill (över pannan, böjer ner) -->
+    <path d="M 34 42
+             Q 40 36 60 36
+             Q 80 36 84 42
+             Q 80 52 60 52
+             Q 40 52 34 42 Z"
+          fill="url(#hat)"/>
+
+    <!-- Kupan (huvudmössa) -->
+    <path d="M 32 42
+             Q 30 28 40 18
+             Q 50 12 60 12
+             Q 70 12 80 18
+             Q 90 28 88 42
+             Q 86 44 80 44
+             L 40 44
+             Q 34 44 32 42 Z"
+          fill="url(#hat)"/>
+
+    <!-- Kupans subtila highlight (vänster sida, oljeskinn-glans) -->
+    <path d="M 40 20 Q 45 14 55 13 Q 50 16 46 20 Q 42 24 40 28 Z"
+          fill="#3e5e82" opacity="0.65"/>
+
+    <!-- Brättets skugga mot ansiktet -->
+    <path d="M 36 48 Q 60 55 84 48 Q 60 52 36 48 Z"
+          fill="#0a1a2e" opacity="0.4"/>
+
+    <!-- Kantlinje mellan kupa och brätte (subtil) -->
+    <path d="M 34 42 Q 60 40 86 42" stroke="#0a1a2e" stroke-width="0.6" fill="none" opacity="0.5"/>
+
+    <!-- Liten fjäder/detalj på toppen vänster (valfritt) -->
+    <path d="M 42 18 Q 40 14 38 12 Q 39 16 40 19" stroke="#e4ebf0" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+    <!-- ANKAR-EMBLEM på krämig plakett (höger sida av brättet) -->
+    <g transform="translate(80, 41)">
+      <!-- Krämig rektangulär plakett -->
+      <rect x="-5" y="-4" width="10" height="8" rx="1.2" fill="#efe4cc" stroke="#b8a37c" stroke-width="0.5"/>
+      <!-- Ankar (mörkblå linjer på krämig bakgrund) -->
+      <g stroke="#1e3a5f" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Ring i toppen -->
+        <circle cx="0" cy="-2.5" r="0.6" fill="none"/>
+        <!-- Skaft -->
+        <line x1="0" y1="-1.9" x2="0" y2="2.4"/>
+        <!-- Tvärslå -->
+        <line x1="-1.5" y1="-0.6" x2="1.5" y2="-0.6"/>
+        <!-- Krokarna -->
+        <path d="M -2 1.8 Q -1.8 2.8 0 2.8 Q 1.8 2.8 2 1.8"/>
+        <!-- Små hakar på krokarna -->
+        <line x1="-2" y1="1.8" x2="-2.4" y2="2"/>
+        <line x1="2" y1="1.8" x2="2.4" y2="2"/>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Yttre ram — subtil dubbel ring för att avataren ska poppa -->
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#ffffff" stroke-width="1.6" opacity="0.85"/>
+  <circle cx="60" cy="60" r="57.2" fill="none" stroke="#1a2e48" stroke-width="0.5" opacity="0.2"/>
+</svg>

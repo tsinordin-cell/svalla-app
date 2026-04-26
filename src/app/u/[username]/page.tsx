@@ -140,6 +140,13 @@ export default async function PublicProfilePage({
   const unlockedAch = computeUnlocked(trips, streak)
   const visitedCount = (visitedIslandsData ?? []).length
 
+  // Wrapped — find most recent year with trips (current or previous)
+  const currentYear = new Date().getFullYear()
+  const tripYears = new Set(trips.map(t => new Date(t.started_at ?? t.created_at).getFullYear()))
+  const wrappedYear = tripYears.has(currentYear) ? currentYear : tripYears.has(currentYear - 1) ? currentYear - 1 : null
+  const wrappedTrips = wrappedYear ? trips.filter(t => new Date(t.started_at ?? t.created_at).getFullYear() === wrappedYear) : []
+  const wrappedDist  = wrappedTrips.reduce((a, t) => a + (t.distance ?? 0), 0)
+
   // Monthly bar chart — last 6 months
   const MONTHS = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
   const monthMap: Record<string, { label: string; count: number; dist: number }> = {}
@@ -370,6 +377,41 @@ export default async function PublicProfilePage({
               <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / 69) * 100)}%` }} />
             </div>
           </div>
+        )}
+
+        {/* ── Wrapped teaser ── */}
+        {wrappedYear && wrappedTrips.length >= 3 && (
+          <Link href={`/wrapped/${username}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
+            <div style={{
+              background: 'linear-gradient(135deg, #0d2240 0%, #1a4a5e 55%, #0a7b8c 100%)',
+              borderRadius: 18, padding: '18px 20px',
+              position: 'relative', overflow: 'hidden',
+              boxShadow: '0 4px 18px rgba(10,60,90,0.20)',
+            }}>
+              <div style={{
+                position: 'absolute', inset: 0,
+                background: 'radial-gradient(ellipse 65% 80% at 85% 50%, rgba(45,125,138,0.35) 0%, transparent 65%)',
+                pointerEvents: 'none',
+              }} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
+                <div>
+                  <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.50)', textTransform: 'uppercase', letterSpacing: '1.8px', marginBottom: 6 }}>
+                    Säsongsrecap {wrappedYear}
+                  </div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px', lineHeight: 1.1 }}>
+                    {wrappedTrips.length} turer · {wrappedDist.toFixed(0)} nm
+                  </div>
+                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
+                    Se helårssummeringen
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 11, height: 11, opacity: 0.7 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5.5L15.5 12L9 18.5" />
+                    </svg>
+                  </div>
+                </div>
+                <div style={{ fontSize: 44, lineHeight: 1 }}>⚓</div>
+              </div>
+            </div>
+          </Link>
         )}
 
         {/* ── Trip grid with tabs ── */}
