@@ -148,8 +148,8 @@ export async function computeInsights(
   const latest_trip = trips.length > 0 ? trips.map(t => t.created_at).sort()[trips.length - 1] : undefined
 
   // Sunrise/sunset
-  const sunrise_trips = trips.filter(t => t.started_at && new Date(t.started_at).getHours() < 7).length
-  const sunset_trips = trips.filter(t => t.ended_at && new Date(t.ended_at).getHours() >= 22).length
+  const sunrise_trips = trips.filter(t => t.started_at && new Date(t.started_at).getUTCHours() < 7).length
+  const sunset_trips = trips.filter(t => t.ended_at && new Date(t.ended_at).getUTCHours() >= 22).length
 
   // Streak
   const longest_streak_weeks = longestStreakWeeks(trips)
