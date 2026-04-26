@@ -41,7 +41,7 @@ export async function GET(
 
   const { data: trip } = await supabase
     .from('trips')
-    .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image')
+    .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image, images')
     .eq('id', id)
     .single()
 
@@ -75,7 +75,9 @@ export async function GET(
     !spd && avgSpd && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
   ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
-  const hasPhoto = !!trip?.image
+  // Use first available photo: primary image or first from images array
+  const photoUrl = trip?.image ?? (Array.isArray(trip?.images) ? (trip!.images as string[])[0] : null) ?? null
+  const hasPhoto = !!photoUrl
 
   return new ImageResponse(
     (
@@ -91,7 +93,7 @@ export async function GET(
         {hasPhoto ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={trip!.image!}
+            src={photoUrl!}
             alt=""
             style={{
               position: 'absolute', inset: 0,
