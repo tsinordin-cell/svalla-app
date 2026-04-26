@@ -47,12 +47,36 @@ export default async function ForumTradPage({ params }: Props) {
 
   if (!thread || !cat) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'DiscussionForumPosting',
+    headline: thread.title,
+    text: thread.body.slice(0, 500),
+    datePublished: thread.created_at,
+    url: `https://svalla.se/forum/${kategori}/${trad}`,
+    inLanguage: 'sv',
+    author: thread.author?.username
+      ? { '@type': 'Person', name: thread.author.username }
+      : undefined,
+    interactionStatistic: {
+      '@type': 'InteractionCounter',
+      interactionType: 'https://schema.org/ReplyAction',
+      userInteractionCount: posts.length,
+    },
+    isPartOf: {
+      '@type': 'DiscussionForum',
+      name: `${cat.name} — Svalla Forum`,
+      url: `https://svalla.se/forum/${kategori}`,
+    },
+  }
+
   return (
     <main style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div style={{
         background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',
@@ -175,7 +199,11 @@ export default async function ForumTradPage({ params }: Props) {
             fontSize: 14,
             color: 'var(--txt3)',
           }}>
-            🔒 Den här tråden är låst för nya svar.
+            <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }}>
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Den här tråden är låst för nya svar.
           </div>
         ) : (
           <ForumReplyForm threadId={thread.id} categoryId={kategori} />

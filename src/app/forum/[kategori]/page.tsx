@@ -28,12 +28,23 @@ export default async function ForumKategoriPage({ params }: Props) {
 
   if (!cat) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'DiscussionForum',
+    name: `${cat.name} — Svalla Forum`,
+    url: `https://svalla.se/forum/${cat.id}`,
+    description: cat.description ?? undefined,
+    inLanguage: 'sv',
+    numberOfItems: threads.length,
+  }
+
   return (
     <main style={{
       minHeight: '100vh',
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Header */}
       <div style={{
         background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',
@@ -73,7 +84,10 @@ export default async function ForumKategoriPage({ params }: Props) {
           fontSize: 14,
           fontWeight: 600,
         }}>
-          <span style={{ fontSize: 16 }}>✏️</span>
+          <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z" />
+          </svg>
           Ny tråd i {cat.name}
         </Link>
       </div>
@@ -109,7 +123,13 @@ export default async function ForumKategoriPage({ params }: Props) {
                     padding: '1px 7px',
                     borderRadius: 6,
                     marginBottom: 6,
-                  }}>📌 Fäst</span>
+                  }}>
+                    <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', verticalAlign: 'middle', marginRight: 3 }}>
+                      <line x1="12" y1="17" x2="12" y2="22" />
+                      <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
+                    </svg>
+                    Fäst
+                  </span>
                 )}
                 <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', marginBottom: 4, lineHeight: 1.3 }}>
                   {thread.title}
@@ -142,7 +162,12 @@ export default async function ForumKategoriPage({ params }: Props) {
                       )}
                     </>
                   )}
-                  {thread.is_locked && <span>🔒</span>}
+                  {thread.is_locked && (
+                    <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                  )}
                 </div>
               </Link>
             ))}

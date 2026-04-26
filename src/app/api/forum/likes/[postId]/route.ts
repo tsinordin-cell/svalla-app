@@ -22,7 +22,7 @@ export async function POST(
     // Verifiera att post finns och inte är borttagen
     const { data: post } = await supabase
       .from('forum_posts')
-      .select('id, is_deleted, in_spam_queue')
+      .select('id, is_deleted, in_spam_queue, user_id, thread_id')
       .eq('id', postId)
       .single()
 
@@ -54,6 +54,16 @@ export async function POST(
         .from('forum_post_likes')
         .insert({ post_id: postId, user_id: user.id })
       liked = true
+
+      // Skicka notis till inläggets ägare (inte till sig själv)
+      if (post.user_id && post.user_id !== user.id) {
+        await supabase.from('notifications').insert({
+          user_id:      post.user_id,
+          actor_id:     user.id,
+          type:         'forum_like',
+          reference_id: post.thread_id,
+        })
+      }
     }
 
     // Hämta ny räknare

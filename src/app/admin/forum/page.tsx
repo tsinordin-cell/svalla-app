@@ -128,7 +128,12 @@ export default async function AdminForumPage({
             background: 'var(--white)', borderRadius: 18,
             border: '1px solid rgba(10,123,140,0.10)',
           }}>
-            <div style={{ fontSize: 48, marginBottom: 14 }}>✅</div>
+            <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}>
+              <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 12l3 3 5-6" />
+              </svg>
+            </div>
             <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
               Kön är tom
             </div>

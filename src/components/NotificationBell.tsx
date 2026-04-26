@@ -6,7 +6,7 @@ import { timeAgoShort } from '@/lib/utils'
 
 type Notif = {
   id: string
-  type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | string
+  type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | 'forum_like' | string
   read: boolean
   created_at: string
   trip_id: string | null
@@ -20,6 +20,7 @@ const TYPE_LABEL: Record<string, string> = {
   follow:       'börjar följa dig 👋',
   tag:          'taggade dig i en tur 🏷️',
   forum_reply:  'svarade i din forumtråd 💬',
+  forum_like:   'gillade ditt foruminlägg ❤️',
 }
 
 export default function NotificationBell() {
@@ -172,7 +173,7 @@ export default function NotificationBell() {
               <Link
                 key={n.id}
                 href={
-                  n.type === 'forum_reply' && n.reference_id
+                  (n.type === 'forum_reply' || n.type === 'forum_like') && n.reference_id
                     ? `/forum/t/${n.reference_id}`
                     : n.trip_id
                     ? `/tur/${n.trip_id}`
