@@ -355,6 +355,7 @@ const LANDING_HTML = `
               <a href="/karta" class="nav-mega-link">🗺️ Karta över skärgården</a>
               <a href="/aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
               <a href="/boende" class="nav-mega-link">🛏️ Boende</a>
+              <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
               <a href="/resmal" class="nav-mega-all">Se alla →</a>
             </div>
             <div class="nav-mega-col">
@@ -362,6 +363,7 @@ const LANDING_HTML = `
               <a href="/krogar-och-mat" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
               <a href="/bastu-och-bad" class="nav-mega-link">🛁 Bastu &amp; bad</a>
               <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
+              <a href="/nyborjarguider" class="nav-mega-link">📚 Nybörjarguider</a>
               <a href="/vandring-och-natur" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
               <a href="/erbjudanden" class="nav-mega-link">🎒 Erbjudanden</a>
             </div>
@@ -766,7 +768,7 @@ const LANDING_HTML = `
     <div class="stats-grid">
       <div class="stat-box reveal"><span class="stat-num">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård</div></div>
       <div class="stat-box reveal reveal-delay-1"><span class="stat-num">69</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
-      <div class="stat-box reveal reveal-delay-2"><span class="stat-num">✨ AI</span><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
+      <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
       <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
     </div>
   </div>
