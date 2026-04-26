@@ -321,7 +321,7 @@ export default function ProfilPage() {
   for (const t of trips) {
     const d   = new Date(t.created_at)
     const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()], count: 0 }
+    if (!monthMap[key]) monthMap[key] = { label: MONTHS[d.getMonth()] ?? '', count: 0 }
     monthMap[key].count++
   }
   const monthBars = Object.entries(monthMap).sort(([a], [b]) => a.localeCompare(b)).slice(-6)
