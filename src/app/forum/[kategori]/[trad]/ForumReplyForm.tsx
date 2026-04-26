@@ -57,21 +57,22 @@ export default function ForumReplyForm({ threadId, categoryId }: Props) {
   return (
     <div style={{
       background: 'var(--card-bg, #fff)',
-      borderRadius: 16,
+      borderRadius: 18,
       border: '1px solid var(--border, rgba(10,123,140,0.12))',
-      boxShadow: '0 2px 12px rgba(10,123,140,0.06)',
+      boxShadow: '0 2px 14px rgba(10,123,140,0.08)',
       overflow: 'hidden',
     }}>
       {/* Form header */}
       <div style={{
-        padding: '13px 18px 11px',
-        borderBottom: '1px solid rgba(10,123,140,0.07)',
+        padding: '13px 18px 12px',
+        background: 'linear-gradient(90deg, rgba(10,123,140,0.05) 0%, transparent 100%)',
+        borderBottom: '1px solid rgba(10,123,140,0.08)',
         display: 'flex', alignItems: 'center', gap: 8,
       }}>
         <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
         </svg>
-        <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt2)', letterSpacing: '0.01em' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', letterSpacing: '0.01em' }}>
           Skriv ett svar
         </span>
       </div>
@@ -96,23 +97,23 @@ export default function ForumReplyForm({ threadId, categoryId }: Props) {
             width: '100%',
             boxSizing: 'border-box',
             padding: '12px 14px',
-            borderRadius: 10,
-            border: '1.5px solid rgba(10,123,140,0.18)',
+            borderRadius: 12,
+            border: '1.5px solid rgba(10,123,140,0.15)',
             background: 'rgba(10,123,140,0.02)',
             fontSize: 15,
             color: 'var(--txt)',
             resize: 'vertical',
             fontFamily: 'inherit',
             outline: 'none',
-            lineHeight: 1.6,
-            transition: 'border-color 0.15s',
+            lineHeight: 1.65,
+            transition: 'border-color 0.15s, box-shadow 0.15s',
           }}
-          onFocus={e => (e.target.style.borderColor = 'var(--sea)')}
-          onBlur={e => (e.target.style.borderColor = 'rgba(10,123,140,0.18)')}
+          onFocus={e => { e.target.style.borderColor = 'var(--sea)'; e.target.style.boxShadow = '0 0 0 3px rgba(10,123,140,0.10)' }}
+          onBlur={e => { e.target.style.borderColor = 'rgba(10,123,140,0.15)'; e.target.style.boxShadow = 'none' }}
         />
 
         {err && (
-          <p style={{ fontSize: 13, color: 'var(--red, #ef4444)', margin: '6px 0 0' }}>{err}</p>
+          <p style={{ fontSize: 13, color: 'var(--red, #ef4444)', margin: '8px 0 0', padding: '8px 12px', background: 'rgba(239,68,68,0.07)', borderRadius: 8 }}>{err}</p>
         )}
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12 }}>
@@ -125,16 +126,17 @@ export default function ForumReplyForm({ threadId, categoryId }: Props) {
             className={isReady ? 'press-feedback' : ''}
             style={{
               display: 'flex', alignItems: 'center', gap: 7,
-              padding: '11px 22px',
-              background: isReady ? 'var(--grad-sea)' : 'rgba(10,123,140,0.12)',
+              padding: '11px 24px',
+              background: isReady ? 'var(--grad-sea)' : 'rgba(10,123,140,0.10)',
               color: isReady ? '#fff' : 'var(--txt3)',
               borderRadius: 12,
               border: 'none',
               fontSize: 14,
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: isReady ? 'pointer' : 'default',
               transition: 'all 0.15s',
-              boxShadow: isReady ? '0 2px 10px rgba(10,123,140,0.25)' : 'none',
+              boxShadow: isReady ? '0 3px 12px rgba(10,123,140,0.30)' : 'none',
+              letterSpacing: '0.01em',
             }}
           >
             {loading ? (
