@@ -355,6 +355,7 @@ const LANDING_HTML = `
               <a href="/karta" class="nav-mega-link">🗺️ Karta över skärgården</a>
               <a href="/aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
               <a href="/boende" class="nav-mega-link">🛏️ Boende</a>
+              <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
               <a href="/resmal" class="nav-mega-all">Se alla →</a>
             </div>
             <div class="nav-mega-col">
@@ -362,6 +363,7 @@ const LANDING_HTML = `
               <a href="/krogar-och-mat" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
               <a href="/bastu-och-bad" class="nav-mega-link">🛁 Bastu &amp; bad</a>
               <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
+              <a href="/nyborjarguider" class="nav-mega-link">📚 Nybörjarguider</a>
               <a href="/vandring-och-natur" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
               <a href="/erbjudanden" class="nav-mega-link">🎒 Erbjudanden</a>
             </div>
