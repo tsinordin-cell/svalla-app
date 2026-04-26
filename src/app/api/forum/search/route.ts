@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
       .from('forum_threads')
       .select('id, category_id, title, body, created_at, user_id, reply_count')
       .eq('in_spam_queue', false)
+      .eq('is_deleted', false)
       .or(`title.ilike.${pattern},body.ilike.${pattern}`)
       .order('last_reply_at', { ascending: false })
       .limit(20)

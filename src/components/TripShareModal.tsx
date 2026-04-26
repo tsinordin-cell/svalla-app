@@ -166,7 +166,8 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
             background: 'var(--bg)',
             borderRadius: '28px 28px 0 0',
             padding: '0 0 calc(env(safe-area-inset-bottom, 0px) + 28px)',
-            overflow: 'hidden',
+            overflowY: 'auto',
+            maxHeight: 'calc(92vh - env(safe-area-inset-bottom, 0px))',
           }}>
 
             {/* ── MAIN VIEW ── */}
@@ -175,11 +176,11 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
                 {/* Hero — dark background, large centered card */}
                 <div style={{
                   background: 'linear-gradient(170deg, #0c2030 0%, #071420 100%)',
-                  padding: '16px 24px 28px',
+                  padding: '12px 20px 20px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 16,
+                  gap: 12,
                   position: 'relative',
                   overflow: 'hidden',
                 }}>
@@ -218,7 +219,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
                   </div>
 
                   {/* Large card preview */}
-                  <div style={{ position: 'relative', width: '55%', maxWidth: 200 }}>
+                  <div style={{ position: 'relative', width: '50%', maxWidth: 160 }}>
                     {/* Skeleton */}
                     {!imgLoaded && (
                       <div style={{

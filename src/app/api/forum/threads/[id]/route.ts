@@ -27,11 +27,11 @@ export async function PATCH(
     // Verifiera ägarskap
     const { data: thread } = await supabase
       .from('forum_threads')
-      .select('user_id')
+      .select('user_id, is_deleted')
       .eq('id', id)
       .single()
 
-    if (!thread) {
+    if (!thread || thread.is_deleted) {
       return NextResponse.json({ error: 'Tråden hittades inte.' }, { status: 404 })
     }
     if (thread.user_id !== user.id) {
@@ -77,9 +77,10 @@ export async function DELETE(
     if (!thread) return NextResponse.json({ error: 'Tråden hittades inte.' }, { status: 404 })
     if (thread.user_id !== user.id) return NextResponse.json({ error: 'Inte behörig.' }, { status: 403 })
 
-    // Hard-delete: radera svar först (FK), sedan tråden
-    await supabase.from('forum_posts').delete().eq('thread_id', id)
-    const { error } = await supabase.from('forum_threads').delete().eq('id', id)
+    const { error } = await supabase
+      .from('forum_threads')
+      .update({ is_deleted: true })
+      .eq('id', id)
 
     if (error) return NextResponse.json({ error: 'Kunde inte radera.' }, { status: 500 })
 

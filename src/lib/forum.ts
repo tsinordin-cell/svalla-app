@@ -84,6 +84,7 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
       .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, in_spam_queue, created_at')
       .eq('category_id', categoryId)
       .eq('in_spam_queue', false)
+      .eq('is_deleted', false)
       .order('is_pinned', { ascending: false })
       .order('last_reply_at', { ascending: false })
       .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)
@@ -115,6 +116,7 @@ export async function getThreadById(id: string): Promise<ForumThread | null> {
       .select('*')
       .eq('id', id)
       .eq('in_spam_queue', false)
+      .eq('is_deleted', false)
       .single()
     if (!thread) return null
 

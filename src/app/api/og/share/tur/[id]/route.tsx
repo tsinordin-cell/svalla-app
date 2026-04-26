@@ -103,7 +103,7 @@ export async function GET(
     : { data: null }
 
   const dist   = trip && trip.distance >= 0.1 ? `${trip.distance.toFixed(1)}` : null
-  const dur    = trip && trip.duration > 0    ? fmtDur(trip.duration)         : null
+  const dur    = trip && trip.duration > 4    ? fmtDur(trip.duration)         : null
   const spd    = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? `${(trip.max_speed_knots ?? 0).toFixed(1)}` : null
   const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? `${(trip.average_speed_knots ?? 0).toFixed(1)}` : null
   const loc    = trip?.location_name ?? null
@@ -308,7 +308,7 @@ export async function GET(
                       <div style={{ fontSize: 52, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-2px' }}>{val}</div>
                       {unit ? <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,180,80,0.85)' }}>{unit}</div> : null}
                     </div>
-                    <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '2px' }}>{label}</div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.60)', letterSpacing: '2px' }}>{label}</div>
                   </div>
                 ))}
               </div>
@@ -379,7 +379,7 @@ export async function GET(
         <div style={{
           position: 'absolute', inset: 0,
           background: hasPhoto
-            ? 'linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.18) 30%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.90) 100%)'
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.20) 25%, rgba(0,0,0,0.65) 52%, rgba(0,0,0,0.94) 100%)'
             : 'radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30,100,160,0.18) 0%, transparent 70%)',
           display: 'flex',
         }} />
@@ -427,7 +427,7 @@ export async function GET(
             <div style={{
               fontSize: locLabel.length > 20 ? 68 : 84,
               fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.05,
-              textShadow: '0 2px 20px rgba(0,0,0,0.6)',
+              textShadow: '0 2px 32px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.7)',
             }}>
               {locLabel}
             </div>
@@ -462,7 +462,7 @@ export async function GET(
                   <div style={{ fontSize: 58, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-2px' }}>{val}</div>
                   {unit ? <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(120,210,255,0.80)' }}>{unit}</div> : null}
                 </div>
-                <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.40)', letterSpacing: '2px' }}>{label}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.60)', letterSpacing: '2px' }}>{label}</div>
               </div>
             ))}
           </div>
