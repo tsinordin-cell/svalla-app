@@ -1,8 +1,11 @@
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
+import { Buffer } from 'buffer'
 
 export const runtime = 'nodejs'
 export const revalidate = 0
+
+// ── Helpers ────────────────────────────────────────────────────────────────
 
 function fmtDur(mins: number): string {
   if (mins <= 0) return ''
@@ -11,6 +14,7 @@ function fmtDur(mins: number): string {
   return h > 0 ? `${h}h ${m > 0 ? `${m}m` : ''}`.trim() : `${m}m`
 }
 
+// Simple lat/lng → SVG path (for photo mode — no projection needed)
 function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: number): string {
   if (pts.length < 2) return ''
   const lats = pts.map(p => p.lat)
@@ -20,8 +24,7 @@ function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: numbe
   const ranLat = maxLat - minLat || 0.001
   const ranLng = maxLng - minLng || 0.001
   const pad = 0.10
-  // Limit points to avoid excessively long SVG paths
-  const step = Math.max(1, Math.floor(pts.length / 120))
+  const step = Math.max(1, Math.floor(pts.length / 150))
   const sampled = pts.filter((_, i) => i % step === 0 || i === pts.length - 1)
   return sampled.map((p, i) => {
     const x = (((p.lng - minLng) / ranLng) * (1 - pad * 2) + pad) * W
@@ -30,13 +33,64 @@ function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: numbe
   }).join(' ')
 }
 
+// ── Tile math (Mercator, identical to RouteMapSVG) ─────────────────────────
+
+const lngToTX = (lng: number, z: number) => ((lng + 180) / 360) * 2 ** z
+const latToTY = (lat: number, z: number) => {
+  const r = lat * Math.PI / 180
+  return (1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2 * 2 ** z
+}
+
+async function fetchTileB64(tx: number, ty: number, z: number): Promise<string | null> {
+  const max = 2 ** z
+  if (ty < 0 || ty >= max) return null
+  const ntx = ((tx % max) + max) % max
+  try {
+    const ctrl = new AbortController()
+    const t = setTimeout(() => ctrl.abort(), 4000)
+    const res = await fetch(`https://tile.openstreetmap.org/${z}/${ntx}/${ty}.png`, {
+      headers: { 'User-Agent': 'Svalla/1.0 (+https://svalla.se)' },
+      // @ts-expect-error next-specific cache option
+      next: { revalidate: 86400 },
+      signal: ctrl.signal,
+    })
+    clearTimeout(t)
+    if (!res.ok) return null
+    const buf = await res.arrayBuffer()
+    return `data:image/png;base64,${Buffer.from(buf).toString('base64')}`
+  } catch { return null }
+}
+
+// Mercator-projected route path for map style
+function buildRoutePathMercator(
+  pts: { lat: number; lng: number }[],
+  Z: number,
+  tx0: number, ty0: number,
+  gLeft: number, gTop: number,
+): string {
+  if (pts.length < 2) return ''
+  const step = Math.max(1, Math.floor(pts.length / 200))
+  const sampled = pts.filter((_, i) => i % step === 0 || i === pts.length - 1)
+  return sampled.map((p, i) => {
+    const x = gLeft + (lngToTX(p.lng, Z) - tx0) * 256
+    const y = gTop  + (latToTY(p.lat, Z) - ty0) * 256
+    return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`
+  }).join(' ')
+}
+
+// ── Constants ──────────────────────────────────────────────────────────────
+
 const W = 1080, H = 1920
 
+// ── Route handler ──────────────────────────────────────────────────────────
+
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params
+  const style = new URL(req.url).searchParams.get('style') ?? 'photo'
+
   const supabase = createClient()
 
   const { data: trip } = await supabase
@@ -65,8 +119,10 @@ export async function GET(
   const routePts = trip && Array.isArray(trip.route_points) && trip.route_points.length >= 2
     ? (trip.route_points as { lat: number; lng: number }[])
     : null
-  const RW = 860, RH = 860
-  const routePath = routePts ? buildRoutePath(routePts, RW, RH) : ''
+
+  // Photo: primary image or first from images array
+  const photoUrl = trip?.image ?? (Array.isArray(trip?.images) ? (trip!.images as string[])[0] : null) ?? null
+  const hasPhoto = !!photoUrl
 
   const statBoxes = [
     dist  && { val: dist,    unit: 'NM',  label: 'DISTANS' },
@@ -75,9 +131,225 @@ export async function GET(
     !spd && avgSpd && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
   ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
-  // Use first available photo: primary image or first from images array
-  const photoUrl = trip?.image ?? (Array.isArray(trip?.images) ? (trip!.images as string[])[0] : null) ?? null
-  const hasPhoto = !!photoUrl
+  // ── MAP MODE ────────────────────────────────────────────────────────────
+
+  if (style === 'map' && routePts) {
+    // Bounds
+    const lats = routePts.map(p => p.lat)
+    const lngs = routePts.map(p => p.lng)
+    const minLat = Math.min(...lats), maxLat = Math.max(...lats)
+    const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
+
+    // Zoom: route should fill ~65% of W × 1300
+    const MH = 1300
+    let Z = 16
+    for (; Z >= 5; Z--) {
+      const spanX = (lngToTX(maxLng, Z) - lngToTX(minLng, Z)) * 256
+      const spanY = (latToTY(minLat, Z) - latToTY(maxLat, Z)) * 256
+      if (spanX <= W * 0.65 && spanY <= MH * 0.65) break
+    }
+
+    // 5×6 tile grid centered on route
+    const cx = (lngToTX(minLng, Z) + lngToTX(maxLng, Z)) / 2
+    const cy = (latToTY(minLat, Z) + latToTY(maxLat, Z)) / 2
+    const tx0 = Math.floor(cx) - 2
+    const ty0 = Math.floor(cy) - 3
+    const COLS = 5, ROWS = 6
+
+    const gLeft = W / 2 - (cx - tx0) * 256
+    const gTop  = MH / 2 - (cy - ty0) * 256
+
+    // Fetch all tiles in parallel
+    const tileJobs: Promise<{ dx: number; dy: number; src: string | null }>[] = []
+    for (let dy = 0; dy < ROWS; dy++) {
+      for (let dx = 0; dx < COLS; dx++) {
+        tileJobs.push(
+          fetchTileB64(tx0 + dx, ty0 + dy, Z).then(src => ({ dx, dy, src }))
+        )
+      }
+    }
+    const tiles = await Promise.all(tileJobs)
+
+    // Mercator route path
+    const mapPath = buildRoutePathMercator(routePts, Z, tx0, ty0, gLeft, gTop)
+
+    // Start / end dots
+    const sp = routePts[0]!
+    const ep = routePts[routePts.length - 1]!
+    const sx = gLeft + (lngToTX(sp.lng, Z) - tx0) * 256
+    const sy = gTop  + (latToTY(sp.lat, Z) - ty0) * 256
+    const ex = gLeft + (lngToTX(ep.lng, Z) - tx0) * 256
+    const ey = gTop  + (latToTY(ep.lat, Z) - ty0) * 256
+
+    return new ImageResponse(
+      (
+        <div style={{
+          width: W, height: H,
+          display: 'flex', flexDirection: 'column',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          background: '#aad3df', // OSM water color fallback
+          overflow: 'hidden', position: 'relative',
+        }}>
+
+          {/* ── Map tile layer ── */}
+          <div style={{
+            position: 'absolute', left: 0, top: 0,
+            width: W, height: MH,
+            overflow: 'hidden', display: 'flex',
+          }}>
+            {tiles.map(({ dx, dy, src }) =>
+              src ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img key={`${dx}-${dy}`} src={src} alt="" style={{
+                  position: 'absolute',
+                  left: gLeft + dx * 256,
+                  top: gTop + dy * 256,
+                  width: 256, height: 256,
+                }} />
+              ) : null
+            )}
+
+            {/* Route SVG on top of tiles */}
+            {mapPath && (
+              <svg
+                width={W} height={MH}
+                viewBox={`0 0 ${W} ${MH}`}
+                style={{ position: 'absolute', left: 0, top: 0 }}
+              >
+                {/* Outer glow */}
+                <path d={mapPath} stroke="rgba(255,100,40,0.30)" strokeWidth={22}
+                  fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                {/* Mid glow */}
+                <path d={mapPath} stroke="rgba(255,120,50,0.60)" strokeWidth={10}
+                  fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                {/* Sharp line */}
+                <path d={mapPath} stroke="#ff5c2e" strokeWidth={5}
+                  fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                {/* Start dot */}
+                <circle cx={sx} cy={sy} r={10} fill="#22c55e" stroke="#fff" strokeWidth={3} />
+                {/* End dot */}
+                <circle cx={ex} cy={ey} r={10} fill="#ff5c2e" stroke="#fff" strokeWidth={3} />
+              </svg>
+            )}
+
+            {/* Gradient fade at the bottom of the map */}
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: 400,
+              background: 'linear-gradient(to bottom, transparent 0%, rgba(10,16,24,0.95) 100%)',
+              display: 'flex',
+            }} />
+          </div>
+
+          {/* ── Bottom info panel ── */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            padding: '0 72px calc(env(safe-area-inset-bottom, 0px) + 72px)',
+            display: 'flex', flexDirection: 'column',
+            background: 'linear-gradient(to bottom, transparent 0%, #0a1018 25%)',
+          }}>
+
+            {/* Top bar inside info panel */}
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              paddingBottom: 32,
+            }}>
+              <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.50)' }}>
+                SVALLA.SE
+              </div>
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                background: 'rgba(0,0,0,0.45)', borderRadius: 40, padding: '8px 20px',
+                border: '1px solid rgba(255,255,255,0.12)',
+              }}>
+                <div style={{ fontSize: 26 }}>{boatEmoji}</div>
+                <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
+              </div>
+            </div>
+
+            {/* Location */}
+            {locLabel ? (
+              <div style={{
+                fontSize: locLabel.length > 20 ? 64 : 80,
+                fontWeight: 800, color: '#fff',
+                letterSpacing: '-2px', lineHeight: 1.05,
+                textShadow: '0 2px 20px rgba(0,0,0,0.5)',
+              }}>
+                {locLabel}
+              </div>
+            ) : (
+              <div style={{ fontSize: 72, fontWeight: 800, color: '#fff', letterSpacing: '-2px', display: 'flex' }}>
+                {`${boatEmoji} Svalla-tur`}
+              </div>
+            )}
+
+            {magisk && (
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                background: 'rgba(201,110,42,0.30)', border: '1px solid rgba(201,110,42,0.60)',
+                borderRadius: 40, padding: '10px 24px', marginTop: 10,
+                width: 'fit-content',
+              }}>
+                <div style={{ fontSize: 20 }}>⚓</div>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#f08030', letterSpacing: '1px' }}>MAGISK TUR</div>
+              </div>
+            )}
+
+            {/* Stats */}
+            {statBoxes.length > 0 && (
+              <div style={{ display: 'flex', gap: 16, marginTop: 28 }}>
+                {statBoxes.map(({ val, unit, label }) => (
+                  <div key={label} style={{
+                    flex: 1,
+                    background: 'rgba(0,0,0,0.50)',
+                    border: '1px solid rgba(255,255,255,0.10)',
+                    borderRadius: 24, padding: '24px 22px',
+                    display: 'flex', flexDirection: 'column', gap: 6,
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 5 }}>
+                      <div style={{ fontSize: 52, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-2px' }}>{val}</div>
+                      {unit ? <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,180,80,0.85)' }}>{unit}</div> : null}
+                    </div>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '2px' }}>{label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Footer */}
+            <div style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              marginTop: 32,
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <div style={{
+                  width: 56, height: 56, borderRadius: '50%',
+                  background: 'rgba(10,100,130,0.70)',
+                  border: '2px solid rgba(255,255,255,0.20)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 24, fontWeight: 800, color: '#fff',
+                }}>
+                  {username[0]?.toUpperCase() ?? 'S'}
+                </div>
+                <div style={{ fontSize: 26, fontWeight: 700, color: 'rgba(255,255,255,0.90)' }}>
+                  {`@${username}`}
+                </div>
+              </div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: 'rgba(255,180,80,0.45)', letterSpacing: '0.5px' }}>
+                Loggat med Svalla
+              </div>
+            </div>
+          </div>
+
+        </div>
+      ),
+      { width: W, height: H }
+    )
+  }
+
+  // ── PHOTO MODE (default) ────────────────────────────────────────────────
+
+  const RW = 860, RH = 860
+  const routePath = routePts ? buildRoutePath(routePts, RW, RH) : ''
 
   return new ImageResponse(
     (
@@ -86,21 +358,16 @@ export async function GET(
         display: 'flex', flexDirection: 'column',
         fontFamily: 'system-ui, -apple-system, sans-serif',
         background: '#060e18',
-        overflow: 'hidden',
-        position: 'relative',
+        overflow: 'hidden', position: 'relative',
       }}>
-        {/* Background: trip photo or fallback dark gradient */}
+        {/* Background: trip photo or dark gradient */}
         {hasPhoto ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={photoUrl!}
-            alt=""
-            style={{
-              position: 'absolute', inset: 0,
-              width: '100%', height: '100%',
-              objectFit: 'cover', objectPosition: 'center',
-            }}
-          />
+          <img src={photoUrl!} alt="" style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center',
+          }} />
         ) : (
           <div style={{
             position: 'absolute', inset: 0,
@@ -109,11 +376,11 @@ export async function GET(
           }} />
         )}
 
-        {/* Dark overlay — stronger at bottom for text readability */}
+        {/* Dark overlay */}
         <div style={{
           position: 'absolute', inset: 0,
           background: hasPhoto
-            ? 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.20) 30%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.90) 100%)'
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.18) 30%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.90) 100%)'
             : 'radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30,100,160,0.18) 0%, transparent 70%)',
           display: 'flex',
         }} />
@@ -121,8 +388,7 @@ export async function GET(
         {/* Top bar */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '80px 80px 0',
-          position: 'relative', zIndex: 2,
+          padding: '80px 80px 0', position: 'relative', zIndex: 2,
         }}>
           <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.60)' }}>
             SVALLA.SE
@@ -137,21 +403,17 @@ export async function GET(
           </div>
         </div>
 
-        {/* Route map — center, always shown when route exists */}
+        {/* Route map — center */}
         <div style={{
           flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          position: 'relative', zIndex: 1,
-          padding: '60px 60px 0',
+          position: 'relative', zIndex: 1, padding: '60px 60px 0',
         }}>
           {routePath ? (
             <svg width={RW} height={RH} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'relative', zIndex: 1 }}>
-              {/* Glow shadow */}
               <path d={routePath} stroke="rgba(30,120,200,0.35)" strokeWidth={28}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Mid glow */}
               <path d={routePath} stroke="rgba(80,180,255,0.50)" strokeWidth={14}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Sharp line */}
               <path d={routePath} stroke="rgba(160,230,255,0.95)" strokeWidth={5}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -165,8 +427,7 @@ export async function GET(
           {locLabel ? (
             <div style={{
               fontSize: locLabel.length > 20 ? 68 : 84,
-              fontWeight: 800, color: '#fff',
-              letterSpacing: '-2px', lineHeight: 1.05,
+              fontWeight: 800, color: '#fff', letterSpacing: '-2px', lineHeight: 1.05,
               textShadow: '0 2px 20px rgba(0,0,0,0.6)',
             }}>
               {locLabel}
@@ -176,7 +437,7 @@ export async function GET(
               {`${boatEmoji} Svalla-tur`}
             </div>
           )}
-          {magisk ? (
+          {magisk && (
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
               background: 'rgba(201,110,42,0.30)', border: '1px solid rgba(201,110,42,0.60)',
@@ -185,16 +446,15 @@ export async function GET(
               <div style={{ fontSize: 22 }}>⚓</div>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#f08030', letterSpacing: '1px' }}>MAGISK TUR</div>
             </div>
-          ) : null}
+          )}
         </div>
 
-        {/* Stats row */}
-        {statBoxes.length > 0 ? (
+        {/* Stats */}
+        {statBoxes.length > 0 && (
           <div style={{ display: 'flex', gap: 20, padding: '48px 80px 0' }}>
             {statBoxes.map(({ val, unit, label }) => (
               <div key={label} style={{
-                flex: 1,
-                background: 'rgba(0,0,0,0.40)',
+                flex: 1, background: 'rgba(0,0,0,0.40)',
                 border: '1px solid rgba(255,255,255,0.12)',
                 borderRadius: 28, padding: '30px 28px',
                 display: 'flex', flexDirection: 'column', gap: 8,
@@ -207,19 +467,17 @@ export async function GET(
               </div>
             ))}
           </div>
-        ) : null}
+        )}
 
         {/* Footer */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '48px 80px 90px',
-          position: 'relative', zIndex: 2,
+          padding: '48px 80px 90px', position: 'relative', zIndex: 2,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
             <div style={{
               width: 64, height: 64, borderRadius: '50%',
-              background: 'rgba(10,100,130,0.70)',
-              border: '2px solid rgba(255,255,255,0.20)',
+              background: 'rgba(10,100,130,0.70)', border: '2px solid rgba(255,255,255,0.20)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 28, fontWeight: 800, color: '#fff',
             }}>
@@ -229,10 +487,7 @@ export async function GET(
               {`@${username}`}
             </div>
           </div>
-          <div style={{
-            fontSize: 20, fontWeight: 700,
-            color: 'rgba(180,220,255,0.50)', letterSpacing: '0.5px',
-          }}>
+          <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(180,220,255,0.50)', letterSpacing: '0.5px' }}>
             Loggat med Svalla
           </div>
         </div>

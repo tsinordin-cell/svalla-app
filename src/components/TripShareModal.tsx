@@ -20,13 +20,14 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
   const [loading, setLoading] = useState(false)
   const [step, setStep]       = useState<'main' | 'saved'>('main')
   const [imgLoaded, setImgLoaded] = useState(false)
+  const [styleMode, setStyleMode] = useState<'photo' | 'map'>('photo')
 
-  const cardSrc = `/api/og/share/tur/${tripId}`
+  const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
 
-  // Preload image when modal opens
+  // Preload image when modal opens or style changes
   useEffect(() => {
     if (open) setImgLoaded(false)
-  }, [open])
+  }, [open, styleMode])
 
   function handleOpen() {
     setStep('main')
@@ -191,6 +192,30 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
                     background: 'radial-gradient(ellipse 70% 60% at 50% 70%, rgba(188,24,136,0.10) 0%, transparent 70%)',
                     pointerEvents: 'none',
                   }} />
+
+                  {/* Style toggle */}
+                  <div style={{
+                    display: 'flex', borderRadius: 20, overflow: 'hidden',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    background: 'rgba(0,0,0,0.30)', position: 'relative', zIndex: 1,
+                  }}>
+                    {(['photo', 'map'] as const).map(mode => (
+                      <button
+                        key={mode}
+                        onClick={() => setStyleMode(mode)}
+                        style={{
+                          padding: '8px 22px', border: 'none', cursor: 'pointer',
+                          fontSize: 13, fontWeight: 700, letterSpacing: '0.2px',
+                          background: styleMode === mode ? 'rgba(255,255,255,0.18)' : 'transparent',
+                          color: styleMode === mode ? '#fff' : 'rgba(255,255,255,0.45)',
+                          transition: 'background 0.15s, color 0.15s',
+                          borderRadius: 20,
+                        }}
+                      >
+                        {mode === 'photo' ? '📸 Foto' : '🗺️ Karta'}
+                      </button>
+                    ))}
+                  </div>
 
                   {/* Large card preview */}
                   <div style={{ position: 'relative', width: '55%', maxWidth: 200 }}>
