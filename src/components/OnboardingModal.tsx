@@ -37,6 +37,79 @@ function StepDots({ current, total }: { current: number; total: number }) {
   )
 }
 
+// ── SVG-ikoner ────────────────────────────────────────────────────────────────
+function AnchorIcon() {
+  return (
+    <svg width={48} height={48} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.85)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="5" r="2" />
+      <path d="M12 7v14M5 11h14M5 21c0-3.314 3.134-6 7-6s7 2.686 7 6" />
+    </svg>
+  )
+}
+
+function UsersIcon() {
+  return (
+    <svg width={48} height={48} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.85)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  )
+}
+
+function MapIcon() {
+  return (
+    <svg width={48} height={48} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.85)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+      <line x1="9" y1="3" x2="9" y2="18" />
+      <line x1="15" y1="6" x2="15" y2="21" />
+    </svg>
+  )
+}
+
+// ── Steg 3 action-ikoner ──────────────────────────────────────────────────────
+function LocationPinIcon({ size = 36 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.80)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 21c-4-4-7-7.5-7-11a7 7 0 0 1 14 0c0 3.5-3 7-7 11Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  )
+}
+
+function FolderUploadIcon({ size = 36 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.80)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+      <polyline points="12 11 12 17" />
+      <polyline points="9 14 12 11 15 14" />
+    </svg>
+  )
+}
+
+function WavesIcon({ size = 36 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+      stroke="rgba(100,200,240,0.80)" strokeWidth={1.5}
+      strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0" />
+      <path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0" />
+      <path d="M2 7c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0" />
+    </svg>
+  )
+}
+
 // ── Overlay-wrapper ──────────────────────────────────────────────────────────
 const OVERLAY: React.CSSProperties = {
   position: 'fixed', inset: 0, zIndex: 1100,
@@ -157,7 +230,9 @@ export default function OnboardingModal() {
       <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
 
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>⚓</div>
+          <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}>
+            <AnchorIcon />
+          </div>
           <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.4px' }}>
             Välkommen till Svalla
           </h1>
@@ -238,7 +313,9 @@ export default function OnboardingModal() {
       <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
 
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>👥</div>
+          <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}>
+            <UsersIcon />
+          </div>
           <h2 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.3px' }}>
             Följ seglare
           </h2>
@@ -304,9 +381,17 @@ export default function OnboardingModal() {
                           color: isFollowing ? 'rgba(100,200,240,0.80)' : '#fff',
                           outline: isFollowing ? '1px solid rgba(100,200,240,0.30)' : 'none',
                           transition: 'all 0.18s',
+                          display: 'flex', alignItems: 'center', gap: 5,
                         }}
                       >
-                        {isFollowing ? '✓ Följer' : 'Följ'}
+                        {isFollowing ? (
+                          <>
+                            <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M5 13l4 4L19 7" />
+                            </svg>
+                            Följer
+                          </>
+                        ) : 'Följ'}
                       </button>
                     </div>
                   )
@@ -337,12 +422,38 @@ export default function OnboardingModal() {
   // ══════════════════════════════════════════════════════════════════════════
   // STEG 3 — Logga din första tur
   // ══════════════════════════════════════════════════════════════════════════
+  const step3Items = [
+    {
+      icon: <LocationPinIcon />,
+      title: 'Spåra tur live',
+      desc: 'GPS-loggning direkt från telefonen',
+      href: '/logga',
+      primary: true,
+    },
+    {
+      icon: <FolderUploadIcon />,
+      title: 'Importera GPX / FIT',
+      desc: 'Ladda upp från Garmin, Navionics m.fl.',
+      href: '/importera',
+      primary: false,
+    },
+    {
+      icon: <WavesIcon />,
+      title: 'Utforska flödet',
+      desc: 'Se vad andra seglare gjort',
+      href: '/feed',
+      primary: false,
+    },
+  ]
+
   return (
     <div style={OVERLAY} role="dialog" aria-modal="true">
       <div style={{ width: '100%', maxWidth: 440, paddingTop: 24 }}>
 
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>🗺️</div>
+          <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}>
+            <MapIcon />
+          </div>
           <h2 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.3px' }}>
             Logga din första tur
           </h2>
@@ -352,11 +463,7 @@ export default function OnboardingModal() {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 28 }}>
-          {[
-            { emoji: '📍', title: 'Spåra tur live',      desc: 'GPS-loggning direkt från telefonen',      href: '/logga'    },
-            { emoji: '📂', title: 'Importera GPX / FIT', desc: 'Ladda upp från Garmin, Navionics m.fl.',  href: '/importera' },
-            { emoji: '🌊', title: 'Utforska flödet',     desc: 'Se vad andra seglare gjort',               href: '/feed'     },
-          ].map(item => (
+          {step3Items.map(item => (
             <button key={item.href}
               onClick={() => { finish(); router.push(item.href) }}
               className="press-feedback"
@@ -364,15 +471,15 @@ export default function OnboardingModal() {
                 display: 'flex', alignItems: 'center', gap: 18,
                 padding: '20px 22px', borderRadius: 18, border: 'none',
                 cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: 'inherit',
-                background: item.href === '/logga'
+                background: item.primary
                   ? 'linear-gradient(135deg, rgba(30,92,130,0.75), rgba(45,125,138,0.65))'
                   : 'rgba(255,255,255,0.07)',
-                outline: item.href === '/logga'
+                outline: item.primary
                   ? '1px solid rgba(100,200,240,0.25)'
                   : '1px solid rgba(255,255,255,0.10)',
               }}
             >
-              <span style={{ fontSize: 36, flexShrink: 0 }}>{item.emoji}</span>
+              <div style={{ flexShrink: 0 }}>{item.icon}</div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 3 }}>
                   {item.title}
@@ -381,7 +488,11 @@ export default function OnboardingModal() {
                   {item.desc}
                 </div>
               </div>
-              <span style={{ fontSize: 18, color: 'rgba(255,255,255,0.40)', flexShrink: 0 }}>→</span>
+              <svg width={16} height={16} viewBox="0 0 24 24" fill="none"
+                stroke="rgba(255,255,255,0.35)" strokeWidth={2}
+                strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                <path d="M9 5.5L15.5 12L9 18.5" />
+              </svg>
             </button>
           ))}
         </div>

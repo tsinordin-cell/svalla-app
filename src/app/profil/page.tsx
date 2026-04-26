@@ -655,6 +655,7 @@ export default function ProfilPage() {
         <div style={{ background: 'var(--white)', borderRadius: 18, marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)', overflow: 'hidden' }}>
           {[
             { href: '/meddelanden', icon: '💬', label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
+            { href: user?.username ? `/u/${user.username}?tab=forum` : '/forum', icon: '🗣️', label: 'Min forum-aktivitet', sub: 'Dina trådar och svar i forumet' },
             { href: '/insikter',   icon: '📊', label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
             { href: '/topplista',  icon: '🏆', label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
             { href: '/check-in',   icon: '📍', label: 'Check-in',    sub: 'Registrera dig på en plats' },
