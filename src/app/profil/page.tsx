@@ -563,15 +563,18 @@ export default function ProfilPage() {
               )}
 
               {/* Next to unlock hint */}
-              {lockedAch.length > 0 && (
-                <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 20, filter: 'grayscale(0.3)', opacity: 0.8 }}>{lockedAch[0].emoji}</span>
-                  <div>
-                    <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {lockedAch[0].label}</div>
-                    <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{lockedAch[0].desc}</div>
+              {lockedAch.length > 0 && (() => {
+                const next = lockedAch[0]!
+                return (
+                  <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: 20, filter: 'grayscale(0.3)', opacity: 0.8 }}>{next.emoji}</span>
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {next.label}</div>
+                      <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{next.desc}</div>
+                    </div>
                   </div>
-                </div>
-              )}
+                )
+              })()}
             </div>
           )
         })()}
