@@ -8,6 +8,7 @@ import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
 import { IconHelm, IconForum, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconCompass } from '@/components/icons/SvallaIcons'
 
 export default function Nav() {
   const path = usePathname()
@@ -65,12 +66,12 @@ export default function Nav() {
 
   const tabs = [
     {
-      href: '/guide',
-      label: 'Thorkel',
+      href: '/upptack',
+      label: 'Utforska',
       exact: false,
-      matchPaths: ['/guide'],
+      matchPaths: ['/upptack'],
       icon: (active: boolean) => (
-        <IconHelm size={22} stroke={active ? 2 : 1.75} />
+        <IconCompass size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     {
