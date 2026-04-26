@@ -279,6 +279,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
             tripId={id}
             title={trip.location_name ?? 'Min tur'}
             url={`https://svalla.se/tur/${id}`}
+            hasPhoto={allPhotos.length > 0}
           />
           <TripActions tripId={trip.id} ownerId={trip.user_id} />
         </div>
@@ -555,6 +556,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
               title={trip.location_name ?? 'Min tur'}
               url={`https://svalla.se/tur/${id}`}
               variant="pill"
+              hasPhoto={allPhotos.length > 0}
             />
           </div>
 

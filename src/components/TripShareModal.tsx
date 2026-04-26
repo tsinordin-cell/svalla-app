@@ -7,6 +7,7 @@ interface Props {
   title: string
   url: string
   variant?: 'icon' | 'pill'
+  hasPhoto?: boolean
 }
 
 // Detect Android
@@ -15,12 +16,12 @@ function isAndroid() {
   return /Android/.test(navigator.userAgent)
 }
 
-export default function TripShareModal({ tripId, title, url, variant = 'icon' }: Props) {
+export default function TripShareModal({ tripId, title, url, variant = 'icon', hasPhoto = true }: Props) {
   const [open, setOpen]       = useState(false)
   const [loading, setLoading] = useState(false)
   const [step, setStep]       = useState<'main' | 'saved'>('main')
   const [imgLoaded, setImgLoaded] = useState(false)
-  const [styleMode, setStyleMode] = useState<'photo' | 'map'>('photo')
+  const [styleMode, setStyleMode] = useState<'photo' | 'map'>(hasPhoto ? 'photo' : 'map')
 
   const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
 
@@ -88,9 +89,9 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
     const file = new File([blob], 'svalla-tur.png', { type: 'image/png' })
     try {
       if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
-        await navigator.share({ files: [file], title: `${title} – Svalla`, url })
+        await navigator.share({ files: [file], title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ⛵` })
       } else if (typeof navigator !== 'undefined' && navigator.share) {
-        await navigator.share({ title: `${title} – Svalla`, url, text: 'Kolla min tur på Svalla! ⛵' })
+        await navigator.share({ title: `${title} – Svalla`, url, text: `Kolla min tur till ${title} på Svalla! ⛵` })
       } else {
         const a = document.createElement('a')
         a.href = URL.createObjectURL(blob)
@@ -220,23 +221,24 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
 
                   {/* Large card preview */}
                   <div style={{ position: 'relative', width: '50%', maxWidth: 160 }}>
-                    {/* Skeleton */}
-                    {!imgLoaded && (
-                      <div style={{
-                        width: '100%', aspectRatio: '9/16', borderRadius: 18,
-                        background: 'rgba(255,255,255,0.07)',
-                        animation: 'pulse 1.5s ease-in-out infinite',
-                      }} />
-                    )}
+                    {/* Spacer — maintains height regardless of load state */}
+                    <div style={{ width: '100%', aspectRatio: '9/16' }} />
+                    {/* Skeleton — fades out when image loads */}
                     <div style={{
-                      width: '100%',
-                      aspectRatio: '9/16',
-                      borderRadius: 18,
+                      position: 'absolute', inset: 0, borderRadius: 18,
+                      background: 'rgba(255,255,255,0.07)',
+                      animation: 'pulse 1.5s ease-in-out infinite',
+                      opacity: imgLoaded ? 0 : 1,
+                      transition: 'opacity 0.35s ease',
+                      pointerEvents: 'none',
+                    }} />
+                    {/* Image — fades in when loaded */}
+                    <div style={{
+                      position: 'absolute', inset: 0, borderRadius: 18,
                       overflow: 'hidden',
                       boxShadow: '0 20px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.07)',
                       opacity: imgLoaded ? 1 : 0,
                       transition: 'opacity 0.35s ease',
-                      display: imgLoaded ? 'block' : 'none',
                     }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -363,35 +365,42 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
 
                   <div style={{ textAlign: 'center' }}>
                     <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', letterSpacing: '-0.3px' }}>Bild sparad!</div>
-                    <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>Lägg till den i din Instagram Story</div>
+                    <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', marginTop: 4 }}>Öppna Instagram och lägg till i din Story</div>
                   </div>
                 </div>
 
-                {/* Steps */}
+                {/* Action buttons */}
                 <div style={{ padding: '20px 20px 0' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                    {[
-                      { icon: '📱', text: 'Öppna Instagram' },
-                      { icon: '＋', text: 'Tryck + och välj Story' },
-                      { icon: '🖼️', text: 'Välj bilden från ditt bibliotek' },
-                      { icon: '⛵', text: 'Publicera!' },
-                    ].map(({ icon, text }, i, arr) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, position: 'relative' }}>
-                        {/* Vertical connector line */}
+
+                  {/* Open Instagram CTA */}
+                  <a
+                    href="instagram://camera"
+                    className="press-feedback"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                      width: '100%', padding: '16px 0', borderRadius: 16,
+                      background: 'linear-gradient(90deg, #f09433 0%, #e6683c 20%, #dc2743 45%, #cc2366 75%, #bc1888 100%)',
+                      color: '#fff', fontSize: 16, fontWeight: 700, textDecoration: 'none',
+                      boxShadow: '0 6px 24px rgba(188,24,136,0.40)',
+                      letterSpacing: '-0.2px',
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 20, height: 20, flexShrink: 0 }}>
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Öppna Instagram
+                  </a>
+
+                  {/* Mini guide */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 16, padding: '0 4px' }}>
+                    {['+ Story', '🖼️ Välj bild', '⛵ Publicera'].map((s, i, arr) => (
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: i < arr.length - 1 ? 'none' : undefined }}>
+                        <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', whiteSpace: 'nowrap' }}>{s}</div>
                         {i < arr.length - 1 && (
-                          <div style={{
-                            position: 'absolute', left: 18, top: 42, width: 2, height: 20,
-                            background: 'rgba(10,123,140,0.15)',
-                          }} />
+                          <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ width: 12, height: 12, flexShrink: 0 }}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                          </svg>
                         )}
-                        <div style={{
-                          width: 38, height: 38, borderRadius: '50%', flexShrink: 0,
-                          background: 'rgba(10,123,140,0.08)',
-                          border: '1.5px solid rgba(10,123,140,0.12)',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          fontSize: 17,
-                        }}>{icon}</div>
-                        <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', padding: '10px 0' }}>{text}</div>
                       </div>
                     ))}
                   </div>

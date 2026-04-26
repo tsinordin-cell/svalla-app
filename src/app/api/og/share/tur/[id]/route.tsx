@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { createClient } from '@/lib/supabase'
+import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import { Buffer } from 'buffer'
 
 export const runtime = 'nodejs'
@@ -90,7 +90,7 @@ export async function GET(
   const { id } = await params
   const style = new URL(req.url).searchParams.get('style') ?? 'photo'
 
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data: trip } = await supabase
     .from('trips')
@@ -409,11 +409,16 @@ export async function GET(
         }}>
           {routePath ? (
             <svg width={RW} height={RH} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'relative', zIndex: 1 }}>
-              <path d={routePath} stroke="rgba(30,120,200,0.35)" strokeWidth={28}
+              {/* Dark outline for visibility on any background */}
+              <path d={routePath} stroke="rgba(0,0,0,0.45)" strokeWidth={36}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              <path d={routePath} stroke="rgba(80,180,255,0.50)" strokeWidth={14}
+              {/* Blue glow */}
+              <path d={routePath} stroke="rgba(30,120,200,0.50)" strokeWidth={26}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              <path d={routePath} stroke="rgba(160,230,255,0.95)" strokeWidth={5}
+              <path d={routePath} stroke="rgba(80,180,255,0.65)" strokeWidth={12}
+                fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Bright core */}
+              <path d={routePath} stroke="rgba(200,240,255,0.98)" strokeWidth={4}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : (
