@@ -17,8 +17,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { trad } = await params
   const thread = await getThreadById(trad)
   if (!thread) return { title: 'Forum — Svalla' }
+  const description = thread.body.slice(0, 160)
+  const ogImage = `/api/og/forum/${trad}`
   return {
     title: `${thread.title} — Svalla Forum`,
+    description,
+    openGraph: {
+      title: `${thread.title} — Svalla Forum`,
+      description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: thread.title }],
+      type: 'article',
+    },
+    twitter: { card: 'summary_large_image', title: `${thread.title} — Svalla Forum`, description, images: [ogImage] },
   }
 }
 
