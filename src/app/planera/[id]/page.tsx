@@ -1,12 +1,16 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import { haversineKm, crossTrack } from '@/lib/planner'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
-import PlaneraMap from './PlaneraMapDynamic'
+
+const PlaneraMap = dynamic(() => import('./PlaneraMap'), { ssr: false, loading: () => (
+  <div style={{ height: 260, borderRadius: 18, background: 'var(--sea-xl,#e8f2fa)', marginBottom: 20, border: '1px solid rgba(10,123,140,0.1)' }} />
+)})
 
 type Props = { params: Promise<{ id: string }> }
 
