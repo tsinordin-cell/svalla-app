@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
 import { DEPARTURES, type Departure, type Interest } from '@/lib/planner'
 
 const INTERESTS: { value: Interest; label: string; emoji: string }[] = [
@@ -38,32 +37,31 @@ export default function PlaneraNyClient() {
     setStep('saving')
     setError(null)
 
-    const supabase = createClient()
-    const { data: { session } } = await supabase.auth.getSession()
-
-    const { data, error: dbError } = await supabase
-      .from('planned_routes')
-      .insert({
-        user_id:    session?.user.id ?? null,
-        start_name: startDep.name,
-        end_name:   endDep.name,
-        start_lat:  startDep.lat,
-        start_lng:  startDep.lng,
-        end_lat:    endDep.lat,
-        end_lng:    endDep.lng,
-        interests,
-        status:     'published',
+    try {
+      const res = await fetch('/api/planera/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          startName: startDep.name,
+          endName:   endDep.name,
+          startLat:  startDep.lat,
+          startLng:  startDep.lng,
+          endLat:    endDep.lat,
+          endLng:    endDep.lng,
+          interests,
+        }),
       })
-      .select('id')
-      .single()
-
-    if (dbError || !data) {
+      const json = await res.json() as { id?: string; error?: string }
+      if (!res.ok || !json.id) {
+        setError('Kunde inte spara rutten. Försök igen.')
+        setStep('interests')
+        return
+      }
+      router.push(`/planera/${json.id}`)
+    } catch {
       setError('Kunde inte spara rutten. Försök igen.')
       setStep('interests')
-      return
     }
-
-    router.push(`/planera/${data.id}`)
   }
 
   // Region-gruppering
