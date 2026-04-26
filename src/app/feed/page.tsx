@@ -16,7 +16,7 @@ import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
-export const revalidate = 120
+export const revalidate = 300
 
 function getGreeting(): string {
   const h = new Date().getHours()
@@ -81,16 +81,14 @@ export default async function FeedPage(
     return <FeedServerError />
   }
 
-  // Bulk-query: ETT RPC-anrop returnerar trips + user + likes_count
-  // + comments_count + user_liked. Ersätter 4-7 separata queries.
-  // För inloggad: kör båda flödena parallellt (alla + följer).
+  // Fetch feed trips — 20 rows per tab is enough for initial render.
   let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
   let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
   try {
     ;[allRes, followRes] = await Promise.all([
-      fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 50, followOnly: false }),
+      fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
       user
-        ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 50, followOnly: true })
+        ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
         : Promise.resolve({ trips: [], error: null }),
     ])
   } catch (err) {
@@ -98,8 +96,6 @@ export default async function FeedPage(
     return <FeedServerError />
   }
 
-  // Graciös degradering: om all-query misslyckas, visa felmeddelande.
-  // Om bara follow-query misslyckas, visa ändå alla-flödet.
   if (allRes.error) {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
@@ -118,10 +114,14 @@ export default async function FeedPage(
     )
   }
 
-  // Enrich both feeds with confirmed tagged crew (one batch query each)
-  const [tripsWithUsers, followingTrips] = await Promise.all([
+  // Run enrichWithTags AND the follows query in parallel — eliminates a
+  // sequential round-trip that previously blocked achievements from starting.
+  const [tripsWithUsers, followingTrips, followsResult] = await Promise.all([
     enrichWithTags(supabase!, allRes.trips),
     enrichWithTags(supabase!, followRes.error ? [] : followRes.trips),
+    user
+      ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
+      : Promise.resolve([] as { following_id: string }[]),
   ])
 
   // Social proof — senaste 7 dagarna
@@ -130,28 +130,14 @@ export default async function FeedPage(
   const uniqueUsers = new Set(thisWeek.map((t: { user_id: string }) => t.user_id)).size
   const uniquePlaces = new Set(thisWeek.map((t: { location_name: string | null }) => t.location_name).filter(Boolean)).size
 
-  // Achievement-events från användarens nätverk (följda + jag själv) senaste 14 dagarna
-  // HELA blocket är tyst-degraderat: feeden är huvudsaken, achievements är sekundärt.
+  // Achievement-events — follows data is already available from the parallel query above.
   let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
   if (user) {
     try {
-      let networkIds: string[] = [user.id]
-      try {
-        const { data: followsForAchv, error: followsErr } = await supabase
-          .from('follows').select('following_id').eq('follower_id', user.id)
-        if (!followsErr && followsForAchv) {
-          networkIds = [
-            user.id,
-            ...followsForAchv.map((f: { following_id: string }) => f.following_id),
-          ]
-        }
-      } catch (err) {
-        console.error('[FeedPage] follows-query failed (non-blocking):', err)
-      }
+      const networkIds = [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)]
       const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
       recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
     } catch (err) {
-      // Degradera tyst — achievement-events är icke-kritiska
       console.error('[FeedPage] achievements failed (non-blocking):', err)
       recentAchievements = []
     }
