@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconCompass, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconCompass, IconRoute, IconHome, IconUser, IconPlus, IconForum } from '@/components/ui/icons'
 
 export default function Nav() {
   const path = usePathname()
@@ -45,7 +45,7 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide']
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide', '/forum']
   const EXACT_PATHS = ['/logga', '/meddelanden']
   // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
   const showNav = (APP_PATHS.some(p => path.startsWith(p)) || EXACT_PATHS.includes(path)) &&
@@ -88,6 +88,14 @@ export default function Nav() {
       exact: false,
       icon: (active: boolean) => (
         <IconHome size={22} stroke={active ? 2 : 1.75} />
+      ),
+    },
+    {
+      href: '/forum',
+      label: 'Forum',
+      exact: false,
+      icon: (active: boolean) => (
+        <IconForum size={22} stroke={active ? 2 : 1.75} />
       ),
     },
     {

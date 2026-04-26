@@ -240,3 +240,11 @@ export const IconMap: React.FC<IconProps> = (p) => (
     <path d="M15 6.5 V 19.5" />
   </Icon>
 )
+
+// Two overlapping speech bubbles — Forum icon
+export const IconForum: React.FC<IconProps> = (p) => (
+  <Icon {...p}>
+    <path d="M4 5.5 A 1.8 1.8 0 0 1 5.8 3.7 H 15 A 1.8 1.8 0 0 1 16.8 5.5 V 11 A 1.8 1.8 0 0 1 15 12.8 H 10.5 L 7.5 15.3 A 0.5 0.5 0 0 1 6.7 14.8 V 12.8 H 5.8 A 1.8 1.8 0 0 1 4 11 Z" />
+    <path d="M16.8 8.5 H 18.2 A 1.8 1.8 0 0 1 20 10.3 V 15.5 A 1.8 1.8 0 0 1 18.2 17.3 H 17.3 V 19 A 0.5 0.5 0 0 1 16.5 19.5 L 13.8 17.3 H 10 A 1.8 1.8 0 0 1 8.2 15.5 V 14" opacity="0.65" />
+  </Icon>
+)
