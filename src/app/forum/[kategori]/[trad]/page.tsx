@@ -5,6 +5,7 @@ import { getThreadById, getPostsByThread, getCategoryById, formatForumDate } fro
 import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
+import ForumSubscribeButton from './ForumSubscribeButton'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
@@ -39,11 +40,15 @@ export default async function ForumTradPage({ params }: Props) {
   const { data: { user } } = await supabase.auth.getUser()
   const currentUserId = user?.id ?? null
 
-  const [thread, posts, cat] = await Promise.all([
+  const [thread, posts, cat, subRow] = await Promise.all([
     getThreadById(trad),
     getPostsByThread(trad, currentUserId),
     getCategoryById(kategori),
+    currentUserId
+      ? supabase.from('forum_subscriptions').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
+      : Promise.resolve({ data: null }),
   ])
+  const isSubscribed = !!subRow?.data
 
   if (!thread || !cat) notFound()
 
@@ -99,7 +104,7 @@ export default async function ForumTradPage({ params }: Props) {
           {thread.title}
         </h1>
 
-        {/* Thread meta — author + stats */}
+        {/* Thread meta — author + stats + subscribe */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
             {thread.author?.avatar ? (
@@ -127,10 +132,18 @@ export default async function ForumTradPage({ params }: Props) {
                 <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
                 </svg>
-                {posts.length} {posts.length === 1 ? 'svar' : 'svar'}
+                {posts.length} svar
               </span>
             </>
           )}
+          {/* Spacer + bevaka-knapp */}
+          <div style={{ marginLeft: 'auto' }}>
+            <ForumSubscribeButton
+              threadId={trad}
+              initialSubscribed={isSubscribed}
+              currentUserId={currentUserId}
+            />
+          </div>
         </div>
       </div>
 
