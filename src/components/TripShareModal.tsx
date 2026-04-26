@@ -51,20 +51,26 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
 
     const file = new File([blob], 'svalla-tur.png', { type: 'image/png' })
 
-    // Android: Web Share API opens system sheet, user picks Instagram
-    if (isAndroid() && typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
+    // iOS + Android: native share sheet via Web Share API with file
+    // iOS 15+: opens share sheet → Instagram → opens Stories directly
+    // Android: same — user picks Instagram from sheet
+    if (typeof navigator !== 'undefined' && navigator.canShare?.({ files: [file] })) {
       try {
         await navigator.share({ files: [file], title: `${title} – Svalla` })
+        setLoading(false)
+        return
       } catch (e: unknown) {
         if (e instanceof Error && e.name !== 'AbortError') {
-          toast('Delning misslyckades. Försök igen.', 'error')
+          // Share API failed — fall through to download fallback
+        } else {
+          // User cancelled — just close
+          setLoading(false)
+          return
         }
       }
-      setLoading(false)
-      return
     }
 
-    // iOS: save to Photos, show guide
+    // Fallback: save to device + show guide (older browsers / desktop)
     const a = document.createElement('a')
     a.href = URL.createObjectURL(blob)
     a.download = 'svalla-tur.png'
@@ -165,74 +171,59 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon' }:
             {/* ── MAIN VIEW ── */}
             {step === 'main' && (
               <>
-                {/* Hero section with dark background + card preview */}
+                {/* Hero — dark background, large centered card */}
                 <div style={{
-                  background: 'linear-gradient(160deg, #0a1e2e 0%, #071420 100%)',
-                  padding: '16px 24px 24px',
+                  background: 'linear-gradient(170deg, #0c2030 0%, #071420 100%)',
+                  padding: '16px 24px 28px',
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 20,
+                  gap: 16,
                   position: 'relative',
                   overflow: 'hidden',
                 }}>
-                  {/* Handle — centered above */}
-                  <div style={{
-                    position: 'absolute', top: 10, left: '50%', transform: 'translateX(-50%)',
-                    width: 36, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.15)',
-                  }} />
+                  {/* Handle */}
+                  <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.15)', alignSelf: 'center' }} />
 
                   {/* Ambient glow */}
                   <div style={{
                     position: 'absolute', inset: 0,
-                    background: 'radial-gradient(ellipse 60% 80% at 30% 60%, rgba(220,39,67,0.12) 0%, transparent 70%)',
+                    background: 'radial-gradient(ellipse 70% 60% at 50% 70%, rgba(188,24,136,0.10) 0%, transparent 70%)',
                     pointerEvents: 'none',
                   }} />
 
-                  {/* Card with 3D tilt */}
-                  <div style={{
-                    width: 110,
-                    aspectRatio: '9/16',
-                    borderRadius: 14,
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    boxShadow: '0 16px 48px rgba(0,0,0,0.70), 0 0 0 1px rgba(255,255,255,0.07)',
-                    transform: 'perspective(500px) rotateY(-5deg) rotateX(1deg)',
-                    position: 'relative',
-                    zIndex: 1,
-                    marginTop: 10,
-                    opacity: imgLoaded ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                  }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={cardSrc}
-                      alt="Story-kort"
-                      onLoad={() => setImgLoaded(true)}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    />
+                  {/* Large card preview */}
+                  <div style={{ position: 'relative', width: '55%', maxWidth: 200 }}>
+                    {/* Skeleton */}
+                    {!imgLoaded && (
+                      <div style={{
+                        width: '100%', aspectRatio: '9/16', borderRadius: 18,
+                        background: 'rgba(255,255,255,0.07)',
+                        animation: 'pulse 1.5s ease-in-out infinite',
+                      }} />
+                    )}
+                    <div style={{
+                      width: '100%',
+                      aspectRatio: '9/16',
+                      borderRadius: 18,
+                      overflow: 'hidden',
+                      boxShadow: '0 20px 60px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.07)',
+                      opacity: imgLoaded ? 1 : 0,
+                      transition: 'opacity 0.35s ease',
+                      display: imgLoaded ? 'block' : 'none',
+                    }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cardSrc}
+                        alt="Story-kort"
+                        onLoad={() => setImgLoaded(true)}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                      />
+                    </div>
                   </div>
 
-                  {/* Skeleton while loading */}
-                  {!imgLoaded && (
-                    <div style={{
-                      width: 110, flexShrink: 0,
-                      aspectRatio: '9/16',
-                      borderRadius: 14,
-                      background: 'rgba(255,255,255,0.07)',
-                      marginTop: 10,
-                      animation: 'pulse 1.5s ease-in-out infinite',
-                    }} />
-                  )}
-
-                  {/* Text beside card */}
-                  <div style={{ zIndex: 1, paddingTop: 8 }}>
-                    <div style={{ fontSize: 17, fontWeight: 800, color: '#fff', letterSpacing: '-0.3px', lineHeight: 1.2 }}>
-                      Story-bilden<br />är redo
-                    </div>
-                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.38)', marginTop: 6, lineHeight: 1.5 }}>
-                      9:16-format<br />optimerat för Instagram
-                    </div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', fontWeight: 500, letterSpacing: '0.2px' }}>
+                    Story-bild · 9:16
                   </div>
                 </div>
 

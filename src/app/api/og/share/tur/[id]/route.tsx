@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
 
 export const runtime = 'nodejs'
-export const revalidate = 3600
+export const revalidate = 0
 
 function fmtDur(mins: number): string {
   if (mins <= 0) return ''
@@ -41,7 +41,7 @@ export async function GET(
 
   const { data: trip } = await supabase
     .from('trips')
-    .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating')
+    .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image')
     .eq('id', id)
     .single()
 
@@ -75,20 +75,44 @@ export async function GET(
     !spd && avgSpd && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
   ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
+  const hasPhoto = !!trip?.image
+
   return new ImageResponse(
     (
       <div style={{
         width: W, height: H,
         display: 'flex', flexDirection: 'column',
         fontFamily: 'system-ui, -apple-system, sans-serif',
-        background: 'linear-gradient(170deg, #060e18 0%, #0d2a40 40%, #0e3a52 70%, #071420 100%)',
+        background: '#060e18',
         overflow: 'hidden',
         position: 'relative',
       }}>
-        {/* Background glow */}
+        {/* Background: trip photo or fallback dark gradient */}
+        {hasPhoto ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={trip!.image!}
+            alt=""
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              objectFit: 'cover', objectPosition: 'center',
+            }}
+          />
+        ) : (
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(170deg, #060e18 0%, #0d2a40 40%, #0e3a52 70%, #071420 100%)',
+            display: 'flex',
+          }} />
+        )}
+
+        {/* Dark overlay — stronger at bottom for text readability */}
         <div style={{
           position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30,100,160,0.18) 0%, transparent 70%)',
+          background: hasPhoto
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.20) 30%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.90) 100%)'
+            : 'radial-gradient(ellipse 80% 60% at 50% 45%, rgba(30,100,160,0.18) 0%, transparent 70%)',
           display: 'flex',
         }} />
 
@@ -98,19 +122,20 @@ export async function GET(
           padding: '80px 80px 0',
           position: 'relative', zIndex: 2,
         }}>
-          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.35)' }}>
+          <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.60)' }}>
             SVALLA.SE
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12,
-            background: 'rgba(255,255,255,0.07)', borderRadius: 40, padding: '10px 24px',
+            background: 'rgba(0,0,0,0.35)', borderRadius: 40, padding: '10px 24px',
+            border: '1px solid rgba(255,255,255,0.12)',
           }}>
             <div style={{ fontSize: 30 }}>{boatEmoji}</div>
-            <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.60)' }}>{boatLabel}</div>
+            <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>{boatLabel}</div>
           </div>
         </div>
 
-        {/* Route map — center */}
+        {/* Route map — center, always shown when route exists */}
         <div style={{
           flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative', zIndex: 1,
@@ -118,13 +143,18 @@ export async function GET(
         }}>
           {routePath ? (
             <svg width={RW} height={RH} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'relative', zIndex: 1 }}>
-              <path d={routePath} stroke="rgba(80,170,230,0.25)" strokeWidth={16}
+              {/* Glow shadow */}
+              <path d={routePath} stroke="rgba(30,120,200,0.35)" strokeWidth={28}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
-              <path d={routePath} stroke="rgba(110,200,255,0.85)" strokeWidth={6}
+              {/* Mid glow */}
+              <path d={routePath} stroke="rgba(80,180,255,0.50)" strokeWidth={14}
+                fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              {/* Sharp line */}
+              <path d={routePath} stroke="rgba(160,230,255,0.95)" strokeWidth={5}
                 fill="none" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           ) : (
-            <div style={{ fontSize: 220, opacity: 0.10, display: 'flex' }}>{boatEmoji}</div>
+            <div style={{ fontSize: 220, opacity: hasPhoto ? 0 : 0.10, display: 'flex' }}>{boatEmoji}</div>
           )}
         </div>
 
@@ -135,6 +165,7 @@ export async function GET(
               fontSize: locLabel.length > 20 ? 68 : 84,
               fontWeight: 800, color: '#fff',
               letterSpacing: '-2px', lineHeight: 1.05,
+              textShadow: '0 2px 20px rgba(0,0,0,0.6)',
             }}>
               {locLabel}
             </div>
@@ -146,11 +177,11 @@ export async function GET(
           {magisk ? (
             <div style={{
               display: 'flex', alignItems: 'center', gap: 10,
-              background: 'rgba(201,110,42,0.22)', border: '1px solid rgba(201,110,42,0.50)',
+              background: 'rgba(201,110,42,0.30)', border: '1px solid rgba(201,110,42,0.60)',
               borderRadius: 40, padding: '10px 24px', marginTop: 8,
             }}>
               <div style={{ fontSize: 22 }}>⚓</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: '#e07828', letterSpacing: '1px' }}>MAGISK TUR</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#f08030', letterSpacing: '1px' }}>MAGISK TUR</div>
             </div>
           ) : null}
         </div>
@@ -161,16 +192,16 @@ export async function GET(
             {statBoxes.map(({ val, unit, label }) => (
               <div key={label} style={{
                 flex: 1,
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(100,180,230,0.12)',
+                background: 'rgba(0,0,0,0.40)',
+                border: '1px solid rgba(255,255,255,0.12)',
                 borderRadius: 28, padding: '30px 28px',
                 display: 'flex', flexDirection: 'column', gap: 8,
               }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
                   <div style={{ fontSize: 58, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-2px' }}>{val}</div>
-                  {unit ? <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(100,200,240,0.70)' }}>{unit}</div> : null}
+                  {unit ? <div style={{ fontSize: 22, fontWeight: 700, color: 'rgba(120,210,255,0.80)' }}>{unit}</div> : null}
                 </div>
-                <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.30)', letterSpacing: '2px' }}>{label}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, color: 'rgba(255,255,255,0.40)', letterSpacing: '2px' }}>{label}</div>
               </div>
             ))}
           </div>
@@ -185,19 +216,20 @@ export async function GET(
           <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
             <div style={{
               width: 64, height: 64, borderRadius: '50%',
-              background: 'rgba(10,123,140,0.60)',
+              background: 'rgba(10,100,130,0.70)',
+              border: '2px solid rgba(255,255,255,0.20)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 28, fontWeight: 800, color: '#fff',
             }}>
               {username[0]?.toUpperCase() ?? 'S'}
             </div>
-            <div style={{ fontSize: 28, fontWeight: 700, color: 'rgba(255,255,255,0.80)' }}>
+            <div style={{ fontSize: 28, fontWeight: 700, color: 'rgba(255,255,255,0.90)' }}>
               {`@${username}`}
             </div>
           </div>
           <div style={{
             fontSize: 20, fontWeight: 700,
-            color: 'rgba(100,180,230,0.40)', letterSpacing: '0.5px',
+            color: 'rgba(180,220,255,0.50)', letterSpacing: '0.5px',
           }}>
             Loggat med Svalla
           </div>
