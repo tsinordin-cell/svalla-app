@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Playfair Display — display-typsnitt för rubriker över hela appen.
+   Matchar landing-page-hero ("Hitta din nästa skärgårdskrog"). */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
+
 :root {
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --sea:   #1e5c82;
   --sea-d: #143f5c;
   --sea-l: #ccdff0;
@@ -98,6 +103,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
   min-height: 100dvh;
   text-rendering: optimizeLegibility;
+}
+
+/* Alla rubriker använder display-typsnittet (Playfair Display) globalt.
+   Body-text fortsätter vara system sans-serif för läsbarhet. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 
 /* ── Spinner animation ── */
