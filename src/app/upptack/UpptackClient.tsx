@@ -193,8 +193,9 @@ export default function UpptackClient() {
   const lagerPopoverRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   // GPS position
-  const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active'>('idle')
+  const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
   const gpsMarkerRef = useRef<import('leaflet').CircleMarker | null>(null)
+  const gpsAccCircleRef = useRef<import('leaflet').Circle | null>(null)
 
   // Stäng Lager-menyn vid klick utanför eller Escape
   useEffect(() => {
@@ -289,36 +290,54 @@ export default function UpptackClient() {
     if (!map || !L) return
     if (!navigator.geolocation) return
 
+    // Klick på 'denied'-knappen → guide till inställningar
+    if (gpsState === 'denied') return
+
     setGpsState('loading')
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        const { latitude: lat, longitude: lng } = pos.coords
-        // Ta bort gammalt markeringsset
-        if (gpsMarkerRef.current) { gpsMarkerRef.current.remove(); gpsMarkerRef.current = null }
-        // Blå prick + ring
-        const outerRing = L.circleMarker([lat, lng], {
-          radius: 14, fillColor: '#3b82f6', fillOpacity: 0.2,
-          color: '#3b82f6', weight: 1.5, opacity: 0.6,
-        }).addTo(map)
+        const { latitude: lat, longitude: lng, accuracy } = pos.coords
+
+        // Ta bort tidigare markörer
+        if (gpsMarkerRef.current)   { gpsMarkerRef.current.remove();   gpsMarkerRef.current = null }
+        if (gpsAccCircleRef.current){ gpsAccCircleRef.current.remove(); gpsAccCircleRef.current = null }
+
+        // Accuracy-cirkel i meter — skalas korrekt med zoom, transparent fyllning
+        if (accuracy && accuracy < 2000) {
+          gpsAccCircleRef.current = L.circle([lat, lng], {
+            radius: accuracy,
+            color: '#3b82f6',
+            fillColor: '#3b82f6',
+            fillOpacity: 0.08,
+            weight: 1,
+            opacity: 0.35,
+            interactive: false,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any).addTo(map)
+        }
+
+        // Blå GPS-prick med vit kant
         const dot = L.circleMarker([lat, lng], {
           radius: 7, fillColor: '#3b82f6', fillOpacity: 1,
           color: '#fff', weight: 2.5, opacity: 1,
         }).addTo(map)
-        // Lagra referens på dot — vi visar ringens "glow" men vill ta bort båda
         gpsMarkerRef.current = dot
-        // Lägg ring under dot via z-order (addTo i rätt ordning räcker)
-        const removeRing = () => { outerRing.remove() }
-        dot.on('remove', removeRing)
+        // Rensa accuracy-cirkeln när dot tas bort
+        dot.on('remove', () => { gpsAccCircleRef.current?.remove(); gpsAccCircleRef.current = null })
 
         map.flyTo([lat, lng], Math.max(map.getZoom(), 13), { duration: 0.9 })
         setGpsState('active')
       },
-      () => {
-        setGpsState('idle')
+      (err) => {
+        if (err.code === err.PERMISSION_DENIED) {
+          setGpsState('denied')
+        } else {
+          setGpsState('idle')
+        }
       },
       { enableHighAccuracy: true, timeout: 10000 },
     )
-  }, [])
+  }, [gpsState])
 
   // ── Heatmap fetch on map move ─────────────────────────────────────────────
   const fetchHeat = useCallback(() => {
@@ -587,43 +606,68 @@ export default function UpptackClient() {
         </Link>
       </div>
 
-      {/* GPS-positionsknapp — nedre vänster, ovanför zoom-kontroll */}
+      {/* GPS-positionsknapp — nedre höger, ovanför zoom-kontroll */}
       {view === 'map' && (
-        <button
-          onClick={handleGps}
-          aria-label="Visa min position"
-          className="press-feedback"
-          style={{
-            position: 'absolute', bottom: 90, right: 12, zIndex: 1001,
-            width: 36, height: 36,
-            border: 'none', borderRadius: '50%',
-            background: gpsState === 'active' ? 'var(--sea)' : 'var(--glass-92)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
-            outline: '1px solid rgba(10,45,60,0.12)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            cursor: 'pointer',
-            transition: 'background 200ms ease',
-          } as React.CSSProperties}
-        >
-          {gpsState === 'loading' ? (
-            <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
-              stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-              style={{ animation: 'spin 1s linear infinite' }}
-            >
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-            </svg>
-          ) : (
-            <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
-              stroke={gpsState === 'active' ? '#fff' : 'var(--txt2)'}
-              strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
-            </svg>
+        <div style={{ position: 'absolute', bottom: 90, right: 12, zIndex: 1001, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
+          {/* Permission-denied tooltip */}
+          {gpsState === 'denied' && (
+            <div style={{
+              background: 'rgba(10,20,35,0.92)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              borderRadius: 12,
+              padding: '9px 13px',
+              maxWidth: 220,
+              boxShadow: '0 2px 12px rgba(0,0,0,0.25)',
+              border: '1px solid rgba(255,255,255,0.08)',
+            }}>
+              <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.5 }}>
+                GPS nekad — aktivera under{' '}
+                <span style={{ color: '#7dd3fc' }}>Inställningar → Integritet → Platstjänster</span>
+              </p>
+            </div>
           )}
-        </button>
+          <button
+            onClick={handleGps}
+            aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
+            className="press-feedback"
+            style={{
+              width: 36, height: 36,
+              border: 'none', borderRadius: '50%',
+              background: gpsState === 'active' ? 'var(--sea)' : gpsState === 'denied' ? 'rgba(204,61,61,0.85)' : 'var(--glass-92)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+              outline: '1px solid rgba(10,45,60,0.12)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: gpsState === 'denied' ? 'default' : 'pointer',
+              transition: 'background 200ms ease',
+            } as React.CSSProperties}
+          >
+            {gpsState === 'loading' ? (
+              <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
+                stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+                style={{ animation: 'spin 1s linear infinite' }}
+              >
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+              </svg>
+            ) : gpsState === 'denied' ? (
+              <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
+                stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
+              </svg>
+            ) : (
+              <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
+                stroke={gpsState === 'active' ? '#fff' : 'var(--txt2)'}
+                strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+              </svg>
+            )}
+          </button>
+        </div>
       )}
 
       {/* Filter-rad: primära POI-chips (scrollbara) + Lager-knapp (fix) */}

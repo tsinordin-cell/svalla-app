@@ -91,6 +91,7 @@ export default function SparaPage() {
   const [isOnline,      setIsOnline]      = useState(true)
   const [offlineBuffered, setOfflineBuffered] = useState(0)
   const [currentPos,    setCurrentPos]    = useState<{ lat: number; lng: number } | null>(null)
+  const [currentAccuracy, setCurrentAccuracy] = useState<number | null>(null)
   const [, setAnomalyCount]               = useState(0) // value bara via anomalyCountRef
 
   // ── New GPS intelligence state ──
@@ -133,6 +134,7 @@ export default function SparaPage() {
   const anomalyCountRef  = useRef(0)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
+  const wakeLockRef      = useRef<{ released: boolean; release(): Promise<void> } | null>(null)
 
   // ── Auth gate — render nothing until check completes ─────────────────────
   const [authLoading, setAuthLoading] = useState(true)
@@ -144,6 +146,35 @@ export default function SparaPage() {
       setAuthLoading(false)
     })
   }, [supabase, router])
+
+  // ── Wake Lock — håller skärmen vaken under aktiv spårning ─────────────────
+  const acquireWakeLock = useCallback(async () => {
+    if (typeof navigator === 'undefined' || !('wakeLock' in navigator)) return
+    if (wakeLockRef.current && !wakeLockRef.current.released) return
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const sentinel = await (navigator as any).wakeLock.request('screen')
+      wakeLockRef.current = sentinel
+    } catch { /* tillstånd nekades eller API ej tillgängligt */ }
+  }, [])
+
+  const releaseWakeLock = useCallback(() => {
+    if (wakeLockRef.current && !wakeLockRef.current.released) {
+      wakeLockRef.current.release().catch(() => {})
+    }
+    wakeLockRef.current = null
+  }, [])
+
+  // Re-acquire wake lock if OS releases it (screen dim, tab switch back)
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && phase === 'tracking') {
+        void acquireWakeLock()
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => document.removeEventListener('visibilitychange', handleVisibility)
+  }, [phase, acquireWakeLock])
 
   useEffect(() => { pointsRef.current = points }, [points])
 
@@ -231,6 +262,7 @@ export default function SparaPage() {
     watchRef.current = navigator.geolocation.watchPosition(
       (pos) => {
         setGpsError('')
+        setCurrentAccuracy(pos.coords.accuracy)
         if (pos.coords.accuracy > 80) return
 
         const now = Date.now()
@@ -374,6 +406,7 @@ export default function SparaPage() {
     setShownInsightKeys(new Set())
     setFlashInsight(null)
     startGPS()
+    void acquireWakeLock()
     // Initial snapshot
     snapshotTrip({ boatType: boat, phase: 'tracking', startedAt: new Date().toISOString(), elapsed: 0, tripId: null })
   }
@@ -393,6 +426,7 @@ export default function SparaPage() {
     haptic(150)
     setPhase('tracking')
     startGPS()
+    void acquireWakeLock()
   }
 
   function handleDiscardRecovery() {
@@ -404,6 +438,7 @@ export default function SparaPage() {
     haptic([100, 50, 100])
     pauseStartRef.current = new Date()
     stopGPS()
+    releaseWakeLock()
     kalmanRef.current?.reset()
     setPhase('paused')
     if (points.length > 0) {
@@ -432,11 +467,13 @@ export default function SparaPage() {
     kalmanRef.current?.reset()
     setPhase('tracking')
     startGPS()
+    void acquireWakeLock()
   }
 
   function handleStop() {
     haptic([50, 50, 100, 50, 200])
     stopGPS()
+    releaseWakeLock()
     kalmanRef.current?.reset()
     clearTripSnapshot()
     setPhase('done')
@@ -994,6 +1031,7 @@ export default function SparaPage() {
             currentPos={currentPos}
             speed={currentSpeed}
             bearing={bearing}
+            accuracy={currentAccuracy}
             heading={points.length > 0 ? points[points.length - 1]!.heading : null}
             stops={stops.filter(s => s.type === 'stop').map(s => ({
               lat: s.lat, lng: s.lng, type: s.type,

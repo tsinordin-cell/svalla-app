@@ -16,6 +16,7 @@ interface LiveTrackMapProps {
   speed: number       // knots
   bearing?: number | null   // degrees from north (calculated from movement)
   heading?: number | null   // degrees from GPS hardware heading
+  accuracy?: number | null  // meters — GPS accuracy radius, shown as blue circle
   stops?: StopMarker[]
   height?: number     // px, default 240
   centerTrigger?: number  // increment to force re-center on currentPos
@@ -29,6 +30,7 @@ export default function LiveTrackMap({
   speed,
   bearing = null,
   heading = null,
+  accuracy = null,
   stops = [],
   height: _height = 240,
   centerTrigger = 0,
@@ -36,14 +38,15 @@ export default function LiveTrackMap({
   showInternalControls = false,
 }: LiveTrackMapProps) {
   const [followOff, setFollowOff] = useState(false)
-  const mapContainer   = useRef<HTMLDivElement>(null)
-  const mapInstance    = useRef<import('leaflet').Map | null>(null)
-  const polylineRef    = useRef<import('leaflet').Polyline | null>(null)
-  const markerRef      = useRef<import('leaflet').Marker | null>(null)
-  const stopMarkersRef = useRef<import('leaflet').Marker[]>([])
-  const LRef           = useRef<typeof import('leaflet') | null>(null)
-  const userPannedRef  = useRef(false)   // true when user manually panned — pause auto-follow
-  const followTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const mapContainer       = useRef<HTMLDivElement>(null)
+  const mapInstance        = useRef<import('leaflet').Map | null>(null)
+  const polylineRef        = useRef<import('leaflet').Polyline | null>(null)
+  const markerRef          = useRef<import('leaflet').Marker | null>(null)
+  const accuracyCircleRef  = useRef<import('leaflet').Circle | null>(null)
+  const stopMarkersRef     = useRef<import('leaflet').Marker[]>([])
+  const LRef               = useRef<typeof import('leaflet') | null>(null)
+  const userPannedRef      = useRef(false)   // true when user manually panned — pause auto-follow
+  const followTimerRef     = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // ── Init map once ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -121,6 +124,7 @@ export default function LiveTrackMap({
         mapInstance.current = null
         polylineRef.current = null
         markerRef.current = null
+        accuracyCircleRef.current = null
         stopMarkersRef.current = []
       }
     }
@@ -172,6 +176,24 @@ export default function LiveTrackMap({
       markerRef.current = null
     }
 
+    // Accuracy circle — drawn in meters so it scales correctly with zoom
+    if (accuracyCircleRef.current) {
+      map.removeLayer(accuracyCircleRef.current)
+      accuracyCircleRef.current = null
+    }
+    if (currentPos && accuracy && accuracy > 0 && accuracy < 2000) {
+      accuracyCircleRef.current = L.circle([currentPos.lat, currentPos.lng], {
+        radius: accuracy,
+        color: '#1e5c82',
+        fillColor: '#1e5c82',
+        fillOpacity: 0.07,
+        weight: 1,
+        opacity: Math.min(0.4, 30 / accuracy),  // fainter as accuracy improves
+        interactive: false,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any).addTo(map)
+    }
+
     if (currentPos) {
       const activeBearing = heading ?? bearing
       const arrowSvg = activeBearing !== null
@@ -208,7 +230,7 @@ export default function LiveTrackMap({
         map.setView([currentPos.lat, currentPos.lng], map.getZoom(), { animate: true, duration: 0.8 })
       }
     }
-  }, [currentPos, bearing, heading])
+  }, [currentPos, bearing, heading, accuracy])
 
   // ── Force re-center when centerTrigger increments ───────────────────────
   useEffect(() => {
