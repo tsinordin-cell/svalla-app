@@ -223,9 +223,9 @@ export default function Nav() {
             </span>
             {active && (
               <span className="nav-active-bar" style={{
-                position: 'absolute', bottom: 4, left: '50%',
+                position: 'absolute', top: 6, left: '50%',
                 transform: 'translateX(-50%)',
-                background: 'var(--teal, #0a7b8c)', width: 4, height: 4, borderRadius: '50%',
+                background: 'var(--teal, #0a7b8c)', width: 20, height: 3, borderRadius: 2,
               }} />
             )}
           </Link>
