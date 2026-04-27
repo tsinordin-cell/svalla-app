@@ -427,14 +427,18 @@ export async function GET(
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '80px 80px 0', position: 'relative', zIndex: 2,
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <svg viewBox="0 0 20 22" width={36} height={36} style={{ display: 'flex' }}>
-              <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.70)" strokeWidth="1.6" strokeLinecap="round"/>
-              <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.70)"/>
-              <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.40)"/>
-              <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.55)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 14,
+            background: 'rgba(0,0,0,0.45)', borderRadius: 50, padding: '12px 28px 12px 20px',
+            border: '1px solid rgba(255,255,255,0.15)',
+          }}>
+            <svg viewBox="0 0 20 22" width={42} height={42} style={{ display: 'flex' }}>
+              <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.90)" strokeWidth="1.6" strokeLinecap="round"/>
+              <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.90)"/>
+              <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.55)"/>
+              <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.70)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
             </svg>
-            <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.70)' }}>SVALLA</div>
+            <div style={{ fontSize: 32, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.90)', display: 'flex' }}>SVALLA</div>
           </div>
           <div style={{
             display: 'flex', alignItems: 'center', gap: 12,
@@ -491,8 +495,14 @@ export async function GET(
               background: 'rgba(201,110,42,0.30)', border: '1px solid rgba(201,110,42,0.60)',
               borderRadius: 40, padding: '10px 24px', marginTop: 8,
             }}>
-              <div style={{ fontSize: 22 }}>⚓</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: '#f08030', letterSpacing: '1px' }}>MAGISK TUR</div>
+              <div style={{ display: 'flex', gap: 3 }}>
+                {[0,1,2].map(i => (
+                  <svg key={i} width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#f08030" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'flex' }}>
+                    <path d="M2 20c4-4 16-4 20 0M12 4C8 8 4 10 2 20M12 4c4 4 8 6 10 16" />
+                  </svg>
+                ))}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#f08030', letterSpacing: '1px', display: 'flex' }}>MAGISK TUR</div>
             </div>
           )}
         </div>

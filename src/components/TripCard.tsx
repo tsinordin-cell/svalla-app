@@ -50,15 +50,33 @@ function isVideo(url: string): boolean {
   }
 }
 
-const boatEmoji: Record<string, string> = {
-  'Motorbåt':   '🚤',
-  'Segelbåt':   '⛵',
-  'RIB':        '🛥️',
-  'Katamaran':  '⛵',
-  'Segeljolle': '⛵',
-  'Kajak':      '🛶',
-  'SUP':        '🏄',
-  'Annat':      '⚓',
+// Boat type → inline SVG icon (no emoji)
+function BoatIcon({ type, size = 13 }: { type: string; size?: number }) {
+  const s = size
+  // Sailboat
+  if (type === 'Segelbåt' || type === 'Katamaran' || type === 'Segeljolle') return (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+      <path d="M2 20h20M12 4v12M12 4L5 16h14L12 4Z" />
+    </svg>
+  )
+  // Motorboat / RIB
+  if (type === 'Motorbåt' || type === 'RIB') return (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+      <path d="M2 18h20l-3-6H5l-3 6Z" /><path d="M7 12V8l5-3 5 3v4" />
+    </svg>
+  )
+  // Kayak / SUP — paddle
+  if (type === 'Kajak' || type === 'SUP') return (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+      <ellipse cx="12" cy="18" rx="9" ry="3" /><path d="M12 4v14" /><path d="M8 8l4-4 4 4" />
+    </svg>
+  )
+  // Default — anchor
+  return (
+    <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}>
+      <circle cx="12" cy="5" r="3" /><line x1="12" y1="8" x2="12" y2="22" /><path d="M5 12H2a10 10 0 0020 0h-3" />
+    </svg>
+  )
 }
 
 
@@ -306,14 +324,20 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               {trip.boat_type && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
-                  <span style={{ flexShrink: 0 }}>{boatEmoji[trip.boat_type] ?? '⚓'} {trip.boat_type}</span>
+                  <span style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                    <BoatIcon type={trip.boat_type} size={12} />
+                    {trip.boat_type}
+                  </span>
                 </>
               )}
               {trip.location_name && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    📍 {trip.location_name}
+                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                    <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0Z" /><circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {trip.location_name}
                   </span>
                 </>
               )}
@@ -333,7 +357,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             color: 'var(--amber, #c96e2a)',
             fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
           }}>
-            <span style={{ fontSize: 10, letterSpacing: '-1px' }}>⚓⚓⚓</span>
+            <span style={{ display: 'inline-flex', gap: 1 }}>
+              {[0,1,2].map(i => (
+                <svg key={i} width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 20c4-4 16-4 20 0M12 4C8 8 4 10 2 20M12 4c4 4 8 6 10 16" />
+                </svg>
+              ))}
+            </span>
             Magisk tur
           </div>
         )}

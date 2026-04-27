@@ -95,7 +95,7 @@ export default function RouteMapSVG({
       {[0, 1, 2].map(dy => [0, 1, 2].map(dx => (
         <g key={`${dx}_${dy}`}>
           <image
-            href={`https://tile.openstreetmap.org/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
+            href={`https://a.basemaps.cartocdn.com/light_all/${Z}/${tx0 + dx}/${ty0 + dy}.png`}
             x={gridLeft + dx * 256} y={gridTop + dy * 256}
             width={256} height={256}
             preserveAspectRatio="none"

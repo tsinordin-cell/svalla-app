@@ -71,7 +71,7 @@ export async function getCategoryById(id: string): Promise<ForumCategory | null>
       .select('id, name, description, icon, sort_order, thread_count, post_count')
       .eq('id', id)
       .single()
-    return (data as ForumCategory) ?? null
+    return (data as ForumCategory) ?? STATIC_CATEGORIES.find(c => c.id === id) ?? null
   } catch {
     return STATIC_CATEGORIES.find(c => c.id === id) ?? null
   }

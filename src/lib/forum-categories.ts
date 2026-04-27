@@ -18,7 +18,7 @@ export const STATIC_CATEGORIES: ForumCategory[] = [
   { id: 'motorbat',         name: 'Motorbåt',           description: 'Motorteknik, bränsle, navigation och service',  icon: '🚤', sort_order: 2, thread_count: 0, post_count: 0 },
   { id: 'fiske',            name: 'Fiske',              description: 'Fiskeplatser, regler, spön och drag',           icon: '🎣', sort_order: 3, thread_count: 0, post_count: 0 },
   { id: 'paddling',         name: 'Paddling',           description: 'Kajak, SUP, kanot — allt som paddlas',          icon: '🛶', sort_order: 4, thread_count: 0, post_count: 0 },
-  { id: 'vader-sakerhet',   name: 'Väder & säkerhet',   description: 'SMHI-tips, passageplanering och nödlägen',      icon: '🌤️', sort_order: 5, thread_count: 0, post_count: 0 },
+  { id: 'vader-sakerhet',   name: 'Väder & säkerhet',   description: 'SMHI-tips, passageplanering och nödlägen',      icon: '⛅', sort_order: 5, thread_count: 0, post_count: 0 },
   { id: 'teknik-underhall', name: 'Teknik & underhåll', description: 'Motor, elektronik, rigg och verkstad',          icon: '🔧', sort_order: 6, thread_count: 0, post_count: 0 },
   { id: 'hamnar-bryggor',   name: 'Hamnar & bryggor',   description: 'Gästhamnstips, avgifter, ankringsplatser',      icon: '⚓', sort_order: 7, thread_count: 0, post_count: 0 },
   { id: 'nybörjare',        name: 'Nybörjare',          description: 'Inga dumma frågor — fråga allt här',            icon: '👋', sort_order: 8, thread_count: 0, post_count: 0 },

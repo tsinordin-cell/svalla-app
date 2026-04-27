@@ -40,10 +40,8 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
             const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
       const tileUrl = isDark
         ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      const tileAttr = isDark
-        ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        : '&copy; OpenStreetMap contributors'
+        : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+      const tileAttr = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
       L.tileLayer(tileUrl, {
         attribution: tileAttr,
         maxZoom: 18,

@@ -172,7 +172,11 @@ export default async function PlaneraPage() {
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ fontSize: 22 }}>⛵</span>
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, background: 'rgba(10,123,140,0.10)', color: 'var(--sea)' }}>
+            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 20h20M12 4v12M12 4L5 16h14L12 4Z" />
+            </svg>
+          </span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska kurerade turer</div>
             <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
