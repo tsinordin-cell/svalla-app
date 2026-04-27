@@ -14,6 +14,7 @@ import {
 } from '@/lib/gps'
 import { GpsKalmanFilter } from '@/lib/kalman'
 import { bufferPoint, getPendingPoints, clearPoints, getPendingCount } from '@/lib/offlineBuffer'
+import { startTracking } from '@/lib/tracker'
 import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } from '@/lib/tripPersistence'
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
@@ -122,7 +123,7 @@ export default function SparaPage() {
   const [aiErr,           setAiErr]           = useState(false)
 
   // ── Refs ──
-  const watchRef         = useRef<number | null>(null)
+  const watchRef         = useRef<(() => Promise<void>) | null>(null)
   const timerRef         = useRef<NodeJS.Timeout | null>(null)
   const heartbeatRef     = useRef<NodeJS.Timeout | null>(null)
   const insightTimerRef  = useRef<NodeJS.Timeout | null>(null)
@@ -194,7 +195,7 @@ export default function SparaPage() {
     return () => {
       window.removeEventListener('online',  handleOnline)
       window.removeEventListener('offline', handleOffline)
-      if (watchRef.current != null) navigator.geolocation.clearWatch(watchRef.current)
+      if (watchRef.current) { watchRef.current().catch(() => {}); watchRef.current = null }
       if (timerRef.current)    clearInterval(timerRef.current)
       if (heartbeatRef.current) clearInterval(heartbeatRef.current)
       if (insightTimerRef.current) clearTimeout(insightTimerRef.current)
@@ -256,22 +257,23 @@ export default function SparaPage() {
   }, [phase, tripId, boatType, elapsed])
 
   // ── GPS tracking ───────────────────────────────────────────────────────────
+  // startTracking auto-detects Capacitor (native background GPS) vs web browser.
+  // On iOS native the phone can lock the screen and GPS keeps running — Strava-level.
   const startGPS = useCallback(() => {
-    if (!navigator.geolocation) { setGpsError('GPS ej tillgängligt på denna enhet'); return }
     setGpsError('')
-    watchRef.current = navigator.geolocation.watchPosition(
-      (pos) => {
+    startTracking(
+      (point) => {
         setGpsError('')
-        setCurrentAccuracy(pos.coords.accuracy)
-        if (pos.coords.accuracy > 80) return
+        setCurrentAccuracy(point.accuracy)
+        if (point.accuracy > 80) return
 
-        const now = Date.now()
+        const now = point.timestamp
 
         // Anomaly detection
         if (lastGpsPtRef.current) {
           if (isGpsAnomaly(
             lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
-            pos.coords.latitude, pos.coords.longitude, now
+            point.lat, point.lng, now
           )) {
             anomalyCountRef.current += 1
             setAnomalyCount(anomalyCountRef.current)
@@ -287,20 +289,20 @@ export default function SparaPage() {
           if (dtHours > 0.0005) {
             const R = 3440.065
             const lat1 = lastGpsPtRef.current.lat * Math.PI / 180
-            const lat2 = pos.coords.latitude  * Math.PI / 180
-            const dLat = (pos.coords.latitude  - lastGpsPtRef.current.lat) * Math.PI / 180
-            const dLng = (pos.coords.longitude - lastGpsPtRef.current.lng) * Math.PI / 180
+            const lat2 = point.lat * Math.PI / 180
+            const dLat = (point.lat - lastGpsPtRef.current.lat) * Math.PI / 180
+            const dLng = (point.lng - lastGpsPtRef.current.lng) * Math.PI / 180
             const a = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2
             speedKnots = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)) / dtHours
           }
-        } else if (pos.coords.speed != null && pos.coords.speed >= 0) {
-          // First point — no delta available yet, use device speed
-          speedKnots = msToKnots(pos.coords.speed)
+        } else if (point.speed != null && point.speed >= 0) {
+          // First point — no delta yet, use device-reported speed (m/s → knots)
+          speedKnots = msToKnots(point.speed)
         }
 
         // Kalman smoothing
         if (!kalmanRef.current) kalmanRef.current = new GpsKalmanFilter()
-        const smoothed = kalmanRef.current.update(pos.coords.latitude, pos.coords.longitude)
+        const smoothed = kalmanRef.current.update(point.lat, point.lng)
 
         setCurrentPos({ lat: smoothed.lat, lng: smoothed.lng })
 
@@ -320,8 +322,8 @@ export default function SparaPage() {
           lat:        smoothed.lat,
           lng:        smoothed.lng,
           speedKnots: clampedSpeed,
-          heading:    pos.coords.heading ?? null,
-          accuracy:   pos.coords.accuracy,
+          heading:    point.heading,
+          accuracy:   point.accuracy,
           recordedAt: new Date().toISOString(),
         }
 
@@ -341,7 +343,6 @@ export default function SparaPage() {
               newInsights.forEach(ins => {
                 setShownInsightKeys(prev => {
                   if (!prev.has(ins.key)) {
-                    // Flash this insight briefly
                     setFlashInsight(ins)
                     if (insightTimerRef.current) clearTimeout(insightTimerRef.current)
                     insightTimerRef.current = setTimeout(() => setFlashInsight(null), 4000)
@@ -363,26 +364,35 @@ export default function SparaPage() {
           lat:        smoothed.lat,
           lng:        smoothed.lng,
           speedKnots: clampedSpeed,
-          heading:    pos.coords.heading ?? null,
-          accuracy:   pos.coords.accuracy,
+          heading:    point.heading,
+          accuracy:   point.accuracy,
           recordedAt: new Date().toISOString(),
         })
           .then(() => getPendingCount().then(setOfflineBuffered))
           .catch(() => {})
       },
-      (err) => {
-        if (err.code === err.TIMEOUT)             setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
-        else if (err.code === err.PERMISSION_DENIED) setGpsError('GPS-åtkomst nekad – tillåt platsdelning i inställningarna.')
-        else if (err.code === err.POSITION_UNAVAILABLE) setGpsError('GPS-signal ej tillgänglig.')
-        else setGpsError('GPS-fel – prova att ladda om sidan.')
+      (errMsg) => {
+        const m = errMsg.toLowerCase()
+        if (m.includes('nekad') || m.includes('denied') || m.includes('permission')) {
+          setGpsError('GPS-åtkomst nekad – tillåt platsdelning i inställningarna.')
+        } else if (m.includes('timeout') || m.includes('söker')) {
+          setGpsError('Söker GPS-signal… Gå ut om du är inomhus.')
+        } else if (m.includes('unavailable') || m.includes('ej tillgänglig')) {
+          setGpsError('GPS-signal ej tillgänglig.')
+        } else {
+          setGpsError(errMsg || 'GPS-fel – prova att ladda om sidan.')
+        }
       },
-      { enableHighAccuracy: true, maximumAge: 3000, timeout: Infinity }
-    )
+    ).then(stopFn => {
+      watchRef.current = stopFn
+    }).catch(() => {
+      setGpsError('GPS ej tillgängligt på denna enhet.')
+    })
   }, [elapsed])
 
   const stopGPS = useCallback(() => {
-    if (watchRef.current != null) {
-      navigator.geolocation.clearWatch(watchRef.current)
+    if (watchRef.current) {
+      watchRef.current().catch(() => {})
       watchRef.current = null
     }
     lastGpsPtRef.current = null

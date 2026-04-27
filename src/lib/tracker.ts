@@ -1,6 +1,9 @@
 /**
  * Svalla GPS Tracker — unified interface för native (Capacitor) och web.
  * Använd alltid denna modul — aldrig navigator.geolocation direkt.
+ *
+ * Native (Capacitor): bakgrundsläge, skärm av, telefon i ficka ✓
+ * Web: kräver skärmen på (Wake Lock), acceptabelt kompromiss
  */
 
 export interface GpsPoint {
@@ -8,6 +11,8 @@ export interface GpsPoint {
   lng: number
   accuracy: number
   timestamp: number
+  heading: number | null   // grader från norr, null om ej tillgängligt
+  speed: number | null     // m/s från enhetens sensor, null om ej tillgängligt
 }
 
 export type TrackCallback = (point: GpsPoint) => void
@@ -69,6 +74,8 @@ async function startNativeTracking(
         lng:       pos.coords.longitude,
         accuracy:  pos.coords.accuracy,
         timestamp: pos.timestamp,
+        heading:   pos.coords.heading   ?? null,
+        speed:     pos.coords.speed     ?? null,
       })
     },
   )
@@ -98,6 +105,8 @@ function startWebTracking(
       lng:       pos.coords.longitude,
       accuracy:  pos.coords.accuracy,
       timestamp: pos.timestamp,
+      heading:   pos.coords.heading ?? null,
+      speed:     pos.coords.speed   ?? null,
     }),
     (err) => onError(err.message ?? 'GPS-fel'),
     { enableHighAccuracy: true, timeout: 10_000, maximumAge: 5_000 },
@@ -126,6 +135,8 @@ export async function getCurrentPosition(): Promise<GpsPoint | null> {
         lng:       pos.coords.longitude,
         accuracy:  pos.coords.accuracy,
         timestamp: pos.timestamp,
+        heading:   pos.coords.heading ?? null,
+        speed:     pos.coords.speed   ?? null,
       }
     } catch {
       return null
@@ -140,6 +151,8 @@ export async function getCurrentPosition(): Promise<GpsPoint | null> {
         lng:       pos.coords.longitude,
         accuracy:  pos.coords.accuracy,
         timestamp: pos.timestamp,
+        heading:   pos.coords.heading ?? null,
+        speed:     pos.coords.speed   ?? null,
       }),
       () => resolve(null),
       { enableHighAccuracy: true, timeout: 10_000 },

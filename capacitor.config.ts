@@ -25,7 +25,7 @@ const config: CapacitorConfig = {
     },
     Geolocation: {
       permissions: {
-        location: 'whenInUse',
+        location: 'always',
       },
     },
   },
