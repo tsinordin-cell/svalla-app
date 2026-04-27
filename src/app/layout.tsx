@@ -1,6 +1,17 @@
 import type { Metadata, Viewport } from 'next'
+import { Playfair_Display } from 'next/font/google'
 import { Suspense } from 'react'
 import './globals.css'
+
+// Display-typsnitt för rubriker. Hostas lokalt av Vercel via next/font —
+// ingen extern Google Fonts-fetch (CSP-säkert) och inget FOUT.
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-display',
+})
 import Nav from '@/components/Nav'
 import InstallPrompt from '@/components/InstallPrompt'
 import PushPrompt from '@/components/PushPrompt'
@@ -72,7 +83,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="sv" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning className={playfair.variable}>
       <head>
         {/* Preconnect to Supabase — reduces connection latency for API + image CDN */}
         <link rel="preconnect" href="https://oiklttwylndesewauytj.supabase.co" />

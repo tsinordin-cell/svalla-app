@@ -52,12 +52,11 @@ const securityHeaders = [
       "default-src 'self'",
       scriptSrc,
       // unsafe-inline på style krävs av Tailwind/Next runtime — kan ej tas bort utan stor refactor.
-      // fonts.googleapis.com behövs för Playfair Display (rubriktypsnitt) via @import i globals.css.
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "style-src 'self' 'unsafe-inline'",
       // img-src: tillåt egna bilder, data:URI (avatars, ikoner), Supabase Storage (publika buckets) och Unsplash.
       // Tidigare 'https:' tillät vilken HTTPS-bild som helst — exfiltrationskanal för session-cookies via <img onerror>.
       "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
-      "font-src 'self' data: https://fonts.gstatic.com",
+      "font-src 'self' data:",
       "media-src 'self' blob: https://*.supabase.co",
       "worker-src 'self' blob:", // service worker + Capacitor
       "manifest-src 'self'",
