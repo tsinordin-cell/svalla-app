@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
   // Rate limit: max 10 anmälningar per dygn per användare. Hindrar
   // grief-anmälningar mot specifika användare och spam-flöden mot moderatorerna.
-  if (!checkRateLimit(`report:${user.id}`, 10, 24 * 60 * 60 * 1000)) {
+  if (!(await checkRateLimit(`report:${user.id}`, 10, 24 * 60 * 60 * 1000))) {
     return NextResponse.json({ error: 'För många anmälningar idag. Försök imorgon.' }, { status: 429 })
   }
 

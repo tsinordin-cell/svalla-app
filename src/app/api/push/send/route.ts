@@ -30,7 +30,7 @@ export async function POST(req: Request) {
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   // Rate limit: max 30 push-notiser per användare per minut (like/comment/follow-storms)
-  if (!checkRateLimit(`push-send:${user.id}`, 30, 60_000)) {
+  if (!(await checkRateLimit(`push-send:${user.id}`, 30, 60_000))) {
     return NextResponse.json({ error: 'För många notifieringar. Vänta en stund.' }, { status: 429 })
   }
 
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
 
     if (!follow) {
       // Ingen relation → strängare per-target-limit
-      if (!checkRateLimit(`push-stranger:${user.id}:${targetUserId}`, 1, 24 * 60 * 60 * 1000)) {
+      if (!(await checkRateLimit(`push-stranger:${user.id}:${targetUserId}`, 1, 24 * 60 * 60 * 1000))) {
         return NextResponse.json({ ok: true, sent: 0 }) // tyst drop, ingen feedback till spammern
       }
     }

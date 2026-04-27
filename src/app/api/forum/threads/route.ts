@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
 
     // Rate limit: 5 forum-actions per 10 minuter per användare
     const rlKey = `forum:${user.id}`
-    if (!checkRateLimit(rlKey, 5, 10 * 60 * 1000)) {
+    if (!(await checkRateLimit(rlKey, 5, 10 * 60 * 1000))) {
       return NextResponse.json({ error: 'Du skriver för snabbt. Vänta en stund.' }, { status: 429 })
     }
 

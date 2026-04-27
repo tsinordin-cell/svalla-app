@@ -32,7 +32,7 @@ export async function POST(req: Request) {
   // Stripe debiterar ingenting förrän kunden bekräftar, men endpointen skapar
   // customer-objekt och loggar metadata — varje anrop kostar serverresurser
   // och kan användas för att förorena kundregistret.
-  if (!checkRateLimit(`stripe-checkout:${user.id}`, 5, 60 * 60 * 1000)) {
+  if (!(await checkRateLimit(`stripe-checkout:${user.id}`, 5, 60 * 60 * 1000))) {
     return NextResponse.json({ error: 'För många försök. Vänta en stund.' }, { status: 429 })
   }
 

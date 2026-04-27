@@ -474,7 +474,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { checkRateLimit } = await import('@/lib/rateLimit')
-  if (!checkRateLimit(`guide:${user.id}`, 10, 60_000)) {
+  if (!(await checkRateLimit(`guide:${user.id}`, 10, 60_000))) {
     return NextResponse.json({ error: 'För många förfrågningar. Vänta en stund.' }, { status: 429 })
   }
 

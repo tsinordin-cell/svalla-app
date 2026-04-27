@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   // Rate limit keyed on verified user.id — not spoofable client header
-  if (!checkRateLimit(`push-subscribe:${user.id}`, 10, 60 * 1000)) {
+  if (!(await checkRateLimit(`push-subscribe:${user.id}`, 10, 60 * 1000))) {
     return NextResponse.json({ error: 'Försökt för många gånger. Vänta en minut.' }, { status: 429 })
   }
 

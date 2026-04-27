@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
       req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
       req.headers.get('x-real-ip') ||
       'unknown'
-    if (!checkRateLimit(`forum-search:${ip}`, 30, 60_000)) {
+    if (!(await checkRateLimit(`forum-search:${ip}`, 30, 60_000))) {
       return NextResponse.json({ error: 'För många sökningar. Vänta en stund.' }, { status: 429 })
     }
 

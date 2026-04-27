@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
     ?? req.headers.get('x-real-ip')
     ?? 'unknown'
-  if (!checkRateLimit(`planera-create:${ip}`, 20, 60_000)) {
+  if (!(await checkRateLimit(`planera-create:${ip}`, 20, 60_000))) {
     return NextResponse.json({ error: 'För många förfrågningar' }, { status: 429 })
   }
 
