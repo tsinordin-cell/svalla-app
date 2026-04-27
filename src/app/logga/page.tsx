@@ -1,12 +1,24 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 
 function LoggaChoice() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const plannedRouteId = searchParams.get('planned_route_id')
+
+  // Auth gate
+  const [authReady, setAuthReady] = useState(false)
+  useEffect(() => {
+    const supabase = createClient()
+    supabase.auth.getUser().then(({ data }) => {
+      if (!data.user) { router.push('/logga-in?redirect=/logga'); return }
+      setAuthReady(true)
+    })
+  }, [router])
+  if (!authReady) return null
   const suffix = plannedRouteId ? `?planned_route_id=${plannedRouteId}` : ''
 
   return (

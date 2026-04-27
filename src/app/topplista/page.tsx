@@ -153,13 +153,17 @@ export default async function ToplistaPage() {
           display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10,
         }}>
           {[
-            { val: trips.length, label: 'Turer', emoji: '⛵' },
-            { val: `${Math.round(totalNM)}`, label: 'NM totalt', emoji: '🧭' },
-            { val: uniqueUsers, label: 'Seglare', emoji: '👥' },
-            { val: magicTotal, label: 'Magiska', emoji: '⚓' },
-          ].map(({ val, label, emoji }) => (
+            { val: trips.length, label: 'Turer',
+              icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round"><path d="M3 17l3-8 3 4 3-6 3 10"/><path d="M3 17h18"/></svg> },
+            { val: `${Math.round(totalNM)}`, label: 'NM totalt',
+              icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="15"/></svg> },
+            { val: uniqueUsers, label: 'Seglare',
+              icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+            { val: magicTotal, label: 'Magiska',
+              icon: <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg> },
+          ].map(({ val, label, icon }) => (
             <div key={label} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 18, marginBottom: 2 }}>{emoji}</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 2 }}>{icon}</div>
               <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{val}</div>
               <div style={{ fontSize: 8, fontWeight: 700, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 3 }}>{label}</div>
             </div>
@@ -168,7 +172,7 @@ export default async function ToplistaPage() {
 
         {/* ── Veckans topp: NM ── */}
         <LeaderboardSection
-          title="🔥 Veckans topp — Nautiska mil"
+          title="Veckans topp — Nautiska mil"
           subtitle="Senaste 7 dagarna"
           rows={weekTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(1)} NM`}
@@ -178,9 +182,9 @@ export default async function ToplistaPage() {
 
         {/* ── Månadens topp: NM ── */}
         <LeaderboardSection
-          title="🌊 Månadens topp — Nautiska mil"
+          title="Månadens topp — Nautiska mil"
           subtitle="Senaste 30 dagarna"
-          rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} ⚓⚓⚓` : ''}` }))}
+          rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} magiska` : ''}` }))}
           formatValue={v => `${v.toFixed(1)} NM`}
           emptyText="Ingen har loggat denna månad än"
           accentColor="#2d7d8a"
@@ -188,7 +192,7 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: NM ── */}
         <LeaderboardSection
-          title="⛵ Alltime — Nautiska mil"
+          title="Alltime — Nautiska mil"
           subtitle="Totalt seglat"
           rows={allTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(0)} NM`}
@@ -198,7 +202,7 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: antal turer ── */}
         <LeaderboardSection
-          title="🗺️ Alltime — Flest turer"
+          title="Alltime — Flest turer"
           subtitle="Antal loggade turer"
           rows={allTopCount.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.count, secondaryLabel: `${r.nm.toFixed(0)} NM` }))}
           formatValue={v => `${v} turer`}
@@ -209,10 +213,10 @@ export default async function ToplistaPage() {
         {/* ── Magic trips leaderboard ── */}
         {allTopMagic.length > 0 && (
           <LeaderboardSection
-            title="✨ Alltime — Magiska turer"
-            subtitle="Flest ⚓⚓⚓-turer"
+            title="Alltime — Magiska turer"
+            subtitle="Flest magiska turer"
             rows={allTopMagic.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.magic, secondaryLabel: `${r.nm.toFixed(0)} NM totalt` }))}
-            formatValue={v => `⚓⚓⚓ ×${v}`}
+            formatValue={v => `×${v} magiska`}
             emptyText="Inga magiska turer loggade"
             accentColor="#c96e2a"
           />
@@ -221,7 +225,7 @@ export default async function ToplistaPage() {
         {/* ── Speed leaderboard ── */}
         {allTopSpeed.length > 0 && (
           <LeaderboardSection
-            title="💨 Alltime — Toppfart"
+            title="Alltime — Toppfart"
             subtitle="Högsta uppmätta hastighet"
             rows={allTopSpeed.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.maxSpeed, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
             formatValue={v => `${v.toFixed(1)} kn`}
@@ -236,7 +240,11 @@ export default async function ToplistaPage() {
           boxShadow: '0 2px 12px rgba(0,45,60,0.07)', marginTop: 8,
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 36, marginBottom: 8 }}>🚀</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 8 }}>
+            <svg width={36} height={36} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.7}>
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
           <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Klättra på listan</h3>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>Logga en tur och se dig själv bland de bästa</p>
           <Link href="/logga" style={{

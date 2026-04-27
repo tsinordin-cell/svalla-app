@@ -134,11 +134,14 @@ export default function SparaPage() {
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
 
-  // ── Keep pointsRef in sync ──
+  // ── Auth gate — render nothing until check completes ─────────────────────
+  const [authLoading, setAuthLoading] = useState(true)
+
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) { router.push('/logga-in?redirect=/spara'); return }
       setCurrentUserId(data.user.id)
+      setAuthLoading(false)
     })
   }, [supabase, router])
 
@@ -700,6 +703,9 @@ export default function SparaPage() {
   const dist   = totalDistanceNM(points)
   const avgSpd = avgSpeedKnots(points)
   const maxSpd = maxSpeedKnots(points)
+
+  // ── Block render until auth resolved ─────────────────────────────────────
+  if (authLoading) return null
 
   // ── SETUP ──────────────────────────────────────────────────────────────────
   if (phase === 'setup') {

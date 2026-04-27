@@ -30,18 +30,23 @@ function getGreeting(): string {
 
 function getTimeLabel(): string {
   const h = new Date().getHours()
-  if (h >= 5  && h < 8)  return '🌅 GRYNING'
-  if (h >= 8  && h < 12) return '☀ MORGON'
-  if (h >= 12 && h < 17) return '⛵ EFTERMIDDAG'
-  if (h >= 17 && h < 20) return '🌆 KVÄLL'
-  return '🌙 NATT'
+  if (h >= 5  && h < 8)  return 'GRYNING'
+  if (h >= 8  && h < 12) return 'MORGON'
+  if (h >= 12 && h < 17) return 'EFTERMIDDAG'
+  if (h >= 17 && h < 20) return 'KVÄLL'
+  return 'NATT'
 }
 
 /** Graciöst felmeddelande om servern kraschar (undviker error-boundary). */
 function FeedServerError() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
-      <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
+      <div style={{ marginBottom: 16 }}>
+        <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.5}>
+          <path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/>
+          <path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/>
+        </svg>
+      </div>
       <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
       <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>
         Något gick fel på servern. Prova att ladda om sidan.
@@ -99,7 +104,12 @@ export default async function FeedPage(
   if (allRes.error) {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 48, marginBottom: 16 }}>🌊</div>
+        <div style={{ marginBottom: 16 }}>
+        <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" opacity={0.5}>
+          <path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/>
+          <path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/>
+        </svg>
+      </div>
         <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Kunde inte ladda feeden</h2>
         <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 20px', lineHeight: 1.5 }}>
           Kontrollera din anslutning och försök igen.
