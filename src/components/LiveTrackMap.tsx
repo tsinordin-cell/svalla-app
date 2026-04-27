@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 interface StopMarker {
   lat: number
@@ -76,13 +77,7 @@ export default function LiveTrackMap({
         scrollWheelZoom: false,
       }).setView([59.3293, 18.0686], 13)
 
-            const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
-      const tileUrl = isDark
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      const tileAttr = isDark
-        ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        : '&copy; OpenStreetMap contributors'
+      const { url: tileUrl, attr: tileAttr } = baseTile()
       L.tileLayer(tileUrl, {
         attribution: tileAttr,
         maxZoom: 18,
@@ -90,10 +85,7 @@ export default function LiveTrackMap({
       }).addTo(mapInstance.current)
 
       // Nautical overlay
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-        opacity: 0.5,
-        maxZoom: 18,
-      }).addTo(mapInstance.current)
+      L.tileLayer(SEAMARK_TILE, { opacity: 0.5, maxZoom: 18 }).addTo(mapInstance.current)
 
       // Pause auto-follow when user manually pans
       mapInstance.current.on('dragstart', () => {

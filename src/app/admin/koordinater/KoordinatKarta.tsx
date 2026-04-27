@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { createClient } from '@/lib/supabase'
+import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type Place = {
   id: string
@@ -66,15 +67,11 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
         zoomControl: true,
       })
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap',
-        maxZoom: 19,
-      }).addTo(map)
+      const { url: tileUrl, attr: tileAttr } = baseTile()
+      L.tileLayer(tileUrl, { attribution: tileAttr, maxZoom: 19 }).addTo(map)
 
       // Sjökort-overlay (OpenSeaMap)
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-        maxZoom: 18, opacity: 0.85, crossOrigin: '',
-      }).addTo(map)
+      L.tileLayer(SEAMARK_TILE, { maxZoom: 18, opacity: 0.85, crossOrigin: '' }).addTo(map)
 
       mapInstance.current = map
       renderMarkers(L, map, places)

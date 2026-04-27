@@ -6,15 +6,24 @@
 import type { Map as LeafletMap } from 'leaflet'
 type LeafletNS = typeof import('leaflet')
 
-export const OSM_TILE_LIGHT = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-export const OSM_TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+// CARTO tiles — ingen API-nyckel krävs, snabb CDN, OpenSeaMap-vänlig
+export const CARTO_TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+export const CARTO_TILE_DARK  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+
+// Bakåtkompatibilitet — gamla importer slutar fungera annars
+/** @deprecated Använd CARTO_TILE_LIGHT */
+export const OSM_TILE_LIGHT = CARTO_TILE_LIGHT
+export const OSM_TILE_DARK  = CARTO_TILE_DARK
 
 /** OpenSeaMap sjömärken, grynnor, fyrar etc. — transparent PNG, läggs ovanpå bas-lagret. */
 export const SEAMARK_TILE = 'https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png'
 
-export const OSM_ATTR      = '&copy; OpenStreetMap contributors'
-export const OSM_DARK_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+export const CARTO_ATTR    = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
 export const SEAMARK_ATTR  = '&copy; <a href="https://www.openseamap.org">OpenSeaMap</a>'
+
+// Bakåtkompatibilitet
+export const OSM_ATTR      = CARTO_ATTR
+export const OSM_DARK_ATTR = CARTO_ATTR
 
 /** Aktivt tema via data-theme på <html>. */
 export function isDarkTheme(): boolean {
@@ -25,8 +34,8 @@ export function isDarkTheme(): boolean {
 /** URL + attribution för bas-tiles baserat på aktuellt tema. */
 export function baseTile(): { url: string; attr: string } {
   return isDarkTheme()
-    ? { url: OSM_TILE_DARK, attr: OSM_DARK_ATTR }
-    : { url: OSM_TILE_LIGHT, attr: OSM_ATTR }
+    ? { url: CARTO_TILE_DARK,  attr: CARTO_ATTR }
+    : { url: CARTO_TILE_LIGHT, attr: CARTO_ATTR }
 }
 
 /**

@@ -5,6 +5,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { WeatherPill, DestinationPill } from '@/components/MapCornerPills'
+import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | 'rutter' | 'vader' | 'heatmap'
 
@@ -191,6 +192,9 @@ export default function UpptackClient() {
   const lagerButtonRef  = useRef<HTMLButtonElement>(null)
   const lagerPopoverRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // GPS position
+  const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active'>('idle')
+  const gpsMarkerRef = useRef<import('leaflet').CircleMarker | null>(null)
 
   // Stäng Lager-menyn vid klick utanför eller Escape
   useEffect(() => {
@@ -249,13 +253,7 @@ export default function UpptackClient() {
         attributionControl: false,
       })
 
-      const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
-      const tileUrl = isDark
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      const tileAttr = isDark
-        ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        : '&copy; OpenStreetMap contributors'
+      const { url: tileUrl, attr: tileAttr } = baseTile()
       L.tileLayer(tileUrl, {
         attribution: tileAttr,
         maxZoom: 18,
@@ -263,7 +261,7 @@ export default function UpptackClient() {
       }).addTo(map)
 
       // Sjökort-overlay (OpenSeaMap)
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+      L.tileLayer(SEAMARK_TILE, {
         maxZoom: 18, opacity: 0.85, crossOrigin: '',
       }).addTo(map)
 
@@ -282,6 +280,44 @@ export default function UpptackClient() {
       mapInstanceRef.current = null
     }
    
+  }, [])
+
+  // ── GPS: centrera på användarens position ────────────────────────────────
+  const handleGps = useCallback(() => {
+    const map = mapInstanceRef.current
+    const L   = leafletRef.current
+    if (!map || !L) return
+    if (!navigator.geolocation) return
+
+    setGpsState('loading')
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude: lat, longitude: lng } = pos.coords
+        // Ta bort gammalt markeringsset
+        if (gpsMarkerRef.current) { gpsMarkerRef.current.remove(); gpsMarkerRef.current = null }
+        // Blå prick + ring
+        const outerRing = L.circleMarker([lat, lng], {
+          radius: 14, fillColor: '#3b82f6', fillOpacity: 0.2,
+          color: '#3b82f6', weight: 1.5, opacity: 0.6,
+        }).addTo(map)
+        const dot = L.circleMarker([lat, lng], {
+          radius: 7, fillColor: '#3b82f6', fillOpacity: 1,
+          color: '#fff', weight: 2.5, opacity: 1,
+        }).addTo(map)
+        // Lagra referens på dot — vi visar ringens "glow" men vill ta bort båda
+        gpsMarkerRef.current = dot
+        // Lägg ring under dot via z-order (addTo i rätt ordning räcker)
+        const removeRing = () => { outerRing.remove() }
+        dot.on('remove', removeRing)
+
+        map.flyTo([lat, lng], Math.max(map.getZoom(), 13), { duration: 0.9 })
+        setGpsState('active')
+      },
+      () => {
+        setGpsState('idle')
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    )
   }, [])
 
   // ── Heatmap fetch on map move ─────────────────────────────────────────────
@@ -550,6 +586,45 @@ export default function UpptackClient() {
           Planera
         </Link>
       </div>
+
+      {/* GPS-positionsknapp — nedre vänster, ovanför zoom-kontroll */}
+      {view === 'map' && (
+        <button
+          onClick={handleGps}
+          aria-label="Visa min position"
+          className="press-feedback"
+          style={{
+            position: 'absolute', bottom: 90, right: 12, zIndex: 1001,
+            width: 36, height: 36,
+            border: 'none', borderRadius: '50%',
+            background: gpsState === 'active' ? 'var(--sea)' : 'var(--glass-92)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+            outline: '1px solid rgba(10,45,60,0.12)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer',
+            transition: 'background 200ms ease',
+          } as React.CSSProperties}
+        >
+          {gpsState === 'loading' ? (
+            <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
+              stroke="var(--sea)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+              style={{ animation: 'spin 1s linear infinite' }}
+            >
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+            </svg>
+          ) : (
+            <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
+              stroke={gpsState === 'active' ? '#fff' : 'var(--txt2)'}
+              strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+            </svg>
+          )}
+        </button>
+      )}
 
       {/* Filter-rad: primära POI-chips (scrollbara) + Lager-knapp (fix) */}
       <div

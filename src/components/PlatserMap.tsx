@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, Marker, Polyline, MarkerClusterGroup, MarkerCluster, DivIconOptions } from 'leaflet'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
+import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type MarkerEntry = {
   marker:     Marker
@@ -323,23 +324,16 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
         wheelPxPerZoomLevel: 80,
       })
 
-      // ── Baskartor: OSM + OpenSeaMap nautiska lager ──────────────────────────
-            const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'dark'
-      const tileUrl = isDark
-        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-        : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-      const tileAttr = isDark
-        ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        : '&copy; OpenStreetMap contributors'
+      // ── Baskartor: CARTO + OpenSeaMap nautiska lager ──────────────────────
+      const { url: tileUrl, attr: tileAttr } = baseTile()
       L.tileLayer(tileUrl, {
         attribution: tileAttr,
         maxZoom:     18,
         opacity:     0.85,
-        // crossOrigin förbättrar cache-hit rate i browsers
         crossOrigin: '',
       }).addTo(map)
 
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+      L.tileLayer(SEAMARK_TILE, {
         maxZoom:  18,
         opacity:  0.7,
         crossOrigin: '',

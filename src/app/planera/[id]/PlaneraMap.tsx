@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap } from 'leaflet'
+import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type Stop = {
   lat: number
@@ -48,15 +49,10 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
       })
       mapRef.current = map
 
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
-      L.tileLayer(
-        isDark
-          ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-          : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { maxZoom: 18 }
-      ).addTo(map)
+      const { url: tileUrl, attr: tileAttr } = baseTile()
+      L.tileLayer(tileUrl, { maxZoom: 18, attribution: tileAttr }).addTo(map)
 
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
+      L.tileLayer(SEAMARK_TILE, {
         maxZoom: 18, opacity: 0.85, crossOrigin: '',
       }).addTo(map)
 
