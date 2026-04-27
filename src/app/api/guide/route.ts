@@ -370,10 +370,12 @@ function makeStream(text: string, followUps: string[], planData: PlanData | null
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
     async start(controller) {
-      const chunkSize = 20
+      // Typewriter-effekt: större chunks (40 tecken) + kortare delay (8 ms)
+      // halverar serverkostnaden mot tidigare 20/16 utan synbar UX-skillnad.
+      const chunkSize = 40
       for (let i = 0; i < text.length; i += chunkSize) {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify({ t: text.slice(i, i + chunkSize) })}\n\n`))
-        await new Promise(r => setTimeout(r, 16))
+        await new Promise(r => setTimeout(r, 8))
       }
       controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData })}\n\n`))
       controller.close()
@@ -383,6 +385,7 @@ function makeStream(text: string, followUps: string[], planData: PlanData | null
     headers: {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
+      'X-Accel-Buffering': 'no',
     },
   })
 }

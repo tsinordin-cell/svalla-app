@@ -83,7 +83,14 @@ function LoggaChoice() {
                 GPS loggar rutten automatiskt. Se karta, hastighet och stopp när turen är klar.
               </div>
             </div>
-            <div style={{ fontSize: 36, flexShrink: 0 }}>📡</div>
+            <div style={{ flexShrink: 0 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 36, height: 36 }}>
+                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                <path d="M10.54 16.1a6 6 0 0 1 2.92 0"/>
+                <circle cx="12" cy="20" r="1" fill="rgba(255,255,255,0.8)" stroke="none"/>
+              </svg>
+            </div>
           </div>
           <div style={{
             marginTop: 16, display: 'flex', alignItems: 'center', gap: 6,
@@ -117,14 +124,19 @@ function LoggaChoice() {
                 background: 'rgba(201,110,42,0.25)', borderRadius: 20,
                 padding: '4px 10px', marginBottom: 10,
               }}>
-                <span style={{ fontSize: 11, fontWeight: 700, color: '#f0a060', letterSpacing: '0.5px' }}>SNABB · 15 SEK</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: '#f0a060', letterSpacing: '0.5px' }}>SNABB-LOGG</span>
               </div>
               <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 6 }}>Snabb-logg</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>
                 Ladda upp en bild och ange stats manuellt. Inget GPS behövs.
               </div>
             </div>
-            <div style={{ fontSize: 36, flexShrink: 0 }}>📷</div>
+            <div style={{ flexShrink: 0 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 36, height: 36 }}>
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
           </div>
           <div style={{
             marginTop: 16, display: 'flex', alignItems: 'center', gap: 6,

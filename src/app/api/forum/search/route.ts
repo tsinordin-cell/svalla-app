@@ -1,12 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { checkRateLimit } from '@/lib/rateLimit'
+
+// PostgREST .or() använder ',' '(' ')' som syntaxseparatorer och '*' som ILIKE-wildcard.
+// Användarinput måste sanitas så att en sökterm inte kan bryta ut ur ilike-värdet
+// och injicera nya filter (t.ex. q=`a),body.ilike.*x` skulle exponera dolda trådar).
+function sanitizeSearchTerm(raw: string): string {
+  return raw
+    .replace(/[,()]/g, ' ') // separatorer → space
+    .replace(/[\\*%]/g, ' ') // wildcards / escape
+    .replace(/\s+/g, ' ')
+    .trim()
+}
 
 /** GET /api/forum/search?q=... — sök i forum-trådar */
 export async function GET(req: NextRequest) {
   try {
-    const q = req.nextUrl.searchParams.get('q')?.trim() ?? ''
+    const rawQ = req.nextUrl.searchParams.get('q')?.trim() ?? ''
+    const q = sanitizeSearchTerm(rawQ)
     if (q.length < 2) {
       return NextResponse.json({ results: [] })
+    }
+
+    // Per-IP rate limit: 30 sökningar/minut. Skraping av forum-body via blind
+    // search är annars trivialt (ingen auth krävs för läsning).
+    const ip =
+      req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      req.headers.get('x-real-ip') ||
+      'unknown'
+    if (!checkRateLimit(`forum-search:${ip}`, 30, 60_000)) {
+      return NextResponse.json({ error: 'För många sökningar. Vänta en stund.' }, { status: 429 })
     }
 
     const supabase = await createServerSupabaseClient()

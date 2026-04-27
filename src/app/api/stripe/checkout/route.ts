@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 export async function POST(req: Request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
@@ -26,6 +27,14 @@ export async function POST(req: Request) {
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  // Stripe checkout-rate limit: max 5 sessioner per timme per användare.
+  // Stripe debiterar ingenting förrän kunden bekräftar, men endpointen skapar
+  // customer-objekt och loggar metadata — varje anrop kostar serverresurser
+  // och kan användas för att förorena kundregistret.
+  if (!checkRateLimit(`stripe-checkout:${user.id}`, 5, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: 'För många försök. Vänta en stund.' }, { status: 429 })
+  }
 
   let body: Record<string, unknown>
   try { body = await req.json() } catch {

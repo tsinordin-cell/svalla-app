@@ -5,6 +5,7 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { createReport } from '@/lib/moderation'
 import type { ReportReason, ReportTargetType } from '@/lib/moderation'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 const VALID_TARGET_TYPES: ReportTargetType[] = [
   'trip', 'comment', 'user', 'message', 'review', 'story', 'checkin',
@@ -29,6 +30,12 @@ export async function POST(req: Request) {
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  // Rate limit: max 10 anmälningar per dygn per användare. Hindrar
+  // grief-anmälningar mot specifika användare och spam-flöden mot moderatorerna.
+  if (!checkRateLimit(`report:${user.id}`, 10, 24 * 60 * 60 * 1000)) {
+    return NextResponse.json({ error: 'För många anmälningar idag. Försök imorgon.' }, { status: 429 })
+  }
 
   let body: Record<string, unknown>
   try { body = await req.json() } catch {

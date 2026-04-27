@@ -24,7 +24,7 @@ export default function LocationSearch({
   required = false,
   autoFocus = false,
   label,
-  icon = '📍',
+  icon = '',
 }: Props) {
   const [query,       setQuery]       = useState(value)
   const [suggestions, setSuggestions] = useState<Place[]>([])

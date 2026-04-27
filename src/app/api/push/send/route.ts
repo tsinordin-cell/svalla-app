@@ -42,6 +42,12 @@ export async function POST(req: Request) {
   if (!targetUserId || typeof targetUserId !== 'string') {
     return NextResponse.json({ error: 'targetUserId krävs' }, { status: 400 })
   }
+  // Strikt UUID-validering — targetUserId interpoleras nedan i en .or()-klausul,
+  // tecken utöver hex/dash kan bryta PostgREST-syntaxen.
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+  if (!UUID_RE.test(targetUserId)) {
+    return NextResponse.json({ error: 'Ogiltigt targetUserId-format' }, { status: 400 })
+  }
   if (!title || typeof title !== 'string' || title.trim().length === 0) {
     return NextResponse.json({ error: 'title krävs' }, { status: 400 })
   }
@@ -53,9 +59,25 @@ export async function POST(req: Request) {
   const safeBody  = (body as string).trim().slice(0, 200)
   const safeUrl   = typeof url === 'string' && url.startsWith('/') ? url.slice(0, 200) : '/feed'
 
-  // Inloggad användare får bara skicka push till sig själv ELLER till andra
-  // om det är en social interaktion (like, comment, follow) — avsändaren är
-  // den inloggade, mottagaren är targetUserId. Båda är legitima anrop.
+  // Anti-harassment: tillåt alltid push till sig själv, och alltid om det
+  // finns en följ-relation åt något håll (like/comment/follow av någon man
+  // följer eller som följer en). Annars: max 1 push per mottagare per dygn —
+  // räcker för "första like från okänd" utan att möjliggöra spam-storm.
+  if (targetUserId !== user.id) {
+    const { data: follow } = await supabase
+      .from('follows')
+      .select('follower_id')
+      .or(`and(follower_id.eq.${user.id},following_id.eq.${targetUserId}),and(follower_id.eq.${targetUserId},following_id.eq.${user.id})`)
+      .limit(1)
+      .maybeSingle()
+
+    if (!follow) {
+      // Ingen relation → strängare per-target-limit
+      if (!checkRateLimit(`push-stranger:${user.id}:${targetUserId}`, 1, 24 * 60 * 60 * 1000)) {
+        return NextResponse.json({ ok: true, sent: 0 }) // tyst drop, ingen feedback till spammern
+      }
+    }
+  }
 
   // Hämta alla subscriptions för target-användaren
   const { data: subs } = await supabase

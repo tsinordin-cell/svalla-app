@@ -63,8 +63,10 @@ export async function GET(req: Request) {
       .not('longitude', 'is', null)
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    // POI-listan uppdateras bara via /admin → aggressiv cache är säker.
+    // 1 h fresh, 24 h stale-while-revalidate ger nästan-omedelbara karta-laddningar.
     return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'private, s-maxage=300, stale-while-revalidate=60' },
+      headers: { 'Cache-Control': 'private, s-maxage=3600, stale-while-revalidate=86400' },
     })
   }
 

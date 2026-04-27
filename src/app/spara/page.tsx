@@ -59,10 +59,10 @@ async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<
 // ── Movement state label/color ────────────────────────────────────────────────
 function movementMeta(state: MovementState): { label: string; color: string; bg: string } {
   switch (state) {
-    case 'SEGLING':  return { label: '⛵ SEGLING',   color: 'var(--green)', bg: 'rgba(15,158,100,.12)' }
-    case 'DRIFTAR':  return { label: '🌊 DRIFTAR',   color: 'var(--sea)', bg: 'rgba(30,92,130,.12)' }
-    case 'ANKRAT':   return { label: '⚓ ANKRAT',    color: 'var(--acc)', bg: 'rgba(201,110,42,.12)' }
-    case 'STILLA':   return { label: '◉ STILLA',    color: 'var(--txt3)', bg: 'rgba(122,157,171,.12)' }
+    case 'SEGLING':  return { label: 'SEGLING',  color: 'var(--green)', bg: 'rgba(15,158,100,.12)' }
+    case 'DRIFTAR':  return { label: 'DRIFTAR',  color: 'var(--sea)', bg: 'rgba(30,92,130,.12)' }
+    case 'ANKRAT':   return { label: 'ANKRAT',   color: 'var(--acc)', bg: 'rgba(201,110,42,.12)' }
+    case 'STILLA':   return { label: 'STILLA',   color: 'var(--txt3)', bg: 'rgba(122,157,171,.12)' }
   }
 }
 
@@ -136,8 +136,11 @@ export default function SparaPage() {
 
   // ── Keep pointsRef in sync ──
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setCurrentUserId(data.user?.id ?? ''))
-  }, [supabase])
+    supabase.auth.getUser().then(({ data }) => {
+      if (!data.user) { router.push('/logga-in?redirect=/spara'); return }
+      setCurrentUserId(data.user.id)
+    })
+  }, [supabase, router])
 
   useEffect(() => { pointsRef.current = points }, [points])
 
@@ -721,7 +724,10 @@ export default function SparaPage() {
               borderRadius: 16, padding: '14px 16px',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span style={{ fontSize: 20 }}>⚠️</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--acc)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20, flexShrink: 0 }}>
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--acc)' }}>Avbruten tur hittad</div>
                   <div style={{ fontSize: 12, color: '#8a6040', marginTop: 1 }}>
@@ -788,7 +794,7 @@ export default function SparaPage() {
               boxShadow:  boatType ? '0 4px 20px rgba(15,158,100,0.4)' : 'none',
             }}
           >
-            Starta spårning ⚓
+            Starta spårning
           </button>
         </div>
       </div>
@@ -1014,7 +1020,7 @@ export default function SparaPage() {
               borderRadius: 16, padding: '5px 12px',
               fontSize: 11, fontWeight: 700, color: '#fff',
             }}>
-              📡 {offlineBuffered}
+              {offlineBuffered} pkt
             </div>
           )}
         </div>
@@ -1122,9 +1128,21 @@ export default function SparaPage() {
               background: gpsError.startsWith('Söker') ? 'rgba(74,184,212,.1)' : 'rgba(220,38,38,.12)',
               border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(74,184,212,.25)' : 'rgba(220,38,38,.3)'}`,
               color: gpsError.startsWith('Söker') ? '#4ab8d4' : '#f87171',
-              fontSize: 11, fontWeight: 600, textAlign: 'center',
+              fontSize: 11, fontWeight: 600,
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             }}>
-              {gpsError.startsWith('Söker') ? '📡 ' : '⚠️ '}{gpsError}
+              {gpsError.startsWith('Söker') ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
+                  <path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                  <path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              )}
+              {gpsError}
             </div>
           )}
 
@@ -1200,7 +1218,11 @@ export default function SparaPage() {
             boxShadow: '0 8px 40px rgba(0,45,80,.5)',
             border: '1px solid rgba(255,255,255,.15)',
           }}>
-            <div style={{ fontSize: 48, marginBottom: 12 }}>🏅</div>
+            <div style={{ marginBottom: 12 }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" style={{ width: 48, height: 48 }}>
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="rgba(255,255,255,.15)"/>
+              </svg>
+            </div>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>
               {newAchievements.length === 1 ? 'Nytt märke upplåst!' : `${newAchievements.length} nya märken!`}
             </div>
@@ -1234,7 +1256,7 @@ export default function SparaPage() {
         </div>
       )}
       <header className="sticky top-0 z-40 px-4 py-3 bg-white/96 border-b border-sea-light/40">
-        <h1 className="text-lg font-bold text-sea">Tur avslutad 🎉</h1>
+        <h1 className="text-lg font-bold text-sea">Tur avslutad</h1>
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-5 flex flex-col gap-5"
@@ -1249,7 +1271,10 @@ export default function SparaPage() {
             animation: 'fadeInUp .4s ease',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <span style={{ fontSize: 22 }}>🗺️</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 22, height: 22, flexShrink: 0 }}>
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/>
+                <line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/>
+              </svg>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--green)' }}>
                   {newlyVisitedIslands.length === 1 ? 'Ny ö besökt!' : `${newlyVisitedIslands.length} nya öar besökta!`}
@@ -1269,7 +1294,7 @@ export default function SparaPage() {
                     color: '#0a7a50', fontSize: 12, fontWeight: 700,
                     border: '1px solid rgba(15,158,100,.25)',
                   }}>
-                    📍 {name}
+                    {name}
                   </span>
                 )
               })}
@@ -1308,10 +1333,10 @@ export default function SparaPage() {
           </p>
           <div style={{ display: 'flex', gap: 8 }}>
             {[
-              { val: 1, label: 'Okej',   emoji: '⚓' },
-              { val: 2, label: 'Bra!',   emoji: '⚓⚓' },
-              { val: 3, label: 'Magisk 🔥', emoji: '⚓⚓⚓' },
-            ].map(({ val, label, emoji }) => (
+              { val: 1, label: 'Okej' },
+              { val: 2, label: 'Bra!' },
+              { val: 3, label: 'Magisk!' },
+            ].map(({ val, label }) => (
               <button key={val} type="button" onClick={() => setPinnar(pinnar === val ? 0 : val)}
                 style={{
                   flex: 1, padding: '12px 4px', borderRadius: 14, border: 'none', cursor: 'pointer',
@@ -1322,7 +1347,13 @@ export default function SparaPage() {
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, transition: 'all .15s',
                 }}
               >
-                <span style={{ fontSize: 16 }}>{emoji}</span>
+                <span style={{ display: 'flex', alignItems: 'center', height: 18, color: pinnar === val ? '#fff' : 'var(--sea)', opacity: pinnar === val ? 1 : 0.6 }}>
+                  {Array.from({ length: val }, (_, i) => (
+                    <svg key={i} viewBox="0 0 14 12" style={{ width: 14, height: 12 }} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round">
+                      <path d="M1 6 Q3.5 1 7 6 Q10.5 11 13 6"/>
+                    </svg>
+                  ))}
+                </span>
                 <span style={{ fontSize: 10, fontWeight: 700, color: pinnar === val ? '#fff' : 'var(--txt3)' }}>{label}</span>
               </button>
             ))}
@@ -1376,7 +1407,12 @@ export default function SparaPage() {
                   Genererar…
                 </>
               ) : (
-                <>✨ {aiSummary ? 'Generera ny' : 'Fråga Thorkel'}</>
+                <>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13 }}>
+                    <path d="M12 2l1.68 5.17H19l-4.42 3.21 1.68 5.17L12 12.35l-4.26 3.2 1.68-5.17L5 7.17h5.32z"/>
+                  </svg>
+                  {aiSummary ? 'Generera ny' : 'Fråga Thorkel'}
+                </>
               )}
             </button>
           </div>
@@ -1394,10 +1430,10 @@ export default function SparaPage() {
                 textTransform: 'uppercase', letterSpacing: '.5px',
                 marginBottom: 8,
               }}>
-                ✨ Thorkels förslag — välj en
+                Thorkels förslag — välj en
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {(['🌊 Poetisk', '⚓ Rakt på', '🎣 Social'] as const).map((label, i) => {
+                {(['Poetisk', 'Rakt på', 'Social'] as const).map((label, i) => {
                   const variant = aiVariants[i]
                   if (!variant) return null
                   const isSelected = caption === variant
@@ -1455,7 +1491,7 @@ export default function SparaPage() {
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
             {aiSummary && caption === aiSummary
-              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>✨ Thorkel skrev denna — redigera fritt</span>
+              ? <span style={{ fontSize: 10, color: 'var(--sea)', fontWeight: 700 }}>Thorkel skrev denna — redigera fritt</span>
               : <span />}
             <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{caption.length}/280</span>
           </div>
@@ -1537,7 +1573,10 @@ export default function SparaPage() {
                         alignItems: 'center', justifyContent: 'center', gap: 4,
                       }}
                     >
-                      <span style={{ fontSize: 26 }}>📷</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 26, height: 26, opacity: 0.6 }}>
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                      </svg>
                       <span style={{ fontSize: 11, color: 'var(--txt3)', fontWeight: 600 }}>Bild/video</span>
                     </button>
                   ) : (
