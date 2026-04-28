@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { ISLANDS, getIsland } from '@/app/o/island-data'
+import { ALL_ISLANDS, getIsland } from '@/app/o/island-data'
 import { ISLAND_COORDS } from '@/lib/islandCoords'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Min skärgård | Svalla',
@@ -13,16 +14,15 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-const TOTAL_ISLANDS = ISLANDS.length
+const TOTAL_ISLANDS = ALL_ISLANDS.length
 
-// Achievements baserade på antal besökta öar
 const ACHIEVEMENTS = [
-  { threshold: 1,  emoji: '⚓', label: 'Första turen',   sub: 'Du har satt foten i skärgården' },
-  { threshold: 5,  emoji: '🌊', label: 'Skärgårds-novis', sub: '5 öar besökta — bra start' },
-  { threshold: 10, emoji: '🧭', label: 'Skärgårdsräv',   sub: '10 öar — du börjar veta vart vinden bär' },
-  { threshold: 20, emoji: '🏝',  label: 'Halvvägs',        sub: '20 öar — du har sett mer än de flesta' },
-  { threshold: 35, emoji: '⛵', label: 'Skärgårdsmästare', sub: '35 öar — sällsynt sällskap' },
-  { threshold: 60, emoji: '👑', label: 'Skärgårdskung',  sub: 'Få har gjort detta' },
+  { threshold: 1,  iconName: 'anchor'    as const, label: 'Första turen',     sub: 'Du har satt foten i skärgården' },
+  { threshold: 5,  iconName: 'waves'     as const, label: 'Skärgårds-novis',  sub: '5 öar besökta' },
+  { threshold: 10, iconName: 'compass'   as const, label: 'Skärgårdsräv',     sub: '10 öar — börjar vana' },
+  { threshold: 20, iconName: 'navigation' as const,label: 'Halvvägs',         sub: '20 öar — sällsynt' },
+  { threshold: 35, iconName: 'sailboat'  as const, label: 'Skärgårdsmästare', sub: '35 öar — sällsynt sällskap' },
+  { threshold: 60, iconName: 'trophy'    as const, label: 'Skärgårdskung',    sub: 'Få har gjort detta' },
 ] as const
 
 export default async function MinSkargardPage() {
@@ -32,14 +32,12 @@ export default async function MinSkargardPage() {
     redirect('/auth?next=/min-skargard')
   }
 
-  // Hämta sparade öar
   const { data: savedRows } = await supabase
     .from('saved_islands')
     .select('island_slug, created_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 
-  // Hämta besökta öar (befintlig tabell)
   const { data: visitedRows } = await supabase
     .from('visited_islands')
     .select('island_slug, created_at')
@@ -54,8 +52,6 @@ export default async function MinSkargardPage() {
   const earned = ACHIEVEMENTS.filter(a => visitedCount >= a.threshold)
   const next = ACHIEVEMENTS.find(a => visitedCount < a.threshold)
 
-  // Räkna ut närmaste oupptäckt ö (fågelvägen från Stockholm centrum)
-  // Använder ISLAND_COORDS — om DB-rad finns med koord
   const STOCKHOLM = { lat: 59.3293, lng: 18.0686 }
   const nearestUnvisited = ISLAND_COORDS
     .filter(c => !visitedSlugs.has(c.slug))
@@ -69,14 +65,14 @@ export default async function MinSkargardPage() {
   const nearestIsland = nearestUnvisited ? getIsland(nearestUnvisited.slug) : null
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f5f4ef)', paddingBottom: 100 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100, color: 'var(--txt)' }}>
       {/* HERO */}
       <header style={{
-        background: 'linear-gradient(165deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'linear-gradient(165deg, var(--sea-l, #1e5c82) 0%, var(--sea, #2d7d8a) 100%)',
         padding: '40px 24px 56px', color: '#fff',
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ fontSize: 12, opacity: 0.8, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>
+          <div style={{ fontSize: 12, opacity: 0.85, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 8 }}>
             Min skärgård
           </div>
           <h1 style={{
@@ -85,7 +81,7 @@ export default async function MinSkargardPage() {
           }}>
             Hej {user.user_metadata?.username || user.email?.split('@')[0] || 'seglare'}
           </h1>
-          <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 540 }}>
+          <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 540, margin: 0 }}>
             Här är din skärgårds-resa. Spara öar du vill besöka. Logga öar du har varit på.
           </p>
         </div>
@@ -94,32 +90,32 @@ export default async function MinSkargardPage() {
       <main style={{ maxWidth: 900, margin: '-32px auto 0', padding: '0 16px', position: 'relative' }}>
         {/* PROGRESS-CARD */}
         <section style={{
-          background: 'var(--surface-1, #fff)',
-          border: '1px solid var(--border, rgba(0,0,0,0.08))',
+          background: 'var(--white)',
+          border: '1px solid var(--surface-3)',
           borderRadius: 18,
           padding: '24px 24px 28px',
           boxShadow: '0 6px 24px rgba(0,0,0,0.06)',
           marginBottom: 20,
         }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, margin: 0, color: 'var(--txt, #1a2530)' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
               Din skärgård
             </h2>
-            <div style={{ fontSize: 32, fontWeight: 800, color: 'var(--sea, #1e5c82)', fontFamily: "'Playfair Display', Georgia, serif" }}>
+            <div style={{ fontSize: 32, fontWeight: 800, color: 'var(--sea)', fontFamily: "'Playfair Display', Georgia, serif" }}>
               {visitedCount}<span style={{ fontSize: 18, opacity: 0.5 }}>/{TOTAL_ISLANDS}</span>
             </div>
           </div>
           <div style={{
-            background: 'rgba(30,92,130,0.10)', borderRadius: 999, height: 10, overflow: 'hidden',
+            background: 'var(--surface-2)', borderRadius: 999, height: 10, overflow: 'hidden',
           }}>
             <div style={{
               width: `${Math.max(2, percentVisited)}%`, height: '100%',
-              background: 'linear-gradient(90deg, #1e5c82 0%, #2d7d8a 100%)',
+              background: 'linear-gradient(90deg, var(--sea) 0%, var(--sea-d, #2d7d8a) 100%)',
               borderRadius: 999, transition: 'width .5s ease',
             }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.6))' }}>
-            <span>{percentVisited}% av Stockholms skärgård</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 12, color: 'var(--txt2)' }}>
+            <span>{percentVisited}% av Norden</span>
             <span>{savedSlugs.size} sparade vill jag besöka</span>
           </div>
 
@@ -130,36 +126,36 @@ export default async function MinSkargardPage() {
               style={{
                 display: 'flex', alignItems: 'center', gap: 14,
                 marginTop: 18, padding: 14,
-                background: 'rgba(201,110,42,0.08)',
-                border: '1px solid rgba(201,110,42,0.18)',
+                background: 'var(--acc-l, rgba(201,110,42,0.08))',
+                border: '1px solid var(--acc, #c96e2a)',
                 borderRadius: 12, textDecoration: 'none',
               }}
             >
-              <div style={{ fontSize: 28 }}>{nearestIsland.emoji}</div>
+              <Icon name="navigation" size={28} stroke={2} style={{ color: 'var(--acc, #c96e2a)' }} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 11, color: '#c96e2a', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>
+                <div style={{ fontSize: 11, color: 'var(--acc, #c96e2a)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 }}>
                   Närmaste oupptäckta
                 </div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt, #1a2530)' }}>
+                <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>
                   {nearestIsland.name}
                 </div>
-                <div style={{ fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.6))' }}>
+                <div style={{ fontSize: 12, color: 'var(--txt2)' }}>
                   {nearestUnvisited!.distance.toFixed(0)} km från Stockholm — {nearestIsland.tagline}
                 </div>
               </div>
-              <span style={{ color: '#c96e2a', fontSize: 18 }}>→</span>
+              <Icon name="arrowRight" size={18} style={{ color: 'var(--acc, #c96e2a)' }} />
             </Link>
           )}
         </section>
 
         {/* ACHIEVEMENTS */}
         <section style={{
-          background: 'var(--surface-1, #fff)',
-          border: '1px solid var(--border, rgba(0,0,0,0.08))',
+          background: 'var(--white)',
+          border: '1px solid var(--surface-3)',
           borderRadius: 18, padding: '20px 22px',
           marginBottom: 20,
         }}>
-          <h2 style={{ fontSize: 17, fontWeight: 700, margin: '0 0 14px', color: 'var(--txt, #1a2530)' }}>
+          <h2 style={{ fontSize: 17, fontWeight: 700, margin: '0 0 14px', color: 'var(--txt)' }}>
             Märken
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 10 }}>
@@ -168,15 +164,18 @@ export default async function MinSkargardPage() {
               return (
                 <div key={a.label} style={{
                   padding: '14px 10px', textAlign: 'center', borderRadius: 12,
-                  background: got ? 'rgba(30,92,130,0.08)' : 'rgba(0,0,0,0.03)',
-                  border: got ? '1px solid rgba(30,92,130,0.18)' : '1px solid transparent',
+                  background: got ? 'var(--surface-2)' : 'transparent',
+                  border: got ? '1px solid var(--surface-3)' : '1px solid var(--surface-2)',
                   opacity: got ? 1 : 0.4,
+                  color: got ? 'var(--sea)' : 'var(--txt3)',
                 }}>
-                  <div style={{ fontSize: 24, marginBottom: 4 }}>{a.emoji}</div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: got ? 'var(--sea, #1e5c82)' : 'var(--txt2)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 6 }}>
+                    <Icon name={a.iconName} size={24} stroke={2} />
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: got ? 'var(--sea)' : 'var(--txt2)' }}>
                     {a.label}
                   </div>
-                  <div style={{ fontSize: 10, color: 'var(--txt2, rgba(0,0,0,0.55))', marginTop: 2 }}>
+                  <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 2 }}>
                     {a.threshold} öar
                   </div>
                 </div>
@@ -184,7 +183,7 @@ export default async function MinSkargardPage() {
             })}
           </div>
           {next && (
-            <div style={{ marginTop: 12, fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.6))', textAlign: 'center' }}>
+            <div style={{ marginTop: 12, fontSize: 12, color: 'var(--txt2)', textAlign: 'center' }}>
               {next.threshold - visitedCount} öar till "{next.label}"
             </div>
           )}
@@ -192,12 +191,12 @@ export default async function MinSkargardPage() {
 
         {/* SPARADE ÖAR */}
         <section style={{
-          background: 'var(--surface-1, #fff)',
-          border: '1px solid var(--border, rgba(0,0,0,0.08))',
+          background: 'var(--white)',
+          border: '1px solid var(--surface-3)',
           borderRadius: 18, padding: '20px 22px', marginBottom: 20,
         }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
-            <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt, #1a2530)' }}>
+            <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
               Sparade öar
             </h2>
             <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{savedSlugs.size}</span>
@@ -215,12 +214,13 @@ export default async function MinSkargardPage() {
                 return (
                   <Link key={slug} href={`/o/${slug}`} style={{
                     padding: 12, borderRadius: 10,
-                    background: 'rgba(0,0,0,0.03)', textDecoration: 'none',
+                    background: 'var(--surface-2)', textDecoration: 'none',
                     display: 'flex', alignItems: 'center', gap: 8,
+                    color: 'var(--txt)',
                   }}>
-                    <span style={{ fontSize: 22 }}>{i.emoji}</span>
+                    <Icon name="bookmark" size={18} style={{ color: 'var(--acc, #c96e2a)' }} />
                     <div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>{i.name}</div>
+                      <div style={{ fontSize: 13, fontWeight: 700 }}>{i.name}</div>
                       <div style={{ fontSize: 11, color: 'var(--txt2)' }}>{i.regionLabel}</div>
                     </div>
                   </Link>
@@ -232,12 +232,12 @@ export default async function MinSkargardPage() {
 
         {/* BESÖKTA ÖAR */}
         <section style={{
-          background: 'var(--surface-1, #fff)',
-          border: '1px solid var(--border, rgba(0,0,0,0.08))',
+          background: 'var(--white)',
+          border: '1px solid var(--surface-3)',
           borderRadius: 18, padding: '20px 22px',
         }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
-            <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt, #1a2530)' }}>
+            <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
               Besökta öar
             </h2>
             <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{visitedCount}</span>
@@ -254,11 +254,12 @@ export default async function MinSkargardPage() {
                 return (
                   <Link key={slug} href={`/o/${slug}`} style={{
                     padding: '6px 12px', borderRadius: 999,
-                    background: 'rgba(46,160,90,0.10)', color: '#2a6e50',
+                    background: 'rgba(46,160,90,0.10)', color: 'var(--green, #2a6e50)',
                     fontSize: 12, fontWeight: 700, textDecoration: 'none',
                     display: 'inline-flex', alignItems: 'center', gap: 4,
                   }}>
-                    <span>✓</span>{i.name}
+                    <Icon name="check" size={12} stroke={2.4} />
+                    {i.name}
                   </Link>
                 )
               })}

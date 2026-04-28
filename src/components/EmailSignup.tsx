@@ -122,7 +122,7 @@ export default function EmailSignup({
             border: '1px solid var(--border, rgba(0,0,0,0.15))',
             background: isFooter ? 'rgba(255,255,255,0.95)' : 'var(--bg, #fff)',
             fontSize: 14,
-            color: 'var(--txt, #1a2530)',
+            color: 'var(--txt)',
             outline: 'none',
           }}
         />

@@ -54,8 +54,8 @@ function IslandCol({ island, color }: { island: Island; color: string }) {
   return (
     <div style={{
       flex: 1, minWidth: 260,
-      background: '#fff', padding: '24px 22px', borderRadius: 16,
-      border: '1px solid rgba(0,0,0,0.08)',
+      background: 'var(--white)', padding: '24px 22px', borderRadius: 16,
+      border: '1px solid var(--surface-3)',
       borderTop: `4px solid ${color}`,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
@@ -73,7 +73,7 @@ function IslandCol({ island, color }: { island: Island; color: string }) {
         </div>
       </div>
 
-      <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2, rgba(0,0,0,0.7))', fontStyle: 'italic', marginBottom: 16 }}>
+      <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2)', fontStyle: 'italic', marginBottom: 16 }}>
         {island.tagline}
       </p>
 
@@ -118,9 +118,9 @@ function IslandCol({ island, color }: { island: Island; color: string }) {
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid rgba(0,0,0,0.06)', fontSize: 13 }}>
-      <span style={{ flex: '0 0 80px', color: 'var(--txt2, rgba(0,0,0,0.55))', fontWeight: 600 }}>{label}</span>
-      <span style={{ flex: 1, color: 'var(--txt, #1a2530)' }}>{value}</span>
+    <div style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid var(--surface-3)', fontSize: 13 }}>
+      <span style={{ flex: '0 0 80px', color: 'var(--txt2)', fontWeight: 600 }}>{label}</span>
+      <span style={{ flex: 1, color: 'var(--txt)' }}>{value}</span>
     </div>
   )
 }
@@ -134,7 +134,7 @@ export default async function ComparisonPage({ params }: Props) {
   if (!islandA || !islandB) notFound()
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f5f4ef)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -196,7 +196,7 @@ export default async function ComparisonPage({ params }: Props) {
         {/* Verdict */}
         <section style={{
           marginTop: 32, padding: '24px 26px',
-          background: '#fff', borderRadius: 14, border: '1px solid rgba(0,0,0,0.08)',
+          background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)',
         }}>
           <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 10, fontFamily: "'Playfair Display', Georgia, serif" }}>
             Vilken ska jag välja?
@@ -228,10 +228,10 @@ export default async function ComparisonPage({ params }: Props) {
               if (!ia || !ib) return null
               return (
                 <Link key={`${a}-${b}`} href={`/jamfor/${a}-vs-${b}`} style={{
-                  padding: '12px 14px', background: '#fff', borderRadius: 10,
-                  border: '1px solid rgba(0,0,0,0.06)',
+                  padding: '12px 14px', background: 'var(--white)', borderRadius: 10,
+                  border: '1px solid var(--surface-3)',
                   textDecoration: 'none', fontSize: 14, fontWeight: 600,
-                  color: 'var(--txt, #1a2530)',
+                  color: 'var(--txt)',
                 }}>
                   {ia.name} vs {ib.name} →
                 </Link>

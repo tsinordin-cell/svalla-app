@@ -33,7 +33,7 @@ export default async function IslandHarborsPage({ params }: Props) {
   if (!island) notFound()
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f5f4ef)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <nav style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '18px 24px 16px',
@@ -64,21 +64,21 @@ export default async function IslandHarborsPage({ params }: Props) {
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {island.harbors.length === 0 ? (
-          <div style={{ background: '#fff', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
+          <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
             Inga registrerade gästhamnar på {island.name}.
           </div>
         ) : (
           <div style={{ display: 'grid', gap: 14 }}>
             {island.harbors.map(h => (
               <div key={h.name} style={{
-                background: '#fff', padding: '20px 22px', borderRadius: 14,
-                border: '1px solid rgba(0,0,0,0.08)',
+                background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
+                border: '1px solid var(--surface-3)',
               }}>
                 <h2 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 8px' }}>{h.name}</h2>
                 <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, marginBottom: 12 }}>{h.desc}</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, fontSize: 12 }}>
                   {h.spots && (
-                    <span style={{ padding: '4px 10px', borderRadius: 999, background: 'rgba(30,92,130,0.10)', color: '#1e5c82', fontWeight: 700 }}>
+                    <span style={{ padding: '4px 10px', borderRadius: 999, background: 'var(--surface-3)', color: '#1e5c82', fontWeight: 700 }}>
                       {h.spots} platser
                     </span>
                   )}
@@ -88,7 +88,7 @@ export default async function IslandHarborsPage({ params }: Props) {
                     </span>
                   )}
                   {h.service?.map(s => (
-                    <span key={s} style={{ padding: '4px 10px', borderRadius: 999, background: 'rgba(0,0,0,0.05)', color: 'var(--txt2)' }}>
+                    <span key={s} style={{ padding: '4px 10px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--txt2)' }}>
                       ✓ {s}
                     </span>
                   ))}
@@ -98,12 +98,12 @@ export default async function IslandHarborsPage({ params }: Props) {
           </div>
         )}
 
-        <div style={{ marginTop: 32, padding: '20px 22px', background: '#fff', borderRadius: 14, border: '1px solid rgba(0,0,0,0.08)' }}>
+        <div style={{ marginTop: 32, padding: '20px 22px', background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)' }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>Mer om {island.name}</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, fontSize: 14 }}>
-            <Link href={`/o/${slug}`} style={{ padding: '6px 14px', borderRadius: 999, background: 'rgba(0,0,0,0.05)', color: 'var(--sea)', textDecoration: 'none' }}>Hela ö-guiden →</Link>
-            <Link href={`/o/${slug}/restauranger`} style={{ padding: '6px 14px', borderRadius: 999, background: 'rgba(0,0,0,0.05)', color: 'var(--sea)', textDecoration: 'none' }}>Restauranger →</Link>
-            <Link href={`/o/${slug}/boende`} style={{ padding: '6px 14px', borderRadius: 999, background: 'rgba(0,0,0,0.05)', color: 'var(--sea)', textDecoration: 'none' }}>Boende →</Link>
+            <Link href={`/o/${slug}`} style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Hela ö-guiden →</Link>
+            <Link href={`/o/${slug}/restauranger`} style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Restauranger →</Link>
+            <Link href={`/o/${slug}/boende`} style={{ padding: '6px 14px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--sea)', textDecoration: 'none' }}>Boende →</Link>
           </div>
         </div>
       </main>

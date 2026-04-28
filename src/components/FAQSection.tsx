@@ -49,15 +49,15 @@ export default function FAQSection({
 
       <h2 style={{
         fontSize: 22, fontWeight: 700,
-        marginBottom: 14, color: 'var(--txt, #1a2530)',
+        marginBottom: 14, color: 'var(--txt)',
         fontFamily: "'Playfair Display', Georgia, serif",
       }}>
         {title}
       </h2>
 
       <div style={{
-        background: 'var(--surface-1, #fff)',
-        border: '1px solid var(--border, rgba(0,0,0,0.08))',
+        background: 'var(--white)',
+        border: '1px solid var(--surface-3)',
         borderRadius: 14,
         overflow: 'hidden',
       }}>
@@ -73,7 +73,7 @@ export default function FAQSection({
                   width: '100%', padding: '16px 18px', textAlign: 'left',
                   background: 'transparent', border: 'none', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14,
-                  fontSize: 15, fontWeight: 600, color: 'var(--txt, #1a2530)',
+                  fontSize: 15, fontWeight: 600, color: 'var(--txt)',
                 }}
               >
                 <span>{item.q}</span>

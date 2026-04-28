@@ -41,11 +41,10 @@ export default function PartnerForm() {
         border: '1px solid rgba(46,160,90,0.25)',
         textAlign: 'center',
       }}>
-        <div style={{ fontSize: 36, marginBottom: 8 }}>⚓</div>
-        <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: '#1a4a3a' }}>
+        <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: 'var(--green, #2a6e50)' }}>
           Tack — vi hör av oss
         </h3>
-        <p style={{ fontSize: 14, color: 'rgba(0,0,0,0.7)', maxWidth: 400, margin: '0 auto', lineHeight: 1.55 }}>
+        <p style={{ fontSize: 14, color: 'var(--txt2)', maxWidth: 400, margin: '0 auto', lineHeight: 1.55 }}>
           Vi tar gärna en kort pratstund för att skräddarsy lösningen för just din verksamhet.
           Räkna med svar inom 1–2 arbetsdagar.
         </p>
@@ -55,13 +54,13 @@ export default function PartnerForm() {
 
   const fieldStyle: React.CSSProperties = {
     width: '100%', padding: '11px 14px',
-    borderRadius: 8, border: '1px solid rgba(0,0,0,0.15)',
+    borderRadius: 8, border: '1px solid var(--surface-3)',
     fontSize: 14, fontFamily: 'inherit',
-    background: '#fff', color: 'var(--txt, #1a2530)',
+    background: 'var(--white)', color: 'var(--txt)',
     outline: 'none',
   }
   const labelStyle: React.CSSProperties = {
-    fontSize: 12, fontWeight: 600, color: 'var(--txt2, rgba(0,0,0,0.7))',
+    fontSize: 12, fontWeight: 600, color: 'var(--txt2)',
     marginBottom: 4, display: 'block', textTransform: 'uppercase', letterSpacing: 0.6,
   }
 
@@ -69,8 +68,8 @@ export default function PartnerForm() {
     <form
       onSubmit={submit}
       style={{
-        background: '#fff', padding: '28px 26px', borderRadius: 16,
-        border: '1px solid rgba(0,0,0,0.08)',
+        background: 'var(--white)', padding: '28px 26px', borderRadius: 16,
+        border: '1px solid var(--surface-3)',
         display: 'grid', gap: 14,
       }}
     >
@@ -136,7 +135,7 @@ export default function PartnerForm() {
         disabled={status === 'loading'}
         style={{
           padding: '14px 24px', borderRadius: 999,
-          background: status === 'loading' ? '#7da7be' : '#1e5c82',
+          background: status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--sea, #1e5c82)',
           color: '#fff', fontSize: 14, fontWeight: 700,
           border: 'none', cursor: status === 'loading' ? 'wait' : 'pointer',
           marginTop: 6,
@@ -146,7 +145,7 @@ export default function PartnerForm() {
       </button>
 
       {error && (
-        <div role="alert" style={{ fontSize: 13, color: '#d44d4d', marginTop: -6 }}>
+        <div role="alert" style={{ fontSize: 13, color: 'var(--red, #d44d4d)', marginTop: -6 }}>
           {error}
         </div>
       )}

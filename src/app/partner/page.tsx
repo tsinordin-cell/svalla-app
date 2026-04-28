@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PartnerForm from './PartnerForm'
 import SvallaLogo from '@/components/SvallaLogo'
+import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Partner — Synas på Svalla | För restauranger, hamnar och upplevelser',
-  description: 'Sätt din verksamhet i karta över skärgården. 200+ platser, 69 ösidor, växande organisk trafik. Från 500 kr/mån.',
+  description: 'Sätt din verksamhet i karta över skärgården. 200+ platser, 84 ösidor, växande organisk trafik. Från 500 kr/mån.',
   keywords: ['skärgård restaurang marknadsföring', 'gästhamn synas online', 'svalla partner', 'skärgård annonsering'],
   openGraph: {
     title: 'Partner med Svalla — för restauranger, hamnar och upplevelser',
@@ -20,7 +21,7 @@ const TIERS = [
     name: 'Bas',
     price: 500,
     cta: 'Kom igång',
-    color: '#1e5c82',
+    color: 'var(--sea)',
     features: [
       'Verifierat listning på din ö-sida',
       'Logo, beskrivning, öppettider',
@@ -32,7 +33,7 @@ const TIERS = [
     name: 'Standard',
     price: 1000,
     cta: 'Mest populär',
-    color: '#c96e2a',
+    color: 'var(--acc)',
     highlight: true,
     features: [
       'Allt i Bas, plus:',
@@ -46,7 +47,7 @@ const TIERS = [
     name: 'Premium',
     price: 2500,
     cta: 'Mest synlighet',
-    color: '#1a4a3a',
+    color: 'var(--green, #2a6e50)',
     features: [
       'Allt i Standard, plus:',
       'Direktbokningslänk på markörer',
@@ -59,24 +60,31 @@ const TIERS = [
 
 const STATS = [
   { num: '200+', label: 'Verksamheter kartlagda' },
-  { num: '69', label: 'Detaljerade ösidor' },
+  { num: '84', label: 'Detaljerade ösidor' },
   { num: 'Maj–Sept', label: 'Säsong med högtrafik' },
   { num: '0 kr', label: 'Att komma igång' },
 ]
 
+const BENEFITS: Array<{ icon: IconName; title: string; body: string }> = [
+  { icon: 'target',     title: 'Kvalificerad trafik',  body: 'Folk som besöker en ösida är redo att åka. De är inte slumpmässiga sökare — de planerar en konkret tur.' },
+  { icon: 'pin',        title: 'Geografisk relevans',  body: 'Du syns när någon planerar att åka just till din ö. Inga slumpmässiga visningar i fel del av Sverige.' },
+  { icon: 'trendingUp', title: 'Växande sökmotor',     body: 'Svallas ösidor rankar i topp på Google för "sandhamn restaurang", "möja gästhamn" osv. Du ärver av oss.' },
+  { icon: 'handshake',  title: 'Mätbar effekt',        body: 'Statistik på klick, samtal och besök. Du ser exakt vilken effekt din listning har över säsongen.' },
+]
+
 export default function PartnerPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f5f4ef)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--txt)' }}>
       {/* NAV */}
       <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
+        background: 'linear-gradient(160deg, var(--sea-l, #1e5c82) 0%, var(--sea, #2d7d8a) 100%)',
         padding: '18px 24px 16px', position: 'sticky', top: 0, zIndex: 100,
       }}>
         <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
             <SvallaLogo height={24} color="#ffffff" />
           </Link>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.75)', fontSize: 13, textDecoration: 'none' }}>
+          <Link href="/" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 13, textDecoration: 'none' }}>
             ← Tillbaka
           </Link>
         </div>
@@ -84,7 +92,7 @@ export default function PartnerPage() {
 
       {/* HERO */}
       <section style={{
-        background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 60%, #1a9ab0 100%)',
+        background: 'linear-gradient(170deg, var(--sea-l, #1e5c82) 0%, var(--sea, #2d7d8a) 60%, #1a9ab0 100%)',
         padding: '60px 24px 80px', color: '#fff',
       }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
@@ -102,12 +110,13 @@ export default function PartnerPage() {
             varje månad, året runt. Kom in i kartan från 500 kr/mån.
           </p>
           <a href="#kontakt" style={{
-            display: 'inline-block', padding: '14px 28px',
-            background: '#fff', color: '#1e5c82',
+            display: 'inline-flex', gap: 8, alignItems: 'center',
+            padding: '14px 28px',
+            background: '#fff', color: 'var(--sea-l, #1e5c82)',
             fontSize: 15, fontWeight: 700, borderRadius: 999,
             textDecoration: 'none', boxShadow: '0 4px 16px rgba(0,0,0,0.18)',
           }}>
-            Få mer information →
+            Få mer information <Icon name="arrowRight" size={16} stroke={2.2} />
           </a>
         </div>
       </section>
@@ -117,17 +126,17 @@ export default function PartnerPage() {
         maxWidth: 900, margin: '-40px auto 0', padding: '0 16px', position: 'relative',
       }}>
         <div style={{
-          background: '#fff', border: '1px solid rgba(0,0,0,0.08)',
+          background: 'var(--white)', border: '1px solid var(--surface-3)',
           borderRadius: 16, padding: '20px 16px',
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 16,
           boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
         }}>
           {STATS.map(s => (
             <div key={s.label} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: 26, fontWeight: 800, color: '#1e5c82', fontFamily: "'Playfair Display', Georgia, serif" }}>
+              <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--sea)', fontFamily: "'Playfair Display', Georgia, serif" }}>
                 {s.num}
               </div>
-              <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.6)' }}>{s.label}</div>
+              <div style={{ fontSize: 12, color: 'var(--txt2)' }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -136,27 +145,24 @@ export default function PartnerPage() {
       {/* WHY SVALLA */}
       <section style={{ maxWidth: 900, margin: '0 auto', padding: '60px 24px 24px' }}>
         <h2 style={{
-          fontSize: 28, fontWeight: 700, marginBottom: 18, color: 'var(--txt, #1a2530)',
+          fontSize: 28, fontWeight: 700, marginBottom: 18, color: 'var(--txt)',
           fontFamily: "'Playfair Display', Georgia, serif",
         }}>
           Vad du får
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18 }}>
-          {[
-            { icon: '🎯', title: 'Kvalificerad trafik', body: 'Folk som besöker en ösida är redo att åka. De är inte slumpmässiga sökare — de planerar en konkret tur.' },
-            { icon: '📍', title: 'Geografisk relevans', body: 'Du syns när någon planerar att åka just till din ö. Inga slumpmässiga visningar i fel del av Sverige.' },
-            { icon: '📈', title: 'Växande sökmotor', body: 'Svallas ösidor rankar i topp på Google för "sandhamn restaurang", "möja gästhamn" osv. Du ärver av oss.' },
-            { icon: '🤝', title: 'Mätbar effekt', body: 'Statistik på klick, samtal och besök. Du ser exakt vilken effekt din listning har över säsongen.' },
-          ].map(b => (
+          {BENEFITS.map(b => (
             <div key={b.title} style={{
-              background: '#fff', padding: '22px 20px', borderRadius: 14,
-              border: '1px solid rgba(0,0,0,0.06)',
+              background: 'var(--white)', padding: '22px 20px', borderRadius: 14,
+              border: '1px solid var(--surface-3)',
             }}>
-              <div style={{ fontSize: 28, marginBottom: 8 }}>{b.icon}</div>
-              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6, color: 'var(--txt, #1a2530)' }}>
+              <div style={{ marginBottom: 10, color: 'var(--sea)' }}>
+                <Icon name={b.icon} size={28} stroke={2} />
+              </div>
+              <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6, color: 'var(--txt)' }}>
                 {b.title}
               </div>
-              <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2, rgba(0,0,0,0.65))' }}>
+              <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--txt2)' }}>
                 {b.body}
               </div>
             </div>
@@ -167,22 +173,22 @@ export default function PartnerPage() {
       {/* TIERS */}
       <section style={{ maxWidth: 1000, margin: '40px auto 0', padding: '0 16px' }}>
         <h2 style={{
-          fontSize: 28, fontWeight: 700, marginBottom: 6, color: 'var(--txt, #1a2530)',
+          fontSize: 28, fontWeight: 700, marginBottom: 6, color: 'var(--txt)',
           fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
         }}>
           Tre nivåer — välj efter behov
         </h2>
-        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2, rgba(0,0,0,0.6))', marginBottom: 30 }}>
+        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', marginBottom: 30 }}>
           Inga bindningstider. Säg upp när som helst.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
           {TIERS.map(t => (
             <div key={t.name} style={{
-              background: '#fff',
-              border: t.highlight ? `2px solid ${t.color}` : '1px solid rgba(0,0,0,0.08)',
+              background: 'var(--white)',
+              border: t.highlight ? `2px solid ${t.color}` : '1px solid var(--surface-3)',
               borderRadius: 16, padding: '28px 22px',
               position: 'relative',
-              boxShadow: t.highlight ? '0 8px 24px rgba(201,110,42,0.18)' : '0 2px 8px rgba(0,0,0,0.04)',
+              boxShadow: t.highlight ? '0 8px 24px rgba(0,0,0,0.12)' : '0 2px 8px rgba(0,0,0,0.04)',
             }}>
               {t.highlight && (
                 <div style={{
@@ -197,17 +203,19 @@ export default function PartnerPage() {
               <div style={{ fontSize: 14, fontWeight: 600, color: t.color, marginBottom: 6 }}>
                 {t.name}
               </div>
-              <div style={{ fontSize: 36, fontWeight: 800, marginBottom: 4, color: 'var(--txt, #1a2530)', fontFamily: "'Playfair Display', Georgia, serif" }}>
+              <div style={{ fontSize: 36, fontWeight: 800, marginBottom: 4, color: 'var(--txt)', fontFamily: "'Playfair Display', Georgia, serif" }}>
                 {t.price} <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt2)' }}>kr/mån</span>
               </div>
-              <div style={{ fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.6))', marginBottom: 18 }}>
+              <div style={{ fontSize: 12, color: 'var(--txt2)', marginBottom: 18 }}>
                 exkl. moms
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: 13.5, lineHeight: 1.65 }}>
                 {t.features.map(f => (
-                  <li key={f} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-                    <span style={{ color: t.color, fontWeight: 700 }}>✓</span>
-                    <span>{f}</span>
+                  <li key={f} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'flex-start' }}>
+                    <span style={{ color: t.color, marginTop: 2 }}>
+                      <Icon name="check" size={14} stroke={2.4} />
+                    </span>
+                    <span style={{ color: 'var(--txt)' }}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -221,16 +229,16 @@ export default function PartnerPage() {
         maxWidth: 720, margin: '60px auto 0', padding: '40px 24px 80px',
       }}>
         <h2 style={{
-          fontSize: 26, fontWeight: 700, marginBottom: 8, color: 'var(--txt, #1a2530)',
+          fontSize: 26, fontWeight: 700, marginBottom: 8, color: 'var(--txt)',
           fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
         }}>
           Kontakta oss
         </h2>
-        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2, rgba(0,0,0,0.6))', marginBottom: 24 }}>
+        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', marginBottom: 24 }}>
           Vi hör av oss inom 1–2 arbetsdagar med ett konkret förslag.
         </p>
         <PartnerForm />
-        <p style={{ marginTop: 18, fontSize: 12, color: 'var(--txt2, rgba(0,0,0,0.55))', textAlign: 'center' }}>
+        <p style={{ marginTop: 18, fontSize: 12, color: 'var(--txt3)', textAlign: 'center' }}>
           Genom att skicka godkänner du att vi sparar dina kontaktuppgifter för att svara på din förfrågan.
         </p>
       </section>

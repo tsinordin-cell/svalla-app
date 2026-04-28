@@ -869,6 +869,7 @@ const LANDING_HTML = `
           <li><a href="/om">Om Svalla</a></li>
           <li><a href="/faq">Vanliga frågor</a></li>
           <li><a href="/blogg">Skärgårdsbloggen</a></li>
+          <li><a href="/partner">För partners</a></li>
           <li><a href="/integritetspolicy">Integritetspolicy</a></li>
         </ul>
       </div>

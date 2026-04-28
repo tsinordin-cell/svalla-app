@@ -28,7 +28,7 @@ const COMPARISONS = [
 
 export default function JamforIndex() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg, #f5f4ef)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       <header style={{
         background: 'linear-gradient(165deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '50px 24px', color: '#fff',
@@ -58,29 +58,29 @@ export default function JamforIndex() {
               href={`/jamfor/${c.a}-vs-${c.b}`}
               style={{
                 display: 'block', padding: '18px 20px',
-                background: '#fff', borderRadius: 14,
-                border: '1px solid rgba(0,0,0,0.08)',
+                background: 'var(--white)', borderRadius: 14,
+                border: '1px solid var(--surface-3)',
                 textDecoration: 'none',
                 transition: 'transform .15s, box-shadow .15s',
               }}
             >
               <div style={{
                 fontSize: 18, fontWeight: 700,
-                color: 'var(--txt, #1a2530)',
+                color: 'var(--txt)',
                 fontFamily: "'Playfair Display', Georgia, serif",
               }}>
-                {capitalize(c.a)} <span style={{ color: 'var(--txt2, rgba(0,0,0,0.45))' }}>vs</span> {capitalize(c.b)}
+                {capitalize(c.a)} <span style={{ color: 'var(--txt3)' }}>vs</span> {capitalize(c.b)}
               </div>
-              <div style={{ fontSize: 13, color: 'var(--txt2, rgba(0,0,0,0.6))', marginTop: 4 }}>
+              <div style={{ fontSize: 13, color: 'var(--txt2)', marginTop: 4 }}>
                 {c.hook} →
               </div>
             </Link>
           ))}
         </div>
 
-        <div style={{ marginTop: 32, padding: '20px 22px', background: '#fff', borderRadius: 14, border: '1px solid rgba(0,0,0,0.08)' }}>
+        <div style={{ marginTop: 32, padding: '20px 22px', background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)' }}>
           <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>Saknas en jämförelse?</h2>
-          <p style={{ fontSize: 13, color: 'var(--txt2, rgba(0,0,0,0.65))', lineHeight: 1.55 }}>
+          <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55 }}>
             Vi lägger till fler hela tiden. Vill du se "Lidö vs Husarö" eller någon annan kombo?
             Mejla <a href="mailto:hello@svalla.se" style={{ color: 'var(--sea)' }}>hello@svalla.se</a>.
           </p>
