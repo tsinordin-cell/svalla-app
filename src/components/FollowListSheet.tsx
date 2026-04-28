@@ -35,13 +35,11 @@ function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivE
       onClick={onClick}
       style={{
         background: 'var(--white)', borderRadius: '24px 24px 0 0',
-        // Botten-padding klarar safe-area (iPhone home indicator) utan att
-        // lyfta hela sheet:en med nav-höjden — modalen ligger redan på
-        // z-index 2000, ovanpå nav-baren.
         padding: '20px 20px max(24px, env(safe-area-inset-bottom, 0px))',
         width: '100%', maxWidth: 480,
         boxShadow: '0 -4px 40px rgba(0,20,35,0.15)',
         maxHeight: '85dvh', overflowY: 'auto',
+        marginBottom: 'var(--nav-h, 100px)',
       }}
     >
       {children}
