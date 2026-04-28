@@ -605,7 +605,14 @@ export default function UpptackClient() {
         </Link>
       </div>
 
-      {/* Höger-kolumn: väder, destination, zoom, GPS — samlat utan överlapp */}
+      {/* Väder-pill — nedre vänstra hörnet */}
+      {view === 'map' && (
+        <div style={{ position: 'absolute', bottom: 80, left: 12, zIndex: 1001, pointerEvents: 'auto' }}>
+          <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+        </div>
+      )}
+
+      {/* Höger-kolumn: destination, zoom, GPS */}
       {view === 'map' && (
         <div style={{
           position: 'absolute', bottom: 80, right: 12, zIndex: 1001,
@@ -626,9 +633,6 @@ export default function UpptackClient() {
               />
             </div>
           )}
-          <div style={{ pointerEvents: 'auto' }}>
-            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
-          </div>
 
           {/* Zoom-knappar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2, pointerEvents: 'auto' }}>
