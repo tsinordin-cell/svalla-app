@@ -3,16 +3,15 @@ import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { Fish, Wrench, BookOpen, ShoppingBag } from '@/components/icons/LucideIcons'
-import { IconSailboat, IconMotorboat, IconKayak, IconAnchor, IconLighthouse } from '@/components/icons/SvallaIcons'
+import { IconSailboat, IconMotorboat, IconKayak, IconAnchor, IconLighthouse, IconWind } from '@/components/icons/SvallaIcons'
 
 const CATEGORY_ICONS: Record<string, ReactNode> = {
   '⛵': <IconSailboat size={26} />,
   '🚤': <IconMotorboat size={26} />,
   '🎣': <Fish size={26} />,
   '🛶': <IconKayak size={26} />,
-  // Fyr = navigation + säkerhet i dåligt väder. Matchar Svalla-ikonstilen
-  // bättre än Lucide Cloud (som bara är en kontur av ett moln).
   '⛅': <IconLighthouse size={26} />,
+  '🌤️': <IconWind size={26} />,
   '🔧': <Wrench size={26} />,
   '⚓': <IconAnchor size={26} />,
   '👋': <BookOpen size={26} />,

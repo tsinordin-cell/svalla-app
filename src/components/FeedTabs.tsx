@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import Link from 'next/link'
 import { Sparkles } from '@/components/icons/LucideIcons'
 import TripCard from '@/components/TripCard'
 import SuggestedUsers from '@/components/SuggestedUsers'
@@ -118,6 +119,16 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
 
   return (
     <>
+      {/* ── Flöde / Forum tab-rad ── */}
+      <div style={{ display: 'flex', borderBottom: '1.5px solid rgba(10,123,140,0.08)', marginBottom: 16 }}>
+        <div style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--sea)', borderBottom: '2px solid var(--sea)', marginBottom: -1.5 }}>
+          Flöde
+        </div>
+        <Link href="/forum" style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--txt3)', textDecoration: 'none', display: 'block' }}>
+          Forum
+        </Link>
+      </div>
+
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
         <div className="filter-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
