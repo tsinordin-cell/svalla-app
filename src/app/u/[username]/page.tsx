@@ -11,6 +11,7 @@ import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
 import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import ProfileBadgeGrid from '@/components/ProfileBadgeGrid'
 import { isProEnabled } from '@/lib/pro'
 import { formatForumDate } from '@/lib/forum'
 
@@ -311,33 +312,14 @@ export default async function PublicProfilePage({
         </div>
 
         {/* ── Achievements grid ── */}
-        <div style={{ background: 'var(--white)', borderRadius: 18, padding: '16px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+        <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
             <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
               {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
             </span>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-            {[...ACHIEVEMENTS.filter(a => unlockedAch.includes(a)), ...ACHIEVEMENTS.filter(a => !unlockedAch.includes(a))].map(a => {
-              const unlocked = unlockedAch.includes(a)
-              return (
-                <div key={a.id} title={`${a.label} — ${a.desc}`} style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                  gap: 5, padding: '12px 6px 10px',
-                  borderRadius: 16,
-                  background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
-                  border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-                  opacity: unlocked ? 1 : 0.38,
-                  filter: unlocked ? 'none' : 'grayscale(1)',
-                  boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
-                }}>
-                  <span style={{ fontSize: 22 }}>{a.emoji}</span>
-                  <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt2)', textAlign: 'center', lineHeight: 1.2 }}>{a.label}</span>
-                </div>
-              )
-            })}
-          </div>
+          <ProfileBadgeGrid unlockedIds={unlockedAch.map(a => a.id)} />
         </div>
 
         {/* ── Activity chart ── */}
