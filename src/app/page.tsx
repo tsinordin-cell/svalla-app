@@ -41,7 +41,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:720px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0}
+.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:0}
 .nav-mega-col{padding:8px 12px}
 .nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
 .nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
@@ -373,6 +373,15 @@ const LANDING_HTML = `
               <a href="/segelrutter" class="nav-mega-link">⛵ Segelrutter</a>
               <a href="/snabbaste-vagen" class="nav-mega-link">🚤 Snabbaste vägen</a>
               <a href="/planera-tur" class="nav-mega-link">📅 Planera min tur</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Populära öar</div>
+              <a href="/o/sandhamn" class="nav-mega-link">⛵ Sandhamn</a>
+              <a href="/o/uto" class="nav-mega-link">⛏️ Utö</a>
+              <a href="/o/vaxholm" class="nav-mega-link">🏰 Vaxholm</a>
+              <a href="/o/grinda" class="nav-mega-link">🌿 Grinda</a>
+              <a href="/o/moja" class="nav-mega-link">🏝️ Möja</a>
+              <a href="/o" class="nav-mega-all">Se alla →</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Regioner</div>
