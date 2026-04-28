@@ -3,8 +3,8 @@ import { ImageResponse } from 'next/og'
 import { getIsland } from '@/app/o/island-data'
 
 export const runtime = 'edge'
-export const contentType = 'image/png'
-export const size = { width: 1200, height: 630 }
+
+const SIZE = { width: 1200, height: 630 }
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -19,7 +19,7 @@ export async function GET(_request: Request, { params }: Props) {
   const { slug } = await params
   const island = getIsland(slug)
   if (!island) {
-    return new ImageResponse(<div>Not found</div>, size)
+    return new ImageResponse(<div>Not found</div>, SIZE)
   }
 
   const [c1, c2] = REGION_GRADIENT[island.region] ?? ['#1e5c82', '#2d7d8a']
@@ -72,6 +72,6 @@ export async function GET(_request: Request, { params }: Props) {
         </div>
       </div>
     ),
-    size,
+    SIZE,
   )
 }
