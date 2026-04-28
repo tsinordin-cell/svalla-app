@@ -192,7 +192,7 @@ export default function Nav() {
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
             >
               <span className="nav-fab-mobile">
-                <IconPlus size={26} stroke={2.4} color="white" />
+                <IconPlus size={22} stroke={2.4} color="white" />
               </span>
               <span className="nav-fab-label">Logga tur</span>
               <span className="nav-fab-desktop">

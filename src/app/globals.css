@@ -26,7 +26,7 @@
   --white: #fafeff;
   --green: #22c55e;
   --red:   #ef4444;
-  --nav-h: 100px;
+  --nav-h: 64px;
   /* ── Surface system ── */
   --surface-1:  rgba(250,254,255,1);
   --surface-2:  rgba(10,123,140,0.06);
@@ -761,17 +761,17 @@ img {
 
 /* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
 .nav-fab-mobile {
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
   background: linear-gradient(180deg, #0fa0b4 0%, #0a7b8c 55%, #075e6d 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(10, 123, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 16px rgba(10, 123, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   position: relative;
   overflow: hidden;
-  margin-top: -18px;
+  margin-top: -10px;
 }
 .nav-fab-mobile::before {
   content: '';
