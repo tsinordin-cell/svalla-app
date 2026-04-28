@@ -65,17 +65,29 @@ export default function FollowPrefsButton({
   return (
     <>
       <button onClick={() => setOpen(true)} aria-label="Notis-inställningar"
-        title="Notiser från denna seglare"
+        title={customized ? 'Anpassade notiser' : 'Notiser från denna seglare'}
         style={{
-          padding: '6px 10px', borderRadius: 10,
+          width: 36, height: 36, borderRadius: '50%',
           border: '1px solid rgba(10,123,140,0.20)',
-          background: customized ? 'rgba(201,110,42,0.10)' : 'var(--white)',
-          fontSize: 12, fontWeight: 700,
-          color: customized ? '#c96e2a' : 'var(--txt2)',
+          background: customized ? 'rgba(201,110,42,0.10)' : 'rgba(10,123,140,0.08)',
+          color: customized ? '#c96e2a' : 'var(--sea)',
           cursor: 'pointer',
-          display: 'inline-flex', alignItems: 'center', gap: 4,
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          flexShrink: 0,
+          position: 'relative',
         }}>
-        🔔 {customized ? 'Justerad' : 'Notiser'}
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 17, height: 17 }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+        {customized && (
+          <span style={{
+            position: 'absolute',
+            top: 2, right: 2,
+            width: 7, height: 7, borderRadius: '50%',
+            background: '#c96e2a',
+            border: '1.5px solid var(--bg, #fff)',
+          }} />
+        )}
       </button>
 
       {open && (

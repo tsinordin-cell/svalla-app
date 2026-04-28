@@ -178,7 +178,7 @@ export default async function PublicProfilePage({
         <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)' }}>{userRow.username}</span>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
           <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
-          <FollowButton targetUserId={userRow.id} />
+          <FollowButton targetUserId={userRow.id} hideCount />
           <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
         </div>
       </header>

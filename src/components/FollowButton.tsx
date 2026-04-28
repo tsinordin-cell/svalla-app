@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 
-export default function FollowButton({ targetUserId, darkBg = false }: { targetUserId: string; darkBg?: boolean }) {
+export default function FollowButton({ targetUserId, darkBg = false, hideCount = false }: { targetUserId: string; darkBg?: boolean; hideCount?: boolean }) {
   const supabase = useRef(createClient()).current
   const [myId, setMyId]         = useState<string | null>(null)
   const [following, setFollowing] = useState(false)
@@ -92,7 +92,7 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
       >
         {loading ? '…' : following ? 'Följer ✓' : 'Följ'}
       </button>
-      {count > 0 && (
+      {count > 0 && !hideCount && (
         <span style={{
           fontSize: 12, fontWeight: 600,
           color: darkBg ? 'rgba(255,255,255,0.75)' : 'var(--txt3)',
