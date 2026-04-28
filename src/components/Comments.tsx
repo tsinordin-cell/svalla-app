@@ -198,7 +198,10 @@ export default function Comments({
       if (mu.id === userId) continue
       const { data: recent } = await supabase.from('notifications').select('id').eq('user_id', mu.id).eq('actor_id', userId).eq('type', 'mention').gte('created_at', sixtySecondsAgo).limit(1).maybeSingle()
       if (recent) continue
-      await supabase.from('notifications').insert({ user_id: mu.id, actor_id: userId, type: 'mention', trip_id: tripId })
+      fetch('/api/notifications/insert', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: mu.id, type: 'mention', tripId }),
+      }).catch(() => {})
       fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: mu.id, title: `${myUsername} taggade dig 🏷️`, body: content.slice(0, 80), url: `/tur/${tripId}` }) }).catch(() => {})
     }
   }
@@ -220,7 +223,10 @@ export default function Comments({
     setPosting(false)
     supabase.from('trips').select('user_id').eq('id', tripId).single().then(({ data: trip }) => {
       if (!trip?.user_id || trip.user_id === userId) return
-      supabase.from('notifications').insert({ user_id: trip.user_id, actor_id: userId, type: 'comment', trip_id: tripId })
+      fetch('/api/notifications/insert', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId: trip.user_id, type: 'comment', tripId }),
+      }).catch(() => {})
       fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: trip.user_id, title: 'Ny kommentar 💬', body: `${myUsername}: ${content.slice(0, 60)}`, url: `/tur/${tripId}` }) }).catch(() => {})
     })
     sendMentionNotifications(content)

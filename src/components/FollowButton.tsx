@@ -49,9 +49,10 @@ export default function FollowButton({ targetUserId, darkBg = false }: { targetU
       setFollowing(true); setCount(c => c + 1)
       toast('Du följer nu den här seglaren ⛵')
       // Notis + push till den som följs
-      await supabase.from('notifications').insert({
-        user_id: targetUserId, actor_id: myId, type: 'follow',
-      })
+      fetch('/api/notifications/insert', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetUserId, type: 'follow' }),
+      }).catch(() => {})
       const { data: me } = await supabase.from('users').select('username').eq('id', myId).single()
       fetch('/api/push/send', {
         method: 'POST',

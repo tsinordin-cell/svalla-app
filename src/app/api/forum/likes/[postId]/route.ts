@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createClient } from '@supabase/supabase-js'
+
+function svcClient() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
+}
 
 /**
  * POST /api/forum/likes/[postId]
@@ -57,12 +64,12 @@ export async function POST(
 
       // Skicka notis till inläggets ägare (inte till sig själv)
       if (post.user_id && post.user_id !== user.id) {
-        await supabase.from('notifications').insert({
+        svcClient().from('notifications').insert({
           user_id:      post.user_id,
           actor_id:     user.id,
           type:         'forum_like',
           reference_id: post.thread_id,
-        })
+        }).then(({ error }) => { if (error) console.error('[forum/likes] notis-fel:', error) })
       }
     }
 

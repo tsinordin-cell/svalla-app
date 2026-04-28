@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createClient } from '@supabase/supabase-js'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
 import { sendPushToUsers } from '@/lib/push-server'
+
+function svcClient() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
+}
 
 /** POST /api/forum/posts — skapa svar på tråd */
 export async function POST(req: NextRequest) {
@@ -146,12 +153,13 @@ async function notifyForumParticipants({
 
     // Also insert DB notifications for thread owner
     if (threadOwnerId !== posterId) {
-      await supabase.from('notifications').insert({
+      const { error: notifErr } = await svcClient().from('notifications').insert({
         user_id:      threadOwnerId,
         actor_id:     posterId,
         type:         'forum_reply',
         reference_id: threadId,
       })
+      if (notifErr) console.error('[forum/posts] notis-fel:', notifErr)
     }
 
     const shortTitle = threadTitle.length > 55
