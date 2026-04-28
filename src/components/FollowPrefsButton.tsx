@@ -38,7 +38,7 @@ export default function FollowPrefsButton({
     })
   }, [supabase, followingId])
 
-  if (!me || loading) return null
+  if (!me || loading || me === followingId) return null
 
   async function save() {
     if (!me) return
