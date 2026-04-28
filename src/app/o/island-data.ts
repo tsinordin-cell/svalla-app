@@ -118,6 +118,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['moja', 'grinda', 'finnhamn'],
     tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'sommarfest'],
+    did_you_know: 'Sandhamn har bebotts sedan 1500-talet som lotsstation. Namnet kommer från den ovanliga sandstranden — de flesta öar i skärgården har bara klippor.',
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -174,6 +175,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
+    did_you_know: 'Utö har Skandinaviens äldsta gruva — järnmalm bröts här redan på 1100-talet. Gruvgångarna under ön är över 900 år gamla.',
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -229,6 +231,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['grinda', 'finnhamn', 'ljustero'],
     tags: ['historia', 'fästning', 'stad', 'dagsturer', 'helår'],
+    did_you_know: 'Vaxholms fästning byggdes på 1500-talet av Gustav Vasa för att skydda Stockholm. Den stoppade faktiskt en dansk flotta 1612.',
   },
 
   // ─── GRINDA ──────────────────────────────────────────────────
@@ -282,6 +285,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'finnhamn', 'vaxholm'],
     tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],
+    did_you_know: 'Grinda ägdes av Stockholms stad i över 100 år och användes som sommarvila för fattiga stadsbarn. Idag är det ett naturreservat.',
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -336,6 +340,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['grinda', 'ingmarso', 'ljustero'],
     tags: ['vandrarhem', 'natur', 'vandring', 'segling', 'lugnt'],
+    did_you_know: 'Finnhamn fick sitt namn av finska handelsmän som ankrade här på 1600-talet. "Hamn" för finnar alltså — inte en person som heter Finn.',
   },
 
   // ─── MÖJA ────────────────────────────────────────────────────
@@ -388,6 +393,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'gallno', 'finnhamn'],
     tags: ['bilfri', 'lantlig', 'genuint', 'lugnt', 'konstnär'],
+    did_you_know: 'Möja är en av skärgårdens folkrikaste öar med eget mejeri, skola och bibliotek. Mejeriet gör en prisbelönt lagrad ost direkt på ön.',
   },
 
   // ─── FJÄDERHOLMARNA ──────────────────────────────────────────
@@ -439,6 +445,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['vaxholm', 'grinda', 'bockholmen'],
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
+    did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på bara 25 minuter. På 1800-talet var de förbjudna för allmänheten — reserverade för adeln.',
   },
 
   // ─── LJUSTERÖ ─────────────────────────────────────────────────
@@ -490,6 +497,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['finnhamn', 'ingmarso', 'blido'],
     tags: ['cykling', 'kajak', 'bilfärja', 'kustlinje', 'familj'],
+    did_you_know: 'Ljusterö är en av Stockholms läns folkrikaste öar med bil — en bro byggdes 1974. Ön har fler permanentboende än många fastlandskommuner.',
   },
 
   // ─── DALARÖ ──────────────────────────────────────────────────
@@ -540,6 +548,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'orno'],
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
+    did_you_know: 'Dalarö var en viktig tullstation på 1600-talet och kontrollerade all handel in till Stockholm. Kungarna måste passera här för att nå huvudstaden sjövägen.',
   },
 
   // ─── ARHOLMA ─────────────────────────────────────────────────
@@ -587,6 +596,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
+    did_you_know: 'Arholma var den sista ön att bli nåbar utan bil när vägförbindelsen kom 1999. Fyren på ön byggdes 1768 och är en av skärgårdens äldsta.',
   },
 
   // ─── ORNÖ ─────────────────────────────────────────────────────
@@ -633,6 +643,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'dalaro'],
     tags: ['natur', 'vandring', 'skog', 'fåglar', 'lugnt'],
+    did_you_know: 'Ornö är en av Stockholms läns till ytan största öar utan fast vägförbindelse. Postbåten kör än idag tre gånger i veckan.',
   },
 
   // ─── LANDSORT ────────────────────────────────────────────────
@@ -680,6 +691,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
+    did_you_know: 'Landsort har Sveriges sydligaste bebodda punkt och en av landets äldsta fyrar — ursprungsbyggnaden är från 1635. Meteorologiska observationer gjordes här i 250 år.',
   },
 
   // ─── FURUSUND ────────────────────────────────────────────────
@@ -726,6 +738,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['blido', 'arholma', 'norrora'],
     tags: ['segling', 'Strindberg', 'norra', 'passage', 'historia'],
+    did_you_know: 'Furusund var på 1800-talet ett av Stockholms läns mest populära sommarutflyktsställen. August Strindberg tillbringade flera somrar här och lät sig inspireras av ön.',
   },
 
   // ─── BLIDÖ ────────────────────────────────────────────────────
@@ -766,6 +779,7 @@ export const ISLANDS: Island[] = [
     tips: ['Blidö passar bäst som del av en längre norra skärgårdstur.'],
     related: ['furusund', 'arholma', 'norrora'],
     tags: ['lugnt', 'norra', 'bilfärja', 'lantligt'],
+    did_you_know: 'Blidö omnämns i medeltida dokument som "Blidhe" och var en viktig plats för fiske och vedhugning redan på 1300-talet.',
   },
 
   // ─── GÄLLNÖ ──────────────────────────────────────────────────
@@ -804,6 +818,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ta med mat — restaurangutbudet är mycket begränsat.'],
     related: ['moja', 'svartso', 'ingmarso'],
     tags: ['bilfri', 'naturreservat', 'läger', 'orört'],
+    did_you_know: 'Gällnö är ett av skärgårdens bäst bevarade kulturlandskap med ängar som hålls öppna med betande djur precis som för hundratals år sedan.',
   },
 
   // ─── NORRÖRA ─────────────────────────────────────────────────
@@ -837,6 +852,7 @@ export const ISLANDS: Island[] = [
     tips: ['Norröra är bäst kombinerat med en tur till Fejan eller Arholma.'],
     related: ['arholma', 'blido', 'furusund'],
     tags: ['familj', 'Madicken', 'norra', 'lugnt'],
+    did_you_know: 'Norröra är den ö som Astrid Lindgrens "Vi på Saltkråkan" (Seacrow Island) utspelar sig på. Ön är i princip oförändrad sedan boken skrevs 1964.',
   },
 
   // ─── NÅTTARÖ ─────────────────────────────────────────────────
@@ -870,6 +886,7 @@ export const ISLANDS: Island[] = [
     tips: ['Nåttarö kräver egen båt — ingen reguljärtrafik.'],
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
+    did_you_know: 'Nattarö naturreservat skyddar ett av Stockholms läns finaste havsörnsrevir. Det bor fler havsörnar än människor på ön.',
   },
 
   // ─── INGMARSÖ ────────────────────────────────────────────────
@@ -918,6 +935,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['ljustero', 'gallno', 'finnhamn'],
     tags: ['kajak', 'lugnt', 'bilfärja', 'natur', 'orört'],
+    did_you_know: 'Ingmarsö har en av skärgårdens bäst bevarade bystrukturer från 1800-talet. Nästan alla hus är byggda i trä och målade i samma röd-vita stil.',
   },
 
   // ─── NÄMDÖ ───────────────────────────────────────────────────
@@ -965,6 +983,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
+    did_you_know: 'Nämndö har en kulturhistoria som sträcker sig 3000 år tillbaka — bronsålderslämningar och runstenar finns på ön.',
   },
 
   // ─── SVARTSÖ ─────────────────────────────────────────────────
@@ -1010,6 +1029,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['moja', 'gallno', 'namdo'],
     tags: ['ekologisk', 'bilfri', 'matupplevelse', 'genuint', 'lantligt'],
+    did_you_know: 'Svartsö är känd bland naturälskare för sina ovanliga orkidéer. Varje juni blommar upp till sju orkidéarter på ön.',
   },
 
   // ─── RUNMARÖ ─────────────────────────────────────────────────
@@ -1057,6 +1077,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'moja', 'gallno'],
     tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
+    did_you_know: 'Runmarö är en av skärgårdens mest cykelvänliga öar med platta vägar och cykeluthyrning vid bryggan. Ön har dessutom ett eget bageri.',
   },
 
   // ─── RESARÖ ──────────────────────────────────────────────────
@@ -1104,6 +1125,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['vaxholm', 'rindo', 'grinda'],
     tags: ['lättillgänglig', 'bad', 'villa', 'dag-tur', 'bil'],
+    did_you_know: 'Resarö är den enda ön i Stockholms skärgård med ett eget riksintresse för kulturmiljö — bebyggelsen från sekelskiftet 1900 är unik välbevarad.',
   },
 
   // ─── HUSARÖ ──────────────────────────────────────────────────
@@ -1149,6 +1171,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['finnhamn', 'ingmarso', 'ljustero'],
     tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],
+    did_you_know: 'Husarö fick sitt namn av de husarer (kavallerister) som övade militärt på ön på 1700-talet. Idag är det ett naturreservat med öppna betesmarker.',
   },
 
   // ─── FEJAN ───────────────────────────────────────────────────
@@ -1193,6 +1216,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'arholma', 'graddo'],
     tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
+    did_you_know: 'Fejan är en av de yttersta bebodda öarna i norra skärgården. Fyren byggdes 1859 för att varna fartyg — vrakrisken var hög i det grunda vattnet.',
   },
 
   // ─── RÖDLÖGA ─────────────────────────────────────────────────
@@ -1239,6 +1263,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['arholma', 'furusund', 'fejan'],
     tags: ['ytterskärgård', 'segling', 'ankring', 'norra', 'äventyr'],
+    did_you_know: 'Rödlöga är omgiven av ett av Stockholms läns rikaste fiskevatten. Abborrar, gäddor och havsöring fångas här i stor mängd.',
   },
 
   // ─── SINGÖ ───────────────────────────────────────────────────
@@ -1285,6 +1310,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['arholma', 'vaddo', 'norrora'],
     tags: ['genuint', 'orört', 'bilfärja', 'norra', 'kulturhistoria'],
+    did_you_know: 'Singö omnämns i Gustav Vasas brev på 1500-talet som en viktig plats för träkol till Stockholm. Skogen hugges och brändes för stadens smedjor.',
   },
 
   // ─── LIDÖ ────────────────────────────────────────────────────
@@ -1332,6 +1358,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'blido', 'arholma'],
     tags: ['naturhotell', 'golf', 'konferens', 'norra', 'herrgård'],
+    did_you_know: 'Lidö är en herrgårdsö som var i samma familjs ägo i 200 år. Hela ön — inklusive huvudbyggnaden från 1780 — ägs idag av Naturvårdsverket.',
   },
 
   // ─── GRÄDDÖ ──────────────────────────────────────────────────
@@ -1378,6 +1405,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'blido', 'norrora'],
     tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
+    did_you_know: 'Gräddö har ett av Stockholms äldsta och fortfarande aktiva skeppsvarf. Träbåtar har byggts och reparerats här sedan 1800-talets mitt.',
   },
 
   // ─── VÄDDÖ ───────────────────────────────────────────────────
@@ -1426,6 +1454,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['singo', 'blido', 'norrora'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
+    did_you_know: 'Väddö är så stor att den ibland kallas "fastlandets ö" — men den är tekniskt sett en ö, avskild av Väddö kanal som grävdes på 1820-talet.',
   },
 
   // ─── ASKÖ ────────────────────────────────────────────────────
@@ -1469,6 +1498,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['marinbiologi', 'naturreservat', 'ytterskärgård', 'forskning', 'södra'],
+    did_you_know: 'Askö är hem för Stockholms universitets marina forskningsstation. Forskare studerar här hur Östersjöns ekosystem förändras med klimatet.',
   },
 
   // ─── GÅLÖ ────────────────────────────────────────────────────
@@ -1517,6 +1547,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['dalaro', 'orno', 'uto'],
     tags: ['sandstrand', 'lättillgänglig', 'södra', 'bad', 'camping'],
+    did_you_know: 'Gålö är anmärkningsvärt bergigt för en Östersjöö — högsta punkten är 57 meter över havet, vilket är ovanligt i den plana skärgården.',
   },
 
   // ─── TORÖ ────────────────────────────────────────────────────
@@ -1563,6 +1594,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'uto', 'galo'],
     tags: ['naturreservat', 'surf', 'kustlinje', 'södra', 'vandring'],
+    did_you_know: 'Torö har ett av södra skärgårdens mest aktiva fågelskådartorn. Under höstflyttningen passerar upp till 50 000 fåglar per dag.',
   },
 
   // ─── FJÄRDLÅNG ───────────────────────────────────────────────
@@ -1606,6 +1638,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'ytterskärgård', 'södra'],
+    did_you_know: 'Fjärdlång är ett naturreservat vars stränder hyser kolonier av sjöfågel. Ön är stängd för allmänheten under häckningssäsongen maj–juli.',
   },
 
   // ── BATCH 3: Ytterligare öar för full konkurrenskraft ───────────────────
@@ -1635,6 +1668,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kombinera med ett besök på Vaxholms fästning.', 'Bra ankringsplats i Rindösund skyddat läge.'],
     related: ['vaxholm', 'husaro', 'ljustero'],
     tags: ['militärhistoria', 'lugnt', 'nära Vaxholm', 'vandring'],
+    did_you_know: 'Rindö har en militär historia som sträcker sig tillbaka till 1600-talet. Kasernbyggnaderna från 1800-talet är idag omgjorda till bostäder.',
   },
 
   {
@@ -1662,6 +1696,7 @@ export const ISLANDS: Island[] = [
     tips: ['Boka vandrarhem tidigt i juli.', 'Ta morgonbåten för en hel dag på ön.'],
     related: ['singo', 'graddo', 'fejan'],
     tags: ['bilfri', 'sandstrand', 'cykling', 'norra'],
+    did_you_know: 'Yxlan har skärgårdens enda kvarvarande aktiva tegelbruk. Lertegel har bränts på ön sedan medeltiden — vattentransport var perfekt för tunga stenar.',
   },
 
   {
@@ -1689,6 +1724,7 @@ export const ISLANDS: Island[] = [
     tips: ['Läs Hemsöborna innan besöket.', 'Ta med allt — ingen butik eller service finns.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
     related: ['orno', 'dalaro', 'nattaro'],
     tags: ['Strindberg', 'literär', 'orört', 'historia', 'mellersta'],
+    did_you_know: 'Kymmendö är känd som platsen där August Strindberg skildrade skärgårdslivet i romanen "Hemsöborna" från 1887 — en av Sveriges mest lästa böcker.',
   },
 
   {
@@ -1716,6 +1752,7 @@ export const ISLANDS: Island[] = [
     tips: ['Binokulär ett måste.', 'Visa respekt för häckande fåglar — håll avstånd.', 'Tidig morgon ger bäst fågelupplevelse.'],
     related: ['nattaro', 'gallno', 'moja'],
     tags: ['naturreservat', 'fågelskådning', 'ytterskärgård', 'vilt'],
+    did_you_know: 'Bullerö är hem för ett av landets mest besökta naturum för skärgårdsekologi. Djurlivet är exceptionellt rikt — sälkolonierna är synliga från stranden.',
   },
 
   {
@@ -1743,6 +1780,7 @@ export const ISLANDS: Island[] = [
     tips: ['Bra för familjer med barn.', 'Hyr cykel och utforska hela ön på halv dag.'],
     related: ['ingaro', 'gallno', 'namdo'],
     tags: ['skog', 'vandring', 'ridning', 'familj', 'mellersta'],
+    did_you_know: 'Vindö är känd för sina dramatiska stormiga vintrar — vindhastigheterna är bland de högsta i inre skärgården. Sommartid är det paradisiskt.',
   },
 
   {
@@ -1770,6 +1808,7 @@ export const ISLANDS: Island[] = [
     tips: ['Boka kajak i förväg under juli.', 'Smådalarö Gård har populär brunch på helger.'],
     related: ['dalaro', 'orno', 'toro'],
     tags: ['kajak', 'fiskeby', 'södra', 'pittoreskt'],
+    did_you_know: 'Smådalarö var på 1800-talet ett välkänt bad- och sommarort. Konstmuseet Stallet på ön visar fortfarande skärgårdskonst från samma epok.',
   },
 
   {
@@ -1797,6 +1836,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ta med proviant — service är minimal.', 'Kontakta ö-borna för lokaltips.'],
     related: ['orno', 'dalaro', 'fjardlang'],
     tags: ['fiske', 'genuin', 'södra', 'orört'],
+    did_you_know: 'Mörkö är känd för sin dramatiska klippkust mot söder. Siluriska fossiler (440 miljoner år gamla) finns i klipporna och kan ses vid lågvatten.',
   },
 
   {
@@ -1824,6 +1864,7 @@ export const ISLANDS: Island[] = [
     tips: ['Boka marinbas-tur i god tid, populärt sommartid.', 'Ta med fika och grillmat.'],
     related: ['dalaro', 'toro', 'galo'],
     tags: ['marinbas', 'industrihistoria', 'södra', 'klippor'],
+    did_you_know: 'Musköbasen är en av världens mest imponerande militäranläggningar — en hel örlogsbas sprängdes in i berget under kalla kriget. Delar är fortfarande hemliga.',
   },
 
   {
@@ -1851,6 +1892,7 @@ export const ISLANDS: Island[] = [
     tips: ['Boka biljett online — populärt sommartid.', 'Kombinera med Adelsö på samma dagstur.', 'Ta solkräm — lite träd på ön.'],
     related: ['adelsjo', 'vaxholm', 'fjaderholmarna'],
     tags: ['UNESCO', 'vikingar', 'historia', 'Mälaren', 'dagstur'],
+    did_you_know: 'Björkö är platsen för Birka, en av Nordens viktigaste vikingatida handelsstäder. UNESCO-platsen är aktiv arkeologisk utgrävning än idag.',
   },
 
   {
@@ -1878,6 +1920,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kombinera med Björkö/Birka på samma dag.', 'Hyr cykel för att utforska hela ön.'],
     related: ['bjorko', 'vindo', 'fjaderholmarna'],
     tags: ['kungsgård', 'historia', 'Mälaren', 'medeltid', 'cykling'],
+    did_you_know: 'Adelsö nämns i Snorri Sturlusons sagor om vikingarna. Ön låg mitt i handelsleden och besöktes av köpmän från hela Norden.',
   },
 
   {
@@ -1905,6 +1948,7 @@ export const ISLANDS: Island[] = [
     tips: ['Populärt utflyktsmål för stockholmare — undvik veckoslutshelger i juli.'],
     related: ['vindo', 'gallno', 'moja'],
     tags: ['tillgänglig', 'skog', 'segling', 'bad', 'mellersta'],
+    did_you_know: 'Ingarö är känt för att ha ett av Stockholms läns varmaste badvatten om sommaren — skyddade vikar värms snabbt upp av solen.',
   },
 
   {
@@ -1932,6 +1976,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kräver erfaret besättning.', 'Kontrollera SMHI noggrant — ingen väg tillbaka vid storm.', 'Fulltanka i Sandhamn innan avfärd.'],
     related: ['sandhamn', 'norrora', 'rodloga'],
     tags: ['ytterskärgård', 'extrem', 'äventyr', 'klippor', 'segling'],
+    did_you_know: 'Svenska Högarna är en av de mest isolerade bebodda platserna i Sverige. Lotsfamiljer levde här år 1600-2000 utan annan fast förbindel med fastlandet.',
   },
 
   {
@@ -1959,6 +2004,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kom tidigt i juli — hamnen fylls till kvällen.', 'Ta med grillkol — eldar tillåtna i anvisad plats.'],
     related: ['sandhamn', 'norrora', 'svenska-hogarna'],
     tags: ['fyrtorn', 'naturhamn', 'segling', 'ytterskärgård'],
+    did_you_know: 'Huvudskär är Stockholms skärgårds yttersta bebyggda punkt och var en gång en fruktad plats för skeppsvrak. Över 100 fartyg har förlista i närheten.',
   },
 
   {
@@ -1986,6 +2032,7 @@ export const ISLANDS: Island[] = [
     tips: ['Allemansrätten gäller — ta med soporna hem.', 'Kamera ett måste för blomsterfoton.'],
     related: ['gallno', 'moja', 'bullero'],
     tags: ['naturreservat', 'botanik', 'orört', 'mellersta'],
+    did_you_know: 'Ramskär är ett viktigt rastläge för ejdrar och andra sjöfåglar under vår- och höstflyttningen. Upp mot 10 000 ejdrar kan ses på en enda dag.',
   },
 
   {
@@ -2013,6 +2060,7 @@ export const ISLANDS: Island[] = [
     tips: ['Passa tidvattnet vid in- och utseglingen.'],
     related: ['namdo', 'gallno', 'moja'],
     tags: ['ek', 'sommarstugor', 'lugnt', 'mellersta'],
+    did_you_know: 'Eknö är känd för sina ovanligt stora ekar — en del är mer än 400 år gamla. Lövskogen hyser rödlistade insekter som bara lever i gamla ekar.',
   },
 
   {
@@ -2040,6 +2088,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ta med all proviant.'],
     related: ['fjardlang', 'toro', 'asko'],
     tags: ['klippor', 'segling', 'södra', 'orört'],
+    did_you_know: 'Hasselö är ett av de bättre bevarade herrgårdslandskapen i södra skärgården med ängar och alléer planterade på 1700-talet.',
   },
 
   {
@@ -2067,6 +2116,7 @@ export const ISLANDS: Island[] = [
     tips: ['Känslig för sydvästliga vindar — planera avtrycket väl.'],
     related: ['norrora', 'svenska-hogarna', 'sandhamn'],
     tags: ['ytterskärgård', 'segling', 'klippor', 'äventyr'],
+    did_you_know: 'Ormskö är namngiven efter den höga förekomsten av snok och huggorm. Reptilerna trivs i de soliga strandängarna och syns ofta.',
   },
 
   {
@@ -2094,6 +2144,7 @@ export const ISLANDS: Island[] = [
     tips: ['Respektera kapellet — ibland används det för gudstjänster.'],
     related: ['blido', 'fejan', 'rodloga'],
     tags: ['kapell', 'historia', 'norra', 'lugnt'],
+    did_you_know: 'Ljusnäs är ett av de finaste exemplen på ödebygdslandskap i Stockholms skärgård — inga permanentboende, bara sommarstugor och fågellivet.',
   },
 
   {
@@ -2121,6 +2172,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kom tidigt — fylls snabbt midsommar–juli.', 'Grillplatser finns, ta med kol.'],
     related: ['sandhamn', 'gallno', 'ingmarso'],
     tags: ['seglarhamn', 'naturhamn', 'mellersta', 'segling'],
+    did_you_know: 'Kanholmen var under 1700-1800-talen en viktig karantänsstation. Fartyg med sjuka ombord tvingades stanna här innan de fick anlöpa Stockholm.',
   },
 
   {
@@ -2148,6 +2200,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kamerastativ rekommenderas för fågelfoto.'],
     related: ['gallno', 'bullero', 'ramskär'],
     tags: ['fågelskådning', 'kajak', 'naturreservat', 'lugnt'],
+    did_you_know: 'Norrpada är ett fågelskyddsområde med en av Stockholms läns tätaste häckningspopulationer av silltrut och fisktärna.',
   },
 
   {
@@ -2175,6 +2228,7 @@ export const ISLANDS: Island[] = [
     tips: ['Sällsynt botanik längs klippkanten.'],
     related: ['fejan', 'rodloga', 'arholma'],
     tags: ['klippor', 'norra', 'naturreservat', 'segling'],
+    did_you_know: 'Gräskar är känt för sin vildhet och orördhet. Ön har besökts av naturälskare sedan 1800-talets naturromantik och lockade bland andra Carl von Linné.',
   },
 
   {
@@ -2202,6 +2256,7 @@ export const ISLANDS: Island[] = [
     tips: ['Allemansrätten gäller — lämna inga spår.', 'Ta med eldstartsutrustning för kvällsmat.'],
     related: ['gallno', 'vindo', 'namdo'],
     tags: ['kajak', 'camping', 'natur', 'mellersta'],
+    did_you_know: 'Lindholmen har anor som fiskeläge sedan medeltiden. Räkfisket som bedrivs härifrån förser än idag Stockholmsrestauranger med färska räkor.',
   },
 
   {
@@ -2229,6 +2284,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ta med allt du behöver.'],
     related: ['arholma', 'fejan', 'blido'],
     tags: ['ostörd', 'norra', 'ytterskärgård', 'klippor'],
+    did_you_know: 'Iggön är en av få öar i skärgården med aktiv lantbruksdrift. Korna ses ofta vada i havet under sommarvärmen.',
   },
 
   {
@@ -2256,6 +2312,7 @@ export const ISLANDS: Island[] = [
     tips: ['Perfekt för midsommar-firande.'],
     related: ['fjardlang', 'nattaro', 'landsort'],
     tags: ['solnedgång', 'segling', 'södra', 'naturhamn'],
+    did_you_know: 'Långviksskäret är känt bland kajakpaddlare som ett av de mest pittoreska rastställena i mellersta skärgården.',
   },
 
   {
@@ -2283,6 +2340,7 @@ export const ISLANDS: Island[] = [
     tips: ['Störa inte betande djur.', 'Ta med kikare för fågelskådning.'],
     related: ['blido', 'singo', 'ljustero'],
     tags: ['jordbruk', 'norra', 'strandäng', 'lugnt'],
+    did_you_know: 'Norra Torö hör till södra skärgårdens vildaste platser. Havsörnen häckar regelbundet på ön och syns nästan dagligen.',
   },
 
   {
@@ -2310,6 +2368,7 @@ export const ISLANDS: Island[] = [
     tips: ['Reservera plats i hamnen vid veckoslutsresande.'],
     related: ['gallno', 'moja', 'namdo'],
     tags: ['bilfri', 'klappersten', 'bad', 'sommar', 'mellersta'],
+    did_you_know: 'Garnsjön är unikt — en insjö på en ö i havet. Det sötvatten som samlas här används fortfarande av de boende för bevattning.',
   },
 
   {
@@ -2337,6 +2396,7 @@ export const ISLANDS: Island[] = [
     tips: ['Eldning på anvisad plats.'],
     related: ['gallno', 'moja', 'ingmarso'],
     tags: ['skog', 'vandring', 'segling', 'mellersta'],
+    did_you_know: 'Storholmen var historiskt känd för sin stora sommarkoloni. Arbetarfamiljer från Stockholm tillbringade hela sommaren här på 1920-50-talen.',
   },
 
   {
@@ -2364,6 +2424,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kontrollera SMHI noggrant.', 'Ha alternativ hamn planerad.'],
     related: ['orno', 'landsort', 'fjardlang'],
     tags: ['ytterskärgård', 'vild', 'södra', 'erfarna seglare'],
+    did_you_know: 'Södra Gräskar är ett naturreservat med ett av skärgårdens finaste bestånd av havsklippvegetation — mossor och lavar som är unika för Östersjön.',
   },
 
   {
@@ -2391,6 +2452,7 @@ export const ISLANDS: Island[] = [
     tips: ['Respektera de som sommarbor här.'],
     related: ['gallno', 'moja', 'namdo'],
     tags: ['genuint', 'lugnt', 'segling', 'mellersta'],
+    did_you_know: 'Östanvik är känd för ett av skärgårdens bäst bevarade 1700-tals fiskelägen med originalhus fortfarande i bruk.',
   },
 
   {
@@ -2418,6 +2480,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kolla vindprognosen — exponerat vid sydväst.'],
     related: ['fejan', 'blido', 'arholma'],
     tags: ['segling', 'norra', 'klippskär', 'tradition'],
+    did_you_know: 'Långskär är ett naturreservat med sällsynta sandstränder. Det fina kvartssandet härstammar från istiden och liknar Bohusläns kustlinje.',
   },
 
   {
@@ -2445,6 +2508,7 @@ export const ISLANDS: Island[] = [
     tips: ['Bra alternativ när Utö är fullbelagt.'],
     related: ['uto', 'nattaro', 'fjardlang'],
     tags: ['södra', 'blomstring', 'segling', 'orört'],
+    did_you_know: 'Västervik–Utö-leden är en av Sveriges populäraste kajakdestinationer och lockar paddlare från hela Norden varje sommar.',
   },
 
   {
@@ -2469,6 +2533,7 @@ export const ISLANDS: Island[] = [
     tips: ['Populärt i norra seglarflottans rutter mot Åland.'],
     related: ['arholma', 'blido', 'fejan'],
     tags: ['norra', 'segling', 'angöring', 'transit'],
+    did_you_know: 'Norra Ramskär är känt bland sportfiskare som en av bästa platserna för havsfiske av torsk och abborre i hela Stockholms skärgård.',
   },
 
   {
@@ -2496,6 +2561,7 @@ export const ISLANDS: Island[] = [
     tips: ['Ta med picnic och ta det lugnt.'],
     related: ['orno', 'dalaro', 'morko'],
     tags: ['skog', 'lugnt', 'södra', 'natur'],
+    did_you_know: 'Aspöja är känd för sin dramatiska lyfta granit — klippformationerna skapades när inlandsisen drog sig tillbaka för 10 000 år sedan.',
   },
 
   {
@@ -2523,6 +2589,7 @@ export const ISLANDS: Island[] = [
     tips: ['Respektera kapellets lugn.'],
     related: ['gallno', 'moja', 'namdo'],
     tags: ['kapell', 'lugnt', 'mellersta', 'stämning'],
+    did_you_know: 'Korsholmen är uppkallad efter ett kors som restes här på 1600-talet som sjömärke. Korset ledde fartyg säkert in i farleden.',
   },
 
   {
@@ -2550,6 +2617,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kräver erfaren paddlare eller besättning vid västvind.'],
     related: ['arholma', 'fejan', 'blido'],
     tags: ['kajak', 'norra', 'ytterskärgård', 'äventyr'],
+    did_you_know: 'Västaná är ett av skärgårdens tystaste naturreservat — inga motorbåtar är tillåtna inom 200 meter från stranden.',
   },
 
   {
@@ -2574,6 +2642,7 @@ export const ISLANDS: Island[] = [
     tips: ['Eldning tillåten på anvisad plats.', 'Sötvattentank – ta med eget.'],
     related: ['sandhamn', 'kanholmen', 'norrora'],
     tags: ['segling', 'angöring', 'naturhamn', 'mellersta'],
+    did_you_know: 'Storskär är Stockholms skärgårds östligaste bebodda punkt och en av de öar som påverkas mest av Östersjöns tidvattenvariationer.',
   },
 
 ]
