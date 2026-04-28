@@ -414,12 +414,12 @@ const LANDING_HTML = `
       200+ platser kartlagda i Stockholms skärgård
     </div>
     <h1 class="hero-title">
-      Hitta din nästa<br>
-      <em>skärgårdskrog</em>
+      Din guide till<br>
+      <em>Stockholms skärgård</em>
     </h1>
     <p class="hero-sub">
-      Logga dina turer. Hitta krogar, bastun och bryggor.
-      Dela med ett community som faktiskt är ute på vattnet.
+      Planera nästa tur. Hitta krogar, hamnar och dolda öar.
+      Logga dina äventyr och bygg din egen skärgård.
     </p>
     <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
       <input type="text" placeholder="🔍  Sök ö, krog eller hamn..." id="heroSearchInput"/>
@@ -443,13 +443,13 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
-  <div class="trust-item"><strong>200+</strong> Platser &amp; krogar kartlagda</div>
+  <div class="trust-item"><strong>84</strong> Öar med guider</div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><strong>69</strong> Öar med guider</div>
+  <div class="trust-item"><strong>200+</strong> Krogar &amp; hamnar kartlagda</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
   <div class="trust-divider"></div>
   <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>⭐ 4.8</strong> Snittbetyg från seglare</div>
 </div>
 
 <section class="concept-section" id="utforska">

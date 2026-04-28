@@ -36,7 +36,7 @@ export type IslandRestaurant = {
 export type Island = {
   slug: string
   name: string
-  region: 'norra' | 'mellersta' | 'södra'
+  region: 'norra' | 'mellersta' | 'södra' | 'bohuslan'
   regionLabel: string
   emoji: string
   tagline: string
@@ -2647,10 +2647,15 @@ export const ISLANDS: Island[] = [
 
 ]
 
+// ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
+import { BOHUSLAN_ISLANDS } from './bohuslan-data'
+
+export const ALL_ISLANDS: Island[] = [...ISLANDS, ...(BOHUSLAN_ISLANDS as Island[])]
+
 export function getIsland(slug: string): Island | undefined {
-  return ISLANDS.find(i => i.slug === slug)
+  return ALL_ISLANDS.find(i => i.slug === slug)
 }
 
 export function getIslandsByRegion(region: Island['region']): Island[] {
-  return ISLANDS.filter(i => i.region === region)
+  return ALL_ISLANDS.filter(i => i.region === region)
 }

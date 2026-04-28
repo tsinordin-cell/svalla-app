@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ISLANDS, getIsland } from '../island-data'
+import { ALL_ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
+import SaveIslandButton from '@/components/SaveIslandButton'
+import FAQSection from '@/components/FAQSection'
+import { getFaqsForIsland } from '@/lib/islandFaqs'
 
 type Props = { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
-  return ISLANDS.map(island => ({ slug: island.slug }))
+  return ALL_ISLANDS.map(island => ({ slug: island.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -49,7 +52,7 @@ export default async function IslandPage({ params }: Props) {
     ? '#1a4a3a'
     : 'var(--sea)'
 
-  const relatedIslands = ISLANDS.filter(i => island.related.includes(i.slug))
+  const relatedIslands = ALL_ISLANDS.filter(i => island.related.includes(i.slug))
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
@@ -162,12 +165,17 @@ export default async function IslandPage({ params }: Props) {
             </div>
           </div>
 
+          {/* Spara ön CTA */}
+          <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
+            <SaveIslandButton islandSlug={island.slug} islandName={island.name} variant="pill" />
+          </div>
+
           {/* Quick facts */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
             gap: 10,
-            marginTop: 28,
+            marginTop: 22,
           }}>
             {[
               { label: 'Restid', value: island.facts.travel_time, icon: '⏱' },
@@ -437,6 +445,13 @@ export default async function IslandPage({ params }: Props) {
             </div>
           </section>
         )}
+
+        {/* FAQ — vanliga frågor (SEO Featured Snippets) */}
+        <FAQSection
+          items={getFaqsForIsland(island)}
+          title={`Vanliga frågor om ${island.name}`}
+          schemaUrl={`https://svalla.se/o/${island.slug}`}
+        />
 
         {/* Related islands */}
         {relatedIslands.length > 0 && (
