@@ -267,7 +267,6 @@ export default function UpptackClient() {
       }).addTo(map)
 
       L.control.attribution({ prefix: '© OpenStreetMap' }).addTo(map)
-      L.control.zoom({ position: 'topright' }).addTo(map)
 
       layerGroupRef.current = L.layerGroup().addTo(map)
       mapInstanceRef.current = map
@@ -606,20 +605,62 @@ export default function UpptackClient() {
         </Link>
       </div>
 
-      {/* GPS-positionsknapp — nedre höger, ovanför zoom-kontroll */}
+      {/* Höger-kolumn: väder, destination, zoom, GPS — samlat utan överlapp */}
       {view === 'map' && (
-        <div style={{ position: 'absolute', bottom: 90, right: 12, zIndex: 1001, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8 }}>
-          {/* Permission-denied tooltip */}
+        <div style={{
+          position: 'absolute', bottom: 80, right: 12, zIndex: 1001,
+          display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8,
+          pointerEvents: 'none',
+          maxWidth: 'calc(100vw - 24px)',
+        }}>
+          {destination && (
+            <div style={{ pointerEvents: 'auto' }}>
+              <DestinationPill
+                destination={destination}
+                mapCenter={mapCenter}
+                onGo={() => {
+                  const m = mapInstanceRef.current
+                  if (m) m.flyTo([destination.lat, destination.lng], Math.max(m.getZoom(), 13), { duration: 0.8 })
+                }}
+                onClear={() => setDestination(null)}
+              />
+            </div>
+          )}
+          <div style={{ pointerEvents: 'auto' }}>
+            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+          </div>
+
+          {/* Zoom-knappar */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, pointerEvents: 'auto' }}>
+            {(['in', 'out'] as const).map(dir => (
+              <button
+                key={dir}
+                onClick={() => dir === 'in' ? mapInstanceRef.current?.zoomIn() : mapInstanceRef.current?.zoomOut()}
+                aria-label={dir === 'in' ? 'Zooma in' : 'Zooma ut'}
+                className="press-feedback"
+                style={{
+                  width: 36, height: 36, border: 'none', borderRadius: '50%',
+                  background: 'var(--glass-92)',
+                  backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                  boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
+                  outline: '1px solid rgba(10,45,60,0.12)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', fontSize: 22, fontWeight: 300, color: 'var(--txt2)',
+                  lineHeight: 1, fontFamily: 'inherit',
+                }}
+              >
+                {dir === 'in' ? '+' : '−'}
+              </button>
+            ))}
+          </div>
+
+          {/* GPS */}
           {gpsState === 'denied' && (
             <div style={{
-              background: 'rgba(10,20,35,0.92)',
-              backdropFilter: 'blur(14px)',
-              WebkitBackdropFilter: 'blur(14px)',
-              borderRadius: 12,
-              padding: '9px 13px',
-              maxWidth: 220,
-              boxShadow: '0 2px 12px rgba(0,0,0,0.25)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              pointerEvents: 'auto',
+              background: 'rgba(10,20,35,0.92)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)',
+              borderRadius: 12, padding: '9px 13px', maxWidth: 220,
+              boxShadow: '0 2px 12px rgba(0,0,0,0.25)', border: '1px solid rgba(255,255,255,0.08)',
             }}>
               <p style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.9)', margin: 0, lineHeight: 1.5 }}>
                 GPS nekad — aktivera under{' '}
@@ -632,11 +673,10 @@ export default function UpptackClient() {
             aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
             className="press-feedback"
             style={{
-              width: 36, height: 36,
-              border: 'none', borderRadius: '50%',
+              pointerEvents: 'auto',
+              width: 36, height: 36, border: 'none', borderRadius: '50%',
               background: gpsState === 'active' ? 'var(--sea)' : gpsState === 'denied' ? 'rgba(204,61,61,0.85)' : 'var(--glass-92)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
+              backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
               boxShadow: '0 1px 3px rgba(0,45,60,0.08), 0 4px 12px rgba(0,45,60,0.06)',
               outline: '1px solid rgba(10,45,60,0.12)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -654,17 +694,12 @@ export default function UpptackClient() {
             ) : gpsState === 'denied' ? (
               <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
                 stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
-              </svg>
+              ><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
             ) : (
               <svg width={18} height={18} viewBox="0 0 24 24" fill="none"
                 stroke={gpsState === 'active' ? '#fff' : 'var(--txt2)'}
                 strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
-              </svg>
+              ><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
             )}
           </button>
         </div>
@@ -1197,36 +1232,6 @@ export default function UpptackClient() {
         </div>
       )}
 
-      {/* Hörn-pills — väder & destination (nedre högra hörnet) */}
-      {view === 'map' && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 80,   // ovanför nav-baren (~64px) + lite luft
-            right: 12,
-            zIndex: 1000,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            gap: 8,
-            pointerEvents: 'none',  // barn (pills) har egna pointerEvents
-            maxWidth: 'calc(100vw - 24px)',
-          }}
-        >
-          <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
-          {destination && (
-            <DestinationPill
-              destination={destination}
-              mapCenter={mapCenter}
-              onGo={() => {
-                const m = mapInstanceRef.current
-                if (m) m.flyTo([destination.lat, destination.lng], Math.max(m.getZoom(), 13), { duration: 0.8 })
-              }}
-              onClear={() => setDestination(null)}
-            />
-          )}
-        </div>
-      )}
     </div>
   )
 }
