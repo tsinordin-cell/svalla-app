@@ -57,6 +57,7 @@ export type Island = {
   tips: string[]
   related: string[]
   tags: string[]
+  did_you_know?: string
 }
 
 export const ISLANDS: Island[] = [
