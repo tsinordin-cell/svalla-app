@@ -6,7 +6,7 @@ export type IslandActivity = {
 
 export type IslandAccommodation = {
   name: string
-  type: 'Hotell' | 'Vandrarhem' | 'Stugor' | 'Camping' | 'B&B' | 'Gästhamn'
+  type: 'Hotell' | 'Vandrarhem' | 'Stugor' | 'Camping' | 'B&B' | 'Gästhamn' | 'Pensionat'
   desc: string
 }
 

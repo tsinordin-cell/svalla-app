@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 function parsePair(pair: string): [string, string] | null {
   const m = pair.match(/^([a-z0-9-]+)-vs-([a-z0-9-]+)$/)
   if (!m) return null
-  return [m[1], m[2]]
+  return [m[1]!, m[2]!]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -177,7 +177,7 @@ const TEMPLATE: FAQ[] = [
 ]
 
 export function getFaqsForIsland(island: Pick<Island, 'slug' | 'name'>): FAQ[] {
-  if (UNIQUE[island.slug]) return UNIQUE[island.slug]
+  if (UNIQUE[island.slug]) return UNIQUE[island.slug]!
   return TEMPLATE.map(t => ({
     q: t.q.replace(/{{name}}/g, island.name),
     a: t.a.replace(/{{name}}/g, island.name),
