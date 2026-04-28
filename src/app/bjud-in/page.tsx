@@ -16,6 +16,7 @@ export default function InvitePage() {
   const [invites, setInvites] = useState<Invite[]>([])
   const [loading, setLoading] = useState(true)
   const [creating, setCreating] = useState(false)
+  const [createError, setCreateError] = useState<string | null>(null)
   const [showOptions, setShowOptions] = useState(false)
   const [maxUses, setMaxUses] = useState<string>('')
   const [expiresInDays, setExpiresInDays] = useState<string>('')
@@ -34,6 +35,7 @@ export default function InvitePage() {
   async function newInvite() {
     if (!me) return
     setCreating(true)
+    setCreateError(null)
     const expiresAt = expiresInDays.trim()
       ? new Date(Date.now() + Number(expiresInDays) * 86_400_000).toISOString()
       : null
@@ -44,6 +46,8 @@ export default function InvitePage() {
       setInvites(prev => [inv, ...prev])
       setShowOptions(false)
       setMaxUses(''); setExpiresInDays('')
+    } else {
+      setCreateError('Kunde inte skapa länken. Kontrollera att invites-tabellen finns i Supabase.')
     }
   }
 
@@ -115,6 +119,17 @@ export default function InvitePage() {
             Begränsa antal användningar eller låt den löpa ut när du vill.
           </p>
         </div>
+
+        {/* Felmeddelande */}
+        {createError && (
+          <div style={{
+            padding: '10px 14px', borderRadius: 10, marginBottom: 12,
+            background: 'rgba(220,38,38,0.08)', border: '1px solid rgba(220,38,38,0.20)',
+            fontSize: 13, color: '#dc2626', lineHeight: 1.5,
+          }}>
+            {createError}
+          </div>
+        )}
 
         {/* Skapa-knapp + alternativ */}
         {!showOptions ? (
