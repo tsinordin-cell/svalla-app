@@ -39,7 +39,7 @@ async function isNative(): Promise<boolean> {
 export async function startTracking(
   onPoint: TrackCallback,
   onError: ErrorCallback,
-): Promise<() => void> {
+): Promise<() => Promise<void>> {
   const native = await isNative()
 
   if (native) {
@@ -52,14 +52,14 @@ export async function startTracking(
 async function startNativeTracking(
   onPoint: TrackCallback,
   onError: ErrorCallback,
-): Promise<() => void> {
+): Promise<() => Promise<void>> {
   const { Geolocation } = await import('@capacitor/geolocation')
 
   // Begär behörighet
   const perm = await Geolocation.requestPermissions()
   if (perm.location !== 'granted') {
     onError('Platsbehörighet nekad.')
-    return () => {}
+    return async () => {}
   }
 
   // watchId är lokal variabel — isolerad per anrop
@@ -91,10 +91,10 @@ async function startNativeTracking(
 function startWebTracking(
   onPoint: TrackCallback,
   onError: ErrorCallback,
-): () => void {
+): () => Promise<void> {
   if (!navigator.geolocation) {
     onError('GPS stöds inte i din webbläsare.')
-    return () => {}
+    return async () => {}
   }
 
   // localWatchId är lokal variabel — isolerad per anrop
@@ -112,7 +112,7 @@ function startWebTracking(
     { enableHighAccuracy: true, timeout: 10_000, maximumAge: 5_000 },
   )
 
-  return () => {
+  return async () => {
     if (localWatchId !== null) {
       navigator.geolocation.clearWatch(localWatchId)
       localWatchId = null
