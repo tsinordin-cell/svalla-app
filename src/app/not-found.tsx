@@ -72,8 +72,8 @@ export default function NotFound() {
           href="/platser"
           style={{
             padding: '13px 28px', borderRadius: 14,
-            border: '1.5px solid rgba(10,123,140,0.2)',
-            background: 'rgba(255,255,255,0.7)',
+            border: '1.5px solid var(--sea)',
+            background: 'transparent',
             color: 'var(--sea)', fontSize: 14, fontWeight: 600,
             textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
           }}
