@@ -15,13 +15,11 @@ function Backdrop({ onClick, children }: { onClick: () => void; children: ReactN
     <div
       onClick={onClick}
       style={{
-        position: 'fixed',
-        top: 0, left: 0, right: 0,
-        bottom: 'calc(var(--nav-h, 100px) + env(safe-area-inset-bottom, 0px))',
-        zIndex: 2000,
+        position: 'fixed', inset: 0, zIndex: 2000,
         background: 'rgba(0,20,35,0.5)',
         backdropFilter: 'blur(4px)',
-        display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '20px',
       }}
     >
       {children}
@@ -37,10 +35,10 @@ function Sheet({ onClick, children, label }: { onClick?: (e: MouseEvent<HTMLDivE
       aria-label={label}
       onClick={onClick}
       style={{
-        background: 'var(--white)', borderRadius: '24px 24px 0 0',
-        padding: '20px 20px 24px',
+        background: 'var(--white)', borderRadius: '20px',
+        padding: '20px',
         width: '100%', maxWidth: 480,
-        boxShadow: '0 -4px 40px rgba(0,20,35,0.15)',
+        boxShadow: '0 8px 40px rgba(0,20,35,0.25)',
         maxHeight: '80dvh', overflowY: 'auto',
       }}
     >
