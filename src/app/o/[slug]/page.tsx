@@ -192,6 +192,26 @@ export default async function IslandPage({ params }: Props) {
       {/* ── MAIN CONTENT ────────────────────────────────────────── */}
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 80px' }}>
 
+        {/* Visste du att */}
+        {island.did_you_know && (
+          <div style={{
+            background: 'linear-gradient(135deg, #0a7b8c 0%, #1a5276 100%)',
+            borderRadius: 16,
+            padding: '20px 24px',
+            marginBottom: 36,
+            display: 'flex',
+            gap: 16,
+            alignItems: 'flex-start',
+            boxShadow: '0 4px 20px rgba(10,123,140,0.2)',
+          }}>
+            <span style={{ fontSize: 26, flexShrink: 0, lineHeight: 1.2 }}>💡</span>
+            <div>
+              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>Visste du att</div>
+              <p style={{ fontSize: 14, color: '#fff', margin: 0, lineHeight: 1.7, fontWeight: 500 }}>{island.did_you_know}</p>
+            </div>
+          </div>
+        )}
+
         {/* Om ön */}
         <section style={{ marginBottom: 52 }}>
           <SectionHeader icon="📖" title={`Om ${island.name}`} />
