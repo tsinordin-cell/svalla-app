@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { REASON_LABELS } from '@/lib/moderation'
 import type { ReportReason, ReportTargetType } from '@/lib/moderation'
 
@@ -71,13 +72,13 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
       )}
 
       {/* Dialog */}
-      {open && (
+      {open && createPortal(
         <div
           style={{
             position: 'fixed', inset: 0, zIndex: 1200,
             background: 'rgba(0,20,30,0.55)', backdropFilter: 'blur(4px)',
-            display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
-            padding: '0 0 env(safe-area-inset-bottom, 0px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px',
           }}
           onClick={e => { if (e.target === e.currentTarget) closeDialog() }}
         >
@@ -86,11 +87,12 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
             aria-modal="true"
             aria-label="Anmäl innehåll"
             style={{
-              width: '100%', maxWidth: 480,
+              width: '100%', maxWidth: 420,
               background: 'var(--bg)',
-              borderRadius: '20px 20px 0 0',
-              padding: '20px 20px calc(20px + env(safe-area-inset-bottom, 0px))',
-              boxShadow: '0 -4px 32px rgba(0,20,30,0.18)',
+              borderRadius: '20px',
+              padding: '20px',
+              boxShadow: '0 8px 40px rgba(0,20,30,0.25)',
+              maxHeight: '90dvh', overflowY: 'auto',
             }}
           >
             {/* Handle */}
@@ -220,7 +222,8 @@ export default function ReportButton({ targetType, targetId, label = 'Anmäl', b
               </>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )
