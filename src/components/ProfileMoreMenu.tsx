@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, type ReactNode, type MouseEvent } from 'react'
+import { createPortal } from 'react-dom'
 import { Ban, Flag } from '@/components/icons/LucideIcons'
 import { createClient } from '@/lib/supabase'
 import ReportButton from '@/components/ReportButton'
@@ -50,7 +51,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
         </svg>
       </button>
 
-      {open && (
+      {open && createPortal(
         <Backdrop onClick={() => setOpen(false)}>
           <Sheet label={`Alternativ för ${targetUsername}`} onClick={e => e.stopPropagation()}>
             {/* Handle */}
@@ -96,7 +97,8 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
               Avbryt
             </button>
           </Sheet>
-        </Backdrop>
+        </Backdrop>,
+        document.body
       )}
     </>
   )
