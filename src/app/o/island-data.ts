@@ -40,6 +40,7 @@ export type Island = {
   regionLabel: string
   emoji: string
   tagline: string
+  did_you_know?: string
   lat?: number   // approx center coordinate
   lng?: number
   description: string[]
@@ -69,6 +70,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
     tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
+    did_you_know: 'Sandhamn är målhamn för Gotland Runt — en av världens folkrikaste oceansegeltävlingar sedan 1937. Öns lotsar styrde dessutom fartyg säkert in till Stockholm längs de grund-fyllda farvattnen i över 300 år.',
     description: [
       'Sandhamn är ett av Stockholms skärgårds mest välkända namn — och med rätta. Ön är hem för KSSS (Kungliga Svenska Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
       'Trots att Sandhamn är populärt har det bevarat sin karaktär. Ön är bilfri och smalare stigar leder mellan trävillorna. Det vita sandstranden Trouville på öns södra sida är en av skärgårdens finaste. Klipporna österut erbjuder solbad med utsikt mot öppet hav.',
@@ -127,6 +129,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🚲',
     tagline: 'Södra skärgårdens kronjuvel — cykling, gruvhistoria och havsbastu.',
+    did_you_know: 'Grundämnet litium isolerades för första gången i världen från malm på Utö år 1817, av kemisten Johan August Arfwedson. Öns järngruvor har dessutom brutits sedan 1200-talet — de äldsta kända i Sverige.',
     description: [
       'Utö är södra skärgårdens mest kompletta destination. Ön är känd för sina cykelleder, sin gruvhistoria — järn bröts här under 200 år — och sin havsbastu som numera är en av skärgårdens mest omtalade upplevelser. Utö Värdshus håller hög klass och är ett självklart mål för dem som vill kombinera god mat med naturupplevelse.',
       'Till skillnad från Sandhamn är Utö lugnare och mer familjevänlig. Öns storlek gör att man kan cykla runt hela dagen och ändå inte upprepa sig. Det finns sandstränder, klippor, naturreservat och ett litet museum om gruvdriften.',
@@ -183,6 +186,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏰',
     tagline: 'Porten till skärgården — stad, fästning och direktbåt från Strömkajen.',
+    did_you_know: 'Vaxholms fästning kontrollerade all sjötrafik till Stockholm i nästan 500 år. Gustav Vasa beordrade de första befästningarna på 1540-talet och ingen fiende tog sig förbi — vilket är en av anledningarna till att Stockholm aldrig intogs från havet.',
     description: [
       'Vaxholm kallas "porten till skärgården" — och det med rätta. Staden kontrollerade i 500 år ingången till Stockholms inre skärgård via fästningen mitt i sundet. Idag är den röda fästningen ett museum och ett av skärgårdens mest fotograferade motiv.',
       'Vaxholm är en riktig stad — med permanentboende, butiker, restauranger och en levande hamn. Det gör den unik bland skärgårdens öar. Man kan ta en kaffepaus, handla souvenirer och sitta ned på ett riktigt café utan att det känns som turistfälla.',
@@ -238,6 +242,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Skärgårdens hjärta — natur, värdshus och gästhamn mitt i skärgårdskorridoren.',
+    did_you_know: 'Grinda förvaltas av Skärgårdsstiftelsen och var länge en sluten jordbruksfastighet. Värdshuset som idag tar emot gäster har anor från 1800-talets skärgårdsturism, då ångbåtarna för första gången tog med medelklassen ut i övärlden.',
     description: [
       'Grinda kallas ibland för "skärgårdens hjärta" och det är svårt att argumentera emot. Ön ligger strategiskt mitt i den populäraste seglingskorridoren mot Sandhamn, har en välskött gästhamn och ett av skärgårdens mest omtyckta värdshus.',
       'Ön är bilfri och naturskönt med blandad skog, klippor och en lång strand. Grinda Wärdshus håller hög standard i köket och erbjuder boende i flera kategorier — från hotellrum till stugor och camping.',
@@ -291,6 +296,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
     tagline: 'Naturnära skärgårdsklassiker med vandrarhem, krog och trollsk skogsstämning.',
+    did_you_know: 'Finnhamn är uppkallat efter finska fiskare som slog sig ned på ön under 1600-talet — en del av den stora finska immigrationen till södra Sverige. STF öppnade sedermera ett av sina mest uppskattade vandrarhem här.',
     description: [
       'Finnhamn är den av de klassiska skärgårdsöarna som kanske bäst behållit sin karaktär. Ingen bil, ingen stress — bara skog, klippor och havet. Ön drivs i stor utsträckning av en ideell förening och vandrarhemsverksamheten har en lång historia.',
       'Vattnet runt Finnhamn är blankt och klart. Hamnen är en naturlig vikskyddad hamn med plats för hundratals båtar. Krogen, takbaren och lanthandeln är samlingspunkterna sommartid.',
@@ -345,6 +351,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏝',
     tagline: 'Bilfri och genuint lantlig — skärgårdens bäst bevarade hemlighet.',
+    did_you_know: 'Möja är en av de få öar i Stockholms skärgård som fortfarande har ett levande fiskesamhälle. Les Poissonniers de Möja serverar fisk plockad samma dag från egna ryssjor i havet utanför — havet är inte bara bakgrunden utan råvaran.',
     description: [
       'Möja är en av Stockholms skärgårds mest autentiska öar. Bilfri, lugn och med en genuint lantlig karaktär som saknar motstycke. Här bor ett par hundra permanentbor och sommartid dubbleras befolkningen — men det är inget som stör den stilla stämningen.',
       'Ön är tillräckligt stor för att ha en varierad geografi — skog, öppna fält, klippor och flera hamnar. Roland Svensson-museet och den vackra kyrkan är kulturella pärlor. Fisket är utmärkt och havsutsikterna ovanliga.',
@@ -397,6 +404,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⛴',
     tagline: '25 minuter från Strandvägen — närmaste skärgårdsupplevelsen från Stockholm.',
+    did_you_know: 'Fjäderholmarna är de närmaste öarna till Stockholm — 25 minuters båtresa från Slussen — men var stängda för allmänheten av militärskäl ända fram till 1981. Det var alltså möjligt att se dem från Strandvägen men inte besöka dem.',
     description: [
       'Fjäderholmarna är det enklaste svaret på frågan "hur tar man sig snabbt ut i skärgården?". Bara 25 minuters båtresa från Strandvägen och du är på en ö med rökerier, restauranger, bryggerier och hantverk. Inga bilar, inga långpendlingar.',
       'Ögruppen består av fyra öar varav Stora Fjäderholmen är den besökta. Här finns bland annat Rökeriet — ett av Stockholms mest klassiska rökeri sedan 1980-talet — och Fjäderholmarnas Krog med en av stadens bästa terrasser.',
@@ -448,6 +456,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌊',
     tagline: 'Stor bilfärjebetjänad ö med lång kustlinje och utmärkta kajakvatten.',
+    did_you_know: 'Ljusterö är den enda ö i Stockholms skärgård med fast skolpliktig befolkning hela året utan broförbindelse till fastlandet — barnen tar bilfärjan varje skoldag.',
     description: [
       'Ljusterö är en av de större öarna i Stockholms skärgård och en av de mest lättillgängliga — bilfärja avgår regelbundet från Ljusteröfärjan. Det gör ön populär för cykling och kajakpaddling, och det finns ett brett utbud av service längs kusten.',
       'Kustlinjen sträcker sig mil efter mil och bjuder på varierade miljöer — grunda vikar, öppna klippor och skyddade naturhamnar. Klintan är öns bästa sydläge och ett populärt seglarankare.',
@@ -499,6 +508,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '⚓',
     tagline: 'Södra skärgårdens klassiska utgångspunkt — historia, hamn och direktbuss från Stockholm.',
+    did_you_know: 'Dalarö var en av Sveriges viktigaste tullstationer från 1600-talet — varje fartyg som anlöpte Stockholm från havet passerade och betalade tull här. Det lilla fiskesamhället kontrollerade en gång en av Östersjöns viktigaste handelsrutter.',
     description: [
       'Dalarö är södra skärgårdens naturliga utgångspunkt. Orten har en lång maritim historia — Dalarö Skans byggdes på 1600-talet och spelade en viktig roll i försvaret av Stockholms södra farvatten. Idag är det en populär hamnort med gästhamn, restauranger och goda kommunikationer.',
       'Dalarö nås med bil på 45 minuter från Stockholm eller med kollektivtrafik. Det gör orten unik bland de södra destinationerna — man behöver inte ta båt för att komma hit. Från Dalarö hamn avgår sedan båtar mot Utö och de omgivande öarna.',
@@ -549,6 +559,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Norra skärgårdens yttersta förpost — orört, vidsträckt och riktigt långt bort.',
+    did_you_know: 'Arholma är den nordligaste bebodda ön i Stockholms skärgård. Under de ryska räiderna 1719 brändes ön ned till grunden av den ryska flottan — men återuppbyggdes och är idag startpunkten för Stockholm Archipelago Trail.',
     description: [
       'Arholma är nästan längst norrut man kan komma i Stockholms skärgård. Dit åker man med en intention — man är inte på väg förbi. Ön är vild, öppen och vidsträckt med starka vindar och havsutsikt som tar andan ur en.',
       'Arholma sjömack och krog är samlingsplatsen för seglare på väg norrut eller sydöst. Ön är en klassisk stopplats på Roslagsbåtarnas linjer och har haft fast befolkning sedan urminnes tider.',
@@ -596,6 +607,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌲',
     tagline: 'Södra skärgårdens största skogsö — vandring, naturreservat och genuint ösliv.',
+    did_you_know: 'Ornö ingår i Nämdöskärgårdens nationalpark — Sveriges nyaste, invigd september 2025. Det innebär ett skydd för ett skärgårdslandskap med havsörnar, klapperstensstränder och ekar som är unikt i hela regionen.',
     description: [
       'Ornö är en av Stockholms skärgårds största öar och en av de mest naturrika. Stora delar av ön skyddas som naturreservat med gammal skog, bäckar och ett rikt fågelliv. Befolkningen är liten men permanent, och ön har behållit sin lantliga karaktär.',
       'Till skillnad från de mer turistifierade öarna i mellersta skärgården har Ornö ett lite tystare tempo. Här åker man för naturens skull, inte för nöjeslivet. Vandringsstigarna är välmarkerade och tar dig genom skog och längs kustlinje.',
@@ -642,6 +654,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
     tagline: 'Skärgårdens sydligaste punkt — fyr, klippor och havet på alla sidor.',
+    did_you_know: 'Landsorts fyr tändes 1669 och är Sveriges äldsta bevarade fyr — ett av de äldsta aktiva sjömärkena i Skandinavien. En meteorologisk station på ön har dessutom mätt väder utan avbrott i mer än 150 år.',
     description: [
       'Landsort är det sydligaste bebodd ön i Stockholms skärgård och en av de mest dramatiska. Öja (öns officiella namn) och Landsort landspets är omgivna av öppet hav på tre sidor — utsikterna mot Östersjön är oöverträffade.',
       'Fyren på Landsort är en av de äldsta i Sverige och är det naturliga målet för alla som besöker ön. Saltboden säljer skafferivaror och mat för de som ankrar. Det är en plats som belönar den som tar sig dit.',
@@ -689,6 +702,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌲',
     tagline: 'Klassisk seglingspassage i norra skärgården med värdshus och sjömack.',
+    did_you_know: 'Det var ångbåtarnas intåg längs Furusundsleder på 1850-talet som öppnade skärgården för medelklassen. Innan dess var öarna förbehållna dem med egna fartyg — handelsfolk och adel. Ångaren förändrade allt.',
     description: [
       'Furusund är en klassisk passage i norra skärgården känd för sitt starka tidvatten och sin kulturhistoria. Sundet är nästan obligatoriskt för alla som seglar norrut och erbjuder möjligheter för både äventyr och lugn.',
       'Furusund Värdshus är det naturliga stoppet — ett historiskt värdshus med restaurang som tjänat seglare i generationer, känt från August Strindbergs verk. Naturmässigt är passagen dramatisk med klippor på båda sidor.',
@@ -735,6 +749,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌿',
     tagline: 'Lugn ö i norra skärgården med äkta landsbygdskänsla.',
+    did_you_know: 'Blidö hör till de öar som drabbades av de ryska räiderna 1719, då den ryska flottan systematiskt brände kustsamhällen längs norra skärgården. Norrtälje jämnades med marken under samma räid.',
     description: [
       'Blidö är en av de större öarna i norra skärgården och ett populärt resmål för dem som söker lugn och naturupplevelse. Ön nås enkelt med bilfärja från Vätö och erbjuder en blandning av permanentboende och sommargäster som skapar en levande men inte överbelastad miljö.',
       'Naturmässigt är Blidö varierad med skog, öppna åkrar och en lång, kuperad kustlinje. Blidö Brygga & Bistro är det naturliga samlingsplatsen för båtfolk, medan cykelleder slingrar sig längs vägar och stränder. Klimatet är mild nordskärgård — inte lika exponerat som Arholma men långt mer orört än mellersta öarna.',
@@ -775,6 +790,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Bilfri naturreservatstö med lägerverksamhet och enkel skärgårdsstämning.',
+    did_you_know: 'Gällnö ingår i Nämdöskärgårdens nationalpark — Sveriges nyaste, invigd september 2025. Öns klapperstenar, ekar och havsörnspopulation är nu skyddade för framtida generationer.',
     description: [
       'Gällnö är en bilfri ö i mellersta skärgården, klassificerad som naturreservat för att bevara dess orörda karaktär. Ön är känd för sin lägerverksamhet — ungdomsgrupper och naturskolor nyttjar öns större öppna arealer under sommaren.',
       'Landskap på Gällnö varierar från skogspartier till öppna ljunghedar. Här finns inga stora restauranger eller hotell — bara en enkel bar och handelsbod. Det är just detta som gör Gällnö attraktiv för naturälskare som söker lugn och orördhet.',
@@ -813,6 +829,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Familjens skärgård — känd som inspelningsplats för Astrid Lindgrens Madicken.',
+    did_you_know: 'Norröra är ön som lär ha inspirerat Astrid Lindgren till Saltskråkan — hon familjesommarboade i Furusundsleden-trakten och lät fantasin ta form i de blyga ösamhällena längs leden.',
     description: [
       'Norröra är en liten, lugn ö i norra skärgården mest känd som inspelningsplats för Astrid Lindgrens Madicken-filmer. Många generationer svenska barnfamiljer har växt upp med bilderna från denna ö.',
       'Ön är perfekt för barnfamiljer — tillräckligt stor för att erbjuda något för var smak men inte så stor att barnen trötnar. Naturella badplatser längs kusten och möjligheter till klippklättring gör det enkelt att tillbringa en heldag här.',
@@ -846,10 +863,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
     tagline: 'Naturreservat i södra skärgården — klippor, lugn och äkta ytterskärgård.',
+    did_you_know: 'Nåttarö naturreservat hör till de öar som passeras av seglare under Gotland Runt på etappen längs Södertörns kust. Ön har ingen reguljär båttrafik — det är en plats som bara de som söker sig dit aktivt hittar.',
     description: [
-      'Nåttarö är ett naturreservat i södra skärgården med vacker och vild natur. Ön är ett populärt ankringsläge för erfarna seglare som söker lugn och orördhet.',
-      'Naturreservatet skyddas för att bevara den rika biologiska mångfalden och det unika klippekosystemet. Vandringsstigar leder förbi blockhudar, öppna klippor och små naturhamnar. Klippbaden är rent och invitande.',
-      'Nåttarö kräver egen båt och är bäst kombinerat med en längre seglingstur i södra skärgården. Det är en ö för dem som redan är ute på havet.'
+      'Nåttarö är ett naturreservat långt ut i södra skärgården, omgiven av öppet hav och bara nåbar med privat båt. Hit kommer inga dagturister med Waxholmsbåten — det är en ö för seglare med tid och avsikt. Klipporna är vita, vattnet är rent och det finns knappt en lykta att se i horisonten när kvällen faller.',
+      'Vandringsstigar leder genom naturreservatet längs öns inre och ut mot ytterklipporna. Nåttarö Krog, öns enda matställe, är samlingspunkten på kvällarna — enkel husmanskost, hamnstämning och en känsla av att världen inte kan nå en här ute. Klippbaden på öns södra sida är stilla och klara.',
+      'Nåttarö passar perfekt som etappmål på en längre tur mot Landsort eller Utö. Lägg till en natt i naturhamnen och du förstår varför seglare återvänder hit år efter år.'
     ],
 
     facts: {
@@ -879,6 +897,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
     tagline: 'Glest befolkad naturö med utmärkta paddelvatten och bilfänja från Ljusterö.',
+    did_you_know: 'Ingmarsö nås via en av Stockholms skärgårds mer komplicerade rutter: buss till Ljusterö-färjan, bilfärja till Ljusterö, sedan ytterligare en lokal färja. Det extra steget bortre halten ger ön ett lugn som saknas på enklare nåbara öar.',
     description: [
       'Ingmarsö är en av de mer stillsamma öarna i mellersta skärgården. Bilfärja avgår från Ljusterö vilket ger ön ett "extra steg" bort från fastlandet. Här är det lugnt, naturen är frodig och sommarfolket är en blandning av återvändande familjer och seglare.',
       'Öns norra klippor och den skyddade Ingmarsöviken är favoriter bland kajakvinnare. Gästhamnen är enkel men välfungerande. Möjligheter för klippbad och vandring gör den attraktiv för naturälskare.',
@@ -927,6 +946,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
+    did_you_know: 'Nämdö kyrka uppfördes på 1600-talet och är en av de äldsta kyrkorna i Stockholms skärgård — den har tjänat fiskarbefolkningen och sommarbesökare i mer än 400 år och är fortfarande aktiv sommarsäsong.',
     description: [
       'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan medeltiden och är en av de mer genuina öarna — här finns ett litet levande samhälle, en vacker kyrka och en lanthandel.',
       'Naturen på Nämdö är väl skyddad med varierad terräng. Klippbad, vandringsstigar och fina naturhamnar på öns södra sida lockar seglare och naturälskare. Den lilla kyrkan från 1600-talet är värd ett besök.',
@@ -974,6 +994,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏝',
     tagline: 'Bilfri ö med ekologisk profil — biodynamisk odling och enkel skärgårdslyx.',
+    did_you_know: 'Svartsö är en pionjär inom ekologisk matproduktion i skärgården — biodynamisk odling har bedrivits på ön sedan 1970-talet, långt innan det var modernt. Svartsö Krog bygger hela sin meny på vad gården producerar.',
     description: [
       'Svartsö är kanske den mest unika av de bilfria öarna i mellersta skärgården. Ön har sedan decennier en stark ekologisk profil — biodynamiskt jordbruk, lokal matproduktion och ett medvetet förhållningssätt till turism.',
       'Naturen är varierad med öppna odlingslandskap, skog och en lång kustlinje. Ön är lagom stor för en heldag till fots. Känslan är lantlig snarare än marin — en skärgårdsö som också är en bondgård.',
@@ -1019,6 +1040,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
     tagline: 'Populär seglingsö nära Sandhamn — bränsle, krog och vackra naturhamnar.',
+    did_you_know: 'Runmarösund är ett av de djupaste och bäst skyddade naturhamns-sunden i mellersta skärgården, känt bland seglare sedan segelfartygens tid. Runmarö hamn erbjuder dessutom bränsle — ett praktiskt faktum som gjort ön till ett oumbärligt stopp på Stockholmsleden.',
     description: [
       'Runmarö är en större ö i mellersta skärgården som kombinerar natur med möjligheter för längre vistelse och varierad aktivitet. Ön är populär bland familjer.',
       'Naturen på Runmarö är varierad med skogspartier, badplatser och möjligheter för vandring. Det finns hamnar och restauranger. Cykelvägar möjliggör utforskning.',
@@ -1066,6 +1088,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏡',
     tagline: 'Välmående villaö nära Vaxholm — lättillgänglig med bil och buss.',
+    did_you_know: 'Resarö var länge ett militärt område med marinens anläggningar — idag är det en av de mest välmående villaöarna i Vaxholmsregionen, lättillgänglig med buss och bil utan att behöva ta en enda båt.',
     description: [
       'Resarö är en mellanstor ö i mellersta skärgården som erbjuder varierad natur och möjligheter för både kajak och segling. Ön är populär bland naturälskare.',
       'Resarö kombinerar skogsrika områden med väl utvecklad kustlinje och flera goda ankringslägen. Det finns en gästhamn och grundläggande service.',
@@ -1113,6 +1136,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Bilfri och lugn — ett av de bättre hållen hemligheterna i mellersta skärgården.',
+    did_you_know: 'Husarö är ett av de mer orörda alternativen på norra Stockholmsleden — trots Waxholmsbåt-anslutning är hamnen aldrig lika trångt packad som de populärare grannarna, vilket ger ett lugn som erfarna seglare känner till.',
     description: [
       'Husarö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön är mindre känd än sina närliggande grannar.',
       'Naturmässigt är Husarö varierad med skogspartier och badplatser längs kusten. Det finns en gästhamn och grundläggande service. Cykelvägar löper längs vägnätet.',
@@ -1158,6 +1182,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🪨',
     tagline: 'En av norra skärgårdens finaste naturhamnar — klara vatten och vita klippor.',
+    did_you_know: 'Fejan är ett naturreservat med vita kvartshaltiga klippor — en geologisk sällsynthet i en skärgård som annars domineras av grå och röd gnejs. Det klara vattnet och de vita klipporna är kombinationen som gör naturhamnen unik.',
     description: [
       'Fejan är ett naturreservat norr om Furusund och räknas bland norra skärgårdens absolut finaste naturhamnar. Vita klippor, kristallklart vatten och en skyddad inhamn gör ön till ett av seglarnas mest omtyckta stopp längs Furusundsleder.',
       'Det finns ingen reguljärbåt till Fejan — hit tar man sig med segelbåt eller motorbåt. Det är precis det som gör ön speciell. Inga dagsturister med Waxholmsbåten, bara båtfolk som sökt sig dit med intention.',
@@ -1202,10 +1227,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Skyddat ytterklippsskär med en av norra skärgårdens finaste ankringsplatser.',
+    did_you_know: 'Rödlöga är ett klassiskt etappmål under Gotland Runt (den folkrikaste oceansegeltävlingen i världen, med start i Sandhamn sedan 1937) och hamnen räknas bland norra skärgårdens bäst skyddade naturhamnar.',
     description: [
-      'Rödlöga är en större ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön kombinerar natur med väl utvecklad infrastruktur.',
-      'Naturen på Rödlöga är varierad med skogspartier och badplatser längs kusten. Det finns hamnar och restauranger spridda över ön. Cykelvägar löper längs vägnätet.',
-      'Rödlöga passar för familjer som söker ett lugnt alternativ till populärare öar.'
+      'Rödlöga är en av norra skärgårdens längst ut belägna bebodda öar — ett ytterskär i ordets verkliga bemärkelse. Hit tar man sig via Waxholmsbåtens norra linje från Norrtälje, eller som ett naturligt etappmål på en längre seglingstur upp mot Åland. Känslan förändras märkbart när man passerar de yttre grunden: vinden skärper sig, horisonten vidgas och Östersjön börjar ta plats.',
+      'Hamnen på Rödlöga är skärgårdens bäst bevarade hemlighet — väl skyddad inhamn med plats för ett femtontal båtar, omgiven av vita klippor och mörk barrskog. Under Gotland Runt-helgen i juli är det sällan en tom plats att hitta; i övrig sommartid råder en stämning av hamnkrog, fiskesnack och sena solnedgångar. Krogen är samlingsplatsen.',
+      'För den som vill gå längre finns klippvandring ut mot havsexponeringen och utmärkta havsöring- och makrillfiskevatten längs ytterkusten. Rödlöga kräver navigeringsvana — grundbotten är komplex — men belönar med en av norra skärgårdens mest minnesvärda övernattningar.'
     ],
 
     facts: {
@@ -1248,10 +1274,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Glest befolkad ö i Norrtäljes skärgård — rå natur och en bilfärja bort från turismen.',
+    did_you_know: 'Singö kapell är ett av Upplands äldsta bevarade träkyrkor. Hit kom fiskare och bönder för gudstjänst länge innan turistbåtarna existerade — en historisk pärla i en av norra skärgårdens minst besökta öar.',
     description: [
-      'Singö är en större ö i norra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön är bilfärjebetjänad och erbjuder varierad natur.',
-      'Naturen på Singö är varierad med skogspartier och väl utvecklad kustlinje. Det finns hamnar och grundläggande service. Cykelvägar löper längs vägnätet.',
-      'Singö passar för familjer som söker ett lugnt alternativ till de populäraste norra öarna.'
+      'Singö nås med bilfärja från Norrtälje-hållet och tillhör de öar i norra skärgården som flest stockholmsbor aldrig hört talas om — vilket är precis vad de som bor och sommarbor här uppskattar. Ön är glesbefolkad, grusvägarnas skärgård, där kornas betande längs strandängar och ett halvöppet jordbrukslandskap bryts av klippbad utan en människa i sikte.',
+      'Singö kapell, ett av Upplands äldsta bevarade träkyrkor, reser sig i öns inre och är öns historiska hjärta. Hit kom fiskare och bönder långt innan turistbåtarna existerade. Fiskelägen längs ytterkusten vittnar om en tid då Singö försörjde sig på havet — idag är abborre och havsöring i vikarna närmast ett privilegium för de som orkar cykla dit.',
+      'Singö är inte för den som söker restauranger och guideturer. Det är ön för den som vill cykla längs grusvägar, ta ett dopp i havet utan grannar och laga mat i en stuga med utsikt mot ingenting utom Östersjön.'
     ],
 
     facts: {
@@ -1294,6 +1321,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌲',
     tagline: 'Naturskönt gods med konferens och gästhamn — ett unikt skärgårdshotell.',
+    did_you_know: 'Lidö förvaltas av Skärgårdsstiftelsen och är känt för sina gamla ekdungar och det öppna odlingslandskapet — en naturmiljö som vittnar om hur skärgårdsöarna såg ut när de fortfarande var aktiva jordbruksgårdar.',
     description: [
       'Lidö är en större och väl bebyggd ö i mellersta skärgården som kombinerar natur med väl utvecklad infrastruktur. Ön är populär bland både familjer och seglare.',
       'Naturen på Lidö är varierad med skogspartier och badplatser längs kusten. Det finns restauranger, kaféer och hamnar. Cykelvägar löper längs vägnätet.',
@@ -1341,6 +1369,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Halvö i norra skärgården med direktbuss och en av regionens finaste stränder.',
+    did_you_know: 'Gräddo är en av de öar i norra skärgården som fortfarande har aktiv jordbruksmark och betande djur — ett alltmer sällsynt inslag i en skärgård som annars domineras av igenväxande skog och klipphäll.',
     description: [
       'Graddo är en liten ö i mellersta skärgården som erbjuder lugn och möjligheter för badning och enkel vistelse. Ön är mindre uppmärksammad men älskad.',
       'Graddo kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser längs kusten erbjuds. Service är minimal.',
@@ -1387,6 +1416,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌾',
     tagline: 'Stor halvö nära Norrtälje med kanal, dansbana och äkta Roslagskaraktär.',
+    did_you_know: 'Väddö kanal, grävd på 1800-talet, förbinder Norrtäljeviken med havet och var en gång avgörande för timmertransporter från Norrland. Kanalen är fortfarande farbar och en del av skärgårdshistoriens industriella arv.',
     description: [
       'Vaddö är en större ö söder om Vaxholm som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad landskap och är populär bland familjer.',
       'Naturen på Vaddö är varierad med skogspartier och badplatser längs kusten. Det finns hamnar och grundläggande service. Cykelvägar möjliggör utforskning.',
@@ -1435,6 +1465,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🔬',
     tagline: 'Marinbiologisk forskning och naturskönt naturreservat i södra ytterskärgården.',
+    did_you_know: 'Askö biologiska station har bedrivit havsforskning här sedan 1960-talet och är en av de viktigaste marina forskningsstationerna i Östersjön. Under ytan runt ön pågår studier av ekosystem som är avgörande för hela havets hälsa.',
     description: [
       'Askö är en större och väl utvecklad ö i mellersta skärgården som kombinerar natur med etablerad infrastruktur. Ön är populär bland både familjer och långseglare.',
       'Naturen på Askö är varierad med skogspartier och badplatser längs kusten. Det finns ett antal hamnar, restauranger och kaféer spridda över ön. Cykelvägar möjliggör utforskning.',
@@ -1478,6 +1509,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🏖',
     tagline: 'Halvö med en av regionens finaste sandstränder — lättillgänglig med bil.',
+    did_you_know: 'Gålö naturreservat i södra skärgården är känt för sina klapperstensstränder och sandiga badvikar — ovanliga inslag längs Stockholms annars klippiga kust. Reservatet nås med bil och är populärt som stranddestination utan båt.',
     description: [
       'Gålö är en större ö i södra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad landskap och är populär bland seglare.',
       'Gålö har en väl utvecklad gästhamn och grundläggande service spridda över ön. Naturmässigt finns det skogspartier, badplatser och vandringsstigar.',
@@ -1526,6 +1558,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌲',
     tagline: 'Naturreservat i söder med dramatisk kustlinje och surf-stämning.',
+    did_you_know: 'Torö naturreservat är ett av södra Stockholms mest besökta naturområden — nåbart med bil och känt för sina sandstränder och öppna kustlandskap längs Östersjön. Havsörnen häckar regelbundet i reservatets ekdungar.',
     description: [
       'Torö är en större ö i norra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad natur och är populär bland seglare.',
       'Naturen på Torö är varierad med skogspartier och väl utvecklad kustlinje. Det finns hamnar och grundläggande service. Möjligheter för vandring och badning.',
@@ -1572,6 +1605,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🪨',
     tagline: 'Orört naturreservat i södra ytterskärgården — här åker man hit, inte förbi.',
+    did_you_know: 'Fjärdlång är ett av de längsta smala öarna i södra skärgården med rikt fågelliv och flera välskyddade naturhamnar. Ön ingår i ett system av skyddade vatten som är viktiga rastplatser för sträckfåglar.',
     description: [
       'Fjärdlång är ett naturskär i södra skärgården som erbjuder dramatiska utsikter och möjligheter för enkelt ankörning för erfarna seglare. Skäret är exponerat.',
       'Fjärdlång kombinerar ytterskärgårdens dramatiska natur med möjligheter för enkelt ankörning på sydsidan. Badplatser och möjligheter för naturupplevelse erbjuds.',
@@ -1616,10 +1650,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏰',
     tagline: 'Militärhistoria och stilla vikar nära Vaxholm',
+    did_you_know: 'Rindö har haft militär närvaro sedan 1600-talet som en del av Vaxholms fästningssystem — batterier och försvarsanläggningar längs öststranden kontrollerade den strategiska inloppssträckan till Stockholm.',
     description: [
-      'Rindö är en mellanstor ö i mellersta skärgården som erbjuder en blandning av lugn natur och möjligheter för aktiviteter för hela familjen. Ön är populär bland seglare som utgångspunkt för kajakpaddling.',
-      'Naturen på Rindö är varierad med både skog och klippor. En enkel gästhamn och grundläggande service gör det enkelt att stanna ett par dagar. Ön är bilfärjebetjänad vilket gör den mer tillgänglig.',
-      'Rindö fungerar väl som del av en rundtur tillsammans med närliggande öar som Resarö och Tenö, eller som självständig destination för kajak och naturupplevelse.'
+      'Rindö är en ö som haft militär närvaro sedan 1600-talet — befästningar, kanoner och försvarsanläggningar präglade ön under sekler av Vaxholmsfästningens glansperiod. Längs öststranden kan man fortfarande se rester av gamla batterier och murrester som vittnar om en strategisk position i Stockholms inloppsled. Det är skärgårdshistoria på nära håll.',
+      'Idag är Rindö framför allt känt som en lugn bostadsö nära Vaxholm, förbunden med en kort bilfärja. Naturen är varierad med skog och klippor, och öns läge i Vaxholmsrännan gör den till ett naturligt stopp på seglingsresor norrut. Gästbryggan tar ett tiotal båtar i ett skyddat läge.',
+      'Kombinera gärna Rindö med ett besök på Vaxholms fästning på andra sidan sundet — den historiska kontexten hänger ihop, och överfarten är bara minuter med den lokala färjan.'
     ],
 
     facts: { travel_time: '10 min från Vaxholm', character: 'Historisk, lugn, bostadsö', season: 'Maj–september', best_for: 'Historia, vandring, segling' },
@@ -1643,10 +1678,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🚲',
     tagline: 'Bilfri cykelö med sandstränder och lantlig charm',
+    did_you_know: 'Kungsudde-stranden på Yxlan är en av de få riktiga sandstränderna i norra skärgården — en geologisk sällsynthet i ett landskap som domineras av klipp och häll. Ön är bilfri och nås med bilfärja från Simpnäs.',
     description: [
-      'Yxlan är en liten ö i mellersta skärgården som erbjuder lugn natur och möjligheter för enkelt ankörning. Ön är mindre känd men älskad av lugnsökande.',
-      'Yxlan kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser och möjligheter för vandring längs kusten erbjuds.',
-      'Yxlan passar för kajakvinnare eller erfarna seglare som redan är ute på havet och letar efter ett enkelt ankringsläge.'
+      'Yxlan är en bilfri ö i norra skärgården med ett ovanligt drag: en riktig sandstrand. I en skärgård dominerad av hällmark och klippor är Kungsudde-stranden på Yxlans sydöstra udde närmast ett fenomen — bred, öppen och med grunt badvatten som värms snabbt under sommaren. Cyklister hittar hit via bilfärja från Simpnäs och tar sig runt ön på två till tre timmar.',
+      'Cykeluthyrning finns vid bryggan, och öns enkla vägnät gör den hanterbar för alla åldrar. Vandrarhemsövernattning ger möjlighet att se en lugn skärgårdsö utanför rusningstid — tidiga morgnar på Yxlan, med dimma över viken och inga motorer hörbara, är vad ön är till för.',
+      'Yxlans Café vid hamnen serverar hemlagad mat och kaffe i lantlig miljö. Ta morgonbåten för att få ut en hel dag, och boka vandrarhem i god tid om du planerar juli.'
     ],
 
     facts: { travel_time: '45 min från Kapellskär', character: 'Bilfri, lantlig, sandstrand', season: 'Juni–september', best_for: 'Cykling, bad, avkoppling' },
@@ -1670,10 +1706,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '✍️',
     tagline: 'Strindbergs ö — litteraturhistoria mitt i skärgården',
+    did_you_know: 'August Strindberg bodde och skapade på Kymmendö sommrarna 1871–1883. Romanen Hemsöborna (1887) är direkt baserad på öns invånare — flera karaktärer hade verkliga förebilder bland byborna. Han kallade Kymmendö "den enda plats jag verkligen älskat."',
     description: [
-      'Kymmendö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder en balans mellan tillgänglighet och autenticitet. Bilfärjan gör den nöbar för både bilister och båtturister.',
-      'Ön är känd för sina naturvärdena — skogsrika partier växlar med öppna ljunghedar och klippor. En enkel hamn och bistro täcker behoven för ett dagbesök eller kortare övernattning.',
-      'Kymmendö passar bäst för den som redan är ute i mellersta skärgården och letar efter en lugn sidoväg, eller för den som kombinerar det med närliggande öar.'
+      'Kymmendö är ön där August Strindberg tillbringade sommrarna 1871–1883 och fann inspirationen till romanen Hemsöborna. Det är ett anspråkslöst faktum som förvandlar varje promenad längs öns stigar till något mer — man går i en av svensk litteraturhistorias viktigaste landskap. Stugan där han bodde och skapade finns fortfarande kvar.',
+      'Ön nås enbart med privat båt och är ett av de mer avskilda alternativen i mellersta skärgården. Skogsrika partier växlar med öppna ljunghedar och nakna klippytor. Hamnen på sydsidan ger plats för ett sextal båtar i ett skyddat läge — inget mer, inget mindre.',
+      'Ta med Hemsöborna och läs ett kapitel i skuggan av en björk. Det är det närmaste man kommer att förstå varför Strindberg valde just Kymmendö. Service och butiker finns inte — ta med allt och räkna med att lägga en hel dag på stillhet.'
     ],
 
     facts: { travel_time: '2 h från Stockholm', character: 'Historisk, orört, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, historia, natur' },
@@ -1697,10 +1734,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🦅',
     tagline: 'Naturreservat med rikt fågelliv och rå skärgårdskaraktär',
+    did_you_know: 'Bullerö är ett av de tätaste havsörnshabitat i Stockholms skärgård. Naturum Bullerö erbjuder guidade turer om ytterskärgårdens ekologi — bland de bästa naturguide-upplevelserna i hela skärgårdsregionen.',
     description: [
-      'Bullerö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn, ett aktivt sommarliv och en genuin skärgårdskaraktär. Ön nås enkelt och är populär bland familjer.',
-      'Naturen är varierad med både skog och badplatser längs kusten. Det finns en välskött gästhamn och restauranger som håller ön levande sommartid. Cykelvägar löper längs vägnätet.',
-      'Bullerö kombineras ofta med ett besök på närliggande öar på en längre seglingstur, men kan också fungera som självständig destination för ett övernattningsbesök.'
+      'Bullerö är ett naturreservat i ytterskärgårdens innersta gränszon — tillräckligt långt ut för att känna vinden skifta karaktär, men med ett välskyddat hamnläge som tar emot båtfolk som vill stanna mer än ett dygn. Ön är ett av de tätaste fågellivs-reservaten i Stockholms skärgård: havsörn cirklar regelbundet, sillgrisslorna häckar i kolonier och labben skyr inte att driva bort inomkikarshåll.',
+      'Naturum Bullerö — reservatets informationscenter — erbjuder utställning om ytterskärgårdens ekologi och guidade turer för den som vill förstå mer än man ser med blotta ögat. Det är en av de bättre guidade naturupplevelserna i skärgården och passar barn såväl som vuxna.',
+      'Bullerö nås med Waxholmsbåt från Stavsnäs under sommarsäsong, och passar utmärkt som naturmål för familjer utan eget båt. Ta med kikare — det är näst intill ett krav för att göra rättvisa åt platsen.'
     ],
 
     facts: { travel_time: '2–3 h från Stockholm', character: 'Naturreservat, vilt, fågelrikt', season: 'Maj–september (fåglar bäst i juni)', best_for: 'Fågelskådning, natur, fotografi' },
@@ -1724,10 +1762,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌳',
     tagline: 'Stor skogsö med bro och hästgård',
+    did_you_know: 'Vindö är en av få skärgårdsöar med ridmöjligheter i havsnära natur — hästgården på ön är ett ovanligt inslag i archipelag-miljön. Ön är broförbunden via Gustavsberg och är nåbar utan båt.',
     description: [
-      'Vindö är en bilfärjebetjänad ö i mellersta skärgården som kombinerar lugn med närhet till fastlandet. Ön är mindre uppmärksammad än grannarna men erbjuder hög kvalitet.',
-      'Skoglövet på Vindö är tätt och det finns flera fina vandringsstigar. Badplatser längs kusten är ofta folktomt. En enkel hamn och service täcker behoven.',
-      'Vindö passar för den som söker lugn utan att behöva åka långt bort, eller för den som redan är ute och letar efter nästa stopp.'
+      'Vindö är en av Stockholms närmaste skärgårdsöar med bro- och båtförbindelse — men trots det är den inte överbelastad. Det tätväxta barrskogsbältet som täcker öns inre ger en känsla av djupare natur än vad kartan antyder, och vandringslederna genom skogen slutar ofta vid klippkanter med utsikt som man inte väntat sig.',
+      'Hästgården på Vindö erbjuder ridning för alla nivåer och är ett av de mer ovanliga inslagen i skärgårdsmiljö — kombinationen av hav, skog och hästar gör ön till ett genuint alternativ för barnfamiljer som inte söker den typiska strandstampen. Vindö Camping ligger i skogen nära vattnet och fungerar som bas för cykelutforskning av ön.',
+      'Nåbar med bil via Gustavsbergsleden eller med Waxholmsbåt från Stavsnäs sommarsäsong. Hamnkaféet vid bryggan är öppet sommartid och serverar fika och enkel mat — tillräckligt för att starta en dag på ön.'
     ],
 
     facts: { travel_time: '1 h från Gustavsberg', character: 'Skogig, lugn, broförbunden', season: 'Maj–oktober', best_for: 'Vandring, ridning, familjeutflykt' },
@@ -1751,6 +1790,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🛶',
     tagline: 'Kajakcentrum och pittoreskt gammalt fiskläge',
+    did_you_know: 'Smådalarö Gård har anor som sträcker sig till 1600-talet och är en av södra skärgårdens äldsta bevarade gårdsanläggningar. Kajakuthyrning från bryggan gör ön till ett av regionens bästa utgångslägen för havspaddling.',
     description: [
       'Smådalarö är en liten ö söder om Dalarö som erbjuder lugn, utsikter och en autentisk skärgårdsupplevelse. Ön är mindre besökt än Utö men erbjuder fin naturupplevelse.',
       'Naturmässigt är Smådalarö varierad med skogspartier och klippor längs kusten. Det finns möjligheter för klippbad och vandringsstigar. Service är begränsad.',
@@ -1778,10 +1818,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌊',
     tagline: 'Rå söderskärgård med orörd natur och gamla traditioner',
+    did_you_know: 'Mörkö har fisketraditioner djupt rotade i Östersjöns historia, med fiskelägen som dokumenterats sedan medeltiden. Abborre, gädda och havsöring i vikarna vittnar om vatten som ännu bär på vad de alltid burit.',
     description: [
-      'Mörkö är en liten, lugn ö i södra skärgården som erbjuder en enkel och autentisk skärgårdsupplevelse långt från turistströmmarna. Ön förblir lugn trots att den är bilfärjebetjänad.',
-      'Naturen på Mörkö är varierad med skogspartier och klippor. Det finns möjligheter för båd och enkel vistelse. Service är minimal — ingen restaurang men en handelsbod för grundbehov.',
-      'Mörkö passar för den som redan är ute i södra skärgården och letar efter ett lugnt ankringsläge.'
+      'Mörkö hör till södra skärgårdens genuint okända öar — bilfärjebetjänad men ändå bortglömd av de flesta turistkartor. Det är en ö med fisketraditioner djupt rotade i Östersjöns historia, där abborre och gädda fortfarande tas i vikarna och havsöring söker sig längs ytterkusten på hösten. Skogen är tät och stigarna längs kusten är nästan alltid tomma.',
+      'Service är medvetet minimal: ingen restaurang, men en handelsbod täcker proviantbehoven. Det är just det som lockar dem som hittar hit — ingen kö vid bryggan, inga programpunkter, bara klipporna och havet och tid att tänka egna tankar. Mörkö Stugor kan bokas för övernattning.',
+      'Ta med mat, fiskeutrustning och ett läsprogram. Mörkö levererar inte upplevelser — det ger dig utrymme att skapa dina egna.'
     ],
 
     facts: { travel_time: '1 h 45 min från Stockholm', character: 'Rå, genuin, fiskartradition', season: 'Maj–oktober', best_for: 'Fiske, natur, äkta skärgård' },
@@ -1805,10 +1846,11 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '⚓',
     tagline: 'Gamla marinbasen — berghällshamnar och industrihistoria',
+    did_you_know: 'Under det kalla kriget inhystes en av världens mest avancerade militäranläggningar under Muskö: en underjordisk flottbas för ubåtar, sprängd direkt in i berget med tunnlar upp till 20 meter höga. Idag är det museum.',
     description: [
-      'Muskö är en större ö i södra skärgården som erbjuder varierad natur och en blandning av fast befolkning och sommargäster. Ön är bilfärjebetjänad och erbjuder goda möjligheter för längre vistelse.',
-      'Muskö kombinerar skogsrika områden med öppna partier och väl utvecklad kustlinje. Det finns flera hamnar, restauranger och kaféer. Cykelvägar löper längs vägnätet.',
-      'Muskö passar för familjer som söker ett lugnt alternativ till de populäraste södra öarna.'
+      'Under det kalla kriget var Muskö hemvist för en av världens mest imponerande militäranläggningar: en underjordisk flottbas för ubåtar och ytstridsfartyg, sprängd direkt in i berget. Tunnlarna är upp till 20 meter höga, rymmer drydocks och löper hundratals meter in under ön. Marinbasen lades ned 2004 och är idag ett museum — en av de mest häpnadsväckande industrimiljöer man kan besöka i Sverige.',
+      'Muskö i sig är broförbunden via Haninge och relativt lättillgänglig söderifrån. Ön har en skogig och klippig karaktär med bra badplatser längs sydkusten och ett lugnt sommarliv som kontrasterar skarpt mot det dramatiska bergsinnandömet. Vägnätet är enkelt att cykla längs.',
+      'Boka marinbas-turen i god tid — den är populär sommartid och guideturer görs bara i begränsad upplaga. Resten av dagen lämnar sig åt klippbad och picknick i en av skärgårdens mer oväntade naturmiljöer.'
     ],
 
     facts: { travel_time: '1 h 30 min från Stockholm', character: 'Industrihistoria, klippor, halvö', season: 'Maj–oktober', best_for: 'Historia, klippbad, natur' },
@@ -1832,6 +1874,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mälaren',
     emoji: '⚔️',
     tagline: 'Vikingastaden Birka — UNESCO-världsarv i Mälaren',
+    did_you_know: 'Birka på Björkö var Nordens viktigaste handelsstad 750–975 e.Kr. Det var här missionären Ansgar introducerade kristendomen i Sverige år 829 e.Kr. Mer än 3 000 gravar har hittats på ön — UNESCO-listad sedan 1993.',
     description: [
       'Björkö är en historisk ö i mellersta skärgården som erbjuder ett fascinererande samband mellan vikingatid och modernt skärgårdsliv. Ön är populär bland historieintresserade och familjer.',
       'Arkäologiska utgrävningar och museet på Björkö berättar om vikingasamhället som blomstrade här för över tusen år sedan. Naturmässigt är ön varierad med skog och badplatser.',
@@ -1859,6 +1902,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mälaren',
     emoji: '👑',
     tagline: 'Kungsgård och medeltida kyrka vid Birkas granne',
+    did_you_know: 'Adelsö kyrka uppfördes på 1100-talet och är en av de äldsta bevarade stenkyrkorna i Mälardalen — byggd i samma era som Birka blomstrade på grannön Björkö. Hovgårdens kungsgård på ön var dessutom en av svenska kungarnas medeltida residens.',
     description: [
       'Adelsö är en större ö som erbjuder lugn, historia och en varierad natur. Ön är tillgänglig både för bilister och båtturister och kombinerar kulturhistoria med naturupplevelse.',
       'Adelsö har en lång historisk tradition med gamla sätesgårdar och kyrka från medeltiden. Naturmässigt erbjuder öns vägnät möjligheter för cykling och vandring.',
@@ -1886,6 +1930,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
     tagline: 'Stor bro-ö med stränder, skog och seglarhamnar',
+    did_you_know: 'Baggensfjärden utanför Ingarö räknas som en av de bäst skyddade naturhamnarna nära Stockholm — ett populärt ankringsområde för seglare i mer än ett sekel. Öns rika skogslandskap gränsar direkt till vattnet.',
     description: [
       'Ingarö är en större och väl bebyggd ö öst om Stockholm som erbjuder lugn och möjligheter för natur nära Stockholm. Ön är bilfärjebetjänad och erbjuder goda förbindelser.',
       'Ingarö kombinerar bosättningar med naturområden och väl utvecklad infrastruktur. Det finns restauranger, kaféer och butiker. Vandringsstigar och badplatser erbjuder naturupplevelse.',
@@ -1913,6 +1958,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Ytterskärgård',
     emoji: '🪨',
     tagline: 'Ytterst i skärgården — klippor, hav och ingenting annat',
+    did_you_know: 'Svenska Högarna har en aktiv meteorologisk station som mätt väder sedan 1800-talet — en av de längsta kontinuerliga klimatdataserierna från Östersjön. Stationen är fortfarande bemannad och besökbar.',
     description: [
       'Svenska högarna är en grupp små holmar i södra skärgården känd för sitt fågelskyddsreservat och rikt fågelliv. Allmän besök är begränsad för att skydda fåglarna.',
       'Området är en av de viktigaste fågelskyddszonerna i Stockholms skärgård. Även om man inte kan besöka själva reservatet är det möjligt att ankra i närliggande skyddade vikar.',
@@ -1940,6 +1986,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Ytterskärgård',
     emoji: '🏮',
     tagline: 'Det klassiska fyrtornet och ankringsplatsen i ytterskärgården',
+    did_you_know: 'Huvudskärs meteorologiska station har levererat väderdata från skärgårdens ytterkant sedan 1800-talet. Data härifrån ingår i Östersjöns längsta klimatserier och används fortfarande i modern väderprognosforskning.',
     description: [
       'Huvudskär är en större och väl bebyggd ö söder om Stockholm som fungerar både som utgångspunkt för längre seglingsresor och dagsdestination. Ön erbjuder intressant blandning av befolkning och industri.',
       'Huvudskär har gamla spår av malm- och stenkrosning som format öns historia. Idag erbjuder ön flera restauranger, hamnar och kaféer. Möjligheter för båd och vandring.',
@@ -1967,6 +2014,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Ostörd naturö med rik flora och klipplandskap',
+    did_you_know: 'Ramskär är känt för sin ovanliga botanik: vilda orkidéer och specialiserade strandväxter som trivs på de tunna jordlagren ovanpå klippan — ett ekologiskt fenomen som gjort ön intressant för botaniker i generationer.',
     description: [
       'Ramskär är ett klippskär i norra skärgården som fungerar som välkänd angöringsplats på seglares längre resor. Skäret är exponerat men erbjuder bra naturligt skydd.',
       'Ramskär har en lång seglartradition och är välkänt bland seglare från Stockholm och Norrtälje. Skäret erbjuder möjligheter för enkelt övernattningsankörning.',
@@ -1994,6 +2042,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌳',
     tagline: 'Ekar och sommarstugor i klassisk skärgårdsmiljö',
+    did_you_know: 'Eknö är ett av de få ställen i mellersta skärgården med gamla jättekar — träd som kräver flera hundra år för att nå sin fulla storlek. Ekarna längs östra stranden är troligtvis bland de äldsta levande organismerna i skärgården.',
     description: [
       'Eknö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn, naturupplevelse och en autentisk skärgårdskänsla. Ön är mindre besökt än sina större grannar.',
       'Naturen på Eknö är varierad med skogspartier och badplatser längs kusten. Det finns en enkel gästhamn och grundläggande service. Cykelleder löper längs vägnätet.',
@@ -2021,6 +2070,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌻',
     tagline: 'Liten söderö med sol och klippor',
+    did_you_know: 'Hasselö tillhör den del av södra skärgårdszon som ingår i Nämdöskärgårdens nationalpark — Sveriges nyaste, invigd september 2025 — och skyddas för sitt rika fågelliv och klipplandskap.',
     description: [
       'Hasselö är en liten ö i mellersta skärgården som erbjuder lugn natur och möjligheter för enkel vistelse. Ön är mindre uppmärksammad men älskad av dem som känner till den.',
       'Hasselö kombinerar skogsrika områden med klippor och badplatser. Service är minimal men det finns möjligheter för enkelt ankörning. Ön är perfekt för lugnsökande.',
@@ -2048,6 +2098,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Ytterskärgård',
     emoji: '🐍',
     tagline: 'Spetsig ytterskärsgård med vind och hav',
+    did_you_know: 'Ormskär fick troligtvis sitt namn av de huggormspopulationer som en gång var vanliga på klipporna — ett ekologiskt fenomen som var utbrett i yttre skärgårdens varma, exponerade hällmarker.',
     description: [
       'Ormskär är ett exponerat naturskär i södra skärgården som erbjuder dramatiska naturupplevelser för erfarna seglare. Skäret är välkänt bland dem som söker äkta ytterskärgård.',
       'Ormskär är vilt och exponerat, omgivet av öppet hav på flera sidor. Ankörningen kräver erfarenhet och god väderprognos. Belöningen är dramatiska utsikter.',
@@ -2075,6 +2126,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '⛪',
     tagline: 'Gammal kapellö med utsikt och historia',
+    did_you_know: 'Ljusnäs kapell är ett av de minsta aktiva gudstjänstrum i Stockholms skärgård — gudstjänst hålls fortfarande sommarsäsong för dem som tar sig dit med privat båt. En påminnelse om varje bebott skärs andliga tradition.',
     description: [
       'Ljusnäs är en liten ö i södra skärgården som erbjuder lugn och naturupplevelse långt från turistströmmarna. Ön är primärt tillgänglig för båtturister med egen båt.',
       'Ljusnäs erbjuder möjligheter för enkelt ankörning och naturupplevelse. Det finns möjligheter för bad och enkel vistelse. Service är minimal.',
@@ -2102,6 +2154,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⚓',
     tagline: 'Populär seglarhamn i hjärtat av skärgården',
+    did_you_know: 'Kanholmen är en av de klassiska naturhamnarna på seglarsträckan mot Sandhamn — välkänd och uppskattad sedan segelskutornas tid och fortfarande ett av de mest populära övernattningsankarna på Stockholmsleden.',
     description: [
       'Kanholmen är en liten ö i södra skärgården som kombinerar lugn natur med möjligheter för badning och enkel vistelse. Ön är mindre besökt men högt älskad.',
       'Naturmässigt erbjuder Kanholmen klippor, badplatser och möjligheter för enkel vistelse. Det finns möjligheter för enkelt ankörning men service är minimal.',
@@ -2129,6 +2182,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🦩',
     tagline: 'Fågelrik ö med stilla vatten och skyddade vikar',
+    did_you_know: 'Norrpada tillhör ett ögrupp-ekosystem i mellersta skärgården med en av regionens tätaste populationer av häger, strandskata och sjöfågel — ett relativt okänt ornitologiskt fynd i skärgårdens mitt.',
     description: [
       'Norrpada är en liten ö i norra skärgården som erbjuder lugn och naturupplevelse långt från de större destinationerna. Ön är mindre känd men älskad av erfarna skärgårdskännare.',
       'Norrpada kombinerar skogsrika områden med badplatser och möjligheter för enkelt ankörning. Service är minimal men detta gör ön autentisk.',
@@ -2156,6 +2210,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🔭',
     tagline: 'Fyrlins-ö med unika klippformationer',
+    did_you_know: 'Gråskär i norra skärgården är känd för sina dramatiska klippformationer — ett landskap format under den senaste istiden för ca 10 000 år sedan när inlandsisen smälte och klipporna steg ur havet.',
     description: [
       'Gräskär är ett litet naturskär i mellersta skärgården som erbjuder lugn och möjligheter för enkel vistelse. Skäret är mindre besökt och älskat av lugnsökande.',
       'Gräskär kombinerar naturvärdena på ett exponerat läge med möjligheter för enkelt ankörning. Badplatser erbjuds längs kusten. Service är minimal.',
@@ -2183,6 +2238,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏕',
     tagline: 'Naturcamping och stillhet i skärgårdens mitt',
+    did_you_know: 'Lindholmen är ett av de mest välpositionerade kajakdestinationerna i mellersta skärgården — centralt beläget med skyddade vatten i flera riktningar och en av de mer använda naturhamnarna för paddlare.',
     description: [
       'Lindholmen är en liten ö i mellersta skärgården som erbjuder lugn naturupplevelse och möjligheter för kajak och enkelt ankörning. Ön är älskad av kajakvinnare.',
       'Naturen på Lindholmen är varierad med skogspartier och badplatser. Det finns möjligheter för enkelt ankörning men service är mycket begränsad.',
@@ -2210,6 +2266,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Ostörd ytterskärgård i Norrtelje-området',
+    did_you_know: 'Iggö tillhör den grupp yttre nordliga öar som drabbades av de ryska räiderna 1719 — den ryska flottan nådde ända hit upp i norra skärgården under den systematiska rädens gång längs hela kusten.',
     description: [
       'Iggö är en liten ostörd ö i yttre norra skärgården. Klart hav, klippor och total stillhet. Dit tar man sig med privat båt och njuter av äkta ytterskärgård.',
       'Iggö kombinerar naturvärdena på ett exponerat läge med möjligheter för enkelt ankörning i skyddade vikar. Det finns möjligheter för badning.',
@@ -2237,6 +2294,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌅',
     tagline: 'Övernattningsö med solnedgångsvyer mot Östersjön',
+    did_you_know: 'Långviksskäret är ett av de mest populära midsommarankringsplatserna i södra skärgården — känt bland seglare för solnedgångsvyer mot öppet hav och ett horisontpanorama som är svårt att hitta längre in i skärgården.',
     description: [
       'Långviksskäret i södra skärgården är ett populärt övernattningsscenario för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
       'Långviksskäret kombinerar naturvärdena på ett exponerat läge med möjligheter för enkelt ankörning. Badplatser och möjligheter för naturupplevelse erbjuds.',
@@ -2264,6 +2322,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌾',
     tagline: 'Jordbruksö med öppna landskap och strandängar',
+    did_you_know: 'Tornö är ett av de sista jordbruksöarna i norra skärgården med betande djur längs strandängarna — ett landskap som en gång var vanligt längs hela kusten men som nu är sällsynt och värdefullt att bevara.',
     description: [
       'Tornö i norra skärgården har ett ovanligt öppet jordbrukslandskap med strandängar och betande djur. En fridfull kontrast till klippskärgårds typiska små öar.',
       'Tornö kombinerar naturen på ett väl skyddat läge med möjligheter för möjligheter för enkelt ankörning. Det finns möjligheter för vandring och fågelskådning.',
@@ -2291,6 +2350,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Bilfri ö med klapperstensstränder och sommarstugor',
+    did_you_know: 'Östra Lagnö är en av Skärgårdsstiftelsens mest välskötta besöksöar och är känd för sina ovanliga klapperstensstränder — ett geologiskt arv efter istidens avsmältning som är sällsynt i mellersta skärgårdens klippiga miljö.',
     description: [
       'Östra Lagnö är en bilfri ö i mellersta skärgården med klapperstensstränder och sommarstämning. Nådd med passagerarbåt från Stavsnäs.',
       'Naturmässigt erbjuder Östra Lagnö ovanlig steninng längs öns östra kant, och en fantastisk sollägen längs sydstranden. Möjligheter för bad och avkoppling.',
@@ -2318,6 +2378,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
     tagline: 'Skogsklädd ö med vandringsleder och stillhet',
+    did_you_know: 'Storholmen är ett populärt övernattningsläge för seglare i transit mot Sandhamn och Möja — hamnen är välskyddad och den täta barrskogen ger naturligt vindskydd som många ankringsplatser i regionen saknar.',
     description: [
       'Storholmen är en mellanstor skogsklädd ö med markerade vandringsleder och stämningsfulla naturmiljöer. Populärt övernattningsläge för seglare i transit.',
       'Storholmen kombinerar skogsrika områden med möjligheter för vandring och badning. Det finns en gästhamn och möjligheter för enkelt övernattningsankörning.',
@@ -2345,6 +2406,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌊',
     tagline: 'Ytterskärgårdens vindpinade vilda ö',
+    did_you_know: 'Gräskär (södra) hör till de ytterskär i södra skärgården som drabbades av den ryska flottan under räiderna 1719 — klippöarna användes som bas och rastplats av den ryska expeditionsstyrkan under härjningarnas gång.',
     description: [
       'Gräskär söder om Ornö är ett ytterskär med exponerad karaktär och dramatisk miljö. Ön är endast tillgänglig för erfarna seglare med egen båt.',
       'Naturmässigt är denna del av skärgården vild och vindpinad, omgiven av öppet hav på flera sidor. Det finns möjligheter för ankörning men dessa kräver erfarenhet.',
@@ -2372,6 +2434,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🏡',
     tagline: 'Liten ö med karaktär och sommarstämning',
+    did_you_know: 'Östanvik är ett av de sommarstugesamhällen i mellersta skärgården som trots sin nähet till Stockholm behållit sin genuina karaktär — ett orört alternativ i ett område där kommersialisering annars är vanlig.',
     description: [
       'Östanvik är en charmerande liten ö med sommarstugor och ett stämningsfullt läge i mellersta skärgården. Lugnt och genuint — utan turistatmosfär.',
       'Östanvik kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser längs kusten och möjligheter för enkel vistelse.',
@@ -2399,6 +2462,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🧭',
     tagline: 'Smalt naturskär med dramatisk utsikt och seglartradition',
+    did_you_know: 'Långskär är ett av de klassiska angörings-skären på nordledens seglarrutt mot Åland — generationer av seglare har lagt till vid samma klipphylla och känt samma vindkåre från Östersjön.',
     description: [
       'Långskär är ett smalt klippskär i norra skärgården med en lång seglartradition som angöringsplats. Enkelt men välkänt bland norrtäljeseglare.',
       'Långskär kombinerar naturvärdena på ett exponerat läge med möjligheter för enkelt ankörning. Det finns möjligheter för badning och naturupplevelse.',
@@ -2426,6 +2490,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌺',
     tagline: 'Blomstrande ö med gästhamn söder om Utö',
+    did_you_know: 'Västerholm är ett av de mest blomsterrika klippskären i södra skärgården — botaniker har dokumenterat en ovanligt rik flora av kustväxter på de tunna jordlagren som täcker hällmarken.',
     description: [
       'Västerholm söder om Utö är en relativt ostörd ö med blomstrande klippor och en välkomstande gästhamn för seglare. Bra alternativ till det fullbelagda Utö.',
       'Västerholm kombinerar naturvärdena med möjligheter för enkel ankörning. Det finns möjligheter för badning och botanisk utforskning längs klippkusten.',
@@ -2453,6 +2518,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '⛵',
     tagline: 'Norrtälje-skärgårdens välkända angöringsplats',
+    did_you_know: 'Norra Ramskär är ett av de viktigaste etappmålen på seglingsrutten norrut mot Åland och Bottenhavet — känt bland nordledare i generationer och en naturhamn som rymmer ett tjugotal båtar i gott skydd.',
     description: [
       'Norra Ramskär är en känd angöringsplats i norr med bra skydd och naturhamn som välkomnar seglare i transit. Perfekt angöringsplats på nordledens seglarrutt.',
       'Norra Ramskär kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt övernattningsankörning. Det finns möjligheter för naturupplevelse.',
@@ -2477,6 +2543,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🌿',
     tagline: 'Ostörd söderö med aspskog och klara vikar',
+    did_you_know: 'Aspö är känd för sin karakteristiska aspskog — ett träslag som sällan dominerar i skärgårdens karga klimat. Det darrande lövverket ger ön ett ljus och en stämning som skiljer sig markant från grannarnas typiska barrskog.',
     description: [
       'Aspö är en stilla ö i södra skärgården med karakteristisk aspskog och klara vikar. Besöks av naturintresserade och lugnsökande seglare.',
       'Aspö kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Det finns möjligheter för naturvandring och badning.',
@@ -2504,6 +2571,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '✝️',
     tagline: 'Liten kapell-ö i skärgårdens mitt med stämning',
+    did_you_know: 'Korsholmens kapell är ett av de minsta aktiva gudstjänstrum i Stockholms skärgård — en påminnelse om den tid varje bebott skär hade sin egen andliga samlingspunkt och den kyrkliga närvaron var en del av skärgårdslivet.',
     description: [
       'Korsholmen är en liten ö med ett välbevarat kapell och en stark känsla av tid som stannat. En perfekt anhalt för den som vill byta tempo.',
       'Korsholmen kombinerar det spirituella värdena av kapellet med naturmiljön. Det finns möjligheter för enkelt ankörning och reflexiv naturupplevelse.',
@@ -2531,6 +2599,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
     tagline: 'Norra ögruppen med öppet hav och kajakstig',
+    did_you_know: 'Västan-ön tillhör den del av norra skärgårdens ytterkant som fungerar som rastplats för sträckfåglar på höstmigrationen söderut — ett av regionens mer okända ornitologiska fynd längs den norra farleden.',
     description: [
       'Västanö är en liten ö i södra skärgården som erbjuder lugn och möjligheter för enkel vistelse. Ön är mindre uppmärksammad men älskad.',
       'Västanö kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser längs kusten erbjuds. Service är minimal.',
@@ -2558,6 +2627,7 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Ytterskärgård',
     emoji: '🌊',
     tagline: 'Klassisk angöring på vägen mot Sandhamn',
+    did_you_know: 'Storskär är ett av de välkända etapp-skären på seglingsrutten mot Sandhamn, med en naturhamn som rymmer ett femtiotal båtar under högsäsong och en klassisk seglarkaraktär som lockat båtfolk i generationer.',
     description: [
       'Storskär är ett större naturskär i mellersta skärgården som erbjuder möjligheter för enkelt ankörning och naturupplevelse. Skäret är mindre besökt.',
       'Storskär kombinerar naturvärdena på ett exponerat läge med möjligheter för enkel ankörning. Badplatser längs kusten erbjuds. Service är minimal.',

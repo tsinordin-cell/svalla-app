@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createClient } from '@/lib/supabase'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 
@@ -37,7 +37,7 @@ export default async function IslandPage({ params }: Props) {
   if (!island) notFound()
 
   // Hämta antal unika besökare för denna ö
-  const supabase = await createServerSupabaseClient()
+  const supabase = createClient()
   const { count: visitorCount } = await supabase
     .from('visited_islands')
     .select('*', { count: 'exact', head: true })
@@ -73,18 +73,6 @@ export default async function IslandPage({ params }: Props) {
             } : {}),
           })
         }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
-            { '@type': 'ListItem', position: 2, name: 'Öar', item: 'https://svalla.se/rutter?vy=oar' },
-            { '@type': 'ListItem', position: 3, name: island.name, item: `https://svalla.se/o/${slug}` },
-          ],
-        }) }}
       />
 
       {/* ── NAV ─────────────────────────────────────────────────── */}
@@ -154,8 +142,8 @@ export default async function IslandPage({ params }: Props) {
               {/* Live väder — kräver koordinater */}
               {ISLAND_COORD_MAP[island.slug] && (
                 <IslandWeatherClient
-                  lat={ISLAND_COORD_MAP[island.slug]!.lat}
-                  lng={ISLAND_COORD_MAP[island.slug]!.lng}
+                  lat={ISLAND_COORD_MAP[island.slug].lat}
+                  lng={ISLAND_COORD_MAP[island.slug].lng}
                   islandName={island.name}
                 />
               )}
@@ -191,6 +179,26 @@ export default async function IslandPage({ params }: Props) {
 
       {/* ── MAIN CONTENT ────────────────────────────────────────── */}
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 80px' }}>
+
+        {/* Visste du att */}
+        {island.did_you_know && (
+          <div style={{
+            background: 'linear-gradient(135deg, #0a7b8c 0%, #1a5276 100%)',
+            borderRadius: 16,
+            padding: '20px 24px',
+            marginBottom: 36,
+            display: 'flex',
+            gap: 16,
+            alignItems: 'flex-start',
+            boxShadow: '0 4px 20px rgba(10,123,140,0.2)',
+          }}>
+            <span style={{ fontSize: 26, flexShrink: 0, lineHeight: 1.2 }}>💡</span>
+            <div>
+              <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>Visste du att</div>
+              <p style={{ fontSize: 14, color: '#fff', margin: 0, lineHeight: 1.7, fontWeight: 500 }}>{island.did_you_know}</p>
+            </div>
+          </div>
+        )}
 
         {/* Om ön */}
         <section style={{ marginBottom: 52 }}>
