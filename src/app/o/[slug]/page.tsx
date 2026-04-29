@@ -11,6 +11,8 @@ import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
 import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
 import EmailSignup from '@/components/EmailSignup'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -152,7 +154,16 @@ export default async function IslandPage({ params }: Props) {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 18, marginBottom: 14 }}>
-            <span style={{ fontSize: 52, lineHeight: 1 }}>{island.emoji}</span>
+            <div style={{
+              width: 56, height: 56, flexShrink: 0,
+              borderRadius: 14,
+              background: 'rgba(255,255,255,0.16)',
+              border: '1px solid rgba(255,255,255,0.22)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              color: '#fff',
+            }}>
+              <Icon name={emojiToIcon(island.emoji)} size={28} stroke={1.7} />
+            </div>
             <div>
               <h1 style={{ fontSize: 42, fontWeight: 700, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
@@ -216,19 +227,22 @@ export default async function IslandPage({ params }: Props) {
             gap: 10,
             marginTop: 22,
           }}>
-            {[
-              { label: 'Restid', value: island.facts.travel_time, icon: '⏱' },
-              { label: 'Karaktär', value: island.facts.character, icon: '🏝' },
-              { label: 'Säsong', value: island.facts.season, icon: '📅' },
-              { label: 'Perfekt för', value: island.facts.best_for, icon: '✦' },
-            ].map(f => (
+            {([
+              { label: 'Restid',      value: island.facts.travel_time, icon: 'compass'    as const },
+              { label: 'Karaktär',    value: island.facts.character,   icon: 'leaf'       as const },
+              { label: 'Säsong',      value: island.facts.season,      icon: 'sun'        as const },
+              { label: 'Perfekt för', value: island.facts.best_for,    icon: 'star'       as const },
+            ]).map(f => (
               <div key={f.label} style={{
                 background: 'rgba(255,255,255,0.12)',
                 borderRadius: 12,
                 padding: '12px 16px',
                 backdropFilter: 'blur(4px)',
               }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>{f.icon} {f.label}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, fontWeight: 700, letterSpacing: 1, textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: 5 }}>
+                  <Icon name={f.icon} size={12} stroke={2} />
+                  <span>{f.label}</span>
+                </div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#fff', lineHeight: 1.4 }}>{f.value}</div>
               </div>
             ))}
@@ -286,7 +300,14 @@ export default async function IslandPage({ params }: Props) {
                   boxShadow: '0 2px 10px rgba(0,0,0,0.06)',
                   borderLeft: '3px solid #2d7d8a',
                 }}>
-                  <div style={{ fontSize: 22, marginBottom: 6 }}>{act.icon}</div>
+                  <div style={{
+                    width: 36, height: 36, borderRadius: 10,
+                    background: 'rgba(45,125,138,0.12)', color: 'var(--sea)',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    marginBottom: 10,
+                  }}>
+                    <Icon name={emojiToIcon(act.icon)} size={18} stroke={1.85} />
+                  </div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 5 }}>{act.name}</div>
                   <div style={{ fontSize: 13, color: 'var(--txt3)', lineHeight: 1.6 }}>{act.desc}</div>
                 </div>
@@ -431,7 +452,15 @@ export default async function IslandPage({ params }: Props) {
                   gap: 16,
                   alignItems: 'flex-start',
                 }}>
-                  <span style={{ fontSize: 26, lineHeight: 1, paddingTop: 2 }}>{t.icon}</span>
+                  <div style={{
+                    width: 40, height: 40, flexShrink: 0,
+                    borderRadius: 10,
+                    background: 'rgba(30,92,130,0.10)',
+                    color: 'var(--sea)',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <Icon name={emojiToIcon(t.icon)} size={20} stroke={1.8} />
+                  </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 3, flexWrap: 'wrap' }}>
                       <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{t.method}</span>
@@ -475,7 +504,11 @@ export default async function IslandPage({ params }: Props) {
                     <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{h.name}</span>
                     <div style={{ display: 'flex', gap: 4 }}>
                       {h.spots && <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{h.spots} platser</span>}
-                      {h.fuel && <span style={{ fontSize: 14 }}>⛽</span>}
+                      {h.fuel && (
+                        <span title="Bränsle finns" style={{ display: 'inline-flex', color: 'var(--acc, #c96e2a)' }}>
+                          <Icon name="fuel" size={14} stroke={2} />
+                        </span>
+                      )}
                     </div>
                   </div>
                   <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 10px', lineHeight: 1.6 }}>{h.desc}</p>
@@ -585,7 +618,15 @@ export default async function IslandPage({ params }: Props) {
                     transition: 'transform .15s, box-shadow .15s',
                     cursor: 'pointer',
                   }}>
-                    <span style={{ fontSize: 26 }}>{rel.emoji}</span>
+                    <div style={{
+                      width: 38, height: 38, flexShrink: 0,
+                      borderRadius: 10,
+                      background: 'rgba(30,92,130,0.10)',
+                      color: 'var(--sea)',
+                      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      <Icon name={emojiToIcon(rel.emoji)} size={20} stroke={1.8} />
+                    </div>
                     <div>
                       <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', marginBottom: 2 }}>{rel.name}</div>
                       <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{rel.regionLabel}</div>
@@ -626,10 +667,34 @@ export default async function IslandPage({ params }: Props) {
   )
 }
 
+// Mappa de få emojis vi använder direkt på sektion-headers till IconName.
+// (Resten av appen använder emojiToIcon från lib.)
+const HEADER_ICON_MAP: Record<string, import('@/components/Icon').IconName> = {
+  '📖': 'mail',          // Om-sektion
+  '🎯': 'target',        // Se & Göra
+  '🍽': 'utensils',
+  '🛏': 'bed',
+  '🗺': 'map',
+  '⚓': 'anchor',
+  '💡': 'star',
+  '✦': 'star',
+}
+
 function SectionHeader({ icon, title }: { icon: string; title: string }) {
+  const iconName = HEADER_ICON_MAP[icon] ?? 'compass'
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-      <span style={{ fontSize: 18 }}>{icon}</span>
+      <span style={{
+        display: 'inline-flex',
+        width: 28, height: 28,
+        borderRadius: 8,
+        background: 'rgba(30,92,130,0.10)',
+        color: 'var(--sea)',
+        alignItems: 'center', justifyContent: 'center',
+        flexShrink: 0,
+      }}>
+        <Icon name={iconName} size={16} stroke={1.85} />
+      </span>
       <h2 style={{
         fontSize: 19,
         fontWeight: 700,

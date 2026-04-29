@@ -6,6 +6,7 @@ import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
+import Icon from '@/components/Icon'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
@@ -103,7 +104,8 @@ export default async function ForumTradPage({ params }: Props) {
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
               <path d="M15 5.5L8.5 12L15 18.5" />
             </svg>
-            {cat.icon} {cat.name}
+            <Icon name={cat.iconName} size={14} stroke={2} />
+            {cat.name}
           </Link>
           <Link href="/forum" style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>
             Forum

@@ -2,6 +2,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCategoryById, getThreadsByCategory, formatForumDate } from '@/lib/forum'
 import type { Metadata } from 'next'
+import Icon, { type IconName } from '@/components/Icon'
+
+function CategoryIcon({ iconName }: { iconName: IconName }) {
+  return <Icon name={iconName} size={18} stroke={1.85} />
+}
 
 export const revalidate = 60
 
@@ -61,7 +66,16 @@ export default async function ForumKategoriPage({ params }: Props) {
           Forum
         </Link>
         <span style={{ opacity: 0.4 }}>·</span>
-        <span style={{ fontSize: 22 }}>{cat.icon}</span>
+        <span style={{
+          width: 36, height: 36,
+          borderRadius: 10,
+          background: 'rgba(255,255,255,0.18)',
+          color: '#fff',
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          flexShrink: 0,
+        }}>
+          <CategoryIcon iconName={cat.iconName} />
+        </span>
         <div>
           <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, letterSpacing: '-0.3px' }}>{cat.name}</h1>
           {cat.description && (
