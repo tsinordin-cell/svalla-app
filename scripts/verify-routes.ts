@@ -92,7 +92,7 @@ async function main() {
 
     // Om fullständig path är definierad, använd den
     if (route.waypoints && route.waypoints.length > 0) {
-      path.splice(1, 0, ...route.waypoints)
+      path.splice(1, 0, ...(route.waypoints as [number, number][]))
     }
 
     const validation = validatePath(path)
