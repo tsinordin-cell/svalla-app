@@ -43,8 +43,8 @@ async function handle(req: Request) {
   const since = new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString()
   const { data: visits, error: visitsError } = await svc
     .from('visited_islands')
-    .select('id, user_id, island_slug, created_at')
-    .gte('created_at', since)
+    .select('id, user_id, island_slug, visited_at')
+    .gte('visited_at', since)
     .limit(1000)
 
   if (visitsError) {
