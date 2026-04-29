@@ -66,7 +66,7 @@ export default function EmailSignup({
           ...style,
         }}
       >
-        ⚓ Tack — vi hör av oss snart med första tipset.
+        Tack — vi hör av oss snart med första tipset.
       </div>
     )
   }

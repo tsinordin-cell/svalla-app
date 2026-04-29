@@ -1232,7 +1232,7 @@ function TripBubble({ meta }: { meta: TripMeta }) {
           </div>
         )}
         <div style={{ padding: '8px 12px 10px' }}>
-          <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', fontWeight: fontWeight.semibold, marginBottom: 2 }}>⛵ Tur</div>
+          <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', fontWeight: fontWeight.semibold, marginBottom: 2 }}>Tur</div>
           <div style={{ fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: 'var(--txt)', lineHeight: 1.3 }}>
             {meta.location_name ?? 'Okänd plats'}
           </div>

@@ -42,7 +42,7 @@ export default function PlaneraCTA({ routeId, hasDoneIt }: { routeId: string; ha
         transition: 'all 0.2s',
       }}
     >
-      ⛵ Jag gjorde den här turen!
+      Jag gjorde den här turen!
     </button>
   )
 }

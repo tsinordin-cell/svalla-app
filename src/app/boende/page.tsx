@@ -52,7 +52,7 @@ const ITEMS: LandingItem[] = [
     href: '/platser?kategori=bnb',
   },
   {
-    icon: '⚓',
+    icon: '',
     title: 'Sova på båten',
     description: 'Gästhamnar med komfort eller naturhamnar utan folk — båten är Sveriges vanligaste skärgårdsboende.',
     href: '/hamnar-och-bryggor',

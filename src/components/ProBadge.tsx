@@ -26,7 +26,6 @@ export default function ProBadge({ size = 14 }: Props) {
       }}
       aria-label="Pro-användare"
     >
-      ⚓
-    </span>
+      </span>
   )
 }

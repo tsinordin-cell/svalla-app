@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { ReactNode } from 'react'
 import RouteMap from '@/components/RouteMapClient'
+import Icon from '@/components/Icon'
 import BookmarkButton from '@/components/BookmarkButton'
 import type { Metadata } from 'next'
 
@@ -176,7 +177,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
         }}>
           {[
             { icon: '⏱', label: 'Tid', value: t.duration_label },
-            { icon: '🚤', label: 'Transport', value: t.transport_types.join(', ') },
+            { icon: 'sailboat', label: 'Transport', value: t.transport_types.join(', ') },
             { icon: '📅', label: 'Säsong', value: t.season },
           ].map(({ icon, label, value }) => (
             <div key={label} style={{
@@ -194,7 +195,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Highlights */}
         {t.highlights.length > 0 && (
-          <Section title="🏝 Höjdpunkter">
+          <Section title="Höjdpunkter">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {t.highlights.map((h) => (
                 <div key={h} style={{
@@ -229,7 +230,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Hamnprofil */}
         {t.hamn_profil.length > 0 && (
-          <Section title="⚓ Hamnprofil">
+          <Section title="Hamnprofil">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {t.hamn_profil.map((h) => (
                 <span key={h} style={{
@@ -246,7 +247,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Bad */}
         {t.bad_profil.length > 0 && (
-          <Section title="🏊 Bad">
+          <Section title="Bad">
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {t.bad_profil.map((b) => (
                 <span key={b} style={{
@@ -263,7 +264,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Matstopp */}
         {foodStops.length > 0 && (
-          <Section title="🍽 Matstopp">
+          <Section title="Matstopp">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {foodStops.map((f, i) => (
                 <div key={i} style={{
@@ -333,7 +334,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Platser längs rutten (Phase 4: connected data) */}
         {nearbyRests.length > 0 && (
-          <Section title="🍽 Platser längs rutten">
+          <Section title="Platser längs rutten">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {nearbyRests.map((r: { id: string; name: string; tags?: string[]; core_experience?: string | null; booking_url?: string | null }) => (
                 <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>

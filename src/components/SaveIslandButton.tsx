@@ -137,7 +137,7 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
             zIndex: 9999, animation: 'svalla-fade-in .2s ease',
           }}
         >
-          ⚓ {islandName} sparad — se din lista i <a href="/min-skargard" style={{ color: '#ffb27a', textDecoration: 'underline' }}>Min skärgård</a>
+          {islandName} sparad — se din lista i <a href="/min-skargard" style={{ color: '#ffb27a', textDecoration: 'underline' }}>Min skärgård</a>
         </div>
       )}
     </>

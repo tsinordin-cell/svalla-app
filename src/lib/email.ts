@@ -108,7 +108,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden">${preheade
   <tr><td align="center">
     <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;padding:32px 36px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">
       <tr><td>
-        <div style="font-family:'Playfair Display',Georgia,serif;font-size:20px;color:#1e5c82;font-weight:700;margin-bottom:24px">⚓ Svalla</div>
+        <div style="font-family:'Playfair Display',Georgia,serif;font-size:20px;color:#1e5c82;font-weight:700;margin-bottom:24px">Svalla</div>
         ${htmlBody}
         <hr style="border:none;border-top:1px solid #e2e2e2;margin:32px 0 16px">
         <p style="font-size:11px;color:#777;line-height:1.5;margin:0">
@@ -211,7 +211,7 @@ export async function sendEmail(opts: {
 const EMBEDDED_TEMPLATES: Record<EmailTemplate, string> = {
   welcome: `---
 subject_options:
-  - "⚓ Välkommen till Svalla"
+  - "Välkommen till Svalla"
 preheader: 5 öar att börja med.
 ---
 # Välkommen, {{first_name}}!

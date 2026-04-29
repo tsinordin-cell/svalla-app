@@ -22,13 +22,13 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🥾',
+    icon: '',
     title: 'Roslagsleden',
     description: '19 etapper mellan Danderyd och Grisslehamn — skärgårdsnära hela vägen. Tält, vandrarhem, buss hem.',
     href: '/platser?kategori=roslagsleden',
   },
   {
-    icon: '🌲',
+    icon: '',
     title: 'Sörmlandsleden (skärgårdsdelar)',
     description: 'Tyresta nationalpark och kuststräckorna söderut — vildmark 40 minuter från city.',
     href: '/platser?kategori=sormlandsleden',
@@ -46,13 +46,13 @@ const ITEMS: LandingItem[] = [
     href: '/platser?kategori=fagelskydd',
   },
   {
-    icon: '⛺',
+    icon: '',
     title: 'Tältning & vindskydd',
     description: 'Anvisade tältplatser och vindskydd på öarna — allemansrätt gäller men inte överallt.',
     href: '/platser?kategori=taltning',
   },
   {
-    icon: '🌅',
+    icon: '',
     title: 'Utsiktspunkter',
     description: 'Höjder, fyrar och klippor med bäst sikt — perfekt för soluppgång, solnedgång och vinddygd.',
     href: '/platser?kategori=utsikt',

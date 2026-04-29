@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🌅',
+    icon: '',
     title: 'Dagstur: Vaxholm–Grinda',
     description: 'Lunch på Grinda Wärdshus, bad och åter samma dag. Klassisk förstatur för nya seglare.',
     href: '/tur/vaxholm-grinda',
@@ -42,21 +42,21 @@ const ITEMS: LandingItem[] = [
     meta: '3–4 dagar',
   },
   {
-    icon: '🌊',
+    icon: '',
     title: 'Ytterskärgården (vindröst)',
     description: 'Huvudskär, Sandhamn, Rödlöga — kräver erfarenhet, ger evighetsminnen.',
     href: '/tur/ytterskargarden',
     meta: '5–7 dagar',
   },
   {
-    icon: '🛶',
+    icon: '',
     title: 'Kajaktur: Möja runt',
     description: 'En dag i kajak runt Möja med bryggstopp för fika och bad. Paddelbart året runt.',
     href: '/tur/moja-kajak',
     meta: '1 dag',
   },
   {
-    icon: '🚤',
+    icon: '',
     title: 'Dalarö–Utö–Dalarö',
     description: 'Snabb motorbåtstur söderöver — lunch på Utö, hem innan solnedgång.',
     href: '/tur/dalaro-uto',

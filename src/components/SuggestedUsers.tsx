@@ -140,7 +140,7 @@ export default function SuggestedUsers() {
           fontSize: 10, fontWeight: 600, color: 'var(--sea)',
           textTransform: 'uppercase', letterSpacing: '0.6px',
         }}>
-          ⛵ Hitta seglare att följa
+          Hitta seglare att följa
         </span>
         <button
           onClick={() => setHidden(true)}

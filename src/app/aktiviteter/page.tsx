@@ -30,38 +30,38 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '⛵',
+    icon: '',
     title: 'Segling',
     description: 'Från nybörjarkurser i Saltsjön till kappseglingar runt Sandhamn — och charter om du inte har egen båt. Segling är möjligt året runt men maj–september är peak-säsongen.',
     href: '/segelrutter',
     meta: 'Hela säsongen',
   },
   {
-    icon: '🛶',
+    icon: '',
     title: 'Paddling & kajak',
     description: 'Havskajak i ytterskärgården eller stillsam SUP i en naturhamn — från Bohuslän till Gotland är Sverige Europas bästa paddelrevir. Kurserna är långt enkla och billiga.',
     href: '/platser?kategori=paddling',
   },
   {
-    icon: '🎣',
+    icon: '',
     title: 'Fiske',
     description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöva du inget fiskekort, men regler och fredningsperioder gäller.',
     href: '/platser?kategori=fiske',
   },
   {
-    icon: '🏊',
+    icon: '',
     title: 'Bad & simning',
     description: 'Klassiska klippbad på Bohuslän, barnvänliga sandstränder på Gotland och iskalla morgondopp från bryggan — varje månad och varje kust har sin charm och sin temperatur.',
     href: '/bastu-och-bad',
   },
   {
-    icon: '🥾',
+    icon: '',
     title: 'Vandring',
     description: 'Sörmlandsleden, Roslagsleden, Gotlands alvar och kustnära naturreservat — lätta dagsturer eller flera dagar med tält och båt som transportmedel mellan öar.',
     href: '/vandring-och-natur',
   },
   {
-    icon: '🚤',
+    icon: '',
     title: 'Motorbåt & RIB',
     description: 'Dagsturer med egen båt, hyrbåt eller guide. Rekommenderade rutter från Stockholm till Gotland, tankställen och gäststugor för varje sträcka.',
     href: '/populara-turer',

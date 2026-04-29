@@ -167,7 +167,7 @@ async function notifyForumParticipants({
       : threadTitle
 
     await sendPushToUsers([...recipientSet], {
-      title: '💬 Nytt svar i forumet',
+      title: 'Nytt svar i forumet',
       body:  `${posterName} svarade i "${shortTitle}"`,
       url:   `/forum/${categoryId}/${threadId}`,
     })

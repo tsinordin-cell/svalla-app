@@ -4,8 +4,8 @@ import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 
 const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
-  ssr: false,
-  loading: () => null,
+ ssr: false,
+ loading: () => null,
 })
 
 const LANDING_CSS = `
@@ -14,15 +14,15 @@ const LANDING_CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{
-  --sea-dark:#0d2440; --sea-mid:#1a4a5e;
-  --teal:#1e5c82; --teal-light:#2d7aaa;
-  --sand:#f4ede0; --sand-light:#faf6f0;
-  --white:#ffffff; --ink:#1c2b2e; --muted:#6b8087;
-  --accent:#e8924a; --accent-light:#f0a866;
-  --green:#2a9d5c; --green-light:#3ab870;
-  --r:16px; --r-sm:8px;
-  --shadow: 0 4px 24px rgba(26,74,94,.12);
-  --shadow-lg: 0 12px 48px rgba(26,74,94,.18);
+ --sea-dark:#0d2440; --sea-mid:#1a4a5e;
+ --teal:#1e5c82; --teal-light:#2d7aaa;
+ --sand:#f4ede0; --sand-light:#faf6f0;
+ --white:#ffffff; --ink:#1c2b2e; --muted:#6b8087;
+ --accent:#e8924a; --accent-light:#f0a866;
+ --green:#2a9d5c; --green-light:#3ab870;
+ --r:16px; --r-sm:8px;
+ --shadow: 0 4px 24px rgba(26,74,94,.12);
+ --shadow-lg: 0 12px 48px rgba(26,74,94,.18);
 }
 body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink);overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}
@@ -312,7 +312,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .ferry-card-op{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:14px}
 .ferry-routes{list-style:none;display:flex;flex-direction:column;gap:9px}
 .ferry-route{font-size:13px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:8px}
-.ferry-route::before{content:'⛴';font-size:13px;flex-shrink:0}
+.ferry-route::before{content:'';font-size:13px;flex-shrink:0}
 /* ── Accommodation ── */
 .boende-section{background:var(--sand)}
 .boende-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -322,39 +322,39 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .boende-card h4{font-size:15px;font-weight:700;color:var(--sea);margin-bottom:8px}
 .boende-card p{font-size:13px;color:var(--muted);line-height:1.6}
 @media(max-width:900px){
-  .krog-grid{grid-template-columns:1fr 1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .split-section{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .pillars{grid-template-columns:1fr}
-  .pillar:first-child,.pillar:last-child{border-radius:0}
-  .testimonials{grid-template-columns:1fr}
+ .krog-grid{grid-template-columns:1fr 1fr}
+ .steps{grid-template-columns:1fr 1fr}
+ .split-section{grid-template-columns:1fr}
+ .stats-grid{grid-template-columns:1fr 1fr}
+ .footer-grid{grid-template-columns:1fr 1fr}
+ .pillars{grid-template-columns:1fr}
+ .pillar:first-child,.pillar:last-child{border-radius:0}
+ .testimonials{grid-template-columns:1fr}
 .destinations-grid{grid-template-columns:1fr 1fr}
-  .activities-grid{grid-template-columns:1fr 1fr}
-  .ferry-grid{grid-template-columns:1fr}
-  .boende-grid{grid-template-columns:1fr 1fr}
+ .activities-grid{grid-template-columns:1fr 1fr}
+ .ferry-grid{grid-template-columns:1fr}
+ .boende-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
-  section{padding:72px 24px}
-  .lp-nav{padding:0 16px;height:60px}
-  .nav-links{display:none}
-  .nav-cta{gap:7px}
-  .btn-ghost{padding:8px 14px;font-size:13px}
-  .btn-accent{padding:8px 14px;font-size:13px}
-  .trust-bar{gap:16px;padding:14px 16px}
-  .trust-item{font-size:12px}
-  .trust-divider{display:none}
-  .krog-grid{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .split-pane{padding:60px 28px}
-  .footer-grid{grid-template-columns:1fr}
-  .hero-title{font-size:clamp(36px,9vw,56px)}
-  .hero-sub{font-size:15px}
-  .hero-search{border-radius:16px;flex-direction:column;gap:0;overflow:hidden}
-  .hero-search input{padding:14px 18px;font-size:14px}
-  .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
-  .steps{grid-template-columns:1fr}
+ section{padding:72px 24px}
+ .lp-nav{padding:0 16px;height:60px}
+ .nav-links{display:none}
+ .nav-cta{gap:7px}
+ .btn-ghost{padding:8px 14px;font-size:13px}
+ .btn-accent{padding:8px 14px;font-size:13px}
+ .trust-bar{gap:16px;padding:14px 16px}
+ .trust-item{font-size:12px}
+ .trust-divider{display:none}
+ .krog-grid{grid-template-columns:1fr}
+ .stats-grid{grid-template-columns:1fr 1fr}
+ .split-pane{padding:60px 28px}
+ .footer-grid{grid-template-columns:1fr}
+ .hero-title{font-size:clamp(36px,9vw,56px)}
+ .hero-sub{font-size:15px}
+ .hero-search{border-radius:16px;flex-direction:column;gap:0;overflow:hidden}
+ .hero-search input{padding:14px 18px;font-size:14px}
+ .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
+ .steps{grid-template-columns:1fr}
 }
 /* Dark mode: match footer color so no black strip appears below footer */
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
@@ -363,866 +363,866 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 const LANDING_HTML = `
 <style>${LANDING_CSS}</style>
 <nav class="lp-nav" id="mainNav">
-  <a href="/" class="nav-logo">
-    <svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla">
-      <g transform="translate(0,2)">
-        <line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/>
-        <path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/>
-        <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
-      </g>
-      <text x="23" y="20" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#ffffff">SVALLA</text>
-    </svg>
-  </a>
-  <ul class="nav-links">
-    <li class="nav-dropdown">
-      <a href="#">Utforska</a>
-      <div class="nav-mega">
-        <div class="nav-mega-inner">
-          <div class="nav-tabs-bar">
-            <button class="nav-tab-btn active" data-tab="hitta">🏝 Hitta en ö</button>
-            <button class="nav-tab-btn" data-tab="planera">🗓 Planera resan</button>
-            <button class="nav-tab-btn" data-tab="uppleva">🎯 Uppleva &amp; göra</button>
-            <button class="nav-tab-btn" data-tab="populart">⭐ Populärt</button>
-          </div>
-          <div class="nav-tab-content active" id="nav-tab-hitta">
-            <div class="nav-mega-grid">
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Hitta efter typ</div>
-                <a href="/bastu-och-bad" class="nav-mega-link">🏖 Stränder &amp; bad</a>
-                <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; segling</a>
-                <a href="/vandring-och-natur" class="nav-mega-link">🌲 Natur &amp; vandring</a>
-                <a href="/krogar-och-mat" class="nav-mega-link">🍽 Mat &amp; restauranger</a>
-                <a href="/boende" class="nav-mega-link">🏨 Boende</a>
-                <a href="/resmal" class="nav-mega-all">Se alla kategorier →</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Hitta för dig</div>
-                <a href="/oar/barnvanliga" class="nav-mega-link">👪 Barnvänliga öar</a>
-                <a href="/oar/romantiska" class="nav-mega-link">💑 Romantiska öar</a>
-                <a href="/oar/avskild" class="nav-mega-link">🌿 Avskilda pärlor</a>
-                <a href="/oar/utan-bil" class="nav-mega-link">🚗 Öar utan bil</a>
-                <a href="/oar/dagstur-stockholm" class="nav-mega-link">⚡ Dagstur från Stockholm</a>
-                <a href="/oar" class="nav-mega-all">Alla filter →</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Jämför &amp; utforska</div>
-                <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
-                <a href="/karta" class="nav-mega-link">🗺 Karta över skärgården</a>
-                <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Regioner</div>
-                <a href="/stockholms-skargard" class="nav-mega-link">⭐ Stockholms skärgård</a>
-                <a href="/bohuslan" class="nav-mega-link">🌊 Bohuslän</a>
-                <a href="/gotland" class="nav-mega-link">🏰 Gotland</a>
-                <a href="/aland" class="nav-mega-link">⛵ Åland</a>
-                <a href="/blekinge-skargard" class="nav-mega-link">🌿 Blekinges skärgård</a>
-                <a href="/vasterhav" class="nav-mega-link">🌊 Västerhavet</a>
-                <a href="/malaren" class="nav-mega-link">🏞 Mälaren</a>
-                <a href="/goteborg-skargard" class="nav-mega-link">⚓ Göteborgs skärgård</a>
-              </div>
-            </div>
-          </div>
-          <div class="nav-tab-content" id="nav-tab-planera">
-            <div class="nav-mega-grid">
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Planera turen</div>
-                <a href="/utflykt" class="nav-mega-link">🗓 Utflyktsplanerare</a>
-                <a href="/planera" class="nav-mega-link">⛵ Planera båtrutt</a>
-                <a href="/segelrutter" class="nav-mega-link">🗺 Segelrutter</a>
-                <a href="/snabbaste-vagen" class="nav-mega-link">⚡ Snabbaste vägen</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Ta sig dit</div>
-                <a href="/farjor" class="nav-mega-link">⛴ Färjetider</a>
-                <a href="/populara-turer" class="nav-mega-link">📸 Populära turer</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Inspiration</div>
-                <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
-                <a href="/tips" class="nav-mega-link">💡 Tips &amp; artiklar</a>
-                <a href="/nyborjarguider" class="nav-mega-link">📚 Nybörjarguider</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Min planering</div>
-                <a href="/profil" class="nav-mega-link">⭐ Mina sparade öar</a>
-                <a href="/profil" class="nav-mega-link">👤 Min profil</a>
-                <a href="/planera" class="nav-mega-link">📅 Mina turer</a>
-              </div>
-            </div>
-          </div>
-          <div class="nav-tab-content" id="nav-tab-uppleva">
-            <div class="nav-mega-grid">
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Aktiviteter</div>
-                <a href="/aktivitet/segling" class="nav-mega-link">⛵ Segling</a>
-                <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
-                <a href="/aktivitet/bada" class="nav-mega-link">🏊 Bad</a>
-                <a href="/aktivitet/vandring" class="nav-mega-link">🥾 Vandring</a>
-                <a href="/bastu-och-bad" class="nav-mega-link">🧖 Bastu &amp; spa</a>
-                <a href="/aktiviteter" class="nav-mega-all">Se alla →</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Mat &amp; dryck</div>
-                <a href="/krogar-och-mat" class="nav-mega-link">🍽 Restauranger</a>
-                <a href="/aktivitet/mat" class="nav-mega-link">🦞 Sjömatskrogar</a>
-                <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Guider &amp; listor</div>
-                <a href="/nyborjarguider" class="nav-mega-link">🌱 Nybörjarguider</a>
-                <a href="/topplista" class="nav-mega-link">🏆 Topplistor</a>
-                <a href="/evenemang" class="nav-mega-link">📅 Evenemang</a>
-                <a href="/bingo" class="nav-mega-link">🎯 Skärgårdsbingo 2026</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Boende</div>
-                <a href="/boende" class="nav-mega-link">🏕 Camping &amp; tält</a>
-                <a href="/boende" class="nav-mega-link">🏡 Stugor &amp; stugbyar</a>
-                <a href="/boende" class="nav-mega-link">🏨 Hotell &amp; vandrarhem</a>
-                <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Gästhamnar</a>
-              </div>
-            </div>
-          </div>
-          <div class="nav-tab-content" id="nav-tab-populart">
-            <div class="nav-mega-grid">
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Populäraste öarna</div>
-                <a href="/o/sandhamn" class="nav-mega-link">🥇 Sandhamn</a>
-                <a href="/o/uto" class="nav-mega-link">🌿 Utö</a>
-                <a href="/o/vaxholm" class="nav-mega-link">🏰 Vaxholm</a>
-                <a href="/o/grinda" class="nav-mega-link">🌊 Grinda</a>
-                <a href="/o/moja" class="nav-mega-link">🏝 Möja</a>
-                <a href="/o" class="nav-mega-all">Se alla öar →</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Dolda pärlor</div>
-                <a href="/o/nattaro" class="nav-mega-link">💎 Nåttarö</a>
-                <a href="/o/finnhamn" class="nav-mega-link">💎 Finnhamn</a>
-                <a href="/o/galo" class="nav-mega-link">💎 Gålö</a>
-                <a href="/o/svartloga" class="nav-mega-link">💎 Svartlöga</a>
-                <a href="/o/kymendo" class="nav-mega-link">💎 Kymmendö</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">Hitta mer</div>
-                <a href="/topplista" class="nav-mega-link">📈 Trendande just nu</a>
-                <a href="/blogg" class="nav-mega-link">✍️ Senaste från bloggen</a>
-                <a href="/evenemang" class="nav-mega-link">📅 Kommande evenemang</a>
-              </div>
-              <div class="nav-mega-col">
-                <div class="nav-mega-region">För partners</div>
-                <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
-                <a href="/partner" class="nav-mega-link">🤝 Bli partner</a>
-                <a href="/forum" class="nav-mega-link">💬 Community-forum</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li><a href="/karta">Karta</a></li>
-    <li><a href="/planera">Planera</a></li>
-  </ul>
-  <div class="nav-cta">
-    <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/logga-in" class="btn btn-ghost">Logga in</a>
-    <a href="/kom-igang" class="btn btn-accent">Kom igång →</a>
-  </div>
+ <a href="/" class="nav-logo">
+ <svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla">
+ <g transform="translate(0,2)">
+ <line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
+ <path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/>
+ <path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/>
+ <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+ </g>
+ <text x="23" y="20" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#ffffff">SVALLA</text>
+ </svg>
+ </a>
+ <ul class="nav-links">
+ <li class="nav-dropdown">
+ <a href="#">Utforska</a>
+ <div class="nav-mega">
+ <div class="nav-mega-inner">
+ <div class="nav-tabs-bar">
+ <button class="nav-tab-btn active" data-tab="hitta">Hitta en ö</button>
+ <button class="nav-tab-btn" data-tab="planera">🗓 Planera resan</button>
+ <button class="nav-tab-btn" data-tab="uppleva">🎯 Uppleva &amp; göra</button>
+ <button class="nav-tab-btn" data-tab="populart">Populärt</button>
+ </div>
+ <div class="nav-tab-content active" id="nav-tab-hitta">
+ <div class="nav-mega-grid">
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Hitta efter typ</div>
+ <a href="/bastu-och-bad" class="nav-mega-link">Stränder &amp; bad</a>
+ <a href="/hamnar-och-bryggor" class="nav-mega-link">Hamnar &amp; segling</a>
+ <a href="/vandring-och-natur" class="nav-mega-link">Natur &amp; vandring</a>
+ <a href="/krogar-och-mat" class="nav-mega-link"> Mat &amp; restauranger</a>
+ <a href="/boende" class="nav-mega-link">🏨 Boende</a>
+ <a href="/resmal" class="nav-mega-all">Se alla kategorier →</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Hitta för dig</div>
+ <a href="/oar/barnvanliga" class="nav-mega-link">👪 Barnvänliga öar</a>
+ <a href="/oar/romantiska" class="nav-mega-link">💑 Romantiska öar</a>
+ <a href="/oar/avskild" class="nav-mega-link"> Avskilda pärlor</a>
+ <a href="/oar/utan-bil" class="nav-mega-link"> Öar utan bil</a>
+ <a href="/oar/dagstur-stockholm" class="nav-mega-link"> Dagstur från Stockholm</a>
+ <a href="/oar" class="nav-mega-all">Alla filter →</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Jämför &amp; utforska</div>
+ <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
+ <a href="/karta" class="nav-mega-link"> Karta över skärgården</a>
+ <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Regioner</div>
+ <a href="/stockholms-skargard" class="nav-mega-link"> Stockholms skärgård</a>
+ <a href="/bohuslan" class="nav-mega-link"> Bohuslän</a>
+ <a href="/gotland" class="nav-mega-link"> Gotland</a>
+ <a href="/aland" class="nav-mega-link"> Åland</a>
+ <a href="/blekinge-skargard" class="nav-mega-link"> Blekinges skärgård</a>
+ <a href="/vasterhav" class="nav-mega-link"> Västerhavet</a>
+ <a href="/malaren" class="nav-mega-link">🏞 Mälaren</a>
+ <a href="/goteborg-skargard" class="nav-mega-link"> Göteborgs skärgård</a>
+ </div>
+ </div>
+ </div>
+ <div class="nav-tab-content" id="nav-tab-planera">
+ <div class="nav-mega-grid">
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Planera turen</div>
+ <a href="/utflykt" class="nav-mega-link">🗓 Utflyktsplanerare</a>
+ <a href="/planera" class="nav-mega-link"> Planera båtrutt</a>
+ <a href="/segelrutter" class="nav-mega-link"> Segelrutter</a>
+ <a href="/snabbaste-vagen" class="nav-mega-link"> Snabbaste vägen</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Ta sig dit</div>
+ <a href="/farjor" class="nav-mega-link"> Färjetider</a>
+ <a href="/populara-turer" class="nav-mega-link">📸 Populära turer</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Inspiration</div>
+ <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
+ <a href="/tips" class="nav-mega-link">💡 Tips &amp; artiklar</a>
+ <a href="/nyborjarguider" class="nav-mega-link"> Nybörjarguider</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Min planering</div>
+ <a href="/profil" class="nav-mega-link"> Mina sparade öar</a>
+ <a href="/profil" class="nav-mega-link">👤 Min profil</a>
+ <a href="/planera" class="nav-mega-link">📅 Mina turer</a>
+ </div>
+ </div>
+ </div>
+ <div class="nav-tab-content" id="nav-tab-uppleva">
+ <div class="nav-mega-grid">
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Aktiviteter</div>
+ <a href="/aktivitet/segling" class="nav-mega-link"> Segling</a>
+ <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
+ <a href="/aktivitet/bada" class="nav-mega-link"> Bad</a>
+ <a href="/aktivitet/vandring" class="nav-mega-link"> Vandring</a>
+ <a href="/bastu-och-bad" class="nav-mega-link">🧖 Bastu &amp; spa</a>
+ <a href="/aktiviteter" class="nav-mega-all">Se alla →</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Mat &amp; dryck</div>
+ <a href="/krogar-och-mat" class="nav-mega-link"> Restauranger</a>
+ <a href="/aktivitet/mat" class="nav-mega-link">🦞 Sjömatskrogar</a>
+ <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Guider &amp; listor</div>
+ <a href="/nyborjarguider" class="nav-mega-link">🌱 Nybörjarguider</a>
+ <a href="/topplista" class="nav-mega-link">🏆 Topplistor</a>
+ <a href="/evenemang" class="nav-mega-link">📅 Evenemang</a>
+ <a href="/bingo" class="nav-mega-link">🎯 Skärgårdsbingo 2026</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Boende</div>
+ <a href="/boende" class="nav-mega-link">🏕 Camping &amp; tält</a>
+ <a href="/boende" class="nav-mega-link">🏡 Stugor &amp; stugbyar</a>
+ <a href="/boende" class="nav-mega-link">🏨 Hotell &amp; vandrarhem</a>
+ <a href="/hamnar-och-bryggor" class="nav-mega-link"> Gästhamnar</a>
+ </div>
+ </div>
+ </div>
+ <div class="nav-tab-content" id="nav-tab-populart">
+ <div class="nav-mega-grid">
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Populäraste öarna</div>
+ <a href="/o/sandhamn" class="nav-mega-link">🥇 Sandhamn</a>
+ <a href="/o/uto" class="nav-mega-link"> Utö</a>
+ <a href="/o/vaxholm" class="nav-mega-link"> Vaxholm</a>
+ <a href="/o/grinda" class="nav-mega-link"> Grinda</a>
+ <a href="/o/moja" class="nav-mega-link"> Möja</a>
+ <a href="/o" class="nav-mega-all">Se alla öar →</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Dolda pärlor</div>
+ <a href="/o/nattaro" class="nav-mega-link">💎 Nåttarö</a>
+ <a href="/o/finnhamn" class="nav-mega-link">💎 Finnhamn</a>
+ <a href="/o/galo" class="nav-mega-link">💎 Gålö</a>
+ <a href="/o/svartloga" class="nav-mega-link">💎 Svartlöga</a>
+ <a href="/o/kymendo" class="nav-mega-link">💎 Kymmendö</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">Hitta mer</div>
+ <a href="/topplista" class="nav-mega-link">📈 Trendande just nu</a>
+ <a href="/blogg" class="nav-mega-link">✍️ Senaste från bloggen</a>
+ <a href="/evenemang" class="nav-mega-link">📅 Kommande evenemang</a>
+ </div>
+ <div class="nav-mega-col">
+ <div class="nav-mega-region">För partners</div>
+ <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
+ <a href="/partner" class="nav-mega-link">🤝 Bli partner</a>
+ <a href="/forum" class="nav-mega-link"> Community-forum</a>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </li>
+ <li><a href="/karta">Karta</a></li>
+ <li><a href="/planera">Planera</a></li>
+ </ul>
+ <div class="nav-cta">
+ <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
+ <span></span><span></span><span></span>
+ </button>
+ <a href="/logga-in" class="btn btn-ghost">Logga in</a>
+ <a href="/kom-igang" class="btn btn-accent">Kom igång →</a>
+ </div>
 </nav>
 <div class="mob-drawer-overlay" id="mobOverlay"></div>
 <div class="mob-drawer" id="mobDrawer">
-  <div class="mob-drawer-head">
-    <span class="mob-drawer-logo">SVALLA</span>
-    <button class="mob-drawer-close" id="mobDrawerClose">×</button>
-  </div>
-  <div class="mob-acc">
-    <button class="mob-acc-head">🏝 Hitta en ö <span class="mob-acc-chevron">›</span></button>
-    <div class="mob-acc-body">
-      <a href="/resmal" class="mob-acc-link">Alla resmål</a>
-      <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
-      <a href="/o" class="mob-acc-link">Alla 69 öar</a>
-      <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
-      <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
-      <a href="/oar/romantiska" class="mob-acc-link">Romantiska öar</a>
-      <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
-      <a href="/oar/utan-bil" class="mob-acc-link">Öar utan bil</a>
-      <a href="/oar/dagstur-stockholm" class="mob-acc-link">Dagstur från Stockholm</a>
-      <a href="/stockholms-skargard" class="mob-acc-link">Stockholms skärgård</a>
-      <a href="/bohuslan" class="mob-acc-link">Bohuslän</a>
-      <a href="/gotland" class="mob-acc-link">Gotland</a>
-    </div>
-  </div>
-  <div class="mob-acc">
-    <button class="mob-acc-head">🗓 Planera resan <span class="mob-acc-chevron">›</span></button>
-    <div class="mob-acc-body">
-      <a href="/utflykt" class="mob-acc-link">Utflyktsplanerare</a>
-      <a href="/planera" class="mob-acc-link">Planera båtrutt</a>
-      <a href="/farjor" class="mob-acc-link">Färjetider</a>
-      <a href="/segelrutter" class="mob-acc-link">Segelrutter</a>
-      <a href="/snabbaste-vagen" class="mob-acc-link">Snabbaste vägen</a>
-      <a href="/blogg" class="mob-acc-link">Blogg &amp; inspiration</a>
-      <a href="/nyborjarguider" class="mob-acc-link">Nybörjarguider</a>
-    </div>
-  </div>
-  <div class="mob-acc">
-    <button class="mob-acc-head">🎯 Uppleva &amp; göra <span class="mob-acc-chevron">›</span></button>
-    <div class="mob-acc-body">
-      <a href="/aktiviteter" class="mob-acc-link">Alla aktiviteter</a>
-      <a href="/krogar-och-mat" class="mob-acc-link">Mat &amp; restauranger</a>
-      <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; bad</a>
-      <a href="/boende" class="mob-acc-link">Boende</a>
-      <a href="/topplista" class="mob-acc-link">Topplistor</a>
-      <a href="/evenemang" class="mob-acc-link">Evenemang</a>
-      <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
-    </div>
-  </div>
-  <div class="mob-acc">
-    <button class="mob-acc-head">⭐ Populärt <span class="mob-acc-chevron">›</span></button>
-    <div class="mob-acc-body">
-      <a href="/o/sandhamn" class="mob-acc-link">Sandhamn</a>
-      <a href="/o/uto" class="mob-acc-link">Utö</a>
-      <a href="/o/vaxholm" class="mob-acc-link">Vaxholm</a>
-      <a href="/o/grinda" class="mob-acc-link">Grinda</a>
-      <a href="/o/moja" class="mob-acc-link">Möja</a>
-      <a href="/o/nattaro" class="mob-acc-link">Nåttarö</a>
-      <a href="/o/finnhamn" class="mob-acc-link">Finnhamn</a>
-      <a href="/o" class="mob-acc-link">Se alla öar →</a>
-    </div>
-  </div>
-  <div class="mob-drawer-cta">
-    <a href="/logga-in" class="btn btn-ghost" style="width:100%;text-align:center;justify-content:center">Logga in</a>
-    <a href="/kom-igang" class="btn btn-accent" style="width:100%;text-align:center;justify-content:center">Kom igång →</a>
-  </div>
+ <div class="mob-drawer-head">
+ <span class="mob-drawer-logo">SVALLA</span>
+ <button class="mob-drawer-close" id="mobDrawerClose">×</button>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head"> Hitta en ö <span class="mob-acc-chevron">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/resmal" class="mob-acc-link">Alla resmål</a>
+ <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
+ <a href="/o" class="mob-acc-link">Alla 69 öar</a>
+ <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
+ <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
+ <a href="/oar/romantiska" class="mob-acc-link">Romantiska öar</a>
+ <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
+ <a href="/oar/utan-bil" class="mob-acc-link">Öar utan bil</a>
+ <a href="/oar/dagstur-stockholm" class="mob-acc-link">Dagstur från Stockholm</a>
+ <a href="/stockholms-skargard" class="mob-acc-link">Stockholms skärgård</a>
+ <a href="/bohuslan" class="mob-acc-link">Bohuslän</a>
+ <a href="/gotland" class="mob-acc-link">Gotland</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">🗓 Planera resan <span class="mob-acc-chevron">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/utflykt" class="mob-acc-link">Utflyktsplanerare</a>
+ <a href="/planera" class="mob-acc-link">Planera båtrutt</a>
+ <a href="/farjor" class="mob-acc-link">Färjetider</a>
+ <a href="/segelrutter" class="mob-acc-link">Segelrutter</a>
+ <a href="/snabbaste-vagen" class="mob-acc-link">Snabbaste vägen</a>
+ <a href="/blogg" class="mob-acc-link">Blogg &amp; inspiration</a>
+ <a href="/nyborjarguider" class="mob-acc-link">Nybörjarguider</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">🎯 Uppleva &amp; göra <span class="mob-acc-chevron">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/aktiviteter" class="mob-acc-link">Alla aktiviteter</a>
+ <a href="/krogar-och-mat" class="mob-acc-link">Mat &amp; restauranger</a>
+ <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; bad</a>
+ <a href="/boende" class="mob-acc-link">Boende</a>
+ <a href="/topplista" class="mob-acc-link">Topplistor</a>
+ <a href="/evenemang" class="mob-acc-link">Evenemang</a>
+ <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head"> Populärt <span class="mob-acc-chevron">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/o/sandhamn" class="mob-acc-link">Sandhamn</a>
+ <a href="/o/uto" class="mob-acc-link">Utö</a>
+ <a href="/o/vaxholm" class="mob-acc-link">Vaxholm</a>
+ <a href="/o/grinda" class="mob-acc-link">Grinda</a>
+ <a href="/o/moja" class="mob-acc-link">Möja</a>
+ <a href="/o/nattaro" class="mob-acc-link">Nåttarö</a>
+ <a href="/o/finnhamn" class="mob-acc-link">Finnhamn</a>
+ <a href="/o" class="mob-acc-link">Se alla öar →</a>
+ </div>
+ </div>
+ <div class="mob-drawer-cta">
+ <a href="/logga-in" class="btn btn-ghost" style="width:100%;text-align:center;justify-content:center">Logga in</a>
+ <a href="/kom-igang" class="btn btn-accent" style="width:100%;text-align:center;justify-content:center">Kom igång →</a>
+ </div>
 </div>
 
 <section class="hero" style="background:transparent">
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
-      200+ platser kartlagda i Stockholms skärgård
-    </div>
-    <h1 class="hero-title">
-      Din guide till<br>
-      <em>Stockholms skärgård</em>
-    </h1>
-    <p class="hero-sub">
-      Planera nästa tur. Hitta krogar, hamnar och dolda öar.
-      Logga dina äventyr och bygg din egen skärgård.
-    </p>
-    <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
-      <input type="text" placeholder="🔍  Sök ö, krog eller hamn..." id="heroSearchInput"/>
-      <button type="submit">Utforska</button>
-    </form>
-    <div style="text-align:center;margin-bottom:16px">
-      <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
-    </div>
-    <div class="hero-search-hint">
-      Populärt just nu:
-      <span onclick="location.href='/sok?q=Sandhamn'">Sandhamn</span>
-      <span onclick="location.href='/sok?q=Grinda'">Grinda</span>
-      <span onclick="location.href='/sok?q=Utö'">Utö</span>
-      <span onclick="location.href='/sok?q=Finnhamn'">Finnhamn</span>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scrolla
-    </div>
-  </div>
+ <div class="hero-content">
+ <div class="hero-eyebrow">
+ <span class="hero-eyebrow-dot"></span>
+ 200+ platser kartlagda i Stockholms skärgård
+ </div>
+ <h1 class="hero-title">
+ Din guide till<br>
+ <em>Stockholms skärgård</em>
+ </h1>
+ <p class="hero-sub">
+ Planera nästa tur. Hitta krogar, hamnar och dolda öar.
+ Logga dina äventyr och bygg din egen skärgård.
+ </p>
+ <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
+ <input type="text" placeholder="🔍 Sök ö, krog eller hamn..." id="heroSearchInput"/>
+ <button type="submit">Utforska</button>
+ </form>
+ <div style="text-align:center;margin-bottom:16px">
+ <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
+ </div>
+ <div class="hero-search-hint">
+ Populärt just nu:
+ <span onclick="location.href='/sok?q=Sandhamn'">Sandhamn</span>
+ <span onclick="location.href='/sok?q=Grinda'">Grinda</span>
+ <span onclick="location.href='/sok?q=Utö'">Utö</span>
+ <span onclick="location.href='/sok?q=Finnhamn'">Finnhamn</span>
+ </div>
+ <div class="hero-scroll">
+ <div class="hero-scroll-line"></div>
+ Scrolla
+ </div>
+ </div>
 </section>
 
 <div class="trust-bar">
-  <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
-  <div class="trust-divider"></div>
-  <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
+ <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
+ <div class="trust-divider"></div>
+ <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
+ <div class="trust-divider"></div>
+ <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
+ <div class="trust-divider"></div>
+ <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
 </div>
 
 <section class="concept-section" id="utforska">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Vad är Svalla</div>
-      <h2 class="section-title">Skärgårdslivet — samlat på ett ställe</h2>
-      <p class="section-sub">Ingen app förstår hur skärgårdslivet faktiskt fungerar. Det gör vi nu. Byggt av skärgårdsmänniskor, för skärgårdsmänniskor.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar reveal reveal-delay-1">
-        <div class="pillar-icon sea">🧭</div>
-        <h3>Utforska platser</h3>
-        <p>Krogar, bastun, bryggor och dolda pärlor — listade och recenserade av ett community som faktiskt är ute på vattnet. Hitta rätt ställe innan du ger dig ut.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-2">
-        <div class="pillar-icon teal">📸</div>
-        <h3>Logga din tur</h3>
-        <p>Foto + plats på 10 sekunder. Din personliga skärgårdsdagbok växer med varje äventyr — se var du varit och inspirera andra att kasta loss.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-3">
-        <div class="pillar-icon accent">🌊</div>
-        <h3>Äkta community</h3>
-        <p>Feeden fylls av riktiga turer från paddlare och seglare. Inga reklamannonser, ingen algoritm — bara skärgårdsliv som det ser ut på riktigt.</p>
-      </div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Vad är Svalla</div>
+ <h2 class="section-title">Skärgårdslivet — samlat på ett ställe</h2>
+ <p class="section-sub">Ingen app förstår hur skärgårdslivet faktiskt fungerar. Det gör vi nu. Byggt av skärgårdsmänniskor, för skärgårdsmänniskor.</p>
+ </div>
+ <div class="pillars">
+ <div class="pillar reveal reveal-delay-1">
+ <div class="pillar-icon sea">🧭</div>
+ <h3>Utforska platser</h3>
+ <p>Krogar, bastun, bryggor och dolda pärlor — listade och recenserade av ett community som faktiskt är ute på vattnet. Hitta rätt ställe innan du ger dig ut.</p>
+ </div>
+ <div class="pillar reveal reveal-delay-2">
+ <div class="pillar-icon teal">📸</div>
+ <h3>Logga din tur</h3>
+ <p>Foto + plats på 10 sekunder. Din personliga skärgårdsdagbok växer med varje äventyr — se var du varit och inspirera andra att kasta loss.</p>
+ </div>
+ <div class="pillar reveal reveal-delay-3">
+ <div class="pillar-icon accent"> </div>
+ <h3>Äkta community</h3>
+ <p>Feeden fylls av riktiga turer från paddlare och seglare. Inga reklamannonser, ingen algoritm — bara skärgårdsliv som det ser ut på riktigt.</p>
+ </div>
+ </div>
+ </div>
 </section>
 
 <section class="how-section">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Hur det fungerar</div>
-      <h2 class="section-title">Enkelt som skärgårdslivet självt</h2>
-      <p class="section-sub">Inget krångel. Inga konton som måste fyllas i. Bara du, havet och appen.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">1</div>
-        <h4>Utforska feeden</h4>
-        <p>Bläddra bland andras turer, platser och bilder. Hitta inspiration till din nästa tur — krogar, bastun och dolda bryggor.</p>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">2</div>
-        <h4>Ge dig ut</h4>
-        <p>Kajak, segelbåt, motorbåt eller till fots. Platser längs din rutt väntar med äkta recensioner från folk som redan paddlat dit.</p>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">3</div>
-        <h4>Logga på 10 sekunder</h4>
-        <p>Tryck "+", välj ett foto, skriv platsen. Klart. Din tur lever för alltid i din loggbok och i communityt.</p>
-      </div>
-      <div class="step reveal reveal-delay-4">
-        <div class="step-num">4</div>
-        <h4>Bygg din historia</h4>
-        <p>Profilen växer med varje äventyr. Se var du varit och när — och inspirera nästa seglare att kasta loss.</p>
-      </div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Hur det fungerar</div>
+ <h2 class="section-title">Enkelt som skärgårdslivet självt</h2>
+ <p class="section-sub">Inget krångel. Inga konton som måste fyllas i. Bara du, havet och appen.</p>
+ </div>
+ <div class="steps">
+ <div class="step reveal reveal-delay-1">
+ <div class="step-num">1</div>
+ <h4>Utforska feeden</h4>
+ <p>Bläddra bland andras turer, platser och bilder. Hitta inspiration till din nästa tur — krogar, bastun och dolda bryggor.</p>
+ </div>
+ <div class="step reveal reveal-delay-2">
+ <div class="step-num">2</div>
+ <h4>Ge dig ut</h4>
+ <p>Kajak, segelbåt, motorbåt eller till fots. Platser längs din rutt väntar med äkta recensioner från folk som redan paddlat dit.</p>
+ </div>
+ <div class="step reveal reveal-delay-3">
+ <div class="step-num">3</div>
+ <h4>Logga på 10 sekunder</h4>
+ <p>Tryck "+", välj ett foto, skriv platsen. Klart. Din tur lever för alltid i din loggbok och i communityt.</p>
+ </div>
+ <div class="step reveal reveal-delay-4">
+ <div class="step-num">4</div>
+ <h4>Bygg din historia</h4>
+ <p>Profilen växer med varje äventyr. Se var du varit och när — och inspirera nästa seglare att kasta loss.</p>
+ </div>
+ </div>
+ </div>
 </section>
 
 <section class="destinations-section" id="resmål">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Utforska skärgården</div>
-      <h2 class="section-title">Välj din del av skärgården</h2>
-      <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
-    </div>
-    <div class="destinations-grid">
-      <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
-        <div class="dest-card-bg" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
-          <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="120" cy="195" rx="95" ry="48" fill="#071520" opacity="0.6"/><ellipse cx="230" cy="240" rx="70" ry="35" fill="#050e18" opacity="0.7"/>
-            <path d="M0,278 Q60,258 130,268 Q200,278 300,262 L300,320 L0,320 Z" fill="#040c15" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <div class="dest-card-region">⚓ Innerskärgården</div>
-          <div class="dest-card-name">Fjäderholmarna · Vaxholm · Grinda</div>
-          <div class="dest-card-islands"><span class="dest-island">Fjäderholmarna</span><span class="dest-island">Vaxholm</span><span class="dest-island">Grinda</span><span class="dest-island">Finnhamn</span><span class="dest-island">Resarö</span></div>
-        </div>
-      </a>
-      <a href="/o/sandhamn" class="dest-card reveal reveal-delay-2">
-        <div class="dest-card-bg" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
-          <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="100" cy="205" rx="80" ry="40" fill="#061510" opacity="0.65"/><ellipse cx="215" cy="238" rx="88" ry="44" fill="#040e0a" opacity="0.75"/>
-            <path d="M0,280 Q90,260 195,270 Q258,276 300,263 L300,320 L0,320 Z" fill="#030a06" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <div class="dest-card-region">🌊 Mellersta skärgården</div>
-          <div class="dest-card-name">Sandhamn · Möja · Ljusterö</div>
-          <div class="dest-card-islands"><span class="dest-island">Sandhamn</span><span class="dest-island">Möja</span><span class="dest-island">Ljusterö</span><span class="dest-island">Gällnö</span><span class="dest-island">Runmarö</span></div>
-        </div>
-      </a>
-      <a href="/o/uto" class="dest-card reveal reveal-delay-3">
-        <div class="dest-card-bg" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
-          <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="150" cy="215" rx="105" ry="52" fill="#180d04" opacity="0.65"/><ellipse cx="75" cy="255" rx="62" ry="30" fill="#100808" opacity="0.75"/>
-            <path d="M0,282 Q75,266 162,275 Q232,282 300,268 L300,320 L0,320 Z" fill="#0c0604" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <div class="dest-card-region">🌅 Södra skärgården</div>
-          <div class="dest-card-name">Utö · Nåttarö · Landsort</div>
-          <div class="dest-card-islands"><span class="dest-island">Utö</span><span class="dest-island">Nåttarö</span><span class="dest-island">Ornö</span><span class="dest-island">Dalarö</span><span class="dest-island">Landsort</span></div>
-        </div>
-      </a>
-      <a href="/o/furusund" class="dest-card reveal reveal-delay-4">
-        <div class="dest-card-bg" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
-          <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="140" cy="210" rx="98" ry="50" fill="#120a25" opacity="0.65"/><ellipse cx="245" cy="248" rx="66" ry="33" fill="#0d071a" opacity="0.75"/>
-            <path d="M0,280 Q85,262 182,273 Q248,280 300,266 L300,320 L0,320 Z" fill="#08050f" opacity="0.9"/>
-          </svg>
-        </div>
-        <div class="dest-card-overlay"></div>
-        <div class="dest-card-content">
-          <div class="dest-card-region">✨ Norra skärgården</div>
-          <div class="dest-card-name">Furusund · Blidö · Norrtälje</div>
-          <div class="dest-card-islands"><span class="dest-island">Furusund</span><span class="dest-island">Blidö</span><span class="dest-island">Arholma</span><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
-        </div>
-      </a>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Utforska skärgården</div>
+ <h2 class="section-title">Välj din del av skärgården</h2>
+ <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
+ </div>
+ <div class="destinations-grid">
+ <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
+ <div class="dest-card-bg" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <ellipse cx="120" cy="195" rx="95" ry="48" fill="#071520" opacity="0.6"/><ellipse cx="230" cy="240" rx="70" ry="35" fill="#050e18" opacity="0.7"/>
+ <path d="M0,278 Q60,258 130,268 Q200,278 300,262 L300,320 L0,320 Z" fill="#040c15" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region"> Innerskärgården</div>
+ <div class="dest-card-name">Fjäderholmarna · Vaxholm · Grinda</div>
+ <div class="dest-card-islands"><span class="dest-island">Fjäderholmarna</span><span class="dest-island">Vaxholm</span><span class="dest-island">Grinda</span><span class="dest-island">Finnhamn</span><span class="dest-island">Resarö</span></div>
+ </div>
+ </a>
+ <a href="/o/sandhamn" class="dest-card reveal reveal-delay-2">
+ <div class="dest-card-bg" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <ellipse cx="100" cy="205" rx="80" ry="40" fill="#061510" opacity="0.65"/><ellipse cx="215" cy="238" rx="88" ry="44" fill="#040e0a" opacity="0.75"/>
+ <path d="M0,280 Q90,260 195,270 Q258,276 300,263 L300,320 L0,320 Z" fill="#030a06" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region"> Mellersta skärgården</div>
+ <div class="dest-card-name">Sandhamn · Möja · Ljusterö</div>
+ <div class="dest-card-islands"><span class="dest-island">Sandhamn</span><span class="dest-island">Möja</span><span class="dest-island">Ljusterö</span><span class="dest-island">Gällnö</span><span class="dest-island">Runmarö</span></div>
+ </div>
+ </a>
+ <a href="/o/uto" class="dest-card reveal reveal-delay-3">
+ <div class="dest-card-bg" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <ellipse cx="150" cy="215" rx="105" ry="52" fill="#180d04" opacity="0.65"/><ellipse cx="75" cy="255" rx="62" ry="30" fill="#100808" opacity="0.75"/>
+ <path d="M0,282 Q75,266 162,275 Q232,282 300,268 L300,320 L0,320 Z" fill="#0c0604" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region"> Södra skärgården</div>
+ <div class="dest-card-name">Utö · Nåttarö · Landsort</div>
+ <div class="dest-card-islands"><span class="dest-island">Utö</span><span class="dest-island">Nåttarö</span><span class="dest-island">Ornö</span><span class="dest-island">Dalarö</span><span class="dest-island">Landsort</span></div>
+ </div>
+ </a>
+ <a href="/o/furusund" class="dest-card reveal reveal-delay-4">
+ <div class="dest-card-bg" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <ellipse cx="140" cy="210" rx="98" ry="50" fill="#120a25" opacity="0.65"/><ellipse cx="245" cy="248" rx="66" ry="33" fill="#0d071a" opacity="0.75"/>
+ <path d="M0,280 Q85,262 182,273 Q248,280 300,266 L300,320 L0,320 Z" fill="#08050f" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region">✨ Norra skärgården</div>
+ <div class="dest-card-name">Furusund · Blidö · Norrtälje</div>
+ <div class="dest-card-islands"><span class="dest-island">Furusund</span><span class="dest-island">Blidö</span><span class="dest-island">Arholma</span><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
+ </div>
+ </a>
+ </div>
+ </div>
 </section>
 
 <section class="routes-section" id="rutter">
-  <div class="section-inner">
-    <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
-      <div>
-        <div class="section-label">Populära rutter</div>
-        <h2 class="section-title">Utforska på din tur</h2>
-      </div>
-      <a href="/rutter" class="btn btn-teal">Alla rutter →</a>
-    </div>
-    <div class="routes-scroll reveal">
-      <div class="route-card" onclick="location.href='/rutter'">
-        <div class="route-img" style="background:linear-gradient(135deg,#1a4a5e,#24697f)">🛶<div class="route-tag">2 dagar</div></div>
-        <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span>⛵ 48 km</span><span>🍽 5 krogar</span><span>⭐ 4.8</span></div></div>
-      </div>
-      <div class="route-card" onclick="location.href='/rutter'">
-        <div class="route-img" style="background:linear-gradient(135deg,#2d4a2e,#3a6040)">⛵<div class="route-tag">3 dagar</div></div>
-        <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span>⛵ 72 km</span><span>🍽 7 krogar</span><span>⭐ 4.9</span></div></div>
-      </div>
-      <div class="route-card" onclick="location.href='/rutter'">
-        <div class="route-img" style="background:linear-gradient(135deg,#3a1a1a,#6a2a2e)">🏃<div class="route-tag">1 dag</div></div>
-        <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>🚶 8 km</span><span>🍽 2 krogar</span><span>⭐ 4.9</span></div></div>
-      </div>
-      <div class="route-card" onclick="location.href='/rutter'">
-        <div class="route-img" style="background:linear-gradient(135deg,#1a3a4a,#2a5a6a)">🎣<div class="route-tag">Halvdag</div></div>
-        <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span>⛵ 55 km</span><span>🍽 4 krogar</span><span>⭐ 4.7</span></div></div>
-      </div>
-      <div class="route-card" onclick="location.href='/rutter'">
-        <div class="route-img" style="background:linear-gradient(135deg,#2a3a1a,#4a5a2a)">🌅<div class="route-tag">Weekend</div></div>
-        <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span>⛵ 60 km</span><span>🍽 6 krogar</span><span>⭐ 4.8</span></div></div>
-      </div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+ <div>
+ <div class="section-label">Populära rutter</div>
+ <h2 class="section-title">Utforska på din tur</h2>
+ </div>
+ <a href="/rutter" class="btn btn-teal">Alla rutter →</a>
+ </div>
+ <div class="routes-scroll reveal">
+ <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-img" style="background:linear-gradient(135deg,#1a4a5e,#24697f)"> <div class="route-tag">2 dagar</div></div>
+ <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span> 48 km</span><span> 5 krogar</span><span> 4.8</span></div></div>
+ </div>
+ <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-img" style="background:linear-gradient(135deg,#2d4a2e,#3a6040)"> <div class="route-tag">3 dagar</div></div>
+ <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span> 72 km</span><span> 7 krogar</span><span> 4.9</span></div></div>
+ </div>
+ <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-img" style="background:linear-gradient(135deg,#3a1a1a,#6a2a2e)">🏃<div class="route-tag">1 dag</div></div>
+ <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>🚶 8 km</span><span> 2 krogar</span><span> 4.9</span></div></div>
+ </div>
+ <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-img" style="background:linear-gradient(135deg,#1a3a4a,#2a5a6a)"> <div class="route-tag">Halvdag</div></div>
+ <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
+ </div>
+ <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-img" style="background:linear-gradient(135deg,#2a3a1a,#4a5a2a)"> <div class="route-tag">Weekend</div></div>
+ <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span> 60 km</span><span> 6 krogar</span><span> 4.8</span></div></div>
+ </div>
+ </div>
+ </div>
 </section>
 
 <section class="activities-section" id="aktiviteter">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Se & Göra</div>
-      <h2 class="section-title">Skärgårdslivet är mer än mat</h2>
-      <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske — skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
-    </div>
-    <div class="activities-grid">
-      <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">🛶</div>
-        <h3>Kajak & Paddling</h3>
-        <p>Stockholms skärgård är ett av världens bästa paddlingslandskap. Paddla ut till öar utan fast förbindelse och hitta platser som ingen annan ser.</p>
-        <div class="activity-tags"><span class="chip">Nybörjarvänligt</span><span class="chip">Uthyrning</span><span class="chip">Guideturer</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-      <a href="/blogg/segling-nyborjare-guide" class="activity-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">⛵</div>
-        <h3>Segling & Båtliv</h3>
-        <p>Segla längs klassiska leder mot Sandhamn eller ankra i stilla naturhamnar. Svalla visar gästhamnar, bränsle och övernattningsplatser längs vägen.</p>
-        <div class="activity-tags"><span class="chip">Gästhamnar</span><span class="chip">Bränsle</span><span class="chip">Sjökortet</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-      <a href="/blogg/basta-badplatserna" class="activity-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">🏊</div>
-        <h3>Bad & Klippor</h3>
-        <p>Hundratals badplatser på klippor och sandstränder. Hitta dolda badvikar och populära badstugor med GPS-koordinater direkt på kartan.</p>
-        <div class="activity-tags"><span class="chip">Klippbad</span><span class="chip">Bastu</span><span class="chip">Sandstrand</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-      <a href="/blogg/vandring-orno-uto" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">🥾</div>
-        <h3>Vandring & Natur</h3>
-        <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog — korta dagturer och flerdagarsäventyr.</p>
-        <div class="activity-tags"><span class="chip">Markerade leder</span><span class="chip">Naturreservat</span><span class="chip">Fågelskådning</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-      <a href="/blogg/fiske-skargard-guide" class="activity-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">🎣</div>
-        <h3>Fiske</h3>
-        <p>Abborre, gädda och havsöring väntar i skären. Sportfiske längs kusten och i stilla vikar som bara lokalkännedom kan visa.</p>
-        <div class="activity-tags"><span class="chip">Havsfiske</span><span class="chip">Medfiske</span><span class="chip">Fritidsfiske</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-      <a href="/blogg/cykling-moja-gallno" class="activity-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
-        <div class="activity-icon">🚴</div>
-        <h3>Cykling</h3>
-        <p>Bilfria öar som Möja och Gällnö är perfekta för cykling. Hyr en cykel vid bryggan och utforska hela ön på ett par timmar.</p>
-        <div class="activity-tags"><span class="chip">Bilfria öar</span><span class="chip">Uthyrning</span><span class="chip">Familjefärd</span></div>
-        <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
-      </a>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Se & Göra</div>
+ <h2 class="section-title">Skärgårdslivet är mer än mat</h2>
+ <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske — skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
+ </div>
+ <div class="activities-grid">
+ <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon"> </div>
+ <h3>Kajak & Paddling</h3>
+ <p>Stockholms skärgård är ett av världens bästa paddlingslandskap. Paddla ut till öar utan fast förbindelse och hitta platser som ingen annan ser.</p>
+ <div class="activity-tags"><span class="chip">Nybörjarvänligt</span><span class="chip">Uthyrning</span><span class="chip">Guideturer</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ <a href="/blogg/segling-nyborjare-guide" class="activity-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon"> </div>
+ <h3>Segling & Båtliv</h3>
+ <p>Segla längs klassiska leder mot Sandhamn eller ankra i stilla naturhamnar. Svalla visar gästhamnar, bränsle och övernattningsplatser längs vägen.</p>
+ <div class="activity-tags"><span class="chip">Gästhamnar</span><span class="chip">Bränsle</span><span class="chip">Sjökortet</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ <a href="/blogg/basta-badplatserna" class="activity-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon"> </div>
+ <h3>Bad & Klippor</h3>
+ <p>Hundratals badplatser på klippor och sandstränder. Hitta dolda badvikar och populära badstugor med GPS-koordinater direkt på kartan.</p>
+ <div class="activity-tags"><span class="chip">Klippbad</span><span class="chip">Bastu</span><span class="chip">Sandstrand</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ <a href="/blogg/vandring-orno-uto" class="activity-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon"> </div>
+ <h3>Vandring & Natur</h3>
+ <p>Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog — korta dagturer och flerdagarsäventyr.</p>
+ <div class="activity-tags"><span class="chip">Markerade leder</span><span class="chip">Naturreservat</span><span class="chip">Fågelskådning</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ <a href="/blogg/fiske-skargard-guide" class="activity-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon"> </div>
+ <h3>Fiske</h3>
+ <p>Abborre, gädda och havsöring väntar i skären. Sportfiske längs kusten och i stilla vikar som bara lokalkännedom kan visa.</p>
+ <div class="activity-tags"><span class="chip">Havsfiske</span><span class="chip">Medfiske</span><span class="chip">Fritidsfiske</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ <a href="/blogg/cykling-moja-gallno" class="activity-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block;cursor:pointer;">
+ <div class="activity-icon">🚴</div>
+ <h3>Cykling</h3>
+ <p>Bilfria öar som Möja och Gällnö är perfekta för cykling. Hyr en cykel vid bryggan och utforska hela ön på ett par timmar.</p>
+ <div class="activity-tags"><span class="chip">Bilfria öar</span><span class="chip">Uthyrning</span><span class="chip">Familjefärd</span></div>
+ <div style="margin-top:14px;font-size:13px;color:#1e5c82;font-weight:700;">Läs guide →</div>
+ </a>
+ </div>
+ </div>
 </section>
 
 <section class="getting-there-section" id="ta-sig-dit">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Ta sig dit</div>
-      <h2 class="section-title">Hur du tar dig ut i skärgården</h2>
-      <p class="section-sub">Från Stockholm finns flera avgångspunkter. Välj rätt beroende på destination och färdmedel.</p>
-    </div>
-    <div class="ferry-grid">
-      <div class="ferry-card reveal reveal-delay-1">
-        <div class="ferry-card-op">Waxholmsbolaget</div>
-        <h4>Strömkajen, Stockholm</h4>
-        <ul class="ferry-routes">
-          <li class="ferry-route">Djurgården · Vaxholm · Grinda</li>
-          <li class="ferry-route">Finnhamn · Möja · Blidö</li>
-          <li class="ferry-route">Sandhamn · Gällnö · Nämdö</li>
-          <li class="ferry-route">Utö · Nåttarö (via Dalarö)</li>
-        </ul>
-        <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">Tidtabeller: waxholmsbolaget.se</div>
-      </div>
-      <div class="ferry-card reveal reveal-delay-2">
-        <div class="ferry-card-op">Pendelbåten</div>
-        <h4>Stavsnäs Brygga</h4>
-        <ul class="ferry-routes">
-          <li class="ferry-route">Sandhamn (30 min)</li>
-          <li class="ferry-route">Bullerö · Gällnö · Runmarö</li>
-          <li class="ferry-route">Djurö · Ingarö</li>
-          <li class="ferry-route">Buss 428 från Slussen</li>
-        </ul>
-        <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">pendelbaten.se</div>
-      </div>
-      <div class="ferry-card reveal reveal-delay-3">
-        <div class="ferry-card-op">SL + Båt</div>
-        <h4>Nynäshamn</h4>
-        <ul class="ferry-routes">
-          <li class="ferry-route">Utö (1h 45 min)</li>
-          <li class="ferry-route">Landsort · Öja</li>
-          <li class="ferry-route">Nåttarö · Ornö</li>
-          <li class="ferry-route">Pendeltåg J43 från Stockholm</li>
-        </ul>
-        <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">sl.se · uto.se</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px">
-      <a href="/rutter" class="btn btn-accent">Se alla rutter →</a>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Ta sig dit</div>
+ <h2 class="section-title">Hur du tar dig ut i skärgården</h2>
+ <p class="section-sub">Från Stockholm finns flera avgångspunkter. Välj rätt beroende på destination och färdmedel.</p>
+ </div>
+ <div class="ferry-grid">
+ <div class="ferry-card reveal reveal-delay-1">
+ <div class="ferry-card-op">Waxholmsbolaget</div>
+ <h4>Strömkajen, Stockholm</h4>
+ <ul class="ferry-routes">
+ <li class="ferry-route">Djurgården · Vaxholm · Grinda</li>
+ <li class="ferry-route">Finnhamn · Möja · Blidö</li>
+ <li class="ferry-route">Sandhamn · Gällnö · Nämdö</li>
+ <li class="ferry-route">Utö · Nåttarö (via Dalarö)</li>
+ </ul>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">Tidtabeller: waxholmsbolaget.se</div>
+ </div>
+ <div class="ferry-card reveal reveal-delay-2">
+ <div class="ferry-card-op">Pendelbåten</div>
+ <h4>Stavsnäs Brygga</h4>
+ <ul class="ferry-routes">
+ <li class="ferry-route">Sandhamn (30 min)</li>
+ <li class="ferry-route">Bullerö · Gällnö · Runmarö</li>
+ <li class="ferry-route">Djurö · Ingarö</li>
+ <li class="ferry-route">Buss 428 från Slussen</li>
+ </ul>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">pendelbaten.se</div>
+ </div>
+ <div class="ferry-card reveal reveal-delay-3">
+ <div class="ferry-card-op">SL + Båt</div>
+ <h4>Nynäshamn</h4>
+ <ul class="ferry-routes">
+ <li class="ferry-route">Utö (1h 45 min)</li>
+ <li class="ferry-route">Landsort · Öja</li>
+ <li class="ferry-route">Nåttarö · Ornö</li>
+ <li class="ferry-route">Pendeltåg J43 från Stockholm</li>
+ </ul>
+ <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)">sl.se · uto.se</div>
+ </div>
+ </div>
+ <div style="text-align:center;margin-top:40px">
+ <a href="/rutter" class="btn btn-accent">Se alla rutter →</a>
+ </div>
+ </div>
 </section>
 
 <section class="boende-section" id="boende">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Boende</div>
-      <h2 class="section-title">Övernatta i skärgården</h2>
-      <p class="section-sub">Från lyxvärdshus med havsutsikt till enkla campingplatser och gästhamnar för den som sover ombord.</p>
-    </div>
-    <div class="boende-grid">
-      <div class="boende-card reveal reveal-delay-1">
-        <div class="boende-icon">🏨</div>
-        <h4>Värdshus & Hotell</h4>
-        <p>Klassiska skärgårdsvärdshus med mat och rum. Utö Värdshus, Sandhamns Värdshus och Grinda Wärdshus är legenderna.</p>
-      </div>
-      <div class="boende-card reveal reveal-delay-2">
-        <div class="boende-icon">🛖</div>
-        <h4>Stugor & Uthyrning</h4>
-        <p>Hyr en stuga på en ö och lev som en lokalbo i en vecka. Finns på de flesta bebodda öar.</p>
-      </div>
-      <div class="boende-card reveal reveal-delay-3">
-        <div class="boende-icon">⛺</div>
-        <h4>Camping & Tält</h4>
-        <p>Allemansrätten ger rätten att tälta i naturen. Kommunala campingplatser på bl.a. Utö och Arholma.</p>
-      </div>
-      <div class="boende-card reveal reveal-delay-4">
-        <div class="boende-icon">⚓</div>
-        <h4>Gästhamnar</h4>
-        <p>Hundratals gästhamnar i skärgården. Svalla visar var du kan angöra, tanka och äta längs vägen.</p>
-      </div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Boende</div>
+ <h2 class="section-title">Övernatta i skärgården</h2>
+ <p class="section-sub">Från lyxvärdshus med havsutsikt till enkla campingplatser och gästhamnar för den som sover ombord.</p>
+ </div>
+ <div class="boende-grid">
+ <div class="boende-card reveal reveal-delay-1">
+ <div class="boende-icon">🏨</div>
+ <h4>Värdshus & Hotell</h4>
+ <p>Klassiska skärgårdsvärdshus med mat och rum. Utö Värdshus, Sandhamns Värdshus och Grinda Wärdshus är legenderna.</p>
+ </div>
+ <div class="boende-card reveal reveal-delay-2">
+ <div class="boende-icon">🛖</div>
+ <h4>Stugor & Uthyrning</h4>
+ <p>Hyr en stuga på en ö och lev som en lokalbo i en vecka. Finns på de flesta bebodda öar.</p>
+ </div>
+ <div class="boende-card reveal reveal-delay-3">
+ <div class="boende-icon"> </div>
+ <h4>Camping & Tält</h4>
+ <p>Allemansrätten ger rätten att tälta i naturen. Kommunala campingplatser på bl.a. Utö och Arholma.</p>
+ </div>
+ <div class="boende-card reveal reveal-delay-4">
+ <div class="boende-icon"> </div>
+ <h4>Gästhamnar</h4>
+ <p>Hundratals gästhamnar i skärgården. Svalla visar var du kan angöra, tanka och äta längs vägen.</p>
+ </div>
+ </div>
+ </div>
 </section>
 
 <div class="split-section">
-  <div class="split-pane explorer reveal">
-    <div class="section-label">För utforskaren</div>
-    <h2 class="section-title">Din guide ute på vattnet</h2>
-    <p class="section-sub">Grundfunktionerna är gratis — för alltid. Premium öppnar upp mer, precis som Strava.</p>
-    <div class="split-features">
-      <div class="split-feature"><div class="split-feature-icon">📸</div><div class="split-feature-text"><h5>Logga turen på 10 sek</h5><p>Foto + plats. Klart. Din dagbok byggs automatiskt.</p></div></div>
-      <div class="split-feature"><div class="split-feature-icon">🧭</div><div class="split-feature-text"><h5>Hitta krogar & platser</h5><p>Bastun, bryggor och krogar längs din rutt</p></div></div>
-      <div class="split-feature"><div class="split-feature-icon">🌊</div><div class="split-feature-text"><h5>Community-feed</h5><p>Se andras turer. Bli inspirerad. Ge igen.</p></div></div>
-    </div>
-    <a href="/kom-igang" class="btn btn-teal btn-lg">Kom igång →</a>
-  </div>
-  <div class="split-pane owner reveal reveal-delay-2">
-    <div class="section-label">För krogägaren</div>
-    <h2 class="section-title">Sätt er krog på kartan</h2>
-    <p class="section-sub">Nå gäster som redan är ute på vattnet. Gratis grundprofil, premium om ni vill synas mer.</p>
-    <div class="split-features">
-      <div class="split-feature"><div class="split-feature-icon">📍</div><div class="split-feature-text"><h5>GPS-profil på kartan</h5><p>Syns för alla som paddlar eller seglar förbi</p></div></div>
-      <div class="split-feature"><div class="split-feature-icon">📊</div><div class="split-feature-text"><h5>Statistik & insikter</h5><p>Se hur gäster hittar er och varifrån de kommer</p></div></div>
-      <div class="split-feature"><div class="split-feature-icon">🌟</div><div class="split-feature-text"><h5>Early Bird — 6 månader gratis</h5><p>De första 20 krogarna får Premium gratis</p></div></div>
-    </div>
-    <a href="/registrera-krog" class="btn btn-accent btn-lg">Registrera er krog →</a>
-  </div>
+ <div class="split-pane explorer reveal">
+ <div class="section-label">För utforskaren</div>
+ <h2 class="section-title">Din guide ute på vattnet</h2>
+ <p class="section-sub">Grundfunktionerna är gratis — för alltid. Premium öppnar upp mer, precis som Strava.</p>
+ <div class="split-features">
+ <div class="split-feature"><div class="split-feature-icon">📸</div><div class="split-feature-text"><h5>Logga turen på 10 sek</h5><p>Foto + plats. Klart. Din dagbok byggs automatiskt.</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon">🧭</div><div class="split-feature-text"><h5>Hitta krogar & platser</h5><p>Bastun, bryggor och krogar längs din rutt</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon"> </div><div class="split-feature-text"><h5>Community-feed</h5><p>Se andras turer. Bli inspirerad. Ge igen.</p></div></div>
+ </div>
+ <a href="/kom-igang" class="btn btn-teal btn-lg">Kom igång →</a>
+ </div>
+ <div class="split-pane owner reveal reveal-delay-2">
+ <div class="section-label">För krogägaren</div>
+ <h2 class="section-title">Sätt er krog på kartan</h2>
+ <p class="section-sub">Nå gäster som redan är ute på vattnet. Gratis grundprofil, premium om ni vill synas mer.</p>
+ <div class="split-features">
+ <div class="split-feature"><div class="split-feature-icon">📍</div><div class="split-feature-text"><h5>GPS-profil på kartan</h5><p>Syns för alla som paddlar eller seglar förbi</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon">📊</div><div class="split-feature-text"><h5>Statistik & insikter</h5><p>Se hur gäster hittar er och varifrån de kommer</p></div></div>
+ <div class="split-feature"><div class="split-feature-icon">🌟</div><div class="split-feature-text"><h5>Early Bird — 6 månader gratis</h5><p>De första 20 krogarna får Premium gratis</p></div></div>
+ </div>
+ <a href="/registrera-krog" class="btn btn-accent btn-lg">Registrera er krog →</a>
+ </div>
 </div>
 
 <section class="stats-section">
-  <div class="section-inner">
-    <div class="stats-grid">
-      <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
-      <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">84</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
-      <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
-      <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="stats-grid">
+ <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
+ <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">84</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
+ <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
+ <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
+ </div>
+ </div>
 </section>
 
 
 <section class="testimonial-section">
-  <div class="section-inner">
-    <div class="section-header centered reveal">
-      <div class="section-label">Vad folk säger</div>
-      <h2 class="section-title">Skärgårdsälskare gillar Svalla</h2>
-    </div>
-    <div class="testimonials">
-      <div class="testimonial reveal reveal-delay-1">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Planerade hela sommarens segling med Thorkel på 10 minuter. Fick förslag på krogar och bastun längs hela rutten — inga överraskningar när man väl är ute.</p>
-        <div class="testimonial-footer">
-          <div class="testimonial-avatar" style="background:var(--teal)">MK</div>
-          <div><div class="testimonial-name">Marcus K.</div><div class="testimonial-role">Seglare · Segelbåt 36 fot · Nacka</div></div>
-        </div>
-      </div>
-      <div class="testimonial reveal reveal-delay-2">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Äntligen en app som förstår att vi är ute på vattnet, inte på stan. Feeden är full av äkta turer och hitta nya ställen har blivit en del av varje tur.</p>
-        <div class="testimonial-footer">
-          <div class="testimonial-avatar" style="background:var(--accent)">SL</div>
-          <div><div class="testimonial-name">Sofia L.</div><div class="testimonial-role">Kajakpaddlare · Värmdö</div></div>
-        </div>
-      </div>
-      <div class="testimonial reveal reveal-delay-3">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">Vi registrerade bastun på Svalla i somras — fler och fler båtfolk hittar hit direkt via appen. Bättre marknadsföring än vi kunde köpa oss till.</p>
-        <div class="testimonial-footer">
-          <div class="testimonial-avatar" style="background:var(--green)">AH</div>
-          <div><div class="testimonial-name">Anders H.</div><div class="testimonial-role">Ägare, Gräddö Sjösauna · Norrtälje</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+ <div class="section-inner">
+ <div class="section-header centered reveal">
+ <div class="section-label">Vad folk säger</div>
+ <h2 class="section-title">Skärgårdsälskare gillar Svalla</h2>
+ </div>
+ <div class="testimonials">
+ <div class="testimonial reveal reveal-delay-1">
+ <div class="testimonial-stars">★★★★★</div>
+ <p class="testimonial-text">Planerade hela sommarens segling med Thorkel på 10 minuter. Fick förslag på krogar och bastun längs hela rutten — inga överraskningar när man väl är ute.</p>
+ <div class="testimonial-footer">
+ <div class="testimonial-avatar" style="background:var(--teal)">MK</div>
+ <div><div class="testimonial-name">Marcus K.</div><div class="testimonial-role">Seglare · Segelbåt 36 fot · Nacka</div></div>
+ </div>
+ </div>
+ <div class="testimonial reveal reveal-delay-2">
+ <div class="testimonial-stars">★★★★★</div>
+ <p class="testimonial-text">Äntligen en app som förstår att vi är ute på vattnet, inte på stan. Feeden är full av äkta turer och hitta nya ställen har blivit en del av varje tur.</p>
+ <div class="testimonial-footer">
+ <div class="testimonial-avatar" style="background:var(--accent)">SL</div>
+ <div><div class="testimonial-name">Sofia L.</div><div class="testimonial-role">Kajakpaddlare · Värmdö</div></div>
+ </div>
+ </div>
+ <div class="testimonial reveal reveal-delay-3">
+ <div class="testimonial-stars">★★★★★</div>
+ <p class="testimonial-text">Vi registrerade bastun på Svalla i somras — fler och fler båtfolk hittar hit direkt via appen. Bättre marknadsföring än vi kunde köpa oss till.</p>
+ <div class="testimonial-footer">
+ <div class="testimonial-avatar" style="background:var(--green)">AH</div>
+ <div><div class="testimonial-name">Anders H.</div><div class="testimonial-role">Ägare, Gräddö Sjösauna · Norrtälje</div></div>
+ </div>
+ </div>
+ </div>
+ </div>
 </section>
 
 <section class="app-section" id="om">
-  <div class="app-inner">
-    <div class="section-label" style="text-align:center">Webbapp · Fungerar som en app</div>
-    <h2 class="section-title reveal">Svalla i fickan</h2>
-    <p class="section-sub reveal">Inga nedladdningar. Öppna svalla.se i din mobil och tryck "Lägg till på hemskärmen". Fungerar offline, har push-notiser och känns som en native app.</p>
-    <div class="app-badges reveal">
-      <a href="/feed" class="app-badge" style="background:var(--accent)">
-        <span class="app-badge-icon">⛵</span>
-        <div class="app-badge-text"><span class="small">Prova direkt i webbläsaren</span><span class="big">Öppna Svalla</span></div>
-      </a>
-      <a href="/kom-igang" class="app-badge">
-        <span class="app-badge-icon">👤</span>
-        <div class="app-badge-text"><span class="small">Skapa konto gratis</span><span class="big">Kom igång</span></div>
-      </a>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:16px">iOS: Safari → Dela → Lägg till på hemskärmen &nbsp;·&nbsp; Android: Chrome → ⋮ → Installera app</p>
-  </div>
+ <div class="app-inner">
+ <div class="section-label" style="text-align:center">Webbapp · Fungerar som en app</div>
+ <h2 class="section-title reveal">Svalla i fickan</h2>
+ <p class="section-sub reveal">Inga nedladdningar. Öppna svalla.se i din mobil och tryck "Lägg till på hemskärmen". Fungerar offline, har push-notiser och känns som en native app.</p>
+ <div class="app-badges reveal">
+ <a href="/feed" class="app-badge" style="background:var(--accent)">
+ <span class="app-badge-icon"> </span>
+ <div class="app-badge-text"><span class="small">Prova direkt i webbläsaren</span><span class="big">Öppna Svalla</span></div>
+ </a>
+ <a href="/kom-igang" class="app-badge">
+ <span class="app-badge-icon">👤</span>
+ <div class="app-badge-text"><span class="small">Skapa konto gratis</span><span class="big">Kom igång</span></div>
+ </a>
+ </div>
+ <p style="font-size:12px;color:var(--muted);margin-top:16px">iOS: Safari → Dela → Lägg till på hemskärmen &nbsp;·&nbsp; Android: Chrome → ⋮ → Installera app</p>
+ </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo"><svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style="display:block"><g transform="translate(0,2)"><line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/><path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/><path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/></g><text x="23" y="20" fill="#ffffff" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5">SVALLA</text></svg></div>
-        <p>Den nordiska plattformen för krogar, kajer och upplevelser i skärgården. Byggt av skärgårdsälskare, för skärgårdsälskare.</p>
-      </div>
-      <div class="footer-col">
-        <h5>Utforska</h5>
-        <ul>
-          <li><a href="/platser">Platser & krogar</a></li>
-          <li><a href="/rutter">Rutter</a></li>
-          <li><a href="/feed">Community-feed</a></li>
-          <li><a href="/spara">Sparade</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Konto</h5>
-        <ul>
-          <li><a href="/logga-in">Logga in</a></li>
-          <li><a href="/logga-in">Skapa konto</a></li>
-          <li><a href="/profil">Min profil</a></li>
-          <li><a href="/logga">Logga tur</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Om oss</h5>
-        <ul>
-          <li><a href="/om">Om Svalla</a></li>
-          <li><a href="/faq">Vanliga frågor</a></li>
-          <li><a href="/blogg">Skärgårdsbloggen</a></li>
-          <li><a href="/partner">För partners</a></li>
-          <li><a href="/integritetspolicy">Integritetspolicy</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Regioner</h5>
-        <ul>
-          <li><a href="/stockholms-skargard">Stockholms skärgård</a></li>
-          <li><a href="/bohuslan">Bohuslän</a></li>
-          <li><a href="/gotland">Gotland</a></li>
-          <li><a href="/aland">Åland</a></li>
-          <li><a href="/blekinge-skargard">Blekinges skärgård</a></li>
-          <li><a href="/vasterhav">Västerhavet</a></li>
-          <li><a href="/malaren">Mälaren</a></li>
-          <li><a href="/goteborg-skargard">Göteborgs skärgård</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
-      <div class="footer-flags">🇸🇪</div>
-      <div class="footer-social">
-        <a href="#" title="Instagram">📸</a>
-        <a href="#" title="TikTok">🎵</a>
-        <a href="#" title="Facebook">👤</a>
-      </div>
-    </div>
-  </div>
+ <div class="footer-inner">
+ <div class="footer-grid">
+ <div class="footer-brand">
+ <div class="logo"><svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style="display:block"><g transform="translate(0,2)"><line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/><path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/><path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/></g><text x="23" y="20" fill="#ffffff" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5">SVALLA</text></svg></div>
+ <p>Den nordiska plattformen för krogar, kajer och upplevelser i skärgården. Byggt av skärgårdsälskare, för skärgårdsälskare.</p>
+ </div>
+ <div class="footer-col">
+ <h5>Utforska</h5>
+ <ul>
+ <li><a href="/platser">Platser & krogar</a></li>
+ <li><a href="/rutter">Rutter</a></li>
+ <li><a href="/feed">Community-feed</a></li>
+ <li><a href="/spara">Sparade</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h5>Konto</h5>
+ <ul>
+ <li><a href="/logga-in">Logga in</a></li>
+ <li><a href="/logga-in">Skapa konto</a></li>
+ <li><a href="/profil">Min profil</a></li>
+ <li><a href="/logga">Logga tur</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h5>Om oss</h5>
+ <ul>
+ <li><a href="/om">Om Svalla</a></li>
+ <li><a href="/faq">Vanliga frågor</a></li>
+ <li><a href="/blogg">Skärgårdsbloggen</a></li>
+ <li><a href="/partner">För partners</a></li>
+ <li><a href="/integritetspolicy">Integritetspolicy</a></li>
+ </ul>
+ </div>
+ <div class="footer-col">
+ <h5>Regioner</h5>
+ <ul>
+ <li><a href="/stockholms-skargard">Stockholms skärgård</a></li>
+ <li><a href="/bohuslan">Bohuslän</a></li>
+ <li><a href="/gotland">Gotland</a></li>
+ <li><a href="/aland">Åland</a></li>
+ <li><a href="/blekinge-skargard">Blekinges skärgård</a></li>
+ <li><a href="/vasterhav">Västerhavet</a></li>
+ <li><a href="/malaren">Mälaren</a></li>
+ <li><a href="/goteborg-skargard">Göteborgs skärgård</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="footer-bottom">
+ <span>© 2026 Svalla — Alla rättigheter förbehållna</span>
+ <div class="footer-flags">🇸🇪</div>
+ <div class="footer-social">
+ <a href="#" title="Instagram">📸</a>
+ <a href="#" title="TikTok">🎵</a>
+ <a href="#" title="Facebook">👤</a>
+ </div>
+ </div>
+ </div>
 </footer>
 
 `
 
 export default function LandingPage() {
-  useEffect(() => {
-    // Om redan inloggad → skicka direkt till feed
-    const supabase = createClient()
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) window.location.replace('/feed')
-    })
+ useEffect(() => {
+ // Om redan inloggad → skicka direkt till feed
+ const supabase = createClient()
+ supabase.auth.getSession().then(({ data: { session } }) => {
+ if (session) window.location.replace('/feed')
+ })
 
-    // Nav scroll-effekt
-    const nav = document.getElementById('mainNav')
-    const handleScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60)
-    window.addEventListener('scroll', handleScroll)
+ // Nav scroll-effekt
+ const nav = document.getElementById('mainNav')
+ const handleScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60)
+ window.addEventListener('scroll', handleScroll)
 
-    // Tabbaserad megameny — tab-switching
-    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation()
-        const tab = (btn as HTMLElement).getAttribute('data-tab')
-        document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'))
-        document.querySelectorAll('.nav-tab-content').forEach(c => c.classList.remove('active'))
-        btn.classList.add('active')
-        if (tab) document.getElementById('nav-tab-' + tab)?.classList.add('active')
-      })
-    })
+ // Tabbaserad megameny — tab-switching
+ document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+ btn.addEventListener('click', (e) => {
+ e.stopPropagation()
+ const tab = (btn as HTMLElement).getAttribute('data-tab')
+ document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'))
+ document.querySelectorAll('.nav-tab-content').forEach(c => c.classList.remove('active'))
+ btn.classList.add('active')
+ if (tab) document.getElementById('nav-tab-' + tab)?.classList.add('active')
+ })
+ })
 
-    // Mobil hamburger drawer
-    const hamburger = document.getElementById('navHamburger')
-    const mobDrawer = document.getElementById('mobDrawer')
-    const mobOverlay = document.getElementById('mobOverlay')
-    const mobClose = document.getElementById('mobDrawerClose')
-    const openMobDrawer = () => {
-      mobDrawer?.classList.add('open')
-      mobOverlay?.classList.add('open')
-      document.body.style.overflow = 'hidden'
-    }
-    const closeMobDrawer = () => {
-      mobDrawer?.classList.remove('open')
-      mobOverlay?.classList.remove('open')
-      document.body.style.overflow = ''
-    }
-    hamburger?.addEventListener('click', openMobDrawer)
-    mobOverlay?.addEventListener('click', closeMobDrawer)
-    mobClose?.addEventListener('click', closeMobDrawer)
+ // Mobil hamburger drawer
+ const hamburger = document.getElementById('navHamburger')
+ const mobDrawer = document.getElementById('mobDrawer')
+ const mobOverlay = document.getElementById('mobOverlay')
+ const mobClose = document.getElementById('mobDrawerClose')
+ const openMobDrawer = () => {
+ mobDrawer?.classList.add('open')
+ mobOverlay?.classList.add('open')
+ document.body.style.overflow = 'hidden'
+ }
+ const closeMobDrawer = () => {
+ mobDrawer?.classList.remove('open')
+ mobOverlay?.classList.remove('open')
+ document.body.style.overflow = ''
+ }
+ hamburger?.addEventListener('click', openMobDrawer)
+ mobOverlay?.addEventListener('click', closeMobDrawer)
+ mobClose?.addEventListener('click', closeMobDrawer)
 
-    // Accordion i mobil drawer
-    document.querySelectorAll('.mob-acc-head').forEach(head => {
-      head.addEventListener('click', () => {
-        head.closest('.mob-acc')?.classList.toggle('open')
-      })
-    })
+ // Accordion i mobil drawer
+ document.querySelectorAll('.mob-acc-head').forEach(head => {
+ head.addEventListener('click', () => {
+ head.closest('.mob-acc')?.classList.toggle('open')
+ })
+ })
 
-    // Stäng drawer när länk klickas
-    document.querySelectorAll('.mob-drawer a').forEach(a => {
-      a.addEventListener('click', closeMobDrawer)
-    })
+ // Stäng drawer när länk klickas
+ document.querySelectorAll('.mob-drawer a').forEach(a => {
+ a.addEventListener('click', closeMobDrawer)
+ })
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) }
-      })
-    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' })
-    revealEls.forEach(el => observer.observe(el))
-    // Fallback: om JS laddar långsamt, visa allt efter 1.5s
-    const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
+ // Scroll reveal
+ const revealEls = document.querySelectorAll('.reveal')
+ const observer = new IntersectionObserver((entries) => {
+ entries.forEach(e => {
+ if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) }
+ })
+ }, { threshold: 0, rootMargin: '0px 0px -40px 0px' })
+ revealEls.forEach(el => observer.observe(el))
+ // Fallback: om JS laddar långsamt, visa allt efter 1.5s
+ const fallback = setTimeout(() => revealEls.forEach(el => el.classList.add('visible')), 1500)
 
-    // Sök-fokus
-    const searchInput = document.querySelector('.hero-search input') as HTMLInputElement
-    const onFocus = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 50px rgba(232,146,74,.35)' }
-    const onBlur = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 40px rgba(0,0,0,.3)' }
-    searchInput?.addEventListener('focus', onFocus)
-    searchInput?.addEventListener('blur', onBlur)
+ // Sök-fokus
+ const searchInput = document.querySelector('.hero-search input') as HTMLInputElement
+ const onFocus = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 50px rgba(232,146,74,.35)' }
+ const onBlur = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 40px rgba(0,0,0,.3)' }
+ searchInput?.addEventListener('focus', onFocus)
+ searchInput?.addEventListener('blur', onBlur)
 
-    // Dynamiska trust-bar-siffror — hämta från /api/stats och uppdatera DOM
-    fetch('/api/stats', { cache: 'force-cache' })
-      .then(r => r.ok ? r.json() : null)
-      .then(stats => {
-        if (!stats) return
-        const fmt = (n: number) => n.toLocaleString('sv-SE')
-        document.querySelectorAll<HTMLElement>('[data-stat="islands"]').forEach(el => {
-          if (typeof stats.islands === 'number') el.textContent = String(stats.islands)
-        })
-        document.querySelectorAll<HTMLElement>('[data-stat="places"]').forEach(el => {
-          const total = (stats.places ?? 0) + (stats.harbors ?? 0)
-          if (total > 0) el.textContent = `${fmt(total)}`
-        })
-        document.querySelectorAll<HTMLElement>('[data-stat="users"]').forEach(el => {
-          if (typeof stats.users === 'number' && stats.users > 0) el.textContent = fmt(stats.users)
-        })
-        document.querySelectorAll<HTMLElement>('[data-stat="trips"]').forEach(el => {
-          if (typeof stats.trips === 'number' && stats.trips > 0) el.textContent = fmt(stats.trips)
-        })
-        document.querySelectorAll<HTMLElement>('[data-stat="visits"]').forEach(el => {
-          if (typeof stats.islandVisits === 'number' && stats.islandVisits > 0) el.textContent = fmt(stats.islandVisits)
-        })
-      })
-      .catch(() => {})
+ // Dynamiska trust-bar-siffror — hämta från /api/stats och uppdatera DOM
+ fetch('/api/stats', { cache: 'force-cache' })
+ .then(r => r.ok ? r.json() : null)
+ .then(stats => {
+ if (!stats) return
+ const fmt = (n: number) => n.toLocaleString('sv-SE')
+ document.querySelectorAll<HTMLElement>('[data-stat="islands"]').forEach(el => {
+ if (typeof stats.islands === 'number') el.textContent = String(stats.islands)
+ })
+ document.querySelectorAll<HTMLElement>('[data-stat="places"]').forEach(el => {
+ const total = (stats.places ?? 0) + (stats.harbors ?? 0)
+ if (total > 0) el.textContent = `${fmt(total)}`
+ })
+ document.querySelectorAll<HTMLElement>('[data-stat="users"]').forEach(el => {
+ if (typeof stats.users === 'number' && stats.users > 0) el.textContent = fmt(stats.users)
+ })
+ document.querySelectorAll<HTMLElement>('[data-stat="trips"]').forEach(el => {
+ if (typeof stats.trips === 'number' && stats.trips > 0) el.textContent = fmt(stats.trips)
+ })
+ document.querySelectorAll<HTMLElement>('[data-stat="visits"]').forEach(el => {
+ if (typeof stats.islandVisits === 'number' && stats.islandVisits > 0) el.textContent = fmt(stats.islandVisits)
+ })
+ })
+ .catch(() => {})
 
-    return () => {
-      clearTimeout(fallback)
-      window.removeEventListener('scroll', handleScroll)
-      observer.disconnect()
-      searchInput?.removeEventListener('focus', onFocus)
-      searchInput?.removeEventListener('blur', onBlur)
-      hamburger?.removeEventListener('click', openMobDrawer)
-      mobOverlay?.removeEventListener('click', closeMobDrawer)
-      mobClose?.removeEventListener('click', closeMobDrawer)
-      document.body.style.overflow = ''
-    }
-  }, [])
+ return () => {
+ clearTimeout(fallback)
+ window.removeEventListener('scroll', handleScroll)
+ observer.disconnect()
+ searchInput?.removeEventListener('focus', onFocus)
+ searchInput?.removeEventListener('blur', onBlur)
+ hamburger?.removeEventListener('click', openMobDrawer)
+ mobOverlay?.removeEventListener('click', closeMobDrawer)
+ mobClose?.removeEventListener('click', closeMobDrawer)
+ document.body.style.overflow = ''
+ }
+ }, [])
 
-  return (
-    <div style={{ position: 'relative' }}>
-      {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: '100vh',
-        zIndex: 0,
-        overflow: 'hidden',
-        pointerEvents: 'none',
-        /* Dark bg fades to white near bottom so stones rest on white page */
-        background: 'linear-gradient(to bottom, #0a1f2b 0%, #0a1f2b 76%, white 92%)',
-      } as React.CSSProperties}>
-        <HeroAnimation />
-      </div>
-      <style>{`
-        /* Hero section sits above canvas layer */
-        .hero { position: relative; z-index: 1; background: transparent !important; }
-      `}</style>
-      <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
-    </div>
-  )
+ return (
+ <div style={{ position: 'relative' }}>
+ {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
+ <div style={{
+ position: 'absolute', top: 0, left: 0, right: 0,
+ height: '100vh',
+ zIndex: 0,
+ overflow: 'hidden',
+ pointerEvents: 'none',
+ /* Dark bg fades to white near bottom so stones rest on white page */
+ background: 'linear-gradient(to bottom, #0a1f2b 0%, #0a1f2b 76%, white 92%)',
+ } as React.CSSProperties}>
+ <HeroAnimation />
+ </div>
+ <style>{`
+ /* Hero section sits above canvas layer */
+ .hero { position: relative; z-index: 1; background: transparent !important; }
+ `}</style>
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
+ </div>
+ )
 }

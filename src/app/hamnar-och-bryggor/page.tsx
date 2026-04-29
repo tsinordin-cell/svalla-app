@@ -28,13 +28,13 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '⚓',
+    icon: '',
     title: 'Gästhamnar',
     description: 'Servicehamnar med el, vatten, dusch och toalett — från Stockholms skärgård till Visby, Marstrand och Karlskrona. Bokning oftast nödvändig i högsäsong.',
     href: '/platser?kategori=gasthamn',
   },
   {
-    icon: '🌿',
+    icon: '',
     title: 'Naturhamnar',
     description: 'Skyddade vikar och ankringsplatser där du ankrar eller lägger tamp i berget — helt gratis och ofta helt själv enligt allemansrätten.',
     href: '/platser?kategori=naturhamn',

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap } from 'leaflet'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { findSeaPath } from '@/lib/seaPathfinder'
 
 type Stop = {
   lat: number
@@ -35,7 +36,10 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     async function init() {
       const L = (await import('leaflet')).default
 
-      // Bounds only from route endpoints — stops are overlays and must not affect zoom
+      // Hitta sjöleds-vägen
+      const seaPath = findSeaPath(startLat, startLng, endLat, endLng)
+
+      // Bounds från start/end (stops är overlays)
       const bounds = L.latLngBounds(
         [Math.min(startLat, endLat), Math.min(startLng, endLng)],
         [Math.max(startLat, endLat), Math.max(startLng, endLng)],
@@ -56,13 +60,15 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
         maxZoom: 18, opacity: 0.85, crossOrigin: '',
       }).addTo(map)
 
-      // Dashed route line
-      L.polyline([[startLat, startLng], [endLat, endLng]], {
+      // Schadow-linje för sjölederna
+      L.polyline(seaPath, {
         color: 'rgba(30,92,130,0.25)',
         weight: 8,
         lineJoin: 'round',
       }).addTo(map)
-      L.polyline([[startLat, startLng], [endLat, endLng]], {
+
+      // Dashed route line (sjölederna)
+      L.polyline(seaPath, {
         color: 'var(--teal, #1e5c82)',
         weight: 3,
         opacity: 0.75,

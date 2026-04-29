@@ -195,13 +195,13 @@ export default function ProfileTeaserPopover({
                     </Link>
                     {(data.vessel_name || data.vessel_type) && (
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
-                        ⛵ {data.vessel_name ?? data.vessel_type}
+                        {data.vessel_name ?? data.vessel_type}
                         {data.vessel_model ? ` · ${data.vessel_model}` : ''}
                       </div>
                     )}
                     {data.home_port && (
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
-                        ⚓ {data.home_port}
+                        {data.home_port}
                       </div>
                     )}
                   </div>

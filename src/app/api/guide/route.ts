@@ -281,7 +281,7 @@ OUTPUT FORMAT (när du föreslår en tur):
 Kort beskrivning (1-2 meningar)
 • Varför den passar dig
 • Stopp: [2-3 konkreta stopp]
-• 🍽 Matstopp: [namn + länk om tillgänglig från platslistan nedan]
+• Matstopp: [namn + länk om tillgänglig från platslistan nedan]
 • 💡 Tips: [insider-tip]
 
 NÄR DU HJÄLPER ANVÄNDAREN LOGGA:

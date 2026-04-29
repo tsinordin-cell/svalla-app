@@ -263,7 +263,7 @@ export default function LiveTrackMap({
           padding:3px 6px;border-radius:10px;
           white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2);
           border:1.5px solid rgba(255,255,255,.5);
-        ">⚓ ${label}</div>`,
+        ">${label}</div>`,
         className: '',
         iconAnchor: [20, 10],
       })

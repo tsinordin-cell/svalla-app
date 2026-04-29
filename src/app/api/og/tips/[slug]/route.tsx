@@ -130,8 +130,7 @@ export async function GET(
               color: 'rgba(100,180,230,0.50)',
               letterSpacing: '0.5px',
             }}>
-              Läs på Svalla.se ⚓
-            </div>
+              Läs på Svalla.se </div>
           </div>
         </div>
 
@@ -166,8 +165,7 @@ export async function GET(
               fontSize: 160, opacity: 0.18, position: 'relative', zIndex: 1,
               display: 'flex',
             }}>
-              ⚓
-            </div>
+              </div>
           )}
 
           {/* Tag-pills längst ner höger */}

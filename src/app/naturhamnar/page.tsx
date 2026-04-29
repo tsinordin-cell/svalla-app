@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '⚓',
+    icon: '',
     title: 'Svängsta',
     description: 'Klassisk naturhamn på Möja. Skyddad vika med bra djup och mysiga ankringskvällar. Helt utan avgifter — ankra och ta minsta fram.',
     href: '/platser?kategori=naturhamn',
@@ -40,7 +40,7 @@ const ITEMS: LandingItem[] = [
     meta: 'Södra skärgården',
   },
   {
-    icon: '🌲',
+    icon: '',
     title: 'Ålö',
     description: 'Norra skärgårdens hemlighet — lugn naturhamn med tallskog och enkla förtöjningsplatser. Perfekt för seglare som söker avskildhet nära Stockholm.',
     href: '/platser?kategori=naturhamn',
