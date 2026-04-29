@@ -443,9 +443,9 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
-  <div class="trust-item"><strong>84</strong> Öar med guider</div>
+  <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><strong>200+</strong> Krogar &amp; hamnar kartlagda</div>
+  <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
   <div class="trust-divider"></div>
   <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
   <div class="trust-divider"></div>
@@ -775,8 +775,8 @@ const LANDING_HTML = `
 <section class="stats-section">
   <div class="section-inner">
     <div class="stats-grid">
-      <div class="stat-box reveal"><span class="stat-num">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård</div></div>
-      <div class="stat-box reveal reveal-delay-1"><span class="stat-num">69</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
+      <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
+      <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">84</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
       <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
       <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
     </div>
@@ -931,6 +931,31 @@ export default function LandingPage() {
     const onBlur = () => { const el = searchInput?.closest('.hero-search') as HTMLElement; if (el) el.style.boxShadow = '0 8px 40px rgba(0,0,0,.3)' }
     searchInput?.addEventListener('focus', onFocus)
     searchInput?.addEventListener('blur', onBlur)
+
+    // Dynamiska trust-bar-siffror — hämta från /api/stats och uppdatera DOM
+    fetch('/api/stats', { cache: 'force-cache' })
+      .then(r => r.ok ? r.json() : null)
+      .then(stats => {
+        if (!stats) return
+        const fmt = (n: number) => n.toLocaleString('sv-SE')
+        document.querySelectorAll<HTMLElement>('[data-stat="islands"]').forEach(el => {
+          if (typeof stats.islands === 'number') el.textContent = String(stats.islands)
+        })
+        document.querySelectorAll<HTMLElement>('[data-stat="places"]').forEach(el => {
+          const total = (stats.places ?? 0) + (stats.harbors ?? 0)
+          if (total > 0) el.textContent = `${fmt(total)}`
+        })
+        document.querySelectorAll<HTMLElement>('[data-stat="users"]').forEach(el => {
+          if (typeof stats.users === 'number' && stats.users > 0) el.textContent = fmt(stats.users)
+        })
+        document.querySelectorAll<HTMLElement>('[data-stat="trips"]').forEach(el => {
+          if (typeof stats.trips === 'number' && stats.trips > 0) el.textContent = fmt(stats.trips)
+        })
+        document.querySelectorAll<HTMLElement>('[data-stat="visits"]').forEach(el => {
+          if (typeof stats.islandVisits === 'number' && stats.islandVisits > 0) el.textContent = fmt(stats.islandVisits)
+        })
+      })
+      .catch(() => {})
 
     return () => {
       clearTimeout(fallback)

@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createClient as createServiceClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -53,6 +54,14 @@ function IcoMail({ color }: { color: string }) {
     <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="4" width="20" height="16" rx="2" />
       <path d="m2 7 10 6 10-6" />
+    </svg>
+  )
+}
+function IcoMegaphone({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="m3 11 18-5v12L3 14v-3z" />
+      <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
     </svg>
   )
 }
@@ -115,7 +124,17 @@ const ADMIN_TOOLS: AdminTool[] = [
     badge: 'NY',
     color: '#0a7b3c',
   },
+  {
+    href:  '/admin/innehall',
+    icon:  <IcoMegaphone color="#9d174d" />,
+    title: 'Sociala medier',
+    desc:  'Färdiga inlägg för Reddit, FB-grupper och Instagram',
+    badge: 'NY',
+    color: '#9d174d',
+  },
 ]
+
+export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
   const supabase = await createServerSupabaseClient()
@@ -130,6 +149,46 @@ export default async function AdminPage() {
     .single()
 
   if (!userRow?.is_admin) redirect('/feed')
+
+  // ── 7-dagars stats (service-role för tabeller med RLS) ────────
+  const service = createServiceClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
+  const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+  const dayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+
+  const [
+    tripsWeek,
+    tripsToday,
+    newUsersWeek,
+    totalUsers,
+    newPartnersWeek,
+    pendingPartners,
+    newSubsWeek,
+    totalSubs,
+  ] = await Promise.all([
+    service.from('trips').select('*', { count: 'exact', head: true }).gte('created_at', sevenDaysAgo),
+    service.from('trips').select('*', { count: 'exact', head: true }).gte('created_at', dayAgo),
+    service.from('users').select('*', { count: 'exact', head: true }).gte('created_at', sevenDaysAgo),
+    service.from('users').select('*', { count: 'exact', head: true }),
+    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).gte('created_at', sevenDaysAgo),
+    service.from('partner_inquiries').select('*', { count: 'exact', head: true }).eq('status', 'new'),
+    service.from('email_subscribers').select('*', { count: 'exact', head: true }).gte('created_at', sevenDaysAgo),
+    service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false),
+  ])
+
+  const stats = {
+    tripsWeek: tripsWeek.count ?? 0,
+    tripsToday: tripsToday.count ?? 0,
+    newUsersWeek: newUsersWeek.count ?? 0,
+    totalUsers: totalUsers.count ?? 0,
+    newPartnersWeek: newPartnersWeek.count ?? 0,
+    pendingPartners: pendingPartners.count ?? 0,
+    newSubsWeek: newSubsWeek.count ?? 0,
+    totalSubs: totalSubs.count ?? 0,
+  }
 
   return (
     <div style={{ minHeight: '100dvh', background: 'var(--bg)', padding: '20px 16px 80px' }}>
@@ -148,9 +207,29 @@ export default async function AdminPage() {
         <h1 style={{ fontSize: 22, fontWeight: 700, color: 'var(--sea)', margin: '0 0 4px' }}>
           Admin
         </h1>
-        <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 28px' }}>
+        <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 24px' }}>
           Svalla.se — interna verktyg
         </p>
+
+        {/* ── Stats: senaste 7 dagar ──────────────────────────── */}
+        <div style={{
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: 8, marginBottom: 16,
+        }}>
+          <StatCard label="Turer (7d)" value={stats.tripsWeek} sub={`${stats.tripsToday} idag`} color="#1d4ed8" />
+          <StatCard label="Nya seglare" value={stats.newUsersWeek} sub={`${stats.totalUsers} totalt`} color="#0a7b3c" />
+          <StatCard label="Partner-leads" value={stats.newPartnersWeek} sub={`${stats.pendingPartners} obesvarade`} color="#c96e2a" linkTo="/admin/partners" />
+          <StatCard label="E-postnya" value={stats.newSubsWeek} sub={`${stats.totalSubs} aktiva`} color="#7c3aed" linkTo="/admin/subscribers" />
+        </div>
+
+        <div style={{ marginBottom: 24 }}>
+          <h2 style={{
+            fontSize: 11, fontWeight: 700, color: 'var(--txt3)',
+            textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 10px',
+          }}>
+            Verktyg
+          </h2>
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {ADMIN_TOOLS.map(tool => (
             <a
@@ -195,4 +274,36 @@ export default async function AdminPage() {
       </div>
     </div>
   )
+}
+
+function StatCard({ label, value, sub, color, linkTo }: {
+  label: string
+  value: number
+  sub: string
+  color: string
+  linkTo?: string
+}) {
+  const inner = (
+    <div style={{
+      background: 'var(--white)',
+      border: '1px solid var(--surface-3)',
+      borderTop: `3px solid ${color}`,
+      borderRadius: 10,
+      padding: '12px 14px',
+      cursor: linkTo ? 'pointer' : 'default',
+      transition: 'transform .12s',
+    }}>
+      <div style={{ fontSize: 11, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6 }}>{label}</div>
+      <div style={{ fontSize: 22, fontWeight: 700, color, marginTop: 2 }}>{value}</div>
+      <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{sub}</div>
+    </div>
+  )
+  if (linkTo) {
+    return (
+      <Link href={linkTo} style={{ textDecoration: 'none', color: 'inherit' }}>
+        {inner}
+      </Link>
+    )
+  }
+  return inner
 }

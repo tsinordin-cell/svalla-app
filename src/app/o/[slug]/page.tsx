@@ -147,13 +147,22 @@ export default async function IslandPage({ params }: Props) {
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
               {(visitorCount ?? 0) > 0 && (
                 <div style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 6,
-                  marginTop: 10, padding: '5px 12px', borderRadius: 20,
-                  background: 'rgba(255,255,255,0.15)',
-                  fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.9)',
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  marginTop: 14, padding: '8px 16px', borderRadius: 999,
+                  background: 'rgba(255,255,255,0.22)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255,255,255,0.25)',
+                  fontSize: 14, fontWeight: 700, color: '#fff',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                 }}>
-                  <span>📍</span>
-                  <span>{visitorCount} seglare {(visitorCount ?? 0) === 1 ? 'har besökt' : 'har besökt'} via Svalla</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M12 21.3C7 14.5 4.8 11 4.8 7.8a7.2 7.2 0 0 1 14.4 0c0 3.2-2.2 6.7-7.2 13.5Z" />
+                    <circle cx="12" cy="8" r="2.4" />
+                  </svg>
+                  <span>
+                    <strong style={{ fontSize: 15 }}>{visitorCount?.toLocaleString('sv-SE')}</strong>{' '}
+                    {(visitorCount ?? 0) === 1 ? 'seglare har' : 'seglare har'} besökt {island.name} via Svalla
+                  </span>
                 </div>
               )}
               {/* Live väder — kräver koordinater */}
