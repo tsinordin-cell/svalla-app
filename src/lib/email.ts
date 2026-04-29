@@ -135,7 +135,7 @@ export async function sendAdminEmail(opts: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
-  const adminEmail = process.env.ADMIN_EMAIL || 'tsinordin@gmail.com'
+  const adminEmail = process.env.ADMIN_EMAIL || 'info@svalla.se'
   const from = process.env.EMAIL_FROM || 'Svalla <hello@svalla.se>'
 
   try {
