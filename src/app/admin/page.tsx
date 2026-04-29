@@ -38,6 +38,24 @@ function IcoChatBubbles({ color }: { color: string }) {
     </svg>
   )
 }
+function IcoHandshake({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+      <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-1.41-1.41l2.62-2.62a4 4 0 0 1 5.66 0l1.62 1.62" />
+      <path d="m20 12-3-3" />
+      <path d="M2 13a3 3 0 1 0 6 0V8a1 1 0 0 1 1-1h4" />
+    </svg>
+  )
+}
+function IcoMail({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m2 7 10 6 10-6" />
+    </svg>
+  )
+}
 
 type AdminTool = {
   href: string
@@ -80,6 +98,22 @@ const ADMIN_TOOLS: AdminTool[] = [
     desc:  'Granska och godkänn nya användares trådar och svar',
     badge: null,
     color: '#0a7b8c',
+  },
+  {
+    href:  '/admin/partners',
+    icon:  <IcoHandshake color="#c96e2a" />,
+    title: 'Partner-leads',
+    desc:  'B2B-förfrågningar från /partner — status, mailsvar',
+    badge: 'NY',
+    color: '#c96e2a',
+  },
+  {
+    href:  '/admin/subscribers',
+    icon:  <IcoMail color="#0a7b3c" />,
+    title: 'E-postlista',
+    desc:  'Nyhetsbrevsprenumeranter — export till Resend',
+    badge: 'NY',
+    color: '#0a7b3c',
   },
 ]
 

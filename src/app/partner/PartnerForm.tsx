@@ -4,8 +4,24 @@ import { useState } from 'react'
 export default function PartnerForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [tier, setTier] = useState<string>('')
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  /** Camel-casa kolumn-namnen: API route förväntar sig camelCase i partner-checkout */
+  function payloadCamel(formData: FormData) {
+    return {
+      tier: (formData.get('tier') as string) || '',
+      businessName: (formData.get('business_name') as string) || '',
+      contactName: (formData.get('contact_name') as string) || '',
+      email: (formData.get('email') as string) || '',
+      phone: (formData.get('phone') as string) || '',
+      category: (formData.get('category') as string) || '',
+      islandSlug: (formData.get('island_slug') as string) || '',
+      message: (formData.get('message') as string) || '',
+    }
+  }
+
+  /** Användaren vill diskutera/förhandla — befintligt flöde */
+  async function submitInquiry(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (status === 'loading') return
 
@@ -27,6 +43,43 @@ export default function PartnerForm() {
         return
       }
       setStatus('success')
+    } catch {
+      setError('Nätverksfel — försök igen')
+      setStatus('error')
+    }
+  }
+
+  /** Användaren har valt tier och vill betala direkt → Stripe checkout */
+  async function checkoutNow() {
+    if (status === 'loading') return
+    const form = document.querySelector<HTMLFormElement>('form#partner-form')
+    if (!form) return
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return
+    }
+    const formData = new FormData(form)
+    const payload = payloadCamel(formData)
+    if (!payload.tier) {
+      setError('Välj en nivå för att gå till betalning')
+      return
+    }
+
+    setStatus('loading')
+    setError(null)
+    try {
+      const res = await fetch('/api/stripe/partner-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const j = await res.json().catch(() => ({}))
+      if (!res.ok || !j.url) {
+        setError(j.error || 'Kunde inte starta betalning — försök igen eller skicka förfrågan istället')
+        setStatus('error')
+        return
+      }
+      window.location.href = j.url
     } catch {
       setError('Nätverksfel — försök igen')
       setStatus('error')
@@ -66,7 +119,8 @@ export default function PartnerForm() {
 
   return (
     <form
-      onSubmit={submit}
+      id="partner-form"
+      onSubmit={submitInquiry}
       style={{
         background: 'var(--white)', padding: '28px 26px', borderRadius: 16,
         border: '1px solid var(--surface-3)',
@@ -114,7 +168,12 @@ export default function PartnerForm() {
 
       <div>
         <label style={labelStyle}>Intresserad av nivå</label>
-        <select name="tier" style={fieldStyle} defaultValue="">
+        <select
+          name="tier"
+          style={fieldStyle}
+          value={tier}
+          onChange={e => setTier(e.target.value)}
+        >
           <option value="">Vill diskutera</option>
           <option value="bas">Bas — 500 kr/mån</option>
           <option value="standard">Standard — 1 000 kr/mån</option>
@@ -130,19 +189,44 @@ export default function PartnerForm() {
         />
       </div>
 
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        style={{
-          padding: '14px 24px', borderRadius: 999,
-          background: status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--sea, #1e5c82)',
-          color: '#fff', fontSize: 14, fontWeight: 700,
-          border: 'none', cursor: status === 'loading' ? 'wait' : 'pointer',
-          marginTop: 6,
-        }}
-      >
-        {status === 'loading' ? 'Skickar…' : 'Skicka förfrågan'}
-      </button>
+      {/* Två-knapps-CTA: betala direkt om tier vald, annars skicka förfrågan */}
+      <div style={{ display: 'grid', gap: 8, marginTop: 6 }}>
+        {tier && (
+          <button
+            type="button"
+            onClick={checkoutNow}
+            disabled={status === 'loading'}
+            style={{
+              padding: '14px 24px', borderRadius: 999,
+              background: status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--acc, #c96e2a)',
+              color: '#fff', fontSize: 14, fontWeight: 700,
+              border: 'none', cursor: status === 'loading' ? 'wait' : 'pointer',
+            }}
+          >
+            {status === 'loading' ? 'Förbereder betalning…' : `Betala ${tier === 'bas' ? '500' : tier === 'standard' ? '1 000' : '2 500'} kr/mån — kom igång nu →`}
+          </button>
+        )}
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          style={{
+            padding: '14px 24px', borderRadius: 999,
+            background: tier
+              ? 'transparent'
+              : (status === 'loading' ? 'var(--sea-d, #7da7be)' : 'var(--sea, #1e5c82)'),
+            color: tier ? 'var(--sea)' : '#fff',
+            border: tier ? '1.5px solid var(--sea)' : 'none',
+            fontSize: 14, fontWeight: 700,
+            cursor: status === 'loading' ? 'wait' : 'pointer',
+          }}
+        >
+          {status === 'loading' && !tier ? 'Skickar…' : tier ? 'Eller skicka frågor först →' : 'Skicka förfrågan'}
+        </button>
+      </div>
+
+      <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0, textAlign: 'center', lineHeight: 1.5 }}>
+        Säker betalning via Stripe. Avbryt när du vill, ingen bindningstid.
+      </p>
 
       {error && (
         <div role="alert" style={{ fontSize: 13, color: 'var(--red, #d44d4d)', marginTop: -6 }}>

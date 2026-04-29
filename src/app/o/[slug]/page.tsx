@@ -9,6 +9,8 @@ import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
+import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
+import EmailSignup from '@/components/EmailSignup'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -453,6 +455,37 @@ export default async function IslandPage({ params }: Props) {
           schemaUrl={`https://svalla.se/o/${island.slug}`}
         />
 
+        {/* Aktiviteter — SEO cross-länkar */}
+        {(() => {
+          const matchingActivities = ACTIVITY_LIST.filter(a =>
+            islandActivitiesForType(island, a.slug as ActivityType).length > 0
+          )
+          if (matchingActivities.length === 0) return null
+          return (
+            <section style={{ marginBottom: 36 }}>
+              <SectionHeader icon="✦" title="Vad du kan göra här" />
+              <div style={{
+                display: 'flex', flexWrap: 'wrap', gap: 8,
+              }}>
+                {matchingActivities.map(a => (
+                  <Link
+                    key={a.slug}
+                    href={`/aktivitet/${a.slug}/${island.slug}`}
+                    style={{
+                      padding: '8px 16px', borderRadius: 999,
+                      background: 'var(--white)', color: 'var(--sea)',
+                      textDecoration: 'none', fontSize: 14, fontWeight: 600,
+                      border: '1px solid var(--surface-3)',
+                    }}
+                  >
+                    {a.name} på {island.name} →
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )
+        })()}
+
         {/* Related islands */}
         {relatedIslands.length > 0 && (
           <section style={{ marginBottom: 0 }}>
@@ -487,6 +520,16 @@ export default async function IslandPage({ params }: Props) {
             </div>
           </section>
         )}
+
+        {/* E-postsignup för ön */}
+        <div style={{ marginTop: 28 }}>
+          <EmailSignup
+            variant="card"
+            source={`o-${island.slug}`}
+            title={`Vill du veta mer om ${island.name}?`}
+            description="Få tips på krogar, evenemang och nya rutter — 2 mail i månaden, lätt att avregistrera."
+          />
+        </div>
       </div>
 
       {/* ── FOOTER ──────────────────────────────────────────────── */}

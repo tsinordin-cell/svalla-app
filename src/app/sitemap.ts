@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
-import { ISLANDS } from './o/island-data'
+import { ALL_ISLANDS } from './o/island-data'
+import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
+import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
 
 // Blogg-slugs (statisk lista — speglar posts-data.ts)
@@ -67,19 +69,55 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
     { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
+    { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
+    { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
     { url: `${base}/guide`,                  lastModified: now, priority: 0.6,  changeFrequency: 'monthly' as const },
     { url: `${base}/om`,                     lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
     { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
   ]
 
-  // ── Ö-sidor (statiska) ──────────────────────────────────────────
-  const islandPages: MetadataRoute.Sitemap = ISLANDS.map(island => ({
+  // ── Ö-sidor (statiska, inkl. Bohuslän) ─────────────────────────
+  const islandPages: MetadataRoute.Sitemap = ALL_ISLANDS.map(island => ({
     url: `${base}/o/${island.slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))
+
+  // ── Aktivitetssidor (programmatisk SEO) ─────────────────────────
+  const activityIndex: MetadataRoute.Sitemap = [
+    { url: `${base}/aktivitet`, lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+  ]
+  const activityTypePages: MetadataRoute.Sitemap = ACTIVITY_LIST.map(a => ({
+    url: `${base}/aktivitet/${a.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+  const activityIslandPages: MetadataRoute.Sitemap = ACTIVITY_LIST.flatMap(a =>
+    islandsForActivity(a.slug).map(island => ({
+      url: `${base}/aktivitet/${a.slug}/${island.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  )
+
+  // ── Long-tail kategori-sidor: barnvänliga, dagstur, segling osv ──
+  const oarCategoryPages: MetadataRoute.Sitemap = OAR_CATEGORIES.map(c => ({
+    url: `${base}/oar/${c.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  // ── Per-ö kategorisidor (restauranger / hamnar / boende) ────────
+  const islandCategoryPages: MetadataRoute.Sitemap = ALL_ISLANDS.flatMap(island => [
+    { url: `${base}/o/${island.slug}/restauranger`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${base}/o/${island.slug}/hamnar`,        lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${base}/o/${island.slug}/boende`,        lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+  ])
 
   // ── Blogg-artiklar ──────────────────────────────────────────────
   const blogPages: MetadataRoute.Sitemap = BLOG_SLUGS.map(slug => ({
@@ -157,6 +195,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticPages,
     ...islandPages,
+    ...islandCategoryPages,
+    ...activityIndex,
+    ...activityTypePages,
+    ...activityIslandPages,
+    ...oarCategoryPages,
     ...blogPages,
     ...platsPages,
     ...rutterPages,

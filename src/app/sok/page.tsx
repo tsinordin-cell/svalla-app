@@ -5,8 +5,10 @@ import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ALL_ISLANDS } from '../o/island-data'
+import { ACTIVITY_LIST } from '../aktivitet/activity-data'
 
-type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare' | 'hashtag'
+type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare' | 'hashtag' | 'o' | 'aktivitet'
 type FilterTab  = 'alla' | ResultType
 
 type Result = {
@@ -18,27 +20,31 @@ type Result = {
   href:     string
 }
 
-const TYPE_LABEL: Record<ResultType, string>  = { tur: 'Logg', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare', hashtag: 'Tagg' }
-const TYPE_EMOJI: Record<ResultType, string>  = { tur: '⛵', rutt: '🗺️', plats: '🍽', seglare: '👤', hashtag: '#' }
+const TYPE_LABEL: Record<ResultType, string>  = { tur: 'Logg', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare', hashtag: 'Tagg', o: 'Ö', aktivitet: 'Aktivitet' }
+const TYPE_EMOJI: Record<ResultType, string>  = { tur: '⛵', rutt: '🗺️', plats: '🍽', seglare: '👤', hashtag: '#', o: '🏝', aktivitet: '✦' }
 const TYPE_COLOR: Record<ResultType, string>  = {
-  tur:     'rgba(30,92,130,0.09)',
-  rutt:    'rgba(34,197,94,0.10)',
-  plats:   'rgba(201,110,42,0.10)',
-  seglare: 'rgba(124,77,30,0.10)',
-  hashtag: 'rgba(168,85,247,0.10)',
+  tur:       'rgba(30,92,130,0.09)',
+  rutt:      'rgba(34,197,94,0.10)',
+  plats:     'rgba(201,110,42,0.10)',
+  seglare:   'rgba(124,77,30,0.10)',
+  hashtag:   'rgba(168,85,247,0.10)',
+  o:         'rgba(10,123,140,0.10)',
+  aktivitet: 'rgba(45,125,138,0.10)',
 }
-const TYPE_TEXT: Record<ResultType, string> = { tur: 'var(--sea)', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e', hashtag: '#7c3aed' }
+const TYPE_TEXT: Record<ResultType, string> = { tur: 'var(--sea)', rutt: '#16a34a', plats: '#c96e2a', seglare: '#7c4d1e', hashtag: '#7c3aed', o: '#0a7b8c', aktivitet: '#2d7d8a' }
 
 const HINTS = ['Sandhamn', 'Grinda', 'Utö', 'Vaxholm', 'Fjäderholmarna', 'Arholma', 'Nynäshamn']
 const HASHTAG_HINTS = ['#sandhamn', '#skärgård', '#segling', '#magisk', '#solnedgång']
 
 const FILTER_TABS: { value: FilterTab; label: string }[] = [
-  { value: 'alla',    label: 'Alla' },
-  { value: 'seglare', label: '👤 Seglare' },
-  { value: 'tur',     label: '⛵ Turer' },
-  { value: 'plats',   label: '🍽 Platser' },
-  { value: 'rutt',    label: '🗺️ Rutter' },
-  { value: 'hashtag', label: '# Taggar' },
+  { value: 'alla',      label: 'Alla' },
+  { value: 'o',         label: '🏝 Öar' },
+  { value: 'aktivitet', label: '✦ Aktiviteter' },
+  { value: 'seglare',   label: '👤 Seglare' },
+  { value: 'tur',       label: '⛵ Turer' },
+  { value: 'plats',     label: '🍽 Platser' },
+  { value: 'rutt',      label: '🗺️ Rutter' },
+  { value: 'hashtag',   label: '# Taggar' },
 ]
 
 // Extrahera hashtags från en text (max 20 tecken per tagg, ASCII + nordiska)
@@ -219,7 +225,41 @@ function SokPageInner() {
         href: `/sok?q=${encodeURIComponent(tag)}`,
       }))
 
+    // Lokal-sökning över öar + aktiviteter (statiskt data, ingen DB-fråga behövs)
+    const needle = safe.toLowerCase()
+    const islandResults: Result[] = isHashtagQuery ? [] : ALL_ISLANDS
+      .filter(i =>
+        i.name.toLowerCase().includes(needle) ||
+        i.regionLabel.toLowerCase().includes(needle) ||
+        i.tagline.toLowerCase().includes(needle) ||
+        i.tags.some(t => t.toLowerCase().includes(needle))
+      )
+      .slice(0, 10)
+      .map(i => ({
+        type: 'o' as const,
+        id: i.slug,
+        title: i.name,
+        subtitle: `${i.regionLabel} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
+        href: `/o/${i.slug}`,
+      }))
+
+    const activityResults: Result[] = isHashtagQuery ? [] : ACTIVITY_LIST
+      .filter(a =>
+        a.name.toLowerCase().includes(needle) ||
+        a.shortName.toLowerCase().includes(needle) ||
+        a.matchers.some(m => m.includes(needle))
+      )
+      .map(a => ({
+        type: 'aktivitet' as const,
+        id: a.slug,
+        title: a.name,
+        subtitle: a.hero,
+        href: `/aktivitet/${a.slug}`,
+      }))
+
     const merged: Result[] = [
+      ...islandResults,
+      ...activityResults,
       ...(usersRes.data ?? []).map(u => {
         const vesselBits = [u.vessel_name, u.vessel_model].filter(Boolean).join(' · ')
         const subtitle = vesselBits
@@ -272,7 +312,7 @@ function SokPageInner() {
   // Group for display
   const grouped: { type: ResultType; items: Result[] }[] = []
   if (activeTab === 'alla') {
-    for (const type of ['seglare', 'hashtag', 'rutt', 'plats', 'tur'] as ResultType[]) {
+    for (const type of ['o', 'aktivitet', 'seglare', 'hashtag', 'rutt', 'plats', 'tur'] as ResultType[]) {
       const items = results.filter(r => r.type === type)
       if (items.length > 0) grouped.push({ type, items })
     }

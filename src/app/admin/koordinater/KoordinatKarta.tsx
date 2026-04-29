@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { createClient } from '@/lib/supabase'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type Place = {
@@ -183,13 +182,16 @@ export default function KoordinatKarta({ places }: { places: Place[] }) {
     if (isNaN(lat) || isNaN(lng)) return
 
     setSaveState('saving')
-    const supabase = createClient()
-    const { error } = await supabase
-      .from('restaurants')
-      .update({ latitude: lat, longitude: lng })
-      .eq('id', selected.id)
 
-    if (error) {
+    // Använd admin API-route för att kringgå RLS
+    const res = await fetch('/api/admin/save-koordinat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: selected.id, latitude: lat, longitude: lng }),
+    })
+
+    if (!res.ok) {
+      console.error('[save-koordinat] error:', await res.text())
       setSaveState('error')
       return
     }

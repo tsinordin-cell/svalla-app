@@ -15,6 +15,26 @@ function getSupabaseAdmin() {
 async function upsertSubscription(sub: Stripe.Subscription) {
   const supabaseAdmin = getSupabaseAdmin()
   const userId = sub.metadata?.supabase_user_id
+
+  // ── PARTNER-flöde: subscription har partner_inquiry_id i metadata ──
+  const partnerInquiryId = sub.metadata?.partner_inquiry_id
+  if (partnerInquiryId) {
+    await supabaseAdmin
+      .from('partner_inquiries')
+      .update({
+        status: sub.status === 'active' || sub.status === 'trialing' ? 'closed' : 'new',
+        contacted_at: new Date().toISOString(),
+        // Spara stripe-data så Tom kan se i admin-vyn
+        stripe_subscription_id: sub.id,
+        stripe_customer_id: sub.customer as string,
+        stripe_status: sub.status,
+        tier: sub.metadata?.tier || null,
+      })
+      .eq('id', partnerInquiryId)
+    return
+  }
+
+  // ── Pro-konsumentflöde: subscription har supabase_user_id ──
   if (!userId) return
 
   const item = sub.items.data[0]
@@ -36,6 +56,18 @@ async function upsertSubscription(sub: Stripe.Subscription) {
 
 async function deleteSubscription(sub: Stripe.Subscription) {
   const supabaseAdmin = getSupabaseAdmin()
+
+  // Partner cancellation
+  const partnerInquiryId = sub.metadata?.partner_inquiry_id
+  if (partnerInquiryId) {
+    await supabaseAdmin
+      .from('partner_inquiries')
+      .update({ status: 'lost', stripe_status: 'canceled' })
+      .eq('id', partnerInquiryId)
+    return
+  }
+
+  // Pro cancellation
   const userId = sub.metadata?.supabase_user_id
   if (!userId) return
   await supabaseAdmin
