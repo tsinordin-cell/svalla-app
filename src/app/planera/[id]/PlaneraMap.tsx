@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap } from 'leaflet'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
-import { findSeaPath } from '@/lib/seaPathfinder'
 
 type Stop = {
   lat: number
@@ -22,9 +21,10 @@ type Props = {
   endLng: number
   endName: string
   stops: Stop[]
+  seaPath: [number, number][]
 }
 
-export default function PlaneraMap({ startLat, startLng, startName, endLat, endLng, endName, stops }: Props) {
+export default function PlaneraMap({ startLat, startLng, startName, endLat, endLng, endName, stops, seaPath }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<LeafletMap | null>(null)
   const initializedRef = useRef(false)
@@ -35,9 +35,6 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
 
     async function init() {
       const L = (await import('leaflet')).default
-
-      // Hitta sjöleds-vägen
-      const seaPath = findSeaPath(startLat, startLng, endLat, endLng)
 
       // Bounds från hela pathen, inte bara start/end — så öar som rutten
       // loopar runt (Lidingö, Värmdö osv) också ryms i vyn.

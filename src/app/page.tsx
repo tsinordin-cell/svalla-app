@@ -409,7 +409,7 @@ const LANDING_HTML = `
  <div class="nav-mega-region">Jämför &amp; utforska</div>
  <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
  <a href="/karta" class="nav-mega-link"> Karta över skärgården</a>
- <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
+ <a href="/o" class="nav-mega-link">📋 Alla 84 öar</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Regioner</div>
@@ -543,7 +543,7 @@ const LANDING_HTML = `
  <div class="mob-acc-body">
  <a href="/resmal" class="mob-acc-link">Alla resmål</a>
  <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
- <a href="/o" class="mob-acc-link">Alla 69 öar</a>
+ <a href="/o" class="mob-acc-link">Alla 84 öar</a>
  <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/romantiska" class="mob-acc-link">Romantiska öar</a>

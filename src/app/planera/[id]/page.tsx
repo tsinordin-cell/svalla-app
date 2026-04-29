@@ -213,6 +213,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  endLng={route.end_lng}
  endName={route.end_name}
  stops={mapStops}
+ seaPath={seaPath}
  />
 
  {/* Tidsestimat per båttyp — baserat på faktisk vatten-distans */}
