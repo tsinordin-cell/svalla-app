@@ -89,6 +89,7 @@ export async function middleware(request: NextRequest) {
     }
     url.pathname = '/logga-in'
     url.searchParams.set('returnTo', pathname)
+    url.searchParams.set('mode', 'ny')   // externa besökare → visa "Skapa konto" som default
     return NextResponse.redirect(url)
   }
 

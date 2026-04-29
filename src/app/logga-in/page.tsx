@@ -36,7 +36,8 @@ function LoginContent() {
   const [email,        setEmail]        = useState('')
   const [password,     setPassword]     = useState('')
   const [username,     setUsername]     = useState('')
-  const [isNew,        setIsNew]        = useState(false)
+  // mode=ny → externa besökare/oautentiserade redirectar → visa "Skapa konto" direkt
+  const [isNew,        setIsNew]        = useState(sp.get('mode') === 'ny')
   const [loading,      setLoading]      = useState(false)
   const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
   const [err,          setErr]          = useState('')

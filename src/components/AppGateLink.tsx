@@ -40,7 +40,7 @@ export default function AppGateLink({
     if (session) {
       router.push(href)
     } else {
-      router.push(`/logga-in?returnTo=${encodeURIComponent(href)}`)
+      router.push(`/logga-in?mode=ny&returnTo=${encodeURIComponent(href)}`)
     }
   }
 
