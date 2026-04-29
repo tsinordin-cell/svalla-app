@@ -1,7 +1,13 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 
-const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista']
+const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista', '/rutter']
+
+// Routes som har en publik version för utloggade besökare —
+// de redirectar till den publika sidan istället för /logga-in.
+const PUBLIC_FALLBACK: Record<string, string> = {
+  '/rutter': '/oar',
+}
 
 // /admin/* kräver dessutom ett separat admin-lösenord (cookie-gate ovanpå Supabase-auth).
 // /admin/login är publik (formuläret som sätter cookien). /api/admin/auth tar emot POST.
@@ -72,6 +78,15 @@ export async function middleware(request: NextRequest) {
 
   if (!authenticated) {
     const url = request.nextUrl.clone()
+    // Hitta matchande publik fallback — t.ex. /rutter → /oar
+    const fallback = Object.entries(PUBLIC_FALLBACK).find(([prefix]) =>
+      pathname === prefix || pathname.startsWith(prefix + '/')
+    )?.[1]
+    if (fallback) {
+      url.pathname = fallback
+      url.search = ''  // ta bort eventuella query-params (t.ex. ?vy=oar)
+      return NextResponse.redirect(url)
+    }
     url.pathname = '/logga-in'
     url.searchParams.set('returnTo', pathname)
     return NextResponse.redirect(url)
