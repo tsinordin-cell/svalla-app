@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
+import { baseTile, SEAMARK_TILE, SEAMARK_ATTR } from '@/lib/map-tiles'
 
 interface Props { lat: number; lng: number; name: string }
 
@@ -33,12 +34,11 @@ export default function PlatsMap({ lat, lng, name }: Props) {
         boxZoom: false,
       })
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-      }).addTo(map)
+      const { url: tileUrl, attr: tileAttr } = baseTile()
+      L.tileLayer(tileUrl, { maxZoom: 18, attribution: tileAttr }).addTo(map)
 
-      L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {
-        maxZoom: 18, opacity: 0.85, crossOrigin: '',
+      L.tileLayer(SEAMARK_TILE, {
+        maxZoom: 18, opacity: 0.85, crossOrigin: '', attribution: SEAMARK_ATTR,
       }).addTo(map)
 
       L.marker([lat, lng]).addTo(map).bindPopup(name)

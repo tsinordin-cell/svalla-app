@@ -63,6 +63,7 @@ function ManuellForm() {
   const [showMore, setShowMore]             = useState(false)
   const [distance, setDistance]             = useState('')
   const [duration, setDuration]             = useState('')
+  const [authLoading, setAuthLoading]       = useState(true)
   const [loading, setLoading]               = useState(false)
   const [err, setErr]                       = useState('')
   const [posted, setPosted]                 = useState(false)
@@ -101,17 +102,19 @@ function ManuellForm() {
       })
   }, [plannedRouteId, supabase])
 
-  // Auth gate — redirect before any interaction if not logged in
+  // Auth gate — block render until auth resolved (prevents flash + premature file picker)
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) router.push('/logga-in?redirect=/logga/manuell')
+      if (!data.user) { router.push('/logga-in?redirect=/logga/manuell'); return }
+      setAuthLoading(false)
     })
   }, [supabase, router])
 
-  // Auto-open file picker on mount (per UX brief)
+  // Auto-open file picker — only after auth confirmed
   useEffect(() => {
+    if (authLoading) return
     fileRef.current?.click()
-  }, [])
+  }, [authLoading])
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0]
@@ -290,6 +293,9 @@ function ManuellForm() {
   }
 
   const canSubmit = !!file && !!location.trim() && !loading
+
+  // Block render until auth resolved — prevents flash + premature file picker
+  if (authLoading) return null
 
   if (posted) {
     return (
@@ -476,10 +482,13 @@ function ManuellForm() {
                     boxShadow: pinnar === p.value ? '0 2px 8px rgba(30,92,130,0.3)' : 'none',
                   }}
                 >
-                  <span style={{ display: 'flex', alignItems: 'center', height: 18, color: pinnar === p.value ? '#fff' : 'var(--sea)', opacity: pinnar === p.value ? 1 : 0.6 }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 2, height: 18, color: pinnar === p.value ? '#fff' : 'var(--sea)', opacity: pinnar === p.value ? 1 : 0.6 }}>
                     {Array.from({ length: p.value }, (_, i) => (
-                      <svg key={i} viewBox="0 0 14 12" style={{ width: 14, height: 12 }} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round">
-                        <path d="M1 6 Q3.5 1 7 6 Q10.5 11 13 6"/>
+                      <svg key={i} viewBox="0 0 12 14" style={{ width: 12, height: 14 }} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="6" cy="3" r="1.5"/>
+                        <line x1="6" y1="4.5" x2="6" y2="12"/>
+                        <line x1="2" y1="6.5" x2="10" y2="6.5"/>
+                        <path d="M2 10.5 Q1 13 6 13 Q11 13 10 10.5"/>
                       </svg>
                     ))}
                   </span>

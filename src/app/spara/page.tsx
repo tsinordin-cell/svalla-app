@@ -1401,10 +1401,14 @@ export default function SparaPage() {
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, transition: 'all .15s',
                 }}
               >
-                <span style={{ display: 'flex', alignItems: 'center', height: 18, color: pinnar === val ? '#fff' : 'var(--sea)', opacity: pinnar === val ? 1 : 0.6 }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 2, height: 18, color: pinnar === val ? '#fff' : 'var(--sea)', opacity: pinnar === val ? 1 : 0.6 }}>
                   {Array.from({ length: val }, (_, i) => (
-                    <svg key={i} viewBox="0 0 14 12" style={{ width: 14, height: 12 }} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round">
-                      <path d="M1 6 Q3.5 1 7 6 Q10.5 11 13 6"/>
+                    <svg key={i} viewBox="0 0 12 14" style={{ width: 12, height: 14 }} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                      {/* Anchor icon */}
+                      <circle cx="6" cy="3" r="1.5"/>
+                      <line x1="6" y1="4.5" x2="6" y2="12"/>
+                      <line x1="2" y1="6.5" x2="10" y2="6.5"/>
+                      <path d="M2 10.5 Q1 13 6 13 Q11 13 10 10.5"/>
                     </svg>
                   ))}
                 </span>
