@@ -47,7 +47,8 @@ export default async function OarCategoryPage({ params }: Props) {
   const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], bohuslan: [] }
   for (const i of islands) {
     const region = i.region in grouped ? i.region : 'mellersta'
-    grouped[region].push(i)
+    const bucket = grouped[region]
+    if (bucket) bucket.push(i)
   }
 
   // BreadcrumbList JSON-LD
@@ -123,17 +124,18 @@ export default async function OarCategoryPage({ params }: Props) {
           </div>
         ) : (
           (['norra', 'mellersta', 'södra', 'bohuslan'] as const).map(region => {
-            if (grouped[region].length === 0) return null
+            const items = grouped[region] ?? []
+            if (items.length === 0) return null
             return (
               <section key={region} style={{ marginBottom: 28 }}>
                 <h2 style={{
                   fontSize: 12, fontWeight: 700, color: 'var(--txt3)',
                   textTransform: 'uppercase', letterSpacing: 1, margin: '0 0 12px',
                 }}>
-                  {REGION_LABELS[region]} · {grouped[region].length}
+                  {REGION_LABELS[region]} · {items.length}
                 </h2>
                 <div style={{ display: 'grid', gap: 10 }}>
-                  {grouped[region].map(i => (
+                  {items.map(i => (
                     <Link
                       key={i.slug}
                       href={`/o/${i.slug}`}

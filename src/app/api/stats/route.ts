@@ -14,11 +14,15 @@ export async function GET() {
     process.env.SUPABASE_SERVICE_ROLE_KEY!
   )
 
+  // Wrap-helper för att kunna använda .catch (Supabase-builders är PromiseLike, inte Promise)
+  const safe = async <T>(p: PromiseLike<T>, fallback: T): Promise<T> => {
+    try { return await p } catch { return fallback }
+  }
+  const emptyCount = { count: 0, data: null, error: null, status: 200, statusText: 'OK' } as never
+
   const [restaurants, harbors, users, trips, visitedIslands] = await Promise.all([
     service.from('restaurants').select('*', { count: 'exact', head: true }),
-    service.from('harbors').select('*', { count: 'exact', head: true }).then(
-      r => r.count != null ? r : { count: 0 }
-    ).catch(() => ({ count: 0 })),
+    safe(service.from('harbors').select('*', { count: 'exact', head: true }), emptyCount),
     service.from('users').select('*', { count: 'exact', head: true }),
     service.from('trips').select('*', { count: 'exact', head: true }),
     service.from('visited_islands').select('*', { count: 'exact', head: true }),

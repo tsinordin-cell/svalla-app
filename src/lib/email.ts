@@ -34,7 +34,7 @@ type ParsedTemplate = {
 /** Parsar enkel YAML-frontmatter (matchar mallarna i /emails/) */
 function parseFrontmatter(raw: string): ParsedTemplate {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-  if (!match) return { meta: {}, body: raw }
+  if (!match || !match[1] || match[2] === undefined) return { meta: {}, body: raw }
 
   const meta: Frontmatter = {}
   const lines = match[1].split('\n')
@@ -47,7 +47,7 @@ function parseFrontmatter(raw: string): ParsedTemplate {
       continue
     }
     const m = line.match(/^([a-z_]+):\s*(.*)$/)
-    if (!m) continue
+    if (!m || !m[1] || m[2] === undefined) continue
     currentKey = m[1]
     const value = m[2].trim().replace(/^"|"$/g, '')
     if (currentKey === 'subject_options' && !value) continue

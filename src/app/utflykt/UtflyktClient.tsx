@@ -64,7 +64,8 @@ export default function UtflyktClient({ islands, departures }: Props) {
     const groups: Record<string, IslandData[]> = { norra: [], mellersta: [], södra: [], bohuslan: [] }
     for (const i of filteredIslands) {
       const region = (i.region in groups ? i.region : 'mellersta') as keyof typeof groups
-      groups[region].push(i)
+      const bucket = groups[region]
+      if (bucket) bucket.push(i)
     }
     return groups
   }, [filteredIslands])
@@ -184,7 +185,8 @@ export default function UtflyktClient({ islands, departures }: Props) {
 
         <div style={{ maxHeight: 360, overflowY: 'auto', display: 'grid', gap: 8 }}>
           {(['norra', 'mellersta', 'södra', 'bohuslan'] as const).map(region => {
-            if (groupedIslands[region].length === 0) return null
+            const items = groupedIslands[region] ?? []
+            if (items.length === 0) return null
             return (
               <div key={region}>
                 <h3 style={{
@@ -192,10 +194,10 @@ export default function UtflyktClient({ islands, departures }: Props) {
                   textTransform: 'uppercase', letterSpacing: 1.2,
                   margin: '8px 0 6px',
                 }}>
-                  {REGION_LABELS[region]} · {groupedIslands[region].length}
+                  {REGION_LABELS[region]} · {items.length}
                 </h3>
                 <div style={{ display: 'grid', gap: 4 }}>
-                  {groupedIslands[region].map(i => {
+                  {items.map(i => {
                     const active = i.slug === islandSlug
                     return (
                       <button
