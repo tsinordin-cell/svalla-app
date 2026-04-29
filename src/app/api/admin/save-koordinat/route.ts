@@ -46,18 +46,18 @@ export async function POST(request: NextRequest) {
 
   // 4. Spara i rätt tabell (default: restaurants)
   const targetTable = table ?? 'restaurants'
-  const { error, count } = await admin
+  const { error, data } = await admin
     .from(targetTable)
     .update({ latitude, longitude })
     .eq('id', id)
-    .select('id', { count: 'exact' })
+    .select('id')
 
   if (error) {
     console.error('[save-koordinat] DB error:', error.message)
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  if (!count || count === 0) {
+  if (!data || data.length === 0) {
     return NextResponse.json({ error: `Ingen rad med id ${id} hittades i ${targetTable}` }, { status: 404 })
   }
 
