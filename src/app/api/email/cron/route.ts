@@ -24,8 +24,15 @@ export async function POST(req: Request) {
 }
 
 async function handle(req: Request) {
+  // Två autentiserings-vägar:
+  //  1. Vercel cron (User-Agent: 'vercel-cron/1.0') — automatiskt godkänd
+  //  2. Manuell trigger med Bearer ${CRON_SECRET}
+  const ua = req.headers.get('user-agent') || ''
+  const isVercelCron = ua.toLowerCase().includes('vercel-cron')
   const auth = req.headers.get('authorization') || ''
-  if (!process.env.CRON_SECRET || auth !== `Bearer ${process.env.CRON_SECRET}`) {
+  const isBearerAuthed = !!process.env.CRON_SECRET && auth === `Bearer ${process.env.CRON_SECRET}`
+
+  if (!isVercelCron && !isBearerAuthed) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
