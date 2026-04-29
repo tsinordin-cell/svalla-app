@@ -181,7 +181,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
-    did_you_know: 'Utö har Skandinaviens äldsta gruva — järnmalm bröts här redan på 1100-talet. Gruvgångarna under ön är över 900 år gamla.',
+    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — järnmalm bröts här åtminstone från 1100-talet. Gruvgångarna under ön är över 900 år gamla.',
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -697,7 +697,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
-    did_you_know: 'Landsort har Sveriges sydligaste bebodda punkt och en av landets äldsta fyrar — ursprungsbyggnaden är från 1635. Meteorologiska observationer gjordes här i 250 år.',
+    did_you_know: 'Landsort har Sveriges sydligaste bebodda punkt och en av landets äldsta fyrar — den första fyren tändes 1669, nuvarande stenfyr byggdes 1691. Meteorologiska observationer gjordes här i 250 år.',
   },
 
   // ─── FURUSUND ────────────────────────────────────────────────
@@ -834,11 +834,11 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🌊',
-    tagline: 'Familjens skärgård — känd som inspelningsplats för Astrid Lindgrens Madicken.',
+    tagline: 'Familjens skärgård — känd som "Saltkråkan" i Astrid Lindgrens TV-serie och Tjorven-filmerna.',
     description: [
-      'Norröra är en liten, lugn ö i norra skärgården mest känd som inspelningsplats för Astrid Lindgrens Madicken-filmer. Många generationer svenska barnfamiljer har växt upp med bilderna från denna ö.',
-      'Ön är perfekt för barnfamiljer — tillräckligt stor för att erbjuda något för var smak men inte så stor att barnen trötnar. Naturella badplatser längs kusten och möjligheter till klippklättring gör det enkelt att tillbringa en heldag här.',
-      'Norröra passar ofta bäst som kombination med en tur till närliggande öar som Fejan eller Arholma, men kan också fungera som selvändig destination för ett lugnt övernattningsäventyr.'
+      'Norröra är en liten, lugn ö i norra skärgården, mest känd som inspelningsplats för Astrid Lindgrens "Vi på Saltkråkan" (1964) och de fyra Tjorven-filmerna som följde. Många generationer svenska barnfamiljer har växt upp med bilderna från denna ö.',
+      'Ön är perfekt för barnfamiljer — tillräckligt stor för att erbjuda något för var smak men inte så stor att barnen tröttnar. Naturliga badplatser längs kusten och möjligheter till klippklättring gör det enkelt att tillbringa en heldag här.',
+      'Norröra passar ofta bäst som kombination med en tur till närliggande öar som Fejan eller Arholma, men kan också fungera som självständig destination för ett lugnt övernattningsäventyr.'
     ],
 
     facts: {
@@ -848,7 +848,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Barnfamiljer, Astrid Lindgren-fans',
     },
     activities: [
-      { icon: '📚', name: 'Madicken-platser', desc: 'Se inspelningsplatserna för Astrid Lindgrens filmer.' },
+      { icon: '📚', name: 'Saltkråkan-platser', desc: 'Se inspelningsplatserna för "Vi på Saltkråkan" och Tjorven-filmerna.' },
       { icon: '🏊', name: 'Bad', desc: 'Badplatser längs kusten.' },
     ],
     accommodation: [],
@@ -857,8 +857,8 @@ export const ISLANDS: Island[] = [
     restaurants: [{ name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.' }],
     tips: ['Norröra är bäst kombinerat med en tur till Fejan eller Arholma.'],
     related: ['arholma', 'blido', 'furusund'],
-    tags: ['familj', 'Madicken', 'norra', 'lugnt'],
-    did_you_know: 'Norröra är den ö som Astrid Lindgrens "Vi på Saltkråkan" (Seacrow Island) utspelar sig på. Ön är i princip oförändrad sedan boken skrevs 1964.',
+    tags: ['familj', 'Saltkråkan', 'norra', 'lugnt'],
+    did_you_know: 'Norröra är den ö som Astrid Lindgrens "Vi på Saltkråkan" utspelar sig på (i boken kallas ön Saltkråkan). Boken kom 1964 samtidigt som TV-serien — ön är i princip oförändrad sedan dess.',
   },
 
   // ─── NÅTTARÖ ─────────────────────────────────────────────────
