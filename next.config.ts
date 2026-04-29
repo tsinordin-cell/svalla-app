@@ -5,8 +5,8 @@ const isDev = process.env.NODE_ENV === 'development'
 // I dev behövs unsafe-eval för Next.js HMR/fast refresh.
 // I produktion tas det bort för att stärka XSS-skyddet.
 const scriptSrc = isDev
-  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-  : "script-src 'self' 'unsafe-inline'"
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com"
+  : "script-src 'self' 'unsafe-inline' https://us-assets.i.posthog.com"
 
 const securityHeaders = [
   {
@@ -66,7 +66,7 @@ const securityHeaders = [
       // Stripe-domäner tillagda för checkout/portal.
       // wss://*.supabase.co KRÄVS separat — Safari/WebKit mappar INTE https:// → wss://
       // (Chrome gör det, därav att desktop fungerar men iOS kraschar med SecurityError).
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4508000000000000.ingest.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4508000000000000.ingest.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
       "frame-ancestors 'self'",
       "upgrade-insecure-requests",
