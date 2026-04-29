@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import Icon, { type IconName } from './Icon'
 
 /**
  * Säsong-driven banner i feed för att synliggöra nya verktyg.
@@ -13,7 +14,7 @@ type Banner = {
   href: string
   cta: string
   accent: string
-  emoji: string
+  icon: IconName
 }
 
 const STORAGE_KEY = 'svalla_dismissed_banners'
@@ -29,7 +30,7 @@ function pickBanner(): Banner {
       href: '/bingo',
       cta: 'Spela →',
       accent: '#7c3aed',
-      emoji: '⚓',
+      icon: 'trophy',
     }
   }
   // Mars–april: planera inför säsong
@@ -41,10 +42,10 @@ function pickBanner(): Banner {
       href: '/utflykt',
       cta: 'Planera →',
       accent: '#0a7b8c',
-      emoji: '✦',
+      icon: 'navigation',
     }
   }
-  // September–oktober: efterssäsong reflection
+  // September–oktober: eftersäsong reflektion
   if (month === 9 || month === 10) {
     return {
       id: 'jamfor-höst',
@@ -53,7 +54,7 @@ function pickBanner(): Banner {
       href: '/jamfor',
       cta: 'Jämför →',
       accent: '#c96e2a',
-      emoji: '⚖',
+      icon: 'check',
     }
   }
   // November–februari: forum + community
@@ -64,7 +65,7 @@ function pickBanner(): Banner {
     href: '/forum',
     cta: 'Gå med →',
     accent: '#1d4ed8',
-    emoji: '💬',
+    icon: 'users',
   }
 }
 
@@ -133,10 +134,10 @@ export default function SeasonToolBanner() {
           width: 36, height: 36, flexShrink: 0,
           borderRadius: 10,
           background: banner.accent,
-          color: '#fff', fontSize: 18,
+          color: '#fff',
           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
         }}>
-          {banner.emoji}
+          <Icon name={banner.icon} size={20} stroke={1.9} />
         </div>
         <div style={{ flex: 1, minWidth: 0, paddingRight: 24 }}>
           <div style={{

@@ -46,7 +46,10 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
 .nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
 .nav-mega-region+.nav-mega-region{margin-top:12px}
-.nav-mega-link{display:block;color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;padding:4px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-mega-link{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.78);text-decoration:none;font-size:12px;padding:6px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-mega-link:hover{color:#fff}
+.nav-mega-ico{width:14px;height:14px;flex-shrink:0;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:opacity .15s}
+.nav-mega-link:hover .nav-mega-ico{opacity:1}
 .nav-mega-link:last-child{border-bottom:none}
 .nav-mega-link:hover{color:#fff;padding-left:4px}
 .nav-mega-all{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;opacity:.75}
@@ -405,36 +408,36 @@ const LANDING_HTML = `
           <div class="nav-mega-grid">
             <div class="nav-mega-col">
               <div class="nav-mega-region">Planera</div>
-              <a href="/utflykt" class="nav-mega-link">✦ Utflyktsplanerare</a>
-              <a href="/planera" class="nav-mega-link">⛵ Planera båtrutt</a>
-              <a href="/jamfor" class="nav-mega-link">⚖ Jämför öar</a>
-              <a href="/farjor" class="nav-mega-link">🚢 Färjetider</a>
+              <a href="/utflykt" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Utflyktsplanerare</a>
+              <a href="/planera" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Planera båtrutt</a>
+              <a href="/jamfor" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M21 3l-7 7"/><path d="M8 21H3v-5"/><path d="M3 21l7-7"/></svg>Jämför öar</a>
+              <a href="/farjor" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M2 20a2.4 2.4 0 0 0 2 1c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2a2.4 2.4 0 0 0 2-1"/><path d="M4 18 2 22"/><path d="m22 22-2-4"/><path d="M19 6 22 14H2L5 6Z"/><path d="M12 2v4"/></svg>Färjetider</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Hitta din ö</div>
-              <a href="/oar/barnvanliga" class="nav-mega-link">👨‍👩‍👧 Barnvänliga öar</a>
-              <a href="/oar/dagstur-stockholm" class="nav-mega-link">⏱ Dagstur från Stockholm</a>
-              <a href="/oar/romantiska" class="nav-mega-link">💛 Romantiska öar</a>
-              <a href="/oar/avskild" class="nav-mega-link">🌿 Avskilda pärlor</a>
-              <a href="/oar/utan-bil" class="nav-mega-link">🚍 Öar utan bil</a>
+              <a href="/oar/barnvanliga" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Barnvänliga öar</a>
+              <a href="/oar/dagstur-stockholm" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Dagstur från Stockholm</a>
+              <a href="/oar/romantiska" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Romantiska öar</a>
+              <a href="/oar/avskild" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Avskilda pärlor</a>
+              <a href="/oar/utan-bil" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>Öar utan bil</a>
               <a href="/oar" class="nav-mega-all">Alla kategorier →</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Aktiviteter</div>
-              <a href="/aktivitet/segling" class="nav-mega-link">⛵ Segling</a>
-              <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
-              <a href="/aktivitet/bada" class="nav-mega-link">🏊 Bad</a>
-              <a href="/aktivitet/vandring" class="nav-mega-link">🥾 Vandring</a>
-              <a href="/aktivitet/mat" class="nav-mega-link">🍽 Mat &amp; krogar</a>
+              <a href="/aktivitet/segling" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Segling</a>
+              <a href="/aktivitet/cykla" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>Cykling</a>
+              <a href="/aktivitet/bada" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M2 6c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 18c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></svg>Bad</a>
+              <a href="/aktivitet/vandring" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Vandring</a>
+              <a href="/aktivitet/mat" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>Mat &amp; krogar</a>
               <a href="/aktivitet" class="nav-mega-all">Se alla →</a>
             </div>
             <div class="nav-mega-col">
               <div class="nav-mega-region">Community</div>
-              <a href="/forum" class="nav-mega-link">💬 Forum &amp; diskussioner</a>
-              <a href="/bingo" class="nav-mega-link">⚓ Skärgårdsbingo 2026</a>
-              <a href="/evenemang" class="nav-mega-link">📅 Evenemang</a>
-              <a href="/topplista" class="nav-mega-link">🏆 Topplista</a>
-              <a href="/tips" class="nav-mega-link">✍ Tips &amp; artiklar</a>
+              <a href="/forum" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Forum &amp; diskussioner</a>
+              <a href="/bingo" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Skärgårdsbingo 2026</a>
+              <a href="/evenemang" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Evenemang</a>
+              <a href="/topplista" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg>Topplista</a>
+              <a href="/tips" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Tips &amp; artiklar</a>
             </div>
           </div>
         </div>

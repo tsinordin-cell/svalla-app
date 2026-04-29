@@ -3,6 +3,7 @@ import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
+import Icon, { type IconName } from '@/components/Icon'
 import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 
@@ -171,14 +172,21 @@ export default function OarIndexPage() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
           gap: 24,
         }}>
-          {[
-            { icon: '⚓', label: 'Spara öar', desc: 'Bygg din lista över ställen att besöka.' },
-            { icon: '🗺', label: 'Planera turer', desc: 'Få restid, packlista och krogar längs vägen.' },
-            { icon: '📍', label: 'Logga besök', desc: 'Se vilka av 84 öar du klarat av.' },
-            { icon: '🎉', label: 'Helt gratis', desc: 'Ingen prenumeration, inga annonser.' },
-          ].map(b => (
+          {([
+            { icon: 'anchor'    as IconName, label: 'Spara öar',     desc: 'Bygg din lista över ställen att besöka.', color: '#0a7b8c' },
+            { icon: 'map'       as IconName, label: 'Planera turer', desc: 'Få restid, packlista och krogar längs vägen.', color: '#1e5c82' },
+            { icon: 'pin'       as IconName, label: 'Logga besök',   desc: 'Se vilka av 84 öar du klarat av.', color: '#0a7b3c' },
+            { icon: 'star'      as IconName, label: 'Helt gratis',   desc: 'Ingen prenumeration, inga annonser.', color: '#c96e2a' },
+          ]).map(b => (
             <div key={b.label}>
-              <div style={{ fontSize: 24, marginBottom: 6 }}>{b.icon}</div>
+              <div style={{
+                width: 36, height: 36, borderRadius: 10,
+                background: `${b.color}15`, color: b.color,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                marginBottom: 10,
+              }}>
+                <Icon name={b.icon} size={18} stroke={1.85} />
+              </div>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>{b.label}</div>
               <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>{b.desc}</div>
             </div>
