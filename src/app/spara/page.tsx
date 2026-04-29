@@ -859,10 +859,11 @@ export default function SparaPage() {
     const mv = movementMeta(movementState)
     const isTracking = phase === 'tracking'
 
-    // ── EXPANDED STATS VIEW — pure black, Garmin/Nike-stil ───────────────────
-    if (statsExpanded) {
-      return (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, background: '#000', color: '#fff', display: 'flex', flexDirection: 'column' }}>
+    // ── EXPANDED STATS VIEW — overlay above map (LiveTrackMap stays mounted) ──
+    // Rendered as overlay with zIndex 1001 so LiveTrackMap is never unmounted;
+    // prevents Leaflet re-init (and the white-square bug) on every stats toggle.
+    const statsOverlay = statsExpanded ? (
+      <div style={{ position: 'fixed', inset: 0, zIndex: 1001, background: '#000', color: '#fff', display: 'flex', flexDirection: 'column' }}>
 
           {/* Collapse button — top right */}
           <button
@@ -1027,11 +1028,11 @@ export default function SparaPage() {
             @keyframes strv-fade  { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
           `}</style>
         </div>
-      )
-    }
+    ) : null
 
-    // ── MAP VIEW (default) ─────────────────────────────────────────────────
+    // ── MAP VIEW — always mounted so LiveTrackMap never re-inits ───────────
     return (
+      <>
       <div style={{ position: 'fixed', inset: 0, zIndex: 1000, overflow: 'hidden', background: '#000' }}>
 
         {/* Full-screen map — isolation:isolate creates a stacking context that bounds Leaflet's z-indexes */}
@@ -1247,6 +1248,8 @@ export default function SparaPage() {
           @keyframes strv-fade  { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
         `}</style>
       </div>
+      {statsOverlay}
+      </>
     )
   }
 

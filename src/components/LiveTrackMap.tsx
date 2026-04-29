@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+// Leaflet CSS — bundled by Next.js, served from same origin (no CDN dependency, no CSP issues)
+import 'leaflet/dist/leaflet.css'
 
 interface StopMarker {
   lat: number
@@ -61,17 +63,6 @@ export default function LiveTrackMap({
       const L = (await import('leaflet')).default
       LRef.current = L
 
-      // Inject Leaflet CSS and wait for it to load before initializing
-      await new Promise<void>(resolve => {
-        if (document.querySelector('link[href*="leaflet"]')) { resolve(); return }
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-        link.onload = () => resolve()
-        link.onerror = () => resolve()   // continue even if CDN fails
-        document.head.appendChild(link)
-      })
-
       if (mapInstance.current || !mapContainer.current) return
 
       mapInstance.current = L.map(mapContainer.current, {
@@ -101,11 +92,14 @@ export default function LiveTrackMap({
         }, 8000)
       })
 
-      // invalidateSize: immediately + staggered backups to handle CSS timing
-      invalidate()
-      t1.id = window.setTimeout(invalidate, 150) as unknown as number
-      t2.id = window.setTimeout(invalidate, 400) as unknown as number
-      t3.id = window.setTimeout(invalidate, 900) as unknown as number
+      // invalidateSize: rAF ensures browser has painted the container before Leaflet reads its size,
+      // then staggered backups handle orientation changes and slow devices.
+      requestAnimationFrame(() => {
+        invalidate()
+        t1.id = window.setTimeout(invalidate, 100) as unknown as number
+        t2.id = window.setTimeout(invalidate, 350) as unknown as number
+        t3.id = window.setTimeout(invalidate, 800) as unknown as number
+      })
 
       // ResizeObserver: re-validate whenever container changes size (orientation, split-screen, etc.)
       if (typeof ResizeObserver !== 'undefined' && mapContainer.current) {

@@ -31,6 +31,7 @@
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "next": "^15.5.15",
+    "posthog-js": "^1.372.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "stripe": "^22.0.2",
