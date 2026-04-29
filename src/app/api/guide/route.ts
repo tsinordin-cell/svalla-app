@@ -387,18 +387,21 @@ function makeStream(text: string, followUps: string[], planData: PlanData | null
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
     async start(controller) {
-      // Thorkel "tänker" innan första ordet — 280 ms startpaus.
-      await new Promise(r => setTimeout(r, 280))
+      // Thorkel "tänker" innan första ordet — 380 ms startpaus (han röker på pipan).
+      await new Promise(r => setTimeout(r, 380))
 
       // Ord-för-ord-stream: ger känslan av att Thorkel pratar, inte slänger ut text.
-      // Snabbare än typing — ~22 ms mellan ord ger naturlig läsfart utan att kännas
-      // konstgjord. Längre paus efter punkt för andning mellan meningar.
+      // 50 ms mellan ord ger en lugn berättartakt — som en gammal skeppare som
+      // tar god tid på sig. Längre pauser efter mening-slut och komma för
+      // naturlig andning.
       const tokens = tokenizeForStreaming(text)
       for (const token of tokens) {
         controller.enqueue(encoder.encode(`data: ${JSON.stringify({ t: token })}\n\n`))
-        // Längre paus efter mening-slut (. ! ?) — han hämtar andan.
-        const isSentenceEnd = /[.!?][\s]*$/.test(token)
-        await new Promise(r => setTimeout(r, isSentenceEnd ? 90 : 22))
+        // Pauser baserat på interpunktion — han hämtar andan.
+        const isSentenceEnd = /[.!?][\s]*$/.test(token)        // 160 ms — andning
+        const isClausePause  = /[,;:][\s]*$/.test(token)       // 80 ms — komma-paus
+        const delay = isSentenceEnd ? 160 : isClausePause ? 80 : 50
+        await new Promise(r => setTimeout(r, delay))
       }
       controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData })}\n\n`))
       controller.close()

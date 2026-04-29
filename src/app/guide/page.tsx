@@ -236,16 +236,18 @@ function GuideContent() {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() }
   }
 
+  // Visa separat thinking-bubbla bara om det INTE redan finns en tom assistant-msg
+  // i listan (annars renderar messages.map en egen ThinkingDots inuti den bubblan).
   const lastMsg = messages[messages.length - 1]
-  const showLoadingDots = loading && !(lastMsg?.role === 'assistant' && lastMsg?.content)
+  const showLoadingDots = loading && lastMsg?.role !== 'assistant'
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh', background: 'var(--bg)' }}>
       {/* Header */}
       <header style={{
-        padding: '12px 16px',
+        padding: '12px 14px 12px 12px',
         background: 'var(--thor)',
-        display: 'flex', alignItems: 'center', gap: 12,
+        display: 'flex', alignItems: 'center', gap: 10,
         boxShadow: '0 2px 12px rgba(10,20,35,0.25)',
         flexShrink: 0,
       }}>
@@ -253,28 +255,50 @@ function GuideContent() {
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(255,255,255,0.12)',
+          flexShrink: 0,
         }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 17, height: 17 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
-        <ThorkelAvatar size={36} />
+        <ThorkelAvatar size={36} talking={loading} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{THORKEL.name}</div>
-          <div style={{ fontSize: 11, color: 'rgba(239,228,204,0.75)', fontStyle: 'italic' }}>
+          <div style={{
+            fontSize: 15, fontWeight: 700, color: '#fff',
+            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+          }}>
+            {THORKEL.name}
+          </div>
+          <div style={{
+            fontSize: 11, color: 'rgba(239,228,204,0.75)', fontStyle: 'italic',
+            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+          }}>
             {THORKEL.title} · {THORKEL.bio}
           </div>
         </div>
         {messages.length > 0 && (
           <button
             onClick={() => { setMessages([]); setInput('') }}
+            aria-label="Starta ny konversation"
+            title="Ny konversation"
             style={{
-              background: 'rgba(255,255,255,0.12)', border: 'none', cursor: 'pointer',
-              padding: '6px 12px', borderRadius: 20, color: '#fff',
-              fontSize: 11, fontWeight: 700, flexShrink: 0,
+              background: 'rgba(255,255,255,0.14)',
+              border: '1px solid rgba(255,255,255,0.18)',
+              cursor: 'pointer',
+              width: 36, height: 36,
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              borderRadius: '50%',
+              color: '#fff',
+              flexShrink: 0,
+              padding: 0,
+              transition: 'background 150ms ease',
             }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.14)' }}
           >
-            Ny konversation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 18, height: 18 }}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M5 12h14" />
+            </svg>
           </button>
         )}
       </header>
@@ -335,7 +359,7 @@ function GuideContent() {
           }}>
             {m.role === 'assistant' && (
               <div style={{ flexShrink: 0, alignSelf: 'flex-end' }}>
-                <ThorkelAvatar size={32} />
+                <ThorkelAvatar size={32} talking={loading && i === messages.length - 1} />
               </div>
             )}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: '82%' }}>

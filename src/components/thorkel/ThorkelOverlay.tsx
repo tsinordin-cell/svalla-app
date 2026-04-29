@@ -209,7 +209,7 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
 
         {/* Intro — avatar + namn */}
         <div style={{ textAlign: 'center', marginBottom: 22 }}>
-          <ThorkelAvatar size={80} priority />
+          <ThorkelAvatar size={80} priority talking={loading} />
           <h2 id="thorkel-overlay-title" style={{
             fontSize: 20, fontWeight: 700, color: 'var(--txt)',
             margin: '12px 0 2px',

@@ -23,7 +23,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏰',
     tagline: 'Carlstens fästning, segling och västkustens kungsdestination.',
     description: [
-      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning från 1600-talet tornar över hamnen — ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
+      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning — påbörjad 1658 och utbyggd från 1682 efter Erik Dahlbergs ritningar — tornar över hamnen och är ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
       'Som segeldestination är Marstrand utan motstycke i Sverige. Match Cup Sweden — en av världens mest prestigefyllda match-racing-regattor — lockar världens bästa seglare till Marstrands gästhamn varje juli. Hamnen är med sina 200 platser en av västkustens absolut största och ligger skyddad innanför Koön.',
       'Ön är helt bilfri, vilket ger Marstrand en unik stämning sommartid. En liten passagerarfärja trafikerar sundet till Koön i princip kontinuerligt under högsäsongen. Det gör att man kan parkera på fastlandet och ta sig till ön på under en minut.',
       'Utöver fästningen och seglingen har Marstrand ett rikt restaurangutbud för en så liten ö. Allt från skaldjursrestauranger med havsutsikt till enklare hamnkrogar och glassbarer längs kajkanten. Kallt öl och nykokt hummer i solnedgången är en sommarbild de flesta förknippar med Marstrand.',
@@ -61,7 +61,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka boende i god tid för Match Cup-veckan i juli.', 'Carlstens guidade aftontur är magisk när solnedgången träffar fästningen.', 'Cykel går utmärkt på ön — uthyrning vid hamnen.'],
     related: ['smogen', 'kungshamn', 'lysekil'],
     tags: ['fästning', 'segling', 'restauranger', 'sommardestination', 'lyx'],
-    did_you_know: 'Marstrands fästning byggdes i mitten av 1600-talet och var i militär drift fram till 1882 — sedan dess fängelse, och idag museum.',
+    did_you_know: 'Carlstens fästning började byggas 1658 efter freden i Roskilde när Bohuslän blev svenskt — huvudkonstruktionen tog form från 1682 efter Erik Dahlbergs ritningar. Den var i militär drift till 1882, blev sedan fängelse, och är idag museum.',
   },
   {
     slug: 'smogen',
@@ -166,7 +166,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tagline: 'Sveriges enda marina nationalpark — vild natur, sälar och dykning i världsklass.',
     description: [
       'Kosterhavets nationalpark är Sveriges enda marina nationalpark, etablerad 2009. Området täcker havet och de yttre öarna runt Nord- och Sydkoster utanför Strömstad.',
-      'Vattnet är ovanligt salt och kallt och hyser Sveriges rikaste marina liv — fler än 12 000 arter, många unika för Skagerrak. Sälar lever här, valar passerar förbi, och korallrev finns på 80–200 meters djup.',
+      'Vattnet är ovanligt salt och kallt och hyser Sveriges rikaste marina liv — omkring 6 000 arter, många unika för Skagerrak. Sälar lever här, valar passerar förbi, och korallrev finns på 80–200 meters djup.',
       'Koster-öarna i sig är två: Nordkoster (cykelparadis, klippvandring) och Sydkoster (lite större, populära strandvägar). Båda är bilfria.',
     ],
     facts: {
@@ -503,7 +503,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka bord på Salt & Sill 2 mån i förväg för helger.', 'Akvarellmuseet är värt 2 timmar.', 'Solnedgång vid Tjörnbron är spektakulär.'],
     related: ['orust', 'marstrand', 'stenungsund'],
     tags: ['akvarellmuseum', 'sill', 'tjörnbron', 'mångsidig'],
-    did_you_know: 'Tjörnbron rasade 1980 efter en kollision med ett fartyg — 8 personer dog. Den nya bron är 386 meter lång och en av Sveriges mest fotograferade.',
+    did_you_know: 'Tjörnbron rasade 1980 efter en kollision med ett fartyg — 8 personer dog. Den nya bron är 664 meter lång (huvudspannet 366 m) och en av Sveriges mest fotograferade.',
   },
   {
     slug: 'kungshamn',
