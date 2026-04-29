@@ -6,11 +6,12 @@ import { timeAgoShort } from '@/lib/utils'
 
 type Notif = {
  id: string
- type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | 'forum_like' | string
+ type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | 'forum_like' | 'friend_visit' | string
  read: boolean
  created_at: string
  trip_id: string | null
  reference_id: string | null
+ related_island_slug: string | null
  actor_username?: string
 }
 
@@ -21,6 +22,7 @@ const TYPE_LABEL: Record<string, string> = {
  tag: 'taggade dig i en tur 🏷️',
  forum_reply: 'svarade i din forumtråd ',
  forum_like: 'gillade ditt foruminlägg ❤️',
+ friend_visit: 'besökte en ö ⚓',
 }
 
 export default function NotificationBell() {
@@ -37,7 +39,7 @@ export default function NotificationBell() {
  const load = useCallback(async (uid: string) => {
  const { data } = await supabase
  .from('notifications')
- .select('id, type, read, created_at, trip_id, reference_id, actor_id')
+ .select('id, type, read, created_at, trip_id, reference_id, related_island_slug, actor_id')
  .eq('user_id', uid)
  .order('created_at', { ascending: false })
  .limit(20)
@@ -175,6 +177,8 @@ export default function NotificationBell() {
  href={
  (n.type === 'forum_reply' || n.type === 'forum_like') && n.reference_id
  ? `/forum/t/${n.reference_id}`
+ : n.type === 'friend_visit' && n.related_island_slug
+ ? `/o/${n.related_island_slug}`
  : n.trip_id
  ? `/tur/${n.trip_id}`
  : '#'

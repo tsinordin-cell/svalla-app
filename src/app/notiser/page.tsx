@@ -7,13 +7,15 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import EmptyState from '@/components/EmptyState'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
+import { getIsland } from '@/app/o/island-data'
 
 type Notif = {
  id: string
- type: 'like' | 'comment' | 'follow' | 'tag' | 'mention'
+ type: 'like' | 'comment' | 'follow' | 'tag' | 'mention' | 'friend_visit'
  read: boolean
  created_at: string
  trip_id: string | null
+ related_island_slug: string | null
  actor_id: string
  actor_username: string
  actor_avatar: string | null
@@ -25,6 +27,7 @@ const TYPE_LABEL: Record<string, string> = {
  follow: 'börjar följa dig',
  tag: 'taggade dig i en tur',
  mention: 'nämnde dig i en kommentar',
+ friend_visit: 'besökte en ö',
 }
 
 const TYPE_EMOJI: Record<string, string> = {
@@ -33,6 +36,7 @@ const TYPE_EMOJI: Record<string, string> = {
  follow: '',
  tag: '🏷️',
  mention: '@',
+ friend_visit: '⚓',
 }
 
 const TYPE_COLOR: Record<string, string> = {
@@ -41,6 +45,7 @@ const TYPE_COLOR: Record<string, string> = {
  follow: 'rgba(34,197,94,0.10)',
  tag: 'rgba(124,77,30,0.10)',
  mention: 'rgba(30,92,130,0.08)',
+ friend_visit: 'rgba(10,123,140,0.09)',
 }
 
 function groupByDate(notifs: Notif[]): { label: string; items: Notif[] }[] {
@@ -125,12 +130,12 @@ export default function NotiserPage() {
  async function load(uid: string) {
  const { data } = await supabase
  .from('notifications')
- .select('id, type, read, created_at, trip_id, actor_id')
+ .select('id, type, read, created_at, trip_id, related_island_slug, actor_id')
  .eq('user_id', uid)
  .order('created_at', { ascending: false })
  .limit(100)
 
- const rows = (data ?? []) as (Omit<Notif, 'actor_username' | 'actor_avatar'> & { actor_id: string })[]
+ const rows = (data ?? []) as (Omit<Notif, 'actor_username' | 'actor_avatar'>)[]
  const actorIds = [...new Set(rows.map(r => r.actor_id).filter(Boolean))]
  const { data: uRows } = actorIds.length
  ? await supabase.from('users').select('id, username, avatar').in('id', actorIds)
@@ -239,7 +244,11 @@ export default function NotiserPage() {
  {items.map(n => (
  <Link
  key={n.id}
- href={n.type === 'follow' ? `/u/${n.actor_username}` : n.trip_id ? `/tur/${n.trip_id}` : '#'}
+ href={
+   n.type === 'follow' ? `/u/${n.actor_username}` :
+   n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}` :
+   n.trip_id ? `/tur/${n.trip_id}` : '#'
+ }
  style={{ textDecoration: 'none' }}
  >
  <div style={{
@@ -282,7 +291,10 @@ export default function NotiserPage() {
  <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: fontWeight.semibold, textDecoration: 'none' }}>
  {n.actor_username}
  </Link>
- {' '}{TYPE_LABEL[n.type]} {TYPE_EMOJI[n.type]}
+ {n.type === 'friend_visit' && n.related_island_slug
+	   ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug} ⚓`
+	   : `${TYPE_LABEL[n.type] ?? n.type} ${TYPE_EMOJI[n.type] ?? ''}`
+	 }
  </div>
  <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', marginTop: 3 }}>
  {timeAgo(n.created_at)}
