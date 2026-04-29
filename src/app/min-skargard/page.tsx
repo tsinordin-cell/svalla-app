@@ -16,6 +16,39 @@ export const dynamic = 'force-dynamic'
 
 const TOTAL_ISLANDS = ALL_ISLANDS.length
 
+// ── Verktyg & spel-sektion: card-stilar ───────────────
+function toolCardStyle(accentColor: string): React.CSSProperties {
+  return {
+    display: 'flex', flexDirection: 'column', gap: 6,
+    padding: '14px 16px',
+    background: 'var(--bg)',
+    border: '1px solid var(--surface-3)',
+    borderTop: `3px solid ${accentColor}`,
+    borderRadius: 12,
+    textDecoration: 'none',
+    color: 'inherit',
+    transition: 'transform .12s, box-shadow .12s',
+  }
+}
+const toolLabelStyle: React.CSSProperties = {
+  fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginTop: 2,
+}
+const toolDescStyle: React.CSSProperties = {
+  fontSize: 11, color: 'var(--txt2)', lineHeight: 1.4,
+}
+function ToolIcon({ name, color }: { name: 'navigation' | 'trophy' | 'compass' | 'map' | 'check' | 'users'; color: string }) {
+  return (
+    <div style={{
+      width: 32, height: 32, borderRadius: 8,
+      background: `${color}15`,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      color, marginBottom: 2,
+    }}>
+      <Icon name={name} size={18} stroke={1.8} />
+    </div>
+  )
+}
+
 const ACHIEVEMENTS = [
   { threshold: 1,  iconName: 'anchor'    as const, label: 'Första turen',     sub: 'Du har satt foten i skärgården' },
   { threshold: 5,  iconName: 'waves'     as const, label: 'Skärgårds-novis',  sub: '5 öar besökta' },
@@ -265,6 +298,70 @@ export default async function MinSkargardPage() {
               })}
             </div>
           )}
+        </section>
+
+        {/* ── Verktyg & spel — synliggör nya features ───────────────── */}
+        <section style={{
+          background: 'var(--white)',
+          borderRadius: 16,
+          padding: '20px 22px',
+          marginBottom: 16,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+        }}>
+          <div style={{ marginBottom: 14 }}>
+            <h2 style={{
+              fontSize: 17, fontWeight: 700, margin: 0,
+              color: 'var(--txt)',
+              fontFamily: "'Playfair Display', Georgia, serif",
+            }}>
+              Verktyg & spel
+            </h2>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '4px 0 0' }}>
+              Planera, jämför och utforska din skärgård
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+            gap: 10,
+          }}>
+            <Link href="/utflykt" style={toolCardStyle('var(--sea)')}>
+              <ToolIcon name="navigation" color="var(--sea)" />
+              <div style={toolLabelStyle}>Utflyktsplanerare</div>
+              <div style={toolDescStyle}>Restid + packlista + krogar</div>
+            </Link>
+
+            <Link href="/bingo" style={toolCardStyle('#7c3aed')}>
+              <ToolIcon name="trophy" color="#7c3aed" />
+              <div style={toolLabelStyle}>Skärgårdsbingo 2026</div>
+              <div style={toolDescStyle}>25 utmaningar att bocka av</div>
+            </Link>
+
+            <Link href="/aktivitet" style={toolCardStyle('#0a7b3c')}>
+              <ToolIcon name="compass" color="#0a7b3c" />
+              <div style={toolLabelStyle}>Aktiviteter</div>
+              <div style={toolDescStyle}>Segling, cykling, bad, vandring</div>
+            </Link>
+
+            <Link href="/oar" style={toolCardStyle('#0a7b8c')}>
+              <ToolIcon name="map" color="#0a7b8c" />
+              <div style={toolLabelStyle}>Hitta din ö</div>
+              <div style={toolDescStyle}>10 kategorier — barnvänliga, lyx, lugn</div>
+            </Link>
+
+            <Link href="/jamfor" style={toolCardStyle('#c96e2a')}>
+              <ToolIcon name="check" color="#c96e2a" />
+              <div style={toolLabelStyle}>Jämför öar</div>
+              <div style={toolDescStyle}>Sandhamn eller Grinda?</div>
+            </Link>
+
+            <Link href="/forum" style={toolCardStyle('#1d4ed8')}>
+              <ToolIcon name="users" color="#1d4ed8" />
+              <div style={toolLabelStyle}>Forum & diskussioner</div>
+              <div style={toolDescStyle}>Frågor och svar från community</div>
+            </Link>
+          </div>
         </section>
       </main>
     </div>
