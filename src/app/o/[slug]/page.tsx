@@ -104,6 +104,18 @@ export default async function IslandPage({ params }: Props) {
           ],
         }) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: getFaqsForIsland(island).map(faq => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: { '@type': 'Answer', text: faq.a },
+          })),
+        }) }}
+      />
 
       {/* ── NAV ─────────────────────────────────────────────────── */}
       <nav style={{
