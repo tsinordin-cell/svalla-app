@@ -30,6 +30,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${island.name} – ${island.tagline}`,
       description: `Komplett guide till ${island.name} i Stockholms skärgård.`,
       url: `https://svalla.se/o/${slug}`,
+      images: [{
+        url: `https://svalla.se/api/og/island/${slug}`,
+        width: 1200, height: 630,
+        alt: `${island.name} — ${island.tagline}`,
+      }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${island.name} – ${island.tagline}`,
+      description: `Guide till ${island.name} i ${island.regionLabel.toLowerCase()}.`,
+      images: [`https://svalla.se/api/og/island/${slug}`],
     },
   }
 }
@@ -145,7 +156,7 @@ export default async function IslandPage({ params }: Props) {
             <div>
               <h1 style={{ fontSize: 42, fontWeight: 700, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
               <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
-              {(visitorCount ?? 0) > 0 && (
+              {(visitorCount ?? 0) > 0 ? (
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   marginTop: 14, padding: '8px 16px', borderRadius: 999,
@@ -161,9 +172,26 @@ export default async function IslandPage({ params }: Props) {
                   </svg>
                   <span>
                     <strong style={{ fontSize: 15 }}>{visitorCount?.toLocaleString('sv-SE')}</strong>{' '}
-                    {(visitorCount ?? 0) === 1 ? 'seglare har' : 'seglare har'} besökt {island.name} via Svalla
+                    seglare har besökt {island.name} via Svalla
                   </span>
                 </div>
+              ) : (
+                <Link href={`/logga-in?next=/logga`} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  marginTop: 14, padding: '8px 16px', borderRadius: 999,
+                  background: 'rgba(255,255,255,0.16)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255,255,255,0.22)',
+                  fontSize: 13, fontWeight: 600, color: '#fff',
+                  textDecoration: 'none',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="M12 21.3C7 14.5 4.8 11 4.8 7.8a7.2 7.2 0 0 1 14.4 0c0 3.2-2.2 6.7-7.2 13.5Z" />
+                    <circle cx="12" cy="8" r="2.4" />
+                  </svg>
+                  <span>Bli den första att logga ett besök på {island.name} →</span>
+                </Link>
               )}
               {/* Live väder — kräver koordinater */}
               {ISLAND_COORD_MAP[island.slug] && (
@@ -304,7 +332,47 @@ export default async function IslandPage({ params }: Props) {
                         borderRadius: 10,
                       }}>{r.type}</span>
                     </div>
-                    <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.6 }}>{r.desc}</p>
+                    <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 8px', lineHeight: 1.6 }}>{r.desc}</p>
+                    {(r.bookingUrl || r.websiteUrl) && (
+                      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                        {r.bookingUrl && (
+                          <a
+                            href={r.bookingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer sponsored"
+                            data-svalla-track="booking-click"
+                            data-place={r.name}
+                            data-island={island.slug}
+                            style={{
+                              display: 'inline-flex', alignItems: 'center', gap: 6,
+                              padding: '6px 14px', borderRadius: 999,
+                              background: 'var(--acc, #c96e2a)', color: '#fff',
+                              fontSize: 12, fontWeight: 700,
+                              textDecoration: 'none',
+                            }}
+                          >
+                            Boka bord →
+                          </a>
+                        )}
+                        {r.websiteUrl && (
+                          <a
+                            href={r.websiteUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex', alignItems: 'center', gap: 6,
+                              padding: '6px 14px', borderRadius: 999,
+                              background: 'transparent', color: 'var(--sea)',
+                              border: '1px solid var(--sea)',
+                              fontSize: 12, fontWeight: 600,
+                              textDecoration: 'none',
+                            }}
+                          >
+                            Hemsida →
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

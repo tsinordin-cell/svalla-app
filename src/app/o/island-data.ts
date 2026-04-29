@@ -31,11 +31,17 @@ export type IslandRestaurant = {
   type: string
   desc: string
   slug?: string
+  /** URL till bokning (egen hemsida, OpenTable, Resy, Bokun osv.) — visas som "Boka bord →" på ösidan */
+  bookingUrl?: string
+  /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
+  websiteUrl?: string
 }
 
 export type Island = {
   slug: string
   name: string
+  /** URL till coverbild (Wikimedia, Unsplash etc.) — visas i listsidor och OG-bilder */
+  coverImage?: string
   region: 'norra' | 'mellersta' | 'södra' | 'bohuslan'
   regionLabel: string
   emoji: string

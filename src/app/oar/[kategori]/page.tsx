@@ -143,12 +143,17 @@ export default async function OarCategoryPage({ params }: Props) {
                         background: 'var(--white)',
                         border: '1px solid var(--surface-3)',
                         borderRadius: 12,
-                        padding: '14px 18px',
+                        padding: '12px 14px',
                         textDecoration: 'none', color: 'inherit',
                         display: 'flex', alignItems: 'center', gap: 14,
                       }}
                     >
-                      <div style={{ flex: 1 }}>
+                      <div style={{
+                        width: 84, height: 64, flexShrink: 0,
+                        borderRadius: 8, overflow: 'hidden',
+                        background: `url('${i.coverImage || `/api/og/island/${i.slug}`}') center/cover, linear-gradient(135deg, var(--sea), var(--sea-l, #2d7d8a))`,
+                      }} aria-hidden />
+                      <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>
                           {i.name}
                         </div>
