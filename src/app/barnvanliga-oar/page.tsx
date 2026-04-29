@@ -70,8 +70,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function BarnvanligaOarPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Vilka öar i Stockholms skärgård har sandstrand?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Grinda har en av skärgårdens finaste sandstränder — perfekt för barn. Fjäderholmarna erbjuder ett naturbad med sandy bottom. Möja har flera småstränder längs kusten, och Utö erbjuder en vacker strand på södersidan.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilken ö passar yngre barn (1–5 år) i skärgården?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är utgångspunkten för små barn — bara 15 minuter från Slussen, lugnt vatten och fin sandstrand. Om du vill något längre bort är Grinda utmärkt: 30 minuter från Stockholm, lugnt vatten och barnvänlig restaurang.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur reser man med barn till skärgården?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Från Stockholm går färjor från Strömkajen direkt till Grinda, Möja, Sandhamn och fler öar. Restider: 15 min till Fjäderholmarna, 75 min till Sandhamn. Åk när barnen är pigga — en tidig morgonfärja fungerar bättre än en sen förmiddagsfärja.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka öar i skärgården har restauranger för barnfamiljer?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Grinda Wärdshus är legendariskt för familjer. Fjäderholmarna har flera restauranger med barnmeny. Sandhamns Värdshus är en klassiker för längre resor. Utö Värdshus erbjuder mysig middag med havet som bakgrund.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Barnvänliga öar', item: 'https://svalla.se/barnvanliga-oar' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1a5c3a', '#2d7d5a']}
       eyebrow="Barnvänliga öar"
       title="Skärgård för hela familjen"
@@ -168,5 +205,6 @@ export default function BarnvanligaOarPage() {
         { label: 'Färjor & färjeöverbryggningar', href: '/farjor' },
       ]}
     />
+    </>
   )
 }

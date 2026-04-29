@@ -81,8 +81,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function AktiviteterPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man fiskekort för fiske i havet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I saltvatten (havet längs kusten) behöver du inget fiskekort för att fiska. Du kan fiska gratis från brygga, båt eller strand året runt. Dock gäller fredningsperioder och vissa fiskar är skyddade. I sjöar och älvar behöver du alltid ett fiskekort.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är bästa aktiviteten för en barnfamilj vid havet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Bad och snorkling är lättast — du behöver bara ett par badkläder. Motorbåt är nästa steg. Kajak passar från 4–5 år i double-kajak med vuxen. Gotland är överlag mer familjevänligt — varmaste vattnet, längsta stränderna och många barnaktiviteter.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man hyra kajak utan tidigare erfarenhet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt säkert. En kajak-hyrkompani kommer alltid att ge dig 15–30 minuters instruktion. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'När är havet varmt nog för simning utan våtdräkt?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Juli–augusti är bästa perioden — då är det ofta 17–19 °C. I Gotland är det ofta 1–2 grader varmare än övriga kusten. En billig våtdräkt kostar 300–500 kronor och öppnar möjligheten att bada tidigare och senare på säsongen.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Aktiviteter', item: 'https://svalla.se/aktiviteter' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Aktiviteter"
       title="Gör Svenska kusten och skärgårdarna till ditt äventyr"
@@ -305,5 +342,6 @@ export default function AktiviteterPage() {
         { label: 'Gotland', href: '/gotland' },
       ]}
     />
+    </>
   )
 }

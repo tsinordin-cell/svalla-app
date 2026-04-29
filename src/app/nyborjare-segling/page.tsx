@@ -73,8 +73,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function NyborjareSeglingPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man körkort för att segla i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej, inte enligt lag i Sverige för privatsegling på kusten. Men många charterbolag kräver ett bevis (RYA Day Skipper eller motsvarande). Och ett bevis ger dig kunskap som kan rädda livet.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur lång tid tar en segelkurs?',
+        acceptedAnswer: { '@type': 'Answer', text: 'En basnivå (Nivå 1) tar 2–3 dagar och täcker grunder. En komplett RYA Day Skipper tar 5–7 dagar. Du kan ofta ta en kurs på helger (2–3 helger vardera).' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man segla på vintern i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, många seglare seglar året runt. Mälaren kan frysa helt (januari–mars), men kusten fryser sällan helt. Vintersegling kräver extra försiktighet, bättre väderkunskap och rätt utrustning. Börja inte med vintersegling som nybörjare!' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad kostar det att köpa sin första segelbåt?',
+        acceptedAnswer: { '@type': 'Answer', text: 'En använd klassiker som H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En bättre folkbåt kostar 80 000–200 000 kr. Budget även för försäkring (500–1 500 kr/år), underhåll (2 000–5 000 kr/år) och hamnplats (3 000–8 000 kr/år).' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Nybörjare & segling', item: 'https://svalla.se/nyborjare-segling' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1a5c3a', '#2d7a52']}
       eyebrow="Nybörjarsegling"
       title="Börja segla — allt du behöver veta"
@@ -252,5 +289,6 @@ export default function NyborjareSeglingPage() {
         { label: 'Alla destinationer', href: '/resmal' },
       ]}
     />
+    </>
   )
 }

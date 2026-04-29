@@ -73,8 +73,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function DagsturerPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Hur länge tar dagstur till Sandhamn från Stockholm?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Med Waxholmsbåten tar det ungefär 2 timmar och 30 minuter från Slussen till Sandhamn. Tillsammans med tid på ön (2–3 timmar) blir det en komplett dag. Du kan ta båten dit på morgonen och hem på eftermiddagen.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilken ö passar för en kort dagstur från Stockholm?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är det bästa valet för en kort dagstur — bara 20 minuter från Slussen. Du kan fika, äta lunch och bada utan att spendera flera timmar på transport. Vaxholm är nästa steg upp — 50 minuter med mer att se.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man ta med cykel på Waxholmsbåten?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja. De flesta Waxholmsbåtar tillåter cyklar — ofta gratis eller för en liten avgift. Det är praktiskt för längre öar som Utö, Möja och Sandhamn, där cykling är ett vanligt sätt att utforska.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad kostar dagstur till skärgården från Stockholm?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten kostar 50–150 kr per resa beroende på destination. Sammantaget kan en dagstur för två kosta från 300 kr (bara färja + eget kaffe) till 1 000+ kr (båt och restaurang).' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Dagsturer', item: 'https://svalla.se/dagsturer' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1e3a5f', '#1e5c82']}
       eyebrow="Dagsturer"
       title="Dagstur till skärgården"
@@ -149,5 +186,6 @@ export default function DagsturerPage() {
         { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
       ]}
     />
+    </>
   )
 }

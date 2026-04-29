@@ -70,8 +70,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function NaturhamnarPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Vad är en naturhamn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'En naturhamn är en ankringsplats utan formell infrastruktur — ingen hamnadministration, ingen gästbok, ingen avgift. Du ankrar fritt på en skyddad vika där djupet räcker och botten håller. Naturhamnar är ofta mer vilda och autentiska än gästhamnar.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Är det gratis att ankra i naturhamnar i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt gratis. Det finns inga avgifter, ingen elmätare och ingen reception. Allemansrätten ger dig rätt att ankra på naturhamnar, men du måste respektera privatägd mark och miljön.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka naturhamnar är bäst för nybörjare i Stockholms skärgård?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nämdö, Svartsö och Ålö är ideala för första ankringen. De ligger nära Stockholm, har lugnt vatten skyddat från väst, djup mellan 3–5 meter och muddig eller sandig botten — perfekt för att lära sig ankra.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur djup måste en naturhamn vara?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Minst 3 meter vid lågvattnet — gärna 4–5 meter för stabilitet. I Stockholms skärgård varierar vattennivån med 0,4–0,7 meter. Sjunka ett stickprov och testa botten med en sond innan du ankrar.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Naturhamnar', item: 'https://svalla.se/naturhamnar' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#0a4a5e', '#0a7b8c']}
       eyebrow="Naturhamnar"
       title="Ankra fritt i skärgården"
@@ -159,5 +196,6 @@ export default function NaturhamnarPage() {
         { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
+    </>
   )
 }

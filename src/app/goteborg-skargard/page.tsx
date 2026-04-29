@@ -75,8 +75,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function GoteborgSkargardPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Kan man segla till Göteborgs skärgård utan egen båt?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt enkelt. Du kan hyra båt genom flera klubbar och charter-företag i Göteborg. GKSS erbjuder gästmedlemskap och möjlighet till dagsbåtar, och flera privata charter-företag tillhandahåller allt från små gummibåtar till större segelfartyg.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilken ö i Göteborgs skärgård är bäst för barn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Styrsö och Brännö med sin etablerade service, många bryggor för badning och lugna vikar passar barnfamiljer bäst. Restaurangerna på Styrsö Skäret är barnvänliga. Vrångö är lite mer avsides men erbjuder vackrare naturupplevelse för äldre barn.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man segla hela dagen till Marstrand från Göteborg?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, det är ungefär 20 sjömil norrut. Med bra segelväder och medvind är det en klassisk dagstur som tar 3–4 timmar. Du kan också spendera dagen på vägen och ankra på någon av öarna.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är Hake fjord?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Hake fjord är namnet på vattnet söder och väster om Göteborg. Det omfattar Älvsborgsfjorden, kanalerna genom arkipelagen och det öppna vattnet mot de yttre öarna. Det är det centrala navet för all segling från Göteborg.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Göteborgs skärgård', item: 'https://svalla.se/goteborg-skargard' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#2e4057', '#3d6b8e']}
       eyebrow="Göteborgs skärgård"
       title="Skärgården utanför porten"
@@ -182,5 +219,6 @@ export default function GoteborgSkargardPage() {
         { label: 'Bohuslän', href: '/bohuslan' },
       ]}
     />
+    </>
   )
 }

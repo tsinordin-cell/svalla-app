@@ -73,8 +73,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function StockholmsSkargardPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man båtlicens för att segla i Stockholms skärgård?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur långt är det att segla från Stockholm till Sandhamn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Det är ungefär 35 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka är de bästa naturhamnarna i Stockholms skärgård?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Klasärterna på Ornö, Kyrkogårdsfjärden på Nämdö och de vackra vikarna runt Huvudskär räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker miljö — lugnt vatten, fin natur och enkelt att ankra.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'När öppnar krogarna i skärgården?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Majoriteten av restaurangerna i skärgården öppnar runt midsommar och stänger i slutet av augusti. Fjäderholmarna är ett undantag och håller öppet längre, ofta från våren och långt in på hösten.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Stockholms skärgård', item: 'https://svalla.se/stockholms-skargard' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1e5c82', '#2d7aad']}
       eyebrow="Stockholms skärgård"
       title="30 000 öar i fickan"
@@ -197,5 +234,6 @@ export default function StockholmsSkargardPage() {
         { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
+    </>
   )
 }

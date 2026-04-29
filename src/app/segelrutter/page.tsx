@@ -95,8 +95,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function SegelrutterPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man certifikat för att segla i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej, det finns ingen laglig seglarcertifikatskrävning för privat segling i Sverige. Många seglare tar dock en segelkurs för säkerhet och kunskapers skull. För kommersiell segling eller andras båtar måste det finnas en ansvarig person med relevant utbildning ombord.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur lång tid tar Östersjöleden?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Östersjöleden är cirka 800 sjömil. Realistisk tid är 10–15 dagar för 300–400 sjömil (exempelvis Stockholm till Visby). Många seglare gör detta som ett 2-veckors sommaräventyr eller sprider det över flera sommrar.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är bästa månaden att segla i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Juli och augusti är de varmaste månaderna med mest förutsägbar vind och de flesta restauranger öppna. Maj är för många den perfekta månaden — mindre trängsel, ändå mildt väder och längre dagar. September kan ge vakra höstdagar men mer oförutsägbart väder.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka sjökort behöver man för segling i Sverige?',
+        acceptedAnswer: { '@type': 'Answer', text: 'För Stockholms skärgård: kort 6111, 6113. För Östersjöleden: 6103, 6104, 6105, 6112. För Bohuslän: 6058, 6059. Sjöfartsverkets officiella sjökort finns i papper- och digitalt format. Många använder tabletappar som Navily men papperskort rekommenderas alltid som backup.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Segelrutter', item: 'https://svalla.se/segelrutter' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Segelrutter"
       title="Segelrutter i Sverige"
@@ -282,5 +319,6 @@ export default function SegelrutterPage() {
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
       ]}
     />
+    </>
   )
 }

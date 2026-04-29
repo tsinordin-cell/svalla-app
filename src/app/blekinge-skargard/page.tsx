@@ -71,8 +71,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function BlekingeSkargardPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Är Blekinges skärgård bra för nybörjarseglare?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten — perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur nära är Blekinge till Danmark och Tyskland?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Rügen i Tyskland ligger ungefär 80 sjömil söder om Karlskrona. Bornholm, Danmark, ligger omkring 50 sjömil västerut. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är Östersjöleden?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Östersjöleden är en märkt segelrutt som sträcker sig längs hela svenska Östersjökusten från Stockholm i norr till Malmö i söder. Blekinge utgör en av de vackraste etapperna, med ungefär två dagars segling från Karlskrona.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Stockholms skärgård är spektakulär men väletablerad — Karlskronas är mjukare, grönare och markant lugnare. Inga storstadsinfrastruktur eller överbefolkning, men all charm. Blekinge är perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Blekinges skärgård', item: 'https://svalla.se/blekinge-skargard' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#4a3728', '#6b5040']}
       eyebrow="Blekinges skärgård"
       title="Östersjöns gröna kust"
@@ -173,5 +210,6 @@ export default function BlekingeSkargardPage() {
         { label: 'Gotland', href: '/gotland' },
       ]}
     />
+    </>
   )
 }

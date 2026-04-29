@@ -6,6 +6,56 @@ import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
 import ThorkelAvatar from './ThorkelAvatar'
 
+/** Tre prickar som pulsera medan Thorkel "tänker" — innan första ordet kommer. */
+function ThinkingDots() {
+  return (
+    <span style={{ display: 'inline-flex', gap: 5, alignItems: 'center', height: 20 }}>
+      {[0, 1, 2].map(i => (
+        <span
+          key={i}
+          style={{
+            width: 7, height: 7, borderRadius: '50%',
+            background: 'var(--thor, #2b3e56)',
+            opacity: 0.3,
+            animation: `thorkel-think 1.2s ease-in-out ${i * 0.15}s infinite`,
+          }}
+        />
+      ))}
+      <style>{`
+        @keyframes thorkel-think {
+          0%, 80%, 100% { opacity: 0.25; transform: translateY(0) }
+          40%           { opacity: 0.95; transform: translateY(-2px) }
+        }
+      `}</style>
+    </span>
+  )
+}
+
+/** Blinkande caret efter senaste ordet medan strömmen fortsätter. */
+function BlinkingCaret() {
+  return (
+    <>
+      <span
+        aria-hidden
+        style={{
+          display: 'inline-block',
+          width: 2, height: '1em',
+          marginLeft: 2,
+          verticalAlign: '-0.15em',
+          background: 'var(--thor, #2b3e56)',
+          animation: 'thorkel-caret 1s steps(1) infinite',
+        }}
+      />
+      <style>{`
+        @keyframes thorkel-caret {
+          0%, 49%   { opacity: 1 }
+          50%, 100% { opacity: 0 }
+        }
+      `}</style>
+    </>
+  )
+}
+
 type Props = {
   open: boolean
   onClose: () => void
@@ -63,6 +113,7 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
   async function submit() {
     if (!question.trim() || loading) return
     setLoading(true)
+    setAnswer('') // tom sträng = "han har börjat svara, men inget ord än" → triggar svar-vy
     const sentAt = Date.now()
     try {
       const res = await fetch('/api/guide', {
@@ -70,16 +121,44 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: [{ role: 'user', content: question }] }),
       })
-      const data = await res.json().catch(() => ({}))
 
-      // Thorkel röker på pipan först — minst 1.8s innan svar syns
+      if (res.status === 401) { setIsLoggedIn(false); setAnswer(null); return }
+      if (res.status === 429) { setAnswer(THORKEL_COPY.errors.rateLimit); return }
+
+      // Thorkel "röker på pipan" — håll thinking-state minst 1.8s innan första ordet syns
       const elapsed = Date.now() - sentAt
       const pause = Math.max(0, THORKEL.timing.minThinkMs - elapsed)
       if (pause > 0) await new Promise(r => setTimeout(r, pause))
 
-      if (res.status === 401) { setIsLoggedIn(false); return }
-      if (res.status === 429) { setAnswer(THORKEL_COPY.errors.rateLimit); return }
-      setAnswer(data.reply ?? THORKEL_COPY.errors.offline)
+      // SSE-stream — ord-för-ord-läsning
+      if (res.body && res.headers.get('content-type')?.includes('text/event-stream')) {
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let buffer = ''
+        let acc = ''
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          buffer += decoder.decode(value, { stream: true })
+          const lines = buffer.split('\n')
+          buffer = lines.pop() ?? ''
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue
+            try {
+              const event = JSON.parse(line.slice(6)) as { t?: string; done?: boolean }
+              if (event.t !== undefined) {
+                acc += event.t
+                setAnswer(acc)
+              }
+            } catch { /* ignore malformed SSE */ }
+          }
+        }
+        if (!acc) setAnswer(THORKEL_COPY.errors.offline)
+      } else {
+        // Fallback för icke-stream-svar
+        const data = await res.json().catch(() => ({} as { reply?: string }))
+        setAnswer(data.reply ?? THORKEL_COPY.errors.offline)
+      }
     } catch {
       setAnswer(THORKEL_COPY.errors.offline)
     } finally {
@@ -205,17 +284,28 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
               fontSize: 15, lineHeight: 1.7,
               color: 'var(--txt)',
               whiteSpace: 'pre-wrap',
+              minHeight: 60,
             }}>
-              {answer}
+              {answer === '' ? (
+                <ThinkingDots />
+              ) : (
+                <>
+                  {answer}
+                  {loading && <BlinkingCaret />}
+                </>
+              )}
             </div>
             <div style={{ display: 'flex', gap: 10 }}>
               <button
                 onClick={reset}
+                disabled={loading}
                 style={{
                   flex: 1, height: 44, borderRadius: 12,
                   border: '1px solid rgba(43,62,86,0.2)',
                   background: 'transparent', color: 'var(--thor)',
-                  fontSize: 14, fontWeight: 600, cursor: 'pointer',
+                  fontSize: 14, fontWeight: 600,
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                  opacity: loading ? 0.5 : 1,
                 }}
               >
                 Fråga en till
@@ -229,6 +319,8 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
                   fontSize: 14, fontWeight: 600,
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   textDecoration: 'none',
+                  opacity: loading ? 0.6 : 1,
+                  pointerEvents: loading ? 'none' : 'auto',
                 }}
               >
                 Fortsätt i chatten →

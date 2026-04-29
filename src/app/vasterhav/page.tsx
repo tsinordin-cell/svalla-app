@@ -73,8 +73,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function VasterhavetPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Hur skiljer sig Västerhavet från Östersjön att segla?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Tidvatten och strömmar är mycket märkbara på Västerhavet — något som nästan helt saknas i Östersjön. Vinden är också ofta starkare. Det kräver mer erfarenhet att segla på Västerhavet, men belöningen är en mycket mer dramatisk och varierad segelupplevelse.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man segla till Norge från Västerhavet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut! Strömstad är den naturliga gränshamnen. Från här är det bara några timmars segling till den norska skärgården vid Hvaler, ett populärt resmål bland svenska seglare. Se till att du har aktuell karta och pass ombord.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är de bästa hamnarna längs Västerhavet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'I norr: Strömstad, Grebbestad, Smögen och Lysekil. I mitten: Marstrand, Fiskebäckskil och Orust. I söder: Varberg, Falkenberg och Halmstad. Använd Svallas karta för att upptäcka mindre gästhamnar och naturhamnar.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Behöver man specialutrustning för Västerhavet?',
+        acceptedAnswer: { '@type': 'Answer', text: 'AIS-transponder rekommenderas starkt i Kattegatt där fartygstrafiken är tung. VHF-radio är obligatorisk. Tidvattentabeller eller en app som visar tidvattnet är essentiell för planering. Uppdaterade navigationskort och SMHI:s varningsapp är också nödvändiga.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Västerhavet', item: 'https://svalla.se/vasterhav' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1a5276', '#2471a3']}
       eyebrow="Västerhavet"
       title="Kattegatt & Skagerrak"
@@ -181,5 +218,6 @@ export default function VasterhavetPage() {
         { label: 'Bohuslän', href: '/bohuslan' },
       ]}
     />
+    </>
   )
 }

@@ -366,16 +366,39 @@ function extractFollowUps(raw: string): { text: string; followUps: string[] } {
   return { text, followUps }
 }
 
+/**
+ * Splittar text till "ord-tokens" — varje token är ett ord plus all efterföljande
+ * whitespace fram till nästa ord. Detta bevarar exakt formatering (mellanslag,
+ * radbryt, etc) när tokens skarvas ihop på klienten.
+ *
+ * Exempel: "Hej Tom!\n\nNu kör vi." →
+ *   ["Hej ", "Tom!\n\n", "Nu ", "kör ", "vi."]
+ */
+function tokenizeForStreaming(text: string): string[] {
+  const tokens: string[] = []
+  // Match: optional non-whitespace + trailing whitespace (eller bara whitespace om det är ledande)
+  const re = /\S+\s*|\s+/g
+  let m: RegExpExecArray | null
+  while ((m = re.exec(text)) !== null) tokens.push(m[0])
+  return tokens
+}
+
 function makeStream(text: string, followUps: string[], planData: PlanData | null): Response {
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
     async start(controller) {
-      // Typewriter-effekt: större chunks (40 tecken) + kortare delay (8 ms)
-      // halverar serverkostnaden mot tidigare 20/16 utan synbar UX-skillnad.
-      const chunkSize = 40
-      for (let i = 0; i < text.length; i += chunkSize) {
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ t: text.slice(i, i + chunkSize) })}\n\n`))
-        await new Promise(r => setTimeout(r, 8))
+      // Thorkel "tänker" innan första ordet — 280 ms startpaus.
+      await new Promise(r => setTimeout(r, 280))
+
+      // Ord-för-ord-stream: ger känslan av att Thorkel pratar, inte slänger ut text.
+      // Snabbare än typing — ~22 ms mellan ord ger naturlig läsfart utan att kännas
+      // konstgjord. Längre paus efter punkt för andning mellan meningar.
+      const tokens = tokenizeForStreaming(text)
+      for (const token of tokens) {
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ t: token })}\n\n`))
+        // Längre paus efter mening-slut (. ! ?) — han hämtar andan.
+        const isSentenceEnd = /[.!?][\s]*$/.test(token)
+        await new Promise(r => setTimeout(r, isSentenceEnd ? 90 : 22))
       }
       controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData })}\n\n`))
       controller.close()

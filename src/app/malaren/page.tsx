@@ -75,8 +75,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function MalarenPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man passera sluss för att segla på Mälaren?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Karl Johans sluss i Stockholm. Slussen har regelbundna öppettider — planera din tur därefter och kontakta slussvakten i god tid innan.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka är de bästa kafébryggorpå Mälaren?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Mariefred, Kärnbo, Björnö och bryggor längs Ekerö-öarna är kända för sin välkomstkultur och goda fika. Svalla-kartan visar alla verifierade kafébryggor med öppettider, så du kan planera dina stopp i förväg.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Är Mälaren bra för nybörjarseglare?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Perfekt! Det finns inget tidvatten, inga svallvågor och väl märkta farleder överallt. Vinden kan ibland vara oregelbunden vid stora öar, men generellt är Mälaren mycket nybörjarvänlig — många familjer och nybörjare börjar här.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur långt är Mälaren?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ungefär 12 mil (120 kilometer) från Stockholms inlopp till Köping i väst. En full genomsegling från öst till väst tar 3–5 dagar i lugnt tempo, beroende på vind och hur många stopp du gör.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Mälaren', item: 'https://svalla.se/malaren' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1a6b5a', '#22a085']}
       eyebrow="Mälaren"
       title="Insjöns lugn — 1 140 öar"
@@ -186,5 +223,6 @@ export default function MalarenPage() {
         { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
       ]}
     />
+    </>
   )
 }

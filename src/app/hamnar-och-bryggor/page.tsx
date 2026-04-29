@@ -66,8 +66,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function HamnarOchBryggorPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Måste man boka gästhamn i förväg?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej, men det rekommenderas starkt under juli–augusti. Populära hamnar som Sandhamn kan vara fulla redan 15:00 samma dag. Boka via Skärgårdshamnar.se eller ring via VHF på förmiddagen för att säkra en plats.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad innebär VHF-kanal 16?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Kanal 16 är världens sjöradionödkanal. Alla båtar med VHF måste övervaka den. Den används för nödrop och för att etablera kontakt — aldrig för längre samtal. Så fort du har kontakt med en hamn skiftar du till arbetkanal (oftast 9–12).' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Är naturhamnar alltid gratis?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, enligt allemansrätten. Du får ankra i vilken vika som helst för kortare tid utan tillstånd. Men många naturhamnar ligger i fågelskyddsområden med landstigningsförbud 1 april–15 juli. Svalla visar dessa restriktioner på varje plats.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka faciliteter finns vanligtvis i en gästhamn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Standard: Vatten, el (230V), dusch, toalett. Vanligt: Tvättmaskin, septiktömning, bensinstation, krog eller café. Ibland: Proviantbutik, reparationsservice, båtslip. Läs beskrivningen för varje hamn på Svalla för att veta vad den erbjuder.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Hamnar & bryggor', item: 'https://svalla.se/hamnar-och-bryggor' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Hamnar & bryggor"
       title="Hitta rätt förtöjningsplats i Sverige"
@@ -259,5 +296,6 @@ export default function HamnarOchBryggorPage() {
         { label: 'Segelrutter', href: '/segelrutter' },
       ]}
     />
+    </>
   )
 }

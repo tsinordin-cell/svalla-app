@@ -26,6 +26,45 @@ function renderMarkdown(text: string): React.ReactNode[] {
   })
 }
 
+function ThinkingDots() {
+  return (
+    <span style={{ display: 'inline-flex', gap: 5, alignItems: 'center', height: 20 }}>
+      {[0, 1, 2].map(i => (
+        <span key={i} style={{
+          width: 7, height: 7, borderRadius: '50%',
+          background: 'var(--thor, #2b3e56)', opacity: 0.3,
+          animation: `thorkel-think 1.2s ease-in-out ${i * 0.15}s infinite`,
+        }} />
+      ))}
+      <style>{`
+        @keyframes thorkel-think {
+          0%, 80%, 100% { opacity: 0.25; transform: translateY(0) }
+          40%           { opacity: 0.95; transform: translateY(-2px) }
+        }
+      `}</style>
+    </span>
+  )
+}
+
+function BlinkingCaret() {
+  return (
+    <>
+      <span aria-hidden style={{
+        display: 'inline-block', width: 2, height: '1em',
+        marginLeft: 2, verticalAlign: '-0.15em',
+        background: 'var(--thor, #2b3e56)',
+        animation: 'thorkel-caret 1s steps(1) infinite',
+      }} />
+      <style>{`
+        @keyframes thorkel-caret {
+          0%, 49%   { opacity: 1 }
+          50%, 100% { opacity: 0 }
+        }
+      `}</style>
+    </>
+  )
+}
+
 const SUGGESTIONS = [
   'Vad passar för en familj med barn?',
   'Romantisk helgtur för oss två?',
@@ -310,7 +349,13 @@ function GuideContent() {
                 boxShadow: m.role === 'assistant' ? '0 1px 4px rgba(10,20,35,0.05)' : 'none',
                 whiteSpace: 'pre-wrap',
               }}>
-                {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
+                {m.role === 'assistant'
+                  ? (m.content === ''
+                      ? <ThinkingDots />
+                      : <>{renderMarkdown(m.content)}{loading && i === messages.length - 1 && <BlinkingCaret />}</>
+                    )
+                  : m.content
+                }
               </div>
 
               {/* Follow-up suggestion chips */}

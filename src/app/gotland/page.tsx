@@ -72,8 +72,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function GotlandPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Hur lång tid tar seglingen till Gotland?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Från Sandhamn tar det normalt 24–36 timmar beroende på vind och väg. Från Nynäshamn räknar du med 20–28 timmar. Du bör planera för minst en övernattning till sjöss. Många båtar gör passagen under två dagar med skift.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Måste man boka gästhamn i Visby i förväg?',
+        acceptedAnswer: { '@type': 'Answer', text: 'I juli är det starkt rekommenderat. Visby gästhamn kan vara fullbelagd under högsäsong och framför allt under Almedalen. Ha Herrvik eller Klintehamn som backup. Ring gästhamnen på VHF dagen innan för att höra om det finns plats.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är bästa sättet att nå Fårö?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Segla till Fårösund och ta den kostnadsfria bilfärjan över sundet. Färjan går ofta men kan ha köer i högsäsong. Själva seglingen till Fårösund är relativt kort och en mysig dag-och-övernattning för många.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Är det möjligt att segla runt hela Gotland?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, det är en klassisk tur på cirka 180 sjömil. Planera 7–10 dagar för en avslappnad tur med stopp på intressanta hamnar. Nordkusten kan vara utsatt vid nordanvind, så välj väder och timing noggrant.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Gotland', item: 'https://svalla.se/gotland' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#8b5e3c', '#b07d52']}
       eyebrow="Gotland"
       title="Östersjöns pärlа"
@@ -179,5 +216,6 @@ export default function GotlandPage() {
         { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
       ]}
     />
+    </>
   )
 }

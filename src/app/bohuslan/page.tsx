@@ -72,8 +72,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function BohuslanPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Hur seglar man från Stockholm till Bohuslän?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Du har två klassiska vägar: Göta kanal eller segling runt Skåne. Göta kanal går genom Sverige och tar 2–3 dagar — ett historiskt äventyr. Segling runt Skåne tar 5–7 dagar men är mer seglarvänligt med stopp längs hela östkusten.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad är bästa basporten för att utforska Bohuslän?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Göteborg är bäst för södra Bohuslän och Marstrand. Lysekil ligger perfekt i mitten och är en älskad ankringsbas. Strömstad är nordligaste basen och perfekt om du vill fokusera på Grebbestad, Fjällbacka och norrgränsen mot Norge.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Är Bohuslän svårt att navigera med båt?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, det är relativt svårt. Rikliga klippor, grunt vatten och ett invecklat ölandskap gör Bohuslän till en navigeringskurs för entusiaster. Håll alltid ett öga på sjökortet. Vid dåligt väder är det bättre att stanna på en naturhamn och vänta.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vilka är de mest kända öarna i Bohuslän?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Marstrand och dess fästning är utan tvekan mest kända. Tjörn och Orust är stora och historiska öar. Käringön och Gullholmen är mindre men älskade ankringsplatser. Norrut ligger Kosteröarna — Sveriges första marina nationalpark.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Bohuslän', item: 'https://svalla.se/bohuslan' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#2d6a4f', '#3a8a65']}
       eyebrow="Bohuslän"
       title="Västkustens råa skärgård"
@@ -243,5 +280,6 @@ export default function BohuslanPage() {
         { label: 'Alla destinationer', href: '/resmal' },
       ]}
     />
+    </>
   )
 }

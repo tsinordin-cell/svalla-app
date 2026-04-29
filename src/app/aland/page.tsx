@@ -71,8 +71,45 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function AlandPage() {
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Behöver man visum eller pass för att segla till Åland?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej, du behöver inte visum eller särskilt pass för att segla till Åland från Sverige. Du behöver dock ett giltigt ID-kort eller pass för identifikation. Det viktigaste är att anmäla din båts ankomst till tullmyndigheten vid inresa.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hur djupt är Ålands hav?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ålands hav varierar från omkring 30–50 meter på grunt vatten till över 200 meter på de djupaste ställena — betydligt djupare än många delar av Stockholms skärgård. Sundet mot Finland i öster är grundare och kräver noggrann navigation.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan man segla vidare till Finland från Åland?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut. Åbo (Turku) ligger ungefär 6 timmar segling öst om Mariehamn — en populär nästa etapp. Från Mariehamn kan du också välja söder omkring Kökar, väster till svenska vatten, eller öst genom skärgårdshavet mot Brändö.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Vad kostar gästhamn i Mariehamn?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Gästhamnarna i Mariehamn kostar normalt 150–250 kronor per natt beroende på båtens längd. De flesta hamnar inkluderar el och dusch i priset. Boka i förväg under juli–augusti för att säkra en bra plats.' },
+      },
+    ],
+  }
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Åland', item: 'https://svalla.se/aland' },
+    ],
+  }
   return (
-    <CategoryLanding
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <CategoryLanding
       heroGradient={['#1a4a7a', '#2563a8']}
       eyebrow="Åland"
       title="Skärgårdshavet kallar"
@@ -199,5 +236,6 @@ export default function AlandPage() {
         { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
+    </>
   )
 }
