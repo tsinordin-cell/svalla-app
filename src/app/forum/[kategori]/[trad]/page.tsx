@@ -116,15 +116,33 @@ export default async function ForumTradPage({ params }: Props) {
 
         {/* Thread meta — author + stats + subscribe */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {thread.author?.avatar ? (
-              <img src={thread.author.avatar} alt="" width={22} height={22} style={{ borderRadius: '50%', objectFit: 'cover', border: '1.5px solid rgba(255,255,255,0.4)' }} />
+              <img
+                src={thread.author.avatar}
+                alt=""
+                width={26}
+                height={26}
+                style={{
+                  width: 26, height: 26,
+                  aspectRatio: '1 / 1',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  flexShrink: 0,
+                  border: '1.5px solid rgba(255,255,255,0.4)',
+                }}
+              />
             ) : (
               <div style={{
-                width: 22, height: 22, borderRadius: '50%',
-                background: 'rgba(255,255,255,0.2)',
+                width: 26, height: 26,
+                aspectRatio: '1 / 1',
+                borderRadius: '50%',
+                background: 'rgba(255,255,255,0.22)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 10, fontWeight: 700, color: '#fff',
+                fontSize: 11, fontWeight: 700, color: '#fff',
+                flexShrink: 0,
+                border: '1.5px solid rgba(255,255,255,0.3)',
               }}>
                 {(thread.author?.username ?? '?')[0]?.toUpperCase()}
               </div>
@@ -308,16 +326,31 @@ function PostHeader({
   postId?: string
 }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
       {/* Avatar */}
       {avatar ? (
-        <img src={avatar} alt="" width={36} height={36} style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }} />
+        <img
+          src={avatar}
+          alt=""
+          width={40}
+          height={40}
+          style={{
+            width: 40, height: 40,
+            aspectRatio: '1 / 1',
+            borderRadius: '50%',
+            objectFit: 'cover',
+            display: 'block',
+            flexShrink: 0,
+          }}
+        />
       ) : (
         <div style={{
-          width: 36, height: 36, borderRadius: '50%',
+          width: 40, height: 40,
+          aspectRatio: '1 / 1',
+          borderRadius: '50%',
           background: 'var(--grad-sea)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 14, fontWeight: 700, color: '#fff',
+          fontSize: 15, fontWeight: 700, color: '#fff',
           flexShrink: 0,
         }}>
           {username[0]?.toUpperCase()}

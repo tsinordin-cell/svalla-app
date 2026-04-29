@@ -180,15 +180,34 @@ export default async function ForumKategoriPage({ params }: Props) {
 
 function AvatarMini({ username, avatar }: { username: string; avatar: string | null }) {
   if (avatar) {
-    return <img src={avatar} alt="" width={16} height={16} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+    return (
+      <img
+        src={avatar}
+        alt=""
+        width={18}
+        height={18}
+        style={{
+          width: 18, height: 18,
+          aspectRatio: '1 / 1',
+          borderRadius: '50%',
+          objectFit: 'cover',
+          display: 'inline-block',
+          flexShrink: 0,
+          verticalAlign: 'middle',
+        }}
+      />
+    )
   }
   return (
     <span style={{
-      width: 16, height: 16, borderRadius: '50%',
+      width: 18, height: 18,
+      aspectRatio: '1 / 1',
+      borderRadius: '50%',
+      flexShrink: 0,
       background: 'var(--teal-15, rgba(10,123,140,0.15))',
       color: 'var(--sea)',
-      fontSize: 9, fontWeight: 700,
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontSize: 10, fontWeight: 700,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     }}>
       {username[0]?.toUpperCase()}
     </span>
