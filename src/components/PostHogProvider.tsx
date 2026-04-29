@@ -4,7 +4,7 @@
  * PostHogProvider — initierar PostHog en gång vid app-start.
  *
  * Konfiguration:
- *  - EU-region (data lagras i Frankfurt) → GDPR-compliant
+ *  - US-region (PostHog US Cloud) → us.i.posthog.com
  *  - capture_pageview: false  → hanteras manuellt via PostHogPageView
  *  - session_recording med maskAllInputs → lösenord/e-post loggas aldrig
  *  - autocapture: true → klick, formulär, navigering fångas utan extra kod
@@ -27,8 +27,8 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     if (!key) return                        // inget nyckel → ingen tracking
 
     posthog.init(key, {
-      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://eu.i.posthog.com',
-      ui_host:            'https://eu.posthog.com',
+      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://us.i.posthog.com',
+      ui_host:            'https://us.posthog.com',
       capture_pageview:   false,           // PostHogPageView hanterar detta
       capture_pageleave:  true,
       autocapture:        true,
