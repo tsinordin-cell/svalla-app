@@ -124,6 +124,37 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden">${preheade
 </html>`
 }
 
+/**
+ * Skicka ett enkelt admin-mail utan mall — för interna notiser.
+ * Kräver RESEND_API_KEY och EMAIL_FROM (eller default hello@svalla.se).
+ */
+export async function sendAdminEmail(opts: {
+  subject: string
+  html: string
+}): Promise<{ ok: boolean; error?: string }> {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
+
+  const adminEmail = process.env.ADMIN_EMAIL || 'tsinordin@gmail.com'
+  const from = process.env.EMAIL_FROM || 'Svalla <hello@svalla.se>'
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ from, to: adminEmail, subject: opts.subject, html: opts.html }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) return { ok: false, error: data.message || `Resend ${res.status}` }
+    return { ok: true }
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : 'Network' }
+  }
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate

@@ -3,9 +3,10 @@ export const dynamic = 'force-dynamic'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { createReport } from '@/lib/moderation'
+import { createReport, REASON_LABELS, TARGET_TYPE_LABELS } from '@/lib/moderation'
 import type { ReportReason, ReportTargetType } from '@/lib/moderation'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { sendAdminEmail } from '@/lib/email'
 
 const VALID_TARGET_TYPES: ReportTargetType[] = [
   'trip', 'comment', 'user', 'message', 'review', 'story', 'checkin',
@@ -80,6 +81,27 @@ export async function POST(req: Request) {
   if (!result) {
     return NextResponse.json({ error: 'Kunde inte spara anmälan' }, { status: 500 })
   }
+
+  // Skicka admin-notis (fire-and-forget)
+  const targetLabel = TARGET_TYPE_LABELS[targetType as ReportTargetType] ?? targetType
+  const reasonLabel = REASON_LABELS[reason as ReportReason] ?? reason
+  sendAdminEmail({
+    subject: `🚨 Ny anmälan på Svalla — ${reasonLabel}`,
+    html: `
+      <h2 style="margin:0 0 16px;font-family:sans-serif">Ny anmälan</h2>
+      <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
+        <tr><td style="padding:4px 12px 4px 0;color:#666">Typ:</td><td><strong>${targetLabel}</strong></td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#666">Anledning:</td><td><strong>${reasonLabel}</strong></td></tr>
+        ${note ? `<tr><td style="padding:4px 12px 4px 0;color:#666">Notering:</td><td>${note}</td></tr>` : ''}
+        <tr><td style="padding:4px 12px 4px 0;color:#666">Rapport-ID:</td><td><code>${result}</code></td></tr>
+      </table>
+      <p style="margin-top:20px">
+        <a href="https://svalla.se/admin/moderation" style="display:inline-block;background:#0a4a5e;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-family:sans-serif;font-size:14px">
+          Öppna moderationskön →
+        </a>
+      </p>
+    `,
+  }).catch(() => {}) // Tyst fel — påverkar inte svaret till användaren
 
   return NextResponse.json({ ok: true, id: result })
 }
