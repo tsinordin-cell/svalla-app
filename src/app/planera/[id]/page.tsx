@@ -5,9 +5,13 @@ import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import { haversineKm, crossTrack } from '@/lib/planner'
+import { findSeaPath, calculatePathDistanceKm } from '@/lib/seaPathfinder'
+import { estimateAllProfiles } from '@/lib/routeTime'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
 import PlaneraMap from './PlaneraMapDynamic'
+import RouteDisclaimer from '@/components/RouteDisclaimer'
+import RouteFeedbackButton from '@/components/RouteFeedbackButton'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -129,7 +133,11 @@ export default async function PlaneraIdPage({ params }: Props) {
  return ta - tb
  })
 
- const totalKm = Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
+ // Faktisk distans längs vatten (via sjöledspathfindern), inte fågelvägen
+ const seaPath = findSeaPath(route.start_lat, route.start_lng, route.end_lat, route.end_lng)
+ const waterKm = Math.round(calculatePathDistanceKm(seaPath))
+ const totalKm = waterKm > 0 ? waterKm : Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
+ const timeEstimates = estimateAllProfiles(totalKm)
 
  // Map stop data (only what PlaneraMap needs)
  const mapStops = sortedStops.map(s => ({
@@ -206,6 +214,44 @@ export default async function PlaneraIdPage({ params }: Props) {
  endName={route.end_name}
  stops={mapStops}
  />
+
+ {/* Tidsestimat per båttyp — baserat på faktisk vatten-distans */}
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(3, 1fr)',
+ gap: 8,
+ marginBottom: 16,
+ }}>
+ {[
+ { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
+ { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
+ { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
+ ].map(card => (
+ <div key={card.label} style={{
+ background: 'var(--white)',
+ borderRadius: 12,
+ padding: '12px 10px',
+ border: '1px solid rgba(10,123,140,0.1)',
+ textAlign: 'center',
+ }}>
+ <div style={{
+ fontSize: 10, fontWeight: 700, color: 'var(--sea)',
+ textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
+ }}>
+ {card.label}
+ </div>
+ <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', marginBottom: 2 }}>
+ {card.value}
+ </div>
+ <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
+ {card.sub}
+ </div>
+ </div>
+ ))}
+ </div>
+
+ {/* Säkerhets-disclaimer + datakälla */}
+ <RouteDisclaimer />
 
  {/* Stop list */}
  {sortedStops.length > 0 ? (
@@ -309,6 +355,15 @@ export default async function PlaneraIdPage({ params }: Props) {
  }}>
  + Planera en ny rutt
  </Link>
+
+ {/* Felrapport-knapp — crowdsourcad förbättring av farledsdata */}
+ <div style={{ display: 'flex', justifyContent: 'center', marginTop: 14 }}>
+ <RouteFeedbackButton
+ routeId={route.id}
+ startName={route.start_name}
+ endName={route.end_name}
+ />
+ </div>
  </div>
  </div>
  )

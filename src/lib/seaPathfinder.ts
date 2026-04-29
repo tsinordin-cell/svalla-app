@@ -10,10 +10,22 @@
  * Om ingen väg finns fallback till rät linje med warning.
  */
 
-import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, SeaWaypoint } from './seaWaypoints'
+import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, SeaWaypoint, WAYPOINTS_VERSION, DATA_SOURCE } from './seaWaypoints'
+import { isLineCrossingLand, validatePathLand } from './landMask'
+import { logger } from './logger'
 
 const DEG_TO_RAD = Math.PI / 180
 const EARTH_R_KM = 6371
+
+export type ValidatedSeaPath = {
+  path: Array<[number, number]>
+  distanceKm: number
+  travelTimeHours: { sailboat: number; motorboat: number; kayak: number }
+  crossesLand: boolean
+  validatedAt: string
+  landCrossings?: string[]
+  warnings?: string[]
+}
 
 /**
  * Haversine-distans mellan två lat/lng, i km
@@ -181,6 +193,155 @@ export function calculatePathDistance(path: Array<[number, number]>): number {
     totalKm += haversineKm(lat1, lng1, lat2, lng2)
   }
   return totalKm
+}
+
+/**
+ * Alias för backwards compatibility
+ */
+export function calculatePathDistanceKm(path: Array<[number, number]>): number {
+  return calculatePathDistance(path)
+}
+
+/**
+ * Beräkna restid baserat på distans och båttyp
+ * @param distanceKm Totalt avstånd i km
+ * @param vesselType 'sailboat' (5 knop), 'motorboat' (18 knop), 'kayak' (4 knop)
+ * @returns Restid i timmar (avrundat till 0.5h)
+ */
+export function estimateTravelTime(
+  distanceKm: number,
+  vesselType: 'sailboat' | 'motorboat' | 'kayak',
+): number {
+  const knots: Record<string, number> = {
+    sailboat: 5,
+    motorboat: 18,
+    kayak: 4,
+  }
+
+  const kmPerHour = (knots[vesselType] || 5) * 1.852 // 1 knop ≈ 1.852 km/h
+
+  const hours = distanceKm / kmPerHour
+  return Math.round(hours * 2) / 2 // Avrunda till 0.5h
+}
+
+/**
+ * Validera att en väg inte korsar land
+ */
+export function validatePath(path: Array<[number, number]>): {
+  ok: boolean
+  crossesAt?: string
+  crossingSegment?: number
+} {
+  const validation = validatePathLand(path)
+
+  if (!validation.ok) {
+    return {
+      ok: false,
+      crossesAt: validation.crossesAt,
+    }
+  }
+
+  return { ok: true }
+}
+
+/**
+ * Validera vägens segment mot land och samla warnings
+ */
+function validatePathSegments(path: Array<[number, number]>): { ok: boolean; warnings: string[] } {
+  const warnings: string[] = []
+
+  for (let i = 0; i < path.length - 1; i++) {
+    const [lat1, lng1] = path[i]!
+    const [lat2, lng2] = path[i + 1]!
+
+    const landPolygon = validatePath([
+      [lat1, lng1],
+      [lat2, lng2],
+    ])
+
+    if (!landPolygon.ok) {
+      const warning = `Segment ${i}-${i + 1} korsar land (${landPolygon.crossesAt}) mellan (${lat1.toFixed(3)}, ${lng1.toFixed(3)}) → (${lat2.toFixed(3)}, ${lng2.toFixed(3)})`
+      warnings.push(warning)
+    }
+  }
+
+  return {
+    ok: warnings.length === 0,
+    warnings,
+  }
+}
+
+/**
+ * Huvudfunktion: Hitta en validerad sjöleds-väg
+ * Returnerar en väg som (i möjligaste mån) inte korsar land
+ */
+export async function findValidatedSeaPath(
+  startLat: number,
+  startLng: number,
+  endLat: number,
+  endLng: number,
+): Promise<ValidatedSeaPath> {
+  // 1. Hitta initial väg
+  let path = findSeaPath(startLat, startLng, endLat, endLng)
+
+  // 2. Validera mot land
+  let validation = validatePath(path)
+  let retries = 0
+  const maxRetries = 3
+  const allWarnings: string[] = []
+
+  // 3. Om vägen korsar land, försök lägga till intermediate waypoints
+  while (!validation.ok && retries < maxRetries) {
+    const warning = `Väg korsar ${validation.crossesAt}, försöker med intermediate waypoint (retry ${retries + 1}/${maxRetries})`
+    allWarnings.push(warning)
+    logger.warn('seaPathfinder', warning)
+
+    // Hitta mittpunkten på vägen
+    const midIdx = Math.floor(path.length / 2)
+    const midLat = (path[midIdx - 1]![0] + path[midIdx]![0]) / 2
+    const midLng = (path[midIdx - 1]![1] + path[midIdx]![1]) / 2
+
+    // Försök hitta väg via mitten
+    const firstHalf = findSeaPath(startLat, startLng, midLat, midLng)
+    const secondHalf = findSeaPath(midLat, midLng, endLat, endLng)
+    path = [...firstHalf.slice(0, -1), ...secondHalf]
+
+    validation = validatePath(path)
+    retries++
+  }
+
+  // 4. Beräkna distans och restid
+  const distanceKm = calculatePathDistance(path)
+  const travelTimeHours = {
+    sailboat: estimateTravelTime(distanceKm, 'sailboat'),
+    motorboat: estimateTravelTime(distanceKm, 'motorboat'),
+    kayak: estimateTravelTime(distanceKm, 'kayak'),
+  }
+
+  // 5. Detaljerad segment-validering
+  const segmentValidation = validatePathSegments(path)
+  if (!segmentValidation.ok) {
+    segmentValidation.warnings.forEach(w => {
+      allWarnings.push(w)
+      logger.warn('seaPathfinder', w)
+    })
+  }
+
+  // 6. Loggning
+  if (!validation.ok) {
+    const finalWarning = `Väg korsar fortfarande land (${validation.crossesAt}) efter ${maxRetries} försök. Returnerar med varning.`
+    allWarnings.push(finalWarning)
+    logger.warn('seaPathfinder', finalWarning)
+  }
+
+  return {
+    path,
+    distanceKm: Math.round(distanceKm * 10) / 10,
+    travelTimeHours,
+    crossesLand: !validation.ok,
+    validatedAt: new Date().toISOString(),
+    warnings: allWarnings.length > 0 ? allWarnings : undefined,
+  }
 }
 
 /**

@@ -39,10 +39,13 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
       // Hitta sjöleds-vägen
       const seaPath = findSeaPath(startLat, startLng, endLat, endLng)
 
-      // Bounds från start/end (stops är overlays)
+      // Bounds från hela pathen, inte bara start/end — så öar som rutten
+      // loopar runt (Lidingö, Värmdö osv) också ryms i vyn.
+      const lats = seaPath.map(p => p[0]!)
+      const lngs = seaPath.map(p => p[1]!)
       const bounds = L.latLngBounds(
-        [Math.min(startLat, endLat), Math.min(startLng, endLng)],
-        [Math.max(startLat, endLat), Math.max(startLng, endLng)],
+        [Math.min(...lats), Math.min(...lngs)],
+        [Math.max(...lats), Math.max(...lngs)],
       )
 
       const map = L.map(containerRef.current!, {
