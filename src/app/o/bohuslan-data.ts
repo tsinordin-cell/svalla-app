@@ -23,9 +23,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏰',
     tagline: 'Carlstens fästning, segling och västkustens kungsdestination.',
     description: [
-      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning från 1600-talet tornar över hamnen — ett av Nordens bäst bevarade fästningsverk.',
-      'Marstrand är hjärtat av svensk regattatävling. Match Cup Sweden lockar tusentals seglare varje sommar, och hamnen är en av västkustens mest livaktiga juli–augusti.',
-      'Ön är bilfri. En liten färja går från Koön till Marstrand på under en minut och går varje 15 minuter under sommaren.',
+      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning från 1600-talet tornar över hamnen — ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
+      'Som segeldestination är Marstrand utan motstycke i Sverige. Match Cup Sweden — en av världens mest prestigefyllda match-racing-regattor — lockar världens bästa seglare till Marstrands gästhamn varje juli. Hamnen är med sina 200 platser en av västkustens absolut största och ligger skyddad innanför Koön.',
+      'Ön är helt bilfri, vilket ger Marstrand en unik stämning sommartid. En liten passagerarfärja trafikerar sundet till Koön i princip kontinuerligt under högsäsongen. Det gör att man kan parkera på fastlandet och ta sig till ön på under en minut.',
+      'Utöver fästningen och seglingen har Marstrand ett rikt restaurangutbud för en så liten ö. Allt från skaldjursrestauranger med havsutsikt till enklare hamnkrogar och glassbarer längs kajkanten. Kallt öl och nykokt hummer i solnedgången är en sommarbild de flesta förknippar med Marstrand.',
+      'Marstrand passar både för dagstur och övernattning. Från Göteborg är det 50 minuter med bil till färjan — en av de kortaste resorna till äkta Bohuslän-känsla. Det gör Marstrand till ett av de mest populära utflyktsmålen i hela regionen, men också till en plats som snabbt fylls i juli och augusti.',
     ],
     facts: {
       travel_time: '50 min med bil + färja från Göteborg',
@@ -69,9 +71,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🦐',
     tagline: 'Den ikoniska bryggan, räkmackan och Sveriges mest fotograferade fiskeläge.',
     description: [
-      'Smögen är ikonisk. Den välkända Smögenbryggan med sina röda sjöbodar är en av Sveriges mest fotograferade vyer. Här går det livligt till sommartid med restauranger, glasskiosker och seglare.',
-      'Räkan är symbolen — Smögen är Sveriges räkhuvudstad. Räkfisket har drivits här sedan 1800-talet och färska räkor från Smögen kommer dagligen till restauranger i hela Sverige.',
-      'Ön är liten men packad. Vandring från Smögenbryggan till Hasselösund tar en timme och bjuder på klassisk bohuslänsk klipplandskap.',
+      'Smögen är ikonisk. Den välkända Smögenbryggan — 600 meter lång med tätt packade röda sjöbodar — är en av Sveriges mest fotograferade vyer och navet i hela Smögens sommarliv. Här promenerar tusentals besökare dagligen under juli och augusti.',
+      'Räkan är Smögens symbol och hjärta. Smögen är Sveriges inofficiella räkhuvudstad, och räkfisket har bedrivits i de här vattnen sedan 1800-talet. Färska räkor från Smögen levereras dagligen till restauranger och fiskhandlare i hela landet. Att äta räkmacka på Smögenbryggan med utsikt mot havet är en av de mest klassiska svenska sommarupplevelserna.',
+      'Gästhamnen vid Smögen är en av västkustens allra populäraste. Med 400 platser, bensinstation och fullservicehamn är den ett självklart stopp för seglare och motorbåtsentusiaster längs Bohuslän-kusten. Lägg till att restauranger, affärer och glassbarer finns inom gångavstånd — och du förstår varför Smögen brukar ha fullbelagt i hamnen redan i mitten av juni.',
+      'För den som vill röra på sig erbjuder Smögen fin klippvandring. Vandringen från Smögenbryggan mot Hasselösund tar 1–2 timmar och bjuder på klassisk bohuslänsk klipplandskap med vid havsutsikt. På vägen passerar man det populära Smögenbadet — ett klippbad på öns västsida med morgonsolläge.',
+      'Smögen ligger nära Kungshamn, som fysiskt är sammanlänkat via en bro. Det gör hela området till ett av Bohusläns tätaste utbudskluster. Kungshamn är lugnare och billigare att bo i — ett praktiskt alternativ för den som vill ha Smögens restauranger men inte Smögens hotellpriser.',
     ],
     facts: {
       travel_time: '1 h 30 min med bil från Göteborg',
@@ -251,9 +255,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '⛰',
     tagline: 'Camilla Läckbergs by, Vetteberget och pittoreska sjöbodar.',
     description: [
-      'Fjällbacka är välkänt från Camilla Läckbergs kriminalromaner och har blivit en turistmagnet både för bokfans och för dem som söker autentisk Bohuslän-charm. Den vita kyrkan och röda sjöbodarna sätter scen.',
-      'Vetteberget reser sig 74 meter över byn och kan bestigas via en stege i klippspringan "Kungsklyftan". Toppen ger panoramautsikt över skärgården.',
-      'Ingrid Bergman bodde sommartid i Fjällbacka i 30+ år och hennes torg "Ingrid Bergmans torg" är fortfarande centrum för kvällsstämning.',
+      'Fjällbacka är en av Bohusläns mest välkända och omtyckta destinationer — liten och pittoresk med vita trähus, röda sjöbodar och en hamn som fylls av seglare varje sommar. Byn fick internationell uppmärksamhet genom Camilla Läckbergs kriminalromaner, som utspelar sig här, och har sedan dess lockat bokfans och skärgårdsälskare i lika stora skaror.',
+      'Vetteberget är Fjällbackas landmärke. Det 74 meter höga berget reser sig dramatiskt direkt bakom bykärnan och nås via en stege i klippspringan som kallas "Kungsklyftan". Klättringen är enkel och tar 20 minuter — men utsikten från toppen är bland de bästa i hela Bohuslän. Du ser ut över skärgårdens öar, sund och vida hav.',
+      'Ingrid Bergman — en av 1900-talets största filmstjärnor — bodde sommartid i Fjällbacka i över 30 år och valde att få sin aska spridd i havet utanför byn 1982. Torget vid hamnen bär hennes namn och sommartid arrangeras guidade turer om hennes liv i Fjällbacka.',
+      'Fjällbacka är ett utmärkt utgångsläge för skärgårdsutflykter. Därifrån kan man ta båt till Väderöarna — ett av Bohusläns vildaste och mest avlägset belägna naturreservat — eller paddla ut till mindre öar som Sälö. Gästhamnen mitt i byn tar emot seglare på 100 platser och har fullservice.',
+      'Till skillnad från Marstrand och Smögen är Fjällbacka fortfarande relativt opåverkad av masstourism. Det gör att charmen är mer autentisk och att det går att hitta bord på restaurang utan att boka veckor i förväg — även om det ändras snabbt under högsäsongen.',
     ],
     facts: {
       travel_time: '2 h med bil från Göteborg',
