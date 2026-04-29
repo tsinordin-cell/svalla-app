@@ -49,6 +49,28 @@ export interface ForumPost {
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
 
+/**
+ * Slår ihop databasrad med statisk kategori-info.
+ *
+ * forum_categories-tabellen i Supabase saknar kolumnerna `iconName` och
+ * `iconColor` — de finns bara i den statiska TS-listan. Det här hjälpfältet
+ * tar Supabase-data (för senaste thread_count/post_count) och fyller på med
+ * iconName + iconColor från STATIC_CATEGORIES så UI:n inte kraschar när den
+ * läser cat.iconName.
+ */
+function mergeWithStatic(dbRow: Partial<ForumCategory> & { id: string }): ForumCategory | null {
+  const staticCat = STATIC_CATEGORIES.find(c => c.id === dbRow.id)
+  if (!staticCat) return null
+  return {
+    ...staticCat,
+    ...dbRow,
+    // Säkerställ att icon-fälten alltid kommer från STATIC (DB:n har dem ej).
+    iconName: staticCat.iconName,
+    iconColor: staticCat.iconColor,
+    icon: staticCat.icon,
+  }
+}
+
 export async function getForumCategories(): Promise<ForumCategory[]> {
   try {
     const supabase = await createServerSupabaseClient()
@@ -57,7 +79,10 @@ export async function getForumCategories(): Promise<ForumCategory[]> {
       .select('id, name, description, icon, sort_order, thread_count, post_count')
       .order('sort_order')
     if (error || !data) return STATIC_CATEGORIES
-    return data as ForumCategory[]
+    const merged = (data as Array<Partial<ForumCategory> & { id: string }>)
+      .map(mergeWithStatic)
+      .filter((c): c is ForumCategory => c !== null)
+    return merged.length > 0 ? merged : STATIC_CATEGORIES
   } catch {
     return STATIC_CATEGORIES
   }
@@ -71,7 +96,11 @@ export async function getCategoryById(id: string): Promise<ForumCategory | null>
       .select('id, name, description, icon, sort_order, thread_count, post_count')
       .eq('id', id)
       .single()
-    return (data as ForumCategory) ?? STATIC_CATEGORIES.find(c => c.id === id) ?? null
+    if (data) {
+      const merged = mergeWithStatic(data as Partial<ForumCategory> & { id: string })
+      if (merged) return merged
+    }
+    return STATIC_CATEGORIES.find(c => c.id === id) ?? null
   } catch {
     return STATIC_CATEGORIES.find(c => c.id === id) ?? null
   }

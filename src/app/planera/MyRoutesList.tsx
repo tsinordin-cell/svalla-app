@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import type { ScoredStop } from '@/lib/planner'
+import Icon, { type IconName } from '@/components/Icon'
 
 type PlannedRoute = {
   id: string
@@ -14,8 +15,8 @@ type PlannedRoute = {
   created_at: string
 }
 
-const INTEREST_EMOJI: Record<string, string> = {
-  krog: '🍽', bastu: '🛁', bad: '🏊', brygga: '⚓', natur: '🌿', bensin: '⛽',
+const INTEREST_ICON: Record<string, IconName> = {
+  krog: 'utensils', bastu: 'sun', bad: 'waves', brygga: 'anchor', natur: 'leaf', bensin: 'fuel',
 }
 
 const INTEREST_COLOR: Record<string, { bg: string; text: string }> = {
@@ -91,13 +92,16 @@ export default function MyRoutesList({ initialRoutes }: { initialRoutes: Planned
                   <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                     {(route.interests ?? []).map(i => {
                       const col = INTEREST_COLOR[i] ?? { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
+                      const iconName = INTEREST_ICON[i]
                       return (
                         <span key={i} style={{
-                          fontSize: 10, padding: '2px 7px', borderRadius: 20,
+                          fontSize: 10, padding: '3px 8px', borderRadius: 20,
                           background: col.bg, color: col.text, fontWeight: 700,
                           letterSpacing: '0.02em',
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
                         }}>
-                          {INTEREST_EMOJI[i] ?? '•'} {i}
+                          {iconName ? <Icon name={iconName} size={11} stroke={2} /> : <span>•</span>}
+                          {i}
                         </span>
                       )
                     })}

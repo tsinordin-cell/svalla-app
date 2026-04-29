@@ -4,6 +4,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import type { ScoredStop } from '@/lib/planner'
 import MyRoutesList from './MyRoutesList'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt — Svalla',
@@ -95,7 +96,8 @@ export default async function PlaneraPage() {
             fontSize: 14, fontWeight: 800, textDecoration: 'none',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
           }}>
-            🗺 Planera ny rutt
+            <Icon name="map" size={16} stroke={2} />
+            Planera ny rutt
           </Link>
         </div>
       </div>
@@ -113,7 +115,14 @@ export default async function PlaneraPage() {
             background: 'var(--white)', borderRadius: 16, padding: '20px',
             border: '1px solid rgba(10,123,140,0.08)', marginBottom: 24, textAlign: 'center',
           }}>
-            <div style={{ fontSize: 28, marginBottom: 10 }}>⛵</div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 48, height: 48, borderRadius: 14,
+              background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
+              marginBottom: 12,
+            }}>
+              <Icon name="sailboat" size={26} stroke={1.8} />
+            </div>
             <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Spara dina rutter</p>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>
               Logga in för att spara, dela och återvända till dina planerade rutter.
@@ -133,34 +142,44 @@ export default async function PlaneraPage() {
             background: 'var(--white)', borderRadius: 16, padding: '32px 20px',
             border: '1px solid rgba(10,123,140,0.08)', textAlign: 'center',
           }}>
-            <div style={{ fontSize: 40, marginBottom: 12 }}>🗺</div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 60, height: 60, borderRadius: 16,
+              background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
+              marginBottom: 14,
+            }}>
+              <Icon name="map" size={32} stroke={1.6} />
+            </div>
             <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Inga rutter ännu</p>
             <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 20px' }}>
               Planera din första skärgårdsrutt och se vilka stopp som passar.
             </p>
             <Link href="/planera/ny" style={{
-              display: 'inline-block', padding: '12px 28px', borderRadius: 50,
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '12px 28px', borderRadius: 50,
               background: 'var(--grad-sea)', color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
             }}>
-              🗺 Planera din första rutt
+              <Icon name="map" size={15} stroke={2} />
+              Planera din första rutt
             </Link>
           </div>
         )}
 
         {/* Länk till Thorkel */}
         <div style={{
-          background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '14px 16px',
+          background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '16px',
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
-          display: 'flex', alignItems: 'center', gap: 12,
+          display: 'flex', alignItems: 'center', gap: 14,
         }}>
-          <ThorkelAvatar size={36} />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Fråga Thorkel</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
+          <ThorkelAvatar size={56} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 3 }}>Fråga Thorkel</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.45 }}>Berätta vad du letar efter — vår skärgårdsguide svarar på sekunder.</div>
           </div>
           <Link href="/guide" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',
-            padding: '6px 12px', borderRadius: 20, background: 'rgba(10,123,140,0.1)',
+            padding: '7px 14px', borderRadius: 20, background: 'rgba(10,123,140,0.1)',
+            flexShrink: 0,
           }}>
             Testa →
           </Link>

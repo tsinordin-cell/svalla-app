@@ -261,7 +261,7 @@ function GuideContent() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </Link>
-        <ThorkelAvatar size={36} talking={loading} />
+        <ThorkelAvatar size={44} talking={loading} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{
             fontSize: 15, fontWeight: 700, color: '#fff',
@@ -359,7 +359,7 @@ function GuideContent() {
           }}>
             {m.role === 'assistant' && (
               <div style={{ flexShrink: 0, alignSelf: 'flex-end' }}>
-                <ThorkelAvatar size={32} talking={loading && i === messages.length - 1} />
+                <ThorkelAvatar size={40} talking={loading && i === messages.length - 1} />
               </div>
             )}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: '82%' }}>
@@ -424,8 +424,8 @@ function GuideContent() {
 
         {/* Loading dots — only show before first streaming chunk arrives */}
         {showLoadingDots && (
-          <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
-            <ThorkelAvatar size={32} />
+          <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'flex-end' }}>
+            <ThorkelAvatar size={40} talking />
             <div style={{
               padding: '12px 15px', borderRadius: '18px 18px 18px 4px',
               background: 'var(--thor-l)', border: '1px solid rgba(43,62,86,0.12)',

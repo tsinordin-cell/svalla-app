@@ -38,11 +38,11 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-dropdown > a{display:flex;align-items:center;gap:5px}
 .nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.6;transition:.2s}
 .nav-dropdown:hover > a::after{opacity:1}
-.nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:720px;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
+.nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:880px;max-width:calc(100vw - 60px);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .nav-dropdown:hover .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-mega-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:0}
-.nav-mega-col{padding:8px 12px}
+.nav-mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.nav-mega-col{padding:8px 14px}
 .nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
 .nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
 .nav-mega-region+.nav-mega-region{margin-top:12px}
@@ -54,6 +54,34 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-mega-link:hover{color:#fff;padding-left:4px}
 .nav-mega-all{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;opacity:.75}
 .nav-mega-all:hover{opacity:1}
+.nav-tabs-bar{display:flex;gap:2px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px}
+.nav-tab-btn{background:none;border:none;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:7px;cursor:pointer;transition:.15s;letter-spacing:-.01em}
+.nav-tab-btn:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.06)}
+.nav-tab-btn.active{color:var(--accent);background:rgba(232,146,74,.1)}
+.nav-tab-content{display:none}
+.nav-tab-content.active{display:block}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.85);border-radius:2px;transition:.25s}
+.mob-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:998;opacity:0;pointer-events:none;transition:opacity .25s}
+.mob-drawer-overlay.open{opacity:1;pointer-events:auto}
+.mob-drawer{position:fixed;top:0;right:0;width:min(340px,90vw);height:100svh;background:rgba(8,20,30,.98);backdrop-filter:blur(24px);z-index:999;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding-bottom:40px}
+.mob-drawer.open{transform:translateX(0)}
+.mob-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.mob-drawer-logo{font-family:'Playfair Display',serif;font-size:16px;color:#fff;letter-spacing:2.5px;font-weight:700}
+.mob-drawer-close{background:none;border:none;color:rgba(255,255,255,.55);font-size:28px;cursor:pointer;line-height:1;padding:0 4px}
+.mob-acc{border-bottom:1px solid rgba(255,255,255,.07)}
+.mob-acc-head{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;color:rgba(255,255,255,.85);font-size:14.5px;font-weight:600;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:'Inter',sans-serif;transition:.15s}
+.mob-acc-head:hover{color:#fff;background:rgba(255,255,255,.03)}
+.mob-acc-chevron{font-size:15px;color:rgba(255,255,255,.35);transition:transform .2s;display:inline-block}
+.mob-acc.open .mob-acc-chevron{transform:rotate(90deg);color:var(--accent)}
+.mob-acc-body{display:none;padding:0 20px 14px}
+.mob-acc.open .mob-acc-body{display:block}
+.mob-acc-link{display:block;padding:9px 0;color:rgba(255,255,255,.58);text-decoration:none;font-size:13.5px;border-bottom:1px solid rgba(255,255,255,.04);transition:.15s}
+.mob-acc-link:last-child{border-bottom:none}
+.mob-acc-link:hover{color:#fff;padding-left:4px}
+.mob-drawer-cta{padding:16px 20px;display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.mob-drawer-cta a{text-align:center;justify-content:center}
+@media(max-width:600px){.nav-hamburger{display:flex}}
 .nav-cta{display:flex;gap:10px;align-items:center}
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn-ghost{background:rgba(255,255,255,.12);color:var(--white);border:1px solid rgba(255,255,255,.2)}
@@ -348,109 +376,227 @@ const LANDING_HTML = `
   </a>
   <ul class="nav-links">
     <li class="nav-dropdown">
-      <a href="#">Upptäck</a>
+      <a href="#">Utforska</a>
       <div class="nav-mega">
         <div class="nav-mega-inner">
-          <div class="nav-mega-grid">
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Snabba val</div>
-              <a href="/resmal" class="nav-mega-link">🏝️ Alla resmål</a>
-              <a href="/karta" class="nav-mega-link">🗺️ Karta över skärgården</a>
-              <a href="/aktiviteter" class="nav-mega-link">🎿 Aktiviteter</a>
-              <a href="/boende" class="nav-mega-link">🛏️ Boende</a>
-              <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
-              <a href="/resmal" class="nav-mega-all">Se alla →</a>
-            </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Kategorier</div>
-              <a href="/krogar-och-mat" class="nav-mega-link">🍽️ Krogar &amp; mat</a>
-              <a href="/bastu-och-bad" class="nav-mega-link">🛁 Bastu &amp; bad</a>
-              <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; bryggor</a>
-              <a href="/nyborjarguider" class="nav-mega-link">📚 Nybörjarguider</a>
-              <a href="/vandring-och-natur" class="nav-mega-link">🏕️ Vandring &amp; natur</a>
-              <a href="/erbjudanden" class="nav-mega-link">🎒 Erbjudanden</a>
-            </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Turer</div>
-              <a href="/populara-turer" class="nav-mega-link">🧭 Populära turer</a>
-              <a href="/segelrutter" class="nav-mega-link">⛵ Segelrutter</a>
-              <a href="/snabbaste-vagen" class="nav-mega-link">🚤 Snabbaste vägen</a>
-              <a href="/planera-tur" class="nav-mega-link">📅 Planera min tur</a>
-            </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Populära öar</div>
-              <a href="/o/sandhamn" class="nav-mega-link">⛵ Sandhamn</a>
-              <a href="/o/uto" class="nav-mega-link">⛏️ Utö</a>
-              <a href="/o/vaxholm" class="nav-mega-link">🏰 Vaxholm</a>
-              <a href="/o/grinda" class="nav-mega-link">🌿 Grinda</a>
-              <a href="/o/moja" class="nav-mega-link">🏝️ Möja</a>
-              <a href="/o" class="nav-mega-all">Se alla →</a>
-            </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Regioner</div>
-              <a href="/stockholms-skargard" class="nav-mega-link">🏝️ Stockholms skärgård</a>
-              <a href="/bohuslan" class="nav-mega-link">🌊 Bohuslän</a>
-              <a href="/gotland" class="nav-mega-link">🏰 Gotland</a>
-              <a href="/aland" class="nav-mega-link">⛵ Åland</a>
-              <a href="/blekinge-skargard" class="nav-mega-link">🌿 Blekinges skärgård</a>
-              <a href="/vasterhav" class="nav-mega-link">🌊 Västerhavet</a>
-              <a href="/malaren" class="nav-mega-link">🏞️ Mälaren</a>
-              <a href="/goteborg-skargard" class="nav-mega-link">⚓ Göteborgs skärgård</a>
+          <div class="nav-tabs-bar">
+            <button class="nav-tab-btn active" data-tab="hitta">🏝 Hitta en ö</button>
+            <button class="nav-tab-btn" data-tab="planera">🗓 Planera resan</button>
+            <button class="nav-tab-btn" data-tab="uppleva">🎯 Uppleva &amp; göra</button>
+            <button class="nav-tab-btn" data-tab="populart">⭐ Populärt</button>
+          </div>
+          <div class="nav-tab-content active" id="nav-tab-hitta">
+            <div class="nav-mega-grid">
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Hitta efter typ</div>
+                <a href="/bastu-och-bad" class="nav-mega-link">🏖 Stränder &amp; bad</a>
+                <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Hamnar &amp; segling</a>
+                <a href="/vandring-och-natur" class="nav-mega-link">🌲 Natur &amp; vandring</a>
+                <a href="/krogar-och-mat" class="nav-mega-link">🍽 Mat &amp; restauranger</a>
+                <a href="/boende" class="nav-mega-link">🏨 Boende</a>
+                <a href="/resmal" class="nav-mega-all">Se alla kategorier →</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Hitta för dig</div>
+                <a href="/oar/barnvanliga" class="nav-mega-link">👪 Barnvänliga öar</a>
+                <a href="/oar/romantiska" class="nav-mega-link">💑 Romantiska öar</a>
+                <a href="/oar/avskild" class="nav-mega-link">🌿 Avskilda pärlor</a>
+                <a href="/oar/utan-bil" class="nav-mega-link">🚗 Öar utan bil</a>
+                <a href="/oar/dagstur-stockholm" class="nav-mega-link">⚡ Dagstur från Stockholm</a>
+                <a href="/oar" class="nav-mega-all">Alla filter →</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Jämför &amp; utforska</div>
+                <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
+                <a href="/karta" class="nav-mega-link">🗺 Karta över skärgården</a>
+                <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Regioner</div>
+                <a href="/stockholms-skargard" class="nav-mega-link">⭐ Stockholms skärgård</a>
+                <a href="/bohuslan" class="nav-mega-link">🌊 Bohuslän</a>
+                <a href="/gotland" class="nav-mega-link">🏰 Gotland</a>
+                <a href="/aland" class="nav-mega-link">⛵ Åland</a>
+                <a href="/blekinge-skargard" class="nav-mega-link">🌿 Blekinges skärgård</a>
+                <a href="/vasterhav" class="nav-mega-link">🌊 Västerhavet</a>
+                <a href="/malaren" class="nav-mega-link">🏞 Mälaren</a>
+                <a href="/goteborg-skargard" class="nav-mega-link">⚓ Göteborgs skärgård</a>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </li>
-    <li class="nav-dropdown">
-      <a href="#">Verktyg</a>
-      <div class="nav-mega">
-        <div class="nav-mega-inner">
-          <div class="nav-mega-grid">
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Planera</div>
-              <a href="/utflykt" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Utflyktsplanerare</a>
-              <a href="/planera" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Planera båtrutt</a>
-              <a href="/jamfor" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M21 3l-7 7"/><path d="M8 21H3v-5"/><path d="M3 21l7-7"/></svg>Jämför öar</a>
-              <a href="/farjor" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M2 20a2.4 2.4 0 0 0 2 1c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2a2.4 2.4 0 0 0 2-1"/><path d="M4 18 2 22"/><path d="m22 22-2-4"/><path d="M19 6 22 14H2L5 6Z"/><path d="M12 2v4"/></svg>Färjetider</a>
+          <div class="nav-tab-content" id="nav-tab-planera">
+            <div class="nav-mega-grid">
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Planera turen</div>
+                <a href="/utflykt" class="nav-mega-link">🗓 Utflyktsplanerare</a>
+                <a href="/planera" class="nav-mega-link">⛵ Planera båtrutt</a>
+                <a href="/segelrutter" class="nav-mega-link">🗺 Segelrutter</a>
+                <a href="/snabbaste-vagen" class="nav-mega-link">⚡ Snabbaste vägen</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Ta sig dit</div>
+                <a href="/farjor" class="nav-mega-link">⛴ Färjetider</a>
+                <a href="/populara-turer" class="nav-mega-link">📸 Populära turer</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Inspiration</div>
+                <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
+                <a href="/tips" class="nav-mega-link">💡 Tips &amp; artiklar</a>
+                <a href="/nyborjarguider" class="nav-mega-link">📚 Nybörjarguider</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Min planering</div>
+                <a href="/profil" class="nav-mega-link">⭐ Mina sparade öar</a>
+                <a href="/profil" class="nav-mega-link">👤 Min profil</a>
+                <a href="/planera" class="nav-mega-link">📅 Mina turer</a>
+              </div>
             </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Hitta din ö</div>
-              <a href="/oar/barnvanliga" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Barnvänliga öar</a>
-              <a href="/oar/dagstur-stockholm" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Dagstur från Stockholm</a>
-              <a href="/oar/romantiska" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Romantiska öar</a>
-              <a href="/oar/avskild" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Avskilda pärlor</a>
-              <a href="/oar/utan-bil" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>Öar utan bil</a>
-              <a href="/oar" class="nav-mega-all">Alla kategorier →</a>
+          </div>
+          <div class="nav-tab-content" id="nav-tab-uppleva">
+            <div class="nav-mega-grid">
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Aktiviteter</div>
+                <a href="/aktivitet/segling" class="nav-mega-link">⛵ Segling</a>
+                <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
+                <a href="/aktivitet/bada" class="nav-mega-link">🏊 Bad</a>
+                <a href="/aktivitet/vandring" class="nav-mega-link">🥾 Vandring</a>
+                <a href="/bastu-och-bad" class="nav-mega-link">🧖 Bastu &amp; spa</a>
+                <a href="/aktiviteter" class="nav-mega-all">Se alla →</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Mat &amp; dryck</div>
+                <a href="/krogar-och-mat" class="nav-mega-link">🍽 Restauranger</a>
+                <a href="/aktivitet/mat" class="nav-mega-link">🦞 Sjömatskrogar</a>
+                <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Guider &amp; listor</div>
+                <a href="/nyborjarguider" class="nav-mega-link">🌱 Nybörjarguider</a>
+                <a href="/topplista" class="nav-mega-link">🏆 Topplistor</a>
+                <a href="/evenemang" class="nav-mega-link">📅 Evenemang</a>
+                <a href="/bingo" class="nav-mega-link">🎯 Skärgårdsbingo 2026</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Boende</div>
+                <a href="/boende" class="nav-mega-link">🏕 Camping &amp; tält</a>
+                <a href="/boende" class="nav-mega-link">🏡 Stugor &amp; stugbyar</a>
+                <a href="/boende" class="nav-mega-link">🏨 Hotell &amp; vandrarhem</a>
+                <a href="/hamnar-och-bryggor" class="nav-mega-link">⚓ Gästhamnar</a>
+              </div>
             </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Aktiviteter</div>
-              <a href="/aktivitet/segling" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Segling</a>
-              <a href="/aktivitet/cykla" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>Cykling</a>
-              <a href="/aktivitet/bada" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M2 6c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 18c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></svg>Bad</a>
-              <a href="/aktivitet/vandring" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>Vandring</a>
-              <a href="/aktivitet/mat" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>Mat &amp; krogar</a>
-              <a href="/aktivitet" class="nav-mega-all">Se alla →</a>
-            </div>
-            <div class="nav-mega-col">
-              <div class="nav-mega-region">Community</div>
-              <a href="/forum" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Forum &amp; diskussioner</a>
-              <a href="/bingo" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Skärgårdsbingo 2026</a>
-              <a href="/evenemang" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Evenemang</a>
-              <a href="/topplista" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/></svg>Topplista</a>
-              <a href="/tips" class="nav-mega-link"><svg class="nav-mega-ico" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Tips &amp; artiklar</a>
+          </div>
+          <div class="nav-tab-content" id="nav-tab-populart">
+            <div class="nav-mega-grid">
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Populäraste öarna</div>
+                <a href="/o/sandhamn" class="nav-mega-link">🥇 Sandhamn</a>
+                <a href="/o/uto" class="nav-mega-link">🌿 Utö</a>
+                <a href="/o/vaxholm" class="nav-mega-link">🏰 Vaxholm</a>
+                <a href="/o/grinda" class="nav-mega-link">🌊 Grinda</a>
+                <a href="/o/moja" class="nav-mega-link">🏝 Möja</a>
+                <a href="/o" class="nav-mega-all">Se alla öar →</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Dolda pärlor</div>
+                <a href="/o/nattaro" class="nav-mega-link">💎 Nåttarö</a>
+                <a href="/o/finnhamn" class="nav-mega-link">💎 Finnhamn</a>
+                <a href="/o/galo" class="nav-mega-link">💎 Gålö</a>
+                <a href="/o/svartloga" class="nav-mega-link">💎 Svartlöga</a>
+                <a href="/o/kymendo" class="nav-mega-link">💎 Kymmendö</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">Hitta mer</div>
+                <a href="/topplista" class="nav-mega-link">📈 Trendande just nu</a>
+                <a href="/blogg" class="nav-mega-link">✍️ Senaste från bloggen</a>
+                <a href="/evenemang" class="nav-mega-link">📅 Kommande evenemang</a>
+              </div>
+              <div class="nav-mega-col">
+                <div class="nav-mega-region">För partners</div>
+                <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
+                <a href="/partner" class="nav-mega-link">🤝 Bli partner</a>
+                <a href="/forum" class="nav-mega-link">💬 Community-forum</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </li>
     <li><a href="/karta">Karta</a></li>
-    <li><a href="/planera">Planera din tur</a></li>
+    <li><a href="/planera">Planera</a></li>
   </ul>
   <div class="nav-cta">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
+      <span></span><span></span><span></span>
+    </button>
     <a href="/logga-in" class="btn btn-ghost">Logga in</a>
     <a href="/kom-igang" class="btn btn-accent">Kom igång →</a>
   </div>
 </nav>
+<div class="mob-drawer-overlay" id="mobOverlay"></div>
+<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-drawer-head">
+    <span class="mob-drawer-logo">SVALLA</span>
+    <button class="mob-drawer-close" id="mobDrawerClose">×</button>
+  </div>
+  <div class="mob-acc">
+    <button class="mob-acc-head">🏝 Hitta en ö <span class="mob-acc-chevron">›</span></button>
+    <div class="mob-acc-body">
+      <a href="/resmal" class="mob-acc-link">Alla resmål</a>
+      <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
+      <a href="/o" class="mob-acc-link">Alla 69 öar</a>
+      <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
+      <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
+      <a href="/oar/romantiska" class="mob-acc-link">Romantiska öar</a>
+      <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
+      <a href="/oar/utan-bil" class="mob-acc-link">Öar utan bil</a>
+      <a href="/oar/dagstur-stockholm" class="mob-acc-link">Dagstur från Stockholm</a>
+      <a href="/stockholms-skargard" class="mob-acc-link">Stockholms skärgård</a>
+      <a href="/bohuslan" class="mob-acc-link">Bohuslän</a>
+      <a href="/gotland" class="mob-acc-link">Gotland</a>
+    </div>
+  </div>
+  <div class="mob-acc">
+    <button class="mob-acc-head">🗓 Planera resan <span class="mob-acc-chevron">›</span></button>
+    <div class="mob-acc-body">
+      <a href="/utflykt" class="mob-acc-link">Utflyktsplanerare</a>
+      <a href="/planera" class="mob-acc-link">Planera båtrutt</a>
+      <a href="/farjor" class="mob-acc-link">Färjetider</a>
+      <a href="/segelrutter" class="mob-acc-link">Segelrutter</a>
+      <a href="/snabbaste-vagen" class="mob-acc-link">Snabbaste vägen</a>
+      <a href="/blogg" class="mob-acc-link">Blogg &amp; inspiration</a>
+      <a href="/nyborjarguider" class="mob-acc-link">Nybörjarguider</a>
+    </div>
+  </div>
+  <div class="mob-acc">
+    <button class="mob-acc-head">🎯 Uppleva &amp; göra <span class="mob-acc-chevron">›</span></button>
+    <div class="mob-acc-body">
+      <a href="/aktiviteter" class="mob-acc-link">Alla aktiviteter</a>
+      <a href="/krogar-och-mat" class="mob-acc-link">Mat &amp; restauranger</a>
+      <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; bad</a>
+      <a href="/boende" class="mob-acc-link">Boende</a>
+      <a href="/topplista" class="mob-acc-link">Topplistor</a>
+      <a href="/evenemang" class="mob-acc-link">Evenemang</a>
+      <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
+    </div>
+  </div>
+  <div class="mob-acc">
+    <button class="mob-acc-head">⭐ Populärt <span class="mob-acc-chevron">›</span></button>
+    <div class="mob-acc-body">
+      <a href="/o/sandhamn" class="mob-acc-link">Sandhamn</a>
+      <a href="/o/uto" class="mob-acc-link">Utö</a>
+      <a href="/o/vaxholm" class="mob-acc-link">Vaxholm</a>
+      <a href="/o/grinda" class="mob-acc-link">Grinda</a>
+      <a href="/o/moja" class="mob-acc-link">Möja</a>
+      <a href="/o/nattaro" class="mob-acc-link">Nåttarö</a>
+      <a href="/o/finnhamn" class="mob-acc-link">Finnhamn</a>
+      <a href="/o" class="mob-acc-link">Se alla öar →</a>
+    </div>
+  </div>
+  <div class="mob-drawer-cta">
+    <a href="/logga-in" class="btn btn-ghost" style="width:100%;text-align:center;justify-content:center">Logga in</a>
+    <a href="/kom-igang" class="btn btn-accent" style="width:100%;text-align:center;justify-content:center">Kom igång →</a>
+  </div>
+</div>
 
 <section class="hero" style="background:transparent">
   <div class="hero-content">
@@ -959,6 +1105,49 @@ export default function LandingPage() {
     const handleScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60)
     window.addEventListener('scroll', handleScroll)
 
+    // Tabbaserad megameny — tab-switching
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const tab = (btn as HTMLElement).getAttribute('data-tab')
+        document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'))
+        document.querySelectorAll('.nav-tab-content').forEach(c => c.classList.remove('active'))
+        btn.classList.add('active')
+        if (tab) document.getElementById('nav-tab-' + tab)?.classList.add('active')
+      })
+    })
+
+    // Mobil hamburger drawer
+    const hamburger = document.getElementById('navHamburger')
+    const mobDrawer = document.getElementById('mobDrawer')
+    const mobOverlay = document.getElementById('mobOverlay')
+    const mobClose = document.getElementById('mobDrawerClose')
+    const openMobDrawer = () => {
+      mobDrawer?.classList.add('open')
+      mobOverlay?.classList.add('open')
+      document.body.style.overflow = 'hidden'
+    }
+    const closeMobDrawer = () => {
+      mobDrawer?.classList.remove('open')
+      mobOverlay?.classList.remove('open')
+      document.body.style.overflow = ''
+    }
+    hamburger?.addEventListener('click', openMobDrawer)
+    mobOverlay?.addEventListener('click', closeMobDrawer)
+    mobClose?.addEventListener('click', closeMobDrawer)
+
+    // Accordion i mobil drawer
+    document.querySelectorAll('.mob-acc-head').forEach(head => {
+      head.addEventListener('click', () => {
+        head.closest('.mob-acc')?.classList.toggle('open')
+      })
+    })
+
+    // Stäng drawer när länk klickas
+    document.querySelectorAll('.mob-drawer a').forEach(a => {
+      a.addEventListener('click', closeMobDrawer)
+    })
+
     // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver((entries) => {
@@ -1008,6 +1197,10 @@ export default function LandingPage() {
       observer.disconnect()
       searchInput?.removeEventListener('focus', onFocus)
       searchInput?.removeEventListener('blur', onBlur)
+      hamburger?.removeEventListener('click', openMobDrawer)
+      mobOverlay?.removeEventListener('click', closeMobDrawer)
+      mobClose?.removeEventListener('click', closeMobDrawer)
+      document.body.style.overflow = ''
     }
   }, [])
 
