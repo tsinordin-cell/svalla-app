@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
+import PublicFooter from '@/components/PublicFooter'
 import { ACTIVITY_LIST, islandsForActivity } from './activity-data'
 
 export const metadata: Metadata = {
@@ -122,6 +123,7 @@ export default function ActivityIndexPage() {
           />
         </div>
       </main>
+      <PublicFooter />
     </div>
   )
 }

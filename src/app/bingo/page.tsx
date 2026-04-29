@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
+import PublicFooter from '@/components/PublicFooter'
 import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
 
@@ -53,6 +54,7 @@ export default function BingoPage() {
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         <BingoClient items={BINGO_ITEMS} />
       </main>
+      <PublicFooter />
     </div>
   )
 }

@@ -3,8 +3,29 @@ import { createServerClient } from '@supabase/ssr'
 
 const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista']
 
+// /admin/* kräver dessutom ett separat admin-lösenord (cookie-gate ovanpå Supabase-auth).
+// /admin/login är publik (formuläret som sätter cookien). /api/admin/auth tar emot POST.
+function isAdminRoute(pathname: string): boolean {
+  if (!pathname.startsWith('/admin')) return false
+  if (pathname === '/admin/login' || pathname.startsWith('/admin/login/')) return false
+  if (pathname.startsWith('/api/admin/auth')) return false
+  return true
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // ── 1. /admin/* — admin-cookie-gate (ovanpå Supabase-auth) ──
+  if (isAdminRoute(pathname)) {
+    const adminCookie = request.cookies.get('svalla_admin')?.value
+    if (adminCookie !== 'ok') {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      url.searchParams.set('returnTo', pathname)
+      return NextResponse.redirect(url)
+    }
+    // Lösenord OK — fortsätt till Supabase-auth-checken nedan om /admin är i PROTECTED
+  }
 
   let isProtected = false
   for (const route of PROTECTED_ROUTES) {

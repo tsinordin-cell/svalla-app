@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
+import PublicFooter from '@/components/PublicFooter'
 import { OAR_CATEGORIES, getOarCategory, islandsForCategory } from '../oar-categories'
 
 type Props = { params: Promise<{ kategori: string }> }
@@ -206,6 +207,7 @@ export default async function OarCategoryPage({ params }: Props) {
           />
         </div>
       </main>
+      <PublicFooter />
     </div>
   )
 }

@@ -398,6 +398,48 @@ const LANDING_HTML = `
         </div>
       </div>
     </li>
+    <li class="nav-dropdown">
+      <a href="#">Verktyg</a>
+      <div class="nav-mega">
+        <div class="nav-mega-inner">
+          <div class="nav-mega-grid">
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Planera</div>
+              <a href="/utflykt" class="nav-mega-link">✦ Utflyktsplanerare</a>
+              <a href="/planera" class="nav-mega-link">⛵ Planera båtrutt</a>
+              <a href="/jamfor" class="nav-mega-link">⚖ Jämför öar</a>
+              <a href="/farjor" class="nav-mega-link">🚢 Färjetider</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Hitta din ö</div>
+              <a href="/oar/barnvanliga" class="nav-mega-link">👨‍👩‍👧 Barnvänliga öar</a>
+              <a href="/oar/dagstur-stockholm" class="nav-mega-link">⏱ Dagstur från Stockholm</a>
+              <a href="/oar/romantiska" class="nav-mega-link">💛 Romantiska öar</a>
+              <a href="/oar/avskild" class="nav-mega-link">🌿 Avskilda pärlor</a>
+              <a href="/oar/utan-bil" class="nav-mega-link">🚍 Öar utan bil</a>
+              <a href="/oar" class="nav-mega-all">Alla kategorier →</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Aktiviteter</div>
+              <a href="/aktivitet/segling" class="nav-mega-link">⛵ Segling</a>
+              <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
+              <a href="/aktivitet/bada" class="nav-mega-link">🏊 Bad</a>
+              <a href="/aktivitet/vandring" class="nav-mega-link">🥾 Vandring</a>
+              <a href="/aktivitet/mat" class="nav-mega-link">🍽 Mat &amp; krogar</a>
+              <a href="/aktivitet" class="nav-mega-all">Se alla →</a>
+            </div>
+            <div class="nav-mega-col">
+              <div class="nav-mega-region">Community</div>
+              <a href="/forum" class="nav-mega-link">💬 Forum &amp; diskussioner</a>
+              <a href="/bingo" class="nav-mega-link">⚓ Skärgårdsbingo 2026</a>
+              <a href="/evenemang" class="nav-mega-link">📅 Evenemang</a>
+              <a href="/topplista" class="nav-mega-link">🏆 Topplista</a>
+              <a href="/tips" class="nav-mega-link">✍ Tips &amp; artiklar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
     <li><a href="/karta">Karta</a></li>
     <li><a href="/planera">Planera din tur</a></li>
   </ul>

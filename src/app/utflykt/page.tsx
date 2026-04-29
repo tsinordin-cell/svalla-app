@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
+import PublicFooter from '@/components/PublicFooter'
 import { ALL_ISLANDS } from '../o/island-data'
 import { DEPARTURES } from './utflykt-data'
 import UtflyktClient from './UtflyktClient'
@@ -86,6 +87,7 @@ export default function UtflyktPage() {
           />
         </div>
       </main>
+      <PublicFooter />
     </div>
   )
 }
