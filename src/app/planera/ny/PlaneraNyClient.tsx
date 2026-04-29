@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { DEPARTURES, haversineKm, type Departure, type Interest } from '@/lib/planner'
+import { DEPARTURES, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
 
 const INTERESTS: { value: Interest; label: string; emoji: string }[] = [
  { value: 'krog', label: 'Krog & mat', emoji: '' },
