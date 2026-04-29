@@ -11,6 +11,7 @@ import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
 import ProfileMoreMenu from '@/components/ProfileMoreMenu'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import { ALL_ISLANDS, getIsland } from '@/app/o/island-data'
 import ProfileBadgeGrid from '@/components/ProfileBadgeGrid'
 import { isProEnabled } from '@/lib/pro'
 import { formatForumDate } from '@/lib/forum'
@@ -349,17 +350,47 @@ export default async function PublicProfilePage({
  )}
 
  {/* ── Visited islands ── */}
- {visitedCount > 0 && (
+ {visitedCount > 0 && (() => {
+   const totalIslands = ALL_ISLANDS.length
+   const visitedIslandObjs = (visitedIslandsData ?? [])
+     .map(r => getIsland(r.island_slug))
+     .filter(Boolean)
+     .slice(0, 16)
+   const overflow = visitedCount - visitedIslandObjs.length
+   return (
  <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px 16px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
- <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}> ️ Besökta öar</div>
- <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--green)' }}>{visitedCount} / 69</span>
+ <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>⚓ Besökta öar</div>
+ <span style={{ fontSize: 12, fontWeight: 600, color: '#0f9e64' }}>{visitedCount} / {totalIslands}</span>
  </div>
- <div style={{ height: 5, background: 'rgba(15,158,100,.1)', borderRadius: 4, overflow: 'hidden' }}>
- <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / 69) * 100)}%` }} />
+ <div style={{ height: 5, background: 'rgba(15,158,100,.1)', borderRadius: 4, overflow: 'hidden', marginBottom: 12 }}>
+ <div style={{ height: '100%', borderRadius: 4, background: 'linear-gradient(90deg,#0f9e64,#2dc88c)', width: `${Math.min(100, (visitedCount / totalIslands) * 100)}%` }} />
+ </div>
+ <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+   {visitedIslandObjs.map(island => island && (
+     <Link key={island.slug} href={`/o/${island.slug}`} style={{ textDecoration: 'none' }}>
+       <span style={{
+         display: 'inline-flex', alignItems: 'center', gap: 4,
+         fontSize: 12, fontWeight: 600,
+         color: 'var(--txt2)',
+         background: 'rgba(15,158,100,0.07)',
+         border: '1px solid rgba(15,158,100,0.2)',
+         borderRadius: 20, padding: '3px 9px',
+       }}>
+         {island.emoji} {island.name}
+       </span>
+     </Link>
+   ))}
+   {overflow > 0 && (
+     <span style={{
+       fontSize: 12, fontWeight: 600, color: 'var(--txt3)',
+       background: 'var(--surface-2)', borderRadius: 20, padding: '3px 9px',
+     }}>+{overflow} till</span>
+   )}
  </div>
  </div>
- )}
+   )
+ })()}
 
  {/* ── Wrapped teaser ── */}
  {wrappedYear && wrappedTrips.length >= 3 && (
