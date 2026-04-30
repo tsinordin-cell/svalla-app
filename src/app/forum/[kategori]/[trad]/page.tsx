@@ -7,14 +7,18 @@ import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
 import ForumQuoteButton from './ForumQuoteButton'
+import BestAnswerButton from './BestAnswerButton'
+import ForumSortTabs from './ForumSortTabs'
 import Icon from '@/components/Icon'
 import { renderForumBody } from '@/lib/forum-render'
+import type { ForumSort } from '@/lib/forum'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
 
 interface Props {
   params: Promise<{ kategori: string; trad: string }>
+  searchParams?: Promise<{ sort?: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -36,24 +40,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ForumTradPage({ params }: Props) {
+export default async function ForumTradPage({ params, searchParams }: Props) {
   const { kategori, trad } = await params
+  const sp = (await searchParams) ?? {}
+  const sort: ForumSort = sp.sort === 'nyast' || sp.sort === 'hjalpsamma' ? sp.sort : 'aldst'
   const supabase = await createServerSupabaseClient()
 
   const { data: { user } } = await supabase.auth.getUser()
   const currentUserId = user?.id ?? null
 
-  const [thread, posts, cat, subRow] = await Promise.all([
-    getThreadById(trad),
-    getPostsByThread(trad, currentUserId),
-    getCategoryById(kategori),
+  const thread = await getThreadById(trad)
+  const cat = await getCategoryById(kategori)
+  if (!thread || !cat) notFound()
+
+  const [posts, subRow] = await Promise.all([
+    getPostsByThread(trad, currentUserId, { sort, bestPostId: thread.best_post_id ?? null }),
     currentUserId
       ? supabase.from('forum_subscriptions').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
       : Promise.resolve({ data: null }),
   ])
   const isSubscribed = !!subRow?.data
-
-  if (!thread || !cat) notFound()
+  const isThreadOwner = currentUserId === thread.user_id
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -114,8 +121,23 @@ export default async function ForumTradPage({ params }: Props) {
           </Link>
         </div>
 
-        <h1 style={{ fontSize: 19, fontWeight: 700, margin: '0 0 14px', lineHeight: 1.3, letterSpacing: '-0.2px' }}>
-          {thread.title}
+        <h1 style={{ fontSize: 19, fontWeight: 700, margin: '0 0 14px', lineHeight: 1.3, letterSpacing: '-0.2px', display: 'flex', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+          <span style={{ flex: 1 }}>{thread.title}</span>
+          {thread.is_solved && (
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
+              padding: '4px 10px', borderRadius: 6,
+              background: 'rgba(34,197,94,0.18)',
+              color: '#bbf7d0',
+              border: '1px solid rgba(187,247,208,0.35)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}>
+              <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Löst
+            </span>
+          )}
         </h1>
 
         {/* Thread meta — author + stats + subscribe */}
@@ -224,59 +246,85 @@ export default async function ForumTradPage({ params }: Props) {
         {/* ── Svar ── */}
         {posts.length > 0 && (
           <div style={{ marginBottom: 20 }}>
-            {/* Svar-header med linje */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+            {/* Svar-header med linje + sort-tabbar */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
                 {posts.length} {posts.length === 1 ? 'svar' : 'svar'}
               </span>
               <div style={{ flex: 1, height: 1, background: 'var(--border, rgba(10,123,140,0.1))' }} />
+              {posts.length > 1 && <ForumSortTabs current={sort} />}
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {posts.map((post, i) => (
-                <div key={post.id} id={`post-${post.id}`} style={{
-                  padding: '14px 16px',
-                  background: 'var(--card-bg, #fff)',
-                  borderRadius: 14,
-                  border: '1px solid var(--border, rgba(10,123,140,0.1))',
-                  boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
-                  scrollMarginTop: 80,
-                }}>
-                  <PostHeader
-                    username={post.author?.username ?? 'Okänd'}
-                    avatar={post.author?.avatar ?? null}
-                    date={post.created_at}
-                    index={i + 1}
-                    postId={post.id}
-                  />
-                  <div style={{
-                    fontSize: 14,
-                    color: 'var(--txt)',
-                    lineHeight: 1.65,
-                    marginTop: 10,
-                    wordBreak: 'break-word',
+              {posts.map((post, i) => {
+                const isBest = thread.best_post_id === post.id
+                return (
+                  <div key={post.id} id={`post-${post.id}`} style={{
+                    padding: '14px 16px',
+                    background: 'var(--card-bg, #fff)',
+                    borderRadius: 14,
+                    border: isBest ? '1.5px solid rgba(34,197,94,0.5)' : '1px solid var(--border, rgba(10,123,140,0.1))',
+                    boxShadow: isBest ? '0 4px 16px rgba(34,197,94,0.18)' : '0 1px 4px rgba(0,0,0,0.04)',
+                    scrollMarginTop: 80,
+                    position: 'relative',
                   }}>
-                    {renderForumBody(post.body)}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, gap: 8 }}>
-                    <ForumLikeButton
+                    {isBest && (
+                      <div style={{
+                        position: 'absolute', top: -10, left: 14,
+                        background: '#16a34a', color: '#fff',
+                        fontSize: 10, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase',
+                        padding: '3px 9px', borderRadius: 6,
+                        display: 'inline-flex', alignItems: 'center', gap: 4,
+                        boxShadow: '0 2px 6px rgba(22,163,74,0.35)',
+                      }}>
+                        <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Bästa svar
+                      </div>
+                    )}
+                    <PostHeader
+                      username={post.author?.username ?? 'Okänd'}
+                      avatar={post.author?.avatar ?? null}
+                      date={post.created_at}
+                      index={i + 1}
                       postId={post.id}
-                      initialCount={post.like_count ?? 0}
-                      initialLiked={post.liked_by_user ?? false}
-                      currentUserId={currentUserId}
                     />
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <ForumQuoteButton username={post.author?.username ?? 'Okänd'} body={post.body} />
-                      <ForumPostActions
+                    <div style={{
+                      fontSize: 14,
+                      color: 'var(--txt)',
+                      lineHeight: 1.65,
+                      marginTop: 10,
+                      wordBreak: 'break-word',
+                    }}>
+                      {renderForumBody(post.body)}
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, gap: 8, flexWrap: 'wrap' }}>
+                      <ForumLikeButton
                         postId={post.id}
-                        authorId={post.user_id}
+                        initialCount={post.like_count ?? 0}
+                        initialLiked={post.liked_by_user ?? false}
                         currentUserId={currentUserId}
-                        initialBody={post.body}
                       />
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+                        {(isThreadOwner || isBest) && (
+                          <BestAnswerButton
+                            threadId={trad}
+                            postId={post.id}
+                            isThreadOwner={isThreadOwner}
+                            isBest={isBest}
+                          />
+                        )}
+                        <ForumQuoteButton username={post.author?.username ?? 'Okänd'} body={post.body} />
+                        <ForumPostActions
+                          postId={post.id}
+                          authorId={post.user_id}
+                          currentUserId={currentUserId}
+                          initialBody={post.body}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}

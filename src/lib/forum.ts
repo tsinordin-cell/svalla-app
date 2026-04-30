@@ -28,10 +28,14 @@ export interface ForumThread {
   last_reply_at: string
   in_spam_queue: boolean
   created_at: string
+  best_post_id?: string | null
+  is_solved?: boolean
   // enriched
   author?: { username: string; avatar: string | null } | null
   last_reply_author?: { username: string } | null
 }
+
+export type ForumSort = 'nyast' | 'hjalpsamma' | 'aldst'
 
 export interface ForumPost {
   id: string
@@ -169,7 +173,13 @@ export async function getThreadById(id: string): Promise<ForumThread | null> {
   }
 }
 
-export async function getPostsByThread(threadId: string, userId?: string | null): Promise<ForumPost[]> {
+export async function getPostsByThread(
+  threadId: string,
+  userId?: string | null,
+  opts?: { sort?: ForumSort; bestPostId?: string | null },
+): Promise<ForumPost[]> {
+  const sort: ForumSort = opts?.sort ?? 'aldst'
+  const bestPostId = opts?.bestPostId ?? null
   try {
     const supabase = await createServerSupabaseClient()
     const { data } = await supabase
@@ -178,7 +188,7 @@ export async function getPostsByThread(threadId: string, userId?: string | null)
       .eq('thread_id', threadId)
       .eq('in_spam_queue', false)
       .eq('is_deleted', false)
-      .order('created_at', { ascending: true })
+      .order('created_at', { ascending: sort !== 'nyast' })
 
     if (!data) return []
 
@@ -207,12 +217,28 @@ export async function getPostsByThread(threadId: string, userId?: string | null)
     // Set of posts liked by current user
     const likedByUser = new Set((userLikedResult.data ?? []).map((r: { post_id: string }) => r.post_id))
 
-    return data.map(p => ({
+    let posts = data.map(p => ({
       ...p,
       author: userMap.get(p.user_id) ?? null,
       like_count: likeCountMap.get(p.id) ?? 0,
       liked_by_user: likedByUser.has(p.id),
     })) as ForumPost[]
+
+    // Mest hjälpsamma: sortera efter like_count desc, sen tid
+    if (sort === 'hjalpsamma') {
+      posts.sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0) || a.created_at.localeCompare(b.created_at))
+    }
+
+    // Bästa svar alltid först (om markerat och vi inte sorterar by hjälpsamma — där den ändå hamnar topp pga likes oftast)
+    if (bestPostId) {
+      const idx = posts.findIndex(p => p.id === bestPostId)
+      if (idx > 0) {
+        const [best] = posts.splice(idx, 1)
+        if (best) posts = [best, ...posts]
+      }
+    }
+
+    return posts
   } catch {
     return []
   }

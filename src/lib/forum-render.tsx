@@ -21,6 +21,7 @@ const IMG_HOSTS = [
 
 const URL_RE = /\b(https?:\/\/[^\s<]+)/g
 const IMG_TAG_RE = /\[img:(https?:\/\/[^\]\s]+)\]/g
+const HASHTAG_RE = /(^|\s)#([a-zA-ZåäöÅÄÖ0-9_-]{2,40})\b/g
 
 // Re-export för bakåtkompatibilitet
 export const extractMentions = _extractMentions
@@ -43,19 +44,26 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
   let cursor = 0
   let n = 0
 
-  // Hitta alla URL:er + mentions, sortera efter position
-  type Match = { start: number; end: number; type: 'url' | 'mention'; value: string; raw: string }
+  // Hitta alla URL:er + mentions + hashtags, sortera efter position
+  type Match = { start: number; end: number; type: 'url' | 'mention' | 'hashtag'; value: string; raw: string }
   const matches: Match[] = []
 
   for (const m of text.matchAll(URL_RE)) {
     matches.push({ start: m.index!, end: m.index! + m[0].length, type: 'url', value: m[0], raw: m[0] })
   }
   for (const m of text.matchAll(MENTION_RE)) {
-    const lead = m[1] ?? '' // whitespace eller tom
+    const lead = m[1] ?? ''
     const username = m[2]
     if (!username) continue
     const start = m.index! + lead.length
     matches.push({ start, end: start + 1 + username.length, type: 'mention', value: username, raw: '@' + username })
+  }
+  for (const m of text.matchAll(HASHTAG_RE)) {
+    const lead = m[1] ?? ''
+    const tag = m[2]
+    if (!tag) continue
+    const start = m.index! + lead.length
+    matches.push({ start, end: start + 1 + tag.length, type: 'hashtag', value: tag, raw: '#' + tag })
   }
   matches.sort((a, b) => a.start - b.start)
 
@@ -120,6 +128,21 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
           }}
         >
           @{m.value}
+        </Link>
+      )
+    } else if (m.type === 'hashtag') {
+      const slug = m.value.toLowerCase()
+      parts.push(
+        <Link
+          key={`${keyPrefix}-h${n++}`}
+          href={`/sok?q=${encodeURIComponent(slug)}`}
+          style={{
+            color: 'var(--accent, #c96e2a)',
+            fontWeight: 600,
+            textDecoration: 'none',
+          }}
+        >
+          #{m.value}
         </Link>
       )
     }
