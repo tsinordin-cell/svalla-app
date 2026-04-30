@@ -19,6 +19,7 @@ import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } 
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 import { addTripTag } from '@/lib/tripTags'
+import { analytics } from '@/lib/analytics'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
@@ -415,6 +416,7 @@ export default function SparaPage() {
     setLiveInsights([])
     setShownInsightKeys(new Set())
     setFlashInsight(null)
+    analytics.tripStarted({ method: 'gps' })
     startGPS()
     void acquireWakeLock()
     // Initial snapshot
@@ -495,6 +497,7 @@ export default function SparaPage() {
     setAiLoading(true)
     setAiErr(false)
     setAiVariants([])
+    analytics.aiAnalysisRequested({ source: 'spara' })
     try {
       const dist   = totalDistanceNM(points)
       const avgSpd = avgSpeedKnots(points)
@@ -742,6 +745,11 @@ export default function SparaPage() {
     }
 
     setSaving(false)
+    analytics.tripSaved({
+      has_ai_analysis: !!aiSummary,
+      has_photos: mediaFiles.length > 0,
+      duration_seconds: elapsed,
+    })
     fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
     // Navigera till tursidan — slight delay om celebration visas
     setTimeout(() => router.push(`/tur/${tid}`), 100)

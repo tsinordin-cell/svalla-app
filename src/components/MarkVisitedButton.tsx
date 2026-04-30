@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import { analytics } from '@/lib/analytics'
 
 interface Props {
   islandSlug: string
@@ -51,6 +52,10 @@ export default function MarkVisitedButton({ islandSlug, islandName }: Props) {
       setVisited(true)
       setShowToast(true)
       setTimeout(() => setShowToast(false), 3000)
+      analytics.islandMarkedVisited({
+        island_slug: islandSlug,
+        island_name: islandName,
+      })
     }
     setLoading(false)
   }

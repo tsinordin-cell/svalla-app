@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useRef, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { analytics } from '@/lib/analytics'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
 
@@ -167,6 +168,7 @@ function ManuellForm() {
     setAiLoading(true)
     setAiErr(false)
     setAiVariants([])
+    analytics.aiAnalysisRequested({ source: 'manuell' })
     try {
       const res = await fetch('/api/trip-summary', {
         method: 'POST',
@@ -260,6 +262,13 @@ function ManuellForm() {
         setLoading(false)
         return
       }
+
+      // Track event
+      analytics.tripSaved({
+        has_ai_analysis: false,
+        has_photos: !!file,
+        duration_seconds: parseInt(duration) * 60 || 0,
+      })
 
       // Länka trip till planerad rutt
       if (plannedRouteId) {

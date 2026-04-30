@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
+import { analytics } from '@/lib/analytics'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
 function NyTradForm() {
@@ -44,6 +45,7 @@ function NyTradForm() {
       })
       const data = await res.json()
       if (!res.ok) { setErr(data.error ?? 'Något gick fel.'); setLoading(false); return }
+      analytics.forumPostCreated({ category: kategori })
       router.push(`/forum/${kategori}/${data.id}`)
     } catch {
       setErr('Nätverksfel. Försök igen.')

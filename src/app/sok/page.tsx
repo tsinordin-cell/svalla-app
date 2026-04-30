@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import { analytics } from '@/lib/analytics'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ALL_ISLANDS } from '../o/island-data'
@@ -305,6 +306,10 @@ function SokPageInner() {
  setResults(merged)
  setSearched(true)
  setLoading(false)
+ analytics.searchPerformed({
+   query: safe,
+   results_count: merged.length,
+ })
  }
 
  const filtered = activeTab === 'alla' ? results : results.filter(r => r.type === activeTab)
