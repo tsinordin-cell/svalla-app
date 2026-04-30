@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 
 export const maxDuration = 300 // 5 min — Vercel Pro/Hobby max
 
@@ -139,17 +139,7 @@ export async function POST(_req: NextRequest) {
   if (!userRow?.is_admin) return NextResponse.json({ error: 'Ej admin' }, { status: 403 })
 
   // ── Service role client för writes ───────────────────────────
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!serviceKey) {
-    return NextResponse.json({
-      error: 'SUPABASE_SERVICE_ROLE_KEY saknas i miljövariabler. Lägg till i Vercel → Settings → Environment Variables.'
-    }, { status: 500 })
-  }
-
-  const serviceClient = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    serviceKey
-  )
+  const serviceClient = getAdminClient()
 
   // ── Hämta alla platser ────────────────────────────────────────
   const { data: places, error: fetchErr } = await serviceClient

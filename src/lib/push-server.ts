@@ -1,5 +1,5 @@
 import webpush from 'web-push'
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 
 type SubRow = { endpoint: string; p256dh: string; auth: string }
 
@@ -9,13 +9,6 @@ export interface PushPayload {
   url:   string
 }
 
-function svcClient() {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!key) throw new Error('SUPABASE_SERVICE_ROLE_KEY not set')
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
-}
 
 /**
  * Sends a web push notification to all devices registered by the given users.
@@ -35,7 +28,7 @@ export async function sendPushToUsers(
       process.env.VAPID_PRIVATE_KEY!,
     )
 
-    const svc = svcClient()
+    const svc = getAdminClient()
 
     const { data: subsRaw } = await svc
       .from('push_subscriptions')

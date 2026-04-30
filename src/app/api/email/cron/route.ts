@@ -10,7 +10,7 @@
  */
 
 import { NextResponse } from 'next/server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail, type EmailTemplate } from '@/lib/email'
 
 export const dynamic = 'force-dynamic'
@@ -36,10 +36,7 @@ async function handle(req: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   const today = new Date()
   const month = today.getMonth() + 1

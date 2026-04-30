@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic'
  * Authorization: Bearer <din secret>
  */
 
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { NextResponse } from 'next/server'
 import webpush from 'web-push'
 
@@ -41,10 +41,7 @@ export async function GET(req: Request) {
  process.env.VAPID_PRIVATE_KEY!,
  )
 
- const supabaseAdmin = createClient(
- process.env.NEXT_PUBLIC_SUPABASE_URL!,
- process.env.SUPABASE_SERVICE_ROLE_KEY!,
- )
+ const supabaseAdmin = getAdminClient()
 
  // ── Trips for the year ─────────────────────────────────────────────────
  const { data: trips, error: tripErr } = await supabaseAdmin

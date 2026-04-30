@@ -2,14 +2,9 @@ export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { logger } from '@/lib/logger'
 
-function svc() {
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
-}
 
 /**
  * POST /api/forum/threads/[id]/best-answer
@@ -54,8 +49,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ id: string
 
     // Notifiera den som skrev svaret (om inte OP själv)
     if (post.user_id !== user.id) {
-      const s = svc()
-      await s.from('notifications').insert({
+      await getAdminClient().from('notifications').insert({
         user_id: post.user_id,
         actor_id: user.id,
         type: 'forum_best_answer',

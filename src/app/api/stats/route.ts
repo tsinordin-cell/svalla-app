@@ -3,16 +3,13 @@
  * Cache 1 timme — siffrorna ändras inte ofta.
  */
 import { NextResponse } from 'next/server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const revalidate = 3600
 
 export async function GET() {
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   // Wrap-helper för att kunna använda .catch (Supabase-builders är PromiseLike, inte Promise)
   const safe = async <T>(p: PromiseLike<T>, fallback: T): Promise<T> => {

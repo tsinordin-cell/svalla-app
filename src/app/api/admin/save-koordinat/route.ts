@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 
 export async function POST(request: NextRequest) {
   // 1. Verifiera att inloggad användare är admin
@@ -34,15 +34,7 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Använd service-role-klient för att kringgå RLS
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!serviceKey) {
-    return NextResponse.json({ error: 'SERVICE_ROLE_KEY saknas' }, { status: 500 })
-  }
-
-  const admin = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    serviceKey
-  )
+  const admin = getAdminClient()
 
   // 4. Spara i rätt tabell (default: restaurants) — whitelist mot injection
   const ALLOWED_TABLES = ['restaurants', 'harbors', 'routes', 'events'] as const

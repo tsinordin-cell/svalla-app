@@ -7,7 +7,7 @@
  */
 
 import { NextResponse } from 'next/server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
 
 export const dynamic = 'force-dynamic'
@@ -32,10 +32,7 @@ export async function POST(req: Request) {
   // Hämta first_name om userId angetts
   let resolvedFirstName = firstName || ''
   if (userId && !resolvedFirstName) {
-    const service = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
+    const service = getAdminClient()
     const { data } = await service.from('users').select('username').eq('id', userId).single()
     resolvedFirstName = data?.username || ''
   }
@@ -52,10 +49,7 @@ export async function POST(req: Request) {
 
   // Logga till email_log (valfritt, om tabellen finns)
   try {
-    const service = createServiceClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
+    const service = getAdminClient()
     await service.from('email_log').insert({
       email,
       template: 'welcome',

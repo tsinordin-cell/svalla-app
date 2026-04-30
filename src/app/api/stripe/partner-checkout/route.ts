@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { checkRateLimit } from '@/lib/rateLimit'
 
 /**
@@ -68,10 +68,7 @@ export async function POST(req: Request) {
   }
 
   // Spara inquiry (service-role för att kringgå RLS)
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   const { data: inquiry, error: insertError } = await service
     .from('partner_inquiries')

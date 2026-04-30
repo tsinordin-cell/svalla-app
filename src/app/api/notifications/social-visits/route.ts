@@ -12,7 +12,7 @@
  */
 
 import { NextResponse } from 'next/server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { sendPushToUsers } from '@/lib/push-server'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
@@ -31,10 +31,7 @@ async function handle(req: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const svc = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const svc = getAdminClient()
 
   // Slå upp ö-namn för slugs
   const islandNameBySlug = new Map(ALL_ISLANDS.map(i => [i.slug, i.name]))

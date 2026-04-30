@@ -1,19 +1,13 @@
 export const dynamic = 'force-dynamic'
 
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
 function getStripe() { return new Stripe(process.env.STRIPE_SECRET_KEY!) }
-function getSupabaseAdmin() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  )
-}
 
 async function upsertSubscription(sub: Stripe.Subscription) {
-  const supabaseAdmin = getSupabaseAdmin()
+  const supabaseAdmin = getAdminClient()
   const userId = sub.metadata?.supabase_user_id
 
   // ── PARTNER-flöde: subscription har partner_inquiry_id i metadata ──
@@ -55,7 +49,7 @@ async function upsertSubscription(sub: Stripe.Subscription) {
 }
 
 async function deleteSubscription(sub: Stripe.Subscription) {
-  const supabaseAdmin = getSupabaseAdmin()
+  const supabaseAdmin = getAdminClient()
 
   // Partner cancellation
   const partnerInquiryId = sub.metadata?.partner_inquiry_id
@@ -104,7 +98,7 @@ export async function POST(req: Request) {
       const invoice = event.data.object as Stripe.Invoice
       const subId = (invoice as unknown as { subscription?: string }).subscription
       if (subId) {
-        const supabaseAdmin = getSupabaseAdmin()
+        const supabaseAdmin = getAdminClient()
         await supabaseAdmin
           .from('subscriptions')
           .update({ status: 'past_due', updated_at: new Date().toISOString() })
@@ -117,7 +111,7 @@ export async function POST(req: Request) {
       const invoice = event.data.object as Stripe.Invoice
       const subId = (invoice as unknown as { subscription?: string }).subscription
       if (subId) {
-        const supabaseAdmin = getSupabaseAdmin()
+        const supabaseAdmin = getAdminClient()
         // Hämta subscription från Stripe för att få korrekt period
         const stripe = getStripe()
         try {

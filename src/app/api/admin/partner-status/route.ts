@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 
 const VALID_STATUSES = ['new', 'contacted', 'closed', 'lost'] as const
 type Status = typeof VALID_STATUSES[number]
@@ -34,10 +34,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Update via service-role (RLS hindrar normal user)
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   const update: { status: string; contacted_at?: string } = { status }
   if (status === 'contacted') update.contacted_at = new Date().toISOString()

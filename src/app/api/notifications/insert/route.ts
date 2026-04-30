@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { createServerClient } from '@supabase/ssr'
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { checkRateLimit } from '@/lib/rateLimit'
@@ -9,13 +9,6 @@ import { checkRateLimit } from '@/lib/rateLimit'
 const VALID_TYPES = ['like', 'comment', 'follow', 'tag', 'mention', 'forum_reply', 'forum_like']
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-function svcClient() {
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!key) throw new Error('SUPABASE_SERVICE_ROLE_KEY not set')
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
-}
 
 /**
  * POST /api/notifications/insert
@@ -70,7 +63,7 @@ export async function POST(req: Request) {
   if (tripId && typeof tripId === 'string' && UUID_RE.test(tripId)) row.trip_id = tripId
   if (referenceId && typeof referenceId === 'string' && UUID_RE.test(referenceId)) row.reference_id = referenceId
 
-  const { error } = await svcClient().from('notifications').insert(row)
+  const { error } = await getAdminClient().from('notifications').insert(row)
   if (error) {
     console.error('[notifications/insert] DB error:', error)
     return NextResponse.json({ error: 'Kunde inte skapa notis.' }, { status: 500 })

@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 /**
  * POST /api/planera/claim
@@ -41,6 +42,11 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return NextResponse.json({ error: 'Logga in först' }, { status: 401 })
+  }
+
+  // Rate limit: 20 claim-försök per 5 min per user
+  if (!(await checkRateLimit(`planera-claim:${user.id}`, 20, 5 * 60_000))) {
+    return NextResponse.json({ error: 'För många försök. Vänta en stund.' }, { status: 429 })
   }
 
   // Hämta rutten — om user_id != null kan den inte claim:as

@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { createServerClient } from '@supabase/ssr'
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import webpush from 'web-push'
@@ -50,14 +50,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'conversationId och preview krävs' }, { status: 400 })
   }
 
-  // Service role krävs för att läsa/uppdatera privata tabeller (presence, push_log) oberoende av callerns RLS.
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!serviceKey) {
-    return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 })
-  }
-  const svc = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, serviceKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
+  const svc = getAdminClient()
 
   // 1. Verifiera medlemskap (hindra missbruk)
   const { data: myPart } = await svc

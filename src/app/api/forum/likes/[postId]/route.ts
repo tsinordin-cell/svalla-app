@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { checkRateLimit } from '@/lib/rateLimit'
 
-function svcClient() {
-  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
-}
 
 /**
  * POST /api/forum/likes/[postId]
@@ -70,7 +65,7 @@ export async function POST(
 
       // Skicka notis till inläggets ägare (inte till sig själv)
       if (post.user_id && post.user_id !== user.id) {
-        svcClient().from('notifications').insert({
+        getAdminClient().from('notifications').insert({
           user_id:      post.user_id,
           actor_id:     user.id,
           type:         'forum_like',
