@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Bakgrund: klar havsteal — syns mot vitt OCH mörkt -->
+  <rect width="32" height="32" rx="7" fill="#0a7b8c"/>
+
+  <!-- Mast -->
+  <line x1="16" y1="5" x2="16" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Storsegel (höger) -->
+  <path d="M16,6 L26,21 L16,21 Z" fill="white"/>
+
+  <!-- Focksegel (vänster) -->
+  <path d="M16,10 L8,20 L16,20 Z" fill="white" opacity="0.7"/>
+
+  <!-- Skrov -->
+  <path d="M8,24 Q16,22.5 24,24 L22,26 Q16,27 10,26 Z" fill="white"/>
+</svg>
