@@ -75,6 +75,11 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  // ESLint körs separat (npm run lint) — blockera inte CI-builds på warnings.
+  // TypeScript-kontroll körs fortfarande (tsc --noEmit passerar rent).
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
