@@ -376,7 +376,7 @@ const LANDING_HTML = `
  </a>
  <ul class="nav-links">
  <li class="nav-dropdown">
- <a href="#">Utforska</a>
+ <a href="#" style="font-family:'Playfair Display',Georgia,serif!important;font-size:20px;font-weight:900;color:#fff;letter-spacing:-.02em">Utforska</a>
  <div class="nav-mega">
  <div class="nav-mega-inner">
  <div class="nav-tabs-bar">
@@ -521,8 +521,8 @@ const LANDING_HTML = `
  </div>
  </div>
  </li>
- <li><a href="/karta">Karta</a></li>
- <li><a href="/planera">Planera</a></li>
+ <li><a href="/karta" style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-.02em">Karta</a></li>
+ <li><a href="/planera" style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:-.02em">Planera</a></li>
  </ul>
  <div class="nav-cta">
  <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
