@@ -7,7 +7,6 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
-import MarkVisitedButton from '@/components/MarkVisitedButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
 import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
@@ -180,7 +179,7 @@ export default async function IslandPage({ params }: Props) {
  <div>
  <h1 style={{ fontSize: 42, fontWeight: 700, margin: '0 0 6px', letterSpacing: -0.5, fontFamily: "'Playfair Display', Georgia, serif" }}>{island.name}</h1>
  <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.82)', margin: 0, lineHeight: 1.5, maxWidth: 560, fontFamily: "'Playfair Display', Georgia, serif", fontStyle: 'italic' }}>{island.tagline}</p>
- {(visitorCount ?? 0) > 0 && (
+ {(visitorCount ?? 0) > 0 ? (
  <div style={{
  display: 'inline-flex', alignItems: 'center', gap: 8,
  marginTop: 14, padding: '8px 16px', borderRadius: 999,
@@ -199,6 +198,23 @@ export default async function IslandPage({ params }: Props) {
  seglare har besökt {island.name} via Svalla
  </span>
  </div>
+ ) : (
+ <Link href={`/logga-in?next=/logga`} style={{
+ display: 'inline-flex', alignItems: 'center', gap: 8,
+ marginTop: 14, padding: '8px 16px', borderRadius: 999,
+ background: 'rgba(255,255,255,0.16)',
+ backdropFilter: 'blur(8px)',
+ border: '1px solid rgba(255,255,255,0.22)',
+ fontSize: 13, fontWeight: 600, color: '#fff',
+ textDecoration: 'none',
+ boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+ }}>
+ <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+ <path d="M12 21.3C7 14.5 4.8 11 4.8 7.8a7.2 7.2 0 0 1 14.4 0c0 3.2-2.2 6.7-7.2 13.5Z" />
+ <circle cx="12" cy="8" r="2.4" />
+ </svg>
+ <span>Bli den första att logga ett besök på {island.name} →</span>
+ </Link>
  )}
  {/* Live väder — kräver koordinater */}
  {ISLAND_COORD_MAP[island.slug] && (
@@ -211,10 +227,9 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </div>
 
- {/* Spara ön + logga besök CTA */}
+ {/* Spara ön CTA */}
  <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
  <SaveIslandButton islandSlug={island.slug} islandName={island.name} variant="pill" />
- <MarkVisitedButton islandSlug={island.slug} islandName={island.name} />
  </div>
 
  {/* Quick facts */}

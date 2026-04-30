@@ -31,12 +31,12 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .lp-nav.scrolled{background:rgba(15,46,59,.92);backdrop-filter:blur(16px);box-shadow:0 2px 20px rgba(0,0,0,.25);}
 .nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.01em;}
 .nav-logo .dot{color:var(--accent)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:.2s}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{color:rgba(255,255,255,.88);text-decoration:none;font-family:'Playfair Display',serif;font-size:17px;font-weight:700;transition:.2s;letter-spacing:-.01em;line-height:1}
 .nav-links a:hover{color:var(--white)}
 .nav-dropdown{position:relative}
-.nav-dropdown > a{display:flex;align-items:center;gap:5px}
-.nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.6;transition:.2s}
+.nav-dropdown > a{display:flex;align-items:center;gap:6px}
+.nav-dropdown > a::after{content:'▾';font-size:10px;opacity:.5;transition:.2s;line-height:1;font-family:'Inter',sans-serif;font-weight:400}
 .nav-dropdown:hover > a::after{opacity:1}
 .nav-mega{position:absolute;top:100%;padding-top:12px;left:50%;transform:translateX(-50%);min-width:880px;max-width:calc(100vw - 60px);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;transform:translateX(-50%) translateY(-4px)}
 .nav-mega-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
@@ -44,18 +44,18 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .nav-mega-col{padding:8px 14px}
 .nav-mega-col:not(:last-child){border-right:1px solid rgba(255,255,255,.07)}
-.nav-mega-region{font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.nav-mega-region{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .nav-mega-region+.nav-mega-region{margin-top:12px}
-.nav-mega-link{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.78);text-decoration:none;font-size:12px;padding:6px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
+.nav-mega-link{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.8);text-decoration:none;font-size:13px;padding:6px 0;transition:.15s;border-bottom:1px solid rgba(255,255,255,.04)}
 .nav-mega-link:hover{color:#fff}
 .nav-mega-ico{width:14px;height:14px;flex-shrink:0;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:opacity .15s}
 .nav-mega-link:hover .nav-mega-ico{opacity:1}
 .nav-mega-link:last-child{border-bottom:none}
 .nav-mega-link:hover{color:#fff;padding-left:4px}
-.nav-mega-all{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--accent);text-decoration:none;opacity:.75}
+.nav-mega-all{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:var(--accent);text-decoration:none;opacity:.8}
 .nav-mega-all:hover{opacity:1}
-.nav-tabs-bar{display:flex;gap:2px;margin-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px}
-.nav-tab-btn{background:none;border:none;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:7px;cursor:pointer;transition:.15s;letter-spacing:-.01em}
+.nav-tabs-bar{display:flex;gap:4px;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:12px}
+.nav-tab-btn{background:none;border:none;color:rgba(255,255,255,.55);font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;transition:.15s;letter-spacing:0;white-space:nowrap}
 .nav-tab-btn:hover{color:rgba(255,255,255,.85);background:rgba(255,255,255,.06)}
 .nav-tab-btn.active{color:var(--accent);background:rgba(232,146,74,.1)}
 .nav-tab-content{display:none}
@@ -409,7 +409,7 @@ const LANDING_HTML = `
  <div class="nav-mega-region">Jämför &amp; utforska</div>
  <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
  <a href="/karta" class="nav-mega-link"> Karta över skärgården</a>
- <a href="/o" class="nav-mega-link">📋 Alla 84 öar</a>
+ <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Regioner</div>
@@ -543,7 +543,7 @@ const LANDING_HTML = `
  <div class="mob-acc-body">
  <a href="/resmal" class="mob-acc-link">Alla resmål</a>
  <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
- <a href="/o" class="mob-acc-link">Alla 84 öar</a>
+ <a href="/o" class="mob-acc-link">Alla 69 öar</a>
  <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/romantiska" class="mob-acc-link">Romantiska öar</a>
@@ -602,21 +602,22 @@ const LANDING_HTML = `
  <div class="hero-content">
  <div class="hero-eyebrow">
  <span class="hero-eyebrow-dot"></span>
- Strava för båtfolk — 2 500+ användare
+ 200+ platser kartlagda i Stockholms skärgård
  </div>
  <h1 class="hero-title">
- Planera dina<br>
- <em>skärgårdsrutter på vatten</em>
+ Din guide till<br>
+ <em>Stockholms skärgård</em>
  </h1>
  <p class="hero-sub">
- Logga turer, hitta hamnar och krogar längs vägen, dela med vänner. Stockholm, Bohuslän och Gotland.
+ Planera nästa tur. Hitta krogar, hamnar och dolda öar.
+ Logga dina äventyr och bygg din egen skärgård.
  </p>
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
- <input type="text" placeholder="Sök ö, krog eller hamn..." id="heroSearchInput"/>
- <button type="submit">Planera rutt →</button>
+ <input type="text" placeholder="🔍 Sök ö, krog eller hamn..." id="heroSearchInput"/>
+ <button type="submit">Utforska</button>
  </form>
  <div style="text-align:center;margin-bottom:16px">
- <a href="/planera/ny" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">Planera din första rutt →</a>
+ <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
@@ -633,13 +634,13 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
- <div class="trust-item"><strong data-stat="users">2 500+</strong> Båtägare</div>
+ <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong data-stat="places">470+</strong> Restauranger &amp; hamnar</div>
+ <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>93</strong> Verifierade rutter</div>
+ <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>100 %</strong> Utan land-överlap</div>
+ <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
 </div>
 
 <section class="concept-section" id="utforska">
@@ -651,19 +652,19 @@ const LANDING_HTML = `
  </div>
  <div class="pillars">
  <div class="pillar reveal reveal-delay-1">
- <div class="pillar-icon sea">Planera</div>
- <h3>Rutter utan land-överlap</h3>
- <p>Våra algoritmer följer faktiska farleder — inte över land. Se stopp, vind, tidsuppskattning, djup och säkerhetskritiska points längs vägen.</p>
+ <div class="pillar-icon sea">🧭</div>
+ <h3>Utforska platser</h3>
+ <p>Krogar, bastun, bryggor och dolda pärlor — listade och recenserade av ett community som faktiskt är ute på vattnet. Hitta rätt ställe innan du ger dig ut.</p>
  </div>
  <div class="pillar reveal reveal-delay-2">
- <div class="pillar-icon teal">Hitta</div>
- <h3>Hamnar, krogar & bastu</h3>
- <p>470+ verifiera stopp från OSM-data uppdaterad varje månad. Recensioner från skärgårds-communityn, öppettider, kontakt och adress.</p>
+ <div class="pillar-icon teal">📸</div>
+ <h3>Logga din tur</h3>
+ <p>Foto + plats på 10 sekunder. Din personliga skärgårdsdagbok växer med varje äventyr — se var du varit och inspirera andra att kasta loss.</p>
  </div>
  <div class="pillar reveal reveal-delay-3">
- <div class="pillar-icon accent">Dela</div>
- <h3>Bygg din historia</h3>
- <p>Logga turer med ett klick. Följ vänner och andra båtfolk. Skärgården är en gemenskap — se var andra varit, inspirera nästa äventyr.</p>
+ <div class="pillar-icon accent"> </div>
+ <h3>Äkta community</h3>
+ <p>Feeden fylls av riktiga turer från paddlare och seglare. Inga reklamannonser, ingen algoritm — bara skärgårdsliv som det ser ut på riktigt.</p>
  </div>
  </div>
  </div>
