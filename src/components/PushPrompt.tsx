@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
@@ -18,6 +18,7 @@ export default function PushPrompt() {
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
   const pathname = usePathname()
+  const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -28,7 +29,10 @@ export default function PushPrompt() {
 
     // Visa prompten med lite delay
     const t = setTimeout(() => setShow(true), 15000)
-    return () => clearTimeout(t)
+    return () => {
+      clearTimeout(t)
+      if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current)
+    }
   }, [])
 
   function dismiss() {
@@ -56,7 +60,7 @@ export default function PushPrompt() {
       })
 
       setDone(true)
-      setTimeout(dismiss, 2000)
+      dismissTimerRef.current = setTimeout(dismiss, 2000)
     } catch (err) {
       console.error('Push subscribe error:', err)
       dismiss()

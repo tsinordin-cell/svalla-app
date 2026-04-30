@@ -103,14 +103,16 @@ async function handle(req: Request) {
 
     let sent = 0, errors = 0
     if (subs) {
-      for (const s of subs) {
-        const result = await sendEmail({
-          template: 'season_open',
-          to: s.email,
-          vars: { first_name: 'där' },
-        })
-        if (result.ok) sent++
-        else errors++
+      const CHUNK = 50
+      for (let i = 0; i < subs.length; i += CHUNK) {
+        const chunk = subs.slice(i, i + CHUNK)
+        const settled = await Promise.allSettled(
+          chunk.map(s => sendEmail({ template: 'season_open', to: s.email, vars: { first_name: 'där' } }))
+        )
+        for (const r of settled) {
+          if (r.status === 'fulfilled' && r.value.ok) sent++
+          else errors++
+        }
       }
     }
     results.season_open = { sent, errors }

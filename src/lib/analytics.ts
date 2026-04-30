@@ -17,11 +17,6 @@ export const analytics = {
     has_photos?: boolean
     duration_seconds?: number
   }) => trackEvent('trip_saved', props),
-  tripPublished: (props?: {
-    trip_id?: string
-    has_photos?: boolean
-    has_ai?: boolean
-  }) => trackEvent('trip_published', props),
   islandMarkedVisited: (props?: {
     island_slug?: string
     island_name?: string

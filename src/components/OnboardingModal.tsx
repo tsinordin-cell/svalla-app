@@ -284,6 +284,10 @@ export default function OnboardingModal() {
     })
   }, [supabase])
 
+  useEffect(() => {
+    return () => { if (usernameTimer.current) clearTimeout(usernameTimer.current) }
+  }, [])
+
   // Hämta föreslagna seglare
   useEffect(() => {
     if (step !== 'follow' || !myId) return

@@ -21,6 +21,7 @@ import ThemeProvider from '@/components/ThemeProvider'
 import OfflineToast from '@/components/OfflineToast'
 import PostHogProvider from '@/components/PostHogProvider'
 import PostHogPageView from '@/components/PostHogPageView'
+import CookieConsent from '@/components/CookieConsent'
 // Note: Leaflet CSS is imported dynamically in client components that need it, not here
 
 export const metadata: Metadata = {
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ServiceWorkerRegister />
             <ToastContainer />
             <OfflineToast />
+            <CookieConsent />
           </ThemeProvider>
         </PostHogProvider>
       </body>

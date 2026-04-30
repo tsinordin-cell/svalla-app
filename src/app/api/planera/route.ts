@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
     const { data: places, error: placesErr } = await supabase
       .from('restaurants')
       .select('id, name, latitude, longitude, type, categories, tags, island')
+      .limit(300)
 
     if (placesErr) {
       return NextResponse.json({ error: 'Kunde inte hämta platser' }, { status: 500 })

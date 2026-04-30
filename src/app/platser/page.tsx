@@ -27,7 +27,6 @@ export const metadata: Metadata = {
 
 // Leaflet-kartan kräver browser-API:er — skippa statisk prerender
 export const dynamic = 'force-dynamic'
-export const revalidate = 3600 // Cache for 1 hour
 
 export default async function PlatserPage() {
  const supabase = await createServerSupabaseClient()

@@ -146,6 +146,10 @@ export default function Comments({
  }
  }, [open, userId])
 
+ useEffect(() => {
+ return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+ }, [])
+
  function handleTextChange(val: string) {
  setText(val)
  const cursor = inputRef.current?.selectionStart ?? val.length

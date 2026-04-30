@@ -191,6 +191,43 @@ export default tseslint.config(
 
       // ── Import-ordning (kosmetiskt — varna) ──────────────────────────────
       'import/no-anonymous-default-export': 'warn',
+
+      // ── Inga emoji-glyfer i UI-source ────────────────────────────────────
+      // Vi använder <Icon name="..." /> (src/components/Icon.tsx) för all
+      // ikon-rendering. Emojis ger dålig kontrast mot vissa bakgrunder, ger
+      // inkonsistent storlek, och syns olika på OS:er. Tre sweeps har redan
+      // gjorts — denna regel förhindrar regression.
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'Literal[value=/[\\u{1F300}-\\u{1F9FF}\\u{1FA00}-\\u{1FAFF}\\u{2600}-\\u{27BF}]/u]',
+          message: 'Emoji-glyfer är förbjudna i src/. Använd <Icon name="..." /> eller inline SVG istället.',
+        },
+        {
+          selector: 'JSXText[value=/[\\u{1F300}-\\u{1F9FF}\\u{1FA00}-\\u{1FAFF}\\u{2600}-\\u{27BF}]/u]',
+          message: 'Emoji-glyfer är förbjudna i JSX-text. Använd <Icon name="..." /> istället.',
+        },
+        {
+          selector: 'TemplateElement[value.raw=/[\\u{1F300}-\\u{1F9FF}\\u{1FA00}-\\u{1FAFF}\\u{2600}-\\u{27BF}]/u]',
+          message: 'Emoji-glyfer är förbjudna i template-strings. Använd <Icon name="..." /> istället.',
+        },
+      ],
+    },
+  },
+
+  // Tillåt emojis i mallfiler för email + content (inte UI-källkod)
+  {
+    files: [
+      'emails/**',
+      'src/lib/articles.ts',
+      'src/lib/forum-mentions.ts', // regex-source — tekniska tecken
+      'src/lib/forum-render.tsx',  // emoji-detect-regex
+      'eslint.config.mjs',         // self-reference
+      '**/*.test.ts',
+      '**/*.test.tsx',
+    ],
+    rules: {
+      'no-restricted-syntax': 'off',
     },
   },
 

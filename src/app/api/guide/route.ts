@@ -436,6 +436,7 @@ async function executeTool(
   const { data: places } = await supabase
     .from('restaurants')
     .select('id, name, latitude, longitude, type, categories, tags, island')
+    .limit(300)
 
   const allPlaces: PlaceInput[] = (places ?? []).map((p: {
     id: string; name: string; latitude: number; longitude: number;
