@@ -1,12 +1,15 @@
 /**
  * Admin password gate.
- * POST /api/admin/auth { password } → sätter HttpOnly-cookie 'svalla_admin=ok' i 30 dagar.
+ * POST /api/admin/auth { password } → sätter HttpOnly-cookie 'svalla_admin' i 30 dagar.
+ *   Cookievärdet är ett HMAC-SHA256-token (ej statisk sträng).
  * DELETE /api/admin/auth → loggar ut (rensar cookien).
  *
- * Lösenord läses från env ADMIN_PASSWORD. Saknas env → 503 (admin är inte konfigurerad).
+ * Lösenord läses från env ADMIN_PASSWORD. Saknas env → 503.
  * Ingen fallback. Sätt ADMIN_PASSWORD i Vercel Production + Preview + Development.
  */
 import { NextResponse } from 'next/server'
+import { computeAdminToken } from '@/lib/adminToken'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,6 +21,12 @@ export async function POST(req: Request) {
   if (!ADMIN_PASSWORD) {
     console.error('[admin/auth] ADMIN_PASSWORD env saknas — admin är inte konfigurerad')
     return NextResponse.json({ error: 'Admin auth not configured' }, { status: 503 })
+  }
+
+  // Rate limit: max 10 inloggningsförsök per minut per IP
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+  if (!(await checkRateLimit(`admin-login:${ip}`, 10, 60_000))) {
+    return NextResponse.json({ error: 'För många försök. Vänta en minut.' }, { status: 429 })
   }
 
   let body: { password?: string }
@@ -41,8 +50,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Fel lösenord' }, { status: 401 })
   }
 
+  // Beräkna HMAC-token — cookievärdet kan inte förfalskas utan att känna till lösenordet
+  const token = await computeAdminToken(ADMIN_PASSWORD)
+
   const res = NextResponse.json({ ok: true })
-  res.cookies.set(COOKIE_NAME, 'ok', {
+  res.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
     secure: true,
     sameSite: 'lax',

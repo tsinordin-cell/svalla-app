@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
+import { verifyAdminToken } from '@/lib/adminToken'
 
 const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista', '/rutter']
 
@@ -39,9 +40,14 @@ export async function middleware(request: NextRequest) {
   }
 
   // ── 1. /admin/* — admin-cookie-gate (ovanpå Supabase-auth) ──
+  // Cookievärdet är ett HMAC-SHA256-token — kan inte förfalskas utan ADMIN_PASSWORD-env.
   if (isAdminRoute(pathname)) {
     const adminCookie = request.cookies.get('svalla_admin')?.value
-    if (adminCookie !== 'ok') {
+    const adminPassword = process.env.ADMIN_PASSWORD
+    const valid = adminCookie && adminPassword
+      ? await verifyAdminToken(adminCookie, adminPassword)
+      : false
+    if (!valid) {
       const url = request.nextUrl.clone()
       url.pathname = '/admin/login'
       url.searchParams.set('returnTo', pathname)
