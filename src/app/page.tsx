@@ -32,7 +32,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.01em;}
 .nav-logo .dot{color:var(--accent)}
 .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
-.nav-links a{color:#fff;text-decoration:none;font-family:var(--font-display),'Playfair Display',Georgia,serif;font-size:20px;font-weight:900;transition:.2s;letter-spacing:-.02em;line-height:1;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;font-weight:600;letter-spacing:.03em;transition:.2s;line-height:1}
 .nav-links a:hover{color:var(--white)}
 .nav-dropdown{position:relative}
 .nav-dropdown > a{display:flex;align-items:center;gap:6px}
@@ -1100,14 +1100,6 @@ export default function LandingPage() {
  if (session) window.location.replace('/feed')
  })
 
- // Tvinga Playfair Display på nav-länkarna
- document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach(el => {
- el.style.setProperty('font-family', '"Playfair Display", Georgia, serif', 'important')
- el.style.setProperty('font-size', '20px', 'important')
- el.style.setProperty('font-weight', '900', 'important')
- el.style.setProperty('color', '#ffffff', 'important')
- el.style.setProperty('letter-spacing', '-0.02em', 'important')
- })
 
  // Force Playfair nav
  document.querySelectorAll(".nav-links a").forEach(function(el){
