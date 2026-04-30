@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { logger } from '@/lib/logger'
+import { notifyWithRetry } from '@/lib/notifyWithRetry'
 
 
 /**
@@ -49,19 +50,23 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ id: string
 
     // Notifiera den som skrev svaret (om inte OP själv)
     if (post.user_id !== user.id) {
-      await getAdminClient().from('notifications').insert({
-        user_id: post.user_id,
-        actor_id: user.id,
-        type: 'forum_best_answer',
-        reference_id: threadId,
-      }).then(() => null, (e: unknown) => logger.error('best-answer', 'notif failed', { e }))
+      await notifyWithRetry('best-answer-notif', async () => {
+        await getAdminClient().from('notifications').insert({
+          user_id: post.user_id,
+          actor_id: user.id,
+          type: 'forum_best_answer',
+          reference_id: threadId,
+        })
+      })
 
       const { sendPushToUsers } = await import('@/lib/push-server')
-      await sendPushToUsers([post.user_id], {
-        title: 'Ditt svar markerades som bäst',
-        body: `i "${(thread.title ?? '').slice(0, 60)}"`,
-        url: `/forum/${thread.category_id}/${threadId}`,
-      })
+      await notifyWithRetry('best-answer-push', () =>
+        sendPushToUsers([post.user_id], {
+          title: 'Ditt svar markerades som bäst',
+          body: `i "${(thread.title ?? '').slice(0, 60)}"`,
+          url: `/forum/${thread.category_id}/${threadId}`,
+        })
+      )
     }
     return NextResponse.json({ ok: true, bestPostId: postId, isSolved: true })
   }

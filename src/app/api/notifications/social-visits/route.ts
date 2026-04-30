@@ -14,6 +14,7 @@
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendPushToUsers } from '@/lib/push-server'
+import { notifyWithRetry } from '@/lib/notifyWithRetry'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const dynamic = 'force-dynamic'
@@ -120,16 +121,16 @@ async function handle(req: Request) {
     // Markera dessa som notifierade inom denna cron-körning
     toNotify.forEach(uid => alreadyNotifiedKey.add(`${v.user_id}:${uid}`))
 
-    // Push
-    try {
-      await sendPushToUsers(toNotify, {
+    // Push — med retry + Sentry på slutgiltigt misslyckande
+    await notifyWithRetry('social-visit-push', () =>
+      sendPushToUsers(toNotify, {
         title: `${username} besökte ${islandName}`,
         body: `Har du varit där? Logga ditt besök så ser dina vänner det.`,
         url: `https://svalla.se/o/${v.island_slug}`,
       })
-    } catch (e) {
+    ).catch(e => {
       errors.push(`push: ${e instanceof Error ? e.message : 'unknown'}`)
-    }
+    })
 
     totalNotified += toNotify.length
   }
