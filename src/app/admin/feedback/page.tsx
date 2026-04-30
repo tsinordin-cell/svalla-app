@@ -80,8 +80,7 @@ export default async function AdminFeedbackPage() {
             color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: 600,
             textDecoration: 'none', marginBottom: 10,
           }}>
-            <Icon name="arrowRight" size={12} stroke={2} />
-            <span style={{ transform: 'scaleX(-1)', display: 'inline-block', marginRight: 4 }}>
+            <span style={{ transform: 'scaleX(-1)', display: 'inline-flex' }}>
               <Icon name="arrowRight" size={12} stroke={2} />
             </span>
             Tillbaka till admin

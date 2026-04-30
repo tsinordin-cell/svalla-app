@@ -222,7 +222,7 @@ export default function PartnerPage() {
                   </li>
                 ))}
               </ul>
-              <a href={`#kontakt?tier=${t.name.toLowerCase()}`} style={{
+              <a href={`?tier=${t.name.toLowerCase()}#kontakt`} style={{
                 marginTop: 18, display: 'inline-flex', gap: 6, alignItems: 'center',
                 padding: '12px 18px', borderRadius: 999,
                 background: t.color, color: '#fff',
