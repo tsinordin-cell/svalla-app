@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { NextRequest, NextResponse } from 'next/server'
+import { createHash } from 'crypto'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
@@ -135,6 +136,44 @@ export async function POST(req: NextRequest) {
   // Egen users-rad (om finns)
   await s.from('users').delete().eq('id', userId)
 
+  // ─── Steg 3b: Rensa Storage-filer ─────────────────────────────────────
+  // Avatar: images-bucket, path avatars/{userId}.{ext}
+  try {
+    const { data: avatarFiles } = await s.storage.from('images').list('avatars', {
+      search: userId,
+    })
+    if (avatarFiles && avatarFiles.length > 0) {
+      const paths = avatarFiles.map(f => `avatars/${f.name}`)
+      await s.storage.from('images').remove(paths)
+    }
+  } catch (e) {
+    logger.error('account-delete', 'avatar storage cleanup failed', { e: String(e), userId })
+  }
+
+  // Trip-bilder: trip-images-bucket, prefix checkin/{userId}/
+  try {
+    const { data: checkinFiles } = await s.storage.from('trip-images').list(`checkin/${userId}`)
+    if (checkinFiles && checkinFiles.length > 0) {
+      const paths = checkinFiles.map(f => `checkin/${userId}/${f.name}`)
+      await s.storage.from('trip-images').remove(paths)
+    }
+  } catch (e) {
+    logger.error('account-delete', 'trip-images storage cleanup failed', { e: String(e), userId })
+  }
+
+  // Trip-bilder: trips-bucket, prefix {userId}-
+  try {
+    const { data: tripFiles } = await s.storage.from('trips').list('', {
+      search: userId,
+    })
+    if (tripFiles && tripFiles.length > 0) {
+      const paths = tripFiles.map(f => f.name)
+      await s.storage.from('trips').remove(paths)
+    }
+  } catch (e) {
+    logger.error('account-delete', 'trips storage cleanup failed', { e: String(e), userId })
+  }
+
   // ─── Steg 4: Skicka bekräftelse-email ─────────────────────────────────
   if (userEmail && process.env.RESEND_API_KEY) {
     try {
@@ -162,6 +201,18 @@ export async function POST(req: NextRequest) {
     logger.error('account-delete', 'auth deleteUser failed', { e: authDelErr.message, userId })
     // Detta är ett kritiskt fel — datat är raderat men auth-row finns kvar.
     // Returnera ändå ok (data är borta) men logga för manuell cleanup.
+  }
+
+  // ─── Steg 6: GDPR-audit log (ingen PII — bara hash + tidstämpel) ──────
+  try {
+    const userIdHash = createHash('sha256').update(userId).digest('hex')
+    await s.from('account_deletions').insert({
+      user_id_hash: userIdHash,
+      deleted_at: new Date().toISOString(),
+    })
+  } catch (e) {
+    logger.error('account-delete', 'audit log failed', { e: String(e) })
+    // Icke-kritiskt — fortsätt ändå
   }
 
   // Logga ut session
