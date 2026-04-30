@@ -229,7 +229,7 @@ export default function PartnerPage() {
                 fontSize: 14, fontWeight: 700, textDecoration: 'none',
                 textAlign: 'center', justifyContent: 'center',
                 transition: 'opacity 0.2s',
-              }} onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+              }}>
                 Välj denna plan <Icon name="arrowRight" size={14} stroke={2.4} />
               </a>
             </div>
