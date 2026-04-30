@@ -32,7 +32,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.01em;}
 .nav-logo .dot{color:var(--accent)}
 .nav-links{display:flex;gap:28px;list-style:none;align-items:center}
-.nav-links a{color:#fff;text-decoration:none;font-family:'Playfair Display',serif;font-size:20px;font-weight:900;transition:.2s;letter-spacing:-.02em;line-height:1;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.nav-links a{color:#fff;text-decoration:none;font-family:var(--font-display),'Playfair Display',Georgia,serif;font-size:20px;font-weight:900;transition:.2s;letter-spacing:-.02em;line-height:1;text-shadow:0 1px 8px rgba(0,0,0,.25)}
 .nav-links a:hover{color:var(--white)}
 .nav-dropdown{position:relative}
 .nav-dropdown > a{display:flex;align-items:center;gap:6px}
