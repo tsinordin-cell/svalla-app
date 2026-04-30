@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Link from 'next/link'
 import PartnerForm from './PartnerForm'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -293,7 +294,9 @@ export default function PartnerPage() {
         <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', marginBottom: 24 }}>
           Vi hör av oss inom 1–2 arbetsdagar med ett konkret förslag.
         </p>
-        <PartnerForm />
+        <Suspense fallback={<div style={{ minHeight: 320 }} />}>
+          <PartnerForm />
+        </Suspense>
         <p style={{ marginTop: 18, fontSize: 12, color: 'var(--txt3)', textAlign: 'center' }}>
           Genom att skicka godkänner du att vi sparar dina kontaktuppgifter för att svara på din förfrågan.
         </p>

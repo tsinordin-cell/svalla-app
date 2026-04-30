@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -273,12 +274,14 @@ export default async function PlaneraIdPage({ params }: Props) {
  {forecast && <RouteWeatherStrip forecast={forecast} />}
 
  {/* Spara/claim CTA — främst för utloggade */}
+ <Suspense fallback={null}>
  <SaveRouteCTA
  routeId={route.id}
  hasOwner={hasOwner}
  isLoggedIn={isLoggedIn}
  ownsRoute={ownsRoute}
  />
+ </Suspense>
 
  {/* Säkerhets-disclaimer + datakälla */}
  <RouteDisclaimer />

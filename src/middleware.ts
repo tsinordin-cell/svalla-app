@@ -30,7 +30,6 @@ export async function middleware(request: NextRequest) {
       url.searchParams.set('returnTo', pathname)
       return NextResponse.redirect(url)
     }
-    // Lösenord OK — fortsätt till Supabase-auth-checken nedan om /admin är i PROTECTED
   }
 
   let isProtected = false
@@ -43,57 +42,60 @@ export async function middleware(request: NextRequest) {
 
   if (!isProtected) return NextResponse.next()
 
+  // Skapa en delad response-referens som setAll kan uppdatera.
+  // Kritiskt: setAll måste sätta cookies på SAMMA response som returneras —
+  // annars försvinner refreshade access-tokens och inloggning misslyckas.
+  let supabaseResponse = NextResponse.next({ request })
+
   let authenticated = false
   try {
-    const cookieStore = request.cookies
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
           getAll() {
-            return cookieStore.getAll()
+            return request.cookies.getAll()
           },
-           
-          setAll(cookiesToSet: Array<{ name: string; value: string; options?: any }>) {
-            const response = NextResponse.next()
-            for (const { name, value, options } of cookiesToSet) {
-              response.cookies.set(name, value, options)
-            }
-            return response
+          setAll(cookiesToSet: Array<{ name: string; value: string; options?: object }>) {
+            // Sätt cookies på request (för downstream server components)
+            cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+            // Bygg om den delade response-referensen med uppdaterade cookies
+            supabaseResponse = NextResponse.next({ request })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              supabaseResponse.cookies.set(name, value, options ?? {})
+            )
           },
         },
       }
     )
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser()
     authenticated = !!user
   } catch (err) {
-    // Log so errors surface in Vercel function logs — don't silently swallow them
     console.error('[middleware] auth check failed:', err)
     authenticated = false
   }
 
   if (!authenticated) {
     const url = request.nextUrl.clone()
-    // Hitta matchande publik fallback — t.ex. /rutter → /oar
     const fallback = Object.entries(PUBLIC_FALLBACK).find(([prefix]) =>
       pathname === prefix || pathname.startsWith(prefix + '/')
     )?.[1]
     if (fallback) {
       url.pathname = fallback
-      url.search = ''  // ta bort eventuella query-params (t.ex. ?vy=oar)
+      url.search = ''
       return NextResponse.redirect(url)
     }
     url.pathname = '/logga-in'
     url.searchParams.set('returnTo', pathname)
-    url.searchParams.set('mode', 'ny')   // externa besökare → visa "Skapa konto" som default
+    url.searchParams.set('mode', 'ny')
     return NextResponse.redirect(url)
   }
 
-  return NextResponse.next()
+  // Returnera supabaseResponse — inte NextResponse.next() — så att
+  // refreshade session-cookies faktiskt når webbläsaren.
+  return supabaseResponse
 }
 
 export const config = {

@@ -144,10 +144,14 @@ function KomIgangInner() {
  /* ── OAuth ── */
  async function signInWithOAuth() {
  setOauthLoading('google'); setErr('')
+ // redirectTo måste peka på /auth/callback — inte direkt på /feed.
+ // /auth/callback växlar authorization code mot session och redirectar vidare.
+ const callbackUrl = new URL(`${location.origin}/auth/callback`)
+ callbackUrl.searchParams.set('next', '/feed')
  const { error } = await supabase.auth.signInWithOAuth({
  provider: 'google',
  options: {
- redirectTo: `${location.origin}/feed`,
+ redirectTo: callbackUrl.toString(),
  queryParams: { access_type: 'offline', prompt: 'consent' },
  },
  })
