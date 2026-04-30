@@ -99,6 +99,34 @@ export async function POST(req: Request) {
     case 'customer.subscription.deleted':
       await deleteSubscription(event.data.object as Stripe.Subscription)
       break
+    // Betalning misslyckades — sätt status till past_due så Pro-gates stängs
+    case 'invoice.payment_failed': {
+      const invoice = event.data.object as Stripe.Invoice
+      const subId = (invoice as unknown as { subscription?: string }).subscription
+      if (subId) {
+        const supabaseAdmin = getSupabaseAdmin()
+        await supabaseAdmin
+          .from('subscriptions')
+          .update({ status: 'past_due', updated_at: new Date().toISOString() })
+          .eq('stripe_subscription_id', subId)
+      }
+      break
+    }
+    // Betalning lyckades efter retry — återställ till active
+    case 'invoice.payment_succeeded': {
+      const invoice = event.data.object as Stripe.Invoice
+      const subId = (invoice as unknown as { subscription?: string }).subscription
+      if (subId) {
+        const supabaseAdmin = getSupabaseAdmin()
+        // Hämta subscription från Stripe för att få korrekt period
+        const stripe = getStripe()
+        try {
+          const sub = await stripe.subscriptions.retrieve(subId)
+          await upsertSubscription(sub)
+        } catch { /* ignore — subscription.updated webhook täcker detta */ }
+      }
+      break
+    }
     default:
       break
   }

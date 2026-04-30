@@ -603,6 +603,12 @@ export default function SparaPage() {
     setTripId(tid)
     clearTripSnapshot()
 
+    // Rensa offline-bufferten — GPS-punkterna sparas via in-memory points nedan,
+    // inte via bufferten, så bufferten är redundant efter att trippen är sparad.
+    getPendingPoints().then(pending => {
+      if (pending.length > 0) clearPoints(pending.map(p => p.key)).then(() => setOfflineBuffered(0))
+    }).catch(() => {})
+
     // Insert tagged crew
     if (taggedCrew.length > 0) {
       await Promise.all(taggedCrew.map(u => addTripTag(supabase, user.id, tid, u.id)))
