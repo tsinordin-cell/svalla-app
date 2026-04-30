@@ -4,6 +4,7 @@ import { createClient } from '@supabase/supabase-js'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
 import { sendPushToUsers } from '@/lib/push-server'
+import { extractMentions } from '@/lib/forum-mentions'
 
 function svcClient() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
@@ -77,14 +78,17 @@ export async function POST(req: NextRequest) {
     await supabase.from('forum_subscriptions')
       .upsert({ user_id: user.id, thread_id: threadId }, { onConflict: 'user_id,thread_id', ignoreDuplicates: true })
 
-    // Notifiera thread-ägare + prenumeranter + tidigare deltagare (fire-and-forget)
+    // Notifiera thread-ägare + prenumeranter + tidigare deltagare + mentions (fire-and-forget)
     if (!inSpamQueue) {
+      // Extrahera mentions först — dessa får specifik mention-notis (prio över reply-notis)
+      const mentionedUsernames = extractMentions(trimBody)
       void notifyForumParticipants({
         threadId,
         threadTitle:    thread.title,
         threadOwnerId:  thread.user_id,
         categoryId:     thread.category_id,
         posterId:       user.id,
+        mentionedUsernames,
         supabase,
       })
     }
@@ -102,16 +106,17 @@ export async function POST(req: NextRequest) {
 // ── Push notifications ──────────────────────────────────────────────────────
 
 interface NotifyParams {
-  threadId:      string
-  threadTitle:   string
-  threadOwnerId: string
-  categoryId:    string
-  posterId:      string
-  supabase:      Awaited<ReturnType<typeof createServerSupabaseClient>>
+  threadId:           string
+  threadTitle:        string
+  threadOwnerId:      string
+  categoryId:         string
+  posterId:           string
+  mentionedUsernames: string[]
+  supabase:           Awaited<ReturnType<typeof createServerSupabaseClient>>
 }
 
 async function notifyForumParticipants({
-  threadId, threadTitle, threadOwnerId, categoryId, posterId, supabase,
+  threadId, threadTitle, threadOwnerId, categoryId, posterId, mentionedUsernames, supabase,
 }: NotifyParams): Promise<void> {
   try {
     // Poster's username for notification text
@@ -121,6 +126,38 @@ async function notifyForumParticipants({
       .eq('id', posterId)
       .maybeSingle()
     const posterName = (posterRow?.username as string | undefined) ?? 'Någon'
+
+    // Resolve mentioned usernames to user-ids (case-insensitive)
+    const mentionedIds = new Set<string>()
+    if (mentionedUsernames.length > 0) {
+      const svc = svcClient()
+      const { data: mentionRows } = await svc
+        .from('users')
+        .select('id, username')
+        .in('username', mentionedUsernames)
+      ;(mentionRows ?? []).forEach((u: { id: string; username: string }) => {
+        if (u.id !== posterId) mentionedIds.add(u.id)
+      })
+
+      // Skapa mention-notis för varje + skicka specifik push
+      if (mentionedIds.size > 0) {
+        const shortTitleM = threadTitle.length > 55 ? threadTitle.slice(0, 55) + '…' : threadTitle
+        const notifRows = [...mentionedIds].map(uid => ({
+          user_id: uid,
+          actor_id: posterId,
+          type: 'forum_mention',
+          reference_id: threadId,
+        }))
+        const { error: mErr } = await svc.from('notifications').insert(notifRows)
+        if (mErr) console.error('[forum/posts] mention-notis-fel:', mErr)
+
+        await sendPushToUsers([...mentionedIds], {
+          title: `${posterName} taggade dig`,
+          body:  `i "${shortTitleM}"`,
+          url:   `/forum/${categoryId}/${threadId}`,
+        })
+      }
+    }
 
     // Previous participants who replied + prenumeranter
     const [{ data: prevPosts }, { data: subscribers }] = await Promise.all([
@@ -140,19 +177,19 @@ async function notifyForumParticipants({
     const prevParticipants = [...new Set((prevPosts ?? []).map((p: { user_id: string }) => p.user_id))]
     const subscriberIds    = (subscribers ?? []).map((s: { user_id: string }) => s.user_id)
 
-    // Collect recipients: thread owner + subscribers + past participants, excluding poster
+    // Collect recipients: thread owner + subscribers + past participants, excluding poster + mentioned
     const recipientSet = new Set<string>()
-    if (threadOwnerId !== posterId) recipientSet.add(threadOwnerId)
-    subscriberIds.forEach(uid => recipientSet.add(uid))
+    if (threadOwnerId !== posterId && !mentionedIds.has(threadOwnerId)) recipientSet.add(threadOwnerId)
+    subscriberIds.forEach(uid => { if (!mentionedIds.has(uid)) recipientSet.add(uid) })
     prevParticipants
-      .filter(uid => uid !== threadOwnerId)
+      .filter(uid => uid !== threadOwnerId && !mentionedIds.has(uid))
       .slice(0, 19)
       .forEach(uid => recipientSet.add(uid))
 
     if (recipientSet.size === 0) return
 
-    // Also insert DB notifications for thread owner
-    if (threadOwnerId !== posterId) {
+    // Insert DB notification for thread owner (only if not already mentioned)
+    if (threadOwnerId !== posterId && !mentionedIds.has(threadOwnerId)) {
       const { error: notifErr } = await svcClient().from('notifications').insert({
         user_id:      threadOwnerId,
         actor_id:     posterId,

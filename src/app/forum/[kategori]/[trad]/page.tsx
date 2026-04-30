@@ -6,7 +6,9 @@ import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
+import ForumQuoteButton from './ForumQuoteButton'
 import Icon from '@/components/Icon'
+import { renderForumBody } from '@/lib/forum-render'
 import type { Metadata } from 'next'
 
 export const revalidate = 30
@@ -200,21 +202,23 @@ export default async function ForumTradPage({ params }: Props) {
             color: 'var(--txt)',
             lineHeight: 1.65,
             marginTop: 12,
-            whiteSpace: 'pre-wrap',
             wordBreak: 'break-word',
           }}>
-            {thread.body}
+            {renderForumBody(thread.body)}
           </div>
-          <ForumPostActions
-            postId={thread.id}
-            threadId={thread.id}
-            authorId={thread.user_id}
-            currentUserId={currentUserId}
-            initialBody={thread.body}
-            initialTitle={thread.title}
-            isThread
-            categoryId={kategori}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
+            <ForumQuoteButton username={thread.author?.username ?? 'Okänd'} body={thread.body} />
+            <ForumPostActions
+              postId={thread.id}
+              threadId={thread.id}
+              authorId={thread.user_id}
+              currentUserId={currentUserId}
+              initialBody={thread.body}
+              initialTitle={thread.title}
+              isThread
+              categoryId={kategori}
+            />
+          </div>
         </div>
 
         {/* ── Svar ── */}
@@ -250,24 +254,26 @@ export default async function ForumTradPage({ params }: Props) {
                     color: 'var(--txt)',
                     lineHeight: 1.65,
                     marginTop: 10,
-                    whiteSpace: 'pre-wrap',
                     wordBreak: 'break-word',
                   }}>
-                    {post.body}
+                    {renderForumBody(post.body)}
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, gap: 8 }}>
                     <ForumLikeButton
                       postId={post.id}
                       initialCount={post.like_count ?? 0}
                       initialLiked={post.liked_by_user ?? false}
                       currentUserId={currentUserId}
                     />
-                    <ForumPostActions
-                      postId={post.id}
-                      authorId={post.user_id}
-                      currentUserId={currentUserId}
-                      initialBody={post.body}
-                    />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <ForumQuoteButton username={post.author?.username ?? 'Okänd'} body={post.body} />
+                      <ForumPostActions
+                        postId={post.id}
+                        authorId={post.user_id}
+                        currentUserId={currentUserId}
+                        initialBody={post.body}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
