@@ -1,22 +1,7 @@
 import Link from 'next/link'
 import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
-import type { ReactNode } from 'react'
-import { Fish, Wrench, BookOpen, ShoppingBag } from '@/components/icons/LucideIcons'
-import { IconSailboat, IconMotorboat, IconKayak, IconAnchor, IconLighthouse, IconWind } from '@/components/icons/SvallaIcons'
-
-const CATEGORY_ICONS: Record<string, ReactNode> = {
- '': <IconSailboat size={26} />,
- '': <IconMotorboat size={26} />,
- '': <Fish size={26} />,
- '': <IconKayak size={26} />,
- '': <IconLighthouse size={26} />,
- '🌤️': <IconWind size={26} />,
- '': <Wrench size={26} />,
- '': <IconAnchor size={26} />,
- '': <BookOpen size={26} />,
- '': <ShoppingBag size={26} />,
-}
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
  title: 'Forum — Svalla',
@@ -137,14 +122,14 @@ export default async function ForumPage() {
  width: 44,
  height: 44,
  borderRadius: 12,
- background: 'var(--teal-08, rgba(10,123,140,0.08))',
+ background: `${cat.iconColor}18`,
  display: 'flex',
  alignItems: 'center',
  justifyContent: 'center',
- color: 'var(--sea)',
+ color: cat.iconColor,
  flexShrink: 0,
  }}>
- {CATEGORY_ICONS[cat.icon] ?? cat.icon}
+ <Icon name={cat.iconName} size={22} stroke={1.8} />
  </span>
 
  {/* Text */}
