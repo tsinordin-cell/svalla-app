@@ -244,13 +244,22 @@ export async function getPostsByThread(
   }
 }
 
-/** Antal godkända (ej spam-köade) forum_posts + forum_threads av en användare. */
+/**
+ * Antal godkända (ej spam-köade) forum_posts + forum_threads av en användare
+ * under de senaste 30 dagarna.
+ *
+ * Rullande 30-dagarsfönster istället för all-time count — förhindrar att
+ * gamla inlägg permanent whitelistar ett konto som sedan beter sig dåligt.
+ */
 export async function getUserForumPostCount(userId: string): Promise<number> {
   try {
     const supabase = await createServerSupabaseClient()
+    const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
     const [{ count: tc }, { count: pc }] = await Promise.all([
-      supabase.from('forum_threads').select('id', { count: 'exact', head: true }).eq('user_id', userId).eq('in_spam_queue', false),
-      supabase.from('forum_posts').select('id', { count: 'exact', head: true }).eq('user_id', userId).eq('in_spam_queue', false),
+      supabase.from('forum_threads').select('id', { count: 'exact', head: true })
+        .eq('user_id', userId).eq('in_spam_queue', false).gte('created_at', since),
+      supabase.from('forum_posts').select('id', { count: 'exact', head: true })
+        .eq('user_id', userId).eq('in_spam_queue', false).gte('created_at', since),
     ])
     return (tc ?? 0) + (pc ?? 0)
   } catch {
