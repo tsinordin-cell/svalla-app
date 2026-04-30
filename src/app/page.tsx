@@ -1100,6 +1100,15 @@ export default function LandingPage() {
  if (session) window.location.replace('/feed')
  })
 
+ // Tvinga Playfair Display på nav-länkarna
+ document.querySelectorAll<HTMLAnchorElement>('.nav-links a').forEach(el => {
+ el.style.setProperty('font-family', '"Playfair Display", Georgia, serif', 'important')
+ el.style.setProperty('font-size', '20px', 'important')
+ el.style.setProperty('font-weight', '900', 'important')
+ el.style.setProperty('color', '#ffffff', 'important')
+ el.style.setProperty('letter-spacing', '-0.02em', 'important')
+ })
+
  // Nav scroll-effekt
  const nav = document.getElementById('mainNav')
  const handleScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 60)
