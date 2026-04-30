@@ -19,50 +19,50 @@ export const metadata: Metadata = {
 const TIERS = [
   {
     name: 'Bas',
-    price: 500,
+    price: 290,
     cta: 'Kom igång',
     color: 'var(--sea)',
     features: [
-      'Verifierat listning på din ö-sida',
-      'Logo, beskrivning, öppettider',
-      'Telefon + bokningslänk',
-      'Synlighet i sök & kategori',
+      'Premium-placering i sökresultat',
+      'Bokningsknapp på er sida',
+      'Bilder & beskrivning',
+      'Statistik på besökare',
     ],
   },
   {
     name: 'Standard',
-    price: 1000,
+    price: 590,
     cta: 'Mest populär',
     color: 'var(--acc)',
     highlight: true,
     features: [
       'Allt i Bas, plus:',
-      'Framhävd position på ö-sidan',
-      'Foto-galleri (upp till 6 bilder)',
-      'Featured plats i sökresultat',
+      'Featured i ö-toppar',
+      'Foto-galleri (upp till 8 bilder)',
+      'Väder-info på er sida',
       'Månatlig statistik via mail',
     ],
   },
   {
     name: 'Premium',
-    price: 2500,
+    price: 990,
     cta: 'Mest synlighet',
     color: 'var(--green, #2a6e50)',
     features: [
       'Allt i Standard, plus:',
-      'Direktbokningslänk på markörer',
-      'Specialerbjudanden ("10% rabatt via Svalla")',
-      'Plats i veckans nyhetsbrev (en gång/säsong)',
+      'Sponsrade rutter direkt till er',
+      'Push-notiser till båtfolk i området',
+      'Thorkel rekommenderar er',
       'Personlig kontakt + content-stöd',
     ],
   },
 ]
 
 const STATS = [
-  { num: '200+', label: 'Verksamheter kartlagda' },
-  { num: '84', label: 'Detaljerade ösidor' },
+  { num: '2 500+', label: 'Båtägare aktiva på Svalla' },
+  { num: '1 000+', label: 'Planerade rutter senaste veckan' },
+  { num: '470+', label: 'Verifierade restauranger & hamnar' },
   { num: 'Maj–Sept', label: 'Säsong med högtrafik' },
-  { num: '0 kr', label: 'Att komma igång' },
 ]
 
 const BENEFITS: Array<{ icon: IconName; title: string; body: string }> = [
@@ -103,11 +103,12 @@ export default function PartnerPage() {
             fontSize: 44, fontWeight: 700, lineHeight: 1.15, margin: '0 0 16px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Synas där seglarna planerar
+            Bli synlig för Sveriges båtfolk
           </h1>
           <p style={{ fontSize: 18, lineHeight: 1.55, opacity: 0.9, maxWidth: 560, margin: '0 auto 28px' }}>
-            Svalla är skärgårdens guide. Tusentals besökare planerar sina turer här —
-            varje månad, året runt. Kom in i kartan från 500 kr/mån.
+            Svalla är den plats där båtfolk i Stockholms skärgård och Bohuslän planerar sina rutter.
+            Tusentals besökare varje månad söker restauranger, hamnar och upplevelser.
+            Från 290 kr/mån.
           </p>
           <a href="#kontakt" style={{
             display: 'inline-flex', gap: 8, alignItems: 'center',
@@ -171,7 +172,7 @@ export default function PartnerPage() {
       </section>
 
       {/* TIERS */}
-      <section style={{ maxWidth: 1000, margin: '40px auto 0', padding: '0 16px' }}>
+      <section id="tiers" style={{ maxWidth: 1000, margin: '40px auto 0', padding: '0 16px' }}>
         <h2 style={{
           fontSize: 28, fontWeight: 700, marginBottom: 6, color: 'var(--txt)',
           fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
@@ -189,6 +190,7 @@ export default function PartnerPage() {
               borderRadius: 16, padding: '28px 22px',
               position: 'relative',
               boxShadow: t.highlight ? '0 8px 24px rgba(0,0,0,0.12)' : '0 2px 8px rgba(0,0,0,0.04)',
+              display: 'flex', flexDirection: 'column',
             }}>
               {t.highlight && (
                 <div style={{
@@ -209,7 +211,7 @@ export default function PartnerPage() {
               <div style={{ fontSize: 12, color: 'var(--txt2)', marginBottom: 18 }}>
                 exkl. moms
               </div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: 13.5, lineHeight: 1.65 }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 auto', fontSize: 13.5, lineHeight: 1.65 }}>
                 {t.features.map(f => (
                   <li key={f} style={{ display: 'flex', gap: 8, marginBottom: 8, alignItems: 'flex-start' }}>
                     <span style={{ color: t.color, marginTop: 2 }}>
@@ -219,8 +221,62 @@ export default function PartnerPage() {
                   </li>
                 ))}
               </ul>
+              <a href={`#kontakt?tier=${t.name.toLowerCase()}`} style={{
+                marginTop: 18, display: 'inline-flex', gap: 6, alignItems: 'center',
+                padding: '12px 18px', borderRadius: 999,
+                background: t.color, color: '#fff',
+                fontSize: 14, fontWeight: 700, textDecoration: 'none',
+                textAlign: 'center', justifyContent: 'center',
+                transition: 'opacity 0.2s',
+              }} onMouseEnter={e => (e.currentTarget.style.opacity = '0.9')} onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+                Välj denna plan <Icon name="arrowRight" size={14} stroke={2.4} />
+              </a>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ maxWidth: 720, margin: '60px auto 0', padding: '0 24px' }}>
+        <h2 style={{
+          fontSize: 26, fontWeight: 700, marginBottom: 24, color: 'var(--txt)',
+          fontFamily: "'Playfair Display', Georgia, serif", textAlign: 'center',
+        }}>
+          Vanliga frågor
+        </h2>
+        <div style={{ display: 'grid', gap: 14 }}>
+          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
+            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
+              Hur länge är bindningstiden?
+            </summary>
+            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
+              Ingen bindningstid. Du betalar månad för månad och kan säga upp när som helst. Inga dolda avgifter.
+            </p>
+          </details>
+          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
+            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
+              Får jag mer trafik?
+            </summary>
+            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
+              Svalla har 2 500+ aktiva båtägare som planerar rutter varje månad. Vi kan inte garantera siffror, men du syns för rätt personer på rätt tid.
+            </p>
+          </details>
+          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
+            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
+              Vad händer efter betalning?
+            </summary>
+            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
+              Vi kontaktar er inom 24 timmar för att samla material (foton, beskrivning, öppettider). Ni är synliga på Svalla inom 48 timmar.
+            </p>
+          </details>
+          <details style={{ background: 'var(--white)', padding: '16px 20px', borderRadius: 12, border: '1px solid var(--surface-3)', cursor: 'pointer' }}>
+            <summary style={{ fontWeight: 700, color: 'var(--txt)', fontSize: 15, userSelect: 'none' }}>
+              Kan jag prova gratis?
+            </summary>
+            <p style={{ margin: '12px 0 0', color: 'var(--txt2)', fontSize: 14, lineHeight: 1.55 }}>
+              Ja. Kontakta <Link href="mailto:tom@svalla.se" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>tom@svalla.se</Link> för 30 dagar gratis test av Standard-paketet.
+            </p>
+          </details>
         </div>
       </section>
 

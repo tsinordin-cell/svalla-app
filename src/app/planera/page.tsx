@@ -109,31 +109,69 @@ export default async function PlaneraPage() {
           <MyRoutesList initialRoutes={myRoutes} />
         )}
 
-        {/* Inte inloggad */}
+        {/* Inte inloggad — Visa exempel-rutt */}
         {!session && (
-          <div style={{
-            background: 'var(--white)', borderRadius: 16, padding: '20px',
-            border: '1px solid rgba(10,123,140,0.08)', marginBottom: 24, textAlign: 'center',
-          }}>
+          <>
             <div style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              width: 48, height: 48, borderRadius: 14,
-              background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
-              marginBottom: 12,
+              background: 'var(--white)', borderRadius: 16, padding: '24px',
+              border: '1px solid rgba(10,123,140,0.08)', marginBottom: 24,
             }}>
-              <Icon name="sailboat" size={26} stroke={1.8} />
+              <div style={{
+                display: 'flex', alignItems: 'flex-start', gap: 16,
+              }}>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  width: 56, height: 56, borderRadius: 14,
+                  background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
+                  flexShrink: 0,
+                }}>
+                  <Icon name="map" size={28} stroke={1.8} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Planera en rutt utan att logga in</p>
+                  <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
+                    Testa ruttplaneringen direkt — se hur Svalla hittar krogar, hamnar och stopp längs vägen. Logga in när du vill spara och dela.
+                  </p>
+                  <div style={{
+                    background: 'rgba(10,123,140,0.04)', borderRadius: 12, padding: '12px 16px',
+                    fontSize: 13, color: 'var(--txt)', lineHeight: 1.6, marginBottom: 14,
+                  }}>
+                    <div style={{ fontWeight: 600, marginBottom: 6, color: 'var(--sea)' }}>Exempel: Strömkajen → Sandhamn</div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, fontSize: 12 }}>
+                      <div>Distans: ~50 km</div>
+                      <div>Segling: ~5h</div>
+                      <div>Motorbåt: ~1h 30m</div>
+                      <div>Stopp: 12+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Spara dina rutter</p>
-            <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 16px' }}>
-              Logga in för att spara, dela och återvända till dina planerade rutter.
-            </p>
-            <Link href="/logga-in" style={{
-              display: 'inline-block', padding: '10px 24px', borderRadius: 50,
-              background: 'var(--grad-sea)', color: '#fff', fontSize: 13, fontWeight: 700, textDecoration: 'none',
+
+            <div style={{
+              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24,
             }}>
-              Logga in
-            </Link>
-          </div>
+              <Link href="/planera/ny" style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                padding: '14px 20px', borderRadius: 50,
+                background: 'var(--grad-sea)', color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
+                transition: 'transform 120ms, box-shadow 120ms',
+              }}>
+                <Icon name="map" size={16} stroke={2} />
+                Prova planera
+              </Link>
+              <Link href="/logga-in" style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                padding: '14px 20px', borderRadius: 50,
+                background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', fontSize: 14, fontWeight: 700, textDecoration: 'none',
+                border: '1.5px solid rgba(10,123,140,0.16)',
+                transition: 'transform 120ms, background 120ms',
+              }}>
+                <Icon name="user" size={16} stroke={2} />
+                Logga in
+              </Link>
+            </div>
+          </>
         )}
 
         {/* Tom state */}

@@ -1,10 +1,25 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
+
+const TIER_PRICES: Record<string, number> = {
+  bas: 290,
+  standard: 590,
+  premium: 990,
+}
 
 export default function PartnerForm() {
+  const searchParams = useSearchParams()
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
   const [tier, setTier] = useState<string>('')
+
+  useEffect(() => {
+    const tierParam = searchParams.get('tier')
+    if (tierParam && ['bas', 'standard', 'premium'].includes(tierParam)) {
+      setTier(tierParam)
+    }
+  }, [searchParams])
 
   /** Camel-casa kolumn-namnen: API route förväntar sig camelCase i partner-checkout */
   function payloadCamel(formData: FormData) {
@@ -118,15 +133,33 @@ export default function PartnerForm() {
   }
 
   return (
-    <form
-      id="partner-form"
-      onSubmit={submitInquiry}
-      style={{
-        background: 'var(--white)', padding: '28px 26px', borderRadius: 16,
-        border: '1px solid var(--surface-3)',
-        display: 'grid', gap: 14,
-      }}
-    >
+    <>
+      {tier && (
+        <div style={{
+          background: 'rgba(45, 125, 138, 0.08)', padding: '16px 20px', borderRadius: 12,
+          border: '1px solid var(--sea)', marginBottom: 20, display: 'flex',
+          justifyContent: 'space-between', alignItems: 'center',
+        }}>
+          <div>
+            <div style={{ fontSize: 12, color: 'var(--txt2)', fontWeight: 600, marginBottom: 2 }}>VALD PLAN</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--sea)' }}>
+              {tier.charAt(0).toUpperCase() + tier.slice(1)} — {TIER_PRICES[tier]} kr/månad
+            </div>
+          </div>
+          <a href="#tiers" style={{ fontSize: 13, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600, cursor: 'pointer' }}>
+            Byt plan
+          </a>
+        </div>
+      )}
+      <form
+        id="partner-form"
+        onSubmit={submitInquiry}
+        style={{
+          background: 'var(--white)', padding: '28px 26px', borderRadius: 16,
+          border: '1px solid var(--surface-3)',
+          display: 'grid', gap: 14,
+        }}
+      >
       <div>
         <label style={labelStyle}>Verksamhetens namn *</label>
         <input name="business_name" required type="text" style={fieldStyle} placeholder="Sandhamns Värdshus" />
@@ -175,9 +208,9 @@ export default function PartnerForm() {
           onChange={e => setTier(e.target.value)}
         >
           <option value="">Vill diskutera</option>
-          <option value="bas">Bas — 500 kr/mån</option>
-          <option value="standard">Standard — 1 000 kr/mån</option>
-          <option value="premium">Premium — 2 500 kr/mån</option>
+          <option value="bas">Bas — 290 kr/mån</option>
+          <option value="standard">Standard — 590 kr/mån</option>
+          <option value="premium">Premium — 990 kr/mån</option>
         </select>
       </div>
 
@@ -203,7 +236,7 @@ export default function PartnerForm() {
               border: 'none', cursor: status === 'loading' ? 'wait' : 'pointer',
             }}
           >
-            {status === 'loading' ? 'Förbereder betalning…' : `Betala ${tier === 'bas' ? '500' : tier === 'standard' ? '1 000' : '2 500'} kr/mån — kom igång nu →`}
+            {status === 'loading' ? 'Förbereder betalning…' : `Betala ${TIER_PRICES[tier] || '0'} kr/mån — kom igång nu →`}
           </button>
         )}
         <button
@@ -233,6 +266,7 @@ export default function PartnerForm() {
           {error}
         </div>
       )}
-    </form>
+      </form>
+    </>
   )
 }

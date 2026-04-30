@@ -602,22 +602,21 @@ const LANDING_HTML = `
  <div class="hero-content">
  <div class="hero-eyebrow">
  <span class="hero-eyebrow-dot"></span>
- 200+ platser kartlagda i Stockholms skärgård
+ Strava för båtfolk — 2 500+ användare
  </div>
  <h1 class="hero-title">
- Din guide till<br>
- <em>Stockholms skärgård</em>
+ Planera dina<br>
+ <em>skärgårdsrutter på vatten</em>
  </h1>
  <p class="hero-sub">
- Planera nästa tur. Hitta krogar, hamnar och dolda öar.
- Logga dina äventyr och bygg din egen skärgård.
+ Logga turer, hitta hamnar och krogar längs vägen, dela med vänner. Stockholm, Bohuslän och Gotland.
  </p>
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
- <input type="text" placeholder="🔍 Sök ö, krog eller hamn..." id="heroSearchInput"/>
- <button type="submit">Utforska</button>
+ <input type="text" placeholder="Sök ö, krog eller hamn..." id="heroSearchInput"/>
+ <button type="submit">Planera rutt →</button>
  </form>
  <div style="text-align:center;margin-bottom:16px">
- <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
+ <a href="/planera/ny" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">Planera din första rutt →</a>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
@@ -634,13 +633,13 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
- <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
+ <div class="trust-item"><strong data-stat="users">2 500+</strong> Båtägare</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
+ <div class="trust-item"><strong data-stat="places">470+</strong> Restauranger &amp; hamnar</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>Arholma → Marstrand</strong> Stockholm + Bohuslän</div>
+ <div class="trust-item"><strong>93</strong> Verifierade rutter</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
+ <div class="trust-item"><strong>100 %</strong> Utan land-överlap</div>
 </div>
 
 <section class="concept-section" id="utforska">
@@ -652,19 +651,19 @@ const LANDING_HTML = `
  </div>
  <div class="pillars">
  <div class="pillar reveal reveal-delay-1">
- <div class="pillar-icon sea">🧭</div>
- <h3>Utforska platser</h3>
- <p>Krogar, bastun, bryggor och dolda pärlor — listade och recenserade av ett community som faktiskt är ute på vattnet. Hitta rätt ställe innan du ger dig ut.</p>
+ <div class="pillar-icon sea">Planera</div>
+ <h3>Rutter utan land-överlap</h3>
+ <p>Våra algoritmer följer faktiska farleder — inte över land. Se stopp, vind, tidsuppskattning, djup och säkerhetskritiska points längs vägen.</p>
  </div>
  <div class="pillar reveal reveal-delay-2">
- <div class="pillar-icon teal">📸</div>
- <h3>Logga din tur</h3>
- <p>Foto + plats på 10 sekunder. Din personliga skärgårdsdagbok växer med varje äventyr — se var du varit och inspirera andra att kasta loss.</p>
+ <div class="pillar-icon teal">Hitta</div>
+ <h3>Hamnar, krogar & bastu</h3>
+ <p>470+ verifiera stopp från OSM-data uppdaterad varje månad. Recensioner från skärgårds-communityn, öppettider, kontakt och adress.</p>
  </div>
  <div class="pillar reveal reveal-delay-3">
- <div class="pillar-icon accent"> </div>
- <h3>Äkta community</h3>
- <p>Feeden fylls av riktiga turer från paddlare och seglare. Inga reklamannonser, ingen algoritm — bara skärgårdsliv som det ser ut på riktigt.</p>
+ <div class="pillar-icon accent">Dela</div>
+ <h3>Bygg din historia</h3>
+ <p>Logga turer med ett klick. Följ vänner och andra båtfolk. Skärgården är en gemenskap — se var andra varit, inspirera nästa äventyr.</p>
  </div>
  </div>
  </div>

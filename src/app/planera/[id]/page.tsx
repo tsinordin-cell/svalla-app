@@ -14,6 +14,7 @@ import PlaneraMap from './PlaneraMapDynamic'
 import RouteDisclaimer from '@/components/RouteDisclaimer'
 import RouteFeedbackButton from '@/components/RouteFeedbackButton'
 import RouteWeatherStrip from '@/components/RouteWeatherStrip'
+import SaveRouteCTA from '@/components/SaveRouteCTA'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -107,6 +108,11 @@ export default async function PlaneraIdPage({ params }: Props) {
  .single()
 
  if (!route || route.status === 'draft') notFound()
+
+ const { data: { session } } = await supabase.auth.getSession()
+ const isLoggedIn = !!session
+ const hasOwner = !!route.user_id
+ const ownsRoute = !!session && route.user_id === session.user.id
 
  const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
  const interests: string[] = Array.isArray(route.interests) ? route.interests : []
@@ -265,6 +271,14 @@ export default async function PlaneraIdPage({ params }: Props) {
 
  {/* Vindprognos längs rutten */}
  {forecast && <RouteWeatherStrip forecast={forecast} />}
+
+ {/* Spara/claim CTA — främst för utloggade */}
+ <SaveRouteCTA
+ routeId={route.id}
+ hasOwner={hasOwner}
+ isLoggedIn={isLoggedIn}
+ ownsRoute={ownsRoute}
+ />
 
  {/* Säkerhets-disclaimer + datakälla */}
  <RouteDisclaimer />
