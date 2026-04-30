@@ -119,6 +119,8 @@ async function notifyForumParticipants({
   threadId, threadTitle, threadOwnerId, categoryId, posterId, mentionedUsernames, supabase,
 }: NotifyParams): Promise<void> {
   try {
+    const svc = svcClient()
+
     // Poster's username for notification text
     const { data: posterRow } = await supabase
       .from('users')
@@ -130,7 +132,6 @@ async function notifyForumParticipants({
     // Resolve mentioned usernames to user-ids (case-insensitive)
     const mentionedIds = new Set<string>()
     if (mentionedUsernames.length > 0) {
-      const svc = svcClient()
       const { data: mentionRows } = await svc
         .from('users')
         .select('id, username')
@@ -190,7 +191,7 @@ async function notifyForumParticipants({
 
     // Insert DB notification for thread owner (only if not already mentioned)
     if (threadOwnerId !== posterId && !mentionedIds.has(threadOwnerId)) {
-      const { error: notifErr } = await svcClient().from('notifications').insert({
+      const { error: notifErr } = await svc.from('notifications').insert({
         user_id:      threadOwnerId,
         actor_id:     posterId,
         type:         'forum_reply',

@@ -44,8 +44,13 @@ export async function POST(request: NextRequest) {
     serviceKey
   )
 
-  // 4. Spara i rätt tabell (default: restaurants)
-  const targetTable = table ?? 'restaurants'
+  // 4. Spara i rätt tabell (default: restaurants) — whitelist mot injection
+  const ALLOWED_TABLES = ['restaurants', 'harbors', 'routes', 'events'] as const
+  type AllowedTable = typeof ALLOWED_TABLES[number]
+  const targetTable: AllowedTable = (ALLOWED_TABLES as readonly string[]).includes(table ?? '')
+    ? (table as AllowedTable)
+    : 'restaurants'
+
   const { error, data } = await admin
     .from(targetTable)
     .update({ latitude, longitude })

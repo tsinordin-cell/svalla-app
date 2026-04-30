@@ -126,19 +126,27 @@ async function handle(req: Request) {
 
     let sent = 0, errors = 0
     if (activeUsers) {
+      const userIds = activeUsers.map(u => u.id)
+
+      // Batch-hämta trips och visits — eliminerar N+1 (annars 2 queries per user = 4000 queries)
+      const [{ data: tripRows }, { data: visitRows }] = await Promise.all([
+        service.from('trips').select('user_id').in('user_id', userIds).gte('created_at', yearStart),
+        service.from('visited_islands').select('user_id').in('user_id', userIds),
+      ])
+      const tripCountByUser = new Map<string, number>()
+      for (const r of tripRows ?? []) {
+        tripCountByUser.set(r.user_id as string, (tripCountByUser.get(r.user_id as string) ?? 0) + 1)
+      }
+      const visitCountByUser = new Map<string, number>()
+      for (const r of visitRows ?? []) {
+        visitCountByUser.set(r.user_id as string, (visitCountByUser.get(r.user_id as string) ?? 0) + 1)
+      }
+
       for (const u of activeUsers) {
         if (!u.email) continue
-        const { count: tripCount } = await service
-          .from('trips')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', u.id)
-          .gte('created_at', yearStart)
-        if (!tripCount || tripCount === 0) continue
-
-        const { count: visitCount } = await service
-          .from('visited_islands')
-          .select('*', { count: 'exact', head: true })
-          .eq('user_id', u.id)
+        const tripCount = tripCountByUser.get(u.id) ?? 0
+        if (tripCount === 0) continue
+        const visitCount = visitCountByUser.get(u.id) ?? 0
 
         const result = await sendEmail({
           template: 'season_close',
@@ -146,7 +154,7 @@ async function handle(req: Request) {
           vars: {
             first_name: u.username || 'där',
             trip_count: tripCount,
-            visited_count: visitCount ?? 0,
+            visited_count: visitCount,
             username: u.username || '',
           },
         })

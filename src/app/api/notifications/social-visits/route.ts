@@ -63,6 +63,34 @@ async function handle(req: Request) {
     .in('id', visitorIds)
   const visitorByName = new Map((visitorRows ?? []).map(u => [u.id as string, u.username as string]))
 
+  // Batch-hämta alla follows för alla besökare — eliminerar N+1
+  const { data: allFollows } = await svc
+    .from('follows')
+    .select('follower_id, following_id')
+    .in('following_id', visitorIds)
+  const followersByUserId = new Map<string, string[]>()
+  for (const f of allFollows ?? []) {
+    const arr = followersByUserId.get(f.following_id as string) ?? []
+    arr.push(f.follower_id as string)
+    followersByUserId.set(f.following_id as string, arr)
+  }
+
+  // Batch-hämta befintliga today-notiser för alla möjliga mottagare — eliminerar N+1
+  const today0 = new Date()
+  today0.setHours(0, 0, 0, 0)
+  const allFollowerIds = [...new Set((allFollows ?? []).map(f => f.follower_id as string))]
+  const { data: existingNotifs } = allFollowerIds.length > 0
+    ? await svc
+        .from('notifications')
+        .select('user_id, actor_id')
+        .eq('type', 'friend_visit')
+        .in('user_id', allFollowerIds)
+        .gte('created_at', today0.toISOString())
+    : { data: [] }
+  const alreadyNotifiedKey = new Set(
+    (existingNotifs ?? []).map(r => `${r.actor_id as string}:${r.user_id as string}`)
+  )
+
   let processed = 0
   let totalNotified = 0
   const errors: string[] = []
@@ -72,28 +100,10 @@ async function handle(req: Request) {
     const islandName = islandNameBySlug.get(v.island_slug) ?? v.island_slug
     const username = visitorByName.get(v.user_id) ?? 'Någon du följer'
 
-    // Hitta alla som följer denna user
-    const { data: followers } = await svc
-      .from('follows')
-      .select('follower_id')
-      .eq('following_id', v.user_id)
+    const followerIds = followersByUserId.get(v.user_id) ?? []
+    if (followerIds.length === 0) continue
 
-    if (!followers || followers.length === 0) continue
-    const followerIds = followers.map(f => f.follower_id as string)
-
-    // Dedup: skip de som redan har notif för denna actor + island idag
-    const today0 = new Date()
-    today0.setHours(0, 0, 0, 0)
-    const { data: existing } = await svc
-      .from('notifications')
-      .select('user_id')
-      .eq('actor_id', v.user_id)
-      .eq('type', 'friend_visit')
-      .in('user_id', followerIds)
-      .gte('created_at', today0.toISOString())
-    const alreadyNotified = new Set((existing ?? []).map(r => r.user_id as string))
-
-    const toNotify = followerIds.filter(id => !alreadyNotified.has(id))
+    const toNotify = followerIds.filter(id => !alreadyNotifiedKey.has(`${v.user_id}:${id}`))
     if (toNotify.length === 0) continue
 
     // Insert in-app notifications
@@ -110,6 +120,8 @@ async function handle(req: Request) {
       errors.push(`notify-insert: ${insErr.message}`)
       continue
     }
+    // Markera dessa som notifierade inom denna cron-körning
+    toNotify.forEach(uid => alreadyNotifiedKey.add(`${v.user_id}:${uid}`))
 
     // Push
     try {

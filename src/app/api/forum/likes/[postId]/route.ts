@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { createClient } from '@supabase/supabase-js'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 function svcClient() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
@@ -24,6 +25,11 @@ export async function POST(
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
       return NextResponse.json({ error: 'Du måste vara inloggad.' }, { status: 401 })
+    }
+
+    // Rate limit: 30 likes per minut per användare
+    if (!(await checkRateLimit(`forum-likes:${user.id}`, 30, 60 * 1000))) {
+      return NextResponse.json({ error: 'För många likes. Vänta en stund.' }, { status: 429 })
     }
 
     // Verifiera att post finns och inte är borttagen
