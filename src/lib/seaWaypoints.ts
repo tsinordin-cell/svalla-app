@@ -732,8 +732,8 @@ export const SEA_EDGES: SeaEdge[] = [
 // ─── METADATA ──────────────────────────────────────────────────────────
 export const WAYPOINTS_VERSION = '2026-04-29'
 export const DATA_SOURCE = 'Manuellt validerade farledspunkter över Sjöfartsverkets sjökort'
-export const SEA_DATA_VERSION = '2026-04-29-v2'
-export const SEA_DATA_SOURCE = 'Svalla manuell + farledsdata. Komplettera alltid med uppdaterat sjökort.'
+// Re-exportera från meta-filen — håll konstanter på ett ställe
+export { SEA_DATA_VERSION, SEA_DATA_SOURCE } from './seaWaypoints-meta'
 
 /**
  * Bygger en adjacency-lista från kantlistan (båda riktningar).

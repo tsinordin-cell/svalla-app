@@ -1,5 +1,5 @@
 import Icon from '@/components/Icon'
-import { SEA_DATA_VERSION, SEA_DATA_SOURCE } from '@/lib/seaWaypoints'
+import { SEA_DATA_VERSION, SEA_DATA_SOURCE } from '@/lib/seaWaypoints-meta'
 
 /**
  * RouteDisclaimer — juridisk + säkerhets-markering på rutt-sidor.

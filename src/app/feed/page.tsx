@@ -1,6 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
-import OnboardingModal from '@/components/OnboardingModal'
+import dynamic from 'next/dynamic'
 import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -16,6 +16,12 @@ import SuggestedUsers from '@/components/SuggestedUsers'
 import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
+
+// Lazy-load: 865-line client component excluded from initial bundle
+const OnboardingModal = dynamic(() => import('@/components/OnboardingModal'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export const revalidate = 300
 
