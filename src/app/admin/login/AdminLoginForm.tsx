@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function AdminLoginForm() {
@@ -8,19 +8,28 @@ export default function AdminLoginForm() {
   const returnTo = search.get('returnTo') || '/admin'
 
   const [password, setPassword] = useState('')
+  const [csrfToken, setCsrfToken] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
   const [error, setError] = useState<string | null>(null)
 
+  // Hämta CSRF-token från servern när formuläret monteras
+  useEffect(() => {
+    fetch('/api/admin/csrf')
+      .then(r => r.json())
+      .then(data => setCsrfToken(data.csrfToken ?? null))
+      .catch(() => setCsrfToken(null))
+  }, [])
+
   async function submit(e: React.FormEvent) {
     e.preventDefault()
-    if (status === 'loading' || !password) return
+    if (status === 'loading' || !password || !csrfToken) return
     setStatus('loading')
     setError(null)
     try {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, csrfToken }),
       })
       if (!res.ok) {
         const j = await res.json().catch(() => ({}))
@@ -36,13 +45,16 @@ export default function AdminLoginForm() {
     }
   }
 
+  const ready = !!csrfToken
+
   return (
     <form onSubmit={submit} style={{ display: 'grid', gap: 12 }}>
       <input
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
-        placeholder="Lösenord"
+        placeholder={ready ? 'Lösenord' : 'Laddar…'}
+        disabled={!ready}
         autoFocus
         autoComplete="current-password"
         style={{
@@ -52,18 +64,19 @@ export default function AdminLoginForm() {
           fontSize: 15,
           fontFamily: 'inherit',
           outline: 'none',
+          opacity: ready ? 1 : 0.6,
         }}
       />
 
       <button
         type="submit"
-        disabled={status === 'loading' || !password}
+        disabled={status === 'loading' || !password || !ready}
         style={{
           padding: '12px 20px', borderRadius: 10,
-          background: status === 'loading' || !password ? '#7da7be' : '#1e5c82',
+          background: (status === 'loading' || !password || !ready) ? '#7da7be' : '#1e5c82',
           color: '#fff', fontSize: 14, fontWeight: 700,
           border: 'none',
-          cursor: status === 'loading' ? 'wait' : (!password ? 'not-allowed' : 'pointer'),
+          cursor: (status === 'loading' || !ready) ? 'wait' : (!password ? 'not-allowed' : 'pointer'),
         }}
       >
         {status === 'loading' ? 'Verifierar…' : 'Logga in'}
