@@ -7,11 +7,13 @@ import type { ScoredStop } from '@/lib/planner'
 import { haversineKm, crossTrack } from '@/lib/planner'
 import { findSeaPath, calculatePathDistanceKm } from '@/lib/seaPathfinder'
 import { estimateAllProfiles } from '@/lib/routeTime'
+import { buildRouteForecast } from '@/lib/routeForecast'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
 import PlaneraMap from './PlaneraMapDynamic'
 import RouteDisclaimer from '@/components/RouteDisclaimer'
 import RouteFeedbackButton from '@/components/RouteFeedbackButton'
+import RouteWeatherStrip from '@/components/RouteWeatherStrip'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -139,6 +141,16 @@ export default async function PlaneraIdPage({ params }: Props) {
  const totalKm = waterKm > 0 ? waterKm : Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
  const timeEstimates = estimateAllProfiles(totalKm)
 
+ // Vindprognos — Open-Meteo forecast, cachas 30 min server-side
+ const forecast = await buildRouteForecast(
+ route.start_name,
+ route.start_lat,
+ route.start_lng,
+ route.end_name,
+ route.end_lat,
+ route.end_lng,
+ ).catch(() => null)
+
  // Map stop data (only what PlaneraMap needs)
  const mapStops = sortedStops.map(s => ({
  lat: s.lat,
@@ -251,6 +263,9 @@ export default async function PlaneraIdPage({ params }: Props) {
  ))}
  </div>
 
+ {/* Vindprognos längs rutten */}
+ {forecast && <RouteWeatherStrip forecast={forecast} />}
+
  {/* Säkerhets-disclaimer + datakälla */}
  <RouteDisclaimer />
 
@@ -347,7 +362,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  <PlaneraCTA routeId={route.id} hasDoneIt={!!route.trip_id} />
 
  {/* Share */}
- <PlaneraShare routeId={route.id} />
+ <PlaneraShare routeId={route.id} startName={route.start_name} endName={route.end_name} />
 
  {/* Plan new route */}
  <Link href="/planera/ny" style={{
