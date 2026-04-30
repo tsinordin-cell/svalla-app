@@ -311,41 +311,193 @@ function validatePathFull(path) {
 
 // ── Rutter ──────────────────────────────────────────────────────────────────
 
+// Toms exakta DEPARTURES-koordinater (från src/lib/planner.ts) — sanning för Stockholm
+const P = {
+  // Stockholm / Innerskärgård
+  stromkajen:    { name: 'Strömkajen',    lat: 59.3238, lng: 18.0776 },
+  nacka_strand:  { name: 'Nacka Strand',  lat: 59.3195, lng: 18.1454 },
+  fjaderholmarna:{ name: 'Fjäderholmarna',lat: 59.3265, lng: 18.1650 },
+  gustavsberg:   { name: 'Gustavsberg',   lat: 59.3283, lng: 18.3820 },
+  vaxholm:       { name: 'Vaxholm',       lat: 59.4024, lng: 18.3512 },
+  ljustero:      { name: 'Ljusterö',      lat: 59.5540, lng: 18.6870 },
+  grinda:        { name: 'Grinda',        lat: 59.4602, lng: 18.7167 },
+  svartso:       { name: 'Svartsö',       lat: 59.4730, lng: 18.7250 },
+  finnhamn:      { name: 'Finnhamn',      lat: 59.5430, lng: 18.8240 },
+  // Mellan
+  ingaro:        { name: 'Ingarö',        lat: 59.2472, lng: 18.5861 },
+  stavsnas:      { name: 'Stavsnäs',      lat: 59.1895, lng: 18.6823 },
+  husaro:        { name: 'Husarö',        lat: 59.5195, lng: 18.9840 },
+  moja:          { name: 'Möja',          lat: 59.4545, lng: 18.9110 },
+  sandhamn:      { name: 'Sandhamn',      lat: 59.2820, lng: 18.9130 },
+  runmaro:       { name: 'Runmarö',       lat: 59.2750, lng: 18.7100 },
+  namdo:         { name: 'Nämdö',         lat: 59.1800, lng: 18.6500 },
+  bullero:       { name: 'Bullerö',       lat: 59.2120, lng: 18.8420 },
+  // Södra
+  dalaro:        { name: 'Dalarö',        lat: 59.1298, lng: 18.4003 },
+  orno:          { name: 'Ornö',          lat: 58.9773, lng: 18.4550 },
+  nattaro:       { name: 'Nåttarö',       lat: 58.8455, lng: 17.8742 },
+  uto:           { name: 'Utö',           lat: 58.9590, lng: 18.3017 },
+  nynashamn:     { name: 'Nynäshamn',     lat: 58.9038, lng: 17.9475 },
+  landsort:      { name: 'Landsort',      lat: 58.7440, lng: 17.8640 },
+  huvudskar:     { name: 'Huvudskär',     lat: 58.9580, lng: 18.6870 },
+  // Norra
+  sollenkroka:   { name: 'Sollenkroka',   lat: 59.7050, lng: 18.8090 },
+  norrtalje:     { name: 'Norrtälje',     lat: 59.7579, lng: 18.7077 },
+  furusund:      { name: 'Furusund',      lat: 59.6653, lng: 18.9217 },
+  blido:         { name: 'Blidö',         lat: 59.6200, lng: 18.8700 },
+  rodloga:       { name: 'Rödlöga',       lat: 59.8180, lng: 19.0650 },
+  kapellskar:    { name: 'Kapellskär',    lat: 59.7245, lng: 19.0740 },
+  arholma:       { name: 'Arholma',       lat: 59.8532, lng: 19.1345 },
+  // Bohuslän — Göteborgs skärgård (södra)
+  goteborg:      { name: 'Göteborg',      lat: 57.7090, lng: 11.9685 },
+  hono:          { name: 'Hönö',          lat: 57.6800, lng: 11.6650 },
+  ockero:        { name: 'Öckerö',        lat: 57.7100, lng: 11.6480 },
+  vrango:        { name: 'Vrångö',        lat: 57.5900, lng: 11.8400 },
+  brando:        { name: 'Brännö',        lat: 57.6420, lng: 11.7460 },
+  styrso:        { name: 'Styrsö',        lat: 57.6300, lng: 11.7800 },
+  donso:         { name: 'Donsö',         lat: 57.6260, lng: 11.7860 },
+  // Bohuslän — mellan + norra
+  marstrand:     { name: 'Marstrand',     lat: 57.8880, lng: 11.5830 },
+  kladesholmen:  { name: 'Klädesholmen',  lat: 58.0530, lng: 11.6640 },
+  skarhamn:      { name: 'Skärhamn',      lat: 58.0270, lng: 11.5530 },
+  mollosund:     { name: 'Mollösund',     lat: 58.0660, lng: 11.4960 },
+  haron:         { name: 'Härön',         lat: 58.1200, lng: 11.5180 },
+  karingon:      { name: 'Käringön',      lat: 58.0680, lng: 11.4040 },
+  lysekil:       { name: 'Lysekil',       lat: 58.2740, lng: 11.4360 },
+  smogen:        { name: 'Smögen',        lat: 58.3540, lng: 11.2190 },
+  hallo:         { name: 'Hållö',         lat: 58.3270, lng: 11.2100 },
+  hamburgsund:   { name: 'Hamburgsund',   lat: 58.5200, lng: 11.2790 },
+  fjallbacka:    { name: 'Fjällbacka',    lat: 58.5980, lng: 11.2850 },
+  grebbestad:    { name: 'Grebbestad',    lat: 58.6960, lng: 11.2480 },
+  reso:          { name: 'Resö',          lat: 58.7770, lng: 11.1880 },
+  stromstad:     { name: 'Strömstad',     lat: 58.9350, lng: 11.1740 },
+  sydkoster:     { name: 'Sydkoster',     lat: 58.8780, lng: 11.0550 },
+  nordkoster:    { name: 'Nordkoster',    lat: 58.9130, lng: 11.0420 },
+}
+
+function R(fromKey, toKey) {
+  return { id: `${fromKey}_to_${toKey}`, from: P[fromKey], to: P[toKey] }
+}
+
 const ROUTES = [
-  { id: 'stromkajen_to_sandhamn',  from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Sandhamn',     lat: 59.29500, lng: 18.89500 } },
-  { id: 'stromkajen_to_moja',      from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Möja',         lat: 59.45450, lng: 18.91100 } },
-  { id: 'stromkajen_to_grinda',    from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Grinda',       lat: 59.46200, lng: 18.71000 } },
-  { id: 'stromkajen_to_finnhamn',  from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Finnhamn',     lat: 59.55500, lng: 18.81500 } },
-  { id: 'stromkajen_to_vaxholm',   from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Vaxholm',      lat: 59.40240, lng: 18.35120 } },
-  { id: 'stromkajen_to_svartso',   from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Svartsö',      lat: 59.45000, lng: 18.65000 } },
-  { id: 'stromkajen_to_namdo',     from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Nämdö',        lat: 59.18000, lng: 18.65000 } },
-  { id: 'stromkajen_to_runmaro',   from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Runmarö',      lat: 59.27500, lng: 18.71000 } },
-  { id: 'stromkajen_to_orno',      from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Ornö',         lat: 59.04000, lng: 18.41000 } },
-  { id: 'stromkajen_to_uto',       from: { name: 'Strömkajen',  lat: 59.32430, lng: 18.07820 }, to: { name: 'Utö',          lat: 58.95800, lng: 18.30500 } },
-  { id: 'stromkajen_to_fjaderholmarna', from: { name: 'Strömkajen', lat: 59.32430, lng: 18.07820 }, to: { name: 'Fjäderholmarna', lat: 59.32650, lng: 18.16500 } },
-  { id: 'stavsnas_to_sandhamn', from: { name: 'Stavsnäs', lat: 59.27130, lng: 18.69500 }, to: { name: 'Sandhamn', lat: 59.29500, lng: 18.89500 } },
-  { id: 'stavsnas_to_moja',     from: { name: 'Stavsnäs', lat: 59.27130, lng: 18.69500 }, to: { name: 'Möja',     lat: 59.45450, lng: 18.91100 } },
-  { id: 'stavsnas_to_namdo',    from: { name: 'Stavsnäs', lat: 59.27130, lng: 18.69500 }, to: { name: 'Nämdö',    lat: 59.18000, lng: 18.65000 } },
-  { id: 'vaxholm_to_grinda',   from: { name: 'Vaxholm', lat: 59.40240, lng: 18.35120 }, to: { name: 'Grinda',   lat: 59.46200, lng: 18.71000 } },
-  { id: 'vaxholm_to_moja',     from: { name: 'Vaxholm', lat: 59.40240, lng: 18.35120 }, to: { name: 'Möja',     lat: 59.45450, lng: 18.91100 } },
-  { id: 'vaxholm_to_sandhamn', from: { name: 'Vaxholm', lat: 59.40240, lng: 18.35120 }, to: { name: 'Sandhamn', lat: 59.29500, lng: 18.89500 } },
-  { id: 'vaxholm_to_finnhamn', from: { name: 'Vaxholm', lat: 59.40240, lng: 18.35120 }, to: { name: 'Finnhamn', lat: 59.55500, lng: 18.81500 } },
-  { id: 'nynashamn_to_uto',     from: { name: 'Nynäshamn', lat: 58.90630, lng: 17.95000 }, to: { name: 'Utö',      lat: 58.95800, lng: 18.30500 } },
-  { id: 'nynashamn_to_nattaro', from: { name: 'Nynäshamn', lat: 58.90630, lng: 17.95000 }, to: { name: 'Nåttarö',  lat: 58.81000, lng: 17.94000 } },
-  { id: 'nynashamn_to_landsort',from: { name: 'Nynäshamn', lat: 58.90630, lng: 17.95000 }, to: { name: 'Landsort', lat: 58.74000, lng: 17.86000 } },
-  { id: 'dalaro_to_orno',  from: { name: 'Dalarö', lat: 59.13000, lng: 18.40000 }, to: { name: 'Ornö',  lat: 59.04000, lng: 18.41000 } },
-  { id: 'dalaro_to_namdo', from: { name: 'Dalarö', lat: 59.13000, lng: 18.40000 }, to: { name: 'Nämdö', lat: 59.18000, lng: 18.65000 } },
-  { id: 'furusund_to_blido',     from: { name: 'Furusund',  lat: 59.66700, lng: 18.91700 }, to: { name: 'Blidö',    lat: 59.62000, lng: 18.95000 } },
-  { id: 'furusund_to_arholma',   from: { name: 'Furusund',  lat: 59.66700, lng: 18.91700 }, to: { name: 'Arholma',  lat: 59.84300, lng: 19.06300 } },
-  { id: 'norrtalje_to_arholma',  from: { name: 'Norrtälje', lat: 59.75800, lng: 18.70000 }, to: { name: 'Arholma',  lat: 59.84300, lng: 19.06300 } },
-  { id: 'goteborg_to_marstrand',  from: { name: 'Göteborg',   lat: 57.70900, lng: 11.96850 }, to: { name: 'Marstrand',  lat: 57.88800, lng: 11.58300 } },
-  { id: 'goteborg_to_vrango',     from: { name: 'Göteborg',   lat: 57.70900, lng: 11.96850 }, to: { name: 'Vrångö',     lat: 57.59000, lng: 11.84000 } },
-  { id: 'marstrand_to_smogen',    from: { name: 'Marstrand',  lat: 57.88800, lng: 11.58300 }, to: { name: 'Smögen',     lat: 58.35400, lng: 11.21900 } },
-  { id: 'marstrand_to_karingon',  from: { name: 'Marstrand',  lat: 57.88800, lng: 11.58300 }, to: { name: 'Käringön',   lat: 58.06800, lng: 11.40400 } },
-  { id: 'smogen_to_hallo',        from: { name: 'Smögen',     lat: 58.35400, lng: 11.21900 }, to: { name: 'Hållö',      lat: 58.32700, lng: 11.21000 } },
-  { id: 'smogen_to_fjallbacka',   from: { name: 'Smögen',     lat: 58.35400, lng: 11.21900 }, to: { name: 'Fjällbacka', lat: 58.59800, lng: 11.28500 } },
-  { id: 'stromstad_to_sydkoster', from: { name: 'Strömstad',  lat: 58.93500, lng: 11.17400 }, to: { name: 'Sydkoster',  lat: 58.87800, lng: 11.05500 } },
-  { id: 'stromstad_to_nordkoster',from: { name: 'Strömstad',  lat: 58.93500, lng: 11.17400 }, to: { name: 'Nordkoster', lat: 58.91300, lng: 11.04200 } },
+  // ── Strömkajen / Stockholm ut (12) ──
+  R('stromkajen', 'fjaderholmarna'),
+  R('stromkajen', 'vaxholm'),
+  R('stromkajen', 'grinda'),
+  R('stromkajen', 'svartso'),
+  R('stromkajen', 'finnhamn'),
+  R('stromkajen', 'sandhamn'),
+  R('stromkajen', 'moja'),
+  R('stromkajen', 'runmaro'),
+  R('stromkajen', 'namdo'),
+  R('stromkajen', 'orno'),
+  R('stromkajen', 'uto'),
+  R('stromkajen', 'husaro'),
+
+  // ── Vaxholm hub (8) ──
+  R('vaxholm', 'grinda'),
+  R('vaxholm', 'svartso'),
+  R('vaxholm', 'moja'),
+  R('vaxholm', 'sandhamn'),
+  R('vaxholm', 'finnhamn'),
+  R('vaxholm', 'husaro'),
+  R('vaxholm', 'ljustero'),
+  R('vaxholm', 'ingaro'),
+
+  // ── Mellanskärgård parvis (10) ──
+  R('grinda', 'finnhamn'),
+  R('grinda', 'svartso'),
+  R('grinda', 'moja'),
+  R('grinda', 'husaro'),
+  R('moja', 'finnhamn'),
+  R('moja', 'svartso'),
+  R('moja', 'husaro'),
+  R('moja', 'sandhamn'),
+  R('finnhamn', 'husaro'),
+  R('runmaro', 'sandhamn'),
+
+  // ── Stavsnäs ut (5) ──
+  R('stavsnas', 'sandhamn'),
+  R('stavsnas', 'moja'),
+  R('stavsnas', 'namdo'),
+  R('stavsnas', 'runmaro'),
+  R('stavsnas', 'bullero'),
+
+  // ── Ingarö ut (4) ──
+  R('ingaro', 'sandhamn'),
+  R('ingaro', 'grinda'),
+  R('ingaro', 'moja'),
+  R('ingaro', 'bullero'),
+
+  // ── Sollenkroka / Ljusterö (3) ──
+  R('sollenkroka', 'moja'),
+  R('sollenkroka', 'finnhamn'),
+  R('ljustero', 'finnhamn'),
+
+  // ── Södra (10) ──
+  R('nynashamn', 'uto'),
+  R('nynashamn', 'nattaro'),
+  R('nynashamn', 'landsort'),
+  R('nynashamn', 'orno'),
+  R('dalaro', 'orno'),
+  R('dalaro', 'namdo'),
+  R('dalaro', 'uto'),
+  R('uto', 'orno'),
+  R('orno', 'namdo'),
+  R('namdo', 'runmaro'),
+
+  // ── Norra (8) ──
+  R('furusund', 'blido'),
+  R('furusund', 'arholma'),
+  R('furusund', 'rodloga'),
+  R('blido', 'arholma'),
+  R('norrtalje', 'arholma'),
+  R('norrtalje', 'furusund'),
+  R('arholma', 'rodloga'),
+  R('kapellskar', 'arholma'),
+
+  // ── Bohuslän — Göteborgs skärgård (8) ──
+  R('goteborg', 'marstrand'),
+  R('goteborg', 'vrango'),
+  R('goteborg', 'styrso'),
+  R('goteborg', 'brando'),
+  R('goteborg', 'donso'),
+  R('goteborg', 'hono'),
+  R('hono', 'ockero'),
+  R('vrango', 'brando'),
+
+  // ── Bohuslän — Marstrand-axeln (6) ──
+  R('marstrand', 'kladesholmen'),
+  R('marstrand', 'skarhamn'),
+  R('marstrand', 'karingon'),
+  R('marstrand', 'mollosund'),
+  R('marstrand', 'smogen'),
+  R('marstrand', 'hono'),
+
+  // ── Bohuslän — Tjörn/Orust (6) ──
+  R('kladesholmen', 'skarhamn'),
+  R('skarhamn', 'mollosund'),
+  R('mollosund', 'karingon'),
+  R('mollosund', 'haron'),
+  R('haron', 'karingon'),
+  R('lysekil', 'karingon'),
+
+  // ── Bohuslän — Smögen/Norra (8) ──
+  R('smogen', 'hallo'),
+  R('smogen', 'karingon'),
+  R('smogen', 'hamburgsund'),
+  R('smogen', 'fjallbacka'),
+  R('lysekil', 'smogen'),
+  R('hamburgsund', 'fjallbacka'),
+  R('fjallbacka', 'grebbestad'),
+  R('grebbestad', 'reso'),
+
+  // ── Bohuslän — Strömstad/Koster (5) ──
+  R('reso', 'stromstad'),
+  R('grebbestad', 'stromstad'),
+  R('stromstad', 'sydkoster'),
+  R('stromstad', 'nordkoster'),
+  R('sydkoster', 'nordkoster'),
 ]
 
 console.log(`\nPre-computing ${ROUTES.length} routes...`)
