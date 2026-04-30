@@ -379,6 +379,58 @@ function R(fromKey, toKey) {
   return { id: `${fromKey}_to_${toKey}`, from: P[fromKey], to: P[toKey] }
 }
 
+/**
+ * Manuella farleds-waypoints för rutter där A*-grid fail:ar
+ * pga snäva sund eller polygonöverlapp. Pathen valideras
+ * fortfarande mot land-mask innan den accepteras.
+ *
+ * Detta är NORMAL praxis i navigeringssystem — auto-routing
+ * + handcurerade overrides för komplicerade farleder.
+ */
+const MANUAL_OVERRIDES = {
+  // Dalarö → Ornö: söder genom Dalaröströmmen, ut på Mysingen, förbi Aspö-västsida
+  dalaro_to_orno: {
+    from: P.dalaro,
+    to: P.orno,
+    waypoints: [
+      [59.1298, 18.4003], // Dalarö
+      [59.1100, 18.4250], // Dalaröströmmen söder
+      [59.0850, 18.4500], // Mysingen norra
+      [59.0550, 18.4700], // Aspö-väster
+      [59.0150, 18.4650], // Ornö-norra inlopp
+      [58.9773, 18.4550], // Ornö
+    ],
+  },
+  // Sollenkroka → Finnhamn: glesa anchors i bred vatten — A* fyller i
+  sollenkroka_to_finnhamn: {
+    from: P.sollenkroka,
+    to: P.finnhamn,
+    waypoints: [
+      [59.7050, 18.8090], // Sollenkroka (snappas till vatten)
+      [59.6800, 18.8800], // Möjafjärden norra (öppen vatten)
+      [59.6300, 18.9100], // Öster om Möja (öppen vatten)
+      [59.5800, 18.8800], // Söder om Möja-Finnhamn-passagen
+      [59.5430, 18.8240], // Finnhamn
+    ],
+  },
+  // Vrångö → Brännö: norrut genom Donsö-Asperö-sundet (täta waypoints)
+  vrango_to_brando: {
+    from: P.vrango,
+    to: P.brando,
+    waypoints: [
+      [57.5970, 11.8460], // Vrångö hamninlopp (östra)
+      [57.6020, 11.8350], // Norrut
+      [57.6080, 11.8200], // Donsö-syd öst
+      [57.6140, 11.8050], // Donsö-mitt
+      [57.6200, 11.7900], // Donsö-norr
+      [57.6260, 11.7800], // Asperö-sund syd
+      [57.6320, 11.7700], // Asperö-sund mitten
+      [57.6370, 11.7600], // Brännö-syd öst
+      [57.6420, 11.7530], // Brännö hamn östra
+    ],
+  },
+}
+
 const ROUTES = [
   // ── Strömkajen / Stockholm ut (12) ──
   R('stromkajen', 'fjaderholmarna'),
@@ -509,17 +561,68 @@ for (const route of ROUTES) {
   const t0 = Date.now()
   process.stdout.write(`  ${route.id.padEnd(40)} `)
   try {
-    // Försök progressivt tätare grid tills vi får en validerad path
     let path = null
-    let usedStep = null
-    for (const step of [0.012, 0.008, 0.005, 0.003]) {
-      const candidate = findPath(route.from.lat, route.from.lng, route.to.lat, route.to.lng, step)
-      if (!candidate) continue
-      const v = validatePathFull(candidate)
-      if (v.ok) {
-        path = candidate
-        usedStep = step
-        break
+
+    // 1. Manuell override för svåra rutter
+    const manual = MANUAL_OVERRIDES[route.id]
+    if (manual && manual.waypoints) {
+      // Strategi A: Direkt manual waypoints (om tätt nog att inga segment korsar land)
+      const directWp = manual.waypoints.map(p => [p[0], p[1]])
+      const directV = validatePathFull(directWp)
+      if (directV.ok) {
+        path = directWp
+      } else {
+        // Strategi B: A* mellan varje par av manuella waypoints
+        const segments = []
+        let allOk = true
+        for (let i = 0; i < manual.waypoints.length - 1; i++) {
+          const [lat1, lng1] = manual.waypoints[i]
+          const [lat2, lng2] = manual.waypoints[i + 1]
+          let micro = null
+          for (const step of [0.005, 0.003, 0.002, 0.0015]) {
+            const candidate = findPath(lat1, lng1, lat2, lng2, step)
+            if (!candidate) continue
+            const v = validatePathFull(candidate)
+            if (v.ok) { micro = candidate; break }
+          }
+          if (!micro) {
+            // Sista utväg: rät linje (men bara om det INTE korsar land)
+            const straightV = validatePathFull([[lat1, lng1], [lat2, lng2]])
+            if (straightV.ok) {
+              micro = [[lat1, lng1], [lat2, lng2]]
+            } else {
+              console.log(`  (manual override ${route.id}: leg ${i} kan inte länkas)`)
+              allOk = false
+              break
+            }
+          }
+          if (segments.length === 0) {
+            segments.push(...micro)
+          } else {
+            segments.push(...micro.slice(1))
+          }
+        }
+        if (allOk && segments.length > 0) {
+          const v = validatePathFull(segments)
+          if (v.ok) {
+            path = segments
+          } else {
+            console.log(`  (manual override ${route.id} ihopslagen path korsar land seg ${v.segment})`)
+          }
+        }
+      }
+    }
+
+    // 2. Auto-A* med progressivt tätare grid
+    if (!path) {
+      for (const step of [0.012, 0.008, 0.005, 0.003]) {
+        const candidate = findPath(route.from.lat, route.from.lng, route.to.lat, route.to.lng, step)
+        if (!candidate) continue
+        const v = validatePathFull(candidate)
+        if (v.ok) {
+          path = candidate
+          break
+        }
       }
     }
 

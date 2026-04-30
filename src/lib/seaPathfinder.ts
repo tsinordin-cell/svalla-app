@@ -25,10 +25,11 @@ type PrecomputedRoute = {
   to: { name: string; lat: number; lng: number }
   validated: boolean
   distanceKm?: number
-  waypoints?: Array<[number, number]>
+  /** waypoints kommer från JSON som number[][] — castas till tuples för polyline */
+  waypoints?: number[][]
 }
 
-const PRECOMPUTED_ROUTES = (precomputedRoutesData as { routes: PrecomputedRoute[] }).routes
+const PRECOMPUTED_ROUTES = (precomputedRoutesData as unknown as { routes: PrecomputedRoute[] }).routes
   .filter(r => r.validated && r.waypoints && r.waypoints.length > 0)
 
 const COORD_TOLERANCE = 0.0008  // ~80 m
@@ -48,12 +49,13 @@ function lookupPrecomputed(
   endLng: number,
 ): Array<[number, number]> | null {
   for (const r of PRECOMPUTED_ROUTES) {
+    if (!r.waypoints) continue
     if (coordsMatch(r.from, startLat, startLng) && coordsMatch(r.to, endLat, endLng)) {
-      return r.waypoints!
+      return r.waypoints.map(p => [p[0]!, p[1]!] as [number, number])
     }
     // Reverse-direction (om någon planerar tillbaka)
     if (coordsMatch(r.from, endLat, endLng) && coordsMatch(r.to, startLat, startLng)) {
-      return [...r.waypoints!].reverse()
+      return [...r.waypoints].reverse().map(p => [p[0]!, p[1]!] as [number, number])
     }
   }
   return null
