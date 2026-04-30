@@ -392,7 +392,7 @@ const LANDING_HTML = `
  <a href="/bastu-och-bad" class="nav-mega-link">Stränder &amp; bad</a>
  <a href="/hamnar-och-bryggor" class="nav-mega-link">Hamnar &amp; segling</a>
  <a href="/vandring-och-natur" class="nav-mega-link">Natur &amp; vandring</a>
- <a href="/krogar-och-mat" class="nav-mega-link"> Mat &amp; restauranger</a>
+ <a href="/krogar-och-mat" class="nav-mega-link">Mat &amp; restauranger</a>
  <a href="/boende" class="nav-mega-link">🏨 Boende</a>
  <a href="/resmal" class="nav-mega-all">Se alla kategorier →</a>
  </div>
@@ -400,27 +400,27 @@ const LANDING_HTML = `
  <div class="nav-mega-region">Hitta för dig</div>
  <a href="/oar/barnvanliga" class="nav-mega-link">👪 Barnvänliga öar</a>
  <a href="/oar/romantiska" class="nav-mega-link">💑 Romantiska öar</a>
- <a href="/oar/avskild" class="nav-mega-link"> Avskilda pärlor</a>
- <a href="/oar/utan-bil" class="nav-mega-link"> Öar utan bil</a>
- <a href="/oar/dagstur-stockholm" class="nav-mega-link"> Dagstur från Stockholm</a>
+ <a href="/oar/avskild" class="nav-mega-link">Avskilda pärlor</a>
+ <a href="/oar/utan-bil" class="nav-mega-link">Öar utan bil</a>
+ <a href="/oar/dagstur-stockholm" class="nav-mega-link">Dagstur från Stockholm</a>
  <a href="/oar" class="nav-mega-all">Alla filter →</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Jämför &amp; utforska</div>
  <a href="/jamfor" class="nav-mega-link">⚖️ Jämför två öar</a>
- <a href="/karta" class="nav-mega-link"> Karta över skärgården</a>
+ <a href="/karta" class="nav-mega-link">Karta över skärgården</a>
  <a href="/o" class="nav-mega-link">📋 Alla 69 öar</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Regioner</div>
- <a href="/stockholms-skargard" class="nav-mega-link"> Stockholms skärgård</a>
- <a href="/bohuslan" class="nav-mega-link"> Bohuslän</a>
- <a href="/gotland" class="nav-mega-link"> Gotland</a>
- <a href="/aland" class="nav-mega-link"> Åland</a>
- <a href="/blekinge-skargard" class="nav-mega-link"> Blekinges skärgård</a>
- <a href="/vasterhav" class="nav-mega-link"> Västerhavet</a>
+ <a href="/stockholms-skargard" class="nav-mega-link">Stockholms skärgård</a>
+ <a href="/bohuslan" class="nav-mega-link">Bohuslän</a>
+ <a href="/gotland" class="nav-mega-link">Gotland</a>
+ <a href="/aland" class="nav-mega-link">Åland</a>
+ <a href="/blekinge-skargard" class="nav-mega-link">Blekinges skärgård</a>
+ <a href="/vasterhav" class="nav-mega-link">Västerhavet</a>
  <a href="/malaren" class="nav-mega-link">🏞 Mälaren</a>
- <a href="/goteborg-skargard" class="nav-mega-link"> Göteborgs skärgård</a>
+ <a href="/goteborg-skargard" class="nav-mega-link">Göteborgs skärgård</a>
  </div>
  </div>
  </div>
@@ -429,24 +429,24 @@ const LANDING_HTML = `
  <div class="nav-mega-col">
  <div class="nav-mega-region">Planera turen</div>
  <a href="/utflykt" class="nav-mega-link">🗓 Utflyktsplanerare</a>
- <a href="/planera" class="nav-mega-link"> Planera båtrutt</a>
- <a href="/segelrutter" class="nav-mega-link"> Segelrutter</a>
- <a href="/snabbaste-vagen" class="nav-mega-link"> Snabbaste vägen</a>
+ <a href="/planera" class="nav-mega-link">Planera båtrutt</a>
+ <a href="/segelrutter" class="nav-mega-link">Segelrutter</a>
+ <a href="/snabbaste-vagen" class="nav-mega-link">Snabbaste vägen</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Ta sig dit</div>
- <a href="/farjor" class="nav-mega-link"> Färjetider</a>
+ <a href="/farjor" class="nav-mega-link">Färjetider</a>
  <a href="/populara-turer" class="nav-mega-link">📸 Populära turer</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Inspiration</div>
  <a href="/blogg" class="nav-mega-link">✍️ Bloggen</a>
  <a href="/tips" class="nav-mega-link">💡 Tips &amp; artiklar</a>
- <a href="/nyborjarguider" class="nav-mega-link"> Nybörjarguider</a>
+ <a href="/nyborjarguider" class="nav-mega-link">Nybörjarguider</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Min planering</div>
- <a href="/profil" class="nav-mega-link"> Mina sparade öar</a>
+ <a href="/profil" class="nav-mega-link">Mina sparade öar</a>
  <a href="/profil" class="nav-mega-link">👤 Min profil</a>
  <a href="/planera" class="nav-mega-link">📅 Mina turer</a>
  </div>
@@ -456,16 +456,16 @@ const LANDING_HTML = `
  <div class="nav-mega-grid">
  <div class="nav-mega-col">
  <div class="nav-mega-region">Aktiviteter</div>
- <a href="/aktivitet/segling" class="nav-mega-link"> Segling</a>
+ <a href="/aktivitet/segling" class="nav-mega-link">Segling</a>
  <a href="/aktivitet/cykla" class="nav-mega-link">🚴 Cykling</a>
- <a href="/aktivitet/bada" class="nav-mega-link"> Bad</a>
- <a href="/aktivitet/vandring" class="nav-mega-link"> Vandring</a>
+ <a href="/aktivitet/bada" class="nav-mega-link">Bad</a>
+ <a href="/aktivitet/vandring" class="nav-mega-link">Vandring</a>
  <a href="/bastu-och-bad" class="nav-mega-link">🧖 Bastu &amp; spa</a>
  <a href="/aktiviteter" class="nav-mega-all">Se alla →</a>
  </div>
  <div class="nav-mega-col">
  <div class="nav-mega-region">Mat &amp; dryck</div>
- <a href="/krogar-och-mat" class="nav-mega-link"> Restauranger</a>
+ <a href="/krogar-och-mat" class="nav-mega-link">Restauranger</a>
  <a href="/aktivitet/mat" class="nav-mega-link">🦞 Sjömatskrogar</a>
  <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
  </div>
@@ -481,7 +481,7 @@ const LANDING_HTML = `
  <a href="/boende" class="nav-mega-link">🏕 Camping &amp; tält</a>
  <a href="/boende" class="nav-mega-link">🏡 Stugor &amp; stugbyar</a>
  <a href="/boende" class="nav-mega-link">🏨 Hotell &amp; vandrarhem</a>
- <a href="/hamnar-och-bryggor" class="nav-mega-link"> Gästhamnar</a>
+ <a href="/hamnar-och-bryggor" class="nav-mega-link">Gästhamnar</a>
  </div>
  </div>
  </div>
@@ -490,10 +490,10 @@ const LANDING_HTML = `
  <div class="nav-mega-col">
  <div class="nav-mega-region">Populäraste öarna</div>
  <a href="/o/sandhamn" class="nav-mega-link">🥇 Sandhamn</a>
- <a href="/o/uto" class="nav-mega-link"> Utö</a>
- <a href="/o/vaxholm" class="nav-mega-link"> Vaxholm</a>
- <a href="/o/grinda" class="nav-mega-link"> Grinda</a>
- <a href="/o/moja" class="nav-mega-link"> Möja</a>
+ <a href="/o/uto" class="nav-mega-link">Utö</a>
+ <a href="/o/vaxholm" class="nav-mega-link">Vaxholm</a>
+ <a href="/o/grinda" class="nav-mega-link">Grinda</a>
+ <a href="/o/moja" class="nav-mega-link">Möja</a>
  <a href="/o" class="nav-mega-all">Se alla öar →</a>
  </div>
  <div class="nav-mega-col">
@@ -514,7 +514,7 @@ const LANDING_HTML = `
  <div class="nav-mega-region">För partners</div>
  <a href="/erbjudanden" class="nav-mega-link">🎁 Erbjudanden</a>
  <a href="/partner" class="nav-mega-link">🤝 Bli partner</a>
- <a href="/forum" class="nav-mega-link"> Community-forum</a>
+ <a href="/forum" class="nav-mega-link">Community-forum</a>
  </div>
  </div>
  </div>
