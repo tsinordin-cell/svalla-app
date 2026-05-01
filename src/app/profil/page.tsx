@@ -13,6 +13,7 @@ import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
+import ProfileForumSubscriptions from '@/components/ProfileForumSubscriptions'
 import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, MapPin, Link2, LogOut, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
 import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
 
@@ -753,6 +754,9 @@ export default function ProfilPage() {
             </div>
           </Link>
         )}
+
+        {/* ── Trådar du följer ── */}
+        {user?.id && <ProfileForumSubscriptions userId={user.id} />}
 
         {/* ── Settings ── */}
         <SettingsSection />

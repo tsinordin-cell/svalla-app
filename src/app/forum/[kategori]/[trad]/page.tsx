@@ -9,6 +9,7 @@ import ForumSubscribeButton from './ForumSubscribeButton'
 import ForumQuoteButton from './ForumQuoteButton'
 import BestAnswerButton from './BestAnswerButton'
 import ForumSortTabs from './ForumSortTabs'
+import ForumRealtimeListener from './ForumRealtimeListener'
 import Icon from '@/components/Icon'
 import { renderForumBody } from '@/lib/forum-render'
 import type { ForumSort } from '@/lib/forum'
@@ -367,6 +368,9 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
           <ForumReplyForm threadId={thread.id} categoryId={kategori} />
         )}
       </div>
+
+      {/* Realtime: lyssnar på nya posts och visar pill om någon annan postar */}
+      <ForumRealtimeListener threadId={thread.id} initialCount={posts.length} />
     </main>
   )
 }

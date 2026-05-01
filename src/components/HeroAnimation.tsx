@@ -1207,8 +1207,24 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       raf = requestAnimationFrame(tick)
     }
 
+    // ── Pausa när canvas är off-screen (sparar CPU + batteri) ───────────────
+    let playing = true
+    const io = new IntersectionObserver(entries => {
+      const entry = entries[0]
+      if (!entry) return
+      if (entry.isIntersecting && !playing) {
+        playing = true
+        // Återupptag: nollställ time-deltat så vi inte hoppar
+        raf = requestAnimationFrame(n => { last = n; tick(n) })
+      } else if (!entry.isIntersecting && playing) {
+        playing = false
+        cancelAnimationFrame(raf)
+      }
+    }, { threshold: 0 })
+    io.observe(cv)
+
     raf = requestAnimationFrame(n => { last = n; tick(n) })
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect() }
   }, [variant])
 
   return (
