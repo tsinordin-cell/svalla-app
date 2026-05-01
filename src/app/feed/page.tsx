@@ -285,13 +285,6 @@ export default async function FeedPage(
  </div>
  )}
 
- {/* ── Hitta seglare — mobil/tablet (dold på desktop via CSS, syns där i right panel) ── */}
- {!!user && (
- <div className="feed-suggested-mobile">
- <SilentBoundary><SuggestedUsers /></SilentBoundary>
- </div>
- )}
-
  {/* ── Säsong-driven verktygs-banner ── */}
  {!!user && <SeasonToolBanner />}
 
