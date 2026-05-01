@@ -419,7 +419,7 @@ export default function MeddelandenPage() {
               fontSize: fontSize.bodyEmph, fontWeight: fontWeight.semibold,
               textDecoration: 'none',
             }}>
-              Hitta seglare
+              Hitta folk att följa
             </Link>
           </div>
         )}

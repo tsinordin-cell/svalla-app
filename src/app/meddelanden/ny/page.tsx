@@ -183,7 +183,7 @@ function NyKonversationInner() {
  Du följer inte någon ännu
  </h2>
  <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>
- Hitta seglare att följa i flödet — sen kan du skriva till dem.
+ Hitta folk att följa i flödet — sen kan du skriva till dem.
  </p>
  <Link href="/feed" style={{
  display: 'inline-block', padding: '10px 22px', borderRadius: 14,
