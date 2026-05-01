@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Icon from '@/components/Icon'
 import MentionAutocomplete, { type MentionUser } from './MentionAutocomplete'
+import TripPickerModal from './TripPickerModal'
 
 interface Props {
   threadId: string
@@ -18,6 +19,7 @@ export default function ForumReplyForm({ threadId, categoryId: _categoryId }: Pr
   const [loading, setLoading] = useState(false)
   const [err, setErr]         = useState('')
   const [uploading, setUploading] = useState(false)
+  const [tripPickerOpen, setTripPickerOpen] = useState(false)
   const honeypotRef           = useRef<HTMLInputElement>(null)
   const textareaRef           = useRef<HTMLTextAreaElement>(null)
   const fileInputRef          = useRef<HTMLInputElement>(null)
@@ -296,6 +298,24 @@ export default function ForumReplyForm({ threadId, categoryId: _categoryId }: Pr
               <Icon name="atSign" size={14} stroke={2} />
               Tagga
             </button>
+            <button
+              type="button"
+              onClick={() => setTripPickerOpen(true)}
+              title="Bifoga en av dina turer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '8px 12px', borderRadius: 10,
+                background: 'rgba(10,123,140,0.08)',
+                color: 'var(--sea)',
+                border: 'none', fontSize: 12, fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'background 0.15s',
+                fontFamily: 'inherit',
+              }}
+            >
+              <Icon name="sailboat" size={14} stroke={2} />
+              Bifoga rutt
+            </button>
             <span style={{ fontSize: 11, color: body.length > 9500 ? 'var(--red, #ef4444)' : 'var(--txt3)', marginLeft: 4 }}>
               {body.length} / {MAX_LEN.toLocaleString('sv-SE')}
             </span>
@@ -333,6 +353,21 @@ export default function ForumReplyForm({ threadId, categoryId: _categoryId }: Pr
           </button>
         </div>
       </form>
+
+      <TripPickerModal
+        open={tripPickerOpen}
+        onClose={() => setTripPickerOpen(false)}
+        onSelect={(tripId) => {
+          setBody(prev => (prev.trim() ? prev + '\n\n' : '') + `[trip:${tripId}]\n`)
+          setTimeout(() => {
+            const ta = textareaRef.current
+            if (ta) {
+              ta.focus()
+              ta.selectionStart = ta.selectionEnd = ta.value.length
+            }
+          }, 0)
+        }}
+      />
     </div>
   )
 }

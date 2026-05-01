@@ -10,8 +10,10 @@
  */
 
 import Link from 'next/link'
+import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { MENTION_RE, extractMentions as _extractMentions } from './forum-mentions'
+import ForumTripAttachment from '@/components/ForumTripAttachment'
 
 // Tillåtna bild-domäner (våra Supabase-buckets + ev. CDN)
 const IMG_HOSTS = [
@@ -21,6 +23,7 @@ const IMG_HOSTS = [
 
 const URL_RE = /\b(https?:\/\/[^\s<]+)/g
 const IMG_TAG_RE = /\[img:(https?:\/\/[^\]\s]+)\]/g
+const TRIP_TAG_RE = /\[trip:([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\]/gi
 const HASHTAG_RE = /(^|\s)#([a-zA-ZåäöÅÄÖ0-9_-]{2,40})\b/g
 
 // Re-export för bakåtkompatibilitet
@@ -163,46 +166,83 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
  *  - tomma rader → paragraph-break
  *  - inline URL/mention via renderInline
  */
+type Block = { type: 'text'; content: string } | { type: 'img'; url: string } | { type: 'trip'; id: string }
+
+/**
+ * Splittrar body i text/img/trip-block för rendering.
+ */
+function splitBlocks(body: string): Block[] {
+  // Hitta alla [img:URL] och [trip:UUID] med position
+  type Tag = { start: number; end: number; type: 'img' | 'trip'; value: string }
+  const tags: Tag[] = []
+  for (const m of body.matchAll(IMG_TAG_RE)) {
+    tags.push({ start: m.index!, end: m.index! + m[0].length, type: 'img', value: m[1] ?? '' })
+  }
+  for (const m of body.matchAll(TRIP_TAG_RE)) {
+    tags.push({ start: m.index!, end: m.index! + m[0].length, type: 'trip', value: m[1] ?? '' })
+  }
+  tags.sort((a, b) => a.start - b.start)
+
+  const blocks: Block[] = []
+  let cursor = 0
+  for (const t of tags) {
+    if (t.start > cursor) {
+      const text = body.slice(cursor, t.start)
+      if (text.trim()) blocks.push({ type: 'text', content: text })
+    }
+    if (t.type === 'img' && isAllowedImgUrl(t.value)) {
+      blocks.push({ type: 'img', url: t.value })
+    } else if (t.type === 'trip') {
+      blocks.push({ type: 'trip', id: t.value })
+    }
+    cursor = t.end
+  }
+  if (cursor < body.length) {
+    const text = body.slice(cursor)
+    if (text.trim()) blocks.push({ type: 'text', content: text })
+  }
+  return blocks
+}
+
 export function renderForumBody(body: string): ReactNode {
   if (!body) return null
 
-  // Dela på [img:URL] först — bilder ska bli block-element
-  const blocks: ReactNode[] = []
-  let lastIdx = 0
-  let blockKey = 0
-
-  for (const m of body.matchAll(IMG_TAG_RE)) {
-    const before = body.slice(lastIdx, m.index!)
-    if (before.trim()) {
-      blocks.push(renderTextBlock(before, `b${blockKey++}`))
-    }
-    const url = m[1] ?? ''
-    if (url && isAllowedImgUrl(url)) {
-      blocks.push(
-        <div key={`img-${blockKey++}`} style={{ margin: '12px 0' }}>
-          <img
-            src={url}
-            alt=""
-            loading="lazy"
-            style={{
-              maxWidth: '100%',
-              maxHeight: 480,
-              borderRadius: 12,
-              display: 'block',
-              border: '1px solid rgba(10,123,140,0.10)',
-            }}
-          />
-        </div>
-      )
-    }
-    lastIdx = m.index! + m[0].length
-  }
-  const tail = body.slice(lastIdx)
-  if (tail.trim()) {
-    blocks.push(renderTextBlock(tail, `b${blockKey++}`))
-  }
-
-  return <>{blocks}</>
+  const blocks = splitBlocks(body)
+  return (
+    <>
+      {blocks.map((block, i) => {
+        if (block.type === 'text') {
+          return <div key={`b${i}`}>{renderTextBlock(block.content, `b${i}`)}</div>
+        }
+        if (block.type === 'img') {
+          return (
+            <div key={`b${i}`} style={{ margin: '12px 0', position: 'relative', width: '100%', maxWidth: 720 }}>
+              <Image
+                src={block.url}
+                alt=""
+                width={720}
+                height={480}
+                sizes="(max-width: 760px) 100vw, 720px"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxHeight: 480,
+                  objectFit: 'contain',
+                  borderRadius: 12,
+                  display: 'block',
+                  border: '1px solid rgba(10,123,140,0.10)',
+                }}
+              />
+            </div>
+          )
+        }
+        if (block.type === 'trip') {
+          return <ForumTripAttachment key={`b${i}`} id={block.id} />
+        }
+        return null
+      })}
+    </>
+  )
 }
 
 function renderTextBlock(text: string, keyPrefix: string): ReactNode {
