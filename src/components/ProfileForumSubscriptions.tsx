@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import Icon from '@/components/Icon'
-import { formatForumDate } from '@/lib/forum'
+import { formatForumDate } from '@/lib/forum-utils'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
 interface SubscribedThread {

@@ -1,7 +1,6 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -14,15 +13,10 @@ import SeasonToolBanner from '@/components/SeasonToolBanner'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
+import OnboardingModalLoader from '@/components/OnboardingModalLoader'
 import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
-
-// Lazy-load: 865-line client component excluded from initial bundle
-const OnboardingModal = dynamic(() => import('@/components/OnboardingModal'), {
-  ssr: false,
-  loading: () => null,
-})
 
 export const revalidate = 300
 
@@ -169,7 +163,7 @@ export default async function FeedPage(
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
  {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
- {!SAFE && <SilentBoundary><OnboardingModal /></SilentBoundary>}
+ {!SAFE && <SilentBoundary><OnboardingModalLoader /></SilentBoundary>}
 
  {/* ── Ambient gradient — wraps header + top content ── */}
  <div className="feed-ambient-top" style={{
