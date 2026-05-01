@@ -5,6 +5,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
+// TODO: wrap handlers with withSentrySimple(handler, 'planera/claim') — se src/lib/api-handler.ts
 
 /**
  * POST /api/planera/claim

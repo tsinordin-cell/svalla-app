@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
+// TODO: wrap handlers with withSentrySimple(handler, 'forum/upload-image') — se src/lib/api-handler.ts
 
 /**
  * POST /api/forum/upload-image

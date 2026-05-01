@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
+// TODO: wrap handlers with withSentrySimple(handler, 'forum/threads') — se src/lib/api-handler.ts
 
 /** POST /api/forum/threads — skapa ny tråd */
 export async function POST(req: NextRequest) {

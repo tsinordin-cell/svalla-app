@@ -7,6 +7,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
+// TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
 
 /**
  * POST /api/account/delete

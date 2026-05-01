@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+// TODO: wrap handlers with withSentrySimple(handler, 'forum/mention-search') — se src/lib/api-handler.ts
 
 /**
  * GET /api/forum/mention-search?q=ma

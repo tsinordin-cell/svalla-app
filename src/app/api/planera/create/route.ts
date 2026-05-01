@@ -3,6 +3,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import type { Interest } from '@/lib/planner'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
+// TODO: wrap handlers with withSentrySimple(handler, 'planera/create') — se src/lib/api-handler.ts
 
 const VALID_INTERESTS: Interest[] = ['krog', 'bastu', 'bad', 'brygga', 'natur', 'bensin']
 

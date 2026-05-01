@@ -1,4 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import FeedTabs from '@/components/FeedTabs'
@@ -85,7 +86,12 @@ export default async function FeedPage(
  const { data } = await supabase.auth.getUser()
  user = data?.user ?? null
  if (user) {
- const { data: profile } = await supabase.from('users').select('username').eq('id', user.id).single()
+ const { data: profile } = await supabase.from('users').select('username, onboarded_at').eq('id', user.id).single()
+ // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
+ const onboardedAt = (profile as { onboarded_at?: string | null } | null)?.onboarded_at
+ if (profile && onboardedAt === null) {
+   redirect('/onboarding')
+ }
  feedUsername = profile?.username ?? null
  }
  } catch (err) {

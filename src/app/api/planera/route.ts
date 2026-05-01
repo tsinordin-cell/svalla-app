@@ -3,6 +3,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
+// TODO: wrap handlers with withSentrySimple(handler, 'planera') — se src/lib/api-handler.ts
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 

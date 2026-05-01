@@ -5,6 +5,7 @@ import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
 import { sendPushToUsers } from '@/lib/push-server'
 import { extractMentions } from '@/lib/forum-mentions'
+// TODO: wrap handlers with withSentrySimple(handler, 'forum/posts') — se src/lib/api-handler.ts
 
 
 /** POST /api/forum/posts — skapa svar på tråd */
