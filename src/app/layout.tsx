@@ -22,9 +22,8 @@ import OfflineToast from '@/components/OfflineToast'
 import PostHogProvider from '@/components/PostHogProvider'
 import PostHogPageView from '@/components/PostHogPageView'
 import CookieConsent from '@/components/CookieConsent'
-// Aktiveras efter `npm install` (paketen finns i package.json):
-// import { Analytics } from '@vercel/analytics/next'
-// import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 // Note: Leaflet CSS is imported dynamically in client components that need it, not here
 
 export const metadata: Metadata = {
@@ -114,7 +113,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ToastContainer />
             <OfflineToast />
             <CookieConsent />
-            {/* Aktiveras efter `npm install`: <Analytics /> + <SpeedInsights /> */}
+            <Analytics />
+            <SpeedInsights />
           </ThemeProvider>
         </PostHogProvider>
       </body>

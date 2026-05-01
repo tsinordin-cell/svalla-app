@@ -94,6 +94,13 @@ function LoginContent() {
             username: username.trim() || email.split('@')[0],
             email,
           }, { onConflict: 'id', ignoreDuplicates: true }).then(() => {})
+
+          // Skicka välkomstmail (icke-blockerande, fail-silent)
+          // Kräver session — om "Confirm email" är på sker detta efter användaren bekräftat
+          if (data.session) {
+            fetch('/api/auth/post-signup', { method: 'POST' }).catch(() => {})
+          }
+
           if (data.session) {
             if (typeof window !== 'undefined') {
               localStorage.removeItem('svalla_onboarded')
