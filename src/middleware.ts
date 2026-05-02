@@ -25,6 +25,9 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/forum/nybörjare': '/forum/nyborjare',
   // URL-encoded version (det Google faktiskt försökte)
   '/forum/nyb%C3%B6rjare': '/forum/nyborjare',
+  // Sydkoster är en del av Kosterhavet i vår data — redirect så GSC-juicen behålls
+  '/o/sydkoster': '/o/kosterhavet',
+  '/o/sydkoster/': '/o/kosterhavet',
 }
 
 export async function middleware(request: NextRequest) {
