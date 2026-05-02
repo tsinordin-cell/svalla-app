@@ -1215,12 +1215,12 @@ export default function LandingPage() {
  {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
  <div style={{
  position: 'absolute', top: 0, left: 0, right: 0,
- height: '100vh',
+ /* Extra 500px täcker hero-sektionens overflow oavsett viewport-höjd */
+ height: 'calc(100vh + 500px)',
  zIndex: 0,
  overflow: 'hidden',
  pointerEvents: 'none',
- /* Håll bakgrunden mörk hela vägen — eliminerar det vita glappet mot trust-bar */
- background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%)',
+ background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 70%, #0d2440 100%)',
  } as React.CSSProperties}>
  <HeroAnimation />
  </div>
