@@ -281,7 +281,7 @@ function ManuellForm() {
       // Tagga seglare + skicka notiser
       if (tagged.length > 0) {
         await supabase.from('trip_tags').insert(
-          tagged.map(u => ({ trip_id: trip.id, tagged_user_id: u.id, tagged_by: user.id }))
+          tagged.map(u => ({ trip_id: trip.id, tagged_user_id: u.id, tagged_by_user_id: user.id }))
         )
         for (const u of tagged) {
           try {
