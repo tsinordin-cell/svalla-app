@@ -28,8 +28,8 @@ export type SvallaEvent =
   | { name: 'account_deleted'; props: Record<string, never> }
 
   // Onboarding
-  | { name: 'onboarding_started';  props: { step: 1 | 2 | 3 } }
-  | { name: 'onboarding_step';     props: { step: 1 | 2 | 3; skipped?: boolean } }
+  | { name: 'onboarding_started';  props: { step: number } }
+  | { name: 'onboarding_step';     props: { step: number; skipped?: boolean } }
   | { name: 'onboarding_completed'; props: { duration_seconds: number } }
 
   // Trips (logging)

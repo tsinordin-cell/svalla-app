@@ -13,7 +13,6 @@ import SeasonToolBanner from '@/components/SeasonToolBanner'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
-import OnboardingModalLoader from '@/components/OnboardingModalLoader'
 import { IconSearch } from '@/components/ui/icons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
@@ -168,7 +167,6 @@ export default async function FeedPage(
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
  {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
- {!SAFE && <SilentBoundary><OnboardingModalLoader /></SilentBoundary>}
 
  {/* ── Ambient gradient — wraps header + top content ── */}
  <div className="feed-ambient-top" style={{
@@ -238,7 +236,7 @@ export default async function FeedPage(
  color: 'var(--txt)',
  lineHeight: 1.5,
  }}>
- <strong>Safe mode aktivt.</strong> Stories, SuggestedUsers, RealtimeFeedBanner och OnboardingModal är avstängda för diagnostik.
+ <strong>Safe mode aktivt.</strong> Stories, SuggestedUsers och RealtimeFeedBanner är avstängda för diagnostik.
  Om feeden fungerar här men inte på <a href="/feed" style={{ color: 'var(--sea)' }}>/feed</a> är buggen i en av de klient-komponenterna.
  </div>
  )}
