@@ -590,24 +590,37 @@ export function findSeaPath(
   endLat: number,
   endLng: number,
 ): Array<[number, number]> {
+  return findSeaPathWithQuality(startLat, startLng, endLat, endLng).path
+}
+
+/** Sjölednings-kvalitet — vilken tier som faktiskt levererade rutten. */
+export type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'straight'
+
+/**
+ * Som findSeaPath men returnerar även vilken algoritm-tier som producerade rutten.
+ * Används av /api/route/calculate för att kunna kommunicera till UI:n om rutten
+ * är trovärdig (precomputed/grid) eller behöver disclaimer (waypoint/straight).
+ */
+export function findSeaPathWithQuality(
+  startLat: number,
+  startLng: number,
+  endLat: number,
+  endLng: number,
+): { path: Array<[number, number]>; quality: RouteQuality } {
   // 1. PRIORITET: Pre-computed validerad rutt (instant lookup, garanterat på vatten)
   const precomp = lookupPrecomputed(startLat, startLng, endLat, endLng)
-  if (precomp) return precomp
+  if (precomp) return { path: precomp, quality: 'precomputed' }
 
   // 2. Grid-A* med fullständig land-mask (bäst kvalitet)
   let path = findPathViaGrid(startLat, startLng, endLat, endLng)
+  if (path) return { path, quality: 'grid' }
 
   // 3. Waypoint-Dijkstra fallback om grid misslyckas
-  if (!path) {
-    path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
-  }
+  path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
+  if (path) return { path, quality: 'waypoint' }
 
-  // 4. Sista utväg: rät linje
-  if (!path) {
-    return [[startLat, startLng], [endLat, endLng]]
-  }
-
-  return path
+  // 4. Sista utväg: rät linje — UI:n MÅSTE visa disclaimer vid denna kvalitet
+  return { path: [[startLat, startLng], [endLat, endLng]], quality: 'straight' }
 }
 
 /**

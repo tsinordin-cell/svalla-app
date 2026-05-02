@@ -17,14 +17,15 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 300 // sekunder — Vercel Pro
 
 import { NextRequest, NextResponse } from 'next/server'
-import { findSeaPath } from '@/lib/seaPathfinder'
+import { findSeaPathWithQuality, type RouteQuality } from '@/lib/seaPathfinder'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
 
 // ── In-memory route cache (warm Lambda) ────────────────────────────────────
 // Nyckel: "lat,lng→lat,lng" (4 decimaler ≈ 11 m precision)
-// Värde: beräknad rutt som [lat,lng]-tuples
-const _routeCache = new Map<string, Array<[number, number]>>()
+// Värde: beräknad rutt + kvalitet (för att kunna visa rätt disclaimer i UI:n)
+type CachedRoute = { path: Array<[number, number]>; quality: RouteQuality }
+const _routeCache = new Map<string, CachedRoute>()
 
 function cacheKey(slat: number, slng: number, elat: number, elng: number): string {
   return `${slat.toFixed(4)},${slng.toFixed(4)}→${elat.toFixed(4)},${elng.toFixed(4)}`
@@ -57,26 +58,28 @@ export async function POST(req: NextRequest) {
     const key = cacheKey(startLat, startLng, endLat, endLng)
 
     // 1. In-memory cache hit
-    if (_routeCache.has(key)) {
+    const cached = _routeCache.get(key)
+    if (cached) {
       logger.info('route-calculate', `cache-hit: ${key}`)
-      return NextResponse.json({ path: _routeCache.get(key), source: 'cache' })
+      return NextResponse.json({ path: cached.path, quality: cached.quality, source: 'cache' })
     }
 
-    // 2. Compute — precomputed JSON hit är O(n) i findSeaPath; grid är 30-120 s
+    // 2. Compute — precomputed JSON hit är O(n); grid är 30-120 s
     const t0 = Date.now()
-    const path = findSeaPath(startLat, startLng, endLat, endLng)
+    const { path, quality } = findSeaPathWithQuality(startLat, startLng, endLat, endLng)
     const ms = Date.now() - t0
 
-    logger.info('route-calculate', `computed in ${ms} ms — ${path.length} waypoints`, {
+    logger.info('route-calculate', `computed in ${ms} ms — ${path.length} waypoints, quality=${quality}`, {
       key,
       ms,
       points: path.length,
+      quality,
     })
 
     // Cacha resultatet
-    _routeCache.set(key, path)
+    _routeCache.set(key, { path, quality })
 
-    return NextResponse.json({ path, source: ms < 50 ? 'precomputed' : 'computed', ms })
+    return NextResponse.json({ path, quality, source: quality === 'precomputed' ? 'precomputed' : 'computed', ms })
   } catch (err) {
     logger.error('route-calculate', 'unhandled exception', { error: String(err) })
     return NextResponse.json({ error: 'Serverfel vid ruttberäkning' }, { status: 500 })

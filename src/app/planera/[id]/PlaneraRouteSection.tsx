@@ -60,6 +60,8 @@ type Props = {
 
 // ── Component ───────────────────────────────────────────────────────────────
 
+type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'straight'
+
 export default function PlaneraRouteSection({
   startLat, startLng, startName,
   endLat, endLng, endName,
@@ -69,6 +71,7 @@ export default function PlaneraRouteSection({
   const [seaPath, setSeaPath] = useState<[number, number][] | null>(null)
   const [routeKm, setRouteKm] = useState(haversineDistKm)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [quality, setQuality] = useState<RouteQuality | null>(null)
 
   const timeEstimates = estimateAllProfiles(routeKm)
 
@@ -81,11 +84,12 @@ export default function PlaneraRouteSection({
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ startLat, startLng, endLat, endLng }),
     })
-      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] }> : Promise.reject(r.status))
+      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][]; quality?: RouteQuality }> : Promise.reject(r.status))
       .then(data => {
         if (cancelled) return
         const km = Math.round(pathKm(data.path))
         setSeaPath(data.path)
+        setQuality(data.quality ?? null)
         if (km > 0) setRouteKm(km)
         setStatus('ready')
       })
@@ -98,6 +102,22 @@ export default function PlaneraRouteSection({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Kvalitetsbanner — vad användaren faktiskt får
+  const qualityBanner = (() => {
+    if (status !== 'ready' || !quality) return null
+    if (quality === 'precomputed') {
+      return { tone: 'success' as const, label: 'Optimal sjöled', desc: 'Verifierad rutt längs riktiga sjöleder.' }
+    }
+    if (quality === 'grid') {
+      return { tone: 'success' as const, label: 'Beräknad sjöled', desc: 'Optimerad runt land med 80 000 vattenpunkter.' }
+    }
+    if (quality === 'waypoint') {
+      return { tone: 'warning' as const, label: 'Approximerad rutt', desc: 'Grov sjöled via huvudleder. Verifiera mot sjökort innan avgång.' }
+    }
+    // straight
+    return { tone: 'warning' as const, label: 'Rak linje — sjöleder kunde inte beräknas', desc: 'Det här är fågelvägen. Använd ditt sjökort för faktisk ruttplanering.' }
+  })()
+
   return (
     <>
       {/* Leaflet-karta — seaPath=null visar skelet tills rutten anländer */}
@@ -107,6 +127,40 @@ export default function PlaneraRouteSection({
         stops={stops}
         seaPath={seaPath}
       />
+
+      {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej */}
+      {qualityBanner && (
+        <div style={{
+          display: 'flex', alignItems: 'flex-start', gap: 10,
+          background: qualityBanner.tone === 'success'
+            ? 'rgba(42,157,92,0.08)'
+            : 'rgba(232,146,74,0.10)',
+          border: `1px solid ${qualityBanner.tone === 'success' ? 'rgba(42,157,92,0.22)' : 'rgba(232,146,74,0.32)'}`,
+          borderRadius: 12, padding: '10px 14px',
+          marginBottom: 12, marginTop: -8,
+          fontSize: 12.5,
+          color: qualityBanner.tone === 'success' ? '#157a3e' : '#a4561e',
+        }}>
+          <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
+            {qualityBanner.tone === 'success' ? (
+              <>
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="9 12 11 14 15 10"/>
+              </>
+            ) : (
+              <>
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3.05h16.94a2 2 0 0 0 1.71-3.05L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </>
+            )}
+          </svg>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontWeight: 700, marginBottom: 2 }}>{qualityBanner.label}</div>
+            <div style={{ opacity: 0.85, lineHeight: 1.45 }}>{qualityBanner.desc}</div>
+          </div>
+        </div>
+      )}
 
       {/* Progress-banner medan grid-A* räknar */}
       {status === 'loading' && (
