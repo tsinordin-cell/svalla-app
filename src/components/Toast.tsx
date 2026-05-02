@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 export type ToastType = 'success' | 'error' | 'info'
 type ToastItem = { id: number; message: string; type: ToastType }
 
-const ICONS: Record<ToastType, string> = { success: '✓', error: '✕', info: 'ℹ' }
+const ICONS: Record<ToastType, string> = { success: 'check', error: 'x', info: 'info' }
 const BG: Record<ToastType, string> = {
   success: 'linear-gradient(135deg,#1a5c3a,#2a8a58)',
   error:   'linear-gradient(135deg,#8b1a1a,#c03030)',

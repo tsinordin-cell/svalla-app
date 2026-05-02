@@ -108,7 +108,7 @@ export default function MarkVisitedButton({ islandSlug, islandName }: Props) {
             zIndex: 9999, whiteSpace: 'nowrap',
           }}
         >
-          ✓ {islandName} loggad — dina följare ser detta!
+          Loggat: {islandName} — dina följare ser detta!
         </div>
       )}
     </>

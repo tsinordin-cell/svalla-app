@@ -1,4 +1,5 @@
 'use client'
+import Icon from '@/components/Icon'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -83,16 +84,19 @@ export default function PushPrompt() {
       display: 'flex', gap: 14, alignItems: 'flex-start',
       animation: 'slideUp 0.35s ease',
     }}>
-      <div style={{
+            <div style={{
         width: 44, height: 44, borderRadius: 12, flexShrink: 0,
         background: 'var(--grad-sea)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: 22, border: '1.5px solid rgba(255,255,255,0.15)',
-      }}>🔔</div>
+      }}>
+        <Icon name="bell" style={{ width: 20, height: 20, color: '#fff' }} />
+      </div>
+
 
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{ fontSize: 14, fontWeight: 600, color: '#fff', margin: '0 0 4px' }}>
-          {done ? '✓ Notiser aktiverade!' : 'Missa inga turer i närheten'}
+          {done ? 'Notiser aktiverade' : 'Missa inga turer i närheten'}
         </p>
         {!done && (
           <>

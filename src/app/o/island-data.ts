@@ -74,7 +74,7 @@ export const ISLANDS: Island[] = [
     name: 'Sandhamn',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '⛵',
+    emoji: 'sailboat',
     tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
     description: [
       'Sandhamn är ett av Stockholms skärgårds mest välkända namn — och med rätta. Ön är hem för KSSS (Kungliga Svenska Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
@@ -190,7 +190,7 @@ export const ISLANDS: Island[] = [
     name: 'Vaxholm',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏰',
+    emoji: 'building',
     tagline: 'Porten till skärgården — stad, fästning och direktbåt från Strömkajen.',
     description: [
       'Vaxholm kallas "porten till skärgården" — och det med rätta. Staden kontrollerade i 500 år ingången till Stockholms inre skärgård via fästningen mitt i sundet. Idag är den röda fästningen ett museum och ett av skärgårdens mest fotograferade motiv.',
@@ -355,7 +355,7 @@ export const ISLANDS: Island[] = [
     name: 'Möja',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏝',
+    emoji: 'island',
     tagline: 'Bilfri och genuint lantlig — skärgårdens bäst bevarade hemlighet.',
     description: [
       'Möja är en av Stockholms skärgårds mest autentiska öar. Bilfri, lugn och med en genuint lantlig karaktär som saknar motstycke. Här bor ett par hundra permanentbor och sommartid dubbleras befolkningen — men det är inget som stör den stilla stämningen.',
@@ -512,7 +512,7 @@ export const ISLANDS: Island[] = [
     name: 'Dalarö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
-    emoji: '⚓',
+    emoji: 'anchor',
     tagline: 'Södra skärgårdens klassiska utgångspunkt — historia, hamn och direktbuss från Stockholm.',
     description: [
       'Dalarö är södra skärgårdens naturliga utgångspunkt. Orten har en lång maritim historia — Dalarö Skans byggdes på 1600-talet och spelade en viktig roll i försvaret av Stockholms södra farvatten. Idag är det en populär hamnort med gästhamn, restauranger och goda kommunikationer.',
@@ -998,7 +998,7 @@ export const ISLANDS: Island[] = [
     name: 'Svartsö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏝',
+    emoji: 'island',
     tagline: 'Bilfri ö med ekologisk profil — biodynamisk odling och enkel skärgårdslyx.',
     description: [
       'Svartsö är kanske den mest unika av de bilfria öarna i mellersta skärgården. Ön har sedan decennier en stark ekologisk profil — biodynamiskt jordbruk, lokal matproduktion och ett medvetet förhållningssätt till turism.',
@@ -1044,7 +1044,7 @@ export const ISLANDS: Island[] = [
     name: 'Runmarö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '⛵',
+    emoji: 'sailboat',
     tagline: 'Populär seglingsö nära Sandhamn — bränsle, krog och vackra naturhamnar.',
     description: [
       'Runmarö är en större ö i mellersta skärgården som kombinerar natur med möjligheter för längre vistelse och varierad aktivitet. Ön är populär bland familjer.',
@@ -1654,7 +1654,7 @@ export const ISLANDS: Island[] = [
     name: 'Rindö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏰',
+    emoji: 'building',
     tagline: 'Militärhistoria och stilla vikar nära Vaxholm',
     description: [
       'Rindö är en mellanstor ö i mellersta skärgården som erbjuder en blandning av lugn natur och möjligheter för aktiviteter för hela familjen. Ön är populär bland seglare som utgångspunkt för kajakpaddling.',
@@ -1766,7 +1766,7 @@ export const ISLANDS: Island[] = [
     name: 'Vindö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🌳',
+    emoji: 'leaf',
     tagline: 'Stor skogsö med bro och hästgård',
     description: [
       'Vindö är en bilfärjebetjänad ö i mellersta skärgården som kombinerar lugn med närhet till fastlandet. Ön är mindre uppmärksammad än grannarna men erbjuder hög kvalitet.',
@@ -1850,7 +1850,7 @@ export const ISLANDS: Island[] = [
     name: 'Muskö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
-    emoji: '⚓',
+    emoji: 'anchor',
     tagline: 'Gamla marinbasen — berghällshamnar och industrihistoria',
     description: [
       'Muskö är en större ö i södra skärgården som erbjuder varierad natur och en blandning av fast befolkning och sommargäster. Ön är bilfärjebetjänad och erbjuder goda möjligheter för längre vistelse.',
@@ -2046,7 +2046,7 @@ export const ISLANDS: Island[] = [
     name: 'Eknö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🌳',
+    emoji: 'leaf',
     tagline: 'Ekar och sommarstugor i klassisk skärgårdsmiljö',
     description: [
       'Eknö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn, naturupplevelse och en autentisk skärgårdskänsla. Ön är mindre besökt än sina större grannar.',
@@ -2158,7 +2158,7 @@ export const ISLANDS: Island[] = [
     name: 'Kanholmen',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '⚓',
+    emoji: 'anchor',
     tagline: 'Populär seglarhamn i hjärtat av skärgården',
     description: [
       'Kanholmen är en liten ö i södra skärgården som kombinerar lugn natur med möjligheter för badning och enkel vistelse. Ön är mindre besökt men högt älskad.',
@@ -2522,7 +2522,7 @@ export const ISLANDS: Island[] = [
     name: 'Ramskär (norra)',
     region: 'norra',
     regionLabel: 'Norra skärgården',
-    emoji: '⛵',
+    emoji: 'sailboat',
     tagline: 'Norrtälje-skärgårdens välkända angöringsplats',
     description: [
       'Norra Ramskär är en känd angöringsplats i norr med bra skydd och naturhamn som välkomnar seglare i transit. Perfekt angöringsplats på nordledens seglarrutt.',

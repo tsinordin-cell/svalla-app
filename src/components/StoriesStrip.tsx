@@ -255,7 +255,7 @@ function StoryViewer({
         )}
         <button onClick={onClose} aria-label="Stäng"
           style={{ border: 'none', background: 'transparent', color: '#fff', cursor: 'pointer', fontSize: 22, padding: 0, width: 32, height: 32 }}>
-          ✕
+          ×
         </button>
       </div>
 
@@ -297,7 +297,7 @@ function StoryViewer({
             padding: '4px 10px', borderRadius: 12, background: 'rgba(0,0,0,0.55)',
             color: '#fff', fontSize: 11, fontWeight: 700,
           }}>
-            📍 {story.location_name}
+            Location: {story.location_name}
           </div>
         )}
       </div>
@@ -382,7 +382,7 @@ function UploadStory({
               aria-label="Ta bort vald bild"
               className="press-feedback"
               style={{ position: 'absolute', top: 8, right: 8, width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'rgba(0,0,0,0.6)', color: '#fff', fontWeight: 600, cursor: 'pointer' }}>
-              ✕
+              ×
             </button>
           </div>
         ) : (

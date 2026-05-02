@@ -28,5 +28,7 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 .next 2/
-.github/workflows/
 node_modules/
+
+# Supabase temp files
+supabase/.temp/

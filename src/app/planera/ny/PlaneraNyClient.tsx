@@ -38,6 +38,10 @@ export default function PlaneraNyClient() {
  setStep('saving')
  setError(null)
 
+ // 15s timeout — annars hänger användaren obegränsat på "Planerar din rutt..."
+ const controller = new AbortController()
+ const timeoutId = setTimeout(() => controller.abort(), 15_000)
+
  try {
  const res = await fetch('/api/planera/create', {
  method: 'POST',
@@ -51,16 +55,33 @@ export default function PlaneraNyClient() {
  endLng: endDep.lng,
  interests,
  }),
+ signal: controller.signal,
  })
- const json = await res.json() as { id?: string; error?: string }
- if (!res.ok || !json.id) {
- setError('Kunde inte spara rutten. Försök igen.')
+ clearTimeout(timeoutId)
+
+ if (!res.ok) {
+ const text = await res.text().catch(() => '')
+ console.error('[planera/ny] create failed:', res.status, text)
+ setError(`Kunde inte spara rutten (${res.status}). ${text.slice(0, 100)}`)
+ setStep('interests')
+ return
+ }
+
+ const json = await res.json().catch(() => null) as { id?: string; error?: string } | null
+ if (!json?.id) {
+ console.error('[planera/ny] no id in response:', json)
+ setError('Servern svarade utan rutt-id. Försök igen.')
  setStep('interests')
  return
  }
  router.push(`/planera/${json.id}`)
- } catch {
- setError('Kunde inte spara rutten. Försök igen.')
+ } catch (e) {
+ clearTimeout(timeoutId)
+ const isTimeout = e instanceof Error && e.name === 'AbortError'
+ console.error('[planera/ny] exception:', e)
+ setError(isTimeout
+ ? 'Timeout: servern svarade inte inom 15 sek. Försök igen eller kontrollera anslutningen.'
+ : 'Kunde inte spara rutten. Försök igen.')
  setStep('interests')
  }
  }

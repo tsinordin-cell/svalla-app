@@ -7,8 +7,24 @@ export const revalidate = 3600
 
 const W = 1200, H = 630
 
-const INTEREST_EMOJI: Record<string, string> = {
- krog: '', bastu: '', bad: '', brygga: '', natur: '', bensin: '⛽',
+// Icon names compatible with Icon.tsx (no emojis per no-emoji-policy)
+const INTEREST_ICON_NAMES: Record<string, string> = {
+ krog: 'utensils',
+ bastu: 'building',
+ bad: 'water',
+ brygga: 'anchor',
+ natur: 'leaf',
+ bensin: 'fuel',
+}
+
+// Simple placeholder SVG icons for OG image rendering
+const SVG_ICONS: Record<string, string> = {
+  utensils: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h2v12H3zm8 0h2v12h-2zm8 0h2v12h-2z"/></svg>',
+  building: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="3" width="20" height="18"/><line x1="10" y1="3" x2="10" y2="21"/><line x1="14" y1="3" x2="14" y2="21"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/></svg>',
+  water: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-3 4-5 6-5 9 0 3 2 5 5 5s5-2 5-5c0-3-2-5-5-9z"/></svg>',
+  anchor: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2v8m0 0c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4m-4 4v5h8v-5"/></svg>',
+  leaf: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 0-8 6-8 14 0 4.4 3.6 8 8 8s8-3.6 8-8c0-8-8-14-8-14z"/></svg>',
+  fuel: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="12" height="16" rx="2"/><path d="M8 12h4M8 16h4"/><line x1="18" y1="6" x2="18" y2="18"/></svg>',
 }
 
 export async function GET(
@@ -111,15 +127,20 @@ export async function GET(
  <span style={{ fontSize: 17, fontWeight: 700, color: 'rgba(120,210,255,0.80)' }}>stopp</span>
  </div>
  )}
- {interests.slice(0, 4).map(i => (
- <div key={i} style={{
- background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.10)',
- borderRadius: 18, padding: '14px 18px',
- fontSize: 28,
- }}>
- {INTEREST_EMOJI[i] ?? '📍'}
- </div>
- ))}
+ {interests.slice(0, 4).map(i => {
+   const iconName = INTEREST_ICON_NAMES[i] ?? 'pin'
+   const iconSvg = SVG_ICONS[iconName] ?? ''
+   return (
+     <div key={i} style={{
+       background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.10)',
+       borderRadius: 18, padding: '14px 18px',
+       fontSize: 20,
+       display: 'flex', alignItems: 'center',
+     }}>
+       {iconSvg ? <svg viewBox="0 0 24 24" width={20} height={20} fill="rgba(255,255,255,0.90)" dangerouslySetInnerHTML={{ __html: iconSvg ?? '' }} /> : ''}
+     </div>
+   )
+ })}
  </div>
  </div>
 

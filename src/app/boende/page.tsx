@@ -34,13 +34,13 @@ const ITEMS: LandingItem[] = [
     href: '/platser?kategori=stuga',
   },
   {
-    icon: '🛏️',
+    icon: 'bed',
     title: 'Vandrarhem & hostel',
     description: 'Budgetalternativ i Stavsnäs, Finnhamn, Möja och andra noder. Ofta självhushåll med delat kök.',
     href: '/platser?kategori=vandrarhem',
   },
   {
-    icon: '🏕️',
+    icon: 'pin',
     title: 'Camping',
     description: 'Campingplatser med el och dusch, samt tältning på allemansrätt — vilka öar som tillåter vadå.',
     href: '/platser?kategori=camping',

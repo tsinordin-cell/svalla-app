@@ -60,7 +60,7 @@ export default function OfflineToast() {
         ),
       }}
     >
-      {offline ? '📵 Ingen internetanslutning' : '✓ Anslutning återupprättad'}
+      {offline ? 'Ingen internet' : 'Anslutning återupprättad'}
     </div>
   )
 }

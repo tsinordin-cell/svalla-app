@@ -90,7 +90,7 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  ),
  }}
  >
- {loading ? '…' : following ? 'Följer ✓' : 'Följ'}
+ {loading ? 'Laddar...' : following ? 'Följer' : 'Följ'}
  </button>
  {count > 0 && !hideCount && (
  <span style={{

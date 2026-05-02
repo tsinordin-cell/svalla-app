@@ -26,35 +26,35 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '⛵',
+ icon: 'sailboat',
  title: 'Nybörjarsegling: Saltsjön',
  description: 'Inga öppna hav, god vind och många naturhamnar — perfekt första-seglingen med familj eller segelskola.',
  href: '/segelrutter/saltsjon',
  meta: 'Nivå 1',
  },
  {
- icon: '🌬️',
+ icon: 'wind',
  title: 'Mellanskärgården (västanvind)',
  description: 'Grinda, Finnhamn, Möja — en vecka med oftast gynnsam vind. Klassisk svensk seglarsommar.',
  href: '/segelrutter/mellanskargarden',
  meta: 'Nivå 2',
  },
  {
- icon: '🚢',
+ icon: 'ship',
  title: 'Ytterskärgården',
  description: 'Sandhamn, Huvudskär, Rödlöga — öppna vatten, tidvattenströmmar, stora upplevelser.',
  href: '/segelrutter/ytterskargarden',
  meta: 'Nivå 3',
  },
  {
- icon: '🗺️',
+ icon: 'map',
  title: 'Östersjöleden (Stockholm–Malmö)',
  description: 'Kustens stora segelrutt: 800 sjömil längs svenska östkusten med Blekinge och Gotland. Dagsetapper, historia och skyddade farleder.',
  href: '/segelrutter/osterjosleden',
  meta: 'Nivå 2–3',
  },
  {
- icon: '⛩️',
+ icon: 'building',
  title: 'Bohusleden & västkusten',
  description: 'Hummervatten, Marstrand, Smögen, Kosterfjorden. Västkustens vildaste seglingar med tidvatten och skjärgård.',
  href: '/segelrutter/bohusleden',
@@ -68,7 +68,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Nivå 3',
  },
  {
- icon: '🏰',
+ icon: 'building',
  title: 'Mälaren — insjösegling',
  description: 'Karl Johans sluss, historiska slott (Drottningholm, Birka), skyddade vatten. Perfekt för varmare dagar och familjer.',
  href: '/segelrutter/malaren',
@@ -87,7 +87,7 @@ const ITEMS: LandingItem[] = [
  href: '/tips?kategori=segelkort',
  },
  {
- icon: '🧭',
+ icon: 'compass',
  title: 'Vind & väder',
  description: 'Så läser du SMHI:s sjöprognos och när du ska vänta på en dags-avbrott.',
  href: '/tips?kategori=vader',

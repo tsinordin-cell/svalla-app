@@ -52,9 +52,8 @@ export async function GET(_request: Request, { params }: Props) {
           </div>
         </div>
 
-        {/* Center: emoji + name */}
+        {/* Center: name (emoji removed per no-emoji-policy) */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          <div style={{ fontSize: 140 }}>{island.emoji}</div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: 90, fontWeight: 800, lineHeight: 1, letterSpacing: -2 }}>
               {island.name}

@@ -27,6 +27,13 @@ function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: numbe
  }).join(' ')
 }
 
+// SVG icons for boat types
+const BOAT_ICONS: Record<string, string> = {
+  'Segelbåt': '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L18 10L18 20H6L6 10Z"/><path d="M12 10V18"/></svg>',
+  'Motorbåt': '<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="8" rx="6" ry="4"/><path d="M6 8V18H18V8"/><rect x="10" y="4" width="4" height="4"/></svg>',
+  'Kajak': '<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="8" cy="12" rx="3" ry="6"/><rect x="5" y="12" width="14" height="2"/><ellipse cx="16" cy="12" rx="3" ry="6"/></svg>',
+}
+
 export async function GET(
  _req: Request,
  { params }: { params: Promise<{ id: string }> }
@@ -55,7 +62,7 @@ export async function GET(
  ? `${trip.start_location} → ${trip.location_name}`
  : trip?.location_name ?? ''
  const username = userRow?.username ?? 'Seglare'
- const boatEmoji = trip?.boat_type === 'Segelbåt' ? '' : trip?.boat_type === 'Motorbåt' ? '' : trip?.boat_type === 'Kajak' ? '' : ''
+ const boatSvg = BOAT_ICONS[trip?.boat_type ?? 'Segelbåt'] ?? BOAT_ICONS['Segelbåt']
  const boatLabel = trip?.boat_type ?? 'Tur'
  const magisk = trip?.pinnar_rating === 3
 
@@ -118,7 +125,7 @@ export async function GET(
  background: 'rgba(255,255,255,0.08)',
  borderRadius: 20, padding: '6px 14px',
  }}>
- <div style={{ fontSize: 16 }}>{boatEmoji}</div>
+ <svg width={16} height={16} viewBox="0 0 24 24" fill="rgba(255,255,255,0.90)" dangerouslySetInnerHTML={{ __html: boatSvg ?? '' }} />
  <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.70)' }}>{boatLabel}</div>
  </div>
  </div>
@@ -135,7 +142,7 @@ export async function GET(
  </div>
  ) : (
  <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', display: 'flex' }}>
- {`${boatEmoji} Svalla-tur`}
+ Svalla-tur
  </div>
  )}
  {magisk && (
@@ -146,7 +153,11 @@ export async function GET(
  borderRadius: 20, padding: '5px 14px',
  width: 'fit-content',
  }}>
- <div style={{ fontSize: 14 }}> </div>
+ <div style={{
+ width: 14, height: 14, borderRadius: '50%',
+ background: 'rgba(224,120,40,0.80)',
+ }}>
+ </div>
  <div style={{ fontSize: 12, fontWeight: 600, color: '#e07828', letterSpacing: '0.5px' }}>
  MAGISK TUR
  </div>
@@ -243,13 +254,8 @@ export async function GET(
  r={7} fill="#0f9e64" />
  </svg>
  ) : (
- /* Fallback — large emoji if no route */
- <div style={{
- fontSize: 120, opacity: 0.18, position: 'relative', zIndex: 1,
- display: 'flex',
- }}>
- {boatEmoji}
- </div>
+ /* Fallback — show boat icon SVG instead of emoji */
+ <svg width={80} height={80} viewBox="0 0 24 24" fill="rgba(255,255,255,0.15)" opacity={0.5} dangerouslySetInnerHTML={{ __html: boatSvg ?? '' }} />
  )}
 
  {/* Right edge fade */}

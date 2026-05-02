@@ -57,7 +57,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
         fontSize: 28,
         boxShadow: '0 4px 14px rgba(201,110,42,0.35)',
       }}>
-        {ev.emoji ?? '🏆'}
+        getIconForEvent(ev.type)
       </div>
     </article>
   )

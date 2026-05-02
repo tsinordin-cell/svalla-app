@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'bed',
  title: 'Grinda',
  description: 'Populär ö med trevlig sandstrand, grunt vatten perfekt för barn och ett välskött naturhamnsbad. Restaurang och enkla färjeförbindelser.',
  href: '/o/grinda',
@@ -54,14 +54,14 @@ const ITEMS: LandingItem[] = [
  meta: 'Närmast Stockholm',
  },
  {
- icon: '️',
+ icon: 'bed',
  title: 'Utö',
  description: 'En större ö med varierad miljö — restaurang, trevliga promenader och fin strand. Längre resa men väldigt värd det.',
  href: '/o/uto',
  meta: 'Större utbud',
  },
  {
- icon: '️',
+ icon: 'bed',
  title: 'Sandhamn',
  description: 'Legendär destination med flera restauranger och blomstrande sommarliv. För äldre barn och familjäventyrare.',
  href: '/o/sandhamn',

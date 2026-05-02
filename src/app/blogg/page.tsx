@@ -1,3 +1,4 @@
+import Icon from '@/components/Icon'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { POSTS_META } from './posts-data'
@@ -53,7 +54,7 @@ export default function BloggPage() {
 
           {/* Heading */}
           <h1 style={{ fontSize: 32, fontWeight: 800, color: '#fff', margin: '0 0 8px', letterSpacing: '-0.01em' }}>
-            ✍️ Skärgårdsbloggen
+            Skärgårdsbloggen
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 14, margin: '0 0 20px' }}>
             Tips, guider och inspiration för Stockholms skärgård
@@ -151,7 +152,7 @@ export default function BloggPage() {
           textAlign: 'center',
           border: '1px dashed rgba(30,92,130,0.2)',
         }}>
-          <div style={{ fontSize: 28, marginBottom: 10 }}>📬</div>
+          <Icon name="mail" style={{ fontSize: 28, marginBottom: 10 }} />
           <p style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Fler artiklar är på väg</p>
           <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px' }}>
             Tips på ämnen? Maila oss på{' '}

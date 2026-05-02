@@ -28,6 +28,48 @@ npm run dev
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
+## Database Migrations
+
+This project uses Supabase CLI for managing database migrations.
+
+### Local Development
+
+1. Install Supabase CLI:
+   ```bash
+   npm install -g supabase
+   ```
+
+2. Run migrations:
+   ```bash
+   npm run db:migrate
+   ```
+
+3. Lint migrations (validates SQL syntax):
+   ```bash
+   npm run db:lint
+   ```
+
+4. Generate diffs for schema changes:
+   ```bash
+   npm run db:diff
+   ```
+
+### CI/CD
+
+- GitHub Actions automatically runs `supabase db lint` on pull requests that modify files in `supabase/migrations/`
+- Requires `SUPABASE_PROJECT_ID` and `SUPABASE_ACCESS_TOKEN` secrets to be configured in GitHub
+
+### Migration Files
+
+All migrations are stored in `supabase/migrations/` with timestamped filenames in the format:
+```
+YYYYMMDDHHHMMSS_<description>.sql
+```
+
+This ensures migrations run in the correct order and prevents conflicts.
+
+For more information, see the [Supabase CLI documentation](https://supabase.com/docs/guides/local-development/cli).
+
 ## Release-definition ✓
 
 - [x] Se restauranger (`/platser`)

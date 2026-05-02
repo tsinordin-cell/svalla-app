@@ -206,7 +206,7 @@ export default function Comments({
  method: 'POST', headers: { 'Content-Type': 'application/json' },
  body: JSON.stringify({ targetUserId: mu.id, type: 'mention', tripId }),
  }).catch(() => {})
- fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: mu.id, title: `${myUsername} taggade dig 🏷️`, body: content.slice(0, 80), url: `/tur/${tripId}` }) }).catch(() => {})
+ fetch('/api/push/send', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ targetUserId: mu.id, title: `${myUsername} taggade dig`, body: content.slice(0, 80), url: `/tur/${tripId}` }) }).catch(() => {})
  }
  }
 

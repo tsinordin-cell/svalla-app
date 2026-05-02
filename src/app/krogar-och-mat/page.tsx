@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Klassiska skärgårdskrogar',
  description: 'Fjäderholmarnas Krog, Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus — öppet från maj till sep/okt.',
  href: '/platser?kategori=krog',

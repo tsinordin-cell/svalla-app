@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
+import Icon from '@/components/Icon'
 import {
  listCheckInsForPlace, listPlaceVisitors, listReviewsForPlace,
  upsertReview, deleteReview,
@@ -138,7 +139,7 @@ export default function PlaceSocialSection({
  boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
  }}
  >
- <span style={{ fontSize: 24 }}>📍</span>
+ <Icon name="pin" style={{ width: 24, height: 24, color: 'var(--sea)' }} />
  <div style={{ flex: 1 }}>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>Checka in här</div>
  <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>
@@ -176,7 +177,7 @@ export default function PlaceSocialSection({
  {!loading && checkIns.length > 0 && (
  <div>
  <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- 📍 Senaste check-ins
+ Senaste check-ins
  </h2>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {checkIns.map(c => (

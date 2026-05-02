@@ -58,7 +58,7 @@ export default function LikeButton({
  const { error } = await supabase.from('likes').insert({ trip_id: tripId, user_id: userId })
  if (error) { setLiked(false); setCount(c => c - 1); toast('Kunde inte gilla turen', 'error') }
  else {
- toast('Du gillade turen ❤️')
+ toast('Du gillade turen')
  supabase.from('trips').select('user_id').eq('id', tripId).single()
  .then(({ data: trip }) => {
  if (trip?.user_id && trip.user_id !== userId) {

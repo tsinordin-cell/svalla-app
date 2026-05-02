@@ -219,7 +219,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
  boxShadow: rating > 0 ? '0 2px 10px rgba(30,92,130,0.3)' : 'none',
  }}
  >
- {loading ? 'Sparar…' : submitted ? 'Sparat ✓' : 'Spara omdöme'}
+ {loading ? 'Sparar...' : submitted ? 'Sparat' : 'Spara omdöme'}
  </button>
  </div>
  </div>
