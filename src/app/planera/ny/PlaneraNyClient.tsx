@@ -2,14 +2,15 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DEPARTURES, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
+import Icon, { type IconName } from '@/components/Icon'
 
-const INTERESTS: { value: Interest; label: string; emoji: string }[] = [
- { value: 'krog', label: 'Krog & mat', emoji: '' },
- { value: 'bastu', label: 'Bastu', emoji: '' },
- { value: 'bad', label: 'Bad & klippor', emoji: '' },
- { value: 'brygga', label: 'Brygga & hamn', emoji: '' },
- { value: 'natur', label: 'Natur & vandring', emoji: '' },
- { value: 'bensin', label: 'Bränslestopp', emoji: '⛽' },
+const INTERESTS: { value: Interest; label: string; iconName: IconName }[] = [
+ { value: 'krog', label: 'Krog & mat',       iconName: 'utensils' },
+ { value: 'bastu', label: 'Bastu',           iconName: 'sun' },
+ { value: 'bad', label: 'Bad & klippor',     iconName: 'waves' },
+ { value: 'brygga', label: 'Brygga & hamn',  iconName: 'anchor' },
+ { value: 'natur', label: 'Natur & vandring', iconName: 'leaf' },
+ { value: 'bensin', label: 'Bränslestopp',   iconName: 'fuel' },
 ]
 
 type Step = 'start' | 'end' | 'interests' | 'saving'
@@ -104,7 +105,9 @@ export default function PlaneraNyClient() {
  opacity: isDisabled ? 0.4 : 1,
  } as React.CSSProperties}
  >
- <span style={{ fontSize: 18 }}>{d.emoji}</span>
+ <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 8, background: isSelected ? 'rgba(255,255,255,0.18)' : 'rgba(10,123,140,0.10)', color: isSelected ? '#fff' : 'var(--sea)', flexShrink: 0 }}>
+ <Icon name="pin" size={14} stroke={2} />
+ </span>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : 'var(--txt)', lineHeight: 1.2 }}>
  {d.name}
@@ -249,7 +252,9 @@ export default function PlaneraNyClient() {
  display: 'flex', alignItems: 'center', gap: 10,
  } as React.CSSProperties}
  >
- <span style={{ fontSize: 20 }}>{i.emoji}</span>
+ <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: 10, background: interests.includes(i.value) ? 'rgba(255,255,255,0.18)' : 'rgba(10,123,140,0.10)', color: interests.includes(i.value) ? '#fff' : 'var(--sea)', flexShrink: 0 }}>
+ <Icon name={i.iconName} size={18} stroke={2} />
+ </span>
  <span style={{ fontSize: 13, fontWeight: 700, color: interests.includes(i.value) ? '#fff' : 'var(--txt)' }}>
  {i.label}
  </span>
