@@ -1,6 +1,7 @@
 'use client'
 // Väderwidget för ö-sidor — hämtar data från Open-Meteo (gratis, ingen API-nyckel)
 import { useEffect, useState } from 'react'
+import Icon from './Icon'
 
 interface WeatherData {
  temp: number // °C
@@ -10,18 +11,18 @@ interface WeatherData {
  isDay: number
 }
 
-// WMO-kod → emoji + svensk text
-function weatherDesc(code: number, isDay: number): { emoji: string; text: string } {
- if (code === 0) return { emoji: isDay ? '☀️' : '🌙', text: isDay ? 'Klart' : 'Klar natt' }
- if (code <= 2) return { emoji: '', text: 'Delvis molnigt' }
- if (code === 3) return { emoji: '☁️', text: 'Molnigt' }
- if (code <= 49) return { emoji: '🌫️', text: 'Dimma' }
- if (code <= 59) return { emoji: '🌦️', text: 'Duggregn' }
- if (code <= 69) return { emoji: '🌧️', text: 'Regn' }
- if (code <= 79) return { emoji: '❄️', text: 'Snö' }
- if (code <= 84) return { emoji: '⛈️', text: 'Regnskurar' }
- if (code <= 99) return { emoji: '⛈️', text: 'Åska' }
- return { emoji: '🌤', text: 'Varierat' }
+// WMO-kod → ikon-namn + svensk text
+function weatherDesc(code: number, isDay: number): { icon: string; text: string } {
+ if (code === 0) return { icon: isDay ? 'sun' : 'moon', text: isDay ? 'Klart' : 'Klar natt' }
+ if (code <= 2) return { icon: 'sun', text: 'Delvis molnigt' }
+ if (code === 3) return { icon: 'cloud', text: 'Molnigt' }
+ if (code <= 49) return { icon: 'fog', text: 'Dimma' }
+ if (code <= 59) return { icon: 'rain', text: 'Duggregn' }
+ if (code <= 69) return { icon: 'rain', text: 'Regn' }
+ if (code <= 79) return { icon: 'snow', text: 'Snö' }
+ if (code <= 84) return { icon: 'rain', text: 'Regnskurar' }
+ if (code <= 99) return { icon: 'cloud', text: 'Åska' }
+ return { icon: 'cloud', text: 'Varierat' }
 }
 
 // Vindriktning i grader → kompassriktning (svenska)
@@ -77,7 +78,7 @@ export default function IslandWeather({ lat, lng }: { lat: number; lng: number; 
  background: 'rgba(255,255,255,0.12)',
  fontSize: 12, color: 'rgba(255,255,255,0.6)',
  }}>
- <span style={{ animation: 'pulse-spin 1s linear infinite', display: 'inline-block' }}>⟳</span>
+ <Icon name="wind" size={14} style={{ animation: 'pulse-spin 1s linear infinite', color: 'rgba(255,255,255,0.6)' }} aria-hidden />
  Laddar väder…
  <style>{`@keyframes pulse-spin{to{transform:rotate(360deg)}}`}</style>
  </div>
@@ -86,7 +87,7 @@ export default function IslandWeather({ lat, lng }: { lat: number; lng: number; 
 
  if (error || !weather) return null
 
- const { emoji, text } = weatherDesc(weather.weatherCode, weather.isDay)
+ const { icon, text } = weatherDesc(weather.weatherCode, weather.isDay)
  const bft = beaufort(weather.windSpeed)
 
  return (
@@ -100,7 +101,7 @@ export default function IslandWeather({ lat, lng }: { lat: number; lng: number; 
  }}>
  {/* Temp + ikon */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
- <span style={{ fontSize: 18 }}>{emoji}</span>
+ <Icon name={icon as any} size={18} style={{ color: '#fff' }} aria-label={text} />
  <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{weather.temp}°</span>
  </div>
 
@@ -108,7 +109,7 @@ export default function IslandWeather({ lat, lng }: { lat: number; lng: number; 
 
  {/* Vind */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
- <span style={{ fontSize: 13 }}>💨</span>
+ <Icon name="wind" size={13} style={{ color: 'rgba(255,255,255,.9)' }} aria-hidden />
  <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,.9)' }}>
  {weather.windSpeed} m/s {windDirLabel(weather.windDir)}
  </span>

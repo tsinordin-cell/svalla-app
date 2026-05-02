@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import BackButton from '@/components/BackButton'
+import Icon from '@/components/Icon'
 import PlatsMapClient from './PlatsMapClient'
 
 type Plats = {
@@ -31,50 +32,50 @@ type Plats = {
  booking_url: string | null
 }
 
-const TYPE_CONFIG: Record<string, { emoji: string; label: string; color: string }> = {
- marina: { emoji: '', label: 'Gästhamn', color: '#1e5c82' },
- anchorage: { emoji: '🔵', label: 'Naturhamn', color: '#4a7a2e' },
- nature_harbor: { emoji: '🔵', label: 'Naturhamn', color: '#4a7a2e' },
- restaurant: { emoji: '', label: 'Restaurang', color: '#c96e2a' },
- cafe: { emoji: '☕', label: 'Kafé', color: '#8b5c2a' },
- bar: { emoji: '🍺', label: 'Bar', color: '#5a3a1a' },
- fuel_station: { emoji: '⛽', label: 'Bränsle', color: '#a8381e' },
- fuel: { emoji: '⛽', label: 'Bränsle', color: '#a8381e' },
- nature: { emoji: '', label: 'Naturplats', color: '#3a6b2e' },
- harbor: { emoji: '', label: 'Hamn', color: '#1e5c82' },
+const TYPE_CONFIG: Record<string, { icon: string; label: string; color: string }> = {
+ marina: { icon: 'anchor', label: 'Gästhamn', color: '#1e5c82' },
+ anchorage: { icon: 'pin', label: 'Naturhamn', color: '#4a7a2e' },
+ nature_harbor: { icon: 'pin', label: 'Naturhamn', color: '#4a7a2e' },
+ restaurant: { icon: 'utensils', label: 'Restaurang', color: '#c96e2a' },
+ cafe: { icon: 'coffee', label: 'Kafé', color: '#8b5c2a' },
+ bar: { icon: 'utensils', label: 'Bar', color: '#5a3a1a' },
+ fuel_station: { icon: 'fuel', label: 'Bränsle', color: '#a8381e' },
+ fuel: { icon: 'fuel', label: 'Bränsle', color: '#a8381e' },
+ nature: { icon: 'leaf', label: 'Naturplats', color: '#3a6b2e' },
+ harbor: { icon: 'anchor', label: 'Hamn', color: '#1e5c82' },
 }
 
-const FACILITY_MAP: Record<string, { emoji: string; label: string }> = {
- electricity: { emoji: '', label: 'El' },
- water: { emoji: '💧', label: 'Vatten' },
- shower: { emoji: '🚿', label: 'Dusch' },
- toilet: { emoji: '🚽', label: 'Toalett' },
- fuel: { emoji: '⛽', label: 'Bränsle' },
- diesel: { emoji: '⛽', label: 'Diesel' },
- petrol: { emoji: '⛽', label: 'Bensin' },
- wifi: { emoji: '📶', label: 'WiFi' },
- restaurant: { emoji: '', label: 'Restaurang' },
- guest_dock: { emoji: '', label: 'Gästbrygga' },
- pump_out: { emoji: '🔄', label: 'Pump-out' },
- provisions: { emoji: '🛒', label: 'Proviant' },
- parking: { emoji: '🅿️', label: 'Parkering' },
- cafe: { emoji: '☕', label: 'Kafé' },
- bar: { emoji: '🍺', label: 'Bar' },
- sauna: { emoji: '🧖', label: 'Bastu' },
- anchorage: { emoji: '', label: 'Ankring' },
- laundry: { emoji: '🧺', label: 'Tvätt' },
- shop: { emoji: '🏪', label: 'Butik' },
+const FACILITY_MAP: Record<string, { icon: string; label: string }> = {
+ electricity: { icon: 'zap', label: 'El' },
+ water: { icon: 'water', label: 'Vatten' },
+ shower: { icon: 'shower', label: 'Dusch' },
+ toilet: { icon: 'toilet', label: 'Toalett' },
+ fuel: { icon: 'fuel', label: 'Bränsle' },
+ diesel: { icon: 'fuel', label: 'Diesel' },
+ petrol: { icon: 'fuel', label: 'Bensin' },
+ wifi: { icon: 'wifi', label: 'WiFi' },
+ restaurant: { icon: 'utensils', label: 'Restaurang' },
+ guest_dock: { icon: 'anchor', label: 'Gästbrygga' },
+ pump_out: { icon: 'arrowRight', label: 'Pump-out' },
+ provisions: { icon: 'shoppingBag', label: 'Proviant' },
+ parking: { icon: 'parking', label: 'Parkering' },
+ cafe: { icon: 'coffee', label: 'Kafé' },
+ bar: { icon: 'utensils', label: 'Bar' },
+ sauna: { icon: 'waves', label: 'Bastu' },
+ anchorage: { icon: 'pin', label: 'Ankring' },
+ laundry: { icon: 'waves', label: 'Tvätt' },
+ shop: { icon: 'shoppingBag', label: 'Butik' },
 }
 
-const BEST_FOR_MAP: Record<string, { emoji: string; label: string }> = {
- boaters: { emoji: '', label: 'Båtfolk' },
- family: { emoji: '👨‍👩‍👧', label: 'Familjer' },
- couples: { emoji: '❤️', label: 'Par' },
- nature_lovers: { emoji: '', label: 'Naturälskare' },
- photographers: { emoji: '📷', label: 'Fotografer' },
- friends: { emoji: '👥', label: 'Vänner' },
- tourists: { emoji: '️', label: 'Turister' },
- day_trip: { emoji: '☀️', label: 'Dagstur' },
+const BEST_FOR_MAP: Record<string, { icon: string; label: string }> = {
+ boaters: { icon: 'sailboat', label: 'Båtfolk' },
+ family: { icon: 'users', label: 'Familjer' },
+ couples: { icon: 'heart', label: 'Par' },
+ nature_lovers: { icon: 'leaf', label: 'Naturälskare' },
+ photographers: { icon: 'camera', label: 'Fotografer' },
+ friends: { icon: 'users', label: 'Vänner' },
+ tourists: { icon: 'globe', label: 'Turister' },
+ day_trip: { icon: 'sun', label: 'Dagstur' },
 }
 
 function isMarina(type: string | null) {
@@ -157,7 +158,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  padding: '4px 10px', borderRadius: 20, marginBottom: 8,
  boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
  }}>
- <span>{typeInfo.emoji}</span>
+ <Icon name={typeInfo.icon as any} size={14} style={{ color: '#fff' }} aria-hidden />
  <span>{typeInfo.label}</span>
  </div>
  )}
@@ -165,8 +166,9 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  {p.name}
  </h1>
  {subtitle && (
- <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.82)', margin: 0 }}>
- 📍 {subtitle}
+ <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.82)', margin: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+ <Icon name="pin" size={14} style={{ color: 'rgba(255,255,255,0.82)' }} aria-hidden />
+ {subtitle}
  </p>
  )}
  </div>
@@ -202,9 +204,9 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  width: 48, height: 48, borderRadius: 14,
  background: 'var(--surface-1)', border: '1px solid var(--hairline)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 22, boxShadow: 'var(--shadow-xs)',
+ boxShadow: 'var(--shadow-xs)',
  }}>
- {fac.emoji}
+ <Icon name={fac.icon as any} size={22} style={{ color: 'var(--txt)' }} aria-label={fac.label} />
  </div>
  <span style={{ fontSize: 11, color: 'var(--txt3)', fontWeight: 500, textAlign: 'center', lineHeight: 1.2, maxWidth: 56 }}>
  {fac.label}
@@ -226,7 +228,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  padding: '16px',
  }}>
  <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
- <span style={{ fontSize: 22, flexShrink: 0 }}> </span>
+ <Icon name="anchor" size={22} style={{ color: 'var(--txt)', flexShrink: 0 }} aria-hidden />
  <div>
  <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>
  Priser bekräftas direkt med hamnen
@@ -238,17 +240,20 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
  {p.contact_phone && (
  <a href={`tel:${p.contact_phone}`} style={ctaStyle('#1e5c82')}>
- 📞 {p.contact_phone}
+ <Icon name="phone" size={14} style={{ color: '#fff' }} aria-hidden />
+ {p.contact_phone}
  </a>
  )}
  {p.website && (
  <a href={p.website} target="_blank" rel="noopener noreferrer" style={ctaStyle('var(--teal)')}>
- 🌐 Webbplats
+ <Icon name="globe" size={14} style={{ color: '#fff' }} aria-hidden />
+ Webbplats
  </a>
  )}
  {p.booking_url && (
  <a href={p.booking_url} target="_blank" rel="noopener noreferrer" style={ctaStyle('var(--acc)')}>
- 📅 Boka
+ <Icon name="calendar" size={14} style={{ color: '#fff' }} aria-hidden />
+ Boka
  </a>
  )}
  </div>
@@ -274,7 +279,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
  padding: '14px 16px', textDecoration: 'none',
  }}>
- <span style={{ fontSize: 22 }}>🌐</span>
+ <Icon name="globe" size={22} style={{ color: 'var(--txt)' }} aria-hidden />
  <div style={{ flex: 1 }}>
  <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', margin: '0 0 2px' }}>
  Se meny på hemsidan
@@ -292,7 +297,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
  padding: '14px 16px',
  }}>
- <span style={{ fontSize: 22 }}>🌐</span>
+ <Icon name="globe" size={22} style={{ color: 'var(--txt)' }} aria-hidden />
  <p style={{ fontSize: 13, color: 'var(--txt3)', fontStyle: 'italic', margin: 0 }}>
  Meny finns på restaurangens hemsida – länk saknas ännu.
  </p>
@@ -310,7 +315,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  padding: '12px 14px', border: '1px solid var(--hairline)', boxShadow: 'var(--shadow-xs)',
  }}>
  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
- <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>🕐</span>
+ <Icon name="clock" size={18} style={{ color: 'var(--txt2)', flexShrink: 0, marginTop: 1 }} aria-hidden />
  <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.6, whiteSpace: 'pre-line' }}>
  {p.opening_hours}
  </p>
@@ -331,17 +336,20 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
  {p.contact_phone && (
  <a href={`tel:${p.contact_phone}`} style={ctaStyle('#1e5c82')}>
- 📞 {p.contact_phone}
+ <Icon name="phone" size={14} style={{ color: '#fff' }} aria-hidden />
+ {p.contact_phone}
  </a>
  )}
  {p.website && (
  <a href={p.website} target="_blank" rel="noopener noreferrer" style={ctaStyle('var(--teal)')}>
- 🌐 Webbplats
+ <Icon name="globe" size={14} style={{ color: '#fff' }} aria-hidden />
+ Webbplats
  </a>
  )}
  {p.booking_url && (
  <a href={p.booking_url} target="_blank" rel="noopener noreferrer" style={ctaStyle('var(--acc)')}>
- 📅 Boka bord
+ <Icon name="calendar" size={14} style={{ color: '#fff' }} aria-hidden />
+ Boka bord
  </a>
  )}
  </div>
@@ -367,7 +375,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  background: 'var(--amber-50)', borderRadius: 12,
  padding: '8px 14px', border: '1px solid rgba(201,110,42,0.2)',
  }}>
- <span style={{ fontSize: 16 }}>📅</span>
+ <Icon name="calendar" size={16} style={{ color: 'var(--amber)' }} aria-hidden />
  <span style={{ fontSize: 13, color: 'var(--amber)', fontWeight: 600 }}>
  {seasonLabel(p.seasonality)}
  </span>
@@ -409,7 +417,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  if (!b) return null
  return (
  <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
- <span style={{ fontSize: 20 }}>{b.emoji}</span>
+ <Icon name={b.icon as any} size={20} style={{ color: 'var(--txt2)' }} aria-label={b.label} />
  <span style={{ fontSize: 13, color: 'var(--txt2)', fontWeight: 500 }}>{b.label}</span>
  </div>
  )
