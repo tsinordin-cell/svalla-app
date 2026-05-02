@@ -573,7 +573,11 @@ export async function findValidatedSeaPath(
 
 /**
  * Legacy API för backwards compatibility
- * Returnerar path-array utan validering (gamla beteende)
+ * Returnerar path-array utan validering (gamla beteende).
+ *
+ * SYNC — kör ALDRIG findPathViaGrid här. Grid-sökning är O(n²) med turf.js
+ * land-maskscheck på ~80 000 noder och hänger SSR-rendern i 30-120 s.
+ * Grid används bara i den async findValidatedSeaPath-varianten.
  */
 export function findSeaPath(
   startLat: number,
@@ -585,20 +589,12 @@ export function findSeaPath(
   const precomp = lookupPrecomputed(startLat, startLng, endLat, endLng)
   if (precomp) return precomp
 
-  // 2. Försök grid först
-  let path = findPathViaGrid(startLat, startLng, endLat, endLng)
+  // 2. Waypoints-Dijkstra — 215 noder, ~5-20 ms, inga turf-anrop
+  const path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
+  if (path) return path
 
-  // 3. Fallback till waypoints
-  if (!path) {
-    path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
-  }
-
-  // 4. Final fallback: rät linje
-  if (!path) {
-    return [[startLat, startLng], [endLat, endLng]]
-  }
-
-  return path
+  // 3. Final fallback: rät linje
+  return [[startLat, startLng], [endLat, endLng]]
 }
 
 /**

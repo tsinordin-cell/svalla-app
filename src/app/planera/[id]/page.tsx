@@ -131,22 +131,31 @@ export default async function PlaneraIdPage({ params }: Props) {
  const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
  const interests: string[] = Array.isArray(route.interests) ? route.interests : []
 
- // Lazy-compute stops if empty
- let resolvedStops = stops
- if (stops.length === 0) {
- try {
- const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://svalla.se'}/api/planera`, {
- method: 'POST',
- headers: { 'content-type': 'application/json' },
- body: JSON.stringify({ routeId: id }),
- cache: 'no-store',
- })
- if (res.ok) {
- const json = await res.json() as { stops?: ScoredStop[] }
- resolvedStops = json.stops ?? []
- }
- } catch { /* fortsätt utan stopp */ }
- }
+ // Sjöledsväg — sync, snabb (<20 ms): precomputed lookup → waypoint-Dijkstra → rät linje
+ const seaPath = findSeaPath(route.start_lat, route.start_lng, route.end_lat, route.end_lng)
+ const waterKm = Math.round(calculatePathDistanceKm(seaPath))
+ const totalKm = waterKm > 0 ? waterKm : Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
+ const timeEstimates = estimateAllProfiles(totalKm)
+
+ // Hämta stops + väderprognos parallellt för kortast möjlig väntetid
+ const fetchStops = stops.length === 0
+   ? fetch(`${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://svalla.se'}/api/planera`, {
+       method: 'POST',
+       headers: { 'content-type': 'application/json' },
+       body: JSON.stringify({ routeId: id }),
+       cache: 'no-store',
+     })
+       .then(r => r.ok ? r.json() as Promise<{ stops?: ScoredStop[] }> : Promise.resolve({ stops: [] }))
+       .then(j => j.stops ?? [])
+       .catch((): ScoredStop[] => [])
+   : Promise.resolve(stops)
+
+ const fetchForecast = buildRouteForecast(
+   route.start_name, route.start_lat, route.start_lng,
+   route.end_name,   route.end_lat,   route.end_lng,
+ ).catch(() => null)
+
+ const [resolvedStops, forecast] = await Promise.all([fetchStops, fetchForecast])
 
  // Sort stops geographically along the route (start → end)
  const sortedStops = [...resolvedStops].sort((a, b) => {
@@ -154,22 +163,6 @@ export default async function PlaneraIdPage({ params }: Props) {
  const { t: tb } = crossTrack(b.lat, b.lng, route.start_lat, route.start_lng, route.end_lat, route.end_lng)
  return ta - tb
  })
-
- // Faktisk distans längs vatten (via sjöledspathfindern), inte fågelvägen
- const seaPath = findSeaPath(route.start_lat, route.start_lng, route.end_lat, route.end_lng)
- const waterKm = Math.round(calculatePathDistanceKm(seaPath))
- const totalKm = waterKm > 0 ? waterKm : Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
- const timeEstimates = estimateAllProfiles(totalKm)
-
- // Vindprognos — Open-Meteo forecast, cachas 30 min server-side
- const forecast = await buildRouteForecast(
- route.start_name,
- route.start_lat,
- route.start_lng,
- route.end_name,
- route.end_lat,
- route.end_lng,
- ).catch(() => null)
 
  // Map stop data (only what PlaneraMap needs)
  const mapStops = sortedStops.map(s => ({
