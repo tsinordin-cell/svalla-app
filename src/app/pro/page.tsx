@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { isProEnabled } from '@/lib/pro'
+import { track } from '@/lib/analytics-events'
 
 function ProIcon({ name }: { name: string }) {
   const s = { width: 20, height: 20, flexShrink: 0 as const }
@@ -26,29 +27,53 @@ const PRO_FEATURES = [
   { icon: 'theme', label: 'Profilbakgrunder och teman' },
 ]
 
-export default function ProPage() {
+function ProPageInner() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const sessionId = searchParams.get('session_id')
+
   const [isProUser, setIsProUser] = useState<boolean | null>(null)
+  const [userEmail, setUserEmail] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [plan, setPlan] = useState<'month' | 'year'>('year')
+  const [checkoutCompletedFired, setCheckoutCompletedFired] = useState(false)
 
   useEffect(() => {
     if (!isProEnabled()) return
     const supabase = createClient()
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       if (!user) { setIsProUser(false); return }
+      setUserEmail(user.email ?? null)
       const { data } = await supabase
         .from('subscriptions')
-        .select('status, current_period_end')
+        .select('status, current_period_end, plan')
         .eq('user_id', user.id)
         .in('status', ['active', 'trialing'])
         .maybeSingle()
-      setIsProUser(!!data && new Date(data.current_period_end) > new Date())
+      const proActive = !!data && new Date((data as { current_period_end: string }).current_period_end) > new Date()
+      setIsProUser(proActive)
+
+      // Fire pricing_viewed — detect source from referrer
+      const source = document.referrer.includes('/feed') ? 'feed'
+        : document.referrer.includes('/profil') ? 'profil'
+        : document.referrer.includes('/tur/') ? 'tur'
+        : document.referrer ? 'other'
+        : 'direct'
+      track('pricing_viewed', { source, is_pro: proActive })
+
+      // Fire checkout_completed if session_id present and not yet fired
+      if (sessionId && !checkoutCompletedFired) {
+        const subPlan = (data as { plan?: string } | null)?.plan === 'year' ? 'year' : 'month'
+        track('checkout_completed', { plan: subPlan })
+        setCheckoutCompletedFired(true)
+      }
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function handleCheckout() {
     setLoading(true)
+    track('checkout_started', { plan })
     try {
       const res = await fetch('/api/stripe/checkout', {
         method: 'POST',
@@ -213,5 +238,13 @@ export default function ProPage() {
         ← Tillbaka
       </button>
     </main>
+  )
+}
+
+export default function ProPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProPageInner />
+    </Suspense>
   )
 }

@@ -60,13 +60,14 @@ export type SvallaEvent =
   | { name: 'route_saved';          props: { route_id: string } }
 
   // Monetization
-  | { name: 'pricing_viewed';       props: Record<string, never> }
-  | { name: 'checkout_started';     props: { plan: 'monthly' | 'yearly' } }
-  | { name: 'checkout_completed';   props: { plan: 'monthly' | 'yearly' } }
+  | { name: 'pricing_viewed';       props: { source?: string; is_pro: boolean } }
+  | { name: 'checkout_started';     props: { plan: 'month' | 'year' } }
+  | { name: 'checkout_completed';   props: { plan: 'month' | 'year' } }
   | { name: 'partner_inquiry_sent'; props: { tier?: string } }
 
   // Errors & friction
   | { name: 'feature_friction';     props: { feature: string; reason: string } }
+  | { name: 'paywall_hit';          props: { feature: string } }
 
 interface PostHogLike {
   capture: (eventName: string, properties?: Record<string, unknown>) => void
