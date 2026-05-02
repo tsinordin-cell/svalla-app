@@ -108,6 +108,113 @@ function ProPageInner() {
     )
   }
 
+  // ── Post-checkout success screen ─────────────────────────────────────────────
+  if (sessionId) {
+    const nextSteps = [
+      {
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20, flexShrink: 0 }}>
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        ),
+        title: 'Exportera din första GPX',
+        desc: 'Öppna en tur → ⋯-menyn → Exportera GPX',
+      },
+      {
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20, flexShrink: 0 }}>
+            <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+        ),
+        title: 'Se din årsstatistik',
+        desc: 'Profil → Statistik — alla turer sammanfattade',
+      },
+      {
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20, flexShrink: 0 }}>
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        ),
+        title: 'Utforska vad andra loggar',
+        desc: 'Följ seglare och se deras turer i flödet',
+      },
+    ]
+
+    return (
+      <main style={{ maxWidth: 480, margin: '0 auto', padding: '60px 20px 100px' }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          {/* Success checkmark */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+            <div style={{
+              width: 72, height: 72, borderRadius: '50%',
+              background: 'linear-gradient(135deg, rgba(30,92,130,0.12) 0%, rgba(10,123,140,0.16) 100%)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              border: '2px solid rgba(10,123,140,0.2)',
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" style={{ width: 32, height: 32 }}>
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <h1 style={{ fontSize: 26, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>
+            Välkommen till Pro!
+          </h1>
+          <p style={{ fontSize: 15, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
+            {userEmail ? (
+              <>Bekräftelse skickas till <strong style={{ color: 'var(--txt)' }}>{userEmail}</strong></>
+            ) : (
+              'Ditt Pro-konto är aktiverat.'
+            )}
+          </p>
+        </div>
+
+        {/* Next steps */}
+        <div style={{ background: 'var(--white)', borderRadius: 20, padding: '8px 18px', marginBottom: 24, boxShadow: '0 2px 16px rgba(0,45,60,0.08)' }}>
+          <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', margin: '14px 0 10px' }}>
+            Kom igång
+          </p>
+          {nextSteps.map((s, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '12px 0', borderBottom: i < nextSteps.length - 1 ? '1px solid rgba(10,123,140,0.08)' : 'none' }}>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                {s.icon}
+              </div>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>{s.title}</div>
+                <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.4 }}>{s.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={() => router.push('/feed')}
+          className="press-feedback"
+          style={{
+            width: '100%', padding: '16px', borderRadius: 16, border: 'none',
+            background: 'var(--grad-sea)', color: '#fff',
+            fontSize: 16, fontWeight: 700, fontFamily: 'inherit',
+            cursor: 'pointer',
+          }}
+        >
+          Till flödet
+        </button>
+
+        <button
+          onClick={handlePortal}
+          disabled={loading}
+          className="press-feedback"
+          style={{
+            display: 'block', margin: '14px auto 0',
+            background: 'none', border: 'none',
+            color: 'var(--txt3)', fontSize: 13, cursor: 'pointer', fontFamily: 'inherit',
+          }}
+        >
+          {loading ? 'Laddar…' : 'Hantera prenumeration'}
+        </button>
+      </main>
+    )
+  }
+
   const planPill = (val: 'month' | 'year') => ({
     flex: 1,
     padding: '12px 0',
