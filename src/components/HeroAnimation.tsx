@@ -180,29 +180,23 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // 20 fish — gädda, abborre, gös, braxen, torsk, sill, flundra, ål, simpa
+      // 14 fish — gädda, abborre, gös, braxen, torsk, sill, flundra, ål, simpa
+      // (alla 9 arter kvar — färre individer för luftigare scen)
       fish = [
         { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'     },
         { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'     },
-        { x: rnd()*W, y: H*0.90, spd: 4,  dir: -1, sz: 16, ph: rnd()*Math.PI*2, hue: 112, type: 'pike'     },
         { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch'    },
         { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'    },
-        { x: rnd()*W, y: H*0.85, spd: 9,  dir: -1, sz: 10, ph: rnd()*Math.PI*2, hue: 90,  type: 'perch'    },
         { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander'   },
-        { x: rnd()*W, y: H*0.82, spd: 4,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 125, type: 'zander'   },
         { x: rnd()*W, y: H*0.78, spd: 3,  dir:  1, sz: 19, ph: rnd()*Math.PI*2, hue: 38,  type: 'bream'    },
         { x: rnd()*W, y: H*0.88, spd: 4,  dir: -1, sz: 15, ph: rnd()*Math.PI*2, hue: 42,  type: 'bream'    },
         { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'      },
-        { x: rnd()*W, y: H*0.86, spd: 4,  dir: -1, sz: 20, ph: rnd()*Math.PI*2, hue: 165, type: 'cod'      },
         { x: rnd()*W, y: H*0.65, spd: 10, dir:  1, sz:  9, ph: rnd()*Math.PI*2, hue: 200, type: 'herring'  },
         { x: rnd()*W, y: H*0.70, spd: 11, dir: -1, sz:  8, ph: rnd()*Math.PI*2, hue: 205, type: 'herring'  },
-        // Nya arter
         { x: rnd()*W, y: H*0.87, spd: 2,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 38,  type: 'flounder' },
         { x: rnd()*W, y: H*0.92, spd: 2,  dir: -1, sz: 17, ph: rnd()*Math.PI*2, hue: 44,  type: 'flounder' },
         { x: rnd()*W, y: H*0.79, spd: 2,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 88,  type: 'eel'      },
-        { x: rnd()*W, y: H*0.84, spd: 2,  dir: -1, sz: 19, ph: rnd()*Math.PI*2, hue: 80,  type: 'eel'      },
         { x: rnd()*W, y: H*0.89, spd: 3,  dir:  1, sz: 13, ph: rnd()*Math.PI*2, hue: 28,  type: 'sculpin'  },
-        { x: rnd()*W, y: H*0.93, spd: 2,  dir: -1, sz: 11, ph: rnd()*Math.PI*2, hue: 32,  type: 'sculpin'  },
       ]
       // 2 tumlare families — adult + baby (same spd = swim in formation)
       const p0x = rnd() * W * 0.45, p1x = W * 0.52 + rnd() * W * 0.40

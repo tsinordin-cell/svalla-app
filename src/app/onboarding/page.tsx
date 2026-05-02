@@ -41,22 +41,42 @@ export default async function OnboardingPage() {
   return (
     <main style={{
       minHeight: '100vh',
-      background: 'linear-gradient(160deg, #0a1f2b 0%, #1a4a5e 60%, #24697f 100%)',
+      background: 'linear-gradient(160deg, #061826 0%, #0e3848 30%, #1a5d72 65%, #24798e 100%)',
       display: 'flex',
       flexDirection: 'column',
       padding: '32px 16px',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
-      <OnboardingFlow
-        userId={user.id}
-        initialUsername={profile?.username ?? ''}
-        suggestions={(suggestions ?? []).map(s => ({
-          id: s.id,
-          username: s.username ?? '',
-          avatar: s.avatar ?? null,
-          vessel_model: s.vessel_model ?? null,
-          home_port: s.home_port ?? null,
-        }))}
-      />
+      {/* Subtila ljuseffekter — premium-känsla */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        background:
+          'radial-gradient(ellipse 60% 40% at 80% 10%, rgba(45,125,138,0.30) 0%, transparent 60%),' +
+          'radial-gradient(ellipse 50% 30% at 10% 90%, rgba(232,146,74,0.16) 0%, transparent 65%)',
+      }}/>
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.5,
+        backgroundImage:
+          'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),' +
+          'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
+        backgroundSize: '90px 90px, 56px 56px',
+        backgroundPosition: '0 0, 45px 45px',
+      }}/>
+
+      <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <OnboardingFlow
+          userId={user.id}
+          initialUsername={profile?.username ?? ''}
+          suggestions={(suggestions ?? []).map(s => ({
+            id: s.id,
+            username: s.username ?? '',
+            avatar: s.avatar ?? null,
+            vessel_model: s.vessel_model ?? null,
+            home_port: s.home_port ?? null,
+          }))}
+        />
+      </div>
     </main>
   )
 }

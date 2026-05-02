@@ -35,6 +35,25 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error) {
+      // Trigga välkomstmail för nyligen skapade konton (icke-blockerande, fail-silent).
+      // post-signup-endpointen är idempotent och rate-limitad (1/dygn) + verifierar 5-min-fönster.
+      try {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          const ageMin = (Date.now() - new Date(user.created_at).getTime()) / 60_000
+          if (ageMin < 5) {
+            // Fire-and-forget — vi väntar inte på svar
+            const cookieHeader = cookieStore.getAll()
+              .map((c: { name: string; value: string }) => `${c.name}=${c.value}`)
+              .join('; ')
+            fetch(`${origin}/api/auth/post-signup`, {
+              method: 'POST',
+              headers: { Cookie: cookieHeader },
+            }).catch(() => {})
+          }
+        }
+      } catch { /* fail-silent */ }
+
       // Säkerhetskontroll: tillåt bara interna sökvägar
       const safeNext = next.startsWith('/') && !next.startsWith('//') ? next : '/feed'
       return NextResponse.redirect(`${origin}${safeNext}`)

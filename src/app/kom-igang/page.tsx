@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import HeroAnimation from '@/components/HeroAnimation'
+import Icon from '@/components/Icon'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /kom-igang — Premium onboarding flow
@@ -195,6 +196,12 @@ function KomIgangInner() {
  localStorage.removeItem('svalla_onboarded')
  }
 
+ // Trigga välkomstmail (icke-blockerande, fail-silent).
+ // Kräver session — om "Confirm email" är på sker mailet först efter bekräftelse.
+ if (data.session) {
+ fetch('/api/auth/post-signup', { method: 'POST' }).catch(() => {})
+ }
+
  // Spara om session redan finns — avgör UI:n på step 2.
  // Session = omedelbart inloggad (eller email-confirm avstängt).
  // Ingen session = användare måste bekräfta via mail innan hen kan logga in.
@@ -359,11 +366,11 @@ function KomIgangInner() {
  display: 'flex', gap: 20, marginTop: 28, flexWrap: 'wrap', justifyContent: 'center',
  position: 'relative', zIndex: 1,
  }}>
- {[
- { icon: '', text: 'Spåra turer' },
- { icon: '️', text: 'Hitta platser' },
- { icon: '🤝', text: 'Community' },
- ].map(({ icon, text }) => (
+ {([
+ { iconName: 'pin' as const, text: 'Spåra turer' },
+ { iconName: 'compass' as const, text: 'Hitta platser' },
+ { iconName: 'users' as const, text: 'Community' },
+ ]).map(({ iconName, text }) => (
  <div key={text} style={{
  display: 'flex', alignItems: 'center', gap: 6,
  background: 'rgba(255,255,255,0.07)',
@@ -371,7 +378,7 @@ function KomIgangInner() {
  borderRadius: 20, padding: '6px 14px',
  fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
  }}>
- <span>{icon}</span> {text}
+ <Icon name={iconName} size={14} stroke={2} /> {text}
  </div>
  ))}
  </div>
@@ -410,7 +417,7 @@ function KomIgangInner() {
  transition: 'transform 0.15s, box-shadow 0.15s',
  }}
  >
- <span> </span> Skapa konto gratis
+ <Icon name="sailboat" size={18} stroke={2} /> Skapa konto gratis
  </button>
 
  {/* Social login */}
@@ -731,7 +738,7 @@ function KomIgangInner() {
  >
  {loading
  ? <><span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⟳</span> Skapar konto…</>
- : <>Kasta loss </>
+ : <>Kasta loss <Icon name="arrowRight" size={18} stroke={2.5} /></>
  }
  </button>
 
@@ -782,9 +789,10 @@ function KomIgangInner() {
  background: 'linear-gradient(135deg, #0f9e64, #0d8554)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  marginBottom: 28, boxShadow: '0 8px 32px rgba(15,158,100,0.4)',
- fontSize: 40,
+ color: '#fff',
  animation: 'popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both',
  }}>
+ <Icon name="check" size={44} stroke={3} />
  </div>
 
  <Dots step={2} />
@@ -815,8 +823,9 @@ function KomIgangInner() {
  borderRadius: 14, padding: '12px 18px', marginTop: 12, marginBottom: 32,
  maxWidth: 340,
  }}>
- <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.5 }}>
- 📬 Kolla din e-post och bekräfta ditt konto — sedan är du redo att segla.
+ <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.5, display: 'flex', alignItems: 'center', gap: 8 }}>
+ <Icon name="mail" size={16} stroke={2} />
+ <span>Kolla din e-post och bekräfta ditt konto — sedan är du redo att segla.</span>
  </p>
  </div>
  )}
