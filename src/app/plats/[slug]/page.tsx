@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 import BackButton from '@/components/BackButton'
 import Icon from '@/components/Icon'
 import PlatsMapClient from './PlatsMapClient'
+import SaveButton from './SaveButton'
 
 type Plats = {
  id: string
@@ -175,6 +176,19 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  </div>
 
  <div style={{ maxWidth: 520, margin: '0 auto', padding: '20px 16px' }}>
+
+ {/* Action-row: spara plats */}
+ <div style={{ display: 'flex', gap: 8, marginBottom: 22, flexWrap: 'wrap' }}>
+ <SaveButton
+ slug={p.slug}
+ name={p.name}
+ type={p.type}
+ lat={p.latitude}
+ lng={p.longitude}
+ imageUrl={p.image_url ?? p.images?.[0] ?? null}
+ island={p.island}
+ />
+ </div>
 
  {/* Core experience */}
  {p.core_experience && (
