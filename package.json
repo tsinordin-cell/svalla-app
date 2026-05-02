@@ -11,7 +11,10 @@
     "cap:sync": "npx cap sync",
     "ios:open": "npx cap open ios",
     "android:open": "npx cap open android",
-    "test": "vitest run src/lib"
+    "test": "vitest run src/lib",
+    "db:migrate": "supabase db push",
+    "db:lint": "supabase db lint",
+    "db:diff": "supabase db diff"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.1",
@@ -26,11 +29,11 @@
     "@capacitor/status-bar": "^8.0.2",
     "@sentry/nextjs": "^9",
     "@supabase/ssr": "^0.5.2",
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/speed-insights": "^1.1.0",
     "@supabase/supabase-js": "^2.49.4",
     "@turf/turf": "^7.3.5",
     "@types/leaflet.markercluster": "^1.5.6",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "next": "^15.5.15",
@@ -58,6 +61,7 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "typescript-eslint": "^8.59.0",
     "vitest": "^4.1.5"
