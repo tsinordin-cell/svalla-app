@@ -6,6 +6,8 @@ import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
+import { isPro, isProEnabled } from '@/lib/pro'
+import { track } from '@/lib/analytics-events'
 
 const PINNAR = [
   { value: 1, anchors: 1, label: 'Okej' },
@@ -27,11 +29,13 @@ export default function TripActions({
   tripId: string
   ownerId: string
 }) {
-  const [userId,   setUserId]   = useState<string | null>(null)
-  const [menu,     setMenu]     = useState(false)    // ⋯ menu open
-  const [editing,  setEditing]  = useState(false)   // edit sheet open
-  const [deleting, setDeleting] = useState(false)
-  const [confirm,  setConfirm]  = useState(false)   // delete confirm
+  const [userId,    setUserId]    = useState<string | null>(null)
+  const [isProUser, setIsProUser] = useState<boolean | null>(null)
+  const [menu,      setMenu]      = useState(false)    // ⋯ menu open
+  const [editing,   setEditing]   = useState(false)   // edit sheet open
+  const [deleting,  setDeleting]  = useState(false)
+  const [confirm,   setConfirm]   = useState(false)   // delete confirm
+  const [paywall,   setPaywall]   = useState(false)   // GPX paywall sheet
 
   // edit fields
   const [caption,  setCaption]  = useState('')
@@ -44,7 +48,13 @@ export default function TripActions({
 
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => setUserId(user?.id ?? null))
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      setUserId(user?.id ?? null)
+      if (user && isProEnabled()) {
+        const proActive = await isPro(supabase, user.id)
+        setIsProUser(proActive)
+      }
+    })
   }, [])
 
   // Non-owner: visa bara rapport-knapp
@@ -89,7 +99,7 @@ export default function TripActions({
       .eq('id', tripId)
     setSaving(false)
     if (error) { toast('Kunde inte spara ändringar. Försök igen.', 'error'); return }
-    toast('Turen uppdaterad ✓')
+    toast('Turen uppdaterad')
     setEditing(false)
     router.refresh()
   }
@@ -141,9 +151,19 @@ export default function TripActions({
             <MenuItem
               icon={<MapPin size={19} />}
               label="Exportera GPX"
+              suffix={isProEnabled() && isProUser === false ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 15, height: 15, flexShrink: 0 }}>
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              ) : undefined}
               onClick={() => {
                 setMenu(false)
-                window.location.href = `/api/gpx/${tripId}`
+                if (isProEnabled() && isProUser === false) {
+                  track('paywall_hit', { feature: 'gpx_export' })
+                  setPaywall(true)
+                } else {
+                  window.location.href = `/api/gpx/${tripId}`
+                }
               }}
             />
             <div style={{ height: 1, background: 'rgba(10,123,140,0.08)', margin: '4px 0' }} />
@@ -302,6 +322,50 @@ export default function TripActions({
         </Backdrop>
       )}
 
+      {/* ── GPX Paywall sheet ── */}
+      {paywall && (
+        <Backdrop onClick={() => setPaywall(false)}>
+          <Sheet label="Uppgradera till Pro" onClick={e => e.stopPropagation()}>
+            <Handle />
+            <div style={{ textAlign: 'center', padding: '8px 0 4px' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'rgba(30,92,130,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 26, height: 26 }}>
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h3 style={{ fontSize: 18, fontWeight: 800, color: 'var(--txt)', margin: '0 0 8px' }}>
+                GPX-export är Pro
+              </h3>
+              <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', lineHeight: 1.5 }}>
+                Exportera dina turer som GPX-filer med Svalla Pro — kompatibelt med Navionics, Garmin och alla populära sjökortsappar.
+              </p>
+              <button
+                onClick={() => { setPaywall(false); router.push('/pro') }}
+                className="press-feedback"
+                style={{
+                  width: '100%', padding: '15px', borderRadius: 16, border: 'none',
+                  background: 'var(--grad-sea)', color: '#fff',
+                  fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10,
+                }}
+              >
+                Uppgradera — 49 kr/mån
+              </button>
+              <button
+                onClick={() => setPaywall(false)}
+                className="press-feedback"
+                style={{
+                  width: '100%', padding: '13px', borderRadius: 16,
+                  background: 'rgba(10,123,140,0.07)', border: 'none',
+                  color: 'var(--txt2)', fontSize: 15, fontWeight: 700, cursor: 'pointer',
+                }}
+              >
+                Stäng
+              </button>
+            </div>
+          </Sheet>
+        </Backdrop>
+      )}
+
       {/* ── Delete confirmation ── */}
       {confirm && (
         <Backdrop onClick={() => !deleting && setConfirm(false)}>
@@ -456,7 +520,7 @@ function Handle() {
   return <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(10,123,140,0.15)', margin: '0 auto 18px' }} />
 }
 
-function MenuItem({ icon, label, danger, onClick }: { icon: ReactNode; label: string; danger?: boolean; onClick: () => void }) {
+function MenuItem({ icon, label, danger, onClick, suffix }: { icon: ReactNode; label: string; danger?: boolean; onClick: () => void; suffix?: ReactNode }) {
   return (
     <button
       onClick={onClick}
@@ -471,7 +535,8 @@ function MenuItem({ icon, label, danger, onClick }: { icon: ReactNode; label: st
       <span style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
         {icon}
       </span>
-      <span style={{ fontSize: 15, fontWeight: 700 }}>{label}</span>
+      <span style={{ fontSize: 15, fontWeight: 700, flex: 1 }}>{label}</span>
+      {suffix}
     </button>
   )
 }

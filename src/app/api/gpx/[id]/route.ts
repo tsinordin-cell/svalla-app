@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { buildGpx } from '@/lib/gpx'
+import { isPro, isProEnabled } from '@/lib/pro'
 
 export async function GET(
   _req: Request,
@@ -26,6 +27,12 @@ export async function GET(
 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+
+  // Pro gate — only enforced when Pro is enabled
+  if (isProEnabled()) {
+    const proActive = await isPro(supabase, user.id)
+    if (!proActive) return NextResponse.json({ error: 'Pro required' }, { status: 403 })
+  }
 
   const { data: trip } = await supabase
     .from('trips')
