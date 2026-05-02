@@ -3,26 +3,59 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { timeAgoShort } from '@/lib/utils'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Notif = {
  id: string
- type: 'like' | 'comment' | 'follow' | 'tag' | 'forum_reply' | 'forum_like' | 'friend_visit' | string
+ type: 'like' | 'comment' | 'follow' | 'tag' | 'mention' | 'forum_reply' | 'forum_like' | 'forum_mention' | 'forum_best_answer' | 'friend_visit' | string
  read: boolean
  created_at: string
  trip_id: string | null
  reference_id: string | null
  related_island_slug: string | null
  actor_username?: string
+ actor_avatar?: string | null
 }
 
 const TYPE_LABEL: Record<string, string> = {
- like: 'gillade din tur ❤️',
- comment: 'kommenterade din tur ',
- follow: 'börjar följa dig ',
- tag: 'taggade dig i en tur 🏷️',
- forum_reply: 'svarade i din forumtråd ',
- forum_like: 'gillade ditt foruminlägg ❤️',
- friend_visit: 'besökte en ö ⚓',
+ like: 'gillade din tur',
+ comment: 'kommenterade din tur',
+ follow: 'börjar följa dig',
+ tag: 'taggade dig i en tur',
+ mention: 'nämnde dig',
+ forum_reply: 'svarade i din forumtråd',
+ forum_like: 'gillade ditt foruminlägg',
+ forum_mention: 'taggade dig i forumet',
+ forum_best_answer: 'markerade ditt svar som bäst',
+ friend_visit: 'besökte en ö du varit på',
+}
+
+// SVG-ikon per notif-typ — kompletterar avatar med visuell typing-cue
+const TYPE_ICON: Record<string, IconName> = {
+ like: 'heart',
+ comment: 'mail',
+ follow: 'user',
+ tag: 'users',
+ mention: 'atSign',
+ forum_reply: 'reply',
+ forum_like: 'heart',
+ forum_mention: 'atSign',
+ forum_best_answer: 'check',
+ friend_visit: 'pin',
+}
+
+// Bakgrundsfärg på ikon-badge per typ
+const TYPE_COLOR: Record<string, string> = {
+ like: '#dc2626',          // röd
+ comment: 'var(--sea)',
+ follow: 'var(--sea)',
+ tag: 'var(--accent)',
+ mention: 'var(--accent)',
+ forum_reply: 'var(--sea)',
+ forum_like: '#dc2626',
+ forum_mention: 'var(--accent)',
+ forum_best_answer: '#16a34a',
+ friend_visit: 'var(--sea)',
 }
 
 export default function NotificationBell() {
@@ -47,12 +80,18 @@ export default function NotificationBell() {
  const rows = (data ?? []) as (Notif & { actor_id: string })[]
  const actorIds = [...new Set(rows.map(r => r.actor_id).filter(Boolean))]
  const { data: uRows } = actorIds.length
- ? await supabase.from('users').select('id, username').in('id', actorIds)
+ ? await supabase.from('users').select('id, username, avatar').in('id', actorIds)
  : { data: [] }
- const umap: Record<string, string> = {}
- for (const u of uRows ?? []) umap[u.id] = u.username
+ const umap: Record<string, { username: string; avatar: string | null }> = {}
+ for (const u of (uRows ?? []) as { id: string; username: string; avatar: string | null }[]) {
+   umap[u.id] = { username: u.username, avatar: u.avatar }
+ }
 
- setNotifs(rows.map(r => ({ ...r, actor_username: umap[r.actor_id] ?? 'Någon' })))
+ setNotifs(rows.map(r => ({
+   ...r,
+   actor_username: umap[r.actor_id]?.username ?? 'Någon',
+   actor_avatar: umap[r.actor_id]?.avatar ?? null,
+ })))
  }, [supabase])
 
  useEffect(() => {
@@ -167,16 +206,50 @@ export default function NotificationBell() {
  </div>
 
  {notifs.length === 0 ? (
- <div style={{ padding: '32px 16px', textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>
- Inga notiser ännu
+ <div style={{ padding: '28px 18px 24px', textAlign: 'center' }}>
+   <div style={{
+     width: 44, height: 44, borderRadius: '50%',
+     background: 'rgba(10,123,140,0.06)',
+     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+     marginBottom: 10, color: 'var(--sea)',
+   }}>
+     <Icon name="bell" size={20} stroke={1.8} />
+   </div>
+   <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', marginBottom: 4 }}>
+     Inga notiser ännu
+   </div>
+   <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.5, marginBottom: 14 }}>
+     När någon följer dig, gillar din tur eller svarar i forumet dyker det upp här.
+   </div>
+   <Link
+     href="/upptack"
+     onClick={() => setOpen(false)}
+     style={{
+       display: 'inline-block',
+       padding: '8px 16px',
+       borderRadius: 10,
+       background: 'var(--grad-sea, var(--sea))',
+       color: '#fff',
+       fontSize: 12, fontWeight: 700,
+       textDecoration: 'none',
+       letterSpacing: '0.02em',
+     }}
+   >
+     Hitta seglare att följa
+   </Link>
  </div>
  ) : (
- notifs.map(n => (
+ notifs.map(n => {
+   const iconName = TYPE_ICON[n.type] ?? 'bell'
+   const iconColor = TYPE_COLOR[n.type] ?? 'var(--sea)'
+   return (
  <Link
  key={n.id}
  href={
- (n.type === 'forum_reply' || n.type === 'forum_like') && n.reference_id
+ (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
  ? `/forum/t/${n.reference_id}`
+ : n.type === 'follow' && n.actor_username
+ ? `/u/${n.actor_username}`
  : n.type === 'friend_visit' && n.related_island_slug
  ? `/o/${n.related_island_slug}`
  : n.trip_id
@@ -190,19 +263,45 @@ export default function NotificationBell() {
  background: n.read ? 'transparent' : 'rgba(10,123,140,0.04)',
  borderBottom: '1px solid rgba(10,123,140,0.06)',
  textDecoration: 'none',
+ transition: 'background 120ms ease',
  }}
+ onMouseEnter={e => { e.currentTarget.style.background = 'rgba(10,123,140,0.07)' }}
+ onMouseLeave={e => { e.currentTarget.style.background = n.read ? 'transparent' : 'rgba(10,123,140,0.04)' }}
  >
- <div style={{
- width: 32, height: 32, borderRadius: '50%', flexShrink: 0,
- background: 'var(--grad-sea)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 12, fontWeight: 600, color: '#fff',
- }}>
- {n.actor_username?.[0]?.toUpperCase() ?? '?'}
+ <div style={{ position: 'relative', flexShrink: 0 }}>
+   {n.actor_avatar ? (
+     <img
+       src={n.actor_avatar}
+       alt=""
+       width={36}
+       height={36}
+       style={{ width: 36, height: 36, aspectRatio: '1 / 1', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
+     />
+   ) : (
+     <div style={{
+       width: 36, height: 36, aspectRatio: '1 / 1', borderRadius: '50%',
+       background: 'var(--grad-sea)',
+       display: 'flex', alignItems: 'center', justifyContent: 'center',
+       fontSize: 13, fontWeight: 700, color: '#fff',
+     }}>
+       {n.actor_username?.[0]?.toUpperCase() ?? '?'}
+     </div>
+   )}
+   {/* Liten typ-ikon i hörnet */}
+   <div style={{
+     position: 'absolute', bottom: -2, right: -2,
+     width: 18, height: 18, borderRadius: '50%',
+     background: iconColor,
+     border: '2px solid var(--white, #fff)',
+     display: 'flex', alignItems: 'center', justifyContent: 'center',
+     color: '#fff',
+   }}>
+     <Icon name={iconName} size={9} stroke={2.5} />
+   </div>
  </div>
  <div style={{ flex: 1, minWidth: 0 }}>
- <span style={{ fontSize: 13, color: 'var(--txt)' }}>
- <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type]}
+ <span style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.4 }}>
+ <strong>{n.actor_username}</strong> {TYPE_LABEL[n.type] ?? 'gjorde något'}
  </span>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
  </div>
@@ -210,7 +309,8 @@ export default function NotificationBell() {
  <div style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--sea)', flexShrink: 0, marginTop: 5 }} />
  )}
  </Link>
- ))
+   )
+ })
  )}
  </div>
  )}

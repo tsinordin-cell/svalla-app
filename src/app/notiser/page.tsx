@@ -6,16 +6,18 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import EmptyState from '@/components/EmptyState'
+import Icon, { type IconName } from '@/components/Icon'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
 import { getIsland } from '@/app/o/island-data'
 
 type Notif = {
  id: string
- type: 'like' | 'comment' | 'follow' | 'tag' | 'mention' | 'friend_visit'
+ type: 'like' | 'comment' | 'follow' | 'tag' | 'mention' | 'message' | 'friend_visit' | 'forum_reply' | 'forum_like' | 'forum_mention' | 'forum_best_answer' | string
  read: boolean
  created_at: string
  trip_id: string | null
  related_island_slug: string | null
+ reference_id: string | null
  actor_id: string
  actor_username: string
  actor_avatar: string | null
@@ -27,25 +29,57 @@ const TYPE_LABEL: Record<string, string> = {
  follow: 'börjar följa dig',
  tag: 'taggade dig i en tur',
  mention: 'nämnde dig i en kommentar',
+ message: 'skickade ett meddelande',
  friend_visit: 'besökte en ö',
+ forum_reply: 'svarade i din forumtråd',
+ forum_like: 'gillade ditt foruminlägg',
+ forum_mention: 'taggade dig i forumet',
+ forum_best_answer: 'markerade ditt svar som bäst',
 }
 
-const TYPE_EMOJI: Record<string, string> = {
- like: '❤️',
- comment: '',
- follow: '',
- tag: '🏷️',
- mention: '@',
- friend_visit: '⚓',
+// SVG-ikon per typ (badge i hörnet av avatar)
+const TYPE_ICON: Record<string, IconName> = {
+ like: 'heart',
+ comment: 'mail',
+ follow: 'user',
+ tag: 'users',
+ mention: 'atSign',
+ message: 'mail',
+ friend_visit: 'pin',
+ forum_reply: 'reply',
+ forum_like: 'heart',
+ forum_mention: 'atSign',
+ forum_best_answer: 'check',
 }
 
+// Badge-färg per typ
+const TYPE_BADGE: Record<string, string> = {
+ like: '#dc2626',
+ comment: 'var(--sea)',
+ follow: 'var(--sea)',
+ tag: 'var(--accent)',
+ mention: 'var(--accent)',
+ message: 'var(--sea)',
+ friend_visit: 'var(--sea)',
+ forum_reply: 'var(--sea)',
+ forum_like: '#dc2626',
+ forum_mention: 'var(--accent)',
+ forum_best_answer: '#16a34a',
+}
+
+// Bakgrundsfärg på olästa kort (subtil tint)
 const TYPE_COLOR: Record<string, string> = {
- like: 'rgba(201,110,42,0.12)',
- comment: 'rgba(30,92,130,0.10)',
- follow: 'rgba(34,197,94,0.10)',
- tag: 'rgba(124,77,30,0.10)',
- mention: 'rgba(30,92,130,0.08)',
- friend_visit: 'rgba(10,123,140,0.09)',
+ like: 'rgba(220,38,38,0.05)',
+ comment: 'rgba(10,123,140,0.05)',
+ follow: 'rgba(10,123,140,0.05)',
+ tag: 'rgba(232,146,74,0.06)',
+ mention: 'rgba(232,146,74,0.06)',
+ message: 'rgba(10,123,140,0.05)',
+ friend_visit: 'rgba(10,123,140,0.05)',
+ forum_reply: 'rgba(10,123,140,0.05)',
+ forum_like: 'rgba(220,38,38,0.05)',
+ forum_mention: 'rgba(232,146,74,0.06)',
+ forum_best_answer: 'rgba(34,197,94,0.06)',
 }
 
 function groupByDate(notifs: Notif[]): { label: string; items: Notif[] }[] {
@@ -130,7 +164,7 @@ export default function NotiserPage() {
  async function load(uid: string) {
  const { data } = await supabase
  .from('notifications')
- .select('id, type, read, created_at, trip_id, related_island_slug, actor_id')
+ .select('id, type, read, created_at, trip_id, related_island_slug, reference_id, actor_id')
  .eq('user_id', uid)
  .order('created_at', { ascending: false })
  .limit(100)
@@ -189,7 +223,7 @@ export default function NotiserPage() {
  </button>
  <h1 style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Notiser</h1>
  {notifs.length > 0 && (
- <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--txt3)' }}>
+ <span style={{ marginLeft: 'auto', marginRight: 6, fontSize: 12, color: 'var(--txt3)' }}>
  {notifs.length} totalt
  </span>
  )}
@@ -207,7 +241,14 @@ export default function NotiserPage() {
  {/* ── Not logged in ── */}
  {!loading && !userId && (
  <div style={{ textAlign: 'center', padding: '80px 24px' }}>
- <div style={{ fontSize: 52, marginBottom: 16 }}>🔔</div>
+ <div style={{
+   width: 56, height: 56, borderRadius: '50%',
+   background: 'rgba(10,123,140,0.06)',
+   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+   marginBottom: 16, color: 'var(--sea)',
+ }}>
+   <Icon name="bell" size={28} stroke={1.6} />
+ </div>
  <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', marginBottom: 8 }}>Logga in för notiser</h2>
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 24, lineHeight: 1.5 }}>
  Logga in för att se när folk gillar och kommenterar dina turer.
@@ -241,25 +282,36 @@ export default function NotiserPage() {
  {label}
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
- {items.map(n => (
+ {items.map(n => {
+   const iconName = TYPE_ICON[n.type] ?? 'bell'
+   const badgeColor = TYPE_BADGE[n.type] ?? 'var(--sea)'
+   const labelText = n.type === 'friend_visit' && n.related_island_slug
+     ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug}`
+     : (TYPE_LABEL[n.type] ?? 'gjorde något')
+   const href =
+     (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
+       ? `/forum/t/${n.reference_id}`
+       : n.type === 'follow' ? `/u/${n.actor_username}`
+       : n.type === 'message' ? '/meddelanden'
+       : n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}`
+       : n.trip_id ? `/tur/${n.trip_id}`
+       : '#'
+   return (
  <Link
  key={n.id}
- href={
-   n.type === 'follow' ? `/u/${n.actor_username}` :
-   n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}` :
-   n.trip_id ? `/tur/${n.trip_id}` : '#'
- }
+ href={href}
  style={{ textDecoration: 'none' }}
  >
  <div style={{
  display: 'flex', alignItems: 'center', gap: 12,
  minHeight: 64, padding: '10px 14px',
  borderRadius: radius.md,
- background: n.read ? 'var(--white)' : `${TYPE_COLOR[n.type]}`,
+ background: n.read ? 'var(--white)' : `${TYPE_COLOR[n.type] ?? 'rgba(10,123,140,0.05)'}`,
  border: '1px solid rgba(10,123,140,0.08)',
  boxShadow: shadow.xs,
  WebkitTapHighlightColor: 'transparent',
  position: 'relative',
+ transition: 'background 120ms ease',
  }}>
  {/* Unread bar */}
  {!n.read && (
@@ -270,18 +322,29 @@ export default function NotiserPage() {
  }} />
  )}
 
- {/* Actor avatar */}
- <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
+ {/* Actor avatar med typ-badge i hörnet */}
+ <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0, position: 'relative' }}>
  <div style={{
- width: 44, height: 44, borderRadius: '50%',
+ width: 44, height: 44, aspectRatio: '1 / 1', borderRadius: '50%',
  background: 'var(--grad-sea)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  fontSize: fontSize.body, fontWeight: fontWeight.semibold, color: '#fff', overflow: 'hidden',
  }}>
  {n.actor_avatar
- ? <Image src={n.actor_avatar} alt={n.actor_username} width={44} height={44} style={{ objectFit: 'cover' }} />
- : n.actor_username[0]?.toUpperCase() ?? '?'
+ ? <Image src={n.actor_avatar} alt={n.actor_username} width={44} height={44} style={{ width: 44, height: 44, objectFit: 'cover' }} />
+ : (n.actor_username[0]?.toUpperCase() ?? '?')
  }
+ </div>
+ {/* Typ-ikon-badge */}
+ <div style={{
+ position: 'absolute', bottom: -2, right: -2,
+ width: 20, height: 20, borderRadius: '50%',
+ background: badgeColor,
+ border: '2px solid var(--bg, #fff)',
+ display: 'flex', alignItems: 'center', justifyContent: 'center',
+ color: '#fff',
+ }}>
+ <Icon name={iconName} size={10} stroke={2.5} />
  </div>
  </Link>
 
@@ -291,10 +354,7 @@ export default function NotiserPage() {
  <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: fontWeight.semibold, textDecoration: 'none' }}>
  {n.actor_username}
  </Link>
- {n.type === 'friend_visit' && n.related_island_slug
-	   ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug} ⚓`
-	   : `${TYPE_LABEL[n.type] ?? n.type} ${TYPE_EMOJI[n.type] ?? ''}`
-	 }
+ {' '}{labelText}
  </div>
  <div style={{ fontSize: fontSize.caption, color: 'var(--txt3)', marginTop: 3 }}>
  {timeAgo(n.created_at)}
@@ -310,7 +370,8 @@ export default function NotiserPage() {
  )}
  </div>
  </Link>
- ))}
+ )
+ })}
  </div>
  </section>
  ))}
