@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '',
+ icon: '⛵',
  title: 'Nybörjarsegling: Saltsjön',
  description: 'Inga öppna hav, god vind och många naturhamnar — perfekt första-seglingen med familj eller segelskola.',
  href: '/segelrutter/saltsjon',
@@ -40,21 +40,21 @@ const ITEMS: LandingItem[] = [
  meta: 'Nivå 2',
  },
  {
- icon: '',
+ icon: '🚢',
  title: 'Ytterskärgården',
  description: 'Sandhamn, Huvudskär, Rödlöga — öppna vatten, tidvattenströmmar, stora upplevelser.',
  href: '/segelrutter/ytterskargarden',
  meta: 'Nivå 3',
  },
  {
- icon: '',
+ icon: '🗺️',
  title: 'Östersjöleden (Stockholm–Malmö)',
  description: 'Kustens stora segelrutt: 800 sjömil längs svenska östkusten med Blekinge och Gotland. Dagsetapper, historia och skyddade farleder.',
  href: '/segelrutter/osterjosleden',
  meta: 'Nivå 2–3',
  },
  {
- icon: '🏔️',
+ icon: '⛩️',
  title: 'Bohusleden & västkusten',
  description: 'Hummervatten, Marstrand, Smögen, Kosterfjorden. Västkustens vildaste seglingar med tidvatten och skjärgård.',
  href: '/segelrutter/bohusleden',
@@ -68,7 +68,7 @@ const ITEMS: LandingItem[] = [
  meta: 'Nivå 3',
  },
  {
- icon: '',
+ icon: '🏰',
  title: 'Mälaren — insjösegling',
  description: 'Karl Johans sluss, historiska slott (Drottningholm, Birka), skyddade vatten. Perfekt för varmare dagar och familjer.',
  href: '/segelrutter/malaren',
@@ -81,7 +81,7 @@ const ITEMS: LandingItem[] = [
  href: '/evenemang?kategori=regatta',
  },
  {
- icon: '️',
+ icon: '📋',
  title: 'Segelkort',
  description: 'Rekommenderade sjökort (papper + plotter), aktuella farledsnoteringar och faror.',
  href: '/tips?kategori=segelkort',

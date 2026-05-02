@@ -34,26 +34,26 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '',
+ icon: '📍',
  title: 'Logga dina turer',
  description: 'Spåra varje tur med GPS, lägg till foton och anteckningar. Se hela din skärgårdshistorik samlad på ett ställe.',
  href: '/logga-in',
  meta: 'Gratis',
  },
  {
- icon: '️',
+ icon: '🗺️',
  title: 'Skärgårdskartan',
  description: 'Interaktiv karta med över 400 verifierade platser — naturhamnar, krogar, bryggor, bastun och bensinstationer.',
  href: '/platser',
  },
  {
- icon: '️',
+ icon: '🍽️',
  title: 'Skärgårdskrogar',
  description: 'Fjäderholmarna, Grinda Wärdshus, Sandhamns Värdshus, Utö Värdshus — plus hundratals mindre ställen längs kusten.',
  href: '/krogar-och-mat',
  },
  {
- icon: '',
+ icon: '⛵',
  title: 'Populära segelrutter',
  description: 'Klassiska leder från Stockholm ut till Landsort, runt Möja eller till Sandhamn — med djupinfo och ankringstips.',
  href: '/segelrutter',

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
+import Icon from '@/components/Icon'
 
 // ── Leaflet karta (lazy-load, SSR off) ──────────────────────────────────────
 const PlatserMap = dynamic(() => import('./PlatserMap'), { ssr: false, loading: () => (
@@ -241,7 +242,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
  {/* Restaurangkort */}
  {filtered.length === 0 ? (
  <div style={{ textAlign: 'center', padding: '40px 20px' }}>
- <div style={{ fontSize: 40, marginBottom: 10 }}> </div>
+ <Icon name="compass" size={40} style={{ color: 'var(--txt3)', marginBottom: 10, display: 'block' }} />
  <p style={{ color: 'var(--txt3)', fontSize: 13 }}>Inga platser matchar sökningen.</p>
  <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
  marginTop: 10, padding: '8px 18px', borderRadius: 12, border: 'none',
@@ -286,7 +287,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
  </div>
  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2, flexWrap: 'wrap' }}>
  {r.opening_hours && (
- <div style={{ fontSize: 10, color: 'var(--txt3)' }}>🕐 {r.opening_hours}</div>
+ <div style={{ fontSize: 10, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 3 }}>
+  <Icon name="clock" size={12} /> {r.opening_hours}
+ </div>
  )}
  {r.booking_url && (
  <span style={{
@@ -356,9 +359,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
  <button onClick={() => setQuery('')} style={{
  position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
  background: 'none', border: 'none', cursor: 'pointer',
- fontSize: 16, color: 'var(--txt3)', padding: '4px 4px',
+ color: 'var(--txt3)', padding: '4px 4px',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- }}>✕</button>
+ }}><Icon name="x" size={18} /></button>
  )}
  </div>
  </div>
@@ -450,7 +453,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
 
  {filtered.length === 0 ? (
  <div style={{ textAlign: 'center', padding: '48px 20px' }}>
- <div style={{ fontSize: 44, marginBottom: 12 }}> </div>
+ <Icon name="compass" size={44} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
  <p style={{ color: 'var(--txt3)', fontSize: 14, marginBottom: 0 }}>Inga platser matchar.</p>
  <button onClick={() => { setQuery(''); setFilter('alla') }} style={{
  marginTop: 16, padding: '0 24px', height: 44, borderRadius: 22, border: 'none',
@@ -492,7 +495,9 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.25 }}>{r.name}</div>
  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 3, flexWrap: 'wrap' }}>
  {r.opening_hours && (
- <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500 }}>🕐 {r.opening_hours}</div>
+ <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 3 }}>
+  <Icon name="clock" size={12} /> {r.opening_hours}
+ </div>
  )}
  {r.booking_url && (
  <span style={{

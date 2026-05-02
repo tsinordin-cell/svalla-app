@@ -169,7 +169,7 @@ export default function ImporteraPage() {
  }
 
  setFiles(prev => prev.map(e => e.id !== entry.id ? e : { ...e, status: 'saved' }))
- toast(`${entry.caption || 'Tur'} sparad ✓`)
+ toast(`${entry.caption || 'Tur'} sparad`)
  }
 
  function removeFile(id: string) {
@@ -233,7 +233,7 @@ export default function ImporteraPage() {
  marginBottom: 20,
  }}
  >
- <div style={{ fontSize: 40, marginBottom: 10 }}>📂</div>
+ <div style={{ fontSize: 40, marginBottom: 10 }}>📁</div>
  <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', margin: '0 0 6px' }}>
  Dra och släpp GPX-filer här
  </p>
@@ -256,7 +256,7 @@ export default function ImporteraPage() {
  borderRadius: 12, padding: '10px 14px', marginBottom: 12,
  fontSize: 13, color: 'var(--green)', fontWeight: 600,
  }}>
- ✓ {savedCount} tur{savedCount > 1 ? 'er' : ''} sparad{savedCount > 1 ? 'e' : ''}
+ {savedCount} tur{savedCount > 1 ? 'er' : ''} sparad{savedCount > 1 ? 'e' : ''}
  </div>
  )}
 
@@ -287,7 +287,7 @@ export default function ImporteraPage() {
  <path d={path} fill="none" stroke="#4ab8d4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
  </svg>
  ) : (
- <span style={{ fontSize: 20 }}> ️</span>
+ <span style={{ fontSize: 20 }}>⚠️</span>
  )}
  </div>
 
@@ -307,20 +307,20 @@ export default function ImporteraPage() {
  )}
 
  {entry.status === 'saved' && (
- <p style={{ fontSize: 13, color: 'var(--green)', margin: 0, fontWeight: 600 }}>✓ Sparad</p>
+ <p style={{ fontSize: 13, color: 'var(--green)', margin: 0, fontWeight: 600 }}>Sparad</p>
  )}
 
  {(isReady || entry.status === 'saving') && (
  <>
  {entry.duplicateWarning && (
  <p style={{ fontSize: 11, color: 'var(--acc)', margin: '0 0 8px', fontWeight: 600 }}>
- ⚠️ {entry.duplicateWarning}
+ {entry.duplicateWarning}
  </p>
  )}
  <div style={{ display: 'flex', gap: 8, marginBottom: 6, fontSize: 12, color: 'var(--txt3)' }}>
- <span>📏 {entry.distNm} nm</span>
- {entry.durationMin > 0 && <span>⏱ {fmtDur(entry.durationMin)}</span>}
- {entry.startTime && <span>📅 {new Date(entry.startTime).toLocaleDateString('sv-SE')}</span>}
+ <span>{entry.distNm} nm</span>
+ {entry.durationMin > 0 && <span>{fmtDur(entry.durationMin)}</span>}
+ {entry.startTime && <span>{new Date(entry.startTime).toLocaleDateString('sv-SE')}</span>}
  </div>
  <input
  value={entry.caption}

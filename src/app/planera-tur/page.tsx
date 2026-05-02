@@ -21,37 +21,37 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '1️⃣',
+    icon: '1',
     title: 'Välj tidsperiod',
     description: 'Dagsutflykt, helg eller vecka. Säsongen påverkar vad som är öppet — vi visar tydligt vilka ställen som är aktiva.',
     href: '/rutter',
   },
   {
-    icon: '2️⃣',
+    icon: '2',
     title: 'Välj färdsätt',
     description: 'Egen båt, hyrbåt, charter, reguljär färja eller kombination. Alla får anpassade förslag.',
     href: '/rutter?vy=farjor',
   },
   {
-    icon: '3️⃣',
+    icon: '3',
     title: 'Bygg rutten',
     description: 'Välj utgångshamn och destinationer — Svalla föreslår stopp baserat på tid, distans och erfarenheter.',
     href: '/rutter',
   },
   {
-    icon: '4️⃣',
+    icon: '4',
     title: 'Boka boende',
     description: 'Lägg till hotell, stuga eller naturhamn per natt. Länkar direkt till operatörens bokning.',
     href: '/boende',
   },
   {
-    icon: '5️⃣',
+    icon: '5',
     title: 'Spara som tur',
     description: 'Med konto sparar du rutten, exporterar GPX och får påminnelser när vädret är rätt.',
     href: '/kom-igang',
   },
   {
-    icon: '6️⃣',
+    icon: '6',
     title: 'Dela med sällskapet',
     description: 'Skicka länk till din tur — alla ser samma plan, kartan och bokningar.',
     href: '/bjud-in',
@@ -102,7 +102,7 @@ export default function PlaneraTurPage() {
           </p>
         </>
       }
-      cta={{ label: '✨ Planera min tur nu', href: '/planera', secondaryLabel: 'Fråga Thorkel', secondaryHref: '/guide' }}
+      cta={{ label: 'Planera min tur nu', href: '/planera', secondaryLabel: 'Fråga Thorkel', secondaryHref: '/guide' }}
       related={[
         { label: 'Populära turer', href: '/populara-turer' },
         { label: 'Segelrutter', href: '/segelrutter' },

@@ -10,6 +10,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase'
 import { computeInsights, type Insights } from '@/lib/insights'
+import Icon from '@/components/Icon'
 
 type Scope = 'all' | number
 
@@ -106,7 +107,7 @@ export default function InsikterPage() {
  WebkitTapHighlightColor: 'transparent',
  }}
  >
- {shared ? '✓ Delad' : 'Dela'}
+ {shared ? <><Icon name="check" size={14} style={{ marginRight: 4 }} />Delad</> : 'Dela'}
  </button>
  </div>
 
@@ -143,7 +144,7 @@ export default function InsikterPage() {
 
  {!loading && !userId && (
  <div style={{ textAlign: 'center', padding: '60px 20px' }}>
- <div style={{ fontSize: 48, marginBottom: 12 }}>🔒</div>
+ <Icon name="info" size={48} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>Logga in för att se dina insights.</p>
  <Link href="/logga-in" style={{
  display: 'inline-block', padding: '10px 22px', borderRadius: 14,
@@ -157,7 +158,7 @@ export default function InsikterPage() {
 
  {!loading && insights && insights.total_trips === 0 && (
  <div style={{ textAlign: 'center', padding: '60px 20px' }}>
- <div style={{ fontSize: 48, marginBottom: 12 }}> </div>
+ <Icon name="sailboat" size={48} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>
  {scope === 'all' ? 'Inga turer än — logga din första och kom tillbaka!' : `Inga turer loggade under ${scope}.`}
  </p>
@@ -217,7 +218,7 @@ export default function InsikterPage() {
 
  {/* Top-tur */}
  {insights.top_nm_trip && (
- <SectionTitle emoji="🏅" text="Längsta tur" />
+ <SectionTitle emoji="trophy" text="Längsta tur" />
  )}
  {insights.top_nm_trip && (
  <Link href={`/tur/${insights.top_nm_trip.id}`} style={{ textDecoration: 'none' }}>
@@ -231,8 +232,8 @@ export default function InsikterPage() {
  width: 52, height: 52, borderRadius: 14,
  background: 'var(--grad-acc)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- color: '#fff', fontSize: 22, flexShrink: 0,
- }}> </div>
+ color: '#fff', flexShrink: 0,
+ }}><Icon name="anchor" size={24} style={{ color: '#fff' }} /></div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
  {insights.top_nm_trip.location_name ?? 'Okänd plats'}
@@ -251,18 +252,18 @@ export default function InsikterPage() {
 
  {/* Nyckelstats-grid */}
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, marginBottom: 18 }}>
- <SmallStat emoji="🚀" label="Topphastighet" value={`${insights.top_speed.toFixed(1)} kn`} />
- <SmallStat emoji="✨" label="Magiska turer" value={String(insights.magic_count)} />
- <SmallStat emoji="📅" label="Aktiva dagar" value={String(insights.active_days)} />
- <SmallStat emoji="" label="Längsta streak" value={`${insights.longest_streak_weeks} v`} />
- <SmallStat emoji="" label="Gryningsturer" value={String(insights.sunrise_trips)} />
- <SmallStat emoji="🌙" label="Kvällsturer" value={String(insights.sunset_trips)} />
+ <SmallStat emoji="trendingUp" label="Topphastighet" value={`${insights.top_speed.toFixed(1)} kn`} />
+ <SmallStat emoji="star" label="Magiska turer" value={String(insights.magic_count)} />
+ <SmallStat emoji="calendar" label="Aktiva dagar" value={String(insights.active_days)} />
+ <SmallStat emoji="trophy" label="Längsta streak" value={`${insights.longest_streak_weeks} v`} />
+ <SmallStat emoji="sun" label="Gryningsturer" value={String(insights.sunrise_trips)} />
+ <SmallStat emoji="moon" label="Kvällsturer" value={String(insights.sunset_trips)} />
  </div>
 
  {/* Mest aktiv månad */}
  {insights.most_active_month && (
  <>
- <SectionTitle emoji="📈" text="Mest aktiv månad" />
+ <SectionTitle emoji="trendingUp" text="Mest aktiv månad" />
  <div style={{
  background: 'linear-gradient(135deg, rgba(30,92,130,0.06), rgba(201,110,42,0.08))',
  border: '1px solid rgba(10,123,140,0.12)',
@@ -273,8 +274,7 @@ export default function InsikterPage() {
  width: 52, height: 52, borderRadius: 14, flexShrink: 0,
  background: 'var(--white)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 26,
- }}>📆</div>
+ }}><Icon name="calendar" size={24} style={{ color: 'var(--sea)' }} /></div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', textTransform: 'capitalize' }}>
  {insights.most_active_month.label}
@@ -290,7 +290,7 @@ export default function InsikterPage() {
  {/* Boat breakdown */}
  {insights.boat_breakdown.length > 0 && (
  <>
- <SectionTitle emoji="" text={`Båtfördelning · ${insights.unique_boat_types} typer`} />
+ <SectionTitle emoji="ship" text={`Båtfördelning · ${insights.unique_boat_types} typer`} />
  <div style={{
  background: 'var(--white)', borderRadius: 18, padding: '14px 16px',
  border: '1px solid rgba(10,123,140,0.09)', boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
@@ -322,7 +322,7 @@ export default function InsikterPage() {
  {/* Top places */}
  {insights.top_places.length > 0 && (
  <>
- <SectionTitle emoji="" text="Dina favoritplatser" />
+ <SectionTitle emoji="pin" text="Dina favoritplatser" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 18 }}>
  {insights.top_places.map((p, idx) => (
  <div key={p.name} style={{
@@ -351,8 +351,8 @@ export default function InsikterPage() {
 
  {/* Social / achievements */}
  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10, marginBottom: 20 }}>
- <SmallStat emoji="👥" label="Följare" value={String(insights.total_followers)} />
- <SmallStat emoji="🏆" label="Märken" value={String(insights.total_achievements)} />
+ <SmallStat emoji="users" label="Följare" value={String(insights.total_followers)} />
+ <SmallStat emoji="award" label="Märken" value={String(insights.total_achievements)} />
  </div>
 
  {/* Share-CTA */}
@@ -366,7 +366,7 @@ export default function InsikterPage() {
  WebkitTapHighlightColor: 'transparent',
  }}
  >
- {shared ? '✓ Sammanfattning kopierad!' : 'Dela din Wrapped ↗'}
+ {shared ? <><Icon name="check" size={14} style={{ marginRight: 4 }} />Sammanfattning kopierad!</> : <>Dela din Wrapped <Icon name="arrowRight" size={14} style={{ marginLeft: 4 }} /></>}
  </button>
 
  <p style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'center', marginTop: 14 }}>
@@ -402,7 +402,7 @@ function SmallStat({ emoji, label, value }: { emoji: string; label: string; valu
  border: '1px solid rgba(10,123,140,0.09)', boxShadow: '0 1px 4px rgba(0,45,60,0.04)',
  display: 'flex', alignItems: 'center', gap: 10,
  }}>
- <div style={{ fontSize: 22, flexShrink: 0 }}>{emoji}</div>
+ <Icon name={emoji as any} size={22} style={{ color: 'var(--sea)', flexShrink: 0 }} />
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.1 }}>{value}</div>
  <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.4px', marginTop: 2 }}>
@@ -419,8 +419,9 @@ function SectionTitle({ emoji, text }: { emoji: string; text: string }) {
  fontSize: 11, fontWeight: 600, color: 'var(--txt3)',
  textTransform: 'uppercase', letterSpacing: '0.6px',
  margin: '2px 2px 10px',
+ display: 'flex', alignItems: 'center', gap: 6,
  }}>
- {emoji} {text}
+ <Icon name={emoji as any} size={14} style={{ color: 'var(--txt3)' }} /> {text}
  </div>
  )
 }

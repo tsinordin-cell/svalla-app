@@ -99,7 +99,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  a.download = 'svalla-tur.png'
  a.click()
  URL.revokeObjectURL(a.href)
- toast('Story-bild sparad! 🖼️')
+ toast('Story-bild sparad!')
  }
  } catch (e: unknown) {
  if (e instanceof Error && e.name !== 'AbortError') {
@@ -123,13 +123,13 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  a.download = 'svalla-tur.png'
  a.click()
  URL.revokeObjectURL(a.href)
- toast('Bild sparad! 🖼️')
+ toast('Bild sparad!')
  }
 
  async function copyLink() {
  try {
  await navigator.clipboard.writeText(url)
- toast('Länk kopierad! 📋')
+ toast('Länk kopierad!')
  setOpen(false)
  } catch {
  toast('Kunde inte kopiera länken.', 'error')
@@ -232,7 +232,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  borderRadius: 20,
  }}
  >
- {mode === 'photo' ? '📸 Foto' : '️ Karta'}
+ {mode === 'photo' ? 'Foto' : 'Karta'}
  </button>
  ))}
  </div>
@@ -447,7 +447,7 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
 
  {/* Mini guide */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 16, padding: '0 4px' }}>
- {['+ Story', '🖼️ Välj bild', 'Publicera'].map((s, i, arr) => (
+ {['+ Story', 'Välj bild', 'Publicera'].map((s, i, arr) => (
  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: i < arr.length - 1 ? 'none' : undefined }}>
  <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', whiteSpace: 'nowrap' }}>{s}</div>
  {i < arr.length - 1 && (

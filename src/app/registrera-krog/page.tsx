@@ -12,11 +12,11 @@ import SvallaLogo from '@/components/SvallaLogo'
 type Step = 'form' | 'success'
 
 const BUSINESS_TYPES = [
- { value: 'restaurang', label: '️ Restaurang' },
- { value: 'kafe', label: '☕ Kafé / Fika' },
+ { value: 'restaurang', label: 'Restaurang' },
+ { value: 'kafe', label: 'Kafé / Fika' },
  { value: 'hamn', label: 'Gästhamn / Marina' },
- { value: 'boende', label: '🛏️ Boende / Stugor' },
- { value: 'bar', label: '🍺 Bar / Pub' },
+ { value: 'boende', label: 'Boende / Stugor' },
+ { value: 'bar', label: 'Bar / Pub' },
  { value: 'annat', label: 'Annat' },
 ]
 
@@ -117,7 +117,7 @@ export default function RegistreraKrogPage() {
  fontSize: 42,
  animation: 'popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) both',
  }}>
- 🎉
+ ✓
  </div>
 
  <h2 style={{
@@ -141,7 +141,7 @@ export default function RegistreraKrogPage() {
  marginTop: 12, marginBottom: 36, maxWidth: 340,
  }}>
  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0, lineHeight: 1.55 }}>
- 🌟 <strong>Early Bird:</strong> De första 20 krogarna får 6 månaders Premium helt gratis.
+ <strong>Early Bird:</strong> De första 20 krogarna får 6 månaders Premium helt gratis.
  </p>
  </div>
 
@@ -253,7 +253,7 @@ export default function RegistreraKrogPage() {
 
  {/* Value props */}
  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', marginTop: 4 }}>
- {['📍 GPS-synlig', '📊 Insikter', '🆓 Gratis start'].map(t => (
+ {['GPS-synlig', 'Insikter', 'Gratis start'].map(t => (
  <div key={t} style={{
  background: 'rgba(255,255,255,0.07)',
  border: '1px solid rgba(255,255,255,0.10)',

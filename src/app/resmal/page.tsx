@@ -21,45 +21,45 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: '📍',
  title: 'Alla öar',
  description: 'Från Sandhamn och Utö till Finnhamn och Grinda — sök, jämför och hitta din nästa favoritö.',
  href: '/rutter?vy=oar',
  meta: '200+ öar',
  },
  {
- icon: '️',
+ icon: '🗺️',
  title: 'Kartan över skärgården',
  description: 'Interaktiv karta med krogar, bryggor, bensinmackar, bastu och bad — filtrera på det du söker.',
  href: '/platser',
  meta: 'Live',
  },
  {
- icon: '️',
+ icon: '🍽️',
  title: 'Krogar & mat',
  description: 'Skärgårdskrogar, caféer och sommarrestauranger — bokningsbara året runt eller bara under säsong.',
  href: '/krogar-och-mat',
  },
  {
- icon: '',
+ icon: '⚓',
  title: 'Hamnar & bryggor',
  description: 'Gästhamnar, naturhamnar och besöksbryggor med allt från dusch och el till helt orörda vikar.',
  href: '/hamnar-och-bryggor',
  },
  {
- icon: '',
+ icon: '💧',
  title: 'Bastu & bad',
  description: 'Publika bastur, bastuflottar och klassiska badklippor — för iskalla dopp och långa vedbastur.',
  href: '/bastu-och-bad',
  },
  {
- icon: '🏕️',
+ icon: '🌿',
  title: 'Vandring & natur',
  description: 'Naturreservat, vandringsleder och ödetomter att upptäcka till fots eller packraft.',
  href: '/vandring-och-natur',
  },
  {
- icon: '🎿',
+ icon: '⛵',
  title: 'Aktiviteter',
  description: 'Segling, paddling, fiske, SUP, kajak och guidade turer — säsong för säsong.',
  href: '/aktiviteter',

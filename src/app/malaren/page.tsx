@@ -36,14 +36,14 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: '🗺️',
  title: 'Karta över Mälaren',
  description: 'Alla gästbryggor, kaféer, naturhamnar och sevärdheter runt Mälaren — verifierade och uppdaterade.',
  href: '/platser',
  meta: 'Gratis',
  },
  {
- icon: '',
+ icon: '⛵',
  title: 'Rutter på Mälaren',
  description: 'Klassiska leder från Stockholm västerut — Drottningholm, Birka, Mariefred och Västerås med etappinfo och djupdata.',
  href: '/segelrutter',
@@ -61,7 +61,7 @@ const ITEMS: LandingItem[] = [
  href: '/platser',
  },
  {
- icon: '',
+ icon: '🌅',
  title: 'Solnedgångsankring',
  description: 'Mälarens lugna vatten och långa sommarkvällar gör det till en av Sveriges bästa sjöar för ankring och övernattning.',
  href: '/platser?kategori=naturhamn',

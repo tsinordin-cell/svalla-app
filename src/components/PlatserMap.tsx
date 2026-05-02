@@ -8,6 +8,7 @@ import type { Map as LeafletMap, Marker, Polyline, MarkerClusterGroup, MarkerClu
 import type { Restaurant } from '@/lib/supabase'
 import type { TourLine } from '@/app/platser/page'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import Icon from '@/components/Icon'
 
 type MarkerEntry = {
  marker: Marker
@@ -38,11 +39,11 @@ const LAYER_COLORS: Record<LayerKey, string> = {
 }
 
 const LAYER_LABELS: Record<LayerKey, string> = {
- restaurang: '',
- kafe: '☕',
- hamn: '',
- bensin: '⛽',
- boende: '🛏',
+ restaurang: 'utensils',
+ kafe: 'coffee',
+ hamn: 'anchor',
+ bensin: 'fuel',
+ boende: 'bed',
 }
 
 function getCat(r: Restaurant): LayerKey {
@@ -76,7 +77,7 @@ function etaStr(nm: number): string {
 }
 
 // Flytt från komponent-scope → modul-scope: ingen re-skapning per render
-function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string): DivIconOptions {
+function makeIconHtml(color: string, size: number, pulse: boolean, iconName: string): DivIconOptions {
  const pulseRing = pulse
  ? `<div style="
  position:absolute;top:50%;left:50%;
@@ -88,6 +89,14 @@ function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string
  pointer-events:none;
  "></div>`
  : ''
+ const svgIcons: Record<string, string> = {
+ 'utensils': '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+ 'coffee': '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h12a4 4 0 0 1 4 4v4H2V8z"/><path d="M6 21h8"/><path d="M6 18h8"/>',
+ 'anchor': '<circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M5 15a7 7 0 0 0 14 0"/><line x1="8" y1="11" x2="16" y2="11"/>',
+ 'fuel': '<line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
+ 'bed': '<path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>',
+ }
+ const svgPath = svgIcons[iconName] || '<circle cx="12" cy="12" r="8"/>'
  return {
  className: '',
  html: `<div style="position:relative;width:${size + 20}px;height:${size + 20}px;display:flex;align-items:center;justify-content:center">
@@ -98,8 +107,7 @@ function makeIconHtml(color: string, size: number, pulse: boolean, emoji: string
  border:2.5px solid #fff;
  box-shadow:0 2px 8px rgba(0,0,0,0.25);
  display:flex;align-items:center;justify-content:center;
- font-size:${Math.round(size * 0.45)}px;
- ">${emoji}</div>
+ "><svg viewBox="0 0 24 24" width="${Math.round(size * 0.45)}" height="${Math.round(size * 0.45)}" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${svgPath}</svg></div>
  </div>`,
  iconSize: [size + 20, size + 20],
  iconAnchor: [(size + 20) / 2, (size + 20) / 2],
@@ -129,7 +137,7 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
  return `
  <div style="font-family:system-ui,sans-serif;min-width:200px">
  <div style="font-weight:800;font-size:14px;color:#162d3a;margin-bottom:3px">${r.name}</div>
- ${r.opening_hours ? `<div style="font-size:11px;color:var(--txt3)">🕐 ${r.opening_hours}</div>` : ''}
+ ${r.opening_hours ? `<div style="font-size:11px;color:var(--txt3)"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="var(--txt3)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${r.opening_hours}</div>` : ''}
  ${whyRow}
  ${tagsRow}
  ${distRow}
@@ -144,7 +152,7 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
  <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=driving" target="_blank" rel="noopener noreferrer"
  style="padding:3px 8px;background:#f2f8fa;color:var(--txt2);border-radius:8px;font-size:11px;text-decoration:none">Bil</a>
  <a href="https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}&travelmode=walking" target="_blank" rel="noopener noreferrer"
- style="padding:3px 8px;background:#f2f8fa;color:var(--txt2);border-radius:8px;font-size:11px;text-decoration:none">🚶 Gång</a>
+ style="padding:3px 8px;background:#f2f8fa;color:var(--txt2);border-radius:8px;font-size:11px;text-decoration:none"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="var(--txt2)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;margin-right:3px"><circle cx="12" cy="4" r="1"/><path d="M9 7l3 11 3-11"/></svg>Gång</a>
  </div>
  </div>
  `
@@ -152,13 +160,13 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
 
 // ── Väder-widget ─────────────────────────────────────────────────────────────
 interface Weather { temp: number; code: number; windSpeed: number; windDir: number }
-const WMO: Record<number, { emoji: string }> = {
- 0:{emoji:'☀️'},1:{emoji:'🌤'},2:{emoji:''},3:{emoji:'☁️'},
- 45:{emoji:'🌫'},48:{emoji:'🌫'},51:{emoji:'🌦'},53:{emoji:'🌦'},
- 61:{emoji:'🌧'},63:{emoji:'🌧'},71:{emoji:'🌨'},80:{emoji:'🌦'},
- 81:{emoji:'🌦'},95:{emoji:'⛈'},
+const WMO: Record<number, { icon: string }> = {
+ 0:{icon:'sun'},1:{icon:'cloud'},2:{icon:'cloud'},3:{icon:'cloud'},
+ 45:{icon:'fog'},48:{icon:'fog'},51:{icon:'rain'},53:{icon:'rain'},
+ 61:{icon:'rain'},63:{icon:'rain'},71:{icon:'snow'},80:{icon:'rain'},
+ 81:{icon:'rain'},95:{icon:'snow'},
 }
-function wmoEmoji(code: number) { return (WMO[code] ?? WMO[Math.floor(code/10)*10] ?? {emoji:'🌡'}).emoji }
+function wmoIcon(code: number) { return (WMO[code] ?? WMO[Math.floor(code/10)*10] ?? {icon:'cloud'}).icon }
 function windDirStr(deg: number) { return ['N','NO','Ö','SO','S','SV','V','NV'][Math.round(deg/45)%8] }
 function getAreaName(lat: number, lng: number): string {
  if (lat > 60.0) return 'Arholma'
@@ -251,19 +259,21 @@ function WeatherWidget({ lat, lng }: { lat: number; lng: number }) {
  }, [])
 
  const kn = weather ? Math.round(weather.windSpeed * 1.944 * 10) / 10 : null
+ const weatherIconName = weather ? wmoIcon(weather.code) : 'cloud'
  return (
  <div style={{ position:'absolute', top:10, right:10, zIndex:1100, background:'var(--glass-96)', backdropFilter:'blur(12px)', borderRadius:22, padding:'6px 12px 6px 9px', boxShadow:'0 2px 12px rgba(0,45,60,0.15)', display:'flex', alignItems:'center', gap:6, border:'1px solid rgba(10,123,140,0.12)', opacity:loading ? 0.6 : 1, pointerEvents:'none', transition:'opacity 0.3s' }}>
- <span style={{ fontSize:15, lineHeight:1 }}>{weather ? wmoEmoji(weather.code) : '🌡'}</span>
+ {weather && <Icon name={weatherIconName as any} size={15} style={{ color:'var(--sea)' }} />}
+ {!weather && <Icon name="cloud" size={15} style={{ color:'var(--txt3)' }} />}
  <div style={{ display:'flex', flexDirection:'column', gap:1 }}>
  <div style={{ display:'flex', alignItems:'center', gap:5 }}>
  {weather
- ? <><span style={{ fontSize:14, fontWeight:700, color:'var(--sea)', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'var(--txt2)', fontWeight:700, lineHeight:1 }}>· 💨 {kn} kn {windDirStr(weather.windDir)}</span></>
+ ? <><span style={{ fontSize:14, fontWeight:700, color:'var(--sea)', lineHeight:1 }}>{weather.temp}°</span><span style={{ fontSize:11, color:'var(--txt2)', fontWeight:700, lineHeight:1, display:'flex', alignItems:'center', gap:3 }}>· <Icon name="wind" size={11} /> {kn} kn {windDirStr(weather.windDir)}</span></>
  : fetchFailed
  ? <span style={{ fontSize:11, color:'var(--txt3)' }}>–°</span>
  : <span style={{ fontSize:11, color:'var(--txt3)' }}>Hämtar väder…</span>
  }
  </div>
- <span style={{ fontSize:9, color:'var(--txt3)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px' }}>📍 {getAreaName(lat, lng)}</span>
+ <span style={{ fontSize:9, color:'var(--txt3)', fontWeight:700, textTransform:'uppercase', letterSpacing:'0.3px', display:'flex', alignItems:'center', gap:3 }}><Icon name="pin" size={11} /> {getAreaName(lat, lng)}</span>
  </div>
  </div>
  )
@@ -395,24 +405,24 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
 
  const cat = getCat(r)
  const color = LAYER_COLORS[cat]
- const emoji = LAYER_LABELS[cat]
+ const iconName = LAYER_LABELS[cat]
 
- 
+
  const marker = L.marker([r.latitude, r.longitude], {
- icon: L.divIcon(makeIconHtml(color, 34, false, emoji)),
+ icon: L.divIcon(makeIconHtml(color, 34, false, iconName)),
  })
  .bindPopup(buildPopupHtml(r, userPosRef.current), { maxWidth: 280, keepInView: true })
 
  marker.on('click', () => onMarkerClick(r.id))
 
  marker.on('mouseover', () => {
- marker.setIcon(L.divIcon(makeIconHtml(color, 42, false, emoji)))
+ marker.setIcon(L.divIcon(makeIconHtml(color, 42, false, iconName)))
  })
  marker.on('mouseout', () => {
  // FIX: Läs nearby-state från markersRef (inte stale closure)
  const entry = markersRef.current[r.id]
  if (!entry?.isActive) {
- marker.setIcon(L.divIcon(makeIconHtml(color, 34, entry?.nearby ?? false, emoji)))
+ marker.setIcon(L.divIcon(makeIconHtml(color, 34, entry?.nearby ?? false, iconName)))
  }
  })
 
@@ -485,7 +495,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
  for (const [id, entry] of Object.entries(markersRef.current)) {
  const { marker, cat, restaurant } = entry
  const color = LAYER_COLORS[cat]
- const emoji = LAYER_LABELS[cat]
+ const iconName = LAYER_LABELS[cat]
  const isActive = id === activeId
  const pulse = nearbyIds.has(id) && !isActive
 
@@ -496,7 +506,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
  cur.isActive = isActive
  }
 
- marker.setIcon(L.divIcon(makeIconHtml(color, isActive ? 44 : 34, pulse, emoji)))
+ marker.setIcon(L.divIcon(makeIconHtml(color, isActive ? 44 : 34, pulse, iconName)))
 
  if (isActive) {
  mapRef.current?.panTo(marker.getLatLng(), { animate: true })
@@ -583,7 +593,7 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
  userMarkerRef.current = L.marker([lat, lng], { icon: userIcon })
  .addTo(map)
  .bindPopup(
- `<div style="font-weight:700;font-size:13px">📍 Du är här</div>
+ `<div style="font-weight:700;font-size:13px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#1e5c82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;margin-right:5px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Du är här</div>
  ${nearby.size > 0
  ? `<div style="font-size:11px;color:#1e5c82;margin-top:4px">${nearby.size} plats${nearby.size === 1 ? '' : 'er'} inom 2 NM</div>`
  : '<div style="font-size:11px;color:var(--txt3);margin-top:4px">Inga platser inom 2 NM</div>'
@@ -682,7 +692,12 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
  transition: 'background .2s, opacity .2s',
  flexShrink: 0,
  }}
- > </button>
+ >
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
+  <path strokeLinecap="round" strokeLinejoin="round" d="M2 6c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/>
+  <path strokeLinecap="round" strokeLinejoin="round" d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/>
+  </svg>
+ </button>
  )}
  </div>
 

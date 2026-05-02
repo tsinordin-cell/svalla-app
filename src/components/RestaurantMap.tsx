@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import Icon from '@/components/Icon'
 
 type Restaurant = { id: string; name: string; latitude: number; longitude: number }
 
@@ -13,15 +14,15 @@ type Weather = {
 }
 
 function weatherIcon(code: number): string {
- if (code === 0) return '☀️'
- if (code <= 3) return ''
- if (code <= 48) return '🌫️'
- if (code <= 57) return '🌦️'
- if (code <= 67) return '🌧️'
- if (code <= 77) return '🌨️'
- if (code <= 82) return '🌦️'
- if (code <= 86) return '❄️'
- return '⛈️'
+ if (code === 0) return 'sun'
+ if (code <= 3) return 'cloud'
+ if (code <= 48) return 'fog'
+ if (code <= 57) return 'rain'
+ if (code <= 67) return 'rain'
+ if (code <= 77) return 'snow'
+ if (code <= 82) return 'rain'
+ if (code <= 86) return 'snow'
+ return 'snow'
 }
 
 function windDirLabel(deg: number): string {
@@ -79,11 +80,11 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
  html: `
  <div style="
  background:white;border-radius:50%;width:36px;height:36px;
- display:flex;align-items:center;justify-content:center;font-size:16px;
+ display:flex;align-items:center;justify-content:center;
  box-shadow:0 3px 12px rgba(0,45,60,0.25);
  border:2.5px solid var(--acc);
  cursor:pointer;
- "> </div>`,
+ "><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg></div>`,
  iconSize: [36, 36],
  iconAnchor: [18, 18],
  className: '',
@@ -159,9 +160,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
  minWidth: 115,
  }}>
  {/* Väder-ikon */}
- <span style={{ fontSize: 22, lineHeight: 1, flexShrink: 0 }}>
- {weatherIcon(weather.code)}
- </span>
+ <Icon name={weatherIcon(weather.code) as any} size={20} style={{ color: 'var(--sea)' }} />
 
  {/* Temp + vind */}
  <div>
@@ -184,7 +183,7 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
  fontWeight: 500,
  }}>
  {/* Vindpil roterad efter vindriktning */}
- <span style={{
+ <div style={{
  display: 'inline-flex',
  alignItems: 'center',
  justifyContent: 'center',
@@ -192,12 +191,11 @@ export default function RestaurantMap({ restaurants }: { restaurants: Restaurant
  height: 16,
  borderRadius: '50%',
  background: 'rgba(10,123,140,0.08)',
- fontSize: 9,
  transform: `rotate(${weather.windDir}deg)`,
  flexShrink: 0,
  }}>
- ↑
- </span>
+ <Icon name="wind" size={11} style={{ color: 'var(--txt3)' }} />
+ </div>
  {weather.wind} m/s · {windDirLabel(weather.windDir)}
  </div>
  </div>
