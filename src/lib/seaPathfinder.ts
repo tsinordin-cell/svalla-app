@@ -572,12 +572,17 @@ export async function findValidatedSeaPath(
 }
 
 /**
- * Legacy API för backwards compatibility
- * Returnerar path-array utan validering (gamla beteende).
+ * Fullkvalitets sjöleds-sökning.
  *
- * SYNC — kör ALDRIG findPathViaGrid här. Grid-sökning är O(n²) med turf.js
- * land-maskscheck på ~80 000 noder och hänger SSR-rendern i 30-120 s.
- * Grid används bara i den async findValidatedSeaPath-varianten.
+ * Ordning:
+ * 1. Pre-computed validerad rutt (instant)
+ * 2. Grid-A* med turf.js land-mask (bäst kvalitet, kan ta 30-120 s för stora bbox)
+ * 3. Waypoint-Dijkstra fallback (snabb, bra för täckta områden)
+ * 4. Rät linje (sista utväg)
+ *
+ * VIKTIGT: Anropa ALDRIG den här funktionen från SSR-rendern.
+ * Den lever i /api/route/calculate som kör asynkront med maxDuration=300s.
+ * SSR rendrar skeleton; klienten hämtar rutten separat.
  */
 export function findSeaPath(
   startLat: number,
@@ -589,12 +594,20 @@ export function findSeaPath(
   const precomp = lookupPrecomputed(startLat, startLng, endLat, endLng)
   if (precomp) return precomp
 
-  // 2. Waypoints-Dijkstra — 215 noder, ~5-20 ms, inga turf-anrop
-  const path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
-  if (path) return path
+  // 2. Grid-A* med fullständig land-mask (bäst kvalitet)
+  let path = findPathViaGrid(startLat, startLng, endLat, endLng)
 
-  // 3. Final fallback: rät linje
-  return [[startLat, startLng], [endLat, endLng]]
+  // 3. Waypoint-Dijkstra fallback om grid misslyckas
+  if (!path) {
+    path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
+  }
+
+  // 4. Sista utväg: rät linje
+  if (!path) {
+    return [[startLat, startLng], [endLat, endLng]]
+  }
+
+  return path
 }
 
 /**
