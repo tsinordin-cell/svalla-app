@@ -25,8 +25,8 @@ export async function GET() {
     httpOnly: true,
     secure: true,
     sameSite: 'strict',
-    path: '/admin',
-    maxAge: 60 * 15, // 15 minuter — bara för login-formuläret
+    path: '/',
+    maxAge: 60 * 15,
   })
   return res
 }
