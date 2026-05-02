@@ -1,4 +1,5 @@
 'use client'
+import Icon from '@/components/Icon'
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 type Place = {
@@ -152,7 +153,7 @@ export default function LocationSearch({
               style={{ width: 16, height: 16, animation: 'spin 0.8s linear infinite' }}>
               <path strokeLinecap="round" d="M12 2a10 10 0 0 1 10 10" />
             </svg>
-          ) : selected ? '✓' : '🔍'}
+          ) : selected ? 'checkmark' : 'search'}
         </div>
       </div>
 
@@ -181,7 +182,7 @@ export default function LocationSearch({
                 display: 'flex', alignItems: 'center', gap: 10,
               }}
             >
-              <span style={{ fontSize: 14, flexShrink: 0 }}>📍</span>
+              <Icon name="pin" style={{ width: 14, height: 14, flexShrink: 0 }} />
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {p.name}
