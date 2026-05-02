@@ -697,17 +697,11 @@ export default function UpptackClient() {
       </div>
 
       {/* Väder-pill — nedre vänstra hörnet */}
-      {view === 'map' && (
-        <div style={{ position: 'absolute', bottom: 80, left: 12, zIndex: 1001, pointerEvents: 'auto' }}>
-          <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
-        </div>
-      )}
-
-      {/* Höger-kolumn: destination, zoom, GPS */}
+      {/* Vänster-kolumn: destination ovanför, väder under */}
       {view === 'map' && (
         <div style={{
-          position: 'absolute', bottom: 80, right: 12, zIndex: 1001,
-          display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8,
+          position: 'absolute', bottom: 28, left: 12, zIndex: 1001,
+          display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8,
           pointerEvents: 'none',
           maxWidth: 'calc(100vw - 24px)',
         }}>
@@ -724,6 +718,20 @@ export default function UpptackClient() {
               />
             </div>
           )}
+          <div style={{ pointerEvents: 'auto' }}>
+            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+          </div>
+        </div>
+      )}
+
+      {/* Höger-kolumn: zoom, GPS */}
+      {view === 'map' && (
+        <div style={{
+          position: 'absolute', bottom: 28, right: 12, zIndex: 1001,
+          display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 8,
+          pointerEvents: 'none',
+          maxWidth: 'calc(100vw - 24px)',
+        }}>
 
           {/* Zoom-knappar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2, pointerEvents: 'auto' }}>
