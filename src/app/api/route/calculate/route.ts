@@ -20,6 +20,34 @@ import { NextRequest, NextResponse } from 'next/server'
 import { findSeaPathWithQuality, type RouteQuality } from '@/lib/seaPathfinder'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
+import { getAdminClient } from '@/lib/supabase-admin'
+
+/**
+ * Logga rutt-beräkning till route_metrics. Best-effort, blockerar aldrig svaret.
+ * Används av admin-vyn för att hitta vilka start/slut-par som ofta faller på
+ * grid/waypoint/straight (= kandidater för precomputed-expansion).
+ */
+function logMetric(payload: {
+  startLat: number; startLng: number; endLat: number; endLng: number
+  quality: RouteQuality; ms: number; waypointsCount: number
+}) {
+  try {
+    const admin = getAdminClient()
+    admin.from('route_metrics').insert({
+      start_lat: payload.startLat,
+      start_lng: payload.startLng,
+      end_lat:   payload.endLat,
+      end_lng:   payload.endLng,
+      quality:   payload.quality,
+      ms:        payload.ms,
+      waypoints_count: payload.waypointsCount,
+    }).then(({ error }) => {
+      if (error) logger.error('route-calculate', 'metric-insert failed', { e: error.message })
+    })
+  } catch (e) {
+    logger.error('route-calculate', 'metric-log threw', { error: String(e) })
+  }
+}
 
 // ── In-memory route cache (warm Lambda) ────────────────────────────────────
 // Nyckel: "lat,lng→lat,lng" (4 decimaler ≈ 11 m precision)
@@ -78,6 +106,12 @@ export async function POST(req: NextRequest) {
 
     // Cacha resultatet
     _routeCache.set(key, { path, quality })
+
+    // Logga metric (best-effort, icke-blockerande)
+    logMetric({
+      startLat, startLng, endLat, endLng,
+      quality, ms, waypointsCount: path.length,
+    })
 
     return NextResponse.json({ path, quality, source: quality === 'precomputed' ? 'precomputed' : 'computed', ms })
   } catch (err) {

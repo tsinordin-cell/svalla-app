@@ -56,6 +56,8 @@ type Props = {
   stops: Stop[]
   /** Haversine (rät linje) distans — används som initial uppskattning */
   haversineDistKm: number
+  /** Rutt-id för felrapportering */
+  routeId: string
 }
 
 // ── Component ───────────────────────────────────────────────────────────────
@@ -67,11 +69,33 @@ export default function PlaneraRouteSection({
   endLat, endLng, endName,
   stops,
   haversineDistKm,
+  routeId,
 }: Props) {
   const [seaPath, setSeaPath] = useState<[number, number][] | null>(null)
   const [routeKm, setRouteKm] = useState(haversineDistKm)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [quality, setQuality] = useState<RouteQuality | null>(null)
+  const [reportOpen, setReportOpen] = useState(false)
+  const [reportReason, setReportReason] = useState('')
+  const [reportState, setReportState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+
+  async function submitReport() {
+    if (reportReason.trim().length < 3) return
+    setReportState('sending')
+    try {
+      const r = await fetch('/api/planera/report', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ routeId, reason: reportReason.trim() }),
+      })
+      if (!r.ok) throw new Error()
+      setReportState('sent')
+      setReportReason('')
+      setTimeout(() => { setReportOpen(false); setReportState('idle') }, 1800)
+    } catch {
+      setReportState('error')
+    }
+  }
 
   const timeEstimates = estimateAllProfiles(routeKm)
 
@@ -158,6 +182,53 @@ export default function PlaneraRouteSection({
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontWeight: 700, marginBottom: 2 }}>{qualityBanner.label}</div>
             <div style={{ opacity: 0.85, lineHeight: 1.45 }}>{qualityBanner.desc}</div>
+            <button
+              type="button"
+              onClick={() => setReportOpen(o => !o)}
+              style={{
+                marginTop: 8, background: 'none', border: 'none', padding: 0,
+                color: 'inherit', fontSize: 12, fontWeight: 600,
+                textDecoration: 'underline', cursor: 'pointer', fontFamily: 'inherit',
+              }}>
+              {reportOpen ? 'Avbryt' : 'Rapportera fel rutt'}
+            </button>
+            {reportOpen && (
+              <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <textarea
+                  value={reportReason}
+                  onChange={e => setReportReason(e.target.value)}
+                  placeholder="Vad är fel? T.ex. 'rutten går genom land vid Värmdö' eller 'fel sund'"
+                  rows={3}
+                  maxLength={500}
+                  style={{
+                    width: '100%', boxSizing: 'border-box',
+                    padding: '8px 10px', borderRadius: 8,
+                    border: '1px solid rgba(0,0,0,0.15)',
+                    background: 'rgba(255,255,255,0.85)',
+                    fontSize: 13, fontFamily: 'inherit', color: 'var(--txt)',
+                    resize: 'vertical',
+                  }}/>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <button
+                    type="button"
+                    onClick={submitReport}
+                    disabled={reportState === 'sending' || reportReason.trim().length < 3 || reportState === 'sent'}
+                    style={{
+                      padding: '7px 14px', borderRadius: 8, border: 'none',
+                      background: reportState === 'sent' ? '#157a3e' : 'var(--sea, #1e5c82)',
+                      color: '#fff', fontSize: 12.5, fontWeight: 700,
+                      cursor: reportReason.trim().length < 3 ? 'not-allowed' : 'pointer',
+                      opacity: reportReason.trim().length < 3 ? 0.5 : 1,
+                      fontFamily: 'inherit',
+                    }}>
+                    {reportState === 'sending' ? 'Skickar…' : reportState === 'sent' ? 'Tack — sparat' : 'Skicka rapport'}
+                  </button>
+                  {reportState === 'error' && (
+                    <span style={{ fontSize: 12, color: '#c0392b' }}>Kunde inte skicka. Försök igen.</span>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

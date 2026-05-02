@@ -34,7 +34,7 @@ export default async function PlatserPage() {
  const { data: restaurants, error } = await supabase
  .from('restaurants')
  .select('id, name, images, description, opening_hours, latitude, longitude, tags, core_experience, type, island, booking_url')
- .order('name', { ascending: true })
+ .order('island', { ascending: true })
 
  if (error) {
  return (

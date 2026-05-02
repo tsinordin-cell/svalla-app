@@ -238,6 +238,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  endName={route.end_name}
  stops={mapStops}
  haversineDistKm={haversineDistKm}
+ routeId={route.id}
  />
 
  {/* Vindprognos längs rutten */}
