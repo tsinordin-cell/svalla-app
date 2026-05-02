@@ -21,14 +21,19 @@ type Props = {
   endLng: number
   endName: string
   stops: Stop[]
-  seaPath: [number, number][]
+  /** null = skeleton (route not yet computed); non-null = draw path and refit */
+  seaPath: [number, number][] | null
 }
 
 export default function PlaneraMap({ startLat, startLng, startName, endLat, endLng, endName, stops, seaPath }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<LeafletMap | null>(null)
   const initializedRef = useRef(false)
+  // Refs to current route polylines so they can be replaced when seaPath updates
+  const routeLinesRef = useRef<Array<{ remove: () => void }>>([])
 
+  // ── Init map (once) ─────────────────────────────────────────────────────────
+  // Fits to start/end bounding box — route lines are added by the seaPath effect.
   useEffect(() => {
     if (!containerRef.current || initializedRef.current) return
     initializedRef.current = true
@@ -36,13 +41,10 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     async function init() {
       const L = (await import('leaflet')).default
 
-      // Bounds från hela pathen, inte bara start/end — så öar som rutten
-      // loopar runt (Lidingö, Värmdö osv) också ryms i vyn.
-      const lats = seaPath.map(p => p[0]!)
-      const lngs = seaPath.map(p => p[1]!)
+      // Initial bounds: straight line start → end. Will be refitted when seaPath arrives.
       const bounds = L.latLngBounds(
-        [Math.min(...lats), Math.min(...lngs)],
-        [Math.max(...lats), Math.max(...lngs)],
+        [Math.min(startLat, endLat) - 0.05, Math.min(startLng, endLng) - 0.05],
+        [Math.max(startLat, endLat) + 0.05, Math.max(startLng, endLng) + 0.05],
       )
 
       const map = L.map(containerRef.current!, {
@@ -58,22 +60,6 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
 
       L.tileLayer(SEAMARK_TILE, {
         maxZoom: 18, opacity: 0.85, crossOrigin: '',
-      }).addTo(map)
-
-      // Schadow-linje för sjölederna
-      L.polyline(seaPath, {
-        color: 'rgba(30,92,130,0.25)',
-        weight: 8,
-        lineJoin: 'round',
-      }).addTo(map)
-
-      // Dashed route line (sjölederna)
-      L.polyline(seaPath, {
-        color: 'var(--teal, #1e5c82)',
-        weight: 3,
-        opacity: 0.75,
-        dashArray: '8, 6',
-        lineJoin: 'round',
       }).addTo(map)
 
       // Start marker
@@ -119,6 +105,49 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // ── Draw/replace route polylines when seaPath arrives ─────────────────────
+  useEffect(() => {
+    if (!seaPath || !mapRef.current) return
+
+    const update = async () => {
+      const L = (await import('leaflet')).default
+      const map = mapRef.current!
+
+      // Remove previous route lines (e.g. from a prior update)
+      routeLinesRef.current.forEach(l => l.remove())
+      routeLinesRef.current = []
+
+      // Shadow line
+      const shadow = L.polyline(seaPath, {
+        color: 'rgba(30,92,130,0.25)',
+        weight: 8,
+        lineJoin: 'round',
+      }).addTo(map)
+
+      // Dashed route line
+      const line = L.polyline(seaPath, {
+        color: 'var(--teal, #1e5c82)',
+        weight: 3,
+        opacity: 0.75,
+        dashArray: '8, 6',
+        lineJoin: 'round',
+      }).addTo(map)
+
+      routeLinesRef.current = [shadow, line]
+
+      // Refit to the actual route geometry (may deviate significantly from straight line)
+      const lats = seaPath.map(p => p[0]!)
+      const lngs = seaPath.map(p => p[1]!)
+      const bounds = L.latLngBounds(
+        [Math.min(...lats), Math.min(...lngs)],
+        [Math.max(...lats), Math.max(...lngs)],
+      )
+      map.fitBounds(bounds, { padding: [48, 40], maxZoom: 13 })
+    }
+
+    update().catch(console.error)
+  }, [seaPath])
 
   return (
     <div style={{ marginBottom: 20 }}>

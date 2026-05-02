@@ -6,12 +6,10 @@ import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
 import type { ScoredStop } from '@/lib/planner'
 import { haversineKm, crossTrack } from '@/lib/planner'
-import { findSeaPath, calculatePathDistanceKm } from '@/lib/seaPathfinder'
-import { estimateAllProfiles } from '@/lib/routeTime'
 import { buildRouteForecast } from '@/lib/routeForecast'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
-import PlaneraMap from './PlaneraMapDynamic'
+import PlaneraRouteSection from './PlaneraRouteSection'
 import RouteDisclaimer from '@/components/RouteDisclaimer'
 import RouteFeedbackButton from '@/components/RouteFeedbackButton'
 import RouteWeatherStrip from '@/components/RouteWeatherStrip'
@@ -131,11 +129,9 @@ export default async function PlaneraIdPage({ params }: Props) {
  const stops: ScoredStop[] = Array.isArray(route.suggested_stops) ? route.suggested_stops : []
  const interests: string[] = Array.isArray(route.interests) ? route.interests : []
 
- // Sjöledsväg — sync, snabb (<20 ms): precomputed lookup → waypoint-Dijkstra → rät linje
- const seaPath = findSeaPath(route.start_lat, route.start_lng, route.end_lat, route.end_lng)
- const waterKm = Math.round(calculatePathDistanceKm(seaPath))
- const totalKm = waterKm > 0 ? waterKm : Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
- const timeEstimates = estimateAllProfiles(totalKm)
+ // Haversine-distans (rät linje) — visas direkt i headern.
+ // Faktisk sjöledsdistans beräknas async av PlaneraRouteSection.
+ const haversineDistKm = Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
 
  // Hämta stops + väderprognos parallellt för kortast möjlig väntetid
  const fetchStops = stops.length === 0
@@ -209,7 +205,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  borderRadius: 20, padding: '4px 12px',
  fontSize: 13, fontWeight: 800, color: '#fff',
  }}>
- ~{totalKm} km
+ ~{haversineDistKm} km
  </div>
  </div>
 
@@ -232,8 +228,8 @@ export default async function PlaneraIdPage({ params }: Props) {
 
  <div style={{ padding: '20px 16px', maxWidth: 560, margin: '0 auto' }}>
 
- {/* Map */}
- <PlaneraMap
+ {/* Karta + tidsestimat — klientkomponent som fetchar rutten async */}
+ <PlaneraRouteSection
  startLat={route.start_lat}
  startLng={route.start_lng}
  startName={route.start_name}
@@ -241,43 +237,8 @@ export default async function PlaneraIdPage({ params }: Props) {
  endLng={route.end_lng}
  endName={route.end_name}
  stops={mapStops}
- seaPath={seaPath}
+ haversineDistKm={haversineDistKm}
  />
-
- {/* Tidsestimat per båttyp — baserat på faktisk vatten-distans */}
- <div style={{
- display: 'grid',
- gridTemplateColumns: 'repeat(3, 1fr)',
- gap: 8,
- marginBottom: 16,
- }}>
- {[
- { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
- { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
- { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
- ].map(card => (
- <div key={card.label} style={{
- background: 'var(--white)',
- borderRadius: 12,
- padding: '12px 10px',
- border: '1px solid rgba(10,123,140,0.1)',
- textAlign: 'center',
- }}>
- <div style={{
- fontSize: 10, fontWeight: 700, color: 'var(--sea)',
- textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
- }}>
- {card.label}
- </div>
- <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', marginBottom: 2 }}>
- {card.value}
- </div>
- <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
- {card.sub}
- </div>
- </div>
- ))}
- </div>
 
  {/* Vindprognos längs rutten */}
  {forecast && <RouteWeatherStrip forecast={forecast} />}
