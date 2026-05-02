@@ -75,6 +75,7 @@ export default async function FeedPage(
  let user: { id: string } | null = null
 
  let feedUsername: string | null = null
+ let shouldRedirectOnboarding = false
  try {
  supabase = await createServerSupabaseClient()
  const { data } = await supabase.auth.getUser()
@@ -84,14 +85,18 @@ export default async function FeedPage(
  // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
  const onboardedAt = (profile as { onboarded_at?: string | null } | null)?.onboarded_at
  if (profile && onboardedAt === null) {
-   redirect('/onboarding')
+   shouldRedirectOnboarding = true
+ } else {
+   feedUsername = profile?.username ?? null
  }
- feedUsername = profile?.username ?? null
  }
  } catch (err) {
  console.error('[FeedPage] auth/client init error:', err)
  return <FeedServerError />
  }
+ // Måste anropas utanför try-catch — redirect() kastar NEXT_REDIRECT internt
+ // och fångas annars av catch-blocket ovan vilket renderar FeedServerError.
+ if (shouldRedirectOnboarding) redirect('/onboarding')
 
  // Fetch feed trips — 20 rows per tab is enough for initial render.
  let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
