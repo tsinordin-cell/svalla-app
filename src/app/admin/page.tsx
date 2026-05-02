@@ -66,6 +66,16 @@ function IcoMegaphone({ color }: { color: string }) {
   )
 }
 
+function IcoRoute({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="6" cy="19" r="3" />
+      <circle cx="18" cy="5" r="3" />
+      <path d="M6 16V7a2 2 0 0 1 2-2h7M18 8v9a2 2 0 0 1-2 2H9" />
+    </svg>
+  )
+}
+
 type AdminTool = {
   href: string
   icon: React.ReactNode
@@ -131,6 +141,14 @@ const ADMIN_TOOLS: AdminTool[] = [
     desc:  'Färdiga inlägg för Reddit, FB-grupper och Instagram',
     badge: 'NY',
     color: '#9d174d',
+  },
+  {
+    href:  '/admin/routes',
+    icon:  <IcoRoute color="#0369a1" />,
+    title: 'Rutt-kvalitet',
+    desc:  'Precomputed vs grid vs waypoint — topp failing-par och rapporter',
+    badge: null,
+    color: '#0369a1',
   },
 ]
 
