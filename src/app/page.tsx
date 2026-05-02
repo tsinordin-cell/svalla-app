@@ -784,23 +784,23 @@ const LANDING_HTML = `
  </div>
  <div class="routes-scroll reveal">
  <div class="route-card" onclick="location.href='/rutter'">
- <div class="route-img" style="background:linear-gradient(135deg,#1a4a5e,#24697f)"> <div class="route-tag">2 dagar</div></div>
+ <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1530870110042-98b2cb110834?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a4a5e,#24697f);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">2 dagar</div></div>
  <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span> 48 km</span><span> 5 krogar</span><span> 4.8</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/rutter'">
- <div class="route-img" style="background:linear-gradient(135deg,#2d4a2e,#3a6040)"> <div class="route-tag">3 dagar</div></div>
+ <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1571051180813-b94b09ddc2d6?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2d4a2e,#3a6040);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">3 dagar</div></div>
  <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span> 72 km</span><span> 7 krogar</span><span> 4.9</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/rutter'">
- <div class="route-img" style="background:linear-gradient(135deg,#3a1a1a,#6a2a2e)"><div class="route-tag">1 dag</div></div>
+ <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#3a1a1a,#6a2a2e);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"><div class="route-tag">1 dag</div></div>
  <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>8 km</span><span>2 krogar</span><span>★ 4.9</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/rutter'">
- <div class="route-img" style="background:linear-gradient(135deg,#1a3a4a,#2a5a6a)"> <div class="route-tag">Halvdag</div></div>
+ <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
  <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/rutter'">
- <div class="route-img" style="background:linear-gradient(135deg,#2a3a1a,#4a5a2a)"> <div class="route-tag">Weekend</div></div>
+ <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1519181258491-c4c61cd8e2a4?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2a3a1a,#4a5a2a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Weekend</div></div>
  <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span> 60 km</span><span> 6 krogar</span><span> 4.8</span></div></div>
  </div>
  </div>

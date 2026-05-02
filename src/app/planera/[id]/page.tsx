@@ -21,17 +21,30 @@ type Props = { params: Promise<{ id: string }> }
 
 // ── Display helpers ────────────────────────────────────────────────────────
 
-const INTEREST_EMOJI: Record<string, string> = {
- krog: '', bastu: '', bad: '', brygga: '', natur: '', bensin: '⛽',
+// Mappning från intresse/anledning till SVG-ikonnamn (Icon-komponenten).
+// Tomma emoji-strängar bröt ut som tomma blåa cirklar på kartan.
+const INTEREST_ICON: Record<string, 'utensils' | 'sun' | 'waves' | 'anchor' | 'leaf' | 'fuel'> = {
+ krog: 'utensils', bastu: 'sun', bad: 'waves', brygga: 'anchor', natur: 'leaf', bensin: 'fuel',
 }
 
-const REASON_EMOJI: Record<string, string> = {
- 'Krog längs rutten': '',
- 'Bastu längs rutten': '',
- 'Badplats längs rutten': '',
- 'Brygga att lägga till vid': '',
- 'Naturupplevelse längs rutten': '',
- 'Bränslestopp längs rutten': '⛽',
+const REASON_ICON: Record<string, 'utensils' | 'sun' | 'waves' | 'anchor' | 'leaf' | 'fuel'> = {
+ 'Krog längs rutten': 'utensils',
+ 'Bastu längs rutten': 'sun',
+ 'Badplats längs rutten': 'waves',
+ 'Brygga att lägga till vid': 'anchor',
+ 'Naturupplevelse längs rutten': 'leaf',
+ 'Bränslestopp längs rutten': 'fuel',
+}
+
+// Inline SVG-paths för Leaflet-markörer (kan inte rendera React-komponenter i divIcon).
+const MARKER_SVG: Record<string, string> = {
+ utensils: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><line x1="5" y1="11" x2="5" y2="22"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>',
+ sun:      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+ waves:    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 12c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M2 18c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></svg>',
+ anchor:   '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v13"/><path d="M5 15a7 7 0 0 0 14 0"/><line x1="8" y1="11" x2="16" y2="11"/></svg>',
+ leaf:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.8 15.04-8.2 17.04Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>',
+ fuel:     '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg>',
+ pin:      '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
 }
 
 const REASON_SHORT: Record<string, string> = {
@@ -165,7 +178,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  name: s.name,
  reason: s.reason,
  color: REASON_COLOR[s.reason] ?? '#1e5c82',
- emoji: REASON_EMOJI[s.reason] ?? '📍',
+ emoji: (MARKER_SVG[REASON_ICON[s.reason] ?? 'pin'] ?? MARKER_SVG.pin ?? '') as string,
  }))
 
  return (
@@ -214,7 +227,10 @@ export default async function PlaneraIdPage({ params }: Props) {
  fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 20,
  background: 'rgba(255,255,255,0.15)', color: '#fff',
  }}>
- {INTEREST_EMOJI[i] ?? '•'} {i}
+ <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, verticalAlign: 'middle' }}>
+ <Icon name={INTEREST_ICON[i] ?? 'pin'} size={11} stroke={2.2} />
+ {i}
+ </span>
  </span>
  ))}
  </div>
@@ -297,7 +313,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {sortedStops.map((stop, idx) => {
- const emoji = REASON_EMOJI[stop.reason] ?? '📍'
+ const iconName = REASON_ICON[stop.reason] ?? 'pin'
  const short = REASON_SHORT[stop.reason] ?? stop.reason
  const color = REASON_COLOR[stop.reason] ?? '#1e5c82'
  const bg = REASON_BG[stop.reason] ?? 'rgba(10,123,140,0.08)'
@@ -313,14 +329,14 @@ export default async function PlaneraIdPage({ params }: Props) {
  boxShadow: '0 2px 8px rgba(0,45,60,0.06)',
  display: 'flex', alignItems: 'center', gap: 14,
  }}>
- {/* Step number + emoji */}
+ {/* Step number + icon */}
  <div style={{
  width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
- background: bg,
+ background: bg, color: color,
  display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 18, position: 'relative',
+ position: 'relative',
  }}>
- {emoji}
+ <Icon name={iconName} size={18} stroke={2} />
  <span style={{
  position: 'absolute', top: -4, right: -4,
  width: 16, height: 16, borderRadius: '50%',
