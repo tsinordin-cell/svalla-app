@@ -21,6 +21,7 @@ import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 import { addTripTag } from '@/lib/tripTags'
 import { analytics } from '@/lib/analytics'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
+import LocationSearch from '@/components/LocationSearch'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -136,6 +137,7 @@ export default function SparaPage() {
   const anomalyCountRef  = useRef(0)
   const syncOfflineRef   = useRef<() => void>(() => {})
   const pointsRef        = useRef<GpsPoint[]>([])  // mirror for GPS callback
+  const elapsedRef       = useRef(0)               // mirror for GPS callback (aldrig stale)
   const wakeLockRef      = useRef<{ released: boolean; release(): Promise<void> } | null>(null)
 
   // ── Auth gate — render nothing until check completes ─────────────────────
@@ -179,12 +181,49 @@ export default function SparaPage() {
   }, [phase, acquireWakeLock])
 
   useEffect(() => { pointsRef.current = points }, [points])
+  useEffect(() => { elapsedRef.current = elapsed }, [elapsed])
 
   // ── Check for crash recovery on mount ─────────────────────────────────────
   useEffect(() => {
     const snap = loadTripSnapshot()
     if (snap) setRecoverySnap(snap)
   }, [])
+
+  // ── Navigation guard — varna vid försök att lämna sidan under aktiv spårning ──
+  // beforeunload fångar: sidbyte, tab-stängning, reload
+  // popstate fångar: telefonens tillbaka-knapp (History API)
+  useEffect(() => {
+    if (phase !== 'tracking' && phase !== 'paused') return
+
+    function handleBeforeUnload(e: BeforeUnloadEvent) {
+      e.preventDefault()
+      // Chrome kräver returnValue för att visa dialog
+      e.returnValue = 'Du har en pågående tur. Lämna sidan och förlora GPS-data?'
+      return e.returnValue
+    }
+
+    function handlePopState(e: PopStateEvent) {
+      // Lägg tillbaka historik-staten och visa native confirm
+      window.history.pushState(e.state, '')
+      const leave = window.confirm(
+        'Du har en pågående tur. Lämna sidan och förlora GPS-data?'
+      )
+      if (leave) {
+        // Användaren bekräftade — navigera bakåt manuellt
+        window.history.back()
+      }
+    }
+
+    // Lägg till ett "dummy"-state så popstate triggas vid tillbaka-knapp
+    window.history.pushState({ sparaGuard: true }, '')
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    window.addEventListener('popstate', handlePopState)
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [phase])
 
   // ── Online/offline detection ───────────────────────────────────────────────
   useEffect(() => {
@@ -337,10 +376,10 @@ export default function SparaPage() {
             setMovementState(computeMovementState(next))
           }
 
-          // Live insights
+          // Live insights — elapsedRef.current är alltid aktuellt (undviker stale closure)
           if (next.length % 30 === 0) {
             setStops(prevStops => {
-              const newInsights = getLiveInsights(next, elapsed, prevStops)
+              const newInsights = getLiveInsights(next, elapsedRef.current, prevStops)
               newInsights.forEach(ins => {
                 setShownInsightKeys(prev => {
                   if (!prev.has(ins.key)) {
@@ -389,7 +428,8 @@ export default function SparaPage() {
     }).catch(() => {
       setGpsError('GPS ej tillgängligt på denna enhet.')
     })
-  }, [elapsed])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // elapsedRef används istället för elapsed — behöver inte vara dep
 
   const stopGPS = useCallback(() => {
     if (watchRef.current) {
@@ -423,10 +463,26 @@ export default function SparaPage() {
     snapshotTrip({ boatType: boat, phase: 'tracking', startedAt: new Date().toISOString(), elapsed: 0, tripId: null })
   }
 
-  function handleRecoverTrip() {
+  async function handleRecoverTrip() {
     if (!recoverySnap) return
     const snap = recoverySnap
     setRecoverySnap(null)
+
+    // Återställ GPS-punkter från IndexedDB offline-buffer.
+    // Under aktiv tracking saknas tripId → punkter synkas aldrig till Supabase
+    // → de lever kvar i bufferten efter en krasch. Ladda tillbaka dem hit.
+    try {
+      const pending = await getPendingPoints()
+      if (pending.length > 0) {
+        const restored: GpsPoint[] = pending.map(p => p.point)
+        setPoints(restored)
+        pointsRef.current = restored
+        setStops(detectStops(restored))
+        const last = restored[restored.length - 1]
+        if (last) setCurrentPos({ lat: last.lat, lng: last.lng })
+      }
+    } catch { /* tyst */ }
+
     // Restore elapsed time accounting for time since snapshot
     const extraSec = Math.round((Date.now() - new Date(snap.savedAt).getTime()) / 1000)
     setElapsed(snap.elapsed + extraSec)
@@ -614,19 +670,31 @@ export default function SparaPage() {
       await Promise.all(taggedCrew.map(u => addTripTag(supabase, user.id, tid, u.id)))
     }
 
-    // Batch insert GPS points (500 at a time)
+    // Batch insert GPS points (500 at a time) med error-check och retry
     for (let i = 0; i < points.length; i += 500) {
-      await supabase.from('gps_points').insert(
-        points.slice(i, i + 500).map(p => ({
-          trip_id:     tid,
-          latitude:    p.lat,
-          longitude:   p.lng,
-          speed_knots: parseFloat(p.speedKnots.toFixed(2)),
-          heading:     p.heading,
-          accuracy:    p.accuracy,
-          recorded_at: p.recordedAt,
-        }))
-      )
+      const batch = points.slice(i, i + 500).map(p => ({
+        trip_id:     tid,
+        latitude:    p.lat,
+        longitude:   p.lng,
+        speed_knots: parseFloat(p.speedKnots.toFixed(2)),
+        heading:     p.heading,
+        accuracy:    p.accuracy,
+        recorded_at: p.recordedAt,
+      }))
+      let batchErr = null
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const { error } = await supabase.from('gps_points').insert(batch)
+        if (!error) { batchErr = null; break }
+        batchErr = error
+        if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
+      }
+      if (batchErr) {
+        // Logga till konsolen — Sentry fångar upp detta i produktionsmiljön
+        console.error('[spara] gps_points batch insert failed after retries', {
+          batchIndex: i / 500,
+          error: batchErr.message,
+        })
+      }
     }
 
     // Insert stops
@@ -660,42 +728,43 @@ export default function SparaPage() {
       }).catch(() => {})
     }
 
-    // Check achievements: hämta tidigare turer och jämför
-    Promise.resolve().then(async () => {
-      try {
-        const { data: prevTrips } = await supabase
-          .from('trips')
-          .select('distance, pinnar_rating, location_name, boat_type, started_at, ended_at, max_speed_knots, created_at')
-          .eq('user_id', user.id)
-          .neq('id', tid)  // exkludera just sparad tur
-        const prevList = (prevTrips ?? []) as TripForAch[]
-        const newList: TripForAch[] = [
-          ...prevList,
-          {
-            distance: parseFloat(dist.toFixed(2)),
-            pinnar_rating: pinnar > 0 ? pinnar : null,
-            location_name: locationName.trim() || null,
-            boat_type: boatType,
-            started_at: startedAt,
-            ended_at: endedAt,
-            max_speed_knots: parseFloat(maxSpd.toFixed(1)),
-            created_at: endedAt,
-          }
-        ]
-        const before = new Set(computeUnlocked(prevList).map(a => a.id))
-        const after  = computeUnlocked(newList)
-        const justUnlocked = after.filter(a => !before.has(a.id))
-        if (justUnlocked.length > 0) {
-          setNewAchievements(justUnlocked.map(a => ({ emoji: a.emoji, label: a.label })))
-          setShowCelebration(true)
-          // Persistera achievement-events för feed + notiser
-          try {
-            const rows = justUnlocked.map(a => ({ user_id: user.id, achievement_key: a.id }))
-            await supabase.from('achievement_events').insert(rows)
-          } catch { /* dup-key tyst */ }
+    // Check achievements synchronously — måste vara klar innan vi navigerar
+    // så att celebration-overlayн hinner visas om märken låses upp.
+    let achievementUnlocked = false
+    try {
+      const { data: prevTrips } = await supabase
+        .from('trips')
+        .select('distance, pinnar_rating, location_name, boat_type, started_at, ended_at, max_speed_knots, created_at')
+        .eq('user_id', user.id)
+        .neq('id', tid)  // exkludera just sparad tur
+      const prevList = (prevTrips ?? []) as TripForAch[]
+      const newList: TripForAch[] = [
+        ...prevList,
+        {
+          distance: parseFloat(dist.toFixed(2)),
+          pinnar_rating: pinnar > 0 ? pinnar : null,
+          location_name: locationName.trim() || null,
+          boat_type: boatType,
+          started_at: startedAt,
+          ended_at: endedAt,
+          max_speed_knots: parseFloat(maxSpd.toFixed(1)),
+          created_at: endedAt,
         }
-      } catch { /* tyst */ }
-    }).catch(() => {})
+      ]
+      const before = new Set(computeUnlocked(prevList).map(a => a.id))
+      const after  = computeUnlocked(newList)
+      const justUnlocked = after.filter(a => !before.has(a.id))
+      if (justUnlocked.length > 0) {
+        setNewAchievements(justUnlocked.map(a => ({ emoji: a.emoji, label: a.label })))
+        setShowCelebration(true)
+        achievementUnlocked = true
+        // Persistera achievement-events för feed + notiser
+        try {
+          const rows = justUnlocked.map(a => ({ user_id: user.id, achievement_key: a.id }))
+          await supabase.from('achievement_events').insert(rows)
+        } catch { /* dup-key tyst */ }
+      }
+    } catch { /* tyst */ }
 
     // Background: Besökta öar — detektera vilka öar GPS-rutten passerat
     Promise.resolve().then(async () => {
@@ -757,8 +826,11 @@ export default function SparaPage() {
       duration_seconds: elapsed,
     })
     fetch('/api/revalidate-feed', { method: 'POST' }).catch(() => {})
-    // Navigera till tursidan — slight delay om celebration visas
-    setTimeout(() => router.push(`/tur/${tid}`), 100)
+    // Navigera direkt om inga achievements — annars hanteras navigation
+    // av "Fortsätt →"-knappen i celebration-overlayn.
+    if (!achievementUnlocked) {
+      router.push(`/tur/${tid}`)
+    }
   }
 
   const dist   = totalDistanceNM(points)
@@ -1313,7 +1385,10 @@ export default function SparaPage() {
               ))}
             </div>
             <button
-              onClick={() => setShowCelebration(false)}
+              onClick={() => {
+                setShowCelebration(false)
+                if (tripId) router.push(`/tur/${tripId}`)
+              }}
               style={{
                 padding: '12px 32px', borderRadius: 20, border: 'none',
                 background: 'rgba(255,255,255,.2)', color: '#fff',
@@ -1436,21 +1511,12 @@ export default function SparaPage() {
         </div>
 
         {/* ── Location ── */}
-        <div>
-          <label htmlFor="spara-location" style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '.5px', display: 'block', marginBottom: 8 }}>
-            Plats (valfritt)
-          </label>
-          <input
-            id="spara-location"
-            type="text" placeholder="t.ex. Sandhamn, Fjäderholmarna…"
-            value={locationName} onChange={e => setLocationName(e.target.value)} maxLength={80}
-            style={{
-              width: '100%', padding: '12px 14px', borderRadius: 14,
-              border: '1.5px solid rgba(10,123,140,.15)',
-              background: 'var(--white)', fontSize: 14, color: 'var(--txt)', outline: 'none', boxSizing: 'border-box',
-            }}
-          />
-        </div>
+        <LocationSearch
+          value={locationName}
+          onChange={setLocationName}
+          placeholder="Sandhamn, Fjäderholmarna…"
+          label="Plats (valfritt)"
+        />
 
         {/* ── Caption ── */}
         <div>

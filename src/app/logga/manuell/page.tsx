@@ -176,7 +176,9 @@ function ManuellForm() {
         body: JSON.stringify({
           distanceNM:  parseFloat(distance) || 0,
           durationMin: parseInt(duration)   || 0,
-          avgSpeed:    0,
+          avgSpeed:    (parseFloat(distance) > 0 && parseInt(duration) > 0)
+            ? parseFloat(distance) / (parseInt(duration) / 60)
+            : 0,
           maxSpeed:    0,
           boatType:    boatType || 'Okänd',
           locationName: location.trim() || undefined,
