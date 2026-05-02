@@ -196,6 +196,9 @@ export default function UpptackClient() {
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
   // Användarens senaste GPS-position — används för "X km från dig" i detail-card
   const [userPosition, setUserPosition] = useState<{ lat: number; lng: number } | null>(null)
+  // Sparade platser (slugs eller namn+lat-key) — används för "Sparat"-knapp-state
+  const [savedKeys, setSavedKeys] = useState<Set<string>>(new Set())
+  const [saveBusy, setSaveBusy] = useState(false)
   const gpsMarkerRef = useRef<import('leaflet').CircleMarker | null>(null)
   const gpsAccCircleRef = useRef<import('leaflet').Circle | null>(null)
 
@@ -281,8 +284,79 @@ export default function UpptackClient() {
       mapInstanceRef.current?.remove()
       mapInstanceRef.current = null
     }
-   
+
   }, [])
+
+  // Hämta sparade platser för inloggad användare — används för "Sparat"-state
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/saves')
+      .then(r => r.ok ? r.json() : { saves: [] })
+      .then((data: { saves?: Array<{ place_slug: string | null; place_name: string; lat: number; lng: number }> }) => {
+        if (cancelled) return
+        const keys = new Set<string>()
+        for (const s of data.saves ?? []) {
+          if (s.place_slug) keys.add(`slug:${s.place_slug}`)
+          else keys.add(`coord:${s.place_name}|${s.lat.toFixed(5)},${s.lng.toFixed(5)}`)
+        }
+        setSavedKeys(keys)
+      })
+      .catch(() => { /* anonym användare — strunta */ })
+    return () => { cancelled = true }
+  }, [])
+
+  function saveKeyForPoi(p: { slug: string | null; name: string; latitude: number; longitude: number }): string {
+    return p.slug ? `slug:${p.slug}` : `coord:${p.name}|${p.latitude.toFixed(5)},${p.longitude.toFixed(5)}`
+  }
+
+  async function toggleSave(p: { slug: string | null; name: string; latitude: number; longitude: number; type: string | null; image_url: string | null; island: string | null }) {
+    if (saveBusy) return
+    setSaveBusy(true)
+    const key = saveKeyForPoi(p)
+    const wasSaved = savedKeys.has(key)
+    // Optimistic update
+    setSavedKeys(prev => {
+      const next = new Set(prev)
+      if (wasSaved) next.delete(key); else next.add(key)
+      return next
+    })
+    try {
+      const res = await fetch('/api/saves/toggle', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          placeSlug: p.slug,
+          placeName: p.name,
+          placeType: p.type,
+          lat: p.latitude,
+          lng: p.longitude,
+          imageUrl: p.image_url,
+          island: p.island,
+        }),
+      })
+      if (!res.ok) {
+        // Rollback
+        setSavedKeys(prev => {
+          const next = new Set(prev)
+          if (wasSaved) next.add(key); else next.delete(key)
+          return next
+        })
+        if (res.status === 401) {
+          // Skicka utloggad användare till logga-in
+          window.location.href = '/logga-in?returnTo=/upptack'
+        }
+      }
+    } catch {
+      // Rollback
+      setSavedKeys(prev => {
+        const next = new Set(prev)
+        if (wasSaved) next.add(key); else next.delete(key)
+        return next
+      })
+    } finally {
+      setSaveBusy(false)
+    }
+  }
 
   // ── GPS: centrera på användarens position ────────────────────────────────
   const handleGps = useCallback(() => {
@@ -1229,6 +1303,40 @@ export default function UpptackClient() {
                 Visa fullständig info
               </a>
             )}
+            {detail.kind === 'poi' && (() => {
+              const isSaved = savedKeys.has(saveKeyForPoi({
+                slug: detail.slug, name: detail.name,
+                latitude: detail.latitude, longitude: detail.longitude,
+              }))
+              return (
+                <button
+                  type="button"
+                  onClick={() => toggleSave({
+                    slug: detail.slug, name: detail.name,
+                    latitude: detail.latitude, longitude: detail.longitude,
+                    type: detail.type, image_url: detail.image_url, island: detail.island,
+                  })}
+                  disabled={saveBusy}
+                  className="press-feedback"
+                  aria-pressed={isSaved}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                    height: 44, padding: '0 18px',
+                    borderRadius: 22,
+                    background: isSaved ? 'rgba(232,146,74,0.12)' : 'var(--white)',
+                    border: isSaved ? '1.5px solid rgba(232,146,74,0.45)' : '1.5px solid rgba(10,123,140,0.18)',
+                    color: isSaved ? 'var(--accent, #c96e2a)' : 'var(--sea)',
+                    fontSize: 14, fontWeight: 600,
+                    fontFamily: 'inherit',
+                    cursor: saveBusy ? 'wait' : 'pointer',
+                    opacity: saveBusy ? 0.7 : 1,
+                  }}
+                >
+                  <Icon name={isSaved ? 'heart' : 'heart'} size={15} color={isSaved ? 'var(--accent, #c96e2a)' : 'var(--sea)'} strokeWidth={2} />
+                  {isSaved ? 'Sparad' : 'Spara'}
+                </button>
+              )
+            })()}
             {detail.kind === 'route' && detail.waypoints?.length > 0 && (
               <button
                 onClick={() => {
