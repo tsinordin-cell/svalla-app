@@ -194,6 +194,8 @@ export default function UpptackClient() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   // GPS position
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
+  // Användarens senaste GPS-position — används för "X km från dig" i detail-card
+  const [userPosition, setUserPosition] = useState<{ lat: number; lng: number } | null>(null)
   const gpsMarkerRef = useRef<import('leaflet').CircleMarker | null>(null)
   const gpsAccCircleRef = useRef<import('leaflet').Circle | null>(null)
 
@@ -326,6 +328,7 @@ export default function UpptackClient() {
 
         map.flyTo([lat, lng], Math.max(map.getZoom(), 13), { duration: 0.9 })
         setGpsState('active')
+        setUserPosition({ lat, lng })
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) {
@@ -1146,11 +1149,30 @@ export default function UpptackClient() {
             </p>
           )}
 
-          {detail.kind === 'poi' && detail.island && (
-            <p style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--txt3)', margin: '0 0 10px' }}>
-              <Icon name="mapPin" size={14} color="var(--txt3)" />
-              {detail.island}
-            </p>
+          {detail.kind === 'poi' && (detail.island || userPosition) && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, margin: '0 0 12px', alignItems: 'center' }}>
+              {detail.island && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--txt3)' }}>
+                  <Icon name="mapPin" size={14} color="var(--txt3)" />
+                  {detail.island}
+                </span>
+              )}
+              {userPosition && (() => {
+                // Haversine-distans i km/m från användarens GPS-position
+                const R = 6371
+                const dLat = (detail.latitude - userPosition.lat) * Math.PI / 180
+                const dLng = (detail.longitude - userPosition.lng) * Math.PI / 180
+                const a = Math.sin(dLat/2)**2 + Math.cos(userPosition.lat*Math.PI/180) * Math.cos(detail.latitude*Math.PI/180) * Math.sin(dLng/2)**2
+                const km = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+                const label = km < 1 ? `${Math.round(km * 1000)} m från dig` : `${km.toFixed(km < 10 ? 1 : 0)} km från dig`
+                return (
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--sea)', fontWeight: 600 }}>
+                    <Icon name="compass" size={14} color="var(--sea)" />
+                    {label}
+                  </span>
+                )
+              })()}
+            </div>
           )}
 
           {detail.kind === 'route' && detail.distance && (
@@ -1187,6 +1209,25 @@ export default function UpptackClient() {
                 <Icon name="mapPin" size={15} color="#fff" strokeWidth={2} />
                 Sätt som destination
               </button>
+            )}
+            {detail.kind === 'poi' && detail.slug && (
+              <a
+                href={`/plats/${detail.slug}`}
+                className="press-feedback"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                  height: 44, padding: '0 18px',
+                  borderRadius: 22,
+                  background: 'var(--white)',
+                  border: '1.5px solid rgba(10,123,140,0.18)',
+                  color: 'var(--sea)', fontSize: 14, fontWeight: 600,
+                  fontFamily: 'inherit', cursor: 'pointer',
+                  textDecoration: 'none',
+                }}
+              >
+                <Icon name="fileText" size={15} color="var(--sea)" strokeWidth={2} />
+                Visa fullständig info
+              </a>
             )}
             {detail.kind === 'route' && detail.waypoints?.length > 0 && (
               <button
