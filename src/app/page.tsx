@@ -615,9 +615,9 @@ const LANDING_HTML = `
  Planera nästa tur. Hitta krogar, hamnar och dolda öar.
  Logga dina äventyr och bygg din egen skärgård.
  </p>
- <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href=q?'/sok?q='+encodeURIComponent(q):'/platser'">
- <input type="text" placeholder="🔍 Sök ö, krog eller hamn..." id="heroSearchInput"/>
- <button type="submit">Utforska</button>
+ <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
+ <input type="text" placeholder="Sök ö, krog eller hamn..." id="heroSearchInput"/>
+ <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:16px">
  <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s">✨ Planera din tur med Thorkel →</a>
@@ -1219,8 +1219,8 @@ export default function LandingPage() {
  zIndex: 0,
  overflow: 'hidden',
  pointerEvents: 'none',
- /* Dark bg fades to white near bottom so stones rest on white page */
- background: 'linear-gradient(to bottom, #0a1f2b 0%, #0a1f2b 76%, white 92%)',
+ /* Håll bakgrunden mörk hela vägen — eliminerar det vita glappet mot trust-bar */
+ background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%)',
  } as React.CSSProperties}>
  <HeroAnimation />
  </div>
