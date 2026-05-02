@@ -157,14 +157,24 @@ function Icon({ name, size = 16, color = 'currentColor', strokeWidth = 1.75 }: {
   )
 }
 
-function markerSvg(name: keyof typeof ICON_PATHS, color: string): string {
-  return `<div style="
-    width:34px;height:34px;border-radius:50%;
-    background:${color};
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 2px 8px rgba(0,0,0,0.25);
-    border:2px solid #fff;
-  "><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name]}</svg></div>`
+function markerSvg(name: keyof typeof ICON_PATHS, color: string, saved = false): string {
+  // Hjärt-overlay i orange för platser användaren redan sparat — gör det möjligt att
+  // se "redan sparad"-status direkt från kartan utan att behöva tappa varje markör.
+  const savedBadge = saved
+    ? `<div style="position:absolute;top:-3px;right:-3px;width:14px;height:14px;border-radius:50%;background:#c96e2a;border:2px solid #fff;display:flex;align-items:center;justify-content:center;">
+         <svg viewBox="0 0 24 24" width="8" height="8" fill="#fff" stroke="#fff" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+       </div>`
+    : ''
+  return `<div style="position:relative;width:34px;height:34px;">
+    <div style="
+      width:34px;height:34px;border-radius:50%;
+      background:${color};
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 2px 8px rgba(0,0,0,0.25);
+      border:2px solid #fff;
+    "><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name]}</svg></div>
+    ${savedBadge}
+  </div>`
 }
 
 export default function UpptackClient() {
@@ -539,9 +549,13 @@ export default function UpptackClient() {
         if (!cat || !filters.has(cat)) continue
 
         const { color, icon } = FILTER_CONFIG[cat]
+        const isSaved = savedKeys.has(saveKeyForPoi({
+          slug: poi.slug, name: poi.name,
+          latitude: poi.latitude, longitude: poi.longitude,
+        }))
         const divIcon = L.divIcon({
           className: '',
-          html: markerSvg(icon, color),
+          html: markerSvg(icon, color, isSaved),
           iconSize: [34, 34],
           iconAnchor: [17, 17],
         })
@@ -572,7 +586,7 @@ export default function UpptackClient() {
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, pois, routes, mapReady])
+  }, [filters, pois, routes, mapReady, savedKeys])
 
   function toggleFilter(f: Filter) {
     setFilters(prev => {

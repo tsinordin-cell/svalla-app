@@ -492,33 +492,56 @@ export default function ProfilPage() {
           )}
         </div>
 
-        {/* ── Sparade platser-shortcut ── */}
-        <Link href="/sparade" style={{
-          display: 'flex', alignItems: 'center', gap: 14,
-          background: 'var(--white)', borderRadius: 18,
-          padding: '14px 16px', marginBottom: 16,
-          boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
-          textDecoration: 'none', color: 'inherit',
-        }}>
-          <div style={{
-            width: 44, height: 44, borderRadius: 14,
-            background: 'rgba(232,146,74,0.12)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'var(--accent, #c96e2a)',
-            flexShrink: 0,
+        {/* ── Shortcuts: Sparade platser + Mina rutter ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
+          <Link href="/sparade" style={{
+            display: 'flex', alignItems: 'center', gap: 12,
+            background: 'var(--white)', borderRadius: 18,
+            padding: '14px 14px',
+            boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
+            textDecoration: 'none', color: 'inherit',
           }}>
-            <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>Sparade platser</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>Krogar, bryggor, bastur du vill besöka</div>
-          </div>
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-            <polyline points="9 18 15 12 9 6"/>
-          </svg>
-        </Link>
+            <div style={{
+              width: 40, height: 40, borderRadius: 12,
+              background: 'rgba(232,146,74,0.12)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--accent, #c96e2a)',
+              flexShrink: 0,
+            }}>
+              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Sparade platser</div>
+              <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>Krogar & bryggor</div>
+            </div>
+          </Link>
+          <Link href="/planera" style={{
+            display: 'flex', alignItems: 'center', gap: 12,
+            background: 'var(--white)', borderRadius: 18,
+            padding: '14px 14px',
+            boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
+            textDecoration: 'none', color: 'inherit',
+          }}>
+            <div style={{
+              width: 40, height: 40, borderRadius: 12,
+              background: 'rgba(10,123,140,0.10)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--sea)',
+              flexShrink: 0,
+            }}>
+              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="5" cy="6" r="2"/><circle cx="19" cy="18" r="2"/>
+                <path d="M5 8c0 5 6 3 9 8"/>
+              </svg>
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Mina rutter</div>
+              <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>Planera & spara</div>
+            </div>
+          </Link>
+        </div>
 
         {/* ── Achievements grid ── */}
         {ACHIEVEMENTS.length > 0 && (() => {
