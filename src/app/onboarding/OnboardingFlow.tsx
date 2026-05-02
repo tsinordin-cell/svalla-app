@@ -20,7 +20,7 @@ interface Props {
   suggestions: Suggestion[]
 }
 
-type Step = 1 | 2 | 3
+type Step = 'hasBoat' | 1 | 2 | 3
 
 const COMMON_BOATS = [
   'Nimbus', 'Bavaria', 'Hallberg-Rassy', 'Najad', 'Beneteau',
@@ -36,7 +36,8 @@ const COMMON_PORTS = [
 
 export default function OnboardingFlow({ userId, initialUsername, suggestions }: Props) {
   const router = useRouter()
-  const [step, setStep] = useState<Step>(1)
+  const [step, setStep] = useState<Step>('hasBoat')
+  const [hasBoat, setHasBoat] = useState<boolean | null>(null)
   const [startedAt] = useState(() => Date.now())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -51,6 +52,10 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   const canStep1Continue = vesselModel.trim().length >= 2
   const canStep2Continue = homePort.trim().length >= 2
   const canStep3Continue = followIds.size >= 1 // Minst 1, rekommenderat 3
+
+  // Antal "riktiga" steg beror på om användaren har båt
+  const totalSteps = hasBoat ? 3 : 2
+  const stepNumber = step === 1 ? 1 : step === 2 ? (hasBoat ? 2 : 1) : (hasBoat ? 3 : 2)
 
   function toggleFollow(id: string) {
     setFollowIds(prev => {
@@ -68,24 +73,50 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       const supabase = createClient()
 
       // 1. Uppdatera user-profil
+      const profileUpdate: Record<string, string | null> = {
+        home_port: homePort.trim(),
+        onboarded_at: new Date().toISOString(),
+      }
+      if (hasBoat) {
+        profileUpdate.vessel_model = vesselModel.trim()
+        profileUpdate.vessel_name = vesselName.trim() || null
+      }
       const { error: upErr } = await supabase
         .from('users')
-        .update({
-          vessel_model: vesselModel.trim(),
-          vessel_name: vesselName.trim() || null,
-          home_port: homePort.trim(),
-          onboarded_at: new Date().toISOString(),
-        })
+        .update(profileUpdate)
         .eq('id', userId)
       if (upErr) { setError(upErr.message); setSaving(false); return }
 
-      // 2. Skapa follows
+      // 2. Skapa follows + trigga notis och push för varje
       if (followIds.size > 0) {
         const followRows = Array.from(followIds).map(fid => ({
           follower_id: userId,
           following_id: fid,
         }))
         await supabase.from('follows').upsert(followRows, { onConflict: 'follower_id,following_id', ignoreDuplicates: true })
+
+        // Hämta vårt username för push-text
+        const { data: me } = await supabase.from('users').select('username').eq('id', userId).single()
+        const myName = me?.username ?? 'Någon'
+
+        // Skicka notis + push parallellt för varje följd användare (fail-silent)
+        await Promise.allSettled(Array.from(followIds).flatMap(fid => [
+          fetch('/api/notifications/insert', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ targetUserId: fid, type: 'follow' }),
+          }),
+          fetch('/api/push/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              targetUserId: fid,
+              title: 'Ny följare',
+              body: `${myName} börjar följa dig`,
+              url: `/u/${myName}`,
+            }),
+          }),
+        ]))
       }
 
       track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000) })
@@ -97,9 +128,16 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   }
 
   function next() {
+    if (step === 'hasBoat') return // hanteras via knapparna direkt
     if (step === 1) { track('onboarding_step', { step: 1 }); setStep(2) }
     else if (step === 2) { track('onboarding_step', { step: 2 }); setStep(3) }
     else handleSubmit()
+  }
+
+  function goBack() {
+    if (step === 1) { setStep('hasBoat') }
+    else if (step === 2) { setStep(hasBoat ? 1 : 'hasBoat') }
+    else if (step === 3) { setStep(2) }
   }
 
   return (
@@ -110,18 +148,25 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       display: 'flex', flexDirection: 'column',
       justifyContent: 'center',
     }}>
-      {/* Progress dots */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginBottom: 28 }}>
-        {[1, 2, 3].map(s => (
-          <div key={s} style={{
-            width: s === step ? 24 : 8,
-            height: 8,
-            borderRadius: 4,
-            background: s <= step ? '#fff' : 'rgba(255,255,255,0.30)',
-            transition: 'all 200ms ease',
-          }}/>
-        ))}
-      </div>
+      {/* Progress dots — dölj under hasBoat-steget */}
+      {step !== 'hasBoat' && (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginBottom: 28 }}>
+          {Array.from({ length: totalSteps }).map((_, i) => {
+            const dotIdx = i + 1
+            const active = dotIdx === stepNumber
+            const done = dotIdx < stepNumber
+            return (
+              <div key={i} style={{
+                width: active ? 24 : 8,
+                height: 8,
+                borderRadius: 4,
+                background: done || active ? '#fff' : 'rgba(255,255,255,0.30)',
+                transition: 'all 200ms ease',
+              }}/>
+            )
+          })}
+        </div>
+      )}
 
       <div
         key={step}
@@ -139,10 +184,65 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           }
         `}</style>
 
+        {step === 'hasBoat' && (
+          <>
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 28, fontWeight: 800, color: 'var(--txt)',
+              margin: '0 0 10px', letterSpacing: '-0.5px',
+            }}>
+              Har du en egen båt?
+            </h1>
+            <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, margin: '0 0 28px' }}>
+              Vi anpassar din upplevelse på Svalla beroende på hur du tar dig ut på vattnet.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <button
+                type="button"
+                onClick={() => { setHasBoat(true); setStep(1) }}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  padding: '16px 20px', borderRadius: 14,
+                  background: 'rgba(10,123,140,0.06)',
+                  border: '1.5px solid rgba(10,123,140,0.15)',
+                  cursor: 'pointer', textAlign: 'left',
+                  fontFamily: 'inherit', transition: 'all 150ms ease',
+                }}
+              >
+                <span style={{ fontSize: 28 }}>⛵</span>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Ja, jag har en båt</div>
+                  <div style={{ fontSize: 12, color: 'var(--txt2)' }}>Segelbåt, motorbåt, kajak eller RIB</div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => { setHasBoat(false); setStep(2) }}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 14,
+                  padding: '16px 20px', borderRadius: 14,
+                  background: 'rgba(10,123,140,0.04)',
+                  border: '1px solid rgba(10,123,140,0.10)',
+                  cursor: 'pointer', textAlign: 'left',
+                  fontFamily: 'inherit', transition: 'all 150ms ease',
+                }}
+              >
+                <span style={{ fontSize: 28 }}>🤝</span>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Nej, jag chartrar eller åker med andra</div>
+                  <div style={{ fontSize: 12, color: 'var(--txt2)' }}>Utan egen båt</div>
+                </div>
+              </button>
+            </div>
+          </>
+        )}
+
         {step === 1 && (
           <>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-              Steg 1 av 3
+              Steg 1 av {totalSteps}
             </div>
             <h1 style={{
               fontFamily: "'Playfair Display', serif",
@@ -195,7 +295,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         {step === 2 && (
           <>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-              Steg 2 av 3
+              Steg {stepNumber} av {totalSteps}
             </div>
             <h1 style={{
               fontFamily: "'Playfair Display', serif",
@@ -234,7 +334,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         {step === 3 && (
           <>
             <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 6 }}>
-              Steg 3 av 3
+              Steg {stepNumber} av {totalSteps}
             </div>
             <h1 style={{
               fontFamily: "'Playfair Display', serif",
@@ -325,12 +425,12 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           </div>
         )}
 
-        {/* Actions */}
-        <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
-          {step > 1 && (
+        {/* Actions — dölj under hasBoat-steget (det har egna knappar) */}
+        {step !== 'hasBoat' && (
+          <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
             <button
               type="button"
-              onClick={() => setStep((step - 1) as Step)}
+              onClick={goBack}
               disabled={saving}
               style={{
                 padding: '12px 18px', borderRadius: 12,
@@ -342,36 +442,36 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             >
               Tillbaka
             </button>
-          )}
-          <button
-            type="button"
-            onClick={next}
-            disabled={
-              saving ||
-              (step === 1 && !canStep1Continue) ||
-              (step === 2 && !canStep2Continue) ||
-              (step === 3 && !canStep3Continue)
-            }
-            style={{
-              flex: 1,
-              padding: '12px 18px', borderRadius: 12,
-              background: (
+            <button
+              type="button"
+              onClick={next}
+              disabled={
+                saving ||
                 (step === 1 && !canStep1Continue) ||
                 (step === 2 && !canStep2Continue) ||
-                (step === 3 && !canStep3Continue) ||
-                saving
-              ) ? 'rgba(10,123,140,0.20)' : 'var(--grad-sea, linear-gradient(135deg, #0a7b8c 0%, #0d8fa3 100%))',
-              color: '#fff',
-              border: 'none', fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', fontFamily: 'inherit',
-              letterSpacing: '0.02em',
-              boxShadow: '0 6px 18px rgba(10,123,140,0.30)',
-              transition: 'all 150ms ease',
-            }}
-          >
-            {saving ? 'Sparar…' : step === 3 ? 'Klar — visa min feed' : 'Fortsätt'}
-          </button>
-        </div>
+                (step === 3 && !canStep3Continue)
+              }
+              style={{
+                flex: 1,
+                padding: '12px 18px', borderRadius: 12,
+                background: (
+                  (step === 1 && !canStep1Continue) ||
+                  (step === 2 && !canStep2Continue) ||
+                  (step === 3 && !canStep3Continue) ||
+                  saving
+                ) ? 'rgba(10,123,140,0.20)' : 'var(--grad-sea, linear-gradient(135deg, #0a7b8c 0%, #0d8fa3 100%))',
+                color: '#fff',
+                border: 'none', fontSize: 14, fontWeight: 700,
+                cursor: 'pointer', fontFamily: 'inherit',
+                letterSpacing: '0.02em',
+                boxShadow: '0 6px 18px rgba(10,123,140,0.30)',
+                transition: 'all 150ms ease',
+              }}
+            >
+              {saving ? 'Sparar…' : step === 3 ? 'Klar — visa min feed' : 'Fortsätt'}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Footer */}
@@ -385,7 +485,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             await supabase.from('users')
               .update({ onboarded_at: new Date().toISOString() })
               .eq('id', userId)
-            track('onboarding_step', { step, skipped: true })
+            track('onboarding_step', { step: (typeof step === 'number' ? step : 1) as 1 | 2 | 3, skipped: true })
             router.replace('/feed')
           }}
           style={{
