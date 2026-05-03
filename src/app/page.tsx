@@ -352,7 +352,14 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .krog-grid{grid-template-columns:1fr}
  .stats-grid{grid-template-columns:1fr 1fr}
  .split-pane{padding:60px 28px}
- .footer-grid{grid-template-columns:1fr}
+ footer{padding:32px 20px 24px}
+ .footer-grid{grid-template-columns:1fr;gap:16px;margin-bottom:28px}
+ .footer-brand p{display:none}
+ .footer-brand .logo{margin-bottom:0}
+ .footer-col h5{font-size:11px;margin-bottom:8px}
+ .footer-col ul li{margin-bottom:5px}
+ .footer-col ul li a{font-size:12.5px}
+ .footer-col:last-child ul{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:4px}
  .hero{padding-top:68px}
  .hero-eyebrow{margin-bottom:14px;font-size:11px;padding:5px 12px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:12px}
