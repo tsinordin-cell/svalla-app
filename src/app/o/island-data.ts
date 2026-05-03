@@ -515,9 +515,9 @@ export const ISLANDS: Island[] = [
     emoji: 'anchor',
     tagline: 'Södra skärgårdens klassiska utgångspunkt — historia, hamn och direktbuss från Stockholm.',
     description: [
-      'Dalarö är södra skärgårdens naturliga utgångspunkt. Orten har en lång maritim historia — Dalarö Skans byggdes på 1600-talet och spelade en viktig roll i försvaret av Stockholms södra farvatten. Idag är det en populär hamnort med gästhamn, restauranger och goda kommunikationer.',
-      'Dalarö nås med bil på 45 minuter från Stockholm eller med kollektivtrafik. Det gör orten unik bland de södra destinationerna — man behöver inte ta båt för att komma hit. Från Dalarö hamn avgår sedan båtar mot Utö och de omgivande öarna.',
-      'Hamnlivet är aktivt sommartid med seglare, motorbåtar och sommargäster. Dalarö har ett charmigt bebyggelsemönster med trävillor längs kajen.',
+      'Dalarö är södra skärgårdens naturliga utgångspunkt — och en av de mest betydelsefulla platserna i svensk sjöfartshistoria. 1636 blev Dalarö "stora sjötullen", det vill säga landets viktigaste tullstation, där all sjöburen handel in till Stockholm skulle deklareras och förtullas. Den rollen behöll orten i drygt 200 år.',
+      'Dalarö skans påbörjades 1656 av Johan Peter Kirstenius på uppdrag av Karl X Gustav — för att skydda de tullavgiftsbärande handelsfartygen som låg i hamn. Erik Dahlberg inspekterade anläggningen 1683 och fann den förfallen. Skansen togs ur rikets fasta försvar 1854 och är sedan 1935 statligt byggnadsminne.',
+      'Dalarö nås med bil på 45 minuter från Stockholm eller med kollektivtrafik. Det gör orten unik bland södra destinationerna — man behöver inte ta båt för att komma hit. Från Dalarö hamn avgår sedan båtar mot Utö och de omgivande öarna. Hamnlivet är aktivt sommartid med seglare, motorbåtar och sommargäster, och bebyggelsen längs kajen är präglad av 1800-talets sjökaptens- och tjänstemannavillor.',
     ],
     facts: {
       travel_time: '45 min med bil / 90 min med kollektivtrafik',
@@ -526,7 +526,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Dagsturer, hamnliv, utgångspunkt mot Utö och södern',
     },
     activities: [
-      { icon: '🏰', name: 'Dalarö Skans', desc: 'Fortifikation från 1600-talet med museum. Bra intro till södra skärgårdens historia.' },
+      { icon: '🏰', name: 'Dalarö skans', desc: 'Fortifikation påbörjad 1656 under Karl X Gustav. Statligt byggnadsminne sedan 1935 — idag festvåning och visningsplats.' },
       { icon: '⛵', name: 'Utgångspunkt mot Utö', desc: 'Ta pendelbåt till Utö och de södra öarna direkt från Dalarö hamn.' },
       { icon: '🎣', name: 'Fiske', desc: 'Välkänt fiskevatten i Baggensfjärden och utanför Dalarö.' },
       { icon: '🚶', name: 'Dalarö Museum', desc: 'Liten men intressant utställning om ortens maritima historia.' },
@@ -554,7 +554,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'orno'],
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
-    did_you_know: 'Dalarö var en viktig tullstation på 1600-talet och kontrollerade all handel in till Stockholm. Kungarna måste passera här för att nå huvudstaden sjövägen.',
+    did_you_know: 'Dalarö blev 1636 platsen för "stora sjötullen" — landets viktigaste tullstation under stormaktstiden. Alla handelsfartyg på väg in till Stockholm var tvungna att förtullas här. Tullhuset från 1788 står fortfarande kvar vid hamnen.',
   },
 
   // ─── ARHOLMA ─────────────────────────────────────────────────
@@ -1424,9 +1424,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌾',
     tagline: 'Stor halvö nära Norrtälje med kanal, dansbana och äkta Roslagskaraktär.',
     description: [
-      'Vaddö är en större ö söder om Vaxholm som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad landskap och är populär bland familjer.',
-      'Naturen på Vaddö är varierad med skogspartier och badplatser längs kusten. Det finns hamnar och grundläggande service. Cykelvägar möjliggör utforskning.',
-      'Vaddö passar väl för familjer som söker ett lugnt alternativ nära Stockholm.'
+      'Väddö är Roslagens största ö, belägen norr om Norrtälje vid norra Östersjökusten. Tillsammans med Björkö-Arholma utgör Väddö en stor del av norra Roslagens skärgård. Den 18 km långa Väddö kanal — grävd från 1820 av soldater och invigd 1840 av Karl XIV Johan — skär genom området och förbinder Bagghusfjärden i söder med Väddöviken i norr. Det ger seglare ett skyddat alternativ till öppna havet öster om ön.',
+      'Idag passerar omkring 22 000 båtar genom kanalen varje år. Slussen vid Älmsta är en av Roslagens populäraste sommarmål. Längs kanalen finns badplatser, restauranger och cykelleder. Herräng på östra Väddö är världens mest kända centrum för lindy hop genom Herrängs Dansläger som arrangerats varje juli sedan 1982.',
+      'Väddö passar både för bilburna dagsturister och för seglare som väljer kanalen istället för öppna havet — och för dansare från hela världen som kommer för Herrängs danslägret.',
     ],
 
     facts: {
@@ -1461,7 +1461,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['singo', 'blido', 'norrora'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
-    did_you_know: 'Väddö är så stor att den ibland kallas "fastlandets ö" — men den är tekniskt sett en ö, avskild av Väddö kanal som grävdes på 1820-talet.',
+    did_you_know: 'Väddö kanal är 18 km lång och började grävas 1820 av soldater från olika regementen. Sveriges första ångdrivna mudderverk — konstruerat av Samuel Owen — användes vid bygget. Kanalen öppnades för trafik 1835 och invigdes officiellt 1840 av Karl XIV Johan. Idag passerar omkring 22 000 båtar genom kanalen varje år.',
   },
 
   // ─── ASKÖ ────────────────────────────────────────────────────
@@ -1473,9 +1473,9 @@ export const ISLANDS: Island[] = [
     emoji: '🔬',
     tagline: 'Marinbiologisk forskning och naturskönt naturreservat i södra ytterskärgården.',
     description: [
-      'Askö är en större och väl utvecklad ö i mellersta skärgården som kombinerar natur med etablerad infrastruktur. Ön är populär bland både familjer och långseglare.',
-      'Naturen på Askö är varierad med skogspartier och badplatser längs kusten. Det finns ett antal hamnar, restauranger och kaféer spridda över ön. Cykelvägar möjliggör utforskning.',
-      'Askö passar väl för familjer som söker ett etablerat men fortfarande autentiskt stopp i mellersta skärgården, eller som del av längre cykel- eller seglingsresor.'
+      'Askö ligger i Trosa-skärgården i södra Sörmland (formellt utanför Stockholms län), och är hem för Stockholms universitets marina forskningsstation Askölaboratoriet — en av Sveriges viktigaste forskningsplattformar för Östersjön. Ön är obebodd förutom forskningsstationen.',
+      'Askölaboratoriet grundades 1961 och fungerar som bas för forskning kring Östersjöns ekosystem, övergödning, klimateffekter och marin biodiversitet. Sommartid arrangerar Stockholms universitet öppna visningsdagar då allmänheten kan besöka stationen och få guidning av forskarna.',
+      'Askö passar för marinbiologi-intresserade som vill se Östersjöforskning på nära håll, och för seglare som söker en ovanlig anhalt i Trosa-skärgården.',
     ],
 
     facts: {
@@ -1505,7 +1505,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['marinbiologi', 'naturreservat', 'ytterskärgård', 'forskning', 'södra'],
-    did_you_know: 'Askö är hem för Stockholms universitets marina forskningsstation. Forskare studerar här hur Östersjöns ekosystem förändras med klimatet.',
+    did_you_know: 'Askölaboratoriet grundades 1961 och är Stockholms universitets fältstation för marin forskning i Östersjön. Det är en av de äldsta och mest produktiva marinbiologiska forskningsstationerna i Sverige — flera centrala studier kring Östersjöns övergödning och blåsippsprovtagning har sitt ursprung här.',
   },
 
   // ─── GÅLÖ ────────────────────────────────────────────────────
@@ -1517,9 +1517,9 @@ export const ISLANDS: Island[] = [
     emoji: '🏖',
     tagline: 'Halvö med en av regionens finaste sandstränder — lättillgänglig med bil.',
     description: [
-      'Gålö är en större ö i södra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad landskap och är populär bland seglare.',
-      'Gålö har en väl utvecklad gästhamn och grundläggande service spridda över ön. Naturmässigt finns det skogspartier, badplatser och vandringsstigar.',
-      'Gålö fungerar väl som del av längre seglingsresor i södra skärgården, eller som dagsdestination för den som söker något mindre besökt än större öar.'
+      'Gålö är en halvö i Stockholms södra skärgård i Haninge kommun — broförbunden med fastlandet via Gålöleden, vilket gör den till en av de mest tillgängliga "skärgårds-platserna" söder om Stockholm. På 40 minuter med bil från innerstaden är man framme.',
+      'Gålö Havsbad är en av Stockholmsregionens populäraste sandstränder med fullservice, kioskutbud, parkering och campingplats. Naturreservatet runt halvön rymmer markerade vandringsleder genom kustlandskap, gammal skog och välbevarade kulturmiljöer från jordbrukstidens skärgård.',
+      'Gålö passar för dagsutflykter med bil, för barnfamiljer som vill ha sandstrand utan båtresa, och för cyklister som söker en lättillgänglig dag i naturreservat.',
     ],
 
     facts: {
@@ -1554,7 +1554,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['dalaro', 'orno', 'uto'],
     tags: ['sandstrand', 'lättillgänglig', 'södra', 'bad', 'camping'],
-    did_you_know: 'Gålö är anmärkningsvärt bergigt för en Östersjöö — högsta punkten är 57 meter över havet, vilket är ovanligt i den plana skärgården.',
+    did_you_know: 'Gålö Havsbad är en av Stockholmsregionens mest besökta badplatser — här fanns redan tidigt 1900-tal sommarkoloniverksamhet för Stockholms barn, och delar av området drivs idag av Skärgårdsstiftelsen som naturreservat och kulturmiljö.',
   },
 
   // ─── TORÖ ────────────────────────────────────────────────────
@@ -1566,9 +1566,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌲',
     tagline: 'Naturreservat i söder med dramatisk kustlinje och surf-stämning.',
     description: [
-      'Torö är en större ö i norra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön erbjuder varierad natur och är populär bland seglare.',
-      'Naturen på Torö är varierad med skogspartier och väl utvecklad kustlinje. Det finns hamnar och grundläggande service. Möjligheter för vandring och badning.',
-      'Torö passar för seglare som söker ett bra ankringsläge i norra skärgården.'
+      'Torö är en stor ö i Stockholms södra skärgård i Nynäshamns kommun — broförbunden med fastlandet via Herrhamras bro och Torö bro. Den dramatiska sydkusten med stora rundslipade strandstenar (Torö stenstrand) är en av Stockholms läns mest unika kustlinjer och är skyddad som naturreservat.',
+      'Torö stenstrand bildades under inlandsisens reträtt och är en av få platser i Sverige med så omfattande klapperstensformationer. Stränderna är populära både för promenader och för Östersjöns ovanliga sportsegling i sommarvindarna.',
+      'Torö passar för dagsutflykter med bil från Stockholm, för fågelskådare under vår- och höstflyttning, och för seglare som söker en exponerad sydlig kustlinje.',
     ],
 
     facts: {
@@ -1601,7 +1601,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'uto', 'galo'],
     tags: ['naturreservat', 'surf', 'kustlinje', 'södra', 'vandring'],
-    did_you_know: 'Torö har ett av södra skärgårdens mest aktiva fågelskådartorn. Under höstflyttningen passerar upp till 50 000 fåglar per dag.',
+    did_you_know: 'Torö stenstrand på öns sydsida är en av Stockholms läns geologiska sevärdheter — en lång klapperstensstrand med stora rundslipade stenar formade under inlandsisens reträtt. Stranden är skyddad som naturreservat.',
   },
 
   // ─── FJÄRDLÅNG ───────────────────────────────────────────────
@@ -1655,27 +1655,29 @@ export const ISLANDS: Island[] = [
     name: 'Rindö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: 'building',
-    tagline: 'Militärhistoria och stilla vikar nära Vaxholm',
+    emoji: '🏛',
+    tagline: 'Tidigare KA 1-regementet — militärhistoria omvandlad till bostadsö nära Vaxholm',
     description: [
-      'Rindö är en mellanstor ö i mellersta skärgården som erbjuder en blandning av lugn natur och möjligheter för aktiviteter för hela familjen. Ön är populär bland seglare som utgångspunkt för kajakpaddling.',
-      'Naturen på Rindö är varierad med både skog och klippor. En enkel gästhamn och grundläggande service gör det enkelt att stanna ett par dagar. Ön är bilfärjebetjänad vilket gör den mer tillgänglig.',
-      'Rindö fungerar väl som del av en rundtur tillsammans med närliggande öar som Resarö och Tenö, eller som självständig destination för kajak och naturupplevelse.'
+      'Rindö ligger i Stockholms inre skärgård öster om Vaxholm. Ön har en rik militärhistoria — Vaxholms kustartilleriregemente (KA 1) bildades på Rindö 1 januari 1902 och kasernbyggnaderna stod klara 1906, ritade av arkitekt Erik Josephson efter standardplaner för infanteriet. Regementet bemannade Vaxholms fästning, Oscar-Fredriksborgs fästning och Hörningsholms kustposition.',
+      'KA 1 lades ned 30 juni 2000 och ersattes av Vaxholms Amfibieregemente (Amf 1) som 2006 flyttade till Berga örlogsbas. Sedan dess har Vasallen omvandlat kasernområdet till ett växande bostadsområde — Rindö är idag i första hand en bostadsö för Vaxholms-pendlare, med kvarvarande militärhistoriska byggnader och fortifikationer.',
+      'Rindö passar för dagsbesök från Vaxholm, för promenader bland kasernerna och Oscar-Fredriksborgs fortifikationer, eller som boendeort för dem som vill kombinera skärgårdsläge med Stockholms-pendling.',
     ],
-
-    facts: { travel_time: '10 min från Vaxholm', character: 'Historisk, lugn, bostadsö', season: 'Maj–september', best_for: 'Historia, vandring, segling' },
+    facts: { travel_time: '10 min med bilfärja från Vaxholm', character: 'Militärhistoria, bostadsö, broförbunden', season: 'Helår', best_for: 'Militärhistoria, vandring, dagsutflykt från Vaxholm' },
     activities: [
-      { icon: '🏰', name: 'Befästningsvandrning', desc: 'Utforska rester av gamla försvarsanläggningar längs öststranden.' },
-      { icon: '⛵', name: 'Segling', desc: 'Fin passage för segelbåtar med naturliga vindförhållanden.' },
+      { icon: '🏛', name: 'KA 1-området', desc: 'Promenera bland Erik Josephsons kasernbyggnader från 1906 — idag bostäder och kulturmiljö.' },
+      { icon: '🏰', name: 'Oscar-Fredriksborgs fästning', desc: 'Bevarad kustartillerifästning från sent 1800-tal/tidigt 1900-tal.' },
+      { icon: '🚶', name: 'Promenader', desc: 'Stigar längs öns klippkust och genom de gamla militärområdena.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Färja', from: 'Vaxholm', time: '10 min', desc: 'Reguljär bilfärja från Vaxholm centrum.', icon: '⛴' }],
+    getting_there: [
+      { method: 'Bilfärja', from: 'Vaxholm', time: '10 min', desc: 'Reguljär bilfärja från Vaxholm centrum till Rindö (Trafikverkets vägfärja, avgiftsfri).', icon: '⛴' },
+    ],
     harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.', spots: 8 }],
     restaurants: [],
-    tips: ['Kombinera med ett besök på Vaxholms fästning.', 'Bra ankringsplats i Rindösund skyddat läge.'],
-    related: ['vaxholm', 'husaro', 'ljustero'],
-    tags: ['militärhistoria', 'lugnt', 'nära Vaxholm', 'vandring'],
-    did_you_know: 'Rindö har en militär historia som sträcker sig tillbaka till 1600-talet. Kasernbyggnaderna från 1800-talet är idag omgjorda till bostäder.',
+    tips: ['Kombinera gärna med ett besök på Vaxholms fästning på Vaxholmen-sidan.', 'Vasallens omvandling av kasernerna är en av Sveriges större militära konversionsprojekt — värt en promenad.'],
+    related: ['vaxholm', 'resaro', 'ljustero'],
+    tags: ['militärhistoria', 'KA 1', 'bostadsö', 'nära Vaxholm', 'mellersta'],
+    did_you_know: 'Vaxholms kustartilleriregemente (KA 1) bildades på Rindö 1902 och bemannade Vaxholms och Oscar-Fredriksborgs fästningar. Efter regementets nedläggning 2000 omvandlade Vasallen de gamla kasernerna — ritade av Erik Josephson 1906 — till bostäder, vilket gjorde Rindö till ett av Sveriges mest kända exempel på militär konversion.',
   },
 
   {
@@ -1684,26 +1686,30 @@ export const ISLANDS: Island[] = [
     region: 'norra',
     regionLabel: 'Norra skärgården',
     emoji: '🚲',
-    tagline: 'Bilfri cykelö med sandstränder och lantlig charm',
+    tagline: 'En av norra skärgårdens största öar — bilfärja, cykling och Köpmanholms hamn',
     description: [
-      'Yxlan är en liten ö i mellersta skärgården som erbjuder lugn natur och möjligheter för enkelt ankörning. Ön är mindre känd men älskad av lugnsökande.',
-      'Yxlan kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser och möjligheter för vandring längs kusten erbjuds.',
-      'Yxlan passar för kajakvinnare eller erfarna seglare som redan är ute på havet och letar efter ett enkelt ankringsläge.'
+      'Yxlan är en av norra skärgårdens största öar — cirka 17 km² — och ligger mellan Furusund och Blidö. Köpmanholm vid öns nordspets är öns huvudort, med gästhamn, butiker och restauranger. Waxholmsbolaget angör åtta bryggor på ön: Yxlö, Alsvik, Brokholmen, Duvnäs, Kolsvik, Köpmanholm, Vagnsunda och Yxlövik.',
+      'Ön är broförbunden i båda riktningar via Trafikverkets avgiftsfria bilfärjor: Furusundsleden (600 meter, 4 minuter) från Furusund och Blidöleden (530 meter, 4 minuter) över till Blidö. Det gör Yxlan till en av de mest tillgängliga större öarna i norra skärgården.',
+      'Yxlan passar för cykelsemester, vandring och båtutflykter med övernattning på land. Köpmanholm är ett bra startläge för seglare som vill utforska Furusunds- och Blidöleden.',
     ],
-
-    facts: { travel_time: '45 min från Kapellskär', character: 'Bilfri, lantlig, sandstrand', season: 'Juni–september', best_for: 'Cykling, bad, avkoppling' },
+    facts: { travel_time: '1,5 h med bil + bilfärja från Stockholm', character: 'Stor ö, bilförbunden via färja, Köpmanholm', season: 'Maj–oktober', best_for: 'Cykling, vandring, segling, dagsutflykt' },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Hyr cykel vid bryggan och utforska hela ön på 2–3 timmar.' },
-      { icon: '🏊', name: 'Bad vid Kungsudde', desc: 'Ovanlig sandstrand — sällsynt i norra skärgården.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykelvägar löper över hela ön — räkna med en hel dag för att se alla bryggor och utsiktspunkter.' },
+      { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Flera badplatser längs kusten, både klippor och mindre sandstränder.' },
+      { icon: '⛵', name: 'Hamnliv i Köpmanholm', desc: 'Öns huvudort med gästhamn, restauranger och småbåtsservice.' },
     ],
     accommodation: [{ name: 'Yxlans Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt boende med självhushåll, perfekt för naturälskare.' }],
-    getting_there: [{ method: 'Bilfärja', from: 'Simpnäs', time: '45 min', desc: 'Waxholmsbolaget trafikerar leden sommarsäsong.', icon: '⛴' }],
-    harbors: [{ name: 'Yxlans gästhamn', desc: 'Välskött hamn med el, vatten och dusch.', spots: 30, service: ['El', 'Vatten', 'Dusch'] }],
+    getting_there: [
+      { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', time: '1,5 h', desc: 'E18 mot Norrtälje, sen väg 276 till Furusund. Furusundsleden (avgiftsfri vägfärja, 4 min) över till Yxlan.', icon: '🚗' },
+      { method: 'Skärgårdsbåt', from: 'Strömkajen', time: '3–4 h', desc: 'Waxholmsbolaget angör åtta bryggor på ön — Köpmanholm är huvudbryggan.', icon: '⛴' },
+      { method: 'Cinderellabåtarna', from: 'Strandvägen', time: '3 h', desc: 'Sommartrafik till Köpmanholm.', icon: '⛴' },
+    ],
+    harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', spots: 30, service: ['El', 'Vatten', 'Dusch'] }],
     restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
-    tips: ['Boka vandrarhem tidigt i juli.', 'Ta morgonbåten för en hel dag på ön.'],
-    related: ['singo', 'graddo', 'fejan'],
-    tags: ['bilfri', 'sandstrand', 'cykling', 'norra'],
-    did_you_know: 'Yxlan har skärgårdens enda kvarvarande aktiva tegelbruk. Lertegel har bränts på ön sedan medeltiden — vattentransport var perfekt för tunga stenar.',
+    tips: ['Båda bilfärjorna (Furusund-Yxlan och Yxlan-Blidö) är avgiftsfria.', 'Cykla mellan bryggor — varje brygga har sin egen karaktär.', 'Köpmanholm är livligast under hummerveckan i september.'],
+    related: ['blido', 'furusund', 'graddo'],
+    tags: ['stor ö', 'bilfärja', 'cykling', 'norra', 'köpmanholm'],
+    did_you_know: 'Yxlan är broförbunden med både Furusund och Blidö via två avgiftsfria bilfärjor — Furusundsleden (600 m) i väster och Blidöleden (530 m) i öster. Tillsammans gör de Yxlan till en av de mest lättillgängliga större öarna i Roslagens skärgård, trots att den saknar fast brobindelse till fastlandet.',
   },
 
   {
@@ -1741,28 +1747,28 @@ export const ISLANDS: Island[] = [
     slug: 'bullero',
     name: 'Bullerö',
     region: 'mellersta',
-    regionLabel: 'Mellersta skärgården',
-    emoji: '🦅',
-    tagline: 'Naturreservat med rikt fågelliv och rå skärgårdskaraktär',
+    regionLabel: 'Mellersta ytterskärgården',
+    emoji: '🎨',
+    tagline: 'Bruno Liljefors ö — naturreservat och jaktstuga i ytterskärgården',
     description: [
-      'Bullerö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder lugn, ett aktivt sommarliv och en genuin skärgårdskaraktär. Ön nås enkelt och är populär bland familjer.',
-      'Naturen är varierad med både skog och badplatser längs kusten. Det finns en välskött gästhamn och restauranger som håller ön levande sommartid. Cykelvägar löper längs vägnätet.',
-      'Bullerö kombineras ofta med ett besök på närliggande öar på en längre seglingstur, men kan också fungera som självständig destination för ett övernattningsbesök.'
+      'Bullerö är en 0,78 km² stor ö i Stockholms mellersta ytterskärgård, sydost om Sandhamn. Konstnären Bruno Liljefors (1860–1939) — en av Sveriges mest framstående djurmålare — köpte ön 1908 och byggde en jaktstuga och ateljé på dess östra sida, där han hämtade motiv direkt ur den vilda skärgårdsnaturen.',
+      'Bullerö med kringliggande öar köptes av staten 1967 och är idag ett naturreservat som förvaltas av Skärgårdsstiftelsen. Bruno Liljefors hus inrymmer Naturvårdsverkets Naturum med en utställning om skärgårdens natur och kultur, och visar reproduktioner av Liljefors målningar.',
+      'Bullerö passar för dagsturer och kortare övernattning för seglare och naturälskare som vill se den verkliga ytterskärgården och en del av svensk konsthistoria på samma plats.',
     ],
-
-    facts: { travel_time: '2–3 h från Stockholm', character: 'Naturreservat, vilt, fågelrikt', season: 'Maj–september (fåglar bäst i juni)', best_for: 'Fågelskådning, natur, fotografi' },
+    facts: { travel_time: '3–4 h med segelbåt från Stavsnäs', character: 'Naturreservat, ytterskärgård, konsthistorisk plats', season: 'Maj–september', best_for: 'Naturum-besök, fågelskådning, segling, kulturhistoria' },
     activities: [
-      { icon: '🦅', name: 'Fågelskådning', desc: 'Havsörn, sillgrissla och labb häckar på öarna.' },
-      { icon: '🏛', name: 'Naturum Bullerö', desc: 'Utställning och guidade turer om ytterskärgårdens ekologi.' },
+      { icon: '🎨', name: 'Bruno Liljefors jaktstuga', desc: 'Konstnärens hus från 1908 — idag Naturvårdsverkets Naturum med utställning om skärgården.' },
+      { icon: '🦅', name: 'Fågelliv', desc: 'Havsörn, ejder, vigg och olika sjöfågel häckar i området.' },
+      { icon: '🚶', name: 'Vandringsstigar', desc: 'Markerade leder genom naturreservatets klipplandskap.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Båt', from: 'Stavsnäs', time: '2 h', desc: 'Waxholmsbolaget sommarsäsong eller privat båt.', icon: '⛴' }],
-    harbors: [{ name: 'Bullerö gästhamn', desc: 'Begränsade platser vid naturreservatets brygga.', spots: 15 }],
+    getting_there: [{ method: 'Skärgårdsbåt / egen båt', from: 'Stavsnäs', time: '2–3 h', desc: 'Waxholmsbolaget angör Bullerö under säsong — kontrollera tidtabell. Eller egen båt från Stavsnäs/Sandhamn.', icon: '⛴' }],
+    harbors: [{ name: 'Bullerö gästhamn', desc: 'Begränsade platser vid naturreservatets brygga — Skärgårdsstiftelsen förvaltar.', spots: 15 }],
     restaurants: [],
-    tips: ['Binokulär ett måste.', 'Visa respekt för häckande fåglar — håll avstånd.', 'Tidig morgon ger bäst fågelupplevelse.'],
-    related: ['nattaro', 'gallno', 'moja'],
-    tags: ['naturreservat', 'fågelskådning', 'ytterskärgård', 'vilt'],
-    did_you_know: 'Bullerö är hem för ett av landets mest besökta naturum för skärgårdsekologi. Djurlivet är exceptionellt rikt — sälkolonierna är synliga från stranden.',
+    tips: ['Naturum är öppet sommarsäsong — kontrollera öppettider innan besök.', 'Respektera fågelskyddet under häckningstid (april–juli).', 'Kombinera gärna med ett besök på Sandhamn på samma seglingstur.'],
+    related: ['nattaro', 'gallno', 'sandhamn'],
+    tags: ['naturreservat', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
+    did_you_know: 'Konstnären Bruno Liljefors — en av Sveriges mest kända djurmålare och guldmedaljör vid Stockholmsutställningen 1897 — köpte Bullerö 1908. Idag är hans jaktstuga och ateljé Naturum, och flera av hans mest kända motiv föddes i skärgårdsnaturen runt ön.',
   },
 
   {
@@ -1770,27 +1776,30 @@ export const ISLANDS: Island[] = [
     name: 'Vindö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: 'leaf',
-    tagline: 'Stor skogsö med bro och hästgård',
+    emoji: '🌳',
+    tagline: 'Större broförbunden ö i Värmdö-skärgården — skog, vikar och båtliv',
     description: [
-      'Vindö är en bilfärjebetjänad ö i mellersta skärgården som kombinerar lugn med närhet till fastlandet. Ön är mindre uppmärksammad än grannarna men erbjuder hög kvalitet.',
-      'Skoglövet på Vindö är tätt och det finns flera fina vandringsstigar. Badplatser längs kusten är ofta folktomt. En enkel hamn och service täcker behoven.',
-      'Vindö passar för den som söker lugn utan att behöva åka långt bort, eller för den som redan är ute och letar efter nästa stopp.'
+      'Vindö är en större ö i Stockholms mellersta skärgård i Värmdö kommun, broförbunden med fastlandet via Djurö i söder och med Skarpö i öster. Det gör Vindö till en av de mest tillgängliga öarna i området — man kör hela vägen utan färja.',
+      'Skogen är tät och flera vandringsstigar leder mellan klippkust och inland. Badplatser längs kusten är ofta lugnare än på de mer turisttyngda öarna i området. Vindö är ett populärt sommarstugeområde med stark båtkultur — Stavsnäs och Stockholms inre skärgård ligger nära.',
+      'Vindö passar för den som vill kombinera enkla bilförbindelser med skärgårdsnatur, eller som utgångspunkt för båtutflykter mot Stavsnäs och de yttre öarna.',
     ],
-
-    facts: { travel_time: '1 h från Gustavsberg', character: 'Skogig, lugn, broförbunden', season: 'Maj–oktober', best_for: 'Vandring, ridning, familjeutflykt' },
+    facts: { travel_time: '1 h med bil från Stockholm', character: 'Stor broförbunden ö, skog, sommarstugor', season: 'Maj–oktober', best_for: 'Vandring, sommarboende, båtutflykter' },
     activities: [
-      { icon: '🌳', name: 'Vandring', desc: 'Markerade leder genom gammal barrskog till klippvyer.' },
-      { icon: '🐴', name: 'Ridning', desc: 'Hästgård med rid-möjligheter för alla nivåer.' },
+      { icon: '🌳', name: 'Vandring', desc: 'Stigar genom blandskog och längs klippkust.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Vägar mellan Djurö, Vindö och Skarpö är fina cykelturer.' },
+      { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Mindre badplatser längs kusten — ofta lugnare än Värmdöns inre öar.' },
     ],
-    accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats i skogen nära havet.' }],
-    getting_there: [{ method: 'Bil/bro', desc: 'Broförbindelse via Gustavsbergsleden.', icon: '🚗' }, { method: 'Båt', from: 'Stavsnäs', time: '40 min', desc: 'Sommarlinje Waxholmsbolaget.', icon: '⛴' }],
+    accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats nära havet.' }],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm via Värmdö', time: '1 h', desc: 'Väg 222 till Värmdö, sedan över Djurö och vidare till Vindö via fast brobindelse.', icon: '🚗' },
+      { method: 'Buss', from: 'Slussen', time: '1 h 15 min', desc: 'SL-buss via Värmdö och Djurö till Vindö.', icon: '🚌' },
+    ],
     harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.', spots: 20 }],
     restaurants: [{ name: 'Vindö Hamnkafé', type: 'Kafé', desc: 'Fika och enkel mat vid bryggan, öppet sommarsäsong.' }],
-    tips: ['Bra för familjer med barn.', 'Hyr cykel och utforska hela ön på halv dag.'],
-    related: ['ingaro', 'gallno', 'namdo'],
-    tags: ['skog', 'vandring', 'ridning', 'familj', 'mellersta'],
-    did_you_know: 'Vindö är känd för sina dramatiska stormiga vintrar — vindhastigheterna är bland de högsta i inre skärgården. Sommartid är det paradisiskt.',
+    tips: ['Vindö är broförbunden — ingen färja krävs.', 'Bra utgångspunkt för båtutflykter mot Stavsnäs och Möja.', 'Cykla mellan Djurö och Vindö för en stilla halvdag.'],
+    related: ['gallno', 'namdo', 'moja'],
+    tags: ['stor ö', 'broförbunden', 'skog', 'sommarstugor', 'mellersta'],
+    did_you_know: 'Vindö nås landvägen utan färja — ön är broförbunden via Djurö i söder. Tillsammans med Djurö och Skarpö bildar den ett av få sammanhängande bilförbundna ö-områden i mellersta skärgården, vilket gjort området till en av Stockholms tätaste sommarstugekluster.',
   },
 
   {
