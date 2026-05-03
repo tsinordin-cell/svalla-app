@@ -679,6 +679,25 @@ export default function UpptackClient() {
           )
         })}
 
+        {/* Min dag — orchestrerad dagplan från position */}
+        <Link
+          href="/dag"
+          className="press-feedback"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            height: 30, padding: '0 12px',
+            border: 'none', borderRadius: 999,
+            background: 'var(--grad-sea, #1e5c82)',
+            color: '#fff',
+            fontSize: 12, fontWeight: 700,
+            textDecoration: 'none',
+            transition: 'background 160ms ease, color 160ms ease',
+          }}
+        >
+          <Icon name="compass" size={14} color="#fff" strokeWidth={2} />
+          Min dag
+        </Link>
+
         {/* Planera — navigerar till /planera */}
         <Link
           href="/planera"
