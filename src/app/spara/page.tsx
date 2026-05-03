@@ -22,6 +22,7 @@ import { addTripTag } from '@/lib/tripTags'
 import { analytics } from '@/lib/analytics'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
+import Icon from '@/components/Icon'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -636,7 +637,7 @@ export default function SparaPage() {
     const startedAt = startTimeRef.current?.toISOString() ?? new Date().toISOString()
     const endedAt   = new Date().toISOString()
 
-    // Upload media files (images + videos, max 3)
+    // Upload media files (images only — video/quicktime stöds ej i Storage)
     const uploadedUrls: string[] = []
     for (let i = 0; i < mediaFiles.length; i++) {
       const f   = mediaFiles[i]!
@@ -645,7 +646,17 @@ export default function SparaPage() {
       const { data: upload, error: upErr } = await supabase.storage
         .from('trips').upload(filename, f, { upsert: false })
       if (upErr || !upload) {
-        setErr(`Kunde inte ladda upp fil ${i + 1}: ` + (upErr?.message ?? 'okänt fel'))
+        // Översätt Supabase-felmeddelanden till hjälpsam svenska — inte rå mime-text
+        const raw = upErr?.message ?? 'okänt fel'
+        let friendly = `Kunde inte ladda upp bild ${i + 1}.`
+        if (/mime type|not supported/i.test(raw)) {
+          friendly = `Bild ${i + 1} har ett format som inte stöds. Spara om som JPG eller PNG och försök igen.`
+        } else if (/payload too large|exceeds the maximum/i.test(raw)) {
+          friendly = `Bild ${i + 1} är för stor — max 10 MB. Komprimera och försök igen.`
+        } else if (/jwt|unauthor|policy/i.test(raw)) {
+          friendly = `Sessionen verkar ha gått ut. Ladda om sidan och försök igen.`
+        }
+        setErr(friendly)
         setSaving(false); return
       }
       const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
@@ -1085,7 +1096,9 @@ export default function SparaPage() {
                 display: 'flex', alignItems: 'center', gap: 10,
                 animation: 'strv-fade .3s ease',
               }}>
-                <span style={{ fontSize: 20 }}>{flashInsight.emoji}</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 22, height: 22, color: 'rgba(255,255,255,.92)' }}>
+                  <Icon name={flashInsight.iconKey} size={20} stroke={2} />
+                </span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,.8)' }}>{flashInsight.text}</span>
               </div>
             )}
@@ -1164,30 +1177,67 @@ export default function SparaPage() {
           />
         </div>
 
-        {/* Movement / offline badge — top left */}
+        {/* Movement / offline / paused badge — top left */}
         <div style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top,0px) + 14px)', left: 14, zIndex: 20,
           display: 'flex', alignItems: 'center', gap: 6 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            background: 'rgba(8,18,30,.75)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-            borderRadius: 20, padding: '6px 14px',
-            border: `1px solid ${mv.color}55`,
-          }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: mv.color, flexShrink: 0 }} />
-            <span style={{ fontSize: 11, fontWeight: 600, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
-            {currentSpeed > 0.3 && (
-              <span style={{ fontSize: 11, color: mv.color, opacity: .7, fontWeight: 600 }}>
-                · {currentSpeed.toFixed(1)} kn
-              </span>
-            )}
-          </div>
-          {!isOnline && (
+          {!isTracking ? (
             <div style={{
-              background: 'rgba(201,110,42,.9)', backdropFilter: 'blur(8px)',
-              borderRadius: 16, padding: '5px 12px',
-              fontSize: 11, fontWeight: 700, color: '#fff',
+              display: 'inline-flex', alignItems: 'center', gap: 7,
+              background: 'rgba(201,110,42,.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+              borderRadius: 20, padding: '6px 14px',
+              border: '1px solid rgba(255,255,255,.18)',
+              boxShadow: '0 2px 10px rgba(201,110,42,.4)',
             }}>
-              {offlineBuffered} pkt
+              <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 11, height: 11, color: '#fff' }}>
+                <rect x="6" y="4" width="4" height="16" rx="1.2"/>
+                <rect x="14" y="4" width="4" height="16" rx="1.2"/>
+              </svg>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '.4px' }}>PAUSAD</span>
+            </div>
+          ) : (
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: 'rgba(8,18,30,.75)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+              borderRadius: 20, padding: '6px 14px',
+              border: `1px solid ${mv.color}55`,
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: mv.color, flexShrink: 0 }} />
+              <span style={{ fontSize: 11, fontWeight: 600, color: mv.color, letterSpacing: '.3px' }}>{mv.label}</span>
+              {currentSpeed > 0.3 && (
+                <span style={{ fontSize: 11, color: mv.color, opacity: .7, fontWeight: 600 }}>
+                  · {currentSpeed.toFixed(1)} kn
+                </span>
+              )}
+            </div>
+          )}
+          {(!isOnline || offlineBuffered > 0) && (
+            <div
+              title={!isOnline
+                ? `${offlineBuffered} GPS-punkter buffrade — synkar när nätverket är tillbaka`
+                : `Synkar ${offlineBuffered} buffrade punkter…`}
+              style={{
+                background: !isOnline ? 'rgba(201,110,42,.92)' : 'rgba(30,92,130,.92)',
+                backdropFilter: 'blur(8px)',
+                borderRadius: 16, padding: '5px 11px 5px 9px',
+                fontSize: 11, fontWeight: 700, color: '#fff',
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                boxShadow: '0 2px 8px rgba(0,0,0,.18)',
+              }}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 12, height: 12 }}>
+                {!isOnline ? (
+                  <>
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                    <line x1="2" y1="2" x2="22" y2="22"/>
+                  </>
+                ) : (
+                  <>
+                    <path d="M21 12a9 9 0 1 1-6.22-8.56"/>
+                  </>
+                )}
+              </svg>
+              {!isOnline ? `Offline · ${offlineBuffered} pkt buffrade` : `Synkar ${offlineBuffered}…`}
             </div>
           )}
         </div>
@@ -1340,30 +1390,66 @@ export default function SparaPage() {
             </div>
           )}
 
-          {/* GPS error */}
-          {gpsError && (
-            <div style={{
-              margin: '0 20px 10px', padding: '7px 12px', borderRadius: 10,
-              background: gpsError.startsWith('Söker') ? 'rgba(74,184,212,.1)' : 'rgba(220,38,38,.12)',
-              border: `1px solid ${gpsError.startsWith('Söker') ? 'rgba(74,184,212,.25)' : 'rgba(220,38,38,.3)'}`,
-              color: gpsError.startsWith('Söker') ? '#4ab8d4' : '#f87171',
-              fontSize: 11, fontWeight: 600,
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
-            }}>
-              {gpsError.startsWith('Söker') ? (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
-                  <path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                  <path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/>
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                  <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
-              )}
-              {gpsError}
-            </div>
-          )}
+          {/* GPS status — söker vs permission-fel vs annat fel */}
+          {gpsError && (() => {
+            const isSearching = gpsError.startsWith('Söker')
+            const isPermissionDenied = gpsError.toLowerCase().includes('nekad') || gpsError.toLowerCase().includes('inställningarna')
+            // Söker-state: liten subtle pill (samma som tidigare)
+            if (isSearching) {
+              return (
+                <div style={{
+                  margin: '0 20px 10px', padding: '7px 12px', borderRadius: 10,
+                  background: 'rgba(74,184,212,.1)', border: '1px solid rgba(74,184,212,.25)',
+                  color: '#4ab8d4', fontSize: 11, fontWeight: 600,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                    <path d="M10.54 16.1a6 6 0 0 1 2.92 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                  {gpsError}
+                </div>
+              )
+            }
+            // Permission denied / hard error: prominent banner med action
+            return (
+              <div style={{
+                margin: '8px 16px 14px', padding: '14px 16px', borderRadius: 14,
+                background: 'rgba(220,38,38,.14)', border: '1px solid rgba(220,38,38,.35)',
+                display: 'flex', flexDirection: 'column', gap: 10,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                  <span style={{ flexShrink: 0, color: '#f87171', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20 }}>
+                    <Icon name="warning" size={18} stroke={2} />
+                  </span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#fecaca', marginBottom: 4 }}>
+                      {isPermissionDenied ? 'GPS-behörighet krävs' : 'GPS-fel'}
+                    </div>
+                    <div style={{ fontSize: 12.5, fontWeight: 500, color: 'rgba(254,202,202,.85)', lineHeight: 1.45 }}>
+                      {isPermissionDenied
+                        ? 'Tillåt platsdelning för Svalla i din webbläsares/enhetens inställningar och försök igen.'
+                        : gpsError}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="press-feedback"
+                  onClick={() => { setGpsError(''); startGPS() }}
+                  style={{
+                    alignSelf: 'flex-start',
+                    padding: '8px 16px', borderRadius: 10,
+                    background: 'rgba(255,255,255,.92)', color: '#1e5c82',
+                    border: 'none', cursor: 'pointer',
+                    fontSize: 13, fontWeight: 700,
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                  }}
+                >
+                  Försök igen
+                </button>
+              </div>
+            )
+          })()}
 
           {/* Single primary action button */}
           <div style={{ padding: '0 16px' }}>
@@ -1813,30 +1899,31 @@ export default function SparaPage() {
           <input
             ref={fileRef}
             type="file"
-            accept="image/*,video/*"
+            // Bara bilder — Supabase Storage stöder inte video/quicktime (.mov från iPhone)
+            // och vi har inte transcoding på plats. Tydlig restriktion > misslyckad upload.
+            accept="image/jpeg,image/png,image/webp,image/heic"
             style={{ display: 'none' }}
             onChange={async e => {
               const f = e.target.files?.[0]
               e.target.value = ''   // reset so same file can be re-selected
               if (!f || mediaFiles.length >= 3) return
-              if (f.type.startsWith('video/') && f.size > 100 * 1024 * 1024) {
-                setErr('Video är för stor (max 100 MB)'); return
+              // Avvisa video tydligt — meddelande beskriver problemet och hur man fixar
+              if (f.type.startsWith('video/') || /\.(mov|mp4|m4v|webm|avi)$/i.test(f.name)) {
+                setErr('Videofiler stöds inte ännu — välj en bild från turen istället. iPhones .mov-format kommer i en framtida version.')
+                return
               }
-              if (f.type.startsWith('video/')) {
-                // Video: object URL is fine (no compression needed)
-                const url = URL.createObjectURL(f)
-                setMediaFiles(prev => [...prev, f])
-                setMediaPreviews(prev => [...prev, url])
-              } else {
-                // Image: compress → FileReader → stable base64 data-URL (fixes blank preview bug)
-                const compressed = await compressImage(f)
-                const reader = new FileReader()
-                reader.onload = () => {
-                  setMediaFiles(prev => [...prev, compressed])
-                  setMediaPreviews(prev => [...prev, reader.result as string])
-                }
-                reader.readAsDataURL(compressed)
+              if (!f.type.startsWith('image/')) {
+                setErr('Endast bildfiler stöds (jpg, png, webp, heic).')
+                return
               }
+              // Image: compress → FileReader → stable base64 data-URL (fixes blank preview bug)
+              const compressed = await compressImage(f)
+              const reader = new FileReader()
+              reader.onload = () => {
+                setMediaFiles(prev => [...prev, compressed])
+                setMediaPreviews(prev => [...prev, reader.result as string])
+              }
+              reader.readAsDataURL(compressed)
             }}
           />
         </div>
@@ -1858,9 +1945,6 @@ export default function SparaPage() {
         {err && (
           <div className="rounded-2xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">
             <strong>Fel:</strong> {err}
-            <div className="mt-2 text-xs text-red-500">
-              Är du inloggad? Gå till <a href="/logga-in" className="underline">svalla.se/logga-in</a>.
-            </div>
           </div>
         )}
 
