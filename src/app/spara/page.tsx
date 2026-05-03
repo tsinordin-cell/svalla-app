@@ -382,13 +382,29 @@ export default function SparaPage() {
         }
 
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
-        const clampedSpeed = Math.min(speedKnots, 40)
-        setCurrentSpeed(clampedSpeed)
+
+        // Hastighets-rensning — GPS Doppler ger ofta skräp i kall start och tätort.
+        // 1) Cap absolut tak till 30 knop (max realistiskt för segelbåt/snabb motorbåt;
+        //    avgångar därifrån är troligen anomalier).
+        // 2) Om accuracy är dåligt (>30m) — strunta i hastigheten, GPS är opålitlig.
+        // 3) Median av senaste 3 punkter — eliminerar enstaka spikar utan att
+        //    fördröja äkta accelerationer.
+        let cleanSpeed = Math.min(Math.max(speedKnots, 0), 30)
+        if (point.accuracy > 30) {
+          cleanSpeed = 0  // dålig GPS = ingen hastighet visas, hellre tomt än fel
+        } else {
+          const recentSpeeds = [...pointsRef.current.slice(-2).map(p => p.speedKnots), cleanSpeed]
+          if (recentSpeeds.length >= 3) {
+            const sorted = [...recentSpeeds].sort((a, b) => a - b)
+            cleanSpeed = sorted[Math.floor(sorted.length / 2)]!
+          }
+        }
+        setCurrentSpeed(cleanSpeed)
 
         const pt: GpsPoint = {
           lat:        smoothed.lat,
           lng:        smoothed.lng,
-          speedKnots: clampedSpeed,
+          speedKnots: cleanSpeed,
           heading:    point.heading,
           accuracy:   point.accuracy,
           recordedAt: new Date().toISOString(),
@@ -430,7 +446,7 @@ export default function SparaPage() {
         bufferPoint({
           lat:        smoothed.lat,
           lng:        smoothed.lng,
-          speedKnots: clampedSpeed,
+          speedKnots: cleanSpeed,
           heading:    point.heading,
           accuracy:   point.accuracy,
           recordedAt: new Date().toISOString(),
