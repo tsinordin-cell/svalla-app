@@ -12,6 +12,7 @@ import ForumSortTabs from './ForumSortTabs'
 import ForumRealtimeListener from './ForumRealtimeListener'
 import Icon from '@/components/Icon'
 import { renderForumBody } from '@/lib/forum-render'
+import LoppisListingCard from '@/components/LoppisListingCard'
 import type { ForumSort } from '@/lib/forum'
 import type { Metadata } from 'next'
 
@@ -202,47 +203,80 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
         </div>
       </div>
 
-      <div style={{ padding: '16px 16px 0', maxWidth: 760, margin: '0 auto' }}>
+      <div style={{ padding: '16px 0 0', maxWidth: 760, margin: '0 auto' }}>
 
-        {/* ── OP-kort ── */}
-        <div style={{
-          padding: '18px 18px 14px',
-          background: 'var(--card-bg, #fff)',
-          borderRadius: 16,
-          border: '1px solid var(--border, rgba(10,123,140,0.1))',
-          borderLeft: '3px solid var(--sea)',
-          boxShadow: '0 2px 12px rgba(10,123,140,0.07)',
-          marginBottom: 16,
-        }}>
-          <PostHeader
-            username={thread.author?.username ?? 'Okänd'}
-            avatar={thread.author?.avatar ?? null}
-            date={thread.created_at}
-            isOP
-          />
-          <div style={{
-            fontSize: 15,
-            color: 'var(--txt)',
-            lineHeight: 1.65,
-            marginTop: 12,
-            wordBreak: 'break-word',
-          }}>
-            {renderForumBody(thread.body)}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
-            <ForumQuoteButton username={thread.author?.username ?? 'Okänd'} body={thread.body} />
-            <ForumPostActions
-              postId={thread.id}
-              threadId={thread.id}
-              authorId={thread.user_id}
-              currentUserId={currentUserId}
-              initialBody={thread.body}
-              initialTitle={thread.title}
-              isThread
-              categoryId={kategori}
+        {/* ── OP-kort: Loppis-annons eller vanlig forum-tråd ── */}
+        {kategori === 'loppis' && thread.listing_data ? (
+          <>
+            <LoppisListingCard
+              title={thread.title}
+              body={thread.body}
+              createdAt={thread.created_at}
+              listing={thread.listing_data}
+              author={thread.author ? {
+                id: thread.user_id,
+                username: thread.author.username,
+                avatar: thread.author.avatar,
+              } : null}
+              isOwner={isThreadOwner}
             />
+            {/* Ägar-actions för annonsen (redigera/radera) */}
+            <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 16px 16px', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <ForumQuoteButton username={thread.author?.username ?? 'Okänd'} body={thread.body} />
+              <ForumPostActions
+                postId={thread.id}
+                threadId={thread.id}
+                authorId={thread.user_id}
+                currentUserId={currentUserId}
+                initialBody={thread.body}
+                initialTitle={thread.title}
+                isThread
+                categoryId={kategori}
+              />
+            </div>
+          </>
+        ) : (
+          <div style={{
+            padding: '18px 18px 14px',
+            margin: '0 16px 16px',
+            background: 'var(--card-bg, #fff)',
+            borderRadius: 16,
+            border: '1px solid var(--border, rgba(10,123,140,0.1))',
+            borderLeft: '3px solid var(--sea)',
+            boxShadow: '0 2px 12px rgba(10,123,140,0.07)',
+          }}>
+            <PostHeader
+              username={thread.author?.username ?? 'Okänd'}
+              avatar={thread.author?.avatar ?? null}
+              date={thread.created_at}
+              isOP
+            />
+            <div style={{
+              fontSize: 15,
+              color: 'var(--txt)',
+              lineHeight: 1.65,
+              marginTop: 12,
+              wordBreak: 'break-word',
+            }}>
+              {renderForumBody(thread.body)}
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
+              <ForumQuoteButton username={thread.author?.username ?? 'Okänd'} body={thread.body} />
+              <ForumPostActions
+                postId={thread.id}
+                threadId={thread.id}
+                authorId={thread.user_id}
+                currentUserId={currentUserId}
+                initialBody={thread.body}
+                initialTitle={thread.title}
+                isThread
+                categoryId={kategori}
+              />
+            </div>
           </div>
-        </div>
+        )}
+
+        <div style={{ padding: '0 16px' }}>
 
         {/* ── Svar ── */}
         {posts.length > 0 && (
@@ -367,6 +401,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
         ) : (
           <ForumReplyForm threadId={thread.id} categoryId={kategori} />
         )}
+        </div>
       </div>
 
       {/* Realtime: lyssnar på nya posts och visar pill om någon annan postar */}

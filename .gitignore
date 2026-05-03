@@ -32,3 +32,4 @@ node_modules/
 
 # Supabase temp files
 supabase/.temp/
+.env*.local

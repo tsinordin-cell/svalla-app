@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getCategoryById, getThreadsByCategory, formatForumDate } from '@/lib/forum'
 import type { Metadata } from 'next'
+import type { ListingData } from '@/lib/forum'
 import Icon, { type IconName } from '@/components/Icon'
 
 function CategoryIcon({ iconName }: { iconName: IconName }) {
@@ -84,8 +86,27 @@ export default async function ForumKategoriPage({ params }: Props) {
  </div>
  </div>
 
- {/* CTA — ny tråd i den här kategorin */}
+ {/* CTA — Loppis får annons-knapp, övriga får tråd-knapp */}
  <div style={{ padding: '14px 16px 0' }}>
+ {cat.id === 'loppis' ? (
+ <Link href="/forum/loppis/ny-annons" style={{
+ display: 'flex', alignItems: 'center', gap: 8,
+ padding: '13px 16px',
+ background: 'var(--acc, #c96e2a)',
+ color: '#fff',
+ borderRadius: 12,
+ textDecoration: 'none',
+ fontSize: 14, fontWeight: 700, letterSpacing: '0.2px',
+ boxShadow: '0 3px 10px rgba(201,110,42,0.25)',
+ }}>
+ <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+ <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+ <circle cx="8.5" cy="8.5" r="1.5" />
+ <polyline points="21 15 16 10 5 21" />
+ </svg>
+ Lägg upp annons
+ </Link>
+ ) : (
  <Link href={`/forum/ny-trad?kategori=${cat.id}`} style={{
  display: 'flex',
  alignItems: 'center',
@@ -104,12 +125,15 @@ export default async function ForumKategoriPage({ params }: Props) {
  </svg>
  Ny tråd i {cat.name}
  </Link>
+ )}
  </div>
 
- {/* Trådlista */}
+ {/* Trådlista — Loppis får annons-grid, övriga vanlig lista */}
  <div style={{ padding: '16px 16px 0' }}>
  {threads.length === 0 ? (
  <EmptyThreads categoryName={cat.name} categoryId={cat.id} />
+ ) : cat.id === 'loppis' ? (
+ <LoppisGrid threads={threads} />
  ) : (
  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
  {threads.map(thread => (
@@ -189,6 +213,138 @@ export default async function ForumKategoriPage({ params }: Props) {
  )}
  </div>
  </main>
+ )
+}
+
+// ── Loppis grid ───────────────────────────────────────────────────────────
+type ThreadWithListing = {
+ id: string
+ title: string
+ body: string
+ created_at: string
+ listing_data?: ListingData | null
+ author?: { username: string; avatar: string | null } | null
+}
+
+function formatPrice(price?: number): string {
+ if (typeof price !== 'number' || !Number.isFinite(price)) return 'Pris på förfrågan'
+ if (price === 0) return 'Skänkes'
+ return `${new Intl.NumberFormat('sv-SE').format(price)} kr`
+}
+
+function LoppisGrid({ threads }: { threads: ThreadWithListing[] }) {
+ // Bara annonser med listing_data (gamla forum-trådar utan visas inte i grid)
+ const ads = threads.filter(t => !!t.listing_data)
+ const legacyThreads = threads.filter(t => !t.listing_data)
+
+ return (
+ <>
+ {ads.length > 0 && (
+ <div style={{
+ display: 'grid',
+ gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))',
+ gap: 12,
+ marginBottom: legacyThreads.length > 0 ? 24 : 0,
+ }}>
+ {ads.map(t => {
+ const ld = t.listing_data!
+ const status = ld.status ?? 'aktiv'
+ const isSold = status === 'sald'
+ const heroImg = (ld.images && ld.images.length > 0) ? ld.images[0] : null
+ return (
+ <Link
+ key={t.id}
+ href={`/forum/loppis/${t.id}`}
+ style={{
+ display: 'block',
+ borderRadius: 14,
+ overflow: 'hidden',
+ background: 'var(--card-bg, #fff)',
+ border: '1px solid var(--border, rgba(10,123,140,0.10))',
+ boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+ textDecoration: 'none',
+ color: 'inherit',
+ opacity: isSold ? 0.6 : 1,
+ }}
+ >
+ <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: '#0a1e2c' }}>
+ {heroImg ? (
+ <Image src={heroImg} alt={t.title} fill sizes="(max-width: 760px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+ ) : (
+ <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#456', fontSize: 12 }}>
+ Ingen bild
+ </div>
+ )}
+ {status !== 'aktiv' && (
+ <div style={{
+ position: 'absolute', top: 8, right: 8,
+ background: status === 'sald' ? 'rgba(0,0,0,0.78)' : 'rgba(40,40,40,0.72)',
+ color: '#fff',
+ padding: '3px 8px', borderRadius: 12,
+ fontSize: 10, fontWeight: 700, letterSpacing: '0.4px', textTransform: 'uppercase',
+ backdropFilter: 'blur(6px)',
+ }}>
+ {status === 'sald' ? 'Såld' : 'Reserverad'}
+ </div>
+ )}
+ </div>
+ <div style={{ padding: '10px 12px 12px' }}>
+ <div style={{
+ fontSize: 16, fontWeight: 800, color: 'var(--acc, #c96e2a)',
+ letterSpacing: '-0.2px', marginBottom: 2,
+ }}>
+ {formatPrice(ld.price)}
+ </div>
+ <div style={{
+ fontSize: 13, fontWeight: 600, color: 'var(--txt)',
+ lineHeight: 1.3, marginBottom: 4,
+ overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical',
+ }}>
+ {t.title}
+ </div>
+ <div style={{
+ fontSize: 11, color: 'var(--txt3)',
+ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap',
+ }}>
+ {ld.location && <span>{ld.location}</span>}
+ {ld.location && <span>·</span>}
+ <span>{formatForumDate(t.created_at)}</span>
+ </div>
+ </div>
+ </Link>
+ )
+ })}
+ </div>
+ )}
+ {legacyThreads.length > 0 && (
+ <>
+ <div style={{
+ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', letterSpacing: '0.6px',
+ textTransform: 'uppercase', margin: '4px 0 10px',
+ }}>
+ Diskussionstrådar
+ </div>
+ <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+ {legacyThreads.map(t => (
+ <Link key={t.id} href={`/forum/loppis/${t.id}`} style={{
+ display: 'block', padding: '14px 16px',
+ background: 'var(--card-bg, #fff)', borderRadius: 14,
+ border: '1px solid var(--border, rgba(10,123,140,0.1))',
+ textDecoration: 'none', color: 'inherit',
+ boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+ }}>
+ <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', marginBottom: 4 }}>
+ {t.title}
+ </div>
+ <div style={{ fontSize: 12, color: 'var(--txt3)' }}>
+ {t.author?.username ?? 'Okänd'} · {formatForumDate(t.created_at)}
+ </div>
+ </Link>
+ ))}
+ </div>
+ </>
+ )}
+ </>
  )
 }
 

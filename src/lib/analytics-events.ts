@@ -59,6 +59,15 @@ export type SvallaEvent =
   | { name: 'route_planned';        props: { distance_nm: number; stops: number; interests: string[] } }
   | { name: 'route_saved';          props: { route_id: string } }
 
+  // Min dag
+  | { name: 'dag_pill_clicked';     props: { from: 'upptack_topbar' | 'feed' | 'island_page' | 'other' } }
+  | { name: 'dag_page_viewed';      props: Record<string, never> }
+  | { name: 'dag_position_set';     props: { source: 'gps' | 'fallback'; label?: string } }
+  | { name: 'dag_plan_generated';   props: { stops: number; total_km: number; total_min: number } }
+  | { name: 'dag_save_clicked';     props: { stops: number } }
+  | { name: 'dag_plan_saved';       props: { plan_id: string; stops: number } }
+  | { name: 'dag_save_failed';      props: { reason: 'auth' | 'server' | 'network' } }
+
   // Monetization
   | { name: 'pricing_viewed';       props: { source?: string; is_pro: boolean } }
   | { name: 'checkout_started';     props: { plan: 'month' | 'year' } }

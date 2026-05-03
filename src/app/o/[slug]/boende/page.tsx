@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
-import SvallaLogo from '@/components/SvallaLogo'
+import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -34,33 +34,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href={`/o/${slug}`} style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}>
-            ← {island.name}-guiden
-          </Link>
-        </div>
-      </nav>
-
-      <header style={{
-        background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '40px 24px 56px', color: '#fff',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <div style={{ fontSize: 11, opacity: 0.8, letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 8 }}>
-            {island.regionLabel} · {island.name}
-          </div>
-          <h1 style={{ fontSize: 36, fontWeight: 700, margin: 0, fontFamily: "'Playfair Display', Georgia, serif" }}>
-            Boende på {island.name}
-          </h1>
-        </div>
-      </header>
+      <IslandSubPageHeader island={island} tab="boende" />
 
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
         {island.accommodation.length === 0 ? (

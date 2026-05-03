@@ -48,12 +48,21 @@ const Button: React.FC<ButtonProps> = ({
   children,
   style,
   disabled,
+  className,
   ...rest
 }) => {
+  // press-feedback class triggar globalt definierad :active scale(0.97).
+  // Slås av när disabled så användaren ej får visuell feedback på döda knappar.
+  const cls = [
+    !disabled && 'press-feedback',
+    className,
+  ].filter(Boolean).join(' ') || undefined
+
   return (
     <button
       type="button"
       disabled={disabled}
+      className={cls}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -65,7 +74,7 @@ const Button: React.FC<ButtonProps> = ({
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.55 : 1,
         width: fullWidth ? '100%' : undefined,
-        transition: 'opacity 0.15s, box-shadow 0.15s',
+        transition: 'opacity 0.15s, box-shadow 0.15s, transform 80ms ease',
         ...sizeMap[size],
         ...variantMap[variant],
         ...style,

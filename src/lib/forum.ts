@@ -15,6 +15,18 @@ import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
+export interface ListingData {
+  price?: number
+  currency?: string
+  condition?: string
+  category?: string
+  images?: string[]
+  specs?: Array<{ label: string; value: string }>
+  location?: string
+  external_link?: string
+  status?: 'aktiv' | 'reserverad' | 'sald'
+}
+
 export interface ForumThread {
   id: string
   category_id: string
@@ -30,6 +42,8 @@ export interface ForumThread {
   created_at: string
   best_post_id?: string | null
   is_solved?: boolean
+  /** Loppis-annons-data (bara för category_id='loppis'). Null annars. */
+  listing_data?: ListingData | null
   // enriched
   author?: { username: string; avatar: string | null } | null
   last_reply_author?: { username: string } | null
@@ -116,7 +130,7 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
     const supabase = await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_threads')
-      .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at')
+      .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at, listing_data')
       .eq('category_id', categoryId)
       .eq('in_spam_queue', false)
       .order('is_pinned', { ascending: false })

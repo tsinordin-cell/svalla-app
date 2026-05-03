@@ -129,6 +129,13 @@ const nextConfig: NextConfig = {
         destination: '/blogg/segling-nyborjare-guide',
         permanent: true,
       },
+      // /o (index, utan slug) → /oar är canonical. /o/[slug]-detaljsidor påverkas EJ
+      // eftersom Next-redirects matchar exakt utan path-fortsättning.
+      {
+        source: '/o',
+        destination: '/oar',
+        permanent: true,
+      },
     ]
   },
 }

@@ -21,7 +21,7 @@
   --thor-cream: #efe4cc;  /* skägg, accent */
   --txt:   #192830;
   --txt2:  #3d5865;
-  --txt3:  #7a9dab;
+  --txt3:  #5a7a8a;
   --bg:    #f2f8fa;
   --white: #fafeff;
   --green: #22c55e;
@@ -68,12 +68,26 @@
   --radius-pill:     999px;
   --map-preview-bg:  #e8efe3;
   --stats-row-bg:    #fafcfd;
-  /* ── Alpha surface tokens — replaces hardcoded rgba in components ── */
+  /* ── Alpha surface tokens — replaces hardcoded rgba in components ──
+     Naming: --<color>-<percent> där percent är opacity * 100.
+     Codemod-mål: alla rgba(10,123,140,0.0X) → var(--teal-0X) etc. */
+  --teal-04:          rgba(10,123,140,0.04);
+  --teal-06:          rgba(10,123,140,0.06);
+  --teal-08:          rgba(10,123,140,0.08);
+  --teal-10:          rgba(10,123,140,0.10);
   --teal-12:          rgba(10,123,140,0.12);
   --teal-15:          rgba(10,123,140,0.15);
+  --teal-22:          rgba(10,123,140,0.22);
+  --sea-04:           rgba(30,92,130,0.04);
+  --sea-06:           rgba(30,92,130,0.06);
+  --sea-08:           rgba(30,92,130,0.08);
+  --sea-10:           rgba(30,92,130,0.10);
   --sea-12:           rgba(30,92,130,0.12);
   --sea-15:           rgba(30,92,130,0.15);
+  --acc-08:           rgba(201,110,42,0.08);
+  --acc-10:           rgba(201,110,42,0.10);
   --acc-12:           rgba(201,110,42,0.12);
+  --acc-15:           rgba(201,110,42,0.15);
   --route-preview-bg: linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08));
   /* ── Nav tokens ── */
   --nav-bg:     rgba(255,255,255,0.86);
@@ -209,11 +223,23 @@ img {
   --map-preview-bg: #0d1a12;
   --stats-row-bg:   #0b1822;
   /* ── Alpha surface tokens — dark overrides ── */
+  --teal-04:          rgba(74,184,212,0.05);
+  --teal-06:          rgba(74,184,212,0.07);
+  --teal-08:          rgba(74,184,212,0.09);
+  --teal-10:          rgba(74,184,212,0.10);
   --teal-12:          rgba(74,184,212,0.11);
   --teal-15:          rgba(74,184,212,0.14);
+  --teal-22:          rgba(74,184,212,0.20);
+  --sea-04:           rgba(78,156,194,0.06);
+  --sea-06:           rgba(78,156,194,0.08);
+  --sea-08:           rgba(78,156,194,0.10);
+  --sea-10:           rgba(78,156,194,0.12);
   --sea-12:           rgba(78,156,194,0.14);
   --sea-15:           rgba(78,156,194,0.16);
+  --acc-08:           rgba(232,146,74,0.10);
+  --acc-10:           rgba(232,146,74,0.12);
   --acc-12:           rgba(232,146,74,0.14);
+  --acc-15:           rgba(232,146,74,0.18);
   --route-preview-bg: linear-gradient(135deg, rgba(74,184,212,0.05), rgba(74,184,212,0.09));
   /* ── Nav tokens — dark ── */
   --nav-bg:     rgba(6,14,22,0.96);

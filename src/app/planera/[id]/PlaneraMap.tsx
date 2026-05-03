@@ -62,36 +62,72 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
         maxZoom: 18, opacity: 0.85, crossOrigin: '',
       }).addTo(map)
 
-      // Start marker
+      // ── Start marker — premium pin med teal-gradient ─────────────────────
+      // Pin-form (28×36), inre play-symbol, vit ring + djup drop-shadow.
+      // Visuellt distinkt från stops så ögat hittar startpunkten direkt.
+      const startPinHtml = `<div style="position:relative;width:28px;height:36px;filter:drop-shadow(0 3px 6px rgba(0,45,60,0.35));">
+        <svg viewBox="0 0 28 36" width="28" height="36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="svalla-pin-start" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2bb673"/>
+              <stop offset="100%" stop-color="#0e8a52"/>
+            </linearGradient>
+          </defs>
+          <path d="M14 0C6.27 0 0 6.27 0 14c0 9.5 14 22 14 22s14-12.5 14-22C28 6.27 21.73 0 14 0z"
+            fill="url(#svalla-pin-start)" stroke="#fff" stroke-width="2.2"/>
+          <circle cx="14" cy="14" r="4.6" fill="#fff"/>
+          <polygon points="12.5,11 17,14 12.5,17" fill="#0e8a52"/>
+        </svg>
+      </div>`
       L.marker([startLat, startLng], {
         icon: L.divIcon({
-          html: `<div style="width:14px;height:14px;border-radius:50%;background:#22c55e;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
-          iconSize: [14, 14], iconAnchor: [7, 7], className: '',
+          html: startPinHtml,
+          iconSize: [28, 36], iconAnchor: [14, 36], className: '',
         }),
-      }).addTo(map).bindTooltip(startName, { direction: 'top', offset: [0, -8] })
+      }).addTo(map).bindTooltip(`Start · ${startName}`, { direction: 'top', offset: [0, -32] })
 
-      // End marker
+      // ── End marker — premium pin med accent-gradient + flag ─────────────
+      // Samma pin-grund som start, men accent-orange + checkered flag-symbol.
+      const endPinHtml = `<div style="position:relative;width:28px;height:36px;filter:drop-shadow(0 3px 6px rgba(0,45,60,0.35));">
+        <svg viewBox="0 0 28 36" width="28" height="36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="svalla-pin-end" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d9602a"/>
+              <stop offset="100%" stop-color="#a14515"/>
+            </linearGradient>
+          </defs>
+          <path d="M14 0C6.27 0 0 6.27 0 14c0 9.5 14 22 14 22s14-12.5 14-22C28 6.27 21.73 0 14 0z"
+            fill="url(#svalla-pin-end)" stroke="#fff" stroke-width="2.2"/>
+          <circle cx="14" cy="14" r="4.6" fill="#fff"/>
+          <rect x="12" y="11" width="2" height="6" fill="#a14515"/>
+          <rect x="14" y="11" width="2" height="2" fill="#a14515"/>
+          <rect x="16" y="13" width="2" height="2" fill="#a14515"/>
+          <rect x="14" y="15" width="2" height="2" fill="#a14515"/>
+        </svg>
+      </div>`
       L.marker([endLat, endLng], {
         icon: L.divIcon({
-          html: `<div style="width:14px;height:14px;border-radius:50%;background:#ef4444;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
-          iconSize: [14, 14], iconAnchor: [7, 7], className: '',
+          html: endPinHtml,
+          iconSize: [28, 36], iconAnchor: [14, 36], className: '',
         }),
-      }).addTo(map).bindTooltip(endName, { direction: 'top', offset: [0, -8] })
+      }).addTo(map).bindTooltip(`Mål · ${endName}`, { direction: 'top', offset: [0, -32] })
 
-      // Stop markers — colored by category
+      // ── Stop markers — kategorifärgad cirkel med outer ring för "lifted" feel ──
       for (const stop of stops) {
         L.marker([stop.lat, stop.lng], {
           icon: L.divIcon({
             html: `<div style="
-              width:32px;height:32px;border-radius:50%;
-              background:${stop.color};border:2.5px solid white;
+              width:34px;height:34px;border-radius:50%;
+              background:${stop.color};
+              border:2.5px solid #fff;
               display:flex;align-items:center;justify-content:center;
-              font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.22);
+              box-shadow: 0 0 0 1px rgba(0,45,60,0.06), 0 3px 10px rgba(0,45,60,0.22);
+              transition: transform 140ms ease;
             ">${stop.emoji}</div>`,
-            iconSize: [32, 32], iconAnchor: [16, 16], className: '',
+            iconSize: [34, 34], iconAnchor: [17, 17], className: '',
           }),
         }).addTo(map)
-          .bindTooltip(stop.name, { direction: 'top', offset: [0, -14] })
+          .bindTooltip(stop.name, { direction: 'top', offset: [0, -16] })
       }
 
       L.control.zoom({ position: 'bottomright' }).addTo(map)
@@ -160,18 +196,26 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
         }}
       />
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 16, marginTop: 8, flexWrap: 'wrap',
+        display: 'flex', alignItems: 'center', gap: 14, marginTop: 10, flexWrap: 'wrap',
         fontSize: 11, color: 'var(--txt3)',
       }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {/* Mini start-pin matchar markören på kartan */}
+          <svg viewBox="0 0 14 18" width={11} height={14} aria-hidden="true">
+            <path d="M7 0C3.13 0 0 3.13 0 7c0 4.75 7 11 7 11s7-6.25 7-11C14 3.13 10.87 0 7 0z" fill="#0e8a52" />
+            <circle cx="7" cy="7" r="2.2" fill="#fff" />
+          </svg>
           {startName}
         </span>
-        <svg viewBox="0 0 20 4" style={{ width: 20, height: 4, flexShrink: 0 }}>
+        <svg viewBox="0 0 20 4" style={{ width: 20, height: 4, flexShrink: 0 }} aria-hidden="true">
           <line x1="0" y1="2" x2="20" y2="2" stroke="var(--teal,#1e5c82)" strokeWidth="2" strokeDasharray="5,4" />
         </svg>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ef4444', display: 'inline-block' }} />
+        <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {/* Mini end-pin matchar markören på kartan */}
+          <svg viewBox="0 0 14 18" width={11} height={14} aria-hidden="true">
+            <path d="M7 0C3.13 0 0 3.13 0 7c0 4.75 7 11 7 11s7-6.25 7-11C14 3.13 10.87 0 7 0z" fill="#a14515" />
+            <circle cx="7" cy="7" r="2.2" fill="#fff" />
+          </svg>
           {endName}
         </span>
       </div>

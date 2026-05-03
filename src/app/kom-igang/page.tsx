@@ -706,8 +706,8 @@ function KomIgangInner() {
  </p>
  )}
  {confirmPw && password === confirmPw && confirmPw.length >= 6 && (
- <p style={{ fontSize: 12, color: 'var(--green)', margin: 0, padding: '0 2px', fontWeight: 600 }}>
- ✓ Matchar
+ <p style={{ fontSize: 12, color: 'var(--green)', margin: 0, padding: '0 2px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+ <Icon name="check" size={13} stroke={3} /> Matchar
  </p>
  )}
  </div>
@@ -737,7 +737,11 @@ function KomIgangInner() {
  }}
  >
  {loading
- ? <><span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⟳</span> Skapar konto…</>
+ ? <>
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" style={{ width: 18, height: 18, animation: 'spin 0.9s linear infinite' }}>
+ <path d="M21 12a9 9 0 1 1-6.22-8.56"/>
+ </svg> Skapar konto…
+ </>
  : <>Kasta loss <Icon name="arrowRight" size={18} stroke={2.5} /></>
  }
  </button>

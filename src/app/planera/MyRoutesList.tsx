@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import type { ScoredStop } from '@/lib/planner'
 import Icon, { type IconName } from '@/components/Icon'
+import EmptyState from '@/components/EmptyState'
 
 type PlannedRoute = {
   id: string
@@ -48,7 +49,25 @@ export default function MyRoutesList({ initialRoutes }: { initialRoutes: Planned
     setRoutes(prev => prev.filter(r => r.id !== routeId))
   }
 
-  if (routes.length === 0) return null
+  if (routes.length === 0) {
+    return (
+      <section style={{ marginBottom: 32 }}>
+        <EmptyState
+          icon={
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 28, height: 28 }}>
+              <circle cx="5" cy="6" r="2" />
+              <circle cx="19" cy="18" r="2" />
+              <path d="M5 8c0 5 6 3 9 8" />
+            </svg>
+          }
+          title="Inga sparade rutter ännu"
+          body="Planera din första rutt så hittar du den här när du behöver den."
+          cta={{ label: 'Planera ny rutt', href: '/planera/ny' }}
+          marginTop={0}
+        />
+      </section>
+    )
+  }
 
   return (
     <section style={{ marginBottom: 32 }}>
