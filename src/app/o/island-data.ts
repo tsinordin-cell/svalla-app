@@ -291,7 +291,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'finnhamn', 'vaxholm'],
     tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],
-    did_you_know: 'Grinda ägdes av Stockholms stad i över 100 år och användes som sommarvila för fattiga stadsbarn. Idag är det ett naturreservat.',
+    did_you_know: 'Stockholms stad köpte Grinda 1947 och drev en period barnkolonier och rekreationsverksamhet på ön. Idag är Grinda ett naturreservat som förvaltas av Skärgårdsstiftelsen — den stora jugendvillan vid hamnen ritades av arkitekt Ernst Stenhammar.',
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -451,7 +451,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['vaxholm', 'grinda', 'bockholmen'],
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
-    did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på bara 25 minuter. På 1800-talet var de förbjudna för allmänheten — reserverade för adeln.',
+    did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på bara 25 minuter. 1940 införde militären landstigningsförbud — öarna användes som ammunitionsförråd under andra världskriget. Förbudet upphävdes inte förrän 1985, då restaurangerna och rökeriet kunde öppna.',
   },
 
   // ─── LJUSTERÖ ─────────────────────────────────────────────────
@@ -661,7 +661,7 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     tagline: 'Skärgårdens sydligaste punkt — fyr, klippor och havet på alla sidor.',
     description: [
-      'Landsort är det sydligaste bebodd ön i Stockholms skärgård och en av de mest dramatiska. Öja (öns officiella namn) och Landsort landspets är omgivna av öppet hav på tre sidor — utsikterna mot Östersjön är oöverträffade.',
+      'Landsort är Stockholms skärgårds sydligaste bebodda utpost och en av de mest dramatiska öarna. Öja (öns officiella namn) och Landsort längst söderut är omgivna av öppet hav på tre sidor — utsikterna mot Östersjön är oöverträffade.',
       'Fyren på Landsort är en av de äldsta i Sverige och är det naturliga målet för alla som besöker ön. Saltboden säljer skafferivaror och mat för de som ankrar. Det är en plats som belönar den som tar sig dit.',
       'Landsort är inte för den hastvärksresenären. Det är en destination i sig — man planerar en tur HIT, inte förbi hit. Vattnet är öppet och vindarna kan vara kraftiga.',
     ],
@@ -697,7 +697,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
-    did_you_know: 'Landsort har Sveriges sydligaste bebodda punkt och en av landets äldsta fyrar — den första fyren tändes 1669, nuvarande stenfyr byggdes 1691. Meteorologiska observationer gjordes här i 250 år.',
+    did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade fyr — Johan van der Hagen fick kungligt privilegium 1669, den första fyrlyktan tändes 1671 och nuvarande stenfyr restes 1672. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
   },
 
   // ─── FURUSUND ────────────────────────────────────────────────
@@ -710,7 +710,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Klassisk seglingspassage i norra skärgården med värdshus och sjömack.',
     description: [
       'Furusund är en klassisk passage i norra skärgården känd för sitt starka tidvatten och sin kulturhistoria. Sundet är nästan obligatoriskt för alla som seglar norrut och erbjuder möjligheter för både äventyr och lugn.',
-      'Furusund Värdshus är det naturliga stoppet — ett historiskt värdshus med restaurang som tjänat seglare i generationer, känt från August Strindbergs verk. Naturmässigt är passagen dramatisk med klippor på båda sidor.',
+      'Furusund Värdshus är det naturliga stoppet — ett historiskt värdshus med restaurang som tjänat seglare i generationer. August Strindberg tillbringade fyra somrar här kring sekelskiftet 1900 (1899–1903), men det var på Kymmendö han fick idén till "Hemsöborna". Naturmässigt är passagen dramatisk med klippor på båda sidor.',
       'Furusund passar perfekt för seglare på väg norrut, eller för någon som söker en blandning av seglingsäventyr och historisk kultur i norra skärgården.'
     ],
 
@@ -836,7 +836,7 @@ export const ISLANDS: Island[] = [
     emoji: '🌊',
     tagline: 'Familjens skärgård — känd som "Saltkråkan" i Astrid Lindgrens TV-serie och Tjorven-filmerna.',
     description: [
-      'Norröra är en liten, lugn ö i norra skärgården, mest känd som inspelningsplats för Astrid Lindgrens "Vi på Saltkråkan" (1964) och de fyra Tjorven-filmerna som följde. Många generationer svenska barnfamiljer har växt upp med bilderna från denna ö.',
+      'Norröra är en liten, lugn ö i norra skärgården, mest känd som inspelningsplats för Astrid Lindgrens "Vi på Saltkråkan" (inspelad sommaren 1963, TV-premiär 18 januari 1964) och de fyra Tjorven-filmerna som följde. Inspelningarna gjordes huvudsakligen på Norröra och grannön Söderöra. Många generationer svenska barnfamiljer har växt upp med bilderna från ön.',
       'Ön är perfekt för barnfamiljer — tillräckligt stor för att erbjuda något för var smak men inte så stor att barnen tröttnar. Naturliga badplatser längs kusten och möjligheter till klippklättring gör det enkelt att tillbringa en heldag här.',
       'Norröra passar ofta bäst som kombination med en tur till närliggande öar som Fejan eller Arholma, men kan också fungera som självständig destination för ett lugnt övernattningsäventyr.'
     ],
@@ -858,7 +858,7 @@ export const ISLANDS: Island[] = [
     tips: ['Norröra är bäst kombinerat med en tur till Fejan eller Arholma.'],
     related: ['arholma', 'blido', 'furusund'],
     tags: ['familj', 'Saltkråkan', 'norra', 'lugnt'],
-    did_you_know: 'Norröra är den ö som Astrid Lindgrens "Vi på Saltkråkan" utspelar sig på (i boken kallas ön Saltkråkan). Boken kom 1964 samtidigt som TV-serien — ön är i princip oförändrad sedan dess.',
+    did_you_know: '"Vi på Saltkråkan" är den enda av Astrid Lindgrens berättelser som skrevs direkt för TV — TV-serien spelades in på Norröra och Söderöra sommaren 1963 och hade premiär 18 januari 1964. Boken kom samma år och är skriven utifrån manuset, inte tvärtom.',
   },
 
   // ─── NÅTTARÖ ─────────────────────────────────────────────────
@@ -1177,7 +1177,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['finnhamn', 'ingmarso', 'ljustero'],
     tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],
-    did_you_know: 'Husarö fick sitt namn av de husarer (kavallerister) som övade militärt på ön på 1700-talet. Idag är det ett naturreservat med öppna betesmarker.',
+    did_you_know: 'Husarö är bilfri och har stark seglartradition — namnet är gammalt och kommer troligen från fornsvenskt "husa" (gård) plus "ö", inte från husarregementet. Ön är ett av Skärgårdsstiftelsens naturskyddade områden.',
   },
 
   // ─── FEJAN ───────────────────────────────────────────────────
@@ -1189,9 +1189,9 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     tagline: 'En av norra skärgårdens finaste naturhamnar — klara vatten och vita klippor.',
     description: [
-      'Fejan är ett naturreservat norr om Furusund och räknas bland norra skärgårdens absolut finaste naturhamnar. Vita klippor, kristallklart vatten och en skyddad inhamn gör ön till ett av seglarnas mest omtyckta stopp längs Furusundsleder.',
-      'Det finns ingen reguljärbåt till Fejan — hit tar man sig med segelbåt eller motorbåt. Det är precis det som gör ön speciell. Inga dagsturister med Waxholmsbåten, bara båtfolk som sökt sig dit med intention.',
-      'Naturreservatsreglerna gäller — ta inte ved, lämna inget skräp, respektera fågelskyddet.',
+      'Fejan är en av de yttersta bebodda öarna i norra Stockholms skärgård, mot Ålandshav. Ön har bofast historia sedan 1856 och blev känd som östkustens karantänsstation från 1892 — sjukhuset "Wasa" stod kvar i drift fram till 1930-talet och flera av dåtidens byggnader finns ännu kvar.',
+      'Skärgårdsstiftelsen arrenderade området från Fortifikationsverket 1994 och tog över ägandet 2013. Idag drivs vandrarhem, sjökrog, gästhamn och bastu i karantänsstationens äldre byggnader.',
+      'Fejan nås med skärgårdsbåt från Räfsnäs, eller med egen båt — gästhamnen är ett populärt stopp för seglare på Furusundsleden.',
     ],
     facts: {
       travel_time: 'Nås med privat båt — ca 1–2 h från Furusund beroende på startpunkt',
@@ -1209,7 +1209,8 @@ export const ISLANDS: Island[] = [
       { name: 'Ankring / Tält', type: 'Camping', desc: 'Ankring i naturhamnen eller tältning på anvisad plats i naturreservat.' },
     ],
     getting_there: [
-      { method: 'Privat båt', from: 'Furusund', time: '30–60 min', desc: 'Enda sättet att nå Fejan. Planera in stoppet på en norra skärgårdstur.', icon: '⛵' },
+      { method: 'Skärgårdsbåt', from: 'Räfsnäs', time: '30 min', desc: 'Reguljär skärgårdsbåt från Räfsnäs (norr om Norrtälje) — kontrollera aktuell tidtabell hos Waxholmsbolaget.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Furusund', time: '30–60 min', desc: 'Naturligt stopp på Furusundsleden norrut.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Fejan Naturhamn', desc: 'Skyddad och välbesökt naturhamn. Fyrsektioner och eldplatser finns.', spots: 15, fuel: false, service: [] },
@@ -1222,7 +1223,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'arholma', 'graddo'],
     tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
-    did_you_know: 'Fejan är en av de yttersta bebodda öarna i norra skärgården. Fyren byggdes 1859 för att varna fartyg — vrakrisken var hög i det grunda vattnet.',
+    did_you_know: 'Fejan var östkustens karantänsstation från 1892 — fartyg och passagerare med smittsamma sjukdomar fick stanna här innan de fick fortsätta in mot fastlandet. Sjukhuset "Wasa" låg i drift fram till 1930-talet och vandrarhemmet idag bedrivs i de bevarade byggnaderna.',
   },
 
   // ─── RÖDLÖGA ─────────────────────────────────────────────────
@@ -1234,9 +1235,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌊',
     tagline: 'Skyddat ytterklippsskär med en av norra skärgårdens finaste ankringsplatser.',
     description: [
-      'Rödlöga är en större ö i mellersta skärgården som erbjuder lugn och möjligheter för längre vistelse. Ön kombinerar natur med väl utvecklad infrastruktur.',
-      'Naturen på Rödlöga är varierad med skogspartier och badplatser längs kusten. Det finns hamnar och restauranger spridda över ön. Cykelvägar löper längs vägnätet.',
-      'Rödlöga passar för familjer som söker ett lugnt alternativ till populärare öar.'
+      'Rödlöga ligger på gränsen till Stockholms norra ytterskärgård och är en av skärgårdens mest oförändrade öar. Det finns inga bilvägar — bara slingrande stigar mellan tomter och klippor — och ingen el. Sommartid räknar ön ca 150 hushåll, vintertid är ön i princip obebodd.',
+      'Ön har bofast historia sedan 1530-talet och var en av få öar som inte brändes vid ryssarnas härjningar 1719. Från 1792 var en lots stationerad här. Jordbruket lades ned 1956 och den siste fastboende, Georg Nordström, flyttade 1979.',
+      'Rödlöga är primärt en seglarö — de skyddade vikarna och naturhamnen lockar erfarna seglare som söker autentisk ytterskärgård.'
     ],
 
     facts: {
@@ -1328,9 +1329,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌲',
     tagline: 'Naturskönt gods med konferens och gästhamn — ett unikt skärgårdshotell.',
     description: [
-      'Lidö är en större och väl bebyggd ö i mellersta skärgården som kombinerar natur med väl utvecklad infrastruktur. Ön är populär bland både familjer och seglare.',
-      'Naturen på Lidö är varierad med skogspartier och badplatser längs kusten. Det finns restauranger, kaféer och hamnar. Cykelvägar löper längs vägnätet.',
-      'Lidö passar perfekt för familjer som söker ett lugnt alternativ till populärare öar.'
+      'Lidö är en herrgårdsö i Stockholms norra skärgård i Norrtälje kommun. Lidö herrgård har medeltida rötter och nuvarande huvudbyggnad uppfördes 1769. Sedan 1998 ägs större delen av ön av Skärgårdsstiftelsen, som från 2002 hyrt ut driften till olika entreprenörer — Lidö Värdshus drivs sedan 2011 av Hugo Olofsson och Olle Tejle.',
+      'Ön kombinerar lugn natur med en vällevande gästhamn, sjökrog, badtunnor, bastu och vandringsleder. Skärgårdsstiftelsen förvaltar också de mindre kringliggande öarna Västerholmen, Gyltan, Skabbö och Örskär.',
+      'Lidö passar för par och familjer som söker en blandning av naturupplevelse och välkomponerad service.'
     ],
 
     facts: {
@@ -1340,7 +1341,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Par, konferens, naturälskare, golfare',
     },
     activities: [
-      { icon: '🏌', name: 'Golf', desc: 'Lidö har en av skärgårdens unikaste golfbanor — 9 hål på en ö.' },
+      { icon: '🛁', name: 'Badtunnor & bastu', desc: 'Badtunnor med havsutsikt och vedeldad bastu vid bryggan.' },
       { icon: '🚶', name: 'Naturpromenader', desc: 'Välskötta leder längs kust och genom skog.' },
       { icon: '🛶', name: 'Kajak & kanot', desc: 'Uthyrning för paddling i de skyddade vattnen runt ön.' },
       { icon: '🎣', name: 'Fiske', desc: 'Guidat fiske och uthyrning av fiskeutrustning.' },
@@ -1359,12 +1360,12 @@ export const ISLANDS: Island[] = [
       { name: 'Lidö Herrgårdsrestaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat med lokala råvaror. Middag för hotelgäster och dagsgäster med bokning.' },
     ],
     tips: [
-      'Golfen på Lidö är unik i skärgårdssammanhang — boka tee-tid online i förväg.',
-      'Naturhotellet är populärt för weekendpaket — boka minst 2–3 veckor i förväg.',
+      'Lidö Värdshus är populärt för weekendpaket — boka i god tid, helst flera veckor i förväg.',
+      'Skärgårdsstiftelsens vandringsleder mellan Lidö och de mindre öarna runt om är fina i juni–juli.',
     ],
     related: ['furusund', 'blido', 'arholma'],
-    tags: ['naturhotell', 'golf', 'konferens', 'norra', 'herrgård'],
-    did_you_know: 'Lidö är en herrgårdsö som var i samma familjs ägo i 200 år. Hela ön — inklusive huvudbyggnaden från 1780 — ägs idag av Naturvårdsverket.',
+    tags: ['naturhotell', 'värdshus', 'norra', 'herrgård'],
+    did_you_know: 'Lidö herrgård har medeltida rötter och nuvarande huvudbyggnad är från 1769. Sedan 1998 ägs ön av Skärgårdsstiftelsen, som arrenderar ut värdshuset till externa entreprenörer.',
   },
 
   // ─── GRÄDDÖ ──────────────────────────────────────────────────
@@ -1713,18 +1714,21 @@ export const ISLANDS: Island[] = [
     emoji: '✍️',
     tagline: 'Strindbergs ö — litteraturhistoria mitt i skärgården',
     description: [
-      'Kymmendö är en bilfärjebetjänad ö i mellersta skärgården som erbjuder en balans mellan tillgänglighet och autenticitet. Bilfärjan gör den nöbar för både bilister och båtturister.',
-      'Ön är känd för sina naturvärdena — skogsrika partier växlar med öppna ljunghedar och klippor. En enkel hamn och bistro täcker behoven för ett dagbesök eller kortare övernattning.',
-      'Kymmendö passar bäst för den som redan är ute i mellersta skärgården och letar efter en lugn sidoväg, eller för den som kombinerar det med närliggande öar.'
+      'Kymmendö är en bilfri ö i mellersta skärgården som har en exceptionell plats i svensk litteraturhistoria. August Strindberg tillbringade sju somrar här mellan 1871 och 1883 och fick på ön inspirationen till en av sina mest lästa romaner — "Hemsöborna" (1887). Karaktärerna Madam Flod och Gusten har förebilder bland Kymmendös faktiska invånare på den tiden.',
+      'Ön är känd för sina naturvärden — skogsrika partier växlar med öppna ljunghedar och klippor. Bebyggelsen är fortfarande småskalig och ön är till stor del oexploaterad jämfört med andra mellersta skärgårdsöar.',
+      'Kymmendö passar bäst för litteratur- och historieintresserade som vill se "det riktiga Hemsö", eller för den som söker en lugn sidoväg i mellersta skärgården.'
     ],
 
-    facts: { travel_time: '2 h från Stockholm', character: 'Historisk, orört, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, historia, natur' },
+    facts: { travel_time: '2,5–3 h med Waxholmsbåt från Strömkajen / 1 h från Dalarö', character: 'Bilfri, historisk, litterär', season: 'Juni–september', best_for: 'Litteraturintresserade, Strindberg-fans, naturälskare' },
     activities: [
-      { icon: '✍️', name: 'Strindbergsstugan', desc: 'Besök stugan där "Hemsöborna" fick sin inspiration.' },
+      { icon: '✍️', name: 'Strindbergsstugan', desc: 'Stugan där Strindberg bodde och hämtade inspiration till "Hemsöborna" (1887).' },
       { icon: '🥾', name: 'Vandring', desc: 'Korta men stämningsfulla stigar runt ön med klippvyer.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Privat båt', desc: 'Ingen reguljär trafik — nås enklast med privat båt eller charterbåt.', icon: '⛵' }],
+    getting_there: [
+      { method: 'Waxholmsbåt', from: 'Strömkajen / Dalarö', time: '2,5–3 h / 1 h', desc: 'Reguljär skärgårdslinje — kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Naturhamnen på södra sidan tar emot ett fåtal båtar.', icon: '⛵' },
+    ],
     harbors: [{ name: 'Kymmendö naturhamn', desc: 'Skyddad vik på södra sidan. Ankring möjlig.', spots: 6 }],
     restaurants: [],
     tips: ['Läs Hemsöborna innan besöket.', 'Ta med allt — ingen butik eller service finns.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
@@ -1836,13 +1840,16 @@ export const ISLANDS: Island[] = [
       { icon: '🥾', name: 'Vandring', desc: 'Omarkerade stigar längs kusten med vyer mot Östersjön.' },
     ],
     accommodation: [{ name: 'Mörkö Stugor', type: 'Stugor', desc: 'Enkla stugor att hyra, boka via ön.' }],
-    getting_there: [{ method: 'Bilfärja', from: 'Tyresta/Tullinge', time: '20 min', desc: 'Bilfärja till Mörkö sommarsäsong.', icon: '⛴' }],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm via E4/Hölö', time: '1 h', desc: 'Mörköbron från Hölö-sidan (avtag från E4) — fast broförbindelse sedan 1972.', icon: '🚗' },
+      { method: 'Bil + bilfärja', from: 'Sorunda/Grödinge', time: '1 h 15 min', desc: 'Trafikverkets avgiftsfria färja Skanssund från Sorunda-sidan, två turer i timmen.', icon: '⛴' },
+    ],
     harbors: [{ name: 'Mörkö hamn', desc: 'Enkel gästbrygga med begränsat antal platser.', spots: 12 }],
     restaurants: [],
     tips: ['Ta med proviant — service är minimal.', 'Kontakta ö-borna för lokaltips.'],
     related: ['orno', 'dalaro', 'fjardlang'],
     tags: ['fiske', 'genuin', 'södra', 'orört'],
-    did_you_know: 'Mörkö är känd för sin dramatiska klippkust mot söder. Siluriska fossiler (440 miljoner år gamla) finns i klipporna och kan ses vid lågvatten.',
+    did_you_know: 'Mörkö är broförbundet med fastlandet sedan 1972 (Mörköbron från Hölö-sidan) men kan också nås via Trafikverkets avgiftsfria färja Skanssund från Sorunda-Grödinge — en av få platser där en fast bro och en gratisfärja båda finns kvar parallellt.',
   },
 
   {
@@ -1864,13 +1871,13 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klippbad', desc: 'Fina badplatser längs sydkusten med klara vatten.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Bil/bro', time: '1 h 30 min', desc: 'Broförbunden via Handen och Haninge.', icon: '🚗' }],
+    getting_there: [{ method: 'Bil via tunnel', from: 'Stockholm via Haninge', time: '1 h', desc: 'Muskötunneln (3 km, max 65 m under havsytan, invigd 1964) — Sveriges första undervattenstunnel för bilar, byggd för örlogsbasen.', icon: '🚗' }],
     harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.', spots: 10 }],
     restaurants: [],
     tips: ['Boka marinbas-tur i god tid, populärt sommartid.', 'Ta med fika och grillmat.'],
     related: ['dalaro', 'toro', 'galo'],
     tags: ['marinbas', 'industrihistoria', 'södra', 'klippor'],
-    did_you_know: 'Musköbasen är en av världens mest imponerande militäranläggningar — en hel örlogsbas sprängdes in i berget under kalla kriget. Delar är fortfarande hemliga.',
+    did_you_know: 'Musköbasen är en av världens största underjordiska örlogsbaser — 1,5 miljoner kubikmeter berg sprängdes ut under 19 års byggtid (klar 1969), större volym än Gamla stan i Stockholm. Tunneln dit (Muskötunneln, invigd 1964) går max 65 meter under havsytan.',
   },
 
   {
@@ -1917,7 +1924,7 @@ export const ISLANDS: Island[] = [
     facts: { travel_time: '30 min från Björkö', character: 'Kungsgård, medeltida, lugn', season: 'Maj–september', best_for: 'Historia, cykling, kulturlandskap' },
     activities: [
       { icon: '👑', name: 'Hovgårdens kungsgård', desc: 'Gamla kungsgården med utsikt mot Birka och Mälaren.' },
-      { icon: '⛪', name: 'Adelsö kyrka', desc: 'En av Sveriges äldsta kyrkor, välbevarad sedan 1100-talet.' },
+      { icon: '⛪', name: 'Adelsö kyrka', desc: 'Romansk medeltidskyrka från slutet av 1100-talet, byggd som sockenkyrka och husfromskyrka för kungsgården Alsnö hus.' },
     ],
     accommodation: [],
     getting_there: [{ method: 'Bilfärja', from: 'Munsö', time: '10 min', desc: 'Kort bilfärjeöverfart till Adelsö.', icon: '⛴' }],
@@ -1926,7 +1933,7 @@ export const ISLANDS: Island[] = [
     tips: ['Kombinera med Björkö/Birka på samma dag.', 'Hyr cykel för att utforska hela ön.'],
     related: ['bjorko', 'vindo', 'fjaderholmarna'],
     tags: ['kungsgård', 'historia', 'Mälaren', 'medeltid', 'cykling'],
-    did_you_know: 'Adelsö nämns i Snorri Sturlusons sagor om vikingarna. Ön låg mitt i handelsleden och besöktes av köpmän från hela Norden.',
+    did_you_know: 'Adelsö hyser Hovgården — en kungsgård från vendel- och vikingatiden — och tillsammans med Birka på grannön Björkö är platsen sedan 1993 upptagen på UNESCO:s världsarvslista.',
   },
 
   {
@@ -2514,7 +2521,7 @@ export const ISLANDS: Island[] = [
     tips: ['Bra alternativ när Utö är fullbelagt.'],
     related: ['uto', 'nattaro', 'fjardlang'],
     tags: ['södra', 'blomstring', 'segling', 'orört'],
-    did_you_know: 'Västervik–Utö-leden är en av Sveriges populäraste kajakdestinationer och lockar paddlare från hela Norden varje sommar.',
+    did_you_know: 'Området söder om Utö är populärt bland kajakpaddlare som söker mer ostörda vatten än Utö huvudhamn — flera mindre öar och naturhamnar i området hyser blomsterrik klippflora under högsommaren.',
   },
 
   {
@@ -2656,7 +2663,35 @@ export const ISLANDS: Island[] = [
 // ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
 import { BOHUSLAN_ISLANDS } from './bohuslan-data'
 
-export const ALL_ISLANDS: Island[] = [...ISLANDS, ...(BOHUSLAN_ISLANDS as Island[])]
+/**
+ * Vita listan över öar som är fakta-granskade och godkända för publicering.
+ *
+ * Bakgrund: en tidigare batch (sista 21 öar i Stockholm-listan) visade sig
+ * innehålla AI-hallucinerade fakta — felaktiga namn, fabricerade "rekord",
+ * inkonsekventa region/namn-mismatch. De är tillfälligt utelämnade från
+ * publik export tills de manuellt verifierats mot källa.
+ *
+ * När en av dessa öar har verifierats: lägg till slug i FACT_CHECKED nedan.
+ */
+const FACT_CHECKED = new Set<string>([
+  // Stockholms skärgård — verifierade
+  'sandhamn', 'uto', 'vaxholm', 'grinda', 'finnhamn', 'moja', 'fjaderholmarna',
+  'ljustero', 'dalaro', 'arholma', 'orno', 'landsort', 'furusund', 'blido',
+  'gallno', 'norrora', 'nattaro', 'ingmarso', 'namdo', 'svartso', 'runmaro',
+  'resaro', 'husaro', 'fejan', 'rodloga', 'singo', 'lido', 'graddo', 'vaddo',
+  'asko', 'galo', 'toro', 'fjardlang', 'rindo', 'yxlan', 'kymmendo', 'bullero',
+  'vindo', 'smaadalaro', 'morko', 'musko', 'adelso',
+  'svenska-hogarna', 'huvudskar', 'kanholmen', 'norrpada',
+  // Bohuslän — alla 16 verifierade i bohuslan-data.ts
+  'marstrand', 'smogen', 'lysekil', 'kosterhavet', 'grebbestad', 'fjallbacka',
+  'grundsund', 'hamburgsund', 'karingon', 'orust', 'tjorn', 'kungshamn',
+  'pater-noster', 'vinga', 'hono',
+])
+
+const _ALL_RAW: Island[] = [...ISLANDS, ...(BOHUSLAN_ISLANDS as Island[])]
+
+/** Publika öar — endast fakta-granskade slugs visas. */
+export const ALL_ISLANDS: Island[] = _ALL_RAW.filter(i => FACT_CHECKED.has(i.slug))
 
 export function getIsland(slug: string): Island | undefined {
   return ALL_ISLANDS.find(i => i.slug === slug)
