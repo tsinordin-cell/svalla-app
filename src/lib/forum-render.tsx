@@ -47,8 +47,8 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
   let cursor = 0
   let n = 0
 
-  // Hitta alla URL:er + mentions + hashtags, sortera efter position
-  type Match = { start: number; end: number; type: 'url' | 'mention' | 'hashtag'; value: string; raw: string }
+  // Hitta alla URL:er + mentions + hashtags + bold, sortera efter position
+  type Match = { start: number; end: number; type: 'url' | 'mention' | 'hashtag' | 'bold'; value: string; raw: string }
   const matches: Match[] = []
 
   for (const m of text.matchAll(URL_RE)) {
@@ -67,6 +67,11 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
     if (!tag) continue
     const start = m.index! + lead.length
     matches.push({ start, end: start + 1 + tag.length, type: 'hashtag', value: tag, raw: '#' + tag })
+  }
+  // **bold** — markdown-fet stil. Ingen nestning, inga radbrytningar inuti.
+  const BOLD_RE = /\*\*([^\n*][^\n*]*?)\*\*/g
+  for (const m of text.matchAll(BOLD_RE)) {
+    matches.push({ start: m.index!, end: m.index! + m[0].length, type: 'bold', value: m[1] ?? '', raw: m[0] })
   }
   matches.sort((a, b) => a.start - b.start)
 
@@ -147,6 +152,12 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
         >
           #{m.value}
         </Link>
+      )
+    } else if (m.type === 'bold') {
+      parts.push(
+        <strong key={`${keyPrefix}-b${n++}`} style={{ fontWeight: 700 }}>
+          {m.value}
+        </strong>
       )
     }
     cursor = m.end
@@ -276,6 +287,30 @@ function renderTextBlock(text: string, keyPrefix: string): ReactNode {
                 </span>
               ))}
             </blockquote>
+          )
+        }
+        // Lista: alla rader börjar med "- " eller "* "
+        const LIST_RE = /^\s*[-*]\s+/
+        const isList = lines.length > 0 && lines.every(l => LIST_RE.test(l))
+        if (isList) {
+          return (
+            <ul
+              key={`${keyPrefix}-p${pi}`}
+              style={{
+                margin: pi === 0 ? '0 0 10px' : '10px 0',
+                paddingLeft: 22,
+                listStyle: 'disc',
+              }}
+            >
+              {lines.map((line, li) => {
+                const item = line.replace(LIST_RE, '')
+                return (
+                  <li key={li} style={{ margin: '2px 0', lineHeight: 1.5 }}>
+                    {renderInline(item, `${keyPrefix}-p${pi}-li${li}`)}
+                  </li>
+                )
+              })}
+            </ul>
           )
         }
         return (
