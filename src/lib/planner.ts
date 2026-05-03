@@ -128,8 +128,8 @@ const INTEREST_PATTERNS: Record<Interest, {
  tags: ['natur', 'vandring', 'naturreservat', 'klippa'],
  },
  bensin: {
- types: ['fuel'],
- cats: ['fuel'],
+ types: ['fuel', 'fuel_station'],
+ cats: ['fuel', 'fuel_station'],
  tags: ['bensin', 'diesel', 'tankning', 'sjömack'],
  },
 }
@@ -212,20 +212,36 @@ export function suggestStops(
  }
  }
 
- // 6. Sortera på score
- candidates.sort((a, b) => b.score - a.score)
+ // 6. Gruppera per intresse-label (så varje aktiv kategori får representation)
+ const byReason = new Map<string, ScoredStop[]>()
+ for (const c of candidates) {
+ const arr = byReason.get(c.reason) ?? []
+ arr.push(c)
+ byReason.set(c.reason, arr)
+ }
+ for (const arr of byReason.values()) arr.sort((a, b) => b.score - a.score)
 
- // 7. Deduplicera per ö (max 2 stopp per ö)
+ // 7. Round-robin: plocka topp-N från varje kategori varv för varv tills maxStops nås.
+ // Behåller ö-dedup (max 2 per ö) och stoppar när inga fler kandidater finns.
  const islandCount: Record<string, number> = {}
  const result: ScoredStop[] = []
-
- for (const c of candidates) {
+ const queues = [...byReason.values()]
+ let progressed = true
+ while (result.length < maxStops && progressed) {
+ progressed = false
+ for (const q of queues) {
  if (result.length >= maxStops) break
+ while (q.length > 0) {
+ const c = q.shift()!
  const key = c.island ?? '__no_island__'
  const count = islandCount[key] ?? 0
  if (count >= 2) continue
  islandCount[key] = count + 1
  result.push(c)
+ progressed = true
+ break
+ }
+ }
  }
 
  return result
