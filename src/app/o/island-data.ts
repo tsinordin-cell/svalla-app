@@ -902,46 +902,48 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌲',
-    tagline: 'Glest befolkad naturö med utmärkta paddelvatten och bilfänja från Ljusterö.',
+    tagline: 'Bilfri ö i mellersta skärgården — bageri, krog och Båtluffarleden mot Finnhamn.',
     description: [
-      'Ingmarsö är en av de mer stillsamma öarna i mellersta skärgården. Bilfärja avgår från Ljusterö vilket ger ön ett "extra steg" bort från fastlandet. Här är det lugnt, naturen är frodig och sommarfolket är en blandning av återvändande familjer och seglare.',
-      'Öns norra klippor och den skyddade Ingmarsöviken är favoriter bland kajakvinnare. Gästhamnen är enkel men välfungerande. Möjligheter för klippbad och vandring gör den attraktiv för naturälskare.',
-      'Ingmarsö passar bäst för den som redan är ute i mellersta skärgården och letar efter en lugn sidoväg, eller för kajakvinnare och familjer som söker orördhet.'
+      'Ingmarsö är en bilfri ö i Stockholms mellersta skärgård, klassisk knutpunkt för båtluffare och vandrare. Ön har två bryggor — norra och södra — där Waxholmsbåtarna lägger till. På öns mitt finns lanthandel, bageri, krog och B&B.',
+      'Båtluffarleden — markerad i blått — förbinder Ingmarsö med Finnhamn via Kålgårdsön; vid det smala sundet mellan öarna finns roddbåtar som gångare själva drar över för att fortsätta vandringen. Det gör sträckan till en av de mest älskade etapperna på Stockholm Archipelago Trail.',
+      'Ingmarsö passar för dagsutflykter med båtluffning, vandring genom öppna betesmarker och blandskog, eller som lugnare bas än Finnhamn för en längre helg i mellersta skärgården.',
     ],
 
     facts: {
-      travel_time: '75 min med buss + bilfärja från Stockholm',
-      character: 'Lugnt, naturnära, bilfärja, genuint',
-      season: 'Maj–September',
-      best_for: 'Kajak, lugn, barnfamiljer, återvändande sommargäster',
+      travel_time: '2,5 h med Waxholmsbåt från Strömkajen',
+      character: 'Bilfri, vandringsmål, helårsverksamhet',
+      season: 'Maj–September (lanthandeln öppen helår)',
+      best_for: 'Båtluffare, vandrare, dagsutflykter, lugn skärgård',
     },
     activities: [
-      { icon: '🛶', name: 'Kajakpaddling', desc: 'Norra kustlinjen är utmärkt paddlingvatten med skyddade vikar och fina holmar.' },
-      { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbad på öns norra sida. Relativt folktomt även högsäsong.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs övägen och utforska alla delar av ön.' },
-      { icon: '🚶', name: 'Vandring', desc: 'Omarkerade men lättgångna stigar genom blandskog och längs kusten.' },
+      { icon: '🥾', name: 'Båtluffarleden mot Finnhamn', desc: 'Markerad blå led via Kålgårdsön — egen roddbåt över sundet till Finnhamn. En av Stockholm Archipelago Trails mest unika etapper.' },
+      { icon: '🍞', name: 'Ingmarsö Bageri', desc: 'Öns bageri vid bryggan — nybakat bröd och kaffe.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbad längs öns norra och östra sida.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Stigar genom öppet betesmarkslandskap och blandskog. Stockholm Archipelago Trail-etappen är väl markerad.' },
     ],
     accommodation: [
+      { name: 'Ingmarsö B&B', type: 'B&B', desc: 'B&B-boende med bastu i ö-miljö.' },
       { name: 'Privatstugor', type: 'Stugor', desc: 'Sommarstugor uthyrda av lokalbor. Sök via Blocket eller Airbnb.' },
     ],
     getting_there: [
-      { method: 'Buss + Bilfärja + båt', from: 'Danderyds sjukhus', time: '90 min+', desc: 'Buss 621 till Östanå, bilfärja till Ljusterö, sen lokal anslutningsbåt till Ingmarsö (säsong, kontrollera tidtabell).', icon: '🚌' },
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Enstaka avgångar via Ljusterö.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Skärgårdslinjen mot Möja angör norra och södra Ingmarsö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn. Servicenivå: grundläggande.', spots: 25, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn vid södra bryggan.', spots: 25, fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel sommarmat i skärgårdsmiljö.' },
-      { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror och kaffepaus.' },
+      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.' },
+      { name: 'Ingmarsö Bageri', type: 'Bageri', desc: 'Nybakat bröd, fika och enkla bryggluncher.' },
+      { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror — öppen året om.' },
     ],
     tips: [
-      'Norra sidan av ön är bäst för klippbad och kajak.',
-      'Kombination med Ljusterö samma dag fungerar bra.',
+      'Båtluffarleden mellan Ingmarsö och Finnhamn med roddbåt över sundet är ett klassiskt skärgårdsäventyr — ta hela dagen.',
+      'Två bryggor — norra och södra — kontrollera tidtabellen för rätt brygga.',
+      'Kombinera gärna med Finnhamn på samma weekend.',
     ],
-    related: ['ljustero', 'gallno', 'finnhamn'],
-    tags: ['kajak', 'lugnt', 'bilfärja', 'natur', 'orört'],
-    did_you_know: 'Ingmarsö har en av skärgårdens bäst bevarade bystrukturer från 1800-talet. Nästan alla hus är byggda i trä och målade i samma röd-vita stil.',
+    related: ['finnhamn', 'svartso', 'ljustero'],
+    tags: ['bilfri', 'båtluffarleden', 'vandring', 'natur', 'mellersta'],
+    did_you_know: 'Båtluffarleden mellan Ingmarsö och Finnhamn är en av Stockholms skärgårds mest karakteristiska vandringsetapper — vid det smala sundet mellan Kålgårdsön och Finnhamn finns roddbåtar som vandrare själva får dra över. Den blå-markerade leden ingår sedan 2024 i den 270 km långa Stockholm Archipelago Trail.',
   },
 
   // ─── NÄMDÖ ───────────────────────────────────────────────────
@@ -953,9 +955,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
     description: [
-      'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan medeltiden och är en av de mer genuina öarna — här finns ett litet levande samhälle, en vacker kyrka och en lanthandel.',
-      'Naturen på Nämdö är väl skyddad med varierad terräng. Klippbad, vandringsstigar och fina naturhamnar på öns södra sida lockar seglare och naturälskare. Den lilla kyrkan från 1600-talet är värd ett besök.',
-      'Nämdö passar perfekt som stopp på en längre seglingstur mot Sandhamn eller som dagsdestination för den som söker äkta skärgårdsliv.'
+      'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan tidig medeltid — på 1870-talet var befolkningen som störst med 321 personer skrivna i församlingen. Idag är ön ett genuint litet skärgårdssamhälle med kyrka, lanthandel och båtbrygga.',
+      'Nämdö kyrka är en av skärgårdens mest karakteristiska — den nuvarande åttakantiga träkyrkan i gustaviansk stil uppfördes 1798 och ersatte ett tidigare kapell. Det första kända kapellet på ön byggdes före 1630 och brändes ned vid de ryska härjningarna 1719.',
+      'Naturen är varierad med klippbad, vandringsstigar och fina naturhamnar på öns södra sida. Nämdö passar som stopp på en längre seglingstur mot Sandhamn, eller som dagsdestination för den som söker autentiskt skärgårdsliv.',
     ],
 
     facts: {
@@ -965,7 +967,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
     },
     activities: [
-      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Liten vacker kyrka med anor från 1600-talet. Öppen sommartid.' },
+      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Åttakantig träkyrka i gustaviansk stil från 1798 — en av skärgårdens mest distinkta kyrkobyggnader. Öppen sommartid.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten och fina klippor längs södra kustlinjen.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön och utforska de gamla fiskelägena.' },
       { icon: '⛵', name: 'Segling', desc: 'Naturhamnen på södsidan är ett populärt seglarankar.' },
@@ -985,11 +987,11 @@ export const ISLANDS: Island[] = [
     ],
     tips: [
       'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
-      'Kyrkan är värd ett besök — en av skärgårdens äldsta.',
+      'Kyrkan från 1798 är öppen sommartid — den åttakantiga gustavianska träkyrkan är ovanlig i sitt slag.',
     ],
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
-    did_you_know: 'Nämndö har en kulturhistoria som sträcker sig 3000 år tillbaka — bronsålderslämningar och runstenar finns på ön.',
+    did_you_know: 'Nämdös tidigaste kapell brändes ned vid de ryska härjningarna 1719 — under Stora nordiska kriget gjorde ryska galärer flera räder mot Stockholms skärgård och brände bebyggelsen på många öar. Den nuvarande åttakantiga kyrkan från 1798 är en av få av sitt slag i landet.',
   },
 
   // ─── SVARTSÖ ─────────────────────────────────────────────────
@@ -999,11 +1001,11 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: 'island',
-    tagline: 'Bilfri ö med ekologisk profil — biodynamisk odling och enkel skärgårdslyx.',
+    tagline: 'Bilfri ö i Värmdö — skärgårdens bästa lanthandel och en levande helårsby.',
     description: [
-      'Svartsö är kanske den mest unika av de bilfria öarna i mellersta skärgården. Ön har sedan decennier en stark ekologisk profil — biodynamiskt jordbruk, lokal matproduktion och ett medvetet förhållningssätt till turism.',
-      'Naturen är varierad med öppna odlingslandskap, skog och en lång kustlinje. Ön är lagom stor för en heldag till fots. Känslan är lantlig snarare än marin — en skärgårdsö som också är en bondgård.',
-      'Svartsö passar för matälskare, naturälskare och de som söker något unikt — kombinationen av utmärkt mat från Svartsö Krog och stark miljöprofil gör den speciell.'
+      'Svartsö ligger i Stockholms mellersta skärgård öster om Ljusterö och väster om Ingmarsö, och tillhör Värmdö kommun. Med cirka 65 åretruntinvånare är ön ett av få mellanstora skärgårdssamhällen som behållit en levande helårsbefolkning — komplett med skola, restauranger, lanthandel, apotek- och Systembolags-ombud.',
+      'Ön har varit befolkad sedan tidig medeltid och de två ursprungliga gårdarna Alsvik och Skälvik på sydsidan går tillbaka till samma tid. Säby herrgård restes 1732 av bankiren Johan Söderling efter att den föregående bebyggelsen brunnit ned vid ryska härjningarna 1719.',
+      'Svartsö är bilfri (frånsett några enstaka traktorer och fyrhjulingar) och utforskas bäst på cykel, till fots eller via öns grusvägar. Krogen, lanthandeln och vandrarhemmet är öns kärna — perfekt för dem som vill kombinera autentiskt skärgårdsliv med vällagad mat.',
     ],
 
     facts: {
@@ -1013,29 +1015,32 @@ export const ISLANDS: Island[] = [
       best_for: 'Matälskare, naturälskare, de som söker unikt',
     },
     activities: [
-      { icon: '🥗', name: 'Ekologisk odling', desc: 'Besök gårdens biodynamiska odlingar och lär dig om öns matproduktion.' },
-      { icon: '🚶', name: 'Vandring', desc: 'Vandra längs kustlinjen och genom det öppna odlingslandskapet.' },
-      { icon: '🏊', name: 'Bad', desc: 'Badplatser på öns södra sida med utsikt mot mellersta skärgården.' },
+      { icon: '🛒', name: 'Svartsö Lanthandel', desc: 'Skärgårdens kanske mest välsorterade lanthandel — med apotekombud och Systembolagets utlämning. Lokalbornas vardagsliv händer här.' },
+      { icon: '🏛', name: 'Säby herrgård', desc: 'Stenhus uppfört 1732 av bankiren Johan Söderling — bevarad miljö från tiden efter ryssarnas härjningar 1719.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail-etapp leder över Svartsö med markerade stigar genom öppet odlingslandskap och skog.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Bilfri ö med grusvägar — ideal för en heldag på cykel.' },
     ],
     accommodation: [
-      { name: 'Svartsö Logi', type: 'Stugor', desc: 'Enkla men välskötta stugor kopplade till krogens ekologiska profil.' },
+      { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferensmöjligheter, drivet av Svenska Turistföreningen.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h', desc: 'Linje via Möja och Gällnö.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen / Stavsnäs', time: '2 h', desc: 'Skärgårdslinjen mellan Stavsnäs och Möja stannar vid Svartsö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Svartsö Hamn', desc: 'Liten gästhamn nära krogsbryggan.', spots: 20, fuel: false, service: ['vatten'] },
+      { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', spots: 20, fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Ekologisk mat baserad på öns egna råvaror. En av skärgårdens mest unika matupplevelser. Boka.' },
+      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.' },
+      { name: 'Svartsö Lanthandel', type: 'Handel', desc: 'Skärgårdens kanske bäst sorterade lanthandel — apotek- och Systembolagsombud.' },
     ],
     tips: [
-      'Boka Svartsö Krog långt i förväg — den är välkänd och fullbokad sommartid.',
-      'Svartsö kombineras bäst med en natt — öns lugn förtjänar mer än en dagstur.',
+      'Lanthandeln är en sevärdhet i sig — överraskande välsorterad för en bilfri ö.',
+      'Skola och året-runt-befolkning gör att ön är levande även utanför sommarsäsongen.',
+      'Stockholm Archipelago Trail leder genom Svartsö — ladda ner kartan för en hel dags vandring.',
     ],
-    related: ['moja', 'gallno', 'namdo'],
-    tags: ['ekologisk', 'bilfri', 'matupplevelse', 'genuint', 'lantligt'],
-    did_you_know: 'Svartsö är känd bland naturälskare för sina ovanliga orkidéer. Varje juni blommar upp till sju orkidéarter på ön.',
+    related: ['moja', 'gallno', 'ingmarso'],
+    tags: ['bilfri', 'helårs-ö', 'lanthandel', 'genuint', 'lantligt'],
+    did_you_know: 'Svartsö har omkring 65 åretruntinvånare och är en av få mellanstora skärgårdsöar med levande helårsverksamhet — ön har egen skola, krog, vandrarhem och en lanthandel som även fungerar som apotekombud och Systembolagets utlämningsställe.',
   },
 
   // ─── RUNMARÖ ─────────────────────────────────────────────────
@@ -1045,11 +1050,11 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: 'sailboat',
-    tagline: 'Populär seglingsö nära Sandhamn — bränsle, krog och vackra naturhamnar.',
+    tagline: 'Författarnas ö — Strindberg, Söderberg och Tomas Tranströmer hämtade alla inspiration här.',
     description: [
-      'Runmarö är en större ö i mellersta skärgården som kombinerar natur med möjligheter för längre vistelse och varierad aktivitet. Ön är populär bland familjer.',
-      'Naturen på Runmarö är varierad med skogspartier, badplatser och möjligheter för vandring. Det finns hamnar och restauranger. Cykelvägar möjliggör utforskning.',
-      'Runmarö passar väl för familjer som söker ett lugnt och väl etablerat alternativ.'
+      'Runmarö är kanske Sveriges mest litterära ö. August Strindberg gjorde den känd genom sina somrar på 1880-talet — hans roman "I havsbandet" (1890) skildrar visserligen Huvudskär men är skriven utifrån miljöerna på Runmarö. Hjalmar Söderberg följde i Strindbergs spår, och Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade somrarna på sin morfars lotsplats vid "Gatan" på Runmarö hela sitt liv. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten och människor.',
+      'Runmarö är en bilfri ö i Stockholms mellersta skärgård, knutpunkt på Stavsnäs-leden mot Sandhamn. Karaktäristisk är de platta öppna vägarna med skog mellan, vilket gör ön ovanligt cykelvänlig för Stockholms-skärgården. Det finns lanthandel, krog, bageri och flera badplatser.',
+      'Runmarö passar för litteraturintresserade på Tranströmers eller Strindbergs spår, för cyklister och seglare som söker en lugnare övernattning än Sandhamn.',
     ],
 
     facts: {
@@ -1059,9 +1064,10 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, naturhamnsankring, de som söker lugnet nära Sandhamn',
     },
     activities: [
-      { icon: '⛵', name: 'Segling', desc: 'Klassisk passage och stopp på Stockholmsleden. Välplacerat för nattankring.' },
-      { icon: '🏊', name: 'Bad', desc: 'Klippbad på öns västra sida med fin utsikt.' },
-      { icon: '🚶', name: 'Vandring', desc: 'Promenera längs kustlinjen och se Sandhamn på nära håll.' },
+      { icon: '✍️', name: 'Tranströmer-spåret', desc: 'Promenera till "Gatan" där Tomas Tranströmer tillbringade somrarna i morfaderns lotshus — miljön bakom diktcykeln "Östersjöar".' },
+      { icon: '🚲', name: 'Cykling', desc: 'En av skärgårdens mest cykelvänliga öar — platta vägar och kort avstånd till alla bryggor.' },
+      { icon: '⛵', name: 'Segling', desc: 'Klassisk passage och stopp på Stavsnäs-leden mot Sandhamn.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Klippbad längs öns kustlinje.' },
     ],
     accommodation: [
       { name: 'Runmarö Gästhamn', type: 'Gästhamn', desc: 'Förtöj på gästplatser — enkelt och bra.' },
@@ -1083,7 +1089,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'moja', 'gallno'],
     tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
-    did_you_know: 'Runmarö är en av skärgårdens mest cykelvänliga öar med platta vägar och cykeluthyrning vid bryggan. Ön har dessutom ett eget bageri.',
+    did_you_know: 'Tomas Tranströmer (1931–2015) — Nobelpristagare i litteratur 2011 — tillbringade hela sitt liv somrarna i sin morfars lotshus vid "Gatan" på Runmarö. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten, lotshistoria och människor. 2001 sammanställde Tranströmer själv 30 dikter under titeln "Dikter från Runmarö".',
   },
 
   // ─── RESARÖ ──────────────────────────────────────────────────
