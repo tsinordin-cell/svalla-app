@@ -77,7 +77,7 @@ export const ISLANDS: Island[] = [
     emoji: 'sailboat',
     tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
     description: [
-      'Sandhamn är ett av Stockholms skärgårds mest välkända namn — och med rätta. Ön är hem för KSSS (Kungliga Svenska Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
+      'Sandhamn är ett av Stockholms skärgårds mest välkända namn — och med rätta. Ön är hem för KSSS (Kungliga Svenska Segel Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
       'Trots att Sandhamn är populärt har det bevarat sin karaktär. Ön är bilfri och smalare stigar leder mellan trävillorna. Det vita sandstranden Trouville på öns södra sida är en av skärgårdens finaste. Klipporna österut erbjuder solbad med utsikt mot öppet hav.',
       'Sandhamn besöks bäst juni–september men ön har verksamhet nästan hela året tack vare Seglarhotellet. Högsäsong är juli — boka allt i förväg.',
     ],
@@ -136,7 +136,7 @@ export const ISLANDS: Island[] = [
     emoji: '🚲',
     tagline: 'Södra skärgårdens kronjuvel — cykling, gruvhistoria och havsbastu.',
     description: [
-      'Utö är södra skärgårdens mest kompletta destination. Ön är känd för sina cykelleder, sin gruvhistoria — järn bröts här under 200 år — och sin havsbastu som numera är en av skärgårdens mest omtalade upplevelser. Utö Värdshus håller hög klass och är ett självklart mål för dem som vill kombinera god mat med naturupplevelse.',
+      'Utö är södra skärgårdens mest kompletta destination. Ön är känd för sina cykelleder, sin gruvhistoria — järn bröts här i mer än 700 år, från 1100-talet till 1879 — och sin havsbastu som numera är en av skärgårdens mest omtalade upplevelser. Utö Värdshus håller hög klass och är ett självklart mål för dem som vill kombinera god mat med naturupplevelse.',
       'Till skillnad från Sandhamn är Utö lugnare och mer familjevänlig. Öns storlek gör att man kan cykla runt hela dagen och ändå inte upprepa sig. Det finns sandstränder, klippor, naturreservat och ett litet museum om gruvdriften.',
       'Utö nås med färja från Nynäshamn eller med snabbåt. Ön är populär att kombinera med Nåttarö och Ålö-Rånö på en längre seglingstur söderut.',
     ],
@@ -160,9 +160,9 @@ export const ISLANDS: Island[] = [
       { name: 'STF Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt och prisvärt boende för den budgetmedvetna skärgårdsresenären.' },
     ],
     getting_there: [
-      { method: 'Pendelbåt', from: 'Nynäshamn', time: '1,5 h', desc: 'Direktförbindelsen med SL:s skärgårdslinjer. Inkluderas i SL-kort.', icon: '⛴' },
-      { method: 'Snabbåt', from: 'Nynäshamn', time: '30 min', desc: 'Snabbare och bekvämare, men dyrare. Körs av Utö Båttaxi.', icon: '🚤' },
-      { method: 'Bil + färja', from: 'Huvudskar', time: '35 min', desc: 'Bilfärja från Huvudskar. Kör till Nynäshamn och vidare.', icon: '🚗' },
+      { method: 'Skärgårdsbåt', from: 'Årsta brygga, Nynäshamn', time: '1,5 h', desc: 'Waxholmsbolagets skärgårdslinje från Årsta brygga i Nynäshamn (kommunal- och SL-kort gäller ej — separat biljett).', icon: '⛴' },
+      { method: 'Snabbåt', from: 'Årsta brygga, Nynäshamn', time: '30 min', desc: 'Snabbare alternativ sommartid — körs som expresslinje av Waxholmsbolaget.', icon: '🚤' },
+      { method: 'Pendel + båt', from: 'Stockholm C', time: '2 h totalt', desc: 'Pendeltåg till Nynäshamn (1 h), sedan kort buss/promenad till Årsta brygga + båt.', icon: '🚆' },
     ],
     harbors: [
       { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', spots: 150, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
@@ -181,7 +181,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
-    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — järnmalm bröts här åtminstone från 1100-talet. Gruvgångarna under ön är över 900 år gamla.',
+    did_you_know: 'Utö har en av Sveriges äldsta järngruvor — drift från 1100-talet fram till 1879. Sveriges första rälsväg byggdes på Utö 1835 (700 meter, för malmtransport från gruvan till lastkajen).',
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -483,9 +483,9 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor & B&B', type: 'Stugor', desc: 'Flera privata uthyrare längs öns vägar. Sök online.' },
     ],
     getting_there: [
-      { method: 'Buss + Bilfärja', from: 'Tekniska Högskolan', time: '60 min', desc: 'Buss 676 till Ljusteröfärjan, sedan bilfärja.', icon: '🚌' },
-      { method: 'Bil + Färja', from: 'Stockholm', time: '50 min', desc: 'Kör till Ljusteröfärjan och ta bilfärjan.', icon: '🚗' },
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'Varierar', desc: 'Enstaka avgångar till Klintan och Linanäs.', icon: '⛴' },
+      { method: 'Buss + Bilfärja', from: 'Danderyds sjukhus', time: '60 min', desc: 'Buss 621 från Danderyds sjukhus till Östanå färjeläge, sedan avgiftsfri bilfärja Östanå–Ljusterö (7 min). Buss 626 går vidare på ön.', icon: '🚌' },
+      { method: 'Bil + Färja', from: 'Stockholm', time: '50 min', desc: 'Kör till Östanå färjeläge norr om Åkersberga, ta avgiftsfri bilfärja över till Ljusterö (Ljusteröleden, ca 7 min).', icon: '🚗' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen / Vaxholm', time: 'Varierar', desc: 'Skärgårdsbåtar trafikerar bryggor som Linanäs, Grundvik, Åsättra m.fl.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Klintan', desc: 'Välbesökt hamn med bränsle och service.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
@@ -503,7 +503,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['finnhamn', 'ingmarso', 'blido'],
     tags: ['cykling', 'kajak', 'bilfärja', 'kustlinje', 'familj'],
-    did_you_know: 'Ljusterö är en av Stockholms läns folkrikaste öar med bil — en bro byggdes 1974. Ön har fler permanentboende än många fastlandskommuner.',
+    did_you_know: 'Ljusterö är den största ön i Stockholms skärgård som saknar fast brobindelse — i stället går avgiftsfria bilfärjan Ljusteröleden mellan Östanå och Ljusterö hela året, ca 7 minuter över sundet.',
   },
 
   // ─── DALARÖ ──────────────────────────────────────────────────
@@ -586,7 +586,7 @@ export const ISLANDS: Island[] = [
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Norrtälje', time: '3,5 h', desc: 'Lång men vacker resa norrut längs Roslagen.', icon: '⛴' },
-      { method: 'Bil + Färja', from: 'Stockholm via Väddö', time: '2,5 h', desc: 'Kör till norra Väddö, ta bilfärja till Arholma.', icon: '🚗' },
+      { method: 'Bil + passagerarfärja', from: 'Stockholm via Simpnäs', time: '2,5 h', desc: 'Kör till Simpnäs (på Björkö, norra Roslagen) — ca 90 min — sedan passagerarfärja Simpnäs–Arholma (ca 15 min, ingen bilfärja).', icon: '🚗' },
     ],
     harbors: [
       { name: 'Arholma Gästhamn', desc: 'Välskyddad hamn på öns södra sida. Bränsle och viss service.', spots: 60, fuel: true, service: ['el', 'vatten', 'bränsle'] },
@@ -602,7 +602,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
-    did_you_know: 'Arholma var den sista ön att bli nåbar utan bil när vägförbindelsen kom 1999. Fyren på ön byggdes 1768 och är en av skärgårdens äldsta.',
+    did_you_know: 'Arholma är en av Stockholms skärgårds nordligaste bebodda öar och har varit lotsplats sedan 1500-talet. Ön har ingen bilfärja — endast passagerarfärja från Simpnäs (Björkö) på fastlandet, ca 15 minuter över sundet.',
   },
 
   // ─── ORNÖ ─────────────────────────────────────────────────────
@@ -925,7 +925,7 @@ export const ISLANDS: Island[] = [
       { name: 'Privatstugor', type: 'Stugor', desc: 'Sommarstugor uthyrda av lokalbor. Sök via Blocket eller Airbnb.' },
     ],
     getting_there: [
-      { method: 'Buss + Bilfärja', from: 'Tekniska Högskolan', time: '75 min', desc: 'Buss 676 till Ljusteröfärjan, bilfärja till Ljusterö, sedan lokal färja till Ingmarsö.', icon: '🚌' },
+      { method: 'Buss + Bilfärja + båt', from: 'Danderyds sjukhus', time: '90 min+', desc: 'Buss 621 till Östanå, bilfärja till Ljusterö, sen lokal anslutningsbåt till Ingmarsö (säsong, kontrollera tidtabell).', icon: '🚌' },
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Enstaka avgångar via Ljusterö.', icon: '⛴' },
     ],
     harbors: [

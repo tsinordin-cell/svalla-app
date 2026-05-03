@@ -256,7 +256,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tagline: 'Camilla Läckbergs by, Vetteberget och pittoreska sjöbodar.',
     description: [
       'Fjällbacka är en av Bohusläns mest välkända och omtyckta destinationer — liten och pittoresk med vita trähus, röda sjöbodar och en hamn som fylls av seglare varje sommar. Byn fick internationell uppmärksamhet genom Camilla Läckbergs kriminalromaner, som utspelar sig här, och har sedan dess lockat bokfans och skärgårdsälskare i lika stora skaror.',
-      'Vetteberget är Fjällbackas landmärke. Det 74 meter höga berget reser sig dramatiskt direkt bakom bykärnan och nås via en stege i klippspringan som kallas "Kungsklyftan". Klättringen är enkel och tar 20 minuter — men utsikten från toppen är bland de bästa i hela Bohuslän. Du ser ut över skärgårdens öar, sund och vida hav.',
+      'Vetteberget är Fjällbackas landmärke. Det knappt 75 meter höga berget reser sig dramatiskt direkt bakom bykärnan och nås via Kungsklyftan — en 200 meter lång klippskreva som delar berget i Stora och Lilla Vetteberget. Stigen genom klyftan upp till toppen tar 20–30 minuter och utsikten är bland de bästa i hela Bohuslän: skärgårdens öar, sund och vida hav.',
       'Ingrid Bergman — en av 1900-talets största filmstjärnor — bodde sommartid i Fjällbacka i över 30 år och valde att få sin aska spridd i havet utanför byn 1982. Torget vid hamnen bär hennes namn och sommartid arrangeras guidade turer om hennes liv i Fjällbacka.',
       'Fjällbacka är ett utmärkt utgångsläge för skärgårdsutflykter. Därifrån kan man ta båt till Väderöarna — ett av Bohusläns vildaste och mest avlägset belägna naturreservat — eller paddla ut till mindre öar som Sälö. Gästhamnen mitt i byn tar emot seglare på 100 platser och har fullservice.',
       'Till skillnad från Marstrand och Smögen är Fjällbacka fortfarande relativt opåverkad av masstourism. Det gör att charmen är mer autentisk och att det går att hitta bord på restaurang utan att boka veckor i förväg — även om det ändras snabbt under högsäsongen.',
@@ -300,9 +300,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🐟',
     tagline: 'Pittoreskt fiskeläge på Skaftö med levande hamn och konstnärsmiljö.',
     description: [
-      'Grundsund ligger på östra sidan av Skaftö, inramat av sin smala men djupa naturhamn. Det är en av Bohusläns mest oförändrade fiskelägena med en stark sjöfartstradition.',
-      'Byn är liten — ca 700 åretruntinvånare — men har en stark konstnärsprägling. Flera ateljéer och små gallerier är öppna under sommaren.',
-      'Skaftö är ett av de få ställen i Bohuslän där bilfärja kommer fram, och Grundsund kan därmed nås både per båt och bil. Lugnare än Smögen och Marstrand men med samma karaktär.',
+      'Grundsund ligger längst ut på Skaftö, ett av Bohusläns bäst bevarade fiskelägen. Byn är delad i två — östra och västra sidan — av en kanal som grävdes under första världskriget för att fiskebåtar lättare skulle kunna passera mellan hamnarna.',
+      'Med ca 700 åretruntinvånare är Grundsund litet, men har en stark sjöfarts- och konstnärstradition. Flera ateljéer och små gallerier öppnar sina dörrar under sommaren.',
+      'Skaftö nås med bilfärja över Gullmarsfjorden (Gullmarsleden mellan Finnsbo och Skår) eller med passagerarbåt från Lysekil (linje 847 via Fiskebäckskil). Lugnare än Smögen och Marstrand — men med samma autentiska bohuslänska karaktär.',
     ],
     facts: {
       travel_time: '2 h med bil från Göteborg',
@@ -320,10 +320,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Stuguthyrning Skaftö', type: 'Stugor', desc: 'Privata sommarhus i Grundsund och näromgivning.' },
     ],
     getting_there: [
-      { method: 'Bil + färja', from: 'Göteborg', time: '2 h', desc: 'E6 till Smögen-avtaget, sedan till Skaftö-färjan vid Fiskebäckskil.', icon: '🚗' },
+      { method: 'Bil + färja', from: 'Göteborg', time: '2 h', desc: 'E6 till Uddevalla, väg 161 mot Lysekil, sedan Gullmarsledens bilfärja Finnsbo–Skår över till Skaftö (avgångar var 20:e minut dagtid).', icon: '🚗' },
+      { method: 'Passagerarbåt', from: 'Lysekil', time: '30 min', desc: 'Västtrafik linje 847 från Lysekil till Fiskebäckskil — sedan kort buss eller bil till Grundsund.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Grundsunds Hamn', desc: 'Naturhamn vid bymiljön — populär bland seglare.', spots: 60 },
+      { name: 'Grundsunds Gästhamn', desc: 'Långsmal naturhamn längs kanalen mellan östra och västra Grundsund.', spots: 60 },
     ],
     restaurants: [
       { name: 'Grundsunds Krog', type: 'Krog', desc: 'Klassisk fiskmeny i bohuslänsk miljö.' },
@@ -342,8 +343,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '⛵',
     tagline: 'Naturhamnar, segling och en av Bohusläns mest älskade gästhamnar.',
     description: [
-      'Hamburgsund ligger längs Bohusläns ostkust, i ett naturskyddat sund mellan fastlandet och Hamburgö. Byn är liten men hamnen är en av de mest besökta för seglare på västkusten.',
-      'Ön Hamburgö nås via en 5-minuters färja och erbjuder vandringsleder, badklippor och en av Bohusläns mest ikoniska Bronsåldersrösen — Greby gravfält.',
+      'Hamburgsund ligger vid den norra Bohuslänkusten, i ett naturskyddat sund mellan fastlandet och Hamburgö. Byn är liten men hamnen är en av de mest besökta för seglare på västkusten.',
+      'Ön Hamburgö nås via en kort passagerarfärja över sundet och erbjuder vandringsleder och badklippor. På fastlandssidan, ca 15 minuter med bil norrut, ligger Greby gravfält — Bohusläns största järnåldersgravfält.',
       'Hamburgsund är ett bra alternativ till mer turistiga orter — atmosfären är lugnare men service och natur är förstklassig.',
     ],
     facts: {
@@ -354,7 +355,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activities: [
       { icon: '⛵', name: 'Segling', desc: 'Skyddat sund, perfekt för nybörjare och familjer.' },
-      { icon: '🥾', name: 'Greby gravfält', desc: 'Bronsåldersrösen på Hamburgö — UNESCO-kandidat.' },
+      { icon: '🥾', name: 'Greby gravfält', desc: 'Bohusläns största järnåldersgravfält (400–500 e.Kr.) — ca 200 gravar, 15 min med bil norrut mot Grebbestad.' },
       { icon: '🏊', name: 'Klippbad Hamburgö', desc: 'Klippor på västsidan av ön.' },
     ],
     accommodation: [
@@ -370,10 +371,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     restaurants: [
       { name: 'Hamburgsunds Värdshus', type: 'Restaurang', desc: 'Klassisk västkustmeny.' },
     ],
-    tips: ['Greby gravfält är magiskt vid solnedgång.', 'Hamburgö-färjan går flera gånger i timmen sommartid.', 'Bra utgångsläge för båtutflykter norrut till Väderöarna.'],
+    tips: ['Hamburgö-färjan går korta turer över sundet sommartid — kolla aktuell tidtabell vid hamnen.', 'Bra utgångsläge för båtutflykter norrut till Väderöarna.', 'Greby gravfält norr om Grebbestad nås lättast med bil — magiskt vid solnedgång.'],
     related: ['fjallbacka', 'grebbestad', 'kosterhavet'],
     tags: ['gästhamn', 'segling', 'lugnt', 'historia'],
-    did_you_know: 'Greby gravfält på Hamburgö har över 230 bronsåldersrösen — ett av Bohusläns största sammanhängande forntidsmonument.',
+    did_you_know: 'Greby gravfält norr om Grebbestad är Bohusläns största gravfält — runt 200 synliga gravar från järnåldern (400–500 e.Kr.). Det är inte UNESCO-listat (det är däremot Tanums hällristningar 15 km bort), men ett av Sveriges viktigaste järnåldersmonument.',
   },
   {
     slug: 'karingon',
@@ -403,7 +404,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Stughyrning', type: 'Stugor', desc: 'Privata sommarhus i bymiljö.' },
     ],
     getting_there: [
-      { method: 'Bil + båt', from: 'Göteborg', time: '1 h 45 min', desc: 'Kör till Mollösund eller Hälleviksstrand, sen passagerarbåt.', icon: '⛴' },
+      { method: 'Bil + passagerarbåt', from: 'Göteborg', time: '1 h 45 min', desc: 'Kör till Tuvesvik (Orust). Käringötrafiken går från Tuvesvik via Gullholmen till Käringön — året om, tätare turlista 15 juni–15 augusti. Båt går även från Hälleviksstrand sommartid.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Käringö Gästhamn', desc: 'Pittoresk hamn vid bymiljön.', spots: 50 },
@@ -412,7 +413,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Käringö Värdshus', type: 'Restaurang', desc: 'Klassisk bohuslänsk meny.' },
       { name: 'Konditori Käringön', type: 'Café', desc: 'Familjedrivet, hembakat.' },
     ],
-    tips: ['Boka övernattning på Värdshuset 6 mån i förväg för sommaren.', 'Solnedgång från västsidan är magisk.', 'Mollösund-färjan tar bara 15 min.'],
+    tips: ['Boka övernattning på Värdshuset 6 mån i förväg för sommaren.', 'Solnedgång från västsidan är magisk.', 'Båten Tuvesvik–Käringön är huvudförbindelsen och tar ca 15 min.'],
     related: ['mollosund', 'orust', 'tjorn'],
     tags: ['bilfri', 'pittoresk', 'fotografi', 'romantik'],
     did_you_know: 'Käringön är skyddad som kulturreservat och får inte ändras byggnadsmässigt — varje hus måste behålla sin 1800-talskaraktär.',
@@ -425,9 +426,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏝',
     tagline: 'Sveriges tredje största ö med båtbyggartradition och breda kustlinjer.',
     description: [
-      'Orust är Sveriges tredje största ö (efter Gotland och Öland) och det dolda hjärtat av Bohuslän. Här finns båtbyggartradition (Hallberg-Rassy, Najad och flera klassiker), gott om vandringsleder och en lång kustlinje.',
+      'Orust är Sveriges tredje största ö (efter Gotland och Öland) och det dolda hjärtat av Bohuslän. Här finns båtbyggartradition (Hallberg-Rassy och Najad är båda baserade på Orust), gott om vandringsleder och en lång kustlinje.',
       'Mollösund i västra Orust är en av öns mest pittoreska byar med klassisk fiskeläge-stämning. På östra sidan ligger Henån — handelscentrum med skydd från Atlantens vindar.',
-      'Orust nås via två broar och kan utforskas på cykel eller bil. Ön är ett bra basläge för utflykter till Käringön, Gullholmen och Hermanö.',
+      'Orust nås landvägen via Nötesundsbron från Stenungsund/Tjörn-hållet, eller via Stigfjordsbron från Tjörn. Ön kan utforskas på cykel eller bil och är ett bra basläge för utflykter till Käringön, Gullholmen och Hermanö.',
     ],
     facts: {
       travel_time: '1 h 15 min med bil från Göteborg',
@@ -446,7 +447,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { name: 'Stughyrning Orust', type: 'Stugor', desc: 'Privata sommarhus över hela ön.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', time: '1 h 15 min', desc: 'E6 norrut, sen Tjörnbron till Stenungsund och Orustbron.', icon: '🚗' },
+      { method: 'Bil', from: 'Göteborg', time: '1 h 15 min', desc: 'E6 norrut till Stenungsund, över Tjörnbron till Tjörn, sedan Stigfjordsbron eller Nötesundsbron till Orust.', icon: '🚗' },
     ],
     harbors: [
       { name: 'Henåns Gästhamn', desc: 'Skyddad gästhamn på östra Orust.', spots: 80, fuel: true },
@@ -459,7 +460,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Orust är stort — boka 3+ dagar för att se öns variation.', 'Cykla mellan Henån och Mollösund tar en heldag.', 'Båtbyggarmuseet i Henån är värt 2 timmar regn-eller-sol.'],
     related: ['tjorn', 'karingon', 'gullholmen'],
     tags: ['stor ö', 'båtbyggning', 'mångsidig', 'bas'],
-    did_you_know: 'Orust är Sveriges tredje största ö och en av Europas viktigaste båtbyggarregioner — Hallberg-Rassy, Najad och Maxi har sina ursprung här.',
+    did_you_know: 'Orust är Sveriges tredje största ö (efter Gotland och Öland) och en av norra Europas viktigaste segelbåtsbyggarregioner — Hallberg-Rassy (i Ellös) och Najad (i Henån) byggs här ännu idag.',
   },
   {
     slug: 'tjorn',
@@ -469,7 +470,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🌉',
     tagline: 'Skuggorubron, akvarellmuseum och porten till Bohuslän.',
     description: [
-      'Tjörn är Sveriges sjätte största ö och ofta den första destinationen folk besöker när de söderifrån kör till Bohuslän. Tjörnbron — Sveriges längsta hängbro — är ön symbol.',
+      'Tjörn är Sveriges sjätte största ö och ofta den första destinationen folk besöker när de norrifrån kör in i Bohuslän. Tjörnbron — en av Sveriges mest kända snedkabelbroar — är öns symbol och förbinder Tjörn med fastlandet via Källön och Almön.',
       'Skärhamn på västra Tjörn är hjärtat av öns kulturliv med Nordiska Akvarellmuseet — Skandinaviens viktigaste akvarellsamling, byggd vid hamnen i en spektakulär arkitektur.',
       'Tjörn har också flera fiskelägen som Klädesholmen (känd för sina sillinläggningar) och Rönnäng. Ön är 200 km² stor och kräver en hel dag att utforska.',
     ],
@@ -503,7 +504,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka bord på Salt & Sill 2 mån i förväg för helger.', 'Akvarellmuseet är värt 2 timmar.', 'Solnedgång vid Tjörnbron är spektakulär.'],
     related: ['orust', 'marstrand', 'stenungsund'],
     tags: ['akvarellmuseum', 'sill', 'tjörnbron', 'mångsidig'],
-    did_you_know: 'Tjörnbron rasade 1980 efter en kollision med ett fartyg — 8 personer dog. Den nya bron är 664 meter lång (huvudspannet 366 m) och en av Sveriges mest fotograferade.',
+    did_you_know: 'Den ursprungliga Tjörnbron rasade natten till 18 januari 1980 efter att fartyget Star Clipper kolliderat med brovalvet — åtta personer omkom när bilar körde ut i raset. Den nuvarande bron, en snedkabelbro, är 661,5 meter lång och invigdes 1981.',
   },
   {
     slug: 'kungshamn',
@@ -555,9 +556,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '💡',
     tagline: 'Den förgyllda fyren som blivit ett av världens mest unika hotell.',
     description: [
-      'Pater Noster är en fyrö 30 minuter med båt från Marstrand. Fyren från 1868 var Sveriges första järnfyr och har en signaturgul-svart färg som syns långt ut till havs.',
-      'Sedan 2007 är fyren ett "boutique hotel" — bara 9 rum totalt och en restaurant. Övernattning kostar från 5 000 kr/natt men upplevelsen är världsunik.',
-      'Ön är dramatisk och vild. Vandring runt klipporna tar 30 minuter och ger en känsla av att vara ute i öppna havet — vilket man bokstavligen är.',
+      'Pater Noster är en fyr på den karga klippön Hamneskär, ca 30 minuter med båt från Marstrand. Den 32 meter höga fyren från 1868 är ett av Sveriges mest kända exempel på en Heidenstammare — Gustaf von Heidenstams öppna järnfyrkonstruktion — och dess röd-vit-svarta siluett syns långt ut till havs.',
+      'Sedan 2020 drivs den restaurerade fyrvaktarbostaden som boutiquehotell — bara nio rum, restaurang, och en bokningskö som ofta sträcker sig flera månader. 2022 utsågs Pater Noster till "Global New Concept Award"-vinnare på Ahead Awards.',
+      'Ön är dramatisk och vild. En kort klippvandring ger 360-graders havsutsikt — vilket man bokstavligen är ute i, då Pater Noster ligger på den yttersta klippan utanför Marstrand.',
     ],
     facts: {
       travel_time: '30 min båt från Marstrand',
@@ -566,12 +567,12 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       best_for: 'Speciella tillfällen, romantik, lyx',
     },
     activities: [
-      { icon: '💡', name: 'Fyrbestigning', desc: 'Klättra upp i den 30 meter höga fyren.' },
+      { icon: '💡', name: 'Fyrbestigning', desc: 'Klättra upp i den 32 meter höga järnfyren från 1868.' },
       { icon: '🥾', name: 'Klippvandring', desc: '30 min runt ön — havsutsikt 360°.' },
-      { icon: '🍽', name: 'Pater Noster Restaurang', desc: 'Bohuslänsk meny i världsklass.' },
+      { icon: '🍽', name: 'Pater Noster Restaurang', desc: 'Bohuslänsk meny av råvaror från regionen.' },
     ],
     accommodation: [
-      { name: 'Pater Noster', type: 'Hotell', desc: 'Boutique-hotell i fyrvaktarbostaden — 9 rum.' },
+      { name: 'Pater Noster', type: 'Hotell', desc: 'Boutiquehotell i den restaurerade fyrvaktarbostaden — nio rum, restaurang, drift sedan 2020.' },
     ],
     getting_there: [
       { method: 'Båt', from: 'Marstrand', time: '30 min', desc: 'Båtshuttle bokas via hotellet.', icon: '⛴' },
@@ -585,7 +586,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka 6+ månader i förväg.', 'Lunch är öppen för icke-hotellgäster (bokas i förväg).', 'Vid kraftig vind kan båt ställas in — flexibelt schema krävs.'],
     related: ['marstrand', 'kungshamn', 'smogen'],
     tags: ['fyr', 'lyx', 'unik', 'boutique-hotell'],
-    did_you_know: 'Pater Noster ("Fader Vår" på latin) byggdes 1868 av järn och var Sveriges första järnfyr. Den restaurerades och blev hotell 2007.',
+    did_you_know: 'Pater Noster ("Fader Vår" på latin) byggdes 1868 efter Gustaf von Heidenstams banbrytande öppna järntornkonstruktion. Den var i drift som farledsfyr fram till 1977, då Hätteberget tog över. Efter renovering öppnade den 2020 som boutiquehotell.',
   },
   {
     slug: 'vinga',
