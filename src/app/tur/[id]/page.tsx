@@ -12,6 +12,7 @@ import { renderMentions } from '@/lib/mentions'
 import TripShareModal from '@/components/TripShareModal'
 import TripActions from '@/components/TripActions'
 import TripTagger from '@/components/TripTagger'
+import TripHighlightPrompt from '@/components/TripHighlightPrompt'
 import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
@@ -113,6 +114,14 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  ? await supabase.from('users').select('id, username').in('id', taggedUserIds)
  : { data: [] }
  const taggedUsers = taggedUsersRaw ?? []
+
+ // Existerande höjdpunkt (visas, eller prompt visas om ingen finns och man äger turen)
+ const isOwner = !!currentUser && currentUser.id === trip.user_id
+ const { data: existingHighlight } = await supabase
+   .from('trip_highlights')
+   .select('id, place_slug, place_name')
+   .eq('trip_id', id)
+   .maybeSingle()
 
  const points = (rawPoints ?? []).map(p => ({
  lat: p?.latitude ?? 0,
@@ -569,6 +578,33 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  currentUserId={currentUser?.id ?? null}
  />
  </div>
+
+ {/* Trip highlight — flywheel-koppling ö → plats → andras feed */}
+ {existingHighlight ? (
+   <div style={{
+     margin: '0 0 18px',
+     padding: '14px 16px',
+     borderRadius: 12,
+     background: 'rgba(201,110,42,0.08)',
+     border: '1px solid rgba(201,110,42,0.20)',
+     fontSize: 14,
+   }}>
+     <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--acc, #c96e2a)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>
+       Höjdpunkt
+     </div>
+     <Link href={`/plats/${existingHighlight.place_slug}`} style={{ fontWeight: 700, color: 'var(--txt)', textDecoration: 'none' }}>
+       {existingHighlight.place_name}
+     </Link>
+   </div>
+ ) : isOwner && points.length > 0 ? (
+   <div style={{ marginBottom: 18 }}>
+     <TripHighlightPrompt
+       tripId={trip.id}
+       routePoints={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+       onDone={() => { /* lokalt — sidan refreshar inte automatiskt, OK för MVP */ }}
+     />
+   </div>
+ ) : null}
 
  {/* Map */}
  {hasMap ? (

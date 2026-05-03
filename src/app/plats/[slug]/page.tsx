@@ -6,6 +6,7 @@ import BackButton from '@/components/BackButton'
 import Icon from '@/components/Icon'
 import PlatsMapClient from './PlatsMapClient'
 import SaveButton from './SaveButton'
+import PlaceRecentVisitors from '@/components/PlaceRecentVisitors'
 
 type Plats = {
  id: string
@@ -189,6 +190,9 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  island={p.island}
  />
  </div>
+
+ {/* Senast här — peer-närvaro från trip_highlights */}
+ <PlaceRecentVisitors placeSlug={p.slug} placeName={p.name} />
 
  {/* Core experience */}
  {p.core_experience && (
