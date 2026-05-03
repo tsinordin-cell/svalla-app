@@ -1225,8 +1225,8 @@ export default function LandingPage() {
  <HeroAnimation />
  </div>
  <style>{`
- /* Hero section — dark fallback bg covers any overflow below canvas */
- .hero { position: relative; z-index: 1; background: linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%) !important; }
+ /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
+ .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML }} />
  </div>
