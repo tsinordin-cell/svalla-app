@@ -143,6 +143,32 @@ export default function SparaPage() {
   // ── Auth gate — render nothing until check completes ─────────────────────
   const [authLoading, setAuthLoading] = useState(true)
 
+  // ── Web vs native detection (för skärm-på-banner och bakgrundsstöd) ───────
+  const [isNativeApp, setIsNativeApp] = useState(false)
+  useEffect(() => {
+    let cancelled = false
+    import('@capacitor/core').then(m => {
+      if (!cancelled) setIsNativeApp(m.Capacitor.isNativePlatform())
+    }).catch(() => { /* ej native */ })
+    return () => { cancelled = true }
+  }, [])
+
+  // Banner: dölj-knapp persisteras i localStorage så vi inte tjatar
+  const [showWebBanner, setShowWebBanner] = useState(false)
+  useEffect(() => {
+    if (isNativeApp) { setShowWebBanner(false); return }
+    try {
+      const dismissed = localStorage.getItem('svalla_web_screen_banner_dismissed')
+      setShowWebBanner(!dismissed)
+    } catch {
+      setShowWebBanner(true)
+    }
+  }, [isNativeApp])
+  function dismissWebBanner() {
+    try { localStorage.setItem('svalla_web_screen_banner_dismissed', '1') } catch {}
+    setShowWebBanner(false)
+  }
+
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (!data.user) { router.push('/logga-in?redirect=/spara'); return }
@@ -1261,6 +1287,58 @@ export default function SparaPage() {
               </div>
             ))}
           </div>
+
+          {/* Web-banner: skärm måste vara på (visas bara i webbläsare, ej native, kan dismissas) */}
+          {showWebBanner && !isNativeApp && (
+            <div style={{
+              margin: '0 20px 10px', padding: '10px 14px', borderRadius: 12,
+              background: 'rgba(255,255,255,0.10)',
+              border: '1px solid rgba(255,255,255,0.18)',
+              color: 'rgba(255,255,255,0.92)',
+              fontSize: 12, fontWeight: 500,
+              lineHeight: 1.5,
+              display: 'flex', alignItems: 'flex-start', gap: 10,
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16, flexShrink: 0, marginTop: 1 }}>
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+              <div style={{ flex: 1 }}>
+                <strong>Lås inte skärmen.</strong> Webb-version pausar GPS när telefonen sover. Lägg Svalla på hemskärmen för bästa stöd.
+              </div>
+              <button
+                onClick={dismissWebBanner}
+                aria-label="Dölj"
+                style={{
+                  width: 22, height: 22, padding: 0, flexShrink: 0,
+                  background: 'transparent', border: 'none',
+                  color: 'rgba(255,255,255,0.7)', fontSize: 16, cursor: 'pointer',
+                  lineHeight: 1,
+                }}
+              >
+                ×
+              </button>
+            </div>
+          )}
+
+          {/* Accuracy-chip: varna om GPS är dålig (bara när vi fått första fix och accuracy >25m) */}
+          {currentAccuracy !== null && currentAccuracy > 25 && (phase === 'tracking' || phase === 'paused') && (
+            <div style={{
+              margin: '0 20px 10px', padding: '7px 12px', borderRadius: 10,
+              background: 'rgba(201,110,42,0.12)',
+              border: '1px solid rgba(201,110,42,0.30)',
+              color: '#f0a060',
+              fontSize: 11, fontWeight: 600,
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ width: 13, height: 13, flexShrink: 0 }}>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              GPS-noggrannhet: {Math.round(currentAccuracy)} m — väntar på bättre signal
+            </div>
+          )}
 
           {/* GPS error */}
           {gpsError && (

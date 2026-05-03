@@ -63,9 +63,12 @@ async function startNativeTracking(
   }
 
   // watchId är lokal variabel — isolerad per anrop
+  // Timeout 30s — kall GPS-start utomhus tar ofta 15-25s (mer i skärgården, kallt
+  // väder, satellit-skugga). 10s var för aggressivt och gav falska "GPS ej
+  // tillgänglig"-fel innan första fix.
   let localWatchId: string | null = null
   localWatchId = await Geolocation.watchPosition(
-    { enableHighAccuracy: true, timeout: 10_000 },
+    { enableHighAccuracy: true, timeout: 30_000 },
     (pos, err) => {
       if (err) { onError(err.message ?? 'GPS-fel'); return }
       if (!pos) return
@@ -109,7 +112,11 @@ function startWebTracking(
       speed:     pos.coords.speed   ?? null,
     }),
     (err) => onError(err.message ?? 'GPS-fel'),
-    { enableHighAccuracy: true, timeout: 10_000, maximumAge: 5_000 },
+    // Timeout 30s — kall GPS-start utomhus tar ofta 15-25s (mer i skärgården,
+    // kallt väder, satellit-skugga). 10s gav falska "GPS ej tillgänglig"-fel
+    // innan första fix. maximumAge 5s — accept lite gamla positioner för att
+    // undvika gap.
+    { enableHighAccuracy: true, timeout: 30_000, maximumAge: 5_000 },
   )
 
   return async () => {
@@ -155,7 +162,7 @@ export async function getCurrentPosition(): Promise<GpsPoint | null> {
         speed:     pos.coords.speed   ?? null,
       }),
       () => resolve(null),
-      { enableHighAccuracy: true, timeout: 10_000 },
+      { enableHighAccuracy: true, timeout: 30_000 },
     )
   })
 }
