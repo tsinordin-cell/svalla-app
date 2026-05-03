@@ -339,7 +339,13 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .boende-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:600px){
- section{padding:72px 24px}
+ section{padding:48px 20px}
+ .section-sub{font-size:15px;max-width:100%}
+ .section-title{font-size:clamp(22px,6vw,30px)}
+ .pillar{padding:28px 20px}
+ .pillar p{font-size:14px}
+ .step{padding:24px 20px}
+ .destination-card img,.activity-card img{height:120px;object-fit:cover}
  .lp-nav{padding:0 16px;height:60px}
  .nav-links{display:none}
  .nav-cta{gap:7px}
@@ -351,7 +357,8 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .trust-divider{display:none}
  .krog-grid{grid-template-columns:1fr}
  .stats-grid{grid-template-columns:1fr 1fr}
- .split-pane{padding:60px 28px}
+ .split-pane{padding:40px 20px}
+ .split-pane .btn-accent{padding:12px 28px;font-size:13.5px}
  footer{padding:32px 20px 24px}
  .footer-grid{grid-template-columns:1fr 1fr;gap:28px 20px;margin-bottom:28px;align-items:start}
  .footer-brand{grid-column:1/-1}
