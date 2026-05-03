@@ -345,18 +345,23 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .nav-cta{gap:7px}
  .btn-ghost{padding:8px 14px;font-size:13px}
  .btn-accent{padding:8px 14px;font-size:13px}
- .trust-bar{gap:16px;padding:14px 16px}
- .trust-item{font-size:12px}
+ .trust-bar{gap:6px 20px;padding:10px 16px}
+ .trust-item{font-size:11px}
+ .trust-item strong{font-size:14px}
  .trust-divider{display:none}
  .krog-grid{grid-template-columns:1fr}
  .stats-grid{grid-template-columns:1fr 1fr}
  .split-pane{padding:60px 28px}
  .footer-grid{grid-template-columns:1fr}
- .hero-title{font-size:clamp(36px,9vw,56px)}
- .hero-sub{font-size:15px}
- .hero-search{border-radius:16px;flex-direction:column;gap:0;overflow:hidden}
- .hero-search input{padding:14px 18px;font-size:14px}
- .hero-search button{margin:0;border-radius:0;padding:13px 18px;font-size:14px}
+ .hero{padding-top:68px}
+ .hero-eyebrow{margin-bottom:14px;font-size:11px;padding:5px 12px}
+ .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:12px}
+ .hero-sub{font-size:13.5px;margin:8px auto 14px}
+ .hero-search{flex-direction:row;border-radius:50px;max-width:92%;margin:0 auto 10px;overflow:hidden;gap:0}
+ .hero-search input{padding:10px 14px;font-size:13px}
+ .hero-search button{margin:4px 4px 4px 0;padding:8px 18px;border-radius:50px;font-size:12.5px;white-space:nowrap}
+ .hero-search-hint{margin-bottom:10px;font-size:11.5px}
+ .hero-scroll{display:none}
  .steps{grid-template-columns:1fr}
 }
 /* Dark mode: match footer color so no black strip appears below footer */
