@@ -5,7 +5,6 @@ import 'leaflet.markercluster/dist/MarkerCluster.css'
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import Link from 'next/link'
 import { WeatherPill, DestinationPill } from '@/components/MapCornerPills'
-import PlanDayChip from '@/components/PlanDayChip'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 
 type Filter = 'bryggor' | 'krogar' | 'naturhamnar' | 'bensin' | 'bastu' | 'rutter' | 'vader' | 'heatmap'
@@ -630,8 +629,6 @@ export default function UpptackClient() {
 
       {/* Map container (alltid monterad — döljs visuellt i list-vy) */}
       <div ref={mapRef} style={{ position: 'absolute', inset: 0 }} />
-
-      <PlanDayChip source="upptack" />
 
       {/* View toggle: Karta / Lista */}
       <div
