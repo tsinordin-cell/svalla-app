@@ -1288,9 +1288,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌊',
     tagline: 'Glest befolkad ö i Norrtäljes skärgård — rå natur och en bilfärja bort från turismen.',
     description: [
-      'Singö är en större ö i norra skärgården som kombinerar natur med möjligheter för längre vistelse. Ön är bilfärjebetjänad och erbjuder varierad natur.',
-      'Naturen på Singö är varierad med skogspartier och väl utvecklad kustlinje. Det finns hamnar och grundläggande service. Cykelvägar löper längs vägnätet.',
-      'Singö passar för familjer som söker ett lugnt alternativ till de populäraste norra öarna.'
+      'Singö är en stor ö i norra Roslagens skärgård i Norrtälje kommun, broförbunden med fastlandet. Tillsammans med grannön Fogdö bildar den ett av norra Upplands mest oförstörda kustlandskap — öppna fält, träkyrkby och en lång klippkust mot Ålandshav.',
+      'Singö kyrka från 1753 är en röd timmrad träkyrka och hyser flera 1700-talsdyrkar — bland annat ett votivskepp från 1700-talet som räknas till Stockholms läns äldsta, skänkt av Norrtälje-borgaren Eric Brant och hans hustru Maria Tillman 1752.',
+      'Före Singöbron byggdes (då gjorde båt huvudtransporten) gick Waxholmsbåtarna ända fram till 1951 från Strandvägen via Norrtälje, Väddö kanal, Trästa och Singö till Östhammar och Öregrund. Idag är Singö ett populärt bilburet utflyktsmål för dem som söker bortom de stora turist-öarna.',
     ],
 
     facts: {
@@ -1300,10 +1300,10 @@ export const ISLANDS: Island[] = [
       best_for: 'De som söker äkta orördhet, kulturhistoria',
     },
     activities: [
-      { icon: '⛪', name: 'Singö kapell', desc: 'Ett av Upplands äldsta träkyrkor. Historisk pärla värd ett besök.' },
-      { icon: '🎣', name: 'Fiske', desc: 'Utmärkta fiskevatten runt ön. Abborre och havsöring.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs öns grusvägar och utforska fiskelägena.' },
-      { icon: '🏊', name: 'Klippbad', desc: 'Orörda klippbad längs kusten utan konkurrens om platserna.' },
+      { icon: '⛪', name: 'Singö kyrka (1753)', desc: 'Röd timmrad träkyrka med altarprydnader från Hargs kyrka 1761 och en av Stockholms läns äldsta votivskepp (1752).' },
+      { icon: '🎣', name: 'Fiske', desc: 'Bra fiskevatten runt ön. Abborre och havsöring i kustvattnen.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs öns grusvägar genom det öppna kulturlandskapet.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Lugna klippbad längs kusten — sällan trångt.' },
     ],
     accommodation: [
       { name: 'Stugor', type: 'Stugor', desc: 'Privatuthyrning av sommarstugor på ön.' },
@@ -1323,7 +1323,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['arholma', 'vaddo', 'norrora'],
     tags: ['genuint', 'orört', 'bilfärja', 'norra', 'kulturhistoria'],
-    did_you_know: 'Singö omnämns i Gustav Vasas brev på 1500-talet som en viktig plats för träkol till Stockholm. Skogen hugges och brändes för stadens smedjor.',
+    did_you_know: 'Singö kyrka (1753) hyser ett votivskepp från 1752 som räknas till Stockholms läns äldsta — skänkt av Norrtälje-borgaren Eric Brant och hans hustru Maria Tillman. Fram till 1951 trafikerade Waxholmsbåtarna sträckan Stockholm–Norrtälje–Singö–Östhammar/Öregrund som ordinarie passagerarlinje.',
   },
 
   // ─── LIDÖ ────────────────────────────────────────────────────
@@ -1383,9 +1383,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌊',
     tagline: 'Halvö i norra skärgården med direktbuss och en av regionens finaste stränder.',
     description: [
-      'Graddo är en liten ö i mellersta skärgården som erbjuder lugn och möjligheter för badning och enkel vistelse. Ön är mindre uppmärksammad men älskad.',
-      'Graddo kombinerar naturvärdena på ett väl skyddat läge med möjligheter för enkelt ankörning. Badplatser längs kusten erbjuds. Service är minimal.',
-      'Graddo passar ofta som ett sekundärt stopp för seglare som redan är ute i skärgården, eller för kajakvinnare.'
+      'Gräddö är en halvö i Roslagens skärgård i Norrtälje kommun, broförbunden med fastlandet via E18 och väg 76. Det gör Gräddö till en av de mest tillgängliga skärgårdsplatserna i norra Stockholms län — man kör hela vägen utan färja.',
+      'Halvön är populär för dagsutflykter från Stockholm. Sommartid finns båtutflykter till Tjockö, Fejan och vidare ut i Furusunds skärgård. Gräddöbadet är en lättillgänglig sandstrand och området har flera mindre gästhamnar och restauranger längs kusten.',
+      'Gräddö passar för bilburna familjer som vill nå Roslagens skärgård utan båt, för dagsturer från Norrtälje, eller som start- och slutpunkt för båtutflykter mot Furusund och de yttre öarna.',
     ],
 
     facts: {
@@ -1619,9 +1619,9 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     tagline: 'Orört naturreservat i södra ytterskärgården — här åker man hit, inte förbi.',
     description: [
-      'Fjärdlång är ett naturskär i södra skärgården som erbjuder dramatiska utsikter och möjligheter för enkelt ankörning för erfarna seglare. Skäret är exponerat.',
-      'Fjärdlång kombinerar ytterskärgårdens dramatiska natur med möjligheter för enkelt ankörning på sydsidan. Badplatser och möjligheter för naturupplevelse erbjuds.',
-      'Fjärdlång passar för erfarna seglare som söker dramatisk natur och äventyr långt från populära destinationer.'
+      'Fjärdlång är en större ö i Stockholms södra skärgård öster om Dalarö och Ornö. Ön är skyddad som naturreservat och förvaltas av Skärgårdsstiftelsen — ett tag av Stockholms läns finaste oexploaterade skärgårdsmiljöer med klippkust, blandskog och rikt fågelliv.',
+      'På ön finns Fjärdlångs vandrarhem (32 bäddar, öppet maj till mitten av september) och Norrötorpet — en liten 33 m² stuga med ett rum, kök och sovloft, utan el, med vatten från egen pump och utedass plus bastu vid den egna bryggan.',
+      'Fjärdlång nås med Waxholmsbåt eller egen båt från Dalarö. Markerade vandringsleder av varierande längd och svårighetsgrad gör ön till en av södra skärgårdens bästa platser för en längre dagsutflykt eller weekend.',
     ],
 
     facts: {
@@ -1636,22 +1636,25 @@ export const ISLANDS: Island[] = [
       { icon: '🏊', name: 'Klippbad', desc: 'Rent klart vatten i ytterskärgårdsläge.' },
     ],
     accommodation: [
-      { name: 'Ankring', type: 'Gästhamn', desc: 'Ankra i naturhamnen. Inga fasta faciliteter.' },
+      { name: 'Fjärdlångs Vandrarhem', type: 'Vandrarhem', desc: '32 bäddar, öppet maj till mitten av september. Drivs i Skärgårdsstiftelsens regi.' },
+      { name: 'Norrötorpet', type: 'Stugor', desc: 'Liten 33 m² stuga utan el — vatten från pump, utedass, bastu vid egen brygga. Ta med egen mat.' },
     ],
     getting_there: [
-      { method: 'Privat båt', from: 'Utö / Dalarö', time: '2–3 h', desc: 'Enda alternativet. Erfaren seglare rekommenderas.', icon: '⛵' },
+      { method: 'Waxholmsbåt', from: 'Dalarö', time: '1–1,5 h', desc: 'Reguljär skärgårdslinje under säsong. Kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Dalarö / Utö', time: '1–2 h', desc: 'Fjärdlångsviken är en klassisk naturhamn för seglare.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar. Begränsat antal platser.', spots: 10, fuel: false },
+      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar — Skärgårdsstiftelsen-förvaltad.', spots: 10, fuel: false },
     ],
     restaurants: [],
     tips: [
-      'Ta med allt du behöver — ingen service finns på ön.',
-      'Anlöp tidigt, viken tar slut snabbt under högsäsong.',
+      'Boka vandrarhem 2–3 månader i förväg för juli — populärt med 32 bäddar.',
+      'Norrötorpet är el-fritt — perfekt för digital detox men kräver planering.',
+      'Markerade vandringsleder av olika längd — bra för både dagsutflykt och längre vistelse.',
     ],
     related: ['uto', 'nattaro', 'landsort'],
-    tags: ['naturreservat', 'orört', 'segling', 'ytterskärgård', 'södra'],
-    did_you_know: 'Fjärdlång är ett naturreservat vars stränder hyser kolonier av sjöfågel. Ön är stängd för allmänheten under häckningssäsongen maj–juli.',
+    tags: ['naturreservat', 'skärgårdsstiftelsen', 'vandrarhem', 'södra'],
+    did_you_know: 'Fjärdlång förvaltas av Skärgårdsstiftelsen och vandrarhemmet med 32 bäddar är öppet maj till mitten av september. Stugan Norrötorpet — 33 m² utan el — är en av få platser i Stockholms skärgård där man fortfarande hämtar vatten med handpump och bastubadar vid egen brygga.',
   },
 
   // ── BATCH 3: Ytterligare öar för full konkurrenskraft ───────────────────
@@ -1813,27 +1816,30 @@ export const ISLANDS: Island[] = [
     name: 'Smådalarö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
-    emoji: '🛶',
-    tagline: 'Kajakcentrum och pittoreskt gammalt fiskläge',
+    emoji: '🏛',
+    tagline: 'Smådalarö Gård (1810) — Stockholms skärgårds kanske mest välrenommerade spa-hotell.',
     description: [
-      'Smådalarö är en liten ö söder om Dalarö som erbjuder lugn, utsikter och en autentisk skärgårdsupplevelse. Ön är mindre besökt än Utö men erbjuder fin naturupplevelse.',
-      'Naturmässigt är Smådalarö varierad med skogspartier och klippor längs kusten. Det finns möjligheter för klippbad och vandringsstigar. Service är begränsad.',
-      'Smådalarö nås bäst med egen båt från Dalarö eller som del av en längre seglingstur söderut. Det är en ö för lugnsökande seglare.'
+      'Smådalarö är en del av Dalaröhalvön i Stockholms södra skärgård, broförbunden och nåbar med bil från Stockholm på cirka 50 minuter. Området har en lång historia — under 1700-talet drev löjtnant Carl Christian Gyldener jordbruk här och fick livstidsarrende 1750. 1802 köpte kapten Per Niklas Blom hela "Tyresö skärgården" av grevinnan Brita Bonde för 12 000 riksdaler, och 1810 stod Smådalarö Gård klar.',
+      'Smådalarö Gård genomgick en omfattande renovering och öppnade sommaren 2021 som ett av Sveriges mest påkostade spahotell — 118 rum, 2 000 m² spa, flera restauranger och bredd av aktiviteter. Det är idag en av Stockholms skärgårds mest välkända destinationer för helgvistelser och konferens.',
+      'Smådalarö passar för weekend-resor med fokus på spa, mat och natur, för konferenser, eller som utgångspunkt för utflykter mot Dalarö, Utö och de södra öarna.',
     ],
-
-    facts: { travel_time: '1 h 30 min från Stockholm', character: 'Kajak, pittoreskt, havsnära', season: 'Maj–september', best_for: 'Kajak, segling, fiskeby' },
+    facts: { travel_time: '50 min med bil från Stockholm', character: 'Spa-hotell, bilförbunden, herrgårdsmiljö', season: 'Helår', best_for: 'Spa-weekend, konferens, dagstur' },
     activities: [
-      { icon: '🛶', name: 'Havskajak', desc: 'Hyr kajak och paddla mot Ornö eller södra skären.' },
-      { icon: '📸', name: 'Fotopromenad', desc: 'Röda bodar, bryggor och gammalt fiskläge längs stranden.' },
+      { icon: '🧖', name: 'Smådalarö Gård Spa', desc: '2 000 m² spa-anläggning med pooler, bastur och behandlingar — ett av Sveriges mest påkostade spa-hotell efter 2021 års renovering.' },
+      { icon: '🍽', name: 'Restauranger', desc: 'Flera restauranger på Smådalarö Gård — fine dining, brasserie och bar.' },
+      { icon: '🚶', name: 'Naturpromenader', desc: 'Vandring längs kust och skog runt Smådalaröhalvön.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Mindre badplatser längs kusten.' },
     ],
-    accommodation: [{ name: 'Smådalarö Gård', type: 'Hotell', desc: 'Välrenommerat hotell i gammalt gårdsläge med spa.' }],
-    getting_there: [{ method: 'Bil', time: '1 h 30 min', desc: 'Väg 73 mot Nynäshamn, sedan skyltat till Smådalarö.', icon: '🚗' }, { method: 'Båt', from: 'Dalarö', time: '15 min', desc: 'Kort passagerarbåt från Dalarö.', icon: '⛴' }],
-    harbors: [{ name: 'Smådalarö Gästhamn', desc: 'Full service, bra skydd, populär sommarhamn.', spots: 60, fuel: true, service: ['El', 'Vatten', 'Duschar', 'Tvätt'] }],
-    restaurants: [{ name: 'Smådalarö Gård Restaurant', type: 'Restaurang', desc: 'Skärgårdsmat med lokala råvaror i historisk miljö.' }],
-    tips: ['Boka kajak i förväg under juli.', 'Smådalarö Gård har populär brunch på helger.'],
+    accommodation: [{ name: 'Smådalarö Gård Hotell & Spa', type: 'Hotell', desc: 'Anrikt herrgårdshotell från 1810 — 118 rum, 2 000 m² spa, fullrenoverat 2021. Drivs av Sabis.' }],
+    getting_there: [
+      { method: 'Bil', from: 'Stockholm', time: '50 min', desc: 'E4 söderut mot Haninge, sen skylt mot Dalarö och Smådalarö.', icon: '🚗' },
+    ],
+    harbors: [{ name: 'Smådalarö Gästhamn', desc: 'Hamn vid Smådalarö Gård — full service, bra skydd, populär sommarhamn.', spots: 60, fuel: true, service: ['El', 'Vatten', 'Duschar', 'Tvätt'] }],
+    restaurants: [{ name: 'Smådalarö Gård Restaurant', type: 'Restaurang', desc: 'Skärgårdsmat med lokala råvaror i historisk herrgårdsmiljö.' }],
+    tips: ['Boka spa-tider långt i förväg — särskilt helger juli–augusti.', 'Smådalarö Gård är broförbunden — ingen båt krävs.', 'Brunch på helger är populär även för icke-hotellgäster (bokas i förväg).'],
     related: ['dalaro', 'orno', 'toro'],
-    tags: ['kajak', 'fiskeby', 'södra', 'pittoreskt'],
-    did_you_know: 'Smådalarö var på 1800-talet ett välkänt bad- och sommarort. Konstmuseet Stallet på ön visar fortfarande skärgårdskonst från samma epok.',
+    tags: ['spa-hotell', 'herrgård', 'broförbunden', 'södra', 'sabis'],
+    did_you_know: 'Smådalarö Gård byggdes 1810 av kapten Per Niklas Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 är Gården ett av Sveriges mest påkostade spa-hotell med 118 rum och 2 000 m² spa.',
   },
 
   {
