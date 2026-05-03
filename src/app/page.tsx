@@ -346,7 +346,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .pillar p{font-size:14px}
  .step{padding:24px 20px}
  .destination-card img,.activity-card img{height:120px;object-fit:cover}
- .lp-nav{padding:0 16px;height:60px}
+ body .lp-nav{padding:0 16px;height:60px}
  .nav-links{display:none}
  .nav-cta{gap:7px}
  .btn-ghost{padding:8px 14px;font-size:13px}
@@ -375,8 +375,10 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .hero-search input{padding:10px 14px;font-size:13px}
  .hero-search button{margin:4px 4px 4px 0;padding:8px 18px;border-radius:50px;font-size:12.5px;white-space:nowrap}
  .hero-search-hint{margin-bottom:10px;font-size:11.5px}
+ .hero{padding-bottom:32px}
  .hero-scroll{display:none}
  .steps{grid-template-columns:1fr}
+ .testimonial-card{align-self:start}
 }
 /* Dark mode: match footer color so no black strip appears below footer */
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
