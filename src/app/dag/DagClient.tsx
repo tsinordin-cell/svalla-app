@@ -1,10 +1,18 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import { suggestDay, summariseDay, type DagStop } from '@/lib/dagPlanner'
-import type { DagPoolEntry } from './page'
+import { track } from '@/lib/analytics-events'
+import type { Restaurant } from '@/lib/supabase'
+
+// Pausad feature — typen lever kvar för framtida bruk om vi återupptar.
+type DagPoolEntry = Pick<
+  Restaurant,
+  'id' | 'name' | 'type' | 'island' | 'latitude' | 'longitude' |
+  'description' | 'image_url' | 'booking_url' | 'opening_hours' | 'seasonality' | 'categories'
+>
 
 type GeoStatus = 'idle' | 'loading' | 'granted' | 'denied' | 'unavailable'
 
@@ -42,6 +50,28 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
 
   const summary = useMemo(() => summariseDay({ stops }), [stops])
 
+  // Mätning: sidvisning vid mount
+  const viewedRef = useRef(false)
+  useEffect(() => {
+    if (viewedRef.current) return
+    viewedRef.current = true
+    track('dag_page_viewed', {})
+  }, [])
+
+  // Mätning: plan genererad (track varje gång stops ändras till >0 stops)
+  const lastTrackedKey = useRef<string>('')
+  useEffect(() => {
+    if (stops.length === 0) return
+    const key = stops.map(s => s.id).join('|')
+    if (key === lastTrackedKey.current) return
+    lastTrackedKey.current = key
+    track('dag_plan_generated', {
+      stops: stops.length,
+      total_km: summary.totalDistanceKm,
+      total_min: summary.totalDurationMin,
+    })
+  }, [stops, summary.totalDistanceKm, summary.totalDurationMin])
+
   function requestGPS() {
     if (typeof navigator === 'undefined' || !navigator.geolocation) {
       setGeoStatus('unavailable')
@@ -52,6 +82,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
       (p) => {
         setPos({ lat: p.coords.latitude, lng: p.coords.longitude, label: 'Din position' })
         setGeoStatus('granted')
+        track('dag_position_set', { source: 'gps' })
       },
       (err) => {
         if (err.code === err.PERMISSION_DENIED) setGeoStatus('denied')
@@ -63,6 +94,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
 
   async function savePlan() {
     if (!pos || stops.length === 0) return
+    track('dag_save_clicked', { stops: stops.length })
     setSaving(true)
     setError(null)
     try {
@@ -81,14 +113,18 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
       if (!res.ok) {
         if (res.status === 401) {
           setError('Logga in för att spara din dag.')
+          track('dag_save_failed', { reason: 'auth' })
         } else {
           setError(json.error || 'Kunde inte spara.')
+          track('dag_save_failed', { reason: 'server' })
         }
         return
       }
       setSavedId(json.id)
+      track('dag_plan_saved', { plan_id: json.id, stops: stops.length })
     } catch {
       setError('Kunde inte spara — kontrollera anslutning.')
+      track('dag_save_failed', { reason: 'network' })
     } finally {
       setSaving(false)
     }
@@ -148,7 +184,7 @@ export default function DagClient({ pool, loadError }: { pool: DagPoolEntry[]; l
               {FALLBACK_STARTS.map(p => (
                 <button
                   key={p.label}
-                  onClick={() => { setPos(p); setGeoStatus('idle') }}
+                  onClick={() => { setPos(p); setGeoStatus('idle'); track('dag_position_set', { source: 'fallback', label: p.label }) }}
                   style={{
                     padding: '8px 14px', borderRadius: 20, border: '1.5px solid rgba(10,123,140,0.18)',
                     background: 'var(--white)', color: 'var(--sea)',
