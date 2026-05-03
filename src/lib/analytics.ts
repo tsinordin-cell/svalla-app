@@ -27,4 +27,6 @@ export const analytics = {
     trackEvent('forum_post_created', props),
   searchPerformed: (props?: { query?: string; results_count?: number }) =>
     trackEvent('search_performed', props),
+  planDayTap: (props?: { source?: 'upptack' | 'platser' | 'island' }) =>
+    trackEvent('plan_day_tap', props),
 }
