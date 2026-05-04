@@ -69,6 +69,11 @@ export default async function PublicProfilePage({
  .single()
  if (userErr || !userRow) notFound()
 
+ // Vem tittar — för att avgöra om DM-knappen ska visas och inte på egen profil.
+ const { data: { user: viewer } } = await supabase.auth.getUser()
+ const isOwnProfile = !!viewer && viewer.id === userRow.id
+ const showDmButton = !!viewer && !isOwnProfile
+
  const [
  { data: rawTrips },
  { count: followersCount },
@@ -179,6 +184,26 @@ export default async function PublicProfilePage({
  <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)' }}>{userRow.username}</span>
  <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
  <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
+ {showDmButton && (
+ <Link
+ href={`/meddelanden/ny?to=${userRow.id}`}
+ aria-label={`Skicka meddelande till ${userRow.username}`}
+ title="Skicka meddelande"
+ style={{
+ width: 36, height: 36, borderRadius: '50%',
+ background: 'rgba(10,123,140,0.10)',
+ color: 'var(--sea)',
+ border: '1px solid rgba(10,123,140,0.18)',
+ display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+ textDecoration: 'none',
+ transition: 'background 0.12s, border-color 0.12s',
+ }}
+ >
+ <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+ <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+ </svg>
+ </Link>
+ )}
  <FollowButton targetUserId={userRow.id} hideCount />
  <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
  </div>
