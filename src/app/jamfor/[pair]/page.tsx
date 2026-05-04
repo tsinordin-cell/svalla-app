@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ISLANDS, getIsland, type Island } from '@/app/o/island-data'
+import { getIsland, type Island } from '@/app/o/island-data'
 import SvallaLogo from '@/components/SvallaLogo'
 
 type Props = { params: Promise<{ pair: string }> }

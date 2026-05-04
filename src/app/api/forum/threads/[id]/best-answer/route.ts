@@ -3,7 +3,6 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
-import { logger } from '@/lib/logger'
 import { notifyWithRetry } from '@/lib/notifyWithRetry'
 
 

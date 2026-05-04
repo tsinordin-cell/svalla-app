@@ -136,8 +136,6 @@ export async function POST(req: Request) {
       const invoice = event.data.object as Stripe.Invoice
       const subId = (invoice as unknown as { subscription?: string }).subscription
       if (subId) {
-        const supabaseAdmin = getAdminClient()
-        // Hämta subscription från Stripe för att få korrekt period
         const stripe = getStripe()
         try {
           const sub = await stripe.subscriptions.retrieve(subId)

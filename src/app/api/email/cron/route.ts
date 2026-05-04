@@ -11,7 +11,7 @@
 
 import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
-import { sendEmail, type EmailTemplate } from '@/lib/email'
+import { sendEmail } from '@/lib/email'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -59,7 +59,6 @@ async function handle(req: Request) {
   let day7Errors = 0
   if (dayCandidates) {
     // Filtrera bort de som redan fått dag-7
-    const ids = dayCandidates.map(u => u.id)
     const { data: alreadySent } = await service
       .from('email_log')
       .select('email')
