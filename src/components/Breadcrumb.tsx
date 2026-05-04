@@ -1,3 +1,9 @@
+'use client'
+// 'use client' krävs eftersom vi sätter onMouseEnter/onMouseLeave på <Link>.
+// I Next.js 15 får server components inte skicka function-props till
+// client components — det failar prerendering med "Event handlers cannot
+// be passed to Client Component props". Hela /o/[slug]/* var brutet i prod
+// pga detta tills vi flyttade hit.
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
