@@ -295,7 +295,8 @@ function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter:
  {ads.length > 0 && (
  <div style={{
  display: 'grid',
- gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))',
+ // 2 kolumner på mobil (≥320px), responsivt fler på större skärmar
+ gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
  gap: 12,
  marginBottom: legacyThreads.length > 0 ? 24 : 0,
  }}>

@@ -190,13 +190,14 @@ export default async function PublicProfilePage({
  aria-label={`Skicka meddelande till ${userRow.username}`}
  title="Skicka meddelande"
  style={{
- width: 36, height: 36, borderRadius: '50%',
+ width: 38, height: 38, borderRadius: '50%',
  background: 'rgba(10,123,140,0.10)',
  color: 'var(--sea)',
  border: '1px solid rgba(10,123,140,0.18)',
  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
  textDecoration: 'none',
  transition: 'background 0.12s, border-color 0.12s',
+ flexShrink: 0,
  }}
  >
  <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">

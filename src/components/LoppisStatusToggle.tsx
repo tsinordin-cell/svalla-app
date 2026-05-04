@@ -84,7 +84,7 @@ export default function LoppisStatusToggle({ threadId, initialStatus }: Props) {
               onClick={() => setTo(opt.value)}
               disabled={busy}
               style={{
-                padding: '10px 8px',
+                padding: '11px 6px',
                 borderRadius: 10,
                 border: 'none',
                 background: isActive ? opt.activeBg : opt.bg,
@@ -95,6 +95,10 @@ export default function LoppisStatusToggle({ threadId, initialStatus }: Props) {
                 transition: 'background 0.12s, color 0.12s, transform 0.08s',
                 transform: isActive ? 'scale(1.02)' : 'scale(1)',
                 letterSpacing: '0.2px',
+                minHeight: 44, // touch-target
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
             >
               {opt.label}

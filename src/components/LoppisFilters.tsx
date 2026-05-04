@@ -118,32 +118,30 @@ export default function LoppisFilters({ totalCount, filteredCount }: Props) {
         })}
       </div>
 
-      {/* Pris + plats */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1.4fr',
-        gap: 8,
-      }}>
-        <input
-          type="text"
-          inputMode="numeric"
-          value={minStr}
-          onChange={(e) => setMinStr(e.target.value.replace(/[^0-9 ]/g, ''))}
-          onBlur={applyPriceRange}
-          onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
-          placeholder="Min kr"
-          style={fieldStyle}
-        />
-        <input
-          type="text"
-          inputMode="numeric"
-          value={maxStr}
-          onChange={(e) => setMaxStr(e.target.value.replace(/[^0-9 ]/g, ''))}
-          onBlur={applyPriceRange}
-          onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
-          placeholder="Max kr"
-          style={fieldStyle}
-        />
+      {/* Pris (sida vid sida) + plats (full bredd) — staplade på mobil */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          <input
+            type="text"
+            inputMode="numeric"
+            value={minStr}
+            onChange={(e) => setMinStr(e.target.value.replace(/[^0-9 ]/g, ''))}
+            onBlur={applyPriceRange}
+            onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
+            placeholder="Min kr"
+            style={fieldStyle}
+          />
+          <input
+            type="text"
+            inputMode="numeric"
+            value={maxStr}
+            onChange={(e) => setMaxStr(e.target.value.replace(/[^0-9 ]/g, ''))}
+            onBlur={applyPriceRange}
+            onKeyDown={(e) => { if (e.key === 'Enter') applyPriceRange() }}
+            placeholder="Max kr"
+            style={fieldStyle}
+          />
+        </div>
         <input
           type="text"
           value={locStr}

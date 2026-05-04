@@ -17,6 +17,7 @@ import Image from 'next/image'
 import LoppisListingGallery from './LoppisListingGallery'
 import LoppisImageEditor from './LoppisImageEditor'
 import LoppisStatusToggle from './LoppisStatusToggle'
+import LoppisOwnerStats from './LoppisOwnerStats'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
 
@@ -44,6 +45,8 @@ interface Props {
   isOwner?: boolean
   /** Null när användaren inte är inloggad — vi visar då login-prompt istället för Kontakta. */
   currentUserId?: string | null
+  /** Stats som bara visas för ägaren. */
+  ownerStats?: { viewCount: number; saveCount: number; replyCount: number }
 }
 
 function formatPrice(price?: number, currency = 'SEK'): string {
@@ -55,7 +58,8 @@ function formatPrice(price?: number, currency = 'SEK'): string {
 }
 
 export default function LoppisListingCard({
-  threadId, title, body, createdAt, listing, author, isOwner = false, currentUserId = null,
+  threadId, title, body, createdAt, listing, author,
+  isOwner = false, currentUserId = null, ownerStats,
 }: Props) {
   const isLoggedIn = !!currentUserId
   const status: ListingStatus = listing.status ?? 'aktiv'
@@ -75,11 +79,18 @@ export default function LoppisListingCard({
         <LoppisListingGallery images={images} alt={title} status={status} />
       </div>
 
-      {/* ── Bild-editor + status-toggle (bara ägaren) ── */}
+      {/* ── Bild-editor + status-toggle + stats (bara ägaren) ── */}
       {isOwner && (
         <>
           <LoppisImageEditor threadId={threadId} initialImages={images} />
           <LoppisStatusToggle threadId={threadId} initialStatus={status} />
+          {ownerStats && (
+            <LoppisOwnerStats
+              viewCount={ownerStats.viewCount}
+              saveCount={ownerStats.saveCount}
+              replyCount={ownerStats.replyCount}
+            />
+          )}
         </>
       )}
 

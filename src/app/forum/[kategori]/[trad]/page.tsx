@@ -7,6 +7,7 @@ import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
 import ForumShareButton from './ForumShareButton'
+import LoppisSaveButton from '@/components/LoppisSaveButton'
 import ForumQuoteButton from './ForumQuoteButton'
 import BestAnswerButton from './BestAnswerButton'
 import ForumSortTabs from './ForumSortTabs'
@@ -93,16 +94,27 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
   const cat = await getCategoryById(kategori)
   if (!thread || !cat) notFound()
 
-  const [posts, subRow] = await Promise.all([
+  const isThreadOwner = currentUserId === thread.user_id
+
+  const [posts, subRow, savedRow, saveCountRow] = await Promise.all([
     getPostsByThread(trad, currentUserId, { sort, bestPostId: thread.best_post_id ?? null }),
     currentUserId
       ? supabase.from('forum_subscriptions').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
       : Promise.resolve({ data: null }),
+    currentUserId && kategori === 'loppis'
+      ? supabase.from('loppis_saves').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
+      : Promise.resolve({ data: null }),
+    // Stats: antal användare som sparat annonsen (visas bara för ägaren)
+    isThreadOwner && kategori === 'loppis'
+      ? supabase.from('loppis_saves').select('user_id', { count: 'exact', head: true }).eq('thread_id', trad)
+      : Promise.resolve({ count: null }),
   ])
   const isSubscribed = !!subRow?.data
-  const isThreadOwner = currentUserId === thread.user_id
+  const isSaved = !!savedRow?.data
+  const saveCount = (saveCountRow as { count: number | null }).count ?? 0
+  const viewCount = thread.view_count ?? 0
 
-  const jsonLd = {
+  const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'DiscussionForumPosting',
     headline: thread.title,
@@ -125,6 +137,49 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
     },
   }
 
+  // Loppis-annonser får dessutom Product-schema → indexeras som varor
+  // av Google Shopping/Search, dyker upp i rich-result-cards med pris.
+  let productJsonLd: Record<string, unknown> | null = null
+  if (kategori === 'loppis' && thread.listing_data) {
+    const ld = thread.listing_data
+    const availabilityMap = {
+      aktiv:      'https://schema.org/InStock',
+      reserverad: 'https://schema.org/LimitedAvailability',
+      sald:       'https://schema.org/SoldOut',
+    } as const
+    const status = (ld.status ?? 'aktiv') as keyof typeof availabilityMap
+    productJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: thread.title,
+      description: thread.body.replace(/\*\*/g, '').slice(0, 300),
+      sku: thread.id,
+      url: `https://svalla.se/forum/${kategori}/${trad}`,
+      image: Array.isArray(ld.images) && ld.images.length > 0 ? ld.images : undefined,
+      category: ld.category ?? 'Båt',
+      brand: ld.specs?.find(s => s.label.toLowerCase() === 'modell')?.value ?? undefined,
+      offers: typeof ld.price === 'number' ? {
+        '@type': 'Offer',
+        price: ld.price,
+        priceCurrency: ld.currency ?? 'SEK',
+        availability: availabilityMap[status],
+        itemCondition: ld.condition === 'Nyskick'
+          ? 'https://schema.org/NewCondition'
+          : 'https://schema.org/UsedCondition',
+        seller: thread.author?.username ? {
+          '@type': 'Person',
+          name: thread.author.username,
+          url: `https://svalla.se/u/${thread.author.username}`,
+        } : undefined,
+        availableAtOrFrom: ld.location ? {
+          '@type': 'Place',
+          name: ld.location,
+        } : undefined,
+        url: `https://svalla.se/forum/${kategori}/${trad}`,
+      } : undefined,
+    }
+  }
+
   return (
     <main style={{
       minHeight: '100vh',
@@ -132,6 +187,9 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
     }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {productJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      )}
 
       {/* ── Header ── */}
       <div style={{
@@ -252,7 +310,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
               </span>
             </>
           )}
-          {/* Spacer + dela + bevaka */}
+          {/* Spacer + dela + spara (loppis) + bevaka */}
           <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
             <ForumShareButton
               url={`https://svalla.se/forum/${kategori}/${trad}`}
@@ -263,6 +321,13 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 ? `${new Intl.NumberFormat('sv-SE').format(thread.listing_data.price)} kr · ${thread.listing_data.location ?? 'Sverige'}`
                 : `${cat.name} på Svalla`}
             />
+            {kategori === 'loppis' && !isThreadOwner && (
+              <LoppisSaveButton
+                threadId={trad}
+                initialSaved={isSaved}
+                isLoggedIn={!!currentUserId}
+              />
+            )}
             <ForumSubscribeButton
               threadId={trad}
               initialSubscribed={isSubscribed}
@@ -290,6 +355,11 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
               } : null}
               isOwner={isThreadOwner}
               currentUserId={currentUserId}
+              ownerStats={isThreadOwner ? {
+                viewCount,
+                saveCount,
+                replyCount: posts.length,
+              } : undefined}
             />
             {/* Ägar-actions för annonsen (redigera/radera) */}
             <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 16px 16px', display: 'flex', alignItems: 'center', gap: 4 }}>
