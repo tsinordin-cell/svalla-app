@@ -4,7 +4,7 @@
  *
  * Kräver env:
  *  - RESEND_API_KEY
- *  - EMAIL_FROM (default "hello@svalla.se" — måste verifieras i Resend)
+ *  - EMAIL_FROM (default "Svalla <hej@mail.svalla.se>" — måste verifieras i Resend)
  */
 
 import fs from 'node:fs'
@@ -93,52 +93,59 @@ function substitute(template: string, vars: Record<string, string | number | und
   })
 }
 
-/** Wrappar HTML i en mailklient-säker layout med Svalla-logo + hero-band.
-    Inline SVG funkar i Gmail/Apple Mail/Yahoo. Outlook desktop får text-fallback. */
+/**
+ * Logo-URL — hostad PNG på Supabase Storage public bucket.
+ * Bytt från inline SVG eftersom Gmail iOS strippar SVG-element.
+ * PNG renderar pålitligt i alla mailklienter inkl. Outlook.
+ *
+ * Källa: scripts/build-email-logo.* (om du vill regenerera) — ankaret + Playfair-text på blå hero-bg.
+ * Storlek: 560×128 (rendered as 140×32, retina-ready).
+ */
+const EMAIL_LOGO_URL = 'https://oiklttwylndesewauytj.supabase.co/storage/v1/object/public/images/email/svalla-logo.png'
+
+/** Wrappar HTML i mailklient-säker layout: hero-band med PNG-logo + responsive @media + footer. */
 function wrapEmail(htmlBody: string, preheader?: string): string {
   return `<!doctype html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light only">
 <title>Svalla</title>
+<style>
+  /* Mobil-respons: större typografi, mindre padding, kant-till-kant container */
+  @media only screen and (max-width:600px) {
+    .container { border-radius:0 !important; }
+    .body-pad  { padding:24px 20px !important; }
+    .hero-pad  { padding:22px 20px 18px !important; }
+    .h1        { font-size:24px !important; line-height:1.2 !important; }
+    .lead      { font-size:16px !important; line-height:1.55 !important; }
+    .card      { padding:16px 18px !important; }
+    .card-title { font-size:16px !important; }
+    .card-body  { font-size:14.5px !important; }
+    .h2        { font-size:18px !important; }
+    .body      { font-size:15px !important; line-height:1.6 !important; }
+    .cta a     { padding:14px 26px !important; font-size:15px !important; }
+    .tagline   { display:none !important; }
+    .logo      { width:120px !important; height:auto !important; }
+  }
+</style>
 </head>
 <body style="margin:0;padding:0;background:#eef3f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#162d3a;-webkit-font-smoothing:antialiased">
 ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3f6">${preheader}</div>` : ''}
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f6;padding:32px 16px">
-  <tr><td align="center">
-    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
-      <!-- HERO BAND med logo -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f6">
+  <tr><td align="center" style="padding:24px 0">
+    <table role="presentation" width="600" class="container" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
+      <!-- HERO BAND med PNG-logo -->
       <tr>
-        <td style="background:linear-gradient(135deg,#1e5c82 0%,#0a7b8c 100%);padding:28px 36px 24px;text-align:left">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-            <tr>
-              <td style="vertical-align:middle">
-                <!--[if mso]><span style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;letter-spacing:3px">⚓ SVALLA</span><![endif]-->
-                <!--[if !mso]><!-->
-                <svg viewBox="0 0 140 32" width="140" height="32" xmlns="http://www.w3.org/2000/svg" style="display:block">
-                  <g transform="translate(0,3)">
-                    <line x1="11" y1="23" x2="11" y2="3" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/>
-                    <path d="M11,4 L21,21 L11,21 Z" fill="#ffffff" opacity="0.95"/>
-                    <path d="M11,9 L1,20 L11,20 Z" fill="#ffffff" opacity="0.55"/>
-                    <path d="M2,24 Q7,21 11,24 Q15,21 21,24" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.75"/>
-                  </g>
-                  <text x="28" y="24" fill="#ffffff" style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;letter-spacing:3px">SVALLA</text>
-                </svg>
-                <!--<![endif]-->
-              </td>
-              <td align="right" style="vertical-align:middle">
-                <span style="font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:1.5px;text-transform:uppercase;font-weight:600">Skärgården, samlad</span>
-              </td>
-            </tr>
-          </table>
+        <td class="hero-pad" style="background:linear-gradient(135deg,#1e5c82 0%,#0a7b8c 100%);padding:28px 36px 24px">
+          <img src="${EMAIL_LOGO_URL}" width="140" height="32" alt="Svalla" class="logo" style="display:block;border:0;max-width:140px;height:auto;outline:none">
         </td>
       </tr>
       <!-- BODY -->
       <tr>
-        <td style="padding:36px 36px 32px">
+        <td class="body-pad" style="padding:36px 36px 32px">
           ${htmlBody}
         </td>
       </tr>
@@ -146,7 +153,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
       <tr>
         <td style="background:#fafcfd;padding:20px 36px;border-top:1px solid #e8eef2">
           <p style="font-size:11px;color:#6a8a96;line-height:1.6;margin:0">
-            Du får detta mejl för att du skapat ett konto på Svalla.<br>
+            Du får detta mejl för att du skapat ett konto på Svalla.
             <a href="https://svalla.se/notiser" style="color:#6a8a96;text-decoration:underline">Hantera utskick</a>
             &nbsp;·&nbsp;
             <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
@@ -154,8 +161,8 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
         </td>
       </tr>
     </table>
-    <!-- Tag-line under kortet -->
-    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;margin-top:12px">
+    <!-- Tag-line under kortet (döljs på mobil) -->
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="tagline" style="max-width:600px;margin-top:12px">
       <tr><td align="center">
         <p style="font-size:11px;color:#8aa4b0;margin:0;letter-spacing:0.3px">Svalla AB · Stockholm · skärgården, samlad på ett ställe</p>
       </td></tr>
@@ -168,7 +175,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
 
 /**
  * Skicka ett enkelt admin-mail utan mall — för interna notiser.
- * Kräver RESEND_API_KEY och EMAIL_FROM (eller default hello@svalla.se).
+ * Kräver RESEND_API_KEY och EMAIL_FROM (eller default hej@mail.svalla.se).
  */
 export async function sendAdminEmail(opts: {
   subject: string
@@ -178,7 +185,7 @@ export async function sendAdminEmail(opts: {
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
   const adminEmail = process.env.ADMIN_EMAIL || 'info@svalla.se'
-  const from = process.env.EMAIL_FROM || 'Svalla <hello@svalla.se>'
+  const from = process.env.EMAIL_FROM || 'Svalla <hej@mail.svalla.se>'
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -267,6 +274,30 @@ export async function sendEmail(opts: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
+  // Respektera unsubscribes — om mottagaren klickat "Avregistrera"
+  // tidigare så skipa utskick. Returnera ok:true för att inte trigga
+  // retry-loops i kod som anropar oss. Fail-open vid DB-fel (logga +
+  // skicka ändå) så ett tillfälligt Supabase-problem inte blockerar
+  // alla mail.
+  try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (supabaseUrl && serviceKey) {
+      const r = await fetch(
+        `${supabaseUrl}/rest/v1/email_unsubscribes?email=eq.${encodeURIComponent(opts.to.toLowerCase())}&select=email`,
+        { headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` } },
+      )
+      if (r.ok) {
+        const rows = await r.json() as Array<{ email: string }>
+        if (rows.length > 0) {
+          return { ok: true, error: 'unsubscribed' }
+        }
+      }
+    }
+  } catch {
+    // fail-open: skicka ändå
+  }
+
   // Läs mall — frontmatter används för subject + preheader oavsett om
   // body kommer från markdown eller hardcoded HTML.
   const file = TEMPLATE_FILES[opts.template]
@@ -294,7 +325,7 @@ export async function sendEmail(opts: {
   }
   const html = substitute(wrapEmail(htmlBody, meta.preheader), vars)
 
-  const from = process.env.EMAIL_FROM || meta.from || 'Svalla <hello@svalla.se>'
+  const from = process.env.EMAIL_FROM || meta.from || 'Svalla <hej@mail.svalla.se>'
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
