@@ -27,6 +27,7 @@ interface Props {
 export default function LoppisListingGallery({ images, alt, status = 'aktiv' }: Props) {
   const scrollerRef = useRef<HTMLDivElement | null>(null)
   const [activeIdx, setActiveIdx] = useState(0)
+  const [lightboxIdx, setLightboxIdx] = useState(-1)
   const safeImages = images.length > 0 ? images : []
 
   // Spåra vilken bild som är synlig via scroll-position
@@ -85,14 +86,20 @@ export default function LoppisListingGallery({ images, alt, status = 'aktiv' }: 
         }}
       >
         {safeImages.map((src, i) => (
-          <div
+          <button
             key={i}
+            type="button"
+            onClick={() => setLightboxIdx(i)}
+            aria-label={`Visa bild ${i + 1} i fullskärm`}
             style={{
               flex: '0 0 100%',
               scrollSnapAlign: 'start',
               position: 'relative',
               aspectRatio: '4 / 3',
               background: '#0a1e2c',
+              border: 'none',
+              padding: 0,
+              cursor: 'zoom-in',
             }}
           >
             <Image
@@ -103,7 +110,7 @@ export default function LoppisListingGallery({ images, alt, status = 'aktiv' }: 
               style={{ objectFit: 'cover' }}
               priority={i === 0}
             />
-          </div>
+          </button>
         ))}
       </div>
 
@@ -172,6 +179,19 @@ export default function LoppisListingGallery({ images, alt, status = 'aktiv' }: 
           ))}
         </div>
       )}
+
+      {/* Fullskärms-lightbox när användaren klickar på en bild */}
+      <LoppisListingLightbox
+        images={safeImages}
+        openIndex={lightboxIdx}
+        alt={alt}
+        onClose={() => setLightboxIdx(-1)}
+        onIndexChange={(i) => {
+          // Synka huvudgalleriet med lightboxens position så det matchar när man stänger
+          const el = scrollerRef.current
+          if (el) el.scrollLeft = i * el.clientWidth
+        }}
+      />
     </div>
   )
 }

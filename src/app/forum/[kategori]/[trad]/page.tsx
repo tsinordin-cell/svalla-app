@@ -6,6 +6,7 @@ import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
 import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
+import ForumShareButton from './ForumShareButton'
 import ForumQuoteButton from './ForumQuoteButton'
 import BestAnswerButton from './BestAnswerButton'
 import ForumSortTabs from './ForumSortTabs'
@@ -251,8 +252,17 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
               </span>
             </>
           )}
-          {/* Spacer + bevaka-knapp */}
-          <div style={{ marginLeft: 'auto' }}>
+          {/* Spacer + dela + bevaka */}
+          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <ForumShareButton
+              url={`https://svalla.se/forum/${kategori}/${trad}`}
+              title={kategori === 'loppis' && thread.listing_data
+                ? `Säljes: ${thread.title}`
+                : thread.title}
+              text={kategori === 'loppis' && thread.listing_data?.price
+                ? `${new Intl.NumberFormat('sv-SE').format(thread.listing_data.price)} kr · ${thread.listing_data.location ?? 'Sverige'}`
+                : `${cat.name} på Svalla`}
+            />
             <ForumSubscribeButton
               threadId={trad}
               initialSubscribed={isSubscribed}
