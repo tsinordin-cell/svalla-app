@@ -28,6 +28,11 @@ function NyKonversationInner() {
  const router = useRouter()
  const search = useSearchParams()
  const autoTo = search?.get('to') ?? null
+ // Loppis-flöde: när någon trycker Kontakta på en annons skickas
+ // ?to=<säljarId>&about=<threadId>&title=<annons-titel>. Vi pre-fyller
+ // då meddelandet med en intro så ägaren direkt ser vad det handlar om.
+ const aboutThreadId  = search?.get('about') ?? null
+ const aboutTitle     = search?.get('title') ?? null
  const supabase = useRef(createClient()).current
 
  const [me, setMe] = useState<string | null>(null)
@@ -103,6 +108,14 @@ function NyKonversationInner() {
  toast('Kunde inte starta konversation. Försök igen.', 'error')
  setStarting(null)
  return
+ }
+ // Loppis-pre-fill: spara intro-text i sessionStorage så
+ // /meddelanden/[id]-sidan kan plocka upp den och förlada textarea.
+ if (aboutThreadId && aboutTitle && typeof window !== 'undefined') {
+ const intro = `Hej! Jag är intresserad av din annons "${aboutTitle}" — finns den fortfarande?\n\nhttps://svalla.se/forum/loppis/${aboutThreadId}`
+ try {
+ sessionStorage.setItem(`dm-prefill:${res.id}`, intro)
+ } catch { /* ignore */ }
  }
  router.push(`/meddelanden/${res.id}`)
  }

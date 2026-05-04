@@ -16,6 +16,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LoppisListingGallery from './LoppisListingGallery'
 import LoppisImageEditor from './LoppisImageEditor'
+import LoppisStatusToggle from './LoppisStatusToggle'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
 
@@ -74,9 +75,12 @@ export default function LoppisListingCard({
         <LoppisListingGallery images={images} alt={title} status={status} />
       </div>
 
-      {/* ── Bild-editor (bara ägaren) ── */}
+      {/* ── Bild-editor + status-toggle (bara ägaren) ── */}
       {isOwner && (
-        <LoppisImageEditor threadId={threadId} initialImages={images} />
+        <>
+          <LoppisImageEditor threadId={threadId} initialImages={images} />
+          <LoppisStatusToggle threadId={threadId} initialStatus={status} />
+        </>
       )}
 
       {/* ── Pris + status ── */}
@@ -292,7 +296,7 @@ export default function LoppisListingCard({
           {!isOwner && (
             isLoggedIn ? (
               <Link
-                href={`/meddelanden/ny?to=${author.id}`}
+                href={`/meddelanden/ny?to=${author.id}&about=${threadId}&title=${encodeURIComponent(title)}`}
                 style={{
                   padding: '10px 18px',
                   background: 'var(--sea)',

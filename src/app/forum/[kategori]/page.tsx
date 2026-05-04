@@ -5,6 +5,7 @@ import { getCategoryById, getThreadsByCategory, formatForumDate } from '@/lib/fo
 import type { Metadata } from 'next'
 import type { ListingData } from '@/lib/forum'
 import Icon, { type IconName } from '@/components/Icon'
+import LoppisFilters from '@/components/LoppisFilters'
 
 function CategoryIcon({ iconName }: { iconName: IconName }) {
  return <Icon name={iconName} size={18} stroke={1.85} />
@@ -14,6 +15,7 @@ export const revalidate = 60
 
 interface Props {
  params: Promise<{ kategori: string }>
+ searchParams?: Promise<{ cat?: string; priceMin?: string; priceMax?: string; location?: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -26,14 +28,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  }
 }
 
-export default async function ForumKategoriPage({ params }: Props) {
+export default async function ForumKategoriPage({ params, searchParams }: Props) {
  const { kategori } = await params
+ const sp = (await searchParams) ?? {}
  const [cat, threads] = await Promise.all([
  getCategoryById(kategori),
  getThreadsByCategory(kategori),
  ])
 
  if (!cat) notFound()
+
+ // Loppis-filter (URL searchParams). Tillämpas nedan i LoppisGrid.
+ const loppisFilter = kategori === 'loppis' ? {
+ cat:       sp.cat       && sp.cat !== 'Alla' ? sp.cat : null,
+ priceMin:  sp.priceMin   ? Number(sp.priceMin)  : null,
+ priceMax:  sp.priceMax   ? Number(sp.priceMax)  : null,
+ location:  sp.location  ? sp.location.trim().toLowerCase() : null,
+ } : null
 
  const jsonLd = {
  '@context': 'https://schema.org',
@@ -133,7 +144,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  {threads.length === 0 ? (
  <EmptyThreads categoryName={cat.name} categoryId={cat.id} />
  ) : cat.id === 'loppis' ? (
- <LoppisGrid threads={threads} />
+ <LoppisGrid threads={threads} filter={loppisFilter} />
  ) : (
  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
  {threads.map(thread => (
@@ -232,13 +243,55 @@ function formatPrice(price?: number): string {
  return `${new Intl.NumberFormat('sv-SE').format(price)} kr`
 }
 
-function LoppisGrid({ threads }: { threads: ThreadWithListing[] }) {
+type LoppisFilter = {
+ cat: string | null
+ priceMin: number | null
+ priceMax: number | null
+ location: string | null
+} | null
+
+function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter: LoppisFilter }) {
  // Bara annonser med listing_data (gamla forum-trådar utan visas inte i grid)
- const ads = threads.filter(t => !!t.listing_data)
+ const allAds = threads.filter(t => !!t.listing_data)
  const legacyThreads = threads.filter(t => !t.listing_data)
+
+ const ads = !filter ? allAds : allAds.filter(t => {
+ const ld = t.listing_data!
+ if (filter.cat && ld.category !== filter.cat) return false
+ if (filter.priceMin !== null && Number.isFinite(filter.priceMin)) {
+ if (typeof ld.price !== 'number' || ld.price < filter.priceMin) return false
+ }
+ if (filter.priceMax !== null && Number.isFinite(filter.priceMax)) {
+ if (typeof ld.price !== 'number' || ld.price > filter.priceMax) return false
+ }
+ if (filter.location && !ld.location?.toLowerCase().includes(filter.location)) return false
+ return true
+ })
 
  return (
  <>
+ {/* Filter-rad (alltid synlig om det finns annonser totalt) */}
+ {allAds.length > 0 && (
+ <LoppisFilters totalCount={allAds.length} filteredCount={ads.length} />
+ )}
+
+ {/* Inga matchande efter filter */}
+ {allAds.length > 0 && ads.length === 0 && (
+ <div style={{
+ textAlign: 'center', padding: '40px 20px',
+ background: 'var(--card-bg, #fff)', borderRadius: 14,
+ border: '1px solid var(--border, rgba(10,123,140,0.10))',
+ marginBottom: legacyThreads.length > 0 ? 24 : 0,
+ }}>
+ <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', marginBottom: 4 }}>
+ Inga annonser matchar filtret
+ </div>
+ <div style={{ fontSize: 12, color: 'var(--txt3)' }}>
+ Prova att rensa filtren eller bredda priset.
+ </div>
+ </div>
+ )}
+
  {ads.length > 0 && (
  <div style={{
  display: 'grid',

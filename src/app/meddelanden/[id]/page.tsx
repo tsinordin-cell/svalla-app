@@ -73,7 +73,21 @@ export default function ChatPage() {
   const [otherAvatar, setOtherAvatar] = useState<string | null>(null)
   const [otherUsername, setOtherUsername] = useState<string | null>(null)
   const [messages, setMessages] = useState<MsgWithMeta[]>([])
-  const [text, setText] = useState('')
+  const [text, setText] = useState(() => {
+    // Loppis-pre-fill: när användaren just kommit hit via "Kontakta säljare"
+    // har vi sparat ett intro-meddelande i sessionStorage (sätts i
+    // /meddelanden/ny). Plocka och rensa så det bara används en gång.
+    if (typeof window === 'undefined') return ''
+    try {
+      const k = `dm-prefill:${params?.id as string}`
+      const v = sessionStorage.getItem(k)
+      if (v) {
+        sessionStorage.removeItem(k)
+        return v
+      }
+    } catch { /* ignore */ }
+    return ''
+  })
   const [posting, setPosting] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sharingGeo, setSharingGeo] = useState(false)
