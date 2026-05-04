@@ -100,6 +100,15 @@ export default function LoppisImageEditor({ threadId, initialImages, maxImages =
     void persist(copy)
   }
 
+  function handleSetHero(idx: number) {
+    if (busy) return
+    if (idx === 0) return
+    const picked = images[idx]!
+    // Plocka ut vald bild och lägg först. Övriga behåller sin relativa ordning.
+    const next = [picked, ...images.filter((_, i) => i !== idx)]
+    void persist(next)
+  }
+
   return (
     <div style={{
       background: 'rgba(10,123,140,0.04)',
@@ -110,7 +119,7 @@ export default function LoppisImageEditor({ threadId, initialImages, maxImages =
     }}>
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        marginBottom: 10, gap: 8,
+        marginBottom: 4, gap: 8,
       }}>
         <span style={{
           fontSize: 11, fontWeight: 700, color: 'var(--sea)',
@@ -122,6 +131,11 @@ export default function LoppisImageEditor({ threadId, initialImages, maxImages =
           <span style={{ fontSize: 12, color: 'var(--txt3)' }}>Sparar…</span>
         )}
       </div>
+      {images.length > 1 && (
+        <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 10, lineHeight: 1.4 }}>
+          Tryck på stjärnan på en bild för att göra den till hero (visas först i annonsen).
+        </div>
+      )}
 
       {images.length > 0 && (
         <div style={{
@@ -136,13 +150,47 @@ export default function LoppisImageEditor({ threadId, initialImages, maxImages =
               border: i === 0 ? '2px solid var(--acc, #c96e2a)' : '1px solid rgba(10,123,140,0.15)',
             }}>
               <Image src={url} alt={`Bild ${i + 1}`} fill sizes="100px" style={{ objectFit: 'cover' }} />
-              {i === 0 && (
+              {i === 0 ? (
                 <span style={{
                   position: 'absolute', top: 3, left: 3,
                   background: 'var(--acc, #c96e2a)', color: '#fff',
                   fontSize: 9, fontWeight: 800, letterSpacing: '0.5px',
                   padding: '2px 5px', borderRadius: 3, textTransform: 'uppercase',
-                }}>Hero</span>
+                  display: 'inline-flex', alignItems: 'center', gap: 3,
+                }}>
+                  <svg width={9} height={9} viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
+                  </svg>
+                  Hero
+                </span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => handleSetHero(i)}
+                  disabled={busy}
+                  aria-label="Gör till hero-bild"
+                  title="Gör till hero-bild"
+                  style={{
+                    position: 'absolute', top: 3, left: 3,
+                    width: 22, height: 22, borderRadius: '50%',
+                    background: 'rgba(0,0,0,0.55)', color: '#fff',
+                    border: 'none', cursor: busy ? 'default' : 'pointer',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    transition: 'background 0.12s, color 0.12s',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!busy) {
+                      e.currentTarget.style.background = 'var(--acc, #c96e2a)'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(0,0,0,0.55)'
+                  }}
+                >
+                  <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />
+                  </svg>
+                </button>
               )}
               <button type="button" onClick={() => handleRemove(i)} disabled={busy} aria-label="Ta bort" style={{
                 position: 'absolute', top: 3, right: 3,

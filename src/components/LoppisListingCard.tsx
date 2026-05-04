@@ -41,6 +41,8 @@ interface Props {
   listing: ListingData
   author: { id: string; username: string; avatar: string | null } | null
   isOwner?: boolean
+  /** Null när användaren inte är inloggad — vi visar då login-prompt istället för Kontakta. */
+  currentUserId?: string | null
 }
 
 function formatPrice(price?: number, currency = 'SEK'): string {
@@ -52,8 +54,9 @@ function formatPrice(price?: number, currency = 'SEK'): string {
 }
 
 export default function LoppisListingCard({
-  threadId, title, body, createdAt, listing, author, isOwner = false,
+  threadId, title, body, createdAt, listing, author, isOwner = false, currentUserId = null,
 }: Props) {
+  const isLoggedIn = !!currentUserId
   const status: ListingStatus = listing.status ?? 'aktiv'
   const images = Array.isArray(listing.images) ? listing.images : []
   const specs = Array.isArray(listing.specs) ? listing.specs.filter(s => s.label && s.value) : []
@@ -287,24 +290,48 @@ export default function LoppisListingCard({
             </Link>
           </div>
           {!isOwner && (
-            <Link
-              href={`/meddelanden/ny?to=${author.id}`}
-              style={{
-                padding: '10px 18px',
-                background: 'var(--sea)',
-                color: '#fff',
-                borderRadius: 12,
-                textDecoration: 'none',
-                fontSize: 14, fontWeight: 700,
-                whiteSpace: 'nowrap',
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-              }}
-            >
-              <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-              Kontakta
-            </Link>
+            isLoggedIn ? (
+              <Link
+                href={`/meddelanden/ny?to=${author.id}`}
+                style={{
+                  padding: '10px 18px',
+                  background: 'var(--sea)',
+                  color: '#fff',
+                  borderRadius: 12,
+                  textDecoration: 'none',
+                  fontSize: 14, fontWeight: 700,
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                }}
+              >
+                <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Kontakta
+              </Link>
+            ) : (
+              <Link
+                href={`/logga-in?returnTo=${encodeURIComponent(`/forum/loppis/${threadId}`)}`}
+                style={{
+                  padding: '10px 18px',
+                  background: 'var(--acc, #c96e2a)',
+                  color: '#fff',
+                  borderRadius: 12,
+                  textDecoration: 'none',
+                  fontSize: 13, fontWeight: 700,
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  boxShadow: '0 3px 10px rgba(201,110,42,0.25)',
+                }}
+              >
+                <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                Logga in för att kontakta
+              </Link>
+            )
           )}
         </div>
       )}

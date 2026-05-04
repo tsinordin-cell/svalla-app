@@ -4,6 +4,7 @@
  *
  * Mobile: scroll-snap horisontellt, dots underst.
  * Desktop: större hero + thumbnail-rad.
+ * Klick på en bild → öppnar fullskärms-lightbox.
  *
  * Design:
  *  - 4:3 aspect ratio (Blocket-konvention)
@@ -13,6 +14,7 @@
  */
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import LoppisListingLightbox from './LoppisListingLightbox'
 
 type Status = 'aktiv' | 'reserverad' | 'sald'
 

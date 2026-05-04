@@ -24,9 +24,46 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { trad } = await params
+  const { trad, kategori } = await params
   const thread = await getThreadById(trad)
   if (!thread) return { title: 'Forum — Svalla' }
+
+  // Loppis-annons med riktig hero-bild → använd den för OG-preview
+  // (Blocket-stil när någon delar länken på iMessage/Slack/FB).
+  const ld = thread.listing_data
+  if (kategori === 'loppis' && ld) {
+    const hero = Array.isArray(ld.images) && ld.images.length > 0 ? ld.images[0] : null
+    const priceStr = typeof ld.price === 'number' && Number.isFinite(ld.price)
+      ? `${new Intl.NumberFormat('sv-SE').format(ld.price)} kr`
+      : 'Pris på förfrågan'
+    const title = `Säljes: ${thread.title} — ${priceStr}`
+    const descParts: string[] = []
+    if (ld.location)  descParts.push(ld.location)
+    if (ld.condition) descParts.push(ld.condition)
+    descParts.push(thread.body.replace(/\*\*/g, '').slice(0, 120))
+    const description = descParts.join(' · ').slice(0, 200)
+
+    if (hero) {
+      return {
+        title,
+        description,
+        openGraph: {
+          title, description,
+          siteName: 'Svalla',
+          type: 'article',
+          url: `https://svalla.se/forum/${kategori}/${trad}`,
+          images: [{ url: hero, alt: thread.title }],
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title, description,
+          images: [hero],
+        },
+      }
+    }
+    // Ingen bild ännu → fall through till vanlig forum-OG
+  }
+
   const description = thread.body.slice(0, 160)
   const ogImage = `/api/og/forum/${trad}`
   return {
@@ -144,41 +181,63 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
 
         {/* Thread meta — author + stats + subscribe */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {thread.author?.avatar ? (
-              <img
-                src={thread.author.avatar}
-                alt=""
-                width={26}
-                height={26}
-                style={{
+          {thread.author?.username ? (
+            <Link
+              href={`/u/${thread.author.username}`}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                textDecoration: 'none',
+                padding: '2px 8px 2px 2px', borderRadius: 999,
+                transition: 'background 0.12s',
+              }}
+              className="forum-thread-author-link"
+            >
+              {thread.author.avatar ? (
+                <img
+                  src={thread.author.avatar}
+                  alt=""
+                  width={26}
+                  height={26}
+                  style={{
+                    width: 26, height: 26,
+                    aspectRatio: '1 / 1',
+                    borderRadius: '50%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    flexShrink: 0,
+                    border: '1.5px solid rgba(255,255,255,0.4)',
+                  }}
+                />
+              ) : (
+                <div style={{
                   width: 26, height: 26,
                   aspectRatio: '1 / 1',
                   borderRadius: '50%',
-                  objectFit: 'cover',
-                  display: 'block',
+                  background: 'rgba(255,255,255,0.22)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 11, fontWeight: 700, color: '#fff',
                   flexShrink: 0,
-                  border: '1.5px solid rgba(255,255,255,0.4)',
-                }}
-              />
-            ) : (
+                  border: '1.5px solid rgba(255,255,255,0.3)',
+                }}>
+                  {thread.author.username[0]?.toUpperCase()}
+                </div>
+              )}
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.95)' }}>
+                {thread.author.username}
+              </span>
+            </Link>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <div style={{
-                width: 26, height: 26,
-                aspectRatio: '1 / 1',
-                borderRadius: '50%',
+                width: 26, height: 26, borderRadius: '50%',
                 background: 'rgba(255,255,255,0.22)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 11, fontWeight: 700, color: '#fff',
-                flexShrink: 0,
                 border: '1.5px solid rgba(255,255,255,0.3)',
-              }}>
-                {(thread.author?.username ?? '?')[0]?.toUpperCase()}
-              </div>
-            )}
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.9)' }}>
-              {thread.author?.username ?? 'Okänd'}
-            </span>
-          </div>
+              }}>?</div>
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.9)' }}>Okänd</span>
+            </div>
+          )}
           <span style={{ opacity: 0.4, fontSize: 12 }}>·</span>
           <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>{formatForumDate(thread.created_at)}</span>
           {posts.length > 0 && (
@@ -220,6 +279,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 avatar: thread.author.avatar,
               } : null}
               isOwner={isThreadOwner}
+              currentUserId={currentUserId}
             />
             {/* Ägar-actions för annonsen (redigera/radera) */}
             <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 16px 16px', display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -382,7 +442,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
           </div>
         )}
 
-        {/* ── Svarsformulär / låst ── */}
+        {/* ── Svarsformulär / låst / inte inloggad ── */}
         {thread.is_locked ? (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -398,6 +458,53 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
             Den här tråden är låst för nya svar.
+          </div>
+        ) : !currentUserId ? (
+          <div style={{
+            padding: '20px 18px',
+            background: 'linear-gradient(180deg, rgba(10,123,140,0.06) 0%, rgba(201,110,42,0.08) 100%)',
+            borderRadius: 14,
+            border: '1px solid rgba(10,123,140,0.18)',
+            textAlign: 'center',
+          }}>
+            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', marginBottom: 6 }}>
+              {kategori === 'loppis' ? 'Vill du kontakta säljaren?' : 'Vill du svara på tråden?'}
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--txt2)', marginBottom: 14, lineHeight: 1.5 }}>
+              {kategori === 'loppis'
+                ? 'Skapa konto eller logga in för att skicka meddelande och kommentera annonser.'
+                : 'Du behöver vara inloggad för att svara och delta i diskussionerna.'}
+            </div>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link
+                href={`/logga-in?returnTo=/forum/${kategori}/${thread.id}`}
+                style={{
+                  padding: '10px 20px',
+                  background: 'var(--acc, #c96e2a)',
+                  color: '#fff',
+                  borderRadius: 10,
+                  textDecoration: 'none',
+                  fontSize: 14, fontWeight: 700,
+                  boxShadow: '0 3px 10px rgba(201,110,42,0.25)',
+                }}
+              >
+                Logga in
+              </Link>
+              <Link
+                href={`/logga-in?mode=ny&returnTo=/forum/${kategori}/${thread.id}`}
+                style={{
+                  padding: '10px 20px',
+                  background: 'transparent',
+                  color: 'var(--sea)',
+                  borderRadius: 10,
+                  textDecoration: 'none',
+                  fontSize: 14, fontWeight: 700,
+                  border: '1.5px solid var(--sea)',
+                }}
+              >
+                Skapa konto
+              </Link>
+            </div>
           </div>
         ) : (
           <ForumReplyForm threadId={thread.id} categoryId={kategori} />
