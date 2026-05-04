@@ -15,6 +15,7 @@ import ForumRealtimeListener from './ForumRealtimeListener'
 import Icon from '@/components/Icon'
 import { renderForumBody } from '@/lib/forum-render'
 import LoppisListingCard from '@/components/LoppisListingCard'
+import LoppisSimilarAds from '@/components/LoppisSimilarAds'
 import type { ForumSort } from '@/lib/forum'
 import type { Metadata } from 'next'
 
@@ -138,6 +139,51 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
   const isSaved = !!savedRow?.data
   const saveCount = (saveCountRow as { count: number | null }).count ?? 0
   const viewCount = thread.view_count ?? 0
+
+  // Loppis-extras: säljarens trovärdighet (medlem-sedan + trip-count) + liknande annonser
+  type SellerMeta = { memberSince: string | null; tripCount: number }
+  type SimilarAd = { id: string; title: string; image: string | null; price: number | null; location: string | null; status: string }
+  let sellerMeta: SellerMeta | null = null
+  let similarAds: SimilarAd[] = []
+  if (kategori === 'loppis' && thread.listing_data) {
+    const ld = thread.listing_data
+    const [{ data: sellerRow }, { count: tripCount }, { data: similar }] = await Promise.all([
+      supabase.from('users').select('created_at').eq('id', thread.user_id).maybeSingle(),
+      supabase.from('trips').select('id', { count: 'exact', head: true }).eq('user_id', thread.user_id).is('deleted_at', null),
+      supabase
+        .from('forum_threads')
+        .select('id, title, listing_data, last_reply_at')
+        .eq('category_id', 'loppis')
+        .eq('in_spam_queue', false)
+        .neq('id', trad)
+        .order('last_reply_at', { ascending: false })
+        .limit(40),
+    ])
+    sellerMeta = {
+      memberSince: (sellerRow?.created_at as string | undefined) ?? null,
+      tripCount: tripCount ?? 0,
+    }
+    // Filtrera till samma kategori om den finns, annars ta senaste 4 — sortera på pris-närhet om vi har pris
+    const sameCat = ((similar ?? []) as Array<{ id: string; title: string; listing_data: typeof ld; last_reply_at: string }>)
+      .filter(t => !!t.listing_data)
+      .filter(t => !ld.category || t.listing_data?.category === ld.category)
+      .filter(t => (t.listing_data?.status ?? 'aktiv') !== 'sald')
+    if (typeof ld.price === 'number') {
+      sameCat.sort((a, b) => {
+        const pa = typeof a.listing_data?.price === 'number' ? Math.abs(a.listing_data.price - ld.price!) : Infinity
+        const pb = typeof b.listing_data?.price === 'number' ? Math.abs(b.listing_data.price - ld.price!) : Infinity
+        return pa - pb
+      })
+    }
+    similarAds = sameCat.slice(0, 4).map(t => ({
+      id: t.id,
+      title: t.title,
+      image: t.listing_data?.images?.[0] ?? null,
+      price: typeof t.listing_data?.price === 'number' ? t.listing_data.price : null,
+      location: t.listing_data?.location ?? null,
+      status: t.listing_data?.status ?? 'aktiv',
+    }))
+  }
 
   const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -385,7 +431,13 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 saveCount,
                 replyCount: posts.length,
               } : undefined}
+              sellerTrust={sellerMeta ?? undefined}
             />
+            {similarAds.length > 0 && (
+              <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 16px' }}>
+                <LoppisSimilarAds ads={similarAds} />
+              </div>
+            )}
             {/* Ägar-actions för annonsen (redigera/radera) */}
             <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 16px 16px', display: 'flex', alignItems: 'center', gap: 4 }}>
               <ForumQuoteButton username={thread.author?.username ?? 'Okänd'} body={thread.body} />

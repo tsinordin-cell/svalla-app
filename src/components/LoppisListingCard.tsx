@@ -20,6 +20,7 @@ import LoppisStatusToggle from './LoppisStatusToggle'
 import LoppisOwnerStats from './LoppisOwnerStats'
 import LoppisReportButton from './LoppisReportButton'
 import LoppisBoostButton from './LoppisBoostButton'
+import LoppisSellerTrust from './LoppisSellerTrust'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
 
@@ -51,6 +52,8 @@ interface Props {
   currentUserId?: string | null
   /** Stats som bara visas för ägaren. */
   ownerStats?: { viewCount: number; saveCount: number; replyCount: number }
+  /** Trovärdighets-data om säljaren — visas i säljarkortet. */
+  sellerTrust?: { memberSince: string | null; tripCount: number }
 }
 
 function formatPrice(price?: number, currency = 'SEK'): string {
@@ -63,7 +66,7 @@ function formatPrice(price?: number, currency = 'SEK'): string {
 
 export default function LoppisListingCard({
   threadId, title, body, createdAt, listing, author,
-  isOwner = false, currentUserId = null, ownerStats,
+  isOwner = false, currentUserId = null, ownerStats, sellerTrust,
 }: Props) {
   const isLoggedIn = !!currentUserId
   const status: ListingStatus = listing.status ?? 'aktiv'
@@ -329,6 +332,12 @@ export default function LoppisListingCard({
             >
               {author.username}
             </Link>
+            {sellerTrust && (
+              <LoppisSellerTrust
+                memberSince={sellerTrust.memberSince}
+                tripCount={sellerTrust.tripCount}
+              />
+            )}
           </div>
           {!isOwner && (
             isLoggedIn ? (

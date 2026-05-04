@@ -74,6 +74,28 @@ export default async function PublicProfilePage({
  const isOwnProfile = !!viewer && viewer.id === userRow.id
  const showDmButton = !!viewer && !isOwnProfile
 
+ // Användarens aktiva Loppis-annonser (max 3) för cross-link på publika profilen
+ const { data: rawActiveListings } = await supabase
+ .from('forum_threads')
+ .select('id, title, listing_data')
+ .eq('user_id', userRow.id)
+ .eq('category_id', 'loppis')
+ .eq('in_spam_queue', false)
+ .order('created_at', { ascending: false })
+ .limit(10)
+
+ type ActiveAd = { id: string; title: string; image: string | null; price: number | null; location: string | null }
+ const activeListings: ActiveAd[] = ((rawActiveListings ?? []) as Array<{ id: string; title: string; listing_data: { price?: number; images?: string[]; location?: string; status?: string } | null }>)
+ .filter(t => !!t.listing_data && (t.listing_data.status ?? 'aktiv') !== 'sald')
+ .slice(0, 3)
+ .map(t => ({
+ id: t.id,
+ title: t.title,
+ image: t.listing_data?.images?.[0] ?? null,
+ price: typeof t.listing_data?.price === 'number' ? t.listing_data.price : null,
+ location: t.listing_data?.location ?? null,
+ }))
+
  const [
  { data: rawTrips },
  { count: followersCount },
@@ -348,6 +370,52 @@ export default async function PublicProfilePage({
  </div>
  <ProfileBadgeGrid unlockedIds={unlockedAch.map(a => a.id)} />
  </div>
+
+ {/* ── Säljer just nu (Loppis cross-link) ── */}
+ {activeListings.length > 0 && (
+ <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
+ <div style={{
+ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+ marginBottom: 10,
+ }}>
+ <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'flex', alignItems: 'center', gap: 6 }}>
+ <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+ <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+ <circle cx="8.5" cy="8.5" r="1.5"/>
+ <polyline points="21 15 16 10 5 21"/>
+ </svg>
+ Säljer just nu
+ </div>
+ <Link href="/forum/loppis" style={{ fontSize: 11, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>
+ Alla annonser →
+ </Link>
+ </div>
+ <div style={{ display: 'grid', gridTemplateColumns: `repeat(${activeListings.length}, 1fr)`, gap: 8 }}>
+ {activeListings.map(ad => (
+ <Link key={ad.id} href={`/forum/loppis/${ad.id}`} style={{
+ display: 'block', borderRadius: 10, overflow: 'hidden',
+ background: 'var(--surface-2, rgba(10,123,140,0.04))',
+ border: '1px solid rgba(10,123,140,0.10)',
+ textDecoration: 'none', color: 'inherit',
+ }}>
+ <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: '#0a1e2c' }}>
+ {ad.image ? (
+ <Image src={ad.image} alt={ad.title} fill sizes="(max-width: 480px) 33vw, 120px" style={{ objectFit: 'cover' }} loading="lazy" />
+ ) : null}
+ </div>
+ <div style={{ padding: '6px 8px 8px' }}>
+ <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--accent, #c96e2a)', letterSpacing: '-0.2px' }}>
+ {typeof ad.price === 'number' ? `${new Intl.NumberFormat('sv-SE').format(ad.price)} kr` : 'Pris på förfrågan'}
+ </div>
+ <div style={{ fontSize: 11, color: 'var(--txt2)', lineHeight: 1.3, marginTop: 2, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+ {ad.title}
+ </div>
+ </div>
+ </Link>
+ ))}
+ </div>
+ </div>
+ )}
 
  {/* ── Activity chart ── */}
  {monthBars.length > 0 && (
