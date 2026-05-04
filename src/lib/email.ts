@@ -93,29 +93,71 @@ function substitute(template: string, vars: Record<string, string | number | und
   })
 }
 
-/** Wrappar HTML i en enkel mailklient-säker layout */
+/** Wrappar HTML i en mailklient-säker layout med Svalla-logo + hero-band.
+    Inline SVG funkar i Gmail/Apple Mail/Yahoo. Outlook desktop får text-fallback. */
 function wrapEmail(htmlBody: string, preheader?: string): string {
   return `<!doctype html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
 <title>Svalla</title>
 </head>
-<body style="margin:0;background:#f5f4ef;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a2530">
-${preheader ? `<div style="display:none;max-height:0;overflow:hidden">${preheader}</div>` : ''}
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f4ef;padding:20px 0">
+<body style="margin:0;padding:0;background:#eef3f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#162d3a;-webkit-font-smoothing:antialiased">
+${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3f6">${preheader}</div>` : ''}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f6;padding:32px 16px">
   <tr><td align="center">
-    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:12px;padding:32px 36px;box-shadow:0 2px 12px rgba(0,0,0,0.04)">
-      <tr><td>
-        <div style="font-family:'Playfair Display',Georgia,serif;font-size:20px;color:#1e5c82;font-weight:700;margin-bottom:24px">Svalla</div>
-        ${htmlBody}
-        <hr style="border:none;border-top:1px solid #e2e2e2;margin:32px 0 16px">
-        <p style="font-size:11px;color:#777;line-height:1.5;margin:0">
-          Du får detta mejl för att du anmält dig till Svalla.se eller skapat ett konto.
-          <a href="https://svalla.se/notiser" style="color:#777">Hantera utskick</a> ·
-          <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#777">Avregistrera</a>
-        </p>
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
+      <!-- HERO BAND med logo -->
+      <tr>
+        <td style="background:linear-gradient(135deg,#1e5c82 0%,#0a7b8c 100%);padding:28px 36px 24px;text-align:left">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+              <td style="vertical-align:middle">
+                <!--[if mso]><span style="font-family:Georgia,serif;font-size:22px;font-weight:700;color:#ffffff;letter-spacing:3px">⚓ SVALLA</span><![endif]-->
+                <!--[if !mso]><!-->
+                <svg viewBox="0 0 140 32" width="140" height="32" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                  <g transform="translate(0,3)">
+                    <line x1="11" y1="23" x2="11" y2="3" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M11,4 L21,21 L11,21 Z" fill="#ffffff" opacity="0.95"/>
+                    <path d="M11,9 L1,20 L11,20 Z" fill="#ffffff" opacity="0.55"/>
+                    <path d="M2,24 Q7,21 11,24 Q15,21 21,24" stroke="#ffffff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.75"/>
+                  </g>
+                  <text x="28" y="24" fill="#ffffff" style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;letter-spacing:3px">SVALLA</text>
+                </svg>
+                <!--<![endif]-->
+              </td>
+              <td align="right" style="vertical-align:middle">
+                <span style="font-size:11px;color:rgba(255,255,255,0.65);letter-spacing:1.5px;text-transform:uppercase;font-weight:600">Skärgården, samlad</span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <!-- BODY -->
+      <tr>
+        <td style="padding:36px 36px 32px">
+          ${htmlBody}
+        </td>
+      </tr>
+      <!-- FOOTER -->
+      <tr>
+        <td style="background:#fafcfd;padding:20px 36px;border-top:1px solid #e8eef2">
+          <p style="font-size:11px;color:#6a8a96;line-height:1.6;margin:0">
+            Du får detta mejl för att du skapat ett konto på Svalla.<br>
+            <a href="https://svalla.se/notiser" style="color:#6a8a96;text-decoration:underline">Hantera utskick</a>
+            &nbsp;·&nbsp;
+            <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <!-- Tag-line under kortet -->
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;margin-top:12px">
+      <tr><td align="center">
+        <p style="font-size:11px;color:#8aa4b0;margin:0;letter-spacing:0.3px">Svalla AB · Stockholm · skärgården, samlad på ett ställe</p>
       </td></tr>
     </table>
   </td></tr>
