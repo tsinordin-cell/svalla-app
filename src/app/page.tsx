@@ -1,5 +1,6 @@
 'use client'
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
 
@@ -1117,12 +1118,41 @@ const LANDING_HTML = `
 `
 
 export default function LandingPage() {
+ const router = useRouter()
  useEffect(() => {
  // Om redan inloggad → skicka direkt till feed
  const supabase = createClient()
  supabase.auth.getSession().then(({ data: { session } }) => {
  if (session) window.location.replace('/feed')
  })
+
+ // ── Soft-navigation för interna länkar i den dangerouslySetInnerHTML-renderade
+ // landningssidan. <a href="/oar"> blir router.push('/oar') → ingen full page-reload.
+ // Påverkar bara same-origin-länkar utan modifier-tangenter eller target=_blank.
+ const onLinkClick = (e: MouseEvent) => {
+ const a = (e.target as HTMLElement | null)?.closest('a') as HTMLAnchorElement | null
+ if (!a) return
+ if (a.target === '_blank' || a.hasAttribute('download')) return
+ if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+ const href = a.getAttribute('href')
+ if (!href || !href.startsWith('/')) return
+ if (href.startsWith('//')) return
+ e.preventDefault()
+ router.push(href)
+ }
+ // Hover-prefetch: när musen rör en intern länk, varma upp routen.
+ // Touch-devices triggar pointerover vid första tap → samma vinst.
+ const seen = new WeakSet<HTMLAnchorElement>()
+ const onLinkHover = (e: PointerEvent) => {
+ const a = (e.target as HTMLElement | null)?.closest('a') as HTMLAnchorElement | null
+ if (!a || seen.has(a)) return
+ const href = a.getAttribute('href')
+ if (!href || !href.startsWith('/') || href.startsWith('//')) return
+ seen.add(a)
+ router.prefetch(href)
+ }
+ document.addEventListener('click', onLinkClick)
+ document.addEventListener('pointerover', onLinkHover, { passive: true })
 
 
  // Nav-styling sköts via CSS — inga inline-overrides
@@ -1221,6 +1251,8 @@ export default function LandingPage() {
  return () => {
  clearTimeout(fallback)
  window.removeEventListener('scroll', handleScroll)
+ document.removeEventListener('click', onLinkClick)
+ document.removeEventListener('pointerover', onLinkHover)
  observer.disconnect()
  searchInput?.removeEventListener('focus', onFocus)
  searchInput?.removeEventListener('blur', onBlur)
@@ -1229,7 +1261,7 @@ export default function LandingPage() {
  mobClose?.removeEventListener('click', closeMobDrawer)
  document.body.style.overflow = ''
  }
- }, [])
+ }, [router])
 
  return (
  <div style={{ position: 'relative' }}>
