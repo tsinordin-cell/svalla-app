@@ -255,7 +255,7 @@ function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter:
  const allAds = threads.filter(t => !!t.listing_data)
  const legacyThreads = threads.filter(t => !t.listing_data)
 
- const ads = !filter ? allAds : allAds.filter(t => {
+ const filtered = !filter ? allAds : allAds.filter(t => {
  const ld = t.listing_data!
  if (filter.cat && ld.category !== filter.cat) return false
  if (filter.priceMin !== null && Number.isFinite(filter.priceMin)) {
@@ -267,6 +267,18 @@ function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter:
  if (filter.location && !ld.location?.toLowerCase().includes(filter.location)) return false
  return true
  })
+
+ // Boostade annonser sorteras först. Inom varje grupp behålls den ursprungliga
+ // ordningen (senast last_reply_at från Supabase).
+ const now = Date.now()
+ const isBoosted = (t: ThreadWithListing) => {
+ const b = t.listing_data?.boosted_until
+ return typeof b === 'string' && new Date(b).getTime() > now
+ }
+ const ads = [
+ ...filtered.filter(isBoosted),
+ ...filtered.filter(t => !isBoosted(t)),
+ ]
 
  return (
  <>
@@ -304,6 +316,7 @@ function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter:
  const ld = t.listing_data!
  const status = ld.status ?? 'aktiv'
  const isSold = status === 'sald'
+ const boosted = typeof ld.boosted_until === 'string' && new Date(ld.boosted_until).getTime() > Date.now()
  const heroImg = (ld.images && ld.images.length > 0) ? ld.images[0] : null
  return (
  <Link
@@ -323,10 +336,24 @@ function LoppisGrid({ threads, filter }: { threads: ThreadWithListing[]; filter:
  >
  <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: '#0a1e2c' }}>
  {heroImg ? (
- <Image src={heroImg} alt={t.title} fill sizes="(max-width: 760px) 50vw, 200px" style={{ objectFit: 'cover' }} />
+ <Image src={heroImg} alt={t.title} fill sizes="(max-width: 480px) 50vw, (max-width: 760px) 33vw, 180px" style={{ objectFit: 'cover' }} loading="lazy" />
  ) : (
  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#456', fontSize: 12 }}>
  Ingen bild
+ </div>
+ )}
+ {boosted && (
+ <div style={{
+ position: 'absolute', top: 8, left: 8,
+ background: 'linear-gradient(135deg, #c96e2a, #e08742)',
+ color: '#fff',
+ padding: '3px 9px', borderRadius: 12,
+ fontSize: 9, fontWeight: 800, letterSpacing: '0.5px', textTransform: 'uppercase',
+ boxShadow: '0 2px 6px rgba(201,110,42,0.35)',
+ display: 'inline-flex', alignItems: 'center', gap: 3,
+ }}>
+ <svg width={9} height={9} viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>
+ Boostad
  </div>
  )}
  {status !== 'aktiv' && (

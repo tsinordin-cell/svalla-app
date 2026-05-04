@@ -25,6 +25,8 @@ export interface ListingData {
   location?: string
   external_link?: string
   status?: 'aktiv' | 'reserverad' | 'sald'
+  /** ISO-timestamp tills boostningen löper ut. När `Date.now() < new Date(boosted_until)` visas annonsen först i grid med Sponsored-badge. */
+  boosted_until?: string | null
 }
 
 export interface ForumThread {

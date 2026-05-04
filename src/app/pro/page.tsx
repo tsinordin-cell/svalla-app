@@ -25,6 +25,7 @@ const PRO_FEATURES = [
   { icon: 'badge', label: 'Pro-märke på din profil' },
   { icon: 'bell',  label: 'Prioriterade push-notiser' },
   { icon: 'theme', label: 'Profilbakgrunder och teman' },
+  { icon: 'badge', label: 'Boosta dina Loppis-annonser — visas först i listan' },
 ]
 
 function ProPageInner() {

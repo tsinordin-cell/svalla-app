@@ -185,7 +185,7 @@ export async function sendAdminEmail(opts: {
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
   const adminEmail = process.env.ADMIN_EMAIL || 'info@svalla.se'
-  const from = process.env.EMAIL_FROM || 'Svalla <hej@mail.svalla.se>'
+  const from = process.env.EMAIL_FROM || 'Svalla <info@svalla.se>'
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -325,7 +325,7 @@ export async function sendEmail(opts: {
   }
   const html = substitute(wrapEmail(htmlBody, meta.preheader), vars)
 
-  const from = process.env.EMAIL_FROM || meta.from || 'Svalla <hej@mail.svalla.se>'
+  const from = process.env.EMAIL_FROM || meta.from || 'Svalla <info@svalla.se>'
 
   try {
     const res = await fetch('https://api.resend.com/emails', {

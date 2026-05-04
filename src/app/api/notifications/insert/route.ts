@@ -6,7 +6,7 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { checkRateLimit } from '@/lib/rateLimit'
 
-const VALID_TYPES = ['like', 'comment', 'follow', 'tag', 'mention', 'forum_reply', 'forum_like']
+const VALID_TYPES = ['like', 'comment', 'follow', 'tag', 'mention', 'forum_reply', 'forum_like', 'listing_saved']
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 
