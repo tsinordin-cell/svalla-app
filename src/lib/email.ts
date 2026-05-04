@@ -197,6 +197,67 @@ export async function sendAdminEmail(opts: {
   }
 }
 
+/**
+ * Hardcoded HTML body för welcome-mailet — markdown-parsern stödjer inte
+ * card-layout med colored borders. Built ovanpå wrapEmail() som lägger på
+ * hero-band + footer.
+ *
+ * Designprincip: aktivera, inte överväldiga. 3 huvudhandlingar (planera /
+ * spara / logga) + ett kort manifesto + en CTA. Inga TODO-listor för
+ * profil/följa/märken — de hör hemma i day-7-mailet och in-app-prompts
+ * när användaren har en grund att bygga vidare på.
+ */
+function renderWelcomeBody(firstName: string): string {
+  const safeName = firstName.trim() || 'där'
+  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#0d2a3e;margin:0 0 18px;letter-spacing:-0.01em;line-height:1.2">Välkommen ombord, ${safeName}.</h1>
+
+<p style="font-size:16px;line-height:1.65;margin:0 0 32px;color:#3d5865">Säsongen öppnar nu. Svalla är skärgården samlad: 84 öguider, alla gästhamnar och naturhamnar, alla bastun, krogarna värda att avvika för. Plus en plats för dina egna turer.</p>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 36px">
+  <tr>
+    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #1e5c82">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">1. Planera sommarens tur</div>
+      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Skriv in start och mål. Du får sjöleden, väder längs vägen och vilka krogar, bastun och hamnar som ligger längs rutten.</p>
+      <a href="https://svalla.se/planera/ny" style="font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none">Planera en rutt →</a>
+    </td>
+  </tr>
+  <tr><td style="height:12px"></td></tr>
+  <tr>
+    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #1e5c82">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">2. Spara öar och hamnar du vill till</div>
+      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Hjärtat på varje guide bygger upp <em>Min skärgård</em>. En privat lista att skicka till resten av crewet inför helgen.</p>
+      <a href="https://svalla.se/oar" style="font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none">Utforska 84 öar →</a>
+    </td>
+  </tr>
+  <tr><td style="height:12px"></td></tr>
+  <tr>
+    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #c96e2a">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">3. Logga din första tur</div>
+      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Tryck <em>Logga tur</em> när du lägger ut. GPS:en sköter resten. Distans, tid, hastighet, en ritad rutt på sjökortet. Med tiden en karta över skärgården du faktiskt seglat.</p>
+      <a href="https://svalla.se/logga" style="font-size:14px;font-weight:700;color:#c96e2a;text-decoration:none">Så funkar GPS-loggen →</a>
+    </td>
+  </tr>
+</table>
+
+<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.005em">Varför vi byggde Svalla</h2>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Skärgården är vacker men bökig. Färjor går olika beroende på vecka. Krogar har varierat öppet. Wikströms räkmacka stänger 16:00 i maj, 21:00 i juli.</p>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Vi samlade allt på ett ställe. Plus Waxholmsbolagets färjetider och SMHI-väder. Ingen tab-jonglering.</p>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 32px;color:#3d5865">Loggade turer blir en del av kartan. Ju fler som är med, desto bättre blir den.</p>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 28px">
+  <tr>
+    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
+      <a href="https://svalla.se" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Öppna Svalla</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:15px;line-height:1.65;margin:32px 0 0;color:#0d2a3e;text-align:center">Ses därute.<br><span style="color:#6a8a96">Svalla-gänget</span></p>`
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate
@@ -206,9 +267,9 @@ export async function sendEmail(opts: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
-  // Läs mall
+  // Läs mall — frontmatter används för subject + preheader oavsett om
+  // body kommer från markdown eller hardcoded HTML.
   const file = TEMPLATE_FILES[opts.template]
-  // Fil-resolving: i Vercel är /emails/ inte med i bundle. Embedda mallar nedan.
   let raw: string
   try {
     const filePath = path.join(process.cwd(), 'emails', file)
@@ -221,8 +282,16 @@ export async function sendEmail(opts: {
   const vars = { email: opts.to, ...opts.vars }
   const subject = (meta.subject_options?.[0] || 'Svalla')
   const subjectFinal = substitute(subject, vars)
-  const bodyFinal = substitute(body, vars)
-  const htmlBody = markdownToHtml(bodyFinal)
+
+  // Welcome-mailet hardkodas pga card-layout. Övriga templates kör markdown.
+  let htmlBody: string
+  if (opts.template === 'welcome') {
+    const firstName = String(opts.vars?.first_name ?? 'där')
+    htmlBody = renderWelcomeBody(firstName)
+  } else {
+    const bodyFinal = substitute(body, vars)
+    htmlBody = markdownToHtml(bodyFinal)
+  }
   const html = substitute(wrapEmail(htmlBody, meta.preheader), vars)
 
   const from = process.env.EMAIL_FROM || meta.from || 'Svalla <hello@svalla.se>'

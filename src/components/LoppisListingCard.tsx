@@ -15,6 +15,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import LoppisListingGallery from './LoppisListingGallery'
+import LoppisImageEditor from './LoppisImageEditor'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
 
@@ -33,6 +34,7 @@ export interface ListingData {
 }
 
 interface Props {
+  threadId: string
   title: string
   body: string
   createdAt: string
@@ -50,7 +52,7 @@ function formatPrice(price?: number, currency = 'SEK'): string {
 }
 
 export default function LoppisListingCard({
-  title, body, createdAt, listing, author, isOwner = false,
+  threadId, title, body, createdAt, listing, author, isOwner = false,
 }: Props) {
   const status: ListingStatus = listing.status ?? 'aktiv'
   const images = Array.isArray(listing.images) ? listing.images : []
@@ -68,6 +70,11 @@ export default function LoppisListingCard({
       <div style={{ marginBottom: 18, opacity: isSold ? 0.78 : 1 }}>
         <LoppisListingGallery images={images} alt={title} status={status} />
       </div>
+
+      {/* ── Bild-editor (bara ägaren) ── */}
+      {isOwner && (
+        <LoppisImageEditor threadId={threadId} initialImages={images} />
+      )}
 
       {/* ── Pris + status ── */}
       <div style={{

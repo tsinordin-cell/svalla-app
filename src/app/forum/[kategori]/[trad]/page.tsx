@@ -209,6 +209,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
         {kategori === 'loppis' && thread.listing_data ? (
           <>
             <LoppisListingCard
+              threadId={thread.id}
               title={thread.title}
               body={thread.body}
               createdAt={thread.created_at}
