@@ -18,6 +18,8 @@ import LoppisListingGallery from './LoppisListingGallery'
 import LoppisImageEditor from './LoppisImageEditor'
 import LoppisStatusToggle from './LoppisStatusToggle'
 import LoppisOwnerStats from './LoppisOwnerStats'
+import LoppisReportButton from './LoppisReportButton'
+import LoppisBoostButton from './LoppisBoostButton'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
 
@@ -33,6 +35,8 @@ export interface ListingData {
   location?: string
   external_link?: string
   status?: ListingStatus
+  /** ISO-timestamp tills boostningen löper ut. Visas med Sponsored-badge. */
+  boosted_until?: string | null
 }
 
 interface Props {
@@ -79,7 +83,7 @@ export default function LoppisListingCard({
         <LoppisListingGallery images={images} alt={title} status={status} />
       </div>
 
-      {/* ── Bild-editor + status-toggle + stats (bara ägaren) ── */}
+      {/* ── Bild-editor + status-toggle + stats + redigera (bara ägaren) ── */}
       {isOwner && (
         <>
           <LoppisImageEditor threadId={threadId} initialImages={images} />
@@ -91,6 +95,28 @@ export default function LoppisListingCard({
               replyCount={ownerStats.replyCount}
             />
           )}
+          <LoppisBoostButton threadId={threadId} boostedUntil={listing.boosted_until ?? null} />
+          <Link
+            href={`/forum/loppis/${threadId}/redigera`}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+              padding: '12px 16px',
+              background: 'rgba(10,123,140,0.08)',
+              color: 'var(--sea)',
+              border: '1px solid rgba(10,123,140,0.18)',
+              borderRadius: 12,
+              textDecoration: 'none',
+              fontSize: 14, fontWeight: 700,
+              marginBottom: 16,
+              transition: 'background 0.12s',
+            }}
+          >
+            <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z" />
+            </svg>
+            Redigera annons
+          </Link>
         </>
       )}
 
@@ -370,6 +396,13 @@ export default function LoppisListingCard({
           Var skeptisk till priser som verkar för bra för att vara sanna.
         </div>
       </div>
+
+      {/* Rapportera (för icke-ägare) */}
+      {!isOwner && (
+        <div style={{ textAlign: 'center', marginBottom: 12 }}>
+          <LoppisReportButton threadId={threadId} isLoggedIn={isLoggedIn} />
+        </div>
+      )}
     </article>
   )
 }

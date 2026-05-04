@@ -93,6 +93,31 @@ export async function POST(req: Request) {
     case 'customer.subscription.deleted':
       await deleteSubscription(event.data.object as Stripe.Subscription)
       break
+    // Engångsbetalning för Loppis-boost — sätt boosted_until på annonsen
+    case 'checkout.session.completed': {
+      const session = event.data.object as Stripe.Checkout.Session
+      const meta = session.metadata ?? {}
+      if (meta.kind === 'loppis_boost' && meta.threadId && session.payment_status === 'paid') {
+        const supabaseAdmin = getAdminClient()
+        const days = Math.max(1, Math.min(30, Number(meta.days) || 7))
+        const boostedUntil = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString()
+
+        // Hämta nuvarande listing_data, slå ihop, skriv tillbaka
+        const { data: thread } = await supabaseAdmin
+          .from('forum_threads')
+          .select('listing_data')
+          .eq('id', meta.threadId)
+          .single()
+        if (thread) {
+          const ld = (thread.listing_data ?? {}) as Record<string, unknown>
+          await supabaseAdmin
+            .from('forum_threads')
+            .update({ listing_data: { ...ld, boosted_until: boostedUntil } })
+            .eq('id', meta.threadId)
+        }
+      }
+      break
+    }
     // Betalning misslyckades — sätt status till past_due så Pro-gates stängs
     case 'invoice.payment_failed': {
       const invoice = event.data.object as Stripe.Invoice

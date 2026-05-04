@@ -30,40 +30,63 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const thread = await getThreadById(trad)
   if (!thread) return { title: 'Forum — Svalla' }
 
-  // Loppis-annons med riktig hero-bild → använd den för OG-preview
-  // (Blocket-stil när någon delar länken på iMessage/Slack/FB).
+  // Loppis-annons → optimerade SEO-tags för Google-indexering.
+  // Title: "Modell från ÅR — Pris kr i Plats" (long-tail keywords).
+  // Description: pris + skick + plats + första bodyn.
+  // Canonical + OG hero-bild + Product JSON-LD (renderas separat).
   const ld = thread.listing_data
+  const canonicalUrl = `https://svalla.se/forum/${kategori}/${trad}`
   if (kategori === 'loppis' && ld) {
     const hero = Array.isArray(ld.images) && ld.images.length > 0 ? ld.images[0] : null
     const priceStr = typeof ld.price === 'number' && Number.isFinite(ld.price)
       ? `${new Intl.NumberFormat('sv-SE').format(ld.price)} kr`
       : 'Pris på förfrågan'
-    const title = `Säljes: ${thread.title} — ${priceStr}`
-    const descParts: string[] = []
-    if (ld.location)  descParts.push(ld.location)
-    if (ld.condition) descParts.push(ld.condition)
-    descParts.push(thread.body.replace(/\*\*/g, '').slice(0, 120))
+
+    // Long-tail title: trådens egen titel innehåller redan modell+år oftast,
+    // vi kompletterar med "— Pris i Plats | Svalla Loppis"
+    const titleParts = [thread.title]
+    if (ld.location && !thread.title.toLowerCase().includes(ld.location.toLowerCase())) {
+      titleParts.push(`${priceStr} i ${ld.location}`)
+    } else {
+      titleParts.push(priceStr)
+    }
+    const title = `${titleParts.join(' — ')} | Svalla Loppis`
+
+    // SEO-description med relevanta sök-termer
+    const descParts: string[] = [`Säljes på Svalla Loppis: ${priceStr}`]
+    if (ld.location) descParts.push(ld.location)
+    if (ld.condition) descParts.push(`skick ${ld.condition.toLowerCase()}`)
+    if (ld.category) descParts.push(ld.category)
+    descParts.push(thread.body.replace(/\*\*/g, '').replace(/\n+/g, ' ').slice(0, 100))
     const description = descParts.join(' · ').slice(0, 200)
 
-    if (hero) {
-      return {
-        title,
-        description,
-        openGraph: {
-          title, description,
-          siteName: 'Svalla',
-          type: 'article',
-          url: `https://svalla.se/forum/${kategori}/${trad}`,
-          images: [{ url: hero, alt: thread.title }],
-        },
-        twitter: {
-          card: 'summary_large_image',
-          title, description,
-          images: [hero],
-        },
-      }
+    // Sökord-keywords (Google ignorerar dem mest, men strukturerar OG)
+    const keywords: string[] = ['svalla loppis', 'köp sälj båt']
+    if (ld.location) keywords.push(`båt till salu ${ld.location.toLowerCase()}`)
+    const modelSpec = ld.specs?.find(s => s.label.toLowerCase() === 'modell')?.value
+    const yearSpec = ld.specs?.find(s => s.label.toLowerCase().includes('årsmodell'))?.value
+    if (modelSpec) keywords.push(`${modelSpec} till salu`)
+    if (modelSpec && yearSpec) keywords.push(`${modelSpec} ${yearSpec}`)
+    if (ld.category) keywords.push(`${ld.category.toLowerCase()} svalla`)
+
+    return {
+      title,
+      description,
+      keywords,
+      alternates: { canonical: canonicalUrl },
+      openGraph: {
+        title, description,
+        siteName: 'Svalla',
+        type: 'article',
+        url: canonicalUrl,
+        images: hero ? [{ url: hero, alt: thread.title }] : undefined,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title, description,
+        images: hero ? [hero] : undefined,
+      },
     }
-    // Ingen bild ännu → fall through till vanlig forum-OG
   }
 
   const description = thread.body.slice(0, 160)
@@ -71,9 +94,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${thread.title} — Svalla Forum`,
     description,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: `${thread.title} — Svalla Forum`,
       description,
+      url: canonicalUrl,
       images: [{ url: ogImage, width: 1200, height: 630, alt: thread.title }],
       type: 'article',
     },
