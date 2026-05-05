@@ -101,8 +101,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
   // tree-pine — gran (klassisk skärgårds-symbol)
   naturhamn: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
-  // flame — bastu/värme (Lucide saknar dedikerad sauna)
-  bastu:     '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>',
+  // bastu — liten stuga med spetsigt tak + ångvågor över (universell bastu-symbol)
+  bastu:     '<path d="M3 13 12 6l9 7"/><path d="M5 12v9h14v-9"/><path d="M9 21v-5h6v5"/><path d="M8.5 3c0 1 1.4 1 1.4 2.3S8.5 6.5 8.5 7.5"/><path d="M14.5 3c0 1 1.4 1 1.4 2.3S14.5 6.5 14.5 7.5"/>',
   // fuel — bensinpump
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
   // map-pin — fallback
@@ -292,6 +292,17 @@ export default function UpptackExplorer() {
     }
     return counts
   }, [pois, query, appliedBounds])
+
+  // ── Initiera appliedBounds vid första moveend så listan följer kartan ─
+  // utan att kräva manuell "Sök i denna vy"-klick på första load.
+  // Sedan tar användaren över via knappen om hen panorerar bort.
+  const initialBoundsApplied = useRef(false)
+  useEffect(() => {
+    if (!initialBoundsApplied.current && bounds) {
+      setAppliedBounds(bounds)
+      initialBoundsApplied.current = true
+    }
+  }, [bounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   useEffect(() => {
@@ -949,7 +960,7 @@ export default function UpptackExplorer() {
 
         .upx-split {
           display: grid;
-          grid-template-columns: minmax(320px, 360px) 1fr;
+          grid-template-columns: minmax(260px, 300px) 1fr;
           flex: 1;
           min-height: 0;
           transition: grid-template-columns 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1055,8 +1066,8 @@ export default function UpptackExplorer() {
         }
         .upx-card-img {
           position: relative;
-          width: 96px;
-          height: 80px;
+          width: 80px;
+          height: 68px;
           flex-shrink: 0;
           border-radius: 10px;
           overflow: hidden;
@@ -1180,10 +1191,10 @@ export default function UpptackExplorer() {
           to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* Förb #3: reset-knapp bottom-right */
+        /* Förb #3: reset-knapp bottom-right, ovanför vädervisare */
         .upx-reset {
           position: absolute;
-          bottom: 18px;
+          bottom: 76px;
           right: 18px;
           z-index: 500;
           display: inline-flex;
@@ -1247,11 +1258,11 @@ export default function UpptackExplorer() {
           to   { transform: rotate(360deg); }
         }
 
-        /* Vädervisare-position — top-left, ger plats för Leaflet zoom-controls top-right */
+        /* Vädervisare — bottom-right (samma hörn som reset, men under den) */
         .upx-weather-wrap {
           position: absolute;
-          top: 14px;
-          left: 14px;
+          bottom: 18px;
+          right: 18px;
           z-index: 500;
           pointer-events: auto;
         }
