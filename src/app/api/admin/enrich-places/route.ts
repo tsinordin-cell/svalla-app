@@ -17,8 +17,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
+// Vercel Hobby: 10s default. Vi ber om 60s så vi har spelrum för långsamma OSM-svar.
+export const maxDuration = 60
+
 const OVERPASS = 'https://overpass-api.de/api/interpreter'
-const BATCH_SIZE = 30
+// 7 platser × 1.1s sleep ≈ 8s — lämnar marginal för Overpass-latency.
+const BATCH_SIZE = 7
 
 function normalizeName(s: string) {
   return s.toLowerCase()
