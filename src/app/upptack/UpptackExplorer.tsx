@@ -81,13 +81,30 @@ function categorize(p: Poi): Category {
   return 'annat'
 }
 
-const CATEGORY_META: Record<Category, { label: string; color: string; emoji: string }> = {
-  krog:       { label: 'Krogar',      color: '#c96e2a', emoji: '◍' },
-  hamn:       { label: 'Gästhamnar',  color: '#1d4ed8', emoji: '◍' },
-  naturhamn:  { label: 'Naturhamnar', color: '#0a7b3c', emoji: '◍' },
-  bastu:      { label: 'Bastu',       color: '#9d174d', emoji: '◍' },
-  bensin:     { label: 'Bensin',      color: '#525252', emoji: '◍' },
-  annat:      { label: 'Annat',       color: '#6b7280', emoji: '◍' },
+const CATEGORY_META: Record<Category, { label: string; color: string }> = {
+  krog:       { label: 'Krogar',      color: '#c96e2a' },
+  hamn:       { label: 'Gästhamnar',  color: '#1d4ed8' },
+  naturhamn:  { label: 'Naturhamnar', color: '#0a7b3c' },
+  bastu:      { label: 'Bastu',       color: '#9d174d' },
+  bensin:     { label: 'Bensin',      color: '#525252' },
+  annat:      { label: 'Annat',       color: '#6b7280' },
+}
+
+// Inline SVG-paths per kategori — diskreta, monokromatiska, fungerar
+// både som placeholder-fyllning på listrad och som key-figur i empty-state.
+const CATEGORY_ICONS: Record<Category, string> = {
+  // bestick
+  krog:      '<path d="M3 2v7c0 1.1.9 2 2 2v11M5 11a2 2 0 0 0 2-2V2M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+  // ankare
+  hamn:      '<circle cx="12" cy="5" r="3"/><path d="M12 8v14"/><path d="M5 15a7 7 0 0 0 14 0"/>',
+  // träd
+  naturhamn: '<path d="M12 2 7 9h3l-3 5h3l-2 3h8l-2-3h3l-3-5h3z"/><path d="M12 17v5"/>',
+  // bastu (stuga + ångvågor)
+  bastu:     '<path d="M8 3c0 1 1.5 1 1.5 2.5S8 7 8 8M14 3c0 1 1.5 1 1.5 2.5S14 7 14 8"/><path d="m3 13 9-6 9 6"/><path d="M5 12v8h14v-8"/>',
+  // bensinpump
+  bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
+  // map-pin (fallback)
+  annat:     '<path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
 }
 
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
@@ -100,15 +117,23 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
 ]
 
 // ── Custom pin (SVG som divIcon) ─────────────────────────────────────────
-function pinHtml(color: string, isActive = false): string {
-  const scale = isActive ? 1.3 : 1
-  const ring = isActive ? `<circle cx="14" cy="14" r="13" fill="none" stroke="${color}" stroke-width="2" opacity="0.4"/>` : ''
+// Pin = färgad droppe med kategori-ikon inuti vit cirkel.
+// Användaren ska kunna se DIREKT på kartan vad för typ av plats det är,
+// utan att behöva klicka eller hovra.
+function pinHtml(color: string, iconSvg: string, isActive = false): string {
+  const scale = isActive ? 1.25 : 1
+  const ring = isActive
+    ? `<circle cx="16" cy="16" r="15" fill="none" stroke="${color}" stroke-width="2" opacity="0.4"/>`
+    : ''
   return `
     <div style="transform:scale(${scale});transform-origin:center bottom;transition:transform .18s ease;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35))">
-      <svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+      <svg width="32" height="40" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg">
         ${ring}
-        <path d="M14 0 C6 0 0 6 0 14 C0 22 14 36 14 36 C14 36 28 22 28 14 C28 6 22 0 14 0 Z" fill="${color}"/>
-        <circle cx="14" cy="14" r="5" fill="#fff"/>
+        <path d="M16 0 C7 0 0 7 0 16 C0 25 16 40 16 40 C16 40 32 25 32 16 C32 7 25 0 16 0 Z" fill="${color}"/>
+        <circle cx="16" cy="14" r="9" fill="#fff"/>
+        <g transform="translate(7.6 5.6) scale(0.7)" stroke="${color}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          ${iconSvg}
+        </g>
       </svg>
     </div>
   `
@@ -135,7 +160,12 @@ export default function UpptackExplorer() {
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
 
   // Map state
+  // bounds        = live från Leaflet (uppdateras vid varje pan/zoom)
+  // appliedBounds = vad listan faktiskt filtrerar på (uppdateras när
+  //                 användaren trycker "Sök i denna vy")
+  // → Diff mellan dem styr om "Sök i denna vy"-knappen visas.
   const [bounds, setBounds] = useState<Bounds | null>(null)
+  const [appliedBounds, setAppliedBounds] = useState<Bounds | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
 
   // Mobile state
@@ -161,9 +191,16 @@ export default function UpptackExplorer() {
       })
       .then((data: Poi[]) => {
         if (cancelled) return
-        // Filtrera bort POIs utan koordinater
-        const valid = (data ?? []).filter(
-          p => typeof p.latitude === 'number' && typeof p.longitude === 'number'
+        // Filtrera bort POIs utan eller med korrupta koordinater.
+        // Skandinavien ligger ungefär i 54-70°N och 5-25°E. (0,0) är öppet
+        // hav söder om Ghana — vanlig "default-koordinat" från trasig data.
+        const valid = (data ?? []).filter(p =>
+          typeof p.latitude === 'number' &&
+          typeof p.longitude === 'number' &&
+          Number.isFinite(p.latitude) &&
+          Number.isFinite(p.longitude) &&
+          p.latitude > 54 && p.latitude < 70 &&
+          p.longitude > 5 && p.longitude < 25
         )
         setPois(valid)
         setLoading(false)
@@ -176,7 +213,7 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [])
 
-  // ── Filtrerad lista (kategori + sök + bbox) ────────────────────────────
+  // ── Filtrerad lista (kategori + sök + appliedBounds) ───────────────────
   const filteredPois = useMemo(() => {
     const q = query.trim().toLowerCase()
     return pois.filter(p => {
@@ -187,16 +224,53 @@ export default function UpptackExplorer() {
         const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
         if (!hay.includes(q)) return false
       }
-      // Bounds (om karta laddat)
-      if (bounds) {
+      // Bounds — bara när användaren tryckt "Sök i denna vy"
+      if (appliedBounds) {
         if (
-          p.latitude < bounds.swLat || p.latitude > bounds.neLat ||
-          p.longitude < bounds.swLng || p.longitude > bounds.neLng
+          p.latitude < appliedBounds.swLat || p.latitude > appliedBounds.neLat ||
+          p.longitude < appliedBounds.swLng || p.longitude > appliedBounds.neLng
         ) return false
       }
       return true
     })
-  }, [pois, filter, query, bounds])
+  }, [pois, filter, query, appliedBounds])
+
+  // Visa "Sök i denna vy" när live-bounds skiljer sig märkbart från
+  // applied (användaren har panorerat sedan senaste sökning)
+  const showSearchHere = useMemo(() => {
+    if (!bounds) return false
+    if (!appliedBounds) return true // första gången — uppmana till klick
+    const dLat = Math.abs(bounds.swLat - appliedBounds.swLat) +
+                 Math.abs(bounds.neLat - appliedBounds.neLat)
+    const dLng = Math.abs(bounds.swLng - appliedBounds.swLng) +
+                 Math.abs(bounds.neLng - appliedBounds.neLng)
+    return dLat + dLng > 0.05 // ~5km tröskel, inte spam vid mikro-pan
+  }, [bounds, appliedBounds])
+
+  // Förb #2: räkna POIs per kategori (för chip-labels)
+  // Räknas på alla pois (matchande sök), oavsett kategori-filter,
+  // så användaren ser totalt antal per kategori.
+  const categoryCounts = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    const counts: Record<'all' | Category, number> = {
+      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, annat: 0,
+    }
+    for (const p of pois) {
+      if (q) {
+        const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
+        if (!hay.includes(q)) continue
+      }
+      if (appliedBounds) {
+        if (
+          p.latitude < appliedBounds.swLat || p.latitude > appliedBounds.neLat ||
+          p.longitude < appliedBounds.swLng || p.longitude > appliedBounds.neLng
+        ) continue
+      }
+      counts.all++
+      counts[categorize(p)]++
+    }
+    return counts
+  }, [pois, query, appliedBounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   useEffect(() => {
@@ -227,8 +301,8 @@ export default function UpptackExplorer() {
       })
       const tile = baseTile()
       L.tileLayer(tile.url, { maxZoom: 18, attribution: tile.attr }).addTo(map)
-      // Sjökorts-overlay
-      L.tileLayer(SEAMARK_TILE, { opacity: 0.7, maxZoom: 18 }).addTo(map)
+      // Sjökorts-overlay — sänkt opacity så Svallas pins dominerar visuellt
+      L.tileLayer(SEAMARK_TILE, { opacity: 0.45, maxZoom: 18 }).addTo(map)
       L.control.zoom({ position: 'topright' }).addTo(map)
 
       // Cluster — markercluster augmenterar L runtime; cast så TS är glad
@@ -238,7 +312,13 @@ export default function UpptackExplorer() {
         showCoverageOnHover: false,
         spiderfyOnMaxZoom: true,
         disableClusteringAtZoom: 14,
-        maxClusterRadius: 50,
+        // Dynamisk radius — bredare clusters när vi ser hela skärgården,
+        // tightare när vi zoomat in (annars är clusters meningslösa)
+        maxClusterRadius: (zoom: number) => {
+          if (zoom < 9)  return 80
+          if (zoom > 12) return 30
+          return 50
+        },
         iconCreateFunction: (c: { getChildCount: () => number }) => {
           const n = c.getChildCount()
           return L.divIcon({
@@ -250,9 +330,12 @@ export default function UpptackExplorer() {
       })
       map.addLayer(cluster as Parameters<typeof map.addLayer>[0])
 
-      // Bounds tracking
+      // Bounds tracking — kolla isValid() så vi inte sätter NaN-bounds
+      // (kan hända före karta är fullt initialiserad och då filtreras
+      // hela listan bort i ett förvirrande blink)
       const updateBounds = () => {
         const b = map.getBounds()
+        if (!b.isValid()) return
         setBounds({
           swLat: b.getSouthWest().lat,
           swLng: b.getSouthWest().lng,
@@ -267,7 +350,19 @@ export default function UpptackExplorer() {
       mapRef.current = map
       clusterRef.current = cluster
     })()
-    return () => { cancelled = true }
+    // Cleanup: rensa Leaflet-instans + cluster vid unmount så vi inte
+    // läcker DOM-noder och event-listeners (markercluster är tung).
+    // Kopiera ref-Map till lokal variabel — annars varnar React att
+    // refen kan ha ändrats vid cleanup (i vårt fall säker, men fix:at).
+    const markersMap = markersRef.current
+    return () => {
+      cancelled = true
+      const m = mapRef.current as { remove?: () => void } | null
+      if (m?.remove) m.remove()
+      mapRef.current = null
+      clusterRef.current = null
+      markersMap.clear()
+    }
   }, [])
 
   // ── Uppdatera markörer när data eller filter ändras ────────────────────
@@ -281,6 +376,9 @@ export default function UpptackExplorer() {
       cluster.clearLayers()
       markersRef.current.clear()
 
+      // Markörer på kartan följer ENDAST kategori + sök (inte appliedBounds).
+      // Annars skulle pinnar försvinna när användaren panorerar bort, vilket
+      // gör det omöjligt att se vad som finns i intilliggande områden.
       const visiblePois = pois.filter(p => {
         if (filter !== 'all' && categorize(p) !== filter) return false
         if (query.trim()) {
@@ -294,13 +392,15 @@ export default function UpptackExplorer() {
         const cat = categorize(p)
         const color = CATEGORY_META[cat].color
         const icon = L.divIcon({
-          html: pinHtml(color, false),
+          html: pinHtml(color, CATEGORY_ICONS[cat], false),
           className: 'svalla-pin',
-          iconSize: [28, 36],
-          iconAnchor: [14, 36],
-          popupAnchor: [0, -32],
+          iconSize: [32, 40],
+          iconAnchor: [16, 40],
+          popupAnchor: [0, -36],
         })
         const m = L.marker([p.latitude, p.longitude], { icon })
+        // Stash POI på markören så hover-effekten kan läsa kategorin
+        ;(m as unknown as { _poi: Poi })._poi = p
         m.bindPopup(`
           <div style="min-width:180px;font-family:'Inter',sans-serif">
             <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${p.name}</div>
@@ -324,6 +424,78 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [pois, filter, query])
 
+  // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
+  // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
+  // aktiva markörens icon mot den med ringen runt — och återställer den
+  // tidigare. Använder dynamisk leaflet-import så vi inte breakar SSR.
+  const lastHoveredRef = useRef<string | null>(null)
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const L = (await import('leaflet')).default
+      if (cancelled) return
+
+      // Återställ tidigare aktiv pin
+      const prev = lastHoveredRef.current
+      if (prev && prev !== hoveredId) {
+        const m = markersRef.current.get(prev) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
+        if (m?._poi && m.setIcon) {
+          const cat = categorize(m._poi)
+          m.setIcon(L.divIcon({
+            html: pinHtml(CATEGORY_META[cat].color, CATEGORY_ICONS[cat], false),
+            className: 'svalla-pin',
+            iconSize: [32, 40],
+            iconAnchor: [16, 40],
+            popupAnchor: [0, -36],
+          }))
+        }
+      }
+      // Sätt ny aktiv
+      if (hoveredId) {
+        const m = markersRef.current.get(hoveredId) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
+        if (m?._poi && m.setIcon) {
+          const cat = categorize(m._poi)
+          m.setIcon(L.divIcon({
+            html: pinHtml(CATEGORY_META[cat].color, CATEGORY_ICONS[cat], true),
+            className: 'svalla-pin svalla-pin-active',
+            iconSize: [32, 40],
+            iconAnchor: [16, 40],
+            popupAnchor: [0, -36],
+          }))
+        }
+      }
+      lastHoveredRef.current = hoveredId
+    })()
+    return () => { cancelled = true }
+  }, [hoveredId])
+
+  // ── Mobile tab-byte: vid switch till "map" måste Leaflet få veta att
+  // dess container nu har storlek (var display:none innan). Annars
+  // renderas pinnar på fel position eller kartan blir helt grå.
+  const switchMobileTab = useCallback((tab: 'list' | 'map') => {
+    setMobileTab(tab)
+    if (tab === 'map') {
+      // Vänta en tick så DOM hunnit uppdateras
+      setTimeout(() => {
+        const m = mapRef.current as { invalidateSize?: () => void } | null
+        m?.invalidateSize?.()
+      }, 50)
+    }
+  }, [])
+
+  // ── Förb #1: applicera nuvarande karta-bounds till listan ──────────────
+  const applyCurrentBounds = useCallback(() => {
+    if (!bounds) return
+    setAppliedBounds(bounds)
+  }, [bounds])
+
+  // ── Förb #3: reset till hela skärgården ────────────────────────────────
+  const resetView = useCallback(() => {
+    const m = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void } | null
+    m?.flyTo?.(INITIAL_CENTER, INITIAL_ZOOM, { duration: 0.8 })
+    setAppliedBounds(null)
+  }, [])
+
   // ── Klick på listrad → fly till plats ──────────────────────────────────
   const flyTo = useCallback(async (poi: Poi) => {
     if (!mapRef.current) return
@@ -343,16 +515,20 @@ export default function UpptackExplorer() {
       {/* Header med filter + sök */}
       <header className="upx-header">
         <div className="upx-filters">
-          {FILTER_CHIPS.map(c => (
-            <button
-              key={c.id}
-              type="button"
-              className={`upx-chip ${filter === c.id ? 'active' : ''}`}
-              onClick={() => setFilter(c.id)}
-            >
-              {c.label}
-            </button>
-          ))}
+          {FILTER_CHIPS.map(c => {
+            const count = categoryCounts[c.id]
+            return (
+              <button
+                key={c.id}
+                type="button"
+                className={`upx-chip ${filter === c.id ? 'active' : ''}`}
+                onClick={() => setFilter(c.id)}
+              >
+                {c.label}
+                {count > 0 && <span className="upx-chip-count">{count}</span>}
+              </button>
+            )
+          })}
         </div>
         <div className="upx-search">
           <input
@@ -372,12 +548,12 @@ export default function UpptackExplorer() {
         <button
           type="button"
           className={`upx-mob-tab ${mobileTab === 'list' ? 'active' : ''}`}
-          onClick={() => setMobileTab('list')}
+          onClick={() => switchMobileTab('list')}
         >Lista <span className="upx-count">{filteredPois.length}</span></button>
         <button
           type="button"
           className={`upx-mob-tab ${mobileTab === 'map' ? 'active' : ''}`}
-          onClick={() => setMobileTab('map')}
+          onClick={() => switchMobileTab('map')}
         >Karta</button>
       </div>
 
@@ -432,11 +608,13 @@ export default function UpptackExplorer() {
                   {p.image_url ? (
                     <Image src={p.image_url} alt={p.name} fill sizes="120px" style={{ objectFit: 'cover' }} />
                   ) : (
-                    <div className="upx-card-placeholder" style={{ background: meta.color }}>
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-                      </svg>
-                    </div>
+                    <div
+                      className="upx-card-placeholder"
+                      style={{ background: meta.color }}
+                      dangerouslySetInnerHTML={{
+                        __html: `<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${CATEGORY_ICONS[cat]}</svg>`,
+                      }}
+                    />
                   )}
                 </div>
                 <div className="upx-card-body">
@@ -457,6 +635,33 @@ export default function UpptackExplorer() {
         {/* Karta */}
         <div className={`upx-map-wrap ${mobileTab === 'map' ? 'mob-show' : 'mob-hide'}`}>
           <div ref={mapDivRef} className="upx-map" />
+          {/* Förb #1: "Sök i denna vy" — top-center på kartan */}
+          {showSearchHere && (
+            <button
+              type="button"
+              className="upx-search-here"
+              onClick={applyCurrentBounds}
+            >
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+              Sök i denna vy
+            </button>
+          )}
+          {/* Förb #3: reset-zoom — bottom-right */}
+          {appliedBounds && (
+            <button
+              type="button"
+              className="upx-reset"
+              onClick={resetView}
+              aria-label="Visa hela skärgården"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+              </svg>
+              Hela skärgården
+            </button>
+          )}
         </div>
       </div>
 
@@ -507,6 +712,20 @@ export default function UpptackExplorer() {
           background: var(--sea, #1e5c82);
           color: #fff;
           border-color: var(--sea, #1e5c82);
+        }
+        .upx-chip-count {
+          background: rgba(255, 255, 255, 0.18);
+          color: inherit;
+          padding: 1px 7px;
+          border-radius: 10px;
+          font-size: 11px;
+          font-weight: 700;
+          margin-left: 6px;
+          letter-spacing: 0;
+        }
+        .upx-chip:not(.active) .upx-chip-count {
+          background: rgba(10, 123, 140, 0.12);
+          color: var(--txt3);
         }
         .upx-search {
           position: relative;
@@ -719,6 +938,67 @@ export default function UpptackExplorer() {
           width: 100%;
           height: 100%;
           background: #b8d4dc;
+        }
+
+        /* Förb #1: "Sök i denna vy" — flytande knapp top-center på kartan */
+        .upx-search-here {
+          position: absolute;
+          top: 18px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          background: var(--white);
+          color: var(--sea, #1e5c82);
+          border: 1px solid rgba(10, 123, 140, 0.18);
+          padding: 9px 16px;
+          border-radius: 24px;
+          font-family: 'Inter', sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+          box-shadow: 0 6px 20px rgba(10, 30, 50, 0.2);
+          transition: 0.18s ease;
+          animation: upxSlideDown 0.25s ease;
+        }
+        .upx-search-here:hover {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          transform: translateX(-50%) translateY(-1px);
+        }
+        @keyframes upxSlideDown {
+          from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* Förb #3: reset-knapp bottom-right */
+        .upx-reset {
+          position: absolute;
+          bottom: 18px;
+          right: 18px;
+          z-index: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--white);
+          color: var(--txt);
+          border: 1px solid rgba(10, 123, 140, 0.15);
+          padding: 8px 14px;
+          border-radius: 22px;
+          font-family: 'Inter', sans-serif;
+          font-size: 12.5px;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 4px 14px rgba(10, 30, 50, 0.15);
+          transition: 0.15s ease;
+        }
+        .upx-reset:hover {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          border-color: var(--sea, #1e5c82);
+          transform: translateY(-1px);
         }
 
         /* Mobile: stack + tab-toggle */
