@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
@@ -1275,7 +1275,14 @@ export default function LandingPage() {
  pointerEvents: 'none',
  background: 'linear-gradient(to bottom, #0a1f2b 0%, #0d2440 100%)',
  } as React.CSSProperties}>
- <HeroAnimation />
+ {/* Wrapping HeroAnimation i Suspense förhindrar att Next.js stämplar
+     BAILOUT_TO_CLIENT_SIDE_RENDERING på resten av sidan när komponenten
+     är dynamic({ssr:false}). Resten av landing-sidan SSR:as då normalt
+     och Googlebot ser hela LANDING_HTML i initial HTML — kritiskt för
+     indexering. */}
+ <Suspense fallback={null}>
+   <HeroAnimation />
+ </Suspense>
  </div>
  <style>{`
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */

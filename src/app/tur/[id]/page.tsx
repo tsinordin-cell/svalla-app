@@ -15,6 +15,7 @@ import TripTagger from '@/components/TripTagger'
 import TripHighlightPrompt from '@/components/TripHighlightPrompt'
 import RepostButton from '@/components/RepostButton'
 import BackButton from '@/components/BackButton'
+import TripGearAffiliate from '@/components/TripGearAffiliate'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
@@ -680,6 +681,14 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
  )}
  </div>
+
+ {/* ── Affiliate: utrustning för turen — visas ej till ägaren, bara på turer med distans ── */}
+ <TripGearAffiliate
+   boatType={trip.boat_type ?? null}
+   distanceNm={typeof trip.distance === 'number' ? trip.distance : null}
+   isOwner={isOwner}
+   tripId={trip.id}
+ />
 
  {/* ── Signup CTA — personifierad för ej inloggade ── */}
  {!isLoggedIn && (() => {

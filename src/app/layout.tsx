@@ -98,6 +98,57 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://tiles.openseamap.org" />
         {/* Preconnect to PostHog EU — minimizes analytics latency */}
         <link rel="preconnect" href="https://eu.i.posthog.com" />
+        {/* Schema.org Organization — binder svalla.se till varumärket "Svalla"
+            i Googles Knowledge Graph. sameAs fylls på när sociala konton
+            är skapade (Instagram, LinkedIn, Facebook). */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              '@id': 'https://svalla.se/#organization',
+              name: 'Svalla',
+              alternateName: 'Svalla.se',
+              url: 'https://svalla.se',
+              logo: 'https://svalla.se/icon-512.png',
+              description: 'Svenska skärgårdens digitala hem. Logga båtturer, hitta restauranger längs kusten och följ andra seglare — Strava för båtfolk.',
+              foundingDate: '2025',
+              areaServed: { '@type': 'Country', name: 'Sweden' },
+              inLanguage: 'sv-SE',
+              sameAs: [
+                // Fyll på när sociala konton är skapade — t.ex.:
+                // 'https://www.instagram.com/svalla.se/',
+                // 'https://www.linkedin.com/company/svalla/',
+                // 'https://www.facebook.com/svalla.se/',
+              ],
+            }),
+          }}
+        />
+        {/* WebSite-schema med SearchAction → Sitelinks Search Box i Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              '@id': 'https://svalla.se/#website',
+              url: 'https://svalla.se',
+              name: 'Svalla',
+              description: 'Skärgårdslivet, loggat',
+              publisher: { '@id': 'https://svalla.se/#organization' },
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://svalla.se/sok?q={search_term_string}',
+                },
+                'query-input': 'required name=search_term_string',
+              },
+              inLanguage: 'sv-SE',
+            }),
+          }}
+        />
       </head>
       <body>
         <PostHogProvider>
