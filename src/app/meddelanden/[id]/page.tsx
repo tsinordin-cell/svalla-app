@@ -140,19 +140,23 @@ export default function ChatPage() {
             .eq('conversation_id', id)
           const otherIds = (parts ?? []).map((p: { user_id: string }) => p.user_id).filter(u => u !== user.id)
           if (otherIds.length > 0) {
-            const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', otherIds)
-            for (const u of users ?? []) {
+            // Slå ihop egen + motpart i en enda IN-query → sparar 1 round-trip
+            // (förut: users + myU = 2 sekventiella queries)
+            const allUserIds = Array.from(new Set([user.id, ...otherIds]))
+            const { data: allUsers } = await supabase
+              .from('users')
+              .select('id, username, avatar')
+              .in('id', allUserIds)
+            for (const u of allUsers ?? []) {
               userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
             }
-            // egen info till cache
-            const { data: myU } = await supabase.from('users').select('username, avatar').eq('id', user.id).single()
-            if (myU) userMapRef.current[user.id] = { username: myU.username, avatar: myU.avatar ?? null }
+            const otherUsers = (allUsers ?? []).filter(u => u.id !== user.id)
 
-            if (!c.is_group && users && users[0]) {
-              setOtherName(users[0].username ?? 'Seglare')
-              setOtherUsername(users[0].username ?? null)
-              setOtherAvatar(users[0].avatar ?? null)
-              setOtherId(users[0].id)
+            if (!c.is_group && otherUsers[0]) {
+              setOtherName(otherUsers[0].username ?? 'Seglare')
+              setOtherUsername(otherUsers[0].username ?? null)
+              setOtherAvatar(otherUsers[0].avatar ?? null)
+              setOtherId(otherUsers[0].id)
             } else if (c.is_group) {
               setOtherName((c as Conversation).title ?? 'Gruppchatt')
             }
