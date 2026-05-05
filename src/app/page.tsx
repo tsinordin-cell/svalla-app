@@ -413,6 +413,13 @@ const LANDING_HTML = `
  </div></div>
  </li>
  <li class="nav-dropdown">
+ <a href="/dagsturer">Dagsplaner &amp; Resetips</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/dagsturer" class="nav-dd-link">Dagsutflykter</a>
+ <a href="/helgturer" class="nav-dd-link">Helgturer</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
  <a href="/aktiviteter">Aktiviteter</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
  <a href="/aktiviteter" class="nav-dd-link">Alla aktiviteter</a>
@@ -464,8 +471,10 @@ const LANDING_HTML = `
  <li class="nav-dropdown">
  <a href="/forum">Forum</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/forum" class="nav-dd-link">Alla diskussioner</a>
+ <a href="/forum" class="nav-dd-link">Diskussioner</a>
+ <a href="/forum/loppis" class="nav-dd-link">Loppis</a>
  <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Kategorier</div>
  <a href="/forum/segling" class="nav-dd-link">Segling</a>
  <a href="/forum/motorbat" class="nav-dd-link">Motorbåt</a>
  <a href="/forum/hamnar-bryggor" class="nav-dd-link">Hamnar &amp; bryggor</a>
@@ -473,23 +482,6 @@ const LANDING_HTML = `
  <a href="/forum/fiske" class="nav-dd-link">Fiske</a>
  <a href="/forum/teknik-underhall" class="nav-dd-link">Teknik &amp; underhåll</a>
  <a href="/forum/nyborjare" class="nav-dd-link">Nybörjare</a>
- </div></div>
- </li>
- <li class="nav-dropdown">
- <a href="/forum/loppis">Loppis</a>
- <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/forum/loppis" class="nav-dd-link">Alla annonser</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Kategorier</div>
- <a href="/forum/loppis?cat=Båt" class="nav-dd-link">Båtar</a>
- <a href="/forum/loppis?cat=Motor" class="nav-dd-link">Motorer</a>
- <a href="/forum/loppis?cat=Tillbehör" class="nav-dd-link">Tillbehör</a>
- <a href="/forum/loppis?cat=Säkerhet" class="nav-dd-link">Säkerhet</a>
- <a href="/forum/loppis?cat=Övrigt" class="nav-dd-link">Övrigt</a>
- <div class="nav-dd-divider"></div>
- <a href="/forum/loppis/ny-annons" class="nav-dd-link">Lägg upp annons</a>
- <a href="/loppis/mina-annonser" class="nav-dd-link">Mina annonser</a>
- <a href="/loppis/sparat" class="nav-dd-link">Sparade annonser</a>
  </div></div>
  </li>
  </ul>
@@ -527,6 +519,13 @@ const LANDING_HTML = `
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
  <a href="/resetips" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Resetips →</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Dagsplaner &amp; Resetips<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/dagsturer" class="mob-acc-link">Dagsutflykter</a>
+ <a href="/helgturer" class="mob-acc-link">Helgturer</a>
  </div>
  </div>
  <div class="mob-acc">
@@ -572,7 +571,9 @@ const LANDING_HTML = `
  <div class="mob-acc">
  <button class="mob-acc-head">Forum<span class="mob-acc-chev">›</span></button>
  <div class="mob-acc-body">
- <a href="/forum" class="mob-acc-link">Alla diskussioner</a>
+ <a href="/forum" class="mob-acc-link">Diskussioner</a>
+ <a href="/forum/loppis" class="mob-acc-link">Loppis</a>
+ <div class="mob-acc-section">Kategorier</div>
  <a href="/forum/segling" class="mob-acc-link">Segling</a>
  <a href="/forum/motorbat" class="mob-acc-link">Motorbåt</a>
  <a href="/forum/hamnar-bryggor" class="mob-acc-link">Hamnar &amp; bryggor</a>
@@ -580,21 +581,6 @@ const LANDING_HTML = `
  <a href="/forum/fiske" class="mob-acc-link">Fiske</a>
  <a href="/forum/teknik-underhall" class="mob-acc-link">Teknik &amp; underhåll</a>
  <a href="/forum/nyborjare" class="mob-acc-link">Nybörjare</a>
- </div>
- </div>
- <div class="mob-acc">
- <button class="mob-acc-head">Loppis<span class="mob-acc-chev">›</span></button>
- <div class="mob-acc-body">
- <a href="/forum/loppis" class="mob-acc-link">Alla annonser</a>
- <div class="mob-acc-section">Kategorier</div>
- <a href="/forum/loppis?cat=B%C3%A5t" class="mob-acc-link">Båtar</a>
- <a href="/forum/loppis?cat=Motor" class="mob-acc-link">Motorer</a>
- <a href="/forum/loppis?cat=Tillbeh%C3%B6r" class="mob-acc-link">Tillbehör</a>
- <a href="/forum/loppis?cat=S%C3%A4kerhet" class="mob-acc-link">Säkerhet</a>
- <a href="/forum/loppis?cat=%C3%96vrigt" class="mob-acc-link">Övrigt</a>
- <a href="/forum/loppis/ny-annons" class="mob-acc-link">Lägg upp annons</a>
- <a href="/loppis/mina-annonser" class="mob-acc-link">Mina annonser</a>
- <a href="/loppis/sparat" class="mob-acc-link">Sparade annonser</a>
  </div>
  </div>
  </nav>
