@@ -124,11 +124,26 @@ export default function PublicFooter() {
           color: 'rgba(255,255,255,0.40)',
         }}>
           <span>© {new Date().getFullYear()} Svalla. Stockholms skärgård + Bohuslän.</span>
-          <span>
-            <Link href="/integritetspolicy" style={{ color: 'inherit', textDecoration: 'none', marginRight: 16 }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 16 }}>
+            <a
+              href="https://www.instagram.com/svalla.app/"
+              target="_blank"
+              rel="me noopener noreferrer"
+              aria-label="Svalla på Instagram"
+              style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+            >
+              {/* Instagram-glyph i SVG (egen, ingen lib-beroende) */}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+              <span>@svalla.app</span>
+            </a>
+            <Link href="/integritetspolicy" style={{ color: 'inherit', textDecoration: 'none' }}>
               Integritet
             </Link>
-            <Link href="/faq" style={{ color: 'inherit', textDecoration: 'none', marginRight: 16 }}>
+            <Link href="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               FAQ
             </Link>
             <Link href="/kontakt" style={{ color: 'inherit', textDecoration: 'none' }}>

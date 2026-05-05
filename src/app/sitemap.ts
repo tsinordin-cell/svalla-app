@@ -40,8 +40,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
-    { url: `${base}/rutter?vy=oar`,          lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
-    { url: `${base}/rutter?vy=farjor`,       lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
+    // med canonical-URL:erna och förvirrar Google's crawl-prioritering.
     { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     // Region-landningssidor — SEO-marknadsföring, driver till signup
     { url: `${base}/stockholms-skargard`,    lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },

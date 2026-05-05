@@ -117,10 +117,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               areaServed: { '@type': 'Country', name: 'Sweden' },
               inLanguage: 'sv-SE',
               sameAs: [
-                // Fyll på när sociala konton är skapade — t.ex.:
-                // 'https://www.instagram.com/svalla.se/',
+                'https://www.instagram.com/svalla.app/',
+                // Fyll på när fler konton skapas:
                 // 'https://www.linkedin.com/company/svalla/',
                 // 'https://www.facebook.com/svalla.se/',
+                // 'https://www.tiktok.com/@svalla.app',
               ],
             }),
           }}
