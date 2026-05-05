@@ -142,7 +142,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const supabase = createClient()
 
     const [{ data: restaurants }, { data: tours }, { data: articles }, { data: plannedRoutes }, { data: forumCats }, { data: forumThreads }] = await Promise.all([
-      supabase.from('restaurants').select('id, updated_at').order('id'),
+      supabase.from('restaurants').select('id, slug, updated_at').order('id'),
       supabase.from('tours').select('id, updated_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
       supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
@@ -150,8 +150,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       supabase.from('forum_threads').select('id, category_id, last_reply_at').eq('in_spam_queue', false).order('last_reply_at', { ascending: false }).limit(500),
     ])
 
-    platsPages = (restaurants ?? []).map((r: { id: string; updated_at?: string }) => ({
-      url: `${base}/platser/${r.id}`,
+    platsPages = (restaurants ?? []).map((r: { id: string; slug?: string; updated_at?: string }) => ({
+      // Föredra slug-URL (snyggare + mer SEO-värde) men fallback till UUID
+      // när slug saknas. Samma sida besvarar båda — fetchRestaurant detekterar UUID-format.
+      url: `${base}/platser/${r.slug || r.id}`,
       lastModified: r.updated_at ? new Date(r.updated_at) : now,
       changeFrequency: 'monthly' as const,
       priority: 0.75,

@@ -11,11 +11,26 @@ import type { Metadata } from 'next'
 
 export const revalidate = 60 // refresh reviews regularly
 
+/**
+ * Hämta restaurang via slug ELLER UUID. UUIDv4 har 36 tecken med bindestreck.
+ * Slugs är kortare och innehåller bara a-z/0-9/-. Vi försöker slug först
+ * (snyggare URL), fallback till UUID för bakåtkompatibilitet.
+ */
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+async function fetchRestaurant(idOrSlug: string, columns: string) {
+  const supabase = await createServerSupabaseClient()
+  const isUuid = UUID_RE.test(idOrSlug)
+  const col = isUuid ? 'id' : 'slug'
+  const { data } = await supabase.from('restaurants').select(columns).eq(col, idOrSlug).maybeSingle()
+  return data
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
- const supabase = await createServerSupabaseClient()
- const { data } = await supabase.from('restaurants').select('name, description, island, image_url, tags').eq('id', id).single()
+ const data = await fetchRestaurant(id, 'id, name, description, island, image_url, tags, slug') as { id: string; name: string; description?: string; island?: string; image_url?: string; tags?: string[]; slug?: string } | null
  if (!data) return { title: 'Restaurang – Svalla' }
+ // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
+ const canonicalPath = data.slug ?? data.id
  const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
  const keywords = [
  data.name?.toLowerCase(),
@@ -28,12 +43,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  title: data.name,
  description: desc,
  keywords,
- alternates: { canonical: `https://svalla.se/platser/${id}` },
+ alternates: { canonical: `https://svalla.se/platser/${canonicalPath}` },
  openGraph: {
  title: `${data.name} – Svalla`,
  description: desc,
  images: data.image_url ? [{ url: data.image_url, width: 1200, height: 630, alt: data.name }] : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
- url: `https://svalla.se/platser/${id}`,
+ url: `https://svalla.se/platser/${canonicalPath}`,
  type: 'website',
  locale: 'sv_SE',
  },
@@ -47,17 +62,19 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 }
 
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
- const { id } = await params
+ const { id: idOrSlug } = await params
  const supabase = await createServerSupabaseClient()
 
- const { data, error } = await supabase
- .from('restaurants')
- .select('id, name, latitude, longitude, images, menu, opening_hours, description, tags, core_experience, island, contact_phone, website, booking_url')
- .eq('id', id)
- .single()
-
- if (error || !data) notFound()
- const r = data as Restaurant
+ const data = await fetchRestaurant(
+   idOrSlug,
+   'id, slug, name, latitude, longitude, images, menu, opening_hours, description, tags, core_experience, island, contact_phone, website, booking_url'
+ )
+ if (!data) notFound()
+ const r = data as unknown as Restaurant & { slug?: string }
+ // Verklig UUID — används för reviews/place-relations som har FK till restaurants.id
+ const id = r.id
+ // Canonical slug-URL för länkar och delningar
+ const canonicalPath = r.slug ?? r.id
 
  // Fetch recent trips nearby this restaurant (trips linking to this place)
  // Visa senaste turer med bild — matchas mot restaurangens namn om möjligt, annars senaste globalt
@@ -118,7 +135,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  '@type': 'Restaurant',
  name: r.name,
  description: r.description ?? undefined,
- url: `https://svalla.se/platser/${id}`,
+ url: `https://svalla.se/platser/${canonicalPath}`,
  ...(r.latitude && r.longitude ? {
  geo: {
  '@type': 'GeoCoordinates',
@@ -163,7 +180,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  itemListElement: [
  { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
  { '@type': 'ListItem', position: 2, name: 'Platser', item: 'https://svalla.se/platser' },
- { '@type': 'ListItem', position: 3, name: r.name, item: `https://svalla.se/platser/${id}` },
+ { '@type': 'ListItem', position: 3, name: r.name, item: `https://svalla.se/platser/${canonicalPath}` },
  ],
  }) }}
  />
