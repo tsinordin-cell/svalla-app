@@ -91,21 +91,22 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   annat:      { label: 'Annat',       color: '#6b7280' },
 }
 
-// Inline SVG-paths per kategori — diskreta, monokromatiska, fungerar
-// både som placeholder-fyllning på listrad och som key-figur i empty-state.
+// Lucide-paths per kategori (premium-standard, SVG 24×24 viewBox).
+// Renderas inuti pin-droppen och som placeholder på list-kort.
+// Path-data tagen direkt från lucide.dev — håll dem oförändrade.
 const CATEGORY_ICONS: Record<Category, string> = {
-  // bestick
-  krog:      '<path d="M3 2v7c0 1.1.9 2 2 2v11M5 11a2 2 0 0 0 2-2V2M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
-  // ankare
-  hamn:      '<circle cx="12" cy="5" r="3"/><path d="M12 8v14"/><path d="M5 15a7 7 0 0 0 14 0"/>',
-  // träd
-  naturhamn: '<path d="M12 2 7 9h3l-3 5h3l-2 3h8l-2-3h3l-3-5h3z"/><path d="M12 17v5"/>',
-  // bastu (stuga + ångvågor)
-  bastu:     '<path d="M8 3c0 1 1.5 1 1.5 2.5S8 7 8 8M14 3c0 1 1.5 1 1.5 2.5S14 7 14 8"/><path d="m3 13 9-6 9 6"/><path d="M5 12v8h14v-8"/>',
-  // bensinpump
+  // utensils — bestick (kniv + gaffel)
+  krog:      '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  // anchor — ankare
+  hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
+  // tree-pine — gran (klassisk skärgårds-symbol)
+  naturhamn: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
+  // flame — bastu/värme (Lucide saknar dedikerad sauna)
+  bastu:     '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>',
+  // fuel — bensinpump
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
-  // map-pin (fallback)
-  annat:     '<path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+  // map-pin — fallback
+  annat:     '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
 }
 
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
@@ -117,22 +118,26 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'bensin',    label: 'Bensin' },
 ]
 
-// ── Custom pin (SVG som divIcon) ─────────────────────────────────────────
-// Pin = färgad droppe med kategori-ikon inuti vit cirkel.
-// Användaren ska kunna se DIREKT på kartan vad för typ av plats det är,
-// utan att behöva klicka eller hovra.
+// ── Premium-pin (SVG som divIcon) ────────────────────────────────────────
+// Pin 36×44 — färgad droppe med Lucide-ikon i vit cirkel (r=10).
+// Större än standard så ikonen får andas och syns tydligt på avstånd.
+// Path för droppen är handritad bezier för en perfekt avsmalnande pärla,
+// inte en geometrisk gurka.
 function pinHtml(color: string, iconSvg: string, isActive = false): string {
-  const scale = isActive ? 1.25 : 1
+  const scale = isActive ? 1.2 : 1
   const ring = isActive
-    ? `<circle cx="16" cy="16" r="15" fill="none" stroke="${color}" stroke-width="2" opacity="0.4"/>`
+    ? `<circle cx="18" cy="18" r="17" fill="none" stroke="${color}" stroke-width="2.4" opacity="0.35"/>`
     : ''
+  // Lucide-ikoner har viewBox 24×24, center vid (12,12).
+  // Vi placerar dem centrerat vid (18,15) i pin med scale 0.83 → ikonen
+  // hamnar exakt i mitten av den vita cirkeln med liten luft runt.
   return `
-    <div style="transform:scale(${scale});transform-origin:center bottom;transition:transform .18s ease;filter:drop-shadow(0 3px 6px rgba(0,0,0,0.35))">
-      <svg width="32" height="40" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg">
+    <div style="transform:scale(${scale});transform-origin:center bottom;transition:transform .18s ease;filter:drop-shadow(0 4px 8px rgba(10,30,50,0.35))">
+      <svg width="36" height="44" viewBox="0 0 36 44" xmlns="http://www.w3.org/2000/svg">
         ${ring}
-        <path d="M16 0 C7 0 0 7 0 16 C0 25 16 40 16 40 C16 40 32 25 32 16 C32 7 25 0 16 0 Z" fill="${color}"/>
-        <circle cx="16" cy="14" r="9" fill="#fff"/>
-        <g transform="translate(7.6 5.6) scale(0.7)" stroke="${color}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 1 C8.6 1 1 8.6 1 18 C1 27 18 43 18 43 C18 43 35 27 35 18 C35 8.6 27.4 1 18 1 Z" fill="${color}" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
+        <circle cx="18" cy="15" r="10" fill="#fff"/>
+        <g transform="translate(8 5) scale(0.83)" stroke="${color}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
           ${iconSvg}
         </g>
       </svg>
@@ -412,9 +417,9 @@ export default function UpptackExplorer() {
         const icon = L.divIcon({
           html: pinHtml(color, CATEGORY_ICONS[cat], false),
           className: 'svalla-pin',
-          iconSize: [32, 40],
-          iconAnchor: [16, 40],
-          popupAnchor: [0, -36],
+          iconSize: [36, 44],
+          iconAnchor: [18, 43],
+          popupAnchor: [0, -40],
         })
         const m = L.marker([p.latitude, p.longitude], { icon })
         // Stash POI på markören så hover-effekten kan läsa kategorin
