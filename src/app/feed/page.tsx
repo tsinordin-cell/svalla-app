@@ -10,6 +10,7 @@ import AchievementFeedCard from '@/components/AchievementFeedCard'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SeasonToolBanner from '@/components/SeasonToolBanner'
+import LoppisFeedBanner from '@/components/LoppisFeedBanner'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
@@ -281,6 +282,9 @@ export default async function FeedPage(
  Alla turer
  </div>
  )}
+
+ {/* ── Loppis-banner (one-time announcement, dismissible) ── */}
+ {!!user && <SilentBoundary><LoppisFeedBanner /></SilentBoundary>}
 
  {/* ── Säsong-driven verktygs-banner ── */}
  {!!user && <SeasonToolBanner />}
