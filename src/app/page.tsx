@@ -46,14 +46,32 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .mob-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.1)}
 .mob-drawer-logo{font-family:'Playfair Display',serif;font-size:16px;color:#fff;letter-spacing:2.5px;font-weight:700}
 .mob-drawer-close{background:none;border:none;color:rgba(255,255,255,.55);font-size:28px;cursor:pointer;line-height:1;padding:0 4px}
-.mob-flat-nav{display:flex;flex-direction:column;padding:8px 0}
-.mob-flat-link{display:block;padding:16px 22px;color:rgba(255,255,255,.92);text-decoration:none;font-size:16px;font-weight:600;letter-spacing:.01em;font-family:'Inter',sans-serif;border-bottom:1px solid rgba(255,255,255,.06);transition:.15s;position:relative}
-.mob-flat-link:last-child{border-bottom:none}
-.mob-flat-link::after{content:'\\203A';position:absolute;right:22px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.35);font-size:20px;font-weight:400;transition:.18s}
-.mob-flat-link:hover,.mob-flat-link:active{color:#fff;background:rgba(255,255,255,.05);padding-left:26px}
-.mob-flat-link:hover::after{color:var(--accent);transform:translateY(-50%) translateX(2px)}
+.mob-flat-nav{display:flex;flex-direction:column;padding:6px 0 0}
 .mob-drawer-cta{padding:18px 22px;display:flex;flex-direction:column;gap:10px;margin-top:10px;border-top:1px solid rgba(255,255,255,.07)}
 .mob-drawer-cta a{text-align:center;justify-content:center}
+/* Dropdown per top-nav-item */
+.nav-dropdown{position:relative}
+.nav-dropdown > a::after{content:'\\25BE';font-size:9px;margin-left:6px;opacity:.55;transition:.18s;display:inline-block;line-height:1}
+.nav-dropdown:hover > a::after{opacity:1;transform:translateY(1px)}
+.nav-dd-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);padding-top:14px;min-width:240px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:50}
+.nav-dd-inner{background:rgba(10,28,40,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.nav-dropdown:hover .nav-dd-panel,.nav-dropdown:focus-within .nav-dd-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-dd-link{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:9px 14px;border-radius:8px;transition:.14s;white-space:nowrap}
+.nav-dd-link:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-dd-divider{height:1px;background:rgba(255,255,255,.08);margin:6px 8px}
+.nav-dd-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:10px 14px 4px}
+@media(max-width:900px){.nav-dd-panel{display:none}}
+/* Mobile-drawer accordion */
+.mob-acc{border-bottom:1px solid rgba(255,255,255,.06)}
+.mob-acc-head{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;color:rgba(255,255,255,.92);font-size:16px;font-weight:600;cursor:pointer;background:none;border:none;width:100%;text-align:left;font-family:'Inter',sans-serif;transition:.15s}
+.mob-acc-head:hover{color:#fff;background:rgba(255,255,255,.04)}
+.mob-acc-chev{font-size:18px;color:rgba(255,255,255,.4);transition:transform .2s ease;display:inline-block;line-height:1}
+.mob-acc.open .mob-acc-chev{transform:rotate(90deg);color:var(--accent)}
+.mob-acc-body{display:none;padding:0 14px 12px;background:rgba(255,255,255,.025)}
+.mob-acc.open .mob-acc-body{display:block}
+.mob-acc-link{display:block;padding:11px 14px;color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;border-radius:7px;transition:.14s}
+.mob-acc-link:hover,.mob-acc-link:active{color:#fff;background:rgba(255,255,255,.06)}
+.mob-acc-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:12px 14px 4px}
 @media(max-width:600px){.nav-hamburger{display:flex}}
 .nav-cta{display:flex;gap:10px;align-items:center}
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
@@ -369,12 +387,103 @@ const LANDING_HTML = `
  </svg>
  </a>
  <ul class="nav-links">
- <li><a href="/resmal">Skärgården</a></li>
- <li><a href="/aktiviteter">Aktiviteter</a></li>
- <li><a href="/boende">Boende</a></li>
- <li><a href="/krogar-och-mat">Krogar</a></li>
- <li><a href="/forum">Forum</a></li>
- <li><a href="/forum/loppis">Loppis</a></li>
+ <li class="nav-dropdown">
+ <a href="/resmal">Skärgården</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <div class="nav-dd-section">Regioner</div>
+ <a href="/stockholms-skargard" class="nav-dd-link">Stockholms skärgård</a>
+ <a href="/bohuslan" class="nav-dd-link">Bohuslän</a>
+ <a href="/gotland" class="nav-dd-link">Gotland</a>
+ <a href="/aland" class="nav-dd-link">Åland</a>
+ <a href="/blekinge-skargard" class="nav-dd-link">Blekinges skärgård</a>
+ <a href="/vasterhav" class="nav-dd-link">Västerhavet</a>
+ <a href="/goteborg-skargard" class="nav-dd-link">Göteborgs skärgård</a>
+ <a href="/malaren" class="nav-dd-link">Mälaren</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Hitta</div>
+ <a href="/karta" class="nav-dd-link">Karta över skärgården</a>
+ <a href="/o" class="nav-dd-link">Alla 69 öar</a>
+ <a href="/jamfor" class="nav-dd-link">Jämför öar</a>
+ <a href="/oar/barnvanliga" class="nav-dd-link">Barnvänliga öar</a>
+ <a href="/oar/avskild" class="nav-dd-link">Avskilda pärlor</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/aktiviteter">Aktiviteter</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/aktiviteter" class="nav-dd-link">Alla aktiviteter</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/aktivitet/segling" class="nav-dd-link">Segling</a>
+ <a href="/aktivitet/bada" class="nav-dd-link">Bada &amp; bryggor</a>
+ <a href="/aktivitet/vandring" class="nav-dd-link">Vandring</a>
+ <a href="/aktivitet/cykla" class="nav-dd-link">Cykling</a>
+ <a href="/bastu-och-bad" class="nav-dd-link">Bastu &amp; spa</a>
+ <a href="/aktivitet/mat" class="nav-dd-link">Mat &amp; dryck</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/topplista" class="nav-dd-link">Topplistor</a>
+ <a href="/evenemang" class="nav-dd-link">Evenemang</a>
+ <a href="/bingo" class="nav-dd-link">Skärgårdsbingo 2026</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/boende">Boende</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/boende" class="nav-dd-link">Allt boende</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/boende?typ=stugor" class="nav-dd-link">Stugor &amp; stugbyar</a>
+ <a href="/boende?typ=hotell" class="nav-dd-link">Hotell &amp; vandrarhem</a>
+ <a href="/boende?typ=camping" class="nav-dd-link">Camping &amp; tält</a>
+ <a href="/boende?typ=bnb" class="nav-dd-link">B&amp;B</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/hamnar-och-bryggor" class="nav-dd-link">Gästhamnar</a>
+ <a href="/farjor" class="nav-dd-link">Färjetider</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/krogar-och-mat">Krogar</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/krogar-och-mat" class="nav-dd-link">Alla krogar</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/krogar-och-mat?typ=skargardskrog" class="nav-dd-link">Skärgårdskrogar</a>
+ <a href="/krogar-och-mat?typ=fine-dining" class="nav-dd-link">Fine dining</a>
+ <a href="/krogar-och-mat?typ=cafe" class="nav-dd-link">Caféer &amp; bagerier</a>
+ <a href="/krogar-och-mat?typ=brygga" class="nav-dd-link">Bryggservering</a>
+ <a href="/aktivitet/mat" class="nav-dd-link">Sjömatskrogar</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/erbjudanden" class="nav-dd-link">Erbjudanden</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/forum">Forum</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/forum" class="nav-dd-link">Alla diskussioner</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/forum/segling" class="nav-dd-link">Segling</a>
+ <a href="/forum/motorbat" class="nav-dd-link">Motorbåt</a>
+ <a href="/forum/hamnar-bryggor" class="nav-dd-link">Hamnar &amp; bryggor</a>
+ <a href="/forum/vader-sakerhet" class="nav-dd-link">Väder &amp; säkerhet</a>
+ <a href="/forum/fiske" class="nav-dd-link">Fiske</a>
+ <a href="/forum/teknik-underhall" class="nav-dd-link">Teknik &amp; underhåll</a>
+ <a href="/forum/nyborjare" class="nav-dd-link">Nybörjare</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/forum/loppis">Loppis</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/forum/loppis" class="nav-dd-link">Alla annonser</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Kategorier</div>
+ <a href="/forum/loppis?cat=Båt" class="nav-dd-link">Båtar</a>
+ <a href="/forum/loppis?cat=Motor" class="nav-dd-link">Motorer</a>
+ <a href="/forum/loppis?cat=Tillbehör" class="nav-dd-link">Tillbehör</a>
+ <a href="/forum/loppis?cat=Säkerhet" class="nav-dd-link">Säkerhet</a>
+ <a href="/forum/loppis?cat=Övrigt" class="nav-dd-link">Övrigt</a>
+ <div class="nav-dd-divider"></div>
+ <a href="/forum/loppis/ny-annons" class="nav-dd-link">Lägg upp annons</a>
+ <a href="/loppis/mina-annonser" class="nav-dd-link">Mina annonser</a>
+ <a href="/loppis/sparat" class="nav-dd-link">Sparade annonser</a>
+ </div></div>
+ </li>
  </ul>
  <div class="nav-cta">
  <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
@@ -391,12 +500,93 @@ const LANDING_HTML = `
  <button class="mob-drawer-close" id="mobDrawerClose">×</button>
  </div>
  <nav class="mob-flat-nav">
- <a href="/resmal" class="mob-flat-link">Skärgården</a>
- <a href="/aktiviteter" class="mob-flat-link">Aktiviteter</a>
- <a href="/boende" class="mob-flat-link">Boende</a>
- <a href="/krogar-och-mat" class="mob-flat-link">Krogar</a>
- <a href="/forum" class="mob-flat-link">Forum</a>
- <a href="/forum/loppis" class="mob-flat-link">Loppis</a>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Skärgården<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <div class="mob-acc-section">Regioner</div>
+ <a href="/stockholms-skargard" class="mob-acc-link">Stockholms skärgård</a>
+ <a href="/bohuslan" class="mob-acc-link">Bohuslän</a>
+ <a href="/gotland" class="mob-acc-link">Gotland</a>
+ <a href="/aland" class="mob-acc-link">Åland</a>
+ <a href="/blekinge-skargard" class="mob-acc-link">Blekinges skärgård</a>
+ <a href="/vasterhav" class="mob-acc-link">Västerhavet</a>
+ <a href="/goteborg-skargard" class="mob-acc-link">Göteborgs skärgård</a>
+ <a href="/malaren" class="mob-acc-link">Mälaren</a>
+ <div class="mob-acc-section">Hitta</div>
+ <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
+ <a href="/o" class="mob-acc-link">Alla 69 öar</a>
+ <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
+ <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
+ <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Aktiviteter<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/aktiviteter" class="mob-acc-link">Alla aktiviteter</a>
+ <a href="/aktivitet/segling" class="mob-acc-link">Segling</a>
+ <a href="/aktivitet/bada" class="mob-acc-link">Bada &amp; bryggor</a>
+ <a href="/aktivitet/vandring" class="mob-acc-link">Vandring</a>
+ <a href="/aktivitet/cykla" class="mob-acc-link">Cykling</a>
+ <a href="/bastu-och-bad" class="mob-acc-link">Bastu &amp; spa</a>
+ <a href="/aktivitet/mat" class="mob-acc-link">Mat &amp; dryck</a>
+ <a href="/topplista" class="mob-acc-link">Topplistor</a>
+ <a href="/evenemang" class="mob-acc-link">Evenemang</a>
+ <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Boende<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/boende" class="mob-acc-link">Allt boende</a>
+ <a href="/boende?typ=stugor" class="mob-acc-link">Stugor &amp; stugbyar</a>
+ <a href="/boende?typ=hotell" class="mob-acc-link">Hotell &amp; vandrarhem</a>
+ <a href="/boende?typ=camping" class="mob-acc-link">Camping &amp; tält</a>
+ <a href="/boende?typ=bnb" class="mob-acc-link">B&amp;B</a>
+ <a href="/hamnar-och-bryggor" class="mob-acc-link">Gästhamnar</a>
+ <a href="/farjor" class="mob-acc-link">Färjetider</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Krogar<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/krogar-och-mat" class="mob-acc-link">Alla krogar</a>
+ <a href="/krogar-och-mat?typ=skargardskrog" class="mob-acc-link">Skärgårdskrogar</a>
+ <a href="/krogar-och-mat?typ=fine-dining" class="mob-acc-link">Fine dining</a>
+ <a href="/krogar-och-mat?typ=cafe" class="mob-acc-link">Caféer &amp; bagerier</a>
+ <a href="/krogar-och-mat?typ=brygga" class="mob-acc-link">Bryggservering</a>
+ <a href="/aktivitet/mat" class="mob-acc-link">Sjömatskrogar</a>
+ <a href="/erbjudanden" class="mob-acc-link">Erbjudanden</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Forum<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/forum" class="mob-acc-link">Alla diskussioner</a>
+ <a href="/forum/segling" class="mob-acc-link">Segling</a>
+ <a href="/forum/motorbat" class="mob-acc-link">Motorbåt</a>
+ <a href="/forum/hamnar-bryggor" class="mob-acc-link">Hamnar &amp; bryggor</a>
+ <a href="/forum/vader-sakerhet" class="mob-acc-link">Väder &amp; säkerhet</a>
+ <a href="/forum/fiske" class="mob-acc-link">Fiske</a>
+ <a href="/forum/teknik-underhall" class="mob-acc-link">Teknik &amp; underhåll</a>
+ <a href="/forum/nyborjare" class="mob-acc-link">Nybörjare</a>
+ </div>
+ </div>
+ <div class="mob-acc">
+ <button class="mob-acc-head">Loppis<span class="mob-acc-chev">›</span></button>
+ <div class="mob-acc-body">
+ <a href="/forum/loppis" class="mob-acc-link">Alla annonser</a>
+ <div class="mob-acc-section">Kategorier</div>
+ <a href="/forum/loppis?cat=B%C3%A5t" class="mob-acc-link">Båtar</a>
+ <a href="/forum/loppis?cat=Motor" class="mob-acc-link">Motorer</a>
+ <a href="/forum/loppis?cat=Tillbeh%C3%B6r" class="mob-acc-link">Tillbehör</a>
+ <a href="/forum/loppis?cat=S%C3%A4kerhet" class="mob-acc-link">Säkerhet</a>
+ <a href="/forum/loppis?cat=%C3%96vrigt" class="mob-acc-link">Övrigt</a>
+ <a href="/forum/loppis/ny-annons" class="mob-acc-link">Lägg upp annons</a>
+ <a href="/loppis/mina-annonser" class="mob-acc-link">Mina annonser</a>
+ <a href="/loppis/sparat" class="mob-acc-link">Sparade annonser</a>
+ </div>
+ </div>
  </nav>
  <div class="mob-drawer-cta">
  <a href="/logga-in" class="btn btn-ghost" style="width:100%;text-align:center;justify-content:center">Logga in</a>
@@ -961,6 +1151,13 @@ export default function LandingPage() {
  hamburger?.addEventListener('click', openMobDrawer)
  mobOverlay?.addEventListener('click', closeMobDrawer)
  mobClose?.addEventListener('click', closeMobDrawer)
+
+ // Accordion-toggle i mobile-drawer
+ document.querySelectorAll('.mob-acc-head').forEach(head => {
+ head.addEventListener('click', () => {
+ head.closest('.mob-acc')?.classList.toggle('open')
+ })
+ })
 
  // Stäng drawer när länk klickas
  document.querySelectorAll('.mob-drawer a').forEach(a => {
