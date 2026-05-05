@@ -1198,21 +1198,48 @@ export default function UpptackExplorer() {
           pointer-events: auto;
         }
 
-        /* Mobile: stack + tab-toggle */
+        /* Mobile: stack karta (50vh) ovanpå lista — båda alltid synliga.
+           Ingen tab-toggle, ingen display:none. Leaflet får real height
+           från start så tiles + pinnar renderas direkt. */
         @media (max-width: 900px) {
-          .upx-mob-tabs { display: flex; }
+          .upx-mob-tabs { display: none !important; }
           .upx-split {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
+          }
+          .upx-split.list-collapsed { display: flex; }
+          .upx-list,
+          .upx-split.list-collapsed .upx-list {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            display: flex !important;
+            border-right: none;
+            border-top: 1px solid rgba(10, 123, 140, 0.08);
+            order: 2;
+            max-height: 55vh;
+            min-height: 200px;
+            padding: 12px 14px 24px;
+          }
+          .upx-map-wrap {
+            display: block !important;
+            order: 1;
+            height: 45vh;
+            min-height: 280px;
             position: relative;
           }
-          .upx-list, .upx-map-wrap {
-            grid-column: 1;
-            grid-row: 1;
-          }
-          .upx-list { border-right: none; }
-          .mob-hide { display: none; }
-          .mob-show { display: flex; }
-          .upx-map-wrap.mob-show { display: block; }
+          .upx-list-toggle { display: none; }
+          .upx-list-reopen { display: none; }
+          /* Kompaktare cards i smal vy */
+          .upx-card { padding: 8px; gap: 10px; }
+          .upx-card-img { width: 72px; height: 60px; }
+          .upx-card-title { font-size: 13.5px; }
+          .upx-card-desc { -webkit-line-clamp: 1; }
+          /* Plats för Nav-bells (notifs+meddelanden) i top-right */
+          .upx-header { padding-right: 84px; }
+          /* Mindre kart-knappar på mobil */
+          .upx-locate { width: 36px; height: 36px; bottom: 12px; left: 12px; }
+          .upx-reset { bottom: 60px; right: 12px; padding: 6px 10px; font-size: 11.5px; }
+          .upx-weather-wrap { bottom: 12px; right: 12px; }
         }
       ` }} />
     </div>
