@@ -1,7 +1,8 @@
 'use client'
 import dynamic from 'next/dynamic'
 
-const UpptackClient = dynamic(() => import('./UpptackClient'), {
+// Ny STF-style split-explorer (karta + filterbar lista)
+const UpptackExplorer = dynamic(() => import('./UpptackExplorer'), {
   ssr: false,
   loading: () => (
     <div
@@ -40,5 +41,5 @@ const UpptackClient = dynamic(() => import('./UpptackClient'), {
 })
 
 export default function UpptackLoader() {
-  return <UpptackClient />
+  return <UpptackExplorer />
 }
