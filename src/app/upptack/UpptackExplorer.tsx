@@ -353,6 +353,17 @@ export default function UpptackExplorer() {
 
       mapRef.current = map
       clusterRef.current = cluster
+
+      // Säkerställ att Leaflet ser rätt container-storlek även när
+      // mobil-tab "Lista" är default (då är .upx-map-wrap display:none vid mount).
+      // Flera retries med ökande delay täcker både snabba och långsamma render.
+      const retries = [50, 200, 500, 1000]
+      retries.forEach(ms => {
+        setTimeout(() => {
+          const mm = mapRef.current as { invalidateSize?: () => void } | null
+          mm?.invalidateSize?.()
+        }, ms)
+      })
     })()
     // Cleanup: rensa Leaflet-instans + cluster vid unmount så vi inte
     // läcker DOM-noder och event-listeners (markercluster är tung).
@@ -380,7 +391,7 @@ export default function UpptackExplorer() {
       cluster.clearLayers()
       markersRef.current.clear()
 
-      // Markörer på kartan följer ENDAST kategori + sök (inte appliedBounds).
+      // Markörer på kartan följer ENDAST kategori + sök (inte bounds).
       // Annars skulle pinnar försvinna när användaren panorerar bort, vilket
       // gör det omöjligt att se vad som finns i intilliggande områden.
       const visiblePois = pois.filter(p => {
@@ -787,6 +798,10 @@ export default function UpptackExplorer() {
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
           z-index: 10;
         }
+        /* På mobil måste chips lämna plats åt Nav-bells (notif + meddelanden) i top-right */
+        @media (max-width: 900px) {
+          .upx-header { padding-right: 84px; }
+        }
         .upx-filters {
           display: flex;
           gap: 6px;
@@ -1107,40 +1122,7 @@ export default function UpptackExplorer() {
           background: #b8d4dc;
         }
 
-        /* Förb #1: "Sök i denna vy" — flytande knapp top-center på kartan */
-        .upx-search-here {
-          position: absolute;
-          top: 18px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 500;
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          background: var(--white);
-          color: var(--sea, #1e5c82);
-          border: 1px solid rgba(10, 123, 140, 0.18);
-          padding: 9px 16px;
-          border-radius: 24px;
-          font-family: 'Inter', sans-serif;
-          font-size: 13px;
-          font-weight: 700;
-          cursor: pointer;
-          box-shadow: 0 6px 20px rgba(10, 30, 50, 0.2);
-          transition: 0.18s ease;
-          animation: upxSlideDown 0.25s ease;
-        }
-        .upx-search-here:hover {
-          background: var(--sea, #1e5c82);
-          color: #fff;
-          transform: translateX(-50%) translateY(-1px);
-        }
-        @keyframes upxSlideDown {
-          from { opacity: 0; transform: translateX(-50%) translateY(-12px); }
-          to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        /* Förb #3: reset-knapp bottom-right, ovanför vädervisare */
+        /* Reset-knapp bottom-right, ovanför vädervisare */
         .upx-reset {
           position: absolute;
           bottom: 76px;
