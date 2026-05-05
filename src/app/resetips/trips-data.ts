@@ -1252,6 +1252,101 @@ export const TRIPS: Trip[] = [
   },
 ]
 
+  {
+    slug: 'bullero-naturreservat',
+    title: 'Bullerö — orört naturreservat i ytterskärgården',
+    tagline: 'Ett av Stockholms skärgårds bäst bevarade naturreservat — vild natur och nästan inga turister.',
+    duration: 'Heldag',
+    startPoint: 'Stavsnäs, Värmdö (bil)',
+    transport: 'Bil + båt',
+    season: 'Juni–Augusti',
+    difficulty: 'krävande',
+    description: 'Bullerö är ett naturreservat i ytterskärgården som nås med privat båt eller chartrad tur från Stavsnäs. Ön är skyddad och känd för sitt rika fågelliv, öppna hällmarker och storslagna havsvyer.',
+    stops: [
+      {
+        name: 'Charter från Stavsnäs',
+        type: 'transport',
+        desc: 'Inga reguljära linjer till Bullerö — ta chartrad båt eller privat båt från Stavsnäs.',
+        tip: 'Boka charter i god tid. Kolla lokala charterföretag i Stavsnäs-trakten.',
+        bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
+      },
+      {
+        name: 'Vandring på Bullerö',
+        type: 'natur',
+        desc: 'Öppna hällmarker, gammal skog och fågelkolonier. Markerade leder runt reservatet.',
+        tip: 'Håll dig till lederna under häckningstid (april–juli) för att inte störa fåglarna.',
+      },
+      {
+        name: 'Fågelskådning',
+        type: 'natur',
+        desc: 'En av Stockholms skärgårds bästa platser för fågelskådning. Ta med kikare.',
+      },
+      {
+        name: 'Klippbad i ytterskärgården',
+        type: 'bad',
+        desc: 'Öppna klippor med riktigt klart vatten och vind i håret.',
+      },
+      {
+        name: 'Medtagen matsäck',
+        type: 'mat',
+        desc: 'Ingen service på ön — packa mat och vatten för hela dagen.',
+        tip: 'Köp med dig mat i Stavsnäs eller Gustavsberg på vägen.',
+      },
+    ],
+    resources: [
+      { label: 'Naturvårdsverket — Bullerö naturreservat', url: 'https://www.naturvardsverket.se' },
+      { label: 'Stockholms skärgårdsstiftelse', url: 'https://www.skargardsstiftelsen.se' },
+    ],
+    islandSlugs: ['bullero'],
+  },
+
+  {
+    slug: 'huvudskar-fyrstationen',
+    title: 'Huvudskär — ytterskärgårdens fyrtorn',
+    tagline: 'En av Stockholmsskärgårdens mest dramatiska fyrstationer, mitt i öppet hav.',
+    duration: 'Heldag (tidigt start krävs)',
+    startPoint: 'Nynäshamn (bil/tåg)',
+    transport: 'Tåg/bil + båt',
+    season: 'Juni–Augusti',
+    difficulty: 'krävande',
+    description: 'Huvudskär är en liten ö med ett imponerande fyrtorn i ytterskärgården söder om Stockholm. Nås med Waxholmsbolagets linjer via Nynäshamn — lång resväg men en unik upplevelse.',
+    stops: [
+      {
+        name: 'Tåg till Nynäshamn + båt',
+        type: 'transport',
+        desc: 'Pendeltåg från Stockholm C (ca 1 tim). Waxholmsbåt mot Huvudskär — lång tur.',
+        tip: 'Mycket begränsade avgångar och lång restid. Planera noggrant och verifiera tidtabellen.',
+        bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
+      },
+      {
+        name: 'Huvudskärs fyrtorn',
+        type: 'kultur',
+        desc: 'Kraftfull fyr med utsikt över öppet Östersjön. Historisk fyrmiljö med välbevarade byggnader.',
+        tip: 'Verifiera om fyren är öppen för besökare — det varierar säsong till säsong.',
+      },
+      {
+        name: 'Vandring runt ön',
+        type: 'natur',
+        desc: 'Liten ö med öppen hällmark och storslagna vyer åt alla håll.',
+      },
+      {
+        name: 'Klippbad i ytterskärgården',
+        type: 'bad',
+        desc: 'Friskt och klart Östersjövatten från välbearbetade klippor.',
+      },
+      {
+        name: 'Medtagen matsäck',
+        type: 'mat',
+        desc: 'Ingen service — ta med allt. Köp mat i Nynäshamn innan avfärd.',
+      },
+    ],
+    resources: [
+      { label: 'Waxholmsbolagets tidtabell (södra linjen)', url: 'https://waxholmsbolaget.se/tidtabeller' },
+      { label: 'SL — pendeltåg till Nynäshamn', url: 'https://sl.se' },
+    ],
+    islandSlugs: ['huvudskar'],
+  },
+
 export function getTrip(slug: string): Trip | undefined {
   return TRIPS.find(t => t.slug === slug)
 }
