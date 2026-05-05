@@ -101,12 +101,12 @@ const CATEGORY_ICONS: Record<Category, string> = {
   hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
   // tree-pine — gran (klassisk skärgårds-symbol)
   naturhamn: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
-  // bastu — Lucide "house" (kompakt, läsbar vid 20px) + en enkel ångvåg över
-  bastu:     '<path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#fff" fill-opacity="0"/><path d="M9 22V12h6v10"/><path d="M12 0c-1 1.2-1 2.5 0 3.5"/>',
+  // bastu — Lucide "thermometer" (universell värme-symbol, en path, läsbar på 20px)
+  bastu:     '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>',
   // fuel — bensinpump
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
-  // map-pin — fallback
-  annat:     '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  // star — neutralt POI-märke (ingen pin-i-pin-ception)
+  annat:     '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/>',
 }
 
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
@@ -165,13 +165,8 @@ export default function UpptackExplorer() {
   )
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
 
-  // Map state
-  // bounds        = live från Leaflet (uppdateras vid varje pan/zoom)
-  // appliedBounds = vad listan faktiskt filtrerar på (uppdateras när
-  //                 användaren trycker "Sök i denna vy")
-  // → Diff mellan dem styr om "Sök i denna vy"-knappen visas.
+  // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
   const [bounds, setBounds] = useState<Bounds | null>(null)
-  const [appliedBounds, setAppliedBounds] = useState<Bounds | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
   // Karta-center (debouncat) för WeatherPill
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: INITIAL_CENTER[0], lng: INITIAL_CENTER[1] })
@@ -234,43 +229,29 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [])
 
-  // ── Filtrerad lista (kategori + sök + appliedBounds) ───────────────────
+  // ── Filtrerad lista (kategori + sök + bounds) ──────────────────────────
+  // Listan följer kartans bounds AUTOMATISKT — så fort användaren panorerar
+  // eller zoomar uppdateras vad som visas i listan.
   const filteredPois = useMemo(() => {
     const q = query.trim().toLowerCase()
     return pois.filter(p => {
-      // Kategori
       if (filter !== 'all' && categorize(p) !== filter) return false
-      // Sök
       if (q) {
         const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
         if (!hay.includes(q)) return false
       }
-      // Bounds — bara när användaren tryckt "Sök i denna vy"
-      if (appliedBounds) {
+      if (bounds) {
         if (
-          p.latitude < appliedBounds.swLat || p.latitude > appliedBounds.neLat ||
-          p.longitude < appliedBounds.swLng || p.longitude > appliedBounds.neLng
+          p.latitude < bounds.swLat || p.latitude > bounds.neLat ||
+          p.longitude < bounds.swLng || p.longitude > bounds.neLng
         ) return false
       }
       return true
     })
-  }, [pois, filter, query, appliedBounds])
+  }, [pois, filter, query, bounds])
 
-  // Visa "Sök i denna vy" när live-bounds skiljer sig märkbart från
-  // applied (användaren har panorerat sedan senaste sökning)
-  const showSearchHere = useMemo(() => {
-    if (!bounds) return false
-    if (!appliedBounds) return true // första gången — uppmana till klick
-    const dLat = Math.abs(bounds.swLat - appliedBounds.swLat) +
-                 Math.abs(bounds.neLat - appliedBounds.neLat)
-    const dLng = Math.abs(bounds.swLng - appliedBounds.swLng) +
-                 Math.abs(bounds.neLng - appliedBounds.neLng)
-    return dLat + dLng > 0.05 // ~5km tröskel, inte spam vid mikro-pan
-  }, [bounds, appliedBounds])
-
-  // Förb #2: räkna POIs per kategori (för chip-labels)
-  // Räknas på alla pois (matchande sök), oavsett kategori-filter,
-  // så användaren ser totalt antal per kategori.
+  // Antal POIs per kategori (för chip-labels) — räknas på pois som matchar
+  // sök + bounds, oavsett vald kategori
   const categoryCounts = useMemo(() => {
     const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
@@ -281,28 +262,17 @@ export default function UpptackExplorer() {
         const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
         if (!hay.includes(q)) continue
       }
-      if (appliedBounds) {
+      if (bounds) {
         if (
-          p.latitude < appliedBounds.swLat || p.latitude > appliedBounds.neLat ||
-          p.longitude < appliedBounds.swLng || p.longitude > appliedBounds.neLng
+          p.latitude < bounds.swLat || p.latitude > bounds.neLat ||
+          p.longitude < bounds.swLng || p.longitude > bounds.neLng
         ) continue
       }
       counts.all++
       counts[categorize(p)]++
     }
     return counts
-  }, [pois, query, appliedBounds])
-
-  // ── Initiera appliedBounds vid första moveend så listan följer kartan ─
-  // utan att kräva manuell "Sök i denna vy"-klick på första load.
-  // Sedan tar användaren över via knappen om hen panorerar bort.
-  const initialBoundsApplied = useRef(false)
-  useEffect(() => {
-    if (!initialBoundsApplied.current && bounds) {
-      setAppliedBounds(bounds)
-      initialBoundsApplied.current = true
-    }
-  }, [bounds])
+  }, [pois, query, bounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   useEffect(() => {
@@ -517,12 +487,6 @@ export default function UpptackExplorer() {
     }
   }, [])
 
-  // ── Förb #1: applicera nuvarande karta-bounds till listan ──────────────
-  const applyCurrentBounds = useCallback(() => {
-    if (!bounds) return
-    setAppliedBounds(bounds)
-  }, [bounds])
-
   // ── GPS: "Visa min plats" — centrera + blå punkt med accuracy-cirkel ───
   const handleGps = useCallback(async () => {
     if (typeof navigator === 'undefined' || !navigator.geolocation) return
@@ -589,11 +553,10 @@ export default function UpptackExplorer() {
     })
   }, [])
 
-  // ── Förb #3: reset till hela skärgården ────────────────────────────────
+  // ── Reset till hela skärgården ─────────────────────────────────────────
   const resetView = useCallback(() => {
     const m = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void } | null
     m?.flyTo?.(INITIAL_CENTER, INITIAL_ZOOM, { duration: 0.8 })
-    setAppliedBounds(null)
   }, [])
 
   // ── Klick på listrad → fly till plats ──────────────────────────────────
@@ -761,33 +724,19 @@ export default function UpptackExplorer() {
               <span className="upx-list-reopen-label">Lista ({filteredPois.length})</span>
             </button>
           )}
-          {/* Förb #1: "Sök i denna vy" — top-center på kartan */}
-          {showSearchHere && (
-            <button
-              type="button"
-              className="upx-search-here"
-              onClick={applyCurrentBounds}
-            >
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
-              </svg>
-              Sök i denna vy
-            </button>
-          )}
-          {/* Förb #3: reset-zoom — bottom-right */}
-          {appliedBounds && (
-            <button
-              type="button"
-              className="upx-reset"
-              onClick={resetView}
-              aria-label="Visa hela skärgården"
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-              </svg>
-              Hela skärgården
-            </button>
-          )}
+          {/* Reset-zoom — bottom-right (visas alltid) */}
+          <button
+            type="button"
+            className="upx-reset"
+            onClick={resetView}
+            aria-label="Visa hela skärgården"
+            title="Visa hela skärgården"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+            </svg>
+            Hela skärgården
+          </button>
 
           {/* "Visa min plats" — bottom-left på kartan */}
           <button
