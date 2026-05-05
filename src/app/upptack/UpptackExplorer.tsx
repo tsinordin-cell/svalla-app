@@ -101,8 +101,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
   // tree-pine — gran (klassisk skärgårds-symbol)
   naturhamn: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
-  // bastu — liten stuga med spetsigt tak + ångvågor över (universell bastu-symbol)
-  bastu:     '<path d="M3 13 12 6l9 7"/><path d="M5 12v9h14v-9"/><path d="M9 21v-5h6v5"/><path d="M8.5 3c0 1 1.4 1 1.4 2.3S8.5 6.5 8.5 7.5"/><path d="M14.5 3c0 1 1.4 1 1.4 2.3S14.5 6.5 14.5 7.5"/>',
+  // bastu — Lucide "house" (kompakt, läsbar vid 20px) + en enkel ångvåg över
+  bastu:     '<path d="M3 12l9-9 9 9v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#fff" fill-opacity="0"/><path d="M9 22V12h6v10"/><path d="M12 0c-1 1.2-1 2.5 0 3.5"/>',
   // fuel — bensinpump
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
   // map-pin — fallback
