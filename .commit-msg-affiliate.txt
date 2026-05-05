@@ -1,0 +1,30 @@
+feat(affiliate): MVP affiliate-system + första integration på tur-detaljvyn
+
+Bygger en hel affiliate-stack från grunden så vi kan tjäna passiva
+provisioner utan att förstöra premium-känslan.
+
+Komponenter
+  - lib/affiliate.ts — programkatalog (PROGRAMS), URL-builder med UTM,
+    tracking-redirect-helper. Adtraction + Awin-format stöds.
+  - AffiliateLink.tsx — client-komponent med rel='sponsored noopener',
+    PostHog-event vid klick, inline + card-variant, 'Annons'-badge.
+  - TripGearAffiliate.tsx — diskret 'Utrustning för turen'-sektion
+    med 3 curated picks. Visas EJ för turens ägare. Visas EJ för
+    0-NM-turer. Inline SVG-ikoner (inga emojis — repo-policy).
+  - api/affiliate/click — server-route som loggar klick i
+    affiliate_clicks och 302-redirectar. Anti-fraud: HMAC-hashad IP
+    med dygnsrotation, tillåtna destinations-domäner whitelist:ade.
+
+Databas
+  - supabase/migrations/20260505000001_affiliate_clicks.sql
+    Tabell med RLS=on, service-role-only, ingen rå IP lagras.
+
+Integration
+  - tur/[id]/page.tsx renderar <TripGearAffiliate> efter restauranger
+    längs rutten, före signup-CTA. Helt dold för utloggade ägare och
+    egna turer.
+
+Status: alla program har tom trackingTemplate ännu — länkarna går
+direkt till annonsör utan provision. Dokumentation i
+docs/AFFILIATE-SETUP.md för Adtraction/Awin-signup och hur man
+fyller i mallarna.

@@ -424,6 +424,10 @@ const LANDING_HTML = `
  <a href="/topplista" class="nav-dd-link">Topplistor</a>
  <a href="/evenemang" class="nav-dd-link">Evenemang</a>
  <a href="/bingo" class="nav-dd-link">Skärgårdsbingo 2026</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Boka en upplevelse</div>
+ <a href="/upplevelser?kategori=guidade" class="nav-dd-link">Guidade turer</a>
+ <a href="/upplevelser" class="nav-dd-link">Alla upplevelser →</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -534,6 +538,7 @@ const LANDING_HTML = `
  <a href="/topplista" class="mob-acc-link">Topplistor</a>
  <a href="/evenemang" class="mob-acc-link">Evenemang</a>
  <a href="/bingo" class="mob-acc-link">Skärgårdsbingo 2026</a>
+ <a href="/upplevelser" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Alla upplevelser →</a>
  </div>
  </div>
  <div class="mob-acc">
