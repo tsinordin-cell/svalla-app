@@ -407,6 +407,9 @@ const LANDING_HTML = `
  <a href="/jamfor" class="nav-dd-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="nav-dd-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="nav-dd-link">Avskilda pärlor</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Planera resan</div>
+ <a href="/resetips" class="nav-dd-link">Resetips →</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -523,6 +526,7 @@ const LANDING_HTML = `
  <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
+ <a href="/resetips" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Resetips →</a>
  </div>
  </div>
  <div class="mob-acc">
