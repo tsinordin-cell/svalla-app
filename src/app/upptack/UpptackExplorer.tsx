@@ -22,6 +22,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { WeatherPill } from '@/components/MapCornerPills'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -167,9 +168,24 @@ export default function UpptackExplorer() {
   const [bounds, setBounds] = useState<Bounds | null>(null)
   const [appliedBounds, setAppliedBounds] = useState<Bounds | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  // Karta-center (debouncat) för WeatherPill
+  const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: INITIAL_CENTER[0], lng: INITIAL_CENTER[1] })
+
+  // GPS-state — "Visa min plats"
+  const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
+  const gpsMarkerRef = useRef<{ remove?: () => void } | null>(null)
+  const gpsAccCircleRef = useRef<{ remove?: () => void } | null>(null)
 
   // Mobile state
   const [mobileTab, setMobileTab] = useState<'list' | 'map'>('list')
+
+  // Collapse-state (desktop): sidobaren kan gömmas så kartan får hela bredden.
+  // Persisteras i localStorage så valet kommer ihåg mellan sessioner.
+  const [listCollapsed, setListCollapsed] = useState<boolean>(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setListCollapsed(window.localStorage.getItem('upx-list-collapsed') === '1')
+  }, [])
 
   // Refs
   const mapDivRef = useRef<HTMLDivElement>(null)
@@ -342,6 +358,8 @@ export default function UpptackExplorer() {
           neLat: b.getNorthEast().lat,
           neLng: b.getNorthEast().lng,
         })
+        const c = map.getCenter()
+        setMapCenter({ lat: c.lat, lng: c.lng })
       }
       map.on('moveend', updateBounds)
       map.on('zoomend', updateBounds)
@@ -489,6 +507,72 @@ export default function UpptackExplorer() {
     setAppliedBounds(bounds)
   }, [bounds])
 
+  // ── GPS: "Visa min plats" — centrera + blå punkt med accuracy-cirkel ───
+  const handleGps = useCallback(async () => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) return
+    if (gpsState === 'denied') return
+    const map = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void; getZoom?: () => number } | null
+    if (!map) return
+
+    setGpsState('loading')
+    const L = (await import('leaflet')).default
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude: lat, longitude: lng, accuracy } = pos.coords
+        // Rensa tidigare GPS-grafik
+        gpsMarkerRef.current?.remove?.()
+        gpsAccCircleRef.current?.remove?.()
+        // Accuracy-cirkel om rimlig
+        if (accuracy && accuracy < 2000) {
+          const circle = L.circle([lat, lng], {
+            radius: accuracy,
+            color: '#3b82f6',
+            fillColor: '#3b82f6',
+            fillOpacity: 0.08,
+            weight: 1,
+            opacity: 0.35,
+            interactive: false,
+          })
+          ;(circle as unknown as { addTo: (m: unknown) => unknown }).addTo(mapRef.current)
+          gpsAccCircleRef.current = circle as unknown as { remove?: () => void }
+        }
+        // Blå GPS-prick med vit ring
+        const dot = L.circleMarker([lat, lng], {
+          radius: 7, fillColor: '#3b82f6', fillOpacity: 1,
+          color: '#fff', weight: 2.5, opacity: 1,
+        })
+        ;(dot as unknown as { addTo: (m: unknown) => unknown }).addTo(mapRef.current)
+        gpsMarkerRef.current = dot as unknown as { remove?: () => void }
+
+        const z = map.getZoom?.() ?? 13
+        map.flyTo?.([lat, lng], Math.max(z, 13), { duration: 0.9 })
+        setGpsState('active')
+      },
+      (err) => {
+        if (err.code === err.PERMISSION_DENIED) setGpsState('denied')
+        else setGpsState('idle')
+      },
+      { enableHighAccuracy: true, timeout: 10_000, maximumAge: 30_000 }
+    )
+  }, [gpsState])
+
+  // ── Toggle sidobar (desktop) — Leaflet behöver invalidateSize ──────────
+  const toggleList = useCallback(() => {
+    setListCollapsed(prev => {
+      const next = !prev
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('upx-list-collapsed', next ? '1' : '0')
+      }
+      // Vänta tills CSS-transition börjat så Leaflet räknar om container
+      setTimeout(() => {
+        const m = mapRef.current as { invalidateSize?: () => void } | null
+        m?.invalidateSize?.()
+      }, 280) // matchar grid-transition-duration
+      return next
+    })
+  }, [])
+
   // ── Förb #3: reset till hela skärgården ────────────────────────────────
   const resetView = useCallback(() => {
     const m = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void } | null
@@ -558,7 +642,7 @@ export default function UpptackExplorer() {
       </div>
 
       {/* Split-layout */}
-      <div className="upx-split">
+      <div className={`upx-split ${listCollapsed ? 'list-collapsed' : ''}`}>
         {/* Lista */}
         <aside
           className={`upx-list ${mobileTab === 'list' ? 'mob-show' : 'mob-hide'}`}
@@ -566,6 +650,17 @@ export default function UpptackExplorer() {
         >
           <div className="upx-list-meta">
             <span className="upx-list-count">{filteredPois.length} platser i denna vy</span>
+            <button
+              type="button"
+              className="upx-list-toggle"
+              onClick={toggleList}
+              aria-label="Göm sidobar"
+              title="Göm sidobar"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
           </div>
 
           {loading && (
@@ -635,6 +730,21 @@ export default function UpptackExplorer() {
         {/* Karta */}
         <div className={`upx-map-wrap ${mobileTab === 'map' ? 'mob-show' : 'mob-hide'}`}>
           <div ref={mapDivRef} className="upx-map" />
+          {/* Återöppna-flik (visas bara när lista collapsad) */}
+          {listCollapsed && (
+            <button
+              type="button"
+              className="upx-list-reopen"
+              onClick={toggleList}
+              aria-label="Visa lista"
+              title="Visa lista"
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+              <span className="upx-list-reopen-label">Lista ({filteredPois.length})</span>
+            </button>
+          )}
           {/* Förb #1: "Sök i denna vy" — top-center på kartan */}
           {showSearchHere && (
             <button
@@ -662,6 +772,35 @@ export default function UpptackExplorer() {
               Hela skärgården
             </button>
           )}
+
+          {/* "Visa min plats" — bottom-left på kartan */}
+          <button
+            type="button"
+            className={`upx-locate ${gpsState}`}
+            onClick={handleGps}
+            disabled={gpsState === 'loading'}
+            aria-label={gpsState === 'denied' ? 'GPS-åtkomst nekad' : 'Visa min position'}
+            title={gpsState === 'denied' ? 'GPS nekad — aktivera i webbläsarens inställningar' : 'Visa min position'}
+          >
+            {gpsState === 'loading' ? (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'upxSpin 1s linear infinite' }}>
+                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+              </svg>
+            ) : gpsState === 'denied' ? (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+              </svg>
+            )}
+          </button>
+
+          {/* Vädervisare — top-left på kartan */}
+          <div className="upx-weather-wrap">
+            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+          </div>
         </div>
       </div>
 
@@ -805,9 +944,19 @@ export default function UpptackExplorer() {
 
         .upx-split {
           display: grid;
-          grid-template-columns: minmax(360px, 420px) 1fr;
+          grid-template-columns: minmax(320px, 360px) 1fr;
           flex: 1;
           min-height: 0;
+          transition: grid-template-columns 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .upx-split.list-collapsed {
+          grid-template-columns: 0 1fr;
+        }
+        .upx-split.list-collapsed .upx-list {
+          opacity: 0;
+          pointer-events: none;
+          padding-left: 0;
+          padding-right: 0;
         }
         .upx-list {
           background: var(--bg);
@@ -825,6 +974,59 @@ export default function UpptackExplorer() {
           font-weight: 600;
           letter-spacing: 0.05em;
           text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        .upx-list-toggle {
+          background: rgba(10, 123, 140, 0.06);
+          border: 1px solid rgba(10, 123, 140, 0.1);
+          color: var(--txt2);
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: 0.15s;
+          flex-shrink: 0;
+        }
+        .upx-list-toggle:hover {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          border-color: var(--sea, #1e5c82);
+        }
+
+        .upx-list-reopen {
+          position: absolute;
+          top: 18px;
+          left: 0;
+          z-index: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: var(--white);
+          color: var(--sea, #1e5c82);
+          border: 1px solid rgba(10, 123, 140, 0.18);
+          border-left: none;
+          padding: 9px 14px 9px 10px;
+          border-radius: 0 22px 22px 0;
+          font-family: 'Inter', sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+          box-shadow: 0 6px 20px rgba(10, 30, 50, 0.18);
+          transition: 0.18s ease;
+        }
+        .upx-list-reopen:hover {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          padding-left: 14px;
+        }
+        .upx-list-reopen-label {
+          letter-spacing: 0.01em;
         }
 
         .upx-card {
@@ -999,6 +1201,54 @@ export default function UpptackExplorer() {
           color: #fff;
           border-color: var(--sea, #1e5c82);
           transform: translateY(-1px);
+        }
+
+        /* Locate-knapp — bottom-left på kartan */
+        .upx-locate {
+          position: absolute;
+          bottom: 18px;
+          left: 18px;
+          z-index: 500;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: var(--white);
+          color: var(--txt2);
+          border: 1px solid rgba(10, 123, 140, 0.15);
+          box-shadow: 0 4px 14px rgba(10, 30, 50, 0.15);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: 0.15s ease;
+        }
+        .upx-locate:hover:not(:disabled) {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          transform: translateY(-1px);
+        }
+        .upx-locate.active {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+        }
+        .upx-locate.denied {
+          background: #cc3d3d;
+          color: #fff;
+          cursor: not-allowed;
+        }
+        .upx-locate.loading { color: var(--sea, #1e5c82); cursor: wait; }
+        @keyframes upxSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
+        /* Vädervisare-position — top-left, ger plats för Leaflet zoom-controls top-right */
+        .upx-weather-wrap {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          z-index: 500;
+          pointer-events: auto;
         }
 
         /* Mobile: stack + tab-toggle */
