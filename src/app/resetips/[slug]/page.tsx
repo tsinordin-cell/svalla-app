@@ -74,6 +74,16 @@ export default async function ResetipsDetailPage({ params }: Props) {
       <article style={{ maxWidth: 760, margin: '20px auto 0', padding: '0 24px' }}>
         {/* Badges */}
         <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
+          {trip.featured && (
+            <span style={{
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase',
+              color: '#fff',
+              background: 'var(--sea, #0a7b8c)',
+              padding: '4px 10px', borderRadius: 20,
+            }}>
+              ★ Redaktionens val
+            </span>
+          )}
           <span style={{
             fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase',
             color: DIFFICULTY_COLOR[trip.difficulty],
@@ -148,50 +158,45 @@ export default async function ResetipsDetailPage({ params }: Props) {
         {/* Stops */}
         <h2 style={{
           fontFamily: 'var(--font-playfair, "Playfair Display", Georgia, serif)',
-          fontSize: 22,
-          fontWeight: 700,
+          fontSize: 22, fontWeight: 700,
           color: 'var(--txt, #1a1a1a)',
           margin: '0 0 20px',
         }}>
           Rutten — stopp för stopp
         </h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 48, position: 'relative' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 40 }}>
           {trip.stops.map((stop, i) => (
-            <div key={i} style={{ display: 'flex', gap: 16, position: 'relative' }}>
-              {/* Timeline line */}
+            <div key={i} style={{ display: 'flex', gap: 16 }}>
+              {/* Timeline */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
                 <div style={{
                   width: 36, height: 36, borderRadius: '50%',
                   background: 'var(--surface, #fff)',
                   border: '2px solid var(--sea, #0a7b8c)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 16, flexShrink: 0,
-                  zIndex: 1,
+                  fontSize: 16, flexShrink: 0, zIndex: 1,
                 }}>
                   {STOP_ICONS[stop.type]}
                 </div>
                 {i < trip.stops.length - 1 && (
                   <div style={{
-                    width: 2,
-                    flex: 1,
-                    minHeight: 24,
+                    width: 2, flex: 1, minHeight: 24,
                     background: 'var(--border, rgba(0,0,0,0.1))',
                     margin: '4px 0',
                   }} />
                 )}
               </div>
 
-              {/* Stop content */}
+              {/* Content */}
               <div style={{ paddingBottom: i < trip.stops.length - 1 ? 20 : 0, flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
                   <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt, #1a1a1a)', margin: 0 }}>
                     {stop.name}
                   </h3>
                   <span style={{
                     fontSize: 10, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase',
-                    color: 'var(--txt3, #aaa)',
-                    background: 'var(--bg, #f8f7f4)',
+                    color: 'var(--txt3, #aaa)', background: 'var(--bg, #f8f7f4)',
                     padding: '2px 7px', borderRadius: 10,
                   }}>
                     {STOP_LABEL[stop.type]}
@@ -205,30 +210,79 @@ export default async function ResetipsDetailPage({ params }: Props) {
                     display: 'flex', gap: 6, alignItems: 'flex-start',
                     background: 'rgba(10,123,140,0.07)',
                     borderLeft: '3px solid var(--sea, #0a7b8c)',
-                    padding: '8px 12px',
-                    borderRadius: '0 6px 6px 0',
-                    fontSize: 13,
-                    color: 'var(--txt2, #444)',
-                    lineHeight: 1.5,
+                    padding: '8px 12px', borderRadius: '0 6px 6px 0',
+                    fontSize: 13, color: 'var(--txt2, #444)', lineHeight: 1.5,
+                    marginBottom: 6,
                   }}>
                     <span style={{ flexShrink: 0 }}>💡</span>
                     <span>{stop.tip}</span>
                   </div>
+                )}
+                {stop.bookingUrl && (
+                  <a
+                    href={stop.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                      fontSize: 13, color: 'var(--sea, #0a7b8c)',
+                      textDecoration: 'none', fontWeight: 500,
+                    }}
+                  >
+                    Öppna webbplats →
+                  </a>
                 )}
               </div>
             </div>
           ))}
         </div>
 
+        {/* Resources / schema-disclaimer */}
+        {trip.resources && trip.resources.length > 0 && (
+          <div style={{
+            background: 'var(--surface, #fff)',
+            border: '1px solid var(--border, rgba(0,0,0,0.08))',
+            borderRadius: 12,
+            padding: '18px 20px',
+            marginBottom: 40,
+          }}>
+            <p style={{
+              fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+              color: 'var(--txt3, #888)', margin: '0 0 10px',
+            }}>
+              ⚠️ Verifiera tidtabeller och öppettider
+            </p>
+            <p style={{ fontSize: 13, color: 'var(--txt2, #555)', lineHeight: 1.6, margin: '0 0 12px' }}>
+              Avgångstider, öppettider och priser kan ändras. Kontrollera alltid aktuell information via de officiella källorna nedan innan du åker.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {trip.resources.map((r, i) => (
+                <a
+                  key={i}
+                  href={r.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: 14, color: 'var(--sea, #0a7b8c)',
+                    textDecoration: 'none', fontWeight: 500,
+                    display: 'inline-flex', alignItems: 'center', gap: 4,
+                  }}
+                >
+                  {r.label} →
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Island links */}
         {trip.islandSlugs && trip.islandSlugs.length > 0 && (
-          <div style={{ marginBottom: 48 }}>
+          <div style={{ marginBottom: 40 }}>
             <p style={{ fontSize: 14, color: 'var(--txt3, #888)', marginBottom: 8 }}>Relaterade öar på Svalla:</p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {trip.islandSlugs.map(s => (
                 <Link key={s} href={`/o/${s}`} style={{
-                  fontSize: 14, fontWeight: 600,
-                  color: 'var(--sea, #0a7b8c)',
+                  fontSize: 14, fontWeight: 600, color: 'var(--sea, #0a7b8c)',
                   textDecoration: 'none',
                   border: '1px solid var(--sea, #0a7b8c)',
                   padding: '6px 14px', borderRadius: 8,
@@ -240,7 +294,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
           </div>
         )}
 
-        {/* Back */}
+        {/* Footer */}
         <div style={{ borderTop: '1px solid var(--border, rgba(0,0,0,0.08))', paddingTop: 24 }}>
           <Link href="/resetips" style={{ fontSize: 14, color: 'var(--sea, #0a7b8c)', textDecoration: 'none' }}>
             ← Fler resetips

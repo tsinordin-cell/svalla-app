@@ -142,6 +142,17 @@ export default function ResetipsClient() {
               <div style={{ padding: '20px 20px 16px', flex: 1 }}>
                 {/* Badges */}
                 <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
+                  {trip.featured && (
+                    <span style={{
+                      fontSize: 11, fontWeight: 700,
+                      letterSpacing: '0.06em', textTransform: 'uppercase',
+                      color: '#fff',
+                      background: 'var(--sea, #0a7b8c)',
+                      padding: '3px 9px', borderRadius: 20,
+                    }}>
+                      ★ Redaktionens val
+                    </span>
+                  )}
                   <span style={{
                     fontSize: 11, fontWeight: 700,
                     letterSpacing: '0.06em', textTransform: 'uppercase',
