@@ -564,12 +564,6 @@ export default function UpptackExplorer() {
     })
   }, [])
 
-  // ── Reset till hela skärgården ─────────────────────────────────────────
-  const resetView = useCallback(() => {
-    const m = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void } | null
-    m?.flyTo?.(INITIAL_CENTER, INITIAL_ZOOM, { duration: 0.8 })
-  }, [])
-
   // ── Klick på listrad → fly till plats ──────────────────────────────────
   const flyTo = useCallback(async (poi: Poi) => {
     if (!mapRef.current) return
@@ -735,19 +729,6 @@ export default function UpptackExplorer() {
               <span className="upx-list-reopen-label">Lista ({filteredPois.length})</span>
             </button>
           )}
-          {/* Reset-zoom — bottom-right (visas alltid) */}
-          <button
-            type="button"
-            className="upx-reset"
-            onClick={resetView}
-            aria-label="Visa hela skärgården"
-            title="Visa hela skärgården"
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-            </svg>
-            Hela skärgården
-          </button>
 
           {/* "Visa min plats" — bottom-left på kartan */}
           <button
@@ -1122,34 +1103,6 @@ export default function UpptackExplorer() {
           background: #b8d4dc;
         }
 
-        /* Reset-knapp bottom-right, ovanför vädervisare */
-        .upx-reset {
-          position: absolute;
-          bottom: 76px;
-          right: 18px;
-          z-index: 500;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: var(--white);
-          color: var(--txt);
-          border: 1px solid rgba(10, 123, 140, 0.15);
-          padding: 8px 14px;
-          border-radius: 22px;
-          font-family: 'Inter', sans-serif;
-          font-size: 12.5px;
-          font-weight: 600;
-          cursor: pointer;
-          box-shadow: 0 4px 14px rgba(10, 30, 50, 0.15);
-          transition: 0.15s ease;
-        }
-        .upx-reset:hover {
-          background: var(--sea, #1e5c82);
-          color: #fff;
-          border-color: var(--sea, #1e5c82);
-          transform: translateY(-1px);
-        }
-
         /* Locate-knapp — bottom-left på kartan */
         .upx-locate {
           position: absolute;
@@ -1238,7 +1191,6 @@ export default function UpptackExplorer() {
           .upx-header { padding-right: 84px; }
           /* Mindre kart-knappar på mobil */
           .upx-locate { width: 36px; height: 36px; bottom: 12px; left: 12px; }
-          .upx-reset { bottom: 60px; right: 12px; padding: 6px 10px; font-size: 11.5px; }
           .upx-weather-wrap { bottom: 12px; right: 12px; }
         }
       ` }} />
