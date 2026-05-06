@@ -19,6 +19,7 @@ type Plats = {
  menu: string | null
  images: string[] | null
  image_url: string | null
+ google_photo_refs: { reference: string }[] | null
  tags: string[] | null
  core_experience: string | null
  type: string | null
@@ -124,7 +125,12 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
 
  const p = data as Plats
 
- const heroImage = p.images && p.images.length > 0 ? p.images[0] : p.image_url
+ // Föredra Google-foton (äkta bilder från platsen) framför seedade fallback-bilder
+ const googlePhotoRef = p.google_photo_refs?.[0]?.reference
+ const googleHero = googlePhotoRef
+   ? `/api/places/photo/${Buffer.from(googlePhotoRef, 'utf-8').toString('base64url')}?w=1600`
+   : null
+ const heroImage = googleHero ?? (p.images && p.images.length > 0 ? p.images[0] : p.image_url)
  const typeInfo = p.type ? (TYPE_CONFIG[p.type] ?? null) : null
  const facilities = (p.facilities ?? []).filter(f => FACILITY_MAP[f])
  const tags = p.tags ?? []

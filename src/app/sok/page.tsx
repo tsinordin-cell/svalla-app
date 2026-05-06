@@ -172,12 +172,12 @@ function SokPageInner() {
  .limit(8) as unknown as Promise<AnyRes<{ id: string; title: string; usp: string | null; start_location: string; destination: string }>>)
 
  const placesPromise = isHashtagQuery
- ? empty<{ id: string; name: string; island: string | null; image_url: string | null }>()
+ ? empty<{ id: string; name: string; island: string | null; image_url: string | null; google_photo_refs: { reference: string }[] | null }>()
  : (supabase
  .from('restaurants')
- .select('id, name, island, image_url')
+ .select('id, name, island, image_url, google_photo_refs')
  .or(`name.ilike.${pattern},island.ilike.${pattern}`)
- .limit(8) as unknown as Promise<AnyRes<{ id: string; name: string; island: string | null; image_url: string | null }>>)
+ .limit(8) as unknown as Promise<AnyRes<{ id: string; name: string; island: string | null; image_url: string | null; google_photo_refs: { reference: string }[] | null }>>)
 
  type UserRow = { id: string; username: string; avatar: string | null; home_port: string | null; sailing_region: string | null; nationality: string | null; vessel_model: string | null; vessel_name: string | null; vessel_type: string | null }
  const usersPromise = isHashtagQuery
@@ -283,14 +283,19 @@ function SokPageInner() {
  subtitle: `${t.start_location} → ${t.destination}`,
  href: `/rutter/${t.id}`,
  })),
- ...(placesRes.data ?? []).map(r => ({
+ ...(placesRes.data ?? []).map(r => {
+ // Föredra Google-foto framför seedade fallback-bilder
+ const ref = r.google_photo_refs?.[0]?.reference
+ const googleImg = ref ? `/api/places/photo/${Buffer.from(ref, 'utf-8').toString('base64url')}?w=400` : null
+ return {
  type: 'plats' as const,
  id: r.id,
  title: r.name,
  subtitle: r.island ?? '',
- image: r.image_url ?? undefined,
+ image: googleImg ?? r.image_url ?? undefined,
  href: `/platser/${r.id}`,
- })),
+ }
+ }),
  ...(tripsRes.data ?? []).map(t => ({
  type: 'tur' as const,
  id: t.id,

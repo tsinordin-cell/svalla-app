@@ -50,14 +50,39 @@ export async function GET(req: Request) {
   if (type === 'poi') {
     const { data, error } = await supabase
       .from('restaurants')
-      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island')
+      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, google_photo_refs')
       .not('latitude', 'is', null)
       .not('longitude', 'is', null)
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+
+    // Projicera image_url så Google-foton används automatiskt om de finns.
+    // Då slipper UpptackExplorer ha någon special-logik — den använder bara image_url.
+    // Bygger thumbnail-storlek (w=400) för list-kort/markers.
+    type RawRow = {
+      id: string; name: string; latitude: number; longitude: number;
+      type: string | null; categories: string[] | null; description: string | null;
+      image_url: string | null; slug: string | null; island: string | null;
+      google_photo_refs: { reference: string }[] | null;
+    }
+    const projected = (data as RawRow[] | null ?? []).map((r) => {
+      let imageUrl = r.image_url
+      const ref = r.google_photo_refs?.[0]?.reference
+      if (ref) {
+        const encoded = Buffer.from(ref, 'utf-8').toString('base64url')
+        imageUrl = `/api/places/photo/${encoded}?w=400`
+      }
+      // Skicka inte med tunga google_photo_refs i list-svaret (kan vara ~3KB per plats × 288 = 1MB)
+      return {
+        id: r.id, name: r.name, latitude: r.latitude, longitude: r.longitude,
+        type: r.type, categories: r.categories, description: r.description,
+        image_url: imageUrl, slug: r.slug, island: r.island,
+      }
+    })
+
     // POI-listan uppdateras bara via /admin → aggressiv cache är säker.
     // 1 h fresh, 24 h stale-while-revalidate ger nästan-omedelbara karta-laddningar.
-    return NextResponse.json(data, {
+    return NextResponse.json(projected, {
       headers: { 'Cache-Control': 'private, s-maxage=3600, stale-while-revalidate=86400' },
     })
   }

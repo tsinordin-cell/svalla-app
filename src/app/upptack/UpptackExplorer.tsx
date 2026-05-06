@@ -685,7 +685,14 @@ export default function UpptackExplorer() {
               >
                 <div className="upx-card-img">
                   {p.image_url ? (
-                    <Image src={p.image_url} alt={p.name} fill sizes="120px" style={{ objectFit: 'cover' }} />
+                    <Image
+                      src={p.image_url}
+                      alt={p.name}
+                      fill
+                      sizes="120px"
+                      style={{ objectFit: 'cover' }}
+                      unoptimized={p.image_url.startsWith('/api/places/photo/')}
+                    />
                   ) : (
                     <div
                       className="upx-card-placeholder"
