@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import AppGateLink from '@/components/AppGateLink'
 
 // Alla kategori- och filterlänkar är publika — ingen inloggning krävs
 function isAppGated(_href: string): boolean {
@@ -464,15 +465,6 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
  </p>
  </>
  )
- // Om länken går in i appens filtrerade vyer (/platser?kategori=X,
- // /rutter?vy=X osv), gate:a den bakom login via AppGateLink.
- if (isAppGated(item.href)) {
- return (
- <AppGateLink href={item.href} style={cardStyle}>
- {cardContent}
- </AppGateLink>
- )
- }
  return (
  <Link href={item.href} style={cardStyle}>
  {cardContent}
