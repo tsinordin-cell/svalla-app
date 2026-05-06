@@ -5,8 +5,19 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import type { Restaurant } from '@/lib/supabase'
-import type { TourLine } from '@/app/platser/page'
 import Icon from '@/components/Icon'
+
+// Lokal type — TourLine bodde ursprungligen i den nu borttagna /platser/page.tsx.
+// PlatserClient/PlatserMap är dead code (ingenting importerar dem) men vi
+// behåller dem ifall de återanvänds — och då behöver typen finnas.
+export type TourLine = {
+  id: string
+  title: string
+  start_location: string
+  destination: string
+  duration_label: string
+  waypoints: { lat: number; lng: number }[]
+}
 
 // ── Leaflet karta (lazy-load, SSR off) ──────────────────────────────────────
 const PlatserMap = dynamic(() => import('./PlatserMap'), { ssr: false, loading: () => (
@@ -295,7 +306,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
 
     {/* Veckans favorit */}
     {featured && filter === 'alla' && !query && (
-     <Link href={`/platser/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
+     <Link href={`/upptack/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
      <div style={{
       borderRadius: 16, overflow: 'hidden',
       background: 'var(--grad-sea)',
@@ -375,7 +386,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
       const showImg = r.images?.[0] && !isStockPhoto(r.images[0])
       return (
       <div key={r.id} ref={el => { cardRefs.current[r.id] = el }}>
-       <Link href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
+       <Link href={`/upptack/${r.id}`} style={{ textDecoration: 'none' }}>
        <article
         onMouseEnter={() => setActiveId(r.id)}
         onMouseLeave={() => setActiveId(null)}
@@ -547,7 +558,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
   </div>
 
   {featured && filter === 'alla' && !query && (
-  <Link href={`/platser/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
+  <Link href={`/upptack/${featured.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
    <div style={{
    borderRadius: 16, overflow: 'hidden',
    background: 'var(--grad-sea)',
@@ -622,7 +633,7 @@ function PlatserInner({ restaurants, tours }: { restaurants: Restaurant[]; tours
    const showImg = r.images?.[0] && !isStockPhoto(r.images[0])
    return (
     <div key={r.id} ref={el => { cardRefs.current[r.id] = el }}>
-    <Link href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
+    <Link href={`/upptack/${r.id}`} style={{ textDecoration: 'none' }}>
      <article style={{
      background: 'var(--white)', borderRadius: 16, overflow: 'hidden',
      boxShadow: activeId === r.id

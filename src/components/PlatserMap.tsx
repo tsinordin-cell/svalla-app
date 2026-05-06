@@ -6,7 +6,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import { useEffect, useRef, useState } from 'react'
 import type { Map as LeafletMap, Marker, Polyline, MarkerClusterGroup, MarkerCluster, DivIconOptions } from 'leaflet'
 import type { Restaurant } from '@/lib/supabase'
-import type { TourLine } from '@/app/platser/page'
+import type { TourLine } from '@/components/PlatserClient'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 import Icon from '@/components/Icon'
 
@@ -142,7 +142,7 @@ function buildPopupHtml(r: Restaurant, pos: { lat: number; lng: number } | null)
  ${tagsRow}
  ${distRow}
  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
- <a href="/platser/${r.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Visa →</a>
+ <a href="/upptack/${r.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Visa →</a>
  <a href="https://map.openseamap.org/?zoom=13&lat=${r.latitude}&lon=${r.longitude}" target="_blank" rel="noopener noreferrer"
  style="padding:5px 12px;background:rgba(10,123,140,0.12);color:#1e5c82;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">
  Sjökort

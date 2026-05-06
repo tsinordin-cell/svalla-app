@@ -124,7 +124,7 @@ export default function PlaceSocialSection({
  }
 
  const myReview = me ? reviews.find(r => r.user_id === me) : null
- const checkInUrl = `/check-in?place_id=${encodeURIComponent(placeId)}&place_name=${encodeURIComponent(placeName)}&return_to=${encodeURIComponent(`/platser/${placeId}`)}`
+ const checkInUrl = `/check-in?place_id=${encodeURIComponent(placeId)}&place_name=${encodeURIComponent(placeName)}&return_to=${encodeURIComponent(`/upptack/${placeId}`)}`
 
  return (
  <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 14 }}>

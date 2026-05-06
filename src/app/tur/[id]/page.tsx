@@ -667,7 +667,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <SectionTitle>Restauranger längs rutten</SectionTitle>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
  {nearbyRestaurants.map(r => (
- <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
+ <Link key={r.id} href={`/upptack/${r.id}`} style={{ textDecoration: 'none' }}>
  <div style={{ background: 'var(--white)', borderRadius: 14, padding: '12px 16px', boxShadow: '0 1px 6px rgba(0,45,60,0.06)', display: 'flex', alignItems: 'center', gap: 12 }}>
  <span style={{ fontSize: 20 }}> </span>
  <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', flex: 1 }}>{r.name}</span>

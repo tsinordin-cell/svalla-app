@@ -470,7 +470,7 @@ export default function UpptackExplorer() {
           <div style="min-width:180px;font-family:'Inter',sans-serif">
             <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${p.name}</div>
             <div style="font-size:11px;color:#6a8a96;margin-bottom:6px">${CATEGORY_META[cat].label}${p.island ? ' &middot; ' + p.island : ''}</div>
-            ${p.slug ? `<a href="/platser/${p.slug}" style="color:#1e5c82;font-size:12px;font-weight:600;text-decoration:none">Se mer &rarr;</a>` : ''}
+            ${p.slug ? `<a href="/upptack/${p.slug}" style="color:#1e5c82;font-size:12px;font-weight:600;text-decoration:none">Se mer &rarr;</a>` : ''}
           </div>
         `)
         m.on('click', () => {

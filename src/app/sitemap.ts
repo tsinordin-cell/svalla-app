@@ -153,7 +153,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     platsPages = (restaurants ?? []).map((r: { id: string; slug?: string; updated_at?: string }) => ({
       // Föredra slug-URL (snyggare + mer SEO-värde) men fallback till UUID
       // när slug saknas. Samma sida besvarar båda — fetchRestaurant detekterar UUID-format.
-      url: `${base}/platser/${r.slug || r.id}`,
+      url: `${base}/upptack/${r.slug || r.id}`,
       lastModified: r.updated_at ? new Date(r.updated_at) : now,
       changeFrequency: 'monthly' as const,
       priority: 0.75,

@@ -558,7 +558,7 @@ export async function POST(req: NextRequest) {
 
   const placeLinks = placeList
     .map(p => {
-      const base = `https://svalla.se/platser/${p.id}`
+      const base = `https://svalla.se/upptack/${p.id}`
       const booking = p.booking_url ? ` — [Boka bord](${p.booking_url})` : ''
       return `${p.name}${p.island ? ` (${p.island})` : ''}: ${base}${booking}`
     })

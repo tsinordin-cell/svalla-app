@@ -277,7 +277,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  ? '<1 km'
  : `${stop.distance_from_line_km} km`
  return (
- <Link key={stop.id} href={`/platser/${stop.id}`} style={{ textDecoration: 'none' }}>
+ <Link key={stop.id} href={`/upptack/${stop.id}`} style={{ textDecoration: 'none' }}>
  <div style={{
  background: 'var(--white)', borderRadius: 16, padding: '14px 16px',
  border: `1px solid ${isFar ? 'rgba(232,146,74,0.2)' : 'rgba(10,123,140,0.08)'}`,

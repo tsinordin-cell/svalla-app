@@ -5,7 +5,7 @@
  * referenser) inte 404:ar. Next.js skickar 307/308 så användaren landar
  * på /upptack utan att märka det.
  *
- * Notera: /platser/[id] (enskilda restauranger) ligger kvar — det är basURL:en
+ * Notera: /upptack/[id] (enskilda restauranger) ligger kvar — det är basURL:en
  * för plats-detaljsidor som linkas från sökresultat, sociala flöden, etc.
  */
 import { redirect } from 'next/navigation'

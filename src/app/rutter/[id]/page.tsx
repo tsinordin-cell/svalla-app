@@ -337,7 +337,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           <Section title="Platser längs rutten">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {nearbyRests.map((r: { id: string; name: string; tags?: string[]; core_experience?: string | null; booking_url?: string | null }) => (
-                <Link key={r.id} href={`/platser/${r.id}`} style={{ textDecoration: 'none' }}>
+                <Link key={r.id} href={`/upptack/${r.id}`} style={{ textDecoration: 'none' }}>
                   <div style={{
                     background: 'var(--white)', borderRadius: 14, padding: '12px 14px',
                     boxShadow: '0 1px 6px rgba(0,45,60,0.07)',

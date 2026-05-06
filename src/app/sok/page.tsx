@@ -293,7 +293,7 @@ function SokPageInner() {
  title: r.name,
  subtitle: r.island ?? '',
  image: googleImg ?? r.image_url ?? undefined,
- href: `/platser/${r.id}`,
+ href: `/upptack/${r.id}`,
  }
  }),
  ...(tripsRes.data ?? []).map(t => ({
