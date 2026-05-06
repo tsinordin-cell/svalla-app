@@ -102,7 +102,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
 .btn-lg{padding:16px 36px;font-size:15px;border-radius:var(--r-sm)}
 .btn-xl{padding:18px 44px;font-size:16px;border-radius:var(--r-sm)}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;overflow:hidden;padding-bottom:38vh;}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;overflow:hidden;padding-bottom:calc(46vh - 220px);}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(165deg,#0a1f2b 0%,#0f2e3b 25%,#1a4a5e 55%,#1e5c72 75%,#24697f 100%);}
 .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 110%, rgba(45,125,138,.35) 0%, transparent 60%),radial-gradient(ellipse 60% 30% at 20% 80%, rgba(26,74,94,.4) 0%, transparent 50%),radial-gradient(ellipse 40% 20% at 80% 70%, rgba(36,105,127,.3) 0%, transparent 40%);}
 .hero-islands{position:absolute;bottom:0;left:0;right:0;height:45%;pointer-events:none;}
@@ -374,7 +374,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .footer-col h5{font-size:11px;margin-bottom:8px}
  .footer-col ul li{margin-bottom:5px}
  .footer-col ul li a{font-size:12.5px}
- .hero{padding-top:120px}
+ .hero{justify-content:flex-start;padding-top:90px;padding-bottom:0}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}
  .hero-sub{font-size:13.5px;margin:10px auto 18px}
@@ -382,7 +382,6 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .hero-search input{padding:10px 14px;font-size:13px}
  .hero-search button{margin:4px 4px 4px 0;padding:8px 18px;border-radius:50px;font-size:12.5px;white-space:nowrap}
  .hero-search-hint{margin-bottom:14px;font-size:11.5px}
- .hero{padding-bottom:32px}
  .hero-scroll{display:none}
  .steps{grid-template-columns:1fr}
  .testimonial-card{align-self:start}
