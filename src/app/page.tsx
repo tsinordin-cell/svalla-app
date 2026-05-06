@@ -72,6 +72,18 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .mob-acc-link{display:block;padding:11px 14px;color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;border-radius:7px;transition:.14s}
 .mob-acc-link:hover,.mob-acc-link:active{color:#fff;background:rgba(255,255,255,.06)}
 .mob-acc-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:12px 14px 4px}
+/* Smal desktop (1100–1280): krymp chips + CTA så allt får plats utan radbrytning */
+@media(max-width:1280px){
+.nav-links>li>a{font-size:13px!important;padding:8px 11px!important;letter-spacing:0!important}
+.nav-cta .btn{padding:8px 14px;font-size:12.5px}
+.nav-logo svg{height:24px}
+.nav-cta{gap:6px}
+}
+/* Under 1100px: switcha till hamburger så Dagsplaner+Forum+CTA inte trängs */
+@media(max-width:1100px){
+.nav-links{display:none}
+.nav-hamburger{display:flex}
+}
 @media(max-width:600px){.nav-hamburger{display:flex}}
 .nav-cta{display:flex;gap:10px;align-items:center}
 .btn{padding:10px 20px;border-radius:var(--r-sm);font-size:13.5px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:.2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
@@ -412,12 +424,10 @@ const LANDING_HTML = `
  <li class="nav-dropdown">
  <a href="/resetips">Dagsplaner &amp; Resetips</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/resetips" class="nav-dd-link">Alla resetips</a>
+ <a href="/resetips" class="nav-dd-link">Alla turer</a>
  <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Svårighet</div>
- <a href="/resetips?sv=latt" class="nav-dd-link">Lätta dagsutflykter</a>
- <a href="/resetips?sv=medel" class="nav-dd-link">Lite mer planering</a>
- <a href="/resetips?sv=kravande" class="nav-dd-link">Krävande äventyr</a>
+ <a href="/resetips?typ=dagsutflykt" class="nav-dd-link">Dagsutflykter</a>
+ <a href="/resetips?typ=overnattning" class="nav-dd-link">Utflykt med övernattning</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -524,10 +534,9 @@ const LANDING_HTML = `
  <div class="mob-acc">
  <button class="mob-acc-head">Dagsplaner &amp; Resetips<span class="mob-acc-chev">›</span></button>
  <div class="mob-acc-body">
- <a href="/resetips" class="mob-acc-link">Alla resetips</a>
- <a href="/resetips?sv=latt" class="mob-acc-link">Lätta dagsutflykter</a>
- <a href="/resetips?sv=medel" class="mob-acc-link">Lite mer planering</a>
- <a href="/resetips?sv=kravande" class="mob-acc-link">Krävande äventyr</a>
+ <a href="/resetips" class="mob-acc-link">Alla turer</a>
+ <a href="/resetips?typ=dagsutflykt" class="mob-acc-link">Dagsutflykter</a>
+ <a href="/resetips?typ=overnattning" class="mob-acc-link">Utflykt med övernattning</a>
  </div>
  </div>
  <div class="mob-acc">
