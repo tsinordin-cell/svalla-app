@@ -159,10 +159,31 @@ export default function UpptackExplorer() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Filter state
-  const [filter, setFilter] = useState<'all' | Category>(
-    () => (searchParams.get('typ') as 'all' | Category) ?? 'all'
-  )
+  // Filter state — multi-select. Tom set = "Alla kategorier" (visa allt).
+  // URL-format: ?typ=krog,hamn  ELLER  ?typ=all (bakåtkompat)
+  const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
+    const raw = searchParams.get('typ')
+    if (!raw || raw === 'all') return new Set()
+    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'annat'])
+    const result = new Set<Category>()
+    for (const part of raw.split(',')) {
+      const t = part.trim() as Category
+      if (validCats.has(t)) result.add(t)
+    }
+    return result
+  })
+  function toggleCat(cat: Category) {
+    setActiveCats(prev => {
+      const next = new Set(prev)
+      if (next.has(cat)) next.delete(cat)
+      else next.add(cat)
+      return next
+    })
+  }
+  function clearCats() {
+    setActiveCats(new Set())
+  }
+  const isAllMode = activeCats.size === 0
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
 
   // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
@@ -235,7 +256,8 @@ export default function UpptackExplorer() {
   const filteredPois = useMemo(() => {
     const q = query.trim().toLowerCase()
     return pois.filter(p => {
-      if (filter !== 'all' && categorize(p) !== filter) return false
+      // Multi-select: tomt set = visa allt; annars måste platsens kategori finnas i set
+      if (!isAllMode && !activeCats.has(categorize(p))) return false
       if (q) {
         const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
         if (!hay.includes(q)) return false
@@ -248,7 +270,7 @@ export default function UpptackExplorer() {
       }
       return true
     })
-  }, [pois, filter, query, bounds])
+  }, [pois, isAllMode, activeCats, query, bounds])
 
   // Antal POIs per kategori (för chip-labels) — räknas på pois som matchar
   // sök + bounds, oavsett vald kategori
@@ -275,16 +297,18 @@ export default function UpptackExplorer() {
   }, [pois, query, bounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
+  // Multi-select: ?typ=krog,hamn  (alfabetisk för deterministisk URL)
+  const activeCatsKey = useMemo(() => Array.from(activeCats).sort().join(','), [activeCats])
   useEffect(() => {
     const id = setTimeout(() => {
       const params = new URLSearchParams()
-      if (filter !== 'all') params.set('typ', filter)
+      if (activeCatsKey) params.set('typ', activeCatsKey)
       if (query.trim()) params.set('q', query.trim())
       const qs = params.toString()
       router.replace(qs ? `/upptack?${qs}` : '/upptack', { scroll: false })
     }, 250)
     return () => clearTimeout(id)
-  }, [filter, query, router])
+  }, [activeCatsKey, query, router])
 
   // ── Init Leaflet ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -395,7 +419,7 @@ export default function UpptackExplorer() {
       // Annars skulle pinnar försvinna när användaren panorerar bort, vilket
       // gör det omöjligt att se vad som finns i intilliggande områden.
       const visiblePois = pois.filter(p => {
-        if (filter !== 'all' && categorize(p) !== filter) return false
+        if (!isAllMode && !activeCats.has(categorize(p))) return false
         if (query.trim()) {
           const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
           if (!hay.includes(query.trim().toLowerCase())) return false
@@ -437,7 +461,7 @@ export default function UpptackExplorer() {
       cluster.addLayers(newMarkers)
     })()
     return () => { cancelled = true }
-  }, [pois, filter, query])
+  }, [pois, isAllMode, activeCats, query])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
@@ -585,8 +609,9 @@ export default function UpptackExplorer() {
         <FilterDropdown
           chips={FILTER_CHIPS}
           counts={categoryCounts}
-          active={filter}
-          onChange={setFilter}
+          activeIds={activeCats}
+          onToggle={toggleCat}
+          onClear={clearCats}
         />
         <div className="upx-search">
           <input
@@ -1154,19 +1179,23 @@ export default function UpptackExplorer() {
 
 // ─── FilterDropdown ────────────────────────────────────────────────────────
 /**
- * Kompakt dropdown för kategori-filter. Knappen visar aktivt val + count.
- * Klick → panel under knappen med alla val. Click utanför stänger.
+ * Multi-select dropdown för kategori-filter.
  *
- * Single-select idag — strukturen är förberedd för multi-select via checkboxes
- * när vi tar nästa steg på #66.
+ * Tom set = "Alla kategorier" (visa allt). Klick på en kategori togglar
+ * dess närvaro i set:et. Panelen stängs INTE vid val — användaren kan
+ * markera flera och stänger genom click utanför eller Esc.
+ *
+ * "Allt"-raden i panelen är specialfall: visar checkmark när set är tom
+ * och klick anropar onClear (rensar alla val).
  */
 function FilterDropdown<T extends string>({
-  chips, counts, active, onChange,
+  chips, counts, activeIds, onToggle, onClear,
 }: {
-  chips: ReadonlyArray<{ id: T; label: string }>
-  counts: Record<T, number>
-  active: T
-  onChange: (next: T) => void
+  chips: ReadonlyArray<{ id: 'all' | T; label: string }>
+  counts: Record<'all' | T, number>
+  activeIds: Set<T>
+  onToggle: (id: T) => void
+  onClear: () => void
 }) {
   const [open, setOpen] = useState(false)
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -1190,15 +1219,32 @@ function FilterDropdown<T extends string>({
     }
   }, [open])
 
-  const activeChip = chips.find(c => c.id === active) ?? chips[0]
-  const activeLabel = activeChip?.label ?? ''
-  const activeCount = counts[active] ?? 0
+  // ── Knapp-label ──
+  // Tom = "Alla kategorier". 1 vald = labelen. 2+ = "X kategorier".
+  const isAll = activeIds.size === 0
+  let buttonLabel: string
+  let buttonCount: number
+  if (isAll) {
+    buttonLabel = 'Alla kategorier'
+    buttonCount = counts.all ?? 0
+  } else if (activeIds.size === 1) {
+    const onlyId = Array.from(activeIds)[0]
+    const chip = chips.find(c => c.id === onlyId)
+    buttonLabel = chip?.label ?? 'Filter'
+    buttonCount = counts[onlyId as 'all' | T] ?? 0
+  } else {
+    buttonLabel = `${activeIds.size} kategorier`
+    // Summa över valda kategorier
+    let sum = 0
+    activeIds.forEach(id => { sum += counts[id as 'all' | T] ?? 0 })
+    buttonCount = sum
+  }
 
   return (
     <div className="upx-fdd" ref={wrapRef}>
       <button
         type="button"
-        className="upx-fdd-btn"
+        className={`upx-fdd-btn ${!isAll ? 'has-filter' : ''}`}
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen(o => !o)}
@@ -1210,8 +1256,8 @@ function FilterDropdown<T extends string>({
           <line x1="6" y1="12" x2="18" y2="12"/>
           <line x1="9" y1="18" x2="15" y2="18"/>
         </svg>
-        <span className="upx-fdd-label">{activeLabel}</span>
-        <span className="upx-fdd-count">{activeCount}</span>
+        <span className="upx-fdd-label">{buttonLabel}</span>
+        <span className="upx-fdd-count">{buttonCount}</span>
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
           stroke="currentColor" strokeWidth={2.4}
           strokeLinecap="round" strokeLinejoin="round"
@@ -1227,10 +1273,11 @@ function FilterDropdown<T extends string>({
       </button>
 
       {open && (
-        <div className="upx-fdd-panel" role="listbox">
+        <div className="upx-fdd-panel" role="listbox" aria-multiselectable="true">
           {chips.map(c => {
             const count = counts[c.id] ?? 0
-            const selected = c.id === active
+            const isAllRow = c.id === 'all'
+            const selected = isAllRow ? isAll : activeIds.has(c.id as T)
             return (
               <button
                 key={c.id}
@@ -1238,22 +1285,37 @@ function FilterDropdown<T extends string>({
                 role="option"
                 aria-selected={selected}
                 className={`upx-fdd-item ${selected ? 'selected' : ''}`}
-                onClick={() => { onChange(c.id); setOpen(false) }}
+                onClick={() => {
+                  if (isAllRow) onClear()
+                  else onToggle(c.id as T)
+                  // Stäng INTE — multi-select pattern. Bara "Allt" stänger.
+                  if (isAllRow) setOpen(false)
+                }}
               >
+                {/* Checkbox-ruta (eller radio för Allt) */}
+                <span className={`upx-fdd-check ${selected ? 'on' : ''} ${isAllRow ? 'radio' : ''}`} aria-hidden>
+                  {selected && (
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none"
+                      stroke="#fff" strokeWidth={3.5}
+                      strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  )}
+                </span>
                 <span className="upx-fdd-item-label">{c.label}</span>
                 <span className="upx-fdd-item-count">{count}</span>
-                {selected && (
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
-                    stroke="var(--sea, #1e5c82)" strokeWidth={3}
-                    strokeLinecap="round" strokeLinejoin="round" aria-hidden
-                    style={{ marginLeft: 4 }}
-                  >
-                    <polyline points="20 6 9 17 4 12"/>
-                  </svg>
-                )}
               </button>
             )
           })}
+
+          {/* Footer med "Rensa alla" — bara om något är valt */}
+          {!isAll && (
+            <div className="upx-fdd-footer">
+              <button type="button" className="upx-fdd-clear" onClick={() => { onClear(); setOpen(false) }}>
+                Rensa alla
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -1281,6 +1343,11 @@ function FilterDropdown<T extends string>({
         .upx-fdd-btn:hover {
           background: rgba(10, 123, 140, 0.04);
           border-color: rgba(10, 123, 140, 0.28);
+        }
+        .upx-fdd-btn.has-filter {
+          /* Aktivt filter applicerat — ge knappen en distinkt accent */
+          background: rgba(10, 123, 140, 0.06);
+          border-color: rgba(10, 123, 140, 0.34);
         }
         .upx-fdd-label { color: var(--txt); }
         .upx-fdd-count {
@@ -1351,6 +1418,47 @@ function FilterDropdown<T extends string>({
         .upx-fdd-item.selected .upx-fdd-item-count {
           background: var(--sea, #1e5c82);
           color: #fff;
+        }
+        /* Checkbox-ruta (eller radio för "Allt") */
+        .upx-fdd-check {
+          width: 18px;
+          height: 18px;
+          flex-shrink: 0;
+          border-radius: 5px;
+          border: 1.6px solid rgba(10, 123, 140, 0.32);
+          background: var(--white, #fff);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 100ms ease, border-color 100ms ease;
+        }
+        .upx-fdd-check.radio { border-radius: 50%; }
+        .upx-fdd-check.on {
+          background: var(--sea, #1e5c82);
+          border-color: var(--sea, #1e5c82);
+        }
+        /* Footer med rensa-knapp */
+        .upx-fdd-footer {
+          margin-top: 4px;
+          padding-top: 6px;
+          border-top: 1px solid rgba(10, 123, 140, 0.10);
+          display: flex;
+          justify-content: flex-end;
+        }
+        .upx-fdd-clear {
+          background: transparent;
+          border: none;
+          color: var(--sea, #1e5c82);
+          font-family: 'Inter', sans-serif;
+          font-size: 12.5px;
+          font-weight: 700;
+          padding: 6px 10px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background 100ms ease;
+        }
+        .upx-fdd-clear:hover {
+          background: rgba(10, 123, 140, 0.08);
         }
 
         /* Mobile: panelen tar full bredd från knappens vänsterkant */

@@ -239,22 +239,34 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  <div style={{ position: 'relative' }}>
    <PlaceHeroGallery photos={placePhotos} alt={r.name} />
 
-   {/* Back button — over carousel */}
+   {/* Back button — over carousel.
+       Stilskild från carousel-pilarna (vita rundlar) genom mörk bakgrund
+       + text "Platser", så det är tydligt att man LÄMNAR sidan istället
+       för att bläddra i bilder. */}
    <Link
      href="/platser"
      aria-label="Tillbaka till platser"
      style={{
        position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', left: 14,
-       width: 40, height: 40, borderRadius: '50%',
-       display: 'flex', alignItems: 'center', justifyContent: 'center',
-       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
-       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+       height: 38, padding: '0 14px 0 10px',
+       borderRadius: 999,
+       display: 'inline-flex', alignItems: 'center', gap: 6,
+       background: 'rgba(0, 30, 45, 0.78)',
+       color: '#fff',
+       textDecoration: 'none',
+       backdropFilter: 'blur(10px)',
+       WebkitBackdropFilter: 'blur(10px)',
+       boxShadow: '0 4px 16px rgba(0,30,45,0.30)',
+       fontSize: 13,
+       fontWeight: 700,
+       letterSpacing: '-0.01em',
        zIndex: 4,
      }}
    >
-     <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
+     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} style={{ width: 18, height: 18 }}>
        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
      </svg>
+     <span>Platser</span>
    </Link>
 
    {/* Bookmark button — over carousel */}
