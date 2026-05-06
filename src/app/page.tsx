@@ -407,16 +407,17 @@ const LANDING_HTML = `
  <a href="/jamfor" class="nav-dd-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="nav-dd-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="nav-dd-link">Avskilda pärlor</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Planera resan</div>
- <a href="/resetips" class="nav-dd-link">Resetips →</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/dagsturer">Dagsplaner &amp; Resetips</a>
+ <a href="/resetips">Dagsplaner &amp; Resetips</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/dagsturer" class="nav-dd-link">Dagsutflykter</a>
- <a href="/helgturer" class="nav-dd-link">Helgturer</a>
+ <a href="/resetips" class="nav-dd-link">Alla resetips</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Svårighet</div>
+ <a href="/resetips?sv=latt" class="nav-dd-link">Lätta dagsutflykter</a>
+ <a href="/resetips?sv=medel" class="nav-dd-link">Lite mer planering</a>
+ <a href="/resetips?sv=kravande" class="nav-dd-link">Krävande äventyr</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -518,14 +519,15 @@ const LANDING_HTML = `
  <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
- <a href="/resetips" class="mob-acc-link" style="font-weight:600;color:var(--sea,#0a7b8c)">Resetips →</a>
  </div>
  </div>
  <div class="mob-acc">
  <button class="mob-acc-head">Dagsplaner &amp; Resetips<span class="mob-acc-chev">›</span></button>
  <div class="mob-acc-body">
- <a href="/dagsturer" class="mob-acc-link">Dagsutflykter</a>
- <a href="/helgturer" class="mob-acc-link">Helgturer</a>
+ <a href="/resetips" class="mob-acc-link">Alla resetips</a>
+ <a href="/resetips?sv=latt" class="mob-acc-link">Lätta dagsutflykter</a>
+ <a href="/resetips?sv=medel" class="mob-acc-link">Lite mer planering</a>
+ <a href="/resetips?sv=kravande" class="mob-acc-link">Krävande äventyr</a>
  </div>
  </div>
  <div class="mob-acc">
