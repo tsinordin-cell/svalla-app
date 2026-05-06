@@ -102,7 +102,9 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
 .btn-lg{padding:16px 36px;font-size:15px;border-radius:var(--r-sm)}
 .btn-xl{padding:18px 44px;font-size:16px;border-radius:var(--r-sm)}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;overflow:hidden;padding-top:clamp(70px,calc(40vh - 330px),200px);}
+.hero{position:relative;min-height:100vh;overflow:hidden;}
+.hero-top{position:absolute;top:0;left:0;right:0;padding:80px 24px 0;display:flex;flex-direction:column;align-items:center;text-align:center;z-index:10;}
+.hero-bottom{position:absolute;top:62vh;left:0;right:0;display:flex;flex-direction:column;align-items:center;padding:0 24px;z-index:10;}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(165deg,#0a1f2b 0%,#0f2e3b 25%,#1a4a5e 55%,#1e5c72 75%,#24697f 100%);}
 .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 110%, rgba(45,125,138,.35) 0%, transparent 60%),radial-gradient(ellipse 60% 30% at 20% 80%, rgba(26,74,94,.4) 0%, transparent 50%),radial-gradient(ellipse 40% 20% at 80% 70%, rgba(36,105,127,.3) 0%, transparent 40%);}
 .hero-islands{position:absolute;bottom:0;left:0;right:0;height:45%;pointer-events:none;}
@@ -121,7 +123,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,82px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:14px;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);}
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;}
 .hero-sub{font-size:clamp(16px,2.2vw,20px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:8px auto 18px;line-height:1.6;text-shadow:0 1px 10px rgba(5,15,30,.55);}
-.hero-search{display:flex;max-width:480px;margin:18vh auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
+.hero-search{display:flex;max-width:480px;margin:0 auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
 .hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:transparent;}
 .hero-search input::placeholder{color:rgba(15,30,45,.55)}
 .hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
@@ -374,7 +376,8 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .footer-col h5{font-size:11px;margin-bottom:8px}
  .footer-col ul li{margin-bottom:5px}
  .footer-col ul li a{font-size:12.5px}
- .hero{justify-content:flex-start;padding-top:90px;padding-bottom:0}
+ .hero-top{padding-top:70px}
+ .hero-bottom{top:auto;bottom:4vh}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}
  .hero-sub{font-size:13.5px;margin:10px auto 18px}
@@ -607,7 +610,7 @@ const LANDING_HTML = `
 </div>
 
 <section class="hero" style="background:transparent">
- <div class="hero-content">
+ <div class="hero-top">
  <div class="hero-eyebrow">
  <span class="hero-eyebrow-dot"></span>
  200+ platser kartlagda i Stockholms skärgård
@@ -620,6 +623,8 @@ const LANDING_HTML = `
  Planera nästa tur. Hitta krogar, hamnar och dolda öar.
  Logga dina äventyr och bygg din egen skärgård.
  </p>
+ </div>
+ <div class="hero-bottom">
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
  <input type="text" placeholder="Sök ö, krog eller hamn..." id="heroSearchInput"/>
  <button type="submit">Sök</button>
