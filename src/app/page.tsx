@@ -846,7 +846,6 @@ const LANDING_HTML = `
  <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
  <div class="dest-card-bg" data-lp-photo="innerskargard" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <ellipse cx="120" cy="195" rx="95" ry="48" fill="#071520" opacity="0.6"/><ellipse cx="230" cy="240" rx="70" ry="35" fill="#050e18" opacity="0.7"/>
  <path d="M0,278 Q60,258 130,268 Q200,278 300,262 L300,320 L0,320 Z" fill="#040c15" opacity="0.9"/>
  </svg>
  </div>
@@ -860,7 +859,6 @@ const LANDING_HTML = `
  <a href="/o/sandhamn" class="dest-card reveal reveal-delay-2">
  <div class="dest-card-bg" data-lp-photo="mellersta" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <ellipse cx="100" cy="205" rx="80" ry="40" fill="#061510" opacity="0.65"/><ellipse cx="215" cy="238" rx="88" ry="44" fill="#040e0a" opacity="0.75"/>
  <path d="M0,280 Q90,260 195,270 Q258,276 300,263 L300,320 L0,320 Z" fill="#030a06" opacity="0.9"/>
  </svg>
  </div>
@@ -874,7 +872,6 @@ const LANDING_HTML = `
  <a href="/o/uto" class="dest-card reveal reveal-delay-3">
  <div class="dest-card-bg" data-lp-photo="sodra" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <ellipse cx="150" cy="215" rx="105" ry="52" fill="#180d04" opacity="0.65"/><ellipse cx="75" cy="255" rx="62" ry="30" fill="#100808" opacity="0.75"/>
  <path d="M0,282 Q75,266 162,275 Q232,282 300,268 L300,320 L0,320 Z" fill="#0c0604" opacity="0.9"/>
  </svg>
  </div>
@@ -888,7 +885,6 @@ const LANDING_HTML = `
  <a href="/o/furusund" class="dest-card reveal reveal-delay-4">
  <div class="dest-card-bg" data-lp-photo="norra" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <ellipse cx="140" cy="210" rx="98" ry="50" fill="#120a25" opacity="0.65"/><ellipse cx="245" cy="248" rx="66" ry="33" fill="#0d071a" opacity="0.75"/>
  <path d="M0,280 Q85,262 182,273 Q248,280 300,266 L300,320 L0,320 Z" fill="#08050f" opacity="0.9"/>
  </svg>
  </div>
