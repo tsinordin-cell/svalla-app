@@ -2,7 +2,13 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { verifyAdminToken } from '@/lib/adminToken'
 
-const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser']
+// Defense-in-depth: middleware-baserad auth-gate. Varje page har också egen
+// auth-check, men listan här fångar om någon framtida sida glömmer redirect.
+const PROTECTED_ROUTES = [
+  '/feed', '/profil', '/spara', '/logga', '/notiser',
+  '/planera', '/sparade', '/meddelanden', '/min-skargard',
+  '/onboarding', '/check-in', '/dag', '/loppis/sparat', '/loppis/mina-annonser',
+]
 
 // Routes som har en publik version för utloggade besökare —
 // de redirectar till den publika sidan istället för /logga-in.

@@ -11,6 +11,7 @@
  * via Cache-Control så vi inte slår Google för varje page-view.
  */
 import { NextRequest } from 'next/server'
+import { checkRateLimit } from '@/lib/rateLimit'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -23,6 +24,15 @@ export async function GET(
 ) {
   if (!KEY) {
     return new Response('GOOGLE_PLACES_API_KEY missing', { status: 500 })
+  }
+
+  // Rate limit per IP — skyddar Google API-budget mot scraping/DoS.
+  // 60 photos/min räcker för normal navigation; mer än det är auto-loops.
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    ?? req.headers.get('x-real-ip')
+    ?? 'unknown'
+  if (!(await checkRateLimit(`places-photo:${ip}`, 60, 60_000))) {
+    return new Response('Rate limited', { status: 429 })
   }
 
   const { ref } = await ctx.params

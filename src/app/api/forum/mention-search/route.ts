@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { checkRateLimit } from '@/lib/rateLimit'
 // TODO: wrap handlers with withSentrySimple(handler, 'forum/mention-search') — se src/lib/api-handler.ts
 
 /**
@@ -31,6 +32,12 @@ export async function GET(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
     return NextResponse.json({ users: [] }, { status: 401 })
+  }
+
+  // Autocomplete körs på varje keystroke i UI:t — limita per user så ingen
+  // kan hammra med 1000 req/s genom att simulera typing.
+  if (!(await checkRateLimit(`mention-search:${user.id}`, 60, 60_000))) {
+    return NextResponse.json({ users: [] }, { status: 429 })
   }
 
   // Om query är tom — returnera senast aktiva användare istället
