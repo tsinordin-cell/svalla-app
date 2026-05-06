@@ -189,12 +189,12 @@ section{padding:100px 40px}
 .step-num{width:52px;height:52px;border-radius:50%;background:rgba(232,146,74,.18);border:2px solid rgba(232,146,74,.5);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent-light);margin:0 auto 20px;}
 .step h4{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px}
 .step p{font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.6}
-.routes-section{background:var(--sand)}
-.routes-scroll{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
+.routes-section{background:var(--sand);padding:80px 40px}
+.routes-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none;}
 .routes-scroll::-webkit-scrollbar{display:none}
 .route-card{flex-shrink:0;width:280px;border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .route-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.route-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative}
+.route-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;border-radius:var(--r) var(--r) 0 0;background-size:cover;background-position:center}
 .route-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,94,.85);color:var(--white);font-size:10px;font-weight:700;border-radius:5px;padding:3px 9px;backdrop-filter:blur(4px);}
 .route-body{padding:16px}
 .route-body h4{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
@@ -453,6 +453,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 }
 @media(max-width:600px){
 .resetips-section,.guides-section,.thorkel-section,.faq-section{padding:56px 20px}
+.routes-section{padding:56px 20px}
 .resetips-grid{grid-template-columns:1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
 }
