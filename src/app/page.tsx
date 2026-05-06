@@ -390,6 +390,73 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .testimonial-card{align-self:start}
 }
 /* Dark mode: match footer color so no black strip appears below footer */
+/* -- Resetips / Dagsplaner -- */
+.resetips-section{background:var(--white);padding:100px 40px}
+.resetips-section .section-header{margin-bottom:48px}
+.resetips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.resetips-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid rgba(26,74,94,.07)}
+.resetips-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.resetips-card-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
+.resetips-card-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px}
+.resetips-card-season{position:absolute;top:12px;right:12px;background:rgba(13,36,64,.8);color:rgba(255,255,255,.9);font-size:10px;font-weight:600;border-radius:6px;padding:4px 10px;backdrop-filter:blur(4px)}
+.resetips-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.resetips-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.resetips-card-tagline{font-size:13px;color:var(--muted);line-height:1.55;flex:1;margin-bottom:14px}
+.resetips-card-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.resetips-card-meta span{font-size:11px;color:var(--teal);font-weight:600}
+.resetips-card-cta{font-size:13px;color:var(--accent);font-weight:700;text-align:right}
+
+/* -- Populära guider -- */
+.guides-section{background:var(--sand);padding:100px 40px}
+.guides-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.guide-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+.guide-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.guide-card-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
+.guide-card-cat{position:absolute;bottom:10px;left:10px;background:rgba(13,36,64,.82);color:rgba(255,255,255,.9);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:3px 8px}
+.guide-card-body{padding:16px;flex:1;display:flex;flex-direction:column}
+.guide-card-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:auto}
+.guide-card-read{font-size:12px;color:var(--teal);font-weight:700;margin-top:12px}
+
+/* -- Thorkel AI -- */
+.thorkel-section{background:linear-gradient(135deg,var(--sea-dark) 0%,var(--sea-mid) 100%);color:var(--white);padding:100px 40px;position:relative;overflow:hidden}
+.thorkel-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(232,146,74,.12) 0%,transparent 60%)}
+.thorkel-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1}
+.thorkel-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.thorkel-section .section-title{color:var(--white);margin-bottom:14px}
+.thorkel-section .section-sub{color:rgba(255,255,255,.7);margin-bottom:28px}
+.thorkel-chat{display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:28px;backdrop-filter:blur(8px)}
+.thorkel-msg{display:flex;gap:10px;align-items:flex-start}
+.thorkel-msg.user{flex-direction:row-reverse}
+.thorkel-bubble{padding:11px 15px;border-radius:14px;font-size:13px;line-height:1.55;max-width:86%}
+.thorkel-msg.user .thorkel-bubble{background:rgba(255,255,255,.12);color:rgba(255,255,255,.88);border-radius:14px 4px 14px 14px}
+.thorkel-msg.ai .thorkel-bubble{background:rgba(232,146,74,.13);color:rgba(255,255,255,.88);border-radius:4px 14px 14px 14px;border:1px solid rgba(232,146,74,.2)}
+.thorkel-av{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.thorkel-av.u{background:rgba(255,255,255,.14);color:rgba(255,255,255,.7)}
+.thorkel-av.a{background:rgba(232,146,74,.22);color:var(--accent-light);font-size:14px}
+
+/* -- FAQ -- */
+.faq-section{background:var(--sand-light);padding:100px 40px}
+.faq-list{display:flex;flex-direction:column;gap:4px;max-width:800px;margin:0 auto}
+.faq-item{background:var(--white);border-radius:var(--r-sm);overflow:hidden;box-shadow:0 1px 6px rgba(26,74,94,.07)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border:none;background:none;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:var(--ink);gap:12px;transition:.15s}
+.faq-q:hover{background:rgba(45,122,170,.04)}
+.faq-icon{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(30,92,130,.1);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:16px;font-weight:300;line-height:1;transition:transform .25s ease}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--teal);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a-inner{padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.7;border-top:1px solid rgba(45,122,170,.08);padding-top:12px}
+
+@media(max-width:900px){
+.resetips-grid{grid-template-columns:1fr 1fr}
+.guides-grid{grid-template-columns:1fr 1fr}
+.thorkel-inner{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+.resetips-section,.guides-section,.thorkel-section,.faq-section{padding:56px 20px}
+.resetips-grid{grid-template-columns:1fr}
+.guides-grid{grid-template-columns:1fr 1fr}
+}
+
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
 `
 
@@ -655,62 +722,123 @@ const LANDING_HTML = `
  <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
 </div>
 
-<section class="concept-section" id="utforska">
+<section class="resetips-section" id="resetips">
  <div class="section-inner">
- <div class="section-header centered reveal">
- <div class="section-label">Vad är Svalla</div>
- <h2 class="section-title">Skärgårdslivet — samlat på ett ställe</h2>
- <p class="section-sub">Ingen app förstår hur skärgårdslivet faktiskt fungerar. Det gör vi nu. Byggt av skärgårdsmänniskor, för skärgårdsmänniskor.</p>
- </div>
- <div class="pillars">
- <div class="pillar reveal reveal-delay-1">
- <div class="pillar-icon sea"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
- <h3>Utforska platser</h3>
- <p>Krogar, bastun, bryggor och dolda pärlor — listade och recenserade av ett community som faktiskt är ute på vattnet. Hitta rätt ställe innan du ger dig ut.</p>
- </div>
- <div class="pillar reveal reveal-delay-2">
- <div class="pillar-icon teal"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
- <h3>Logga din tur</h3>
- <p>Foto + plats på 10 sekunder. Din personliga skärgårdsdagbok växer med varje äventyr — se var du varit och inspirera andra att kasta loss.</p>
- </div>
- <div class="pillar reveal reveal-delay-3">
- <div class="pillar-icon accent"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
- <h3>Äkta community</h3>
- <p>Feeden fylls av riktiga turer från paddlare och seglare. Inga reklamannonser, ingen algoritm — bara skärgårdsliv som det ser ut på riktigt.</p>
- </div>
- </div>
+  <div class="section-header reveal">
+   <div class="section-label">Dagsplaner & Resetips</div>
+   <h2 class="section-title">Utvalda turer i skärgården</h2>
+   <p class="section-sub">Kuraterade dagsplaner med allt du behöver — färja, mat, bad och dolda pärlor längs vägen.</p>
+  </div>
+  <div class="resetips-grid">
+   <a href="/resetips/djuro-grinda-dagstur" class="resetips-card reveal reveal-delay-1">
+    <div class="resetips-card-img" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
+     <span>⛵</span>
+     <span class="resetips-card-badge">Populär</span>
+     <span class="resetips-card-season">Maj–Sep</span>
+    </div>
+    <div class="resetips-card-body">
+     <div class="resetips-card-title">Bil, glass och båt — Djurö till Grinda</div>
+     <div class="resetips-card-tagline">En av skärgårdens bästa dagsrutter med bil, brygga och lunchstopp på Grinda Wärdshus.</div>
+     <div class="resetips-card-meta">
+      <span>⏱ Heldag</span>
+      <span>🚗 Bil + båt</span>
+      <span>⭐ Lätt</span>
+     </div>
+     <div class="resetips-card-cta">Läs dagsplanen →</div>
+    </div>
+   </a>
+   <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
+    <div class="resetips-card-img" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+     <span>⚓</span>
+     <span class="resetips-card-badge">Klassiker</span>
+     <span class="resetips-card-season">Jun–Aug</span>
+    </div>
+    <div class="resetips-card-body">
+     <div class="resetips-card-title">Sandhamn — ytterskärgårdens pärla</div>
+     <div class="resetips-card-tagline">Lång båtresa med Cinderellabåten, fantastisk strand och KSSS-hamnen full av segelbåtar.</div>
+     <div class="resetips-card-meta">
+      <span>⏱ Heldag</span>
+      <span>⛴ Cinderellabåten</span>
+      <span>⭐ Lätt</span>
+     </div>
+     <div class="resetips-card-cta">Läs dagsplanen →</div>
+    </div>
+   </a>
+   <a href="/resetips/uto-cykeldag" class="resetips-card reveal reveal-delay-3">
+    <div class="resetips-card-img" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
+     <span>🚲</span>
+     <span class="resetips-card-badge">Naturupplevelse</span>
+     <span class="resetips-card-season">Maj–Sep</span>
+    </div>
+    <div class="resetips-card-body">
+     <div class="resetips-card-title">Utö på cykel — gruvan, bastun och havet</div>
+     <div class="resetips-card-tagline">Cykla runt en av skärgårdens vackraste öar med stopp vid gruvmuseum och havsbastu.</div>
+     <div class="resetips-card-meta">
+      <span>⏱ Heldag</span>
+      <span>🚂 Tåg + färja</span>
+      <span>⭐ Medel</span>
+     </div>
+     <div class="resetips-card-cta">Läs dagsplanen →</div>
+    </div>
+   </a>
+  </div>
+  <div style="text-align:center;margin-top:40px">
+   <a href="/resetips" class="btn btn-teal">Alla dagsplaner &rarr;</a>
+  </div>
  </div>
 </section>
 
-<section class="how-section">
+<section class="guides-section" id="guider">
  <div class="section-inner">
- <div class="section-header centered reveal">
- <div class="section-label">Hur det fungerar</div>
- <h2 class="section-title">Enkelt som skärgårdslivet självt</h2>
- <p class="section-sub">Inget krångel. Inga konton som måste fyllas i. Bara du, havet och appen.</p>
- </div>
- <div class="steps">
- <div class="step reveal reveal-delay-1">
- <div class="step-num">1</div>
- <h4>Utforska feeden</h4>
- <p>Bläddra bland andras turer, platser och bilder. Hitta inspiration till din nästa tur — krogar, bastun och dolda bryggor.</p>
- </div>
- <div class="step reveal reveal-delay-2">
- <div class="step-num">2</div>
- <h4>Ge dig ut</h4>
- <p>Kajak, segelbåt, motorbåt eller till fots. Platser längs din rutt väntar med äkta recensioner från folk som redan paddlat dit.</p>
- </div>
- <div class="step reveal reveal-delay-3">
- <div class="step-num">3</div>
- <h4>Logga på 10 sekunder</h4>
- <p>Tryck "+", välj ett foto, skriv platsen. Klart. Din tur lever för alltid i din loggbok och i communityt.</p>
- </div>
- <div class="step reveal reveal-delay-4">
- <div class="step-num">4</div>
- <h4>Bygg din historia</h4>
- <p>Profilen växer med varje äventyr. Se var du varit och när — och inspirera nästa seglare att kasta loss.</p>
- </div>
- </div>
+  <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+   <div>
+    <div class="section-label">Populära guider</div>
+    <h2 class="section-title">Expertguider till skärgården</h2>
+   </div>
+   <a href="/blogg" class="btn btn-teal">Alla guider &rarr;</a>
+  </div>
+  <div class="guides-grid">
+   <a href="/blogg/basta-badplatserna" class="guide-card reveal reveal-delay-1">
+    <div class="guide-card-img" style="background:linear-gradient(160deg,#0a2e3a,#1a6a7e)">
+     <span>🏊</span>
+     <span class="guide-card-cat">Aktiviteter</span>
+    </div>
+    <div class="guide-card-body">
+     <div class="guide-card-title">De 12 bästa badplatserna i Stockholms skärgård 2026</div>
+     <div class="guide-card-read">Läs guide &rarr;</div>
+    </div>
+   </a>
+   <a href="/blogg/fjaderholmarna-dagstur" class="guide-card reveal reveal-delay-2">
+    <div class="guide-card-img" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e)">
+     <span>⛴</span>
+     <span class="guide-card-cat">Öguide</span>
+    </div>
+    <div class="guide-card-body">
+     <div class="guide-card-title">Fjäderholmarna — perfekt dagstur från Stockholm</div>
+     <div class="guide-card-read">Läs guide &rarr;</div>
+    </div>
+   </a>
+   <a href="/blogg/uto-guide" class="guide-card reveal reveal-delay-3">
+    <div class="guide-card-img" style="background:linear-gradient(160deg,#261408,#4a2c14)">
+     <span>🚲</span>
+     <span class="guide-card-cat">Öguide</span>
+    </div>
+    <div class="guide-card-body">
+     <div class="guide-card-title">Utö — södra skärgårdens kronjuvel</div>
+     <div class="guide-card-read">Läs guide &rarr;</div>
+    </div>
+   </a>
+   <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="guide-card reveal reveal-delay-4">
+    <div class="guide-card-img" style="background:linear-gradient(160deg,#0c2218,#1a5032)">
+     <span>🛶</span>
+     <span class="guide-card-cat">Aktiviteter</span>
+    </div>
+    <div class="guide-card-body">
+     <div class="guide-card-title">Kajak i skärgården — guide för nybörjaren</div>
+     <div class="guide-card-read">Läs guide &rarr;</div>
+    </div>
+   </a>
+  </div>
  </div>
 </section>
 
@@ -789,26 +917,26 @@ const LANDING_HTML = `
  <div class="section-label">Populära rutter</div>
  <h2 class="section-title">Utforska på din tur</h2>
  </div>
- <a href="/rutter" class="btn btn-teal">Alla rutter &rarr;</a>
+ <a href="/resetips" class="btn btn-teal">Alla dagsplaner &rarr;</a>
  </div>
  <div class="routes-scroll reveal">
- <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1530870110042-98b2cb110834?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a4a5e,#24697f);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">2 dagar</div></div>
  <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span> 48 km</span><span> 5 krogar</span><span> 4.8</span></div></div>
  </div>
- <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1571051180813-b94b09ddc2d6?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2d4a2e,#3a6040);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">3 dagar</div></div>
  <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span> 72 km</span><span> 7 krogar</span><span> 4.9</span></div></div>
  </div>
- <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#3a1a1a,#6a2a2e);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"><div class="route-tag">1 dag</div></div>
  <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>8 km</span><span>2 krogar</span><span>&#x2605; 4.9</span></div></div>
  </div>
- <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
  <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
  </div>
- <div class="route-card" onclick="location.href='/rutter'">
+ <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1519181258491-c4c61cd8e2a4?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2a3a1a,#4a5a2a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Weekend</div></div>
  <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span> 60 km</span><span> 6 krogar</span><span> 4.8</span></div></div>
  </div>
@@ -869,6 +997,34 @@ const LANDING_HTML = `
  </div>
  </div>
 </section>
+<section class="thorkel-section" id="thorkel">
+ <div class="thorkel-inner">
+  <div class="reveal">
+   <div class="thorkel-label">AI-planeraren</div>
+   <h2 class="section-title">Thorkel planerar din perfekta skärgårdsdag</h2>
+   <p class="section-sub">Berätta vad du är sugen på — Thorkel fixar färjor, restauranger, bad och dolda pärlor. Klar plan på sekunder.</p>
+   <a href="/planera" class="btn btn-accent btn-lg">Planera med Thorkel &rarr;</a>
+  </div>
+  <div class="thorkel-chat reveal reveal-delay-2">
+   <div class="thorkel-msg user">
+    <div class="thorkel-av u">Du</div>
+    <div class="thorkel-bubble">Vi är 4 vuxna, vill ha bad, bra lunch och inte för lång båtresa. Helst idag.</div>
+   </div>
+   <div class="thorkel-msg ai">
+    <div class="thorkel-av a">T</div>
+    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Båt från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
+   </div>
+   <div class="thorkel-msg user">
+    <div class="thorkel-av u">Du</div>
+    <div class="thorkel-bubble">Ja tack! Finns det en bastu också?</div>
+   </div>
+   <div class="thorkel-msg ai">
+    <div class="thorkel-av a">T</div>
+    <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill jag lägga till det i planen?</div>
+   </div>
+  </div>
+ </div>
+</section>
 
 <section class="getting-there-section" id="ta-sig-dit">
  <div class="section-inner">
@@ -913,7 +1069,7 @@ const LANDING_HTML = `
  </div>
  </div>
  <div style="text-align:center;margin-top:40px">
- <a href="/rutter" class="btn btn-accent">Se alla rutter &rarr;</a>
+ <a href="/resetips" class="btn btn-accent">Se alla dagsplaner &rarr;</a>
  </div>
  </div>
 </section>
@@ -949,6 +1105,43 @@ const LANDING_HTML = `
  </div>
  </div>
 </section>
+
+<section class="faq-section" id="faq">
+ <div class="section-inner">
+  <div class="section-header centered reveal">
+   <div class="section-label">Vanliga frågor</div>
+   <h2 class="section-title">Allt du undrar om skärgården</h2>
+   <p class="section-sub">Svar på de vanligaste frågorna — från vilken ö som passar bäst till hur du tar dig dit.</p>
+  </div>
+  <div class="faq-list">
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Vilken ö passar barnfamiljer bäst?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Från Strömkajen i Stockholm tar Cinderellabåten ca 2,5 timmar (med stopp längs vägen). Snabbare alternativ: buss 428 från Slussen till Stavsnäs (ca 1 timme) och sedan Pendelbåten till Sandhamn på 30 minuter. Totalt ca 1 timme 45 minuter.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla — kontrollera alltid MSB:s webbplats innan.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Vad är det bästa alternativet till Sandhamn?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet — kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Vilken månad är bäst att besöka skärgården?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September–oktober rekommenderas för vandrare — höstfärger, inga köer och öppna krogar. Maj–juni har de längsta dagarna och det klaraste vattnet.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Båtbiljetten med Strömma kostar ca 175–220 kr enkel resa (barn halv pris). Returbiljett ca 300 kr. Lunch på krogen kostar 200–350 kr per person. En hel dag med lunch och ett glas kostar alltså ca 600–800 kr per vuxen. Alternativt: ta SL-buss 80 till Lidingö och fika billigare på ön.</div></div>
+   </div>
+  </div>
+ </div>
+</section>
+
 
 <div class="split-section">
  <div class="split-pane explorer reveal">
@@ -1040,6 +1233,29 @@ const LANDING_HTML = `
  <p style="font-size:12px;color:var(--muted);margin-top:16px">iOS: Safari &rarr; Dela &rarr; Lägg till på hemskärmen &nbsp;·&nbsp; Android: Chrome &rarr; &#x22EE; &rarr; Installera app</p>
  </div>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Vilken ö passar barnfamiljer bäst?","acceptedAnswer":{"@type":"Answer","text":"Grinda och Vaxholm är toppalternativen — sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen."}},
+    {"@type":"Question","name":"Hur lång tid tar båten till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Från Strömkajen i Stockholm tar Cinderellabåten ca 2,5 timmar. Snabbare alternativ: buss till Stavsnäs och Pendelbåten, totalt ca 1 timme 45 minuter."}},
+    {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
+    {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet — kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
+    {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September–oktober är bäst för vandrare — höstfärger och inga köer."}},
+    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Båtbiljetten kostar ca 175–220 kr enkel resa. En hel dag med lunch kostar ca 600–800 kr per vuxen."}}
+  ]
+}
+</script>
+<script>
+function toggleFaq(btn){
+  var item=btn.parentElement;
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
+  if(!isOpen) item.classList.add('open');
+}
+</script>
 
 <footer>
  <div class="footer-inner">

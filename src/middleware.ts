@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { verifyAdminToken } from '@/lib/adminToken'
 
-const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser', '/sok', '/topplista', '/rutter']
+const PROTECTED_ROUTES = ['/feed', '/profil', '/spara', '/logga', '/notiser']
 
 // Routes som har en publik version för utloggade besökare —
 // de redirectar till den publika sidan istället för /logga-in.

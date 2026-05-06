@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
-import AppGateLink from '@/components/AppGateLink'
 
-// App-interna filter-URL:er som kräver inloggning (ex: /platser?kategori=krog)
-function isAppGated(href: string): boolean {
- return /\?(kategori|vy)=/.test(href)
+// Alla kategori- och filterlänkar är publika — ingen inloggning krävs
+function isAppGated(_href: string): boolean {
+ return false
 }
 
 const siteNavLinkStyle: CSSProperties = {
