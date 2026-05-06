@@ -580,24 +580,14 @@ export default function UpptackExplorer() {
   // ── Render ──────────────────────────────────────────────────────────────
   return (
     <div className="upx-shell">
-      {/* Header med filter + sök */}
+      {/* Header med filter-dropdown + sök */}
       <header className="upx-header">
-        <div className="upx-filters">
-          {FILTER_CHIPS.map(c => {
-            const count = categoryCounts[c.id]
-            return (
-              <button
-                key={c.id}
-                type="button"
-                className={`upx-chip ${filter === c.id ? 'active' : ''}`}
-                onClick={() => setFilter(c.id)}
-              >
-                {c.label}
-                {count > 0 && <span className="upx-chip-count">{count}</span>}
-              </button>
-            )
-          })}
-        </div>
+        <FilterDropdown
+          chips={FILTER_CHIPS}
+          counts={categoryCounts}
+          active={filter}
+          onChange={setFilter}
+        />
         <div className="upx-search">
           <input
             type="text"
@@ -790,50 +780,7 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-header { padding-right: 84px; }
         }
-        .upx-filters {
-          display: flex;
-          gap: 6px;
-          overflow-x: auto;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .upx-filters::-webkit-scrollbar { display: none; }
-        .upx-chip {
-          background: rgba(10, 123, 140, 0.06);
-          border: 1px solid rgba(10, 123, 140, 0.1);
-          color: var(--txt2);
-          font-family: 'Inter', sans-serif;
-          font-size: 13px;
-          font-weight: 600;
-          padding: 7px 14px;
-          border-radius: 20px;
-          cursor: pointer;
-          white-space: nowrap;
-          transition: 0.15s;
-        }
-        .upx-chip:hover {
-          background: rgba(10, 123, 140, 0.12);
-          color: var(--txt);
-        }
-        .upx-chip.active {
-          background: var(--sea, #1e5c82);
-          color: #fff;
-          border-color: var(--sea, #1e5c82);
-        }
-        .upx-chip-count {
-          background: rgba(255, 255, 255, 0.18);
-          color: inherit;
-          padding: 1px 7px;
-          border-radius: 10px;
-          font-size: 11px;
-          font-weight: 700;
-          margin-left: 6px;
-          letter-spacing: 0;
-        }
-        .upx-chip:not(.active) .upx-chip-count {
-          background: rgba(10, 123, 140, 0.12);
-          color: var(--txt3);
-        }
+        /* (Tidigare .upx-filters / .upx-chip ersatt av FilterDropdown) */
         .upx-search {
           position: relative;
         }
@@ -1201,6 +1148,216 @@ export default function UpptackExplorer() {
           .upx-weather-wrap { bottom: 12px; right: 12px; }
         }
       ` }} />
+    </div>
+  )
+}
+
+// ─── FilterDropdown ────────────────────────────────────────────────────────
+/**
+ * Kompakt dropdown för kategori-filter. Knappen visar aktivt val + count.
+ * Klick → panel under knappen med alla val. Click utanför stänger.
+ *
+ * Single-select idag — strukturen är förberedd för multi-select via checkboxes
+ * när vi tar nästa steg på #66.
+ */
+function FilterDropdown<T extends string>({
+  chips, counts, active, onChange,
+}: {
+  chips: ReadonlyArray<{ id: T; label: string }>
+  counts: Record<T, number>
+  active: T
+  onChange: (next: T) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef<HTMLDivElement>(null)
+
+  // Click utanför → stäng
+  useEffect(() => {
+    if (!open) return
+    function onDoc(e: MouseEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', onDoc)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDoc)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  const activeChip = chips.find(c => c.id === active) ?? chips[0]
+  const activeLabel = activeChip?.label ?? ''
+  const activeCount = counts[active] ?? 0
+
+  return (
+    <div className="upx-fdd" ref={wrapRef}>
+      <button
+        type="button"
+        className="upx-fdd-btn"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen(o => !o)}
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+          stroke="currentColor" strokeWidth={2.2}
+          strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="6" y1="12" x2="18" y2="12"/>
+          <line x1="9" y1="18" x2="15" y2="18"/>
+        </svg>
+        <span className="upx-fdd-label">{activeLabel}</span>
+        <span className="upx-fdd-count">{activeCount}</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+          stroke="currentColor" strokeWidth={2.4}
+          strokeLinecap="round" strokeLinejoin="round"
+          style={{
+            transition: 'transform 160ms ease',
+            transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+            marginLeft: 2,
+          }}
+          aria-hidden
+        >
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+
+      {open && (
+        <div className="upx-fdd-panel" role="listbox">
+          {chips.map(c => {
+            const count = counts[c.id] ?? 0
+            const selected = c.id === active
+            return (
+              <button
+                key={c.id}
+                type="button"
+                role="option"
+                aria-selected={selected}
+                className={`upx-fdd-item ${selected ? 'selected' : ''}`}
+                onClick={() => { onChange(c.id); setOpen(false) }}
+              >
+                <span className="upx-fdd-item-label">{c.label}</span>
+                <span className="upx-fdd-item-count">{count}</span>
+                {selected && (
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+                    stroke="var(--sea, #1e5c82)" strokeWidth={3}
+                    strokeLinecap="round" strokeLinejoin="round" aria-hidden
+                    style={{ marginLeft: 4 }}
+                  >
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
+
+      <style>{`
+        .upx-fdd {
+          position: relative;
+          flex-shrink: 0;
+        }
+        .upx-fdd-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 12px 8px 12px;
+          border-radius: 12px;
+          background: var(--white, #fff);
+          border: 1px solid rgba(10, 123, 140, 0.16);
+          color: var(--txt);
+          font-family: 'Inter', sans-serif;
+          font-size: 13.5px;
+          font-weight: 700;
+          cursor: pointer;
+          box-shadow: 0 1px 4px rgba(0, 30, 45, 0.06);
+          transition: background 120ms ease, border-color 120ms ease;
+        }
+        .upx-fdd-btn:hover {
+          background: rgba(10, 123, 140, 0.04);
+          border-color: rgba(10, 123, 140, 0.28);
+        }
+        .upx-fdd-label { color: var(--txt); }
+        .upx-fdd-count {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          padding: 2px 9px;
+          border-radius: 999px;
+          font-size: 11.5px;
+          font-weight: 800;
+          letter-spacing: 0;
+          min-width: 22px;
+          text-align: center;
+        }
+        .upx-fdd-panel {
+          position: absolute;
+          top: calc(100% + 6px);
+          left: 0;
+          min-width: 220px;
+          background: var(--white, #fff);
+          border-radius: 14px;
+          border: 1px solid rgba(10, 123, 140, 0.10);
+          box-shadow: 0 12px 32px rgba(0, 30, 45, 0.16);
+          padding: 6px;
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          animation: upxFddIn 140ms ease-out;
+        }
+        @keyframes upxFddIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .upx-fdd-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 12px;
+          border-radius: 10px;
+          background: transparent;
+          border: none;
+          color: var(--txt);
+          font-family: 'Inter', sans-serif;
+          font-size: 13.5px;
+          font-weight: 600;
+          text-align: left;
+          cursor: pointer;
+          transition: background 100ms ease;
+        }
+        .upx-fdd-item:hover {
+          background: rgba(10, 123, 140, 0.06);
+        }
+        .upx-fdd-item.selected {
+          background: rgba(10, 123, 140, 0.08);
+          color: var(--sea, #1e5c82);
+        }
+        .upx-fdd-item-label { flex: 1; }
+        .upx-fdd-item-count {
+          background: rgba(10, 123, 140, 0.10);
+          color: var(--txt3);
+          padding: 2px 8px;
+          border-radius: 999px;
+          font-size: 11.5px;
+          font-weight: 700;
+          min-width: 24px;
+          text-align: center;
+        }
+        .upx-fdd-item.selected .upx-fdd-item-count {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+        }
+
+        /* Mobile: panelen tar full bredd från knappens vänsterkant */
+        @media (max-width: 720px) {
+          .upx-fdd-panel { min-width: min(280px, calc(100vw - 32px)); }
+        }
+      `}</style>
     </div>
   )
 }
