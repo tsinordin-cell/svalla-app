@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
 import PlaceSocialSection from '@/components/PlaceSocialSection'
+import PlaceContactSection from '@/components/PlaceContactSection'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
@@ -67,7 +68,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, opening_hours, description, tags, core_experience, island, contact_phone, website, booking_url'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, description, tags, core_experience, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id'
  )
  if (!data) notFound()
  const r = data as unknown as Restaurant & { slug?: string }
@@ -258,7 +259,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  }}>
  {r.opening_hours && (
  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
- <span style={{ fontSize: 16 }}>🕐</span>
+ <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--txt3)' }}>
+ <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+ </svg>
  <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{r.opening_hours}</span>
  </div>
  )}
@@ -298,7 +301,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  boxShadow: '0 4px 20px rgba(10,123,140,0.35)',
  }}
  >
- <span style={{ fontSize: 24 }}>📅</span>
+ <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+ <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+ </svg>
  <div>
  <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Boka bord</div>
  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>Reservera din plats online</div>
@@ -430,6 +435,23 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
  <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
+
+ {/* ── Premium-info: kontakt, meny, rating, Google Maps ── */}
+ <PlaceContactSection
+   phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone}
+   email={(r as Restaurant & { email?: string | null }).email}
+   website={r.website}
+   menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url}
+   instagram={(r as Restaurant & { instagram?: string | null }).instagram}
+   facebook={(r as Restaurant & { facebook?: string | null }).facebook}
+   formattedAddress={(r as Restaurant & { formatted_address?: string | null }).formatted_address}
+   googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
+   googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
+   googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
+   latitude={r.latitude}
+   longitude={r.longitude}
+   name={r.name}
+ />
 
  {/* ── Image gallery ── */}
  {r.images && r.images.length > 1 && (
