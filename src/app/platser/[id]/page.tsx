@@ -7,6 +7,9 @@ import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
 import PlaceSocialSection from '@/components/PlaceSocialSection'
 import PlaceContactSection from '@/components/PlaceContactSection'
+import PlacePremiumHeader from '@/components/PlacePremiumHeader'
+import PlaceFactsSection from '@/components/PlaceFactsSection'
+import PlaceFAQSection from '@/components/PlaceFAQSection'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
@@ -68,7 +71,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, description, tags, core_experience, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id, google_photo_refs'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
  )
  if (!data) notFound()
  const r = data as unknown as Restaurant & { slug?: string }
@@ -188,6 +191,30 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    ? googlePhotoUrls
    : (Array.isArray(r.images) ? r.images.filter(Boolean) : [])
 
+ /**
+  * One-liner-genering — säger på 2 sek vad platsen är.
+  * Prio: core_experience (specifikt skrivet för det), annars första meningen
+  * av description (kapad till ~140 tecken). Tom plats → undefined.
+  */
+ const oneLiner: string | null = (() => {
+   if (r.core_experience) return r.core_experience
+   if (!r.description) return null
+   const firstSentence = r.description.split(/(?<=[.!?])\s+/)[0]?.trim() ?? ''
+   if (firstSentence.length <= 160) return firstSentence
+   return firstSentence.slice(0, 140).trim() + '…'
+ })()
+
+ /**
+  * Mappa rå type → svensk label för PremiumHeader och FactsSection.
+  */
+ const TYPE_LABEL_MAP: Record<string, string> = {
+   restaurant: 'Restaurang', cafe: 'Kafé', bar: 'Bar',
+   marina: 'Gästhamn', harbor: 'Hamn', anchorage: 'Naturhamn', nature_harbor: 'Naturhamn',
+   fuel: 'Bränsle', fuel_station: 'Bränsle',
+   beach: 'Bad', sauna: 'Bastu', shop: 'Butik', hotel: 'Hotell', nature: 'Naturplats',
+ }
+ const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
+
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
  <script
@@ -251,123 +278,27 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  <BookmarkButton restaurantId={r.id} />
  </div>
 
- {/* Name + rating overlay on hero */}
- <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 20px' }}>
- <h1 style={{ fontSize: 24, fontWeight: 700, color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
- {r.name}
- </h1>
- {avgRating !== null && (
- <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
- <div style={{ display: 'flex', gap: 2 }}>
- {[1,2,3,4,5].map(i => (
- <span key={i} style={{ fontSize: 13, color: avgRating >= i ? '#e8a020' : 'rgba(255,255,255,0.3)' }}> </span>
- ))}
- </div>
- <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600 }}>
- {avgRating.toFixed(1)} ({reviewCount} omdömen)
- </span>
- </div>
- )}
- </div>
  </div>
 
- <div style={{ maxWidth: 600, margin: '0 auto', padding: '16px 16px' }}>
+ <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 16px 16px' }}>
 
- {/* ── Quick info ── */}
- <div style={{
- background: 'var(--white)', borderRadius: 18, padding: '14px 16px', marginBottom: 14,
- boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
- display: 'flex', flexWrap: 'wrap', gap: 10,
- }}>
- {r.opening_hours && (
- <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
- <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--txt3)' }}>
- <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
- </svg>
- <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{r.opening_hours}</span>
- </div>
- )}
- {r.latitude && r.longitude && (
- <a
- href={`https://maps.apple.com/?q=${r.latitude},${r.longitude}`}
- target="_blank"
- rel="noopener noreferrer"
- style={{
- display: 'flex', alignItems: 'center', gap: 6,
- fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
- marginLeft: 'auto',
- }}
- >
- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
- <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
- </svg>
- Hitta dit
- </a>
- )}
- </div>
-
- {/* ── Kontakt & Bokning ── */}
- {(r.booking_url || r.contact_phone || r.website) && (
- <div style={{ marginBottom: 14 }}>
- {r.booking_url && (
- <a
- href={r.booking_url}
- target="_blank"
- rel="noopener noreferrer"
- style={{
- display: 'flex', alignItems: 'center', gap: 12,
- background: 'var(--grad-sea)',
- borderRadius: 18, padding: '16px 20px', marginBottom: 8,
- textDecoration: 'none',
- boxShadow: '0 4px 20px rgba(10,123,140,0.35)',
- }}
- >
- <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
- <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
- </svg>
- <div>
- <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Boka bord</div>
- <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>Reservera din plats online</div>
- </div>
- <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 18, height: 18, marginLeft: 'auto', flexShrink: 0 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
- </svg>
- </a>
- )}
- {(r.contact_phone || r.website) && (
- <div style={{
- background: 'var(--white)', borderRadius: 18, padding: '14px 16px',
- boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
- display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center',
- }}>
- {r.contact_phone && (
- <a href={`tel:${r.contact_phone}`} style={{
- display: 'flex', alignItems: 'center', gap: 6,
- fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
- }}>
- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
- </svg>
- {r.contact_phone}
- </a>
- )}
- {r.website && (
- <a href={r.website} target="_blank" rel="noopener noreferrer" style={{
- display: 'flex', alignItems: 'center', gap: 6,
- fontSize: 13, color: 'var(--sea)', fontWeight: 600, textDecoration: 'none',
- marginLeft: r.contact_phone ? 'auto' : undefined,
- }}>
- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 15, height: 15 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
- </svg>
- Hemsida
- </a>
- )}
- </div>
- )}
- </div>
- )}
+ {/* ── Premium-header: namn, one-liner, betyg, prisklass, action-pills ── */}
+ <PlacePremiumHeader
+   name={r.name}
+   oneLiner={oneLiner}
+   typeLabel={typeLabel}
+   island={r.island ?? null}
+   region={(r as Restaurant & { archipelago_region?: string | null }).archipelago_region ?? null}
+   googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating ?? null}
+   googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total ?? null}
+   svallaRating={avgRating}
+   svallaRatingCount={reviewCount}
+   priceLevel={null}
+   websiteUrl={r.website}
+   menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url ?? null}
+   bookingUrl={r.booking_url}
+   instagram={(r as Restaurant & { instagram?: string | null }).instagram ?? null}
+ />
 
  {/* ── Why Layer: core_experience ── */}
  {r.core_experience && (
@@ -411,7 +342,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </div>
  )}
 
- {/* ── Premium-info: kontakt, meny, rating, Google Maps — visas direkt under beskrivningen ── */}
+ {/* ── Premium-info: kontakt, adress, öppettider, Google Maps ── */}
  <PlaceContactSection
    phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone}
    email={(r as Restaurant & { email?: string | null }).email}
@@ -426,6 +357,15 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    latitude={r.latitude}
    longitude={r.longitude}
    name={r.name}
+ />
+
+ {/* ── Egenskaper: typ, kategorier, faciliteter, best for, säsong ── */}
+ <PlaceFactsSection
+   type={r.type ?? null}
+   categories={(r as Restaurant & { categories?: string[] | null }).categories}
+   bestFor={(r as Restaurant & { best_for?: string[] | null }).best_for}
+   facilities={(r as Restaurant & { facilities?: string[] | null }).facilities}
+   seasonality={(r as Restaurant & { seasonality?: string | null }).seasonality}
  />
 
  {/* ── CTA: Logga ett besök ── */}
@@ -592,8 +532,38 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </div>
  )}
 
+ {/* ── Vanliga frågor (FAQ) — SEO + ger Google rich snippets ── */}
+ <PlaceFAQSection
+   name={r.name}
+   type={r.type ?? null}
+   island={r.island ?? null}
+   region={(r as Restaurant & { archipelago_region?: string | null }).archipelago_region ?? null}
+   formattedAddress={(r as Restaurant & { formatted_address?: string | null }).formatted_address ?? null}
+   phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone ?? null}
+   websiteUrl={r.website ?? null}
+   bookingUrl={r.booking_url ?? null}
+   openingHours={r.opening_hours ?? null}
+   facilities={(r as Restaurant & { facilities?: string[] | null }).facilities ?? null}
+   bestFor={(r as Restaurant & { best_for?: string[] | null }).best_for ?? null}
+   hasGuestHarbor={Array.isArray((r as Restaurant & { facilities?: string[] | null }).facilities) &&
+     (((r as Restaurant & { facilities?: string[] | null }).facilities ?? []).includes('guest_dock'))}
+ />
+
  {/* ── Reviews ── */}
  <ReviewSection restaurantId={id} />
+
+ {/* ── Senast uppdaterad — diskret credit i botten ── */}
+ {(r as Restaurant & { google_rating_updated?: string | null }).google_rating_updated && (
+   <div style={{
+     fontSize: 11,
+     color: 'var(--txt3)',
+     textAlign: 'center',
+     marginTop: 18,
+     fontStyle: 'italic',
+   }}>
+     Information uppdaterad {new Date((r as Restaurant & { google_rating_updated?: string | null }).google_rating_updated!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
+   </div>
+ )}
  </div>
  </div>
  )
