@@ -616,12 +616,11 @@ const LANDING_HTML = `
  200+ platser kartlagda i Stockholms skärgård
  </div>
  <h1 class="hero-title">
- Din guide till<br>
- <em>Stockholms skärgård</em>
+ Planera din perfekta<br>
+ <em>dag i skärgården</em>
  </h1>
  <p class="hero-sub">
- Planera nästa tur. Hitta krogar, hamnar och dolda öar.
- Logga dina äventyr och bygg din egen skärgård.
+ Krogar, badplatser och dolda pärlor tipsade av folk som faktiskt är där ute.
  </p>
  </div>
  <div class="hero-bottom">
