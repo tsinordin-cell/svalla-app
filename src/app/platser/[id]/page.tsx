@@ -10,6 +10,7 @@ import PlaceContactSection from '@/components/PlaceContactSection'
 import PlacePremiumHeader from '@/components/PlacePremiumHeader'
 import PlaceFactsSection from '@/components/PlaceFactsSection'
 import PlaceFAQSection from '@/components/PlaceFAQSection'
+import PlaceHeroGallery from '@/components/PlaceHeroGallery'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
@@ -234,50 +235,38 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  }) }}
  />
 
- {/* ── Hero image ── */}
- <div style={{ position: 'relative', width: '100%', height: 280, background: 'var(--sea-l)' }}>
- {placePhotos[0] ? (
- <Image
- src={placePhotos[0]}
- alt={r.name}
- fill
- style={{ objectFit: 'cover' }}
- priority
- sizes="100vw"
- unoptimized={placePhotos[0].startsWith('/api/places/photo/')}
- />
- ) : (
- <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64 }}> </div>
- )}
- {/* Gradient overlay */}
- <div style={{
- position: 'absolute', inset: 0,
- background: 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,20,35,0.55) 100%)',
- }} />
- {/* Back button */}
- <Link
- href="/platser"
- style={{
- position: 'absolute', top: 'calc(16px + env(safe-area-inset-top, 0px))', left: 16,
- width: 40, height: 40, borderRadius: '50%',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
- }}
- >
- <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
- </svg>
- </Link>
+ {/* ── Hero-galleri (thatsup-style: flera bilder synliga, scroll-snap, pilar) ── */}
+ <div style={{ position: 'relative' }}>
+   <PlaceHeroGallery photos={placePhotos} alt={r.name} />
 
- {/* Bookmark button */}
- <div style={{
- position: 'absolute', top: 'calc(16px + env(safe-area-inset-top, 0px))', right: 16,
- background: 'var(--glass-88)', backdropFilter: 'blur(8px)',
- borderRadius: '50%',
- }}>
- <BookmarkButton restaurantId={r.id} />
- </div>
+   {/* Back button — over carousel */}
+   <Link
+     href="/platser"
+     aria-label="Tillbaka till platser"
+     style={{
+       position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', left: 14,
+       width: 40, height: 40, borderRadius: '50%',
+       display: 'flex', alignItems: 'center', justifyContent: 'center',
+       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
+       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+       zIndex: 4,
+     }}
+   >
+     <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 20, height: 20 }}>
+       <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+     </svg>
+   </Link>
 
+   {/* Bookmark button — over carousel */}
+   <div style={{
+     position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', right: 14,
+     background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
+     borderRadius: '50%',
+     boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+     zIndex: 4,
+   }}>
+     <BookmarkButton restaurantId={r.id} />
+   </div>
  </div>
 
  <div style={{ maxWidth: 600, margin: '0 auto', padding: '0 16px 16px' }}>
@@ -415,33 +404,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
  <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
 
- {/* ── Image gallery — visar alla bilder utöver hero ── */}
- {placePhotos.length > 1 && (
- <div style={{ marginBottom: 14 }}>
- <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- {googlePhotoUrls.length > 0 ? `${placePhotos.length} bilder` : 'Bilder'}
- </h2>
- <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
- {placePhotos.slice(1).map((img, i) => (
- <div key={i} style={{ position: 'relative', width: 160, height: 120, flexShrink: 0, borderRadius: 12, overflow: 'hidden', background: 'var(--sea-l)' }}>
- <Image
-   src={img}
-   alt={`${r.name} bild ${i + 2}`}
-   fill
-   style={{ objectFit: 'cover' }}
-   sizes="160px"
-   unoptimized={img.startsWith('/api/places/photo/')}
- />
- </div>
- ))}
- </div>
- {googlePhotoUrls.length > 0 && (
- <div style={{ fontSize: 10.5, color: 'var(--txt3)', marginTop: 6, fontStyle: 'italic' }}>
- Bilder från Google Places
- </div>
- )}
- </div>
- )}
+ {/* (Tidigare separat bilder-rad är borttagen — alla bilder visas nu i hero-carouseln ovan) */}
 
  {/* ── Menu ── */}
  {r.menu && (
