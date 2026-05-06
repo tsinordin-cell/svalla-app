@@ -38,7 +38,7 @@ interface Poi {
   island: string | null
 }
 
-type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'annat'
+type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'annat'
 
 interface Bounds {
   swLat: number; swLng: number; neLat: number; neLng: number
@@ -62,6 +62,14 @@ function categorize(p: Poi): Category {
     cats.includes('fuel') || cats.includes('bransle') ||
     d.includes('bensin') || d.includes('diesel') || d.includes('drivmedel')
   ) return 'bensin'
+
+  // Boende: hotell, vandrarhem, B&B, stugor, camping, pensionat
+  // Måste komma FÖRE hamn-kategorisering eftersom vissa boenden ligger på
+  // gästhamnar (t.ex. STF-anläggningar) och vi vill att de hamnar i boende.
+  if (
+    cats.some(c => ['accommodation', 'hotel', 'hostel', 'cabin', 'bnb', 'pension'].includes(c)) ||
+    t === 'hotel' || t === 'hostel' || t === 'cabin' || t === 'camping' || t === 'pension'
+  ) return 'boende'
 
   if (
     cats.some(c => ['guest_harbor', 'harbor_stop', 'marina'].includes(c)) ||
@@ -88,6 +96,7 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   naturhamn:  { label: 'Naturhamnar', color: '#0a7b3c' },
   bastu:      { label: 'Bastu',       color: '#9d174d' },
   bensin:     { label: 'Bensin',      color: '#525252' },
+  boende:     { label: 'Boende',      color: '#6d28d9' }, // lila — distinkt mot kategorierna ovan
   annat:      { label: 'Annat',       color: '#6b7280' },
 }
 
@@ -105,6 +114,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   bastu:     '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>',
   // fuel — bensinpump
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
+  // bed — säng (Lucide). Tydligt boende-symbol på avstånd.
+  boende:    '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>',
   // star — neutralt POI-märke (ingen pin-i-pin-ception)
   annat:     '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/>',
 }
@@ -114,6 +125,7 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'krog',      label: 'Krogar' },
   { id: 'hamn',      label: 'Hamnar' },
   { id: 'naturhamn', label: 'Naturhamnar' },
+  { id: 'boende',    label: 'Boende' },
   { id: 'bastu',     label: 'Bastu' },
   { id: 'bensin',    label: 'Bensin' },
 ]
@@ -164,7 +176,7 @@ export default function UpptackExplorer() {
   const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
     const raw = searchParams.get('typ')
     if (!raw || raw === 'all') return new Set()
-    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'annat'])
+    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'annat'])
     const result = new Set<Category>()
     for (const part of raw.split(',')) {
       const t = part.trim() as Category
@@ -303,7 +315,7 @@ export default function UpptackExplorer() {
   const categoryCounts = useMemo(() => {
     const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
-      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, annat: 0,
+      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, annat: 0,
     }
     for (const p of pois) {
       if (q) {

@@ -38,7 +38,11 @@ const TYPE_LABEL: Record<string, string> = {
   beach: 'Bad',
   sauna: 'Bastu',
   shop: 'Butik',
-  hotel: 'Hotell',
+  hotel: 'Boende',                // Generisk; specifik typ visas via categories
+  hostel: 'Vandrarhem',
+  cabin: 'Stugor',
+  camping: 'Camping',
+  pension: 'Pensionat',
   nature: 'Naturplats',
 }
 
@@ -70,6 +74,14 @@ const CATEGORY_LABEL: Record<string, string> = {
   service_point: 'Service',
   sauna: 'Bastu',
   bastu: 'Bastu',
+  // Boenden
+  accommodation: 'Boende',
+  hotel: 'Hotell',
+  bnb: 'Bed & Breakfast',
+  hostel: 'Vandrarhem',
+  cabin: 'Stugor',
+  camping: 'Camping',
+  pension: 'Pensionat',
 }
 
 const BEST_FOR_LABEL: Record<string, string> = {
