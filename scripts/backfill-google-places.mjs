@@ -46,7 +46,7 @@ const PLACE_FIELDS = [
   'photos', 'types',
 ].join(',')
 
-async function findPlaceByText(query, lat, lng) {
+async function findPlaceByText(query, lat, lng, radius = 500) {
   const r = await fetch(`${PLACES_BASE}/places:searchText`, {
     method: 'POST',
     headers: {
@@ -58,7 +58,7 @@ async function findPlaceByText(query, lat, lng) {
       textQuery: query,
       languageCode: 'sv',
       regionCode: 'se',
-      locationBias: { circle: { center: { latitude: lat, longitude: lng }, radius: 500 } },
+      locationBias: { circle: { center: { latitude: lat, longitude: lng }, radius } },
       maxResultCount: 1,
     }),
   })
@@ -94,15 +94,28 @@ async function main() {
   const flagged = []
   let updated = 0, notFound = 0
 
+  // Tillåt CLI-flagga --radius=N för att övergå standard 500m
+  const RADIUS = (() => {
+    const arg = process.argv.find(a => a.startsWith('--radius='))
+    return arg ? parseInt(arg.split('=')[1], 10) : 500
+  })()
+  if (RADIUS !== 500) console.log(`Använder utökad sökradius: ${RADIUS}m\n`)
+
   for (const p of places) {
     process.stdout.write(`  ${p.name.padEnd(40)} `)
     try {
-      const g = await findPlaceByText(p.name, p.latitude, p.longitude)
+      // Försök med given radius, fallback till bredare svep om inget hittas
+      let g = await findPlaceByText(p.name, p.latitude, p.longitude, RADIUS)
+      if (!g && RADIUS < 5000) {
+        g = await findPlaceByText(p.name, p.latitude, p.longitude, 5000)
+      }
       if (!g) { console.log('⊘ ej hittad'); notFound++; continue }
 
       const dist = g.location
         ? distanceMeters({ lat: p.latitude, lng: p.longitude }, { lat: g.location.latitude, lng: g.location.longitude })
         : 0
+      // >1km off = nästan säkert fel match (Google hittade fel restaurant) — skippa helt
+      if (dist > 1000) { console.log(`⊘ ej hittad (Google-träff ${(dist/1000).toFixed(1)}km bort, troligen fel match)`); notFound++; continue }
       const flagForReview = dist > 50
 
       const update = {

@@ -68,7 +68,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, description, tags, core_experience, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, description, tags, core_experience, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id, google_photo_refs'
  )
  if (!data) notFound()
  const r = data as unknown as Restaurant & { slug?: string }
@@ -167,6 +167,27 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  ...(r.contact_phone ? { telephone: r.contact_phone } : {}),
  }
 
+ /**
+  * Bygg bild-array i prioritetsordning:
+  *   1. Google-foton (hög kvalitet, äkta bilder från platsen — proxy:as via /api)
+  *   2. Lokala images endast om INGA Google-foton finns (vi vill inte mixa in
+  *      seedade/AI-bilder bredvid äkta foton)
+  *
+  * Detta ger oss premium-känsla: när vi har Google så ser sidan ut som ett
+  * faktiskt restaurangkort, inte en katalog-sida med varierande kvalitet.
+  */
+ const googlePhotoRefs = ((r as Restaurant & { google_photo_refs?: { reference: string }[] | null }).google_photo_refs) ?? []
+ const googlePhotoUrls = googlePhotoRefs
+   .filter(p => p?.reference)
+   .map(p => {
+     // photoName format: "places/{placeId}/photos/{photoRef}" — encoda till base64url så vi slipper "/" i URL
+     const encoded = Buffer.from(p.reference, 'utf-8').toString('base64url')
+     return `/api/places/photo/${encoded}?w=1600`
+   })
+ const placePhotos: string[] = googlePhotoUrls.length > 0
+   ? googlePhotoUrls
+   : (Array.isArray(r.images) ? r.images.filter(Boolean) : [])
+
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
  <script
@@ -188,14 +209,15 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  {/* ── Hero image ── */}
  <div style={{ position: 'relative', width: '100%', height: 280, background: 'var(--sea-l)' }}>
- {r.images?.[0] ? (
+ {placePhotos[0] ? (
  <Image
- src={r.images[0]}
+ src={placePhotos[0]}
  alt={r.name}
  fill
  style={{ objectFit: 'cover' }}
  priority
  sizes="100vw"
+ unoptimized={placePhotos[0].startsWith('/api/places/photo/')}
  />
  ) : (
  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 64 }}> </div>
@@ -389,6 +411,23 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </div>
  )}
 
+ {/* ── Premium-info: kontakt, meny, rating, Google Maps — visas direkt under beskrivningen ── */}
+ <PlaceContactSection
+   phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone}
+   email={(r as Restaurant & { email?: string | null }).email}
+   website={r.website}
+   menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url}
+   instagram={(r as Restaurant & { instagram?: string | null }).instagram}
+   facebook={(r as Restaurant & { facebook?: string | null }).facebook}
+   formattedAddress={(r as Restaurant & { formatted_address?: string | null }).formatted_address}
+   googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
+   googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
+   googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
+   latitude={r.latitude}
+   longitude={r.longitude}
+   name={r.name}
+ />
+
  {/* ── CTA: Logga ett besök ── */}
  <Link
  href={`/logga/manuell?plats=${encodeURIComponent(r.name)}`}
@@ -436,36 +475,31 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  {/* ── Sociala objekt: check-ins, besökare, omdömen ── */}
  <PlaceSocialSection placeId={r.id} placeType="restaurant" placeName={r.name} />
 
- {/* ── Premium-info: kontakt, meny, rating, Google Maps ── */}
- <PlaceContactSection
-   phone={(r as Restaurant & { phone?: string | null }).phone ?? r.contact_phone}
-   email={(r as Restaurant & { email?: string | null }).email}
-   website={r.website}
-   menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url}
-   instagram={(r as Restaurant & { instagram?: string | null }).instagram}
-   facebook={(r as Restaurant & { facebook?: string | null }).facebook}
-   formattedAddress={(r as Restaurant & { formatted_address?: string | null }).formatted_address}
-   googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
-   googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
-   googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
-   latitude={r.latitude}
-   longitude={r.longitude}
-   name={r.name}
- />
-
- {/* ── Image gallery ── */}
- {r.images && r.images.length > 1 && (
+ {/* ── Image gallery — visar alla bilder utöver hero ── */}
+ {placePhotos.length > 1 && (
  <div style={{ marginBottom: 14 }}>
  <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- Bilder
+ {googlePhotoUrls.length > 0 ? `${placePhotos.length} bilder` : 'Bilder'}
  </h2>
  <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
- {r.images.map((img, i) => (
- <div key={i} style={{ position: 'relative', width: 130, height: 100, flexShrink: 0, borderRadius: 12, overflow: 'hidden', background: 'var(--sea-l)' }}>
- <Image src={img} alt={`${r.name} bild ${i + 1}`} fill style={{ objectFit: 'cover' }} sizes="130px" />
+ {placePhotos.slice(1).map((img, i) => (
+ <div key={i} style={{ position: 'relative', width: 160, height: 120, flexShrink: 0, borderRadius: 12, overflow: 'hidden', background: 'var(--sea-l)' }}>
+ <Image
+   src={img}
+   alt={`${r.name} bild ${i + 2}`}
+   fill
+   style={{ objectFit: 'cover' }}
+   sizes="160px"
+   unoptimized={img.startsWith('/api/places/photo/')}
+ />
  </div>
  ))}
  </div>
+ {googlePhotoUrls.length > 0 && (
+ <div style={{ fontSize: 10.5, color: 'var(--txt3)', marginTop: 6, fontStyle: 'italic' }}>
+ Bilder från Google Places
+ </div>
+ )}
  </div>
  )}
 
