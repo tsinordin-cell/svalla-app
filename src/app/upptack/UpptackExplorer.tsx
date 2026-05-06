@@ -208,6 +208,32 @@ export default function UpptackExplorer() {
     setListCollapsed(window.localStorage.getItem('upx-list-collapsed') === '1')
   }, [])
 
+  // ── Mobile bottom-sheet state ─────────────────────────────────────────────
+  // 3 snap-points: 'min' (bara handle synlig), 'half' (~halva skärmen),
+  // 'full' (täcker nästan hela kartan). Default 'half'.
+  // Klick på handle cyclar: half → full → min → half...
+  type SheetState = 'min' | 'half' | 'full'
+  const [sheetState, setSheetState] = useState<SheetState>('half')
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const saved = window.localStorage.getItem('upx-sheet') as SheetState | null
+    if (saved && (saved === 'min' || saved === 'half' || saved === 'full')) {
+      setSheetState(saved)
+    }
+  }, [])
+  function cycleSheet() {
+    setSheetState(prev => {
+      const next: SheetState = prev === 'half' ? 'full' : prev === 'full' ? 'min' : 'half'
+      if (typeof window !== 'undefined') window.localStorage.setItem('upx-sheet', next)
+      // Leaflet behöver veta att kartans höjd ändrats
+      setTimeout(() => {
+        const m = mapRef.current as { invalidateSize?: () => void } | null
+        m?.invalidateSize?.()
+      }, 320)
+      return next
+    })
+  }
+
   // Refs
   const mapDivRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<unknown>(null)
@@ -641,12 +667,22 @@ export default function UpptackExplorer() {
       </div>
 
       {/* Split-layout */}
-      <div className={`upx-split ${listCollapsed ? 'list-collapsed' : ''}`}>
+      <div className={`upx-split ${listCollapsed ? 'list-collapsed' : ''} sheet-${sheetState}`}>
         {/* Lista */}
         <aside
           className={`upx-list ${mobileTab === 'list' ? 'mob-show' : 'mob-hide'}`}
           ref={listScrollRef}
         >
+          {/* Mobile bottom-sheet drag-handle. Klick cyclar genom snap-points. */}
+          <button
+            type="button"
+            className="upx-sheet-handle"
+            onClick={cycleSheet}
+            aria-label={`Lista (${sheetState === 'min' ? 'minimerad — visa mer' : sheetState === 'half' ? 'halvskärm — visa mer' : 'helskärm — minimera'})`}
+          >
+            <span className="upx-sheet-grip" aria-hidden />
+          </button>
+
           <div className="upx-list-meta">
             <span className="upx-list-count">{filteredPois.length} platser i denna vy</span>
             <button
@@ -1133,32 +1169,90 @@ export default function UpptackExplorer() {
         /* Mobile: stack karta (50vh) ovanpå lista — båda alltid synliga.
            Ingen tab-toggle, ingen display:none. Leaflet får real height
            från start så tiles + pinnar renderas direkt. */
+        /* Drag-handle på bottom-sheet (visas bara på mobile) */
+        .upx-sheet-handle {
+          display: none;
+        }
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-split {
-            display: flex;
-            flex-direction: column;
+            /* Mobile: kartan tar full höjd; listan blir ett bottom-sheet ovanpå */
+            display: block;
+            position: relative;
+            height: calc(100vh - var(--upx-header-h, 130px) - var(--nav-h, 64px));
           }
-          .upx-split.list-collapsed { display: flex; }
+
+          /* Karta = full höjd bakom sheet */
+          .upx-map-wrap {
+            display: block !important;
+            position: absolute !important;
+            inset: 0;
+            height: auto !important;
+            min-height: 0;
+          }
+
+          /* Bottom-sheet: position fixed (men inom .upx-split-kontext) */
           .upx-list,
           .upx-split.list-collapsed .upx-list {
             opacity: 1 !important;
             pointer-events: auto !important;
             display: flex !important;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
             border-right: none;
-            border-top: 1px solid rgba(10, 123, 140, 0.08);
-            order: 2;
-            max-height: 55vh;
-            min-height: 200px;
-            padding: 12px 14px 24px;
+            border-top: none;
+            border-radius: 22px 22px 0 0;
+            background: var(--white, #fff);
+            box-shadow: 0 -8px 28px rgba(0, 30, 45, 0.14);
+            padding: 0 14px 24px;
+            min-height: 0;
+            max-height: none;
+            transition: height 280ms cubic-bezier(0.32, 0.72, 0, 1);
+            z-index: 500;
+            overflow: hidden;
           }
-          .upx-map-wrap {
-            display: block !important;
-            order: 1;
-            height: 45vh;
-            min-height: 280px;
-            position: relative;
+
+          /* Snap-points: cyclas via handle-knappen */
+          .upx-split.sheet-min  .upx-list { height: 92px; }
+          .upx-split.sheet-half .upx-list { height: 50vh; }
+          .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 130px) - var(--nav-h, 64px) - 24px); }
+
+          /* När minimerat: göm scrollande innehåll så bara handle + count syns */
+          .upx-split.sheet-min .upx-list > *:not(.upx-sheet-handle):not(.upx-list-meta) {
+            display: none !important;
           }
+          .upx-split.sheet-min .upx-list-meta { padding-top: 4px; }
+
+          /* Drag-handle */
+          .upx-sheet-handle {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 26px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 4px 0 2px;
+            cursor: pointer;
+            touch-action: manipulation;
+          }
+          .upx-sheet-grip {
+            display: block;
+            width: 44px;
+            height: 5px;
+            border-radius: 999px;
+            background: rgba(10, 123, 140, 0.28);
+            transition: background 120ms ease, width 120ms ease;
+          }
+          .upx-sheet-handle:hover .upx-sheet-grip,
+          .upx-sheet-handle:active .upx-sheet-grip {
+            background: rgba(10, 123, 140, 0.5);
+            width: 52px;
+          }
+
           .upx-list-toggle { display: none; }
           .upx-list-reopen { display: none; }
           /* Kompaktare cards i smal vy */
@@ -1168,9 +1262,13 @@ export default function UpptackExplorer() {
           .upx-card-desc { -webkit-line-clamp: 1; }
           /* Plats för Nav-bells (notifs+meddelanden) i top-right */
           .upx-header { padding-right: 84px; }
-          /* Mindre kart-knappar på mobil */
-          .upx-locate { width: 36px; height: 36px; bottom: 12px; left: 12px; }
-          .upx-weather-wrap { bottom: 12px; right: 12px; }
+          /* Mindre kart-knappar på mobil — flytta upp ovanför sheet (sheet-min) */
+          .upx-locate { width: 36px; height: 36px; bottom: 104px; left: 12px; }
+          .upx-weather-wrap { bottom: 104px; right: 12px; }
+          .upx-split.sheet-half .upx-locate,
+          .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
+          .upx-split.sheet-full .upx-locate,
+          .upx-split.sheet-full .upx-weather-wrap { display: none; }
         }
       ` }} />
     </div>
