@@ -1250,7 +1250,6 @@ export const TRIPS: Trip[] = [
     ],
     islandSlugs: ['morko'],
   },
-]
 
   {
     slug: 'bullero-naturreservat',
@@ -1346,6 +1345,7 @@ export const TRIPS: Trip[] = [
     ],
     islandSlugs: ['huvudskar'],
   },
+]
 
 export function getTrip(slug: string): Trip | undefined {
   return TRIPS.find(t => t.slug === slug)
