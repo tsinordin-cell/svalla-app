@@ -188,9 +188,20 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      const encoded = Buffer.from(p.reference, 'utf-8').toString('base64url')
      return `/api/places/photo/${encoded}?w=1600`
    })
+ /**
+  * Validera URL:er strikt innan vi skickar dem till hero-galleriet.
+  * Trasiga, tomma eller relativa-utan-prefix-URLer ger en trasig bild-alt
+  * i UI:t — det ser oseriöst ut. Bara http(s)://, /api/ eller /-prefixerade
+  * URL:er passerar.
+  */
+ const isValidPhotoUrl = (u: unknown): u is string =>
+   typeof u === 'string' &&
+   u.length > 0 &&
+   (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('/'))
+
  const placePhotos: string[] = googlePhotoUrls.length > 0
    ? googlePhotoUrls
-   : (Array.isArray(r.images) ? r.images.filter(Boolean) : [])
+   : (Array.isArray(r.images) ? r.images.filter(isValidPhotoUrl) : [])
 
  /**
   * One-liner-genering — säger på 2 sek vad platsen är.

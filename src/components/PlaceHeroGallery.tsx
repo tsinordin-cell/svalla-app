@@ -56,12 +56,36 @@ export default function PlaceHeroGallery({ photos, alt }: Props) {
   }
 
   if (!photos || photos.length === 0) {
-    // Tom-state — diskret bakgrund, inget mer
+    // Tom-state — visar att ingen bild finns ÄNNU (avsiktligt, inte buggigt).
+    // Centrerad pin-ikon + diskret text. Tar samma höjd som hero på mobile.
     return (
       <div style={{
-        width: '100%', height: 320,
+        width: '100%',
+        minHeight: 280,
         background: 'linear-gradient(180deg, var(--sea-l, #d8e9f0) 0%, var(--bg) 100%)',
-      }} />
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        padding: '32px 16px',
+      }}>
+        <svg viewBox="0 0 24 24" width="42" height="42" fill="none"
+          stroke="rgba(10, 123, 140, 0.45)" strokeWidth={1.6}
+          strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        <div style={{
+          fontSize: 13,
+          color: 'var(--txt3, #6b7280)',
+          textAlign: 'center',
+          maxWidth: 320,
+          lineHeight: 1.4,
+        }}>
+          Inga bilder ännu — kom ihåg att lägga till din egen om du har varit här.
+        </div>
+      </div>
     )
   }
 
