@@ -291,7 +291,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .auth-m-forgot{text-align:right;font-size:12px;color:#0a7b8c;font-weight:600;cursor:pointer;margin-top:-8px;margin-bottom:4px;display:block}
 @keyframes authIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 /* -- Destinations -- */
-.destinations-section{background:var(--sand)}
+.destinations-section{background:var(--sand);padding-top:60px}
 .destinations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .dest-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .dest-card:hover .dest-card-bg{transform:scale(1.05)}
@@ -407,7 +407,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .resetips-card-cta{font-size:13px;color:var(--accent);font-weight:700;text-align:right}
 
 /* -- Populära guider -- */
-.guides-section{background:var(--sand);padding:100px 40px}
+.guides-section{background:var(--sand);padding:100px 40px 60px}
 .guides-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .guide-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
 .guide-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
@@ -432,7 +432,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .thorkel-msg.ai .thorkel-bubble{background:rgba(232,146,74,.13);color:rgba(255,255,255,.88);border-radius:4px 14px 14px 14px;border:1px solid rgba(232,146,74,.2)}
 .thorkel-av{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
 .thorkel-av.u{background:rgba(255,255,255,.14);color:rgba(255,255,255,.7)}
-.thorkel-av.a{background:rgba(232,146,74,.22);color:var(--accent-light);font-size:14px}
+.thorkel-av.a{background:rgba(232,146,74,.22);color:var(--accent-light);font-size:14px}.thorkel-av-img{width:30px;height:30px;border-radius:50%;flex-shrink:0;object-fit:cover;border:2px solid rgba(232,146,74,.5)}
 
 /* -- FAQ -- */
 .faq-section{background:var(--sand-light);padding:100px 40px}
@@ -731,7 +731,7 @@ const LANDING_HTML = `
   </div>
   <div class="resetips-grid">
    <a href="/resetips/djuro-grinda-dagstur" class="resetips-card reveal reveal-delay-1">
-    <div class="resetips-card-img" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
+    <div class="resetips-card-img" data-lp-photo="grinda" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
      <span>⛵</span>
      <span class="resetips-card-badge">Populär</span>
      <span class="resetips-card-season">Maj–Sep</span>
@@ -748,7 +748,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
-    <div class="resetips-card-img" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+    <div class="resetips-card-img" data-lp-photo="sandhamn" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
      <span>⚓</span>
      <span class="resetips-card-badge">Klassiker</span>
      <span class="resetips-card-season">Jun–Aug</span>
@@ -765,7 +765,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/resetips/uto-cykeldag" class="resetips-card reveal reveal-delay-3">
-    <div class="resetips-card-img" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
+    <div class="resetips-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
      <span>🚲</span>
      <span class="resetips-card-badge">Naturupplevelse</span>
      <span class="resetips-card-season">Maj–Sep</span>
@@ -799,7 +799,7 @@ const LANDING_HTML = `
   </div>
   <div class="guides-grid">
    <a href="/blogg/basta-badplatserna" class="guide-card reveal reveal-delay-1">
-    <div class="guide-card-img" style="background:linear-gradient(160deg,#0a2e3a,#1a6a7e)">
+    <div class="guide-card-img" data-lp-photo="badplatser" style="background:linear-gradient(160deg,#0a2e3a,#1a6a7e)">
      <span>🏊</span>
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
@@ -809,7 +809,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/blogg/fjaderholmarna-dagstur" class="guide-card reveal reveal-delay-2">
-    <div class="guide-card-img" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e)">
+    <div class="guide-card-img" data-lp-photo="fjaderholmarna" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e)">
      <span>⛴</span>
      <span class="guide-card-cat">Öguide</span>
     </div>
@@ -819,7 +819,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/blogg/uto-guide" class="guide-card reveal reveal-delay-3">
-    <div class="guide-card-img" style="background:linear-gradient(160deg,#261408,#4a2c14)">
+    <div class="guide-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14)">
      <span>🚲</span>
      <span class="guide-card-cat">Öguide</span>
     </div>
@@ -829,7 +829,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="guide-card reveal reveal-delay-4">
-    <div class="guide-card-img" style="background:linear-gradient(160deg,#0c2218,#1a5032)">
+    <div class="guide-card-img" data-lp-photo="kajak" style="background:linear-gradient(160deg,#0c2218,#1a5032)">
      <span>🛶</span>
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
@@ -851,7 +851,7 @@ const LANDING_HTML = `
  </div>
  <div class="destinations-grid">
  <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
- <div class="dest-card-bg" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
+ <div class="dest-card-bg" data-lp-photo="innerskargard" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
  <ellipse cx="120" cy="195" rx="95" ry="48" fill="#071520" opacity="0.6"/><ellipse cx="230" cy="240" rx="70" ry="35" fill="#050e18" opacity="0.7"/>
  <path d="M0,278 Q60,258 130,268 Q200,278 300,262 L300,320 L0,320 Z" fill="#040c15" opacity="0.9"/>
@@ -865,7 +865,7 @@ const LANDING_HTML = `
  </div>
  </a>
  <a href="/o/sandhamn" class="dest-card reveal reveal-delay-2">
- <div class="dest-card-bg" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
+ <div class="dest-card-bg" data-lp-photo="mellersta" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
  <ellipse cx="100" cy="205" rx="80" ry="40" fill="#061510" opacity="0.65"/><ellipse cx="215" cy="238" rx="88" ry="44" fill="#040e0a" opacity="0.75"/>
  <path d="M0,280 Q90,260 195,270 Q258,276 300,263 L300,320 L0,320 Z" fill="#030a06" opacity="0.9"/>
@@ -879,7 +879,7 @@ const LANDING_HTML = `
  </div>
  </a>
  <a href="/o/uto" class="dest-card reveal reveal-delay-3">
- <div class="dest-card-bg" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
+ <div class="dest-card-bg" data-lp-photo="sodra" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
  <ellipse cx="150" cy="215" rx="105" ry="52" fill="#180d04" opacity="0.65"/><ellipse cx="75" cy="255" rx="62" ry="30" fill="#100808" opacity="0.75"/>
  <path d="M0,282 Q75,266 162,275 Q232,282 300,268 L300,320 L0,320 Z" fill="#0c0604" opacity="0.9"/>
@@ -893,7 +893,7 @@ const LANDING_HTML = `
  </div>
  </a>
  <a href="/o/furusund" class="dest-card reveal reveal-delay-4">
- <div class="dest-card-bg" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
+ <div class="dest-card-bg" data-lp-photo="norra" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
  <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
  <ellipse cx="140" cy="210" rx="98" ry="50" fill="#120a25" opacity="0.65"/><ellipse cx="245" cy="248" rx="66" ry="33" fill="#0d071a" opacity="0.75"/>
  <path d="M0,280 Q85,262 182,273 Q248,280 300,266 L300,320 L0,320 Z" fill="#08050f" opacity="0.9"/>
@@ -1011,7 +1011,7 @@ const LANDING_HTML = `
     <div class="thorkel-bubble">Vi är 4 vuxna, vill ha bad, bra lunch och inte för lång båtresa. Helst idag.</div>
    </div>
    <div class="thorkel-msg ai">
-    <div class="thorkel-av a">T</div>
+    <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
     <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Båt från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
    </div>
    <div class="thorkel-msg user">
@@ -1019,7 +1019,7 @@ const LANDING_HTML = `
     <div class="thorkel-bubble">Ja tack! Finns det en bastu också?</div>
    </div>
    <div class="thorkel-msg ai">
-    <div class="thorkel-av a">T</div>
+    <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
     <div class="thorkel-bubble">Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill jag lägga till det i planen?</div>
    </div>
   </div>
@@ -1316,6 +1316,34 @@ function toggleFaq(btn){
  </div>
  </div>
  </div>
+
+<script>
+(function(){
+  fetch('/api/landing-photos')
+    .then(r=>r.ok?r.json():null)
+    .catch(()=>null)
+    .then(function(map){
+      if(!map)return;
+      document.querySelectorAll('[data-lp-photo]').forEach(function(el){
+        var key=el.getAttribute('data-lp-photo');
+        var url=map[key];
+        if(!url)return;
+        // For dest-card-bg: set background-image
+        if(el.classList.contains('dest-card-bg')){
+          el.style.backgroundImage='url('+url+')';
+          el.style.backgroundSize='cover';
+          el.style.backgroundPosition='center';
+          el.style.backgroundBlendMode='normal';
+        } else {
+          // For resetips/guide card imgs: set as bg-image with overlay
+          el.style.backgroundImage='linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.2)),url('+url+')';
+          el.style.backgroundSize='cover';
+          el.style.backgroundPosition='center';
+        }
+      });
+    });
+})();
+</script>
 </footer>
 
 `
