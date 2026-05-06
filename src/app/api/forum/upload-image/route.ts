@@ -24,6 +24,33 @@ import { logger } from '@/lib/logger'
 const MAX_BYTES = 8 * 1024 * 1024
 const ALLOWED_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/heic'])
 
+/**
+ * Verifiera magic bytes (filsignatur) för att skydda mot MIME-spoofing.
+ * Klienten kan ljuga om Content-Type i form-data, men de första bytes
+ * kan inte fakas utan att förstöra själva bilden.
+ *
+ * Stöder: JPEG, PNG, WebP, GIF, HEIC.
+ * Returnerar true om signaturen matchar någon av våra tillåtna typer.
+ */
+async function isValidImageMagic(file: File): Promise<boolean> {
+  const buf = new Uint8Array(await file.slice(0, 12).arrayBuffer())
+  if (buf.length < 4) return false
+
+  // JPEG: FF D8 FF
+  if (buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return true
+  // PNG: 89 50 4E 47
+  if (buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47) return true
+  // GIF: 47 49 46 38 (GIF8)
+  if (buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x38) return true
+  // WebP: 52 49 46 46 ... 57 45 42 50 (RIFF....WEBP)
+  if (buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[3] === 0x46
+      && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50) return true
+  // HEIC: ftypheic, ftypheix, ftypmif1, ftypmsf1 — alla har 'ftyp' på offset 4
+  if (buf[4] === 0x66 && buf[5] === 0x74 && buf[6] === 0x79 && buf[7] === 0x70) return true
+
+  return false
+}
+
 export async function POST(req: NextRequest) {
   const cookieStore = await cookies()
   const supabase = createServerClient(
@@ -66,6 +93,11 @@ export async function POST(req: NextRequest) {
   }
   if (file.size > MAX_BYTES) {
     return NextResponse.json({ error: 'Bilden är för stor (max 8 MB)' }, { status: 400 })
+  }
+  // Magic-byte-verifiering — skyddar mot Content-Type-spoofing där klient
+  // ljuger om filtypen för att få igenom .exe/.html etc.
+  if (!(await isValidImageMagic(file))) {
+    return NextResponse.json({ error: 'Filen är inte en giltig bildfil' }, { status: 400 })
   }
 
   const ext = (file.name.split('.').pop() ?? 'jpg').toLowerCase().slice(0, 5)

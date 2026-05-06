@@ -91,11 +91,24 @@ export async function POST(req: NextRequest) {
   }
 
   // ─── Steg 2: Anonymisera forum-content ────────────────────────────────
-  // Vi raderar inte forum-trådar/inlägg — andra users har svarat på dem.
-  // Istället: byt user_id till en "deleted-user-placeholder" eller sätt till null.
-  // För enkelhet: uppdatera body till "[Borttaget av användare]" + null user_id.
-  await s.from('forum_posts').update({ body: '[Borttaget av användare]', user_id: null as unknown as string }).eq('user_id', userId)
-  await s.from('forum_threads').update({ body: '[Borttaget av användare]', title: '[Borttaget av användare]', user_id: null as unknown as string }).eq('user_id', userId)
+  // Vi raderar inte forum-trådar/inlägg — andra users har svarat på dem
+  // och kontexten ska bevaras. Strategi: maskera text-content nu, låt
+  // user_id sättas till NULL automatiskt via FK ON DELETE SET NULL när
+  // users-raden tas bort i steg 5.
+  //
+  // Förutsätter migration 20260506000002_forum_anonymize_on_delete.sql
+  // körd i Supabase. Innan den fanns var FK CASCADE och user_id NOT NULL
+  // — texterna maskerades men hela raderna cascade-deletades vid steg 5.
+  //
+  // Mentions/@-länkar parsas vid render-tid från body, så när body byts
+  // ut försvinner de automatiskt. Inga user-identifierande metadata-fält
+  // ligger kvar (last_reply_user_id var redan SET NULL).
+  await s.from('forum_posts')
+    .update({ body: '[Borttaget av användare]' })
+    .eq('user_id', userId)
+  await s.from('forum_threads')
+    .update({ body: '[Borttaget av användare]', title: '[Borttaget av användare]' })
+    .eq('user_id', userId)
 
   // ─── Steg 3: Cascade-delete user-specific data ────────────────────────
   // Tabeller som ska tömmas helt för denna user. Body-content (forum) hanteras ovan.

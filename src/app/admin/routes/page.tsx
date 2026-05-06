@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 
 export const metadata: Metadata = {
   title: 'Rutt-kvalitet — Admin · Svalla',
@@ -49,12 +49,7 @@ const QUALITY_LABEL: Record<MetricRow['quality'], string> = {
 }
 
 export default async function AdminRoutesPage() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !key) {
-    return <div style={{ padding: 32, color: 'var(--txt)' }}>Env saknas.</div>
-  }
-  const admin = createServiceClient(url, key, { auth: { persistSession: false } })
+  const admin = getAdminClient()
 
   const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
   const [metricsRes, reportsRes] = await Promise.all([

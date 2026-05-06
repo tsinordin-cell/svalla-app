@@ -1,5 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 
@@ -31,10 +31,7 @@ export default async function AdminSubscribersPage() {
 
   if (!userRow?.is_admin) redirect('/feed')
 
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   const { data: subs, error } = await service
     .from('email_subscribers')

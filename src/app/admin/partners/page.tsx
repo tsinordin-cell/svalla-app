@@ -1,5 +1,5 @@
 import { createServerSupabaseClient } from '@/lib/supabase-server'
-import { createClient as createServiceClient } from '@supabase/supabase-js'
+import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import PartnerLeadActions from './PartnerLeadActions'
@@ -57,10 +57,7 @@ export default async function AdminPartnersPage() {
   if (!userRow?.is_admin) redirect('/feed')
 
   // Service-role client behövs eftersom RLS hindrar SELECT på partner_inquiries
-  const service = createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  )
+  const service = getAdminClient()
 
   const { data: inquiries, error } = await service
     .from('partner_inquiries')

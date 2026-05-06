@@ -247,6 +247,10 @@ Utanför pass 2's scope men dokumenterat:
 
 4. **Forum-anonymisering metadata-sweep.** P1-2 — sweep efter user-identifierande fält (mentions, edited_at, media_urls) som ligger kvar.
 
-5. **MIME-spoofing-skydd.** P2-6 — magic-byte validation i upload-route.
+5. **MIME-spoofing-skydd.** P2-6 — ÅTGÄRDAT (2026-05-06): magic-byte validation i upload-image route. Verifierar JPEG/PNG/GIF/WebP/HEIC-signaturer på de första 12 bytes.
 
-6. **Service-role abstraktion i admin pages.** P2-1 — refactor för defense-in-depth.
+6. **Service-role abstraktion i admin pages.** P2-1 — ÅTGÄRDAT (2026-05-06): 4 admin Server Components använder nu `getAdminClient()` istället för direkt `createClient(URL, SERVICE_ROLE_KEY)`.
+
+7. **Forum metadata-anonymisering.** P1-2 — ÅTGÄRDAT (2026-05-06): migration `20260506000002_forum_anonymize_on_delete.sql` ändrar FK från CASCADE → SET NULL. Account-delete-koden uppdaterad så body/title sätts till `[Borttaget av användare]` innan user-raden raderas. Mentions parsas vid render-tid från body, så de försvinner automatiskt.
+
+8. **Stripe webhook signature.** VERIFIERAT OK (2026-05-06): `stripe.webhooks.constructEvent(rawBody, sig, webhookSecret)` används korrekt. Raw body (`req.text()`), `stripe-signature`-header validerad, returnerar 400 vid ogiltig sig.
