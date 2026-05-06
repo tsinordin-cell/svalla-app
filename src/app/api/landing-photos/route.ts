@@ -76,7 +76,7 @@ export async function GET(_req: NextRequest) {
   const photoMap: Record<string, string> = {}
   PLACES_TO_FETCH.forEach(({ key }, i) => {
     const r = results[i]
-    if (r.status === 'fulfilled' && r.value) {
+    if (r && r.status === 'fulfilled' && r.value) {
       const encoded = Buffer.from(r.value, 'utf-8').toString('base64url')
       photoMap[key] = `/api/places/photo/${encoded}?w=800`
     }
