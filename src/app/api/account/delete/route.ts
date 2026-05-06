@@ -99,20 +99,45 @@ export async function POST(req: NextRequest) {
 
   // ─── Steg 3: Cascade-delete user-specific data ────────────────────────
   // Tabeller som ska tömmas helt för denna user. Body-content (forum) hanteras ovan.
+  // GDPR Art. 17: alla user-rader ska bort. Listan utvidgad i 2026-05 audit
+  // (P1-1) — tidigare saknades 17 tabeller med user_id-kolumner.
   const tablesToClear = [
+    // Existerande
     'forum_post_likes',
     'forum_subscriptions',
     'trip_likes',
     'trip_comments',
     'bookmarks',
-    'follows',          // som follower
     'visited_islands',
     'push_subscriptions',
     'partner_inquiries',
     'reports',
-    'messages',         // user's egna meddelanden
+    'messages',
     'conversation_participants',
     'planned_routes',
+    // Tillagda i 2026-05 audit (GDPR-komplettering)
+    'notifications',
+    'user_blocks',
+    'loppis_saves',
+    'stories',
+    'story_views',
+    'check_ins',
+    'likes',
+    'comments',
+    'achievement_events',
+    'trip_highlights',
+    'trip_tags',
+    'place_photos',
+    'place_reviews',
+    'gps_points',
+    'invites',
+    'reposts',
+    'tag_follows',
+    'club_members',
+    'event_attendees',
+    'follow_prefs',
+    'user_presence',
+    'push_log',
   ]
 
   for (const table of tablesToClear) {
