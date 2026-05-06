@@ -1,12 +1,7 @@
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
-import AppGateLink from '@/components/AppGateLink'
-
 // Alla kategori- och filterlänkar är publika — ingen inloggning krävs
-function isAppGated(_href: string): boolean {
- return false
-}
 
 const siteNavLinkStyle: CSSProperties = {
  color: 'rgba(255,255,255,0.85)',
