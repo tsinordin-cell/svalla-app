@@ -33,7 +33,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .nav-logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.01em;}
 .nav-logo .dot{color:var(--accent)}
 .nav-links{display:flex;gap:4px;list-style:none;align-items:center}
-.nav-links>li>a{color:#fff;text-decoration:none;font-family:'Inter',sans-serif!important;font-size:14.5px!important;font-weight:600!important;letter-spacing:.04em!important;transition:.18s;line-height:1;padding:10px 16px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;position:relative}
+.nav-links>li>a{color:#fff;text-decoration:none;font-family:'Inter',sans-serif!important;font-size:13.5px!important;font-weight:600!important;letter-spacing:.02em!important;transition:.18s;line-height:1;padding:9px 12px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;position:relative;white-space:nowrap}
 .nav-links>li>a::before{content:'';position:absolute;left:16px;right:16px;bottom:6px;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transform-origin:center;transition:transform .22s ease}
 .nav-links>li>a:hover{background:rgba(255,255,255,.08)}
 .nav-links>li>a:hover::before{transform:scaleX(1)}
@@ -72,12 +72,18 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .mob-acc-link{display:block;padding:11px 14px;color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;border-radius:7px;transition:.14s}
 .mob-acc-link:hover,.mob-acc-link:active{color:#fff;background:rgba(255,255,255,.06)}
 .mob-acc-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:12px 14px 4px}
-/* Smal desktop (1100–1280): krymp chips + CTA så allt får plats utan radbrytning */
-@media(max-width:1280px){
-.nav-links>li>a{font-size:13px!important;padding:8px 11px!important;letter-spacing:0!important}
+/* Trång desktop (1100–1440): krymp font + padding så allt får plats även på MacBook 13"
+   eller bredare skärm med browser-zoom > 100% / fönster ej maxat */
+@media(max-width:1440px){
+.nav-links{gap:2px}
+.nav-links>li>a{font-size:13px!important;padding:8px 10px!important;letter-spacing:0!important}
 .nav-cta .btn{padding:8px 14px;font-size:12.5px}
-.nav-logo svg{height:24px}
 .nav-cta{gap:6px}
+}
+@media(max-width:1240px){
+.nav-links>li>a{font-size:12.5px!important;padding:7px 9px!important}
+.nav-cta .btn{padding:7px 12px;font-size:12px}
+.nav-logo svg{height:24px}
 }
 /* Under 1100px: switcha till hamburger så Dagsplaner+Forum+CTA inte trängs */
 @media(max-width:1100px){
@@ -96,7 +102,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .btn-teal:hover{background:var(--teal-light);transform:translateY(-1px)}
 .btn-lg{padding:16px 36px;font-size:15px;border-radius:var(--r-sm)}
 .btn-xl{padding:18px 44px;font-size:16px;border-radius:var(--r-sm)}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;overflow:hidden;padding-top:clamp(100px,calc(38vh - 200px),200px);}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;overflow:hidden;padding-bottom:38vh;}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(165deg,#0a1f2b 0%,#0f2e3b 25%,#1a4a5e 55%,#1e5c72 75%,#24697f 100%);}
 .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 110%, rgba(45,125,138,.35) 0%, transparent 60%),radial-gradient(ellipse 60% 30% at 20% 80%, rgba(26,74,94,.4) 0%, transparent 50%),radial-gradient(ellipse 40% 20% at 80% 70%, rgba(36,105,127,.3) 0%, transparent 40%);}
 .hero-islands{position:absolute;bottom:0;left:0;right:0;height:45%;pointer-events:none;}
