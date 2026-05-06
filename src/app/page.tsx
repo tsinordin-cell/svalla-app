@@ -301,7 +301,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .dest-card-region{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 .dest-card-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.25}
 .dest-card-islands{display:flex;flex-wrap:wrap;gap:4px}
-.dest-island{font-size:11px;color:rgba(255,255,255,.8);background:rgba(255,255,255,.12);padding:3px 8px;border-radius:10px;backdrop-filter:blur(4px)}
+.dest-island{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;padding:2px 0;}
 a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* -- Activities -- */
@@ -732,7 +732,6 @@ const LANDING_HTML = `
   <div class="resetips-grid">
    <a href="/resetips/djuro-grinda-dagstur" class="resetips-card reveal reveal-delay-1">
     <div class="resetips-card-img" data-lp-photo="grinda" style="background:linear-gradient(160deg,#0c1e10,#1a4a2a,#2a7a40)">
-     <span>⛵</span>
      <span class="resetips-card-badge">Populär</span>
      <span class="resetips-card-season">Maj–Sep</span>
     </div>
@@ -749,7 +748,6 @@ const LANDING_HTML = `
    </a>
    <a href="/resetips/sandhamn-ytterskargard" class="resetips-card reveal reveal-delay-2">
     <div class="resetips-card-img" data-lp-photo="sandhamn" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
-     <span>⚓</span>
      <span class="resetips-card-badge">Klassiker</span>
      <span class="resetips-card-season">Jun–Aug</span>
     </div>
@@ -766,7 +764,6 @@ const LANDING_HTML = `
    </a>
    <a href="/resetips/uto-cykeldag" class="resetips-card reveal reveal-delay-3">
     <div class="resetips-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
-     <span>🚲</span>
      <span class="resetips-card-badge">Naturupplevelse</span>
      <span class="resetips-card-season">Maj–Sep</span>
     </div>
@@ -800,7 +797,6 @@ const LANDING_HTML = `
   <div class="guides-grid">
    <a href="/blogg/basta-badplatserna" class="guide-card reveal reveal-delay-1">
     <div class="guide-card-img" data-lp-photo="badplatser" style="background:linear-gradient(160deg,#0a2e3a,#1a6a7e)">
-     <span>🏊</span>
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
@@ -810,7 +806,6 @@ const LANDING_HTML = `
    </a>
    <a href="/blogg/fjaderholmarna-dagstur" class="guide-card reveal reveal-delay-2">
     <div class="guide-card-img" data-lp-photo="fjaderholmarna" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e)">
-     <span>⛴</span>
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
@@ -820,7 +815,6 @@ const LANDING_HTML = `
    </a>
    <a href="/blogg/uto-guide" class="guide-card reveal reveal-delay-3">
     <div class="guide-card-img" data-lp-photo="uto" style="background:linear-gradient(160deg,#261408,#4a2c14)">
-     <span>🚲</span>
      <span class="guide-card-cat">Öguide</span>
     </div>
     <div class="guide-card-body">
@@ -830,7 +824,6 @@ const LANDING_HTML = `
    </a>
    <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="guide-card reveal reveal-delay-4">
     <div class="guide-card-img" data-lp-photo="kajak" style="background:linear-gradient(160deg,#0c2218,#1a5032)">
-     <span>🛶</span>
      <span class="guide-card-cat">Aktiviteter</span>
     </div>
     <div class="guide-card-body">
@@ -921,23 +914,23 @@ const LANDING_HTML = `
  </div>
  <div class="routes-scroll reveal">
  <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1530870110042-98b2cb110834?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a4a5e,#24697f);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">2 dagar</div></div>
+ <div class="route-img" data-lp-photo="innerskargard" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1530870110042-98b2cb110834?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a4a5e,#24697f);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">2 dagar</div></div>
  <div class="route-body"><h4>Stockholms innerskärgård</h4><p>Klassisk paddlingsrutt via Vaxholm, Grinda och Finnhamn. 5 krogar längs vägen.</p><div class="route-meta"><span> 48 km</span><span> 5 krogar</span><span> 4.8</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1571051180813-b94b09ddc2d6?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2d4a2e,#3a6040);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">3 dagar</div></div>
+ <div class="route-img" data-lp-photo="sandhamn" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1571051180813-b94b09ddc2d6?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2d4a2e,#3a6040);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">3 dagar</div></div>
  <div class="route-body"><h4>Yttre skärgården & Sandhamn</h4><p>Seglarturen längs leden till Sandhamn. Ikoniska stopp på vägen.</p><div class="route-meta"><span> 72 km</span><span> 7 krogar</span><span> 4.9</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#3a1a1a,#6a2a2e);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"><div class="route-tag">1 dag</div></div>
+ <div class="route-img" data-lp-photo="uto" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#3a1a1a,#6a2a2e);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"><div class="route-tag">1 dag</div></div>
  <div class="route-body"><h4>Utö – vandring & mat</h4><p>Dag-tur till Utö med vandring och lunch på värdshuset. Perfekt för nybörjare.</p><div class="route-meta"><span>8 km</span><span>2 krogar</span><span>&#x2605; 4.9</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
+ <div class="route-img" data-lp-photo="norra" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
  <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
  </div>
  <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1519181258491-c4c61cd8e2a4?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2a3a1a,#4a5a2a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Weekend</div></div>
+ <div class="route-img" data-lp-photo="stockholms-skargard" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1519181258491-c4c61cd8e2a4?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2a3a1a,#4a5a2a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Weekend</div></div>
  <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span> 60 km</span><span> 6 krogar</span><span> 4.8</span></div></div>
  </div>
  </div>
@@ -1333,10 +1326,12 @@ function toggleFaq(btn){
           el.style.backgroundImage='url('+url+')';
           el.style.backgroundSize='cover';
           el.style.backgroundPosition='center';
-          el.style.backgroundBlendMode='normal';
+        } else if(el.classList.contains('route-img')){
+          el.style.backgroundImage='linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('+url+')';
+          el.style.backgroundSize='cover';
+          el.style.backgroundPosition='center';
         } else {
-          // For resetips/guide card imgs: set as bg-image with overlay
-          el.style.backgroundImage='linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.2)),url('+url+')';
+          el.style.backgroundImage='linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.15)),url('+url+')';
           el.style.backgroundSize='cover';
           el.style.backgroundPosition='center';
         }
