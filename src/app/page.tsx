@@ -1267,7 +1267,7 @@ function toggleFaq(btn){
  <div class="footer-col">
  <h5>Utforska</h5>
  <ul>
- <li><a href="/platser">Platser & krogar</a></li>
+ <li><a href="/upptack">Platser & krogar</a></li>
  <li><a href="/rutter">Rutter</a></li>
  <li><a href="/feed">Community-feed</a></li>
  <li><a href="/spara">Sparade</a></li>

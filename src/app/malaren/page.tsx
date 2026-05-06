@@ -39,7 +39,7 @@ const ITEMS: LandingItem[] = [
  icon: '🗺️',
  title: 'Karta över Mälaren',
  description: 'Alla gästbryggor, kaféer, naturhamnar och sevärdheter runt Mälaren — verifierade och uppdaterade.',
- href: '/platser',
+ href: '/upptack',
  meta: 'Gratis',
  },
  {
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
  icon: '🏛️',
  title: 'Historiska platser',
  description: 'Birka, Gripsholms slott, Strängnäs domkyrka — Mälaren är omgiven av svensk historia. Logga besöken i Svalla.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '🌅',

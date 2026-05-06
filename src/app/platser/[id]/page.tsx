@@ -229,7 +229,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  '@type': 'BreadcrumbList',
  itemListElement: [
  { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
- { '@type': 'ListItem', position: 2, name: 'Platser', item: 'https://svalla.se/platser' },
+ { '@type': 'ListItem', position: 2, name: 'Utforska', item: 'https://svalla.se/upptack' },
  { '@type': 'ListItem', position: 3, name: r.name, item: `https://svalla.se/platser/${canonicalPath}` },
  ],
  }) }}
@@ -241,11 +241,12 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
    {/* Back button — over carousel.
        Stilskild från carousel-pilarna (vita rundlar) genom mörk bakgrund
-       + text "Platser", så det är tydligt att man LÄMNAR sidan istället
-       för att bläddra i bilder. */}
+       + text "Utforska", så det är tydligt att man LÄMNAR sidan istället
+       för att bläddra i bilder. Pekar till /upptack — den centrala
+       upptäckts-vyn för platser. */}
    <Link
-     href="/platser"
-     aria-label="Tillbaka till platser"
+     href="/upptack"
+     aria-label="Tillbaka till Utforska"
      style={{
        position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', left: 14,
        height: 38, padding: '0 14px 0 10px',
@@ -266,7 +267,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} style={{ width: 18, height: 18 }}>
        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
      </svg>
-     <span>Platser</span>
+     <span>Utforska</span>
    </Link>
 
    {/* Bookmark button — over carousel */}

@@ -37,7 +37,7 @@ const ITEMS: LandingItem[] = [
  icon: '️',
  title: 'Karta över Västerhavet',
  description: 'Alla verifierade platser längs Kattegatt och Skagerrak — gästhamnar, naturhamnar, sjömackar och kustrestauranger.',
- href: '/platser',
+ href: '/upptack',
  meta: 'Gratis',
  },
  {

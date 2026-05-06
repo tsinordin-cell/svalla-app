@@ -158,7 +158,7 @@ export default function RegistreraKrogPage() {
  Tillbaka till Svalla
  </button>
  <button
- onClick={() => router.push('/platser')}
+ onClick={() => router.push('/upptack')}
  style={{
  padding: '14px', borderRadius: 14, cursor: 'pointer',
  background: 'transparent',

@@ -31,7 +31,7 @@ const ITEMS: LandingItem[] = [
  icon: '🗺️',
  title: 'Kartan över skärgården',
  description: 'Interaktiv karta med krogar, bryggor, bensinmackar, bastu och bad — filtrera på det du söker.',
- href: '/platser',
+ href: '/upptack',
  meta: 'Live',
  },
  {
@@ -118,7 +118,7 @@ export default function ResmalPage() {
  </>
  }
  related={[
- { label: 'Karta över skärgården', href: '/platser' },
+ { label: 'Karta över skärgården', href: '/upptack' },
  { label: 'Turer & rutter', href: '/rutter' },
  { label: 'Färjetider', href: '/rutter?vy=farjor' },
  { label: 'Tips & artiklar', href: '/tips' },

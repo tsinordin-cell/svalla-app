@@ -44,7 +44,7 @@ const ITEMS: LandingItem[] = [
  icon: '🗺️',
  title: 'Skärgårdskartan',
  description: 'Interaktiv karta med över 400 verifierade platser — naturhamnar, krogar, bryggor, bastun och bensinstationer.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '🍽️',

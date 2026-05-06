@@ -1439,7 +1439,7 @@ export default async function BloggPostPage({
  borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
  border: '1.5px solid #1e5c82',
  }}>← Fler artiklar</Link>
- <Link href="/platser" style={{
+ <Link href="/upptack" style={{
  padding: '12px 24px', background: 'var(--sea)', color: '#fff',
  borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
  }}>Utforska kartan →</Link>

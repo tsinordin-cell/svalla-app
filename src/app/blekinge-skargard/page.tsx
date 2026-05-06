@@ -35,14 +35,14 @@ const ITEMS: LandingItem[] = [
  icon: '️',
  title: 'Karta över Blekinge',
  description: 'Verifierade platser längs Blekinges kust — naturhamnar, bryggor, krogar och sjömackar.',
- href: '/platser',
+ href: '/upptack',
  meta: 'Gratis',
  },
  {
  icon: '',
  title: 'Karlskrona — marinstad',
  description: 'Världsarvsstad och Östersjöns stolthet. Gästhamnen i Stumholmen är en naturlig mötesplats för seglare.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '🏕️',

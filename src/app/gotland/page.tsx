@@ -43,7 +43,7 @@ const ITEMS: LandingItem[] = [
  icon: '',
  title: 'Visby innerstad',
  description: 'Världsarv med medeltida ringmur, krogar och uteliv. Gästhamnen ligger direkt nedanför staden.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '️',
@@ -61,7 +61,7 @@ const ITEMS: LandingItem[] = [
  icon: '',
  title: 'Fårö',
  description: 'Ingmar Bergmans ö. Avsides natur, raukar och lugna vatten. Nå hit från Fårösund.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '📱',

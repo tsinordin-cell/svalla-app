@@ -105,7 +105,7 @@ export default function BoendePage() {
         { label: 'Alla öar', href: '/rutter?vy=oar' },
         { label: 'Färjetider', href: '/rutter?vy=farjor' },
         { label: 'Krogar & mat', href: '/krogar-och-mat' },
-        { label: 'Kartan', href: '/platser' },
+        { label: 'Kartan', href: '/upptack' },
       ]}
     />
   )

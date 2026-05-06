@@ -196,7 +196,7 @@ export default function BarnvanligaOarPage() {
  </p>
  </>
  }
- cta={{ label: 'Utforska barnvänliga platser', href: '/platser' }}
+ cta={{ label: 'Utforska barnvänliga platser', href: '/upptack' }}
  related={[
  { label: 'Grinda', href: '/o/grinda' },
  { label: 'Finnhamn', href: '/o/finnhamn' },

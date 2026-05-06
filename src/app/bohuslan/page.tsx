@@ -36,7 +36,7 @@ const ITEMS: LandingItem[] = [
  icon: '️',
  title: 'Karta över Bohuslän',
  description: 'Alla verifierade platser längs västkusten — gästhamnar, naturhamnar, hummerkrogar och sjömackar.',
- href: '/platser',
+ href: '/upptack',
  meta: 'Gratis',
  },
  {

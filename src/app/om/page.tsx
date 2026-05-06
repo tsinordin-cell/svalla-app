@@ -54,7 +54,7 @@ export default function OmPage() {
         </div>
 
         <div style={{ display: 'flex', gap: 12, marginTop: 24, flexWrap: 'wrap' }}>
-          <Link href="/platser" style={{
+          <Link href="/upptack" style={{
             padding: '12px 24px', background: 'var(--sea)', color: '#fff',
             borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
           }}>Utforska kartan</Link>

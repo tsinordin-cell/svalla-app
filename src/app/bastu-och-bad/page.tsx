@@ -106,7 +106,7 @@ export default function BastuOchBadPage() {
  { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
  { label: 'Aktiviteter', href: '/aktiviteter' },
  { label: 'Alla öar', href: '/rutter?vy=oar' },
- { label: 'Kartan', href: '/platser' },
+ { label: 'Kartan', href: '/upptack' },
  ]}
  />
  )

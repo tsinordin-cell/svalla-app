@@ -108,7 +108,7 @@ export default function KrogarOchMatPage() {
  { label: 'Boende', href: '/boende' },
  { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
  { label: 'Populära turer', href: '/populara-turer' },
- { label: 'Kartan', href: '/platser' },
+ { label: 'Kartan', href: '/upptack' },
  ]}
  />
  )

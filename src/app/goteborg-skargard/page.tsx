@@ -34,14 +34,14 @@ const ITEMS: LandingItem[] = [
     icon: '️',
     title: 'Karta över Göteborg',
     description: 'Verifierade platser i Göteborgs skärgård — naturhamnar, bryggor, krogar och sjömackar.',
-    href: '/platser',
+    href: '/upptack',
     meta: 'Gratis',
   },
   {
     icon: '',
     title: 'Marstrand — festningön',
     description: 'Carlstens fästning, glada gästhamnen och Bohusläns mest kända seglarmål. Logga ankomsten.',
-    href: '/platser',
+    href: '/upptack',
   },
   {
     icon: '🏝️',

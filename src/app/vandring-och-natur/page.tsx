@@ -105,7 +105,7 @@ export default function VandringOchNaturPage() {
         { label: 'Alla öar', href: '/rutter?vy=oar' },
         { label: 'Aktiviteter', href: '/aktiviteter' },
         { label: 'Tips & artiklar', href: '/tips' },
-        { label: 'Kartan', href: '/platser' },
+        { label: 'Kartan', href: '/upptack' },
       ]}
     />
   )

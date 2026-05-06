@@ -69,7 +69,7 @@ export default function NotFound() {
           Till flödet
         </Link>
         <Link
-          href="/platser"
+          href="/upptack"
           style={{
             padding: '13px 28px', borderRadius: 14,
             border: '1.5px solid var(--sea)',

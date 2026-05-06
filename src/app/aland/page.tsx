@@ -42,7 +42,7 @@ const ITEMS: LandingItem[] = [
  icon: '',
  title: 'Mariehamn',
  description: 'Ålands huvudstad och naturliga mötesplats för seglare. Välutrustad gästhamn, restauranger och tullfri handel.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '🏕️',
@@ -60,7 +60,7 @@ const ITEMS: LandingItem[] = [
  icon: '️',
  title: 'Skärgårdshavets karta',
  description: 'Navigera bland öar, grunder och smala sund med Svallas interaktiva karta och inbyggda GPS-spårning.',
- href: '/platser',
+ href: '/upptack',
  },
  {
  icon: '📱',

@@ -38,7 +38,7 @@ export default function Error({
           Försök igen
         </button>
         <Link
-          href="/platser"
+          href="/upptack"
           className="press-feedback"
           style={{
             padding: '11px 22px', borderRadius: 14,
