@@ -292,7 +292,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 @keyframes authIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 /* -- Destinations -- */
 .destinations-section{background:var(--sand);padding-top:60px}
-.destinations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.destinations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .dest-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .dest-card:hover .dest-card-bg{transform:scale(1.05)}
 .dest-card-bg{position:absolute;inset:0;transition:.5s}
@@ -304,10 +304,13 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .dest-island{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;padding:2px 0;}
 a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
-.regions-section{background:var(--white);padding:80px 40px 100px}
+.regions-section{background:var(--white);padding:72px 0 88px}
+.regions-section .section-inner{padding:0 40px;margin-bottom:36px}
+.regions-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 40px 16px;scrollbar-width:none;cursor:grab;user-select:none}
+.regions-scroll::-webkit-scrollbar{display:none}
+.regions-scroll.dragging{cursor:grabbing}
 .regions-section .section-header{margin-bottom:40px}
-.regions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.region-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
+.region-card{flex-shrink:0;width:260px;border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;height:220px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .region-card:hover .region-card-bg{transform:scale(1.06)}
 .region-card-bg{position:absolute;inset:0;transition:.5s;background-size:cover;background-position:center}
 .region-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,20,32,.88) 0%,rgba(8,20,32,.05) 60%)}
@@ -371,7 +374,6 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .pillar:first-child,.pillar:last-child{border-radius:0}
  .testimonials{grid-template-columns:1fr}
 .destinations-grid{grid-template-columns:1fr 1fr}
-.regions-grid{grid-template-columns:1fr 1fr}
  .activities-grid{grid-template-columns:1fr 1fr}
  .ferry-grid{grid-template-columns:1fr}
  .boende-grid{grid-template-columns:1fr 1fr}
@@ -949,7 +951,7 @@ const LANDING_HTML = `
     <p class="section-sub">Svalla täcker nu mer än Stockholms skärgård — utforska Västkusten, Gotland, Åland och Öland.</p>
    </div>
   </div>
-  <div class="regions-grid">
+  <div class="regions-scroll" id="regionsScroll">
    <a href="/bohuslan" class="region-card reveal reveal-delay-1">
     <div class="region-card-bg" data-lp-photo="bohuslan" style="background:linear-gradient(160deg,#0a1428,#1a3a5e,#2a6090)"></div>
     <div class="region-card-overlay"></div>
@@ -990,33 +992,25 @@ const LANDING_HTML = `
      <span class="region-card-tag">18 platser kartlagda</span>
     </div>
    </a>
+   <a href="/blekinge-skargard" class="region-card reveal reveal-delay-1">
+    <div class="region-card-bg" data-lp-photo="blekinge" style="background:linear-gradient(160deg,#1a2808,#2e4a1a,#3a6025)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Östersjön</div>
+     <div class="region-card-name">Blekinge</div>
+     <div class="region-card-sub">Karlskrona · Hanö · Östersjöleden</div>
+    </div>
+   </a>
+   <a href="/vasterhav" class="region-card reveal reveal-delay-2">
+    <div class="region-card-bg" data-lp-photo="vasterhav" style="background:linear-gradient(160deg,#08182e,#1a3a5a,#2a5a80)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Västerhavet</div>
+     <div class="region-card-name">Kosteröarna</div>
+     <div class="region-card-sub">Orust · Tjörn · Varberg · Falkenberg</div>
+    </div>
+   </a>
  
- <a href="/blekinge-skargard" class="dest-card reveal reveal-delay-1">
- <div class="dest-card-bg" data-lp-photo="blekinge" style="background:linear-gradient(160deg,#1a2808,#2e4a1a,#3a6025)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,278 Q70,260 155,270 Q220,278 300,264 L300,320 L0,320 Z" fill="#060a04" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region">Blekinges skärgård</div>
- <div class="dest-card-name">Karlskrona · Hanö · Östersjöleden</div>
- <div class="dest-card-islands"><span class="dest-island">Karlskrona</span><span class="dest-island">Hanö</span><span class="dest-island">Sturkö</span><span class="dest-island">Tjurkö</span><span class="dest-island">Sölvesborg</span></div>
- </div>
- </a>
- <a href="/vasterhav" class="dest-card reveal reveal-delay-2">
- <div class="dest-card-bg" data-lp-photo="vasterhav" style="background:linear-gradient(160deg,#08182e,#1a3a5a,#2a5a80)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,280 Q80,262 175,272 Q240,280 300,266 L300,320 L0,320 Z" fill="#030810" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region">Västerhavet</div>
- <div class="dest-card-name">Kosteröarna · Varberg · Halmstad</div>
- <div class="dest-card-islands"><span class="dest-island">Kosteröarna</span><span class="dest-island">Orust</span><span class="dest-island">Tjörn</span><span class="dest-island">Varberg</span><span class="dest-island">Falkenberg</span></div>
- </div>
- </a>
  </div>
  </div>
 </section>
@@ -1508,6 +1502,15 @@ function toggleFaq(btn){
     });
 })();
 
+// Regions drag-to-scroll
+(function(){
+  var s=document.getElementById('regionsScroll');
+  if(!s)return;
+  var down=false,startX,scrollLeft;
+  s.addEventListener('mousedown',function(e){down=true;s.classList.add('dragging');startX=e.pageX-s.offsetLeft;scrollLeft=s.scrollLeft});
+  document.addEventListener('mouseup',function(){down=false;s.classList.remove('dragging')});
+  s.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();var x=e.pageX-s.offsetLeft;s.scrollLeft=scrollLeft-(x-startX)*1.2});
+})();
 // Gallery drag-to-scroll
 (function(){
   var s=document.getElementById('galleryScroll');
