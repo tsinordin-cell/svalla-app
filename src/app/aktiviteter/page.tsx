@@ -248,7 +248,7 @@ export default function AktiviteterPage() {
             Många av Sveriges bästa vandringsleder ligger på öar eller nås bara från båt. Det öppnar upp helt nya möjligheter för aktivism — du kan kombinera segling, paddling eller motorbåt med promenad.
           </p>
           <p>
-            <strong>Sörmlandsleden</strong> (genom Sörmland och öar utanför) är en klassisk multi-day trail — många gör den genom att paddla mellan nattställen. <strong>Roslagsleden</strong> går längs Stockholms skärgård och många avsnitt når du bara från båt. <strong>Gotlands alvar</strong> är ett UNESCO-världsarv där du kan vandra på öppen hedbygd — många kombinerar det med både paddling och bad.
+            <strong>Sörmlandsleden</strong> (genom Sörmland och öar utanför) är en klassisk multi-day trail — många gör den genom att paddla mellan nattställen. <strong>Roslagsleden</strong> går längs Stockholms skärgård och många avsnitt når du bara från båt. <strong>Stora Alvaret på Öland</strong> är del av UNESCO-världsarvet Södra Ölands odlingslandskap — där kan du vandra på öppen hedbygd. Många kombinerar det med både paddling och bad.
           </p>
           <p>
             <strong>Kosteröarna</strong> har flera utmärkta vandringsleder och ligger nära till hands från Strömstad. Du kan boka en övernattning i stugan eller tälta enligt allemansrätten.
