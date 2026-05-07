@@ -133,9 +133,9 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.1em;text-transform:uppercase;animation:float 3s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.4))}
-.trust-bar{background:var(--sea-dark);padding:20px 40px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
-.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.65);font-size:13px}
-.trust-item strong{color:var(--white);font-size:16px;font-weight:700}
+.trust-bar{background:var(--sea-dark);padding:18px 40px;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;}
+.trust-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.65);font-size:13px;white-space:nowrap;padding:0 28px}
+.trust-item strong{color:var(--white);font-size:15px;font-weight:700}
 .trust-divider{width:1px;height:28px;background:rgba(255,255,255,.12)}
 section{padding:100px 40px}
 .section-inner{max-width:1160px;margin:0 auto}
@@ -392,9 +392,9 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .nav-cta{gap:7px}
  .btn-ghost{padding:8px 14px;font-size:13px}
  .btn-accent{padding:8px 14px;font-size:13px}
- .trust-bar{gap:6px 20px;padding:10px 16px}
- .trust-item{font-size:11px}
- .trust-item strong{font-size:14px}
+ .trust-bar{flex-wrap:wrap;gap:0;padding:10px 8px}
+ .trust-item{font-size:11px;padding:6px 12px;white-space:nowrap}
+ .trust-item strong{font-size:13px}
  .trust-divider{display:none}
  .krog-grid{grid-template-columns:1fr}
  .stats-grid{grid-template-columns:1fr 1fr}
