@@ -63,6 +63,9 @@ export const DEPARTURES: Departure[] = [
   { id: 'ekero',          name: 'Ekerö',             lat: 59.2798, lng: 17.7902, region: 'Mälaren', emoji: '' },
   { id: 'slagsta',        name: 'Slagsta',           lat: 59.2597, lng: 17.848, region: 'Mälaren', emoji: '' },
   { id: 'maelaren-skarven', name: 'Färentuna (Skarven)', lat: 59.3933, lng: 17.6624, region: 'Mälaren', emoji: '' },
+  // Tullingesjön — ihopkopplad med Mälaren via Albysjön/Tumba
+  { id: 'tullinge-segelsallskap', name: 'Tullinge Segelsällskap', lat: 59.2050, lng: 17.8835, region: 'Mälaren', emoji: '' },
+  { id: 'tullinge-batsallskap', name: 'Tullinge Båtsällskap', lat: 59.2030, lng: 17.8762, region: 'Mälaren', emoji: '' },
 
   // ── Stockholm (central + Saltsjön) ────────────────────────────────────────
   { id: 'stromkajen',     name: 'Strömkajen',        lat: 59.3289, lng: 18.0761, region: 'Stockholm', emoji: '' },
