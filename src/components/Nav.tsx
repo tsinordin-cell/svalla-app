@@ -135,8 +135,8 @@ export default function Nav() {
 
   // Visa bells bara på sidor som INTE har egen header med bells
   // /feed, /rutter, /platser, /profil har egna — chatt-sidor lämnar toppen ren
-  // /upptack har fullskärms-karta där Leaflet-kontroller bor top-right
-  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok']
+  // /upptack har fullskärms-karta + BookmarkButton i top-right — klockorna krockar
+  const PAGES_WITH_OWN_BELLS = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack']
   const showGlobalBell = username !== null
     && !PAGES_WITH_OWN_BELLS.some(p => path.startsWith(p))
     && !path.match(/^\/meddelanden/)
