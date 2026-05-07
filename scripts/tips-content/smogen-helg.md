@@ -1,6 +1,6 @@
 # Smögen helgguide 2026 — mat, bad och klassisk västkustliv
 
-Smögen är klassikern. En hamn på västra Orust som fyller sig med båtar på varje sommarkväll, ett ställe där du kan äta räksmörgås direkt från båten och se färger du inte visste fanns på fotografier. Det är inte stort här — egentligen bara en hamn och några krogar — men det är komplett.
+Smögen är klassikern. En hamn på västra Sotenäs kommun som fyller sig med båtar på varje sommarkväll, ett ställe där du kan äta räksmörgås direkt från båten och se färger du inte visste fanns på fotografier. Det är inte stort här — egentligen bara en hamn och några krogar — men det är komplett.
 
 Guiden täcker var du ankrar, vad du äter, och hur du planerar en helg här utan att det bli kaotiskt. Vi har fiskats här, suttit på gästhamnarna och pratat med folk som varit här i trettio år. Det här är det som fungerar.
 
@@ -12,7 +12,7 @@ Platsen kostar ungefär hundrafemtio kronor per natt för en normal båt. De har
 
 **Naturhamn söder om Smögen** — vill du ha mer lugn ankrar du lite längre ut. Det finns flera små vikar söder om Smögen där du är nära nog för att gå in till bryggan på kvällen men långt nog för att bara höra vinden och några seagulls. Väder är oftast okej här men se till att din boj är säker — Orustvallare blåser hårt när den blåser.
 
-**Nordväst från Smögen** mot Tjörn finns även några mindre hamnar. Det tar tjugo minuter att roa dit och det är mycket lugnare. Bra om du vill undan från folkmassan men inte vill missa Smögens krogar.
+**Söderut från Smögen** mot Tjörn finns även några mindre hamnar. Det tar tjugo minuter att roa dit och det är mycket lugnare. Bra om du vill undan från folkmassan men inte vill missa Smögens krogar.
 
 ## Maten — från klassiska räksalladsmacka till finare mat
 

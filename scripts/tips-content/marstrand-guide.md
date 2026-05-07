@@ -6,7 +6,7 @@ Guiden här täcker vart du lägger båten, vad du äter, hur du tillbringar tid
 
 ## Att komma dit — från Stockholm och Göteborg
 
-Marstrand ligger på Koön, bara en kilometer från fastlandet. Om du kommer från Stockholm tar det åtta till tio timmar med båt, beroende på väg och vind. Många går via Vaxholm och Sandhamn och gör en långhelg av det — det är ingen brådska här.
+Marstrand ligger på Marstrandsön, en kort färjetur från fastlandsdelen Koön. Många som kommer från Stockholm gör en långhelg eller längre av det — vägen är lång men väl värd ansträngningen. Många går via Vaxholm och Sandhamn — det är ingen brådska här.
 
 Från Göteborg är det två till tre timmar. Många göteborgare kör ut på fredagkvällen och ligger på naturhamn längs vägen, ankrar vid Tjörn eller Marstrand själv. Det som är viktigt att veta: inseglingsleden är märkt och enkel. Du kan inte gå vilse även om dimman lägger sig.
 

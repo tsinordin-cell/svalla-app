@@ -30,7 +30,6 @@ En klassisk gotländsk erlebnis är sjömacken — en liten fiskrestaurang på e
 
 **Åstols Rökeri** — redan nämnd. Det är en klassiker. Rökt fisk från egen rökeri, enkel atmosfär, priserna är rimliga. Många seglare gör denna som en utflykt från Visby.
 
-**Klädesholmen och Salt & Sill** — två kilometer från Smögen ligger detta klassiska rökeri. Det ligger mer på vägen mot Göteborg än mot Gotland men väl värt besöken ifall du är i området. En av de bättre fiskrestaurangerna på västkusten.
 
 Många mindre öar på Gotland har små värdshus eller fiskrestaura där du kan äta lokalt fångad fisk. Fråga i Visby eller Roma om vilka som är bästa just nu — det förändras från år till år.
 
