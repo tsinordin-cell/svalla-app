@@ -40,7 +40,7 @@ interface Poi {
   archipelago_region: string | null
 }
 
-type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'annat'
+type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
 type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
 
 interface Bounds {
@@ -90,6 +90,14 @@ function categorize(p: Poi): Category {
     cats.some(c => ['restaurant', 'cafe', 'bar'].includes(c))
   ) return 'krog'
 
+  // Bad / strand — egen kategori med parasoll-ikon istället för "Annat"
+  if (
+    t === 'beach' || t === 'bad' || t === 'strand' ||
+    cats.some(c => ['beach', 'bad', 'strand', 'badplats'].includes(c)) ||
+    n.includes('badplats') || n.includes('strand') ||
+    d.includes('badplats')
+  ) return 'bad'
+
   return 'annat'
 }
 
@@ -100,6 +108,7 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   bastu:      { label: 'Bastu',       color: '#9d174d' },
   bensin:     { label: 'Bensin',      color: '#525252' },
   boende:     { label: 'Boende',      color: '#6d28d9' }, // lila — distinkt mot kategorierna ovan
+  bad:        { label: 'Bad',         color: '#0a7b8c' }, // havsblå — passar strand/vatten
   annat:      { label: 'Annat',       color: '#0891b2' },
 }
 
@@ -119,6 +128,9 @@ const CATEGORY_ICONS: Record<Category, string> = {
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
   // bed — säng (Lucide). Tydligt boende-symbol på avstånd.
   boende:    '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>',
+  // umbrella-beach — paraply + vågor (egen, läsbar på 20px). Avgränsar bad
+  // tydligt från generella "annat"-vågor.
+  bad:       '<path d="M22 12a10 10 0 0 0-20 0"/><path d="M12 12V2"/><path d="M2 12h20"/><path d="M2 18c.5.4 1 .8 2.5.8s1.5-.8 3-.8 1.5.8 3 .8 1.5-.8 3-.8 1.5.8 3 .8 2-.4 2.5-.8"/>',
   // waves — vatten, passar skärgårdsappen perfekt
   annat:     '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
 }
@@ -129,6 +141,7 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'hamn',      label: 'Hamnar' },
   { id: 'naturhamn', label: 'Naturhamnar' },
   { id: 'boende',    label: 'Boende' },
+  { id: 'bad',       label: 'Bad' },
   { id: 'bastu',     label: 'Bastu' },
   { id: 'bensin',    label: 'Bensin' },
 ]
@@ -219,7 +232,7 @@ export default function UpptackExplorer() {
   const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
     const raw = searchParams.get('typ')
     if (!raw || raw === 'all') return new Set()
-    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'annat'])
+    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
     const result = new Set<Category>()
     for (const part of raw.split(',')) {
       const t = part.trim() as Category
@@ -380,7 +393,7 @@ export default function UpptackExplorer() {
   const categoryCounts = useMemo(() => {
     const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
-      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, annat: 0,
+      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, annat: 0,
     }
     for (const p of pois) {
       // Region-filter
