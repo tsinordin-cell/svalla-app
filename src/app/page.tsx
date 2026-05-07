@@ -731,6 +731,7 @@ const LANDING_HTML = `
  <p class="hero-sub">
  Krogar, badplatser och dolda pärlor tipsade av folk som faktiskt är där ute.
  </p>
+ <p style="color:rgba(255,255,255,.72);font-size:13px;font-weight:500;margin-top:8px;letter-spacing:.01em">Reser du med Waxholm, SL-båt eller färja? Thorkel planerar hela turen åt dig.</p>
  </div>
  <div class="hero-bottom">
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
@@ -800,7 +801,7 @@ const LANDING_HTML = `
      <div class="resetips-card-tagline">Lång båtresa med Cinderellabåten, fantastisk strand och KSSS-hamnen full av segelbåtar.</div>
      <div class="resetips-card-meta">
       <span>⏱ Heldag</span>
-      <span>⛴ Cinderellabåten</span>
+      <span>⛴ Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
       <span>⭐ Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
@@ -1294,6 +1295,10 @@ const LANDING_HTML = `
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Båtbiljetten med Strömma kostar ca 175–220 kr enkel resa (barn halv pris). Returbiljett ca 300 kr. Lunch på krogen kostar 200–350 kr per person. En hel dag med lunch och ett glas kostar alltså ca 600–800 kr per vuxen. Alternativt: ta SL-buss 80 till Lidingö och fika billigare på ön.</div></div>
+   </div>
+   <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
+    <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla — oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. Thorkel planerar din rutt med kollektivt resande som standard och visar restid och avgångspunkter direkt. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
  </div>
