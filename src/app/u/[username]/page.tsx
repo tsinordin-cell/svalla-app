@@ -345,17 +345,17 @@ export default async function PublicProfilePage({
  { val: uniqueLocs, label: 'Platser' },
  ].map(({ val, label }) => (
  <div key={label} style={{
- flex: 1, padding: '14px 0', textAlign: 'center',
+ flex: 1, minWidth: 0, padding: '14px 0', textAlign: 'center',
  borderRight: '1px solid rgba(10,123,140,0.07)',
  }}>
- <div style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
- <div style={{ fontSize: 9, fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px' }}>{label}</div>
+ <div style={{ fontSize: 'clamp(15px, 4.4vw, 18px)', fontWeight: 700, color: 'var(--txt)', lineHeight: 1, letterSpacing: '-0.3px' }}>{val}</div>
+ <div style={{ fontSize: 'clamp(8px, 2.2vw, 9px)', fontWeight: 700, color: 'var(--txt3)', marginTop: 3, textTransform: 'uppercase', letterSpacing: '0.4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</div>
  </div>
  ))}
- <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', borderRight: '1px solid rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+ <div style={{ flex: 1, minWidth: 0, padding: '14px 0', textAlign: 'center', borderRight: '1px solid rgba(10,123,140,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
  <FollowListButton userId={userRow.id} mode="followers" count={followersCount ?? 0} dark={false} />
  </div>
- <div style={{ flex: 1, padding: '14px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+ <div style={{ flex: 1, minWidth: 0, padding: '14px 0', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
  <FollowListButton userId={userRow.id} mode="following" count={followingCount ?? 0} dark={false} />
  </div>
  </div>

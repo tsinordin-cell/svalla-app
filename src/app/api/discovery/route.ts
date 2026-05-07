@@ -50,7 +50,7 @@ export async function GET(req: Request) {
   if (type === 'poi') {
     const { data, error } = await supabase
       .from('restaurants')
-      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, google_photo_refs')
+      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs')
       .not('latitude', 'is', null)
       .not('longitude', 'is', null)
 
@@ -63,6 +63,7 @@ export async function GET(req: Request) {
       id: string; name: string; latitude: number; longitude: number;
       type: string | null; categories: string[] | null; description: string | null;
       image_url: string | null; slug: string | null; island: string | null;
+      archipelago_region: string | null;
       google_photo_refs: { reference: string }[] | null;
     }
     const projected = (data as RawRow[] | null ?? []).map((r) => {
@@ -77,6 +78,7 @@ export async function GET(req: Request) {
         id: r.id, name: r.name, latitude: r.latitude, longitude: r.longitude,
         type: r.type, categories: r.categories, description: r.description,
         image_url: imageUrl, slug: r.slug, island: r.island,
+        archipelago_region: r.archipelago_region,
       }
     })
 
