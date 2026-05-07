@@ -82,7 +82,7 @@ async function main() {
 
   const { data: places, error } = await sb
     .from('restaurants')
-    .select('id, name, latitude, longitude, google_place_id')
+    .select('id, name, latitude, longitude, island, google_place_id')
     .is('google_place_id', null)
     .not('latitude', 'is', null)
     .not('longitude', 'is', null)
@@ -104,10 +104,20 @@ async function main() {
   for (const p of places) {
     process.stdout.write(`  ${p.name.padEnd(40)} `)
     try {
-      // Försök med given radius, fallback till bredare svep om inget hittas
-      let g = await findPlaceByText(p.name, p.latitude, p.longitude, RADIUS)
+      // Bygg sökterm: lägg till ön i sökstring så Google hittar rätt instans
+      // (t.ex. "Sandhamns Värdshus" → "Sandhamns Värdshus Sandhamn") för att
+      // undvika namn-kollisioner med andra orter.
+      const searchTerm = p.island && !p.name.toLowerCase().includes(p.island.toLowerCase())
+        ? `${p.name} ${p.island}`
+        : p.name
+
+      let g = await findPlaceByText(searchTerm, p.latitude, p.longitude, RADIUS)
       if (!g && RADIUS < 5000) {
-        g = await findPlaceByText(p.name, p.latitude, p.longitude, 5000)
+        g = await findPlaceByText(searchTerm, p.latitude, p.longitude, 5000)
+      }
+      // Om fortfarande inget — testa utan ö-suffix om vi lade till det
+      if (!g && searchTerm !== p.name) {
+        g = await findPlaceByText(p.name, p.latitude, p.longitude, RADIUS)
       }
       if (!g) { console.log('⊘ ej hittad'); notFound++; continue }
 
