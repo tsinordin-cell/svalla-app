@@ -36,9 +36,11 @@ interface Poi {
   image_url: string | null
   slug: string | null
   island: string | null
+  archipelago_region: string | null
 }
 
 type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'annat'
+type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
 
 interface Bounds {
   swLat: number; swLng: number; neLat: number; neLng: number
@@ -97,7 +99,7 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   bastu:      { label: 'Bastu',       color: '#9d174d' },
   bensin:     { label: 'Bensin',      color: '#525252' },
   boende:     { label: 'Boende',      color: '#6d28d9' }, // lila — distinkt mot kategorierna ovan
-  annat:      { label: 'Annat',       color: '#6b7280' },
+  annat:      { label: 'Annat',       color: '#0891b2' },
 }
 
 // Lucide-paths per kategori (premium-standard, SVG 24×24 viewBox).
@@ -116,8 +118,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
   // bed — säng (Lucide). Tydligt boende-symbol på avstånd.
   boende:    '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>',
-  // flag — klassisk "markerad plats"-symbol på kartor
-  annat:     '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/>',
+  // waves — vatten, passar skärgårdsappen perfekt
+  annat:     '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
 }
 
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
@@ -129,6 +131,46 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'bastu',     label: 'Bastu' },
   { id: 'bensin',    label: 'Bensin' },
 ]
+
+// Region-konfiguration med center-koordinater för zoom
+const REGION_CONFIG = {
+  stockholm: {
+    label: 'Stockholm',
+    center: [59.40, 18.70] as const,
+    zoom: 9,
+    archRegions: ['inner', 'middle', 'outer', 'south'] as const,
+  },
+  goteborg: {
+    label: 'Göteborg',
+    center: [57.66, 11.72] as const,
+    zoom: 10,
+    archRegions: ['goteborg'] as const,
+  },
+  bohuslan: {
+    label: 'Bohuslän',
+    center: [58.30, 11.40] as const,
+    zoom: 9,
+    archRegions: ['bohuslan'] as const,
+  },
+  aland: {
+    label: 'Åland',
+    center: [60.10, 19.93] as const,
+    zoom: 9,
+    archRegions: ['aland'] as const,
+  },
+  oland: {
+    label: 'Öland',
+    center: [56.85, 16.65] as const,
+    zoom: 9,
+    archRegions: ['oland'] as const,
+  },
+  gotland: {
+    label: 'Gotland',
+    center: [57.64, 18.30] as const,
+    zoom: 9,
+    archRegions: ['gotland'] as const,
+  },
+} as const satisfies Record<RegionKey, { label: string; center: readonly [number, number]; zoom: number; archRegions: readonly string[] }>
 
 // ── Premium-pin (SVG som divIcon) ────────────────────────────────────────
 // Pin 36×44 — färgad droppe med Lucide-ikon i vit cirkel (r=10).
@@ -197,6 +239,13 @@ export default function UpptackExplorer() {
   }
   const isAllMode = activeCats.size === 0
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
+
+  // Region-filter state — sparas i URL som ?region=stockholm
+  const [selectedRegion, setSelectedRegion] = useState<RegionKey | 'all'>(() => {
+    const raw = searchParams.get('region')
+    const validRegions: Set<RegionKey | 'all'> = new Set(['all', 'stockholm', 'goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
+    return (validRegions.has(raw as RegionKey | 'all') ? raw : 'all') as RegionKey | 'all'
+  })
 
   // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
   const [bounds, setBounds] = useState<Bounds | null>(null)
@@ -288,12 +337,19 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [])
 
-  // ── Filtrerad lista (kategori + sök + bounds) ──────────────────────────
+  // ── Filtrerad lista (region + kategori + sök + bounds) ──────────────────────────
   // Listan följer kartans bounds AUTOMATISKT — så fort användaren panorerar
   // eller zoomar uppdateras vad som visas i listan.
   const filteredPois = useMemo(() => {
     const q = query.trim().toLowerCase()
     return pois.filter(p => {
+      // Region-filter
+      if (selectedRegion !== 'all') {
+        const regionConfig = REGION_CONFIG[selectedRegion]
+        const region = p.archipelago_region ?? ''
+        // Type-safe: check if string is in the readonly array using indexOf
+        if ((regionConfig.archRegions as readonly string[]).indexOf(region) === -1) return false
+      }
       // Multi-select: tomt set = visa allt; annars måste platsens kategori finnas i set
       if (!isAllMode && !activeCats.has(categorize(p))) return false
       if (q) {
@@ -308,16 +364,22 @@ export default function UpptackExplorer() {
       }
       return true
     })
-  }, [pois, isAllMode, activeCats, query, bounds])
+  }, [pois, selectedRegion, isAllMode, activeCats, query, bounds])
 
   // Antal POIs per kategori (för chip-labels) — räknas på pois som matchar
-  // sök + bounds, oavsett vald kategori
+  // region + sök + bounds, oavsett vald kategori
   const categoryCounts = useMemo(() => {
     const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
       all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, annat: 0,
     }
     for (const p of pois) {
+      // Region-filter
+      if (selectedRegion !== 'all') {
+        const regionConfig = REGION_CONFIG[selectedRegion]
+        const region = p.archipelago_region ?? ''
+        if ((regionConfig.archRegions as readonly string[]).indexOf(region) === -1) continue
+      }
       if (q) {
         const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
         if (!hay.includes(q)) continue
@@ -332,21 +394,36 @@ export default function UpptackExplorer() {
       counts[categorize(p)]++
     }
     return counts
-  }, [pois, query, bounds])
+  }, [pois, selectedRegion, query, bounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   // Multi-select: ?typ=krog,hamn  (alfabetisk för deterministisk URL)
+  // Region: ?region=stockholm
   const activeCatsKey = useMemo(() => Array.from(activeCats).sort().join(','), [activeCats])
   useEffect(() => {
     const id = setTimeout(() => {
       const params = new URLSearchParams()
+      if (selectedRegion !== 'all') params.set('region', selectedRegion)
       if (activeCatsKey) params.set('typ', activeCatsKey)
       if (query.trim()) params.set('q', query.trim())
       const qs = params.toString()
       router.replace(qs ? `/upptack?${qs}` : '/upptack', { scroll: false })
     }, 250)
     return () => clearTimeout(id)
-  }, [activeCatsKey, query, router])
+  }, [selectedRegion, activeCatsKey, query, router])
+
+  // ── Region-byte: zoom kartan till regionens center ────────────────────
+  useEffect(() => {
+    if (!mapRef.current) return
+    const map = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void }
+    if (selectedRegion !== 'all') {
+      const regionConfig = REGION_CONFIG[selectedRegion]
+      map.flyTo?.([regionConfig.center[0], regionConfig.center[1]], regionConfig.zoom, { duration: 0.8 })
+    } else {
+      // "Alla" — flyg tillbaka till initial view
+      map.flyTo?.(INITIAL_CENTER, INITIAL_ZOOM, { duration: 0.8 })
+    }
+  }, [selectedRegion])
 
   // ── Init Leaflet ───────────────────────────────────────────────────────
   useEffect(() => {
@@ -644,8 +721,36 @@ export default function UpptackExplorer() {
   // ── Render ──────────────────────────────────────────────────────────────
   return (
     <div className="upx-shell">
-      {/* Header med filter-dropdown + sök */}
+      {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
+        {/* Region-toggle pills */}
+        <div className="upx-regions-bar">
+          <button
+            type="button"
+            className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
+            onClick={() => setSelectedRegion('all')}
+          >
+            Alla
+          </button>
+          {(Object.entries(REGION_CONFIG) as Array<[RegionKey, typeof REGION_CONFIG['stockholm']]>).map(([key, config]) => {
+            const count = pois.filter(p => {
+              const region = p.archipelago_region ?? ''
+              return (config.archRegions as readonly string[]).indexOf(region) !== -1
+            }).length
+            return (
+              <button
+                key={key}
+                type="button"
+                className={`upx-region-pill ${selectedRegion === key ? 'active' : ''}`}
+                onClick={() => setSelectedRegion(key)}
+                title={`${config.label} (${count} platser)`}
+              >
+                {config.label}
+              </button>
+            )
+          })}
+        </div>
+
         <FilterDropdown
           chips={FILTER_CHIPS}
           counts={categoryCounts}
@@ -854,6 +959,46 @@ export default function UpptackExplorer() {
         /* På mobil måste chips lämna plats åt Nav-bells (notif + meddelanden) i top-right */
         @media (max-width: 900px) {
           .upx-header { padding-right: 84px; }
+        }
+        /* Region-toggle pills — horisontell scroll-bar ovanför kategori-filter */
+        .upx-regions-bar {
+          display: flex;
+          gap: 8px;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-behavior: smooth;
+          -webkit-overflow-scrolling: touch;
+          padding: 0 -18px;
+          margin: 0 -18px;
+          padding-left: 18px;
+          padding-right: 18px;
+          flex-shrink: 0;
+        }
+        .upx-regions-bar::-webkit-scrollbar {
+          display: none;
+        }
+        .upx-region-pill {
+          flex-shrink: 0;
+          padding: 7px 14px;
+          border: 1px solid rgba(10, 123, 140, 0.16);
+          border-radius: 12px;
+          background: var(--white, #fff);
+          color: var(--txt);
+          font-family: 'Inter', sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+          white-space: nowrap;
+        }
+        .upx-region-pill:hover {
+          background: rgba(10, 123, 140, 0.04);
+          border-color: rgba(10, 123, 140, 0.28);
+        }
+        .upx-region-pill.active {
+          background: var(--sea, #1e5c82);
+          color: #fff;
+          border-color: var(--sea, #1e5c82);
         }
         /* (Tidigare .upx-filters / .upx-chip ersatt av FilterDropdown) */
         .upx-search {
