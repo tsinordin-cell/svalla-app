@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import ReviewSection from '@/components/ReviewForm'
 import BookmarkButton from '@/components/BookmarkButton'
+import ShareButton from '@/components/ShareButton'
 import PlaceSocialSection from '@/components/PlaceSocialSection'
 import PlaceContactSection from '@/components/PlaceContactSection'
 import PlacePremiumHeader from '@/components/PlacePremiumHeader'
@@ -301,15 +302,30 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      <span>Utforska</span>
    </Link>
 
-   {/* Bookmark button — over carousel */}
+   {/* Top-right action stack: dela + bookmark — bägge i vita glasmorf-rundlar */}
    <div style={{
      position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', right: 14,
-     background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
-     borderRadius: '50%',
-     boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+     display: 'flex', alignItems: 'center', gap: 8,
      zIndex: 4,
    }}>
-     <BookmarkButton restaurantId={r.id} />
+     <div style={{
+       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
+       borderRadius: '50%',
+       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+     }}>
+       <ShareButton
+         title={r.name}
+         description={r.description ?? `${typeLabel ?? 'Plats'} på ${r.island ?? 'skärgården'}`}
+         url={`https://svalla.se/upptack/${canonicalPath}`}
+       />
+     </div>
+     <div style={{
+       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
+       borderRadius: '50%',
+       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
+     }}>
+       <BookmarkButton restaurantId={r.id} />
+     </div>
    </div>
  </div>
 
