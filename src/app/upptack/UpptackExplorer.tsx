@@ -116,8 +116,8 @@ const CATEGORY_ICONS: Record<Category, string> = {
   bensin:    '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
   // bed — säng (Lucide). Tydligt boende-symbol på avstånd.
   boende:    '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>',
-  // star — neutralt POI-märke (ingen pin-i-pin-ception)
-  annat:     '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/>',
+  // circle dot — neutralt POI-märke, inga konnotationer
+  annat:     '<circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="9"/>',
 }
 
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
