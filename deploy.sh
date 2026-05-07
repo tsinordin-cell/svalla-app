@@ -25,7 +25,7 @@ CHANGES=$(git status --porcelain | wc -l | tr -d ' ')
 if [ "$CHANGES" = "0" ]; then
   echo "Inget att committa. Kör bara push…"
   git push origin main
-  echo "✓ Klart. Netlify kollar main."
+  echo "✓ Klart. Vercel kollar main."
   exit 0
 fi
 
@@ -41,5 +41,5 @@ echo "→ Push till origin/main…"
 git push origin main
 
 echo ""
-echo "✓ Deploy pushad. Netlify bygger nu."
-echo "  Följ bygget: https://app.netlify.com/projects/bucolic-gumdrop-7933c3/deploys"
+echo "✓ Deploy pushad. Vercel bygger nu."
+echo "  Följ bygget: https://vercel.com/dashboard"

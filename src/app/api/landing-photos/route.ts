@@ -27,6 +27,11 @@ const PLACES_TO_FETCH = [
   { key: 'norra',               query: 'Arholma norra skärgård Stockholm',    lat: 59.848, lng: 19.147, r: 3000  },
   { key: 'stockholms-skargard', query: 'Stockholms skärgård sommar',          lat: 59.35,  lng: 18.7,   r: 40000 },
   { key: 'badplatser',          query: 'Badplats klippor Stockholms skärgård',lat: 59.4,   lng: 18.6,   r: 30000 },
+  // Nya regioner
+  { key: 'bohuslan',            query: 'Smögen Bohuslän klippor hav sommar',  lat: 58.35,  lng: 11.22,  r: 20000 },
+  { key: 'gotland',             query: 'Visby Gotland medeltidsmur hamn',     lat: 57.634, lng: 18.296, r: 15000 },
+  { key: 'aland',               query: 'Mariehamn Åland skärgård sommar',    lat: 60.097, lng: 19.934, r: 20000 },
+  { key: 'oland',               query: 'Borgholm Öland slott kust sommar',   lat: 56.879, lng: 16.656, r: 20000 },
 ]
 
 let memCache: { ts: number; data: Record<string, string> } | null = null

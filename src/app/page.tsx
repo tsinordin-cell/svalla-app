@@ -926,7 +926,7 @@ const LANDING_HTML = `
   </div>
   <div class="regions-grid">
    <a href="/bohuslan" class="region-card reveal reveal-delay-1">
-    <div class="region-card-bg" style="background:linear-gradient(160deg,#0a1428,#1a3a5e,#2a6090)"></div>
+    <div class="region-card-bg" data-lp-photo="bohuslan" style="background:linear-gradient(160deg,#0a1428,#1a3a5e,#2a6090)"></div>
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
      <div class="region-card-label">Västkusten</div>
@@ -936,7 +936,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/gotland" class="region-card reveal reveal-delay-2">
-    <div class="region-card-bg" style="background:linear-gradient(160deg,#2a1a08,#5a3a18,#8a6030)"></div>
+    <div class="region-card-bg" data-lp-photo="gotland" style="background:linear-gradient(160deg,#2a1a08,#5a3a18,#8a6030)"></div>
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
      <div class="region-card-label">Östersjön</div>
@@ -946,7 +946,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/aland" class="region-card reveal reveal-delay-3">
-    <div class="region-card-bg" style="background:linear-gradient(160deg,#081a28,#183a50,#286878)"></div>
+    <div class="region-card-bg" data-lp-photo="aland" style="background:linear-gradient(160deg,#081a28,#183a50,#286878)"></div>
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
      <div class="region-card-label">Finland · Östersjön</div>
@@ -956,7 +956,7 @@ const LANDING_HTML = `
     </div>
    </a>
    <a href="/oland" class="region-card reveal reveal-delay-4">
-    <div class="region-card-bg" style="background:linear-gradient(160deg,#1a2808,#3a5018,#5a7830)"></div>
+    <div class="region-card-bg" data-lp-photo="oland" style="background:linear-gradient(160deg,#1a2808,#3a5018,#5a7830)"></div>
     <div class="region-card-overlay"></div>
     <div class="region-card-content">
      <div class="region-card-label">Östersjön</div>
@@ -1388,7 +1388,7 @@ function toggleFaq(btn){
         var url=map[key];
         if(!url)return;
         // For dest-card-bg: set background-image
-        if(el.classList.contains('dest-card-bg')){
+        if(el.classList.contains('dest-card-bg')||el.classList.contains('region-card-bg')){
           el.style.backgroundImage='url('+url+')';
           el.style.backgroundSize='cover';
           el.style.backgroundPosition='center';
