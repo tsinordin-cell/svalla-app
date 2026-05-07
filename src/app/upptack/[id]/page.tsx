@@ -12,6 +12,7 @@ import PlacePremiumHeader from '@/components/PlacePremiumHeader'
 import PlaceFactsSection from '@/components/PlaceFactsSection'
 import PlaceFAQSection from '@/components/PlaceFAQSection'
 import PlaceHeroGallery from '@/components/PlaceHeroGallery'
+import PlaceMiniMap from '@/components/PlaceMiniMap'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
@@ -248,6 +249,29 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  }
  const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
 
+ /**
+  * Pin-färg + ikon för mini-kartan — matchar UpptackExplorer's
+  * kategori-färgschema så användaren känner igen markeringen.
+  */
+ const PIN_BY_TYPE: Record<string, { color: string; icon: string }> = {
+   restaurant: { color: '#c96e2a', icon: '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>' },
+   cafe:       { color: '#c96e2a', icon: '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>' },
+   bar:        { color: '#c96e2a', icon: '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>' },
+   marina:     { color: '#1d4ed8', icon: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>' },
+   harbor:     { color: '#1d4ed8', icon: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>' },
+   anchorage:  { color: '#0a7b3c', icon: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>' },
+   nature_harbor: { color: '#0a7b3c', icon: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>' },
+   sauna:      { color: '#9d174d', icon: '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>' },
+   fuel:       { color: '#525252', icon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
+   fuel_station: { color: '#525252', icon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
+   hotel:      { color: '#6d28d9', icon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
+   beach:      { color: '#0a7b8c', icon: '<path d="M2 21h20"/><path d="M5 21V11a4 4 0 0 1 8 0v10"/><path d="M5 14a3 3 0 0 1 4 0 3 3 0 0 0 4 0"/>' },
+ }
+ const pinTypeKey = r.type && PIN_BY_TYPE[r.type] ? r.type : 'marina'
+ const pinDef = PIN_BY_TYPE[pinTypeKey] ?? PIN_BY_TYPE.marina!
+ const MAP_PIN_COLOR = pinDef.color
+ const MAP_PIN_ICON = pinDef.icon
+
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
  <script
@@ -407,6 +431,17 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    longitude={r.longitude}
    name={r.name}
  />
+
+ {/* ── Mini-karta — visar var platsen ligger, knapp för vägbeskrivning ── */}
+ {r.latitude && r.longitude && (
+   <PlaceMiniMap
+     lat={r.latitude}
+     lng={r.longitude}
+     name={r.name}
+     pinColor={MAP_PIN_COLOR}
+     pinIcon={MAP_PIN_ICON}
+   />
+ )}
 
  {/* ── Egenskaper: typ, kategorier, faciliteter, best for, säsong ── */}
  <PlaceFactsSection
