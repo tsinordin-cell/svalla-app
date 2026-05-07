@@ -32,6 +32,8 @@ const PLACES_TO_FETCH = [
   { key: 'gotland',             query: 'Visby Gotland medeltidsmur hamn',     lat: 57.634, lng: 18.296, r: 15000 },
   { key: 'aland',               query: 'Mariehamn Åland skärgård sommar',    lat: 60.097, lng: 19.934, r: 20000 },
   { key: 'oland',               query: 'Borgholm Öland slott kust sommar',   lat: 56.879, lng: 16.656, r: 20000 },
+  { key: 'blekinge',            query: 'Karlskrona skärgård Hanö sommar hav',lat: 56.161, lng: 15.586, r: 25000 },
+  { key: 'vasterhav',           query: 'Kosteröarna Västerhavet klippor hav', lat: 58.883, lng: 11.017, r: 25000 },
 ]
 
 let memCache: { ts: number; data: Record<string, string> } | null = null

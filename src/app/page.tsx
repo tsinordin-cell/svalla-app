@@ -292,7 +292,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 @keyframes authIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 /* -- Destinations -- */
 .destinations-section{background:var(--sand);padding-top:60px}
-.destinations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.destinations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .dest-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .dest-card:hover .dest-card-bg{transform:scale(1.05)}
 .dest-card-bg{position:absolute;inset:0;transition:.5s}
@@ -533,6 +533,11 @@ const LANDING_HTML = `
  <div class="nav-dd-divider"></div>
  <a href="/resetips?typ=dagsutflykt" class="nav-dd-link">Dagsutflykter</a>
  <a href="/resetips?typ=overnattning" class="nav-dd-link">Utflykt med övernattning</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Säsongstips</div>
+ <a href="/sommar" class="nav-dd-link">Skärgården på sommaren</a>
+ <a href="/host" class="nav-dd-link">Skärgården på hösten</a>
+ <a href="/vinter" class="nav-dd-link">Skärgården på vintern</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
@@ -642,6 +647,10 @@ const LANDING_HTML = `
  <a href="/resetips" class="mob-acc-link">Alla turer</a>
  <a href="/resetips?typ=dagsutflykt" class="mob-acc-link">Dagsutflykter</a>
  <a href="/resetips?typ=overnattning" class="mob-acc-link">Utflykt med övernattning</a>
+ <div class="mob-acc-section">Säsongstips</div>
+ <a href="/sommar" class="mob-acc-link">Sommarsäsongen</a>
+ <a href="/host" class="mob-acc-link">Höst i skärgården</a>
+ <a href="/vinter" class="mob-acc-link">Vinter &amp; julkryssning</a>
  </div>
  </div>
  <div class="mob-acc">
@@ -872,7 +881,7 @@ const LANDING_HTML = `
  <div class="section-header centered reveal">
  <div class="section-label">Utforska skärgården</div>
  <h2 class="section-title">Välj din del av skärgården</h2>
- <p class="section-sub">Stockholms skärgård sträcker sig 80 mil från norr till söder — varje region har sin karaktär och sina gömda skatter.</p>
+ <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet — varje region har sin karaktär och sina gömda skatter.</p>
  </div>
  <div class="destinations-grid">
  <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
@@ -981,7 +990,34 @@ const LANDING_HTML = `
      <span class="region-card-tag">18 platser kartlagda</span>
     </div>
    </a>
-  </div>
+ 
+ <a href="/blekinge-skargard" class="dest-card reveal reveal-delay-1">
+ <div class="dest-card-bg" data-lp-photo="blekinge" style="background:linear-gradient(160deg,#1a2808,#2e4a1a,#3a6025)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <path d="M0,278 Q70,260 155,270 Q220,278 300,264 L300,320 L0,320 Z" fill="#060a04" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region">Blekinges skärgård</div>
+ <div class="dest-card-name">Karlskrona · Hanö · Östersjöleden</div>
+ <div class="dest-card-islands"><span class="dest-island">Karlskrona</span><span class="dest-island">Hanö</span><span class="dest-island">Sturkö</span><span class="dest-island">Tjurkö</span><span class="dest-island">Sölvesborg</span></div>
+ </div>
+ </a>
+ <a href="/vasterhav" class="dest-card reveal reveal-delay-2">
+ <div class="dest-card-bg" data-lp-photo="vasterhav" style="background:linear-gradient(160deg,#08182e,#1a3a5a,#2a5a80)">
+ <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+ <path d="M0,280 Q80,262 175,272 Q240,280 300,266 L300,320 L0,320 Z" fill="#030810" opacity="0.9"/>
+ </svg>
+ </div>
+ <div class="dest-card-overlay"></div>
+ <div class="dest-card-content">
+ <div class="dest-card-region">Västerhavet</div>
+ <div class="dest-card-name">Kosteröarna · Varberg · Halmstad</div>
+ <div class="dest-card-islands"><span class="dest-island">Kosteröarna</span><span class="dest-island">Orust</span><span class="dest-island">Tjörn</span><span class="dest-island">Varberg</span><span class="dest-island">Falkenberg</span></div>
+ </div>
+ </a>
+ </div>
  </div>
 </section>
 
