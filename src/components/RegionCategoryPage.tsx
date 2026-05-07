@@ -81,7 +81,7 @@ interface Place {
 }
 
 export async function getPlacesForRegionCategory(regionKey: string, categoryKey: string): Promise<Place[]> {
-  const region = REGIONS[regionKey]
+  const region = REGIONS[regionKey as keyof typeof REGIONS]
   const cat = CATEGORIES[categoryKey]
   if (!region || !cat) return []
   const supabase = await createServerSupabaseClient()
