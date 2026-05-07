@@ -52,6 +52,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/vasterhav`,              lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/malaren`,               lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/goteborg-skargard`,     lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    // Region + kategori-sidor (Göteborg/Bohuslän) — auto-genererade från Google-data
+    { url: `${base}/goteborg`,               lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
+    { url: `${base}/goteborg/krogar`,        lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/goteborg/gasthamnar`,    lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/goteborg/sjomackar`,     lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/goteborg/bastu`,         lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/bohuslan/krogar`,        lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/bohuslan/gasthamnar`,    lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/bohuslan/sjomackar`,     lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/bohuslan/bastu`,         lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
     // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
     { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
