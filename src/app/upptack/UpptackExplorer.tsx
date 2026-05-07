@@ -160,7 +160,6 @@ function pinHtml(color: string, iconSvg: string, isActive = false): string {
 // ── Initial map view (Stockholms skärgård som default) ───────────────────
 const INITIAL_CENTER: [number, number] = [59.35, 18.95]
 const INITIAL_ZOOM = 10
-const MIN_ZOOM = 7
 
 // ── Komponent ────────────────────────────────────────────────────────────
 export default function UpptackExplorer() {
@@ -361,7 +360,6 @@ export default function UpptackExplorer() {
       const map = L.map(mapDivRef.current, {
         center: INITIAL_CENTER,
         zoom: INITIAL_ZOOM,
-        minZoom: MIN_ZOOM,
         zoomControl: false,
         attributionControl: false,
       })
