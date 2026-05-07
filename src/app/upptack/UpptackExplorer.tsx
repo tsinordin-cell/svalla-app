@@ -23,6 +23,7 @@ import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 import { WeatherPill } from '@/components/MapCornerPills'
+import { track } from '@/lib/analytics-events'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -229,13 +230,21 @@ export default function UpptackExplorer() {
   function toggleCat(cat: Category) {
     setActiveCats(prev => {
       const next = new Set(prev)
+      const becameActive = !next.has(cat)
       if (next.has(cat)) next.delete(cat)
       else next.add(cat)
+      // Analytics: filter_changed med kategori-namn + ny status
+      track('filter_changed', {
+        surface: 'upptack',
+        filter: 'category',
+        value: `${cat}:${becameActive ? 'on' : 'off'}`,
+      })
       return next
     })
   }
   function clearCats() {
     setActiveCats(new Set())
+    track('filter_changed', { surface: 'upptack', filter: 'category', value: 'clear' })
   }
   const isAllMode = activeCats.size === 0
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
@@ -728,7 +737,10 @@ export default function UpptackExplorer() {
           <button
             type="button"
             className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
-            onClick={() => setSelectedRegion('all')}
+            onClick={() => {
+              setSelectedRegion('all')
+              track('filter_changed', { surface: 'upptack', filter: 'region', value: 'all' })
+            }}
           >
             Alla
           </button>
@@ -742,7 +754,10 @@ export default function UpptackExplorer() {
                 key={key}
                 type="button"
                 className={`upx-region-pill ${selectedRegion === key ? 'active' : ''}`}
-                onClick={() => setSelectedRegion(key)}
+                onClick={() => {
+                  setSelectedRegion(key)
+                  track('filter_changed', { surface: 'upptack', filter: 'region', value: key })
+                }}
                 title={`${config.label} (${count} platser)`}
               >
                 {config.label}

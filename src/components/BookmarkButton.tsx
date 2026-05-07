@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase'
+import { track } from '@/lib/analytics-events'
 
 interface Props {
   restaurantId?: string
@@ -33,6 +34,7 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
   async function toggle() {
     if (!userId || loading) return
     setLoading(true)
+    const wasSaved = saved
     if (saved) {
       const q = supabase.from('bookmarks').delete().eq('user_id', userId)
       if (restaurantId) q.eq('restaurant_id', restaurantId)
@@ -46,6 +48,12 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
         route_id:      routeId      ?? null,
       })
       setSaved(true)
+    }
+    // Analytics — efter att DB-anropet är klart så vi vet att det lyckades.
+    if (restaurantId) {
+      track('bookmark_toggled', { entity_type: 'restaurant', entity_id: restaurantId, saved: !wasSaved })
+    } else if (routeId) {
+      track('bookmark_toggled', { entity_type: 'route', entity_id: routeId, saved: !wasSaved })
     }
     setLoading(false)
   }

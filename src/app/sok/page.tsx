@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
+import { track } from '@/lib/analytics-events'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ALL_ISLANDS } from '../o/island-data'
@@ -314,6 +315,13 @@ function SokPageInner() {
  analytics.searchPerformed({
    query: safe,
    results_count: merged.length,
+ })
+ // Egen analytics-pipeline för admin-dashboard på /admin/insikter
+ track('search_performed', {
+   query: safe,
+   query_length: safe.length,
+   results: merged.length,
+   surface: 'sok',
  })
  }
 

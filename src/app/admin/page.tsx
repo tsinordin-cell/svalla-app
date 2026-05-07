@@ -76,6 +76,16 @@ function IcoRoute({ color }: { color: string }) {
   )
 }
 
+function IcoBarChart({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <line x1="12" y1="20" x2="12" y2="10" />
+      <line x1="18" y1="20" x2="18" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  )
+}
+
 type AdminTool = {
   href: string
   icon: React.ReactNode
@@ -149,6 +159,14 @@ const ADMIN_TOOLS: AdminTool[] = [
     desc:  'Precomputed vs grid vs waypoint — topp failing-par och rapporter',
     badge: null,
     color: '#0369a1',
+  },
+  {
+    href:  '/admin/insikter',
+    icon:  <IcoBarChart color="#0a7b8c" />,
+    title: 'Insikter',
+    desc:  'Topp-platser, klick-funnel, sökanalytics — egen data, parallellt med PostHog',
+    badge: 'NY',
+    color: '#0a7b8c',
   },
 ]
 

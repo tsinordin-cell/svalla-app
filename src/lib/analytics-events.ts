@@ -51,7 +51,7 @@ export type SvallaEvent =
   | { name: 'push_prompt_response'; props: { granted: boolean } }
 
   // Discovery / search
-  | { name: 'search_performed';     props: { query_length: number; results: number } }
+  | { name: 'search_performed';     props: { query: string; query_length: number; results: number; surface?: string } }
   | { name: 'island_viewed';        props: { island_slug: string } }
   | { name: 'place_viewed';         props: { place_id: string } }
 
@@ -78,6 +78,14 @@ export type SvallaEvent =
   | { name: 'feature_friction';     props: { feature: string; reason: string } }
   | { name: 'paywall_hit';          props: { feature: string } }
 
+  // ── Plats-sida actions (instrumenterade 2026-05-07) ──────────────────────
+  // Kritiska för att förstå conversion på /upptack/[id].
+  | { name: 'share_clicked';        props: { surface: string; entity_id?: string } }
+  | { name: 'directions_clicked';   props: { place_id: string } }
+  | { name: 'action_pill_clicked';  props: { action: 'boka' | 'meny' | 'hemsida' | 'instagram'; place_id: string } }
+  | { name: 'filter_changed';       props: { surface: 'upptack' | 'sok' | 'other'; filter: string; value: string } }
+  | { name: 'bookmark_toggled';     props: { entity_type: 'restaurant' | 'route'; entity_id: string; saved: boolean } }
+
 interface PostHogLike {
   capture: (eventName: string, properties?: Record<string, unknown>) => void
   identify?: (id: string, props?: Record<string, unknown>) => void
@@ -90,14 +98,56 @@ declare global {
 }
 
 /**
- * Skickar ett event till PostHog. No-op om consent saknas eller posthog inte laddat.
+ * Skickar ett event till BÅDE PostHog och vår egen analytics_events-tabell.
+ *
+ * - PostHog är primary (för funnels, retention, dashboards i deras UI)
+ * - Vår egen tabell läses av /admin/insikter för snabba SQL-queries
+ *   (t.ex. "top 10 mest besökta platser senaste 7d")
+ *
+ * No-op om consent saknas. Båda anrop är fire-and-forget — ett misslyckas
+ * tyst utan att blockera den andra eller UI-tråden.
  */
 export function track<E extends SvallaEvent>(name: E['name'], props: E['props']): void {
   if (typeof window === 'undefined') return
   if (!hasAnalyticsConsent()) return
+
+  // 1) PostHog (primary)
   const ph = window.posthog
-  if (!ph?.capture) return
-  ph.capture(name, props as Record<string, unknown>)
+  if (ph?.capture) ph.capture(name, props as Record<string, unknown>)
+
+  // 2) Egen lagring för admin-dashboard. Async, ingen await — events
+  //    får inte blockera klick. Felfri-tyst om endpoint är nere.
+  try {
+    const sessionId = getOrCreateSessionId()
+    fetch('/api/analytics/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: name,
+        props,
+        sessionId,
+        path: window.location.pathname,
+      }),
+      // keepalive så event skickas även vid page-unload
+      keepalive: true,
+    }).catch(() => { /* tyst */ })
+  } catch { /* tyst */ }
+}
+
+/** Anonym session-id i sessionStorage. Återanvänds över page navigations
+ *  inom samma flik så vi kan se "session-flow" i admin-vyn. */
+function getOrCreateSessionId(): string {
+  try {
+    const KEY = 'svalla_session_id'
+    let id = sessionStorage.getItem(KEY)
+    if (!id) {
+      id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+      sessionStorage.setItem(KEY, id)
+    }
+    return id
+  } catch {
+    return 'no-session'
+  }
 }
 
 /**

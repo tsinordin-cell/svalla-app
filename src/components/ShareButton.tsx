@@ -12,6 +12,7 @@
  * cirkel-form, samma mått (44×44), liknande visuella vikt.
  */
 import { useState } from 'react'
+import { track } from '@/lib/analytics-events'
 
 interface Props {
   /** Plats-namn — används som titel i Web Share dialog. */
@@ -20,15 +21,23 @@ interface Props {
   description?: string
   /** Absolut URL att dela. Om undefined används window.location.href. */
   url?: string
+  /** Vilken yta delningen sker från (för analytics). */
+  surface?: string
+  /** Entity-id för platsen/turen som delas (för analytics). */
+  entityId?: string
 }
 
-export default function ShareButton({ title, description, url }: Props) {
+export default function ShareButton({ title, description, url, surface = 'place', entityId }: Props) {
   const [toast, setToast] = useState<string | null>(null)
   const [pressed, setPressed] = useState(false)
 
   async function handleShare() {
     setPressed(true)
     setTimeout(() => setPressed(false), 200)
+
+    // Analytics — fire-and-forget. Skickas innan eventuell dialog/clipboard
+    // för att vi ska veta att intentet fanns även om användaren avbryter.
+    track('share_clicked', { surface, entity_id: entityId })
 
     const shareUrl = url ?? (typeof window !== 'undefined' ? window.location.href : '')
     if (!shareUrl) return

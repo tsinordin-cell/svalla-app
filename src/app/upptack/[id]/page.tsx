@@ -13,6 +13,7 @@ import PlaceFactsSection from '@/components/PlaceFactsSection'
 import PlaceFAQSection from '@/components/PlaceFAQSection'
 import PlaceHeroGallery from '@/components/PlaceHeroGallery'
 import PlaceMiniMap from '@/components/PlaceMiniMap'
+import TrackPlaceView from '@/components/TrackPlaceView'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 
@@ -274,6 +275,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
+ <TrackPlaceView placeId={r.id} />
  <script
  type="application/ld+json"
  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -341,6 +343,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
          title={r.name}
          description={r.description ?? `${typeLabel ?? 'Plats'} på ${r.island ?? 'skärgården'}`}
          url={`https://svalla.se/upptack/${canonicalPath}`}
+         surface="upptack_detail"
+         entityId={r.id}
        />
      </div>
      <div style={{
@@ -371,6 +375,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url ?? null}
    bookingUrl={r.booking_url}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram ?? null}
+   placeId={r.id}
  />
 
  {/* ── Why Layer: core_experience ── */}
@@ -440,6 +445,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      name={r.name}
      pinColor={MAP_PIN_COLOR}
      pinIcon={MAP_PIN_ICON}
+     placeId={r.id}
    />
  )}
 

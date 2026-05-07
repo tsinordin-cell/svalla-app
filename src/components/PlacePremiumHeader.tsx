@@ -8,9 +8,12 @@
  *   - Prisklass-badge
  *   - 4 action-pills i rad: Hemsida / Meny / Boka bord / Instagram
  *
- * Server Component — inga interaktiva delar utöver native <a href>-länkar.
+ * Server Component — interaktiviteten ligger i <PlaceActionPill> (klient).
  */
+import PlaceActionPill from './PlaceActionPill'
+
 type PriceLevel = 'budget' | 'mellan' | 'premium' | 'lyx' | null
+type ActionKey = 'boka' | 'meny' | 'hemsida' | 'instagram'
 
 interface Props {
   name: string
@@ -33,6 +36,9 @@ interface Props {
   menuUrl?: string | null
   bookingUrl?: string | null
   instagram?: string | null           // handle utan @
+
+  // För analytics — skickas vidare till PlaceActionPill
+  placeId?: string
 }
 
 const PRICE_LABEL: Record<NonNullable<PriceLevel>, { label: string; symbol: string }> = {
@@ -46,7 +52,7 @@ export default function PlacePremiumHeader({
   name, oneLiner, typeLabel, island, region,
   googleRating, googleRatingsTotal, svallaRating, svallaRatingCount,
   priceLevel,
-  websiteUrl, menuUrl, bookingUrl, instagram,
+  websiteUrl, menuUrl, bookingUrl, instagram, placeId,
 }: Props) {
   const hasGoogle = typeof googleRating === 'number' && googleRating > 0
   const hasSvalla = typeof svallaRating === 'number' && svallaRating > 0
@@ -54,7 +60,7 @@ export default function PlacePremiumHeader({
   const locationLabel = [typeLabel, island, region].filter(Boolean).join(' · ')
 
   // Bygg lista med aktiva action-knappar
-  const actions: Array<{ key: string; label: string; href: string; primary?: boolean; icon: string }> = []
+  const actions: Array<{ key: ActionKey; label: string; href: string; primary?: boolean; icon: string }> = []
   if (bookingUrl) actions.push({ key: 'boka', label: 'Boka bord', href: bookingUrl, primary: true, icon: 'calendar' })
   if (menuUrl) actions.push({ key: 'meny', label: 'Meny', href: menuUrl, icon: 'utensils' })
   if (websiteUrl) actions.push({ key: 'hemsida', label: 'Hemsida', href: websiteUrl, icon: 'globe' })
@@ -170,33 +176,46 @@ export default function PlacePremiumHeader({
           marginTop: 4,
         }}>
           {actions.map(a => (
-            <a
-              key={a.key}
-              href={a.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                flex: '1 1 calc(50% - 4px)',
-                minWidth: 140,
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                padding: '12px 14px',
-                borderRadius: 12,
-                background: a.primary ? 'var(--accent, #c96e2a)' : 'rgba(10, 123, 140, 0.06)',
-                border: a.primary ? 'none' : '1px solid rgba(10, 123, 140, 0.12)',
-                color: a.primary ? '#fff' : 'var(--txt)',
-                textDecoration: 'none',
-                fontSize: 13.5,
-                fontWeight: 700,
-                boxShadow: a.primary ? '0 2px 10px rgba(201, 110, 42, 0.30)' : 'none',
-                transition: 'transform 120ms ease, box-shadow 120ms ease',
-              }}
-            >
-              <ActionIcon name={a.icon} primary={!!a.primary} />
-              <span>{a.label}</span>
-            </a>
+            placeId ? (
+              <PlaceActionPill
+                key={a.key}
+                href={a.href}
+                action={a.key}
+                placeId={placeId}
+                primary={!!a.primary}
+              >
+                <ActionIcon name={a.icon} primary={!!a.primary} />
+                <span>{a.label}</span>
+              </PlaceActionPill>
+            ) : (
+              <a
+                key={a.key}
+                href={a.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  flex: '1 1 calc(50% - 4px)',
+                  minWidth: 140,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  padding: '12px 14px',
+                  borderRadius: 12,
+                  background: a.primary ? 'var(--accent, #c96e2a)' : 'rgba(10, 123, 140, 0.06)',
+                  border: a.primary ? 'none' : '1px solid rgba(10, 123, 140, 0.12)',
+                  color: a.primary ? '#fff' : 'var(--txt)',
+                  textDecoration: 'none',
+                  fontSize: 13.5,
+                  fontWeight: 700,
+                  boxShadow: a.primary ? '0 2px 10px rgba(201, 110, 42, 0.30)' : 'none',
+                  transition: 'transform 120ms ease, box-shadow 120ms ease',
+                }}
+              >
+                <ActionIcon name={a.icon} primary={!!a.primary} />
+                <span>{a.label}</span>
+              </a>
+            )
           ))}
         </div>
       )}

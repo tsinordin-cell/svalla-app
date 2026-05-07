@@ -14,6 +14,7 @@
  */
 import { useEffect, useRef } from 'react'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import { track } from '@/lib/analytics-events'
 
 interface Props {
   lat: number
@@ -23,6 +24,8 @@ interface Props {
   pinColor?: string
   /** Lucide-ikon SVG-paths som renderas inuti pin-droppen. */
   pinIcon?: string
+  /** Plats-id för analytics (track 'directions_clicked'). */
+  placeId?: string
 }
 
 // Default pin-ikon = map-pin (Lucide)
@@ -42,7 +45,7 @@ function pinHtml(color: string, iconSvg: string): string {
   `
 }
 
-export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pinIcon = DEFAULT_ICON }: Props) {
+export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pinIcon = DEFAULT_ICON, placeId }: Props) {
   const mapDivRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<unknown>(null)
 
@@ -119,6 +122,7 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
         href={directionsUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => { if (placeId) track('directions_clicked', { place_id: placeId }) }}
         style={{
           position: 'absolute',
           right: 12, bottom: 12,
