@@ -181,7 +181,7 @@ export default function OGImage() {
  gap: 18,
  marginBottom: 28,
  }}>
- {/* Svalla sailboat logo — matches favicon.svg */}
+ {/* Svalla sailboat logo */}
  <svg width="48" height="48" viewBox="0 0 32 32" fill="none">
  <line x1="16" y1="5" x2="16" y2="23" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
  <path d="M16,6 L26,20 L16,20 Z" fill="white" opacity="0.95" />
@@ -209,22 +209,23 @@ export default function OGImage() {
  marginBottom: 20,
  lineHeight: 1.3,
  }}>
- Skärgårdslivet, loggat.
+ Skargårdslivet, loggat.
  </div>
 
- {/* Feature pills */}
+ {/* Feature pills — plain text, no emojis (ImageResponse has no emoji font) */}
  <div style={{ display: 'flex', gap: 12 }}>
- {['Spåra turer', '️ Hitta platser', '🤝 Community'].map(label => (
+ {['Spara turer', 'Hitta platser', 'Seglarcommunity'].map(label => (
  <div key={label} style={{
  background: 'rgba(255,255,255,0.12)',
- border: '1px solid rgba(255,255,255,0.20)',
+ border: '1px solid rgba(255,255,255,0.22)',
  borderRadius: 20,
  padding: '8px 18px',
  fontSize: 16,
  fontWeight: 600,
- color: 'rgba(255,255,255,0.80)',
+ color: 'rgba(255,255,255,0.82)',
  display: 'flex',
  alignItems: 'center',
+ letterSpacing: '0.01em',
  }}>
  {label}
  </div>

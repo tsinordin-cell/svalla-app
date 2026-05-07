@@ -356,6 +356,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .ferry-routes{list-style:none;display:flex;flex-direction:column;gap:9px}
 .ferry-route{font-size:13px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:8px}
 .ferry-route::before{content:'';font-size:13px;flex-shrink:0}
+@media(max-width:860px){.ferry-routes{flex-direction:row;flex-wrap:wrap;gap:6px}.ferry-route{background:rgba(255,255,255,.08);border-radius:20px;padding:4px 10px;font-size:12px}.ferry-route::before{display:none}}
 /* -- Accommodation -- */
 .boende-section{background:var(--sand)}
 .boende-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
