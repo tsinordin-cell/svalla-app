@@ -7,7 +7,8 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 
-export const REGIONS: Record<string, { label: string; description: string; archipelago_region: string }> = {
+type RegionInfo = { label: string; description: string; archipelago_region: string }
+export const REGIONS = {
   goteborg: {
     label: 'Göteborgs skärgård',
     description: 'Göteborgs södra och norra skärgård — Brännö, Donsö, Vrångö, Styrsö, Hönö, Öckerö och Källö-Knippla.',
@@ -18,7 +19,22 @@ export const REGIONS: Record<string, { label: string; description: string; archi
     description: 'Från Marstrand i söder till Strömstad i norr — Käringön, Smögen, Fjällbacka, Grebbestad och Kosteröarna.',
     archipelago_region: 'bohuslan',
   },
-}
+  aland: {
+    label: 'Åland',
+    description: 'Mariehamn, Eckerö, Kökar, Föglö, Brändö och de yttre öarna — den åländska skärgården samlad.',
+    archipelago_region: 'aland',
+  },
+  oland: {
+    label: 'Öland',
+    description: 'Borgholm, Mörbylånga, Färjestaden, Byxelkrok, Sandvik och Löttorp — hela Öland norr till söder.',
+    archipelago_region: 'oland',
+  },
+  gotland: {
+    label: 'Gotland',
+    description: 'Visby med medeltida ringmur, Fårö med Bergmans landskap, Slite, Burgsvik och Karlsöarna.',
+    archipelago_region: 'gotland',
+  },
+} satisfies Record<string, RegionInfo>
 
 export const CATEGORIES: Record<string, { label: string; type: string; intro: string; metaTitle: (region: string) => string; metaDesc: (region: string) => string }> = {
   krogar: {

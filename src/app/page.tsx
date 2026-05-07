@@ -304,6 +304,18 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .dest-island{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;padding:2px 0;}
 a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
+.regions-section{background:var(--white);padding:80px 40px 100px}
+.regions-section .section-header{margin-bottom:40px}
+.regions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.region-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
+.region-card:hover .region-card-bg{transform:scale(1.06)}
+.region-card-bg{position:absolute;inset:0;transition:.5s;background-size:cover;background-position:center}
+.region-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,20,32,.88) 0%,rgba(8,20,32,.05) 60%)}
+.region-card-content{position:relative;z-index:1;padding:20px 18px}
+.region-card-label{font-size:10px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.region-card-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.25}
+.region-card-sub{font-size:11.5px;color:rgba(255,255,255,.72);line-height:1.45}
+.region-card-tag{display:inline-block;margin-top:8px;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(232,146,74,.22);color:var(--accent-light);border:1px solid rgba(232,146,74,.3)}
 /* -- Activities -- */
 .activities-section{background:var(--white)}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -343,6 +355,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .pillar:first-child,.pillar:last-child{border-radius:0}
  .testimonials{grid-template-columns:1fr}
 .destinations-grid{grid-template-columns:1fr 1fr}
+.regions-grid{grid-template-columns:1fr 1fr}
  .activities-grid{grid-template-columns:1fr 1fr}
  .ferry-grid{grid-template-columns:1fr}
  .boende-grid{grid-template-columns:1fr 1fr}
@@ -681,7 +694,7 @@ const LANDING_HTML = `
  <div class="hero-top">
  <div class="hero-eyebrow">
  <span class="hero-eyebrow-dot"></span>
- 200+ platser kartlagda i Stockholms skärgård
+ 200+ platser kartlagda — Stockholm, Bohuslän, Gotland & mer
  </div>
  <h1 class="hero-title">
  Planera din perfekta<br>
@@ -718,7 +731,9 @@ const LANDING_HTML = `
  <div class="trust-divider"></div>
  <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
  <div class="trust-divider"></div>
- <div class="trust-item"><strong>Arholma &rarr; Marstrand</strong> Stockholm + Bohuslän</div>
+ <div class="trust-item"><strong>Arholma &rarr; Marstrand</strong> Stockholm, Bohuslän + Gotland</div>
+ <div class="trust-divider"></div>
+ <div class="trust-item"><strong>Ingen båt krävs</strong> Kollektivt ända ut</div>
  <div class="trust-divider"></div>
  <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
 </div>
@@ -900,6 +915,60 @@ const LANDING_HTML = `
  </div>
 </section>
 
+<section class="regions-section" id="sverige">
+ <div class="section-inner">
+  <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
+   <div>
+    <div class="section-label">Utforska hela Sverige</div>
+    <h2 class="section-title">Skärgård från norr till söder</h2>
+    <p class="section-sub">Svalla täcker nu mer än Stockholms skärgård — utforska Västkusten, Gotland, Åland och Öland.</p>
+   </div>
+  </div>
+  <div class="regions-grid">
+   <a href="/bohuslan" class="region-card reveal reveal-delay-1">
+    <div class="region-card-bg" style="background:linear-gradient(160deg,#0a1428,#1a3a5e,#2a6090)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Västkusten</div>
+     <div class="region-card-name">Bohuslän</div>
+     <div class="region-card-sub">Smögen · Fjällbacka · Marstrand · Lysekil</div>
+     <span class="region-card-tag">32 platser kartlagda</span>
+    </div>
+   </a>
+   <a href="/gotland" class="region-card reveal reveal-delay-2">
+    <div class="region-card-bg" style="background:linear-gradient(160deg,#2a1a08,#5a3a18,#8a6030)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Östersjön</div>
+     <div class="region-card-name">Gotland</div>
+     <div class="region-card-sub">Visby · Fårö · Lummelunda · gästhamnar</div>
+     <span class="region-card-tag">28 platser kartlagda</span>
+    </div>
+   </a>
+   <a href="/aland" class="region-card reveal reveal-delay-3">
+    <div class="region-card-bg" style="background:linear-gradient(160deg,#081a28,#183a50,#286878)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Finland · Östersjön</div>
+     <div class="region-card-name">Åland</div>
+     <div class="region-card-sub">Mariehamn · ytterskärgård · Föglö</div>
+     <span class="region-card-tag">25 platser kartlagda</span>
+    </div>
+   </a>
+   <a href="/oland" class="region-card reveal reveal-delay-4">
+    <div class="region-card-bg" style="background:linear-gradient(160deg,#1a2808,#3a5018,#5a7830)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Östersjön</div>
+     <div class="region-card-name">Öland</div>
+     <div class="region-card-sub">Borgholm · Långe Erik · södra Öland</div>
+     <span class="region-card-tag">18 platser kartlagda</span>
+    </div>
+   </a>
+  </div>
+ </div>
+</section>
+
 <section class="routes-section" id="rutter">
  <div class="section-inner">
  <div class="section-header reveal" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px">
@@ -1002,7 +1071,7 @@ const LANDING_HTML = `
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
-    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Båt från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
+    <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
    </div>
    <div class="thorkel-msg user">
     <div class="thorkel-av u">Du</div>
@@ -1020,8 +1089,8 @@ const LANDING_HTML = `
  <div class="section-inner">
  <div class="section-header centered reveal">
  <div class="section-label">Ta sig dit</div>
- <h2 class="section-title">Hur du tar dig ut i skärgården</h2>
- <p class="section-sub">Från Stockholm finns flera avgångspunkter. Välj rätt beroende på destination och färdmedel.</p>
+ <h2 class="section-title">Kom ut — ingen båt krävs</h2>
+ <p class="section-sub">Med Waxholmsbolaget och SL når du skärgårdens pärlor direkt från Stockholm — ingen egen båt behövs. Välj rätt avgångspunkt beroende på destination.</p>
  </div>
  <div class="ferry-grid">
  <div class="ferry-card reveal reveal-delay-1">

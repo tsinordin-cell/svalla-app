@@ -66,7 +66,7 @@ async function main() {
     .select('id, name, google_photo_refs')
     .eq('place_data_source', 'google')
     .not('google_photo_refs', 'is', null)
-    .in('archipelago_region', ['goteborg', 'bohuslan'])
+    .in('archipelago_region', ['goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
 
   const places = (candidates || [])
     .filter(p => !placesWithPhotos.has(p.id))
