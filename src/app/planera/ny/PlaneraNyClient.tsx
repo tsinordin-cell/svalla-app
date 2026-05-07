@@ -95,9 +95,77 @@ export default function PlaneraNyClient() {
  disabledId?: string
  fromDep?: Departure | null
  }) {
+ const [query, setQuery] = useState('')
+ const q = query.trim().toLowerCase()
+ const filtered = q ? DEPARTURES.filter(d => d.name.toLowerCase().includes(q)) : null
+
+ function HarborButton({ d }: { d: Departure }) {
+   const isSelected = selected?.id === d.id
+   const isDisabled = d.id === disabledId
+   const km = fromDep && !isDisabled
+     ? Math.round(haversineKm(fromDep.lat, fromDep.lng, d.lat, d.lng))
+     : null
+   return (
+     <button
+       key={d.id}
+       onClick={() => !isDisabled && onSelect(d)}
+       disabled={isDisabled}
+       style={{
+         padding: '12px 14px', borderRadius: 14,
+         border: isSelected ? 'none' : '1px solid rgba(10,123,140,0.12)',
+         background: isDisabled ? 'rgba(0,0,0,0.04)' : isSelected ? 'var(--grad-sea)' : 'var(--white)',
+         boxShadow: isSelected ? '0 4px 16px rgba(10,123,140,0.3)' : '0 1px 6px rgba(0,45,60,0.06)',
+         cursor: isDisabled ? 'not-allowed' : 'pointer',
+         textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8,
+         opacity: isDisabled ? 0.4 : 1,
+       } as React.CSSProperties}
+     >
+       <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 8, background: isSelected ? 'rgba(255,255,255,0.18)' : 'rgba(10,123,140,0.10)', color: isSelected ? '#fff' : 'var(--sea)', flexShrink: 0 }}>
+         <Icon name="pin" size={14} stroke={2} />
+       </span>
+       <div style={{ flex: 1, minWidth: 0 }}>
+         <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : 'var(--txt)', lineHeight: 1.2 }}>{d.name}</div>
+         {km !== null && (
+           <div style={{ fontSize: 10, color: isSelected ? 'rgba(255,255,255,0.75)' : 'var(--txt3)', marginTop: 1 }}>~{km} km</div>
+         )}
+       </div>
+     </button>
+   )
+ }
+
  return (
  <div>
- {regions.map(region => (
+ {/* Sökruta */}
+ <div style={{ position: 'relative', marginBottom: 20 }}>
+   <svg viewBox="0 0 24 24" fill="none" stroke="var(--txt3)" strokeWidth={2} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, pointerEvents: 'none' }}>
+     <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" strokeLinecap="round"/>
+   </svg>
+   <input
+     type="search"
+     placeholder="Sök hamn..."
+     value={query}
+     onChange={e => setQuery(e.target.value)}
+     style={{
+       width: '100%', boxSizing: 'border-box',
+       padding: '11px 14px 11px 38px',
+       borderRadius: 14, border: '1px solid rgba(10,123,140,0.15)',
+       background: 'var(--white)', fontSize: 14, color: 'var(--txt)',
+       outline: 'none', boxShadow: '0 1px 6px rgba(0,45,60,0.06)',
+     }}
+   />
+ </div>
+
+ {/* Filtrerade sökresultat */}
+ {filtered && (
+   filtered.length === 0
+     ? <p style={{ fontSize: 14, color: 'var(--txt3)', textAlign: 'center', padding: '20px 0' }}>Ingen hamn hittades.</p>
+     : <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+         {filtered.map(d => <HarborButton key={d.id} d={d} />)}
+       </div>
+ )}
+
+ {/* Regiongrupperat (visas när inget söks) */}
+ {!filtered && regions.map(region => (
  <div key={region} style={{ marginBottom: 20 }}>
  <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--sea)', marginBottom: 8 }}>
  {region}
