@@ -53,32 +53,16 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  ].filter(Boolean) as string[]
 
  /**
-  * OG-image — bygg ABSOLUT URL.
+  * OG-image — peka till vår CUSTOM OG-route som bygger ett premium-card
+  * med Google-foto som bakgrund + Svalla-branding ovanpå (logo, namn,
+  * lokation, rating). Mycket mer premium än rå Google-bild.
   *
-  * Prioritetsordning:
-  *   1. Google-foto via vår proxy (om google_photo_refs finns)
-  *      → https://svalla.se/api/places/photo/{base64}?w=1200&h=630
-  *   2. data.image_url (kan redan vara absolut https://-URL från Supabase
-  *      Storage / Unsplash) — gör absolut om relativt
-  *   3. Default /og-image.jpg
-  *
-  * Facebook/Twitter/iMessage-scrapers kräver absoluta URL:er. Lokala
-  * proxy-URL:er funkar eftersom svalla.se → /api/places/photo serveras
-  * publikt utan auth.
+  * Routen ligger i /api/og/upptack/[id]/route.tsx och cachar 1h.
   */
  const SITE = 'https://svalla.se'
- const googleRef = data.google_photo_refs?.[0]?.reference
- let ogUrl: string
+ const ogUrl = `${SITE}/api/og/upptack/${canonicalPath}`
  const ogWidth = 1200
  const ogHeight = 630
- if (googleRef) {
-   const encoded = Buffer.from(googleRef, 'utf-8').toString('base64url')
-   ogUrl = `${SITE}/api/places/photo/${encoded}?w=1200&h=630`
- } else if (data.image_url) {
-   ogUrl = data.image_url.startsWith('http') ? data.image_url : `${SITE}${data.image_url.startsWith('/') ? '' : '/'}${data.image_url}`
- } else {
-   ogUrl = `${SITE}/og-image.jpg`
- }
 
  return {
  title: data.name,
