@@ -32,7 +32,14 @@ async function fetchRestaurant(idOrSlug: string, columns: string) {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
- const data = await fetchRestaurant(id, 'id, name, description, island, image_url, tags, slug') as { id: string; name: string; description?: string; island?: string; image_url?: string; tags?: string[]; slug?: string } | null
+ const data = await fetchRestaurant(
+   id,
+   'id, name, description, island, image_url, tags, slug, google_photo_refs',
+ ) as {
+   id: string; name: string; description?: string; island?: string;
+   image_url?: string; tags?: string[]; slug?: string;
+   google_photo_refs?: { reference: string }[] | null;
+ } | null
  if (!data) return { title: 'Restaurang – Svalla' }
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
@@ -44,16 +51,45 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  'Stockholms skärgård',
  ...(Array.isArray(data.tags) ? data.tags : []),
  ].filter(Boolean) as string[]
+
+ /**
+  * OG-image — bygg ABSOLUT URL.
+  *
+  * Prioritetsordning:
+  *   1. Google-foto via vår proxy (om google_photo_refs finns)
+  *      → https://svalla.se/api/places/photo/{base64}?w=1200&h=630
+  *   2. data.image_url (kan redan vara absolut https://-URL från Supabase
+  *      Storage / Unsplash) — gör absolut om relativt
+  *   3. Default /og-image.jpg
+  *
+  * Facebook/Twitter/iMessage-scrapers kräver absoluta URL:er. Lokala
+  * proxy-URL:er funkar eftersom svalla.se → /api/places/photo serveras
+  * publikt utan auth.
+  */
+ const SITE = 'https://svalla.se'
+ const googleRef = data.google_photo_refs?.[0]?.reference
+ let ogUrl: string
+ const ogWidth = 1200
+ const ogHeight = 630
+ if (googleRef) {
+   const encoded = Buffer.from(googleRef, 'utf-8').toString('base64url')
+   ogUrl = `${SITE}/api/places/photo/${encoded}?w=1200&h=630`
+ } else if (data.image_url) {
+   ogUrl = data.image_url.startsWith('http') ? data.image_url : `${SITE}${data.image_url.startsWith('/') ? '' : '/'}${data.image_url}`
+ } else {
+   ogUrl = `${SITE}/og-image.jpg`
+ }
+
  return {
  title: data.name,
  description: desc,
  keywords,
- alternates: { canonical: `https://svalla.se/upptack/${canonicalPath}` },
+ alternates: { canonical: `${SITE}/upptack/${canonicalPath}` },
  openGraph: {
  title: `${data.name} – Svalla`,
  description: desc,
- images: data.image_url ? [{ url: data.image_url, width: 1200, height: 630, alt: data.name }] : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
- url: `https://svalla.se/upptack/${canonicalPath}`,
+ images: [{ url: ogUrl, width: ogWidth, height: ogHeight, alt: data.name }],
+ url: `${SITE}/upptack/${canonicalPath}`,
  type: 'website',
  locale: 'sv_SE',
  },
@@ -61,7 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  card: 'summary_large_image',
  title: `${data.name} – Svalla`,
  description: desc,
- images: data.image_url ? [data.image_url] : ['/og-image.jpg'],
+ images: [ogUrl],
  },
  }
 }
