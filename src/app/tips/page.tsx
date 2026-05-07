@@ -70,10 +70,7 @@ export default async function TipsPage() {
                       style={{ width: '100%', height: 160, objectFit: 'cover', display: 'block' }}
                     />
                   ) : (
-                    <div style={{
-                      background: 'var(--grad-sea)',
-                      height: 120,
-                    }} />
+                    <ArticleCover category={a.category} title={a.title} />
                   )}
                   <div style={{ padding: '18px 20px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', gap: 8, marginBottom: 10, alignItems: 'center' }}>
@@ -117,6 +114,73 @@ export default async function TipsPage() {
           </div>
         )}
       </div>
+    </div>
+  )
+}
+
+// Category → gradient + SVG icon
+const CATEGORY_STYLE: Record<string, { bg: string; iconPath: string }> = {
+  'Segling': {
+    bg: 'linear-gradient(135deg, #0c3a5a 0%, #1a6090 60%, #2a8ab5 100%)',
+    iconPath: 'M12 3L4 20h16L12 3z M12 3v17 M4 14h16',
+  },
+  'Aktiviteter': {
+    bg: 'linear-gradient(135deg, #064e3b 0%, #065f46 60%, #0d9488 100%)',
+    iconPath: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  },
+  'Praktiskt': {
+    bg: 'linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 60%, #3b82f6 100%)',
+    iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2 M9 5a2 2 0 002 2h2a2 2 0 002-2 M9 5a2 2 0 012-2h2a2 2 0 012 2 M12 12h.01 M12 16h.01',
+  },
+  'Resmål': {
+    bg: 'linear-gradient(135deg, #14532d 0%, #15803d 60%, #22c55e 100%)',
+    iconPath: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+  },
+  'Familj': {
+    bg: 'linear-gradient(135deg, #78350f 0%, #b45309 60%, #f59e0b 100%)',
+    iconPath: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2 M9 7a4 4 0 100 8 4 4 0 000-8z M23 21v-2a4 4 0 00-3-3.87 M16 3.13a4 4 0 010 7.75',
+  },
+  'Mat & dryck': {
+    bg: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 60%, #ef4444 100%)',
+    iconPath: 'M18 8h1a4 4 0 010 8h-1 M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z M6 1v3 M10 1v3 M14 1v3',
+  },
+  'default': {
+    bg: 'linear-gradient(135deg, #0c2e48 0%, #175878 60%, #1e6e8a 100%)',
+    iconPath: 'M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1',
+  },
+}
+
+function ArticleCover({ category, title }: { category: string | null; title: string }) {
+  const style = CATEGORY_STYLE[category ?? ''] ?? CATEGORY_STYLE['default']
+  const label = category ?? 'Svalla'
+  return (
+    <div style={{
+      background: style.bg,
+      height: 140,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 10,
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* subtle wave pattern */}
+      <svg viewBox="0 0 320 60" preserveAspectRatio="none" style={{
+        position: 'absolute', bottom: 0, left: 0, width: '100%', height: 40, opacity: 0.18,
+      }}>
+        <path d="M0,30 C60,10 120,50 180,30 C240,10 300,50 320,30 L320,60 L0,60Z" fill="white" />
+      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth={1.5}
+        strokeLinecap="round" strokeLinejoin="round"
+        style={{ width: 38, height: 38, filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}
+      >
+        <path d={style.iconPath} />
+      </svg>
+      <span style={{
+        fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+        color: 'rgba(255,255,255,0.70)',
+      }}>{label}</span>
     </div>
   )
 }
