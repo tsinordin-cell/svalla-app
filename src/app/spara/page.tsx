@@ -648,8 +648,18 @@ export default function SparaPage() {
     const dist    = totalDistanceNM(points)
     // Nollställ hastigheterna om rutten saknar mätbar förflyttning —
     // GPS Doppler kan rapportera hög hastighet utan att koordinaterna ändras (brus).
-    const avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
-    const maxSpd  = dist >= 0.01 ? maxSpeedKnots(points) : 0
+    let avgSpd  = dist >= 0.01 ? avgSpeedKnots(points) : 0
+    let maxSpd  = dist >= 0.01 ? maxSpeedKnots(points) : 0
+    // Fallback: om GPS-enhetens noggranhet var dålig (>30m) sätts alla speedKnots=0
+    // men distans och tid är korrekt uppmätta — beräkna snittfart geometriskt istället.
+    const elapsedHours = elapsed / 3_600_000
+    if (avgSpd < 0.5 && dist >= 0.1 && elapsedHours > 0) {
+      avgSpd = parseFloat((dist / elapsedHours).toFixed(1))
+    }
+    // Toppfart: om alla per-punkt-hastigheter är 0, sätt topp = 1.5× snitt som rimlig uppskattning
+    if (maxSpd < 0.5 && avgSpd >= 0.5) {
+      maxSpd = parseFloat((avgSpd * 1.5).toFixed(1))
+    }
     const startedAt = startTimeRef.current?.toISOString() ?? new Date().toISOString()
     const endedAt   = new Date().toISOString()
 
