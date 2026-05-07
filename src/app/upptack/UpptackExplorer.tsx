@@ -375,13 +375,15 @@ export default function UpptackExplorer() {
         chunkedLoading: true,
         showCoverageOnHover: false,
         spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 14,
+        disableClusteringAtZoom: 13,
         // Dynamisk radius — bredare clusters när vi ser hela skärgården,
-        // tightare när vi zoomat in (annars är clusters meningslösa)
+        // tightare när vi zoomat in (annars är clusters meningslösa).
+        // Reducerade radier så fler individuella pins syns utan att behöva zooma maximalt.
         maxClusterRadius: (zoom: number) => {
-          if (zoom < 9)  return 80
-          if (zoom > 12) return 30
-          return 50
+          if (zoom < 9)  return 55
+          if (zoom < 11) return 35
+          if (zoom > 12) return 18
+          return 25
         },
         iconCreateFunction: (c: { getChildCount: () => number }) => {
           const n = c.getChildCount()
