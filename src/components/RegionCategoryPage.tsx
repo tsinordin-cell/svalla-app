@@ -100,7 +100,7 @@ export default async function RegionCategoryPage({
   regionKey,
   categoryKey,
 }: { regionKey: string; categoryKey: string }) {
-  const region = REGIONS[regionKey]
+  const region = REGIONS[regionKey as keyof typeof REGIONS]
   const cat = CATEGORIES[categoryKey]
   if (!region || !cat) notFound()
 
