@@ -18,7 +18,8 @@ const data = JSON.parse(fs.readFileSync(SOURCE, 'utf8'))
 
 function slugify(s) {
   return s.toLowerCase()
-    .replace(/å/g, 'a').replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/é/g, 'e')
+    // Svenska + romansk diakritik
+    .replace(/[åäáàâ]/g, 'a').replace(/[öóòô]/g, 'o').replace(/[éèêë]/g, 'e').replace(/[íìî]/g, 'i').replace(/[úùû]/g, 'u').replace(/ç/g, 'c').replace(/ñ/g, 'n')
     .replace(/&/g, 'och')
     .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
