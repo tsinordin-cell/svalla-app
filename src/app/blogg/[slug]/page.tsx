@@ -331,7 +331,7 @@ Vaxholm kallas för porten till skärgården – och det är en rättvis beskriv
 
 ## Vaxholms fästning
 
-Fästningen på Kastellholmen i Vaxholms sund är Stockholms skärgårds bäst bevarade historiska monument. Byggd under 1500-talet och förstärkt fram till 1800-talet. Idag museum – ta färjan ut till fästningen (5 minuters tur) och vandra runt i historien.
+Fästningen på Vaxholmen är Stockholms skärgårds bäst bevarade historiska monument. Ursprungligen byggd under 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende 1833–63. Idag museum – ta färjan ut till fästningen (5 minuters tur) och vandra runt i historien.
 
 Militärmuseet på fästningen berättar om skärgårdens försvar under 400 år. Öppet sommarsäsong, biljett ca 120 kr.
 

@@ -161,7 +161,7 @@ export default function AlandPage() {
  Mariehamn — Ålands huvudstad
  </h2>
  <p>
- Mariehamn är åländskt seglarliv själv. Västra hamnen erbjuder en välutrustad gästhamn med el, vatten och dusch — en naturlig rastpunkt både för seglare på väg in och ut. Här ligger museet Pommern, ett imponerande fyrmastigt segelfartyg från 1921 som du kan besöka och gå ombord på. Ålands Sjöfartsmuseum berättar historien om handel, båtbygge och äventyr på Östersjön.
+ Mariehamn är åländskt seglarliv själv. Västra hamnen erbjuder en välutrustad gästhamn med el, vatten och dusch — en naturlig rastpunkt både för seglare på väg in och ut. Här ligger museifartyget Pommern, ett imponerande fyrmastigt segelfartyg byggt 1903 i Skottland och köpt till Åland 1923 av redaren Gustaf Erikson — du kan besöka och gå ombord på det. Ålands Sjöfartsmuseum berättar historien om handel, båtbygge och äventyr på Östersjön.
  </p>
  <p>
  Torggatan löper längs vattnet och är fylld av restauranger, kaféer och små butiker — många med ett unikt finsk-svensk utbud. En klassisk åländsk kväll innebär att ankra i hamnen, ta en promenad längs vattnet och välja mellan allt från fisksoppa till moderna menyer. I Västra hamnen finns också varvet där större båtservice och mindre reparationer kan göras om din båt behöver något under resan.
