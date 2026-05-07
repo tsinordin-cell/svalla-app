@@ -14,6 +14,7 @@ import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import DepartureWidget from '@/components/DepartureWidget'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -269,6 +270,9 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </div>
  )}
+
+ {/* Hur tar jag mig hit — transit-widget */}
+ <DepartureWidget islandSlug={island.slug} islandName={island.name} />
 
  {/* Om ön */}
  <section style={{ marginBottom: 52 }}>
