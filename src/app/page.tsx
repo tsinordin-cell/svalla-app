@@ -325,6 +325,22 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .activity-card h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--sea);margin-bottom:10px}
 .activity-card p{font-size:13.5px;color:var(--muted);line-height:1.65}
 .activity-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.gallery-section{background:var(--sea-dark);padding:72px 0;overflow:hidden}
+.gallery-section .section-inner{padding:0 40px;margin-bottom:32px}
+.gallery-section .section-label{color:var(--accent)}
+.gallery-section .section-title{color:var(--white)}
+.gallery-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 40px 16px;scrollbar-width:none;cursor:grab;user-select:none}
+.gallery-scroll::-webkit-scrollbar{display:none}
+.gallery-scroll.dragging{cursor:grabbing}
+.gallery-item{flex-shrink:0;width:320px;height:220px;border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer;transition:.3s}
+.gallery-item:hover{transform:scale(1.02);box-shadow:0 16px 48px rgba(0,0,0,.45)}
+.gallery-item-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:.5s;background-color:#1a3a5e}
+.gallery-item:hover .gallery-item-bg{transform:scale(1.06)}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,25,.75) 0%,transparent 55%)}
+.gallery-item-label{position:absolute;bottom:16px;left:16px;right:16px}
+.gallery-item-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px}
+.gallery-item-sub{font-size:11.5px;color:rgba(255,255,255,.65)}
+@media(max-width:600px){.gallery-item{width:240px;height:170px}.gallery-scroll{padding:0 20px 12px}.gallery-section .section-inner{padding:0 20px}}
 /* -- Getting there -- */
 .getting-there-section{background:var(--sea-mid);color:var(--white)}
 .getting-there-section .section-title{color:var(--white)}
@@ -1056,6 +1072,57 @@ const LANDING_HTML = `
  </div>
  </div>
 </section>
+
+<section class="gallery-section" id="galleri">
+ <div class="section-inner reveal">
+  <div class="section-label">Inspiration</div>
+  <h2 class="section-title" style="font-size:clamp(24px,3vw,36px);margin-bottom:4px">Skärgårdslivet på bild</h2>
+  <p style="color:rgba(255,255,255,.55);font-size:14px;margin-top:6px">Klicka för att utforska — foton hämtade direkt från platsen</p>
+ </div>
+ <div class="gallery-scroll" id="galleryScroll">
+  <a href="/o/sandhamn" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="sandhamn" style="background-color:#1a3a5e"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Sandhamn</div><div class="gallery-item-sub">Stockholms skärgård · Ytterskärgård</div></div>
+  </a>
+  <a href="/o/uto" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="uto" style="background-color:#2a1a08"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Utö</div><div class="gallery-item-sub">Södra skärgården · Naturreservat</div></div>
+  </a>
+  <a href="/bohuslan" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="bohuslan" style="background-color:#0a1428"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Bohuslän</div><div class="gallery-item-sub">Västkusten · Smögen &amp; Fjällbacka</div></div>
+  </a>
+  <a href="/blogg/basta-badplatserna" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="badplatser" style="background-color:#0a2e3a"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Klippbad</div><div class="gallery-item-sub">Stockholms skärgård · Badplatser</div></div>
+  </a>
+  <a href="/gotland" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="gotland" style="background-color:#2a1a08"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Gotland</div><div class="gallery-item-sub">Östersjön · Visby &amp; Fårö</div></div>
+  </a>
+  <a href="/blogg/kajak-stockholms-skargard-nyborjare" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="kajak" style="background-color:#0c2218"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Kajak &amp; paddling</div><div class="gallery-item-sub">Stockholms skärgård · Nybörjarvänligt</div></div>
+  </a>
+  <a href="/aland" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="aland" style="background-color:#081a28"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Åland</div><div class="gallery-item-sub">Finland · Östersjön · Mariehamn</div></div>
+  </a>
+  <a href="/o/furusund" class="gallery-item">
+   <div class="gallery-item-bg" data-lp-photo="norra" style="background-color:#1e1038"></div>
+   <div class="gallery-item-overlay"></div>
+   <div class="gallery-item-label"><div class="gallery-item-title">Norra skärgården</div><div class="gallery-item-sub">Furusund · Arholma · Blidö</div></div>
+  </a>
+ </div>
+</section>
+
 <section class="thorkel-section" id="thorkel">
  <div class="thorkel-inner">
   <div class="reveal">
@@ -1388,7 +1455,7 @@ function toggleFaq(btn){
         var url=map[key];
         if(!url)return;
         // For dest-card-bg: set background-image
-        if(el.classList.contains('dest-card-bg')||el.classList.contains('region-card-bg')){
+        if(el.classList.contains('dest-card-bg')||el.classList.contains('region-card-bg')||el.classList.contains('gallery-item-bg')){
           el.style.backgroundImage='url('+url+')';
           el.style.backgroundSize='cover';
           el.style.backgroundPosition='center';
@@ -1403,6 +1470,16 @@ function toggleFaq(btn){
         }
       });
     });
+})();
+
+// Gallery drag-to-scroll
+(function(){
+  var s=document.getElementById('galleryScroll');
+  if(!s)return;
+  var down=false,startX,scrollLeft;
+  s.addEventListener('mousedown',function(e){down=true;s.classList.add('dragging');startX=e.pageX-s.offsetLeft;scrollLeft=s.scrollLeft});
+  document.addEventListener('mouseup',function(){down=false;s.classList.remove('dragging')});
+  s.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();var x=e.pageX-s.offsetLeft;s.scrollLeft=scrollLeft-(x-startX)*1.2});
 })();
 </script>
 </footer>
