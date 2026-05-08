@@ -882,7 +882,7 @@ const LANDING_HTML = `
 
 <section class="destinations-section" id="resmål">
  <div class="section-inner">
- <div class="section-header centered reveal">
+ <div class="section-header reveal">
  <div class="section-label">Utforska skärgården</div>
  <h2 class="section-title">Välj din del av skärgården</h2>
  <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet — varje region har sin karaktär och sina gömda skatter.</p>
@@ -1053,7 +1053,7 @@ const LANDING_HTML = `
 
 <section class="activities-section" id="aktiviteter">
  <div class="section-inner">
- <div class="section-header centered reveal">
+ <div class="section-header reveal">
  <div class="section-label">Se & Göra</div>
  <h2 class="section-title">Skärgårdslivet är mer än mat</h2>
  <p class="section-sub">Från klippbad och kajakpaddling till vandring och fiske — skärgården erbjuder aktiviteter för alla smaker och alla säsonger.</p>
@@ -1186,7 +1186,7 @@ const LANDING_HTML = `
 
 <section class="getting-there-section" id="ta-sig-dit">
  <div class="section-inner">
- <div class="section-header centered reveal">
+ <div class="section-header reveal">
  <div class="section-label">Ta sig dit</div>
  <h2 class="section-title">Kom ut — ingen båt krävs</h2>
  <p class="section-sub">Med Waxholmsbolaget och SL når du skärgårdens pärlor direkt från Stockholm — ingen egen båt behövs. Välj rätt avgångspunkt beroende på destination.</p>
@@ -1234,7 +1234,7 @@ const LANDING_HTML = `
 
 <section class="boende-section" id="boende">
  <div class="section-inner">
- <div class="section-header centered reveal">
+ <div class="section-header reveal">
  <div class="section-label">Boende</div>
  <h2 class="section-title">Övernatta i skärgården</h2>
  <p class="section-sub">Från lyxvärdshus med havsutsikt till enkla campingplatser och gästhamnar för den som sover ombord.</p>
@@ -1266,7 +1266,7 @@ const LANDING_HTML = `
 
 <section class="faq-section" id="faq">
  <div class="section-inner">
-  <div class="section-header centered reveal">
+  <div class="section-header reveal">
    <div class="section-label">Vanliga frågor</div>
    <h2 class="section-title">Allt du undrar om skärgården</h2>
    <p class="section-sub">Svar på de vanligaste frågorna — från vilken ö som passar bäst till hur du tar dig dit.</p>
@@ -1344,7 +1344,7 @@ const LANDING_HTML = `
 
 <section class="testimonial-section">
  <div class="section-inner">
- <div class="section-header centered reveal">
+ <div class="section-header reveal">
  <div class="section-label">Vad folk säger</div>
  <h2 class="section-title">Skärgårdsälskare gillar Svalla</h2>
  </div>
