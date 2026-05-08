@@ -111,7 +111,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
           border: '1px solid rgba(74, 222, 128, 0.35)',
           textTransform: 'uppercase',
         }}>
-          Ingen båt krävs
+          Nås med kollektivtrafik
         </span>
       </div>
 
@@ -130,7 +130,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
       {!loading && !error && data && data.trips.length === 0 && (
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', margin: 0 }}>
           Inga avgångar hittade just nu. Försök igen senare eller{' '}
-          <a href={`https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(data.originName)}&Destination.Name=${encodeURIComponent(data.destName)}`}
+          <a href="https://sl.se/sv/reseplaneraren"
              target="_blank" rel="noopener noreferrer"
              style={{ color: '#ffd28a', textDecoration: 'underline' }}>
             öppna SL-reseplaneraren
@@ -167,7 +167,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
               Från {data.originName} · Källa: Trafiklab
             </span>
             <a
-              href={`https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(data.originName)}&Destination.Name=${encodeURIComponent(data.destName)}`}
+              href="https://sl.se/sv/reseplaneraren"
               target="_blank" rel="noopener noreferrer"
               style={{
                 fontSize: 12, fontWeight: 700, color: '#ffd28a',
@@ -186,7 +186,7 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
 function TripRow({ trip, originName, destName }: { trip: TripSummary; originName: string; destName: string }) {
   const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'
   const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))
-  const tripUrl = `https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(originName)}&Destination.Name=${encodeURIComponent(destName)}&Date=${trip.startDate}&Time=${trip.startTime}`
+  const tripUrl = `https://sl.se/sv/reseplaneraren`
   const dur = formatDuration(trip.durationMin)
 
   return (

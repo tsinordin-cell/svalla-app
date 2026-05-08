@@ -168,6 +168,7 @@ export default function OarIndexPage() {
           padding: '28px 32px',
           boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
           marginBottom: 48,
+          position: 'relative', zIndex: 2,
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
           gap: 24,

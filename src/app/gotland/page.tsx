@@ -142,7 +142,31 @@ export default function GotlandPage() {
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Passagen till Gotland — vad du behöver veta
+ Ta dig till Gotland — utan eller med egen båt
+ </h2>
+ <p>
+ Gotland nås på tre sätt: med <strong>Destination Gotland</strong> (färja), med <strong>flyg</strong>, eller med <strong>segelbåt</strong>. Väljer du din egen båt hänvisar vi till passageguiden längre ner — men för dig som åker utan stäv är det här du börjar.
+ </p>
+
+ <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+ Destination Gotland — färjan
+ </h3>
+ <p>
+ <strong>Destination Gotland</strong> kör färja året runt. Snabbfärjan gör Nynäshamn–Visby på ca 3 h, normalfärjan på 5–6 h. Under högsäsong (juni–aug) kör de även från Oskarshamn. Boka tidigt — sommartid är populära avgångar slutsålda veckor i förväg.
+ </p>
+ <p>
+ Ta pendeltåg (linje 36) till <strong>Nynäshamn</strong> från Stockholm Central, ca 1 h. Därifrån är det gång till färjeterminalen. Biljetter bokas på <a href="https://www.destinationgotland.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>destinationgotland.se</a>.
+ </p>
+
+ <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+ Flyg till Visby
+ </h3>
+ <p>
+ <strong>Amapola Flyg</strong> och andra operatörer flyger Stockholm Arlanda–Visby flygplats, ca 45 min flygtid. Visby flygplats ligger 3 km norr om Visby centrum — taxi eller lokal buss tar dig in. Flyg kan vara ett alternativ under lågsäsong eller om du vill spara tid, men är generellt dyrare och ger en annan upplevelse än färjan.
+ </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
+ Passagen till Gotland — med egen båt
  </h2>
  <p>
  Från Sandhamn eller Landsort tar passagen typiskt <strong>24–36 timmar</strong> och är cirka <strong>120 sjömil</strong>. Från Öland är vägen kortare. Vädern i Östersjön kan vara opålitligt — ofta svag och variabel vind, ibland helt lugnt. Planera med MeteoGroup eller SMHI någon dag innan du går ut. Många erfarna seglare bygger in en marginal på passagen och räknar med att det kan dra längre än optimistiska beräkningar antyder.
