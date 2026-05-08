@@ -1200,7 +1200,7 @@ export const ISLANDS: Island[] = [
       'Fejan nås med skärgårdsbåt från Räfsnäs, eller med egen båt — gästhamnen är ett populärt stopp för seglare på Furusundsleden.',
     ],
     facts: {
-      travel_time: 'Nås med privat båt — ca 1–2 h från Furusund beroende på startpunkt',
+      travel_time: 'Nås med skärgårdsbåt (Waxholmsbolaget) från Räfsnäs, ca 30 min — eller med privat båt från Furusund',
       character: 'Orört, naturreservat, vitt klipplandskap',
       season: 'Juni–Augusti',
       best_for: 'Seglare, naturälskare, snorkling, fotografer',

@@ -98,8 +98,8 @@ Havet kan vara opålitligt, även i skärgården. Några grundregler:
 ### Fjäderholmarna – Nacka
 En av de enklaste och kortaste turerna. Paddla ut från Nacka strand och ha Fjäderholmarna som mål. Skyddad vattenväg, fin ö att ta lunchrast på.
 
-### Strömma – Blidö
-Norra Upplands skärgård runt Blidö är idealt för nybörjare. Lugnt vatten, korta sträckor och vackra naturhamnar.
+### Furusund – Blidö
+Norra Stockholms skärgård (Roslagen) runt Blidö är idealt för nybörjare. Lugnt vatten, korta sträckor och vackra naturhamnar. Furusund nås enkelt med bil eller buss från Norrtälje.
 
 ### Dalarö – Ornö
 Söder om Stockholm, med paddling längs Ornös västra sida. Kuperat, naturskönt och med möjlighet att övernatta i naturhamnarna.
@@ -364,7 +364,7 @@ Vaxholm är bra som dagstur men ännu bättre som övernattning. Waxholms Hotell
  emoji: '🚲',
  tags: ['Utö', 'Cykling', 'Havsbastu'],
  content: `
-I sydvästra Stockholms skärgård, ca 60 km från Stockholm, ligger Utö. Det är en av skärgårdens mest kompletta öar – historia, natur, mat, aktiviteter och infrastruktur som gör ett längre besök möjligt utan att sakna fastlandets bekvämligheter.
+I södra Stockholms skärgård (Haninge kommun, cirka 16 km nordost om Nynäshamn) ligger Utö. Det är en av skärgårdens mest kompletta öar – historia, natur, mat, aktiviteter och infrastruktur som gör ett längre besök möjligt utan att sakna fastlandets bekvämligheter.
 
 ## Historien under marken
 
@@ -468,17 +468,17 @@ Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplev
  content: `
 Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Alla är gratis tack vare allemansrätten. Här är våra tolv favoriter.
 
-## 1. Ängsholmen, Ornö
-Sandstrand i sydvästra skärgården med kristallklart vatten. En av de få riktiga sandstränderna i stockholmsskärgård. Nås med båt eller kajak från Ornö.
+## 1. Trouville, Sandön (Sandhamn)
+Sandhamns mest kända badstrand på södra sidan av Sandön — vit sandstrand med fin sand, cirka 15–20 min promenad från hamnen genom skogen. Klassisk skärgårdsbadplats.
 
 ## 2. Möja Hälludden
 Klippbad på Möjas östra sida. Lite promenad från bryggan men med en av öns bästa utsikter. Solsäker plats från tidig morgon.
 
-## 3. Sandhamns Sandpiper
-Sandstrand strax utanför Sandhamn med friare läge mot havet. Ta kayak eller promenera från hamnen. Klart, öppet vatten med lite mer våg än de skyddade vikarna.
+## 3. Stora Sand, Utö
+Stora Sand är Utös största sandstrand — lång och bred, väl lämpad för barn med gradvis djupare vatten. Ligger inom skjutfältet, så kontrollera tillgänglighet hos Utö Turistbyrå innan du åker (öppen för allmänheten främst i juli).
 
-## 4. Utö Sandvik
-Lång sandstrand på Utös sydöstra del. Grundt vatten – bra för barn. Vacker solnedgångssida.
+## 4. Storskär, Möja-området
+Klippbad ute i ytterskärgården öster om Möja. Klart, öppet vatten — bäst med egen båt.
 
 ## 5. Fejan, naturreservat
 En av skärgårdens finaste klippöar norr om Furusund. Klar vatten, vita klippor och en naturhamn som är lika fin att bada i som att ankra i.
@@ -493,7 +493,7 @@ Lättillgängligt klippbad med buss och promenad från Gustavsberg. Bra för Sto
 Gällnö är bilfri och rofylld. Björkvik på öns västra sida har klippor och fin vik. Perfekt kombination med en cykeltur på ön.
 
 ## 9. Norrpada
-Litet skär ute i ytterskärgården söder om Furusund. Bäst nått med fritidsbåt. Renaste vattnet av alla på listan.
+Ögrupp i ytterskärgården nordost om Möja, kända för rena vatten och dramatiska klippor. Bäst nådd med fritidsbåt — inga reguljära färjor går dit.
 
 ## 10. Huvudskär
 Ytterst i ytterskärgården. Mer äventyr än bekvämt bad – men att bada här med öppen Östersjö runtomkring är något alldeles speciellt.
@@ -789,7 +789,7 @@ Inte alla öar är lika barnvänliga. Prioritera:
 - **Fjäderholmarna** – kort resa, tryggt läge, akvarium och bra mat
 - **Vaxholm** – stad med service, fästning att utforska, gott om lekplatser
 - **Möja** – bilfri ö, lugnt tempo, relativt plan för cyklar
-- **Utö** – sandstrand vid Utö Sandvik, grundt vatten bra för barn
+- **Utö** – sandstrand vid Stora Sand på Utö, grundt vatten bra för barn
 
 ## 2. Planera vädret noga
 
@@ -802,7 +802,7 @@ Barn under 12 år bär flytväst när de är på däck. Inte vid kajen. Inte "n�
 ## 4. Välj rätta badplatser
 
 Klippbad med djupt vatten direkt utanför kan vara krävande för små barn. Välj:
-- Utö Sandvik (sandstrand, grundt)
+- Stora Sand på Utö (sandstrand, kontrollera tillgänglighet då området ligger inom skjutfält)
 - Dalarö (klapperstensstrand, lättillgängligt)
 - Stadsfjärden runt Vaxholm (lugnt, tryggt)
 
@@ -841,13 +841,13 @@ Det finns inga restauranger på Svenska Högarna. Ingen butik. Inget vandrarhem.
 
 ## Vad är Svenska Högarna?
 
-Svenska Högarna är en liten ögrupp ytterst i Stockholms skärgård, ca 85 km från Stockholm. Naturreservat sedan 1990-talet, med ett gammalt lotskomp och en fyrvaktarbostad som idag används som naturum och enkel övernattning.
+Svenska Högarna är en liten ögrupp ytterst i Stockholms skärgård, cirka 35 km öst om Möja. Naturreservat sedan 1976 (utvidgades 2020 till ett av Sveriges största marina reservat på cirka 61 000 hektar), med ett gammalt lotssamhälle och fyrvaktarbostäder som idag används som naturum och för enkel övernattning.
 
 Ön nås normalt på ca 4–5 timmar med segelbåt från Stockholm, eller med snabbare motorbåt. Det finns ingen reguljärbåt dit.
 
 ## Fyren och historien
 
-Fyren Svenska Björn ligger på en klippa strax söder om Högarna – ett av de vackraste fyrscenarion i hela Östersjön. Lotsstationen på Högarna var bemannad i över hundra år och lotsade in Stockholmstrafiken i säkerhet. Idag är det naturum och förklarar lotshistoriens roll i skärgårdens sjöfart.
+Svenska Högarna har en fyr från mitten av 1800-talet och är en gammal lots- och fiskeplats. Lotsverksamheten har lång historia på platsen och de bevarade byggnaderna berättar om livet i ytterskärgården. Idag fungerar delar av bebyggelsen som naturum.
 
 ## Upplevelsen
 
@@ -876,24 +876,24 @@ Klipporna är urgamla. Vädret kan vara skoningslöst. Naturen är orörd. Det �
  content: `
 Grillning i naturhamnen är en av skärgårdens finaste traditioner. Men reglerna för eldning är inte alltid uppenbara – och de varierar med väder, plats och tid på året. Här är vad du behöver veta.
 
-## Alemansrätten och eldning
+## Allemansrätten och eldning
 
 Allemansrätten ger rätt att vistas i naturen – men inte automatisk rätt att elda. Eldning kräver att det är säkert och att du inte skadar marken eller orsakar brandrisk.
 
 **Grundreglerna:**
-- Elda aldrig på klippor – berget kan spricka av värmen (på djupet)
-- Använd befintliga eldstäder där de finns
-- Elda inte under eldningsförbud (utfärdat av länsstyrelsen vid torrt väder)
+- Elda aldrig direkt på berghällar/klippor — hettan får berget att spjälkas och skadan är permanent
+- Använd befintliga eldstäder/grillplatser där de finns
+- Elda inte under eldningsförbud (utfärdat av länsstyrelsen eller kommunen)
 - Lämna aldrig en eld utan tillsyn
-- Vattna ordentligt och kolla att det är kallt innan du lämnar
+- Vattna ordentligt och kontrollera att asken är helt kall innan du lämnar platsen
 
 ## Eldningsförbud
 
-Under torra sommrar utfärdar länsstyrelserna eldningsförbud. Kontrollera alltid:
+Under torra sommrar utfärdar länsstyrelser och kommuner eldningsförbud. Kontrollera alltid:
 - **SMHI:s brandriskprognos** på smhi.se
-- **Länsstyrelsens hemsida** för aktuellt eldningsförbud i ditt område
+- **Krisinformation.se** och din **länsstyrelses hemsida** för aktuellt eldningsförbud
 
-Eldningsförbud gäller inte för grillar med ben som inte vidrör marken – men använd portabelt grillkol, inte ved.
+Vid &quot;ordinärt&quot; eldningsförbud är ofta grillning på medhavd grill med ben tillåtet, men det varierar mellan kommuner och beroende på förbudets nivå. Vid totalt eldningsförbud är all öppen eld förbjuden — också grill. Kolla alltid de exakta reglerna för platsen där du befinner dig.
 
 ## Portabelt alternativ
 
@@ -911,7 +911,7 @@ Satsa på en bra engångsgrill eller bärbar kolgrill med ben. Lätt att ta med,
 
 ## Lämna inget spår
 
-Tysk bort aske, ta bort kolrester och lämna platsen i bättre skick än du hittade den. Det är inte bara ett regelverk – det är respekt för platsen och de som kommer efter dig.
+Sopa bort aska, plocka upp kolrester och lämna platsen i bättre skick än du hittade den. Det är inte bara regler — det är respekt för platsen och de som kommer efter dig.
  `,
  },
 

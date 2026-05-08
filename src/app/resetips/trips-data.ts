@@ -101,14 +101,14 @@ export const TRIPS: Trip[] = [
     season: 'Juni–Augusti',
     difficulty: 'lätt',
     featured: true,
-    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten tar dig dit på 2,5 timmar — resan är en del av upplevelsen. Väl framme väntar Trouville-stranden, KSSS-hamnen och Sandhamns Värdshus.',
+    description: 'Sandhamn är målet om du vill känna den riktiga ytterskärgården. Cinderellabåten från Strandvägen tar dig dit på cirka 2,5 timmar — resan är en del av upplevelsen. Väl framme väntar Trouville-stranden, KSSS-hamnen och Sandhamns Värdshus.',
     stops: [
       {
-        name: 'Cinderellabåten från Strömkajen',
+        name: 'Cinderellabåten från Strandvägen',
         type: 'transport',
-        desc: '2,5 timmar med stopp längs vägen. Servering ombord och magnifik utsikt.',
+        desc: 'Avgår från Strandvägen kaj 14 (Nybroplan). Cirka 2,5 timmar med stopp längs vägen. Servering ombord och magnifik utsikt.',
         tip: 'Boka biljett i förväg under högsäsong — sittplatser på däck tar slut tidigt.',
-        bookingUrl: 'https://cinderellabatarna.com',
+        bookingUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
       },
       {
         name: 'KSSS-hamnen',
@@ -130,7 +130,7 @@ export const TRIPS: Trip[] = [
       },
     ],
     resources: [
-      { label: 'Cinderellabåtarna — tidtabell och biljetter', url: 'https://cinderellabatarna.com' },
+      { label: 'Cinderellabåtarna — tidtabell och biljetter (Strömma)', url: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/' },
       { label: 'Sandhamns Värdshus', url: 'https://www.sandhamn.com' },
     ],
     islandSlugs: ['sandhamn'],
@@ -152,8 +152,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Färjan till Utö',
         type: 'transport',
-        desc: 'Avgår från Årsta havsbad (45 min) eller Nynäshamn (2 tim).',
-        tip: 'Från Stockholm: pendeltåg till Nynäshamn, sedan Waxholmsbolagets båt.',
+        desc: 'Avgår från Årsta brygga (~40 min med snabbåt) eller Nynäshamn (~1 tim).',
+        tip: 'Från Stockholm: pendeltåg till Nynäshamn, sedan Waxholmsbolagets båt — eller bil till Årsta brygga.',
         bookingUrl: 'https://waxholmsbolaget.se/tidtabeller',
       },
       {
@@ -431,10 +431,10 @@ export const TRIPS: Trip[] = [
         bookingUrl: 'https://www.arholmabattrafik.se',
       },
       {
-        name: 'Arholma fyr',
+        name: 'Arholma båk',
         type: 'kultur',
-        desc: 'En av de äldsta fyrarna i Roslagen, byggd 1769. Klättra upp för havsutsikt.',
-        tip: 'Öppen för besökare under sommaren utan föranmälan, men verifiera via lokala turistbyråer.',
+        desc: 'En av Roslagens mest kända sjömärken — en båk (inte fyr) byggd 1768 av Pehr Ridderstad. 16 meter hög och har bland annat tjänat som optisk telegraf. Klättra upp för havsutsikt.',
+        tip: 'Öppen för besökare under sommaren — verifiera tider via lokala turistbyråer.',
       },
       {
         name: 'Klippbad på norra udden',
