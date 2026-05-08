@@ -10,7 +10,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // cachas 1h i Vercel edge CDN
 
 const PLACES_BASE = 'https://places.googleapis.com/v1'
 const KEY = process.env.GOOGLE_PLACES_API_KEY
