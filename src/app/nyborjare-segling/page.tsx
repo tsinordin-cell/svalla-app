@@ -90,12 +90,12 @@ export default function NyborjareSeglingPage() {
  {
  '@type': 'Question',
  name: 'Kan man segla på vintern i Sverige?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja, många seglare seglar året runt. Mälaren kan frysa helt (januari–mars), men kusten fryser sällan helt. Vintersegling kräver extra försiktighet, bättre väderkunskap och rätt utrustning. Börja inte med vintersegling som nybörjare!' },
+ acceptedAnswer: { '@type': 'Answer', text: 'En del seglare är ute året runt, men det är inget för nybörjare. Mälaren och inre skärgårdsvikar kan frysa januari–mars, medan ytterskärgård och västkust sällan fryser helt. Vintersegling kräver bättre väderkunskap och rätt utrustning.' },
  },
  {
  '@type': 'Question',
  name: 'Vad kostar det att köpa sin första segelbåt?',
- acceptedAnswer: { '@type': 'Answer', text: 'En använd klassiker som H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En bättre folkbåt kostar 80 000–200 000 kr. Budget även för försäkring (500–1 500 kr/år), underhåll (2 000–5 000 kr/år) och hamnplats (3 000–8 000 kr/år).' },
+ acceptedAnswer: { '@type': 'Answer', text: 'En begagnad H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En välhållen Folkbåt eller Maxi 77 kostar ofta 80 000–200 000 kr. Räkna även med försäkring (~500–2 000 kr/år), underhåll (~2 000–8 000 kr/år) och hamnplats (~3 000–10 000 kr/år beroende på ort).' },
  },
  ],
  }
@@ -144,21 +144,18 @@ export default function NyborjareSeglingPage() {
  Vilken kurs ska man ta?
  </h2>
  <p>
- I Sverige är den vanligaste vägen att börja genom <strong>Seglarförbundets körkort</strong>, som delas in i tre nivåer:
+ I Sverige är vanliga vägar in i seglingen <strong>Förarintyg och Kustskepparintyg</strong> (utfärdas av NFB / Nämnden för båtlivsutbildning), <strong>SSF-utbildningar</strong> (Svenska Seglarförbundet) och kurser hos lokala segelsällskap. Stegen kan se ut så här:
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- <li><strong>Nivå 1 (Grunder):</strong> Grundläggande segelkunskap, fyrlingen, säkerhet. Ca 2–3 dagar. Kostnad cirka 2000–3500 kr.</li>
- <li><strong>Nivå 2 (Navigering):</strong> Kartläsning, kompass, väder, längre seglingar. Ca 4–5 dagar. Kostnad cirka 3000–5000 kr.</li>
- <li><strong>Nivå 3 (Expert):</strong> Avancerad navigering, nödsituationer, offshore-grunderna. Ca 5–7 dagar. Kostnad cirka 4000–8000 kr.</li>
+ <li><strong>Grundläggande (förarintyg-nivå):</strong> Knopar, sjövägsregler, säkerhet, grundläggande navigation. Cirka 2–3 dagar eller några kvällar. Kostnad cirka 2 000–4 000 kr.</li>
+ <li><strong>Kustskepparintyg:</strong> Kustnavigation, terrestrisk navigation, väder, kollisionsregler. Bredare kurs, cirka 4–6 dagar. Kostnad cirka 3 000–6 000 kr.</li>
+ <li><strong>RYA Day Skipper:</strong> Internationell standard som ofta krävs av charterbolag. Praktisk del 5 dagar + teoridel. Kostnad cirka 8 000–15 000 kr.</li>
  </ul>
  <p>
- <strong>RYA Day Skipper</strong> är en internationell standard som erkänns världen över och krävs ofta av charterbolag. Den motsvarar ungefär Nivå 2–3 och kostar 4000–7000 kr.
+ <strong>Lokala segelsällskap</strong> erbjuder ofta kurser till lägre pris (ibland 1 500–3 000 kr) och är fantastiska för att träffa andra nybörjare och få mentorskap. <strong>KSSS</strong> (Kungliga Svenska Segelsällskapet) är Sveriges största klubb med stor utbildningsverksamhet. Klassiska klubbar finns i hela landet.
  </p>
  <p>
- <strong>Lokala seglarsällskap</strong> erbjuder ofta mer överkomliga kurser (ibland 1000–2000 kr) och är fantastiska för att träffa andra nybörjare och få mentorskap. KSSS (Kungliga Svenska Seglarförbundet) har sällskap över hela Sverige.
- </p>
- <p>
- <em>Tips:</em> Börja med Nivå 1 eller ett sällskapskurs för att se om segling är för dig, innan du investerar i högre nivåer.
+ <em>Tips:</em> Börja med en grundkurs eller en klubbkurs för att se om segling är för dig, innan du investerar i högre nivåer.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -171,19 +168,19 @@ export default function NyborjareSeglingPage() {
  Klassiska nybörjarbåtar
  </h3>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- <li><strong>Folkbåten (27 fot):</strong> Kraftig, stabil och väldigt lätt att seglra. Byggd för svenska skärgården. Mycke att välja på på andrahandsmarknaden.</li>
- <li><strong>H-båten (22 fot):</strong> Mindre än folkbåten, men samma stabilitet och elegans. Perfekt för två–fyra personer.</li>
- <li><strong>Albin 25:</strong> En klassisk plastbåt från 1960-talet. Säker, lätt att seglra och finns överallt i Sverige.</li>
- <li><strong>Macwester Silverado:</strong> Praktisk familjebåt med gott fribord och låga underhållskostnader.</li>
+ <li><strong>Nordisk Folkbåt (7,64 m / ca 25 fot):</strong> Tidlös klassiker, ritad 1942 av Tord Sundén. Stabil, vacker att segla och stort utbud på andrahandsmarknaden.</li>
+ <li><strong>H-båt (8,25 m / ca 27 fot):</strong> Treminutsbåt ritad 1967 av Hans Groop, med storsegel, fock och spinnaker. Mycket populär i Sverige och Finland.</li>
+ <li><strong>Albin 25:</strong> Klassisk plastbåt från tidigt 1970-tal. Säker, lätt att segla och finns gott om dem i Sverige.</li>
+ <li><strong>Maxi 77 / Maxi 87:</strong> Praktiska familjebåtar från Pelle Petterson, hyfsat utrymme och bra prislapp på begagnatmarknaden.</li>
  </ul>
  <p>
- <em>Undvik:</em> Mycket små båtar (under 6 meter) — de kan vara knepiga i vind. Mycket stora båtar (över 30 meter) — de är dyra och tar tid att bemästra.
+ <em>Undvik som första båt:</em> Mycket små båtar under cirka 6 meter kan kännas pillriga i vind, och båtar över 12 meter (40 fot) är ofta dyra i drift och kräver mer rutin för att hantera.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Charterbåt som övningsväg
  </h3>
  <p>
- Du behöver inte köpa direkt. Många charterbolag runt Sverige erbjuder båtar för veckosigling från cirka 8000–15000 kr/vecka (låg säsong) till 20000–40000 kr/vecka (högsäsong). Det är perfekt för att prova innan du köper. Kraven är vanligen ett bevis (t.ex. RYA Day Skipper) eller att du bokar med en erfaren skeppare.
+ Du behöver inte köpa direkt. Många charterbolag runt Sverige erbjuder båtar för veckosegling från cirka 8 000–15 000 kr/vecka (lågsäsong) till 20 000–40 000 kr/vecka (högsäsong). Perfekt för att prova innan du köper. Kraven är vanligen ett intyg (t.ex. förarintyg/Day Skipper) eller att du bokar med en erfaren skeppare ombord.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -193,28 +190,28 @@ export default function NyborjareSeglingPage() {
  Säkerhet är aldrig förhandlingsbar på vattnet. Här är det viktigaste:
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- <li><strong>Flytväst:</strong> Aldrig, aldrig utan! För barn är det lagligt krav. För vuxna är det sunt förnuft.</li>
- <li><strong>Föranmäl avreseplan:</strong> Berätta för någon var du seglar och när du förväntas tillbaka. Uppdatera vid ändringar.</li>
- <li><strong>VHF-radio:</strong> En håldbar VHF-radio är helt väsentlig för kommunikation och nödsituationer. Lär dig kanaler (16 är nödskanal).</li>
- <li><strong>EPIRB eller personlig nödbåk:</strong> En möjlig livräddare om något går väldigt fel.</li>
- <li><strong>Första hjälpen-kit:</strong> En väl utrustad förbandsväska ombord.</li>
- <li><strong>Sjövägen regler:</strong> Lär dig inte bara segling — lär dig också mötes- och förbifartsreglerna (inte lika enkelt som det låter).</li>
+ <li><strong>Flytväst:</strong> Bär alltid. Det finns inget allmänt lagkrav på flytväst för vuxna privat, men det är sunt förnuft — och för många charterbåtar och kappseglingar är det krav.</li>
+ <li><strong>Färdplan:</strong> Berätta för någon iland var du seglar, när du planerar att vara tillbaka och hur de når dig. Uppdatera vid ändringar.</li>
+ <li><strong>VHF-radio:</strong> En hållbar VHF-radio är väsentlig för kommunikation och nödsituationer. Lär dig kanalerna — kanal 16 är nödkanal.</li>
+ <li><strong>EPIRB eller PLB:</strong> Personlig nödsändare som via satellit larmar sjöräddningen om olyckan är framme.</li>
+ <li><strong>Första hjälpen-kit:</strong> En välutrustad förbandsväska ombord.</li>
+ <li><strong>Sjövägsreglerna:</strong> Lär dig inte bara segling — lär dig också väjningsreglerna (kollisionsreglerna). De är logiska, men måste sitta.</li>
  </ul>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
  Seglarbevis och certifikat
  </h2>
  <p>
- I Sverige finns <strong>inget lagkrav på körkort</strong> för att seglra privat på kusten. Du kan läggit ut i båt när som helst, givet att det är din egen båt eller du har tillåtelse.
+ I Sverige finns <strong>inget allmänt lagkrav på förarbevis</strong> för fritidsbåt under 12 meter (krav finns dock på t.ex. behörighet för båtar över vissa storlekar och hastigheter, och det finns ett förarbevis-krav för vissa vattenskotrar). Du kan lägga ut i din egen båt utan kurs.
  </p>
  <p>
- Men flera importantes anledningar till att ta ett bevis:
+ Men det finns flera viktiga anledningar att ta ett intyg:
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- <li><strong>Charterbolag kräver det:</strong> De flesta kräver minst ett bevis (RYA Day Skipper eller motsvarande) för att hyra en båt utan erfaren skeppare ombord.</li>
- <li><strong>Internationell giltighet:</strong> RYA och KSSS-bevis erkänns världen över.</li>
- <li><strong>Säkerhet och kunskap:</strong> En kurs ger dig kunskap du aldrig skulle ha lärt dig själv — från nödsituationer till navigering.</li>
- <li><strong>Försäkring:</strong> Vissa försäkringar kräver ett godkänt segelbevis för fullt skydd.</li>
+ <li><strong>Charterbolag kräver det:</strong> De flesta kräver minst förarintyg/Day Skipper för att hyra båt utan erfaren skeppare ombord.</li>
+ <li><strong>Internationell giltighet:</strong> RYA-certifikat och Kustskepparintyg erkänns runt om i världen.</li>
+ <li><strong>Säkerhet och kunskap:</strong> En kurs ger dig kunskap du sällan plockar upp på egen hand — från nödhantering till navigation.</li>
+ <li><strong>Försäkring:</strong> Vissa försäkringar premierar eller kräver godkänt intyg för fullt skydd.</li>
  </ul>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -239,13 +236,13 @@ export default function NyborjareSeglingPage() {
  Lugna delar av Bohuslän
  </h3>
  <p>
- Från Göteborg och norrut. Grotön området och Lysekil-området är klassiska målpunkter med många hamnar och gott mat/dryck.
+ Från Göteborg och norrut. Marstrand, Tjörn och Lysekil-området är klassiska målpunkter med gott om hamnar och bra service. Notera att Bohuslän blir snabbt mer öppet ju längre ut du kommer — börja innanför öarna.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vänern
  </h3>
  <p>
- Europas största insjö. Lugnt vatten och perfekt för närsegling. Mindre trafikering än Mälaren.
+ EU:s största insjö (och Europas tredje största). Stora ytor men relativt skyddat jämfört med Östersjön. Bra för längre närsegling. Vädret kan dock byta snabbt — respektera prognoserna.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -270,14 +267,14 @@ export default function NyborjareSeglingPage() {
  Kan man segla på vintern i Sverige?
  </h3>
  <p>
- Ja, många seglare seglar året runt. Mälaren kan frysa helt på sommaren (ofta januari–mars), men kusten fryser sällan helt. Vintersegling kräver extra försiktighet, bättre väderkunskap och rätt utrustning (värmare overaller, bättre grepp om rodret). Börja inte med vintersegling som nybörjare!
+ Ja, en del seglare är ute året runt — men det är inget för nybörjare. Mälaren och inre skärgårdsvikar kan frysa under vintern (typiskt januari–mars), medan ytterskärgården och västkusten sällan fryser helt. Vintersegling kräver bättre väderkunskap, rätt klädsel och fungerande utrustning som tål kyla. Börja inte med vintersegling som nybörjare.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vad kostar det att köpa sin första segelbåt?
  </h3>
  <p>
- En använd klassiker som H-båt eller Albin 25 kostar typiskt 30000–100000 kr. En bättre folkbåt kostar 80000–200000 kr. Bilare klassiker finns från 10000–20000 kr, men kolla läget noggrant (rostskador, läckage) innan köp. Budget även för försäkring (~500–1500 kr/år), underhåll (~2000–5000 kr/år) och hamnplats (~3000–8000 kr/år).
+ En begagnad klassiker som H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En välhållen Folkbåt eller Maxi 77 kostar ofta 80 000–200 000 kr. Billigare båtar finns från 10 000–20 000 kr men kräver att du noggrant kontrollerar skick (köl, skrov, rigg, motor) före köp. Räkna även med försäkring (~500–2 000 kr/år), underhåll (~2 000–8 000 kr/år) och hamnplats (~3 000–10 000 kr/år beroende på ort).
  </p>
  </>
  }

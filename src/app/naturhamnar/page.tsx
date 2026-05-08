@@ -27,43 +27,43 @@ export const metadata: Metadata = {
 const ITEMS: LandingItem[] = [
   {
     icon: '',
-    title: 'Svängsta',
-    description: 'Klassisk naturhamn på Möja. Skyddad vika med bra djup och mysiga ankringskvällar. Helt utan avgifter — ankra och ta minsta fram.',
+    title: 'Möja',
+    description: 'Mellanskärgårdens klassiska seglarö. Flera skyddade vikar runt ön — Berg, Ramsmora och Långviksskär bjuder på lugna ankringskvällar med Bergs Glass och bröd-shoppen som bonus.',
     href: '/platser?kategori=naturhamn',
     meta: 'Möja, mellanskärgården',
   },
   {
     icon: '🏔️',
     title: 'Bullerö',
-    description: 'Södra skärgårdens pärla — naturreservat med sluttande klippor och öppen vy över Östersjön. Bäst för erfarna seglare med god väderprognos.',
+    description: 'Yttre skärgårdens pärla — naturreservat sedan 1967 i Nämdö-området, med jaktstuga byggd av Bruno Liljefors 1909. Klippor och öppen vy mot havet. För erfarna seglare med god väderprognos.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Södra skärgården',
+    meta: 'Yttre skärgården',
   },
   {
     icon: '',
     title: 'Ålö',
-    description: 'Norra skärgårdens hemlighet — lugn naturhamn med tallskog och enkla förtöjningsplatser. Perfekt för seglare som söker avskildhet nära Stockholm.',
+    description: 'Naturreservat granne med Utö i södra skärgården. Tallskog, vandringsleder och fina ankringsvikar. Brobunden till Utö, vilket gör det enkelt att kombinera.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Norra skärgården',
+    meta: 'Södra skärgården',
   },
   {
     icon: '🪨',
     title: 'Björkskär',
-    description: 'Liten naturhamn i Möja-området med granit och buskmark. Populär bland seglare som vill komma bort från vägen utan att åka långt.',
+    description: 'Klassisk ankringsplats i ytterskärgården öster om Möja-/Sandhamnsområdet. Granit och låg buskmark — populärt för seglare som söker mer öppen havskänsla.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Möja-området',
+    meta: 'Yttre skärgården',
   },
   {
     icon: '💧',
     title: 'Svartsö',
-    description: 'Lugn och central naturhamn med kort väg från Stockholm. Bra skydd från väst och väl dold vika — lokal favoritplats.',
+    description: 'Lugn naturhamn-rik ö i mellanskärgården. Bra skydd från flera vindkvartal i de många mindre vikarna. Kort till samhälle med butik, lanthandel och färjeläge.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Centrala skärgården',
+    meta: 'Mellanskärgården',
   },
   {
     icon: '🌳',
-    title: 'Svartnö',
-    description: 'Odlad miljö med gamla stenmurar och kulturväxter. Naturhamn med historisk prägel — helt lugn och liten ankringsplats.',
+    title: 'Finnhamn',
+    description: 'STF-vandrarhem på en av mellanskärgårdens vackraste öar. Naturreservat med flera skyddade ankringsplatser runt ön — t.ex. Storkliven och vikarna mot Idholmen.',
     href: '/platser?kategori=naturhamn',
     meta: 'Mellanskärgården',
   },
@@ -87,12 +87,12 @@ export default function NaturhamnarPage() {
       {
         '@type': 'Question',
         name: 'Vilka naturhamnar är bäst för nybörjare i Stockholms skärgård?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Nämdö, Svartsö och Ålö är ideala för första ankringen. De ligger nära Stockholm, har lugnt vatten skyddat från väst, djup mellan 3–5 meter och muddig eller sandig botten — perfekt för att lära sig ankra.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Möja, Svartsö och inre Nämdö-området är fina för första ankringen. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära.' },
       },
       {
         '@type': 'Question',
-        name: 'Hur djup måste en naturhamn vara?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Minst 3 meter vid lågvattnet — gärna 4–5 meter för stabilitet. I Stockholms skärgård varierar vattennivån med 0,4–0,7 meter. Sjunka ett stickprov och testa botten med en sond innan du ankrar.' },
+        name: 'Hur djup ska en naturhamn vara?',
+        acceptedAnswer: { '@type': 'Answer', text: 'För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ankrar. Östersjön har ingen reell tidvattendynamik — vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter.' },
       },
     ],
   }
@@ -123,16 +123,16 @@ export default function NaturhamnarPage() {
       intro={
         <>
           <p>
-            En naturhamn är en ankringsplats utan gästhamns infrastruktur — ingen strömbox, ingen reception, ingen Swish-betalning. Istället får du <strong>gratis förtöjning, skyddade vikar och allemansrätten</strong> på din sida. Det är seglingslivet i sin renaste form.
+            En naturhamn är en ankringsplats utan gästhamnens infrastruktur — ingen strömbox, ingen reception, inget pris att betala. Istället får du <strong>gratis förtöjning, skyddade vikar och allemansrätten</strong> på din sida. Det är seglingslivet i sin renaste form.
           </p>
           <p>
-            Skillnaden mellan naturhamn och gästhamn är enkel men avgörande. Gästhamnen erbjuder service, men också köer, höga avgifter och sommartrafik. Naturhamnar erbjuder tystnad, originalitet och frihet — du ankrar där du vill, på ditt sätt, utan regler. Från <strong>Furusund i norr till Landsort i söder</strong> finns hundratals valbara vikar bara för dig.
+            Skillnaden mellan naturhamn och gästhamn är enkel men avgörande. Gästhamnen ger service, men också köer, avgifter och sommartrafik. Naturhamnar ger tystnad och frihet — du ankrar där det är säkert och tillåtet. Från <strong>Furusund i norr till Landsort i söder</strong> finns hundratals lämpliga vikar i Stockholms skärgård.
           </p>
           <p>
-            Vilken naturhamn passar dig? Det beror på <strong>djup, väder, vindläge och tid på året</strong>. En bra naturhamn skyddar från väst (sommarvinden), har minst 3 meters djup vid lågvattnet och en muddig eller sandlik botten där ankaret håller. Tyskväxten och påslilien är goda tecken — de växer bara på skyddade ställen. Italienskt väder och lugna nätter är din belöning för att hitta rätt.
+            Vilken naturhamn passar dig? Det beror på <strong>djup, vindkvartal och tid på året</strong>. En bra naturhamn skyddar mot vinden från det håll prognosen säger, har gott djup och en botten där ankaret håller — typiskt sand eller lera. Östersjön har ingen tidvattendynamik att tala om (vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter), så &quot;djup vid lågvattnet&quot; är inte samma sak som på västkusten.
           </p>
           <p>
-            Allemansrätten ger dig rätt att ankra på naturhamn, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera privatägd mark och stugfolk. En naturhamn är en gåva — behandla den som sådan.
+            Allemansrätten ger dig rätt att tillfälligt ankra och vistas i skärgården, men också skyldigheter. Ta hand om miljön. Lämna inget efter dig. Respektera fågelskyddsområden (landstigningsförbud 1 april–15 juli i många reservat) och privatägd mark. En naturhamn är en förmån — behandla den så.
           </p>
         </>
       }
@@ -163,28 +163,28 @@ export default function NaturhamnarPage() {
             Vilka naturhamnar är bäst för nybörjare?
           </h3>
           <p>
-            <strong>Nämdö, Svartsö och Ålö</strong> är ideala för första ankringen. De ligger nära Stockholm, har lugnt vatten skyddat från väst, djup mellan 3–5 meter och muddig eller sandig botten. Här kan du lära dig att ankra utan att vikingarnas lugn störs av grovväder eller lång väg ut i skärgården. Sätt upp frestavar, testa ankaret — och lär dig då allt är lugnt och ljust.
+            <strong>Möja, Svartsö och inre Nämdö-området</strong> är fina för dina första ankringar. De ligger relativt nära Stockholm, har gott om skyddade vikar för olika vindar och flera har samhälle/butik nära ifall något oförutsett händer. Öva i lugnt väder och dagsljus innan du tar dig längre ut.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Hur djup måste en naturhamn vara?
+            Hur djup ska en naturhamn vara?
           </h3>
           <p>
-            Minst 3 meter vid lågvattnet — gärna 4–5 meter för stabilitet. I Stockholms skärgård varierar vattennivån mellan 0,4 och 0,7 meter mellan höga och låga tider. En naturhamn med 3 meters djup vid kartans djupmarkeringar är säker för de flesta seglarbåtar. Innan du ankrar, sjunka ett stickprov, testa botten med en sond — och använd en bra ankarkarta.
+            För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ligger för ankar, gärna mer för marginal vid vindändring. Östersjön har ingen reell tidvattendynamik — vattenståndet varierar med vind och lufttryck, oftast bara några decimeter. Lita inte blint på sjökortet; lodningar kan ha ändrats. Mät själv med ekolod eller lod när du går in.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Vad ska jag tänka på när jag ankrar i en naturhamn?
           </h3>
           <p>
-            <strong>Väder först:</strong> En naturhamn skyddar bara från vissa vindkvartal — ofta väst och sydväst. Kolla väderprognosen innan du ankrar. <strong>Djup:</strong> Mät djupet själv — kartor kan vara gamla. <strong>Botten:</strong> Mudra hålls ankaret bäst — undvik ren sandbotten. <strong>Ankare:</strong> Använd ett pålitligt ankare (CQR eller Bruce fungerar i skärgården) och 50 meters kedja minimum. <strong>Allemansrätten:</strong> Respektera privatägd mark, lämna ingen skräp och var tyst efter midnatt.
+            <strong>Väder först:</strong> En naturhamn skyddar bara från vissa vindkvartal. Kolla prognos och planera reträtt. <strong>Djup:</strong> Mät själv — sjökort kan vara gamla. <strong>Botten:</strong> Sand och lera ger oftast bäst grepp för ankaret. Undvik hård botten med berg, alger eller grus. <strong>Ankare och kätting:</strong> Lägg ut tillräcklig kättinglängd i förhållande till djupet (riktmärke 4–5 gånger vattendjupet i bra väder, mer i hård vind). Vanliga ankartyper i skärgården är Bruce, Delta och plogankare. <strong>Allemansrätten:</strong> Respektera privatägd mark, lämna inget skräp och visa hänsyn mot grannar i viken.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Kan jag ha hundar och barn i en naturhamn?
           </h3>
           <p>
-            Absolut. Många naturhamnar är perfekta för barnfamiljer och hundseglarе — de ligger lugnt, långt från båttrafik och ofta med små stränderna där hundar kan simma. Bara var försiktig med Tyskland där privatägd mark kan gränsa till ankringsplatsen. Naturhamnar är helt enkelt Sveriges bästa miljö för att ta med sig familj — där lugnet är äkta och världen verkar bara dina.
+            Ja. Många naturhamnar är fina för barnfamiljer och hundägare — de ligger lugnt, långt från båttrafik och har ofta klippor eller småstränder att gå iland på. Tänk på koppeltvång (1 mars–20 augusti i naturen, men lokala regler kan vara strängare i naturreservat) och respektera privatägd mark vid ankringsplatsen.
           </p>
         </>
       }

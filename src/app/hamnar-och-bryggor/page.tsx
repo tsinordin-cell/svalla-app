@@ -147,35 +147,35 @@ export default function HamnarOchBryggorPage() {
             Sandhamn, Stockholms skärgård
           </h3>
           <p>
-            35 sjömil öst om Stockholm. <strong>Sandhamn Seglarhotell</strong> är Sveriges mest kända gästhamn — livlig sommarbefolkning, restaurang, butik, och en legend inom segling. Naturlig förstastation för många seglare från Stockholm. Bottendjup 3–4 m, boka via VHF kanal 9 eller hemsida. <strong>Sandön</strong> med Sandsborgs fästning ligger strax intill och är populär för enklare naturövernattning. Priser cirka 600 kr/natt i högsäsong.
+            Sandhamn ligger på <strong>Sandön</strong> i Stockholms yttre skärgård och är en klassisk seglardestination. <strong>Sandhamn Seglarhotell</strong> drivs av Kungliga Svenska Segel Sällskapet (KSSS) och hamnen är värd för bland annat ÅF Offshore Race. Bottendjup 3–4 m. På Sandön finns lämningar av <strong>Sandö skans</strong> — en jordskans uppförd 1623 på order av Gustav II Adolf — och det pampiga tullhuset från 1752 ritat av Carl Hårleman. Priser cirka 500–700 kr/natt i högsäsong.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Marstrand, Bohuslän
           </h3>
           <p>
-            En helt bilfri ö vid Bohuslänkusten — ett unikum som gör Marstrand magisk. <strong>Carlstens fästning</strong> trohnar på öns högsta punkt och är en av Nordens största fästningar. Gästhamnarna är väl organiserade med modern service. Omkringliggande vikar erbjuder naturövernattning under samma vind. Marstrand är också kändis för <strong>Marstrand White Guide</strong> (segelkapp) och världsklass hummerfiske i augusti–september. Priser cirka 350–450 kr/natt.
+            Marstrandsön är bilfri och nås med liten passagerarfärja från Koön — det är en del av charmen. <strong>Carlstens fästning</strong> tronar på öns högsta punkt och uppfördes från 1660-talet under Karl X Gustav. Gästhamnen är välorganiserad med modern service. Marstrand är också hem för <strong>GKSS Match Cup Sweden</strong>, en av världens största match race-tävlingar i segling, som hållits årligen sedan 1994 och är del av World Match Racing Tour. Priser cirka 350–500 kr/natt.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Visby, Gotland
           </h3>
           <p>
-            <strong>UNESCO-världsarv</strong> medeltida ringmur omger denna 1400-årigt gamla hansestad. Gästhamnen ligger direkt under ringmuren — en spektakulär ankomst från öppet hav. Visby är påväg för alla som seglat österut; många stannar flera dagar. Bokning är nästan obligatorisk juli–augusti (många båtar, begränsade platser). Hamnmästare talar svenska, engelska, tysk. Priser 400–600 kr/natt. Omgivande Gotland erbjuder dussintals naturhamnar — <strong>Tingstäde vik</strong>, <strong>Kyllaj</strong> och <strong>Gnisvärd</strong> är klassiker.
+            <strong>UNESCO-världsarv sedan 1995.</strong> Hansestaden Visby har anor från 1100-talet och blev huvudcentrum för Hansan i Östersjön under 1200–1400-talet. Den medeltida ringmuren från 1200-talet omger staden, och gästhamnen ligger direkt under murverket — en spektakulär ankomst från öppet hav. Bokning är nästan obligatorisk juli–augusti (många båtar, begränsade platser). Priser 400–600 kr/natt. Omgivande Gotland erbjuder naturhamnar — <strong>Kyllaj</strong> i nordost och <strong>Gnisvärd</strong> väster om Visby är klassiker. (OBS: Tingstäde är en insjö inåt land — ej en vik att ankra i.)
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Karlskrona, Blekinge
           </h3>
           <p>
-            <strong>Marinstad</strong> och Sveriges största örlogsmässan. Karlskrona ligger strategisk vid Östersjöns väg och är en av Europas bästa naturhamnsregioner. Ögruppen runt <strong>Stumholmen</strong> erbjuder både gästhamn (cirka 250–350 kr) och dussintals fria naturhamnar med utmärkt skydd. <strong>Östersjöns bästa gästhamn</strong> enligt många seglare. Här möter du båtar från Tyskland, Polen och Baltikum. Data från Karlskrona har ofta varit mest aktuell i Svalla.
+            <strong>Örlogsstaden Karlskrona</strong> är UNESCO-världsarv sedan 1998 — världens enda barockstad som byggts för örlogsändamål och fortfarande används till det. Grundad 1680 av Karl XI. Karlskrona ligger strategiskt vid Östersjön och har gott om naturhamnar i ögruppen runt staden. Gästhamnen kostar cirka 250–400 kr/natt. Här möter du båtar från Tyskland, Polen och Baltikum.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Smögen, Bohuslän
           </h3>
           <p>
-            <strong>Smögenbryggan</strong> är nästan 500 meter lång och kanske Sveriges livligaste brygga under högsäsongen. Här står fiskebåtar, segelyacht, och turister tätt i tätt. Populär för kort restaurangvisit. Gästhamnarnas fritidsövernattning är begränsad; många seglare ankrar i omgivande vikar istället. I juli–augusti kan Smögen vara fruktansvärt fullt — besök i juni eller september för lugnare dagar. Priser cirka 300–400 kr/natt för kortare stopp.
+            <strong>Smögenbryggan</strong> är drygt 600 meter lång (träbryggan) och en av Sveriges mest kända bryggor under sommaren. Fiskebåtar, segelbåtar och turister står tätt. Populär för restaurangbesök och flanering. I juli–augusti kan det vara mycket fullt — besök i juni eller september för lugnare dagar. Priser cirka 300–450 kr/natt för kortare stopp.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>

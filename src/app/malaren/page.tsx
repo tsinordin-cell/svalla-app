@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
  title: 'Mälaren — Segla Sveriges tredje största sjö | Svalla',
- description: 'Utforska Mälaren med Svalla. 1 140 öar, historiska hamnar, kafébryggor och lugna segelvatten — perfekt för familjer och nybörjare.',
+ description: 'Utforska Mälaren med Svalla. 8 000+ öar, historiska hamnar, kafébryggor och lugna segelvatten — perfekt för familjer och nybörjare.',
  keywords: [
  'mälaren segla',
  'mälaren båt',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
  ],
  openGraph: {
  title: 'Mälaren — Segla Sveriges tredje största sjö | Svalla',
- description: 'Logga dina båtturer på Mälaren med Svalla — 1 140 öar, historiska hamnar och kafébryggor.',
+ description: 'Logga dina båtturer på Mälaren med Svalla — 8 000+ öar, historiska hamnar och kafébryggor.',
  url: 'https://svalla.se/malaren',
  },
  alternates: { canonical: 'https://svalla.se/malaren' },
@@ -82,7 +82,7 @@ export default function MalarenPage() {
  {
  '@type': 'Question',
  name: 'Behöver man passera sluss för att segla på Mälaren?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Karl Johans sluss i Stockholm. Slussen har regelbundna öppettider — planera din tur därefter och kontakta slussvakten i god tid innan.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Ja, från Östersjösidan passerar fritidsbåtar Hammarbyslussen i Stockholm — det är primärslussen mellan Saltsjön och Mälaren sedan 2016. Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager.' },
  },
  {
  '@type': 'Question',
@@ -116,7 +116,7 @@ export default function MalarenPage() {
  <CategoryLanding
  heroGradient={['#1a6b5a', '#22a085']}
  eyebrow="Mälaren"
- title="Insjöns lugn — 1 140 öar"
+ title="Insjöns lugn — 8 000+ öar"
  tagline="Sveriges tredje största sjö med tusen år av historia. Svalla hjälper dig utforska Mälarens kafébryggor, historiska hamnar och dolda ankringsplatser."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -127,7 +127,7 @@ export default function MalarenPage() {
  intro={
  <>
  <p>
- Mälaren sträcker sig 12 mil västerut från Stockholm och är Sveriges tredje största sjö — fylld med <strong>1 140 öar, vikar och sund</strong> att utforska. Eftersom insjövattnet är lugnt, utan havsdyning eller tidvatten, är Mälaren en av landets bästa segelvatten för familjesegling, kajak och behagliga dagsturer året runt.
+ Mälaren sträcker sig 12 mil västerut från Stockholm och är Sveriges tredje största sjö — fylld med <strong>8 000+ öar, vikar och sund</strong> att utforska. Eftersom insjövattnet är lugnt, utan havsdyning eller tidvatten, är Mälaren en av landets bästa segelvatten för familjesegling, kajak och behagliga dagsturer året runt.
  </p>
  <p>
  Med Svalla loggar du turer från Riddarfjärden ut till Västerås, hittar hundratals kafébryggor på kartan och kan följa andra seglares favoritrutter längs de historiska Mälarstränderna. Markera ankringsplatser, dokumentera vindförhållanden och dela dina upptäckter med communityn.
@@ -188,7 +188,7 @@ export default function MalarenPage() {
  Mälaren är generöst med sitt lugna vatten — det finns <strong>inga svallvågor eller tidvatten</strong> att oroa sig för, vilket gör sjön perfekt för nybörjare. Djupet är generellt <strong>10–20 meter</strong>, men det finns grundare partier — håll dig till märkta farleder för att undvika grund.
  </p>
  <p>
- För de som kommer från Östersjösidan behöver du passera <strong>Karl Johans sluss</strong> i Stockholm — det är den enda större brobegränsningen att tänka på. Slussen har regelbundna öppettider, så planera i förväg. <strong>Söderström</strong> och <strong>Centralbron</strong> i Stockholm har också begränsad höjd — ungefär 12 meter fri höjd — så större segelfartyg bör kontrollera detta innan insegling.
+ För dig som kommer från Östersjösidan måste du passera <strong>Hammarbyslussen</strong> i Stockholm — den primära slussen för fritidsbåtar mellan Saltsjön och Mälaren sedan 2016 (cirka 35 000 fritidsbåtar passerar per säsong). Kolla aktuella öppettider via Stockholms Hamnar och planera dina passager. För segelbåt med hög mast kan du behöva räkna med fällning av masten — kontrollera fri höjd vid broar och ledningar längs aktuell rutt.
  </p>
  <p>
  Seglingssesongen på Mälaren är <strong>maj till oktober</strong> — sommaren erbjuder lugna, varma dagar och långa kvällar för ankring. Vintern är möjlig för de som kan hantera kallare förhållanden, men huvudsäsongen är absolut sommaren.
@@ -199,7 +199,7 @@ export default function MalarenPage() {
  </h3>
  <p>
  <strong>Behöver man passera sluss för att segla på Mälaren?</strong><br />
- Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Karl Johans sluss i Stockholm. Slussen har regelbundna öppettider — planera din tur därefter och kontakta slussvakten i god tid innan.
+ Ja, om du kommer från österifrån (från Östersjösidan) måste du passera Hammarbyslussen i Stockholm. Slussen har regelbundna öppettider — planera din tur därefter och kontakta slussvakten i god tid innan.
  </p>
  <p>
  <strong>Vilka är de bästa kafébryggorpå Mälaren?</strong><br />

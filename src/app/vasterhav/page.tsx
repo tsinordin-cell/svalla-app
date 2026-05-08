@@ -95,7 +95,7 @@ export default function VasterhavetPage() {
  {
  '@type': 'Question',
  name: 'Behöver man specialutrustning för Västerhavet?',
- acceptedAnswer: { '@type': 'Answer', text: 'AIS-transponder rekommenderas starkt i Kattegatt där fartygstrafiken är tung. VHF-radio är obligatorisk. Tidvattentabeller eller en app som visar tidvattnet är essentiell för planering. Uppdaterade navigationskort och SMHI:s varningsapp är också nödvändiga.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'AIS-transponder rekommenderas starkt i Kattegatt där handelsfartygstrafiken är tät. VHF-radio är inte krav för fritidsbåt under 13 meter men starkt rekommenderad. Uppdaterade sjökort/GPS, tidvattentabell vid Kosteröarna och SMHI-prognos hör till basics.' },
  },
  ],
  }
@@ -157,7 +157,7 @@ export default function VasterhavetPage() {
  Bohuslän och Kattegatt — granitskär och varvskultur
  </h3>
  <p>
- Bohuslän är hjärtat av svensk segling. Här möter du <strong>Skandinaviens största öar</strong> — Orust och Tjörn — som båda är legendariska bland seglare. Dessa öar är hemmet till en stark varvskultur och en tradition av båtbygge som går tillbaka århundraden. Besök <strong>Ellös</strong> på Orust för att se båtbyggare vid arbete och för att få en känsla av denna marinära traditionsrika plats.
+ Bohuslän är hjärtat av svensk segling. Här möter du <strong>Orust</strong> (Sveriges fjärde största ö) och <strong>Tjörn</strong> (sjätte största) — båda legendariska bland seglare och hem för en stark varvskultur och båtbyggartradition. Besök <strong>Ellös</strong> på Orust där bland annat Hallberg-Rassy bygger sina segelbåtar.
  </p>
  <p>
  <strong>Lysekil</strong> är ett måste för alla västkustseglare. Här hittar du Bohuslän fiskmarknad — en energisk plats där fiskebåtarna landar sin fångst. Besök även <strong>Havets Hus</strong>, ett akvarium och utbildningscenter dedikerat till Västerhavet och dess ekosystem. <strong>Fiskebäckskil</strong> , några kilometer söder om Lysekil, är arkitektens drömby — en liten fiskehamn där varje byggnad tycks placerad med omtanke. Här finns några av västkustens bästa restauranger, och ankringsplatserna i <strong>Gullmarsfjorden</strong> är lugna och skyddade.
@@ -170,23 +170,23 @@ export default function VasterhavetPage() {
  Skagerrak och norska gränsen — djupet och äventyret
  </h3>
  <p>
- Västerhavet kulminerar i norr vid Skagerrak — där gränsen mellan Sverige och Norge går genom en av världens viktigaste sjöfartsvägar. <strong>Kosterfjorden</strong> är Skandinaviens djupaste fjord och ett spektakulärt segelresmål. <strong>Kosterhavets nationalpark</strong> skyddar dessa vatten och gör dem till ett unikt ekosystem. <strong>Strömstad</strong> är den naturliga utgångspunkten för gränssegling mot Norge.
+ Västerhavet kulminerar i norr vid Skagerrak. <strong>Kosterhavets nationalpark</strong> (Sveriges första marina nationalpark, 2009) ligger här och skyddar ett unikt marint ekosystem — bland annat Kosterrännan som är cirka 247 m djup och Sveriges djupaste havsdal. <strong>Strömstad</strong> är naturlig utgångspunkt för segling mot Norge.
  </p>
  <p>
- Segling i Skagerrak kräver respekt. <strong>Tidvattnets</strong> kan vara upp till 50 cm här, och <strong>strömmarnas</strong> är mycket märkbara under vissa förhållanden. Planera din passage noga — använd tidvattentabeller och be om råd från lokala seglare innan du går ut. Nordgående segling från Skagerrak mot den norska skärgården (särskilt Hvaler-området) är ett populärt resmål för äventyrsvilliga seglare.
+ Segling i Skagerrak kräver respekt för väder och sjö. <strong>Tidvattenamplituden</strong> är liten jämfört med oceaner — normalt cirka 10 cm i Skagerrak och 5 cm i Kattegatt enligt SMHI, men kan tillfälligt nå 30–40 cm i Skagerrak och 20 cm i Kattegatt. Vid Kosteröarna brukar skillnaden mellan hög- och lågvatten ligga på 20–30 cm. Vinden, lufttryck och havsströmmar kan dock ha större effekt på vattenståndet än själva tidvattnet. Hvaler-skärgården på norska sidan är ett populärt resmål för dem som vill kombinera Sverige och Norge.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Tidvatten, strömmar och väder på Västerhavet
  </h3>
  <p>
- <strong>Tidvatten</strong> är den största faktorn som skiljer Västerhavet från Östersjön. Längst Hallandskusten är amplituden (skillnaden mellan högvatten och lågvatten) 20–40 cm. Vid norska gränsen kan den nå 50 cm eller mer — enormt jämfört med den nästan tidvattenlösa Östersjön. Detta betyder att dina ankar kan komma loss eller att en grund ankringsplats plötsligt blir oåtkomlig. Alltid planera dina dagsetapper med tidevattnet i åtanke.
+ <strong>Tidvatten</strong> är liten på svenska västkusten jämfört med oceaner. Enligt SMHI är amplituden normalt cirka 5 cm i Kattegatt och cirka 10 cm i Skagerrak, men kan tillfälligt nå 20 cm respektive 30–40 cm. Vid Kosteröarna brukar man ligga runt 20–30 cm. Större förändringar i vattenstånd beror oftast på vind och lufttryck snarare än tidvatten — en kraftig nordvästlig vind kan pressa upp vattenståndet betydligt.
  </p>
  <p>
- <strong>Strömmar</strong> följer ofta tidvattnet. Starka strömmar kan förvandla en kort passage till något helt annat på bara några minuter. Platser som Hake fjord och Marstrand är kända för märkbara strömmar. <strong>Använd Svallas passagepristagare</strong> för att planera när du seglar dessa sträckor.
+ <strong>Strömmar</strong> kan förekomma vid trånga sund. Hakefjorden mellan Tjörn och fastlandet, och passagen vid Marstrand, är platser där tidigare seglare brukar nämna märkbar ström. Planera passagerna och kolla aktuella strömprognoser i tveksamma fall.
  </p>
  <p>
- <strong>Sydvästvinden dominerar</strong> under seglarsäsongen (maj–september). Det är perfekt för nordgående segling längs Bohuslän men kan ge hårt väder i norr. <strong>Dimma</strong> kan vara ett problem vid Hallandskusten, särskilt tidigt och sent på säsongen. SMHI:s varningsapp är obligatorisk för alla seglarväg — installera den och kontrollera varningarna innan du går ut.
+ <strong>Sydvästvinden dominerar</strong> under seglarsäsongen (maj–september). Det är gynnsamt för nordgående segling längs Bohuslän men kan ge hårt väder i utsatta lägen. <strong>Dimma</strong> kan vara ett problem vid Hallandskusten, särskilt tidigt och sent på säsongen. SMHI:s app och varningar är ett bra komplement till lokala prognoser — kolla dem innan varje passage.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -206,7 +206,7 @@ export default function VasterhavetPage() {
  </p>
  <p>
  <strong>Behöver man specialutrustning för Västerhavet?</strong><br />
- <strong>AIS-transponder</strong> rekommenderas starkt i Kattegatt där fartygstrafiken är tung. <strong>VHF-radio</strong> är obligatorisk — du behöver kunna höra vädervarsels och kommunicera med andra fartyg och hamner. <strong>Tidvattentabeller</strong> eller en app som visar tidvattnet är essentiell för planering. Uppdaterade navigationskort och en GPS med bra sjökort gör livet säkert enklare. Slutligen, installera alltid <strong>SMHI:s varningsapp</strong> och kontrollera väderutsikten innan varje passage.
+ <strong>AIS-transponder</strong> rekommenderas starkt i Kattegatt där handelsfarteget är tätt. <strong>VHF-radio</strong> är inte juridiskt krav för fritidsbåt under 13 meter, men starkt rekommenderad — för att kunna kommunicera med hamnar, lyssna på sjöräddning och anropa nödfrekvens (kanal 16). Sjökort/GPS med uppdaterade kort är väsentligt. Tidvattentabell är nyttig vid Kosteröarna och in mot trängre fjordar. Slutligen, kontrollera SMHI:s prognos och varningar inför varje passage.
  </p>
  </>
  }

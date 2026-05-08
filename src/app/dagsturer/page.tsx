@@ -31,44 +31,44 @@ const ITEMS: LandingItem[] = [
  {
  icon: '️',
  title: 'Fjäderholmarna',
- description: 'Närmaste öarna från Stockholm — bara 20 minuter med Waxholmsbåten. Populärt restaurangerna och enkelt naturbad. Perfekt för första gången i skärgården.',
+ description: 'Närmaste öarna från Stockholm — ca 25 minuter med Strömma/Waxholmsbåt från Strömkajen/Slussen. Restauranger, hantverk och bad. Perfekt första skärgårdstur.',
  href: '/o/fjaderholmarna',
- meta: '20 min med Waxholmsbåten',
+ meta: '~25 min från city',
  },
  {
  icon: '',
  title: 'Vaxholm',
- description: 'Historisk stad med den berömda Vaxholms fästning. 50 minuter från Stockholm — restauranger, affärer och gästhamn. Lätt att tillbringa en hel dag.',
+ description: 'Historisk stad med Vaxholms fästning från 1500-talet. Cirka 1 timme från Strömkajen — restauranger, butiker och gästhamn. Lätt att fylla en hel dag.',
  href: '/o/vaxholm',
- meta: '50 min med Waxholmsbåten',
+ meta: '~1 tim med Waxholmsbåten',
  },
  {
  icon: '️',
  title: 'Grinda',
- description: 'Lugn ö med fin sandstrand och familjevänlig miljö. 1 timme och 45 minuter ut — perfekt för en längre dagstur med bad och picknick.',
+ description: 'Lugn ö med fin sandstrand och familjevänlig miljö. Cirka 1h 45min ut — perfekt för en längre dagstur med bad och picknick.',
  href: '/o/grinda',
- meta: '1h 45min med Waxholmsbåten',
+ meta: '~1h 45 min',
  },
  {
  icon: '',
  title: 'Sandhamn',
- description: 'Skärgårdens klassiska destination och sommarnoje. 2 timmar och 30 minuter från Stockholm — Sandhamns Värdshus är legendarisk.',
+ description: 'Skärgårdens klassiska destination och sommarnöje. Från Strömkajen 2,5–3 timmar; från Stavsnäs ca 40 min med snabbåt. Sandhamns Värdshus är legendariskt.',
  href: '/o/sandhamn',
- meta: '2h 30min med Waxholmsbåten',
+ meta: '2,5–3 tim från Strömkajen',
  },
  {
  icon: '🚴',
  title: 'Utö',
- description: 'Lång men väl värd dagstur — 2 timmar ut. Cykling, Utö Värdshus och mitten av en före detta gruva. Bra för äventyrlystna.',
+ description: 'Klassisk ö i södra skärgården — cykling, Utö Värdshus och spår efter järngruvan. Smidigast via Årsta brygga (~40 min). Från Strömkajen tar det betydligt längre.',
  href: '/o/uto',
- meta: '2h med Waxholmsbåten',
+ meta: '~40 min från Årsta brygga',
  },
  {
  icon: '',
  title: 'Finnhamn',
- description: 'Naturparadis med vandringsleder och vildmark. 2 timmar från Stockholm — mindre touristiskt än Sandhamn, mer avskilt.',
+ description: 'Naturparadis med vandringsleder och STF-vandrarhem. Cirka 3 timmar från Strömkajen — mindre kommersiellt än Sandhamn, mer avskilt.',
  href: '/o/finnhamn',
- meta: '2h med Waxholmsbåten',
+ meta: '~3 tim från Strömkajen',
  },
 ]
 
@@ -80,12 +80,12 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Hur länge tar dagstur till Sandhamn från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Med Waxholmsbåten tar det ungefär 2 timmar och 30 minuter från Slussen till Sandhamn. Tillsammans med tid på ön (2–3 timmar) blir det en komplett dag. Du kan ta båten dit på morgonen och hem på eftermiddagen.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Från Strömkajen tar det 2,5–3 timmar med Waxholmsbåten. Snabbare via buss till Stavsnäs + snabbåt (~40 min). Tillsammans med 2–3 timmar på ön blir det en komplett dagstur.' },
  },
  {
  '@type': 'Question',
  name: 'Vilken ö passar för en kort dagstur från Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är det bästa valet för en kort dagstur — bara 20 minuter från Slussen. Du kan fika, äta lunch och bada utan att spendera flera timmar på transport. Vaxholm är nästa steg upp — 50 minuter med mer att se.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bästa valet för en kort dagstur — cirka 25 minuter från Strömkajen/Slussen. Vaxholm är nästa steg upp, drygt en timme bort, med fästning och restauranger.' },
  },
  {
  '@type': 'Question',
@@ -125,13 +125,13 @@ export default function DagsturerPage() {
  intro={
  <>
  <p>
- Stockholms skärgård är en drömma för dagsturer. Med den moderna färjetrafiken via Waxholmsbåten eller egna båten tar det bara 20 minuter till Fjäderholmarna, 50 minuter till Vaxholm, och högst drygt två timmar och 30 minuter till Sandhamn — <strong>allt går att göra på en dag</strong>. Du kan lämna Stockholm på morgonen, äta räkor vid havet och vara hemma till kvällen. Ingen övernattning, ingen tältning, bara ren skärgård.
+ Stockholms skärgård är gjord för dagsturer. Med Waxholmsbåten eller egen båt tar det cirka 25 minuter till Fjäderholmarna, ungefär en timme till Vaxholm och 2,5–3 timmar till Sandhamn från Strömkajen — <strong>allt går att göra på en dag</strong>. Lämna Stockholm på morgonen, ät räkor vid havet och var hemma till kvällen.
  </p>
  <p>
- Beroende på tid och ambition kan en dagstur passa alla. Nybörjare startar ofta på <strong>Fjäderholmarna</strong> — kort resa, restauranger, lugnt vatten. Från där kan du ta nästa steg till <strong>Vaxholm</strong> eller <strong>Grinda</strong> för något längre. De erfarna packar ofta båten och styr för <strong>Sandhamn</strong> eller <strong>Utö</strong>, där varje minut är väl värd det. Färjan från Slussen (Waxholmsbåten) är den populäraste vägen — enkelbiljett är billig, och du kan ta cykel ombord på många båtar.
+ Olika ambitionsnivåer passar olika dagsturer. Nybörjare börjar ofta på <strong>Fjäderholmarna</strong> — kort resa, restauranger, lugnt vatten. Nästa steg är <strong>Vaxholm</strong> eller <strong>Grinda</strong>. De som vill längre ut packar för <strong>Sandhamn</strong>, <strong>Utö</strong> eller <strong>Finnhamn</strong>. Färjan från Strömkajen (Waxholmsbåten) är populäraste vägen, men för sydskärgården (Utö, Ornö) går det snabbare via <strong>Årsta brygga</strong>. Cykel kan oftast tas ombord mot en mindre avgift.
  </p>
  <p>
- Planering är enkelt: kolla färjescheman, ta med solskydd och en liten matsäck eller pengar för att äta ute. Säsongen är från maj till september, då restauranger öppnar och vattnet blir både barnvänligt och behagligt för simning. Med Svalla kan du spara dina favoritöar, hitta naturhamnar och läsa tips från andra dagstörister — gör nästa tur ännu bättre än förra.
+ Kolla aktuella avgångar i Waxholmsbolagets app eller på <a href="https://waxholmsbolaget.se">waxholmsbolaget.se</a>, ta med solskydd och matsäck. Säsongen är primärt maj–september då restauranger är öppna och vattnet är skönt att bada i. Med Svalla kan du spara favoritöar, hitta naturhamnar och läsa tips från andra dagsutflykter.
  </p>
  </>
  }
@@ -148,14 +148,14 @@ export default function DagsturerPage() {
  Hur länge tar dagstur till Sandhamn?
  </h3>
  <p>
- Med Waxholmsbåten tar det ungefär 2 timmar och 30 minuter från Slussen till Sandhamn. Tillsammans med tiden på ön (2–3 timmar för lunch och att titta omkring) blir det en komplett dag — du kan ta båten dit på morgonen och åter på eftermiddagen samma dag. Många väljer att stanna längre och bo på något pensionat eller vandrarhem, men det är fullt möjligt att göra det som dagstur.
+ Från Strömkajen (Waxholmsbolaget) tar det 2,5–3 timmar med båt direkt till Sandhamn. Snabbare alternativ är <strong>Cinderellabåtarna</strong> eller att åka buss till Stavsnäs och därifrån snabbåt — då är du på ön på cirka 40 minuter. Med 2–3 timmar på ön blir det en fin dag, men många väljer att stanna en natt på vandrarhem eller pensionat.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vilken ö passar för en kort dagstur?
  </h3>
  <p>
- <strong>Fjäderholmarna</strong> är det bästa valet för en kort dagstur — bara 20 minuter från Slussen. Du kan fika, äta lunch och bada utan att spendera flera timmar på transport. <strong>Vaxholm</strong> är nästa steg upp — 50 minuter — och erbjuder mer att se: fästningen, butiker och restauranger. Om du har 3–4 timmar att spendera passar <strong>Grinda</strong> perfekt.
+ <strong>Fjäderholmarna</strong> är bästa valet för en kort dagstur — cirka 25 minuter från Strömkajen/Slussen. Du hinner fika, äta lunch och bada utan långa restider. <strong>Vaxholm</strong> är nästa steg upp — drygt en timme — med fästningen, butiker och restauranger. Med 3–4 timmar att spendera passar <strong>Grinda</strong> perfekt.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

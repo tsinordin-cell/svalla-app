@@ -97,7 +97,7 @@ export default function VandringOchNaturPage() {
             Packa smart för skärgård
           </h2>
           <p>
-            Skärgårdsvädret ändras snabbt. Lager-på-lager, vindtätt ytterplagg, vattentät inslagning av elektronik och <strong>extra dag med mat</strong> om en färja skulle ställas in. Eld upp och vatten finns sällan där du tror — planera långt innan.
+            Skärgårdsvädret ändras snabbt. Lager-på-lager, vindtätt ytterplagg, vattentät förvaring för elektronik och <strong>extra dag med mat</strong> om färjan skulle ställas in. Eldningsmöjligheter och drickbart vatten finns sällan där du tror — planera långt innan, och kolla aktuellt eldningsförbud hos länsstyrelsen.
           </p>
         </>
       }

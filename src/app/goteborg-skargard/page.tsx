@@ -39,7 +39,7 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: '',
-    title: 'Marstrand — festningön',
+    title: 'Marstrand — fästningsön',
     description: 'Carlstens fästning, glada gästhamnen och Bohusläns mest kända seglarmål. Logga ankomsten.',
     href: '/upptack',
   },
@@ -103,7 +103,7 @@ export default function GoteborgSkargardPage() {
         name: 'Kan man segla vidare norrut längs Bohuslän från Göteborg?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Absolut — Bohuslänsledens inre led går hela vägen från Göteborg till Strömstad vid norska gränsen. Klassiska etapper är Göteborg–Marstrand, Marstrand–Smögen och Smögen–Strömstad. Svalla hjälper dig logga varje etapp och hitta ankringsplatser längs vägen.',
+          text: 'Absolut — Bohusläns inre kustled går hela vägen från Göteborg till Strömstad vid norska gränsen. Klassiska etapper är Göteborg–Marstrand, Marstrand–Smögen och Smögen–Strömstad. Svalla hjälper dig logga varje etapp och hitta ankringsplatser längs vägen.',
         },
       },
     ],
@@ -176,10 +176,10 @@ export default function GoteborgSkargardPage() {
               Tjörn och Orust — utgångspunkt norrut
             </h3>
             <p>
-              Norr om Marstrand blir skärgården mer Bohuslänsk till karaktären — glesare bebyggt, mer exponerat och med tätare ansamling av naturhamnar. <strong>Tjörn</strong> och <strong>Orust</strong> är Bohusläns två stora öar med hundratals öar och kobbar runt sig. Här finns klassiska destinationer som <strong>Rönnäng, Klädesholmen</strong> (silkön) och <strong>Mollösund</strong> — välbevarade fiskebyar längs Bohuslänleden.
+              Norr om Marstrand blir skärgården mer Bohuslänsk till karaktären — glesare bebyggt, mer exponerat och med tätare ansamling av naturhamnar. <strong>Tjörn</strong> och <strong>Orust</strong> är Bohusläns två stora öar (nummer 6 respektive 4 i Sveriges ö-storleksordning) med hundratals öar och kobbar runt sig. Här finns klassiska destinationer som <strong>Rönnäng</strong>, <strong>Klädesholmen</strong> (kallad &quot;Sillön&quot; pga sin sillfiskehistoria) och <strong>Mollösund</strong> — välbevarade fiskebyar längs Bohusläns inre kustled.
             </p>
             <p>
-              Rutten norrut längs Bohuslänleden är en av Sveriges vackraste segelrutter. Från Göteborg kan du nå Smögen på 2–3 dagar om du tar det lugnt och Strömstad vid norska gränsen på 4–5 dagar. Svalla låter dig planera hela rutten, logga varje etapp och dela upplevelsen med andra seglare.
+              Rutten norrut längs Bohusläns inre kustled är en av Sveriges vackraste segelrutter. Från Göteborg kan du nå Smögen på 2–3 dagar om du tar det lugnt och Strömstad vid norska gränsen på 4–5 dagar. Svalla låter dig planera hela rutten, logga varje etapp och dela upplevelsen med andra seglare.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -195,7 +195,7 @@ export default function GoteborgSkargardPage() {
             </p>
             <p>
               <strong>Kan man segla vidare norrut längs Bohuslän från Göteborg?</strong><br />
-              Absolut — Bohuslänsledens inre led går hela vägen till Strömstad vid norska gränsen. Klassiska etapper: Göteborg–Marstrand, Marstrand–Smögen, Smögen–Strömstad.
+              Absolut — Bohusläns inre kustled går hela vägen till Strömstad vid norska gränsen. Klassiska etapper: Göteborg–Marstrand, Marstrand–Smögen, Smögen–Strömstad.
             </p>
           </>
         }
