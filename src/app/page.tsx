@@ -517,6 +517,8 @@ const LANDING_HTML = `
  <a href="/aland" class="nav-dd-link">Åland</a>
  <a href="/blekinge-skargard" class="nav-dd-link">Blekinges skärgård</a>
  <a href="/vasterhav" class="nav-dd-link">Västerhavet</a>
+ <a href="/hoga-kusten" class="nav-dd-link">Höga Kusten</a>
+ <a href="/halland" class="nav-dd-link">Halland</a>
  <a href="/goteborg-skargard" class="nav-dd-link">Göteborgs skärgård</a>
  <a href="/malaren" class="nav-dd-link">Mälaren</a>
  <div class="nav-dd-divider"></div>
@@ -633,6 +635,8 @@ const LANDING_HTML = `
  <a href="/aland" class="mob-acc-link">Åland</a>
  <a href="/blekinge-skargard" class="mob-acc-link">Blekinges skärgård</a>
  <a href="/vasterhav" class="mob-acc-link">Västerhavet</a>
+ <a href="/hoga-kusten" class="mob-acc-link">Höga Kusten</a>
+ <a href="/halland" class="mob-acc-link">Halland</a>
  <a href="/goteborg-skargard" class="mob-acc-link">Göteborgs skärgård</a>
  <a href="/malaren" class="mob-acc-link">Mälaren</a>
  <div class="mob-acc-section">Hitta</div>
@@ -1010,6 +1014,26 @@ const LANDING_HTML = `
      <div class="region-card-label">Västerhavet</div>
      <div class="region-card-name">Kosteröarna</div>
      <div class="region-card-sub">Orust · Tjörn · Varberg · Falkenberg</div>
+    </div>
+   </a>
+   <a href="/hoga-kusten" class="region-card reveal reveal-delay-3">
+    <div class="region-card-bg" data-lp-photo="hogakusten" style="background:linear-gradient(160deg,#0a1828,#1a3a58,#2a5a80)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Norrlandskusten</div>
+     <div class="region-card-name">Höga Kusten</div>
+     <div class="region-card-sub">Härnösand · Ulvön · Kramfors · Skuleskogen</div>
+     <span class="region-card-tag">15 platser kartlagda</span>
+    </div>
+   </a>
+   <a href="/halland" class="region-card reveal reveal-delay-4">
+    <div class="region-card-bg" data-lp-photo="halland" style="background:linear-gradient(160deg,#0a2818,#1a5030,#2a7848)"></div>
+    <div class="region-card-overlay"></div>
+    <div class="region-card-content">
+     <div class="region-card-label">Västkusten</div>
+     <div class="region-card-name">Halland</div>
+     <div class="region-card-sub">Varberg · Tylösand · Falkenberg · Båstad</div>
+     <span class="region-card-tag">22 platser kartlagda</span>
     </div>
    </a>
  

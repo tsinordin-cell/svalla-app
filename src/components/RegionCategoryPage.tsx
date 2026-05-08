@@ -34,6 +34,16 @@ export const REGIONS = {
     description: 'Visby med medeltida ringmur, Fårö med Bergmans landskap, Slite, Burgsvik och Karlsöarna.',
     archipelago_region: 'gotland',
   },
+  hogakusten: {
+    label: 'Höga Kusten',
+    description: 'Härnösand, Ulvön, Kramfors, Höga Kusten-leden och Skuleskogens nationalpark — Norrlands dramatiska klippkust.',
+    archipelago_region: 'hogakusten',
+  },
+  halland: {
+    label: 'Halland',
+    description: 'Tylösand, Varberg fästning, Falkenberg, Båstad och Laholmsbukten — Hallands långa sandstrand och fästningsstad.',
+    archipelago_region: 'halland',
+  },
 } satisfies Record<string, RegionInfo>
 
 export const CATEGORIES: Record<string, { label: string; type: string; intro: string; metaTitle: (region: string) => string; metaDesc: (region: string) => string }> = {

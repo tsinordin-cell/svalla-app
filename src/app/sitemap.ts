@@ -50,6 +50,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/aland`,                  lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/blekinge-skargard`,      lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/vasterhav`,              lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/hoga-kusten`,            lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/halland`,                lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/malaren`,               lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     { url: `${base}/goteborg-skargard`,     lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     // Region + kategori-sidor (Göteborg/Bohuslän) — auto-genererade från Google-data
@@ -76,6 +78,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland/gasthamnar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
     { url: `${base}/gotland/sjomackar`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
     { url: `${base}/gotland/bastu`,          lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/hoga-kusten/krogar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/hoga-kusten/gasthamnar`, lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/hoga-kusten/sjomackar`,  lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/hoga-kusten/bastu`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/halland/krogar`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/halland/gasthamnar`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/halland/sjomackar`,      lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
+    { url: `${base}/halland/bastu`,          lastModified: now, priority: 0.75, changeFrequency: 'weekly'  as const },
     // Kategori-landningssidor (dropdown-mål) — kurerade, SEO-optimerade
     { url: `${base}/resmal`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
