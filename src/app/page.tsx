@@ -303,13 +303,9 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .dest-island{font-size:11px;color:rgba(255,255,255,.88);font-weight:500;padding:2px 0;}
 a.dest-island{text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
 a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
-.regions-section{background:var(--white);padding:72px 0 88px}
-.regions-section .section-inner{padding:0 40px;margin-bottom:36px}
-.regions-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 40px 16px;scrollbar-width:none;cursor:grab;user-select:none}
-.regions-scroll::-webkit-scrollbar{display:none}
-.regions-scroll.dragging{cursor:grabbing}
-.regions-section .section-header{margin-bottom:56px}
-.region-card{flex-shrink:0;width:260px;border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;height:220px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
+.regions-section{background:var(--white);padding:100px 40px}
+.regions-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.region-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .region-card:hover .region-card-bg{transform:scale(1.06)}
 .region-card-bg{position:absolute;inset:0;transition:.5s;background-size:cover;background-position:center}
 .region-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,20,32,.88) 0%,rgba(8,20,32,.05) 60%)}
@@ -481,6 +477,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .resetips-grid{grid-template-columns:1fr 1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
 .routes-scroll{grid-template-columns:1fr 1fr}
+.regions-scroll{grid-template-columns:1fr 1fr}
 .thorkel-inner{grid-template-columns:1fr}
 }
 @media(max-width:600px){
@@ -488,6 +485,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .routes-section{padding:56px 20px}
 .resetips-grid{grid-template-columns:1fr}
 .routes-scroll{grid-template-columns:1fr 1fr}
+.regions-scroll{grid-template-columns:1fr 1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
 }
 
@@ -1506,15 +1504,6 @@ function toggleFaq(btn){
     });
 })();
 
-// Regions drag-to-scroll
-(function(){
-  var s=document.getElementById('regionsScroll');
-  if(!s)return;
-  var down=false,startX,scrollLeft;
-  s.addEventListener('mousedown',function(e){down=true;s.classList.add('dragging');startX=e.pageX-s.offsetLeft;scrollLeft=s.scrollLeft});
-  document.addEventListener('mouseup',function(){down=false;s.classList.remove('dragging')});
-  s.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();var x=e.pageX-s.offsetLeft;s.scrollLeft=scrollLeft-(x-startX)*1.2});
-})();
 // Gallery drag-to-scroll
 (function(){
   var s=document.getElementById('galleryScroll');
