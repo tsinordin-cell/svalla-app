@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
  title: 'Segelrutter i Sverige — Östersjöleden, Gotland Runt, Bohuslän — Svalla',
- description: 'Kompletta segelrutter i Sverige: Östersjöleden (800 sjömil), Gotland Runt (klassiker 300 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
+ description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker 300 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
  keywords: [
  'segelrutter sverige',
  'östersjöleden',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
  ],
  openGraph: {
  title: 'Segelrutter — Svalla',
- description: 'Kompletta segelrutter i Sverige: från Östersjöleden till Gotland Runt och Bohusleden.',
+ description: 'Kompletta segelrutter i Sverige: från östkusten till Gotland Runt och Bohusläns kust.',
  url: 'https://svalla.se/segelrutter',
  },
  alternates: { canonical: 'https://svalla.se/segelrutter' },
@@ -49,14 +49,14 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'map',
  title: 'Östersjöleden (Stockholm–Malmö)',
- description: 'Kustens stora segelrutt: 800 sjömil längs svenska östkusten med Blekinge och Gotland. Dagsetapper, historia och skyddade farleder.',
+ description: 'Kustens stora segelrutt längs svenska östkusten via Sandhamn, Visby, Blekinge-skärgården och Skånes kust. Dagsetapper, historia och skyddade farleder.',
  href: '/segelrutter/osterjosleden',
  meta: 'Nivå 2–3',
  },
  {
  icon: 'building',
- title: 'Bohusleden & västkusten',
- description: 'Hummervatten, Marstrand, Smögen, Kosterfjorden. Västkustens vildaste seglingar med tidvatten och skjärgård.',
+ title: 'Bohuslän & västkusten',
+ description: 'Hummervatten, Marstrand, Smögen, Kosterhavet. Västkustens granitkust med fiskelägen och naturhamnar.',
  href: '/segelrutter/bohusleden',
  meta: 'Nivå 2–3',
  },
@@ -106,8 +106,8 @@ export default function SegelrutterPage() {
  },
  {
  '@type': 'Question',
- name: 'Hur lång tid tar Östersjöleden?',
- acceptedAnswer: { '@type': 'Answer', text: 'Östersjöleden är cirka 800 sjömil. Realistisk tid är 10–15 dagar för 300–400 sjömil (exempelvis Stockholm till Visby). Många seglare gör detta som ett 2-veckors sommaräventyr eller sprider det över flera sommrar.' },
+ name: 'Hur lång tid tar en östkustsegling Stockholm–Malmö?',
+ acceptedAnswer: { '@type': 'Answer', text: 'Hela kustruten Stockholm–Malmö via östkusten är cirka 380–420 sjömil. Realistisk tid är 10–14 dagar med stopp vid Sandhamn, Visby, Karlskrona och längs Skånes kust. Många seglare gör detta som ett 2-veckors sommaräventyr eller sprider det över flera sommrar.' },
  },
  {
  '@type': 'Question',
@@ -171,13 +171,10 @@ export default function SegelrutterPage() {
  Östersjöleden — kustens stora segelrutt
  </h2>
  <p>
- Östersjöleden är den klassiska vägen för den seglare som vill utforska Sveriges östra kust över långre tid. Rundan sträcker sig cirka 800 sjömil från Stockholm i norr till Malmö i söder, och kan seglas helårs med rätt förberedelser — sommaren är naturligtvis populärast för sin pålitliga vind och mildare väder.
+ Östkusten — från Stockholms skärgård söderut längs Sveriges östkust — är en klassisk segeltur för den som vill utforska kusten över längre tid. Vanlig rutt går genom Stockholms skärgård, ut till Sandhamn, vidare över Östersjön till Gotland, ner längs Smålandskusten och Blekinge till Karlskrona, och slutligen till Skånes ostkust och vidare till Öresund. Sommaren är populärast för sin stabilare vind och milda väder.
  </p>
  <p>
- Rutten följer kustnära farleder genom arkipelager och mellan större hamnar: från Stockholm söder via Uppsala, Västerås och Väsby längs Mälaren innan man når Östersjön vid Söderhamn, sedan vidare söder genom Gävle, Sundsvall, Härnösand och Umeå längs Norrlands kust. Längre söder går du förbi Västra Götaland och ankommer så småningom vid Bornholm innan du når Blekinge-skärgården — där du möter Karlskrona och dess historiska örlogshamn — och slutligen fram till Malmö vid Öresund.
- </p>
- <p>
- Klassiska etapper på Östersjöleden är Stockholm–Sandhamn (50 sjömil, 1 dag), Sandhamn–Visby (120 sjömil, 2 dagar), Visby–Karlskrona (180 sjömil, 3 dagar), och Karlskrona–Malmö (150 sjömil, 2–3 dagar). Många seglare gör denna som två veckor långt sommaräventyr, annat ankommer längre upp norr om Stockholm för att segla bara delen från Sundsvall söder. De flesta seglare väljer juli–augusti för mest pålitlig väder och vind.
+ Klassiska etapper är Stockholm–Sandhamn (cirka 25 sjömil, en dag), Sandhamn–Visby (cirka 90 sjömil — vanligen seglas över natten eller på en lång dag), Visby–Karlskrona (cirka 130–140 sjömil, två dagar med stopp), och Karlskrona–Malmö (cirka 130 sjömil längs Skånes ostkust och runt Falsterbo, två till tre dagar). Många seglare gör detta som ett tvåveckors sommaräventyr, andra delar upp över flera somrar. De flesta väljer juli–augusti för stabilast väder.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Blekinge och Gotland
@@ -187,16 +184,16 @@ export default function SegelrutterPage() {
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
- Bohusleden och västkusten
+ Bohuslän och västkusten
  </h2>
  <p>
- Bohusleden representerar västkustens hjärta — ett område som präglats av kraftig vind, dramatiska klippor och ett unikt ekosystem av skärgårdsöar och fiskesamhällen. Denna rutt går från Göteborgs område i söder upp mot norska gränsen, och är känd för sitt tidvatten (upp till 1,5 meter), många revraktiga grund och den speciella västkustsvällningen.
+ Bohusläns kust representerar västkustens hjärta — ett område präglat av granit, fiskelägen och ett unikt skärgårdslandskap. Vanlig segelrutt går från Göteborgs skärgård norrut längs kusten till norska gränsen vid Strömstad, med klassiska stopp som Marstrand, Klädesholmen, Käringön, Smögen, Fjällbacka och Grebbestad.
  </p>
  <p>
- Marstrand är en klassisk ankarhamn och kappseglingsplats med sin ikoniska fortet och flera restauranger. Smögen nära kusten är en charmig fiskerort som ofta besöks av seglare. Längre norrut ligger Kosterfjorden — Sveriges djupaste fjord med över 200 meters djup — där stora båtar kan ankra tryggt. Hela området är kännetecknad av höga västvindar, vilket gör detta revir populärt för seglare som söker utmaning och atmosfär.
+ Marstrand är en klassisk gästhamn och kappseglingsplats med Carlstens fästning på Marstrandsön. Smögen är en av Bohusläns mest fotograferade fiskelägen. Längst i norr ligger Kosteröarna med Kosterhavets nationalpark — Sveriges första marina nationalpark, känt för rent vatten och rik biodiversitet. Området är känt för pålitliga västvindar och granit-skärgården.
  </p>
  <p>
- Väl värd att veta: tidvattnet på västkusten kan skapa kraftiga strömmar, särskilt nära Tjörn och Orust. Många lokalseglare använder tidvattnen strategiskt för att få ytterligare knop fart in eller ut från fjordarna. Sjökortet blir här extra viktig — varje grund och rev är noga karterat men lätt att missa i gräl.
+ Bra att veta: västkustens tidvatten är blygsamt jämfört med Nordsjön — typiskt 20–40 cm — men kan skapa märkbara strömmar i trånga sund. Sjökortet är extra viktigt här eftersom området är fyllt av grund och småklippor.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
