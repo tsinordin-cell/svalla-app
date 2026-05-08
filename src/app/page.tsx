@@ -161,7 +161,7 @@ section{padding:100px 40px}
 .krog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .krog-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .krog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.krog-card-img{height:210px;position:relative;overflow:hidden;}
+.krog-card-img{height:180px;position:relative;overflow:hidden;}
 .krog-card-img .img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;transition:.5s;}
 .krog-card:hover .img-inner{transform:scale(1.06)}
 .krog-card-badge{position:absolute;top:14px;left:14px;background:var(--accent);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px;}
@@ -189,12 +189,12 @@ section{padding:100px 40px}
 .step-num{width:52px;height:52px;border-radius:50%;background:rgba(232,146,74,.18);border:2px solid rgba(232,146,74,.5);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--accent-light);margin:0 auto 20px;}
 .step h4{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px}
 .step p{font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.6}
-.routes-section{background:var(--sand);padding:80px 40px}
+.routes-section{background:var(--sand);padding:100px 40px}
 .routes-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none;}
 .routes-scroll::-webkit-scrollbar{display:none}
 .route-card{flex-shrink:0;width:280px;border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .route-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.route-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;border-radius:var(--r) var(--r) 0 0;background-size:cover;background-position:center}
+.route-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;border-radius:var(--r) var(--r) 0 0;background-size:cover;background-position:center}
 .route-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,94,.85);color:var(--white);font-size:10px;font-weight:700;border-radius:5px;padding:3px 9px;backdrop-filter:blur(4px);}
 .route-body{padding:16px}
 .route-body h4{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
@@ -291,7 +291,7 @@ footer{background:var(--sea-dark);color:rgba(255,255,255,.5);padding:64px 40px 3
 .auth-m-forgot{text-align:right;font-size:12px;color:#0a7b8c;font-weight:600;cursor:pointer;margin-top:-8px;margin-bottom:4px;display:block}
 @keyframes authIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
 /* -- Destinations -- */
-.destinations-section{background:var(--sand);padding-top:60px}
+.destinations-section{background:var(--sand);padding:100px 40px}
 .destinations-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .dest-card{border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .dest-card:hover .dest-card-bg{transform:scale(1.05)}
@@ -309,7 +309,7 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .regions-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 40px 16px;scrollbar-width:none;cursor:grab;user-select:none}
 .regions-scroll::-webkit-scrollbar{display:none}
 .regions-scroll.dragging{cursor:grabbing}
-.regions-section .section-header{margin-bottom:40px}
+.regions-section .section-header{margin-bottom:56px}
 .region-card{flex-shrink:0;width:260px;border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.3s;position:relative;height:220px;display:flex;flex-direction:column;justify-content:flex-end;text-decoration:none;}
 .region-card:hover .region-card-bg{transform:scale(1.06)}
 .region-card-bg{position:absolute;inset:0;transition:.5s;background-size:cover;background-position:center}
@@ -424,11 +424,11 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 /* Dark mode: match footer color so no black strip appears below footer */
 /* -- Resetips / Dagsplaner -- */
 .resetips-section{background:var(--white);padding:100px 40px}
-.resetips-section .section-header{margin-bottom:48px}
+.resetips-section .section-header{margin-bottom:56px}
 .resetips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .resetips-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid rgba(26,74,94,.07)}
 .resetips-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.resetips-card-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
+.resetips-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
 .resetips-card-badge{position:absolute;top:12px;left:12px;background:var(--accent);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 10px}
 .resetips-card-season{position:absolute;top:12px;right:12px;background:rgba(13,36,64,.8);color:rgba(255,255,255,.9);font-size:10px;font-weight:600;border-radius:6px;padding:4px 10px;backdrop-filter:blur(4px)}
 .resetips-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
@@ -439,11 +439,11 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 .resetips-card-cta{font-size:13px;color:var(--accent);font-weight:700;text-align:right}
 
 /* -- Populära guider -- */
-.guides-section{background:var(--sand);padding:100px 40px 60px}
+.guides-section{background:var(--sand);padding:100px 40px}
 .guides-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .guide-card{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:.3s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
 .guide-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.guide-card-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
+.guide-card-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
 .guide-card-cat{position:absolute;bottom:10px;left:10px;background:rgba(13,36,64,.82);color:rgba(255,255,255,.9);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;padding:3px 8px}
 .guide-card-body{padding:16px;flex:1;display:flex;flex-direction:column}
 .guide-card-title{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:auto}
