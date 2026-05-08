@@ -1523,7 +1523,7 @@ function toggleFaq(btn){
     });
   }
   var pre=window.__LP_PHOTOS__;
-  if(pre){applyLpPhotos(pre);}
+  if(pre&&Object.keys(pre).length>0){applyLpPhotos(pre);}
   else{fetch('/api/landing-photos').then(r=>r.ok?r.json():null).catch(()=>null).then(applyLpPhotos);}
 })();
 
@@ -1677,7 +1677,7 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
 
  return (
  <>
- {photoMap && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${JSON.stringify(photoMap)}` }} />}
+ {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${JSON.stringify(photoMap)}` }} />}
  <div style={{ position: 'relative' }}>
  {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
  <div style={{
