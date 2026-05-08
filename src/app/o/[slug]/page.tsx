@@ -663,6 +663,75 @@ export default async function IslandPage({ params }: Props) {
  </section>
  )}
 
+ {/* Forum-sektion */}
+ <section style={{ marginTop: 48, marginBottom: 0 }}>
+ <div style={{
+  background: 'linear-gradient(135deg, #0a1e2e 0%, #1a4a5e 100%)',
+  borderRadius: 20,
+  padding: '28px 28px 24px',
+  position: 'relative',
+  overflow: 'hidden',
+ }}>
+  {/* Dekorativ cirkel */}
+  <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, position: 'relative', zIndex: 1 }}>
+  <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(232,146,74,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+   <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#e8924a" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+   <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
+   </svg>
+  </div>
+  <div style={{ flex: 1 }}>
+   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#e8924a', marginBottom: 6 }}>
+   Community
+   </div>
+   <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', margin: '0 0 8px', lineHeight: 1.3 }}>
+   Diskutera {island.name} med andra
+   </h3>
+   <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.7)', margin: '0 0 20px', lineHeight: 1.6 }}>
+   Ställ frågor till lokalkännare, dela tips om evenemang och loppmarknader, eller erbjud tjänster och samarbeten kopplade till {island.name}.
+   </p>
+   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+   <Link
+    href={`/forum/o/${island.slug}`}
+    style={{
+    display: 'inline-flex', alignItems: 'center', gap: 7,
+    padding: '11px 20px',
+    background: '#e8924a',
+    color: '#fff',
+    borderRadius: 12,
+    textDecoration: 'none',
+    fontSize: 14,
+    fontWeight: 700,
+    boxShadow: '0 4px 14px rgba(232,146,74,0.35)',
+    }}
+   >
+    Gå till forumet
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+   </Link>
+   <Link
+    href={`/forum/ny-trad?island=${island.slug}`}
+    style={{
+    display: 'inline-flex', alignItems: 'center', gap: 7,
+    padding: '11px 20px',
+    background: 'rgba(255,255,255,0.1)',
+    color: 'rgba(255,255,255,0.9)',
+    borderRadius: 12,
+    textDecoration: 'none',
+    fontSize: 14,
+    fontWeight: 600,
+    border: '1px solid rgba(255,255,255,0.15)',
+    }}
+   >
+    Starta en diskussion
+   </Link>
+   </div>
+  </div>
+  </div>
+ </div>
+ </section>
+
  {/* E-postsignup för ön */}
  <div style={{ marginTop: 28 }}>
  <EmailSignup

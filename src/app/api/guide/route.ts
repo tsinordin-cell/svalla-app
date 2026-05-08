@@ -7,6 +7,8 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 import { logger } from '@/lib/logger'
+import { fetchTrips, type TripSummary } from '@/lib/trafiklab'
+import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
 
 // Condensed tour list for context (titles + key data)
 const TOUR_CONTEXT = `
@@ -313,7 +315,25 @@ plan_route för att få riktiga stopp-förslag från platsdatabasen. Presentera
 sedan resultatet som en lista av stopp med namn, ö, och anledning. Länka till
 /planera om användaren vill spara rutten.
 
-Stöttade start/slutpunkter: ${listSupportedPlaces().join(', ')}.`
+Stöttade start/slutpunkter: ${listSupportedPlaces().join(', ')}.
+
+NÄR ANVÄNDAREN FRÅGAR HUR HEN TAR SIG TILL EN Ö (utan båt):
+Frågor som "Hur tar jag mig till Sandhamn?", "Vilken båt går till Grinda?",
+"Kan jag åka kollektivt till Utö?", "När går nästa båt till Möja?" — anropa
+verktyget get_transit_to_island med slug:en för ön. Du får då tillbaka 3 nästa
+faktiska resor från Trafiklab (Waxholmsbolaget, SL, etc.) med riktiga tider,
+operatörer och antal byten.
+
+Verktyget visar dessutom en strukturerad rutt-card till användaren automatiskt
+— DU behöver bara skriva en kort kommentar (1-2 meningar) som komplement.
+Kommentera t.ex. säsong, vilken avgång du själv hade tagit, eller hänvisa till
+att kortet visar tiderna. Spotta inte ut tiderna i texten — kortet visar dem.
+
+Tillgängliga öar med transit-data: ${Object.keys(ISLAND_TRANSIT).sort().join(', ')}.
+
+OBS — om användaren frågar om transit till en ö som INTE finns i listan: säg
+ärligt att du inte har tabelldata för just den ön och föreslå att de söker
+sl.se eller waxholmsbolaget.se. Hitta inte på tider.`
 
 const TOOLS = [
   {
@@ -339,13 +359,30 @@ const TOOLS = [
       required: ['start', 'end', 'interests'],
     },
   },
+  {
+    name: 'get_transit_to_island',
+    description: 'Hämtar de 3 nästa faktiska kollektivtrafik-resorna från fastlandet (Stockholm/Nynäshamn) till en ö i skärgården. Använd när användaren frågar hur hen tar sig till en specifik ö utan egen båt — t.ex. "Hur tar jag mig till Grinda?", "Vilken båt går till Sandhamn?", "Kan jag åka kollektivt till Utö?". Returnerar riktiga avgångstider från Trafiklab inklusive Waxholmsbolaget, SL och pendelbåtar.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        island_slug: {
+          type: 'string',
+          description: `Slug för ön — ETT av: ${Object.keys(ISLAND_TRANSIT).sort().join(', ')}. T.ex. "sandhamn", "grinda", "uto".`,
+        },
+      },
+      required: ['island_slug'],
+    },
+  },
 ]
 
 type AnthropicContent =
   | { type: 'text'; text: string }
   | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
 
-type ToolResult = { stops: Array<{ name: string; island: string | null; reason: string; distance_from_line_km: number }> } | { error: string }
+type ToolResult =
+  | { stops: Array<{ name: string; island: string | null; reason: string; distance_from_line_km: number }> }
+  | TransitData
+  | { error: string }
 
 export type PlanData = {
   startName: string
@@ -355,6 +392,20 @@ export type PlanData = {
   endLat: number
   endLng: number
   interests: string[]
+}
+
+/**
+ * Transit-data som skickas tillbaka till klienten när Thorkel använt
+ * get_transit_to_island. Klienten renderar `<ThorkelRouteCard>` med detta.
+ *
+ * Trips följer samma shape som /api/transit/departures för att hålla
+ * UI-komponenter konsekventa.
+ */
+export type TransitData = {
+  islandSlug: string
+  originName: string
+  destName: string
+  trips: TripSummary[]
 }
 
 function extractFollowUps(raw: string): { text: string; followUps: string[] } {
@@ -383,7 +434,7 @@ function tokenizeForStreaming(text: string): string[] {
   return tokens
 }
 
-function makeStream(text: string, followUps: string[], planData: PlanData | null): Response {
+function makeStream(text: string, followUps: string[], planData: PlanData | null, transitData: TransitData | null = null): Response {
   const encoder = new TextEncoder()
   const stream = new ReadableStream({
     async start(controller) {
@@ -403,7 +454,7 @@ function makeStream(text: string, followUps: string[], planData: PlanData | null
         const delay = isSentenceEnd ? 160 : isClausePause ? 80 : 50
         await new Promise(r => setTimeout(r, delay))
       }
-      controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData })}\n\n`))
+      controller.enqueue(encoder.encode(`data: ${JSON.stringify({ done: true, followUps, planData, transitData })}\n\n`))
       controller.close()
     },
   })
@@ -420,18 +471,65 @@ async function executeTool(
   name: string,
   input: Record<string, unknown>,
   supabase: SupabaseClient,
-): Promise<{ result: ToolResult; planData: PlanData | null }> {
-  if (name !== 'plan_route') return { result: { error: `Okänt verktyg: ${name}` }, planData: null }
+): Promise<{ result: ToolResult; planData: PlanData | null; transitData: TransitData | null }> {
+  // ── get_transit_to_island ──────────────────────────────────────────
+  if (name === 'get_transit_to_island') {
+    const { island_slug } = input as { island_slug?: string }
+    if (!island_slug || typeof island_slug !== 'string') {
+      return { result: { error: 'island_slug saknas eller är inte en sträng' }, planData: null, transitData: null }
+    }
+    const slug = island_slug.trim().toLowerCase()
+    const cfg = getIslandTransit(slug)
+    if (!cfg) {
+      return {
+        result: {
+          error: `Ingen transit-data för "${slug}". Tillgängliga: ${Object.keys(ISLAND_TRANSIT).sort().join(', ')}`,
+        },
+        planData: null,
+        transitData: null,
+      }
+    }
+    const trips = await fetchTrips(cfg.originStopId, cfg.destStopId, 4)
+    const transitData: TransitData = {
+      islandSlug: slug,
+      originName: cfg.originStopName,
+      destName: cfg.destStopName,
+      trips,
+    }
+    // Tool-resultatet som skickas tillbaka TILL Claude — kompakt så hen
+    // kan referera till tider/operatörer i sitt textsvar utan att spotta
+    // ut hela JSON.
+    const claudeView = trips.length === 0
+      ? { error: 'Inga avgångar hittades just nu (kan vara nattetid eller pågående störning).' }
+      : {
+          islandSlug: slug,
+          originName: cfg.originStopName,
+          destName: cfg.destStopName,
+          note: cfg.note ?? null,
+          tripCount: trips.length,
+          firstTrip: {
+            departure: trips[0]!.startTime,
+            arrival: trips[0]!.endTime,
+            durationMin: trips[0]!.durationMin,
+            changes: trips[0]!.changes,
+            operators: [...new Set(trips[0]!.legs.map(l => l.operator).filter(Boolean))],
+            hasFerry: trips[0]!.legs.some(l => l.category.toLowerCase().includes('färja')),
+          },
+        }
+    return { result: claudeView as ToolResult, planData: null, transitData }
+  }
+
+  if (name !== 'plan_route') return { result: { error: `Okänt verktyg: ${name}` }, planData: null, transitData: null }
 
   const { start, end, interests } = input as { start?: string; end?: string; interests?: string[] }
   if (!start || !end || !Array.isArray(interests)) {
-    return { result: { error: 'Ogiltiga argument till plan_route' }, planData: null }
+    return { result: { error: 'Ogiltiga argument till plan_route' }, planData: null, transitData: null }
   }
 
   const startPlace = resolvePlaceName(start)
   const endPlace = resolvePlaceName(end)
-  if (!startPlace) return { result: { error: `Kunde inte känna igen startplatsen "${start}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null }
-  if (!endPlace) return { result: { error: `Kunde inte känna igen slutplatsen "${end}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null }
+  if (!startPlace) return { result: { error: `Kunde inte känna igen startplatsen "${start}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null, transitData: null }
+  if (!endPlace) return { result: { error: `Kunde inte känna igen slutplatsen "${end}". Stöttade platser: ${listSupportedPlaces().join(', ')}` }, planData: null, transitData: null }
 
   const { data: places } = await supabase
     .from('restaurants')
@@ -479,6 +577,7 @@ async function executeTool(
       })),
     },
     planData,
+    transitData: null,
   }
 }
 
@@ -623,7 +722,7 @@ export async function POST(req: NextRequest) {
       return makeStream('Kunde inte tolka Thorkels svar. Försök igen.', [], null)
     }
 
-    const { result: toolResult, planData } = await executeTool(toolUse.name, toolUse.input, supabase)
+    const { result: toolResult, planData, transitData } = await executeTool(toolUse.name, toolUse.input, supabase)
 
     const followUpMessages = [
       ...cleanMessages,
@@ -649,7 +748,7 @@ export async function POST(req: NextRequest) {
     const finalRaw = (finalTextBlock as { text?: string })?.text ?? ''
     const finalSanitized = sanitizeLinks(finalRaw)
     const { text: finalText, followUps: finalFollowUps } = extractFollowUps(finalSanitized)
-    return makeStream(finalText, finalFollowUps, planData)
+    return makeStream(finalText, finalFollowUps, planData, transitData)
   } catch (error) {
     logger.error('guide', 'unhandled exception', { error: String(error) })
     return NextResponse.json({ error: 'Nätverksfel — kunde inte nå Anthropic API' }, { status: 500 })

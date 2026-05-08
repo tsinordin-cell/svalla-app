@@ -4,15 +4,17 @@ import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
+import ThorkelRouteCard from '@/components/thorkel/ThorkelRouteCard'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
-import type { PlanData } from '@/app/api/guide/route'
+import type { PlanData, TransitData } from '@/app/api/guide/route'
 
 type Message = {
   role: 'user' | 'assistant'
   content: string
   followUps?: string[]
   planData?: PlanData | null
+  transitData?: TransitData | null
 }
 
 function renderMarkdown(text: string): React.ReactNode[] {
@@ -188,7 +190,7 @@ function GuideContent() {
           for (const line of lines) {
             if (!line.startsWith('data: ')) continue
             try {
-              const event = JSON.parse(line.slice(6)) as { t?: string; done?: boolean; followUps?: string[]; planData?: PlanData | null }
+              const event = JSON.parse(line.slice(6)) as { t?: string; done?: boolean; followUps?: string[]; planData?: PlanData | null; transitData?: TransitData | null }
               if (event.t !== undefined) {
                 accText += event.t
                 setMessages(prev => {
@@ -204,6 +206,7 @@ function GuideContent() {
                     content: accText,
                     followUps: event.followUps ?? [],
                     planData: event.planData ?? null,
+                    transitData: event.transitData ?? null,
                   }
                   return u
                 })
@@ -398,6 +401,11 @@ function GuideContent() {
                     </button>
                   ))}
                 </div>
+              )}
+
+              {/* Transit route card — shown when Thorkel queried Trafiklab */}
+              {m.role === 'assistant' && m.transitData && m.transitData.trips.length > 0 && (
+                <ThorkelRouteCard data={m.transitData} />
               )}
 
               {/* Save as plan button — shown when Thorkel ran the route planner */}
