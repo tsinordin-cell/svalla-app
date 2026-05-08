@@ -151,7 +151,9 @@ const CATEGORY_STYLE: Record<string, { bg: string; iconPath: string }> = {
 }
 
 function ArticleCover({ category, title }: { category: string | null; title: string }) {
-  const style = CATEGORY_STYLE[category ?? ''] ?? CATEGORY_STYLE['default']
+  // CATEGORY_STYLE['default'] är alltid satt — non-null assertion är safe här.
+  // TypeScript kan inte härleda det själv eftersom Record-typen tillåter undefined.
+  const style = (CATEGORY_STYLE[category ?? ''] ?? CATEGORY_STYLE['default'])!
   const label = category ?? 'Svalla'
   return (
     <div style={{
