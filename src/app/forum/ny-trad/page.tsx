@@ -10,6 +10,7 @@ function NyTradForm() {
   const router       = useRouter()
   const sp           = useSearchParams()
   const preCategory  = sp.get('kategori') ?? ''
+  const preIsland    = sp.get('island') ?? ''
 
   const [kategori, setKategori]   = useState(preCategory)
   const [title, setTitle]         = useState('')
@@ -41,7 +42,7 @@ function NyTradForm() {
       const res = await fetch('/api/forum/threads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categoryId: kategori, title: title.trim(), body: body.trim() }),
+        body: JSON.stringify({ categoryId: kategori, title: title.trim(), body: body.trim(), ...(preIsland ? { islandSlug: preIsland } : {}) }),
       })
       const data = await res.json()
       if (!res.ok) { setErr(data.error ?? 'Något gick fel.'); setLoading(false); return }

@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json()
-    const { categoryId, title, body: postBody, listingData } = body
+    const { categoryId, title, body: postBody, listingData, islandSlug } = body
 
     // Validera kategori
     const validIds = STATIC_CATEGORIES.map(c => c.id)
@@ -93,6 +93,12 @@ export async function POST(req: NextRequest) {
     const approvedCount = await getUserForumPostCount(user.id)
     const inSpamQueue   = approvedCount < 3
 
+    // Validera island_slug om det skickades med (max 80 tecken, bara slug-tecken)
+    const validatedIslandSlug =
+      typeof islandSlug === 'string' && /^[a-z0-9-]{1,80}$/.test(islandSlug.trim())
+        ? islandSlug.trim()
+        : null
+
     const insertPayload: Record<string, unknown> = {
       category_id:   categoryId,
       user_id:       user.id,
@@ -101,6 +107,7 @@ export async function POST(req: NextRequest) {
       in_spam_queue: inSpamQueue,
     }
     if (validatedListing) insertPayload.listing_data = validatedListing
+    if (validatedIslandSlug) insertPayload.island_slug = validatedIslandSlug
 
     const { data: thread, error: insertError } = await supabase
       .from('forum_threads')

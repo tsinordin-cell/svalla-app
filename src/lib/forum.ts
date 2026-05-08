@@ -44,6 +44,8 @@ export interface ForumThread {
   created_at: string
   best_post_id?: string | null
   is_solved?: boolean
+  /** Öns slug om tråden är kopplad till en specifik ö, t.ex. "sandhamn". Null annars. */
+  island_slug?: string | null
   /** Loppis-annons-data (bara för category_id='loppis'). Null annars. */
   listing_data?: ListingData | null
   // enriched
@@ -142,6 +144,44 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
     if (!data) return []
 
     // Enrich with author names + last reply authors
+    const authorIds = [...new Set(data.map(t => t.user_id))]
+    const lastReplyIds = data
+      .map(t => t.last_reply_user_id)
+      .filter((id): id is string => !!id && !authorIds.includes(id))
+    const allUserIds = [...new Set([...authorIds, ...lastReplyIds])]
+
+    const { data: users } = await supabase
+      .from('users')
+      .select('id, username, avatar')
+      .in('id', allUserIds)
+
+    const userMap = new Map((users ?? []).map((u: { id: string; username: string; avatar: string | null }) => [u.id, u]))
+    return data.map(t => ({
+      ...t,
+      author: userMap.get(t.user_id) ?? null,
+      last_reply_author: t.last_reply_user_id
+        ? (userMap.get(t.last_reply_user_id) ? { username: userMap.get(t.last_reply_user_id)!.username } : null)
+        : null,
+    })) as ForumThread[]
+  } catch {
+    return []
+  }
+}
+
+export async function getThreadsByIsland(islandSlug: string, page = 0): Promise<ForumThread[]> {
+  const PAGE_SIZE = 30
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data } = await supabase
+      .from('forum_threads')
+      .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at, island_slug')
+      .eq('island_slug', islandSlug)
+      .eq('in_spam_queue', false)
+      .order('last_reply_at', { ascending: false })
+      .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)
+
+    if (!data) return []
+
     const authorIds = [...new Set(data.map(t => t.user_id))]
     const lastReplyIds = data
       .map(t => t.last_reply_user_id)
