@@ -77,6 +77,95 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
     note: 'Buss 839 från Handen pendelstation tar dig till Dalarö.',
   },
+
+  // ── Norra skärgården (nås via Furusund/Räfsnäs eller direktbåt) ───────
+  arholma: {
+    destStopId: '740024314', destStopName: 'Arholma brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Yttersta ön i norra skärgården — båt från Simpnäs (buss 631 från Norrtälje).',
+  },
+  blido: {
+    destStopId: '740001021', destStopName: 'Blidö Bromskär brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Bilfärja från Furusund — Waxholmsbåt eller buss 626 + 634 från Norrtälje.',
+  },
+  fejan: {
+    destStopId: '740018278', destStopName: 'Fejan brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+  },
+  furusund: {
+    destStopId: '740025063', destStopName: 'Furusund brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Knutpunkten för norra skärgården — buss 626/634 från Norrtälje.',
+  },
+  norrora: {
+    destStopId: '740034551', destStopName: 'Norröra brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Saltkråkan-ön — Waxholmsbåt från Furusund.',
+  },
+  rodloga: {
+    destStopId: '740024879', destStopName: 'Rödlöga brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Yttersta ytterskärgården — direktbåt från Furusund.',
+  },
+  yxlan: {
+    destStopId: '740025023', destStopName: 'Yxlan Vagnsunda brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+  },
+
+  // ── Mellersta skärgården (Stavsnäs/Boda) ─────────────────────────────
+  gallno: {
+    destStopId: '740024302', destStopName: 'Gällnö brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',
+  },
+  ljustero: {
+    destStopId: '740020573', destStopName: 'Åsättra (Ljusterö) brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Bilfärja från Östanå — buss 626 + bilfärja Östanå–Ljusterö.',
+  },
+  runmaro: {
+    destStopId: '740023240', destStopName: 'Långvik (Runmarö) brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',
+  },
+  svartso: {
+    destStopId: '740024872', destStopName: 'Svartsö Norra brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',
+  },
+  resaro: {
+    destStopId: '740034517', destStopName: 'Ytterby (Resarö) brygga',
+    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
+    note: 'Bilbro från Vaxholm — buss 670 + 689 från Tekniska högskolan.',
+  },
+
+  // ── Södra skärgården (Nynäshamn) ─────────────────────────────────────
+  landsort: {
+    destStopId: '740024878', destStopName: 'Landsort brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Pendeltåg till Nynäshamn + buss 858 till Ankarudden + båt.',
+  },
+  nattaro: {
+    destStopId: '740024875', destStopName: 'Nåttarö brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',
+  },
+  orno: {
+    destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Bilfärja från Dalarö — pendeltåg till Handen + buss 839 + färja.',
+  },
+  kymmendo: {
+    destStopId: '740018277', destStopName: 'Kymmendö brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Strindbergs ö — Waxholmsbåt från Dalarö eller Nynäshamn.',
+  },
+  bullero: {
+    destStopId: '740076413', destStopName: 'Bullerö brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Naturreservat i ytterskärgården — taxibåt eller charterturer.',
+  },
 }
 
 export function getIslandTransit(slug: string): IslandTransitConfig | null {
