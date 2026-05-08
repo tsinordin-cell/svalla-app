@@ -1,151 +1,91 @@
-# De 15 bästa naturhamnarna i Stockholms skärgård
+# 15 klassiska naturhamnar i Stockholms skärgård
 
-Naturhamnar är skärgårdens egentliga charm. En klippa du har för dig själv, ankaret som biter i sandbotten, vinden som mojnar runt åtta, kvällsljus som ligger lågt över vattnet i två timmar innan det är dags att tända lanternorna. Den här guiden är till för dig som har egen båt och vill veta var de mest pålitliga naturhamnarna i Stockholms skärgård faktiskt finns.
+Naturhamnar är skärgårdens egentliga charm. En klippa du har för dig själv, ankaret som biter i sandbotten, vinden som mojnar runt åtta, kvällsljus som ligger lågt över vattnet i två timmar innan det är dags att tända lanternorna.
 
-Vi har valt femton platser som tål olika väderlägen och båttyper, från mindre segelbåtar och motorkryssare upp till tjugofem fot. Koordinater anges i decimalgrader (WGS84) — de fungerar direkt i de flesta plottrar och i Svalla-appens karta.
+> **Viktigt om koordinater:** Koordinater är inte angivna i artikeln eftersom även små avvikelser kan vara farligt på sjön. Använd istället **Svalla-kartan** där platser är geokodade och verifierade — eller officiella sjökort. Lita aldrig blint på en webbartikel när du planerar inseglingsled.
 
 ## Innerskärgården — skyddat och nära
 
-### 1. Skarpö, södra viken
+### 1. Skarpö, Vaxholmstrakten
 
-**Koordinat:** 59.4138 N, 18.4072 E
-**Skydd:** Bra mot väst, syd och nord. Sårbart för östliga vindar.
-**Djup:** 4–8 meter sandbotten, bra ankarhåll.
+Skarpö ligger en kort bit öster om Vaxholm och är en mjuk första naturhamn. Området har bra skydd mot västliga vindar och är ett populärt familjeval.
 
-Skarpö ligger fem sjömil från Vaxholm och är en perfekt första naturhamn för dig som testar formatet. Träsk på ön ger lugnare innerläge än de flesta vikarna i området.
+### 2. Stora Nassa-ögruppen
 
-### 2. Stora Nassa, centralhamnen
+Stora Nassa är en utspridd ögrupp i mellanskärgården med flera bra ankarmöjligheter mellan smågöar. Området är ett klassiskt seglarmål och har mycket gott skydd när du valt rätt vik för rådande vind.
 
-**Koordinat:** 59.3683 N, 19.0306 E
-**Skydd:** Mycket bra från alla håll utom direkt syd.
-**Djup:** 5–12 meter, blandad botten.
+### 3. Bullerö
 
-Stora Nassa-arkipelagen är ett paradis för båtfolk i Stockholms skärgård. Centralhamnen mellan ön Stora Nassa och Lilla Nassa är så skyddad att man kan ligga där i halv kuling.
-
-### 3. Bullerön, östra sidan
-
-**Koordinat:** 59.3308 N, 18.9569 E
-**Skydd:** Bra mot väst och syd.
-**Djup:** 6–10 meter.
-
-Bullerön är naturreservat med strikta regler — landstigning får ske endast på markerade stigar, inga eldar, ingen camping utanför iordningställda platser. Naturhamnen själv är otroligt vacker och skyddad mot västliga vindar.
+Bullerö är naturreservat sedan 1967 (idag del av Nämdö-områdets nationalparksbildning) och har strikta regler — landstigning får ske enligt reservatsreglerna, ingen camping utanför iordningställda platser. Naturhamnen själv är en av skärgårdens vackraste.
 
 ## Mellanskärgården — det klassiska området
 
-### 4. Långgarn, norra viken
+### 4. Långviksskär (Möja-området)
 
-**Koordinat:** 59.3033 N, 18.7644 E
-**Skydd:** Bra från väst, nord och syd.
-**Djup:** 4–7 meter.
+Långviksskär är en ögrupp öster om Möja som många seglare räknar som en av regionens mest pålitliga naturhamnar. Klippformationerna gör det enkelt att lägga sig längs land.
 
-Långgarn är en favorit i seglarvärlden runt Stockholm. Norra viken har ett par bra klippkanter där man kan lägga sig längsmed med bog ut.
+### 5. Ängsö nationalpark
 
-### 5. Ängsö, norra viken
+Ängsö är nationalpark sedan 1909 (en av Sveriges äldsta) och har specifika regler. Tältning är tillåten endast på iordningställda platser. Ankringsmöjligheter finns i flera vikar — kolla parkkartan.
 
-**Koordinat:** 59.5019 N, 18.6361 E
-**Skydd:** Helt skyddat från syd och väst.
-**Djup:** 5–9 meter.
+### 6. Fjärdlång
 
-Ängsö är nationalpark och har specifika regler. Naturhamnen i norra viken är en av de mest pålitliga i hela mellanskärgården. Tälta får man bara på iordningställda platser i parken.
+Fjärdlång ligger i södra skärgården och är mindre besökt än motsvarande öar i norra delen. Bra alternativ om du vill undvika folksamlingar runt Sandhamn.
 
-### 6. Fjärdlång, östra sidan
+### 7. Mörtö-Bunsö
 
-**Koordinat:** 59.0306 N, 18.4858 E
-**Skydd:** Bra mot väst och syd.
-**Djup:** 6–14 meter.
+Lugnt val för en familjenatt i södra skärgården. Bra bottenförhållanden och oftast plats även en helgkväll i juli.
 
-Fjärdlång ligger i södra skärgården och är mindre besökt än motsvarande öar i norra delen. Bra alternativ om man vill undvika folksamlingen runt Sandhamn.
+### 8. Tjockö
 
-### 7. Mörtö-Bunsö, södra viken
-
-**Koordinat:** 59.0989 N, 18.6431 E
-**Skydd:** Bra från nord och väst.
-**Djup:** 4–8 meter sand och grus.
-
-Lugnt val för en familjenatt. Bra bottenförhållanden och oftast plats även en helgkväll i juli.
-
-### 8. Tjockö, östra sidan
-
-**Koordinat:** 59.6917 N, 18.9694 E
-**Skydd:** Bra från syd och väst.
-**Djup:** 5–10 meter.
-
-Längre norrut än de flesta utflyktshamnar, vilket gör att Tjockö ofta har plats kvar även när Sandhamn är fullt. Klippan på östra sidan ger fin solnedgång in i kvällen.
+Längre norrut än de flesta utflyktshamnar, vilket gör att Tjockö ofta har plats kvar även när Sandhamn är fullt. Klippor på östra sidan ger fin solnedgång in i kvällen.
 
 ## Ytterskärgården — för den erfarne
 
-### 9. Svenska Högarna, västra läa
+### 9. Svenska Högarna
 
-**Koordinat:** 59.4378 N, 19.5044 E
-**Skydd:** Endast mot väst — utsatt läge i övrigt.
-**Djup:** 3–8 meter klippbotten.
+Yttersta naturhamnsområdet i Stockholms skärgård. Naturreservat sedan 1976 (utvidgat 2020 till ett av Sveriges största marina reservat). Bara för båtar med erfaren besättning och stabilt väderfönster.
 
-Yttersta naturhamnen i hela Stockholms skärgård. Bara för båtar med erfaren besättning och stabilt väderfönster. Tag säkerligt med extra ankarjärn.
+### 10. Lökholmen vid Sandhamn
 
-### 10. Sandhamn, Lökholmen
+Lökholmen är Sandhamns lugnare grannö. Kort med jolle till Sandhamns krogar och butiker — bra kompromiss mellan natur och bekvämlighet.
 
-**Koordinat:** 59.2839 N, 18.9197 E
-**Skydd:** Bra mot väst och nord.
-**Djup:** 4–7 meter sand.
+### 11. Kallskärs naturhamn
 
-Lökholmen är Sandhamns lugnare grannö. Tio minuter med jolle till Sandhamns krogar och butiker — perfekt kompromiss mellan natur och bekvämlighet.
+Kallskär ligger i ytterskärgården nordost om Möja och är en klassiker bland erfarna seglare. Granitformationerna är spektakulära.
 
-### 11. Möja, Långviksskär
+### 12. Rödlöga
 
-**Koordinat:** 59.3700 N, 18.8908 E
-**Skydd:** Mycket bra från alla utom direkt nord.
-**Djup:** 6–12 meter.
-
-Långviksskär utanför östra Möja är en av de mest pålitliga naturhamnarna i regionen. Klipporna är släta nog att kunna gå iland från relativt högt vattenstånd.
-
-### 12. Rödlöga, södra viken
-
-**Koordinat:** 59.5536 N, 19.2342 E
-**Skydd:** Bra från nord och väst.
-**Djup:** 5–10 meter.
-
-Rödlöga är en magisk plats — granitberg, krattor av en, gammal fyrlykta. Naturhamnen i söder ger ett av skärgårdens vackraste lägen för ankarnatt.
+Rödlöga i norra ytterskärgården är en magisk plats — granitberg, enbuskar, gammal fyrlykta. En av skärgårdens vackraste lägen för en ankarnatt.
 
 ## Södra skärgården
 
-### 13. Huvudskär, västra viken
+### 13. Huvudskär
 
-**Koordinat:** 58.9722 N, 18.6428 E
-**Skydd:** Bra mot syd och öst.
-**Djup:** 4–9 meter.
+Huvudskär är fyrö ute i södra ytterskärgården. Långt ut, men värt resan om vädret är stabilt.
 
-Huvudskär är fyrön, en av de yttersta i södra skärgården. Naturhamnen tar emot de flesta vindar förutom direkt västliga. Värd resan om vädret är stabilt.
+### 14. Ornö
 
-### 14. Ornö, norra viken
+Ornö är stor och har flera möjliga ankarvikar. Fungerar som hubb för dig som planerar att utforska södra skärgården en hel vecka.
 
-**Koordinat:** 59.0364 N, 18.4006 E
-**Skydd:** Bra från syd och väst.
-**Djup:** 6–11 meter.
-
-Ornö är stort och har flera möjliga ankarvikar. Norra viken är den mest skyddade och fungerar som hubb för dig som planerar att utforska södra skärgården en hel vecka.
-
-### 15. Älgö, östra viken
-
-**Koordinat:** 59.2889 N, 18.4533 E
-**Skydd:** Mycket bra från väst och syd.
-**Djup:** 4–8 meter.
+### 15. Älgö
 
 Älgö ligger nära Saltsjöbaden och är ett bra val för dig som vill ha en kort resa men ändå riktig naturhamnskänsla.
 
 ## Praktiskt — hur du gör en bra natt i naturhamn
 
-**Två ankare.** I Stockholms skärgård är det vanligt att fästa bog mot land och ankra med akter. Ha en bra ankare-kombination, oftast 5–8 kilo per ton båt.
+**Bog mot land, ankar akter.** I Stockholms skärgård är det vanligaste sättet att ligga med bogen mot ett klippblock och släppa ankaret från aktern. Använd en lämplig ankartyp för bottnen — Bruce, Delta eller plogankare fungerar bra i sand och lera.
 
-**Land-stege och knall.** Bra båt-att-land-handling kräver en stege eller landgång och ett knall för att fästa landlina i berget.
+**Landgång och förtampar.** Ta med en stadig landgång och tillräckligt långa förtampar att fästa runt ett klippblock eller i en bergring.
 
-**Vindprognos kvällen innan.** Vindar slår om snabbt i Stockholms skärgård. Kolla SMHI:s vindkartor varje kväll — gå inte iland och tro att vinden förblir norr när prognosen visar omslag.
+**Vindprognos kvällen innan.** Vindar kan slå om snabbt. Kolla SMHI:s prognos och planera ankarplatser med tanke på var vinden ska komma ifrån — och ha alltid en plan B.
 
-**Fendrar mot klippa.** Klippnatt utan fendrar längs sidan = repor. Använd brädfendrar eller jättebumpers när du är längsmed berg.
+**Fendrar mot klippa.** Klippnatt utan fendrar längs sidan ger repor i gelcoaten. Använd ordentliga brädfendrar eller stora bumpers när du ligger längs berg.
 
-**Var nära fyrar.** Lanterna fungerar är obligatoriskt även för ankar — det är inte värt risken att en motorbåt råkar sladda in i din båt mitt i natten.
+**Lanternor på ankar.** Förankrad båt i mörker måste visa ankarljus. Det är inte värt risken att en motorbåt sladdar in i din båt mitt i natten.
 
 ## Logga din naturhamn i Svalla
 
-Lagt till i Svalla-appen kan du ranka naturhamnen, lägga upp foto och dela koordinater för andra båtfolk. Det är vår vision — Stockholms skärgårds bästa naturhamn-databas, byggd av oss som faktiskt seglar här.
+Logga in i Svalla-appen efter en natt i naturhamn — ge platsen en pinnar-rating, dela foto och skriv en kort kommentar. Det hjälper andra båtfolk hitta de bästa lägena. Tillsammans bygger vi den bästa naturhamn-databasen för Stockholms skärgård.
 
-Vill du tipsa om en plats vi missat? Skicka ett DM på Instagram @svalla.app.
+Tipsa om en plats vi missat? Skicka ett DM på Instagram @svalla.app.

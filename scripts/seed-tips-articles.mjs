@@ -57,7 +57,7 @@ const ARTICLES = [
   {
     slug: 'ankarplatser-stockholms-skargard-guide',
     title: 'Ankarplatser i Stockholms skärgård — kompletta guiden för seglare',
-    excerpt: 'Hitta perfekta ankarplatser i Stockholms skärgård. Guide till 10 testade lägen med koordinater, djup och väderanalys för säker och skön ankring.',
+    excerpt: 'Hitta perfekta ankarplatser i Stockholms skärgård. Guide till 10 testade områden med väderprofil och praktiska tips för säker och skön ankring.',
     category: 'Segling',
     tags: ['Ankring', 'Ankarplats', 'Segling', 'Båt', 'Naturhamn'],
     reading_min: 9,
@@ -75,9 +75,9 @@ const ARTICLES = [
   {
     slug: 'smogen-helg',
     title: 'Smögen helgguide 2026 — mat, bad och klassisk västkustliv',
-    excerpt: 'Smögen är klassikern på västra Orust. Guide till gästhamn, Hafvshotellet, Hummerhuset, kallbadhuset och naturhamnar runt Smögen.',
+    excerpt: 'Smögen är klassikern i Sotenäs kommun, Bohuslän. Guide till gästhamn, Hafvshotellet, Hummerhuset, kallbadhuset och naturhamnar runt Smögen.',
     category: 'Resmål',
-    tags: ['Smögen', 'Orust', 'Västkusten', 'Mat', 'Hamn'],
+    tags: ['Smögen', 'Sotenäs', 'Bohuslän', 'Västkusten', 'Hamn'],
     reading_min: 8,
     body_md_file: 'smogen-helg.md',
   },

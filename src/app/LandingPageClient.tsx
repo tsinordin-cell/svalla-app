@@ -1005,6 +1005,7 @@ const LANDING_HTML = `
      <div class="region-card-label">Östersjön</div>
      <div class="region-card-name">Blekinge</div>
      <div class="region-card-sub">Karlskrona · Hanö · Östersjöleden</div>
+     <span class="region-card-tag">20 platser kartlagda</span>
     </div>
    </a>
    <a href="/vasterhav" class="region-card reveal reveal-delay-2">
@@ -1014,6 +1015,7 @@ const LANDING_HTML = `
      <div class="region-card-label">Västerhavet</div>
      <div class="region-card-name">Kosteröarna</div>
      <div class="region-card-sub">Orust · Tjörn · Varberg · Falkenberg</div>
+     <span class="region-card-tag">19 platser kartlagda</span>
     </div>
    </a>
    <a href="/hoga-kusten" class="region-card reveal reveal-delay-3">
@@ -1500,32 +1502,7 @@ function toggleFaq(btn){
  </div>
 
 <script>
-(function(){
-  function applyLpPhotos(map){
-    if(!map)return;
-    document.querySelectorAll('[data-lp-photo]').forEach(function(el){
-      var key=el.getAttribute('data-lp-photo');
-      var url=map[key];
-      if(!url)return;
-      if(el.classList.contains('dest-card-bg')||el.classList.contains('region-card-bg')||el.classList.contains('gallery-item-bg')){
-        el.style.backgroundImage='url('+url+')';
-        el.style.backgroundSize='cover';
-        el.style.backgroundPosition='center';
-      } else if(el.classList.contains('route-img')){
-        el.style.backgroundImage='linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('+url+')';
-        el.style.backgroundSize='cover';
-        el.style.backgroundPosition='center';
-      } else {
-        el.style.backgroundImage='linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.15)),url('+url+')';
-        el.style.backgroundSize='cover';
-        el.style.backgroundPosition='center';
-      }
-    });
-  }
-  var pre=window.__LP_PHOTOS__;
-  if(pre&&Object.keys(pre).length>0){applyLpPhotos(pre);}
-  else{fetch('/api/landing-photos').then(r=>r.ok?r.json():null).catch(()=>null).then(applyLpPhotos);}
-})();
+/* applyLpPhotos moved to React useEffect — runs on all navigation types */
 
 // Gallery drag-to-scroll
 (function(){
@@ -1635,6 +1612,47 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  searchInput?.addEventListener('focus', onFocus)
  searchInput?.addEventListener('blur', onBlur)
 
+ // ── Applicera Google-foton på alla data-lp-photo-element ──────────────────
+ // Scripts inuti dangerouslySetInnerHTML körs INTE vid client-side navigation
+ // (browsers kör aldrig scripts injektade via innerHTML). Logiken lever
+ // därför här i useEffect så att den alltid körs, oavsett navigationssätt.
+ function applyLpPhotos(map: Record<string, string> | null) {
+   if (!map || !Object.keys(map).length) return
+   document.querySelectorAll<HTMLElement>('[data-lp-photo]').forEach(el => {
+     const key = el.getAttribute('data-lp-photo')
+     const url = key ? map[key] : undefined
+     if (!url) return
+     if (
+       el.classList.contains('dest-card-bg') ||
+       el.classList.contains('region-card-bg') ||
+       el.classList.contains('gallery-item-bg')
+     ) {
+       el.style.backgroundImage = `url(${url})`
+       el.style.backgroundSize = 'cover'
+       el.style.backgroundPosition = 'center'
+     } else if (el.classList.contains('route-img')) {
+       el.style.backgroundImage = `linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url(${url})`
+       el.style.backgroundSize = 'cover'
+       el.style.backgroundPosition = 'center'
+     } else if (
+       el.classList.contains('resetips-card-img') ||
+       el.classList.contains('guide-card-img')
+     ) {
+       el.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.15)),url(${url})`
+       el.style.backgroundSize = 'cover'
+       el.style.backgroundPosition = 'center'
+     }
+   })
+ }
+ if (photoMap && Object.keys(photoMap).length > 0) {
+   applyLpPhotos(photoMap)
+ } else {
+   fetch('/api/landing-photos')
+     .then(r => r.ok ? r.json() : null)
+     .catch(() => null)
+     .then(applyLpPhotos)
+ }
+
  // Dynamiska trust-bar-siffror — hämta från /api/stats och uppdatera DOM
  fetch('/api/stats', { cache: 'force-cache' })
  .then(r => r.ok ? r.json() : null)
@@ -1673,7 +1691,7 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  mobClose?.removeEventListener('click', closeMobDrawer)
  document.body.style.overflow = ''
  }
- }, [router])
+ }, [router, photoMap])
 
  return (
  <>

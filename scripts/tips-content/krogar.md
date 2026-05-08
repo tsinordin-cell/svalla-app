@@ -1,6 +1,6 @@
 # De 12 bästa krogarna i Stockholms skärgård 2026
 
-Krogar i skärgården är inte vilka restauranger som helst. Maten ska smaka av det som händer utanför fönstret — strömming, gädda, abborre, lokala ärtor, äpplen från trädgården bredvid bryggan. Här är vår guide till tolv ställen som lyckas med just detta, från Vaxholm i innerskärgården hela vägen ut till Svenska Högarna i havsbandet.
+Krogar i skärgården är inte vilka restauranger som helst. Maten ska smaka av det som händer utanför fönstret — strömming, gädda, abborre, lokala ärtor, äpplen från trädgården bredvid bryggan. Här är vår guide till tolv ställen som lyckas med just detta, från Vaxholm i innerskärgården hela vägen ut till Rödlöga i havsbandet.
 
 Listan är tänkt att fungera både för dig som tar bilen till en hamn och för dig som kommer i egen båt. Vi har lagt in praktisk information om bryggor, gästplatser och bokning där det är relevant.
 
@@ -12,9 +12,9 @@ Klassikern bredvid kastellet. Köket lutar sig mot svensk husmanskost med skärg
 
 Bryggplats: Vaxholms gästhamn, fem minuters promenad bort.
 
-### 2. Grindas Värdshus — Grinda
+### 2. Grinda Wärdshus — Grinda
 
-Värdshuset ligger på höjden med utsikt över Kanholmsfjärden. Tre rätter under tvåhundra minuter går att lyckas med här — service är drillad och köket levererar konsekvent säsongsmat. Sommarmenyn 2025 hade en variant på toast skagen med rökt sik som blev klassikern.
+Wärdshuset ligger på höjden med utsikt över Saxarfjärden. Köket levererar konsekvent säsongsmat och service är drillad. Sommarmenyer brukar ha klassiker som toast skagen, lokalt rökt sik och säsongens grönsaker.
 
 Praktiskt: Anslut till Grindas norra brygga, gå förbi värdshuset och upp för backen.
 
@@ -58,9 +58,9 @@ Mer avslappnat alternativ till värdshuset. Sjöstugan ligger nere vid hamnen, s
 
 Det här är en dagstur. Huvudskär ligger långt ut, över en timmes båt från Dalarö. Krogen är liten, drivs säsongsvis, har bara sex bord. Mat efter dagens fångst — om strömmingen är bra blir det strömming, om gäddan biter blir det gädda. Bokning krävs alltid.
 
-### 11. Svenska Högarnas Värdshus — Svenska Högarna
+### 11. Rödlöga Sjöbod — Rödlöga
 
-Det yttersta etablissemanget i hela skärgården. Värdshuset på Svenska Högarna serverar enklare mat — fiskgryta, stekt strömming, lammgryta — men hela poängen är att man har tagit sig hit. Lägg en hel dag på det. Tag säkra väderfönster, lufthavet runt Högarna kan bli hårt med kort varsel.
+Långt ut i ytterskärgården, öster om Möja, ligger Rödlöga — en av de mest klassiska seglardestinationerna. Sjöboden öppnar säsongsvis och serverar enkel mat med lokala råvaror. Mest känt är fiskrökeriet på ön. Kontrollera öppettider innan du åker — Rödlöga har begränsad servering. Ta säkra väderfönster, ytterskärgården kan bli hård med kort varsel.
 
 ### 12. Möja Wärdshus — Möja
 

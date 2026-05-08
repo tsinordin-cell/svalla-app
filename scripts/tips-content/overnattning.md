@@ -8,7 +8,7 @@ Vi har samlat informationen så att du kan välja stil först — och sen plats.
 
 ### Sandhamns Seglarhotell
 
-Det mest etablerade hotellet i Stockholms skärgård. Etthundratrettio rum, restaurang, spa, brygga, allt i Sandhamn där seglingens historia är djupare än någon annanstans. Pris för dubbelrum sommaren 2026 ligger runt 2 800–4 200 kronor per natt beroende på vy och säsong. Boka tidigt — Stockholm Round och Gotland Runt fyller hotellet veckor i förväg.
+Det mest etablerade hotellet i Stockholms skärgård — KSSS klubbhus invigdes 1897 av Oscar II. Drygt 80 rum (varav 3 sviter) och totalt cirka 215 bäddar, restaurang, spa, brygga, mitt på Sandhamn. Pris för dubbelrum sommaren 2026 ligger runt 2 800–4 200 kronor per natt beroende på vy och säsong. Boka tidigt — Gotland Runt (ÅF Offshore Race) fyller hotellet veckor i förväg.
 
 ### Vaxholms Hotell
 
@@ -28,11 +28,11 @@ STF driver en handfull anläggningar i Stockholms skärgård som är några av d
 
 ### STF Finnhamn
 
-Anläggningen ligger i en gammal sommarvilla från 1920-talet, en av de vackraste i hela skärgården. Trettio bäddar, café, restaurang, naturreservat runt knuten. Tre minuters promenad till bryggan med Waxholmsbåten.
+Anläggningen ligger i en gammal sommarvilla från cirka 1915, byggd av handelsmannen Wilhelm Rönnström. 12 rum med 2–5 bäddar i varje (totalt ~30–50 bäddar), café, restaurang, naturreservat runt knuten. Renoverad 2014–2017. Kort promenad till Waxholmsbåtens brygga.
 
 ### STF Grinda Wärdshus
 
-Etthundranio bäddar fördelade på rum och stugor. Närmre city än Finnhamn — Cinderellabåtarna går flera gånger per dag i högsäsong.
+Anläggning med rum och stugor på populära Grinda. Närmare city än Finnhamn — både Waxholmsbåten och Cinderellabåtarna trafikerar Grinda i högsäsong. Verifiera aktuellt antal bäddar och tillgänglighet via stf.se.
 
 ### STF Utö
 

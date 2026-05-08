@@ -17,14 +17,14 @@ Fjäderholmarna är den mest barnvänliga ön i hela skärgården. Glassbarer, c
 
 ### 2. Vaxholm
 
-**Restid:** 50 minuter med båt eller 45 minuter med bil från city.
+**Restid:** Cirka 1 timme med Waxholmsbåten från Strömkajen, eller 45 minuter med bil från city.
 **Bästa för:** Barn 4–12 år.
 
 Vaxholm är inte en ö i klassisk mening men funkar som första skärgårds-tur med barn. Kastellet med utställning, glassbarerna längs hamnen, lekplats vid Söderfjärden, hyrbara cyklar. Barnvänligt köpcentrum med Lindex och Stadium om man behöver komplettera barnens skärgårdsutrustning.
 
 ### 3. Grinda
 
-**Restid:** 50 minuter med Cinderellabåtarna.
+**Restid:** Cirka 1 timme 30 minuter med Cinderellabåtarna eller Waxholmsbåten från Strömkajen.
 **Bästa för:** Barn 5–14 år.
 
 Grinda har det som småbarnsfamiljen behöver: bra badstrand med långgrund sand, café med våffel-meny, lekplats, vandringsleder som inte är för långa. Värdshuset uppe på höjden är familjefientligt-vänligt — egen barnmeny och förståelse för att tvååringar har sin egen agenda.
@@ -42,7 +42,7 @@ Sandhamn är en levande ö året runt. För barn finns flera saker — Trouville
 
 ### 5. Möja
 
-**Restid:** 2 timmar med båt från Stavsnäs.
+**Restid:** Cirka 1 timme med Waxholmsbåten från Stavsnäs, eller drygt 3 timmar från Strömkajen.
 **Bästa för:** Barn 7–14 år.
 
 Möja är större än de flesta utflyktsöar och har mer karaktär av "riktig ö med folk som bor där året runt". Bra för äldre barn som börjar vilja se mer än lekplats. Cykelvägar mellan byarna, djurgård vid Berg, fiskrökeri som öppnar luckan på sommaren.
@@ -56,7 +56,7 @@ Finnhamn är något av en geheimtipp för barnfamiljer. Mindre än Sandhamn, lug
 
 ### 7. Husarö
 
-**Restid:** 2 timmar 15 minuter via Stavsnäs.
+**Restid:** Cirka 1 timme 15 minuter med Waxholmsbåten via Stavsnäs.
 **Bästa för:** Barn 5 år och uppåt.
 
 Husarö är liten men har en av skärgårdens trevligaste gästhamnar. Familjevänligt på ett sätt som mindre öar ofta är — alla känner alla, ingen är ensam, barnen springer fritt på bryggan medan föräldrarna tar en fika.

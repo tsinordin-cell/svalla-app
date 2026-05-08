@@ -1,160 +1,139 @@
-# Ankarplatser i Stockholms skärgård — kompletta guiden för seglare
+# Ankarplatser i Stockholms skärgård — guide för seglare
 
-Ankarplats i Stockholms skärgård är en av segelvärldens egentliga lyxer. Tjugotusen öar att välja på, gott om djup, klar Östersjö, vindar som oftast är hanterbara. Men "bra ankring" är inte detsamma som "vacker plats". Den här guiden går igenom tio testade ankarlägen med koordinater, djup och väderprofil — så du vet var du faktiskt ska söka skydd när vinden vänder.
+Stockholms skärgård är en av världens bästa platser att ankra i. Tusentals öar, gott om djup, klar Östersjö och vindar som oftast är hanterbara. Men &quot;bra ankring&quot; är inte detsamma som &quot;vacker plats&quot;. Den här guiden går igenom tio testade ankarområden med inriktning på väderprofil och praktik — så du vet var du faktiskt ska söka skydd när vinden vänder.
 
-Vi har valt platser som klarar olika väderlägen och båtstorlekar. Koordinater anges i decimalgrader (WGS84) och djup avser medelvattenstånd.
+> **Viktigt om koordinater:** Specifika GPS-koordinater anges inte i artikeln eftersom även små avvikelser kan vara farligt på sjön. Använd Svalla-kartan eller officiella sjökort för exakta lägen — och lita aldrig blint på en webbartikel när du planerar inseglingsled.
 
 ## Hur du läser den här guiden
 
 För varje plats anger vi:
 
-**Skyddat från:** Vilka vindriktningar som platsen tål utan problem.
+**Skyddat från:** Vilka vindriktningar platsen tål utan problem.
 **Sårbart för:** Vilka vindar som gör platsen olämplig.
-**Djup och botten:** Vilket ankare som fungerar bäst.
-**Plats:** Hur många båtar som rimligt får plats.
+**Bottenförhållanden:** Vad du kan förvänta dig — påverkar ankarval.
 
-Tänk på att vindlägen ändras snabbt i Stockholms skärgård. En plats som är bra på morgonen kan bli omöjlig på kvällen. Kolla SMHI:s vindprognos varje kväll och ha alltid en plan B.
+Tänk på att vindlägen ändras snabbt i Stockholms skärgård. En plats som är bra på morgonen kan bli omöjlig på kvällen. Kolla SMHI:s prognos varje kväll och ha alltid en plan B.
 
 ## Innerskärgårdens ankarlägen
 
-### 1. Skarpö, södra viken
+### 1. Skarpö-trakten
 
-**Koordinat:** 59.4138 N, 18.4072 E
 **Skyddat från:** Väst, syd, nord
 **Sårbart för:** Östliga vindar
-**Djup:** 4–8 meter sand och grus
-**Plats:** 8–12 båtar
+**Bottenförhållanden:** Sand och lera, oftast bra ankarhåll
 
-Skarpö är en av de bästa första-natten-på-tur ankarplatserna i skärgården. Sandbotten ger utmärkt ankarhåll, vinden mojnar oftast på kvällen, glesbygd nog att slippa motorbåtarnas våg.
+Skarpö i Vaxholmsområdet är en bra första-natten-på-tur ankarplats. Glesbygd nog att slippa motorbåtarnas våg och kort att åka tillbaka om vädret slår om.
 
-### 2. Älgö, östra viken
+### 2. Älgö-området
 
-**Koordinat:** 59.2889 N, 18.4533 E
 **Skyddat från:** Väst, syd
 **Sårbart för:** Nord, öst
-**Djup:** 4–8 meter
-**Plats:** 4–6 båtar
+**Bottenförhållanden:** Sand
 
-Älgö ligger nära Saltsjöbaden men har överraskande lugnt läge i östra viken. Bra val på fredagskväll när du vill korta resan ut.
+Älgö ligger nära Saltsjöbaden och är ett bra val på fredagskväll när du vill korta resan ut.
 
 ## Mellanskärgården — det klassiska området
 
-### 3. Långgarn, norra viken
+### 3. Stora Nassa-ögruppen
 
-**Koordinat:** 59.3033 N, 18.7644 E
-**Skyddat från:** Väst, nord, syd
-**Sårbart för:** Öst
-**Djup:** 4–7 meter
-**Plats:** 12–15 båtar
+**Skyddat från:** Olika vindar i olika vikar — välj efter prognos
+**Sårbart för:** Beror på vald vik
+**Bottenförhållanden:** Blandat — sand, lera, klippbotten
 
-Långgarn är seglarvärldens favorit i mellanskärgården. Norra viken har klippkanter där man kan lägga längsmed med bog ut, ankaret läggs på 5–7 meter sandbotten.
+Stora Nassa är ett paradis för båtfolk. Flera möjliga ankarmöjligheter mellan smågöar — ögruppen kan ta emot kuling om man väljer rätt läge.
 
-### 4. Stora Nassa, centralhamnen
+### 4. Bullerö-trakten
 
-**Koordinat:** 59.3683 N, 19.0306 E
-**Skyddat från:** Alla utom direkt syd
-**Sårbart för:** Hård syd
-**Djup:** 5–12 meter
-**Plats:** 10–20 båtar
+**Skyddat från:** Beror på vald vik
+**Sårbart för:** Beror på vald vik
+**Bottenförhållanden:** Lerig sand, oftast bra ankarhåll
 
-Stora Nassa-arkipelagen är ett paradis för båtfolk. Centralhamnen kan ta emot kuling — den är så skyddad. Klippkanter på flera sidor ger valfrihet beroende på vindriktning.
+Bullerö är naturreservat — strikta regler om landstigning, eldar och tältning. Naturhamnen är otroligt vacker.
 
-### 5. Bullerön, östra sidan
+### 5. Långviksskär (öster om Möja)
 
-**Koordinat:** 59.3308 N, 18.9569 E
-**Skyddat från:** Väst, syd
-**Sårbart för:** Öst, nord
-**Djup:** 6–10 meter
-**Plats:** 6–8 båtar
-
-Bullerön är naturreservat — strikta regler om landstigning, eldar, tältning. Naturhamnen är otroligt vacker och har bra ankarhåll på lerig sand.
-
-### 6. Möja, Långviksskär
-
-**Koordinat:** 59.3700 N, 18.8908 E
-**Skyddat från:** Alla utom direkt nord
+**Skyddat från:** Brett spektrum vindar — välj vik efter prognos
 **Sårbart för:** Hård nord
-**Djup:** 6–12 meter
-**Plats:** 8–10 båtar
+**Bottenförhållanden:** Klippkanter med sand-/lerfickor
 
-Långviksskär utanför östra Möja är en av skärgårdens mest pålitliga ankarplatser. Ett fyrahundratal år av båtfolk har hittat dit av en anledning.
+Långviksskär är en av regionens mest pålitliga ankarplatser. Klippformationerna gör det enkelt att lägga sig längs land.
 
 ## Yttre lägen — för erfarna seglare
 
-### 7. Sandhamn, Lökholmen
+### 6. Lökholmen vid Sandhamn
 
-**Koordinat:** 59.2839 N, 18.9197 E
 **Skyddat från:** Väst, nord
 **Sårbart för:** Syd, öst
-**Djup:** 4–7 meter sand
-**Plats:** 15–20 båtar
+**Bottenförhållanden:** Sand, bra ankarhåll
 
-Lökholmen är Sandhamns lugna grannö. Tio minuter med jolle till krogarna men man slipper Sandhamns gästhamnskaos. Sandbotten ger trygg ankring även en blåsig sommarnatt.
+Lökholmen är Sandhamns lugna grannö. Kort med jolle till krogarna men man slipper Sandhamns gästhamnskaos.
 
-### 8. Rödlöga, södra viken
+### 7. Rödlöga
 
-**Koordinat:** 59.5536 N, 19.2342 E
-**Skyddat från:** Nord, väst
-**Sårbart för:** Syd, öst
-**Djup:** 5–10 meter
-**Plats:** 6–8 båtar
+**Skyddat från:** Beror på vald vik
+**Sårbart för:** Beror på vald vik
+**Bottenförhållanden:** Varierande — ankra på sand-/lerfickor om möjligt; ren klippbotten kan göra ankret löst
 
-Rödlöga är en av skärgårdens vackraste platser. Granitberg, krattor av en, äldre fyrlykta. Ankarbotten är något varierande — ankra på sand om möjligt, klippbotten kan göra ankret löst i hård vind.
+Rödlöga är en av skärgårdens vackraste platser — granitberg, enbuskar och klassisk yttre skärgårdskänsla.
 
-### 9. Svenska Högarna, västra läa
+### 8. Svenska Högarna-området
 
-**Koordinat:** 59.4378 N, 19.5044 E
-**Skyddat från:** Endast väst
-**Sårbart för:** Allt annat
-**Djup:** 3–8 meter klippbotten
-**Plats:** 3–4 båtar
+**Skyddat från:** Beror på läge — generellt utsatt
+**Sårbart för:** I princip allt utom svaga vindar
+**Bottenförhållanden:** Klippbotten — kräver ankare som biter i lera/sandfickor
 
-Svenska Högarna är yttersta tipset i hela skärgården. Bara för båtar med erfaren besättning, stabil väderprognos och respekt för havet. Klippbotten kräver ankare som biter i lera/sandfickor.
+Yttersta tipset i hela Stockholms skärgård. Bara för båtar med erfaren besättning, stabil väderprognos och respekt för havet.
 
-### 10. Huvudskär, västra viken
+### 9. Huvudskär
 
-**Koordinat:** 58.9722 N, 18.6428 E
 **Skyddat från:** Syd, öst
 **Sårbart för:** Väst, nord
-**Djup:** 4–9 meter
-**Plats:** 4–6 båtar
+**Bottenförhållanden:** Varierande
 
-Huvudskär är fyrön längst ut i södra skärgården. Ankarplats är användbar i östliga och sydliga vindar — i västlig kuling är det otänkbart. Tag in i god tid på dagen för att få bästa läget.
+Huvudskär är fyrö längst ut i södra skärgården. Användbar i östliga och sydliga vindar — i västlig kuling är det otänkbart.
 
-## Ankarval — vilket utrustning du verkligen behöver
+### 10. Ornö, flera ankringsmöjligheter
 
-**Bow-ankare.** Det viktigaste. För standardbåt 30–40 fot är 10–15 kilo Rocna eller Spade rätt val. CQR/Bruce är klassiska men håller sämre i lerig botten.
+**Skyddat från:** Olika vikar fungerar i olika väder
+**Sårbart för:** Beror på vald vik
+**Bottenförhållanden:** Varierande
 
-**Akterankare.** I Stockholms skärgård är två-ankarteknik standard. Bog mot land med fästlina, akter ut med ankare. Akterankaret kan vara mindre — 5–8 kilo räcker för de flesta lägen.
+Ornö är stor och har flera möjliga ankarvikar. Fungerar som hubb om du planerar att utforska södra skärgården.
 
-**Kätting.** En meter kätting per fot djup är minimum. Sex meter kätting för fem meters ankring blir för lite när vinden kommer.
+## Ankarval — vilken utrustning du behöver
 
-**Landlina.** 30 meter åtta-mm flyt-tampslina, gärna med stållkärna mot beröring med klippa. Ha både fast knall och ankarjärn för att fästa i berget.
+**Huvudankare.** Det viktigaste. För segelbåt 30–40 fot fungerar moderna typer som Rocna, Spade eller Mantus utmärkt — de håller bra i blandbottnar. Klassiska Bruce, CQR och plogankare har varit standard länge och fungerar fortfarande bra i sand och lera.
 
-**Stege och landgång.** Bra båt-att-land-handling kräver det. Tvåvuxna kan klättra över relingen — lille pojken kan inte.
+**Akterankare.** I Stockholms skärgård är två-ankar-teknik (bog mot land + akterankare) vanligt. Akterankaret kan vara mindre.
+
+**Kätting och rep.** Riktmärke är att lägga ut 4–5 gånger vattendjupet i lugnt väder, mer i hård vind. Använd helkätting eller kombination kätting/rep med tillräcklig längd.
+
+**Landlina.** Tillräckligt lång flyt-/tampslina för att fästa i ett klippblock eller bergring. Ha med ett klippankare/järn att slå in i sprickor om inga naturliga fästpunkter finns.
+
+**Landgång och fendrar.** Stadig landgång och brädfendrar för klippnatt.
 
 ## Vanliga misstag
 
-**För kort ankarlina.** Tre gångers djupet är minimum för kättinglina. Sju gångers djupet för replina. Räkna med tio meter extra om vinden förväntas öka.
+**För kort ankarlina.** Räkna minst 4–5 gånger vattendjupet i kätting i lugnt väder, mer i hård vind. Sex meter på fem meters djup är för lite när det börjar blåsa.
 
-**Glömt kolla bottenförhållandena.** Lera ger bäst ankarhåll. Sand är näst bäst. Klippbotten kräver att ankaret hittar en spricka. Sjökortet visar bottenmaterialet — läs det.
+**Glömt kolla botten.** Lera och sand ger bäst ankarhåll. Klippbotten kräver att ankaret hittar en spricka eller sand-/lerficka. Sjökortet visar ofta bottenmaterial — läs det.
 
-**Lagt sig för nära annan båt.** Vinden vrider ofta runt natten. Två båtar som ligger 30 meter från varandra på fri svaj kan kollidera när vinden vänder. Räkna med 50 meter mellan ankrade båtar minimum.
+**Lagt sig för nära annan båt.** Vinden vrider ofta natten igenom. Räkna med rejält avstånd mellan ankrade båtar — och kolla att svängradiusarna inte överlappar.
 
-**Inte kollat vindprognosen.** Stockholms skärgård har stora skillnader mellan kvällsvind och nattvind. Vindstilla klockan tio är inte detsamma som vindstilla klockan två.
+**Inte kollat prognosen.** Vindstilla kl. 22 är inte detsamma som vindstilla kl. 02. Kolla prognosen för hela natten innan du väljer plats.
 
-## Säkerhetsregler för ankarnatt
+## Säkerhet under ankarnatten
 
-Lanterna fungerar är obligatoriskt för ankrad båt natt. Ankarljus i topp eller motsvarande lykta synlig från alla håll.
+**Ankarljus.** Förankrad båt i mörker måste visa lanterna synlig från alla håll.
 
-Räddningsväst med dig om du går iland med jolle på kvällen. Mörker och trötthet är farligare än det låter.
+**VHF på.** Lyssna minst på kanal 16 om något händer i området.
 
-Ha VHF på — lyssna minst på kanal 16 om något händer i området.
+**Ankarvakt.** Ha aktiverat ankarlarm i plotter eller app de första timmarna — så du märker om ankaret släpper.
 
-Ankaret-bra-checklista innan du somnar: vinden? Ankaret biter? Repet/kättingen är inte slitet? Lanternan tänd?
+**Checklista innan du somnar:** Är ankaret biter? Är linan/kättingen hel? Lanternan tänd? VHF på?
 
 ## Logga din ankarplats i Svalla
 
-Vi bygger upp Stockholms skärgårds bästa ankarplats-databas. Loggar du in i Svalla efter en ankarnatt kan du dela koordinater, djup, vindupplevelse och rating med andra båtfolk.
+Vi bygger upp Stockholms skärgårds bästa ankarplats-databas. Logga ankarnatten i Svalla — dela djup, vindupplevelse och rating med andra båtfolk. På så sätt hjälper vi varandra hitta de bästa lägena.
 
 Tipsa oss på @svalla.app om bra platser vi missat eller information som behöver uppdateras.
