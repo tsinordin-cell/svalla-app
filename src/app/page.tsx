@@ -491,6 +491,26 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 }
 
 [data-theme="dark"] body { background: var(--sea-dark) !important; }
+
+/* ── Tabbed mega-menu ─────────────────────────────────────────────── */
+.nav-mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-8px);padding-top:12px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:300;min-width:860px}
+.nav-dropdown:hover .nav-mega,.nav-dropdown:focus-within .nav-mega{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-mega-inner{background:rgba(8,22,34,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.09);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.nav-tabs-bar{display:flex;gap:2px;padding:10px 10px 0;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)}
+.nav-tab-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border:none;background:none;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.02em;cursor:pointer;border-radius:8px 8px 0 0;transition:.15s;white-space:nowrap;border-bottom:2px solid transparent}
+.nav-tab-btn:hover{color:rgba(255,255,255,.82);background:rgba(255,255,255,.05)}
+.nav-tab-btn.active{color:#fff;background:rgba(255,255,255,.07);border-bottom-color:var(--accent)}
+.nav-tab-content{display:none;padding:20px 16px 16px}
+.nav-tab-content.active{display:block}
+.nav-mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.nav-mega-col{padding:4px 14px 12px;border-right:1px solid rgba(255,255,255,.04)}
+.nav-mega-col:last-child{border-right:none}
+.nav-mega-region{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:8px 0 6px;margin-bottom:2px}
+.nav-mega-link{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.72);text-decoration:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:7px 6px;border-radius:7px;transition:.14s;white-space:nowrap}
+.nav-mega-link:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-mega-all{display:block;margin-top:8px;padding:7px 6px;font-size:12px;font-weight:600;color:var(--accent-light);text-decoration:none;transition:.14s}
+.nav-mega-all:hover{color:var(--accent)}
+@media(max-width:1100px){.nav-mega{display:none}}
 `
 
 const LANDING_HTML = `
@@ -778,7 +798,6 @@ const LANDING_HTML = `
  <p class="hero-sub">
  Krogar, badplatser och dolda pärlor tipsade av folk som faktiskt är där ute.
  </p>
- <p style="color:rgba(255,255,255,.72);font-size:13px;font-weight:500;margin-top:8px;letter-spacing:.01em">Reser du med Waxholm, SL-båt eller färja? Thorkel planerar hela turen åt dig.</p>
  </div>
  <div class="hero-bottom">
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
@@ -1652,6 +1671,19 @@ export default function LandingPage() {
  // Stäng drawer när länk klickas
  document.querySelectorAll('.mob-drawer a').forEach(a => {
  a.addEventListener('click', closeMobDrawer)
+ })
+
+ // Mega-meny flik-switching
+ document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+ btn.addEventListener('click', () => {
+ const tab = (btn as HTMLElement).dataset.tab
+ const panel = btn.closest('.nav-mega-inner')
+ if (!panel || !tab) return
+ panel.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'))
+ panel.querySelectorAll('.nav-tab-content').forEach(c => c.classList.remove('active'))
+ btn.classList.add('active')
+ panel.querySelector(`#nav-tab-${tab}`)?.classList.add('active')
+ })
  })
 
  // Scroll reveal
