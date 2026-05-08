@@ -190,9 +190,8 @@ section{padding:100px 40px}
 .step h4{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px}
 .step p{font-size:13.5px;color:rgba(255,255,255,.75);line-height:1.6}
 .routes-section{background:var(--sand);padding:100px 40px}
-.routes-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none;}
-.routes-scroll::-webkit-scrollbar{display:none}
-.route-card{flex-shrink:0;width:280px;border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
+.routes-scroll{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.route-card{border-radius:var(--r);overflow:hidden;background:var(--white);box-shadow:var(--shadow);transition:.3s;cursor:pointer;}
 .route-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .route-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px;position:relative;border-radius:var(--r) var(--r) 0 0;background-size:cover;background-position:center}
 .route-tag{position:absolute;bottom:12px;left:12px;background:rgba(26,74,94,.85);color:var(--white);font-size:10px;font-weight:700;border-radius:5px;padding:3px 9px;backdrop-filter:blur(4px);}
@@ -481,12 +480,14 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
 @media(max-width:900px){
 .resetips-grid{grid-template-columns:1fr 1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
+.routes-scroll{grid-template-columns:1fr 1fr}
 .thorkel-inner{grid-template-columns:1fr}
 }
 @media(max-width:600px){
 .resetips-section,.guides-section,.thorkel-section,.faq-section{padding:56px 20px}
 .routes-section{padding:56px 20px}
 .resetips-grid{grid-template-columns:1fr}
+.routes-scroll{grid-template-columns:1fr 1fr}
 .guides-grid{grid-template-columns:1fr 1fr}
 }
 
@@ -1042,10 +1043,6 @@ const LANDING_HTML = `
  <div class="route-card" onclick="location.href='/resetips'">
  <div class="route-img" data-lp-photo="norra" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1502780402662-acc01917174e?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#1a3a4a,#2a5a6a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Halvdag</div></div>
  <div class="route-body"><h4>Norrskärgårdens pärlor</h4><p>Arholma, Möja och Blidö — den orörda norrskärgården.</p><div class="route-meta"><span> 55 km</span><span> 4 krogar</span><span> 4.7</span></div></div>
- </div>
- <div class="route-card" onclick="location.href='/resetips'">
- <div class="route-img" data-lp-photo="stockholms-skargard" style="background-image:linear-gradient(180deg,rgba(13,36,64,0)0%,rgba(13,36,64,0.55)100%),url('https://images.unsplash.com/photo-1519181258491-c4c61cd8e2a4?w=720&q=80&auto=format&fit=crop'),linear-gradient(135deg,#2a3a1a,#4a5a2a);background-size:cover,cover,cover;background-position:center,center,center;background-repeat:no-repeat"> <div class="route-tag">Weekend</div></div>
- <div class="route-body"><h4>Sydskärgårdens matkul</h4><p>En mat-fokuserad tur via Landsort och Nynäshamns yttre skärgård.</p><div class="route-meta"><span> 60 km</span><span> 6 krogar</span><span> 4.8</span></div></div>
  </div>
  </div>
  </div>
