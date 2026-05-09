@@ -2108,15 +2108,15 @@ export const ISLANDS: Island[] = [
   {
     slug: 'hasselo',
     name: 'Hasselö',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
+    region: 'mellersta',
+    regionLabel: 'Mellersta skärgården',
     emoji: '🌻',
-    tagline: 'Mindre naturö i södra skärgården för seglare',
+    tagline: 'Liten ö i mellersta skärgården nordost om Sandhamn',
     description: [
-      'Hasselö är en mindre ö i Stockholms södra skärgård. Ön är obebodd permanent och saknar service — den fungerar primärt som naturhamn och avlastningsstopp för seglare som rör sig mellan Dalarö, Utö och de mer avlägsna sydliga öarna.',
-      'Klippig kust och mindre tallskogspartier präglar landskapet. Inga turistanläggningar, inga reguljära förbindelser.',
-      'Hasselö passar erfarna seglare som söker en kort övernattning i en lugn naturhamn snarare än ett självständigt resmål.',
-    ],
+      'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, omkring 3 sjömil nordost om Sandhamn. Norr om ön ligger Kanholmsfjärden och i söder Eknösundet.',
+      'Ön är permanent bebodd och trafikeras året runt av Waxholmsbolaget. Service är begränsad — främst sommarstugor och naturmark.',
+      'Hasselö passar för seglare och dagsbesökare som söker en ostörd ö i området kring Sandhamn.',
+    
     facts: { travel_time: '3–4 h med segelbåt från Dalarö', character: 'Liten, obebodd, naturhamn', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Rena vatten längs öns klippkust.' },
@@ -2295,33 +2295,6 @@ export const ISLANDS: Island[] = [
   },
 
   {
-    slug: 'iggon',
-    name: 'Iggö',
-    region: 'norra',
-    regionLabel: 'Norra skärgården',
-    emoji: '🌊',
-    tagline: 'Mindre ö i Roslagens skärgård',
-    description: [
-      'Iggö är en mindre ö i Stockholms norra skärgård / Roslagens skärgård. Ön är obebodd permanent och saknar service.',
-      'Klippkust och stilla naturhamn präglar miljön. Inga reguljära förbindelser går hit.',
-      'Iggö passar erfarna seglare som söker en kort övernattning i ostörd naturhamn längs Roslagskusten.',
-    ],
-    facts: { travel_time: '2–3 h med segelbåt från Norrtälje', character: 'Liten ö, ankring, ostört', season: 'Juni–augusti', best_for: 'Segling, naturvistelse' },
-    activities: [
-      { icon: '⛵', name: 'Ankring', desc: 'Skyddad naturhamn på lä-sidan.' },
-      { icon: '🏊', name: 'Havsbad', desc: 'Klara Östersjövatten.' },
-    ],
-    accommodation: [],
-    getting_there: [{ method: 'Egen båt', from: 'Norrtälje / Furusund', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Iggö naturhamn', desc: 'Liten ankringsplats.', spots: 8 }],
-    restaurants: [],
-    tips: ['Ta med all proviant.', 'Allemansrätten gäller.'],
-    related: ['arholma', 'fejan', 'blido'],
-    tags: ['ostörd', 'norra', 'ytterskärgård', 'klippor'],
-    did_you_know: 'Iggön är en av få öar i skärgården med aktiv lantbruksdrift. Korna ses ofta vada i havet under sommarvärmen.',
-  },
-
-  {
     slug: 'langviksskaret',
     name: 'Långvikssk​äret',
     region: 'södra',
@@ -2374,36 +2347,6 @@ export const ISLANDS: Island[] = [
     related: ['toro', 'galo', 'orno'],
     tags: ['bilförbunden', 'södra', 'strandäng', 'lugnt'],
     did_you_know: 'Torö är broförbunden med fastlandet via Herrhamras bro och Torö bro — en av få öar i Stockholms södra skärgård som man kan köra bil till.',
-  },
-
-  {
-    slug: 'garnsjon',
-    name: 'Östra Lagnö',
-    region: 'mellersta',
-    regionLabel: 'Mellersta skärgården',
-    emoji: '🌿',
-    tagline: 'Halvö och brygga vid Östra Lagnö i mellersta skärgården',
-    description: [
-      'Östra Lagnö ligger på Vaxholms östra sida — en halvö med brygga som trafikeras av Waxholmsbolagets skärgårdsbåtar mot Möja, Sandhamn och Söderöra. Området är populärt för sommarstugor och båttrafik mer än som självständigt utflyktsmål.',
-      'Bryggan vid Östra Lagnö är ett naturligt anslutningsstopp för seglare som söker mellanlandning på vägen ut i mellersta skärgården. Service är begränsad — i området finns sommarstugor och privata gårdar, inga större anläggningar.',
-      'Östra Lagnö passar för den som söker ett lugnt anslutningsstopp eller använder det som start/slutpunkt för en kortare båttur.',
-    ],
-    facts: { travel_time: '40 min med bil från Stockholm', character: 'Halvö, brygga, sommarstugor', season: 'Maj–september', best_for: 'Anslutningsstopp, sommarboende, kortare båtutflykt' },
-    activities: [
-      { icon: '⛴', name: 'Båtanslutning', desc: 'Skärgårdsbåtar från Östra Lagnö brygga mot Möja och längre ut.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Cykelvägar i Vaxholms-området.' },
-    ],
-    accommodation: [],
-    getting_there: [
-      { method: 'Bil', from: 'Stockholm via Vaxholm', time: '40 min', desc: 'Bilväg via Vaxholm.', icon: '🚗' },
-      { method: 'Skärgårdsbåt', from: 'Strömkajen / Vaxholm', time: '1–2 h', desc: 'Waxholmsbolaget trafikerar Östra Lagnö brygga sommartid.', icon: '⛴' },
-    ],
-    harbors: [{ name: 'Östra Lagnö brygga', desc: 'Trafikbrygga för Waxholmsbolagets skärgårdslinjer.', spots: 15 }],
-    restaurants: [],
-    tips: ['Östra Lagnö är primärt en anslutningspunkt — kombinera med en längre båttur till Möja eller Sandhamn.'],
-    related: ['vaxholm', 'moja', 'gallno'],
-    tags: ['halvö', 'brygga', 'anslutning', 'mellersta'],
-    did_you_know: 'Östra Lagnö brygga är en av de viktigaste utgångspunkterna för skärgårdsbåtar i Vaxholms-området — flera linjer mot Möja, Sandhamn och Söderöra utgår eller passerar här.',
   },
 
   {
@@ -2515,33 +2458,6 @@ export const ISLANDS: Island[] = [
   },
 
   {
-    slug: 'vastervik-uto',
-    name: 'Västerholmen',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
-    emoji: '🌺',
-    tagline: 'Mindre ö i området kring Utö — naturhamn för seglare',
-    description: [
-      'Västerholmen är ett mindre platsnamn i Stockholms södra skärgård i området kring Utö. Det finns flera "Västerholmen" och "Västerholme" i skärgården — det här är en liten obebodd ö som fungerar som alternativ ankringsplats när huvudhamnar är fullbelagda.',
-      'Klippig kust och blomsterrik klippflora präglar ön under högsommaren. Service saknas helt — inga reguljära förbindelser.',
-      'Västerholmen passar som alternativ för seglare när Utö gästhamn är fullbelagd.',
-    ],
-    facts: { travel_time: '3,5 h med segelbåt från Stockholm', character: 'Liten naturö, ankring, alternativ', season: 'Juni–augusti', best_for: 'Segling, ankring, alternativ till Utö' },
-    activities: [
-      { icon: '🌺', name: 'Klippflora', desc: 'Blomsterrik klippkust under högsommaren.' },
-      { icon: '⛵', name: 'Ankring', desc: 'Skyddad ankringsplats — alternativ till trånga Utö.' },
-    ],
-    accommodation: [],
-    getting_there: [{ method: 'Egen båt', from: 'Utö / Dalarö', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Västerholmens naturhamn', desc: 'Liten ankringsplats.', spots: 15 }],
-    restaurants: [],
-    tips: ['Bra alternativ när Utö gästhamn är fullbelagd.', 'Ta med all proviant.'],
-    related: ['uto', 'nattaro', 'fjardlang'],
-    tags: ['liten ö', 'naturhamn', 'södra', 'segling'],
-    did_you_know: 'Området kring Utö rymmer flera mindre öar och naturhamnar som fungerar som avlastningsalternativ när Utö huvudhamn är fullbelagd under sommarens högsäsong.',
-  },
-
-  {
     slug: 'ramskar-norra',
     name: 'Norra Ramskär',
     region: 'norra',
@@ -2566,33 +2482,6 @@ export const ISLANDS: Island[] = [
     related: ['arholma', 'blido', 'fejan'],
     tags: ['naturhamn', 'ankring', 'norra', 'segling'],
     did_you_know: 'Norrleden — den klassiska seglingsleden norrut från Stockholm via Furusund mot Arholma och vidare mot Söderarm — passerar flera mindre naturskär som fungerar som etappmål.',
-  },
-
-  {
-    slug: 'aspoja',
-    name: 'Aspö',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
-    emoji: '🌿',
-    tagline: 'Mindre naturö i södra skärgården',
-    description: [
-      'Aspö är ett vanligt ö-namn i den svenska östkustskärgården — det finns flera Aspö i området. Den här ligger i Stockholms södra skärgård och är en mindre obebodd ö med klippig kust och blandskog.',
-      'Service saknas och inga reguljära turistförbindelser går hit. Ön fungerar som naturhamn för seglare som söker en kortare övernattning.',
-      'Aspö passar för erfarna seglare som vill ankra i en lugn naturhamn.',
-    ],
-    facts: { travel_time: '3 h med segelbåt från Dalarö', character: 'Liten naturö, ankring, blandskog', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
-    activities: [
-      { icon: '🚶', name: 'Naturpromenader', desc: 'Stigar genom blandskog längs kusten.' },
-      { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten i skyddade vikar.' },
-    ],
-    accommodation: [],
-    getting_there: [{ method: 'Egen båt', from: 'Dalarö / Utö', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Aspö naturhamn', desc: 'Enkel ankringsplats.', spots: 8 }],
-    restaurants: [],
-    tips: ['Allemansrätten gäller.', 'Ta med all proviant.'],
-    related: ['orno', 'dalaro', 'morko'],
-    tags: ['liten ö', 'naturhamn', 'södra', 'segling'],
-    did_you_know: '"Aspö" är ett av de vanligaste ö-namnen i den svenska östkustskärgården — namnet syftar på asp (Populus tremula), ett trädslag som tidigare var vanligt på just dessa öar.',
   },
 
   {

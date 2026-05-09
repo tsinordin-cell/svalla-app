@@ -27,9 +27,9 @@ const ISLAND_SECTIONS = [
     description: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan.',
     slugs: [
       'sandhamn', 'moja', 'ljustero', 'gallno', 'ingmarso', 'namdo', 'svartso',
-      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'kanholmen', 'hasselo',
-      'svenska-hogarna', 'huvudskar', 'ramskar', 'ekno', 'ormsko', 'norrpada',
-      'lindholmen', 'storholmen', 'ostanvik', 'korsholmen', 'storskar',
+      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'kanholmen',
+      'svenska-hogarna', 'huvudskar', 'norrpada',
+      
       'bjorko', 'adelsjo'],
   },
   {
@@ -40,8 +40,7 @@ const ISLAND_SECTIONS = [
     description: 'Vilda klippor, öppet hav och Utö — den dramatiska södra skärgården.',
     slugs: [
       'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'asko', 'galo', 'toro',
-      'fjardlang', 'smaadalaro', 'morko', 'musko', 'langviksskaret',
-      'graskar-sodra'],
+      'fjardlang', 'smaadalaro', 'morko', 'musko', 'langviksskaret'],
   },
   {
     id: 'norra',
@@ -51,8 +50,7 @@ const ISLAND_SECTIONS = [
     description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
     slugs: [
       'arholma', 'furusund', 'blido', 'norrora', 'fejan', 'rodloga', 'singo',
-      'lido', 'graddo', 'vaddo', 'yxlan', 'ljusnas', 'graskar',
-      'toro-norra', 'langskar', 'ramskar-norra', 'vastana'],
+      'lido', 'graddo', 'vaddo', 'yxlan'],
   }]
 
 const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))

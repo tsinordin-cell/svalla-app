@@ -41,7 +41,6 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'ormsko',            name: 'Ormskär',           lat: 59.1701, lng: 18.7509, radiusKm: 1.5 },
   { slug: 'norrpada',          name: 'Norrpada',          lat: 59.6544, lng: 19.2748, radiusKm: 1.5 },
   { slug: 'lindholmen',        name: 'Lindholmen',        lat: 59.4413, lng: 18.7696, radiusKm: 2.0 },
-  { slug: 'garnsjon',          name: 'Garnsjön',          lat: 59.4900, lng: 18.6980, radiusKm: 2.0 },
   { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },
   { slug: 'ostanvik',          name: 'Östanvik',          lat: 59.1966, lng: 18.7282, radiusKm: 1.5 },
   { slug: 'korsholmen',        name: 'Korsholmen',        lat: 59.2444, lng: 18.6348, radiusKm: 1.5 },
@@ -62,11 +61,9 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'smaadalaro',        name: 'Smådalarö',         lat: 59.1662, lng: 18.4525, radiusKm: 2.0 },
   { slug: 'morko',             name: 'Mörkö',             lat: 58.9847, lng: 17.6597, radiusKm: 3.5 },
   { slug: 'musko',             name: 'Muskö',             lat: 58.9958, lng: 18.1149, radiusKm: 3.5 },
-  { slug: 'hasselo',           name: 'Hasselö',           lat: 58.6568, lng: 17.1671, radiusKm: 2.0 },
+  { slug: 'hasselo',           name: 'Hasselö',           lat: 59.3200, lng: 18.9900, radiusKm: 1.0 },
   { slug: 'langviksskaret',    name: 'Långviksskär',      lat: 59.1509, lng: 18.7981, radiusKm: 2.0 },
   { slug: 'graskar-sodra',     name: 'Gräskar (södra)',   lat: 58.7780, lng: 17.7650, radiusKm: 1.5 },
-  { slug: 'vastervik-uto',     name: 'Västervik-Utö',     lat: 58.9600, lng: 17.8990, radiusKm: 2.0 },
-  { slug: 'aspoja',            name: 'Aspöja',            lat: 59.0480, lng: 17.7300, radiusKm: 2.5 },
 
   // ── Norra skärgården ─────────────────────────────────────────────────────
   { slug: 'arholma',           name: 'Arholma',           lat: 59.8500, lng: 19.1167, radiusKm: 2.5 },
@@ -82,7 +79,6 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'yxlan',             name: 'Yxlan',             lat: 59.6167, lng: 18.8532, radiusKm: 2.5 },
   { slug: 'ljusnas',           name: 'Ljusnas',           lat: 59.6100, lng: 18.7720, radiusKm: 1.5 },
   { slug: 'graskar',           name: 'Gräskar',           lat: 59.4811, lng: 18.9993, radiusKm: 1.5 },
-  { slug: 'iggon',             name: 'Iggön',             lat: 59.7340, lng: 18.9430, radiusKm: 2.0 },
   { slug: 'toro-norra',        name: 'Torö (norra)',      lat: 59.7740, lng: 18.8040, radiusKm: 2.5 },
   { slug: 'langskar',          name: 'Långskär',          lat: 59.7065, lng: 19.4005, radiusKm: 1.5 },
   { slug: 'ramskar-norra',     name: 'Ramskar (norra)',   lat: 59.7910, lng: 18.9840, radiusKm: 1.5 },
