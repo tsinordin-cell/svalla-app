@@ -2089,7 +2089,7 @@ export const ISLANDS: Island[] = [
       'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, omkring 3 sjömil nordost om Sandhamn. Norr om ön ligger Kanholmsfjärden och i söder Eknösundet.',
       'Ön är permanent bebodd och trafikeras året runt av Waxholmsbolaget. Service är begränsad — främst sommarstugor och naturmark.',
       'Hasselö passar för seglare och dagsbesökare som söker en ostörd ö i området kring Sandhamn.',
-    
+    ],
     facts: { travel_time: '3–4 h med segelbåt från Dalarö', character: 'Liten, obebodd, naturhamn', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Rena vatten längs öns klippkust.' },
@@ -2244,7 +2244,7 @@ export const ISLANDS: Island[] = [
   {
     slug: 'storholmen',
     name: 'Storholmen',
-    region: 'innerskargard',
+    region: 'mellersta',
     regionLabel: 'Innerskärgården',
     emoji: '🌳',
     tagline: 'Bebodd ö i Lidingös skärgård med restaurang och vandringsleder',

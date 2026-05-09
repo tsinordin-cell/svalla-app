@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Stockholms skärgård — Logga turer, hitta platser | Svalla',
- description: 'Utforska Stockholms skärgård med Svalla. Logga båtturer, skärgårdsliv och segelrutter. Hitta Sandhamn, Utö, Vaxholm och hundratals naturhamnar.',
+ title: 'Stockholms skärgård — Guide till öar, hamnar och segling 2026 | Svalla',
+ description: 'Komplett guide till Stockholms skärgård 2026. Sandhamn, Utö, Vaxholm, Grinda, Möja — avstånd, färjetider, naturhamnar och seglingstips. 30 000 öar från innerskärgård till ytterskärgård.',
  keywords: [
  'stockholms skärgård',
  'skärgårdsapp stockholm',
@@ -34,41 +34,46 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '📍',
- title: 'Logga dina turer',
- description: 'Spåra varje tur med GPS, lägg till foton och anteckningar. Se hela din skärgårdshistorik samlad på ett ställe.',
- href: '/logga-in',
- meta: 'Gratis',
- },
- {
- icon: '🗺️',
- title: 'Skärgårdskartan',
- description: 'Interaktiv karta med över 400 verifierade platser — naturhamnar, krogar, bryggor, bastun och bensinstationer.',
- href: '/upptack',
- },
- {
- icon: '🍽️',
- title: 'Skärgårdskrogar',
- description: 'Fjäderholmarna, Grinda Wärdshus, Sandhamns Värdshus, Utö Värdshus — plus hundratals mindre ställen längs kusten.',
- href: '/krogar-och-mat',
- },
- {
  icon: '⛵',
- title: 'Populära segelrutter',
- description: 'Klassiska leder från Stockholm ut till Landsort, runt Möja eller till Sandhamn — med djupinfo och ankringstips.',
- href: '/segelrutter',
+ title: 'Sandhamn',
+ description: 'KSSS:s hemmahamn och ytterskärgårdens kronjuvel. Ca 35 sjömil (65 km) från Stockholm — 5–8 timmars segling. Sandhamns Värdshus, flera gästhamnar och ett livligt sommarliv. Cinderella trafikerar linjen dagligen under säsong.',
+ href: '/sandhamn',
+ meta: 'Yttre skärgården · 35 sjömil · Cinderella',
  },
  {
- icon: '🏕️',
- title: 'Naturhamnar',
- description: 'Hitta lugna ankringsplatser och naturbad från Furusund i norr till Landsort i söder.',
+ icon: '🏝️',
+ title: 'Utö',
+ description: 'Södra skärgårdens unika ö — en före detta järngruva med pittoresk by. Utö Värdshus, cykelleder och naturreservat. Nås med Waxholmsbolaget från Nynäshamn, ca 90 min. Fantastisk höstdestination när trängseln försvunnit.',
+ href: '/uto',
+ meta: 'Södra skärgården · Via Nynäshamn · 90 min',
+ },
+ {
+ icon: '🏰',
+ title: 'Vaxholm',
+ description: 'Skärgårdens infartsport — 30 min från Stockholm med Waxholmsbolaget eller 20 sjömil med segelbåt. Vaxholms fästning (1500-tal), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
+ href: '/vaxholm',
+ meta: 'Innerskärgården · 30 min med båt',
+ },
+ {
+ icon: '🌿',
+ title: 'Grinda',
+ description: 'STF-ö i inre mellanskärgården — enkel att nå, vacker att vara på. Waxholmsbolaget tar dig hit direkt från Stockholm. Välskyddat ankringsvatten, café och restaurang. Perfekt för nybörjare eller en avslappnad weekend.',
+ href: '/grinda',
+ meta: 'Mellanskärgården · Nybörjarvänlig',
+ },
+ {
+ icon: '🍦',
+ title: 'Möja',
+ description: 'Mellanskärgårdens klassiska seglarö — känd för Bergs Glass och den lugna atmosfären. Bra naturhamnar vid Berg och Ramsmora. Runt 30 sjömil från Stockholm. Möja passar perfekt som etapp på en längre segeltur norrut.',
+ href: '/moja',
+ meta: 'Mellanskärgården · 30 sjömil',
+ },
+ {
+ icon: '🌊',
+ title: 'Fjäderholmarna',
+ description: 'Närmaste skärgårdsupplevelsen — bara 25 min med Cinderella från Slussen. Öppen hela säsongen från vår till sen höst. Restauranger, konsthantverksbutiker och härliga klippbad. Utmärkt dagsutflykt även för icke-båtfolk.',
  href: '/platser?kategori=naturhamn',
- },
- {
- icon: '👥',
- title: 'Följ andra seglare',
- description: 'Se vad andra gör i skärgården just nu — turer, platser och tips från det lokala seglarsällskapet.',
- href: '/logga-in',
+ meta: 'Innerskärgården · 25 min · Öppen apr–okt',
  },
 ]
 
@@ -114,8 +119,8 @@ export default function StockholmsSkargardPage() {
  <CategoryLanding
  heroGradient={['#1e5c82', '#2d7aad']}
  eyebrow="Stockholms skärgård"
- title="30 000 öar i fickan"
- tagline="Svalla är appen för dig som älskar Stockholms skärgård — logga turer, hitta de bästa platserna och följ andra seglare."
+ title="Guide till Stockholms skärgård"
+ tagline="Sandhamn, Utö, Vaxholm, Möja och hundratals öar — avstånd, färjetider, naturhamnar och seglingstips för alla erfarenhetsnivåer."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M3 17l4-8 4 4 3-6 4 10" />
@@ -138,8 +143,8 @@ export default function StockholmsSkargardPage() {
  </p>
  </>
  }
- itemsTitle="Vad kan du göra med Svalla?"
- itemsDescription="Allt du behöver för skärgårdslivet — i en app."
+ itemsTitle="Populära destinationer i Stockholms skärgård"
+ itemsDescription="Sex klassiska öar — från Fjäderholmarna 25 minuter från Slussen till Sandhamn 35 sjömil ut i ytterskärgården."
  items={ITEMS}
  deeperContent={
  <>
@@ -201,11 +206,11 @@ export default function StockholmsSkargardPage() {
  Behöver man båtlicens för att segla i Stockholms skärgård?
  </h3>
  <p>
- Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand. En grund i sjörätt, väderintolkning och navigationall kan spara ditt liv.
+ Nej. I Sverige krävs inget obligatoriskt körkort eller licens för fritidsbåtar under 10 meter. Det finns dock inga ursäkter för att inte vidareutbilda dig — Svalla rekommenderar starkt någon form av segelutbildning eller att åka med en erfaren seglare innan du ger dig ut på egen hand. En grund i sjörätt, väderintolkning och navigation kan spara ditt liv.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Hur längt är det att segl från Stockholm till Sandhamn?
+ Hur långt är det att segla från Stockholm till Sandhamn?
  </h3>
  <p>
  Det är ungefär 35 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
@@ -215,7 +220,7 @@ export default function StockholmsSkargardPage() {
  Vilka är de bästa naturhamnarna i Stockholms skärgård?
  </h3>
  <p>
- <strong>Klasärterna på Ornö</strong>, <strong>Kyrkogårdsfjärden på Nämdö</strong> och de vackra vikarna runt <strong>Huvudskär</strong> räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker milj — lugnt vatten, fin natur och enkelt att ankra. Med Svalla kan du boka på många ställen i förväg, vilket gör planeringen enklare.
+ <strong>Klasärterna på Ornö</strong>, <strong>Kyrkogårdsfjärden på Nämdö</strong> och de vackra vikarna runt <strong>Huvudskär</strong> räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker miljö — lugnt vatten, fin natur och enkelt att ankra. Med Svalla kan du boka på många ställen i förväg, vilket gör planeringen enklare.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

@@ -27,7 +27,10 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     if (!key) return                        // inget nyckel → ingen tracking
 
     posthog.init(key, {
-      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://us.i.posthog.com',
+      // Reverse proxy via Next.js rewrites (next.config.ts) — kringgår
+      // AdBlock som annars skulle blockera *.posthog.com och tappa data.
+      // ui_host pekar fortfarande på riktiga PostHog så toolbar/links funkar.
+      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? '/ingest',
       ui_host:            'https://us.posthog.com',
       capture_pageview:   false,           // PostHogPageView hanterar detta
       capture_pageleave:  true,

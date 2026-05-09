@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Naturhamnar i Stockholms skärgård — Ankringsguide | Svalla',
-  description: 'Hitta de bästa naturhamnarna i Stockholms skärgård. Skyddade vikar, ankringsplatser och gratis förtöjning från Furusund till Landsort. Uppdaterad guide för seglare 2026.',
+  description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler — djupinfo, bottenbeskrivning och vindskydd för varje ankringsplats. Gratis ankring via allemansrätten.',
   keywords: [
     'naturhamnar stockholms skärgård',
     'ankra stockholms skärgård',
@@ -26,46 +26,88 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '',
+    icon: '⛵',
     title: 'Möja',
-    description: 'Mellanskärgårdens klassiska seglarö. Flera skyddade vikar runt ön — Berg, Ramsmora och Långviksskär bjuder på lugna ankringskvällar med Bergs Glass och bröd-shoppen som bonus.',
-    href: '/platser?kategori=naturhamn',
-    meta: 'Möja, mellanskärgården',
+    description: 'Mellanskärgårdens klassiska seglarö. Vikarna vid Berg (djup 3–5 m, lerbotten), Ramsmora och Långviksskär ger bra skydd från SW–NW. Bergs Glass och lanthandeln gör det enkelt att tillbringa flera dagar.',
+    href: '/moja',
+    meta: 'Mellanskärgården · 30 sjömil från Stockholm',
   },
   {
     icon: '🏔️',
     title: 'Bullerö',
-    description: 'Yttre skärgårdens pärla — naturreservat sedan 1967 i Nämdö-området, med jaktstuga byggd av Bruno Liljefors 1909. Klippor och öppen vy mot havet. För erfarna seglare med god väderprognos.',
+    description: 'Naturreservat sedan 1967 i Nämdö-området, med Bruno Liljefors jaktstuga från 1909. Klippor och öppen vy mot havet. Ankra i den skyddade viken på öns nordvästra sida — ca 4 m djup, sandbotten. För erfarna seglare med god väderprognos.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Yttre skärgården',
+    meta: 'Yttre skärgården · Kräver god väderprognos',
   },
   {
-    icon: '',
+    icon: '🌿',
     title: 'Ålö',
-    description: 'Naturreservat granne med Utö i södra skärgården. Tallskog, vandringsleder och fina ankringsvikar. Brobunden till Utö, vilket gör det enkelt att kombinera.',
+    description: 'Naturreservat granne med Utö i södra skärgården. Tallskog och fina ankringsvikar med 3–6 m djup. Brobunden till Utö — kombinera gärna med middag på Utö Värdshus. Skyddar bra från N–NE.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Södra skärgården',
-  },
-  {
-    icon: '🪨',
-    title: 'Björkskär',
-    description: 'Klassisk ankringsplats i ytterskärgården öster om Möja-/Sandhamnsområdet. Granit och låg buskmark — populärt för seglare som söker mer öppen havskänsla.',
-    href: '/platser?kategori=naturhamn',
-    meta: 'Yttre skärgården',
+    meta: 'Södra skärgården · Nära Utö',
   },
   {
     icon: '💧',
     title: 'Svartsö',
-    description: 'Lugn naturhamn-rik ö i mellanskärgården. Bra skydd från flera vindkvartal i de många mindre vikarna. Kort till samhälle med butik, lanthandel och färjeläge.',
+    description: 'Naturhamnsrik ö i mellanskärgården med vikar som skyddar från många vindkvartal. Vikarna på östsidan (Svartsölandet) har 2–4 m djup och lerbotten. Butik och lanthandel i byn — lätt att handla mat.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Mellanskärgården',
+    meta: 'Mellanskärgården · Butik på ön',
   },
   {
     icon: '🌳',
     title: 'Finnhamn',
-    description: 'STF-vandrarhem på en av mellanskärgårdens vackraste öar. Naturreservat med flera skyddade ankringsplatser runt ön — t.ex. Storkliven och vikarna mot Idholmen.',
+    description: 'STF-vandrarhem på en av mellanskärgårdens vackraste öar. Naturreservat med skyddade ankringsplatser vid Storkliven (4–6 m, lerbotten) och vikarna mot Idholmen. Skyddar bra från S–SW.',
     href: '/platser?kategori=naturhamn',
-    meta: 'Mellanskärgården',
+    meta: 'Mellanskärgården · STF-vandrarhem',
+  },
+  {
+    icon: '🪨',
+    title: 'Nämdö',
+    description: 'Kyrkogårdsfjärden på Nämdös nordsida räknas bland skärgårdens bästa naturhamnar. Djup 3–8 m, lerbotten och utmärkt skydd från alla väder utom N. Lugn ö med fina promenadvägar och sommarcafé.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Mellanskärgården · Nybörjarvänlig',
+  },
+  {
+    icon: '🏝️',
+    title: 'Nåttarö',
+    description: 'Naturreservat i södra skärgården med milslånga sandstränder — ovanligt för Stockholms skärgård. Ankra i viken på öns västra sida, 3–5 m djup, sandbotten. Skyddat från E–SE. Fantastiskt för familjebad.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Södra skärgården · Sandstränder',
+  },
+  {
+    icon: '🌊',
+    title: 'Harö',
+    description: 'Liten naturhamnsö sydöst om Möja, perfekt för en natt på väg mot ytterskärgården. Välskyddad vik på sydvästra sidan, 3–4 m djup. Inga fasta faciliteter — ren naturkänsla.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Mellanskärgården · Orörd natur',
+  },
+  {
+    icon: '🌲',
+    title: 'Ängsö',
+    description: 'Nationalpark i norra skärgården — en av de mest välbevarade öarna. Naturhamn på öns östra sida, 2–4 m djup. Landstigningsförbud i delar av reservatet 1/4–15/7. Perfekt för den som vill kombinera segling med naturupplevelse.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Norra skärgården · Nationalpark',
+  },
+  {
+    icon: '⚓',
+    title: 'Ornö — Klasärterna',
+    description: 'Klasärterna på Ornös sydöstra sida räknas bland skärgårdens vackraste vikar. Djup 4–7 m, lerbotten, skyddat från N–NW. Ornö har butik och flera restauranger — bra bas för längre turer.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Södra mellanskärgården · Vacker vik',
+  },
+  {
+    icon: '🦅',
+    title: 'Huvudskär',
+    description: 'Yttre skärgårdens vildmarkspärla öster om Ornö. Skyddad naturhamn på öns västsida, 4–6 m djup. Obevakad kust med dramatiska klippor — endast för erfarna seglare med bra väderprognos.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Yttre skärgården · Erfarna seglare',
+  },
+  {
+    icon: '🏖️',
+    title: 'Grinda',
+    description: 'STF-anläggning i inre mellanskärgården — en av de mest tillgängliga naturhamnarna. Flera välskyddade vikar runt ön med 3–5 m djup. Bra för nybörjare — restaurang, café och bryggor med service.',
+    href: '/platser?kategori=naturhamn',
+    meta: 'Inre mellanskärgården · Nybörjarvänlig',
   },
 ]
 
@@ -112,7 +154,7 @@ export default function NaturhamnarPage() {
       heroGradient={['#0a4a5e', '#0a7b8c']}
       eyebrow="Naturhamnar"
       title="Ankra fritt i skärgården"
-      tagline="Över 400 naturhamnar — skyddade vikar, klippor och stilla kvällar utan avgifter."
+      tagline="Möja, Nämdö, Ornö, Nåttarö och fler — skyddade vikar med djupinfo, bottenbeskrivning och vindskydd."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M12 2v20" />
@@ -137,7 +179,7 @@ export default function NaturhamnarPage() {
         </>
       }
       itemsTitle="Populära naturhamnar i Stockholms skärgård"
-      itemsDescription="Sex klassiska ankringsplatser från norra till södra skärgården — alla fria, alla skyddade."
+      itemsDescription="Tolv klassiska ankringsplatser från norra till södra skärgården — alla fria, alla skyddade, med djupinfo och vindskydd."
       items={ITEMS}
       deeperContent={
         <>

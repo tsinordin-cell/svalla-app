@@ -80,6 +80,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Krävs av PostHog reverse proxy — annars omdirigerar Next /ingest/ → /ingest
+  // och tappar query-strängar.
+  skipTrailingSlashRedirect: true,
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -103,6 +106,20 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         headers: securityHeaders,
       },
+    ]
+  },
+  // Reverse proxy för PostHog — kringgår AdBlock (30-40% av trafiken
+  // blockerar `posthog.com`-domänen). Browsers ser bara svalla.se/ingest,
+  // Next.js förmedlar till PostHog server-side. Identiska events, mer data.
+  // Se: https://posthog.com/docs/advanced/proxy/nextjs
+  async rewrites() {
+    return [
+      // Statiska JS-tillgångar (posthog-js bundle, recordings, etc.)
+      { source: '/ingest/static/:path*', destination: 'https://us-assets.i.posthog.com/static/:path*' },
+      // Feature flag-decisioner — egen rewrite för att de skickas separat
+      { source: '/ingest/decide',         destination: 'https://us.i.posthog.com/decide' },
+      // Allt annat (events, identifies, recordings) → main PostHog ingest
+      { source: '/ingest/:path*',         destination: 'https://us.i.posthog.com/:path*' },
     ]
   },
   async redirects() {
