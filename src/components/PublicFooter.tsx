@@ -14,8 +14,8 @@ import SvallaLogo from './SvallaLogo'
  */
 export default function PublicFooter() {
   return (
-    <footer style={{
-      background: 'var(--txt, #1a2530)',
+    <footer className="public-footer" style={{
+      background: 'var(--footer-bg, #0d1a27)',
       color: 'rgba(255,255,255,0.78)',
       padding: '56px 24px 32px',
       marginTop: 60,

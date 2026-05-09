@@ -134,8 +134,8 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 .hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.4))}
 .trust-bar{background:var(--sea-dark);padding:20px 40px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;}
-.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.65);font-size:13px}
-.trust-item strong{color:var(--white);font-size:16px;font-weight:700}
+.trust-item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.65);font-size:12px;white-space:nowrap}
+.trust-item strong{color:var(--white);font-size:14px;font-weight:700}
 .trust-divider{width:1px;height:28px;background:rgba(255,255,255,.12)}
 section{padding:100px 40px}
 .section-inner{max-width:1160px;margin:0 auto}

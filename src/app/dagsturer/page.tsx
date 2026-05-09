@@ -182,7 +182,8 @@ export default function DagsturerPage() {
  related={[
  { label: 'Alla färjor', href: '/farjor' },
  { label: 'Alla öar', href: '/o' },
- { label: 'Barnvänliga öar', href: '/oar/barnvanliga-oar' },
+ { label: 'Barnvänliga öar', href: '/barnvanliga-oar' },
+ { label: 'Cinderellabåten', href: '/cinderella-baaten' },
  { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
  ]}
  />

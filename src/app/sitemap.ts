@@ -103,6 +103,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/snabbaste-vagen`,        lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
     { url: `${base}/planera-tur`,            lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/dagsturer`,              lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/cinderella-baaten`,      lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
     { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
