@@ -36,14 +36,10 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'kanholmen',         name: 'Kanholmen',         lat: 59.3679, lng: 18.7263, radiusKm: 1.5 },
   { slug: 'svenska-hogarna',   name: 'Svenska Högarna',   lat: 59.4431, lng: 19.5024, radiusKm: 2.5 },
   { slug: 'huvudskar',         name: 'Huvudskär',         lat: 58.9630, lng: 18.5683, radiusKm: 2.0 },
-  { slug: 'ramskar',           name: 'Ramskar',           lat: 59.3680, lng: 18.7100, radiusKm: 1.5 },
   { slug: 'ekno',              name: 'Eknö',              lat: 59.3087, lng: 18.8676, radiusKm: 2.0 },
   { slug: 'ormsko',            name: 'Ormskär',           lat: 59.1701, lng: 18.7509, radiusKm: 1.5 },
   { slug: 'norrpada',          name: 'Norrpada',          lat: 59.6544, lng: 19.2748, radiusKm: 1.5 },
-  { slug: 'lindholmen',        name: 'Lindholmen',        lat: 59.4413, lng: 18.7696, radiusKm: 2.0 },
   { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },
-  { slug: 'ostanvik',          name: 'Östanvik',          lat: 59.1966, lng: 18.7282, radiusKm: 1.5 },
-  { slug: 'korsholmen',        name: 'Korsholmen',        lat: 59.2444, lng: 18.6348, radiusKm: 1.5 },
   { slug: 'storskar',          name: 'Storskär',          lat: 59.6075, lng: 19.2519, radiusKm: 1.5 },
   { slug: 'bjorko',            name: 'Björkö',            lat: 59.2939, lng: 18.9513, radiusKm: 2.0 },
   { slug: 'adelsjo',           name: 'Adelsö',            lat: 59.3768, lng: 17.5006, radiusKm: 2.0 },
@@ -63,7 +59,6 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'musko',             name: 'Muskö',             lat: 58.9958, lng: 18.1149, radiusKm: 3.5 },
   { slug: 'hasselo',           name: 'Hasselö',           lat: 59.3200, lng: 18.9900, radiusKm: 1.0 },
   { slug: 'langviksskaret',    name: 'Långviksskär',      lat: 59.1509, lng: 18.7981, radiusKm: 2.0 },
-  { slug: 'graskar-sodra',     name: 'Gräskar (södra)',   lat: 58.7780, lng: 17.7650, radiusKm: 1.5 },
 
   // ── Norra skärgården ─────────────────────────────────────────────────────
   { slug: 'arholma',           name: 'Arholma',           lat: 59.8500, lng: 19.1167, radiusKm: 2.5 },
@@ -77,12 +72,8 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'graddo',            name: 'Gräddö',            lat: 59.7642, lng: 19.0321, radiusKm: 2.0 },
   { slug: 'vaddo',             name: 'Väddö',             lat: 60.0037, lng: 18.8310, radiusKm: 5.0 },
   { slug: 'yxlan',             name: 'Yxlan',             lat: 59.6167, lng: 18.8532, radiusKm: 2.5 },
-  { slug: 'ljusnas',           name: 'Ljusnas',           lat: 59.6100, lng: 18.7720, radiusKm: 1.5 },
   { slug: 'graskar',           name: 'Gräskar',           lat: 59.4811, lng: 18.9993, radiusKm: 1.5 },
-  { slug: 'toro-norra',        name: 'Torö (norra)',      lat: 59.7740, lng: 18.8040, radiusKm: 2.5 },
   { slug: 'langskar',          name: 'Långskär',          lat: 59.7065, lng: 19.4005, radiusKm: 1.5 },
-  { slug: 'ramskar-norra',     name: 'Ramskar (norra)',   lat: 59.7910, lng: 18.9840, radiusKm: 1.5 },
-  { slug: 'vastana',           name: 'Västanå',           lat: 59.4420, lng: 18.6880, radiusKm: 1.5 },
 ]
 
 // Lookup map for O(1) access
