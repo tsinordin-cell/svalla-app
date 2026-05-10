@@ -88,7 +88,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, restaurangälskare, sommarturer',
     },
     activities: [
-      { icon: '⛵', name: 'Segling', desc: 'KSSS-hamnen är Östersjöns mest besökta gästhamn med plats för hundratals båtar. Ruffen Sandhamnsleden är en klassiker.' },
+      { icon: '⛵', name: 'Segling', desc: 'KSSS-hamnen är en av Östersjöns mest besökta gästhamnar med plats för hundratals båtar. Sandhamn är start- och målgång för flera klassiska kappseglingar, däribland Gotland Runt (ÅF Offshore Race).' },
       { icon: '🏊', name: 'Sandstranden Trouville', desc: 'Öns vackraste sandstrand på södra sidan. Sällsynt i skärgårdssammanhang — sand istället för klippor.' },
       { icon: '🧖', name: 'Spa & Gym', desc: 'Seglarhotellets spa med bubbelpool, bastu och havsutsikt. Öppet för hotellgäster och boende.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön på de smala stigarna. Klipporna på östra sidan ger utsikt mot öppet hav.' },
@@ -124,7 +124,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['moja', 'grinda', 'finnhamn'],
     tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'sommarfest'],
-    did_you_know: 'Sandhamn har bebotts sedan 1500-talet som lotsstation. Namnet kommer från den ovanliga sandstranden — de flesta öar i skärgården har bara klippor.',
+    did_you_know: 'Sandhamn fick tullstation runt 1670 och lotsstation under slutet av 1600-talet, sedan kungens förbud mot utländsk sjöfart genom Sandöhamn upphävts. Namnet kommer från den ovanliga sandstranden — de flesta öar i skärgården har bara klippor.',
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -149,8 +149,8 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '🚲', name: 'Cykling', desc: 'Cykla runt hela ön på markerade leder. Cykeluthyrning vid hamnen. En halvdag räcker för de flesta lederna.' },
       { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörrn går ut mot havet — basta, hoppa i, basta igen.' },
-      { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts här i 200 år. Utögruvan och gruvmuseet berättar historien. Fascinerande för barn och vuxna.' },
-      { icon: '🏊', name: 'Bad & stränder', desc: 'Flera badplatser längs öns kust. Sandstranden vid Alsvik är familjevänlig.' },
+      { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö i mer än 700 år, från 1100-talet till 1879. Gruvdriften peakade på 1840-talet med 16 000 ton/år och cirka 500 invånare på ön. Gruvmuseet berättar historien — fascinerande för både barn och vuxna.' },
+      { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (cirka 10 km från Gruvbryggan, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
       { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns södra del med välmarkerade leder och vacker urbergslandskap.' },
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
     ],
@@ -291,7 +291,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['sandhamn', 'finnhamn', 'vaxholm'],
     tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],
-    did_you_know: 'Stockholms stad köpte Grinda 1947 och drev en period barnkolonier och rekreationsverksamhet på ön. Idag är Grinda ett naturreservat som förvaltas av Skärgårdsstiftelsen — den stora jugendvillan vid hamnen ritades av arkitekt Ernst Stenhammar.',
+    did_you_know: 'Henrik Santesson (Nobelstiftelsens första verkställande direktör) köpte Grinda 1906 och lät arkitekten Ernst Stenhammar rita den vackra gula jugendvillan, klar 1908. Stockholms stad köpte ön 1944, och idag förvaltas Grinda som naturreservat av Skärgårdsstiftelsen. Villan är numera Grinda Wärdshus.',
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -308,7 +308,7 @@ export const ISLANDS: Island[] = [
       'Finnhamn fungerar bra som dagsmål men belönar den som stannar — gärna ett par nätter. Kombinera med Söder Långholm och Paradisviken, som är bland skärgårdens finaste naturhamnar.',
     ],
     facts: {
-      travel_time: '2,5 h med Waxholmsbåt från Strömkajen',
+      travel_time: '~3 h med Waxholmsbåt från Strömkajen',
       character: 'Naturnärt, lugnt, genuint, bra för vandring',
       season: 'Maj–September (vandrarhem delvis öppet helår)',
       best_for: 'Vandring, naturupplevelse, seglare, budget-resenärer',
@@ -325,11 +325,11 @@ export const ISLANDS: Island[] = [
       { name: 'Tältplats', type: 'Camping', desc: 'Enkla tältmöjligheter på ön. Fråga i lanthandeln.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Direktlinje. Ingår i SL-kort.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Strömkajen', time: '~3 h', desc: 'Direktlinje. Ingår i SL-kort.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Ankra i Paradisviken (Djupfladen) eller förtöj i gästhamnen.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Djupfladen (Paradisviken)', desc: 'Naturhamn och gästhamn klassad som en av skärgårdens bästa. Skyddad och naturskönt.', spots: 80, fuel: false, service: ['vatten', 'sopor'] },
+      { name: 'Djupfladen (Paradisviken)', desc: 'Naturhamn och gästhamn klassad som en av skärgårdens bästa. Skyddad och naturskönt.', fuel: false, service: ['vatten', 'sopor'] },
       { name: 'Vandrarhemsviken', desc: 'Hamn vid vandrarhemet med service.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
@@ -363,13 +363,13 @@ export const ISLANDS: Island[] = [
       'Möja nås lättast från Stavsnäs och är ett naturligt stopp på en seglingstur mot Sandhamn eller Gällnö. Krogar och kaféer täcker grundbehoven utan att bli turistiga.',
     ],
     facts: {
-      travel_time: '2 h från Stavsnäs med Waxholmsbåt',
+      travel_time: '~1 h från Stavsnäs med Waxholmsbåt, drygt 3 h från Strömkajen',
       character: 'Bilfri, lantlig, genuint, lugnt',
       season: 'Maj–September',
       best_for: 'De som söker äkta skärgårdsliv utan turister',
     },
     activities: [
-      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat den kände Möja-konstnären. Litet men givande.' },
+      { icon: '🎨', name: 'Roland Svensson-museet', desc: 'Museum tillägnat skärgårdskonstnären Roland Svensson (1910–2003). Öppnade 2014 vid Ramsmora ångbåtsbrygga — Roland Svenssons gamla ateljé från Tornö är bevarad och flyttad in i museet.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera mellan hamnarna och genom lantliga bymiljöer. Ingen brådska, inga turiststigar.' },
       { icon: '⛪', name: 'Möja kyrka', desc: 'Vacker liten kyrka med utsikt. Välskött och värd ett besök.' },
       { icon: '🎣', name: 'Fiske', desc: 'Utmärkt fiskevatten runt ön. Abborre och gädda i vikarna, havsöring utanför.' },
@@ -379,11 +379,12 @@ export const ISLANDS: Island[] = [
       { name: 'Möja Logi', type: 'Stugor', desc: 'Enkla stugor och rum hos lokalbor. Fråga på Hamnbaren.' },
     ],
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '2 h', desc: 'Linje från Stavsnäs via Djurhamn och Nämdö.', icon: '⛴' },
-      { method: 'Eigen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Förtöj i Möja Hamn (norra delen av ön).', icon: '⛵' },
+      { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~1 h', desc: 'Linje från Stavsnäs vinterhamn — flera bryggor på Möja, bland annat Berg, Ramsmora och Långvik.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Förtöj vid någon av öns gästhamnar (Berg och Långvik är huvudalternativen).', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Möja Hamn', desc: 'Liten men välskyddad gästhamn på öns norra del.', spots: 40, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Berg gästhamn', desc: 'Huvudhamnen i Berg på östra Möja. Bra service och nära till restauranger och bageri.', service: ['el', 'vatten', 'dusch'] },
+      { name: 'Långvik gästhamn', desc: 'Mindre gästhamn i Långvik, lugnare och mer naturnära.', service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Möja Hamnbar', type: 'Bar/Restaurang', desc: 'Samlingsplatsen vid hamnen. Mat och dryck i avslappnad stämning.' },
