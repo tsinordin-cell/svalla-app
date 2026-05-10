@@ -603,7 +603,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
-    did_you_know: 'Arholma är en av Stockholms skärgårds nordligaste bebodda öar och har varit lotsplats sedan 1500-talet. Ön har ingen bilfärja — endast passagerarfärja från Simpnäs (Björkö) på fastlandet, ca 15 minuter över sundet.',
+    did_you_know: 'Arholma omtalas i skriftliga handlingar redan 1547 (Gustav Vasas räkenskaper). Lotshemmanen organiserades formellt 1724 då Amiralitetskollegiet antog sex bönder till arholmalotsar. Ön har ingen bilfärja — endast passbåten M/S Monsun från Simpnäs på fastlandet, ca 15 minuter över sundet, året runt.',
   },
 
   // ─── ORNÖ ─────────────────────────────────────────────────────
@@ -620,7 +620,7 @@ export const ISLANDS: Island[] = [
       'Kyrkviken är öns naturliga samlingsplats med krog och hamn. Från Ornö är Utö och Nåttarö enkla dagsutflykter med båt.',
     ],
     facts: {
-      travel_time: '2 h med pendelbåt från Nynäshamn',
+      travel_time: '~30 min med bilfärja från Dalarö',
       character: 'Naturskönt, skogsrikt, tyst, genuint',
       season: 'Maj–September',
       best_for: 'Naturälskare, vandring, de som söker lugn',
@@ -634,7 +634,8 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor privat', type: 'Stugor', desc: 'Privatpersoner hyr ut stugor sommartid. Sök online.' },
     ],
     getting_there: [
-      { method: 'Pendelbåt', from: 'Nynäshamn', time: '2 h', desc: 'Skärgårdslinjen söderut.', icon: '⛴' },
+      { method: 'Bilfärja', from: 'Dalarö (Hotellbryggan) → Hässelmara brygga', time: '~30 min', desc: 'Ornö Sjötrafik kör året runt och tar både bil och passagerare. Det är huvudvägen till Ornö.', icon: '⛴' },
+      { method: 'Båt från Nynäshamn', from: 'Nynäshamn (sommar)', time: '~2 h', desc: 'Sommarsäsong: linje från Nynäshamn till Ornö Kyrka brygga, en avgång/dag.', icon: '⛴' },
     ],
     harbors: [
       { name: 'Kyrkviken', desc: 'Öns huvudhamn med krog och enkla tjänster.', spots: 30, fuel: false },
@@ -667,8 +668,8 @@ export const ISLANDS: Island[] = [
       'Landsort är inte för den hastvärksresenären. Det är en destination i sig — man planerar en tur HIT, inte förbi hit. Vattnet är öppet och vindarna kan vara kraftiga.',
     ],
     facts: {
-      travel_time: '4 h med snabbåt från Nynäshamn / 5 h med pendelbåt',
-      character: 'Ytterst, dramatiskt, havsexponenat, genuint',
+      travel_time: 'SL-buss 852 från Nynäshamn till Ankarudden + skärgårdsbåt ~1 h till Landsort',
+      character: 'Ytterst, dramatiskt, havsexponerat, genuint',
       season: 'Juni–Augusti (begränsad service)',
       best_for: 'Erfarna seglare, äventyrare, fyr-entusiaster',
     },
@@ -681,8 +682,8 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor vid fyren', type: 'Stugor', desc: 'Begränsat antal stugor nära fyren. Boka långt i förväg.' },
     ],
     getting_there: [
-      { method: 'Snabbåt', from: 'Nynäshamn', time: '4 h', desc: 'Säsongstrafik sommartid.', icon: '🚤' },
-      { method: 'Egen båt', from: 'Nynäshamn/Utö', time: 'Varierar', desc: 'Planera noggrant med väderprognoser — öppet hav.', icon: '⛵' },
+      { method: 'Buss + båt', from: 'Nynäshamn → Ankarudden (Torö) → Landsort', time: '~2 h totalt', desc: 'SL-buss 852 från Nynäshamn till Ankarudden, sedan skärgårdsbåt ~1 h till Landsort.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Nynäshamn/Utö', time: 'Varierar', desc: 'Planera noggrant med väderprognoser — Landsort ligger exponerat mot öppet hav.', icon: '⛵' },
     ],
     harbors: [
       { name: 'Landsort Hamn', desc: 'Liten hamn på öns norra sida. Begränsat antal platser.', spots: 20, fuel: false },

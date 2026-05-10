@@ -441,27 +441,28 @@ function ArrowRightIcon({ size = 16, color = '#fff' }: { size?: number; color?: 
 function CompassProgress({ current }: { current: Step }) {
   if (current === 'welcome' || current === 'done') return null
   const idx = stepIdx(current)
-  const pct = (idx / (TOTAL_STEPS - 1)) * 100
+  const MIDDLE_STEPS = TOTAL_STEPS - 2 // exkl. welcome + done = 6
+  const midIdx = idx - 1               // 0-baserat bland mellanstegen
+  const pct = (midIdx / (MIDDLE_STEPS - 1)) * 100
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 24 }}>
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="rgba(165,205,225,0.7)" strokeWidth="1.2"/>
-        <path d="M12 4 L 13.5 12 L 12 20 L 10.5 12 Z" fill="rgba(165,205,225,0.85)"/>
-        <path d="M4 12 L 12 10.5 L 20 12 L 12 13.5 Z" fill="rgba(165,205,225,0.45)"/>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="rgba(165,205,225,0.6)" strokeWidth="1.2"/>
+        <path d="M12 4 L 13.5 12 L 12 20 L 10.5 12 Z" fill="rgba(165,205,225,0.8)"/>
+        <path d="M4 12 L 12 10.5 L 20 12 L 12 13.5 Z" fill="rgba(165,205,225,0.38)"/>
       </svg>
       <div style={{
-        position: 'relative', width: 180, height: 4, borderRadius: 999,
+        position: 'relative', width: 160, height: 3, borderRadius: 999,
         background: 'rgba(255,255,255,0.10)', overflow: 'hidden',
       }}>
         <div style={{
-          position: 'absolute', inset: 0, width: `${pct}%`,
+          position: 'absolute', inset: 0, width: `${Math.max(4, pct)}%`,
           background: 'linear-gradient(90deg, #2d7d8a, #65b8c8)',
           borderRadius: 999, transition: 'width 0.5s cubic-bezier(0.22,1,0.36,1)',
-          boxShadow: '0 0 14px rgba(101,184,200,0.55)',
         }}/>
       </div>
-      <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.05em' }}>
-        {idx + 1}/{TOTAL_STEPS}
+      <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em' }}>
+        {midIdx + 1} av {MIDDLE_STEPS}
       </span>
     </div>
   )
@@ -511,7 +512,7 @@ const BACK_BTN: React.CSSProperties = {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, initialUsername: _initialUsername, suggestions }: Props) {
+export default function OnboardingFlow({ userId, initialUsername, suggestions }: Props) {
   const router = useRouter()
   const supabase = createClient()
 
@@ -626,7 +627,7 @@ export default function OnboardingFlow({ userId, initialUsername: _initialUserna
         </div>
 
         <h1 style={{ ...HEADING, animation: 'ob-fadeUp 0.45s 0.32s both' }}>
-          Välkommen aboard
+          Välkommen ombord{initialUsername ? `, ${initialUsername}` : ''}.
         </h1>
         <p style={{ ...SUBTITLE, animation: 'ob-fadeUp 0.45s 0.4s both' }}>
           Svalla är skärgårdens digitala hemmahamn. Logga turer, hitta krogar och bryggor,
@@ -642,7 +643,7 @@ export default function OnboardingFlow({ userId, initialUsername: _initialUserna
           ...BACK_BTN, marginTop: 14, alignSelf: 'center',
           animation: 'ob-fadeUp 0.45s 0.6s both',
         }}>
-          {saving ? 'Sparar…' : 'Hoppa över touren'}
+          {saving ? 'Sparar…' : 'Hoppa över guiden'}
         </button>
       </div>
     </>
@@ -764,7 +765,7 @@ export default function OnboardingFlow({ userId, initialUsername: _initialUserna
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
           <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Personifiera <ArrowRightIcon/>
+            Anpassa mig <ArrowRightIcon/>
           </button>
         </div>
       </div>
