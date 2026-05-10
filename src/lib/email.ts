@@ -139,8 +139,9 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
     <table role="presentation" width="600" class="container" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
       <!-- HERO BAND med PNG-logo -->
       <tr>
-        <td class="hero-pad" style="background:linear-gradient(135deg,#1e5c82 0%,#0a7b8c 100%);padding:28px 36px 24px">
-          <img src="${EMAIL_LOGO_URL}" width="140" height="32" alt="Svalla" class="logo" style="display:block;border:0;max-width:140px;height:auto;outline:none">
+        <td class="hero-pad" style="background:linear-gradient(135deg,#0d3a5c 0%,#1e5c82 50%,#0a7b8c 100%);padding:28px 36px 26px">
+          <img src="${EMAIL_LOGO_URL}" width="140" height="32" alt="Svalla" class="logo" style="display:block;border:0;max-width:140px;height:auto;outline:none;margin-bottom:8px">
+          <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.65);letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">skärgården, samlad på ett ställe</p>
         </td>
       </tr>
       <!-- BODY -->
@@ -262,7 +263,7 @@ function renderWelcomeBody(firstName: string): string {
   </tr>
 </table>
 
-<p style="font-size:15px;line-height:1.65;margin:32px 0 0;color:#0d2a3e;text-align:center">Ses därute.<br><span style="color:#6a8a96">Svalla-gänget</span></p>`
+<p style="font-size:15px;line-height:1.65;margin:32px 0 0;color:#0d2a3e;text-align:center">Ses därute.<br><span style="color:#6a8a96">från teamet på Svalla</span></p>`
 }
 
 /** Skicka mail via Resend API */
@@ -368,7 +369,7 @@ Tack för att du gick med. Svalla är skärgårdens guide — vart du ska, vad s
 
 [Se din profil](https://svalla.se/min-skargard)
 
-— Thomas, Svalla`,
+— Teamet på Svalla`,
 
   day7: `---
 subject_options:
@@ -385,7 +386,7 @@ Ser att du varit i kontakt med Svalla en vecka. Vill du komma igång med en rikt
 
 [Planera utflykt →](https://svalla.se/utflykt)
 
-— Thomas`,
+— Teamet på Svalla`,
 
   season_open: `---
 subject_options:
@@ -400,7 +401,7 @@ Maj är här och färjorna går igen.
 2. **Färjetider** är uppdaterade på [/farjor](https://svalla.se/farjor)
 3. **Skärgårdsbingo 2026** — [25 utmaningar](https://svalla.se/bingo)
 
-— Thomas`,
+— Teamet på Svalla`,
 
   season_close: `---
 subject_options:
@@ -412,5 +413,5 @@ Du loggade {{trip_count}} turer och besökte {{visited_count}} öar.
 
 [Se din wrapped →](https://svalla.se/wrapped/{{username}}/2026)
 
-— Thomas`,
+— Teamet på Svalla`,
 }
