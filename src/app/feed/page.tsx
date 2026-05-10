@@ -226,6 +226,9 @@ export default async function FeedPage(
  <div className="feed-layout-wrap">
  <div className="feed-main-col">
 
+ {/* Loppis-banner: visas en gång per användare, dismissible */}
+ <LoppisFeedBanner />
+
  {SAFE && (
  <div role="status" style={{
  background: 'rgba(201,110,42,0.12)',
