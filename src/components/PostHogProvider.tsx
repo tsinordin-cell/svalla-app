@@ -35,8 +35,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
       // PostHog SDK:n till us-assets.i.posthog.com för att lazy-ladda surveys/
       // recorder/config-skript, vilket AdBlock blockerar. Med absolut URL går
       // ALLT (events + assets) via vår proxy.
-      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST
-        ?? (typeof window !== 'undefined' ? `${window.location.origin}/ingest` : 'https://us.i.posthog.com'),
+      api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://svalla.se/ingest',
       ui_host:            'https://us.posthog.com',
       capture_pageview:   false,           // PostHogPageView hanterar detta
       capture_pageleave:  true,
