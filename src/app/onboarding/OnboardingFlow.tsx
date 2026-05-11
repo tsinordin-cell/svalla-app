@@ -36,9 +36,9 @@ interface Props {
   suggestions: Suggestion[]
 }
 
-type Step = 'welcome' | 'tour_log' | 'tour_map' | 'tour_comm' | 'bat' | 'port' | 'follow' | 'done'
+type Step = 'welcome' | 'tour_log' | 'tour_map' | 'tour_app' | 'personalise' | 'done'
 
-const TOUR_STEPS: Step[] = ['welcome', 'tour_log', 'tour_map', 'tour_comm', 'bat', 'port', 'follow', 'done']
+const TOUR_STEPS: Step[] = ['welcome', 'tour_log', 'tour_map', 'tour_app', 'personalise', 'done']
 const TOTAL_STEPS = TOUR_STEPS.length
 const stepIdx = (s: Step) => TOUR_STEPS.indexOf(s)
 
@@ -437,6 +437,28 @@ function ArrowRightIcon({ size = 16, color = '#fff' }: { size?: number; color?: 
   )
 }
 
+/* ── Nav-hint: "Hitta det under X i menyn" ──────────────────────────── */
+function NavHint({ label }: { label: string }) {
+  return (
+    <div style={{
+      display: 'inline-flex', alignItems: 'center', gap: 6,
+      alignSelf: 'center', margin: '0 auto 22px',
+      padding: '6px 14px', borderRadius: 999,
+      background: 'rgba(255,255,255,0.06)',
+      border: '1px solid rgba(255,255,255,0.10)',
+    }}>
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="rgba(165,205,225,0.7)" strokeWidth="1.6"/>
+        <path d="M12 4 L13 12 L12 20 L11 12 Z" fill="rgba(165,205,225,0.9)"/>
+        <path d="M4 12 L12 11 L20 12 L12 13 Z" fill="rgba(165,205,225,0.4)"/>
+      </svg>
+      <span style={{ fontSize: 11, color: 'rgba(165,205,225,0.82)', fontWeight: 600, letterSpacing: '0.01em' }}>
+        Hitta det under <span style={{ color: 'rgba(165,235,248,0.98)' }}>{label}</span> i menyn
+      </span>
+    </div>
+  )
+}
+
 /* ── Kompass-progress ───────────────────────────────────────────────── */
 function CompassProgress({ current }: { current: Step }) {
   if (current === 'welcome' || current === 'done') return null
@@ -521,10 +543,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   const [startedAt] = useState(() => Date.now())
 
   const [boatType, setBoatType] = useState<string | null>(null)
-  const [savingBoat, setSavingBoat] = useState(false)
   const [homePort, setHomePort] = useState('')
-  const [savingPort, setSavingPort] = useState(false)
-
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -541,21 +560,23 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     if (idx < TOTAL_STEPS - 1) goTo(TOUR_STEPS[idx + 1]!)
   }
 
-  /* Spara båttyp */
-  const handleBoatSelect = async (value: string) => {
-    setBoatType(value)
-    setSavingBoat(true)
-    await supabase.from('users').update({ boat_type: value, vessel_model: value }).eq('id', userId)
-    setSavingBoat(false)
-  }
-
-  /* Spara hemmavatten */
-  const handleSavePort = async () => {
-    if (homePort.trim().length < 2) return
-    setSavingPort(true)
-    await supabase.from('users').update({ home_port: homePort.trim() }).eq('id', userId)
-    setSavingPort(false)
-    goNext()
+  /* Spara personalisering — båttyp + hemmahamn i ett anrop */
+  const handleSavePersonalise = async () => {
+    setSaving(true)
+    setError('')
+    try {
+      const updates: Record<string, string> = {}
+      if (boatType) { updates.boat_type = boatType; updates.vessel_model = boatType }
+      if (homePort.trim().length >= 2) updates.home_port = homePort.trim()
+      if (Object.keys(updates).length > 0) {
+        await supabase.from('users').update(updates).eq('id', userId)
+      }
+      setSaving(false)
+      goNext()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Något gick fel')
+      setSaving(false)
+    }
   }
 
   /* Toggle follow + trigga notiser/push */
@@ -669,6 +690,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           sparas automatiskt — som ett digitalt loggbok-uppslag.
         </p>
         <ChartRouteIllustration/>
+        <NavHint label="Logga"/>
         <div style={{
           display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20,
           flexWrap: 'wrap',
@@ -712,6 +734,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           Sökbart sjökort med riktiga koordinater — inga gissningar.
         </p>
         <MapMarkersIllustration/>
+        <NavHint label="Utforska"/>
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20,
         }}>
@@ -743,9 +766,9 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   )
 
   /* ════════════════════════════════════════════════════════════════════════
-     STEG 4 — TOUR: COMMUNITY
+     STEG 4 — TOUR: APP-NAVIGATION (flöde + forum + planera)
   ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'tour_comm') return (
+  if (step === 'tour_app') return (
     <>
       <style>{KEYFRAMES}</style>
       <SeaBackdrop/>
@@ -755,13 +778,54 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.85)',
           textTransform: 'uppercase', letterSpacing: '0.16em',
           textAlign: 'center', marginBottom: 12,
-        }}>Funktion 3 av 3</div>
-        <h2 style={HEADING}>Möt skärgårdsbor</h2>
+        }}>Steg 3 av 4</div>
+        <h2 style={HEADING}>Hitta rundt i Svalla</h2>
         <p style={SUBTITLE}>
-          Följ aktiva seglare i flödet, ställ frågor i forumet, dela tips och hitta dina.
-          Ett möte mellan båtar har ingen tystnadsplikt.
+          Allt du behöver finns i menyn. Här är en snabb karta.
         </p>
-        <CommunityIllustration/>
+
+        {/* Nav-karta */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 24, width: '100%' }}>
+          {[
+            {
+              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
+              label: 'Flödet',
+              desc: 'Turer och inlägg från folk du följer',
+              color: '#1e5c82',
+            },
+            {
+              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>,
+              label: 'Forum',
+              desc: 'Ställ frågor, dela tips, hitta din hamn',
+              color: '#2d7d8a',
+            },
+            {
+              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>,
+              label: 'Planera',
+              desc: 'Planera din nästa rutt längs kusten',
+              color: '#c96e2a',
+            },
+          ].map(({ icon, label, desc, color }) => (
+            <div key={label} style={{
+              display: 'flex', alignItems: 'center', gap: 14,
+              padding: '12px 16px', borderRadius: 14,
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.10)',
+            }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                background: `${color}33`,
+                border: `1px solid ${color}55`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>{icon}</div>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{label}</div>
+                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.52)', marginTop: 2 }}>{desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
           <button onClick={goNext} style={PRIMARY_BTN(false)}>
@@ -773,216 +837,144 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   )
 
   /* ════════════════════════════════════════════════════════════════════════
-     STEG 5 — BÅTTYP
+     STEG 5 — PERSONALISERA (båt + hamn + följ — allt på en skärm)
   ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'bat') return (
+  if (step === 'personalise') return (
     <>
       <style>{KEYFRAMES}</style>
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <h2 style={HEADING}>Hur tar du dig ut?</h2>
-        <p style={SUBTITLE}>
-          Vi anpassar feed och tips. Inget rätt eller fel svar — alla är välkomna.
+        <h2 style={HEADING}>Sätt din kurs</h2>
+        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
+          Tre snabba frågor — allt kan ändras senare.
         </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
-          {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
+        {/* ── Båttyp ── */}
+        <div style={{
+          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
+          textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
+        }}>Hur tar du dig ut?</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
+          {BOAT_OPTIONS.map(({ value, label, Icon }) => {
             const active = boatType === value
             return (
-              <button key={value} onClick={() => handleBoatSelect(value)} type="button"
+              <button key={value} onClick={() => setBoatType(value)} type="button"
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 16,
-                  padding: '14px 18px', borderRadius: 16, border: 'none',
-                  cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: 'inherit',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+                  padding: '14px 10px', borderRadius: 14, border: 'none',
+                  cursor: 'pointer', fontFamily: 'inherit',
                   background: active
-                    ? 'linear-gradient(135deg, rgba(30,92,130,0.62) 0%, rgba(45,125,138,0.55) 100%)'
+                    ? 'linear-gradient(135deg, rgba(30,92,130,0.60), rgba(45,125,138,0.52))'
                     : 'rgba(255,255,255,0.06)',
                   outline: active ? '1.5px solid rgba(165,205,225,0.55)' : '1.5px solid rgba(255,255,255,0.08)',
                   transition: 'all 0.18s',
-                  boxShadow: active ? '0 6px 20px rgba(45,125,138,0.30)' : 'none',
                 }}>
-                <div style={{
-                  width: 52, height: 52, borderRadius: 14, flexShrink: 0,
-                  background: active ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.05)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  opacity: active ? 1 : 0.75,
-                }}><Icon/></div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>{label}</div>
-                  <div style={{ fontSize: 12.5, color: 'rgba(255,255,255,0.55)', marginTop: 2 }}>{desc}</div>
-                </div>
-                {active && <CheckIcon size={20} color="rgba(165,225,235,0.95)"/>}
+                <div style={{ opacity: active ? 1 : 0.7 }}><Icon/></div>
+                <span style={{ fontSize: 12.5, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
+                  {label}
+                </span>
               </button>
             )
           })}
         </div>
 
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={() => boatType && goNext()} disabled={!boatType || savingBoat} style={PRIMARY_BTN(!boatType || savingBoat)}>
-            {savingBoat ? 'Sparar…' : <>Sätt kurs <ArrowRightIcon/></>}
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 6 — HEMMAVATTEN
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'port') {
-    const canContinue = homePort.trim().length >= 2
-    return (
-      <>
-        <style>{KEYFRAMES}</style>
-        <SeaBackdrop/>
-        <div key={animKey} style={CARD}>
-          <CompassProgress current={step}/>
-          <h2 style={HEADING}>Vilken är din skärgård?</h2>
-          <p style={SUBTITLE}>
-            Hemmahamn eller utgångspunkt. Vi anpassar feed och visar lokala tips.
-          </p>
-
-          <div style={{ marginBottom: 20 }}>
-            <input
-              type="text"
-              value={homePort}
-              autoFocus
-              onChange={e => setHomePort(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter' && canContinue) handleSavePort() }}
-              placeholder="t.ex. Vaxholm, Marstrand, Sandhamn…"
+        {/* ── Hemmahamn ── */}
+        <div style={{
+          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
+          textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
+        }}>Hemmahamn (valfritt)</div>
+        <input
+          type="text"
+          value={homePort}
+          onChange={e => setHomePort(e.target.value)}
+          placeholder="t.ex. Vaxholm, Marstrand…"
+          style={{
+            width: '100%', boxSizing: 'border-box',
+            padding: '13px 16px', borderRadius: 12,
+            border: `1.5px solid ${homePort.trim().length >= 2 ? 'rgba(165,225,235,0.40)' : 'rgba(255,255,255,0.13)'}`,
+            background: 'rgba(255,255,255,0.07)',
+            color: '#fff', fontSize: 15, fontFamily: 'inherit', fontWeight: 500,
+            outline: 'none', transition: 'border-color 0.2s', marginBottom: 10,
+          }}
+        />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22 }}>
+          {['Vaxholm', 'Sandhamn', 'Marstrand', 'Stockholm', 'Göteborg', 'Nynäshamn'].map(p => (
+            <button key={p} onClick={() => setHomePort(p)} type="button"
               style={{
-                width: '100%', boxSizing: 'border-box',
-                padding: '15px 18px', borderRadius: 14,
-                border: `1.5px solid ${canContinue ? 'rgba(165,225,235,0.45)' : 'rgba(255,255,255,0.14)'}`,
-                background: 'rgba(255,255,255,0.07)',
-                color: '#fff', fontSize: 16, fontFamily: 'inherit', fontWeight: 500,
-                outline: 'none', transition: 'border-color 0.2s',
-              }}
-            />
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 24 }}>
-            {COMMON_PORTS.map(p => (
-              <button key={p} onClick={() => setHomePort(p)} type="button"
-                style={{
-                  padding: '7px 13px', borderRadius: 999,
-                  border: '1px solid rgba(255,255,255,0.10)',
-                  background: homePort === p ? 'rgba(101,184,200,0.20)' : 'rgba(255,255,255,0.04)',
-                  color: homePort === p ? 'rgba(165,225,235,0.95)' : 'rgba(255,255,255,0.7)',
-                  fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
-                  transition: 'all 0.15s',
-                }}>{p}</button>
-            ))}
-          </div>
-
-          <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-            <button onClick={handleSavePort} disabled={!canContinue || savingPort} style={PRIMARY_BTN(!canContinue || savingPort)}>
-              {savingPort ? 'Sparar…' : <>Sätt kurs <ArrowRightIcon/></>}
-            </button>
-          </div>
+                padding: '6px 12px', borderRadius: 999,
+                border: '1px solid rgba(255,255,255,0.10)',
+                background: homePort === p ? 'rgba(101,184,200,0.20)' : 'rgba(255,255,255,0.04)',
+                color: homePort === p ? 'rgba(165,225,235,0.95)' : 'rgba(255,255,255,0.68)',
+                fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
+                transition: 'all 0.15s',
+              }}>{p}</button>
+          ))}
         </div>
-      </>
-    )
-  }
 
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 7 — FOLLOW
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'follow') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Följ några skärgårdsbor</h2>
-        <p style={SUBTITLE}>
-          Deras turer och tips dyker upp i ditt flöde. Du kan följa fler senare.
-        </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
-          {suggestions.length === 0
-            ? (
-                <div style={{
-                  textAlign: 'center', padding: '24px 16px',
-                  background: 'rgba(255,255,255,0.04)', borderRadius: 14,
-                  color: 'rgba(255,255,255,0.55)', fontSize: 13.5,
-                }}>
-                  Inga förslag just nu. Du hittar folk att följa direkt i flödet.
-                </div>
-              )
-            : suggestions.map(s => {
+        {/* ── Följ seglare ── */}
+        {suggestions.length > 0 && (
+          <>
+            <div style={{
+              fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.75)',
+              textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: 10,
+            }}>Följ några seglare</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
+              {suggestions.slice(0, 3).map(s => {
                 const isFollowing = followIds.has(s.id)
                 return (
                   <button key={s.id} onClick={() => toggleFollow(s.id)} type="button"
                     style={{
-                      display: 'flex', alignItems: 'center', gap: 14,
-                      padding: '12px 16px', borderRadius: 14,
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '10px 14px', borderRadius: 12,
                       background: isFollowing ? 'rgba(101,184,200,0.10)' : 'rgba(255,255,255,0.05)',
-                      border: isFollowing
-                        ? '1px solid rgba(165,225,235,0.30)'
-                        : '1px solid rgba(255,255,255,0.08)',
-                      cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit',
-                      width: '100%',
+                      border: isFollowing ? '1px solid rgba(165,225,235,0.28)' : '1px solid rgba(255,255,255,0.08)',
+                      cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', width: '100%',
                       transition: 'all 0.18s',
                     }}>
-                    {s.avatar ? (
+                    {s.avatar
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={s.avatar} alt="" width={42} height={42} style={{
-                        width: 42, height: 42, aspectRatio: '1 / 1', borderRadius: '50%',
-                        objectFit: 'cover', flexShrink: 0,
-                        border: isFollowing ? '2px solid rgba(165,225,235,0.55)' : '2px solid transparent',
-                      }}/>
-                    ) : (
-                      <div style={{
-                        width: 42, height: 42, aspectRatio: '1 / 1', borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        fontSize: 16, fontWeight: 700, color: '#fff',
-                        flexShrink: 0,
-                        border: isFollowing ? '2px solid rgba(165,225,235,0.55)' : '2px solid transparent',
-                      }}>{(s.username[0] ?? '?').toUpperCase()}</div>
-                    )}
+                      ? <img src={s.avatar} alt="" width={36} height={36} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}/>
+                      : <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{(s.username[0] ?? '?').toUpperCase()}</div>
+                    }
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 14.5, fontWeight: 700, color: '#fff' }}>@{s.username}</div>
+                      <div style={{ fontSize: 13.5, fontWeight: 700, color: '#fff' }}>@{s.username}</div>
                       {(s.vessel_model || s.home_port) && (
-                        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.50)', marginTop: 2 }}>
+                        <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.48)', marginTop: 1 }}>
                           {s.vessel_model}{s.vessel_model && s.home_port ? ' · ' : ''}{s.home_port}
                         </div>
                       )}
                     </div>
                     <div style={{
-                      padding: '6px 14px', borderRadius: 999,
-                      background: isFollowing
-                        ? 'rgba(101,184,200,0.18)'
-                        : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
+                      padding: '5px 12px', borderRadius: 999, flexShrink: 0,
+                      background: isFollowing ? 'rgba(101,184,200,0.18)' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
                       color: isFollowing ? 'rgba(165,225,235,0.95)' : '#fff',
                       fontSize: 12, fontWeight: 700,
                       display: 'flex', alignItems: 'center', gap: 5,
-                      flexShrink: 0,
                     }}>
                       {isFollowing && <CheckIcon size={11} color="rgba(165,225,235,0.95)"/>}
                       {isFollowing ? 'Följer' : 'Följ'}
                     </div>
                   </button>
                 )
-              })
-          }
-        </div>
+              })}
+            </div>
+          </>
+        )}
 
-        <div style={{
-          fontSize: 12, color: 'rgba(255,255,255,0.50)',
-          textAlign: 'center', marginBottom: 18, fontWeight: 500,
-        }}>
-          {followIds.size === 0 ? 'Du kan följa fler senare' : `Du följer ${followIds.size}`}
-        </div>
+        {error && (
+          <div style={{
+            marginBottom: 12, padding: '10px 14px',
+            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
+            fontSize: 13, fontWeight: 600, borderRadius: 12,
+            border: '1px solid rgba(239,68,68,0.25)',
+          }}>{error}</div>
+        )}
 
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Sätt kurs <ArrowRightIcon/>
+          <button onClick={handleSavePersonalise} disabled={saving} style={PRIMARY_BTN(saving)}>
+            {saving ? 'Sparar…' : <>Sätt kurs <ArrowRightIcon/></>}
           </button>
         </div>
       </div>
@@ -1020,29 +1012,41 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           }}>{error}</div>
         )}
 
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 18 }}>
-          <button onClick={() => finish('/logga')} disabled={saving} style={{
-            ...PRIMARY_BTN(saving),
-            padding: '17px 20px', fontSize: 16,
-          }}>
-            {saving ? 'Sparar…' : <>Lägg från kaj — logga första turen <ArrowRightIcon size={18}/></>}
-          </button>
-          <button onClick={() => finish('/upptack')} disabled={saving} style={{
-            padding: '14px 18px', borderRadius: 14, border: '1px solid rgba(255,255,255,0.16)',
-            background: 'rgba(255,255,255,0.05)',
-            color: 'rgba(255,255,255,0.85)',
-            fontSize: 14, fontWeight: 600, cursor: saving ? 'wait' : 'pointer', fontFamily: 'inherit',
-          }}>
-            Utforska sjökortet
-          </button>
-          <button onClick={() => finish('/feed')} disabled={saving} style={{
-            padding: '12px 18px', borderRadius: 14, border: 'none',
-            background: 'transparent',
-            color: 'rgba(255,255,255,0.55)',
-            fontSize: 13, fontWeight: 600, cursor: saving ? 'wait' : 'pointer', fontFamily: 'inherit',
-          }}>
-            Gå till flödet
-          </button>
+        {/* Primär CTA */}
+        <button onClick={() => finish('/logga')} disabled={saving} style={{
+          ...PRIMARY_BTN(saving), width: '100%',
+          padding: '17px 20px', fontSize: 16, marginBottom: 16,
+        }}>
+          {saving ? 'Sparar…' : <>Lägg från kaj — logga första turen <ArrowRightIcon size={18}/></>}
+        </button>
+
+        {/* Nav-genvägar */}
+        <div style={{
+          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.65)',
+          textTransform: 'uppercase', letterSpacing: '0.14em',
+          textAlign: 'center', marginBottom: 10,
+        }}>Eller utforska direkt</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, width: '100%', marginBottom: 8 }}>
+          {[
+            { label: 'Flödet', path: '/feed', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
+            { label: 'Utforska', path: '/upptack', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
+            { label: 'Forum', path: '/forum', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+            { label: 'Planera', path: '/planera', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
+            { label: 'Profil', path: '/profil', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+          ].map(({ label, path, icon }) => (
+            <button key={path} onClick={() => finish(path)} disabled={saving} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7,
+              padding: '12px 8px', borderRadius: 14,
+              border: '1px solid rgba(255,255,255,0.10)',
+              background: 'rgba(255,255,255,0.06)',
+              color: 'rgba(255,255,255,0.78)', fontSize: 11.5, fontWeight: 700,
+              cursor: saving ? 'wait' : 'pointer', fontFamily: 'inherit',
+              transition: 'all 0.18s',
+            }}>
+              {icon}
+              {label}
+            </button>
+          ))}
         </div>
       </div>
     </>
