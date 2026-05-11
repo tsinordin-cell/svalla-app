@@ -1,6 +1,73 @@
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import Icon, { type IconName } from '@/components/Icon'
+
+// Mappar emojis och otydliga icon-strängar till Svalla IconName.
+// Vi vill aldrig rendera Apple-emojis i CategoryLanding-kort.
+const EMOJI_TO_ICON: Record<string, IconName> = {
+  // Mat & restauranger
+  '🍽': 'utensils', '🍽️': 'utensils', '🥨': 'utensils',
+  // Fisk & hav
+  '🐟': 'fish', '🦐': 'fish', '🦀': 'fish', '🐠': 'fish',
+  // Kaffe & dryck
+  '☕': 'coffee', '🍵': 'coffee',
+  // Bar
+  '🍺': 'coffee', '🍷': 'coffee', '🍸': 'coffee', '🍹': 'coffee',
+  // Glass & fika
+  '🍦': 'star', '🍰': 'star', '🧁': 'star',
+  // Handel
+  '🛒': 'shoppingBag', '🛍': 'shoppingBag', '🏪': 'shoppingBag',
+  // Skärgård & båt
+  '⛵': 'sailboat', '🛥': 'ship', '🛥️': 'ship', '🚤': 'ship', '⛴': 'ship', '⛴️': 'ship', '⚓': 'anchor', '🛶': 'paddle',
+  // Bränsle
+  '⛽': 'fuel',
+  // Bad & vatten
+  '🏊': 'waves', '🏖': 'waves', '🌊': 'waves',
+  // Natur
+  '🌲': 'leaf', '🌳': 'leaf', '🌿': 'leaf', '🍃': 'leaf', '🌱': 'leaf',
+  // Berg & klippor
+  '🪨': 'map', '🏔': 'map', '⛰': 'map',
+  // Cykel & vandring
+  '🚲': 'navigation', '🚴': 'navigation', '🥾': 'leaf', '🚶': 'leaf',
+  // Övernattning
+  '🏠': 'bed', '🏡': 'bed', '🏘': 'bed', '🛏': 'bed', '⛺': 'bed', '🎪': 'bed',
+  // Hotell/byggnad
+  '🏛': 'building', '🏰': 'building', '🏝': 'building',
+  // Värme
+  '🧖': 'shower', '🔥': 'sun', '☀️': 'sun', '🌅': 'sun', '🌄': 'sun',
+  // Vinter
+  '❄️': 'snow', '⛄': 'snow',
+  // Fågel & djur
+  '🐦': 'leaf', '🦩': 'leaf',
+  // Familj
+  '👨‍👩‍👧‍👦': 'users', '👨‍👩‍👦': 'users', '👨‍👩‍👧': 'users', '👶': 'users',
+  // Övrigt
+  '🎒': 'bookmark', '🗺️': 'map', '🗺': 'map', '📍': 'pin', '📱': 'compass',
+  '⚠️': 'warning', '🚧': 'warning', '🛠️': 'wrench', '🛠': 'wrench',
+}
+
+function resolveIcon(raw?: string): IconName | null {
+  if (!raw) return null
+  const trimmed = raw.trim()
+  if (!trimmed) return null
+  // Om värdet redan är ett existerande IconName → använd direkt
+  // (Detta hanterar fall som "utensils", "anchor", "fish" i sub-agent-skrivna POSTS)
+  const known: IconName[] = [
+    'bookmark', 'heart', 'compass', 'map', 'pin', 'navigation', 'arrowRight',
+    'anchor', 'sailboat', 'ship', 'fish', 'paddle', 'wrench', 'waves', 'wind',
+    'utensils', 'bed', 'fuel', 'building',
+    'cloud', 'rain', 'snow', 'fog', 'moon', 'water', 'shower', 'toilet', 'parking',
+    'phone', 'calendar', 'clock', 'globe', 'warning', 'coffee', 'shoppingBag', 'info',
+    'user', 'users', 'trendingUp', 'target', 'handshake',
+    'check', 'star', 'award', 'trophy',
+    'sun', 'leaf', 'camera', 'mail',
+    'reply', 'edit', 'trash', 'image', 'link', 'atSign', 'send', 'more', 'x', 'quote', 'bell', 'flag',
+  ]
+  if (known.includes(trimmed as IconName)) return trimmed as IconName
+  // Annars: emoji-mapping
+  return EMOJI_TO_ICON[trimmed] ?? null
+}
 // Alla kategori- och filterlänkar är publika — ingen inloggning krävs
 
 const siteNavLinkStyle: CSSProperties = {
@@ -428,7 +495,10 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
  const cardContent = (
  <>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
- {item.icon && (
+ {(() => {
+ const iconName = resolveIcon(item.icon)
+ if (!iconName) return null
+ return (
  <span
  aria-hidden
  style={{
@@ -440,12 +510,13 @@ function LandingCard({ item, accent }: { item: LandingItem; accent: string }) {
  display: 'inline-flex',
  alignItems: 'center',
  justifyContent: 'center',
- fontSize: 17,
+ flexShrink: 0,
  }}
  >
- {item.icon}
+ <Icon name={iconName} size={18} stroke={2} />
  </span>
- )}
+ )
+ })()}
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.3 }}>
  {item.title}

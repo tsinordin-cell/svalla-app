@@ -1,4 +1,4 @@
-import Icon from '@/components/Icon'
+import Icon, { type IconName } from '@/components/Icon'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { POSTS_META } from './posts-data'
@@ -103,11 +103,15 @@ export default function BloggPage() {
                 <div style={{
                   background: 'var(--grad-sea)',
                   padding: '32px 24px',
-                  fontSize: 44,
                   textAlign: 'center',
                   position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: 120,
+                  color: '#ffffff',
                 }}>
-                  {post.emoji}
+                  <Icon name={post.emoji as IconName} size={56} stroke={1.6} />
                   {/* Category badge pinned top-right */}
                   <span style={{
                     position: 'absolute', top: 10, right: 10,
