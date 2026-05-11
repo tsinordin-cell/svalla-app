@@ -63,16 +63,15 @@ async function main() {
   // Steg 2: hämta restaurants med photo_refs, FILTRERA bort de som redan har place_photos
   const { data: candidates } = await sb
     .from('restaurants')
-    .select('id, name, google_photo_refs')
+    .select('id, name, google_photo_refs, archipelago_region')
     .eq('place_data_source', 'google')
     .not('google_photo_refs', 'is', null)
-    .in('archipelago_region', ['goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
 
   const places = (candidates || [])
     .filter(p => !placesWithPhotos.has(p.id))
     .slice(0, LIMIT)
 
-  console.log(`Hittade ${places?.length ?? 0} Göteborg/Bohuslän-platser med photo refs.`)
+  console.log(`Hittade ${places?.length ?? 0} platser med photo refs att cacha.`)
   let cached = 0, skipped = 0, failed = 0, totalPhotos = 0
 
   for (const p of places || []) {

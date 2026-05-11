@@ -34,3 +34,5 @@ node_modules/
 supabase/.temp/
 .env*.local
 .fuse_hidden*
+tsconfig.check.json
+tsconfig.check.tsbuildinfo

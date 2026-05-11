@@ -27,6 +27,10 @@ interface TripLeg {
   toName: string
   toTime: string
   isWalk: boolean
+  rtFromTime?: string
+  rtToTime?: string
+  delayMin?: number
+  cancelled?: boolean
 }
 
 interface TripSummary {
@@ -36,6 +40,9 @@ interface TripSummary {
   endTime: string
   changes: number
   legs: TripLeg[]
+  cancelled?: boolean
+  hasDelay?: boolean
+  maxDelayMin?: number
 }
 
 interface ApiResponse {
@@ -189,38 +196,86 @@ function TripRow({ trip, originName, destName }: { trip: TripSummary; originName
   const tripUrl = `https://sl.se/sv/reseplaneraren`
   const dur = formatDuration(trip.durationMin)
 
+  // Realtidsstatus — visa inställd, försenad eller exakt tidpunkt
+  const isCancelled = trip.cancelled === true
+  const delayMin = trip.maxDelayMin ?? 0
+  const hasDelay = trip.hasDelay === true && delayMin >= 1
+  const rtStartTime = trip.legs[0]?.rtFromTime
+
+  // Färgkodning: röd = inställd, gul = försenad, default = som tidigare
+  const accent = isCancelled
+    ? 'rgba(239, 68, 68, 0.40)'   // röd
+    : hasDelay
+    ? 'rgba(251, 191, 36, 0.35)' // gul
+    : 'rgba(255,255,255,0.10)'    // default
+
   return (
     <a
       href={tripUrl}
       target="_blank" rel="noopener noreferrer"
       style={{
         background: 'rgba(255,255,255,0.06)',
-        border: '1px solid rgba(255,255,255,0.10)',
+        border: `1px solid ${accent}`,
         borderRadius: 10,
         padding: '12px 14px',
         display: 'flex', alignItems: 'center', gap: 14,
         color: '#fff', textDecoration: 'none',
         transition: 'background 120ms ease',
+        opacity: isCancelled ? 0.78 : 1,
       }}
     >
-      {/* Tid: stor avgång + mindre ankomst */}
+      {/* Tid: stor avgång + mindre ankomst (med realtid-overlay om tillgänglig) */}
       <div style={{ flexShrink: 0, minWidth: 86 }}>
-        <div style={{ fontSize: 19, fontWeight: 700, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
+        <div style={{
+          fontSize: 19, fontWeight: 700, lineHeight: 1,
+          fontVariantNumeric: 'tabular-nums',
+          textDecoration: isCancelled ? 'line-through' : 'none',
+          color: isCancelled ? 'rgba(255,255,255,0.55)' : '#fff',
+        }}>
           {trip.startTime}
         </div>
+        {!isCancelled && hasDelay && rtStartTime && rtStartTime !== trip.startTime && (
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#fbbf24', marginTop: 2, fontVariantNumeric: 'tabular-nums' }}>
+            → {rtStartTime}
+          </div>
+        )}
         <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', marginTop: 3, fontVariantNumeric: 'tabular-nums' }}>
           → {trip.endTime}
         </div>
       </div>
 
-      {/* Mitten: detaljer */}
+      {/* Mitten: detaljer + status */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: '#fff', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
           {operatorList}
         </div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)' }}>
-          {dur} · {trip.changes === 0 ? 'inga byten' : `${trip.changes} ${trip.changes === 1 ? 'byte' : 'byten'}`}
-          {hasFerry && <span style={{ marginLeft: 6, color: '#9be59c', fontWeight: 600 }}>· båt</span>}
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.65)', display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
+          <span>{dur} · {trip.changes === 0 ? 'inga byten' : `${trip.changes} ${trip.changes === 1 ? 'byte' : 'byten'}`}</span>
+          {hasFerry && <span style={{ color: '#9be59c', fontWeight: 600 }}>· båt</span>}
+          {isCancelled && (
+            <span style={{
+              background: 'rgba(239, 68, 68, 0.22)',
+              color: '#fca5a5',
+              fontSize: 9.5, fontWeight: 800, letterSpacing: 0.6,
+              padding: '2px 7px', borderRadius: 999,
+              border: '1px solid rgba(239, 68, 68, 0.45)',
+              textTransform: 'uppercase',
+            }}>
+              Inställd
+            </span>
+          )}
+          {!isCancelled && hasDelay && (
+            <span style={{
+              background: 'rgba(251, 191, 36, 0.18)',
+              color: '#fcd34d',
+              fontSize: 9.5, fontWeight: 800, letterSpacing: 0.6,
+              padding: '2px 7px', borderRadius: 999,
+              border: '1px solid rgba(251, 191, 36, 0.40)',
+              textTransform: 'uppercase',
+            }}>
+              +{delayMin} min
+            </span>
+          )}
         </div>
       </div>
 

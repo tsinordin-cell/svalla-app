@@ -15,6 +15,7 @@ import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
+import LastBoatPanel from '@/components/LastBoatPanel'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -296,6 +297,9 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Hur tar jag mig hit — transit-widget */}
  <DepartureWidget islandSlug={island.slug} islandName={island.name} />
+
+ {/* Sista båten tillbaka idag — varning när det börjar närma sig */}
+ <LastBoatPanel islandSlug={island.slug} islandName={island.name} />
 
  {/* Om ön */}
  <section style={{ marginBottom: 52 }}>

@@ -50,14 +50,21 @@ export interface TripLeg {
   line: string | null
   /** Avgångshållplats (namn). */
   fromName: string
-  /** HH:MM. */
+  /** Planerad HH:MM. */
   fromTime: string
   /** Ankomsthållplats (namn). */
   toName: string
-  /** HH:MM. */
+  /** Planerad HH:MM. */
   toTime: string
   /** Sant om legen är promenad. Vi visar dem som "byte". */
   isWalk: boolean
+  /** Realtid HH:MM (om operatören rapporterar — annars undefined). */
+  rtFromTime?: string
+  rtToTime?: string
+  /** Försening i minuter beräknat från rtFromTime - fromTime (kan vara negativt om tidigare). */
+  delayMin?: number
+  /** Sant om operatören har markerat resan som inställd. */
+  cancelled?: boolean
 }
 
 export interface TripSummary {
@@ -75,6 +82,12 @@ export interface TripSummary {
   legs: TripLeg[]
   /** Alla legs inkl. walks — för debugging. */
   allLegs: TripLeg[]
+  /** Sant om någon leg är inställd. */
+  cancelled?: boolean
+  /** Sant om någon leg har försening >= 1 min. */
+  hasDelay?: boolean
+  /** Max försening bland alla transport-legs (min). */
+  maxDelayMin?: number
 }
 
 // ─── ResRobot raw-typer (subset, det vi använder) ───────────────────────────
@@ -90,10 +103,15 @@ interface ResRobotPoint {
   name?: string
   time?: string
   date?: string
+  /** Realtid om operatören rapporterar — annars undefined. */
+  rtTime?: string
+  rtDate?: string
 }
 
 interface ResRobotLeg {
   type?: string
+  /** ResRobot sätter true om leg är inställd. */
+  cancelled?: boolean
   Origin?: ResRobotPoint
   Destination?: ResRobotPoint
   Product?: ResRobotProduct[] | ResRobotProduct
@@ -125,18 +143,40 @@ function asProduct(p: ResRobotLeg['Product']): ResRobotProduct {
   return p ?? {}
 }
 
+/** Beräknar försening i minuter (rtTime - planned). Returnerar undefined om rtTime saknas. */
+function calcDelayMin(planned: string, rt: string | undefined): number | undefined {
+  if (!rt || !planned) return undefined
+  const [ph, pm] = planned.split(':').map(Number)
+  const [rh, rm] = rt.split(':').map(Number)
+  if ([ph, pm, rh, rm].some(n => Number.isNaN(n))) return undefined
+  // Använd minuter sedan midnatt. Hantera dygnsöverlapp grovt (om diff > 12h, anta cross-midnight).
+  let diff = (rh! * 60 + rm!) - (ph! * 60 + pm!)
+  if (diff > 12 * 60) diff -= 24 * 60
+  if (diff < -12 * 60) diff += 24 * 60
+  return diff
+}
+
 function normalizeLeg(raw: ResRobotLeg): TripLeg {
   const product = asProduct(raw.Product)
   const isWalk = (raw.type ?? '').toUpperCase() === 'WALK' || !product.line
+  const fromTime = (raw.Origin?.time ?? '').slice(0, 5)
+  const toTime = (raw.Destination?.time ?? '').slice(0, 5)
+  const rtFromTime = raw.Origin?.rtTime ? raw.Origin.rtTime.slice(0, 5) : undefined
+  const rtToTime = raw.Destination?.rtTime ? raw.Destination.rtTime.slice(0, 5) : undefined
+  const delayMin = calcDelayMin(fromTime, rtFromTime)
   return {
     category: product.catOutL ?? (isWalk ? 'Promenad' : 'Okänd'),
     operator: product.operator ?? null,
     line: product.line ?? null,
     fromName: raw.Origin?.name ?? '?',
-    fromTime: (raw.Origin?.time ?? '').slice(0, 5),
+    fromTime,
     toName: raw.Destination?.name ?? '?',
-    toTime: (raw.Destination?.time ?? '').slice(0, 5),
+    toTime,
     isWalk,
+    rtFromTime,
+    rtToTime,
+    delayMin,
+    cancelled: raw.cancelled === true || undefined,
   }
 }
 
@@ -147,11 +187,15 @@ function normalizeLeg(raw: ResRobotLeg): TripLeg {
  *
  * Returnerar [] om nyckel saknas, om API:et är nere, eller om inga resor
  * hittades. Aldrig kasta error — vi vill att widgeten degraderar tyst.
+ *
+ * Med `departAfter` kan man fråga efter resor som startar EFTER ett specifikt
+ * datum/tid — används för "sista båten"-feature: vi pingar sent på dagen.
  */
 export async function fetchTrips(
   originId: string,
   destId: string,
   numTrips = 4,
+  departAfter?: { date: string; time: string }, // YYYY-MM-DD + HH:MM
 ): Promise<TripSummary[]> {
   if (!KEY) {
     if (process.env.NODE_ENV !== 'production') {
@@ -160,7 +204,7 @@ export async function fetchTrips(
     return []
   }
 
-  const cacheKey = `trip:${originId}:${destId}:${numTrips}`
+  const cacheKey = `trip:${originId}:${destId}:${numTrips}:${departAfter?.date ?? ''}:${departAfter?.time ?? ''}`
   const hit = cacheGet<TripSummary[]>(cacheKey)
   if (hit) return hit
 
@@ -170,6 +214,10 @@ export async function fetchTrips(
   url.searchParams.set('numF', String(numTrips))
   url.searchParams.set('format', 'json')
   url.searchParams.set('accessId', KEY)
+  if (departAfter) {
+    url.searchParams.set('date', departAfter.date)
+    url.searchParams.set('time', departAfter.time)
+  }
 
   try {
     const res = await fetch(url.toString(), {
@@ -187,6 +235,11 @@ export async function fetchTrips(
       const last = legs[legs.length - 1] ?? allLegs[allLegs.length - 1]
       // Datum kommer från ResRobot's första Origin — det är där resan startar.
       const startDate = (t.LegList?.Leg?.[0]?.Origin?.date ?? '').slice(0, 10)
+      const cancelled = legs.some(l => l.cancelled)
+      const maxDelayMin = legs.reduce((max, l) => {
+        const d = l.delayMin ?? 0
+        return d > max ? d : max
+      }, 0)
       return {
         durationMin: parseIsoDuration(t.duration),
         startTime: first?.fromTime ?? '',
@@ -195,6 +248,9 @@ export async function fetchTrips(
         changes: Math.max(0, legs.length - 1),
         legs,
         allLegs,
+        cancelled: cancelled || undefined,
+        hasDelay: maxDelayMin >= 1 || undefined,
+        maxDelayMin: maxDelayMin >= 1 ? maxDelayMin : undefined,
       }
     }).filter((t) => t.legs.length > 0)
     cacheSet(cacheKey, trips)
@@ -202,4 +258,34 @@ export async function fetchTrips(
   } catch {
     return []
   }
+}
+
+/**
+ * Hämtar dagens SISTA avgång från `originId` till `destId`.
+ *
+ * Strategi: pinga ResRobot från kl 14:00 idag med numF=15 för att få alla
+ * eftermiddags- och kvällsavgångar. Returnera den absolut sista resan vars
+ * `startDate` matchar dagens datum.
+ *
+ * Returnerar null om ingen kvarvarande avgång finns idag (sista båten har
+ * redan gått, eller helt enkelt ingen ytterligare båt idag).
+ *
+ * Used by: /api/transit/last-departure för "sista båten tillbaka"-feature
+ * på ösidor och Thorkel guide.
+ */
+export async function fetchLastTripOfDay(
+  originId: string,
+  destId: string,
+  todayISO?: string, // YYYY-MM-DD — defaultar till idag i Europe/Stockholm
+): Promise<TripSummary | null> {
+  // Stockholm timezone — Vercel kör i UTC, vi måste explicit konvertera
+  const date = todayISO ?? new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
+  // Börja runt lunchtid för att fånga alla eftermiddags/kvällsavgångar
+  const trips = await fetchTrips(originId, destId, 15, { date, time: '14:00' })
+  // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag)
+  const todaysTrips = trips.filter(t => t.startDate === date)
+  if (todaysTrips.length === 0) return null
+  // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
+  todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
+  return todaysTrips[todaysTrips.length - 1] ?? null
 }

@@ -711,8 +711,8 @@ export const ISLANDS: Island[] = [
     emoji: '🌲',
     tagline: 'Klassisk seglingspassage i norra skärgården med värdshus och sjömack.',
     description: [
-      'Furusund är en klassisk passage i norra skärgården känd för sitt starka tidvatten och sin kulturhistoria. Sundet är nästan obligatoriskt för alla som seglar norrut och erbjuder möjligheter för både äventyr och lugn.',
-      'Furusund Värdshus är det naturliga stoppet — ett historiskt värdshus med restaurang som tjänat seglare i generationer. August Strindberg tillbringade fyra somrar här kring sekelskiftet 1900 (1899–1903), men det var på Kymmendö han fick idén till "Hemsöborna". Naturmässigt är passagen dramatisk med klippor på båda sidor.',
+      'Furusund är en klassisk seglingspassage i norra skärgården, känd för smalt sund med stark strömning och rik kulturhistoria. Sundet är nästan obligatoriskt för alla som seglar norrut längs Furusundsleden.',
+      'Furusund Värdshus (idag Hotel Furusund) är det naturliga stoppet — byggnaden var ursprungligen tullhus från 1800-talet och började servera mat 1950. August Strindberg tillbringade fyra somrar här kring sekelskiftet 1900 (1899–1905), och här arbetade han bland annat med dramat Erik XIV. I "Ett drömspel" blev Furusund "Fagervik" och Köpmanholm på Yxlan "Skamsund".',
       'Furusund passar perfekt för seglare på väg norrut, eller för någon som söker en blandning av seglingsäventyr och historisk kultur i norra skärgården.'
     ],
 
@@ -741,7 +741,7 @@ export const ISLANDS: Island[] = [
       { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.' },
     ],
     tips: [
-      'Strömmen i Furusund är stark vid tidvattensväxling — kolla tidvatten om du seglar igenom.',
+      'Strömmen i Furusund kan vara stark — gå igenom med god marginal och håll noggrann uppsikt på trafik (smal led).',
       'Värdshuset är bäst för middag — boka i förväg under högsäsong.',
     ],
     related: ['blido', 'arholma', 'norrora'],
@@ -872,23 +872,26 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     tagline: 'Naturreservat i södra skärgården — klippor, lugn och äkta ytterskärgård.',
     description: [
-      'Nåttarö är ett naturreservat i södra skärgården med vacker och vild natur. Ön är ett populärt ankringsläge för erfarna seglare som söker lugn och orördhet.',
-      'Naturreservatet skyddas för att bevara den rika biologiska mångfalden och det unika klippekosystemet. Vandringsstigar leder förbi blockhudar, öppna klippor och små naturhamnar. Klippbaden är rent och invitande.',
-      'Nåttarö kräver egen båt och är bäst kombinerat med en längre seglingstur i södra skärgården. Det är en ö för dem som redan är ute på havet.'
+      'Nåttarö är ett naturreservat i södra skärgården med vacker och vild natur. Ön är ett populärt ankringsläge för seglare som söker lugn och orördhet.',
+      'Naturreservatet skyddas för att bevara den rika biologiska mångfalden och det unika klippekosystemet. Vandringsstigar leder förbi blockhudar, öppna klippor och små naturhamnar. Klippbaden är rena och inbjudande.',
+      'Nåttarö nås enkelt med Waxholmsbåtens fartyg "Utö Express" från Nynäshamns fiskehamn under sommarsäsongen — ca 30 minuter. Egen båt fungerar också.'
     ],
 
     facts: {
-      travel_time: '3 h från Nynäshamn',
+      travel_time: '~30 min med Utö Express från Nynäshamn (sommar)',
       character: 'Vilt, naturreservat, orört',
       season: 'Juni–Augusti',
-      best_for: 'Seglare, naturupplevelse',
+      best_for: 'Seglare, naturupplevelse, dagsutflykt med båt',
     },
     activities: [
       { icon: '🚶', name: 'Vandring', desc: 'Vandringsstigar i naturreservat.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Rent vatten och fina klippor.' },
     ],
     accommodation: [{ name: 'Ankring', type: 'Gästhamn', desc: 'Ankra i skyddade vikar.' }],
-    getting_there: [{ method: 'Eigen båt', from: 'Utö/Dalarö', time: 'Varierar', desc: 'Ingen reguljär trafik.', icon: '⛵' }],
+    getting_there: [
+      { method: 'Waxholmsbåten "Utö Express"', from: 'Nynäshamns fiskehamn', time: '~30 min', desc: 'Daglig trafik sommarsäsongen (juni–augusti). Biljett ombord.', icon: '⛴' },
+      { method: 'Egen båt', from: 'Utö/Dalarö', time: 'Varierar', desc: 'Ankringsmöjligheter i flera skyddade vikar.', icon: '⛵' },
+    ],
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
     tips: ['Nåttarö kräver egen båt — ingen reguljärtrafik.'],
@@ -1139,7 +1142,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['vaxholm', 'rindo', 'grinda'],
     tags: ['lättillgänglig', 'bad', 'villa', 'dag-tur', 'bil'],
-    did_you_know: 'Resarö är den enda ön i Stockholms skärgård med ett eget riksintresse för kulturmiljö — bebyggelsen från sekelskiftet 1900 är unik välbevarad.',
+    did_you_know: 'Resarö nås landvägen från Vaxholm via Eriksberg och är en av få ”skärgårdsöar” där man når sjönära klippbad på en kort bilresa från Stockholm. Stora delar av öns äldre bebyggelse är från sekelskiftet 1900 då Resarö blev sommarö för Stockholmsfamiljer.',
   },
 
   // ─── HUSARÖ ──────────────────────────────────────────────────
@@ -1513,7 +1516,7 @@ export const ISLANDS: Island[] = [
     ],
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['marinbiologi', 'naturreservat', 'ytterskärgård', 'forskning', 'södra'],
-    did_you_know: 'Askölaboratoriet grundades 1961 och är Stockholms universitets fältstation för marin forskning i Östersjön. Det är en av de äldsta och mest produktiva marinbiologiska forskningsstationerna i Sverige — flera centrala studier kring Östersjöns övergödning och blåsippsprovtagning har sitt ursprung här.',
+    did_you_know: 'Askölaboratoriet grundades 1961 och är Stockholms universitets fältstation för marin forskning i Östersjön. Det är en av de äldsta och mest produktiva marinbiologiska forskningsstationerna i Sverige — flera centrala studier kring Östersjöns övergödning och miljöövervakning av blåstång och bottenfauna har sitt ursprung här.',
   },
 
   // ─── GÅLÖ ────────────────────────────────────────────────────
