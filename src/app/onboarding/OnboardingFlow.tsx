@@ -679,11 +679,6 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.85)',
-          textTransform: 'uppercase', letterSpacing: '0.16em',
-          textAlign: 'center', marginBottom: 12,
-        }}>Funktion 1 av 3</div>
         <h2 style={HEADING}>Logga dina turer</h2>
         <p style={SUBTITLE}>
           Spåra rutten med GPS direkt från telefonen. Distans, tid, fart och rutt
@@ -723,11 +718,6 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.85)',
-          textTransform: 'uppercase', letterSpacing: '0.16em',
-          textAlign: 'center', marginBottom: 12,
-        }}>Funktion 2 av 3</div>
         <h2 style={HEADING}>Pejla in skärgården</h2>
         <p style={SUBTITLE}>
           Hitta krogar, gästbryggor, bastur och bensinmackar längs hela kusten.
@@ -774,11 +764,6 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.85)',
-          textTransform: 'uppercase', letterSpacing: '0.16em',
-          textAlign: 'center', marginBottom: 12,
-        }}>Steg 3 av 4</div>
         <h2 style={HEADING}>Hitta rundt i Svalla</h2>
         <p style={SUBTITLE}>
           Allt du behöver finns i menyn. Här är en snabb karta.
