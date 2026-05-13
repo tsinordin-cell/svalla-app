@@ -105,6 +105,11 @@ export default function Icon({
   style,
   'aria-label': ariaLabel,
 }: Props) {
+  // Defensiv lookup: om name inte finns i PATHS (t.ex. runtime-string från
+  // databas eller content-fil som inte typchecks), fall back till tom path.
+  // Annars kraschar React build med "props.dangerouslySetInnerHTML must be
+  // in the form {__html: ...}" när __html är undefined.
+  const path = (PATHS as Record<string, string>)[name] ?? ''
   return (
     <svg
       viewBox="0 0 24 24"
@@ -120,7 +125,7 @@ export default function Icon({
       role={ariaLabel ? 'img' : 'presentation'}
       aria-label={ariaLabel}
       aria-hidden={!ariaLabel}
-      dangerouslySetInnerHTML={{ __html: PATHS[name] }}
+      dangerouslySetInnerHTML={{ __html: path }}
     />
   )
 }

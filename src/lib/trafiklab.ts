@@ -263,9 +263,10 @@ export async function fetchTrips(
 /**
  * Hämtar dagens SISTA avgång från `originId` till `destId`.
  *
- * Strategi: pinga ResRobot från kl 14:00 idag med numF=15 för att få alla
- * eftermiddags- och kvällsavgångar. Returnera den absolut sista resan vars
- * `startDate` matchar dagens datum.
+ * Strategi: ResRobot v2.1 har max numF=6, så vi gör TVÅ parallella anrop
+ * med olika start-tider (14:00 + 19:00) och slår ihop. Det fångar både
+ * eftermiddagsavgångar och sena kvällsturer — viktigt för öar med tät
+ * trafik där 6 trips från 14:00 inte sträcker sig till kvällens sista.
  *
  * Returnerar null om ingen kvarvarande avgång finns idag (sista båten har
  * redan gått, eller helt enkelt ingen ytterligare båt idag).
@@ -280,10 +281,28 @@ export async function fetchLastTripOfDay(
 ): Promise<TripSummary | null> {
   // Stockholm timezone — Vercel kör i UTC, vi måste explicit konvertera
   const date = todayISO ?? new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
-  // Börja runt lunchtid för att fånga alla eftermiddags/kvällsavgångar
-  const trips = await fetchTrips(originId, destId, 15, { date, time: '14:00' })
+
+  // Två parallella anrop: 14:00 fångar eftermiddag, 19:00 fångar sena kvällsturer.
+  // ResRobot max numF=6 — annars returnerar API:t API_PARAM IllegalArgumentException
+  // och vi får tomt svar (vilket var orsak till första-release-buggen där alla
+  // last-departure-anrop returnerade null).
+  const [afternoonTrips, eveningTrips] = await Promise.all([
+    fetchTrips(originId, destId, 6, { date, time: '14:00' }),
+    fetchTrips(originId, destId, 6, { date, time: '19:00' }),
+  ])
+
+  // Dedupa på startTime (samma trip kan dyka upp i båda anropen)
+  const seen = new Set<string>()
+  const merged: TripSummary[] = []
+  for (const t of [...afternoonTrips, ...eveningTrips]) {
+    const key = `${t.startDate}T${t.startTime}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    merged.push(t)
+  }
+
   // Filtrera fram resor som FAKTISKT startar idag (ResRobot ger även resor nästa dag)
-  const todaysTrips = trips.filter(t => t.startDate === date)
+  const todaysTrips = merged.filter(t => t.startDate === date)
   if (todaysTrips.length === 0) return null
   // Sortera efter startTime (HH:MM stränger sorterar korrekt) — ta sista
   todaysTrips.sort((a, b) => a.startTime.localeCompare(b.startTime))
