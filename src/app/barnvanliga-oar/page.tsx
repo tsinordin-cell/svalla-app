@@ -25,48 +25,48 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'bed',
- title: 'Grinda',
- description: 'Populär ö med fin sandstrand, grunt vatten och välbesökt bad. Värdshus, små stugor och enkel färjeförbindelse. Cirka 1h 45 min med Waxholmsbåten.',
- href: '/o/grinda',
- meta: '~1h 45 min från Strömkajen',
- },
- {
- icon: '',
- title: 'Finnhamn',
- description: 'Lugn och vacker ö med STF-vandrarhem. Bra för familjer som vill kombinera vandring med bad. Mindre kommersiellt än Grinda. Cirka 3 tim med båt.',
- href: '/o/finnhamn',
- meta: 'Lugnt vatten',
- },
- {
- icon: '🚲',
- title: 'Möja',
- description: 'I princip bilfri seglarö med cyklevänliga grusvägar och pittoreska fiskebyar. Glassbar, bröd från bageri och flera badplatser. Rustikare men gillas av barn.',
- href: '/o/moja',
- meta: 'Cykla runt på ön',
- },
- {
- icon: '🎪',
- title: 'Fjäderholmarna',
- description: 'Närmast Stockholm — cirka 25 min från Strömkajen/Slussen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
- href: '/o/fjaderholmarna',
- meta: 'Närmast Stockholm',
- },
- {
- icon: 'bed',
- title: 'Utö',
- description: 'Större ö i södra skärgården med Utö Värdshus, sandstrand vid Stora Sand och cykelvänliga vägar. Smidigast via Årsta brygga (~40 min).',
- href: '/o/uto',
- meta: '~40 min från Årsta brygga',
- },
- {
- icon: 'bed',
- title: 'Sandhamn',
- description: 'Legendär seglardestination med flera restauranger och badmöjligheter. Längre resa — passar äldre barn och familjer som gillar liv och rörelse.',
- href: '/o/sandhamn',
- meta: 'Klassisk destination',
- },
+  {
+    icon: 'waves',
+    title: 'Grinda',
+    description: 'Populär ö med fin sandstrand, grunt vatten och välbesökt bad. Värdshus, små stugor och enkel färjeförbindelse. Cirka 1h 45 min med Waxholmsbåten.',
+    href: '/o/grinda',
+    meta: '~1h 45 min från Strömkajen',
+  },
+  {
+    icon: 'leaf',
+    title: 'Finnhamn',
+    description: 'Lugn och vacker ö med STF-vandrarhem. Bra för familjer som vill kombinera vandring med bad. Mindre kommersiellt än Grinda. Cirka 3 tim med båt.',
+    href: '/o/finnhamn',
+    meta: 'Lugnt vatten',
+  },
+  {
+    icon: 'navigation',
+    title: 'Möja',
+    description: 'I princip bilfri seglarö med cyklevänliga grusvägar och pittoreska fiskebyar. Glassbar, bröd från bageri och flera badplatser. Rustikare men gillas av barn.',
+    href: '/o/moja',
+    meta: 'Cykla runt på ön',
+  },
+  {
+    icon: 'ship',
+    title: 'Fjäderholmarna',
+    description: 'Närmast Stockholm — cirka 25 min från Strömkajen/Slussen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
+    href: '/o/fjaderholmarna',
+    meta: 'Närmast Stockholm',
+  },
+  {
+    icon: 'bed',
+    title: 'Utö',
+    description: 'Större ö i södra skärgården med Utö Värdshus, sandstrand vid Stora Sand och cykelvänliga vägar. Smidigast via Årsta brygga (~40 min).',
+    href: '/o/uto',
+    meta: '~40 min från Årsta brygga',
+  },
+  {
+    icon: 'sailboat',
+    title: 'Sandhamn',
+    description: 'Legendär seglardestination med flera restauranger och badmöjligheter. Längre resa — passar äldre barn och familjer som gillar liv och rörelse.',
+    href: '/o/sandhamn',
+    meta: 'Klassisk destination',
+  },
 ]
 
 export default function BarnvanligaOarPage() {
