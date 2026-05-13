@@ -439,9 +439,9 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  if (stats.length === 0) return null
  return (
  <div style={{
- background: 'var(--navy, #070f18)',
+ background: 'linear-gradient(135deg, #091522 0%, #0d2038 100%)',
  borderRadius: 20,
- boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
+ boxShadow: '0 8px 24px rgba(0,0,0,0.28)',
  display: 'flex',
  marginBottom: 16,
  marginTop: -20,
