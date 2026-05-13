@@ -100,10 +100,11 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  )
 
  map = L.map(mapRef.current!, {
- zoomControl: true,
+ zoomControl: false,
  attributionControl: false,
  scrollWheelZoom: true,
  })
+ L.control.zoom({ position: 'bottomright' }).addTo(map)
  mapInstanceRef.current = map
 
  const { url: tileUrl, attr: tileAttr } = baseTile()
@@ -271,7 +272,7 @@ export default function TripDetailMap({ points, stops, restaurants = [], windSam
  }}
  title={showWind ? 'Dölj vindpilar' : 'Visa vindpilar'}
  >
- <span aria-hidden>💨</span>
+ <span aria-hidden style={{ fontSize: 14 }}>🌬</span>
  {showWind ? 'Vind på' : 'Vind av'}
  </button>
  )}

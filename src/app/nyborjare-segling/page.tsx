@@ -280,10 +280,10 @@ export default function NyborjareSeglingPage() {
  }
  cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
  related={[
+ { label: 'Dagsturer från Stockholm', href: '/dagsturer' },
+ { label: 'Naturhamnar', href: '/naturhamnar' },
  { label: 'Segelrutter', href: '/segelrutter' },
- { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
  { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
- { label: 'Alla destinationer', href: '/resmal' },
  ]}
  />
  </>

@@ -233,10 +233,11 @@ export default function StockholmsSkargardPage() {
  }
  cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}
  related={[
+ { label: 'Cinderellabåten', href: '/cinderella-baaten' },
+ { label: 'Dagsturer', href: '/dagsturer' },
+ { label: 'Barnvänliga öar', href: '/barnvanliga-oar' },
+ { label: 'Naturhamnar', href: '/naturhamnar' },
  { label: 'Segelrutter', href: '/segelrutter' },
- { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
- { label: 'Aktiviteter', href: '/aktiviteter' },
- { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
  ]}
  />
  </>

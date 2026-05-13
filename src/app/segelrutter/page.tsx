@@ -310,10 +310,10 @@ export default function SegelrutterPage() {
  </>
  }
  related={[
+ { label: 'Naturhamnar', href: '/naturhamnar' },
+ { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
  { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
- { label: 'Gotland', href: '/gotland' },
  { label: 'Bohuslän', href: '/bohuslan' },
- { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
  ]}
  />
  </>

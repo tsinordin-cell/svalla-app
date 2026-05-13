@@ -232,10 +232,11 @@ export default function NaturhamnarPage() {
       }
       cta={{ label: 'Se naturhamnar på kartan', href: '/platser?kategori=naturhamn' }}
       related={[
+        { label: 'Dagsturer från Stockholm', href: '/dagsturer' },
+        { label: 'Barnvänliga öar', href: '/barnvanliga-oar' },
         { label: 'Segelrutter', href: '/segelrutter' },
         { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
         { label: 'Stockholms skärgård', href: '/stockholms-skargard' },
-        { label: 'Nybörjare & segling', href: '/nyborjare-segling' },
       ]}
     />
     </>
