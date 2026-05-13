@@ -15,6 +15,8 @@ import { ALL_ISLANDS, getIsland } from '@/app/o/island-data'
 import ProfileBadgeGrid from '@/components/ProfileBadgeGrid'
 import { isProEnabled } from '@/lib/pro'
 import { formatForumDate } from '@/lib/forum'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const revalidate = 60
 
@@ -464,14 +466,14 @@ export default async function PublicProfilePage({
    {visitedIslandObjs.map(island => island && (
      <Link key={island.slug} href={`/o/${island.slug}`} style={{ textDecoration: 'none' }}>
        <span style={{
-         display: 'inline-flex', alignItems: 'center', gap: 4,
+         display: 'inline-flex', alignItems: 'center', gap: 5,
          fontSize: 12, fontWeight: 600,
          color: 'var(--txt2)',
          background: 'rgba(15,158,100,0.07)',
          border: '1px solid rgba(15,158,100,0.2)',
-         borderRadius: 20, padding: '3px 9px',
+         borderRadius: 20, padding: '3px 9px 3px 7px',
        }}>
-         {island.emoji} {island.name}
+         <Icon name={emojiToIcon(island.emoji)} size={13} stroke={2} /> {island.name}
        </span>
      </Link>
    ))}

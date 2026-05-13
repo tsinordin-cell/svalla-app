@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getIsland, type Island } from '@/app/o/island-data'
 import SvallaLogo from '@/components/SvallaLogo'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ pair: string }> }
 
@@ -59,7 +61,14 @@ function IslandCol({ island, color }: { island: Island; color: string }) {
       borderTop: `4px solid ${color}`,
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-        <span style={{ fontSize: 36 }}>{island.emoji}</span>
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: 52, height: 52, borderRadius: 14,
+          background: `${color}15`, color,
+          flexShrink: 0,
+        }}>
+          <Icon name={emojiToIcon(island.emoji)} size={28} stroke={1.7} />
+        </span>
         <div>
           <div style={{ fontSize: 11, fontWeight: 700, color, textTransform: 'uppercase', letterSpacing: 1 }}>
             {island.regionLabel}

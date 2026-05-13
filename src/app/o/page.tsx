@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from './island-data'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Alla öar – Stockholms skärgård & Bohuslän | Svalla',
@@ -39,7 +41,8 @@ export default function OarPage() {
         .island-card{background:#fff;border-radius:14px;border:1px solid #e4ecf0;padding:20px;text-decoration:none;display:flex;align-items:flex-start;gap:14px;transition:.18s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
         .island-card:hover{border-color:#0a7b8c;box-shadow:0 4px 20px rgba(10,123,140,.12);transform:translateY(-2px)}
         .island-card.bohuslan:hover{border-color:#a8381e;box-shadow:0 4px 20px rgba(168,56,30,.12)}
-        .island-emoji{font-size:28px;flex-shrink:0;line-height:1}
+        .island-emoji{flex-shrink:0;line-height:0;color:#0a7b8c;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:rgba(10,123,140,0.10)}
+        .island-card.bohuslan .island-emoji{color:#a8381e;background:rgba(168,56,30,0.10)}
         .island-name{font-size:15px;font-weight:700;color:#0a1f2e;margin-bottom:4px}
         .island-tagline{font-size:12px;color:#5a7080;line-height:1.5}
         .back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;font-weight:500;margin-bottom:24px;transition:.15s}
@@ -83,7 +86,7 @@ export default function OarPage() {
               <div className="island-grid">
                 {islands.map(island => (
                   <Link key={island.slug} href={`/o/${island.slug}`} className={`island-card${isBohuslan ? ' bohuslan' : ''}`}>
-                    <span className="island-emoji">{island.emoji}</span>
+                    <span className="island-emoji"><Icon name={emojiToIcon(island.emoji)} size={20} stroke={1.8} /></span>
                     <div>
                       <div className="island-name">{island.name}</div>
                       <div className="island-tagline">{island.tagline}</div>

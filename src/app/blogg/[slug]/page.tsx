@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import RelatedPosts from '@/components/RelatedPosts'
 import { getRelatedPosts } from '@/lib/postRelated'
+import Icon, { type IconName } from '@/components/Icon'
 
 // ─── Post content ───────────────────────────────────────────────────────────
 
@@ -1380,8 +1381,16 @@ export default async function BloggPostPage({
  {new Date(post.date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
  </span>
  </div>
- <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 12px', lineHeight: 1.2 }}>
- {post.emoji} {post.title}
+ <h1 style={{ fontSize: 26, fontWeight: 700, color: '#fff', margin: '0 0 12px', lineHeight: 1.2, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+ <span style={{
+   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+   width: 44, height: 44, borderRadius: 12,
+   background: 'rgba(255,255,255,0.14)', color: '#fff',
+   flexShrink: 0,
+ }}>
+ <Icon name={post.emoji as IconName} size={24} stroke={1.7} />
+ </span>
+ {post.title}
  </h1>
  <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0, lineHeight: 1.6 }}>
  {post.excerpt}

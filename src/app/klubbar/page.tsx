@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { createClub, type ClubBasic } from '@/lib/clubs'
 import { avatarGradient, initialsOf } from '@/lib/utils'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Tab = 'mina' | 'utforska'
 
@@ -149,7 +150,7 @@ export default function KlubbarPage() {
 
  {!loading && tab === 'mina' && !me && (
  <EmptyState
- emoji="🔒"
+ icon="user"
  title="Logga in för dina klubbar"
  body="Klubbar är privata gemenskaper — en för seglarklubben, en för familjen, en för ditt båtmässa-gäng."
  cta={{ href: '/logga-in', label: 'Logga in' }}
@@ -158,7 +159,7 @@ export default function KlubbarPage() {
 
  {!loading && tab === 'mina' && me && shown.length === 0 && (
  <EmptyState
- emoji=""
+ icon="users"
  title="Inga klubbar än"
  body="Skapa eller gå med i en klubb för att segla tillsammans, samla turer och chatta i grupp."
  cta={{ href: '#', label: 'Utforska publika klubbar →', onClick: () => setTab('utforska') }}
@@ -167,7 +168,7 @@ export default function KlubbarPage() {
 
  {!loading && tab === 'utforska' && shown.length === 0 && (
  <EmptyState
- emoji="️"
+ icon="compass"
  title="Inga publika klubbar ännu"
  body="Bli först. Skapa en klubb för din ö, ditt segelsällskap eller ditt båtmodell-gäng."
  cta={me ? { href: '#', label: 'Skapa klubb', onClick: () => setShowCreate(true) } : undefined}
@@ -244,13 +245,20 @@ export default function KlubbarPage() {
  )
 }
 
-function EmptyState({ emoji, title, body, cta }: {
- emoji: string; title: string; body: string
+function EmptyState({ icon, title, body, cta }: {
+ icon: IconName; title: string; body: string
  cta?: { href: string; label: string; onClick?: () => void }
 }) {
  return (
  <div style={{ padding: '60px 20px', textAlign: 'center' }}>
- <div style={{ fontSize: 48, marginBottom: 10 }}>{emoji}</div>
+ <div style={{
+   width: 64, height: 64, borderRadius: 16,
+   background: 'rgba(30,92,130,0.10)', color: 'var(--sea, #1e5c82)',
+   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+   marginBottom: 14,
+ }}>
+   <Icon name={icon} size={30} stroke={1.7} />
+ </div>
  <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>{title}</h2>
  <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 18, lineHeight: 1.5 }}>{body}</p>
  {cta && (
