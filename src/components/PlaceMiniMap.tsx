@@ -13,6 +13,7 @@
  * UpptackExplorer.
  */
 import { useEffect, useRef } from 'react'
+import 'leaflet/dist/leaflet.css'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 import { track } from '@/lib/analytics-events'
 
@@ -55,15 +56,6 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
 
     ;(async () => {
       const L = (await import('leaflet')).default
-      // Importera Leaflet CSS via JS-side-effect — vi lägger en länk i <head>
-      // om den inte redan finns
-      if (typeof document !== 'undefined' && !document.querySelector('link[data-leaflet-css]')) {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-        link.setAttribute('data-leaflet-css', '1')
-        document.head.appendChild(link)
-      }
       if (cancelled || !mapDivRef.current) return
 
       const { url, attr } = baseTile()
@@ -91,6 +83,17 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
       L.marker([lat, lng], { icon }).addTo(map as never)
 
       mapRef.current = map
+
+      // Belt-and-suspenders: efter mount kan containern ha haft 0px höjd för
+      // en kort stund (CSS som laddats parallellt, Suspense-boundary, etc.).
+      // invalidateSize() tvingar Leaflet att läsa om containerns dimensioner
+      // och rendera tiles i rätt rutnät.
+      setTimeout(() => {
+        try { (map as unknown as { invalidateSize: () => void })?.invalidateSize() } catch {}
+      }, 80)
+      setTimeout(() => {
+        try { (map as unknown as { invalidateSize: () => void })?.invalidateSize() } catch {}
+      }, 400)
     })()
 
     return () => {
