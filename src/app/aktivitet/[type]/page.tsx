@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { ACTIVITY_LIST, getActivity, islandsForActivity, type ActivityType } from '../activity-data'
+import type { Island } from '../o/island-data'
 
 type Props = { params: Promise<{ type: string }> }
 
@@ -38,7 +39,7 @@ export default async function ActivityTypePage({ params }: Props) {
   const islands = islandsForActivity(activity.slug as ActivityType)
   const featuredIslands = (activity.featured ?? [])
     .map(slug => islands.find(i => i.slug === slug))
-    .filter((i): i is NonNullable<typeof i> => !!i)
+    .filter(Boolean) as Island[]
   const grouped = {
     norra: islands.filter(i => i.region === 'norra'),
     mellersta: islands.filter(i => i.region === 'mellersta'),
