@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import React from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -35,6 +36,9 @@ export default async function ActivityTypePage({ params }: Props) {
   if (!activity) notFound()
 
   const islands = islandsForActivity(activity.slug as ActivityType)
+  const featuredIslands = (activity.featured ?? [])
+    .map(slug => islands.find(i => i.slug === slug))
+    .filter((i): i is NonNullable<typeof i> => !!i)
   const grouped = {
     norra: islands.filter(i => i.region === 'norra'),
     mellersta: islands.filter(i => i.region === 'mellersta'),
@@ -111,6 +115,65 @@ export default async function ActivityTypePage({ params }: Props) {
             ))}
           </ul>
         </div>
+
+        {/* Favoriter */}
+        {featuredIslands.length > 0 && (
+          <div style={{ marginBottom: 32 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px', fontFamily: "'Playfair Display', Georgia, serif" }}>
+              Våra favoriter
+            </h2>
+            <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 14 }}>
+              De {featuredIslands.length} bästa öarna för {activity.shortName.toLowerCase()} — scroll för att se alla
+            </p>
+            <div style={{
+              display: 'flex', gap: 12, overflowX: 'auto',
+              paddingBottom: 10, scrollbarWidth: 'none',
+              WebkitOverflowScrolling: 'touch',
+            } as React.CSSProperties}>
+              {featuredIslands.map((island, idx) => {
+                const actDesc = island.activities.find(a =>
+                  a.name.toLowerCase().includes(activity.shortName.toLowerCase()) ||
+                  activity.matchers.some(m => a.name.toLowerCase().includes(m))
+                )?.desc ?? island.tagline
+                const firstSentence = actDesc.split('.')[0] + '.'
+                return (
+                  <Link
+                    key={island.slug}
+                    href={`/aktivitet/${activity.slug}/${island.slug}`}
+                    style={{
+                      flex: '0 0 190px', background: 'var(--white)',
+                      border: '1px solid var(--surface-3)', borderRadius: 12,
+                      padding: '14px 16px', textDecoration: 'none',
+                      color: 'inherit', display: 'block', position: 'relative',
+                    }}
+                  >
+                    <span style={{
+                      position: 'absolute', top: 10, right: 12,
+                      fontSize: 11, color: 'var(--txt3)', fontWeight: 600,
+                    }}>
+                      {idx + 1}
+                    </span>
+                    <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+                      {island.name}
+                    </div>
+                    <div style={{
+                      fontSize: 11, color: 'var(--sea)',
+                      background: 'rgba(29,100,130,0.08)',
+                      padding: '2px 8px', borderRadius: 20,
+                      display: 'inline-block', marginBottom: 8,
+                    }}>
+                      {island.facts.best_for.split(',')[0].trim()}
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5 }}>
+                      {firstSentence}
+                    </div>
+                    <div style={{ fontSize: 12, color: 'var(--sea)', marginTop: 10 }}>Utforska →</div>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Öar grupperade per region */}
         <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 16px', fontFamily: "'Playfair Display', Georgia, serif" }}>

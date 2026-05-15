@@ -13,6 +13,8 @@ export type ActivityMeta = {
   level: string
   /** keyword-matchers mot tags + activities.name + accommodation.type */
   matchers: string[]
+  /** Valfri topplist — ö-slugs i prioritetsordning, visas som horisontell favorit-rad */
+  featured?: string[]
 }
 
 export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
@@ -37,6 +39,7 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
     bestSeason: 'April–oktober. Maj–juni och september är klart bäst (mindre folk, lagom temperatur).',
     level: 'Lätt till medel. De flesta lederna går på grusvägar utan stora höjdskillnader.',
     matchers: ['cykling', 'cykel', 'cykl', 'leder', 'mtb'],
+    featured: ['uto', 'svartso', 'singo', 'runmaro', 'vaddo', 'ljustero', 'adelsjo', 'resaro', 'vindo', 'galo'],
   },
   bada: {
     slug: 'bada',
