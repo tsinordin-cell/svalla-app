@@ -147,7 +147,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Cykling, havsbastu, naturupplevelser, familjer',
     },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla runt hela ön på markerade leder. Cykeluthyrning vid hamnen. En halvdag räcker för de flesta lederna.' },
+      { icon: '🚲', name: 'Cykling', desc: '350 hyrcyklar (Skeppshult) vid Cykelboden. Klassiska rutten Gruvbyn–Ålö är ca 13 km enkel väg längs grusvägar genom skog och ängar till Ålö storsand med klappstrandsbad och krogen Båtshaket.' },
       { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörrn går ut mot havet — basta, hoppa i, basta igen.' },
       { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö i mer än 700 år, från 1100-talet till 1879. Gruvdriften peakade på 1840-talet med 16 000 ton/år och cirka 500 invånare på ön. Gruvmuseet berättar historien — fascinerande för både barn och vuxna.' },
       { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (cirka 10 km från Gruvbryggan, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
@@ -475,7 +475,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Cykling, kajakpaddling, bilburna besökare, naturupplevelse',
     },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Välcyklade vägar längs kusten. Hyr cykel vid färjeläget.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Välcyklade kustvägar på en av skärgårdens tillgängligaste öar — bilfärja med täta avgångar från Ljusteröfärjan. Cykla norrut mot Linanäs, ca 15–20 km tur-retur. Hela ön runt: ca 96 km asfalt med 1 000 m stigning.' },
       { icon: '🛶', name: 'Kajak', desc: 'Klintsundet och den norra kustlinjen är utmärkta paddlingvatten.' },
       { icon: '🏊', name: 'Bad', desc: 'Flera badplatser, varav Linanäsbryggan är mest känd.' },
       { icon: '⛽', name: 'Sjömack', desc: 'Klintan har sjömack — ett av skärgårdens välplacerade bränslestopp.' },
@@ -580,7 +580,7 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '⛵', name: 'Segling', desc: 'Arholma är ett klassiskt mål och genomfart på längre seglingsresor norrut.' },
       { icon: '🌅', name: 'Naturupplevelse', desc: 'Klippor mot öppet hav, lång horisont och inga grannar. Sällan uppnådd natur.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Arholma Handel hyr ut cyklar för rundturer på ön.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Arholma Handel hyr ut cyklar, 150 kr/dag med korg, 3 växlar och fotbroms. Kort, avkopplande tur till Arholma Båk och fyren längs öns grusvägar. Perfekt halvdagstur i norra skärgården.' },
     ],
     accommodation: [
       { name: 'Arholma Handel Stugor', type: 'Stugor', desc: 'Enkla stugor uthyrda av handelsboden.' },
@@ -770,7 +770,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Lugn, cykling, naturskönt',
     },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs öns vägar och vid kusten.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Kuperade kustvägar längs en lång, skogig kustlinje med öppna åkrar och klippor. Naturligt stopp: Blidö Brygga & Bistro vid hamnen. Räkna med heldagstur för att nå öns norra och södra delar.' },
       { icon: '🏊', name: 'Bad', desc: 'Fina badplatser längs kusten.' },
     ],
     accommodation: [
@@ -1023,7 +1023,7 @@ export const ISLANDS: Island[] = [
       { icon: '🛒', name: 'Svartsö Lanthandel', desc: 'Skärgårdens kanske mest välsorterade lanthandel — med apotekombud och Systembolagets utlämning. Lokalbornas vardagsliv händer här.' },
       { icon: '🏛', name: 'Säby herrgård', desc: 'Stenhus uppfört 1732 av bankiren Johan Söderling — bevarad miljö från tiden efter ryssarnas härjningar 1719.' },
       { icon: '🚶', name: 'Vandring', desc: 'Stockholm Archipelago Trail-etapp leder över Svartsö med markerade stigar genom öppet odlingslandskap och skog.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Bilfri ö med grusvägar — ideal för en heldag på cykel.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Bilfri ö med totalt 14 km grusvägar — ideal för en hel dag på cykel. Hyr cykel hos Svartsö Lanthandel vid Ahlsviks brygga. Inga bilar, bara kor, betesängar och stilla skärgårdslandskap.' },
     ],
     accommodation: [
       { name: 'STF Svartsö Skärgårdshotell & Vandrarhem', type: 'Vandrarhem', desc: 'Hotell- och vandrarhemsboende med konferensmöjligheter, drivet av Svenska Turistföreningen.' },
@@ -1070,7 +1070,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '✍️', name: 'Tranströmer-spåret', desc: 'Promenera till "Gatan" där Tomas Tranströmer tillbringade somrarna i morfaderns lotshus — miljön bakom diktcykeln "Östersjöar".' },
-      { icon: '🚲', name: 'Cykling', desc: 'En av skärgårdens mest cykelvänliga öar — platta vägar och kort avstånd till alla bryggor.' },
+      { icon: '🚲', name: 'Cykling', desc: 'En av skärgårdens mest cykelvänliga öar. Platta, öppna grusvägar med skog emellan gör alla bryggor lättillgängliga. Cykla till "Gatan" — Nobelpristagaren Tranströmers sommarmiljö och miljön bakom diktcykeln Östersjöar.' },
       { icon: '⛵', name: 'Segling', desc: 'Klassisk passage och stopp på Stavsnäs-leden mot Sandhamn.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Klippbad längs öns kustlinje.' },
     ],
@@ -1120,7 +1120,7 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Öns södra udde har ett av regionens populäraste klippbad.' },
       { icon: '🚶', name: 'Promenad', desc: 'Vandra längs öns stigar och beundra den historiska villaarkitekturen.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Plana vägar gör ön lätt att cykla runt.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla från Vaxholms hamn via bron till Engarn och vidare till Resarö. Sevärt: Ytterby gruva — sju grundämnen (yttrium, erbium m.fl.) upptäcktes här. Ca 10–15 km tur-retur med fin kustvy.' },
     ],
     accommodation: [
       { name: 'Sommarstugor', type: 'Stugor', desc: 'Privatuthyrning sommartid.' },
@@ -1166,6 +1166,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, de som söker lugn och orördhet',
     },
     activities: [
+      { icon: '🚲', name: 'Cykling', desc: 'Plana kustvägar runt öns odlingslandskap. Bra etappdestination för cykel- eller seglingsresor i mellersta skärgården — kombinera med Arholmaleden.' },
       { icon: '🚶', name: 'Vandring till norra udden', desc: 'Ca 3 km vandring till panoramautsikten norrut. Rekommenderas starkt.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Fina klippbadplatser på öns västra sida.' },
       { icon: '⛵', name: 'Segling', desc: 'Husarö är ett populärt ankringsstopp på norra Stockholmsleden.' },
@@ -1307,7 +1308,7 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '⛪', name: 'Singö kyrka (1753)', desc: 'Röd timmrad träkyrka med altarprydnader från Hargs kyrka 1761 och en av Stockholms läns äldsta votivskepp (1752).' },
       { icon: '🎣', name: 'Fiske', desc: 'Bra fiskevatten runt ön. Abborre och havsöring i kustvattnen.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs öns grusvägar genom det öppna kulturlandskapet.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Officiell cykelled: Singö runt (Röd led), 26,2 km, markerad av Levande Roslagsbygd. Gruskarta hos Visit Roslagen (50 kr). Nås med SL-buss 637. Flera etapper längs grusvägar med korta sträckor på riksväg.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Lugna klippbad längs kusten — sällan trångt.' },
     ],
     accommodation: [
@@ -1401,7 +1402,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🏖', name: 'Gräddöbadet', desc: 'En av norra skärgårdens populäraste sandstränder. Grunt och barnvänligt.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs kustvägen och utforska halvöns alla delar.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Ny gång- och cykelbana vid Gräddö hamn (1,1 km). Cykla vidare längs Rådmansölandet mot Räfsnäs och Kapellskär, ca 20 km enkel väg längs en av Roslagens vackraste kustlinjer.' },
       { icon: '⛵', name: 'Segling', desc: 'Välplacerat stopp på väg norrut längs Furusundsleder.' },
     ],
     accommodation: [
@@ -1449,7 +1450,7 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '💃', name: 'Herrängs Dansbana', desc: 'Legendarisk lindy hop-festival varje sommar. Världsunik stämning.' },
       { icon: '⚓', name: 'Väddö Kanal', desc: 'Historisk kanal med sluss och kanalkryssningar. Unik kulturupplevelse.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Utmärkta cykelleder längs kustlinjen och kanalstråket.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Väddöleden (del av Roslagsleden), ca 30 km längs östkusten med rastplatser vid Bagghus, Sandviken och Grisslehamn. Höjdpunkten: cykla längs Väddö kanal vid Älmsta. Välj östsidovägen — rv 283 är för trafikerad.' },
       { icon: '🎣', name: 'Fiske', desc: 'Kanalen och kustvattnen erbjuder bra fiske.' },
     ],
     accommodation: [
@@ -1542,7 +1543,7 @@ export const ISLANDS: Island[] = [
     activities: [
       { icon: '🏖', name: 'Gålö Havsbad', desc: 'Stor sandstrand med anläggningar, parkering och service. Regionens populäraste strandbad.' },
       { icon: '🚶', name: 'Naturreservat', desc: 'Välmarkerade vandringsleder längs kustlinjen och genom det vackra kustlandskapet.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Bra cykelleder längs ön. Hyrcyklar finns vid stranden.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla från Horsfjärden till Gålö havsbad, ca 20–40 km tur-retur. Lätt kuperad terräng, mix av grusväg och asfalt — ta med MTB eller hybridcykel. Rekommenderat stopp: Stegsholms gård med café och eget mejeri.' },
       { icon: '🏄', name: 'Vattensport', desc: 'SUP, surfing och kajakuthyrning vid stranden.' },
     ],
     accommodation: [
@@ -1708,7 +1709,7 @@ export const ISLANDS: Island[] = [
     ],
     facts: { travel_time: '1,5 h med bil + bilfärja från Stockholm', character: 'Stor ö, bilförbunden via färja, Köpmanholm', season: 'Maj–oktober', best_for: 'Cykling, vandring, segling, dagsutflykt' },
     activities: [
-      { icon: '🚲', name: 'Cykling', desc: 'Cykelvägar löper över hela ön — räkna med en hel dag för att se alla bryggor och utsiktspunkter.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Stor ö med bilfärja från Räfsnäs (Norrtälje). Cykla runt från Köpmanholm längs kustvägar — räkna med heldagstur. Bra bas för seglare och naturälskare i norra skärgårdens ytterkanter.' },
       { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Flera badplatser längs kusten, både klippor och mindre sandstränder.' },
       { icon: '⛵', name: 'Hamnliv i Köpmanholm', desc: 'Öns huvudort med gästhamn, restauranger och småbåtsservice.' },
     ],
@@ -1800,7 +1801,7 @@ export const ISLANDS: Island[] = [
     facts: { travel_time: '1 h med bil från Stockholm', character: 'Stor broförbunden ö, skog, sommarstugor', season: 'Maj–oktober', best_for: 'Vandring, sommarboende, båtutflykter' },
     activities: [
       { icon: '🌳', name: 'Vandring', desc: 'Stigar genom blandskog och längs klippkust.' },
-      { icon: '🚲', name: 'Cykling', desc: 'Vägar mellan Djurö, Vindö och Skarpö är fina cykelturer.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla längs grusvägar via Djurö och vidare ut till Skarpö. Smala skogsvägar med karaktär och aldrig långt till vattnet. Del av Värmdö-öarnas sammanlänkade cykelnät — bra dagstur från Stavsnäs.' },
       { icon: '🏊', name: 'Klipp- och sandbad', desc: 'Mindre badplatser längs kusten — ofta lugnare än Värmdöns inre öar.' },
     ],
     accommodation: [{ name: 'Vindö Camping', type: 'Camping', desc: 'Välskött campingplats nära havet.' }],
@@ -1893,6 +1894,7 @@ export const ISLANDS: Island[] = [
 
     facts: { travel_time: '1 h 30 min från Stockholm', character: 'Industrihistoria, klippor, halvö', season: 'Maj–oktober', best_for: 'Historia, klippbad, natur' },
     activities: [
+      { icon: '🚲', name: 'Cykling', desc: 'Kuperat landskap med kustängar och höga klippor mot Mysingen. Cykla längs öns strandvägar och utforska det öppna beteslandskapet. Tillgänglig med bil via bro — ingen båt behövs.' },
       { icon: '🏛', name: 'Marinbasens museum', desc: 'Guidade turer i den underjordiska berganläggningen (bokningsbar).' },
       { icon: '🏊', name: 'Klippbad', desc: 'Fina badplatser längs sydkusten med klara vatten.' },
     ],
@@ -1949,6 +1951,7 @@ export const ISLANDS: Island[] = [
 
     facts: { travel_time: '30 min från Björkö', character: 'Kungsgård, medeltida, lugn', season: 'Maj–september', best_for: 'Historia, cykling, kulturlandskap' },
     activities: [
+      { icon: '🚲', name: 'Cykling', desc: 'Cykla runt Adelsö ringväg och besök världsarvet Hovgården med utsikt mot Birka. Hyrcyklar på ön via Adelsö Rent-A-Bike. Nås med bilfärja från Sjöängen, Munsö.' },
       { icon: '👑', name: 'Hovgårdens kungsgård', desc: 'Gamla kungsgården med utsikt mot Birka och Mälaren.' },
       { icon: '⛪', name: 'Adelsö kyrka', desc: 'Romansk medeltidskyrka från slutet av 1100-talet, byggd som sockenkyrka och husfromskyrka för kungsgården Alsnö hus.' },
     ],
@@ -1978,6 +1981,7 @@ export const ISLANDS: Island[] = [
     facts: { travel_time: '45 min från Stockholm', character: 'Bro-ö, skog, tillgänglig', season: 'Hela året', best_for: 'Segling, bad, friluftsliv' },
     activities: [
       { icon: '⛵', name: 'Segling', desc: 'Många naturhamnar längs syd- och östkusten.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Nås med buss och bil utan båt. Värmdöleden (25 km, lätt) passerar över Ingarö. Bra cykelleder längs ön, nära Stockholm — perfekt för en cykeldag utan färja.' },
       { icon: '🏊', name: 'Bad', desc: 'Flertalet badplatser med klara vatten och klippor.' },
     ],
     accommodation: [{ name: 'Ingarö Camping', type: 'Camping', desc: 'Välskött campingplats vid vattnet.' }],
