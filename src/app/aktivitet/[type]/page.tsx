@@ -163,7 +163,7 @@ export default async function ActivityTypePage({ params }: Props) {
                       padding: '2px 8px', borderRadius: 20,
                       display: 'inline-block', marginBottom: 8,
                     }}>
-                      {(island.facts?.best_for ?? island.tagline).split(',')[0].trim()}
+                      {(island.facts?.best_for ?? island.tagline).split(',')[0]?.trim() ?? island.tagline}
                     </div>
                     <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5 }}>
                       {firstSentence}
