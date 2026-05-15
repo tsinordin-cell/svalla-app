@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { ACTIVITY_LIST, getActivity, islandsForActivity, type ActivityType } from '../activity-data'
-import type { Island } from '../o/island-data'
+import type { Island } from '../../o/island-data'
 
 type Props = { params: Promise<{ type: string }> }
 
