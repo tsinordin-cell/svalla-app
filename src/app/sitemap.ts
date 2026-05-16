@@ -30,6 +30,41 @@ const BLOG_SLUGS = [
   'segling-klassiska-leder',
 ]
 
+
+// Guide-slugs (speglar guides-data.ts)
+const GUIDE_SLUGS = [
+  'midsommar-skargarden-2026',
+  'packlista-skargarden',
+  'allemansratten-pa-sjon',
+  'waxholmsbolaget-guide',
+  'skargard-utan-bat',
+  'vad-kostar-skargarden',
+  'badtemperatur-skargard',
+  'sl-kort-skargarden',
+  'dykning-snorkling-skargard',
+  'rakfrukost-skargard',
+  'sjomatkrogar-guide',
+  'hummersafari-bohuslan',
+  'surstrommning-guide',
+  'skargard-host',
+  'midsommar-bohuslan',
+  'sandhamn-vs-grinda',
+  'gotland-vs-oland',
+  'marstrand-guide',
+  'smogen-guide',
+  'naturhamnar-guide',
+  'bohuslan-skargard-guide',
+  'norrtelje-guide',
+  'fjaderholmarna-guide',
+  'weekend-i-skargarden',
+  'basta-oar-stockholms-skargard',
+  'vaxholm-guide-komplett',
+  'landsort-guide',
+  'hyrbat-guide',
+  'pendelbat-guide',
+  'seglingsklubbar-guide',
+]
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://svalla.se'
   const now = new Date()
@@ -106,6 +141,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/cinderella-baaten`,      lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
+    // Guider
+    { url: `${base}/guider`,                 lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
+    // Äventyrssidor
+    { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
+    { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
+    { url: `${base}/oland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
@@ -163,6 +205,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
+  }))
+
+  // ── Guide-sidor ──────────────────────────────────────────────────
+  const guidePages: MetadataRoute.Sitemap = GUIDE_SLUGS.map(slug => ({
+    url: `${base}/guider/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
   }))
 
   // ── Dynamiska platser från Supabase ─────────────────────────────
@@ -241,6 +291,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...activityIslandPages,
     ...oarCategoryPages,
     ...blogPages,
+    ...guidePages,
     ...platsPages,
     ...rutterPages,
     ...tipsPages,
