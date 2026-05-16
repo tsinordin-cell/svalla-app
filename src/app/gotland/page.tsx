@@ -197,7 +197,7 @@ export default function GotlandPage() {
  Flyg till Visby
  </h3>
  <p>
- <strong>Amapola Flyg</strong> och andra operatörer flyger Stockholm Arlanda–Visby flygplats, ca 45 min flygtid. Visby flygplats ligger 3 km norr om Visby centrum — taxi eller lokal buss tar dig in. Flyg kan vara ett alternativ under lågsäsong eller om du vill spara tid, men är generellt dyrare och ger en annan upplevelse än färjan.
+ Flera flygbolag flyger Stockholm Arlanda–Visby flygplats, med ca 45 min flygtid. Visby flygplats ligger 3 km norr om Visby centrum — taxi eller lokal buss tar dig in. Flyg kan vara ett alternativ under lågsäsong eller om du vill spara tid, men är generellt dyrare och ger en annan upplevelse än färjan. Jämför priser på <a href="https://www.google.com/flights" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>Google Flights</a>.
  </p>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
