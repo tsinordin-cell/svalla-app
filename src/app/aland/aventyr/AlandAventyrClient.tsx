@@ -1,153 +1,175 @@
 'use client'
 
-import { useState, type ReactNode } from 'react'
 import Link from 'next/link'
-
-type Mode = 'Alla' | 'Med bil' | 'Kollektivt' | 'Med cykel'
 
 const ADVENTURES = [
   {
-    id: 1, transport: 'Med bil' as Mode,
+    id: 1,
+    transport: 'Med bil',
+    transportColor: '#1a4a5e',
     title: 'Kastelholms slott – aldrig glömt',
     distance: 'Ca 30 km öster om Mariehamn',
-    description: 'Kastelholm är Ålands mäktigaste medeltidslämning – ett slott från 1300-talet som sticker upp ur en skogklädd ås. Slottet har tjänat som fängelse, residens och lantbruk och är nu ett välskött museum med guidade turer på svenska.',
-    practicalInfo: 'Öppet maj–sep. Boka guidad tur i förväg under högsäsong. Kombinera med besök på Jan Karlsgårdens friluftsmuseum alldeles intill. Ta med matsäck.',
+    image: 'https://images.unsplash.com/photo-1467377791767-c929b5dc9a23?w=800&q=80',
+    imageAlt: 'Medeltida slottsruin omgiven av grönska',
+    intro: 'Kastelholm är Ålands mäktigaste medeltidslämning – och ett av de bäst bevarade slotten i hela Norden.',
+    body: 'Slottet från 1300-talet sticker upp ur en skogklädd ås och har tjänat som fängelse, kungligt residens och lantbruk under sina drygt 700 år. I dag är det ett välskött museum med guidade turer på svenska. Alldeles intill ligger Jan Karlsgårdens friluftsmuseum, ett levande 1800-talsgårdsmuseum med djur och hantverk. Planera minst tre timmar för båda.',
+    practicalInfo: 'Öppet maj–sep. Boka guidad tur i förväg under högsäsong. Kombinera med Jan Karlsgårdens friluftsmuseum alldeles intill. Ta med matsäck.',
   },
   {
-    id: 2, transport: 'Med bil' as Mode,
+    id: 2,
+    transport: 'Med bil',
+    transportColor: '#1a4a5e',
     title: 'Bomarsunds fästning – ryssarnas Åland',
     distance: 'Ca 45 km öster om Mariehamn',
-    description: 'Bomarsund var ett gigantiskt ryskt fästningsverk påbörjat på 1830-talet och förstört av brittisk-fransk flotta 1854. Ruinernas enorma stenblock är häpnadsväckande. En av Nordeuropas bäst bevarade Krimkrigsminnen.',
-    practicalInfo: 'Alltid öppet, inget inträde. Ta bil eller cykel från Kastelholm – ca 15 min. Bra skyltning. Info-skyltar på svenska och engelska.',
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80',
+    imageAlt: 'Gamla fästningsruiner av sten vid vattnet',
+    intro: 'Ingenstans på Åland är historiens tyngd mer påtaglig än bland Bomarsunds kolossala stenväggar.',
+    body: 'Bomarsund var ett gigantiskt ryskt fästningsverk påbörjat på 1830-talet – tänkt att bli ett av Östersjöns mest formidabla försvar. Men 1854 förstördes det av en brittisk-fransk flotta under Krimkriget, bara tjugo år efter att bygget startade. De kvarvarande ruinerna är häpnadsväckande i sin skala. Stenblock stora som bilar vittnar om ett projekt som aldrig fullbordades. Ingen entré, alltid öppet – en av Ålands bästa gratisupplevelser.',
+    practicalInfo: 'Alltid öppet, inget inträde. Ta bil eller cykel från Kastelholm – ca 15 min. Info-skyltar på svenska och engelska.',
   },
   {
-    id: 3, transport: 'Med bil' as Mode,
+    id: 3,
+    transport: 'Med bil',
+    transportColor: '#1a4a5e',
     title: 'Föglö – cykelöns skärgård',
     distance: 'Ca 50 km öster om Mariehamn (färja)',
-    description: 'Föglö kallas cykelön och är en av Ålands mest välkomnande yttre öar. Gästhamnen är liten och mysig, naturen öppen och havet allestädes närvarande. Nå hit med Ålandstrafiken från Svinö.',
-    practicalInfo: 'Bilfärja från Svinö – kontrollera tidtabell. Hyr cykel på Föglö. Plan: heldagstur. Ta med matsäck.',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
+    imageAlt: 'Liten skärgårdsö med klippor och lugnt hav',
+    intro: 'Föglö kallas cykelön och är en av Ålands mest välkomnande yttre öar – lagom stor för att utforska på en dag.',
+    body: 'Gästhamnen är liten och mysig, naturen öppen och havet allestädes närvarande. Nå hit med Ålandstrafiken från Svinö – bilfärjan tar ca 25 minuter. Väl framme kan du hyra cykel och rulla runt öns välskyltade leder, bada från klipporna och äta lunch på hamnkrogen. Det är den typ av dag man inte planerar men aldrig glömmer.',
+    practicalInfo: 'Bilfärja från Svinö – kontrollera tidtabell på alandstrafiken.ax. Hyr cykel på Föglö. Plan: heldagstur. Ta med matsäck.',
   },
   {
-    id: 4, transport: 'Med bil' as Mode,
+    id: 4,
+    transport: 'Med bil',
+    transportColor: '#1a4a5e',
     title: 'Kökar – längst ut i Åland',
     distance: 'Ca 100 km sydöster om Mariehamn (färja)',
-    description: 'Kökar är Ålands sydligaste skärgård och nås med bilfärja. Klipporna är rakade rena av havet, vattnet är klart och kyrkan från 1784 är en av Ålands vackraste. Inga turister, nästan ingen service – äkta skärgård.',
-    practicalInfo: 'Bilfärja från Galtby på Korpo eller från Mariehamn – kontrollera tidtabell i förväg. Plan: hela dagen. Ta med matsäck.',
+    image: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80',
+    imageAlt: 'Karg klippö ute i havet med blå himmel',
+    intro: 'Kökar är Ålands yttersta utpost – en ö där havet tar över och tystnad är det dominerande intrycket.',
+    body: 'Klipporna är rakade rena av havet, vattnet är kristallklart och kyrkan från 1784 är en av Ålands vackraste. Nästan inga turister, nästan ingen service – äkta skärgård på dess villkor. Resan hit är en del av upplevelsen: bilfärjan från Galtby på Korpo tar dig via öppet hav i nästan två timmar. Ta med all mat och dricka du behöver för dagen.',
+    practicalInfo: 'Bilfärja från Galtby på Korpo – kontrollera tidtabell i förväg. Plan: hela dagen. Ta med matsäck och dricka.',
   },
   {
-    id: 5, transport: 'Med bil' as Mode,
-    title: 'Ålands sjöfartsmuseum – havshistoria',
+    id: 5,
+    transport: 'Med bil',
+    transportColor: '#1a4a5e',
+    title: 'Ålands sjöfartsmuseum – havshistoria i världsklass',
     distance: 'Mariehamn, västhamnen',
-    description: 'Ett av Nordens bästa maritima museer, med museifartyget Pommern som kronjuvel – en av världens sista bevarade fyrmastade stålbarkar. Sjöfartens historia på Åland berättas med kärlek och precision.',
+    image: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445?w=800&q=80',
+    imageAlt: 'Gammalt segelfartyg i hamn',
+    intro: 'Åland var länge en av världens ledande sjöfartsregioner. Det museet berättar med en kärlek och ett djup som tar andan ur en.',
+    body: 'Kronjuvelen är museifartyget Pommern – en av världens sista bevarade fyrmastade stålbarkar, byggd 1903 och fortfarande i ursprungligt skick. Att gå ombord är att kliva rakt in i 1900-talets stora seglingsepok. Museet inomhus kompletterar med kartor, berättelser och artefakter från hundratals åländska sjöfarare. Räkna med minst två timmar.',
     practicalInfo: 'Öppet hela året. Pommern öppen sommar. Inträde ca 12 €. Parkering vid västhamnen.',
   },
   {
-    id: 6, transport: 'Med cykel' as Mode,
+    id: 6,
+    transport: 'Med cykel',
+    transportColor: '#8b4513',
     title: 'Lemland & Lumparland – sydöns pärlor',
     distance: 'Ca 50–60 km rundtur',
-    description: 'Lemland och Lumparland är Ålands lugnaste öar – böljande åkrar, äldre kyrkor och knappt några turister. Cykelturen passerar Flisö naturreservat och Lumparlands kyrka från 1280-talet.',
-    practicalInfo: 'Hyr cykel i Mariehamn. Nås med bro från fastlandet (Åland). Matsäck rekommenderas – begränsad service.',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    imageAlt: 'Cyklist på smal väg omgiven av gröna åkrar',
+    intro: 'Lemland och Lumparland är Ålands lugnaste öar – och den bästa platsen att förstå vad folk menar när de talar om "riktig" åländsk natur.',
+    body: 'Böljande åkrar, äldre kyrkor och knappt några turister. Cykelturen passerar Flisö naturreservat och Lumparlands kyrka från 1280-talet – en av Ålands äldsta. Inga branta backar, välskyltade leder och vackra vyer mot Östersjön. Ta med matsäck – service är begränsad, men det är en del av charmen.',
+    practicalInfo: 'Hyr cykel i Mariehamn. Nås med bro från fastlandet (Åland). Matsäck rekommenderas.',
   },
   {
-    id: 7, transport: 'Med cykel' as Mode,
+    id: 7,
+    transport: 'Med cykel',
+    transportColor: '#8b4513',
     title: 'Sund & Kastelholm – historisk rundtur',
     distance: 'Ca 35 km rundtur från Kastelholm',
-    description: 'Kombinera Kastelholms slott, Bomarsunds ruin och Sunds kyrka på en dagstur med cykel. Välskyltad led med historiska pärlor vart femte kilometer.',
-    practicalInfo: 'Start i Kastelholm (nåbar från Mariehamn med buss). Cyklar hyrs vid Kastelholm. Lagom svårighet – lämplig för familjer.',
+    image: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&q=80',
+    imageAlt: 'Smal cykelväg genom sommargrön natur',
+    intro: 'En cykeldag som kombinerar tre av Ålands viktigaste historiska platser – med välskyltad led och lagom svårighet.',
+    body: 'Starta vid Kastelholms slott, rulla vidare till Bomarsunds imponerande ruin och avsluta med Sunds medeltida kyrka. Vart femte kilometer väntar en ny historisk pärla. Leden är välskyltad och lagom svår – lämplig för familjer med barn som cyklar. Cyklar hyrs vid Kastelholm och bussar kör dit från Mariehamn.',
+    practicalInfo: 'Cyklar hyrs vid Kastelholm. Nåbar med buss från Mariehamn. Lagom svårighet – lämplig för familjer.',
   },
   {
-    id: 8, transport: 'Med cykel' as Mode,
+    id: 8,
+    transport: 'Med cykel',
+    transportColor: '#8b4513',
     title: 'Runt Lemland – skärgårdens idyll',
     distance: 'Ca 40 km rundtur',
-    description: 'Lemlands kust är en av Ålands vackraste – vikar, fågelrika våtmarker och tystnad. Rundturen tar en halvdag och avslutas med bad från klipporna vid Lembotes.',
-    practicalInfo: 'Från Mariehamn: bro och bra cykelmöjligheter. Ingen bilfärja krävs.',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80',
+    imageAlt: 'Lugn havsvik omgiven av grönska i kvällsljus',
+    intro: 'Lemlands kust är en av Ålands vackraste – en rundtur som tar en halvdag och ger en hel dags känsla.',
+    body: 'Vikar, fågelrika våtmarker och tystnad som inte bryts av biltrafik. Rundturen avslutas med bad från klipporna vid Lembotes – klart, svalt vatten och utsikt mot öppet hav. Från Mariehamn tar du bron ut till Lemland och är igång direkt. Ingen bilfärja krävs.',
+    practicalInfo: 'Från Mariehamn: bro och bra cykelmöjligheter. Ingen bilfärja krävs. Planera 4–5 h.',
   },
   {
-    id: 9, transport: 'Kollektivt' as Mode,
+    id: 9,
+    transport: 'Kollektivt',
+    transportColor: '#2a7a40',
     title: 'Skärgårdshoppning med passagerarbåt',
     distance: 'Varierar, utgår från Mariehamn',
-    description: 'Ålands interna skärgårdstrafik ger möjligheten att hoppa mellan öar utan bil. Passagerarbåtarna går till Föglö, Kökar, Sottunga och andra yttre öar. En dag av öhoppning är ett av Ålands bästa sätt att uppleva skärgården.',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
+    imageAlt: 'Liten passagerarfärja på blått hav',
+    intro: 'Ålands 6 700 öar går inte att se från en bil. Men med passagerarbåtarna kan du hoppa mellan dem som om du hade hela skärgården som hemmaplan.',
+    body: 'Ålandstrafiken kör reguljära turer till Föglö, Kökar, Sottunga och andra yttre öar. En dag av öhoppning – lite frukost i Mariehamn, ett par timmar på Föglö, lunch på Kökar, hem via Sottunga – är ett av Ålands absolut bästa sätt att uppleva skärgårdshavet. Boka i förväg under högsäsong och ta med matsäck.',
     practicalInfo: 'Tidtabeller på alandstrafiken.ax. Boka i förväg under högsäsong. Ta matsäck – service varierar på öarna.',
   },
   {
-    id: 10, transport: 'Kollektivt' as Mode,
+    id: 10,
+    transport: 'Kollektivt',
+    transportColor: '#2a7a40',
     title: 'Mariehamn stadsvandring – Nordens trädgårdsstad',
     distance: 'Mariehamn innerstad, ca 2–3 km',
-    description: 'Mariehamn är en av Skandinaviens minsta städer och en av de charmigaste. Esplanaden är unik – en allé av lindar som sträcker sig från öst- till västhamnen. Ålands sjöfartsmuseum är ett av Nordens bästa.',
+    image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80',
+    imageAlt: 'Charmig stadsallé med lindträd i sommarsol',
+    intro: 'Mariehamn är en av Skandinaviens minsta städer och, argumenterar många, en av de allra charmigaste.',
+    body: 'Esplanaden är stadens hjärta – en allé av lindar som sträcker sig hela vägen från östhamnen till västhamnen, kantad av caféer, bänkar och sommarblommor. I änden av allén ligger Ålands sjöfartsmuseum och Pommern. Gamla stan med sina trähus påminner om en norsk kuststad från förra seklet. Turistbyrån vid hamnen ger gratis stadskartor och tipsar om aktuella utställningar.',
     practicalInfo: 'Ålands sjöfartsmuseum: öppet hela året. Esplanaden: alltid fri. Turistbyrån ger gratis stadskartor.',
   },
 ]
 
-const MODES: Mode[] = ['Alla', 'Med bil', 'Kollektivt', 'Med cykel']
-
-const TRANSPORT_ICON: Record<Mode, ReactNode> = {
-  'Alla': <></>,
-  'Med bil': (
-    <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2" />
-      <rect x="7" y="14" width="10" height="6" rx="1" />
-      <circle cx="7.5" cy="17.5" r="2.5" /><circle cx="16.5" cy="17.5" r="2.5" />
-    </svg>
-  ),
-  'Kollektivt': (
-    <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="1" y="3" width="15" height="13" rx="2" />
-      <path d="M16 8h4l3 3v5h-7V8z" /><circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-    </svg>
-  ),
-  'Med cykel': (
-    <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="5.5" cy="17.5" r="3.5" /><circle cx="18.5" cy="17.5" r="3.5" />
-      <path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5L9 10l-4 4h5l3-5.5" />
-    </svg>
-  ),
-}
-
-const TRANSPORT_COLOR: Record<Mode, string> = {
-  'Alla':       '#0a7b8c',
-  'Med bil':    '#1a4a5e',
-  'Kollektivt': '#2a7a40',
-  'Med cykel':  '#8b4513',
-}
-
 export default function AlandAventyrClient() {
-  const [active, setActive] = useState<Mode>('Alla')
-  const filtered = active === 'Alla' ? ADVENTURES : ADVENTURES.filter(a => a.transport === active)
-
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100 }}>
+
+      {/* Hero */}
       <div style={{
         background: 'linear-gradient(135deg, #0d2d1e 0%, #1a5c3a 60%, #207a4f 100%)',
-        padding: '0 20px 44px',
+        padding: '0 20px 0',
         paddingTop: 'calc(env(safe-area-inset-top, 0px))',
-        position: 'relative', overflow: 'hidden',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
         <div style={{ position: 'absolute', top: -60, right: -60, width: 260, height: 260, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', bottom: 10, left: -80, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
-        <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative' }}>
-          <div style={{ padding: '14px 0 24px' }}>
-            <Link href="/aland" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.85)', textDecoration: 'none', fontSize: 13, fontWeight: 700, background: 'rgba(255,255,255,0.12)', borderRadius: 20, padding: '6px 14px 6px 10px', backdropFilter: 'blur(6px)' }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 14, height: 14 }}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        <div style={{ position: 'absolute', bottom: 30, left: -80, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+
+        <div style={{ maxWidth: 760, margin: '0 auto', position: 'relative', paddingBottom: 52 }}>
+          <div style={{ padding: '14px 0 28px' }}>
+            <Link href="/aland" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              color: 'rgba(255,255,255,0.85)', textDecoration: 'none',
+              fontSize: 13, fontWeight: 700,
+              background: 'rgba(255,255,255,0.12)',
+              borderRadius: 20, padding: '6px 14px 6px 10px',
+              backdropFilter: 'blur(6px)',
+            }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 14, height: 14 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
               Åland
             </Link>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-            <span style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', padding: '4px 12px', borderRadius: 20 }}>10 upplevelser</span>
-          </div>
-          <h1 style={{ fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontSize: 'clamp(26px, 4vw, 40px)', fontWeight: 800, color: '#fff', margin: '0 0 10px', lineHeight: 1.2 }}>Äventyr på Åland</h1>
-          <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 15, margin: '0 0 28px', maxWidth: 520, lineHeight: 1.6 }}>Medeltidsslott, skärgårdshoppning, cykelleder och Nordens vackraste havsstad</p>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {MODES.map(m => (
-              <button key={m} onClick={() => setActive(m)} style={{ fontSize: 12, fontWeight: 700, padding: '7px 18px', borderRadius: 20, border: active === m ? 'none' : '1px solid rgba(255,255,255,0.25)', cursor: 'pointer', background: active === m ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.1)', color: active === m ? TRANSPORT_COLOR[m] : '#fff', transition: 'all .18s' }}>{m}</button>
-            ))}
-          </div>
+          <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', margin: '0 0 12px' }}>Reseguide · 10 äventyr</p>
+          <h1 style={{ fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 900, color: '#fff', margin: '0 0 16px', lineHeight: 1.15 }}>Äventyr på Åland</h1>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 17, margin: 0, maxWidth: 560, lineHeight: 1.7, fontStyle: 'italic', fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)' }}>
+            Medeltidsslott, passagerarbåtar genom skärgårdshavet, cykelleder och Nordens mest charmiga lilla stad.
+          </p>
         </div>
-        <svg viewBox="0 0 1440 32" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 32, marginBottom: -1, marginTop: 32 }}>
-          <path d="M0,16 C360,32 1080,0 1440,16 L1440,32 L0,32 Z" fill="var(--bg, #f8f7f4)" />
+
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 40, marginBottom: -1 }}>
+          <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="var(--bg, #f8f7f4)" />
         </svg>
       </div>
 
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '10px 20px 0' }}>
+      {/* Breadcrumb */}
+      <div style={{ maxWidth: 760, margin: '0 auto', padding: '14px 20px 0' }}>
         <nav style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--txt3)' }}>
           <Link href="/" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>Svalla</Link>
           <span>›</span>
@@ -157,40 +179,50 @@ export default function AlandAventyrClient() {
         </nav>
       </div>
 
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '24px 20px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {filtered.map(adv => {
-            const accent = TRANSPORT_COLOR[adv.transport]
-            return (
-              <article key={adv.id} style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.06)', borderTop: `3px solid ${accent}` }}>
-                <div style={{ padding: '20px 24px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, gap: 10 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', background: accent, color: '#fff', padding: '4px 10px 4px 8px', borderRadius: 20 }}>
-                        <span style={{ display: 'flex', color: 'rgba(255,255,255,0.8)' }}>{TRANSPORT_ICON[adv.transport]}</span>
-                        {adv.transport}
-                      </span>
-                      <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 500 }}>{adv.distance}</span>
-                    </div>
-                    <span style={{ fontSize: 22, fontWeight: 900, color: 'rgba(0,0,0,0.07)', letterSpacing: '-0.03em', flexShrink: 0, fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)' }}>{String(adv.id).padStart(2, '0')}</span>
-                  </div>
-                  <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', lineHeight: 1.35 }}>{adv.title}</h2>
-                  <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 14px' }}>{adv.description}</p>
-                  <div style={{ background: 'rgba(0,0,0,0.03)', borderRadius: 10, padding: '10px 14px', fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, borderLeft: `3px solid ${accent}` }}>
-                    <strong style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: accent, display: 'block', marginBottom: 4, fontWeight: 800 }}>Praktisk info</strong>
-                    {adv.practicalInfo}
-                  </div>
-                </div>
-              </article>
-            )
-          })}
-        </div>
+      {/* Article body */}
+      <div style={{ maxWidth: 760, margin: '0 auto', padding: '40px 20px 0' }}>
+        <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 52px', borderLeft: '3px solid var(--sea)', paddingLeft: 20 }}>
+          Åland är inte bara en ö – det är ett självstyrande landskap med 6 700 öar, ett eget sjöfartsarv och en natur som skiljer sig från både Sverige och Finland. Här är tio upplevelser som verkligen gör Åland rättvisa.
+        </p>
 
-        <div style={{ marginTop: 48, padding: '28px 28px 24px', background: 'linear-gradient(135deg, #0d2d1e 0%, #1a5c3a 100%)', borderRadius: 20, textAlign: 'center', boxShadow: '0 4px 24px rgba(13,45,30,0.2)', position: 'relative', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
-          <p style={{ fontSize: 17, fontWeight: 700, color: '#fff', margin: '0 0 6px', position: 'relative' }}>Redo att planera din Ålandsresa?</p>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.68)', margin: '0 0 22px', position: 'relative' }}>Låt Thorkel hjälpa dig att sätta ihop en personlig dagsplan.</p>
-          <Link href="/planera" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#fff', color: '#1a5c3a', fontSize: 14, fontWeight: 700, textDecoration: 'none', padding: '13px 28px', borderRadius: 24, position: 'relative' }}>
+        {ADVENTURES.map((adv, i) => (
+          <article key={adv.id} style={{ marginBottom: 72 }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 20 }}>
+              <span style={{ fontSize: 48, fontWeight: 900, lineHeight: 1, fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', color: 'rgba(10,123,140,0.12)', flexShrink: 0, minWidth: 52 }}>{String(adv.id).padStart(2, '0')}</span>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', background: adv.transportColor, color: '#fff', padding: '3px 10px', borderRadius: 20 }}>{adv.transport}</span>
+                  <span style={{ fontSize: 12, color: 'var(--txt3)' }}>{adv.distance}</span>
+                </div>
+                <h2 style={{ fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', fontSize: 'clamp(20px, 3vw, 26px)', fontWeight: 700, color: 'var(--txt)', margin: 0, lineHeight: 1.25 }}>{adv.title}</h2>
+              </div>
+            </div>
+
+            <div style={{ width: '100%', aspectRatio: '16/8', borderRadius: 16, overflow: 'hidden', marginBottom: 20, background: `linear-gradient(135deg, ${adv.transportColor}33, ${adv.transportColor}88)` }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={adv.image} alt={adv.imageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading={i < 2 ? 'eager' : 'lazy'} />
+            </div>
+
+            <p style={{ fontSize: 15.5, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 12px', fontWeight: 600 }}>{adv.intro}</p>
+            <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 16px' }}>{adv.body}</p>
+
+            <div style={{ background: 'rgba(10,123,140,0.05)', border: '1px solid rgba(10,123,140,0.12)', borderRadius: 12, padding: '14px 18px', fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.7 }}>
+              <strong style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--sea)', display: 'block', marginBottom: 5, fontWeight: 800 }}>Praktisk info</strong>
+              {adv.practicalInfo}
+            </div>
+
+            {i < ADVENTURES.length - 1 && (
+              <div style={{ marginTop: 52, height: 1, background: 'rgba(10,123,140,0.1)' }} />
+            )}
+          </article>
+        ))}
+
+        <div style={{ marginTop: 24, padding: '36px 32px', background: 'linear-gradient(135deg, #0d2d1e 0%, #1a5c3a 100%)', borderRadius: 24, textAlign: 'center', boxShadow: '0 8px 32px rgba(13,45,30,0.25)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: -40, right: -40, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+          <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', margin: '0 0 10px' }}>Nästa steg</p>
+          <p style={{ fontSize: 20, fontWeight: 700, color: '#fff', margin: '0 0 8px', fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)', position: 'relative' }}>Redo att planera din Ålandsresa?</p>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', margin: '0 0 24px', position: 'relative' }}>Låt Thorkel hjälpa dig att sätta ihop en personlig dagsplan.</p>
+          <Link href="/planera" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#fff', color: '#1a5c3a', fontSize: 15, fontWeight: 700, textDecoration: 'none', padding: '14px 32px', borderRadius: 28, position: 'relative', boxShadow: '0 4px 16px rgba(0,0,0,0.2)' }}>
             Planera din tur med Thorkel →
           </Link>
         </div>
