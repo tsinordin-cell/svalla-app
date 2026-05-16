@@ -137,6 +137,41 @@ export default function AlandPage() {
  items={ITEMS}
  deeperContent={
  <>
+ {/* Äventyrsbanner */}
+ <a href="/aland/aventyr" style={{ textDecoration: 'none', display: 'block', marginBottom: 32 }}>
+   <div style={{
+     background: 'linear-gradient(135deg, #1a3a5c 0%, #0d6e6e 100%)',
+     borderRadius: 20,
+     padding: '22px 24px',
+     display: 'flex',
+     alignItems: 'center',
+     gap: 18,
+     position: 'relative',
+     overflow: 'hidden',
+     boxShadow: '0 6px 28px rgba(13,110,110,0.25)',
+     border: '1px solid rgba(255,255,255,0.08)',
+   }}>
+     <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+     <div style={{
+       width: 48, height: 48, flexShrink: 0, borderRadius: 14,
+       background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.2)',
+       display: 'flex', alignItems: 'center', justifyContent: 'center',
+     }}>
+       <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+         <circle cx="12" cy="12" r="10" /><polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76" />
+       </svg>
+     </div>
+     <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
+       <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Utforska mer</div>
+       <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 3, fontFamily: "'Playfair Display', Georgia, serif" }}>Äventyr på Åland</div>
+       <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)' }}>10 utvalda rundor – bil, cykel och kollektivt</div>
+     </div>
+     <div style={{ width: 34, height: 34, flexShrink: 0, borderRadius: 10, background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+       <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+     </div>
+   </div>
+ </a>
+
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Passagen från Sverige till Åland
  </h2>
