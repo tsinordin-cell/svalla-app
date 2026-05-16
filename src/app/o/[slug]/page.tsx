@@ -52,6 +52,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export const revalidate = 3600 // uppdatera besöksräknaren max en gång/timme
 
+// Öar med egna äventyrssidor
+const ADVENTURE_PAGES: Record<string, { url: string; title: string; desc: string }> = {
+  gotland: { url: '/gotland/aventyr', title: 'Äventyr på Gotland', desc: '10 utvalda rundor – bil, cykel och kollektivt' },
+  aland:   { url: '/aland/aventyr',   title: 'Äventyr på Åland',   desc: '10 utvalda rundor – bil, cykel och kollektivt' },
+  oland:   { url: '/oland/aventyr',   title: 'Äventyr på Öland',   desc: '10 utvalda rundor – bil, cykel och buss' },
+}
+
 export default async function IslandPage({ params }: Props) {
  const { slug } = await params
  const island = getIsland(slug)
@@ -300,6 +307,70 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Sista båten tillbaka idag — varning när det börjar närma sig */}
  <LastBoatPanel islandSlug={island.slug} islandName={island.name} />
+
+ {/* Äventyrsbanner — visas bara för Gotland, Åland och Öland */}
+ {ADVENTURE_PAGES[island.slug] && (() => {
+   const adv = ADVENTURE_PAGES[island.slug]!
+   return (
+     <Link href={adv.url} style={{ textDecoration: 'none', display: 'block', marginBottom: 36 }}>
+       <div style={{
+         background: 'linear-gradient(135deg, #1a3a5c 0%, #0d6e6e 100%)',
+         borderRadius: 20,
+         padding: '24px 28px',
+         display: 'flex',
+         alignItems: 'center',
+         gap: 20,
+         position: 'relative',
+         overflow: 'hidden',
+         boxShadow: '0 6px 28px rgba(13,110,110,0.28)',
+         border: '1px solid rgba(255,255,255,0.08)',
+       }}>
+         {/* Decorative circles */}
+         <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+         <div style={{ position: 'absolute', bottom: -20, left: 120, width: 100, height: 100, borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+
+         {/* Icon */}
+         <div style={{
+           width: 52, height: 52, flexShrink: 0,
+           borderRadius: 16,
+           background: 'rgba(255,255,255,0.14)',
+           display: 'flex', alignItems: 'center', justifyContent: 'center',
+           border: '1px solid rgba(255,255,255,0.18)',
+         }}>
+           <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+             <circle cx="12" cy="12" r="10" />
+             <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88 16.24,7.76" />
+           </svg>
+         </div>
+
+         {/* Text */}
+         <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
+           <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 5 }}>
+             Utforska mer
+           </div>
+           <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 4, fontFamily: "'Playfair Display', Georgia, serif" }}>
+             {adv.title}
+           </div>
+           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.72)', lineHeight: 1.5 }}>
+             {adv.desc}
+           </div>
+         </div>
+
+         {/* Arrow */}
+         <div style={{
+           width: 36, height: 36, flexShrink: 0,
+           borderRadius: 10,
+           background: 'rgba(255,255,255,0.12)',
+           display: 'flex', alignItems: 'center', justifyContent: 'center',
+         }}>
+           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+             <path d="M5 12h14M13 6l6 6-6 6" />
+           </svg>
+         </div>
+       </div>
+     </Link>
+   )
+ })()}
 
  {/* Om ön */}
  <section style={{ marginBottom: 52 }}>
