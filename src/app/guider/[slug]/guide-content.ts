@@ -428,7 +428,6 @@ export function getGuideContent(slug: string): string {
 </ul>
 </div>
 `,
-  }
 
     'vad-kostar-skargarden': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Vad kostar en dag i skärgården?</h2>
@@ -1390,6 +1389,7 @@ export function getGuideContent(slug: string): string {
 <p style="margin:8px 0 0;font-size:14px">Kontakta din närmaste segelsällskap och fråga om "öppet hus" eller provsegling. De flesta klubbar välkomnar intresserade och ger dig möjlighet att prova innan du bestämmer dig. Segla alltid med erfaren besättning de första gångerna.</p>
 </div>
 `,
+  }
 
   const content = guides[slug]
   if (content) return content
