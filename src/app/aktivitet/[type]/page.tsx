@@ -119,59 +119,98 @@ export default async function ActivityTypePage({ params }: Props) {
 
         {/* Favoriter */}
         {featuredIslands.length > 0 && (
-          <div style={{ marginBottom: 32 }}>
-            <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px', fontFamily: "'Playfair Display', Georgia, serif" }}>
-              Våra favoriter
-            </h2>
-            <p style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 14 }}>
-              De {featuredIslands.length} bästa öarna för {activity.shortName.toLowerCase()} — scroll för att se alla
+          <div style={{ marginBottom: 36 }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 4 }}>
+              <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: 0, fontFamily: "'Playfair Display', Georgia, serif" }}>
+                Våra favoriter
+              </h2>
+              <span style={{ fontSize: 12, color: 'var(--txt3)' }}>Swipa →</span>
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '4px 0 14px' }}>
+              De {featuredIslands.length} bästa öarna för {activity.shortName.toLowerCase()} — rankade efter upplevelse och tillgänglighet
             </p>
-            <div style={{
-              display: 'flex', gap: 12, overflowX: 'auto',
-              paddingBottom: 10, scrollbarWidth: 'none',
-              WebkitOverflowScrolling: 'touch',
-            } as React.CSSProperties}>
-              {featuredIslands.map((island, idx) => {
-                const actDesc = island.activities.find(a =>
-                  a.name.toLowerCase().includes(activity.shortName.toLowerCase()) ||
-                  activity.matchers.some(m => a.name.toLowerCase().includes(m))
-                )?.desc ?? island.tagline
-                const firstSentence = actDesc.split('.')[0] + '.'
-                return (
-                  <Link
-                    key={island.slug}
-                    href={`/aktivitet/${activity.slug}/${island.slug}`}
-                    style={{
-                      flex: '0 0 190px', background: 'var(--white)',
-                      border: '1px solid var(--surface-3)', borderRadius: 12,
-                      padding: '14px 16px', textDecoration: 'none',
-                      color: 'inherit', display: 'block', position: 'relative',
-                    }}
-                  >
-                    <span style={{
-                      position: 'absolute', top: 10, right: 12,
-                      fontSize: 11, color: 'var(--txt3)', fontWeight: 600,
-                    }}>
-                      {idx + 1}
-                    </span>
-                    <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
-                      {island.name}
-                    </div>
-                    <div style={{
-                      fontSize: 11, color: 'var(--sea)',
-                      background: 'rgba(29,100,130,0.08)',
-                      padding: '2px 8px', borderRadius: 20,
-                      display: 'inline-block', marginBottom: 8,
-                    }}>
-                      {(island.facts?.best_for ?? island.tagline).split(',')[0]?.trim() ?? island.tagline}
-                    </div>
-                    <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5 }}>
-                      {firstSentence}
-                    </div>
-                    <div style={{ fontSize: 12, color: 'var(--sea)', marginTop: 10 }}>Utforska →</div>
-                  </Link>
-                )
-              })}
+            {/* Scroll-wrapper med fade-ut på höger kant */}
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                display: 'flex', gap: 14, overflowX: 'auto',
+                paddingBottom: 14, paddingRight: 32,
+                scrollbarWidth: 'thin',
+                scrollbarColor: 'var(--surface-3) transparent',
+                WebkitOverflowScrolling: 'touch',
+              } as React.CSSProperties}>
+                {featuredIslands.map((island, idx) => {
+                  const actDesc = island.activities.find(a =>
+                    a.name.toLowerCase().includes(activity.shortName.toLowerCase()) ||
+                    activity.matchers.some(m => a.name.toLowerCase().includes(m))
+                  )?.desc ?? island.tagline
+                  // Visa upp till 2 meningar
+                  const sentences = actDesc.split('.')
+                  const twoSentences = sentences.slice(0, 2).join('.').trim() + (sentences.length > 1 ? '.' : '')
+                  const regionLabel: Record<string, string> = {
+                    norra: 'Norra skärgården',
+                    mellersta: 'Mellersta skärgården',
+                    södra: 'Södra skärgården',
+                    bohuslan: 'Bohuslän',
+                  }
+                  return (
+                    <Link
+                      key={island.slug}
+                      href={`/aktivitet/${activity.slug}/${island.slug}`}
+                      style={{
+                        flex: '0 0 250px', background: 'var(--white)',
+                        border: '1px solid var(--surface-3)', borderRadius: 14,
+                        padding: '18px 18px 14px', textDecoration: 'none',
+                        color: 'inherit', display: 'flex', flexDirection: 'column',
+                        position: 'relative', boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
+                        transition: 'box-shadow 0.15s',
+                      }}
+                    >
+                      {/* Rankingnummer */}
+                      <span style={{
+                        position: 'absolute', top: 14, right: 14,
+                        fontSize: 11, color: 'var(--txt3)', fontWeight: 700,
+                        background: 'var(--surface-2)', borderRadius: 999,
+                        width: 22, height: 22, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        {idx + 1}
+                      </span>
+                      {/* Regionetikett */}
+                      <div style={{
+                        fontSize: 10, color: 'var(--txt3)',
+                        textTransform: 'uppercase', letterSpacing: 0.8,
+                        marginBottom: 6, fontWeight: 600,
+                      }}>
+                        {regionLabel[island.region] ?? island.region}
+                      </div>
+                      {/* Önamn */}
+                      <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', marginBottom: 4, paddingRight: 28 }}>
+                        {island.name}
+                      </div>
+                      {/* Tagline */}
+                      <div style={{ fontSize: 11, color: 'var(--txt3)', marginBottom: 10, lineHeight: 1.4 }}>
+                        {island.tagline}
+                      </div>
+                      {/* Aktivitetsbeskrivning */}
+                      <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.6, flex: 1 }}>
+                        {twoSentences}
+                      </div>
+                      {/* CTA */}
+                      <div style={{
+                        fontSize: 12, color: 'var(--sea)', marginTop: 14,
+                        fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4,
+                      }}>
+                        Utforska {island.name} →
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+              {/* Fade-ut höger kant */}
+              <div style={{
+                position: 'absolute', right: 0, top: 0, bottom: 14,
+                width: 48, pointerEvents: 'none',
+                background: 'linear-gradient(to right, transparent, var(--bg))',
+              }} />
             </div>
           </div>
         )}
