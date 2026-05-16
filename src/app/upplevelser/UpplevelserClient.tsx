@@ -21,7 +21,9 @@ const FILTER_TABS = [
   { key: 'ribbåtstur', label: 'Ribbåtsturer' },
   { key: 'fisketur', label: 'Fisketurer' },
   { key: 'kajak', label: 'Kajak' },
-  { key: 'naturtur', label: 'Naturtur' },
+  { key: 'sup', label: 'SUP' },
+  { key: 'segling', label: 'Segling' },
+  { key: 'naturtur', label: 'Naturturer' },
   { key: 'övrigt', label: 'Övrigt' },
 ]
 
