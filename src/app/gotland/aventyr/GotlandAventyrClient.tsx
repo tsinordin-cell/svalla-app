@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import Link from 'next/link'
 
 type Mode = 'Alla' | 'Med bil' | 'Kollektivt' | 'Med cykel'
@@ -80,7 +80,7 @@ const ADVENTURES = [
 
 const MODES: Mode[] = ['Alla', 'Med bil', 'Kollektivt', 'Med cykel']
 
-const TRANSPORT_ICON: Record<Mode, JSX.Element> = {
+const TRANSPORT_ICON: Record<Mode, ReactNode> = {
   'Alla': <></>,
   'Med bil': (
     <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
