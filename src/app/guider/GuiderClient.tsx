@@ -93,15 +93,19 @@ export default function GuiderClient() {
                 background: 'linear-gradient(135deg, #1a4a5e, #2a8a8a)',
                 display: 'flex', flexDirection: 'column', alignItems: 'center',
                 justifyContent: 'center', padding: 32, position: 'relative',
-                fontSize: 56,
+                minWidth: 160,
               }}>
-                {featured.emoji}
                 <span style={{
                   position: 'absolute', top: 12, left: 12,
                   background: '#e8924a', color: '#fff',
                   fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em',
                   padding: '3px 10px', borderRadius: 20,
                 }}>Redaktionens val</span>
+                <svg viewBox="0 0 48 48" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" style={{ width: 64, height: 64 }}>
+                  <path d="M4 34 Q12 20 24 28 Q36 36 44 18" strokeLinecap="round"/>
+                  <circle cx="10" cy="38" r="3" fill="rgba(255,255,255,0.15)" stroke="none"/>
+                  <circle cx="38" cy="14" r="3" fill="rgba(255,255,255,0.15)" stroke="none"/>
+                </svg>
               </div>
               <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--sea)', marginBottom: 8, display: 'block' }}>
@@ -135,16 +139,12 @@ export default function GuiderClient() {
               }}>
                 <div style={{
                   background: 'var(--grad-sea)',
-                  padding: '28px 24px',
-                  textAlign: 'center',
-                  fontSize: 44,
-                  minHeight: 110,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  padding: '16px 24px 12px',
+                  minHeight: 64,
+                  display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end',
                   position: 'relative',
                 }}>
-                  {guide.emoji}
                   <span style={{
-                    position: 'absolute', top: 10, right: 10,
                     fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em',
                     background: 'rgba(255,255,255,0.18)', color: '#fff',
                     padding: '3px 8px', borderRadius: 20, backdropFilter: 'blur(4px)',
