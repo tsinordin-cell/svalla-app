@@ -335,14 +335,34 @@ export default async function PlaneraIdPage({ params }: Props) {
  </>
  ) : (
  <div style={{
- background: 'var(--white)', borderRadius: 16, padding: '24px 20px', textAlign: 'center',
+ background: 'var(--white)', borderRadius: 16, padding: '24px 20px',
  border: '1px solid rgba(10,123,140,0.08)',
  }}>
- <div style={{ fontSize: 36, marginBottom: 10, display: "flex", alignItems: "center", justifyContent: "center" }}><Icon name="map" size={36} /></div>
- <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Inga stopp hittades</p>
- <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
- Inga platser i vår databas matchar dina intressen längs den här rutten ännu.
+ <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+   <div style={{ fontSize: 24 }}>🗺️</div>
+   <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>Inga registrerade stopp längs rutten</p>
+ </div>
+ <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
+   Vi hittade inga platser som matchar dina intressen ({interests.length > 0 ? interests.join(', ') : 'alla'}) längs den här sträckan. Det kan bero på att rutten går utanför skärgårdsområden vi täcker, eller att platser ännu inte lagts till.
  </p>
+ <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+   <Link href="/upptack" style={{
+     display: 'flex', alignItems: 'center', gap: 8,
+     padding: '11px 14px', borderRadius: 12,
+     background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.12)',
+     textDecoration: 'none', color: 'var(--sea)', fontSize: 13, fontWeight: 600,
+   }}>
+     <span>🔍</span> Utforska platser i hela skärgården
+   </Link>
+   <Link href="/planera/ny" style={{
+     display: 'flex', alignItems: 'center', gap: 8,
+     padding: '11px 14px', borderRadius: 12,
+     background: 'rgba(10,123,140,0.04)', border: '1px solid rgba(10,123,140,0.08)',
+     textDecoration: 'none', color: 'var(--txt2)', fontSize: 13, fontWeight: 500,
+   }}>
+     <span>🧭</span> Planera en annan rutt
+   </Link>
+ </div>
  </div>
  )}
 

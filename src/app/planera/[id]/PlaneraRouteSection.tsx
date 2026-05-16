@@ -259,40 +259,79 @@ export default function PlaneraRouteSection({
         </div>
       )}
 
-      {/* Tidsestimat per båttyp — uppdateras med faktisk vattendistans */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: 8,
-        marginBottom: 16,
-      }}>
-        {[
-          { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
-          { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
-          { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
-        ].map(card => (
-          <div key={card.label} style={{
-            background: 'var(--white)',
-            borderRadius: 12,
-            padding: '12px 10px',
-            border: '1px solid rgba(10,123,140,0.1)',
-            textAlign: 'center',
-          }}>
-            <div style={{
-              fontSize: 10, fontWeight: 700, color: 'var(--sea)',
-              textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
+      {/* Tidsestimat per båttyp — döljs vid rak linje (missledande) */}
+      {quality !== 'straight' && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 8,
+          marginBottom: 16,
+        }}>
+          {[
+            { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
+            { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
+            { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
+          ].map(card => (
+            <div key={card.label} style={{
+              background: 'var(--white)',
+              borderRadius: 12,
+              padding: '12px 10px',
+              border: '1px solid rgba(10,123,140,0.1)',
+              textAlign: 'center',
             }}>
-              {card.label}
+              <div style={{
+                fontSize: 10, fontWeight: 700, color: 'var(--sea)',
+                textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
+              }}>
+                {card.label}
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', marginBottom: 2 }}>
+                {card.value}
+              </div>
+              <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
+                {card.sub}
+              </div>
             </div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', marginBottom: 2 }}>
-              {card.value}
+          ))}
+        </div>
+      )}
+      {/* Laddar: visa preliminärt tidsestimat baserat på haversine */}
+      {status === 'loading' && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 8,
+          marginBottom: 16,
+        }}>
+          {[
+            { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
+            { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
+            { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
+          ].map(card => (
+            <div key={card.label} style={{
+              background: 'var(--white)',
+              borderRadius: 12,
+              padding: '12px 10px',
+              border: '1px solid rgba(10,123,140,0.1)',
+              textAlign: 'center',
+              opacity: 0.6,
+            }}>
+              <div style={{
+                fontSize: 10, fontWeight: 700, color: 'var(--sea)',
+                textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4,
+              }}>
+                {card.label}
+              </div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: 'var(--txt)', marginBottom: 2 }}>
+                {card.value}
+              </div>
+              <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
+                {card.sub}
+              </div>
             </div>
-            <div style={{ fontSize: 10, color: 'var(--txt3)' }}>
-              {card.sub}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   )
 }

@@ -153,6 +153,17 @@ const nextConfig: NextConfig = {
         destination: '/oar',
         permanent: true,
       },
+      // /evenemang → /event (svenska alias för evenemangssidan)
+      {
+        source: '/evenemang',
+        destination: '/event',
+        permanent: true,
+      },
+      {
+        source: '/evenemang/:path*',
+        destination: '/event/:path*',
+        permanent: true,
+      },
     ]
   },
 }
