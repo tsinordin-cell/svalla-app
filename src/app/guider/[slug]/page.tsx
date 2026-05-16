@@ -40,12 +40,29 @@ export default async function GuidePage({ params }: Props) {
 
       {/* Header */}
       <div style={{
-        background: 'var(--grad-sea-hero)',
-        padding: '0 20px 44px',
+        background: 'linear-gradient(160deg, #1a4a6b 0%, #0d6e6e 100%)',
         paddingTop: 'calc(env(safe-area-inset-top, 0px))',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0 20px' }}>
+        {/* Decorative circles */}
+        <div style={{
+          position: 'absolute', top: -60, right: -60,
+          width: 280, height: 280,
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.04)',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute', bottom: 20, left: -80,
+          width: 200, height: 200,
+          borderRadius: '50%',
+          background: 'rgba(255,255,255,0.03)',
+          pointerEvents: 'none',
+        }} />
+
+        <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 48px', position: 'relative' }}>
+          <div style={{ padding: '14px 0 28px' }}>
             <Link href="/guider" style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               color: 'rgba(255,255,255,0.85)', textDecoration: 'none',
@@ -61,24 +78,37 @@ export default async function GuidePage({ params }: Props) {
             </Link>
           </div>
 
-          <div style={{ fontSize: 52, marginBottom: 16 }}>{guide.emoji}</div>
-
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(255,255,255,0.18)', color: '#fff',
-            fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em',
-            padding: '4px 12px', borderRadius: 20, marginBottom: 12,
-          }}>
-            {guide.category} · {guide.readTime}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+            <span style={{
+              background: 'rgba(255,255,255,0.18)', color: '#fff',
+              fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em',
+              padding: '4px 12px', borderRadius: 20,
+            }}>
+              {guide.category}
+            </span>
+            <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12 }}>·</span>
+            <span style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, fontWeight: 600 }}>
+              {guide.readTime}
+            </span>
           </div>
 
-          <h1 style={{ fontSize: 28, fontWeight: 800, color: '#fff', margin: '0 0 12px', lineHeight: 1.25 }}>
+          <h1 style={{
+            fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)',
+            fontSize: 'clamp(26px, 4vw, 40px)',
+            fontWeight: 800, color: '#fff',
+            margin: '0 0 14px', lineHeight: 1.2,
+          }}>
             {guide.title}
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 16, lineHeight: 1.65, margin: 0, maxWidth: 600 }}>
             {guide.excerpt}
           </p>
         </div>
+
+        {/* Wave bottom */}
+        <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style={{ display: 'block', width: '100%', height: 40, marginBottom: -1 }}>
+          <path d="M0,20 C360,40 1080,0 1440,20 L1440,40 L0,40 Z" fill="var(--bg, #f8f7f4)" />
+        </svg>
       </div>
 
       {/* Breadcrumb */}
@@ -93,28 +123,29 @@ export default async function GuidePage({ params }: Props) {
       </div>
 
       {/* Content */}
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: '32px 20px' }}>
+      <div style={{ maxWidth: 800, margin: '0 auto', padding: '8px 20px 80px' }}>
         <div
           style={{
             background: 'var(--white)',
-            borderRadius: 18,
-            padding: '36px 40px',
-            boxShadow: '0 2px 24px rgba(0,0,0,0.07)',
+            borderRadius: 20,
+            padding: 'clamp(24px, 5vw, 48px) clamp(20px, 5vw, 52px)',
+            boxShadow: '0 4px 32px rgba(0,0,0,0.06)',
             border: '1px solid rgba(10,123,140,0.06)',
-            lineHeight: 1.75,
+            lineHeight: 1.8,
             color: 'var(--txt)',
-            fontSize: 15,
+            fontSize: 15.5,
           }}
           dangerouslySetInnerHTML={{ __html: content }}
         />
 
         {/* Back CTA */}
-        <div style={{ marginTop: 40, textAlign: 'center' }}>
+        <div style={{ marginTop: 36, display: 'flex', justifyContent: 'center' }}>
           <Link href="/guider" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             background: 'var(--sea)', color: '#fff',
             fontSize: 14, fontWeight: 700, textDecoration: 'none',
-            padding: '12px 28px', borderRadius: 24,
+            padding: '13px 30px', borderRadius: 28,
+            boxShadow: '0 4px 16px rgba(10,123,140,0.3)',
           }}>
             ← Se alla guider
           </Link>

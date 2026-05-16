@@ -104,7 +104,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Komplett packlista för skärgården</h2>
 <p>Oavsett om du planerar en dagstur eller en hel vecka i skärgården gäller samma grundprincip: skärgårdsväder är opålitligt och havet är kallare än du tror. Den här listan är indelad efter kategori – bocka av det som är relevant för din tur.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🧥 Kläder</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kläder</h3>
 <p><strong>Baslagret (alltid med, oavsett väder):</strong></p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Vindtät och vattentät jacka – obligatorisk på alla turer</li>
@@ -126,7 +126,7 @@ export function getGuideContent(slug: string): string {
 <li>Heltäckande luvtröja för kvällarna</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🥪 Mat & dryck</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat & dryck</h3>
 <p><strong>Grundförraden (dagstur):</strong></p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Mer vatten än du tror – räkna med 1 liter per person och timme i värmen</li>
@@ -146,7 +146,7 @@ export function getGuideContent(slug: string): string {
 <li>Godis och kvällssnacks – moralboost på dag 3</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🦺 Säkerhet</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säkerhet</h3>
 <p><em>Det här är inte valfritt – det är krav.</em></p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Flytväst per person</strong> – lagkrav på alla motordrivna fartyg. Kläm aldrig undan detta.</li>
@@ -161,7 +161,7 @@ export function getGuideContent(slug: string): string {
 <li>Signalhorn för dimma</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">📱 Teknik & prylar</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Teknik & prylar</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Powerbank (minst 20 000 mAh för flerdagars tur)</li>
 <li>Vattentätt fodral för telefonen</li>
@@ -173,7 +173,7 @@ export function getGuideContent(slug: string): string {
 <li>Pannlampa med extrahandlampor</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">👶 Specifikt för barn</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Specifikt för barn</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Barnflytväst CE-märkt (aldrig en vuxens flytväst till barn)</li>
 <li>Solskydd SPF 50 – sol reflekteras från vattnet och ger dubbelt mer</li>
@@ -185,7 +185,7 @@ export function getGuideContent(slug: string): string {
 <li>Enkelt spel/kortlek för regniga stunder</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">⛵ Specifikt för segling</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Specifikt för segling</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Segelhandskar (halvfingers för varmt väder)</li>
 <li>Harnass och livlinor om du seglar i ytterskärgården</li>
@@ -213,7 +213,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Allemansrätten på sjön – vad som faktiskt gäller</h2>
 <p>Allemansrätten är en av Sveriges grundlagar, men den är skriven för land – inte för vatten. Till sjöss gäller delvis andra regler, och många skärgårdsbesökare är osäkra på vad som gäller. Den här guiden reder ut de vanligaste frågorna på ett enkelt och tydligt sätt.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">⚓ Ankring</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ankring</h3>
 <p><strong>Får du ankra var som helst?</strong> I princip ja, men med viktiga undantag.</p>
 <p>Du får fritt ankra och ligga på redden i fria farvatten, men:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -234,7 +234,7 @@ export function getGuideContent(slug: string): string {
 <li>Lämna platsen som du fann den: ta med alla sopor, lämna ingen eld och ingen toalettavfall</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🔥 Elda och grilla</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Elda och grilla</h3>
 <p>Eldning i skärgården är tillåtet med hänsyn, men reglerna är viktiga:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Eldningsförbud</strong>: Under torrt väder utfärdar kommuner eller länsstyrelsen eldningsförbud. Dessa gäller alltid och kan innebära böter. Kontrollera alltid på krisinformation.se eller din länsstyrelses webbplats.</li>
@@ -245,7 +245,7 @@ export function getGuideContent(slug: string): string {
 <li>Släck alltid med vatten – inte jord. Kol under jord kan glöda i dagar</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🚽 Toalettavfall på båt</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettavfall på båt</h3>
 <p>Det här är ett område där många gör fel utan att veta om det.</p>
 <p><strong>I havet mer än 3 sjömil (5,5 km) från land:</strong> Det är tillåtet att pumpa ut orenat toalettvfall i internationellt vatten (utanför 12 nautiska mil) men Sverige är mer restriktivt.</p>
 <p><strong>I svenska inre vatten (skärgård och inomskärs):</strong> Det är <em>förbjudet</em> att pumpa ut orenat toalettavfall. Regler:</p>
@@ -256,7 +256,7 @@ export function getGuideContent(slug: string): string {
 <li>Vid grov nöd i frihamn: gå till land och använd toalett eller gräv ner (minst 30 cm djupt, minst 50 m från vatten)</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🔇 Motorbuller och hastighet</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Motorbuller och hastighet</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Hastighetsgräns 5 knop</strong> gäller inom 300 meter från land om inte annat utmärkts</li>
 <li>Svall från snabba båtar är olagligt nära badande och bryggor</li>
@@ -265,7 +265,7 @@ export function getGuideContent(slug: string): string {
 <li>Motorbuller vid ankringsplatser: visa hänsyn – grannarna har också valt stillhet</li>
 </ul>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">🌿 Känsliga naturområden</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Känsliga naturområden</h3>
 <p>Vissa platser i skärgården är särskilt skyddade under häckningstid (1 april–31 juli):</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Skär med häckande fågelkolonier: håll 100 meter avstånd – se skyltar</li>
@@ -348,21 +348,21 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgård utan båt – 10 öar du når utan eget fartyg</h2>
 <p>Många tror att skärgårdslivet kräver egen båt. Det stämmer inte. Med Waxholmsbolaget, SL-bussar, bilfärjor och en smula planering kan du nå hela skärgården utan att äga ett enda fartyg. Här är 10 konkreta förslag, rankade från lättast till mest äventyrliga.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">🥇 1. Fjäderholmarna – enklaste möjliga</h4>
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Fjäderholmarna – enklaste möjliga</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
 <p><strong>Transport:</strong> Direktbåt från Strandvägen eller Nybrokajen, 25 minuter. Avgångarna är täta under sommarperioden (var 20–30 min).</p>
 <p><strong>Pris:</strong> Ca 140 kr enkel resa, 220 kr retur.</p>
 <p><strong>Vad du gör:</strong> Fjäderholmarna är perfekta för den som aldrig provat skärgårdslivet och vill ha en lättillgänglig introduktion. Restauranger, hantverk, konstgallerier och klippor – allt på en liten ögrupp 25 minuter från Strandvägen.</p>
 <p><strong>Praktisk info:</strong> Ingen övernattning möjlig (ingen camping), men perfekt dagstur. Öppet maj–september.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">🥈 2. Vaxholm – pendla som en lokalbo</h4>
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Vaxholm – pendla som en lokalbo</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
 <p><strong>Transport:</strong> SL-buss 670 från Tekniska Högskolan T, ca 50 min. Alternativt Waxholmsbolaget linje 80, ca 1 h 15 min. Buss ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> SL-buss gratis med månadskort. Waxholmsbåt ca 140 kr enkel resa.</p>
 <p><strong>Vad du gör:</strong> Vaxholm är en riktig stad – historia, handel, restauranger och fästning. Perfekt dagstur med familj eller vänner. Vaxholms fästning är ett museum man inte bör missa.</p>
 <p><strong>Praktisk info:</strong> Buss och båt kör hela året. Sommarens avgångstätheter är bäst, men Vaxholm fungerar som utflyktsmål nästan hela året.</p>
 
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">🥉 3. Grinda – dagstur eller weekendvistelse</h4>
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Grinda – dagstur eller weekendvistelse</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
 <p><strong>Transport:</strong> Waxholmsbolaget linje 80 från Strömkajen, ca 2 h 15 min. Eller Cinderellabåten (direktavgång, dyrare).</p>
 <p><strong>Pris:</strong> Ca 200 kr enkel resa.</p>
