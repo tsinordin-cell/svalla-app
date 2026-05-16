@@ -128,12 +128,13 @@ const ADVENTURES = [
 
 export default function GotlandAventyrClient() {
   const [photoMap, setPhotoMap] = useState<Record<string, string>>({})
+  const [photosReady, setPhotosReady] = useState(false)
 
   useEffect(() => {
     fetch('/api/adventure-photos?island=gotland')
       .then(r => r.ok ? r.json() : {})
-      .then((data: Record<string, string>) => setPhotoMap(data))
-      .catch(() => {})
+      .then((data: Record<string, string>) => { setPhotoMap(data); setPhotosReady(true) })
+      .catch(() => setPhotosReady(true))
   }, [])
 
   return (
@@ -264,13 +265,15 @@ export default function GotlandAventyrClient() {
               background: `linear-gradient(135deg, ${adv.transportColor}44, ${adv.transportColor}99)`,
               boxShadow: '0 4px 40px rgba(0,0,0,0.12)',
             }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photoMap[String(adv.id)] || adv.imageFallback}
-                alt={adv.imageAlt}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                loading={i < 2 ? 'eager' : 'lazy'}
-              />
+              {(photosReady || photoMap[String(adv.id)]) && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={photoMap[String(adv.id)] || adv.imageFallback}
+                  alt={adv.imageAlt}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                />
+              )}
             </div>
 
             {/* Intro – bold lead */}
