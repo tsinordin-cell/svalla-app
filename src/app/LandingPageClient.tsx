@@ -515,6 +515,7 @@ const LANDING_HTML = `
  <a href="/bohuslan" class="nav-dd-link">Bohuslän</a>
  <a href="/gotland" class="nav-dd-link">Gotland</a>
  <a href="/aland" class="nav-dd-link">Åland</a>
+ <a href="/oland" class="nav-dd-link">Öland</a>
  <a href="/blekinge-skargard" class="nav-dd-link">Blekinges skärgård</a>
  <a href="/vasterhav" class="nav-dd-link">Västerhavet</a>
  <a href="/hoga-kusten" class="nav-dd-link">Höga Kusten</a>
@@ -639,6 +640,7 @@ const LANDING_HTML = `
  <a href="/bohuslan" class="mob-acc-link">Bohuslän</a>
  <a href="/gotland" class="mob-acc-link">Gotland</a>
  <a href="/aland" class="mob-acc-link">Åland</a>
+ <a href="/oland" class="mob-acc-link">Öland</a>
  <a href="/blekinge-skargard" class="mob-acc-link">Blekinges skärgård</a>
  <a href="/vasterhav" class="mob-acc-link">Västerhavet</a>
  <a href="/hoga-kusten" class="mob-acc-link">Höga Kusten</a>
@@ -1494,6 +1496,7 @@ function toggleFaq(btn){
  <li><a href="/bohuslan">Bohuslän</a></li>
  <li><a href="/gotland">Gotland</a></li>
  <li><a href="/aland">Åland</a></li>
+ <li><a href="/oland">Öland</a></li>
  <li><a href="/blekinge-skargard">Blekinges skärgård</a></li>
  <li><a href="/vasterhav">Västerhavet</a></li>
  <li><a href="/malaren">Mälaren</a></li>
