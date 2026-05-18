@@ -142,6 +142,16 @@ export default function BlekingeSkargardPage() {
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+ Ta dig dit — kollektivtrafik
+ </h2>
+ <p>
+ <strong>Till Karlskrona</strong> med tåg: SJ och Öresundståg trafikerar Stockholm–Karlskrona, restid ca 4,5 timmar. Karlskrona C ligger centralt i staden nära gästhamnen.
+ </p>
+ <p>
+ <strong>Lokalt i skärgården</strong>: Blekingetrafiken kör pendelbåtar från Trossö (centrala Karlskrona) till öarna Sturkö, Hasslö och Trummenäs. Till Hanö: Blekingetrafikens båt från Nogersund (Sölvesborgs kommun) sommartid — du behöver alltså ingen egen båt för att besöka Hanö.
+ </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Karlskrona — marinstadens gästhamn
  </h2>
  <p>

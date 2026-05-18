@@ -153,6 +153,16 @@ export default function GoteborgSkargardPage() {
         deeperContent={
           <>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+              Ta dig dit — kollektivtrafik
+            </h2>
+            <p>
+              <strong>Södra skärgården</strong>: Spårvagn linje 11 till Saltholmen (slutstation). Därifrån avgår <strong>linje 281</strong> (Saltholmen–Vrångö via Donsö) och <strong>linje 282</strong> (Saltholmen–Styrsö/Brännö). Båtarna avgår även från Stenpiren i city — längre restid men mer centralt. Samma Västtrafik-biljett gäller på spårvagn och båt.
+            </p>
+            <p>
+              <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i biljetten) till ön. Bil är förbjuden på Marstrandsön.
+            </p>
+
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Marstrand — Bohusläns seglarstad
             </h2>
             <p>

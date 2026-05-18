@@ -229,6 +229,16 @@ export default function StockholmsSkargardPage() {
  <p>
  Majoriteten av restaurangerna i skärgården öppnar runt midsommar och stänger i slutet av augusti — samma årstid då sommarstugor fylls och segellingarna blomstrar. <strong>Fjäderholmarna</strong> är ett undantag och håller öppet längre än de flesta andra, ofta från våren och långt in på hösten. För de senaste öppettiderna och några restaurangers specialöppningar under hösten, kollar du bäst på Svalla eller att ringa i förväg.
  </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '28px 0 12px' }}>
+ Ta dig dit — kollektivtrafik
+ </h2>
+ <p>
+ <strong>Till Fjäderholmarna</strong> avgår båtar med både Strömma (Cinderella) och <strong>Waxholmsbolaget</strong> från Slussen, ca 25 min. Waxholmsbolagets tur ingår i SL-kortet — ett billigare alternativ för den som redan har månadskort.
+ </p>
+ <p>
+ <strong>Till Utö</strong> tar du Waxholmsbolaget från Nynäshamn, ca 1h15–1h30. Nynäshamn nås med <strong>pendeltåg linje 36</strong> från Stockholm Central, ca 1 timme.
+ </p>
  </>
  }
  cta={{ label: 'Skapa gratis konto', href: '/logga-in' }}

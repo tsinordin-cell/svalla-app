@@ -144,6 +144,16 @@ export default function BohuslanPage() {
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+ Ta dig dit — kollektivtrafik
+ </h2>
+ <p>
+ <strong>Till Marstrand</strong>: Västtrafik buss 302 eller 312 från Göteborgs centralstation till Koön (~1h), sedan Marstrandsfärjan (ingår i Västtrafik-biljetten) till ön. Bil är förbjuden på Marstrandsön.
+ </p>
+ <p>
+ <strong>Till Smögen/Kungshamn</strong>: Västtrafik buss 870 eller 871 från Uddevalla. <strong>Till Fjällbacka och Hamburgsund</strong>: Västtrafik buss 875. <strong>Till Grebbestad</strong>: buss 875 eller 878 från Tanumshede. <strong>Till Strömstad</strong>: tåg från Göteborg ca 1,5h (SJ/Västtrafik), sedan lokalbuss till skärgården.
+ </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Södra Bohuslän — från Göteborg norrut
  </h2>
  <p>

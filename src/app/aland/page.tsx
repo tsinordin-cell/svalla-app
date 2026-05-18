@@ -173,6 +173,16 @@ export default function AlandPage() {
  </a>
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+ Ta dig dit — kollektivtrafik
+ </h2>
+ <p>
+ Åland nås utan bil på två sätt. <strong>Eckerö Linjen</strong> trafikerar Grisslehamn–Eckerö dagligen, ca 2 timmar, från ~100 kr/person — ett av Östersjöns billigaste färjealternativ. Anslutningsbuss avgår från Stockholm (Cityterminalen) i samband med varje avgång, så du behöver ingen bil för att nå hamnen. Biljett bokas på <a href="https://www.eckerolinjen.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>eckerolinjen.se</a>.
+ </p>
+ <p>
+ <strong>Viking Line</strong> trafikerar Stockholm (Stadsgården)–Mariehamn, ca 5–6 timmar. Avgår kvällstid och anländer på morgonen — fungerar utmärkt som transport även utan kryssningspaket. Boka på <a href="https://www.vikingline.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal, #1e5c82)' }}>vikingline.se</a>.
+ </p>
+
+ <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Passagen från Sverige till Åland
  </h2>
  <p>

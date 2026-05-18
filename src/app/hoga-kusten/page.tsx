@@ -142,6 +142,16 @@ export default function HogaKustenPage() {
         deeperContent={
           <>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
+              Ta dig dit — kollektivtrafik
+            </h2>
+            <p>
+              <strong>Till Härnösand</strong>: SJ och Norrtåg trafikerar Stockholm–Härnösand, ca 4,5–5 timmar. Till <strong>Kramfors</strong> och <strong>Örnsköldsvik</strong>: Norrtåg. Expressbuss: <strong>Y-buss</strong> kör Stockholm–Härnösand–Kramfors–Örnsköldsvik direkt. Lokaltrafik på land sköts av <strong>Din Tur</strong> (dintur.se).
+            </p>
+            <p>
+              <strong>Till Ulvön utan egen båt</strong>: passagerarbåtar avgår sommartid från Docksta och Kramfors-sidan till Ulvöhamn — du behöver alltså ingen segelbåt för att besöka Höga Kustens pärlö.
+            </p>
+
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Ulvön — surströmmingstraditionen och nordens pärla
             </h2>
             <p>
