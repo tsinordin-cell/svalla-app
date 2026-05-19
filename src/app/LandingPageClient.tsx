@@ -577,10 +577,10 @@ const LANDING_HTML = `
  <div class="nav-dd-panel"><div class="nav-dd-inner">
  <a href="/boende" class="nav-dd-link">Allt boende</a>
  <div class="nav-dd-divider"></div>
- <a href="/boende?typ=stugor" class="nav-dd-link">Stugor &amp; stugbyar</a>
- <a href="/boende?typ=hotell" class="nav-dd-link">Hotell &amp; vandrarhem</a>
- <a href="/boende?typ=camping" class="nav-dd-link">Camping &amp; tält</a>
- <a href="/boende?typ=bnb" class="nav-dd-link">B&amp;B</a>
+ <a href="/boende/stugor-stugbyar" class="nav-dd-link">Stugor &amp; stugbyar</a>
+ <a href="/boende/hotell-vandrarhem" class="nav-dd-link">Hotell &amp; vandrarhem</a>
+ <a href="/boende/camping-talt" class="nav-dd-link">Camping &amp; tält</a>
+ <a href="/boende/bb" class="nav-dd-link">B&amp;B</a>
  <div class="nav-dd-divider"></div>
  <a href="/hamnar-och-bryggor" class="nav-dd-link">Gästhamnar</a>
  <a href="/farjor" class="nav-dd-link">Färjetider</a>
@@ -692,10 +692,10 @@ const LANDING_HTML = `
  <button class="mob-acc-head">Boende<span class="mob-acc-chev">›</span></button>
  <div class="mob-acc-body">
  <a href="/boende" class="mob-acc-link">Allt boende</a>
- <a href="/boende?typ=stugor" class="mob-acc-link">Stugor &amp; stugbyar</a>
- <a href="/boende?typ=hotell" class="mob-acc-link">Hotell &amp; vandrarhem</a>
- <a href="/boende?typ=camping" class="mob-acc-link">Camping &amp; tält</a>
- <a href="/boende?typ=bnb" class="mob-acc-link">B&amp;B</a>
+ <a href="/boende/stugor-stugbyar" class="mob-acc-link">Stugor &amp; stugbyar</a>
+ <a href="/boende/hotell-vandrarhem" class="mob-acc-link">Hotell &amp; vandrarhem</a>
+ <a href="/boende/camping-talt" class="mob-acc-link">Camping &amp; tält</a>
+ <a href="/boende/bb" class="mob-acc-link">B&amp;B</a>
  <a href="/hamnar-och-bryggor" class="mob-acc-link">Gästhamnar</a>
  <a href="/farjor" class="mob-acc-link">Färjetider</a>
  </div>
