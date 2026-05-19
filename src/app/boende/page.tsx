@@ -1,5 +1,15 @@
 import type { Metadata } from 'next'
+import { redirect } from 'next/navigation'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+
+// Redirectar gamla ?typ=-URLer till de nya SEO-sidorna
+const TYP_REDIRECT: Record<string, string> = {
+  stugor: '/boende/stugor-stugbyar',
+  hotell: '/boende/hotell-vandrarhem',
+  camping: '/boende/camping-talt',
+  bnb: '/boende/bb',
+  bb: '/boende/bb',
+}
 
 export const metadata: Metadata = {
   title: 'Boende i Stockholms skärgård — Svalla',
@@ -25,31 +35,31 @@ const ITEMS: LandingItem[] = [
     icon: '🏨',
     title: 'Skärgårdshotell',
     description: 'Klassiska hotell och värdshus i fd lotsstationer och pensionat — Sandhamn, Utö, Vaxholm, Grinda.',
-    href: '/platser?kategori=hotell',
+    href: '/boende/hotell-vandrarhem',
   },
   {
     icon: '🏡',
     title: 'Stugor & hus',
     description: 'Hyr hela stugan — allt från enkla sommarstugor till moderna arkitektvillor med bastu och brygga.',
-    href: '/platser?kategori=stuga',
+    href: '/boende/stugor-stugbyar',
   },
   {
     icon: 'bed',
     title: 'Vandrarhem & hostel',
     description: 'Budgetalternativ i Stavsnäs, Finnhamn, Möja och andra noder. Ofta självhushåll med delat kök.',
-    href: '/platser?kategori=vandrarhem',
+    href: '/boende/hotell-vandrarhem',
   },
   {
     icon: 'pin',
     title: 'Camping',
     description: 'Campingplatser med el och dusch, samt tältning på allemansrätt — vilka öar som tillåter vadå.',
-    href: '/platser?kategori=camping',
+    href: '/boende/camping-talt',
   },
   {
     icon: '☕',
     title: 'B&B och pensionat',
     description: 'Familjedrivet boende med frukost — ofta det bästa sättet att möta lokalbefolkningen.',
-    href: '/platser?kategori=bnb',
+    href: '/boende/bb',
   },
   {
     icon: '',
@@ -59,7 +69,16 @@ const ITEMS: LandingItem[] = [
   },
 ]
 
-export default function BoendePage() {
+export default async function BoendePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ typ?: string }>
+}) {
+  const { typ } = await searchParams
+  if (typ && TYP_REDIRECT[typ]) {
+    redirect(TYP_REDIRECT[typ])
+  }
+
   return (
     <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
@@ -91,7 +110,7 @@ export default function BoendePage() {
             När bör man boka?
           </h2>
           <p>
-            Juli och midsommarhelgen bokar ut sig redan i januari på de mest eftertraktade ställena — <em>Sandhamn Seglarhotell, Utö Värdshus, Fjäderholmarnas Krog</em>. För juni eller september bokas det oftast 1–2 månader i förväg. Off-season (okt–april) är nästan alltid möjligt med några dagars varsel — och många ställen har då låga veckopriser.
+            Juli och midsommarhelgen bokar ut sig redan i januari på de mest eftertraktade ställena — <em>Sandhamn Seglarhotell, Utö Värdshus, Grinda Wärdshus</em>. För juni eller september bokas det oftast 1–2 månader i förväg. Off-season (okt–april) är nästan alltid möjligt med några dagars varsel — och många ställen har då låga veckopriser.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Tänk på färjeturen
