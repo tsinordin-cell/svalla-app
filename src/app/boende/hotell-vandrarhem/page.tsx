@@ -92,7 +92,7 @@ export default function HotellPage() {
             Vandrarhem — det billigaste sättet att sova ute
           </h2>
           <p>
-            STF driver vandrarhem på Finnhamn, Möja och Arholma. Priserna börjar kring 300–450 kr/natt i sovsal, 700–1 000 kr för eget rum. Självhushåll med gemensamt kök. Perfekt för den som vill ha ett basläger och spendera dagarna ute på ön. Boka i förväg — speciellt Finnhamn och Arholma är populära.
+            STF driver vandrarhem på Finnhamn, Möja och Svartsö. Priserna börjar kring 300–500 kr/natt i delat rum, 800–1 200 kr för eget rum. Självhushåll med gemensamt kök. Perfekt för den som vill ha ett basläger och spendera dagarna ute på ön. Boka i förväg — Finnhamn är ett av de populäraste alternativen.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Tips för spontan övernattning
