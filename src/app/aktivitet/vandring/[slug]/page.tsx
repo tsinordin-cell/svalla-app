@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import { HIKES, REGIONS, type Hike } from '../hike-data'
+import { HIKE_DESCRIPTIONS } from '../hike-descriptions'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -82,6 +83,7 @@ export default async function VandringHikePage({ params }: Props) {
 
   const region = REGIONS.find(r => r.id === hike.region)
   const regionLabel = REGION_LABEL[hike.region] ?? hike.region
+  const desc = HIKE_DESCRIPTIONS[hike.slug]
 
   // Nearby hikes in same region
   const nearby = HIKES.filter(h => h.region === hike.region && h.slug !== hike.slug).slice(0, 5)
@@ -192,6 +194,52 @@ export default async function VandringHikePage({ params }: Props) {
             <Tag icon="👨‍👩‍👧" label="Barnvänligt" active={hike.suitableForChildren} />
             <Tag icon="🐕" label="Hundvänligt" active={hike.suitableForDogs} />
           </div>
+
+          {/* Description */}
+          {desc?.body && (
+            <section style={{
+              background: 'var(--white)', border: '1px solid var(--surface-3)',
+              borderRadius: 14, padding: '20px 22px', marginBottom: 20,
+            }}>
+              <h2 style={{
+                fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px',
+                fontFamily: "'Playfair Display', Georgia, serif",
+              }}>
+                Om vandringen
+              </h2>
+              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.7, margin: 0 }}>
+                {desc.body}
+              </p>
+            </section>
+          )}
+
+          {/* Tips */}
+          {desc?.tips && desc.tips.length > 0 && (
+            <section style={{
+              background: '#f0f9ff', border: '1px solid #bae6fd',
+              borderRadius: 14, padding: '20px 22px', marginBottom: 20,
+            }}>
+              <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
+                Tips inför vandringen
+              </h2>
+              <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 8 }}>
+                {desc.tips.map((tip, i) => (
+                  <li key={i} style={{ display: 'flex', gap: 10, fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6 }}>
+                    <span style={{
+                      flexShrink: 0, marginTop: 3,
+                      width: 18, height: 18, borderRadius: 999,
+                      background: 'var(--sea)', color: '#fff',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: 10, fontWeight: 700,
+                    }}>
+                      {i + 1}
+                    </span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Transport */}
           <section style={{
