@@ -11,7 +11,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   uto: {
     body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor från 1700-talet, en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön — allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus.',
     tips: [
-      'Pendeltåg linje 36 till Nynäshamn, sedan pendelbåt — ingen bil krävs.',
+      'Pendeltåg linje 43 till Nynäshamn, sedan pendelbåt — ingen bil krävs.',
       'Boka bord på Utö Värdshus i förväg under juni–augusti.',
       'Gruvorna är markerade längs leden — ta en paus och läs skyltarna.',
       'Bönsäckan-stranden är ett bra badbetapp halvvägs.',
@@ -21,7 +21,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   finnhamn: {
     body: 'Finnhamn i mellersta skärgården är den ö folk rekommenderar för vänner som aldrig vandrat i skärgården. De 4 km är välmarkerade, stigarna är tydliga och utsikten mot omgivande öar är svår att slå. STF-vandrarhemskaféet gör att du kan ta det lugnt med lunch utan att behöva planera matsäck.',
     tips: [
-      'Waxholmsbolaget linje 3 från Strömkajen — räkna med 2 timmars båtresa.',
+      'Waxholmsbolaget linje 10 från Strömkajen — räkna med 2 timmars båtresa.',
       'Klippbadet på öns södra sida passar utmärkt som avslutning.',
       'Hundar är välkomna — kolla STF:s regler för vandrarhemsområdet.',
     ],
@@ -39,7 +39,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   sandhamn: {
     body: 'Sandhamn i yttre skärgården är lika mycket en plats som en vandring. Rundan runt ön (~5 km) bjuder på färgglada fiskebyggnader, Trouvillestranden och miljöer som inte förändrats sedan segelns guldålder. Avsluta med middag på Sandhamns Värdshus för en dag som sitter kvar länge.',
     tips: [
-      'Waxholmsbolaget linje 5 från Strömkajen (~2h30).',
+      'Waxholmsbolaget linje 12 från Strömkajen (~2h30).',
       'Undvik midsommar och första julihelen — ön är då fullpackad.',
       'Trouvillestranden är populär — ta en tidig morgonpromenad dit.',
     ],
@@ -131,7 +131,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   marstrand: {
     body: 'Marstrand är en bilfri ö med Carlstens fästning som dominerande landmärke och en av Bohusläns mest välbevarade stadsmiljöer. Rundan runt ön (~3 km) kombinerar fästningshistoria med havsvy och en av de bästa matscenerna i regionen. Nås enkelt med buss och färja.',
     tips: [
-      'Buss 302/312 från Göteborg C → Koön, sedan Marstrandsfärjan (ingår i Västtrafik-biljetten).',
+      'Buss 302 mot Ytterby, sedan tåg in till Göteborg — eller ta Marstrandsexpressen direkt. Marstrandsfärjan ingår i Västtrafik-biljetten.',
       'Boka bord på restaurang i god tid under midsommar och regattaveckor.',
       'Fästningen kan besökas med guidade turer sommartid.',
     ],
@@ -140,7 +140,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'vrango-bohuslan': {
     body: 'Vrångö i södra Göteborgs skärgård är ett bilfritt naturreservat med råa klippor som möter Västerhavet direkt. De 4 km är korta men intensiva — strandklippor, havsstrimma och marin natur i varje steg. En av de bäst tillgängliga vilda öarna i Sverige.',
     tips: [
-      'Spårvagn linje 11 → Saltholmen, sedan båt linje 281/282.',
+      'Spårvagn linje 11 → Saltholmen, sedan båt linje 281.',
       'Klipporna på öns västra sida är fantastiska vid solnedgång.',
       'Ingen servering på ön — ta med mat och vatten.',
     ],
@@ -185,7 +185,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   smogen: {
     body: 'Smögens välkända brygga är utgångspunkten för en kort vandring (~3 km) längs klippor med Västerhavets dramatiska ljus. Välbesökt men med god anledning — utsikten och den bohuslänskaffekultur som väntar i byn rättfärdigar trängsel.',
     tips: [
-      'Buss 870/871 från Göteborg (~2h) eller bil.',
+      'Buss 861 från Göteborg Nils Ericsonterminalen (~2h) eller bil.',
       'Bryggan är störst under midsommar och juli — kom tidigt.',
       'Havsbadsanläggningen Smögens Hafvsbad är ett välkänt stopp.',
     ],
@@ -305,7 +305,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   lummelunda: {
     body: 'Lummelundagrottorna norr om Visby är en av Gotlands bästa upplevelser och kombineras naturligt med en kort promenad i omgivande naturmark. Grottorna sträcker sig kilometerlångt under marken och guidning ingår i entréavgiften. Perfekt för barn och för kalla eller regniga dagar.',
     tips: [
-      'Buss 21 från Visby (~30 min).',
+      'Buss 61 från Visby (~30 min).',
       'Boka entré i förväg under högsommar.',
       'Ta med ett lager extra — grottan håller ca 8°C oavsett utomhustemperatur.',
     ],
@@ -341,7 +341,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'hellvi-gotland': {
     body: 'Hellvi på norra Gotland är en lugn och välmarkerad kustsida med bra badmöjligheter och enkel tillgänglighet från Visby med buss. Landsbygdskaraktären och det stilla kustlandskapet gör den till en bra halvdag utan turistträngsel.',
     tips: [
-      'Buss 22 från Visby (~1h).',
+      'Buss från Visby norrut (~1h) — kontrollera aktuell linje på gotlandskollektivtrafik.se.',
       'Hellvi kyrka är en av Gotlands välbevarade medeltidskyrkor.',
     ],
   },
@@ -358,7 +358,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'gnisvard-gotland': {
     body: 'Gnisvärd söder om Visby är känt för sina kittade sten och raukar längs Gotlands västkust. Den korta vandringen (~3 km) kombineras naturligt med ett kaféstopp i byn och är lätt att nå med cykel från Visby.',
     tips: [
-      'Buss 21 från Visby (~30 min) eller cykel.',
+      'Buss från Visby söderut (~30 min) eller cykel — kontrollera linje på gotlandskollektivtrafik.se.',
       'Gnisvärd har ett välkänt café.',
       'Solnedgången över havet är fantastisk härifrån.',
     ],
@@ -690,7 +690,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   'falsterbo-skane': {
     body: 'Falsterbo halvö i sydvästra Skåne är en av Europas viktigaste fågelstationer under höstmigration. Vandringen längs strandlinjen kombineras naturligt med ett besök vid fågelstationen för den som är intresserad av natur.',
     tips: [
-      'Pendeltåg från Malmö → Falsterbo (~45 min).',
+      'Buss från Malmö (~50 min) — linje 100 eller SkåneExpressen 15.',
       'Bäst under september–oktober för fågelskådning.',
       'Ljunghusen och Skanör är charmiga byar längs halvön.',
     ],
