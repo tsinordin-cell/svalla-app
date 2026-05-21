@@ -100,6 +100,24 @@ export default function StugorPage() {
           <p>
             <strong>Utö</strong> har ett av de mest varierade utbuden — allt från enkla rum till hela gårdar nära gruvstigarna. <strong>Grinda</strong> passar barnfamiljer med välvårdade stugor nära sandstranden. <strong>Möja</strong> är bra för den som vill ha ett autentiskt skärgårdsboende på en levande ö. <strong>Nåttarö</strong> och <strong>Arholma</strong> passar den som söker lugn och lite mer vildmark.
           </p>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
+            Sök och boka stuga direkt
+          </h2>
+          <p style={{ margin: '0 0 14px' }}>
+            Hitta och boka stugor hos de stora plattformarna. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+          </p>
+          {/* Airbnb: lägg till ?s_af=AFFILIATE_TOKEN | Stugknuten: kontakta dem för partnerkod */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <a href="https://www.airbnb.com/s/Stockholms-sk%C3%A4rg%C3%A5rd/homes" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Airbnb — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.stugknuten.se/hyra-stuga/stockholms-skargard/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Stugknuten — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Stockholms+sk%C3%A4rg%C3%A5rd" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,92,130,0.06)', border: '1px solid rgba(30,92,130,0.18)', color: '#1e5c82', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+          </div>
         </>
       }
       cta={{
