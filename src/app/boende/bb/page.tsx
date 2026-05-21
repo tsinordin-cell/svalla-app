@@ -28,8 +28,8 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏡',
     title: 'B&B för par och weekend',
-    description: 'En lugn helg med frukost serverad på verandan och havet utanför fönstret. Marstrand, Möja och Vaxholm har välkända B&B-alternativ för parresor.',
-    href: '/o/marstrand',
+    description: 'En lugn helg med frukost serverad på verandan och havet utanför fönstret. Möja, Vaxholm och Ljusterö har välkända B&B-alternativ för parresor.',
+    href: '/o/moja',
   },
   {
     icon: '🏛',
@@ -100,6 +100,21 @@ export default function BBPage() {
           <p>
             Många B&B i skärgården tar inte kortbetalning — fråga i förväg. Avbokning är ofta strängare än på hotell; det är vanligt med full betalning vid bokning under högsäsong. Kolla alltid om frukost verkligen ingår och om det finns parkering eller om du måste ta sig ut med färja.
           </p>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
+            Sök B&amp;B och pensionat direkt
+          </h2>
+          <p style={{ margin: '0 0 14px' }}>
+            Hitta personliga boenden med frukost i skärgården. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+          </p>
+          {/* Booking.com: lägg till &aid=AFFILIATE_ID | Airbnb: lägg till ?s_af=AFFILIATE_TOKEN */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Stockholms+sk%C3%A4rg%C3%A5rd&nflt=ht_id%3D21" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(92,58,30,0.06)', border: '1px solid rgba(92,58,30,0.18)', color: '#5c3a1e', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — B&amp;B i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.airbnb.com/s/Stockholms-sk%C3%A4rg%C3%A5rd/homes" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(92,58,30,0.06)', border: '1px solid rgba(92,58,30,0.18)', color: '#5c3a1e', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Airbnb — Stockholms skärgård</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+          </div>
         </>
       }
       cta={{
