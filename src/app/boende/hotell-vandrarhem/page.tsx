@@ -100,6 +100,30 @@ export default function HotellPage() {
           <p>
             September och maj är de bästa månaderna för spontana hotellbokningar — säsongen är lång nog för bra upplevelser men kortsäsongspriserna gäller fortfarande. Vaxholm och Sandhamn har boenden som tar emot gäster med kort varsel, medan de mer avlägsna öarna kräver bokning.
           </p>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
+            Sök och boka direkt
+          </h2>
+          <p style={{ margin: '0 0 14px' }}>
+            Jämför lediga rum och priser hos de stora bokningssajterna. Affiliate-samarbeten är på gång — klickar du nu går du direkt till sökningen.
+          </p>
+          {/* Booking.com: lägg till &aid=AFFILIATE_ID i URL:en när partnerkonto är aktivt */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Sandhamn" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — Sandhamn</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Ut%C3%B6" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — Utö</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Vaxholm" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — Vaxholm</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.booking.com/searchresults.sv.html?ss=Grinda" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Booking.com — Grinda</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.stfturisten.se/sv/hitta/vandrarhem/" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(30,78,122,0.06)', border: '1px solid rgba(30,78,122,0.18)', color: '#1e4e7a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>STF Turisten — Vandrarhem i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+          </div>
         </>
       }
       cta={{
