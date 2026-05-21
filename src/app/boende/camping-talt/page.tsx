@@ -98,7 +98,7 @@ export default function CampingPage() {
             Campingplatser med service
           </h2>
           <p>
-            Vill du ha el, dusch och toaletter finns det etablerade campingplatser på bland annat <strong>Utö</strong>, <strong>Arholma</strong> och <strong>Böda camping</strong> på Öland. Dessa bokas i förväg under sommaren — speciellt midsommar och tredje veckan i juli är fullbokade tidigt.
+            Vill du ha el, dusch och toaletter finns det etablerade campingplatser på bland annat <strong>Utö</strong>, <strong>Arholma</strong> och <strong>Nåttarö</strong>. Dessa bokas i förväg under sommaren — speciellt midsommar och tredje veckan i juli är fullbokade tidigt.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Packlista för tältning i skärgård
@@ -106,6 +106,20 @@ export default function CampingPage() {
           <p>
             Ta med alla ärenden: vatten för minst en dag (vattenkällor på öar är begränsade), sopor hem (ingenstans att lämna dem), sovsäck anpassad för 8–12°C nätter även i juli, och vattentät tältduk. En gasbrännare är att föredra framför öppen eld — eldningsförbud gäller ofta under torr sommar.
           </p>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
+            Hitta campingplatser
+          </h2>
+          <p style={{ margin: '0 0 14px' }}>
+            Sök efter campingplatser med service i Stockholms skärgård hos dessa sajter:
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <a href="https://www.camping.se/campingar/?region=stockholms-lan" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(26,92,58,0.06)', border: '1px solid rgba(26,92,58,0.18)', color: '#1a5c3a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>camping.se — Stockholms län</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+            <a href="https://www.naturkartan.se/sv" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 10, background: 'rgba(26,92,58,0.06)', border: '1px solid rgba(26,92,58,0.18)', color: '#1a5c3a', fontSize: 14, fontWeight: 600, textDecoration: 'none' }}>
+              <span>Naturkartan — friluftsplatser i skärgården</span><span style={{ opacity: 0.55 }}>↗</span>
+            </a>
+          </div>
         </>
       }
       cta={{
