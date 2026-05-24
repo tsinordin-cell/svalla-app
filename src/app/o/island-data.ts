@@ -8,6 +8,10 @@ export type IslandAccommodation = {
   name: string
   type: 'Hotell' | 'Vandrarhem' | 'Stugor' | 'Camping' | 'B&B' | 'Gästhamn' | 'Pensionat'
   desc: string
+  /** Boknings-URL — visas som "Boka →" på boende-undersidan */
+  bookingUrl?: string
+  /** Hemsida — visas som "Hemsida →" */
+  websiteUrl?: string
 }
 
 export type IslandTransport = {
@@ -63,6 +67,8 @@ export type Island = {
   tips: string[]
   related: string[]
   tags: string[]
+  /** 2–3 meningar om boendeutbudet på denna specifika ö — visas på /o/[slug]/boende */
+  accommodationIntro?: string
   did_you_know?: string
 }
 
@@ -95,10 +101,11 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgårdens vatten erbjuder utmärkt fiske. Havsöring och makrill är vanliga.' },
       { icon: '🛶', name: 'Kajak & SUP', desc: 'Uthyrning finns vid hamnen. Paddla runt ön eller ut mot de omgivande grunden.' },
     ],
+    accommodationIntro: 'Sandhamn har ett koncentrerat och välkvalitativt boendeutbud kring hamnen. Seglarhotellet är flaggskeppet och håller öppet hela året med modernt spa — boka månader i förväg inför juli och Gotland Runt-helgen. Sandhamns Värdshus och Sands Hotell ger kompletterande alternativ med mer personlig prägel.',
     accommodation: [
-      { name: 'Seglarhotellet', type: 'Hotell', desc: 'Det ikoniska hotellet vid hamnen — modernt spa, utsiktsrum och öppet helår. Boka långt i förväg.' },
-      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Boende i historisk miljö med frukost. Öppet hela sommaren.' },
-      { name: 'Sands Hotell', type: 'Hotell', desc: 'Modernt lägenhetshotell med hotellservice. Öppet året om.' },
+      { name: 'Seglarhotellet', type: 'Hotell', desc: 'Det ikoniska hotellet vid hamnen — modernt spa, utsiktsrum och öppet helår. Boka långt i förväg.', websiteUrl: 'https://www.sandhamn.com' },
+      { name: 'Sandhamns Värdshus', type: 'B&B', desc: 'Boende i historisk miljö med frukost. Öppet hela sommaren.', websiteUrl: 'https://sandhamns-vardshus.se' },
+      { name: 'Sands Hotell', type: 'Hotell', desc: 'Modernt lägenhetshotell med hotellservice nära hamnen. Öppet året om.', websiteUrl: 'https://www.sandhamn.com' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '2,5 h', desc: 'Klassikalternativet — ta med sig mat och njut av resan.', icon: '⛴' },
@@ -154,10 +161,11 @@ export const ISLANDS: Island[] = [
       { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns södra del med välmarkerade leder och vacker urbergslandskap.' },
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
     ],
+    accommodationIntro: 'Utö erbjuder skärgårdens bredaste boendeutbud utanför de mer centrala öarna — från välrenommerade Utö Värdshus med spa, restaurang och havsutsikt till stugor och campingplatser i naturreservat. Ön passar allt från par på weekend till barnfamiljer med tält.',
     accommodation: [
-      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Välkänt värdshus med restaurang, spa och havsutsikt. Öppet hela året.' },
-      { name: 'Utö Camping & Stugor', type: 'Camping', desc: 'Tältplats och stugor i naturreservat. Bokningsbart online.' },
-      { name: 'STF Vandrarhem', type: 'Vandrarhem', desc: 'Enkelt och prisvärt boende för den budgetmedvetna skärgårdsresenären.' },
+      { name: 'Utö Värdshus', type: 'Hotell', desc: 'Välkänt värdshus med restaurang, spa och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.utovardshus.se', bookingUrl: 'https://www.utovardshus.se/boka/' },
+      { name: 'Utö Camping & Stugor', type: 'Camping', desc: 'Tältplats och stugor i naturreservat. Bokningsbart online.', websiteUrl: 'https://www.uto.se' },
+      { name: 'Vandrarhem Utö', type: 'Vandrarhem', desc: 'Enkelt och prisvärt boende för den budgetmedvetna resenären. Fråga vid hamnen om tillgänglighet.' },
     ],
     getting_there: [
       { method: 'Skärgårdsbåt', from: 'Årsta brygga, Nynäshamn', time: '1,5 h', desc: 'Waxholmsbolagets skärgårdslinje från Årsta brygga i Nynäshamn (kommunal- och SL-kort gäller ej — separat biljett).', icon: '⛴' },
@@ -210,10 +218,11 @@ export const ISLANDS: Island[] = [
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Perfekt utgångspunkt för kajakpaddling mot Resarö, Rindö och Tenö.' },
       { icon: '🚢', name: 'Båtutflykter', desc: 'Ta Waxholmsbåten vidare ut i skärgården — Grinda, Finnhamn och Sandhamn är alla tillgängliga.' },
     ],
+    accommodationIntro: 'Vaxholm har skärgårdens mest tillgängliga boendeutbud — det historiska Waxholms Hotell vid hamnen nås med bil, buss och direktbåt från Stockholm. Till skillnad från de yttre öarna kan man boka med relativt kort varsel och checka in utan att logistiken behöver planeras i förväg.',
     accommodation: [
-      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell precis vid hamnen. Bra matsal och havsutsikt.' },
-      { name: 'Vaxholm Harbour B&B', type: 'B&B', desc: 'Mysiga rum i stadskärnan nära hamnen.' },
-      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor, perfekt för familjer. Går att nå med bil.' },
+      { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell precis vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
+      { name: 'B&B i Vaxholm', type: 'B&B', desc: 'Mindre B&B och pensionat i stadskärnan. Sök på Booking.com eller Airbnb för aktuella alternativ och lediga rum.' },
+      { name: 'Waxholms Camping', type: 'Camping', desc: 'Campingplats med stugor, perfekt för barnfamiljer som kör till Vaxholm. Nås enkelt med bil.' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '75 min', desc: 'Direktlinje med Waxholmsbolaget. Ingår i SL-kort.', icon: '⛴' },
@@ -266,10 +275,11 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Segling', desc: 'Grinda Gästhamn är ett klassiskt stopp på Sandhamnsleden. Välutrustad med full service.' },
       { icon: '🌅', name: 'Solnedgångspromenaden', desc: 'Promenera till öns västra sida på kvällen för en av skärgårdens bästa solnedgångar.' },
     ],
+    accommodationIntro: 'Grinda Wärdshus driver öns hela boende och håller hög standard i alla kategorier — hotellrum med frukost i fyra hus, enkla Sea Lodge-stugor nära vattnet och en campingplats för friluftsentusiaster. Wärdshuset håller öppet maj–september och tar emot gäster utan bil.',
     accommodation: [
-      { name: 'Grinda Wärdshus Hotell', type: 'Hotell', desc: 'Hotellrum i fyra hus nära wärdshuset. Frukost ingår.' },
-      { name: 'Grinda Sea Lodge', type: 'Stugor', desc: 'Enkelt och prisvärt boende vid vattnet.' },
-      { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplats på ön. Inga förhandsbokning — kom som du är.' },
+      { name: 'Grinda Wärdshus Hotell', type: 'Hotell', desc: 'Hotellrum i fyra hus nära wärdshuset. Frukost ingår. Boka i förväg sommartid.', websiteUrl: 'https://grinda.se' },
+      { name: 'Grinda Sea Lodge', type: 'Stugor', desc: 'Enkelt och prisvärt boende vid vattnet. Självhushåll med gemensamt kök.', websiteUrl: 'https://grinda.se' },
+      { name: 'Grinda Camping', type: 'Camping', desc: 'Tältplats på ön i naturskön miljö. Ingen förbokning krävs — kom som du är.' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h', desc: 'Direktlinje. Ingår i SL-kort.', icon: '⛴' },
@@ -375,8 +385,10 @@ export const ISLANDS: Island[] = [
       { icon: '🎣', name: 'Fiske', desc: 'Utmärkt fiskevatten runt ön. Abborre och gädda i vikarna, havsöring utanför.' },
       { icon: '🛶', name: 'Kajak', desc: 'Paddla runt öns södra sida mot Gällnö och Svartsö.' },
     ],
+    accommodationIntro: 'Möjas boende är mer sporadiskt och lokalt organiserat än på de mer turistade öarna — uthyrning sker delvis via lokalbor och digitala plattformar snarare än via hotellkomplex. Det är en del av charmen: du bor genuint, nära det verkliga ölivet och de fastboende som gör Möja till vad det är.',
     accommodation: [
-      { name: 'Möja Logi', type: 'Stugor', desc: 'Enkla stugor och rum hos lokalbor. Fråga på Hamnbaren.' },
+      { name: 'Möja Logi', type: 'Stugor', desc: 'Enkla stugor och rum hos lokalbor. Fråga på Hamnbaren eller lanthandeln om aktuellt utbud och tillgänglighet.' },
+      { name: 'Privat stuguthyrning', type: 'Stugor', desc: 'Flera privatpersoner hyr ut sommarstugor på Möja via Airbnb och liknande plattformar. Boka i god tid inför sommarsäsongen.' },
     ],
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '~1 h', desc: 'Linje från Stavsnäs vinterhamn — flera bryggor på Möja, bland annat Berg, Ramsmora och Långvik.', icon: '⛴' },
