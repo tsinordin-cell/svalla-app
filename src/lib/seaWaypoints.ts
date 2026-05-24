@@ -742,10 +742,11 @@ export { SEA_DATA_VERSION, SEA_DATA_SOURCE } from './seaWaypoints-meta'
 //   - 30 083 färjelinje-noder (varje edge = validerat vattenfarbar)
 //
 // Server-side only — JSON är ~9 MB totalt och får ALDRIG bundlas i klient.
-// Lazy-laddas via fs.readFileSync vid första anrop för att undvika att
-// Next.js försöker bunta in dem vid build-tid.
-import * as fs from 'node:fs'
-import * as path from 'node:path'
+// Importeras direkt via TypeScript JSON-import: Next.js inkluderar dem
+// automatiskt i serverless-bundle. fs.readFileSync med process.cwd() funkar
+// INTE i Vercel Lambda eftersom src/-mappen inte finns där vid runtime.
+import osmWaypointsData from './data/osm-waypoints.json'
+import osmEdgesData from './data/osm-edges.json'
 
 type OsmWaypointRaw = {
   id: string
@@ -757,33 +758,23 @@ type OsmWaypointRaw = {
 
 type OsmEdgeRaw = { from: string; to: string; source: 'ferry' }
 
-let _osmWaypoints: SeaWaypoint[] | null = null
-let _osmEdges: SeaEdge[] | null = null
-
-function loadOsmData() {
-  if (_osmWaypoints && _osmEdges) return
-  const dataDir = path.join(process.cwd(), 'src/lib/data')
-  const wp = JSON.parse(fs.readFileSync(path.join(dataDir, 'osm-waypoints.json'), 'utf-8')) as { waypoints: OsmWaypointRaw[] }
-  const ed = JSON.parse(fs.readFileSync(path.join(dataDir, 'osm-edges.json'), 'utf-8')) as { edges: OsmEdgeRaw[] }
-  _osmWaypoints = wp.waypoints.map(w => ({
+export const OSM_WAYPOINTS: SeaWaypoint[] = (osmWaypointsData as { waypoints: OsmWaypointRaw[] })
+  .waypoints
+  .map(w => ({
     id: w.id,
     lat: w.lat,
     lng: w.lng,
     name: w.name,
     destinations: [w.source],
   }))
-  _osmEdges = ed.edges.map(e => ({ from: e.from, to: e.to }))
-}
 
-export function getOsmWaypoints(): SeaWaypoint[] {
-  loadOsmData()
-  return _osmWaypoints!
-}
+export const OSM_EDGES: SeaEdge[] = (osmEdgesData as { edges: OsmEdgeRaw[] })
+  .edges
+  .map(e => ({ from: e.from, to: e.to }))
 
-export function getOsmEdges(): SeaEdge[] {
-  loadOsmData()
-  return _osmEdges!
-}
+// Bakåtkompabilitets-shims om någon annan kod refererar till getOsmWaypoints/getOsmEdges
+export function getOsmWaypoints(): SeaWaypoint[] { return OSM_WAYPOINTS }
+export function getOsmEdges(): SeaEdge[] { return OSM_EDGES }
 
 /**
  * Bygger en adjacency-lista från KOMBINERAD kantlista (manuell + OSM).
@@ -794,12 +785,10 @@ export function getOsmEdges(): SeaEdge[] {
  */
 export function buildSeaGraph(): Map<string, string[]> {
   const graph = new Map<string, string[]>()
-  const osmWaypoints = getOsmWaypoints()
-  const osmEdges = getOsmEdges()
 
   // Initialisera alla waypoints (manuell + OSM)
   for (const wp of SEA_WAYPOINTS) graph.set(wp.id, [])
-  for (const wp of osmWaypoints) graph.set(wp.id, [])
+  for (const wp of OSM_WAYPOINTS) graph.set(wp.id, [])
 
   // Lägg till manuella edges (dubbelriktad)
   for (const edge of SEA_EDGES) {
@@ -810,7 +799,7 @@ export function buildSeaGraph(): Map<string, string[]> {
   }
 
   // Lägg till OSM ferry-edges (dubbelriktad — färjor går båda håll)
-  for (const edge of osmEdges) {
+  for (const edge of OSM_EDGES) {
     const fromList = graph.get(edge.from)
     const toList = graph.get(edge.to)
     if (fromList) fromList.push(edge.to)
@@ -827,7 +816,7 @@ export function buildSeaGraph(): Map<string, string[]> {
 export function buildWaypointMap(): Map<string, SeaWaypoint> {
   const m = new Map<string, SeaWaypoint>()
   for (const wp of SEA_WAYPOINTS) m.set(wp.id, wp)
-  for (const wp of getOsmWaypoints()) m.set(wp.id, wp)
+  for (const wp of OSM_WAYPOINTS) m.set(wp.id, wp)
   return m
 }
 
@@ -838,7 +827,7 @@ export function buildWaypointMap(): Map<string, SeaWaypoint> {
 let _allWaypointsCache: SeaWaypoint[] | null = null
 export function getAllWaypoints(): SeaWaypoint[] {
   if (!_allWaypointsCache) {
-    _allWaypointsCache = [...SEA_WAYPOINTS, ...getOsmWaypoints()]
+    _allWaypointsCache = [...SEA_WAYPOINTS, ...OSM_WAYPOINTS]
   }
   return _allWaypointsCache
 }
