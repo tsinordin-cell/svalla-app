@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Camping och tält i skärgården | Naturnära övernattning | Svalla',
@@ -46,8 +47,29 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function CampingPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Camping och tält i skärgården',
+      description: 'Hitta campingplatser och tältvänliga platser i skärgården nära bad, vandring, paddling och färjor.',
+      url: 'https://svalla.se/boende/camping-talt',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+        { '@type': 'ListItem', position: 2, name: 'Boende', item: 'https://svalla.se/boende' },
+        { '@type': 'ListItem', position: 3, name: 'Camping och tält', item: 'https://svalla.se/boende/camping-talt' },
+      ],
+    },
+  ]
+
   return (
-    <CategoryLanding
+    <>
+      {jsonLd.map((schema, i) => <JsonLd key={i} data={schema} />)}
+      <CategoryLanding
       heroGradient={['#1a5c3a', '#2d7a5c']}
       eyebrow="BOENDE · CAMPING & TÄLT"
       title="Camping och tält i skärgården"
@@ -135,6 +157,7 @@ export default function CampingPage() {
         { label: 'Allt boende', href: '/boende' },
         { label: 'Vandring & natur', href: '/vandring-och-natur' },
       ]}
-    />
+      />
+    </>
   )
 }
