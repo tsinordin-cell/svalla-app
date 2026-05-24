@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Hotell och vandrarhem i skärgården | Bo nära havet | Svalla',
@@ -46,8 +47,29 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function HotellPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Hotell och vandrarhem i skärgården',
+      description: 'Hitta hotell, värdshus och vandrarhem i skärgården för weekend, kortsemester och övernattning nära havet.',
+      url: 'https://svalla.se/boende/hotell-vandrarhem',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+        { '@type': 'ListItem', position: 2, name: 'Boende', item: 'https://svalla.se/boende' },
+        { '@type': 'ListItem', position: 3, name: 'Hotell och vandrarhem', item: 'https://svalla.se/boende/hotell-vandrarhem' },
+      ],
+    },
+  ]
+
   return (
-    <CategoryLanding
+    <>
+      {jsonLd.map((schema, i) => <JsonLd key={i} data={schema} />)}
+      <CategoryLanding
       heroGradient={['#1e4e7a', '#1e6e8a']}
       eyebrow="BOENDE · HOTELL & VANDRARHEM"
       title="Hotell och vandrarhem i skärgården"
@@ -139,6 +161,7 @@ export default function HotellPage() {
         { label: 'Allt boende', href: '/boende' },
         { label: 'Krogar & mat', href: '/krogar-och-mat' },
       ]}
-    />
+      />
+    </>
   )
 }
