@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import JsonLd from '@/components/JsonLd'
 
 // Redirectar gamla ?typ=-URLer till de nya SEO-sidorna
 const TYP_REDIRECT: Record<string, string> = {
@@ -79,9 +80,52 @@ export default async function BoendePage({
     redirect(TYP_REDIRECT[typ])
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Boende i Stockholms skärgård',
+    description: 'Hotell, vandrarhem, stugor, pensionat och B&B i Stockholms skärgård.',
+    url: 'https://svalla.se/boende',
+    numberOfItems: 5,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Hotell och vandrarhem',
+        url: 'https://svalla.se/boende/hotell-vandrarhem',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Stugor och stugbyar',
+        url: 'https://svalla.se/boende/stugor-stugbyar',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Camping och tält',
+        url: 'https://svalla.se/boende/camping-talt',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'B&B och pensionat',
+        url: 'https://svalla.se/boende/bb',
+      },
+      {
+        '@type': 'ListItem',
+        position: 5,
+        name: 'Hamnar och bryggor',
+        url: 'https://svalla.se/hamnar-och-bryggor',
+      },
+    ],
+  }
+
   return (
-    <CategoryLanding
-      heroGradient={['#1e5c82', '#2d7d8a']}
+    <>
+      <JsonLd data={jsonLd} />
+      <CategoryLanding
+        heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Boende"
       title="Sov i skärgården"
       tagline="Hotell, stugor, vandrarhem, pensionat och campingplatser — för en helg, en vecka eller hela sommaren."
@@ -126,6 +170,7 @@ export default async function BoendePage({
         { label: 'Krogar & mat', href: '/krogar-och-mat' },
         { label: 'Kartan', href: '/upptack' },
       ]}
-    />
+      />
+    </>
   )
 }
