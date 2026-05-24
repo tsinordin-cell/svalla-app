@@ -374,10 +374,25 @@ export default function PlaneraNyClient() {
 
  {/* Sparar */}
  {step === 'saving' && (
- <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 200, gap: 16 }}>
- <div style={{ fontSize: 40 }}> </div>
- <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>Planerar din rutt…</p>
- <p style={{ fontSize: 13, color: 'var(--txt3)' }}>Hittar de bästa stoppen längs vägen</p>
+ <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 220, gap: 18 }}>
+ <div style={{
+   display: 'flex', alignItems: 'center', justifyContent: 'center',
+   width: 72, height: 72, borderRadius: '50%',
+   background: 'var(--grad-sea)',
+   boxShadow: '0 4px 20px rgba(10,123,140,0.35)',
+   animation: 'spin 2s linear infinite',
+ }}>
+   <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+     <circle cx={12} cy={12} r={10} />
+     <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+     <path d="M2 12h20" />
+   </svg>
+ </div>
+ <div style={{ textAlign: 'center' }}>
+   <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Tittar på kartan…</p>
+   <p style={{ fontSize: 13, color: 'var(--txt3)' }}>Hittar de bästa stoppen längs din rutt</p>
+ </div>
+ <style>{`@keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }`}</style>
  </div>
  )}
  </div>
