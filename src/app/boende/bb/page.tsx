@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'B&B och pensionat i skärgården | Personliga boenden | Svalla',
@@ -46,8 +47,29 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function BBPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'B&B och pensionat i skärgården',
+      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård — frukost ingår, nära havet och lokalbefolkningen.',
+      url: 'https://svalla.se/boende/bb',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+        { '@type': 'ListItem', position: 2, name: 'Boende', item: 'https://svalla.se/boende' },
+        { '@type': 'ListItem', position: 3, name: 'B&B och pensionat', item: 'https://svalla.se/boende/bb' },
+      ],
+    },
+  ]
+
   return (
-    <CategoryLanding
+    <>
+      {jsonLd.map((schema, i) => <JsonLd key={i} data={schema} />)}
+      <CategoryLanding
       heroGradient={['#5c3a1e', '#8a5c2d']}
       eyebrow="BOENDE · B&B"
       title="B&B och pensionat i skärgården"
@@ -130,6 +152,7 @@ export default function BBPage() {
         { label: 'Allt boende', href: '/boende' },
         { label: 'Krogar & mat', href: '/krogar-och-mat' },
       ]}
-    />
+      />
+    </>
   )
 }
