@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Hyr stuga i skärgården | Stugor och stugbyar nära havet | Svalla',
@@ -46,8 +47,29 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function StugorPage() {
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Hyr stuga i skärgården',
+      description: 'Hyr stuga i Stockholms skärgård — stugor, stugbyar och fritidshus på öar som Sandhamn, Utö och Möja.',
+      url: 'https://svalla.se/boende/stugor-stugbyar',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+        { '@type': 'ListItem', position: 2, name: 'Boende', item: 'https://svalla.se/boende' },
+        { '@type': 'ListItem', position: 3, name: 'Stugor och stugbyar', item: 'https://svalla.se/boende/stugor-stugbyar' },
+      ],
+    },
+  ]
+
   return (
-    <CategoryLanding
+    <>
+      {jsonLd.map((schema, i) => <JsonLd key={i} data={schema} />)}
+      <CategoryLanding
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="BOENDE · STUGOR & STUGBYAR"
       title="Hyr stuga i skärgården"
@@ -133,6 +155,7 @@ export default function StugorPage() {
         { label: 'Allt boende', href: '/boende' },
         { label: 'Färjetider', href: '/farjor' },
       ]}
-    />
+      />
+    </>
   )
 }
