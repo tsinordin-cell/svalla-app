@@ -62,7 +62,10 @@ type Props = {
 
 // ── Component ───────────────────────────────────────────────────────────────
 
-type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'straight'
+// 2026-05-23 routing safety layer: 'straight' borttagen, 'unavailable' tillagd.
+// När quality === 'unavailable' har vi ingen säker vattenrutt — visa EmptyState
+// istället för att rita en linje.
+type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
 
 export default function PlaneraRouteSection({
   startLat, startLng, startName,
@@ -106,15 +109,20 @@ export default function PlaneraRouteSection({
     fetch('/api/route/calculate', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ startLat, startLng, endLat, endLng }),
+      // routeId skickas så API:n kan läsa/skriva DB-cache (2026-05-23 P2)
+      body: JSON.stringify({ startLat, startLng, endLat, endLng, routeId }),
     })
-      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][]; quality?: RouteQuality }> : Promise.reject(r.status))
+      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number }> : Promise.reject(r.status))
       .then(data => {
         if (cancelled) return
-        const km = Math.round(pathKm(data.path))
+        // path kan vara null när quality === 'unavailable' — då rendrar vi
+        // EmptyState istället för polyline. Tid/bränsle hide:as automatiskt.
         setSeaPath(data.path)
         setQuality(data.quality ?? null)
-        if (km > 0) setRouteKm(km)
+        if (data.path && data.path.length > 1) {
+          const km = Math.round(pathKm(data.path))
+          if (km > 0) setRouteKm(km)
+        }
         setStatus('ready')
       })
       .catch(() => {
@@ -126,7 +134,9 @@ export default function PlaneraRouteSection({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Kvalitetsbanner — vad användaren faktiskt får
+  // Kvalitetsbanner — vad användaren faktiskt får.
+  // 2026-05-23: 'straight'-fallback borttagen. Vid 'unavailable' visas
+  // tydlig "ingen rutt kunde beräknas"-banner i danger-ton istället.
   const qualityBanner = (() => {
     if (status !== 'ready' || !quality) return null
     if (quality === 'precomputed') {
@@ -138,8 +148,12 @@ export default function PlaneraRouteSection({
     if (quality === 'waypoint') {
       return { tone: 'warning' as const, label: 'Approximerad rutt', desc: 'Grov sjöled via huvudleder. Verifiera mot sjökort innan avgång.' }
     }
-    // straight
-    return { tone: 'warning' as const, label: 'Rak linje — sjöleder kunde inte beräknas', desc: 'Det här är fågelvägen. Använd ditt sjökort för faktisk ruttplanering.' }
+    // unavailable — ingen polyline ritas, tid/bränsle gömt
+    return {
+      tone: 'danger' as const,
+      label: 'Vi kan inte beräkna en vattenrutt här ännu',
+      desc: 'Den direkta linjen skulle korsa land. Prova att välja en närliggande hamn, brygga eller kaj som start eller mål.',
+    }
   })()
 
   return (
@@ -152,18 +166,31 @@ export default function PlaneraRouteSection({
         seaPath={seaPath}
       />
 
-      {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej */}
+      {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej.
+          'danger'-ton används när ingen vattenrutt kunde beräknas (safety layer). */}
       {qualityBanner && (
         <div style={{
           display: 'flex', alignItems: 'flex-start', gap: 10,
           background: qualityBanner.tone === 'success'
             ? 'rgba(42,157,92,0.08)'
-            : 'rgba(232,146,74,0.10)',
-          border: `1px solid ${qualityBanner.tone === 'success' ? 'rgba(42,157,92,0.22)' : 'rgba(232,146,74,0.32)'}`,
+            : qualityBanner.tone === 'danger'
+              ? 'rgba(192,57,43,0.10)'
+              : 'rgba(232,146,74,0.10)',
+          border: `1px solid ${
+            qualityBanner.tone === 'success'
+              ? 'rgba(42,157,92,0.22)'
+              : qualityBanner.tone === 'danger'
+                ? 'rgba(192,57,43,0.32)'
+                : 'rgba(232,146,74,0.32)'
+          }`,
           borderRadius: 12, padding: '10px 14px',
           marginBottom: 12, marginTop: -8,
           fontSize: 12.5,
-          color: qualityBanner.tone === 'success' ? '#157a3e' : '#a4561e',
+          color: qualityBanner.tone === 'success'
+            ? '#157a3e'
+            : qualityBanner.tone === 'danger'
+              ? '#a32d20'
+              : '#a4561e',
         }}>
           <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
             {qualityBanner.tone === 'success' ? (
@@ -259,8 +286,10 @@ export default function PlaneraRouteSection({
         </div>
       )}
 
-      {/* Tidsestimat per båttyp — döljs vid rak linje (missledande) */}
-      {quality !== 'straight' && (
+      {/* Tidsestimat per båttyp — döljs när ingen säker vattenrutt finns
+          (missledande att visa exakt tid på en path vi inte har).
+          Måste guarda på status === 'ready' annars dubbel-renderas under loading. */}
+      {status === 'ready' && quality !== 'unavailable' && (
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',

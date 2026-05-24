@@ -14,7 +14,10 @@ type MetricRow = {
   start_lng: number
   end_lat: number
   end_lng: number
-  quality: 'precomputed' | 'grid' | 'waypoint' | 'straight'
+  // 2026-05-23 routing safety layer: 'straight' borttaget, 'unavailable' tillagt.
+  // Gamla rader med 'straight' finns kvar i DB-historiken — visa fortfarande som
+  // legacy-tier i admin-vyn för bakåtkompatibel statistik.
+  quality: 'precomputed' | 'grid' | 'waypoint' | 'straight' | 'unavailable'
   ms: number
 }
 
@@ -39,13 +42,15 @@ const QUALITY_COLOR: Record<MetricRow['quality'], string> = {
   precomputed: '#22c55e',
   grid:        '#22c55e',
   waypoint:    '#f97316',
-  straight:    '#ef4444',
+  straight:    '#ef4444',  // legacy — historiska rader
+  unavailable: '#ef4444',
 }
 const QUALITY_LABEL: Record<MetricRow['quality'], string> = {
   precomputed: 'Precomputed',
   grid:        'Grid-A*',
   waypoint:    'Waypoint',
-  straight:    'Rak linje',
+  straight:    'Rak linje (legacy)',
+  unavailable: 'Otillgänglig',
 }
 
 export default async function AdminRoutesPage() {
@@ -66,7 +71,7 @@ export default async function AdminRoutesPage() {
   const metrics = (metricsRes.data ?? []) as MetricRow[]
   const reports = (reportsRes.data ?? []) as ReportRow[]
 
-  const qualityCount: Record<MetricRow['quality'], number> = { precomputed: 0, grid: 0, waypoint: 0, straight: 0 }
+  const qualityCount: Record<MetricRow['quality'], number> = { precomputed: 0, grid: 0, waypoint: 0, straight: 0, unavailable: 0 }
   for (const m of metrics) qualityCount[m.quality]++
   const total = metrics.length || 1
 
@@ -93,8 +98,8 @@ export default async function AdminRoutesPage() {
       {/* Kvalitet-fördelning */}
       <section style={{ marginBottom: 36 }}>
         <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 12 }}>Kvalitets-fördelning</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-          {(['precomputed', 'grid', 'waypoint', 'straight'] as const).map(q => {
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
+          {(['precomputed', 'grid', 'waypoint', 'straight', 'unavailable'] as const).map(q => {
             const n = qualityCount[q]
             const pct = total > 0 ? Math.round((n / total) * 100) : 0
             return (

@@ -349,6 +349,10 @@ function findPathViaGrid(
 /**
  * Fallback: använd befintliga waypoints med Dijkstra
  * (gamla systemet för kompatibilitet)
+ *
+ * 2026-05-23: Validerar nu output mot land-mask innan den returneras.
+ * Tidigare släpptes waypoint-rutter igenom helt utan land-check, vilket
+ * kunde ge polylines som korsade öar. Om validering fail:ar → null.
  */
 function findPathViaWaypoints(
   startLat: number,
@@ -461,6 +465,19 @@ function findPathViaWaypoints(
 
     result.push([endLat, endLng])
 
+    // SÄKERHETSLAGER 2026-05-23: validera mot land-mask innan vi returnerar.
+    // Waypoint-Dijkstra kan annars producera rutter som korsar öar — t.ex.
+    // när start eller end ligger nära en kust och Dijkstra väljer en
+    // "rak" edge mellan två waypoints som genvägar över en ö.
+    const validation = validatePathLand(result)
+    if (!validation.ok) {
+      logger.info(
+        'seaPathfinder',
+        `waypoint-tier rutt rejected — korsar land vid ${validation.crossesAt}`,
+      )
+      return null
+    }
+
     return result
   } catch (err) {
     return null
@@ -513,9 +530,10 @@ export function estimateTravelTime(
  * HUVUDFUNKTION: Hitta en garanterad sjöleds-väg
  *
  * Hybrid-strategi:
- * 1. Försök A*-sökning på dynamisk grid (snabbt för nya sträckor)
- * 2. Fallback: klassiska waypoints med Dijkstra (för kompatibilitet)
- * 3. VALIDERA: Kasta error om path korsar land (INGA HALVMESYRER)
+ * 1. Pre-computed validerad rutt (instant)
+ * 2. Försök A*-sökning på dynamisk grid (snabbt för nya sträckor)
+ * 3. Fallback: klassiska waypoints med Dijkstra (validerad mot land sedan 2026-05-23)
+ * 4. VALIDERA: Kasta error om path korsar land (INGA HALVMESYRER)
  *
  * Returnerar: {path, distanceKm, travelTimeHours, validated: true}
  * Kastar error om ingen säker väg kan hittas
@@ -526,22 +544,27 @@ export async function findValidatedSeaPath(
   endLat: number,
   endLng: number,
 ): Promise<ValidatedSeaPath> {
-  // 1. Försök A*-grid först
-  let path = findPathViaGrid(startLat, startLng, endLat, endLng)
+  // 1. Pre-computed validerad rutt först (instant lookup)
+  let path = lookupPrecomputed(startLat, startLng, endLat, endLng)
 
-  // 2. Fallback till waypoints
+  // 2. Försök A*-grid
+  if (!path) {
+    path = findPathViaGrid(startLat, startLng, endLat, endLng)
+  }
+
+  // 3. Fallback till waypoints (validerar nu internt)
   if (!path) {
     path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
   }
 
-  // 3. Om ingen väg hittes
+  // 4. Om ingen väg hittes
   if (!path) {
     throw new Error(
       `Kunde inte hitta väg mellan [${startLat.toFixed(4)},${startLng.toFixed(4)}] och [${endLat.toFixed(4)},${endLng.toFixed(4)}]`,
     )
   }
 
-  // 4. VALIDERA att vägen inte korsar land
+  // 5. VALIDERA att vägen inte korsar land (defense in depth)
   const validation = validatePathLand(path)
   if (!validation.ok) {
     throw new Error(
@@ -577,12 +600,20 @@ export async function findValidatedSeaPath(
  * Ordning:
  * 1. Pre-computed validerad rutt (instant)
  * 2. Grid-A* med turf.js land-mask (bäst kvalitet, kan ta 30-120 s för stora bbox)
- * 3. Waypoint-Dijkstra fallback (snabb, bra för täckta områden)
- * 4. Rät linje (sista utväg)
+ * 3. Waypoint-Dijkstra fallback (validerad mot land sedan 2026-05-23)
+ * 4. Om allt misslyckas: returnera null + 'unavailable' (TIDIGARE: rak linje)
+ *
+ * 2026-05-23 SÄKERHETSLAGER: Rak-linje-fallback är borttagen.
+ * Hellre "ingen rutt" än en falsk linje över land. UI ska rendera EmptyState
+ * istället för polyline när quality === 'unavailable'.
  *
  * VIKTIGT: Anropa ALDRIG den här funktionen från SSR-rendern.
  * Den lever i /api/route/calculate som kör asynkront med maxDuration=300s.
  * SSR rendrar skeleton; klienten hämtar rutten separat.
+ *
+ * LEGACY: Returnerar fortfarande Array<[number, number]> för bakåtkompatibilitet
+ * mot planner.ts (korridor-beräkning behöver en path, även en grov sådan).
+ * För nya konsumenter — använd findSeaPathWithQuality och respektera 'unavailable'.
  */
 export function findSeaPath(
   startLat: number,
@@ -590,37 +621,103 @@ export function findSeaPath(
   endLat: number,
   endLng: number,
 ): Array<[number, number]> {
-  return findSeaPathWithQuality(startLat, startLng, endLat, endLng).path
+  const result = findSeaPathWithQuality(startLat, startLng, endLat, endLng)
+  // Legacy fallback: när ingen validerad rutt finns, returnera straight för
+  // korridor-beräkning i planner.ts (suggestStops). Detta path RITAS aldrig
+  // för användaren — det är bara underlag för cross-track-stop-matchning.
+  if (result.path === null) {
+    return [[startLat, startLng], [endLat, endLng]]
+  }
+  return result.path
 }
 
-/** Sjölednings-kvalitet — vilken tier som faktiskt levererade rutten. */
-export type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'straight'
+/**
+ * Sjölednings-kvalitet — vilken tier som faktiskt levererade rutten.
+ *
+ * - precomputed: hand-validerad rutt från PRECOMPUTED_ROUTES, confidence 5
+ * - grid: A* över land-validerat grid, confidence 4
+ * - waypoint: Dijkstra över farledsgraf med land-check, confidence 3
+ * - unavailable: ingen säker rutt kunde beräknas — RITA INGEN LINJE, confidence 0
+ */
+export type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
+
+/** Mappa RouteQuality → confidence 0-5 enligt routing safety layer-spec */
+export function qualityToConfidence(q: RouteQuality): number {
+  switch (q) {
+    case 'precomputed': return 5
+    case 'grid':        return 4
+    case 'waypoint':    return 3
+    case 'unavailable': return 0
+  }
+}
 
 /**
  * Som findSeaPath men returnerar även vilken algoritm-tier som producerade rutten.
  * Används av /api/route/calculate för att kunna kommunicera till UI:n om rutten
- * är trovärdig (precomputed/grid) eller behöver disclaimer (waypoint/straight).
+ * är validerad (precomputed/grid/waypoint) eller helt saknas (unavailable).
+ *
+ * 2026-05-23: path är nu Array<[number, number]> | null.
+ * null betyder att ingen validerad rutt kunde produceras — UI MÅSTE rendera
+ * EmptyState/"ingen rutt"-meddelande istället för att rita en linje.
  */
+/**
+ * Endpoint-shore-check: är denna lat/lng nära nog till saltvatten för att
+ * vara båt-rimlig? Mätat som avstånd till närmaste SEA_WAYPOINT.
+ *
+ * Bakgrund: OSM coastline-data definierar Sverige som "kontur runt land",
+ * vilket betyder att en punkt MITT I FASTLANDET (t.ex. Tullinge, som ligger
+ * vid en insjö) inte fångas av pointOnLand — den ligger inte INNANFÖR någon
+ * land-polygon eftersom polygonerna bara är ÖAR och MAINLAND-PERIFERI.
+ *
+ * Denna check är vår sista fångare: om end-punkten är >5 km från närmsta
+ * saltvatten-waypoint så är det inland och båtrutt är fysiskt omöjlig.
+ *
+ * EXEMPEL: Tullinge Båtsällskap (insjö-klubb, 15+ km från Slussen) → false.
+ */
+const MAX_SHORE_DISTANCE_KM = 5
+
+function isNearShore(lat: number, lng: number): boolean {
+  let minDist = Infinity
+  for (const wp of SEA_WAYPOINTS) {
+    const d = haversineKm(lat, lng, wp.lat, wp.lng)
+    if (d < minDist) {
+      minDist = d
+      if (minDist <= MAX_SHORE_DISTANCE_KM) return true
+    }
+  }
+  return minDist <= MAX_SHORE_DISTANCE_KM
+}
+
 export function findSeaPathWithQuality(
   startLat: number,
   startLng: number,
   endLat: number,
   endLng: number,
-): { path: Array<[number, number]>; quality: RouteQuality } {
-  // 1. PRIORITET: Pre-computed validerad rutt (instant lookup, garanterat på vatten)
-  const precomp = lookupPrecomputed(startLat, startLng, endLat, endLng)
-  if (precomp) return { path: precomp, quality: 'precomputed' }
+): { path: Array<[number, number]> | null; quality: RouteQuality } {
+  // 0. PRE-CHECK 2026-05-23: är start OCH end nära saltvatten?
+  // Skyddar mot Tullinge-style cases där end är en insjö-klubb inland.
+  // Pre-computed rutter skippar denna check (de är hand-validerade).
+  const precompFirst = lookupPrecomputed(startLat, startLng, endLat, endLng)
+  if (precompFirst) return { path: precompFirst, quality: 'precomputed' }
+
+  if (!isNearShore(startLat, startLng) || !isNearShore(endLat, endLng)) {
+    logger.info(
+      'seaPathfinder',
+      `endpoint-check rejected — start eller end är inland (>${MAX_SHORE_DISTANCE_KM} km från saltvatten)`,
+    )
+    return { path: null, quality: 'unavailable' }
+  }
 
   // 2. Grid-A* med fullständig land-mask (bäst kvalitet)
   let path = findPathViaGrid(startLat, startLng, endLat, endLng)
   if (path) return { path, quality: 'grid' }
 
-  // 3. Waypoint-Dijkstra fallback om grid misslyckas
+  // 3. Waypoint-Dijkstra fallback om grid misslyckas (validerar nu internt)
   path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
   if (path) return { path, quality: 'waypoint' }
 
-  // 4. Sista utväg: rät linje — UI:n MÅSTE visa disclaimer vid denna kvalitet
-  return { path: [[startLat, startLng], [endLat, endLng]], quality: 'straight' }
+  // 4. Säkerhetslager: ingen straight-fallback. UI får rendera EmptyState.
+  return { path: null, quality: 'unavailable' }
 }
 
 /**

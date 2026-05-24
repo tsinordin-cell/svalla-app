@@ -432,26 +432,30 @@ export default function PlatserMap({ restaurants, tours = [], activeId, onMarker
  }
 
  // ── Ruttlinjer (polylines) ─────────────────────────────────────────────
+ // 2026-05-23 routing safety layer: tour.waypoints är inte garanterat
+ // validerade mot land. Ritas som SKISS — prickade, låg opacity, tunna.
+ // Användaren ska klicka för att se rutten i /rutter/[id] där validering körs.
  tours.forEach((tour, i) => {
  if (!tour.waypoints || tour.waypoints.length < 2) return
  const color = ROUTE_COLORS[i % ROUTE_COLORS.length]
  const latlngs: [number, number][] = tour.waypoints.map(wp => [wp.lat, wp.lng])
 
  const line = L.polyline(latlngs, {
- color, weight: 4, opacity: 0.75, lineJoin: 'round', lineCap: 'round',
+ color, weight: 2.5, opacity: 0.5, dashArray: '4, 8', lineJoin: 'round', lineCap: 'round',
  })
  .addTo(map)
  .bindPopup(
  `<div style="font-family:system-ui,sans-serif;min-width:180px">
  <div style="font-weight:800;font-size:13px;color:#162d3a;margin-bottom:4px">${tour.title}</div>
- <div style="font-size:11px;color:var(--txt3);margin-bottom:8px">${tour.start_location} → ${tour.destination}${tour.duration_label ? ' · ' + tour.duration_label : ''}</div>
+ <div style="font-size:11px;color:var(--txt3);margin-bottom:6px">${tour.start_location} → ${tour.destination}${tour.duration_label ? ' · ' + tour.duration_label : ''}</div>
+ <div style="font-size:10px;color:#a4561e;background:rgba(232,146,74,0.10);border-radius:6px;padding:4px 6px;margin-bottom:8px;line-height:1.4">Skiss — verifiera mot sjökort</div>
  <a href="/rutter/${tour.id}" style="padding:5px 12px;background:#1e5c82;color:#fff;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none">Se rutt →</a>
  </div>`,
  { maxWidth: 240 }
  )
 
- line.on('mouseover', () => line.setStyle({ weight: 7, opacity: 1 }))
- line.on('mouseout', () => line.setStyle({ weight: 4, opacity: 0.75 }))
+ line.on('mouseover', () => line.setStyle({ weight: 4, opacity: 0.75 }))
+ line.on('mouseout', () => line.setStyle({ weight: 2.5, opacity: 0.5 }))
  polylinesRef.current[tour.id] = line
  })
  }

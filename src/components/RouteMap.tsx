@@ -63,31 +63,34 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
 
  const latlngs = validLatlngs.length >= 2 ? validLatlngs : waypoints.map(w => [w.lat, w.lng] as [number, number])
 
- // ── Route line — dashed to indicate planned/approximate route ──────
+ // ── Route line — TYDLIG skiss-styling (2026-05-23 routing safety layer) ──
+ // Vi vet inte att den här polylinen är validerad mot land. Användaren MÅSTE
+ // förstå att detta är en översiktlig markering, inte en navigationsrutt.
+ // Mer prickat + lägre opacity + sub-banner signalerar "skiss".
  const polyline = L.polyline(latlngs, {
  color: 'var(--sea)',
- weight: 3,
- opacity: 0.7,
+ weight: 2.5,
+ opacity: 0.55,
  lineJoin: 'round',
  lineCap: 'round',
- dashArray: '8, 6',
+ dashArray: '4, 8',
  }).addTo(map)
  polylineRef.current = polyline
 
- // Shadow line for depth
+ // Shadow line — också reducerad så det inte ser solid ut
  L.polyline(latlngs, {
- color: 'rgba(30,92,130,0.15)',
- weight: 7,
+ color: 'rgba(30,92,130,0.08)',
+ weight: 5,
  lineJoin: 'round',
  lineCap: 'round',
  }).addTo(map)
 
  // Click route → highlight + fitBounds
  polyline.on('click', () => {
- polyline.setStyle({ color: 'var(--acc)', weight: 4, opacity: 1, dashArray: '10, 5' })
+ polyline.setStyle({ color: 'var(--acc)', weight: 3.5, opacity: 0.85, dashArray: '4, 8' })
  map.fitBounds(bounds, { padding: [24, 24], animate: true, duration: 0.5 })
  setTimeout(() => {
- polyline.setStyle({ color: 'var(--sea)', weight: 3, opacity: 0.7, dashArray: '8, 6' })
+ polyline.setStyle({ color: 'var(--sea)', weight: 2.5, opacity: 0.55, dashArray: '4, 8' })
  }, 1800)
  })
 
@@ -209,20 +212,26 @@ export default function RouteMap({ waypoints, height = '320px' }: Props) {
  }}
  />
 
- {/* Ruttlinje-tips */}
+ {/* Skiss-banner (2026-05-23): tydlig signal att polylinen INTE är validerad
+     mot sjökort. Användaren ska veta att de ska planera den faktiska rutten
+     i /planera där grid-A* + land-validering körs. */}
  <div style={{
- position: 'absolute', bottom: 12, left: 12, zIndex: 500,
- background: 'var(--glass-92)', backdropFilter: 'blur(8px)',
- borderRadius: 10, padding: '4px 10px',
- fontSize: 10, fontWeight: 700, color: 'var(--txt2)',
+ position: 'absolute', bottom: 12, left: 12, right: 12, zIndex: 500,
+ background: 'rgba(232,146,74,0.12)',
+ border: '1px solid rgba(232,146,74,0.32)',
+ backdropFilter: 'blur(8px)',
+ borderRadius: 10, padding: '6px 12px',
+ fontSize: 11, fontWeight: 600, color: '#a4561e',
  boxShadow: '0 1px 6px rgba(0,45,60,0.10)',
- display: 'flex', alignItems: 'center', gap: 6,
+ display: 'flex', alignItems: 'center', gap: 8,
  pointerEvents: 'none',
  }}>
- <svg viewBox="0 0 20 4" style={{ width: 20, height: 4 }}>
- <line x1="0" y1="2" x2="20" y2="2" stroke="var(--sea)" strokeWidth="2.5" strokeDasharray="5,4" />
+ <svg viewBox="0 0 24 24" width={13} height={13} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+ <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3.05h16.94a2 2 0 0 0 1.71-3.05L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+ <line x1="12" y1="9" x2="12" y2="13"/>
+ <line x1="12" y1="17" x2="12.01" y2="17"/>
  </svg>
- Ungefärlig sträckning
+ <span>Skiss längs vägpunkter — inte navigationsrutt. Verifiera mot sjökort.</span>
  </div>
 
  {/* Stop-lista (klickbar legend) */}

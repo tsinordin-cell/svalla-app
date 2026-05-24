@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 3600
 
 export async function GET() {

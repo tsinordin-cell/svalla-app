@@ -569,6 +569,9 @@ export default function UpptackClient() {
     })
 
     // ── Route polylines ───────────────────────────────────────────────────
+    // 2026-05-23 routing safety layer: routes.waypoints är inte garanterat
+    // validerade mot land. Vi ritar dem som SKISS — mer prickade, lägre opacity,
+    // tunna. Användaren ska aldrig tolka detta som en navigationsrutt.
     if (filters.has('rutter')) {
       for (const route of routes) {
         const wps = route.waypoints
@@ -576,9 +579,9 @@ export default function UpptackClient() {
         const latlngs = wps.map(w => [w.lat, w.lng] as [number, number])
         const line = L.polyline(latlngs, {
           color: FILTER_CONFIG.rutter.color,
-          weight: 3,
-          opacity: 0.8,
-          dashArray: '6,4',
+          weight: 2,
+          opacity: 0.45,
+          dashArray: '3, 7',
         })
         line.on('click', () => setDetail({ ...route, kind: 'route' }))
         line.addTo(map)

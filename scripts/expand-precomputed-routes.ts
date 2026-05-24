@@ -126,7 +126,9 @@ async function fetchFailingPairs(): Promise<FailingPair[]> {
     if (arr.length < MIN_HITS) continue
     // Pick most-recent sample (best chance koordinaterna är levande)
     const sample = arr.reduce((a, b) => (a.created_at > b.created_at ? a : b))
-    const worstQuality: RouteQuality = arr.some(r => r.quality === 'straight') ? 'straight' : 'waypoint'
+    const qualityRank: Record<RouteQuality, number> = { precomputed: 4, grid: 3, waypoint: 2, unavailable: 1 }
+    const worstQuality: RouteQuality = arr.reduce<RouteQuality>((w, r) =>
+      qualityRank[r.quality] < qualityRank[w] ? r.quality : w, 'waypoint')
     const avgMs = arr.reduce((s, r) => s + r.ms, 0) / arr.length
     pairs.push({ key, count: arr.length, worstQuality, avgMs, sample })
   }
@@ -201,7 +203,7 @@ async function tryConvertPair(pair: FailingPair): Promise<Result> {
       return { ok: false, reason: `kvalitet: ${result.quality}`, pair, ms }
     }
 
-    if (result.path.length < 2) {
+    if (!result.path || result.path.length < 2) {
       return { ok: false, reason: 'path för kort', pair, ms }
     }
 

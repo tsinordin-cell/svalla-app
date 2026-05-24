@@ -10,6 +10,7 @@ import { buildRouteForecast } from '@/lib/routeForecast'
 import PlaneraCTA from './PlaneraCTA'
 import PlaneraShare from './PlaneraShare'
 import PlaneraRouteSection from './PlaneraRouteSection'
+import PlaneraDistanceBadge from './PlaneraDistanceBadge'
 import RouteDisclaimer from '@/components/RouteDisclaimer'
 import RouteFeedbackButton from '@/components/RouteFeedbackButton'
 import RouteWeatherStrip from '@/components/RouteWeatherStrip'
@@ -199,14 +200,15 @@ export default async function PlaneraIdPage({ params }: Props) {
  {route.start_name} → {route.end_name}
  </h1>
  </div>
- {/* Total distance badge */}
- <div style={{
- flexShrink: 0, background: 'rgba(255,255,255,0.15)',
- borderRadius: 20, padding: '4px 12px',
- fontSize: 13, fontWeight: 800, color: '#fff',
- }}>
- ~{haversineDistKm} km
- </div>
+ {/* Total distance badge — uppdateras till faktisk sjöväg när /api/route/calculate svarat */}
+ <PlaneraDistanceBadge
+   startLat={route.start_lat}
+   startLng={route.start_lng}
+   endLat={route.end_lat}
+   endLng={route.end_lng}
+   haversineDistKm={haversineDistKm}
+   routeId={route.id}
+ />
  </div>
 
  {/* Intresse-chips */}
