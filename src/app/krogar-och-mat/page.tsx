@@ -22,43 +22,31 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'utensils',
- title: 'Klassiska skärgårdskrogar',
- description: 'Fjäderholmarnas Krog, Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus — öppet från maj till sep/okt.',
- href: '/platser?kategori=krog',
- meta: 'Säsong: maj–sep',
- },
- {
- icon: '🐟',
- title: 'Fiskrökerier & kök',
- description: 'Rökt strömming på träpinne, havskräftor, gravad lax — direkt från båt till tallrik.',
- href: '/platser?kategori=fisk',
- },
- {
- icon: '☕',
- title: 'Caféer & bagerier',
- description: 'Morgonbröd, kanelbullar och skärgårdskaffe — små ställen med stor charm.',
- href: '/platser?kategori=cafe',
- },
- {
- icon: '🍺',
- title: 'Barer & pubar',
- description: 'Sjömäns- och seglarbarer, solnedgångsdrinkar och bryggfest.',
- href: '/platser?kategori=bar',
- },
- {
- icon: '🍦',
- title: 'Glass & fika',
- description: 'Glasskiosker, pannkakshus och bryggfika — för barnfamiljen eller avstickaren.',
- href: '/platser?kategori=fika',
- },
- {
- icon: '🛒',
- title: 'Självhushåll',
- description: 'Öppna lanthandlar på öarna — var du hittar mjölk, bröd, färsk fisk och pant på söndagen.',
- href: '/platser?kategori=handel',
- },
+  {
+    icon: '🍽',
+    title: 'Värdshus och restauranger',
+    description: 'Fjäderholmarnas Krog, Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus — klassiker med sjöutsikt och husmanskost. Öppet maj–sep.',
+    href: '/krogar-och-mat/vardshus-restauranger',
+    meta: 'Säsong: maj–sep',
+  },
+  {
+    icon: '🐟',
+    title: 'Fisk och skaldjur',
+    description: 'Rökt strömming på träpinne, räkor direkt från bryggan och kräftskivor i juli — skärgårdens bästa råvaror.',
+    href: '/krogar-och-mat/fisk-skaldjur',
+  },
+  {
+    icon: '☕',
+    title: 'Fika och caféer',
+    description: 'Morgonbröd, kanelbullar och skärgårdskaffe — Sandhamns Bageriet, Möja Bageri och fler små ställen med stor charm.',
+    href: '/krogar-och-mat/fika-cafe',
+  },
+  {
+    icon: '🍦',
+    title: 'Take-away och kiosker',
+    description: 'Glass vid bryggan, räksmörgåsar i hamnen och lanthandeln som räddar middagen. Enkelt, gott och utan bokning.',
+    href: '/krogar-och-mat/take-away-kiosker',
+  },
 ]
 
 export default function KrogarOchMatPage() {
