@@ -10,7 +10,7 @@
  * Validering: Turf.js point-in-polygon och line-intersection
  */
 
-import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, SeaWaypoint } from './seaWaypoints'
+import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, getAllWaypoints, SeaWaypoint } from './seaWaypoints'
 import { pointOnLand, segmentCrossesLand, validatePathLand } from './landMask'
 import { logger } from './logger'
 import precomputedRoutesData from './data/precomputed-routes.json'
@@ -361,16 +361,35 @@ function findPathViaWaypoints(
   endLng: number,
 ): Array<[number, number]> | null {
   try {
-    const graph = buildSeaGraph()
+    const fullGraph = buildSeaGraph()
     const waypointMap = buildWaypointMap()
 
-    // Hitta närmaste waypoints
+    // 2026-05-23: med 30K+ waypoints är Dijkstra O(n²) för långsam.
+    // Filtrera till bbox(start, end) + 0.5° padding (~50 km) först.
+    // Detta ger typiskt 200-2000 waypoints per query istället för 30 000.
+    const minLat = Math.min(startLat, endLat) - 0.5
+    const maxLat = Math.max(startLat, endLat) + 0.5
+    const minLng = Math.min(startLng, endLng) - 0.5
+    const maxLng = Math.max(startLng, endLng) + 0.5
+
+    const allWps = getAllWaypoints()
+    const candidateWps = allWps.filter(wp =>
+      wp.lat >= minLat && wp.lat <= maxLat &&
+      wp.lng >= minLng && wp.lng <= maxLng
+    )
+
+    if (candidateWps.length === 0) {
+      logger.info('seaPathfinder', `no waypoints in bbox ${minLat},${minLng}→${maxLat},${maxLng}`)
+      return null
+    }
+
+    // Hitta närmaste start/end-waypoints inom subset
     let nearestStart: SeaWaypoint | null = null
     let nearestEnd: SeaWaypoint | null = null
     let minStartDist = Infinity
     let minEndDist = Infinity
 
-    for (const wp of SEA_WAYPOINTS) {
+    for (const wp of candidateWps) {
       const d1 = haversineKm(startLat, startLng, wp.lat, wp.lng)
       const d2 = haversineKm(endLat, endLng, wp.lat, wp.lng)
 
@@ -388,12 +407,22 @@ function findPathViaWaypoints(
       return null
     }
 
-    // Dijkstra mellan waypoints
+    // Bygg subset-graph: bara edges där BÅDA endpoints är i candidateWps
+    const candidateIds = new Set(candidateWps.map(w => w.id))
+    const graph = new Map<string, string[]>()
+    for (const id of candidateIds) graph.set(id, [])
+    for (const [id, neighbors] of fullGraph) {
+      if (!candidateIds.has(id)) continue
+      const filtered = neighbors.filter(n => candidateIds.has(n))
+      graph.set(id, filtered)
+    }
+
+    // Dijkstra över subset (typiskt 200-2000 noder = O(n²) ~ 4M operations max)
     const distances = new Map<string, number>()
     const previous = new Map<string, string | null>()
     const unvisited = new Set<string>()
 
-    for (const wp of SEA_WAYPOINTS) {
+    for (const wp of candidateWps) {
       distances.set(wp.id, Infinity)
       previous.set(wp.id, null)
       unvisited.add(wp.id)
@@ -676,16 +705,27 @@ export function qualityToConfidence(q: RouteQuality): number {
  */
 const MAX_SHORE_DISTANCE_KM = 5
 
+/**
+ * 2026-05-23: scanar ALLA waypoints (manuell + OSM från 3 391 hamnar +
+ * 225 anchorages + 30 083 färjelinje-noder). Med så tät täckning betyder
+ * "ingen waypoint inom 5 km" att punkten är genuint inland (insjö, fastland).
+ */
 function isNearShore(lat: number, lng: number): boolean {
-  let minDist = Infinity
-  for (const wp of SEA_WAYPOINTS) {
-    const d = haversineKm(lat, lng, wp.lat, wp.lng)
-    if (d < minDist) {
-      minDist = d
-      if (minDist <= MAX_SHORE_DISTANCE_KM) return true
+  // Snabb bbox-filter först — undvik 30K haversine-anrop på varje request
+  const LAT_DEG_KM = 111.32
+  const LNG_DEG_KM = LAT_DEG_KM * Math.cos(lat * DEG_TO_RAD)
+  const dLat = MAX_SHORE_DISTANCE_KM / LAT_DEG_KM
+  const dLng = MAX_SHORE_DISTANCE_KM / LNG_DEG_KM
+
+  const all = getAllWaypoints()
+  for (const wp of all) {
+    if (Math.abs(wp.lat - lat) > dLat) continue
+    if (Math.abs(wp.lng - lng) > dLng) continue
+    if (haversineKm(lat, lng, wp.lat, wp.lng) <= MAX_SHORE_DISTANCE_KM) {
+      return true
     }
   }
-  return minDist <= MAX_SHORE_DISTANCE_KM
+  return false
 }
 
 export function findSeaPathWithQuality(
