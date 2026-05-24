@@ -5,6 +5,7 @@ import type { ScoredStop } from '@/lib/planner'
 import MyRoutesList from './MyRoutesList'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import Icon from '@/components/Icon'
+import IslandWeather from '@/components/IslandWeather'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt — Svalla',
@@ -99,6 +100,10 @@ export default async function PlaneraPage() {
             <Icon name="map" size={16} stroke={2} />
             Planera ny rutt
           </Link>
+          {/* Väder för innerskärgården — hjälper användaren bedöma om det är värt att ge sig ut */}
+          <div style={{ marginTop: 16 }}>
+            <IslandWeather lat={59.32} lng={18.20} />
+          </div>
         </div>
       </div>
 
