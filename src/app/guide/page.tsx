@@ -67,18 +67,62 @@ function BlinkingCaret() {
   )
 }
 
-const SUGGESTIONS = [
-  'Vad passar för en familj med barn?',
-  'Romantisk helgtur för oss två?',
-  'Var kan man boka bord i skärgården?',
-  'Bra seglingsrutt en hel dag från Ingarö?',
-  'Var kan man äta bra i skärgården?',
-  'Nybörjare – vilken tur börjar jag med?',
-  'Bästa stället att bada i ytterskärgården?',
-  'Äventyrlig tur med flera stopp och matrestopp?',
-]
+function getContextualSuggestions(): string[] {
+  const now = new Date()
+  const month = now.getMonth() + 1 // 1–12
+  const day = now.getDay()         // 0=sön, 6=lör
+  const isWeekend = day === 0 || day === 6
+  const isSummer  = month >= 6 && month <= 8
+  const isSpring  = month >= 4 && month <= 5
+  const isAutumn  = month >= 9 && month <= 10
+
+  if (isWeekend && isSummer) return [
+    'Perfekt dagstur för hela familjen i sommar?',
+    'Var äter man bäst i ytterskärgården?',
+    'Vilka öar ska man undvika i högsäsong?',
+    'Bästa badstränder med bra brygga?',
+    'Övernattning på en ö — vad rekommenderar du?',
+    'Bra seglingsrutt för en hel sommardag?',
+  ]
+  if (isWeekend && isSpring) return [
+    'Bra vårtur när öarna precis vaknat?',
+    'Var är det lugnt och vackert i maj?',
+    'Familjeutflykt till en nära ö i vår?',
+    'Var kan man äta bra utan att boka i förväg?',
+    'Bästa dagstur med Waxholmsbåten?',
+    'Romantisk helgtur för oss två i vår?',
+  ]
+  if (isWeekend && isAutumn) return [
+    'Lugna höstöar utan turister?',
+    'Bästa skärgårdstur i september eller oktober?',
+    'Var är det fortfarande öppet på hösten?',
+    'Höstvandring i skärgården — var börjar jag?',
+    'Övernattning när det är lugnt och lite billigare?',
+    'Fiskeäventyr på hösten — vad rekommenderar du?',
+  ]
+  if (isWeekend) return [
+    'Vintervandring eller skidtur i skärgården?',
+    'Var kan man ta en varm fika vintertid?',
+    'Öar att besöka när det är is och snö?',
+    'Lugn helgtur för oss två i vinter?',
+    'Öppen restaurang i ytterskärgården på vintern?',
+    'Bästa vinterfiske — var börjar jag?',
+  ]
+  // Veckodagar — mer praktiska, kortare turer
+  return [
+    'Vad passar för en familj med barn?',
+    'Romantisk helgtur för oss två?',
+    'Var kan man boka bord i skärgården?',
+    'Bra seglingsrutt en hel dag från Stockholm?',
+    'Var kan man äta bra i skärgården?',
+    'Nybörjare — vilken tur börjar jag med?',
+    'Bästa stället att bada i ytterskärgården?',
+    'Äventyrlig tur med flera stopp och matrestopp?',
+  ]
+}
 
 function GuideContent() {
+  const suggestions = getContextualSuggestions()
   const searchParams = useSearchParams()
   const router = useRouter()
   const preselectedTour = searchParams.get('tur')
@@ -339,7 +383,7 @@ function GuideContent() {
               <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
                 Vanliga frågor
               </div>
-              {SUGGESTIONS.map((s) => (
+              {suggestions.map((s) => (
                 <button key={s} onClick={() => send(s)} style={{
                   display: 'block', width: '100%', textAlign: 'left',
                   padding: '11px 14px', marginBottom: 6, borderRadius: 12,
