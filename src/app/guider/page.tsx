@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import GuiderClient from './GuiderClient'
 
 export const metadata: Metadata = {
-  title: 'Praktiska guider till skärgården – Svalla',
+  title: 'Praktiska guider till skärgården',
   description: 'Guider om allemansrätten, packlistan, Waxholmsbolaget, midsommar i skärgården och hur du tar dig ut utan båt.',
   alternates: { canonical: 'https://svalla.se/guider' },
   openGraph: {

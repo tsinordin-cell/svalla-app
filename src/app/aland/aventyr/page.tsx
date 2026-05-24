@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import AlandAventyrClient from './AlandAventyrClient'
 
 export const metadata: Metadata = {
-  title: '10 äventyr pa Aaland – Svalla',
+  title: '10 äventyr pa Aaland',
   description: 'Kastelholms slott, Bomarsunds fästning, skärgaradshoppning och cykelleder – Aalands bästa upplevelser.',
   alternates: { canonical: 'https://svalla.se/aland/aventyr' },
   openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import GotlandAventyrClient from './GotlandAventyrClient'
 
 export const metadata: Metadata = {
-  title: '10 äventyr pa Gotland – Svalla',
+  title: '10 äventyr pa Gotland',
   description: 'Utforska Gotlands bästa äventyr: Farö-dagstur, Lummelunda grottan, Raukar-tur, medeltidsstaden Visby och cykelleder.',
   alternates: { canonical: 'https://svalla.se/gotland/aventyr' },
   openGraph: {

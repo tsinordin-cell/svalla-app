@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) return {}
   return {
-    title: `${guide.title} – Svalla`,
+    title: guide.title,
     description: guide.excerpt,
     alternates: { canonical: `https://svalla.se/guider/${slug}` },
     openGraph: {
