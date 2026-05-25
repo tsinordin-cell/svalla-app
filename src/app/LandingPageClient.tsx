@@ -1535,11 +1535,8 @@ function toggleFaq(btn){
 export default function LandingPageClient({ photoMap }: { photoMap?: Record<string, string> }) {
  const router = useRouter()
  useEffect(() => {
- // Om redan inloggad &rarr; skicka direkt till feed
- const supabase = createClient()
- supabase.auth.getSession().then(({ data: { session } }) => {
- if (session) window.location.replace('/feed')
- })
+ // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
+ // och navigera tillbaka till appen därifrån.
 
  // -- Soft-navigation för interna länkar i den dangerouslySetInnerHTML-renderade
  // landningssidan. <a href="/oar"> blir router.push('/oar') &rarr; ingen full page-reload.
