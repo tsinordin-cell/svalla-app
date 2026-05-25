@@ -525,7 +525,7 @@ function SectionHeader({ icon, title }: { icon: string; title: string }) {
     utensils:  'utensils',
     star:      'star',
     compass:   'compass',
-    'arrow-right': 'arrow-right',
+    'arrow-right': 'arrowRight',
   }
   const iconName = (ICON_MAP[icon] ?? 'compass') as import('@/components/Icon').IconName
   return (
