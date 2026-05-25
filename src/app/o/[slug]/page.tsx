@@ -430,6 +430,11 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
+ <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <Link href={`/o/${slug}/aktiviteter`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+ Alla aktiviteter på {island.name} →
+ </Link>
+ </div>
  </section>
  )}
 
@@ -515,6 +520,11 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
+ <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <Link href={`/o/${slug}/restauranger`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+ Alla restauranger på {island.name} →
+ </Link>
+ </div>
  </section>
  )}
 
@@ -550,6 +560,11 @@ export default async function IslandPage({ params }: Props) {
  <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.6 }}>{acc.desc}</p>
  </div>
  ))}
+ </div>
+ <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <Link href={`/o/${slug}/boende`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+ Allt boende på {island.name} →
+ </Link>
  </div>
  </section>
  )}
@@ -645,6 +660,11 @@ export default async function IslandPage({ params }: Props) {
  )}
  </div>
  ))}
+ </div>
+ <div style={{ marginTop: 16, textAlign: 'right' }}>
+ <Link href={`/o/${slug}/hamnar`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+ Hamnar & service på {island.name} →
+ </Link>
  </div>
  </section>
  )}
