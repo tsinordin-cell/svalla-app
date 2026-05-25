@@ -399,10 +399,7 @@ export const ISLANDS: Island[] = [
       { name: 'Långvik gästhamn', desc: 'Mindre gästhamn i Långvik, lugnare och mer naturnära.', service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Möja Hamnbar', type: 'Bar/Restaurang', desc: 'Samlingsplatsen vid hamnen. Mat och dryck i avslappnad stämning.' },
-      { name: 'Jeppes', type: 'Restaurang', desc: 'Lokal favorit med husmanskost och sommarstämning.' },
-      { name: 'Möja Bageri', type: 'Bageri', desc: 'Nybakt bröd och kaffe från 7:00. Morgonrutin för seglare.' },
-      { name: 'Hamncafét', type: 'Café', desc: 'Enkelt café vid bryggan.' },
+      { name: 'Möja Värdshus & Bageri', type: 'Värdshus/Bageri', desc: 'Öns hjärta i Kyrkviken sedan 1951. Nybakt bröd från 7:00 och restaurang med utsikt. Öppet sommarsäsongen.', websiteUrl: 'https://mojavardshusochbageri.se' },
     ],
     tips: [
       'Möja är inte en plats att hasta igenom — stanna minst en natt för att förstå charmen.',
