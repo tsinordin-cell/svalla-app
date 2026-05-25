@@ -164,7 +164,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
                         display: 'inline-flex', alignItems: 'center', gap: 6,
                       }}
                     >
-                      <Icon name="arrow-right" size={13} stroke={2.2} />
+                      <Icon name="arrowRight" size={13} stroke={2.2} />
                       {a.name} på {island.name}
                     </Link>
                   ))}
@@ -227,7 +227,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
                 Fullständig guide till {island.name}
               </div>
             </div>
-            <Icon name="arrow-right" size={18} stroke={2.2} />
+            <Icon name="arrowRight" size={18} stroke={2.2} />
           </div>
         </Link>
       </main>
