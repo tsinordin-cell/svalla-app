@@ -143,7 +143,7 @@ export default function Nav() {
 
   return (
     <>
-      {username !== null && (
+      {showGlobalBell && (
         <div style={{
           position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
           display: 'flex', gap: 6, alignItems: 'center',
@@ -159,14 +159,10 @@ export default function Nav() {
               flexShrink: 0,
             }}
           >
-            <IconHelm size={18} stroke={1.75} />
+            <IconHome size={18} stroke={1.75} />
           </Link>
-          {showGlobalBell && (
-            <>
-              <MessageBell />
-              <NotificationBell />
-            </>
-          )}
+          <MessageBell />
+          <NotificationBell />
         </div>
       )}
     <nav aria-label="Navigering" className="svalla-nav" style={{
@@ -187,9 +183,11 @@ export default function Nav() {
       WebkitBackfaceVisibility: 'hidden',
       backfaceVisibility: 'hidden',
     }}>
-      {/* Desktop: SVALLA-logotyp längst upp i sidebaren */}
+      {/* Desktop: SVALLA-logotyp längst upp i sidebaren — länk till startsidan */}
       <div className="nav-logo-wrap">
-        <SvallaLogo height={24} color="var(--sea)" />
+        <Link href="/" aria-label="Till startsidan" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+          <SvallaLogo height={24} color="var(--sea)" />
+        </Link>
       </div>
 
       {/* Tab-lista — row på mobil/tablet, column på desktop via CSS */}
