@@ -15,6 +15,7 @@ import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import { IconSearch } from '@/components/ui/icons'
+import { Home } from '@/components/icons/LucideIcons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
@@ -185,6 +186,14 @@ export default async function FeedPage(
  }}>
  <span className="feed-header-logo"><SvallaLogo height={26} color="var(--sea)" /></span>
  <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+ <Link href="/" aria-label="Till startsidan" style={{
+ width: 38, height: 38, borderRadius: '50%',
+ background: 'rgba(22,45,58,0.06)',
+ display: 'flex', alignItems: 'center', justifyContent: 'center',
+ flexShrink: 0,
+ }}>
+ <Home size={18} />
+ </Link>
  <Link href="/sok" aria-label="Sök" style={{
  width: 38, height: 38, borderRadius: '50%',
  background: 'rgba(22,45,58,0.06)',
