@@ -17,6 +17,16 @@ const JAMFOR_PAIRS: Array<[string, string]> = [
   ['vaxholm', 'fjaderholmarna'],
   ['uto', 'orno'],
   ['namdo', 'runmaro'],
+  ['grinda', 'moja'],
+  ['uto', 'grinda'],
+  ['vaxholm', 'grinda'],
+  ['sandhamn', 'finnhamn'],
+  ['uto', 'nattaro'],
+  ['fjaderholmarna', 'grinda'],
+  ['finnhamn', 'moja'],
+  ['namdo', 'grinda'],
+  ['svartso', 'finnhamn'],
+  ['runmaro', 'uto'],
 ]
 
 // Blogg-slugs (statisk lista — speglar posts-data.ts)
@@ -229,11 +239,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  // ── Per-ö kategorisidor (restauranger / hamnar / boende) ────────
+  // ── Per-ö kategorisidor (aktiviteter / restauranger / hamnar / boende) ─
   const islandCategoryPages: MetadataRoute.Sitemap = ALL_ISLANDS.flatMap(island => [
+    { url: `${base}/o/${island.slug}/aktiviteter`,  lastModified: now, changeFrequency: 'monthly' as const, priority: 0.75 },
     { url: `${base}/o/${island.slug}/restauranger`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
-    { url: `${base}/o/${island.slug}/hamnar`,        lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
-    { url: `${base}/o/${island.slug}/boende`,        lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${base}/o/${island.slug}/hamnar`,       lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${base}/o/${island.slug}/boende`,       lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
   ])
 
   // ── Blogg-artiklar ──────────────────────────────────────────────
