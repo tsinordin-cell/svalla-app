@@ -10,6 +10,7 @@ type Props = { params: Promise<{ pair: string }> }
 
 // Pre-renderade jämförelser
 const PAIRS: Array<[string, string]> = [
+  // Originala 10
   ['sandhamn', 'grinda'],
   ['sandhamn', 'moja'],
   ['grinda', 'finnhamn'],
@@ -20,6 +21,17 @@ const PAIRS: Array<[string, string]> = [
   ['vaxholm', 'fjaderholmarna'],
   ['uto', 'orno'],
   ['namdo', 'runmaro'],
+  // Nya 10 — vanligaste beslutsfrågorna
+  ['grinda', 'moja'],
+  ['uto', 'grinda'],
+  ['vaxholm', 'grinda'],
+  ['sandhamn', 'finnhamn'],
+  ['uto', 'nattaro'],
+  ['fjaderholmarna', 'grinda'],
+  ['finnhamn', 'moja'],
+  ['namdo', 'grinda'],
+  ['svartso', 'finnhamn'],
+  ['runmaro', 'uto'],
 ]
 
 export async function generateStaticParams() {
