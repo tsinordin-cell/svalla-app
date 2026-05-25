@@ -1537,6 +1537,16 @@ export default function LandingPageClient({ photoMap }: { photoMap?: Record<stri
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
  // och navigera tillbaka till appen därifrån.
+ // Om inloggad: byt "Logga in"-knapparna i nav-cta till "Till appen →"
+ const supabase = createClient()
+ supabase.auth.getSession().then(({ data: { session } }) => {
+   if (session) {
+     document.querySelectorAll<HTMLAnchorElement>('a[href="/logga-in"].btn-ghost').forEach(el => {
+       el.href = '/feed'
+       el.textContent = 'Till appen →'
+     })
+   }
+ })
 
  // -- Soft-navigation för interna länkar i den dangerouslySetInnerHTML-renderade
  // landningssidan. <a href="/oar"> blir router.push('/oar') &rarr; ingen full page-reload.
