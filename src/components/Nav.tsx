@@ -143,13 +143,30 @@ export default function Nav() {
 
   return (
     <>
-      {showGlobalBell && (
+      {username !== null && (
         <div style={{
           position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
-          display: 'flex', gap: 6,
+          display: 'flex', gap: 6, alignItems: 'center',
         }}>
-          <MessageBell />
-          <NotificationBell />
+          <Link
+            href="/"
+            aria-label="Till startsidan"
+            style={{
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              width: 36, height: 36, borderRadius: '50%',
+              background: 'var(--teal-15)', color: 'var(--sea)',
+              textDecoration: 'none',
+              flexShrink: 0,
+            }}
+          >
+            <IconHelm size={18} stroke={1.75} />
+          </Link>
+          {showGlobalBell && (
+            <>
+              <MessageBell />
+              <NotificationBell />
+            </>
+          )}
         </div>
       )}
     <nav aria-label="Navigering" className="svalla-nav" style={{
