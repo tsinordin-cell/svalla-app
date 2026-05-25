@@ -31,10 +31,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  title: `${island.name} – Guide till ön | Svalla`,
  description: `Allt om ${island.name}: restauranger, aktiviteter, boende och hur du tar dig dit. ${island.tagline}`,
  keywords: [`${island.name.toLowerCase()} skärgård`, `${island.name.toLowerCase()} restaurang`, `resa till ${island.name.toLowerCase()}`, 'stockholms skärgård guide'],
+ alternates: {
+ canonical: `https://svalla.se/o/${slug}`,
+ },
  openGraph: {
  title: `${island.name} – ${island.tagline}`,
  description: `Komplett guide till ${island.name} i Stockholms skärgård.`,
  url: `https://svalla.se/o/${slug}`,
+ type: 'article',
  images: [{
  url: `https://svalla.se/api/og/island/${slug}`,
  width: 1200, height: 630,
@@ -88,10 +92,24 @@ export default async function IslandPage({ params }: Props) {
  dangerouslySetInnerHTML={{
  __html: JSON.stringify({
  '@context': 'https://schema.org',
- '@type': 'TouristAttraction',
+ '@type': ['TouristDestination', 'TouristAttraction'],
  name: island.name,
- description: island.tagline,
+ description: island.description?.[0] ?? island.tagline,
  url: `https://svalla.se/o/${island.slug}`,
+ image: `https://svalla.se/api/og/island/${island.slug}`,
+ containedInPlace: {
+ '@type': 'Place',
+ name: island.regionLabel,
+ url: 'https://svalla.se/rutter?vy=oar',
+ },
+ touristType: island.facts?.best_for ?? undefined,
+ ...(island.activities?.length > 0 ? {
+ amenityFeature: island.activities.slice(0, 5).map(a => ({
+ '@type': 'LocationFeatureSpecification',
+ name: a.name,
+ value: true,
+ })),
+ } : {}),
  ...(island.lat && island.lng ? {
  geo: {
  '@type': 'GeoCoordinates',
