@@ -7,8 +7,9 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconHelm, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
+import { IconHelm, IconRoute, IconUser, IconPlus } from '@/components/ui/icons'
 import { IconCompass } from '@/components/icons/SvallaIcons'
+import { Home } from '@/components/icons/LucideIcons'
 
 export default function Nav() {
   const path = usePathname()
@@ -159,7 +160,7 @@ export default function Nav() {
               flexShrink: 0,
             }}
           >
-            <IconHome size={18} stroke={1.75} />
+            <Home size={18} />
           </Link>
           <MessageBell />
           <NotificationBell />
