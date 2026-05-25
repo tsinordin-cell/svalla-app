@@ -389,6 +389,9 @@ export default function ProfilPage() {
           <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600, padding: '7px 14px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
             <Pencil size={12} /> Redigera
           </button>
+          <Link href="/" aria-label="Till startsidan" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: '50%', background: 'rgba(10,123,140,0.10)', color: 'var(--sea)', textDecoration: 'none', flexShrink: 0 }}>
+            <Home size={16} />
+          </Link>
           <button onClick={() => setSignOutOpen(true)} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
             Logga ut
           </button>
