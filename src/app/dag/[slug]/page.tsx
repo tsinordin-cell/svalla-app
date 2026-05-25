@@ -413,7 +413,7 @@ export default async function DagSlugPage({ params }: Props) {
                 background: 'rgba(255,255,255,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <Icon name="arrow-right" size={16} stroke={2.5} />
+                <Icon name="arrowRight" size={16} stroke={2.5} />
               </div>
             </div>
           </Link>
@@ -452,7 +452,7 @@ export default async function DagSlugPage({ params }: Props) {
                 background: 'rgba(255,255,255,0.12)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
               }}>
-                <Icon name="arrow-right" size={16} stroke={2.5} />
+                <Icon name="arrowRight" size={16} stroke={2.5} />
               </div>
             </div>
           </Link>
