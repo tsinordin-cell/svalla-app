@@ -3,6 +3,21 @@ import { ALL_ISLANDS } from './o/island-data'
 import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
+import { UPPLÄGG } from './dag/dag-data'
+
+// Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
+const JAMFOR_PAIRS: Array<[string, string]> = [
+  ['sandhamn', 'grinda'],
+  ['sandhamn', 'moja'],
+  ['grinda', 'finnhamn'],
+  ['uto', 'sandhamn'],
+  ['moja', 'svartso'],
+  ['finnhamn', 'rodloga'],
+  ['arholma', 'rodloga'],
+  ['vaxholm', 'fjaderholmarna'],
+  ['uto', 'orno'],
+  ['namdo', 'runmaro'],
+]
 
 // Blogg-slugs (statisk lista — speglar posts-data.ts)
 const BLOG_SLUGS = [
@@ -157,6 +172,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/faq`,                    lastModified: now, priority: 0.5,  changeFrequency: 'monthly' as const },
   ]
 
+  // ── Dagsupplägg-sidor ───────────────────────────────────────────
+  const dagPages: MetadataRoute.Sitemap = [
+    { url: `${base}/dag`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.85 },
+    ...UPPLÄGG.map(u => ({
+      url: `${base}/dag/${u.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+  ]
+
+  // ── Jämförelsesidor ─────────────────────────────────────────────
+  const jamforPages: MetadataRoute.Sitemap = [
+    { url: `${base}/jamfor`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.8 },
+    ...JAMFOR_PAIRS.map(([a, b]) => ({
+      url: `${base}/jamfor/${a}-vs-${b}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+  ]
+
   // ── Ö-sidor (statiska, inkl. Bohuslän) ─────────────────────────
   const islandPages: MetadataRoute.Sitemap = ALL_ISLANDS.map(island => ({
     url: `${base}/o/${island.slug}`,
@@ -284,6 +321,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
+    ...dagPages,
+    ...jamforPages,
     ...islandPages,
     ...islandCategoryPages,
     ...activityIndex,
