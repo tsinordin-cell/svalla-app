@@ -3,12 +3,13 @@ import type { ReactNode } from 'react'
 import SvallaLogo from './SvallaLogo'
 import Breadcrumb from './Breadcrumb'
 
-export type IslandSubPageTab = 'boende' | 'hamnar' | 'restauranger'
+export type IslandSubPageTab = 'aktiviteter' | 'restauranger' | 'boende' | 'hamnar'
 
 const TAB_LABEL: Record<IslandSubPageTab, string> = {
+  aktiviteter: 'Aktiviteter',
+  restauranger: 'Restauranger',
   boende: 'Boende',
   hamnar: 'Hamnar',
-  restauranger: 'Restauranger',
 }
 
 interface IslandSubPageHeaderProps {
