@@ -32,6 +32,37 @@ const PAIRS: Array<[string, string]> = [
   ['namdo', 'grinda'],
   ['svartso', 'finnhamn'],
   ['runmaro', 'uto'],
+  // Utökning till 60 par — familj, par, segling, budgetfokus
+  ['vaxholm', 'fjaderholmarna'],
+  ['sandhamn', 'uto'],
+  ['grinda', 'uto'],
+  ['finnhamn', 'arholma'],
+  ['moja', 'gallno'],
+  ['sandhamn', 'vaxholm'],
+  ['uto', 'moja'],
+  ['grinda', 'finnhamn'],
+  ['fjaderholmarna', 'vaxholm'],
+  ['sandhamn', 'arholma'],
+  ['ingmarso', 'svartso'],
+  ['ljustero', 'orno'],
+  ['nattaro', 'orno'],
+  ['gallno', 'svartso'],
+  ['rodloga', 'arholma'],
+  ['namdo', 'nattaro'],
+  ['runmaro', 'namdo'],
+  ['uto', 'landsort'],
+  ['sandhamn', 'ljustero'],
+  ['vaxholm', 'ljustero'],
+  ['grinda', 'arholma'],
+  ['finnhamn', 'ingmarso'],
+  ['moja', 'ingmarso'],
+  ['svartso', 'gallno'],
+  ['uto', 'fjaderholmarna'],
+  ['sandhamn', 'namdo'],
+  ['vaxholm', 'finnhamn'],
+  ['grinda', 'ljustero'],
+  ['orno', 'nattaro'],
+  ['arholma', 'ingmarso'],
 ]
 
 export async function generateStaticParams() {
@@ -156,7 +187,7 @@ export default async function ComparisonPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      {/* JSON-LD */}
+      {/* JSON-LD: BreadcrumbList */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -167,6 +198,35 @@ export default async function ComparisonPage({ params }: Props) {
               { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
               { '@type': 'ListItem', position: 2, name: 'Jämför', item: 'https://svalla.se/jamfor' },
               { '@type': 'ListItem', position: 3, name: `${islandA.name} vs ${islandB.name}`, item: `https://svalla.se/jamfor/${pair}` },
+            ],
+          }),
+        }}
+      />
+      {/* JSON-LD: CollectionPage — hjälper Google förstå jämförelsestrukturen */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: `${islandA.name} eller ${islandB.name}? Jämförelse`,
+            description: `Jämför ${islandA.name} och ${islandB.name} — aktiviteter, boende, transport och karaktär. Hitta vilken ö som passar dig bäst.`,
+            url: `https://svalla.se/jamfor/${pair}`,
+            hasPart: [
+              {
+                '@type': 'TouristDestination',
+                name: islandA.name,
+                description: islandA.tagline,
+                url: `https://svalla.se/o/${islandA.slug}`,
+                touristType: islandA.tags ?? [],
+              },
+              {
+                '@type': 'TouristDestination',
+                name: islandB.name,
+                description: islandB.tagline,
+                url: `https://svalla.se/o/${islandB.slug}`,
+                touristType: islandB.tags ?? [],
+              },
             ],
           }),
         }}
