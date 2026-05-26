@@ -47,8 +47,66 @@ export default async function ActivityTypePage({ params }: Props) {
     bohuslan: islands.filter(i => i.region === 'bohuslan'),
   }
 
+  // JSON-LD: CollectionPage
+  const collectionPage = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${activity.name} i skärgården`,
+    description: activity.description,
+    url: `https://svalla.se/aktivitet/${activity.slug}`,
+    about: {
+      '@type': 'TouristAttraction',
+      name: `${activity.name} i Stockholms och Bohusläns skärgård`,
+      description: activity.hero,
+      touristType: [activity.name],
+      availableLanguage: 'sv',
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: 'Stockholms län',
+        addressCountry: 'SE',
+      },
+    },
+    hasPart: islands.slice(0, 20).map(island => ({
+      '@type': 'TouristDestination',
+      name: island.name,
+      url: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}`,
+      description: island.tagline,
+    })),
+  }
+
+  // JSON-LD: ItemList (ranking av toppöar)
+  const itemList = featuredIslands.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Bästa öar för ${activity.name.toLowerCase()} i skärgården`,
+    description: `Rankade öar för ${activity.name.toLowerCase()} — baserat på tillgänglighet, upplevelse och säsong.`,
+    url: `https://svalla.se/aktivitet/${activity.slug}`,
+    numberOfItems: featuredIslands.length,
+    itemListElement: featuredIslands.map((island, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: island.name,
+      url: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}`,
+      description: island.tagline,
+    })),
+  } : null
+
+  // JSON-LD: BreadcrumbList
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Hem', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Aktiviteter', item: 'https://svalla.se/aktivitet' },
+      { '@type': 'ListItem', position: 3, name: activity.name, item: `https://svalla.se/aktivitet/${activity.slug}` },
+    ],
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      {itemList && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />}
       <nav style={{
         background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
         padding: '18px 24px 16px',
