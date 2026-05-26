@@ -10,6 +10,12 @@ const scriptSrc = isDev
 
 const securityHeaders = [
   {
+    // Tillåter Google att visa stora bilder i Discover och Image Search
+    // Kritiskt för en naturbaserad sajt med rika Google Photos
+    key: 'X-Robots-Tag',
+    value: 'max-image-preview:large',
+  },
+  {
     key: 'X-DNS-Prefetch-Control',
     value: 'on',
   },
