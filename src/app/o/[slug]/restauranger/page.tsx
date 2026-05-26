@@ -51,22 +51,42 @@ export default async function IslandRestaurantsPage({ params }: Props) {
           </div>
         ) : (
           <div style={{ display: 'grid', gap: 14 }}>
-            {island.restaurants.map(r => (
-              <div key={r.name} style={{
-                background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
-                border: '1px solid var(--surface-3)',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
-                  <h2 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>{r.name}</h2>
-                  <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 999, background: 'var(--surface-3)', color: '#1e5c82', fontWeight: 700 }}>
-                    {r.type}
-                  </span>
+            {island.restaurants.map(r => {
+              const cardContent = (
+                <>
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+                    <h2 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>{r.name}</h2>
+                    <span style={{ fontSize: 11, padding: '3px 10px', borderRadius: 999, background: 'var(--surface-3)', color: '#1e5c82', fontWeight: 700 }}>
+                      {r.type}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, marginTop: 8 }}>
+                    {r.desc}
+                  </p>
+                  {r.slug && (
+                    <span style={{ fontSize: 12, color: 'var(--sea)', marginTop: 8, display: 'inline-block', fontWeight: 600 }}>
+                      Se mer info →
+                    </span>
+                  )}
+                </>
+              )
+              return r.slug ? (
+                <Link key={r.name} href={`/upptack/${r.slug}`} style={{
+                  display: 'block', background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
+                  border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit',
+                  transition: 'border-color 0.15s',
+                }}>
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={r.name} style={{
+                  background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
+                  border: '1px solid var(--surface-3)',
+                }}>
+                  {cardContent}
                 </div>
-                <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.55, marginTop: 8 }}>
-                  {r.desc}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         )}
 
