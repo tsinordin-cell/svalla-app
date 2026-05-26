@@ -70,6 +70,42 @@ export type Island = {
   /** 2–3 meningar om boendeutbudet på denna specifika ö — visas på /o/[slug]/boende */
   accommodationIntro?: string
   did_you_know?: string
+  /**
+   * Maskinläsbar transport-sammanfattning för /ta-dig-till/[slug] och BusTrip-schema.
+   * Kompletterar getting_there[] som är display-fokuserad.
+   */
+  transport_meta?: {
+    from_city_min: number       // restid i minuter från Strömkajen / central hållplats
+    from_nearest_hub_min: number // restid från närmaste pendeltågs-brygga (t.ex. Stavsnäs, Nynäshamn)
+    nearest_hub: string          // namn på närmaste hub, t.ex. "Stavsnäs"
+    operator: string             // "Waxholmsbolaget" | "Cinderella" | "Strömma"
+    line?: string                // linjenummer eller linjenamn
+    frequency: string            // t.ex. "Varje timme" | "3–5 ggr/dag sommartid"
+    booking_url?: string
+    car_parking?: string         // parkerings-info vid avfärdsbryggan
+  }
+  /**
+   * Strukturerade aktivitetsdetaljer för schema.org och filter-funktioner.
+   * Separerat från activities[] som är display-fokuserad med ikon + beskrivning.
+   */
+  activity_meta?: {
+    kajak?: { difficulty: 'lätt' | 'medel' | 'svår', rental: boolean, notes?: string }
+    cykel?: { rental: boolean, km_track?: number, notes?: string }
+    bad?: { beaches: string[] }
+    vandring?: { trails: number, max_km?: number }
+    fiske?: boolean
+  }
+  /** Praktisk serviceinformation på ön — för schema och filter */
+  amenities?: {
+    toilets: boolean
+    shower: boolean
+    cafe: boolean
+    grocery: boolean
+    atm?: boolean
+  }
+  /** Hundvänlighet — för /oar/hundvanliga och ö-sida */
+  dog_friendly?: boolean
+  dog_notes?: string
 }
 
 export const ISLANDS: Island[] = [
@@ -132,6 +168,25 @@ export const ISLANDS: Island[] = [
     related: ['moja', 'grinda', 'finnhamn'],
     tags: ['segling', 'gästhamn', 'restauranger', 'sandstrand', 'sommarfest'],
     did_you_know: 'Sandhamn fick tullstation runt 1670 och lotsstation under slutet av 1600-talet, sedan kungens förbud mot utländsk sjöfart genom Sandöhamn upphävts. Namnet kommer från den ovanliga sandstranden — de flesta öar i skärgården har bara klippor.',
+    transport_meta: {
+      from_city_min: 150,
+      from_nearest_hub_min: 40,
+      nearest_hub: 'Stavsnäs',
+      operator: 'Waxholmsbolaget',
+      line: '444',
+      frequency: 'Flera avgångar/dag sommartid, glesare vinter',
+      booking_url: 'https://waxholmsbolaget.se',
+      car_parking: 'Parkering vid Stavsnäs vinterhamn, 60–80 kr/dag.',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid hamnen. Paddla runt ön eller ut mot omgivande grund.' },
+      bad: { beaches: ['Trouville-stranden (sandstrand, södra sidan)', 'Klippbad vid Västerudd'] },
+      vandring: { trails: 3, max_km: 8 },
+      fiske: true,
+    },
+    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
+    dog_friendly: true,
+    dog_notes: 'Hundar tillåtna på de flesta delar av ön. Hundförbud vid Trouville-stranden sommartid (juni–aug). Koppeltvång i hamn- och restaurangområden.',
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -190,6 +245,26 @@ export const ISLANDS: Island[] = [
     related: ['nattaro', 'dalaro', 'orno'],
     tags: ['cykling', 'havsbastu', 'gruva', 'naturreservat', 'familj'],
     did_you_know: 'Utö har en av Sveriges äldsta järngruvor — drift från 1100-talet fram till 1879. Sveriges första rälsväg byggdes på Utö 1835 (700 meter, för malmtransport från gruvan till lastkajen).',
+    transport_meta: {
+      from_city_min: 120,
+      from_nearest_hub_min: 30,
+      nearest_hub: 'Nynäshamn (Årsta brygga)',
+      operator: 'Waxholmsbolaget',
+      line: 'Utölinje',
+      frequency: 'Flera avgångar/dag sommartid, 2–3 ggr/dag vinter',
+      booking_url: 'https://waxholmsbolaget.se',
+      car_parking: 'Pendeltåg till Nynäshamn (SL), sedan 5 min buss/gång till Årsta brygga. Parkering vid Nynäshamns station eller Årsta brygga.',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Kajakuthyrning vid hamnen. Lugnt vatten på öns västra sida, mer öppet i söder.' },
+      cykel: { rental: true, km_track: 13, notes: 'Ca 350 hyrcyklar. Klassrutt: Gruvbryggan–Ålö ca 13 km enkel väg.' },
+      bad: { beaches: ['Storsand (norra Utö, kontrollera tillgänglighet — inom skjutfält)', 'Ålö Storsand (grannön Ålö, broförbunden)'] },
+      vandring: { trails: 4, max_km: 12 },
+      fiske: true,
+    },
+    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
+    dog_friendly: true,
+    dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong (april–juli). Värdshuset tillåter hundar i uteserveringen.',
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -247,6 +322,25 @@ export const ISLANDS: Island[] = [
     related: ['grinda', 'finnhamn', 'ljustero'],
     tags: ['historia', 'fästning', 'stad', 'dagsturer', 'helår'],
     did_you_know: 'Vaxholms fästning byggdes på 1500-talet av Gustav Vasa för att skydda Stockholm. Den stoppade faktiskt en dansk flotta 1612.',
+    transport_meta: {
+      from_city_min: 75,
+      from_nearest_hub_min: 0,
+      nearest_hub: 'Strömkajen (direktbåt)',
+      operator: 'Waxholmsbolaget',
+      line: 'Linje 670 (buss) eller direktbåt',
+      frequency: 'Buss varje timme. Båt flera gånger/dag.',
+      booking_url: 'https://sl.se',
+      car_parking: 'Parkering i centrala Vaxholm, ca 15–20 kr/h. Pendling rekommenderas — buss 670 från Tekniska Högskolan tar 60 min med SL-kort.',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Perfekt utgångspunkt för kajaktur mot Resarö och Rindö. Uthyrning vid hamnen.' },
+      bad: { beaches: ['Badplats vid Kastellet', 'Rindö badplats (kort båttur)'] },
+      vandring: { trails: 2, max_km: 5 },
+      fiske: true,
+    },
+    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: true },
+    dog_friendly: true,
+    dog_notes: 'Vaxholm är hundvänligt med gott om promenadstråk. Koppeltvång i hamn och tätort.',
   },
 
   // ─── GRINDA ──────────────────────────────────────────────────
@@ -302,6 +396,25 @@ export const ISLANDS: Island[] = [
     related: ['sandhamn', 'finnhamn', 'vaxholm'],
     tags: ['gästhamn', 'värdshus', 'natur', 'segling', 'romantik'],
     did_you_know: 'Henrik Santesson (Nobelstiftelsens första verkställande direktör) köpte Grinda 1906 och lät arkitekten Ernst Stenhammar rita den vackra gula jugendvillan, klar 1908. Stockholms stad köpte ön 1944, och idag förvaltas Grinda som naturreservat av Skärgårdsstiftelsen. Villan är numera Grinda Wärdshus.',
+    transport_meta: {
+      from_city_min: 120,
+      from_nearest_hub_min: 60,
+      nearest_hub: 'Vaxholm',
+      operator: 'Waxholmsbolaget',
+      line: 'Linje mot Sandhamn',
+      frequency: 'Flera avgångar/dag sommartid',
+      booking_url: 'https://waxholmsbolaget.se',
+      car_parking: 'Inget bilalternativ till Grinda — ta båt från Strömkajen eller Vaxholm. Parkering vid Vaxholms hamn om du kör till Vaxholm.',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid Wärdshuset. Lugna vatten söder om ön.' },
+      bad: { beaches: ['Sandstrand vid gästhamnen', 'Klippbad på öns norra sida'] },
+      vandring: { trails: 3, max_km: 7 },
+      fiske: false,
+    },
+    amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
+    dog_friendly: true,
+    dog_notes: 'Naturreservat — koppeltvång gäller hela ön under häckningssäsong (1 april–31 juli). Hundar välkomna i övrigt.',
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -410,6 +523,25 @@ export const ISLANDS: Island[] = [
     related: ['sandhamn', 'gallno', 'finnhamn'],
     tags: ['bilfri', 'lantlig', 'genuint', 'lugnt', 'konstnär'],
     did_you_know: 'Möja är en av skärgårdens folkrikaste öar med eget mejeri, skola och bibliotek. Mejeriet gör en prisbelönt lagrad ost direkt på ön.',
+    transport_meta: {
+      from_city_min: 195,
+      from_nearest_hub_min: 60,
+      nearest_hub: 'Stavsnäs',
+      operator: 'Waxholmsbolaget',
+      line: 'Möjalinjen',
+      frequency: '2–4 avgångar/dag sommartid, glesare vinter',
+      booking_url: 'https://waxholmsbolaget.se',
+      car_parking: 'Parkering vid Stavsnäs vinterhamn, 60–80 kr/dag. Pendelbuss 428 från Slussen till Stavsnäs (ca 60 min med SL-kort).',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Paddla söderut mot Gällnö och Svartsö. Uthyrning vid Berg.' },
+      bad: { beaches: ['Klippbad vid Berg', 'Klippbad vid Långvik'] },
+      vandring: { trails: 3, max_km: 10 },
+      fiske: true,
+    },
+    amenities: { toilets: true, shower: false, cafe: true, grocery: true, atm: false },
+    dog_friendly: true,
+    dog_notes: 'Hundvänlig ö med gott om utrymme. Koppeltvång i hamnområden och på några naturreservatsdelar.',
   },
 
   // ─── FJÄDERHOLMARNA ──────────────────────────────────────────
