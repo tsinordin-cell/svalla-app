@@ -98,9 +98,49 @@ export default async function VandringHikePage({ params }: Props) {
     ],
   }
 
+  const touristAttraction = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristAttraction',
+    name: `Vandra ${hike.name}`,
+    description: hike.tagline,
+    url: `https://svalla.se/aktivitet/vandring/${hike.slug}`,
+    touristType: [
+      ...(hike.suitableForChildren ? ['Barnfamiljer'] : []),
+      ...(hike.ferryRequired ? ['Skärgårdsresenärer'] : []),
+      ...(hike.hasBathing ? ['Badgäster'] : []),
+      'Vandrare',
+    ],
+    additionalType: 'https://schema.org/ExerciseAction',
+    isAccessibleForFree: true,
+    ...(hike.distanceKm > 0 ? {
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Längd', value: `${hike.distanceKm} km` },
+        { '@type': 'LocationFeatureSpecification', name: 'Svårighet', value: hike.difficulty },
+        { '@type': 'LocationFeatureSpecification', name: 'Uppskattad tid', value: `${hike.durationMin}–${hike.durationMax} timmar` },
+        { '@type': 'LocationFeatureSpecification', name: 'Bästa säsong', value: hike.bestSeason },
+        ...(hike.hasBathing ? [{ '@type': 'LocationFeatureSpecification', name: 'Badmöjligheter', value: true }] : []),
+        ...(hike.hasRestaurant ? [{ '@type': 'LocationFeatureSpecification', name: 'Restaurang', value: true }] : []),
+      ],
+    } : {}),
+    ...(desc?.tips && desc.tips.length > 0 ? {
+      subjectOf: {
+        '@type': 'HowTo',
+        name: `Hur du vandrar ${hike.name}`,
+        description: hike.tagline,
+        ...(hike.distanceKm > 0 ? { estimatedCost: { '@type': 'MonetaryAmount', currency: 'SEK', value: '0' } } : {}),
+        step: desc.tips.map((tip, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          text: tip,
+        })),
+      },
+    } : {}),
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(touristAttraction) }} />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
