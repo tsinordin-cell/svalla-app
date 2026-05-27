@@ -132,11 +132,22 @@ export default function NyborjareSeglingPage() {
  { '@type': 'ListItem', position: 2, name: 'Nybörjare & segling', item: 'https://svalla.se/nyborjare-segling' },
  ],
  }
+ const speakableJsonLd = {
+ '@context': 'https://schema.org',
+ '@type': 'WebPage',
+ name: 'Börja segla — Nybörjarguide för segling i Sverige',
+ url: 'https://svalla.se/nyborjare-segling',
+ speakable: {
+  '@type': 'SpeakableSpecification',
+  cssSelector: ['h1', '.category-landing-tagline'],
+ },
+ }
  return (
  <>
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(exerciseActionJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableJsonLd) }} />
  <CategoryLanding
  heroGradient={['#1a5c3a', '#2d7a52']}
  eyebrow="Nybörjarsegling"
