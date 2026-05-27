@@ -295,7 +295,12 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  {/* ── Hero-galleri (thatsup-style: flera bilder synliga, scroll-snap, pilar) ── */}
  <div style={{ position: 'relative' }}>
-   <PlaceHeroGallery photos={placePhotos} alt={r.name} />
+   {/* SEO: rikare alt-text för Google Image Search.
+       Ex: "Bistro Sands — Restaurang på Sandhamn" */}
+   <PlaceHeroGallery
+     photos={placePhotos}
+     alt={`${r.name}${typeLabel ? ' — ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
+   />
 
    {/* Back button — over carousel.
        Stilskild från carousel-pilarna (vita rundlar) genom mörk bakgrund

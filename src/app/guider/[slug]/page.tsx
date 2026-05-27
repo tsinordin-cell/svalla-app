@@ -35,8 +35,38 @@ export default async function GuidePage({ params }: Props) {
 
   const content = getGuideContent(slug)
 
+  // Schema.org Article — för E-E-A-T + AI Overviews-citation
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `https://svalla.se/guider/${slug}#article`,
+    headline: guide.title,
+    description: guide.excerpt,
+    about: guide.category,
+    inLanguage: 'sv-SE',
+    timeRequired: guide.readTime,
+    url: `https://svalla.se/guider/${slug}`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://svalla.se/guider/${slug}` },
+    author: { '@type': 'Organization', '@id': 'https://svalla.se/#organization', name: 'Svalla' },
+    publisher: { '@id': 'https://svalla.se/#organization' },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Svalla', item: 'https://svalla.se' },
+      { '@type': 'ListItem', position: 2, name: 'Guider', item: 'https://svalla.se/guider' },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: `https://svalla.se/guider/${slug}` },
+    ],
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
+
+      {/* JSON-LD: Article + BreadcrumbList */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Header */}
       <div style={{
