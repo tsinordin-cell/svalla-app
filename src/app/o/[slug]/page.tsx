@@ -776,6 +776,34 @@ export default async function IslandPage({ params }: Props) {
  </section>
  )}
 
+ {/* Guider om ön — intern länkning till bloggartiklar */}
+ {island.blogLinks && island.blogLinks.length > 0 && (
+  <section style={{ marginBottom: 36 }}>
+   <SectionHeader icon="📖" title={`Guider om ${island.name}`} />
+   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    {island.blogLinks.map(link => (
+     <Link
+      key={link.slug}
+      href={`/blogg/${link.slug}`}
+      style={{
+       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+       padding: '14px 18px', borderRadius: 12,
+       background: 'var(--white)',
+       border: '1px solid var(--surface-3)',
+       textDecoration: 'none',
+       color: 'var(--txt)',
+       fontSize: 14, fontWeight: 500,
+       boxShadow: '0 1px 6px rgba(0,0,0,0.04)',
+      }}
+     >
+      <span>{link.title}</span>
+      <span style={{ color: 'var(--sea)', fontWeight: 700, marginLeft: 12, flexShrink: 0 }}>Läs →</span>
+     </Link>
+    ))}
+   </div>
+  </section>
+ )}
+
  {/* Forum-sektion */}
  <section style={{ marginTop: 48, marginBottom: 0 }}>
  <div style={{
