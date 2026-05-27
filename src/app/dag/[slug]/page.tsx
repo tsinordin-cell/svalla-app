@@ -100,6 +100,42 @@ export default async function DagSlugPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: `Dagstur till ${plan.name}`,
+            url: `https://svalla.se/dag/${slug}`,
+            speakable: {
+              '@type': 'SpeakableSpecification',
+              cssSelector: ['h1', '#dag-intro'],
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: `Vad kan man göra på dagstur till ${plan.name}?`,
+                acceptedAnswer: { '@type': 'Answer', text: plan.desc },
+              },
+              {
+                '@type': 'Question',
+                name: `Hur lång tid tar en dagstur till ${plan.name}?`,
+                acceptedAnswer: { '@type': 'Answer', text: `En dagstur till ${plan.name} tar typiskt ${plan.duration}. Restid tillkommer beroende på transportval.` },
+              },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Hem',        item: 'https://svalla.se' },
@@ -172,7 +208,7 @@ export default async function DagSlugPage({ params }: Props) {
           }}>
             Dagstur till {plan.name}
           </h1>
-          <p style={{
+          <p id="dag-intro" style={{
             fontSize: 17, color: 'rgba(255,255,255,0.82)',
             margin: '0 0 28px', lineHeight: 1.5, maxWidth: 580,
             fontFamily: "'Playfair Display', Georgia, serif",
