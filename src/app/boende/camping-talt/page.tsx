@@ -64,6 +64,23 @@ export default function CampingPage() {
         { '@type': 'ListItem', position: 3, name: 'Camping och tält', item: 'https://svalla.se/boende/camping-talt' },
       ],
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Campground',
+      name: 'Camping och tältplatser i Stockholms skärgård',
+      description: 'Campingplatser och tältvänliga öar i Stockholms skärgård — nära bad, vandring och paddling.',
+      url: 'https://svalla.se/boende/camping-talt',
+      areaServed: {
+        '@type': 'Place',
+        name: 'Stockholms skärgård',
+      },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Nära bad', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Nära vandringsleder', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Kajak och paddling', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Tillgänglig med färja', value: true },
+      ],
+    },
   ]
 
   return (
