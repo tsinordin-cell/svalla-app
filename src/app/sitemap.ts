@@ -27,15 +27,13 @@ const JAMFOR_PAIRS: Array<[string, string]> = [
   ['namdo', 'grinda'],
   ['svartso', 'finnhamn'],
   ['runmaro', 'uto'],
-  // Utökning till 60 par
-  ['vaxholm', 'fjaderholmarna'],
+  // Utökning till 60 par (vaxholm/fjaderholmarna och grinda/finnhamn fanns redan — rensade)
   ['sandhamn', 'uto'],
   ['grinda', 'uto'],
   ['finnhamn', 'arholma'],
   ['moja', 'gallno'],
   ['sandhamn', 'vaxholm'],
   ['uto', 'moja'],
-  ['grinda', 'finnhamn'],
   ['fjaderholmarna', 'vaxholm'],
   ['sandhamn', 'arholma'],
   ['ingmarso', 'svartso'],
@@ -58,6 +56,31 @@ const JAMFOR_PAIRS: Array<[string, string]> = [
   ['grinda', 'ljustero'],
   ['orno', 'nattaro'],
   ['arholma', 'ingmarso'],
+  // Bohuslän & Västkusten — 24 nya par
+  ['marstrand', 'smogen'],
+  ['kungshamn', 'marstrand'],
+  ['lysekil', 'marstrand'],
+  ['kungshamn', 'smogen'],
+  ['grundsund', 'smogen'],
+  ['hamburgsund', 'smogen'],
+  ['grundsund', 'lysekil'],
+  ['kosterhavet', 'lysekil'],
+  ['grebbestad', 'kosterhavet'],
+  ['fjallbacka', 'kosterhavet'],
+  ['fjallbacka', 'grebbestad'],
+  ['grebbestad', 'hamburgsund'],
+  ['fjallbacka', 'hamburgsund'],
+  ['hamburgsund', 'kosterhavet'],
+  ['karingon', 'orust'],
+  ['karingon', 'tjorn'],
+  ['orust', 'tjorn'],
+  ['marstrand', 'tjorn'],
+  ['kungshamn', 'lysekil'],
+  ['grebbestad', 'kungshamn'],
+  ['marstrand', 'pater-noster'],
+  ['kungshamn', 'pater-noster'],
+  ['pater-noster', 'smogen'],
+  ['hono', 'vinga'],
 ]
 
 // Blogg-slugs (statisk lista — speglar posts-data.ts)
@@ -235,6 +258,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ]
 
+  // ── Transport-sidor /ta-dig-till/[slug] ─────────────────────────
+  // Max P1: vakanta queries "hur tar man sig till [ö]"
+  const transportIndex: MetadataRoute.Sitemap = [
+    { url: `${base}/ta-dig-till`, lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+  ]
+  const transportPages: MetadataRoute.Sitemap = ALL_ISLANDS.map(island => ({
+    url: `${base}/ta-dig-till/${island.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }))
+
+  // ── Säsongssidor /sasong/[slug] ──────────────────────────────────
+  // Max P1: "vakant content om skärgård utanför sommar"
+  const sasongPages: MetadataRoute.Sitemap = [
+    { url: `${base}/sasong`,         lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/sasong/var`,     lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    { url: `${base}/sasong/sommar`,  lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/sasong/host`,    lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
+    { url: `${base}/sasong/vinter`,  lastModified: now, priority: 0.75, changeFrequency: 'monthly' as const },
+  ]
+
   // ── Ö-sidor (statiska, inkl. Bohuslän) ─────────────────────────
   const islandPages: MetadataRoute.Sitemap = ALL_ISLANDS.map(island => ({
     url: `${base}/o/${island.slug}`,
@@ -363,6 +408,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     ...staticPages,
+    ...transportIndex,
+    ...transportPages,
+    ...sasongPages,
     ...dagPages,
     ...jamforPages,
     ...islandPages,

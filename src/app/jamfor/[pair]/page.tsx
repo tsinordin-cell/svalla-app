@@ -33,14 +33,13 @@ const PAIRS: Array<[string, string]> = [
   ['svartso', 'finnhamn'],
   ['runmaro', 'uto'],
   // Utökning till 60 par — familj, par, segling, budgetfokus
-  ['vaxholm', 'fjaderholmarna'],
+  // (vaxholm/fjaderholmarna och grinda/finnhamn finns redan ovan — dubbletter rensade)
   ['sandhamn', 'uto'],
   ['grinda', 'uto'],
   ['finnhamn', 'arholma'],
   ['moja', 'gallno'],
   ['sandhamn', 'vaxholm'],
   ['uto', 'moja'],
-  ['grinda', 'finnhamn'],
   ['fjaderholmarna', 'vaxholm'],
   ['sandhamn', 'arholma'],
   ['ingmarso', 'svartso'],
@@ -63,6 +62,32 @@ const PAIRS: Array<[string, string]> = [
   ['grinda', 'ljustero'],
   ['orno', 'nattaro'],
   ['arholma', 'ingmarso'],
+  // ── Bohuslän & Västkusten (24 nya par från related[]) ──────────
+  // Tidigare 0 Bohuslän-par. Detta är Max P1-vakuum.
+  ['marstrand', 'smogen'],
+  ['kungshamn', 'marstrand'],
+  ['lysekil', 'marstrand'],
+  ['kungshamn', 'smogen'],
+  ['grundsund', 'smogen'],
+  ['hamburgsund', 'smogen'],
+  ['grundsund', 'lysekil'],
+  ['kosterhavet', 'lysekil'],
+  ['grebbestad', 'kosterhavet'],
+  ['fjallbacka', 'kosterhavet'],
+  ['fjallbacka', 'grebbestad'],
+  ['grebbestad', 'hamburgsund'],
+  ['fjallbacka', 'hamburgsund'],
+  ['hamburgsund', 'kosterhavet'],
+  ['karingon', 'orust'],
+  ['karingon', 'tjorn'],
+  ['orust', 'tjorn'],
+  ['marstrand', 'tjorn'],
+  ['kungshamn', 'lysekil'],
+  ['grebbestad', 'kungshamn'],
+  ['marstrand', 'pater-noster'],
+  ['kungshamn', 'pater-noster'],
+  ['pater-noster', 'smogen'],
+  ['hono', 'vinga'],
 ]
 
 export async function generateStaticParams() {
