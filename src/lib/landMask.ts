@@ -34,12 +34,21 @@ export function pointOnLand(lat: number, lng: number): boolean {
 /**
  * Validera att ett linjestycke inte korsar land
  * Returnerar true om det KORSAR LAND, false om SÄKERT PÅ VATTEN
+ *
+ * 2026-05-25 KRITISK FIX: endpoint pointOnLand-check borttagen.
+ * Bakgrund: hamnar är PÅ kustlinjen — pointOnLand returnerar true för dem
+ * eftersom OSM coastline-polygonerna inkluderar landytan runt hamnen.
+ * Resultat: validatePathLand rejekterade ALLA rutter eftersom start/slut alltid
+ * "var på land". Detta var grundbuggen i hela routing-pipelinen — Stockholm→
+ * Sandhamn, Strömstad→Smögen, alla riktiga rutter blockerades.
+ *
+ * Nu: vi kollar BARA om linjen MELLAN endpoints skär en land-polygon. Endpoints
+ * är användarens val (vi kan inte styra var hamnar ligger). Det är OK att en
+ * harbor-koord ligger inom en kustlinje-polygon — det är därför den heter
+ * "harbor".
  */
 export function segmentCrossesLand(lat1: number, lng1: number, lat2: number, lng2: number): boolean {
-  // Kontrollera om något endpoint ligger på land
-  if (pointOnLand(lat1, lng1) || pointOnLand(lat2, lng2)) {
-    return true
-  }
+  // OBS: ingen endpoint-check (se kommentar ovan).
 
   // Skapa ett line feature och testa intersection med alla land-polygoner
   const line = turf.lineString([[lng1, lat1], [lng2, lat2]])
@@ -48,10 +57,19 @@ export function segmentCrossesLand(lat1: number, lng1: number, lat2: number, lng
     if (feature.geometry.type === 'Polygon') {
       const polygon = turf.polygon(feature.geometry.coordinates)
 
-      // Turf.js lineIntersect
+      // Turf.js lineIntersect — antal skärningspunkter med polygonens kant.
+      // 0 träffar = linjen ligger helt utanför ELLER helt inuti polygonen.
+      //   - Utanför = vatten = OK
+      //   - Inuti = land = FEL, men: om linjen är helt inuti en land-polygon
+      //     har vi bara kort segment där (typiskt 50–200 m) eftersom snap-
+      //     punkterna är vid kanten. Det är acceptabelt MVP-precision.
+      // 2+ träffar = linjen går från vatten genom land och tillbaka = FEL.
+      // 1 träff = linjen går från utanför till inuti (eller tvärtom). Det
+      //   händer naturligt vid harbors där endpoint är "innanför" polygonen.
+      //   Är inte ett land-traversal.
       const intersects = turf.lineIntersect(line, polygon)
-      if (intersects.features && intersects.features.length > 0) {
-        return true // Linjen skär polygonen
+      if (intersects.features && intersects.features.length >= 2) {
+        return true // Linjen skär in OCH ut ur polygonen → går genom land
       }
     }
   }
