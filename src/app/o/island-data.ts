@@ -112,6 +112,12 @@ export type Island = {
    * Undvik generaliseringar — varje tips ska gälla just denna ö.
    */
   insiderTips?: string[]
+  /**
+   * Blogginlägg som handlar om eller nämner denna ö.
+   * Visas som "Guider om [ö]"-sektion på ö-sidan för intern länkning.
+   * Använd exakta slugs från src/app/blogg/posts-data.ts.
+   */
+  blogLinks?: { slug: string; title: string }[]
 }
 
 export const ISLANDS: Island[] = [
@@ -216,6 +222,11 @@ export const ISLANDS: Island[] = [
       'Byn Sandhamn ligger i öns nordöstra del. Promenaden runt hela ön tar ungefär två timmar i lugnt tempo.',
       'Sandhamn var lotsstation i hundratals år. Lotsarna här guidade handelsfartyg genom de smala passagerna in mot Stockholm, vilket formade byn och dess karaktär.',
     ],
+    blogLinks: [
+      { slug: 'basta-restaurangerna-sandhamn', title: 'De 5 bästa restaurangerna på Sandhamn 2026' },
+      { slug: 'gasthamnar-guide', title: 'Bästa gästhamnarna i Stockholms skärgård 2026' },
+      { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
+    ],
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -317,6 +328,11 @@ export const ISLANDS: Island[] = [
       'Utö Värdshus är ett av de äldsta värdshuset i Stockholms skärgård och har serverats mat och dryck till sjöfarare under lång tid.',
       'Havsbastu finns på Utö och är populär även under vinterhalvåret. Kontrasten mot kallt hav är störst i november och mars.',
     ],
+    blogLinks: [
+      { slug: 'uto-guide', title: 'Utö – södra skärgårdens kronjuvel' },
+      { slug: 'vandring-orno-uto', title: 'Vandring i skärgården – bästa lederna på Ornö och Utö' },
+      { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – de bästa platserna 2026' },
+    ],
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -414,6 +430,10 @@ export const ISLANDS: Island[] = [
       'Vaxholms Kastell byggdes på 1500-talet och användes som försvarsanläggning mot bland annat den ryska och danska flottan. Kastellet kan besökas sommartid.',
       'Vaxholm är en av få skärgårdsdestinationer med apotek, post och ett brett serviceutbud öppet hela året.',
       'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut, en av de mer intakta trästadsmiljöerna i Stockholmsregionen.',
+    ],
+    blogLinks: [
+      { slug: 'vaxholm-guide', title: 'Vaxholm – skärgårdsstadens kompletta guide' },
+      { slug: 'waxholmsbolaget-guide', title: 'Waxholmsbolaget – komplett guide till båttrafiken' },
     ],
   },
 
@@ -514,6 +534,10 @@ export const ISLANDS: Island[] = [
       'Grinda har två hamnar: Norra Grinda (gästhamn, mer besökt) och Södra Grinda (naturhamn, lugnare). De flesta turistbåtar lägger till i norr.',
       'Vandringsslingan runt Grinda är ungefär 6 kilometer och tar 1,5–2 timmar i normalt tempo.',
       'STF-anläggningen på Grinda serverar frukost och middag. Under juli och augusti är bokning av bord starkt rekommenderat.',
+    ],
+    blogLinks: [
+      { slug: 'kajak-stockholms-skargard-nyborjare', title: 'Kajak i skärgården – guide för nybörjaren' },
+      { slug: 'barnfamilj-skargard', title: 'Skärgård med barnfamilj – 8 tips för en lyckad tur' },
     ],
   },
 
@@ -694,6 +718,10 @@ export const ISLANDS: Island[] = [
       'Wikströms på Möja säljer färsk fisk och räkor direkt från fiskaren. Öppet under sommarsäsongen vid hamnen.',
       'Det finns en lanthandel på Möja med ett gott utbud för en ö utan fast vägförbindelse.',
       'Möja är bilfri för besökare men har ett internt bilsystem för de fastboende.',
+    ],
+    blogLinks: [
+      { slug: 'dolda-parlor-moja', title: 'Möjas dolda pärlor – bilfri ö med äkta skärgårdsstämning' },
+      { slug: 'cykling-moja-gallno', title: 'Cykla i skärgården – guide för Möja och Gällnö' },
     ],
   },
 
