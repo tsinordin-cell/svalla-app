@@ -77,10 +77,34 @@ export default async function MinSkargardPage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 
+  const { data: userProfileRow } = await supabase
+    .from('users')
+    .select('username')
+    .eq('id', user.id)
+    .maybeSingle()
+  const profileUsername = (userProfileRow as { username?: string } | null)?.username
+
   const savedSlugs = new Set((savedRows ?? []).map(r => r.island_slug))
   const visitedSlugs = new Set((visitedRows ?? []).map(r => r.island_slug))
   const visitedCount = visitedSlugs.size
   const percentVisited = Math.round((visitedCount / TOTAL_ISLANDS) * 100)
+
+  // Besökshistorik — grupperad per månad, nyast först
+  const SV_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'] as const
+  type VisitGroup = { label: string; items: { slug: string; name: string }[] }
+  const visitGroupMap = new Map<string, VisitGroup>()
+  for (const row of visitedRows ?? []) {
+    const d = new Date(row.created_at)
+    const key = `${d.getFullYear()}-${String(d.getMonth()).padStart(2, '0')}`
+    if (!visitGroupMap.has(key)) {
+      visitGroupMap.set(key, { label: `${SV_MONTHS[d.getMonth()]} ${d.getFullYear()}`, items: [] })
+    }
+    const isl = getIsland(row.island_slug)
+    if (isl) visitGroupMap.get(key)!.items.push({ slug: isl.slug, name: isl.name })
+  }
+  const visitGroups = [...visitGroupMap.entries()]
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([, v]) => v)
 
   const earned = ACHIEVEMENTS.filter(a => visitedCount >= a.threshold)
   const next = ACHIEVEMENTS.find(a => visitedCount < a.threshold)
@@ -299,6 +323,86 @@ export default async function MinSkargardPage() {
             </div>
           )}
         </section>
+
+        {/* BESÖKSHISTORIK */}
+        {visitGroups.length > 0 && (
+          <section style={{
+            background: 'var(--white)',
+            border: '1px solid var(--surface-3)',
+            borderRadius: 18, padding: '20px 22px',
+            marginTop: 20, marginBottom: 20,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 16 }}>
+              <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>
+                Din besökshistorik
+              </h2>
+              <span style={{ fontSize: 13, color: 'var(--txt2)' }}>{visitedCount} öar</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+              {visitGroups.map(group => (
+                <div key={group.label}>
+                  <div style={{
+                    fontSize: 11, fontWeight: 700, color: 'var(--txt3)',
+                    textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 8,
+                  }}>
+                    {group.label}
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {group.items.map(item => (
+                      <Link key={item.slug} href={`/o/${item.slug}`} style={{
+                        padding: '5px 11px', borderRadius: 999,
+                        background: 'rgba(46,160,90,0.08)', color: 'var(--green, #2a6e50)',
+                        fontSize: 12, fontWeight: 700, textDecoration: 'none',
+                        display: 'inline-flex', alignItems: 'center', gap: 4,
+                      }}>
+                        <Icon name="check" size={11} stroke={2.4} />
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* DELA DIN SKARGARD */}
+        {profileUsername && (
+          <section style={{
+            background: 'linear-gradient(135deg, var(--sea-l, #1e5c82) 0%, var(--sea, #0a7b8c) 100%)',
+            borderRadius: 18, padding: '18px 20px',
+            marginBottom: 20, color: '#fff',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <div style={{
+                width: 44, height: 44, borderRadius: 12,
+                background: 'rgba(255,255,255,0.15)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexShrink: 0,
+              }}>
+                <Icon name="users" size={22} stroke={1.8} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 3 }}>
+                  Dela din skärgård
+                </div>
+                <div style={{ fontSize: 12, opacity: 0.8 }}>
+                  Din publika profil visar öar, turer och märken.
+                </div>
+              </div>
+              <Link href={`/u/${profileUsername}`} style={{
+                padding: '8px 14px', borderRadius: 10,
+                background: 'rgba(255,255,255,0.20)',
+                color: '#fff', fontSize: 13, fontWeight: 700,
+                textDecoration: 'none', whiteSpace: 'nowrap',
+                border: '1px solid rgba(255,255,255,0.25)',
+                flexShrink: 0,
+              }}>
+                Visa profil
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* ── Verktyg & spel — synliggör nya features ───────────────── */}
         <section style={{
