@@ -30,6 +30,39 @@ export const metadata: Metadata = {
 
 export const revalidate = 600
 
+const ferryTripsJsonLd = SEED_FERRY_ROUTES.map(r => ({
+  '@context': 'https://schema.org',
+  '@type': 'BoatTrip',
+  name: r.name,
+  departureBoatTerminal: {
+    '@type': 'BoatTerminal',
+    name: r.from,
+  },
+  arrivalBoatTerminal: {
+    '@type': 'BoatTerminal',
+    name: r.to,
+  },
+  provider: {
+    '@type': 'Organization',
+    name: r.operator,
+    url: r.operator === 'Cinderella'
+      ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'
+      : 'https://www.waxholmsbolaget.se',
+    sameAs: r.operator === 'Cinderella'
+      ? 'https://www.cinderellabatarna.com'
+      : 'https://sl.se',
+  },
+  offers: {
+    '@type': 'Offer',
+    url: r.infoUrl,
+    availability: 'https://schema.org/InStock',
+  },
+  itinerary: r.stops.map(stop => ({
+    '@type': 'BoatTerminal',
+    name: stop,
+  })),
+}))
+
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -71,6 +104,9 @@ export default async function FarjorPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      {ferryTripsJsonLd.map((schema, i) => (
+        <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       {/* HERO */}
       <div style={{
         background: 'var(--grad-sea-hero)',
@@ -233,7 +269,7 @@ export default async function FarjorPage() {
             Cinderella tidtabell 2026
           </h2>
           <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 28px', lineHeight: 1.6 }}>
-            Cinderellabåtarna trafikerar Stockholms skärgård från slutet av maj till mitten av september. Linjerna går från <strong>Strömkajen</strong> i centrala Stockholm ut till Sandhamn och tillbaka. Nedan finns ett urval av hållplatser och typiska avgångstider — kontrollera alltid aktuella tider på <a href="https://www.cinderellabatarna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>cinderellabatarna.com</a> eller via deras app inför resan.
+            Cinderellabåtarna trafikerar Stockholms skärgård från slutet av maj till mitten av september. Linjerna avgår från <strong>Strömkajen</strong> (Strandvägen) i centrala Stockholm ut till Sandhamn och tillbaka, med stopp vid Vaxholm, Grinda och Möja. Nedan finns ett urval av hållplatser och typiska avgångstider — kontrollera alltid aktuella tider på <a href="https://www.cinderellabatarna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>cinderellabatarna.com</a> eller via deras app inför resan.
           </p>
 
           {/* Sandhamnslinjen */}
