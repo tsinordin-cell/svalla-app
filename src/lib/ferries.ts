@@ -61,10 +61,11 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'cinderella-sandhamn',
-    name: 'Strandvägen – Sandhamn',
-    from: 'Strandvägen',
+    name: 'Strömkajen – Sandhamn',
+    from: 'Strömkajen',
     to: 'Sandhamn',
-    stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Möja', 'Sandhamn'],
+    // Strömkajen och Strandvägen är samma plats — Strömkajen är det vedertagna bryggonamnet
+    stops: ['Strömkajen', 'Vaxholm', 'Grinda', 'Möja', 'Sandhamn'],
     operator: 'Cinderella',
     season: 'Sommar (maj–sep)',
     infoUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
