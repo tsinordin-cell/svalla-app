@@ -64,6 +64,28 @@ export default function HotellPage() {
         { '@type': 'ListItem', position: 3, name: 'Hotell och vandrarhem', item: 'https://svalla.se/boende/hotell-vandrarhem' },
       ],
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LodgingBusiness',
+      name: 'Hotell och vandrarhem i Stockholms skärgård',
+      description: 'Hotell, värdshus och vandrarhem i Stockholms skärgård — nära havet, hamnen och skärgårdens bästa restauranger.',
+      url: 'https://svalla.se/boende/hotell-vandrarhem',
+      areaServed: {
+        '@type': 'Place',
+        name: 'Stockholms skärgård',
+      },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Nära färja', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Restaurang på plats', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Havsutsikt', value: true },
+      ],
+      containsPlace: [
+        { '@type': 'Hotel', name: 'Sandhamns Seglarhotell', address: { '@type': 'PostalAddress', addressLocality: 'Sandhamn', addressRegion: 'Stockholms skärgård', addressCountry: 'SE' } },
+        { '@type': 'Hotel', name: 'Utö Värdshus', address: { '@type': 'PostalAddress', addressLocality: 'Utö', addressRegion: 'Stockholms skärgård', addressCountry: 'SE' } },
+        { '@type': 'Hotel', name: 'Grinda Wärdshus', address: { '@type': 'PostalAddress', addressLocality: 'Grinda', addressRegion: 'Stockholms skärgård', addressCountry: 'SE' } },
+        { '@type': 'Hostel', name: 'Finnhamn STF-vandrarhem', address: { '@type': 'PostalAddress', addressLocality: 'Finnhamn', addressRegion: 'Stockholms skärgård', addressCountry: 'SE' } },
+      ],
+    },
   ]
 
   return (
