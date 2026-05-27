@@ -101,9 +101,21 @@ export default async function FarjorPage() {
   )
   const anyLive = routesWithDeps.some(r => r.deps.some(d => d.source === 'live'))
 
+  const speakableJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Färjetider Stockholms skärgård — Cinderella & Waxholmsbolaget',
+    url: 'https://svalla.se/farjor',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '#farjor-intro'],
+    },
+  }
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableJsonLd) }} />
       {ferryTripsJsonLd.map((schema, i) => (
         <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
@@ -119,8 +131,8 @@ export default async function FarjorPage() {
           <h1 style={{ fontSize: 30, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: -0.3 }}>
             Färjetider
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
-            Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård.
+          <p id="farjor-intro" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
+            Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård. Cinderella avgår från Strömkajen till Sandhamn på ca 3 timmar. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
           </p>
         </div>
       </div>
@@ -266,7 +278,7 @@ export default async function FarjorPage() {
           boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
         }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', letterSpacing: -0.2 }}>
-            Cinderella tidtabell 2026
+            Vad är Cinderella tidtabell 2026 och när avgår båtarna?
           </h2>
           <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 28px', lineHeight: 1.6 }}>
             Cinderellabåtarna trafikerar Stockholms skärgård från slutet av maj till mitten av september. Linjerna avgår från <strong>Strömkajen</strong> (Strandvägen) i centrala Stockholm ut till Sandhamn och tillbaka, med stopp vid Vaxholm, Grinda och Möja. Nedan finns ett urval av hållplatser och typiska avgångstider — kontrollera alltid aktuella tider på <a href="https://www.cinderellabatarna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>cinderellabatarna.com</a> eller via deras app inför resan.
