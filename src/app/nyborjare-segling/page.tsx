@@ -73,6 +73,31 @@ const ITEMS: LandingItem[] = [
 ]
 
 export default function NyborjareSeglingPage() {
+ const exerciseActionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ExerciseAction',
+  name: 'Lär dig segla — nybörjarguide för segling i Sverige',
+  description: 'Allt du behöver veta för att börja segla: kurser, båtval, säkerhet och bästa revir för nybörjare.',
+  url: 'https://svalla.se/nyborjare-segling',
+  exerciseType: 'Sailing',
+  sportActivityLocation: {
+   '@type': 'Place',
+   name: 'Sverige — Stockholms skärgård, Mälaren och Bohuslän',
+  },
+  subjectOf: {
+   '@type': 'HowTo',
+   name: 'Hur börjar man segla som nybörjare?',
+   description: 'Steg-för-steg guide: från noll till säker seglare i svenska vatten.',
+   step: [
+    { '@type': 'HowToStep', position: 1, name: 'Ta en segelkurs', text: 'Hitta rätt kurs för din nivå — Seglarförbundets körkort, RYA Day Skipper eller kurs hos lokalt segelsällskap. Grundkurs tar 2–3 dagar och kostar 2 000–4 000 kr.' },
+    { '@type': 'HowToStep', position: 2, name: 'Välj din första båt', text: 'Börja med en stabil och enkel båt: Nordisk Folkbåt, H-båt eller Albin 25. Charterbåt är ett bra alternativ innan köp — kostar 8 000–40 000 kr/vecka beroende på säsong.' },
+    { '@type': 'HowToStep', position: 3, name: 'Börja i rätt vatten', text: 'Lugna revir för nybörjare: Mälaren, inre Stockholms skärgård (Saltsjön) och inre delar av Bohuslän. Undvik öppet hav tills du byggt upp rutin.' },
+    { '@type': 'HowToStep', position: 4, name: 'Förbered checklista och säkerhetsutrustning', text: 'Flytväst alltid ombord. VHF-radio på kanal 16 (nödkanal). Färdplan till någon iland. Sjökort och kompass. Första hjälpen-kit.' },
+    { '@type': 'HowToStep', position: 5, name: 'Förstå vind och väder', text: 'Lär dig läsa SMHI:s sjöprognos och Beaufort-skalan. Beaufort 0–4 är bra för nybörjare. Respektera stormvarningar — vädret på öppet vatten kan ändras snabbt.' },
+    { '@type': 'HowToStep', position: 6, name: 'Logga din första tur', text: 'Spara turen, se statistik och dela med andra seglare. Varje tur bygger erfarenhet — logga rutt, väder och lärdomar för att utvecklas snabbare.' },
+   ],
+  },
+ }
  const faqJsonLd = {
  '@context': 'https://schema.org',
  '@type': 'FAQPage',
@@ -109,6 +134,7 @@ export default function NyborjareSeglingPage() {
  }
  return (
  <>
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(exerciseActionJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
  <CategoryLanding
