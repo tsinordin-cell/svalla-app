@@ -126,6 +126,17 @@ export default function KajakPage() {
     })),
   }
 
+  const speakable = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
+    url: 'https://svalla.se/aktivitet/kajak',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', '#kajak-intro'],
+    },
+  }
+
   const breadcrumb = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -142,6 +153,7 @@ export default function KajakPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(exerciseAction) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakable) }} />
 
       {/* Header */}
       <div style={{ background: 'var(--grad-sea-hero)', padding: '0 20px 48px', paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' }}>
@@ -168,7 +180,7 @@ export default function KajakPage() {
 
         {/* Intro-text */}
         <section style={{ marginBottom: 40 }}>
-          <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
+          <p id="kajak-intro" style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
             Stockholms skärgård är ett av världens mest tillgängliga kajakrevir. Du tar Waxholmsbåten ut till en ö, hyr kajak vid hamnen och paddlar bland klippor och naturhamnar — utan att behöva ta med något eget. Innerskärgårdens skyddade vatten är perfekta för nybörjare, medan ytterskärgårdens öppna fjärdar erbjuder mer utmanande paddling för den erfarne.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '16px 0 0' }}>
@@ -184,7 +196,7 @@ export default function KajakPage() {
         {/* Öar med kajak */}
         <section style={{ marginBottom: 48 }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 20 }}>
-            Öar med kajakhyrning
+            Var kan man hyra kajak i Stockholms skärgård?
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14 }}>
             {kajakOar.map(island => (
@@ -213,7 +225,7 @@ export default function KajakPage() {
         {/* Steg-för-steg */}
         <section style={{ marginBottom: 48 }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 20 }}>
-            Kom igång — 5 enkla steg
+            Hur paddlar man kajak i skärgården för första gången?
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {STEG.map(s => (
