@@ -64,6 +64,22 @@ export default function BBPage() {
         { '@type': 'ListItem', position: 3, name: 'B&B och pensionat', item: 'https://svalla.se/boende/bb' },
       ],
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BedAndBreakfast',
+      name: 'B&B och pensionat i Stockholms skärgård',
+      description: 'Familjedrivna B&B och pensionat i Stockholms skärgård — frukost ingår, nära havet och lokalbefolkningen.',
+      url: 'https://svalla.se/boende/bb',
+      areaServed: {
+        '@type': 'Place',
+        name: 'Stockholms skärgård',
+      },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Frukost ingår', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Familjedrivet', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Nära havet', value: true },
+      ],
+    },
   ]
 
   return (
