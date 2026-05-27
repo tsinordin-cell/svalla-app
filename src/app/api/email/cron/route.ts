@@ -163,5 +163,150 @@ async function handle(req: Request) {
     results.season_close = { sent, errors }
   }
 
+  // ── 4. Vädertriggad helgmail (torsdagar, maj–september) ─────────────────
+  // Använder samma Open-Meteo forecast-API som IslandWeather.tsx.
+  // Skickar till email_subscribers om helgprognosen är ≥18°C, ≤40% regn och ≤9 m/s vind.
+  // Dedupliceras mot email_log — ingen prenumerant får mer än ett vädermail i veckan.
+  const isThursday = today.getDay() === 4   // 0=söndag … 4=torsdag
+  const isWeatherSeason = month >= 5 && month <= 9
+
+  if (isThursday && isWeatherSeason) {
+    let weatherOk = false
+    let bestTemp = 0
+    let bestWind = 99
+    let bestDay = 'helgen'
+
+    try {
+      // Centralpunkt i Stockholms skärgård (Värmdö/Sandhamn-hållet)
+      const forecastUrl =
+        'https://api.open-meteo.com/v1/forecast' +
+        '?latitude=59.35&longitude=18.9' +
+        '&daily=temperature_2m_max,precipitation_probability_max,wind_speed_10m_max' +
+        '&wind_speed_unit=ms&timezone=Europe%2FStockholm&forecast_days=7'
+
+      const res = await fetch(forecastUrl, { signal: AbortSignal.timeout(10_000) })
+      if (res.ok) {
+        const data = await res.json() as {
+          daily: {
+            time: string[]
+            temperature_2m_max: number[]
+            precipitation_probability_max: number[]
+            wind_speed_10m_max: number[]
+          }
+        }
+        const { time, temperature_2m_max, precipitation_probability_max, wind_speed_10m_max } = data.daily
+
+        // Hitta lördag (day=6) och söndag (day=0) robustly via datum istället för hårdkodade index
+        const satIdx = time.findIndex(d => new Date(d).getDay() === 6)
+        const sunIdx = time.findIndex(d => new Date(d).getDay() === 0)
+
+        type DayCandidate = { label: string; temp: number; precip: number; wind: number }
+        const candidates: DayCandidate[] = []
+        if (satIdx >= 0) candidates.push({
+          label: 'lördag',
+          temp: temperature_2m_max[satIdx] ?? 0,
+          precip: precipitation_probability_max[satIdx] ?? 100,
+          wind: wind_speed_10m_max[satIdx] ?? 99,
+        })
+        if (sunIdx >= 0) candidates.push({
+          label: 'söndag',
+          temp: temperature_2m_max[sunIdx] ?? 0,
+          precip: precipitation_probability_max[sunIdx] ?? 100,
+          wind: wind_speed_10m_max[sunIdx] ?? 99,
+        })
+
+        // Välj den bästa dagen (högst temp bland de som uppfyller kriterierna)
+        const goodDays = candidates.filter(c => c.temp >= 18 && c.precip <= 40 && c.wind <= 9)
+        if (goodDays.length > 0) {
+          const best = goodDays.reduce((a, b) => a.temp >= b.temp ? a : b)
+          weatherOk = true
+          bestTemp = Math.round(best.temp)
+          bestWind = parseFloat(best.wind.toFixed(1))
+          bestDay = best.label
+        }
+      }
+    } catch {
+      // Tyst degradering — Open-Meteo nere = ingen utsändning
+    }
+
+    if (weatherOk) {
+      // Hämta prenumeranter
+      const { data: weatherSubs } = await service
+        .from('email_subscribers')
+        .select('email')
+        .eq('confirmed', true)
+        .eq('unsubscribed', false)
+        .limit(10_000)
+
+      let weatherSent = 0
+      let weatherErrors = 0
+
+      if (weatherSubs && weatherSubs.length > 0) {
+        // Deduplicera: filtrera bort de som fått weather_tip senaste 6 dagarna
+        const sixDaysAgo = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000).toISOString()
+        const { data: recentSent } = await service
+          .from('email_log')
+          .select('email')
+          .eq('template', 'weather_tip')
+          .gte('sent_at', sixDaysAgo)
+        const recentSet = new Set((recentSent ?? []).map(r => r.email as string))
+
+        const eligible = weatherSubs.filter(s => s.email && !recentSet.has(s.email as string))
+
+        // Skicka i chunk om 50 för att undvika rate-limits
+        const CHUNK = 50
+        for (let i = 0; i < eligible.length; i += CHUNK) {
+          const chunk = eligible.slice(i, i + CHUNK)
+          const settled = await Promise.allSettled(
+            chunk.map(s => sendEmail({
+              template: 'weather_tip',
+              to: s.email as string,
+              vars: {
+                first_name: 'där',
+                temp: String(bestTemp),
+                wind: String(bestWind),
+                best_day: bestDay,
+              },
+            }))
+          )
+
+          // Logga lyckade utskick (deduplicering nästa vecka)
+          const successEmails: string[] = []
+          settled.forEach((r, idx) => {
+            if (r.status === 'fulfilled' && r.value.ok) {
+              weatherSent++
+              const email = chunk[idx]?.email as string | undefined
+              if (email) successEmails.push(email)
+            } else {
+              weatherErrors++
+            }
+          })
+          if (successEmails.length > 0) {
+            await service.from('email_log').insert(
+              successEmails.map(email => ({
+                email,
+                template: 'weather_tip',
+                sent_at: new Date().toISOString(),
+              }))
+            ).then(() => {}, () => {})
+          }
+        }
+      }
+
+      results.weather_tip = {
+        sent: weatherSent,
+        errors: weatherErrors,
+        details: { bestTemp, bestWind, bestDay },
+      }
+    } else {
+      // Vädret uppfyller inte kriteriet — ingen utsändning, logga ändå i results
+      results.weather_tip = {
+        sent: 0,
+        errors: 0,
+        details: { skipped: true, reason: 'väderkriterier ej uppfyllda' },
+      }
+    }
+  }
+
   return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results })
 }
