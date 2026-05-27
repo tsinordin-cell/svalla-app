@@ -64,6 +64,23 @@ export default function StugorPage() {
         { '@type': 'ListItem', position: 3, name: 'Stugor och stugbyar', item: 'https://svalla.se/boende/stugor-stugbyar' },
       ],
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LodgingBusiness',
+      name: 'Hyr stuga i Stockholms skärgård',
+      description: 'Stugor, stugbyar och fritidshus i Stockholms skärgård — på öar som Sandhamn, Utö och Möja.',
+      url: 'https://svalla.se/boende/stugor-stugbyar',
+      areaServed: {
+        '@type': 'Place',
+        name: 'Stockholms skärgård',
+      },
+      amenityFeature: [
+        { '@type': 'LocationFeatureSpecification', name: 'Självhushåll', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Nära bad', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Nära brygga', value: true },
+        { '@type': 'LocationFeatureSpecification', name: 'Husdjur tillåtna', value: true },
+      ],
+    },
   ]
 
   return (
