@@ -106,6 +106,12 @@ export type Island = {
   /** Hundvänlighet — för /oar/hundvanliga och ö-sida */
   dog_friendly?: boolean
   dog_notes?: string
+  /**
+   * Specifika insiderkunskaper om ön — används av Thorkel och visas på ö-sidan.
+   * Ska vara konkreta, faktakontrollerade och svåra att hitta på egen hand.
+   * Undvik generaliseringar — varje tips ska gälla just denna ö.
+   */
+  insiderTips?: string[]
 }
 
 export const ISLANDS: Island[] = [
@@ -203,6 +209,13 @@ export const ISLANDS: Island[] = [
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
     dog_notes: 'Hundar tillåtna på de flesta delar av ön. Hundförbud vid Trouville-stranden sommartid (juni–aug). Koppeltvång i hamn- och restaurangområden.',
+    insiderTips: [
+      'Waxholmsbåten tar ungefär 2 timmar och 30 minuter från Strömkajen via linje 444. Snabbåt via Stavsnäs kortar restiden till ungefär en timme.',
+      'Trouville är en av få sandstränder i hela Stockholms skärgård. De flesta öar har klippor och hällmarker, inte sand.',
+      'KSSS (Kungliga Svenska Sällskapet) har sin flaggskeppshamn i Sandhamn. Round Gotland Race, en av världens mest välkända offshore-seglingstävlingar, startar härifrån varje år.',
+      'Byn Sandhamn ligger i öns nordöstra del. Promenaden runt hela ön tar ungefär två timmar i lugnt tempo.',
+      'Sandhamn var lotsstation i hundratals år. Lotsarna här guidade handelsfartyg genom de smala passagerna in mot Stockholm, vilket formade byn och dess karaktär.',
+    ],
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -297,6 +310,13 @@ export const ISLANDS: Island[] = [
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
     dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong (april–juli). Värdshuset tillåter hundar i uteserveringen.',
+    insiderTips: [
+      'Järngruvan på Utö var i drift från 1600-talet till 1879 och är en av Sveriges äldsta kända järngruvor. Gruvsystemet kan besökas.',
+      'Utö är den sydligaste bebodda ön i Stockholms skärgård med reguljär färjetrafik från Stockholm.',
+      'Cykellederna på Utö är välmarkerade. Ön är ungefär 18 kilometer lång och en tur runt tar 3 till 4 timmar i lugnt tempo.',
+      'Utö Värdshus är ett av de äldsta värdshuset i Stockholms skärgård och har serverats mat och dryck till sjöfarare under lång tid.',
+      'Havsbastu finns på Utö och är populär även under vinterhalvåret. Kontrasten mot kallt hav är störst i november och mars.',
+    ],
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -389,6 +409,12 @@ export const ISLANDS: Island[] = [
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: true },
     dog_friendly: true,
     dog_notes: 'Vaxholm är hundvänligt med gott om promenadstråk. Koppeltvång i hamn och tätort.',
+    insiderTips: [
+      'Vaxholm nås med SL-buss 676 från Tekniska Högskolan (tunnelbana röd linje), ett billigare alternativ till båt och ofta lika snabbt.',
+      'Vaxholms Kastell byggdes på 1500-talet och användes som försvarsanläggning mot bland annat den ryska och danska flottan. Kastellet kan besökas sommartid.',
+      'Vaxholm är en av få skärgårdsdestinationer med apotek, post och ett brett serviceutbud öppet hela året.',
+      'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut, en av de mer intakta trästadsmiljöerna i Stockholmsregionen.',
+    ],
   },
 
   // ─── GRINDA ──────────────────────────────────────────────────
@@ -483,6 +509,12 @@ export const ISLANDS: Island[] = [
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
     dog_notes: 'Naturreservat — koppeltvång gäller hela ön under häckningssäsong (1 april–31 juli). Hundar välkomna i övrigt.',
+    insiderTips: [
+      'Grinda ägs av STF och är ett naturreservat utan privat bebyggelse och utan bilar.',
+      'Grinda har två hamnar: Norra Grinda (gästhamn, mer besökt) och Södra Grinda (naturhamn, lugnare). De flesta turistbåtar lägger till i norr.',
+      'Vandringsslingan runt Grinda är ungefär 6 kilometer och tar 1,5–2 timmar i normalt tempo.',
+      'STF-anläggningen på Grinda serverar frukost och middag. Under juli och augusti är bokning av bord starkt rekommenderat.',
+    ],
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -559,6 +591,12 @@ export const ISLANDS: Island[] = [
     related: ['grinda', 'ingmarso', 'ljustero'],
     tags: ['vandrarhem', 'natur', 'vandring', 'segling', 'lugnt'],
     did_you_know: 'Finnhamn fick sitt namn av finska handelsmän som ankrade här på 1600-talet. "Hamn" för finnar alltså — inte en person som heter Finn.',
+    insiderTips: [
+      'Finnhamn ägs av STF och är ett naturreservat. Ön har tältplatser för fri camping vid sidan av vandrarhemsboende.',
+      'Namnet Finnhamn kommer av att finnar använde ön som tillfällig hamn under 1600-talet. Det är inte en person vid namn Finn.',
+      'Kajakuthyrning finns på Finnhamn under sommarsäsongen. Ön är ett av de bättre utgångspunkterna för kajakpaddling i mellersta skärgården.',
+      'Caféet och kiosken på Finnhamn stänger relativt tidigt under kvällen. Ta med proviant om du planerar en sen ankomst.',
+    ],
   },
 
   // ─── MÖJA ────────────────────────────────────────────────────
@@ -651,6 +689,12 @@ export const ISLANDS: Island[] = [
     amenities: { toilets: true, shower: false, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
     dog_notes: 'Hundvänlig ö med gott om utrymme. Koppeltvång i hamnområden och på några naturreservatsdelar.',
+    insiderTips: [
+      'Möja har ungefär 200 fastboende och en fungerande byskola, en av de mer välbefolkade yttre öarna i Stockholms mellersta skärgård.',
+      'Wikströms på Möja säljer färsk fisk och räkor direkt från fiskaren. Öppet under sommarsäsongen vid hamnen.',
+      'Det finns en lanthandel på Möja med ett gott utbud för en ö utan fast vägförbindelse.',
+      'Möja är bilfri för besökare men har ett internt bilsystem för de fastboende.',
+    ],
   },
 
   // ─── FJÄDERHOLMARNA ──────────────────────────────────────────
@@ -723,6 +767,12 @@ export const ISLANDS: Island[] = [
     related: ['vaxholm', 'grinda', 'bockholmen'],
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
     did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på bara 25 minuter. 1940 införde militären landstigningsförbud — öarna användes som ammunitionsförråd under andra världskriget. Förbudet upphävdes inte förrän 1985, då restaurangerna och rökeriet kunde öppna.',
+    insiderTips: [
+      'Fjäderholmarna är den närmaste ön från centrala Stockholm, ungefär 25 minuter med båt från Slussen.',
+      'Ön var militärt förbudsområde ända fram till 1985, vilket är anledningen till att restauranger och rökeriet öppnade relativt sent.',
+      'Rökeriet på Fjäderholmarna säljer rökt fisk och skaldjur och är öppet under sommarsäsongen.',
+      'Fjäderholmarna trafikeras av Strömma-båtar från Slussen och ingår inte i SL-kortet.',
+    ],
   },
 
   // ─── LJUSTERÖ ─────────────────────────────────────────────────
@@ -796,6 +846,12 @@ export const ISLANDS: Island[] = [
     related: ['finnhamn', 'ingmarso', 'blido'],
     tags: ['cykling', 'kajak', 'bilfärja', 'kustlinje', 'familj'],
     did_you_know: 'Ljusterö är den största ön i Stockholms skärgård som saknar fast brobindelse — i stället går avgiftsfria bilfärjan Ljusteröleden mellan Östanå och Ljusterö hela året, ca 7 minuter över sundet.',
+    insiderTips: [
+      'Ljusterö nås med bilfärja från Östanå. Färjan tar ungefär 7 minuter och går regelbundet hela dagen.',
+      'Ön är en av de stora öarna i norra skärgården och har vägar som gör det möjligt att köra bil över stora delar av ön.',
+      'Det finns en ICA-butik, skola och bensinstation på Ljusterö, en av de mer självförsörjande öarna i norra skärgården.',
+      'Ljusterö och trakterna runt Östanå är kända för goda förutsättningar för fågelskådning, särskilt under fågelsträcket på vår och höst.',
+    ],
   },
 
   // ─── DALARÖ ──────────────────────────────────────────────────
@@ -865,6 +921,12 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'nattaro', 'orno'],
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
     did_you_know: 'Dalarö blev 1636 platsen för "stora sjötullen" — landets viktigaste tullstation under stormaktstiden. Alla handelsfartyg på väg in till Stockholm var tvungna att förtullas här. Tullhuset från 1788 står fortfarande kvar vid hamnen.',
+    insiderTips: [
+      'Dalarö nås med bil via väg 73 och är tekniskt sett en halvö med vägförbindelse till fastlandet.',
+      'Tullhuset i Dalarö från 1788 är ett av de bäst bevarade tullhusen längs Östersjökusten. Alla fartyg som passerade mot Stockholm var tvungna att förtullas här.',
+      'Dalarö är ett känt mål för sportdykare med flera intressanta vrakplatser i närheten.',
+      'Gästhamnen i Dalarö är en av de mer välservade i södra skärgården med dusch, el och servicebyggnad.',
+    ],
   },
 
   // ─── ARHOLMA ─────────────────────────────────────────────────
@@ -933,6 +995,12 @@ export const ISLANDS: Island[] = [
     related: ['blido', 'furusund', 'norrora'],
     tags: ['ytterst', 'orört', 'norra', 'vilt', 'segling'],
     did_you_know: 'Arholma omtalas i skriftliga handlingar redan 1547 (Gustav Vasas räkenskaper). Lotshemmanen organiserades formellt 1724 då Amiralitetskollegiet antog sex bönder till arholmalotsar. Ön har ingen bilfärja — endast passbåten M/S Monsun från Simpnäs på fastlandet, ca 15 minuter över sundet, året runt.',
+    insiderTips: [
+      'Arholma är en av de nordligaste bebodda öarna i Stockholms skärgård och nås med M/S Monsun från Simpnäs.',
+      'Den gamla lotsstationen på Arholma var aktiv under lång tid. Lotsar var stationerade här för att guida fartyg genom de norra skärgårdspassagerna.',
+      'Arholma är ett naturreservat med vandringsstigar som leder ut till klippor med utsikt mot öppet hav mot norr.',
+      'Sommarsäsongen är kortare på Arholma än på öar längre söderut. Caféet och hamnen är öppna ungefär juni till mitten av september.',
+    ],
   },
 
   // ─── ORNÖ ─────────────────────────────────────────────────────
@@ -1002,6 +1070,12 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'nattaro', 'dalaro'],
     tags: ['natur', 'vandring', 'skog', 'fåglar', 'lugnt'],
     did_you_know: 'Ornö är en av Stockholms läns till ytan största öar utan fast vägförbindelse. Postbåten kör än idag tre gånger i veckan.',
+    insiderTips: [
+      'Ornö är en av Stockholms läns största öar utan fast vägförbindelse till fastlandet.',
+      'Postbåten till Ornö kör regelbundet och räknas som en av de sista aktiva postbåtsrutterna i Stockholms skärgård.',
+      'Ornö södra del erbjuder skyddade vikar och bra förutsättningar för kajakpaddling.',
+      'Det finns lanthandel och kafé sommartid men utbudet är begränsat. Planera med matsäck om du ska ut på en heldagstur.',
+    ],
   },
 
   // ─── LANDSORT ────────────────────────────────────────────────
@@ -1070,6 +1144,12 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'dalaro', 'nattaro'],
     tags: ['fyr', 'ytterst', 'dramatiskt', 'hav', 'fåglar'],
     did_you_know: 'Landsorts fyr är Sveriges äldsta bevarade fyr — Johan van der Hagen fick kungligt privilegium 1669, den första fyrlyktan tändes 1671 och nuvarande stenfyr restes 1672. Landsort är Stockholms skärgårds sydligaste bebodda utpost (Sveriges sydligaste fastlandspunkt är Smygehuk i Skåne).',
+    insiderTips: [
+      'Landsort har en av Sveriges äldsta fyrar i aktiv drift. Platsen har markerats med fyr sedan 1669, om än i olika former.',
+      'Landsort nås med Waxholmsbåten från Nynäshamn och är den sydligaste bebodda platsen i Stockholms skärgård.',
+      'Ön räknas som ett av de bästa fågelskådningsställena i regionen, framförallt under fågelsträcket i maj och september.',
+      'Det bor ett fåtal fastboende på Landsort åretrunt. Ön är en av de mest avskilda i skärgården trots reguljär båttrafik.',
+    ],
   },
 
   // ─── FURUSUND ────────────────────────────────────────────────
@@ -1294,6 +1374,12 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
     did_you_know: 'Nattarö naturreservat skyddar ett av Stockholms läns finaste havsörnsrevir. Det bor fler havsörnar än människor på ön.',
+    insiderTips: [
+      'Nåttarö är ett naturreservat utan fastboende. Ön nås med säsongsbetonad båttrafik eller egen båt.',
+      'Havsörnen häckar på Nåttarö och ön räknas som ett av Stockholms läns bästa havsörnsrevir.',
+      'Ön är helt fri från bebyggelse och privata fastigheter, ett av skärgårdens mest orörda naturreservat.',
+      'Det finns sandstränder på Nåttarö, vilket är ovanligt i den yttre skärgårdens annars klippdominerade landskap.',
+    ],
   },
 
   // ─── INGMARSÖ ────────────────────────────────────────────────
@@ -1416,6 +1502,12 @@ export const ISLANDS: Island[] = [
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
     did_you_know: 'Nämdös tidigaste kapell brändes ned vid de ryska härjningarna 1719 — under Stora nordiska kriget gjorde ryska galärer flera räder mot Stockholms skärgård och brände bebyggelsen på många öar. Den nuvarande åttakantiga kyrkan från 1798 är en av få av sitt slag i landet.',
+    insiderTips: [
+      'Nämdö kyrka från 1798 är en av få åttakantiga kyrkor i landet och ett ovanligt arkitektoniskt inslag i skärgårdslandskapet.',
+      'Nämdö har ett fåtal fastboende och nås med Waxholmsbåten från Stavsnäs.',
+      'Ön är känd bland seglare för sina skyddade naturhamnar och är ett populärt ankringsställe.',
+      'Det finns inget kafé eller restaurang på Nämdö. Ta med eget.',
+    ],
   },
 
   // ─── SVARTSÖ ─────────────────────────────────────────────────
@@ -1485,6 +1577,12 @@ export const ISLANDS: Island[] = [
     related: ['moja', 'gallno', 'ingmarso'],
     tags: ['bilfri', 'helårs-ö', 'lanthandel', 'genuint', 'lantligt'],
     did_you_know: 'Svartsö har omkring 65 åretruntinvånare och är en av få mellanstora skärgårdsöar med levande helårsverksamhet — ön har egen skola, krog, vandrarhem och en lanthandel som även fungerar som apotekombud och Systembolagets utlämningsställe.',
+    insiderTips: [
+      'Svartsö nås med bilfärja från Boda på Värmdö, och det är möjligt att ta med bil till ön.',
+      'Lanthandeln på Svartsö fungerar även som apoteksombud och utlämningsställe för Systembolaget.',
+      'Svartsö har en av skärgårdens mest välkända konstnärsmiljöer och har lockat bildkonstnärer sedan tidigt 1900-tal.',
+      'Det bor ungefär 200 fastboende på Svartsö åretrunt, vilket gör ön till en av de mer välbefolkade i mellersta skärgården.',
+    ],
   },
 
   // ─── RUNMARÖ ─────────────────────────────────────────────────
@@ -1554,6 +1652,12 @@ export const ISLANDS: Island[] = [
     related: ['sandhamn', 'moja', 'gallno'],
     tags: ['segling', 'naturhamn', 'bränsle', 'lugnt', 'mellersta'],
     did_you_know: 'Tomas Tranströmer (1931–2015) — Nobelpristagare i litteratur 2011 — tillbringade hela sitt liv somrarna i sin morfars lotshus vid "Gatan" på Runmarö. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten, lotshistoria och människor. 2001 sammanställde Tranströmer själv 30 dikter under titeln "Dikter från Runmarö".',
+    insiderTips: [
+      'Tomas Tranströmer och hans familj bodde på Runmarö under lång tid. Tranströmer sammanställde ett urval dikter under titeln \'Dikter från Runmarö\'.',
+      'Runmarö nås med bilfärja och det är möjligt att ta med bil till ön.',
+      'Ön är en av de mer lantliga och tystlåtna i mellersta skärgården med goda möjligheter för cykling och vandring.',
+      'Lanthandeln och caféet på Runmarö har kort säsong. Öppettiderna är begränsade utanför juli och delar av augusti.',
+    ],
   },
 
   // ─── RESARÖ ──────────────────────────────────────────────────
