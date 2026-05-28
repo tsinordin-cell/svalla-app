@@ -157,6 +157,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
     // med canonical-URL:erna och förvirrar Google's crawl-prioritering.
     { url: `${base}/farjor`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: `${base}/statistik`,              lastModified: now, priority: 0.8,  changeFrequency: 'monthly' as const },
     // Region-landningssidor — SEO-marknadsföring, driver till signup
     { url: `${base}/stockholms-skargard`,    lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/bohuslan`,               lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
