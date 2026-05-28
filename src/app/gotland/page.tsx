@@ -113,7 +113,7 @@ export default function GotlandPage() {
  <CategoryLanding
  heroGradient={['#8b5e3c', '#b07d52']}
  eyebrow="Gotland"
- title="Östersjöns pärlа"
+ title="Östersjöns pärla"
  tagline="Drömresan för svenska seglare — Svalla hjälper dig planera, logga och minnas varje tur till och runt Gotland."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
