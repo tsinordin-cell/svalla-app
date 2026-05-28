@@ -86,7 +86,7 @@ const STEG = [
   {
     nr: 5,
     titel: 'Lämna tillbaka och ät',
-    text: 'Lämna kajaken i tid — uthyrningsplatser har strikta återlämnningstider. Avsluta med lunch eller fika på ön innan du tar båten tillbaka.',
+    text: 'Lämna kajaken i tid — uthyrningsplatser har strikta återlämningstider. Avsluta med lunch eller fika på ön innan du tar båten tillbaka.',
   },
 ]
 
@@ -106,7 +106,7 @@ export default function KajakPage() {
     subjectOf: {
       '@type': 'HowTo',
       name: 'Hur paddlar man kajak i skärgården som nybörjare?',
-      description: 'Steg-för-steg guide för din första kajaktур i Stockholms skärgård.',
+      description: 'Steg-för-steg guide för din första kajaktur i Stockholms skärgård.',
       step: STEG.map(s => ({
         '@type': 'HowToStep',
         position: s.nr,
@@ -260,7 +260,7 @@ export default function KajakPage() {
           <div style={{ fontSize: 32, marginBottom: 12 }}>🛶</div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Redo att paddla?</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
-            Läs vår fullständiga guide om utrustning, säkerhet och de bästa lederna för din första kajaktур.
+            Läs vår fullständiga guide om utrustning, säkerhet och de bästa lederna för din första kajaktur.
           </p>
           <Link href="/blogg/kajak-stockholms-skargard-nyborjare" style={{
             display: 'inline-block',
