@@ -691,7 +691,7 @@ export const TRIPS: Trip[] = [
 
   {
     slug: 'galo-sandstrand-och-sol',
-    title: 'Gålö — sandstrand och familjedags-pärlа',
+    title: 'Gålö — sandstrand och familjedags-pärla',
     tagline: 'En av få sandstränder i Stockholms skärgård. Barnvänligt och lättillgängligt med bil.',
     duration: 'Halvdag–heldag (4–7 timmar)',
     startPoint: 'Stockholm (bil via Nynäsvägen)',
