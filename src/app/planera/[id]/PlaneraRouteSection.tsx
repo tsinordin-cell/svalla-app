@@ -146,7 +146,7 @@ export default function PlaneraRouteSection({
       return { tone: 'success' as const, label: 'Beräknad sjöled', desc: 'Optimerad runt land med 80 000 vattenpunkter.' }
     }
     if (quality === 'waypoint') {
-      return { tone: 'warning' as const, label: 'Approximerad rutt', desc: 'Grov sjöled via huvudleder. Verifiera mot sjökort innan avgång.' }
+      return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
     }
     // unavailable — ingen polyline ritas, tid/bränsle gömt
     return {
@@ -158,12 +158,15 @@ export default function PlaneraRouteSection({
 
   return (
     <>
-      {/* Leaflet-karta — seaPath=null visar skelet tills rutten anländer */}
+      {/* Leaflet-karta — seaPath=null visar skelet tills rutten anländer.
+          Routing-safety: quality skickas så solid-vs-streckad linjestil kan
+          differentieras (precomputed/grid=solid, waypoint=streckad). */}
       <PlaneraMap
         startLat={startLat} startLng={startLng} startName={startName}
         endLat={endLat} endLng={endLng} endName={endName}
         stops={stops}
         seaPath={seaPath}
+        quality={quality}
       />
 
       {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej.

@@ -13,6 +13,18 @@ type Stop = {
   emoji: string
 }
 
+/**
+ * Routing-safety layer (2026-05-29):
+ * Rutter renderas med olika linjestil baserat på beräkningskvalitet.
+ *   precomputed → SOLID (verifierad sjöled, vi VET att den är validerad mot OSM coastline)
+ *   grid        → SOLID (A* över 80 000 vattenpunkter, validerad mot landmask)
+ *   waypoint    → STRECKAD (approximerad via huvudleder, kräver verifiering mot sjökort)
+ *   unavailable → INGEN LINJE (path är null → ingen polyline ritas)
+ *
+ * Spec: "Solid = validerad. Streckad = preliminär. Ingen linje = ej beräkningsbar."
+ */
+type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
+
 type Props = {
   startLat: number
   startLng: number
@@ -23,9 +35,11 @@ type Props = {
   stops: Stop[]
   /** null = skeleton (route not yet computed); non-null = draw path and refit */
   seaPath: [number, number][] | null
+  /** Routing-safety: avgör linjestil (solid vs streckad) */
+  quality?: RouteQuality | null
 }
 
-export default function PlaneraMap({ startLat, startLng, startName, endLat, endLng, endName, stops, seaPath }: Props) {
+export default function PlaneraMap({ startLat, startLng, startName, endLat, endLng, endName, stops, seaPath, quality }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<LeafletMap | null>(null)
   const initializedRef = useRef(false)
@@ -154,19 +168,26 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
       routeLinesRef.current.forEach(l => l.remove())
       routeLinesRef.current = []
 
-      // Shadow line
+      // Routing-safety: linjestil per quality.
+      // Validerade rutter (precomputed/grid) får SOLID linje + stadigare opacitet
+      // — vi vet att de inte korsar land. Approximerade (waypoint) får STRECKAD
+      // linje + lägre opacitet för att kommunicera "kontrollera mot sjökort".
+      // Saknad quality → konservativ default (streckad) tills vi vet.
+      const isValidated = quality === 'precomputed' || quality === 'grid'
+
+      // Shadow line — bredare, mörkare backdrop
       const shadow = L.polyline(seaPath, {
-        color: 'rgba(30,92,130,0.25)',
-        weight: 8,
+        color: isValidated ? 'rgba(30,92,130,0.30)' : 'rgba(30,92,130,0.20)',
+        weight: isValidated ? 9 : 8,
         lineJoin: 'round',
       }).addTo(map)
 
-      // Dashed route line
+      // Route line — solid om validerad, streckad om preliminär
       const line = L.polyline(seaPath, {
         color: 'var(--teal, #1e5c82)',
-        weight: 3,
-        opacity: 0.75,
-        dashArray: '8, 6',
+        weight: isValidated ? 4 : 3,
+        opacity: isValidated ? 0.95 : 0.7,
+        dashArray: isValidated ? undefined : '8, 6',
         lineJoin: 'round',
       }).addTo(map)
 
@@ -183,7 +204,8 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     }
 
     update().catch(console.error)
-  }, [seaPath])
+  // quality påverkar linjestil — kör om effekten när den ändras
+  }, [seaPath, quality])
 
   return (
     <div style={{ marginBottom: 20 }}>
