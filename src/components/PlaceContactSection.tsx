@@ -14,12 +14,18 @@ interface Props {
   email?: string | null
   website?: string | null
   menuUrl?: string | null
+  bookingUrl?: string | null
   instagram?: string | null
   facebook?: string | null
   formattedAddress?: string | null
   googleRating?: number | null
   googleRatingsTotal?: number | null
   googlePlaceId?: string | null
+  /** Fritext-öppettider (kommer från manuell admin-input eller Google) */
+  openingHours?: string | null
+  /** Strukturerad öppettider-JSON för "Öppet nu / Stängt"-pill */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  openingHoursJson?: any
   // För Google Maps-link om google_place_id saknas
   latitude?: number | null
   longitude?: number | null
@@ -27,13 +33,39 @@ interface Props {
 }
 
 export default function PlaceContactSection({
-  phone, email, website, menuUrl, instagram, facebook,
+  phone, email, website, menuUrl, bookingUrl, instagram, facebook,
   formattedAddress, googleRating, googleRatingsTotal, googlePlaceId,
+  openingHours, openingHoursJson,
   latitude, longitude, name,
 }: Props) {
-  const hasContact = !!(phone || email || website || menuUrl || instagram || facebook)
+  const hasContact = !!(phone || email || website || menuUrl || bookingUrl || instagram || facebook)
   const hasRating = typeof googleRating === 'number' && googleRating > 0
   const hasAddress = !!(formattedAddress || (latitude && longitude))
+  const hasHours = !!openingHours
+
+  // Bestäm "Öppet nu / Stängt" från opening_hours_json om finns
+  // Format antas vara Google Places-stil: { periods: [{open: {day, time}, close: {day, time}}] }
+  // Stockholms tidszon (Europe/Stockholm). Approximativt — vi visar bara open/closed, inte exakt sluttid.
+  const openStatus = (() => {
+    if (!openingHoursJson || typeof openingHoursJson !== 'object') return null
+    const periods = (openingHoursJson as { periods?: Array<{ open?: { day: number; time: string }; close?: { day: number; time: string } }> }).periods
+    if (!Array.isArray(periods) || periods.length === 0) return null
+    const now = new Date()
+    // sv-SE veckodag: 0=söndag i Google, 0=söndag i JS
+    const day = now.getDay()
+    const hhmm = now.getHours() * 100 + now.getMinutes()
+    for (const p of periods) {
+      if (!p.open) continue
+      const openD = p.open.day
+      const openT = parseInt(p.open.time.replace(':', ''), 10)
+      const closeD = p.close?.day ?? openD
+      const closeT = p.close ? parseInt(p.close.time.replace(':', ''), 10) : 2359
+      const sameDayMatch = (openD === day && hhmm >= openT && (closeD === day ? hhmm < closeT : true))
+      const overnightMatch = (closeD === (day + 7) % 7 && openD === (day - 1 + 7) % 7 && hhmm < closeT)
+      if (sameDayMatch || overnightMatch) return 'open'
+    }
+    return 'closed'
+  })()
 
   // Bygg Google Maps-URL — föredra place_id om vi har, annars koord
   const mapsUrl = googlePlaceId
@@ -42,7 +74,7 @@ export default function PlaceContactSection({
       ? `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}${name ? '&query_place_id=' + encodeURIComponent(name) : ''}`
       : null
 
-  if (!hasContact && !hasRating && !hasAddress) return null
+  if (!hasContact && !hasRating && !hasAddress && !hasHours) return null
 
   return (
     <section style={{
@@ -112,6 +144,32 @@ export default function PlaceContactSection({
         } />
       )}
 
+      {/* Öppettider — synlig info-rad. Tidigare gömt i FAQ. */}
+      {hasHours && (
+        <ContactRow icon="clock" label="Öppettider" content={
+          <div>
+            {openStatus && (
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 4,
+                padding: '2px 8px', borderRadius: 999,
+                fontSize: 11, fontWeight: 700,
+                background: openStatus === 'open' ? 'rgba(42,157,92,0.12)' : 'rgba(192,57,43,0.10)',
+                color: openStatus === 'open' ? '#157a3e' : '#a32d20',
+                marginRight: 8, verticalAlign: 'middle',
+              }}>
+                <span style={{
+                  width: 6, height: 6, borderRadius: '50%',
+                  background: openStatus === 'open' ? '#22c55e' : '#c0392b',
+                  display: 'inline-block',
+                }}/>
+                {openStatus === 'open' ? 'Öppet nu' : 'Stängt nu'}
+              </span>
+            )}
+            <span style={{ whiteSpace: 'pre-wrap' }}>{openingHours}</span>
+          </div>
+        } />
+      )}
+
       {/* Telefon */}
       {phone && (
         <ContactRow icon="phone" label="Telefon" content={
@@ -133,6 +191,31 @@ export default function PlaceContactSection({
             {website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
           </a>
         } />
+      )}
+
+      {/* Boka bord — primär CTA */}
+      {bookingUrl && (
+        <a
+          href={bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            padding: '12px 14px',
+            borderRadius: 12,
+            background: 'var(--sea, #1e5c82)',
+            color: '#fff',
+            textDecoration: 'none',
+            fontWeight: 700,
+            fontSize: 14,
+            marginTop: 12,
+            boxShadow: '0 2px 8px rgba(30, 92, 130, 0.25)',
+          }}
+        >
+          <Icon name="calendar" />
+          <span>Boka bord</span>
+          <span style={{ marginLeft: 'auto' }}>&rarr;</span>
+        </a>
       )}
 
       {/* Meny — egen länk om de har dedikerad menu URL */}
@@ -288,6 +371,10 @@ function Icon({ name }: { name: string }) {
       return <svg {...props}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     case 'external-link':
       return <svg {...props}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    case 'clock':
+      return <svg {...props}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    case 'calendar':
+      return <svg {...props}><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     default:
       return null
   }

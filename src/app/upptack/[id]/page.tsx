@@ -95,14 +95,27 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const data = await fetchRestaurant(
    idOrSlug,
-   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
+   'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
  )
  if (!data) notFound()
- const r = data as unknown as Restaurant & { slug?: string }
+ const r = data as unknown as Restaurant & { slug?: string; postal_code?: string | null; city?: string | null }
  // Verklig UUID — används för reviews/place-relations som har FK till restaurants.id
  const id = r.id
  // Canonical slug-URL för länkar och delningar
  const canonicalPath = r.slug ?? r.id
+
+ // ── place_photos: admin-uppladdade foton (separat tabell) ───────────────────
+ // Migration 20260505000002 byggde tabellen men den lästes aldrig. Nu mixar vi
+ // in den efter Google-foton men före r.images-arrayen. Felar tyst om tabell
+ // är tom eller saknar rader för denna plats.
+ const { data: placePhotoRowsRaw } = await supabase
+   .from('place_photos')
+   .select('url, credit, sort_order, is_hero')
+   .eq('place_id', id)
+   .order('is_hero', { ascending: false })
+   .order('sort_order', { ascending: true })
+   .limit(12)
+ const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
 
  // Fetch recent trips nearby this restaurant (trips linking to this place)
  // Visa senaste turer med bild — matchas mot restaurangens namn om möjligt, annars senaste globalt
@@ -222,9 +235,15 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    u.length > 0 &&
    (u.startsWith('http://') || u.startsWith('https://') || u.startsWith('/'))
 
- const placePhotos: string[] = googlePhotoUrls.length > 0
-   ? googlePhotoUrls
-   : (Array.isArray(r.images) ? r.images.filter(isValidPhotoUrl) : [])
+ // Mixa: admin place_photos först (de är hand-kurerade), sen Google, sen fallback images.
+ // is_hero-ordningen från SELECT säkerställer hero-bilden hamnar först.
+ const adminPhotoUrls = placePhotoRows.map(p => p.url).filter(isValidPhotoUrl)
+ const fallbackImages = Array.isArray(r.images) ? r.images.filter(isValidPhotoUrl) : []
+ const placePhotos: string[] = [
+   ...adminPhotoUrls,
+   ...googlePhotoUrls,
+   ...fallbackImages,
+ ]
 
  /**
   * One-liner-genering — säger på 2 sek vad platsen är.
@@ -431,12 +450,19 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    email={(r as Restaurant & { email?: string | null }).email}
    website={r.website}
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url}
+   bookingUrl={(r as Restaurant & { booking_url?: string | null }).booking_url}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram}
    facebook={(r as Restaurant & { facebook?: string | null }).facebook}
-   formattedAddress={(r as Restaurant & { formatted_address?: string | null }).formatted_address}
+   formattedAddress={
+     (r as Restaurant & { formatted_address?: string | null }).formatted_address
+       ?? [r.postal_code, r.city].filter(Boolean).join(' ')
+       ?? null
+   }
    googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
    googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
    googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
+   openingHours={(r as Restaurant & { opening_hours?: string | null }).opening_hours}
+   openingHoursJson={(r as Restaurant & { opening_hours_json?: unknown }).opening_hours_json}
    latitude={r.latitude}
    longitude={r.longitude}
    name={r.name}
