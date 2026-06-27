@@ -3128,6 +3128,567 @@ export function getGuideContent(slug: string): string {
 <p style="margin:8px 0 0;font-size:14px">Absolut. Med Waxholmsbolagets båtluffarkort kan du besöka båda öarna under samma resa. Många väljer att stanna en natt på Grinda och sedan ta båten vidare norrut till Finnhamn. Det ger den perfekta balansen mellan komfort och vildmark.</p>
 </div>
 `,
+
+  // ── Batch D: Kräftskiva-serien 2026 ──────────────────────────────────────────
+  'kraftskiva-skargarden-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan är en svensk tradition med rötter från 1930-talet då kräftorna fridlystes och man bara fick fiska under kräftpremiären. I dag är restriktionerna borta men traditionen lever starkare än någonsin. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar traditionen en extra dimension. Att sitta vid vattnet, med lyktorna hängandes i björkarna och doften av dill och hav, är en upplevelse som är svår att toppa. Många familjer har gjort kräftskivan till en årlig höjdpunkt och bokar sina bryggor och stugor redan i januari.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftpremiären 2026 – datum och säsong</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären är alltid den första onsdagen i augusti. 2026 innebär det <strong>onsdag 5 augusti</strong>. Det vanligaste är att hålla kräftskivan på lördagen närmast premiären – alltså lördag 8 augusti 2026 – eller helgen efter, 15 augusti. Kräftsäsongen pågår sedan fram till slutet av september.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Viktiga datum 2026:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Kräftpremiär: <strong>onsdag 5 augusti</strong></li>
+<li>Populäraste kräftskivehelgen: <strong>8–9 augusti</strong></li>
+<li>Säsong: <strong>5 aug – slutet av september</strong></li>
+<li>Boka restauranger i skärgården: <strong>nu, helst redan gjort</strong></li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var håller du kräftskiva i skärgården?</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">1. Fjäderholmarna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna är det enklaste alternativet – bara 25 minuter med båt från Nybrokajen. Restaurangerna på ön arrangerar kräftskivor under hela premiärperioden med kräftor, snaps och lyktfärgad stämning direkt vid vattnet. Boka tidigt, det är fullt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">2. Vaxholm</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har flera restauranger med uteservering vid vattnet. Åk dit med pendelbåten och avnjut kräftor med utsikt mot fästningen. Charming och lättillgängligt – perfekt för de som inte vill åka till yttre skärgården.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">3. Grinda eller Utö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus och Utö Värdshus arrangerar båda kräftskivor med övernattning. Det är den ultimata upplevelsen – kräftor, snaps och sensommarnatt utan att behöva ta en båt hem. Boka boende och kräftskiva som ett paket, de säljer ut månader i förväg.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">4. Egen kräftskiva på ön</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest folkliga alternativet är att köpa kräftor på ICA eller Lidl, ta ut till din favoritö med Waxholmsbolaget och duka upp på klipphällarna. Ta med: kylbox med kräftor, dill, bröd och smör, lyktor, snapsvisor, servetter och sopptunna för skalen. Allemansrätten tillåter brasa på hårdare mark – kontrollera brandrisk.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassisk kräftskivemeny</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Kräftor</strong> – räkna 0,5–1 kg per person beroende på övrig mat</li>
+<li><strong>Toast Skagen eller räksmörgås</strong> som förrätt</li>
+<li><strong>Bröd, smör och gräddfil</strong></li>
+<li><strong>Västerbottensostpaj</strong> – den obligatoriska rätten</li>
+<li><strong>Snaps</strong> – O.P. Anderson eller Skåne Akvavit är klassiker</li>
+<li><strong>Öl</strong> – helst ett lättare sommaröl</li>
+<li><strong>Messmörsost och knäcke</strong> till eftersläpp</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dekorationer och stämning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färgschema är rött, vitt och gult – sedan 1930-talet. Du behöver: papperslyktor att hänga i träden, servetter med kräftmotiv, kräfthattar och haklappar, en vit duk och gärna en girlang. Handla på Åhlens, Clas Ohlson eller välsorterade livsmedelsbutiker i veckan innan premiären – hyllorna töms fort.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snapsvisor – måste du kunna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingen kräftskiva utan snapsvisor. De klassiska är "Helan går" (obligatorisk som första snapsvisa), "Gubben i lådan" och "Hej tomtegubbar". Ta med en snapsvisebok eller ladda ner appen Snapsvisor inför festen – det är alltid uppskattad med en som kan leda vissångerna.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Insider-tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Köp kräftorna kvällen innan och låt dem ligga i lagen i kylen över natten – de smakar mycket bättre om de får dra. Koka dem med rikligt med salt (3 msk per liter), dill och gärna lite öl i kokvattnet. Låt dem svalna i lagen i minst fyra timmar. Servera inte kalla kräftor rakt ur kylen – ta ut dem 30 minuter innan.</p>
+</div>
+`,
+
+  'kraftskiva-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är kräftornas hemort i Sverige. Längs Västerhavet har man fiskat kräftor i generationer, och det är här den levande traditionen kring kräftskivan är starkast. Klippor, mörka hav och lyktors sken – det finns inget bättre ställe att fira kräftpremiären 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Bohuslän är kräftornas hemort</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftor från Västerhavet är fetare och smakrimare än de flesta importerade varianterna. Det kalla, syrerika Västerhavet ger ett speciellt djur med distinkt smak. Grebbestad, Lysekil och Smögen är de tre orterna som sticker ut – här är kräftfisket en levande näring och restaurangerna serverar nyfångat.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna i Bohuslän för kräftskiva</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grebbestad – landets kräftcentrum</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad nordost om Fjällbacka är otvetydigt kräftornas mecka i Sverige. Under kräftpremiären är det närmast folkfest i hamnen. Restaurangerna Grebbestads Fiskekrog och Havets Hus-liknande fiskeauktioner sätter stämningen. Lokalt fångade kräftor direkt från fiskeläget – det finns ingenstans bättre.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Smögen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögens långa trähamnsbrygg är en av Sveriges mest ikoniska platser för sjömat. Under kräftpremiären är bryggan fylld med folk och restaurangerna längs Smögenbryggan serverar kräftor med Västerhavet som fond. Boka bord månader i förväg eller köp råvaror i fiskboden och hitta en klippa.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Lysekil</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lysekil med Havets Hus och Stångehuvuds klippor är ett utmärkt val för kräftskiva med utsikt. Restaurangerna i hamnen arrangerar kräftfester och det finns många fina uteplatser på klipphällarna utanför stan för egna arrangemang.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Marstrand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrands restauranger – med Carlstens fästning som kuliss – erbjuder några av de finaste kräftskiveupplevelserna på västkusten. Lite mer glamoröst och välbokat, men utsikten är svår att slå.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftor på västkusten – vad du ska veta</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftor från Bohuslän säljs dels direkt från fiskare vid hamnen, dels i de lokala fiskaffärerna. Under kräftpremiären är efterfrågan enorm. Tips: besök en av de lokala fiskebodarna i Grebbestad, Kungshamn eller Smögen redan på premiärdagen tidigt på morgonen. Ta med kylbox.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Bohuslänskt kräftskiverecept:</strong>
+<p style="margin:8px 0 0;font-size:14px">Koka kräftorna med rikligt salt, dill, socker och ett skott Bohuslänskt öl i kokvattnet. Låt dra i minst 6 timmar. Servera med rostat bröd, smör, Vässingsöns ost (lokal favoritoost) och en kall Nils Oscar God Jul-snaps. Äkta Bohuslän.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad nås enklast med bil från Göteborg (ca 2,5 h) eller med buss från Göteborg via Strömstad-linjen. Smögen når du med bil till Kungshamn och sedan färja. Under högsäsong kör Bohusbåten längs kusten och kopplar samman Göteborg med Marstrand, Lysekil och Smögen.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Boka tidigt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Restauranger längs Bohusläns kust är fullbokade under kräftpremiärhelgen. Ring eller boka online nu – inte i juli. De populäraste platserna är ofta slut redan i maj–juni. Alternativet: kräftor hemifrån och en klippa med utsikt. Det är ärligt talat lika bra.</p>
+</div>
+`,
+
+  'kraftskiva-gotland-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftskiva på Gotland är en upplevelse utöver det vanliga. Sommarnatten, Östersjöns tystnad och det gotländska köket ger en kräftskiva som skiljer sig från fastlandet. Guide till hur du planerar kräftpremiären 2026 på landets mest populära sommarö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gotland och kräftskivan – en särskild kombination</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är i full högsäsong under kräftpremiären i augusti. Medeltidsveckan är precis avslutad, turisterna börjar glesna och den gotländska lugnet återvänder – precis i tid för en kräftskiva vid något av öns otaliga bryggor och fiskelägen. Östersjökräftor är lite annorlunda mot Västerhavet – mildare i smak men lika goda.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna för kräftskiva på Gotland</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Visby hamnområde</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangerna längs Visby hamn serverar kräftor under premiärperioden. Aifur, Bolaget och Gutekällaren brukar ha kräftskivearrangemang. Utsikten mot Östersjön och ringmuren som fond gör det till en magisk miljö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Klintehamn och södra Gotland</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De mindre fiskelägena i södra Gotland – Klintehamn, Röck, Burgsviken – erbjuder en mer autentisk upplevelse. Köp kräftor lokalt och ordna din egna kräftskiva vid vattnet. Stämningen är genuinare och folkmängden lägre.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Östergarns udde och östra kusten</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands östra kust är vändort mot Östersjöns djup och ger fantastisk soluppgång. Sätt upp bord och lyktor vid en av de många privatbryggor som hyrs ut, eller hitta en obefolkad strandremsa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gotländsk kräftskiva – vad som är unikt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland har en stark lokal matkultur som gärna blandas in i kräftskivan. Gotlandslammets korv som tilltugg, Gotlands Bryggeri öl som dryck och Lummelundasmörets smör till brödet. Östersjökräftorna är något mildare och kokas bäst med gotländsk dill – den är rikligare och mer aromatisk än fastlandsversionen.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Gotländska must-haves på kräftbordet:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Kräftor från Östersjön – fråga lokala fiskare eller i Visby hamn</li>
+<li>Gotlands Bryggeri sommaröl – lokalt bryggeri med utmärkta sommaröl</li>
+<li>Smakrik gotländsk dill – köps på lantbruksmarknader</li>
+<li>Saffranskaka som dessert – Gotlands eget bakverk</li>
+<li>Lummelundasmör och gotländskt hembakt bröd</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och boende</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland nås med Destination Gotlands färja från Nynäshamn (ca 3 h) eller Oskarshamn (ca 3,5 h). Flyg från Arlanda tar 45 minuter. Under kräftpremiären i tidigt augusti är Gotland fortfarande högsäsong – boka boende och båt nu. Prisnivåerna är som högst kring midsommar och sjunker något under kräftpremiären.</p>
+`,
+
+  'kraftskiva-oland-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland är en av Sveriges mest besökta sommaröar och kombinationen av långa kuster, solsken och en levande fisketradition gör det till ett perfekt ställe för kräftskiva. Guide till hur du firar kräftpremiären 2026 på solens och vindarnas ö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öland och kräftskivan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öland kopplas oftast ihop med kungsörnar, alvar och cykelsemester – men ön har en stark kusttradition med fiske och sjömat. Kräftpremiären i tidigt augusti träffar Öland i perfekt säsong: vädret är fortfarande sommarhett, havet är varmt och turisttrycket börjar lätta jämfört med juli.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna för kräftskiva på Öland</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Borgholm hamn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholm är Ölands sommarstad och hamnen har restauranger och kajer som passar perfekt för kräftskiva. Flera krogarna arrangerar kräftkvällar under premiärperioden med bord ute mot Kalmarsund.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Byxelkrok i norra Öland</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Byxelkrok är ett charmigt fiskeläge i norra änden av ön med gästhamn och restaurant. Det lilla formatet gör det mysigare och mer genuint än Borgholm. Egna kräftbord på bryggan är lätt att ordna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Södra Öland och den långa stranden</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Södra Öland, med UNESCO-listade alvaret och Ottenby, ger möjlighet till kräftskiva på en av Sveriges vackraste strandremsor. Ta med allt, hitta en lugn plats och njut av solnedgången mot Östersjön.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öländsk twist på kräftskivan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öland har egna matspecialiteter som lyfter kräftskivan: getost från Ölands getgård, saffransbröd, Alvaröl från Ölands bryggeri och rökt strömming som tilltugg. Kombinera kräfttraditionen med öländska råvaror och du får en unik sensommarkväll.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt om Öland:</strong>
+<p style="margin:8px 0 0;font-size:14px">Öland nås med bil över Ölandsbron från Kalmar (gratis). Buss går från Kalmar station. Kräftor köps i Borgholm eller beställs i förväg från lokala fiskare. Under kräftpremiärhelgen ökar trafiken – planera resa och parkering i förväg.</p>
+</div>
+`,
+
+  'grebbestad-kraftskiva-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Om Bohuslän är kräftornas hemort, är Grebbestad kräftornas hjärta. Det lilla fiskesamhället norr om Fjällbacka är känt i hela Sverige för sin kräfttradition och sina lokalt fångade skaldjur. Guide till kräftpremiären 2026 i landets mest äkta kräftstad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Grebbestad?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är ett aktivt fiskesamhälle med ca 800 fast boende men tiotusentals sommargäster. Det unika med Grebbestad är att kräftfisket fortfarande bedrivs kommersiellt av lokala fiskare som säljer direkt till restaurangerna och i hamnen. Här är kräftorna inte importerade från Turkiet eller Kina – de är fångade utanför Grebbestad i Västerhavet samma morgon.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftpremiären i Grebbestad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under kräftpremiärveckan (5 aug 2026 och helgerna runt) är Grebbestad fyllt med festligheter. Restaurangerna längs Grebbestads hamn arrangerar kräftskivor, det säljs kräftor direkt från fiskebåtarna vid kajen och stämningen är genuint folklig. Det är inte ett turistkonstrukt – det är en levande tradition.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa restaurangerna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grebbestads Fiskekrog</strong> är den självklara adressen – direkt vid hamnen med lokalt fångad sjömat och en kräftmeny som är svår att slå. <strong>Krokholmens Fiskerestaurang</strong> ute på en liten ö i närheten är ett annat alternativ med utsikt och stillhet. Boka bord nu – de är fullbokade under premiärhelgen långt i förväg.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Köpa kräftor i Grebbestad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under premiärperioden säljer lokala fiskare kräftor direkt vid kajen. Priset är högre än i affären men kvaliteten är oomtvistad – levande, nyfångade Västerhavshumrar och kräftor. Ta med kylbox och is. Du kan också köpa förbehandlade kräftor i saltlag som är redo att äta.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Hur du tar dig till Grebbestad:</strong>
+<p style="margin:8px 0 0;font-size:14px">Grebbestad ligger 15 km norr om Fjällbacka och 30 km söder om Strömstad på väg 163. Från Göteborg tar det ca 2,5 timme med bil. Buss från Göteborg till Tanumshede, sedan lokalbuss till Grebbestad. Parkering i samhället är begränsad under högsäsong – parkera vid infarten och gå in.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad utöver kräftorna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är faktiskt lika känt för ostron som för kräftor – ostronpremiären är i september och orten arrangerar Oysterfestival. Området runt Grebbestad med Kosteröarna, Fjällbacka och Hamburgsund ger en hel veckas utflykter. Tanum med hällristningarna är 10 minuter bort med bil.</p>
+`,
+
+  'kraftskiva-recept-meny': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftskivan är inte komplicerad – men den kräver rätt råvaror, rätt teknik och rätt stämning. Här är den kompletta guiden till recept, meny, dekoration och snapsvisor för en lyckad kräftskiva 2026, vare sig du håller den hemma, på landet eller ute i skärgården.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftor – råvara och mängd</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med <strong>0,5–1 kg kräftor per person</strong>. Äter du bara kräftor är 1 kg lagom; med flerrätters meny räcker 0,5 kg. Svenska flodkräftor är mest traditionsenliga men är svåra att få tag på och dyra. Signalkräftor (den vanliga i butik) är fullt acceptabla och smakar utmärkt. Undvik importerade kräftor från Kina om du kan – de har märkbart sämre smak.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Så kokar du kräftor – steg för steg</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Fyll en stor kastrull med vatten – 3 liter per kilo kräftor</li>
+<li>Tillsätt <strong>3 msk salt per liter vatten</strong> och lika mycket socker</li>
+<li>Lägg i rikligt med <strong>färsk dill med kronor</strong> – gärna 1–2 stora knippen per kilo</li>
+<li>Valfritt: tillsätt ett par matskedar öl eller en skvätt porter för djupare smak</li>
+<li>Koka upp lagen ordentligt och låt den koka 5 minuter innan kräftorna läggs i</li>
+<li>Lägg i kräftorna och koka <strong>8–12 minuter</strong> beroende på storlek</li>
+<li>Låt svalna i kokvattnet i minst <strong>4–6 timmar</strong>, gärna över natten i kylen</li>
+<li>Ta ut kräftorna 30 min innan servering – de ska inte vara iskalla</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassisk kräftskivemeny</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Förrätt</h3>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Toast Skagen – räkor, majonnäs, dill och löjrom på rostat bröd</li>
+<li>Eller räksmörgås med tunt smör och citron</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Huvudrätt</h3>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Kräftor – högen mitt på bordet, äts med händerna</li>
+<li>Västerbottensostpaj – obligatorisk, kan köpas färdig</li>
+<li>Rostat bröd eller knäckebröd</li>
+<li>Osaltat smör</li>
+<li>Gräddfil med dill och citron</li>
+<li>Grön sallad som tillbehör</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dessert</h3>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Sommarbär med grädde – jordgubbar, hallon och blåbär</li>
+<li>Eller messmörsost och kex</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dryck</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan kräver snaps. De klassiska är <strong>O.P. Anderson</strong>, <strong>Skåne Akvavit</strong> och <strong>Hallands Fläder</strong>. Servera snapsarna kylda i liten snapsglas. Öl till – helst ett lättare lager eller pilsner som inte konkurrerar med kräftsmaken. Alternativet är ett friskt vitt vin som Muscadet eller Chablis. Mineralvatten med citron är ett givet alternativ för den som inte dricker alkohol.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dekoration</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Papperslyktor</strong> – häng i träd, balkong eller takbalkar (finns i vitt, gult och rött)</li>
+<li><strong>Bordsduk</strong> – vit eller röd med kräftmotiv</li>
+<li><strong>Servetter</strong> – med kräftor eller havsdjur</li>
+<li><strong>Kräfthattar</strong> – en för varje gäst</li>
+<li><strong>Haklappar</strong> – absolut nödvändigt, kräftor är blöta</li>
+<li><strong>Skalskål</strong> – en stor skål per 2–3 gäster för skalen</li>
+<li><strong>Citronhalvor</strong> – både till dekoration och smak</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snapsvisor – must knows</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Börja alltid med <strong>Helan går</strong> – det är lagen. Sedan varierar du med Gubben i lådan, Hej tomtegubbar och Om du är nöjd med vad du fick. En bra värd har snapsvisorna nedskrivna på papper eller laddat appen "Snapsvisor" på telefonen. Det är alltid uppskattad med en som tar täten och leder sången.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Insider-tip:</strong>
+<p style="margin:8px 0 0;font-size:14px">Köp kräftorna 1–2 dagar innan och koka dem kvällen innan. Nattens marinering i lagen gör underverk för smaken. Förvara i kokvattnet i kylen. Inget slår kräftor som fått dra ordentligt.</p>
+</div>
+`,
+
+  // ── Batch D: Juli-serien 2026 ──────────────────────────────────────────────
+  'juli-skargarden-2026-oar': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är skärgårdens högsäsong. Öarna är öppna, båttrafiken går tätt och solnedgångarna är de längsta på året. Men alla öar är inte lika under juli – en del exploderar med folk, andra behåller stillheten. Här är en rankad guide till de bästa öarna att besöka i Stockholms skärgård under juli 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julisäsongen – vad du ska veta</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Juli är den månad då allting är öppet. Waxholmsbolagets turtäthet är som störst, de flesta värdshus och restauranger har fullständigt sommarprogram och badtemperaturen är optimal – ythavstemperaturen i Stockholms skärgård når 20–22°C i juli. Det är också den månad då de populäraste öarna är som mest välbesökta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öarna att besöka i juli</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">1. Utö – det allra bästa juli-alternativet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö är den ö som erbjuder mest för sin storlek under juli. Utö Värdshus med pool och havsbastu, den populära sandstranden Långa bryggan, gruvhistorian, Utö Runt-cykelleden och kvällsbåten tillbaka till stan. Det är lite folkrikt men tillräckligt stort för att man alltid hittar sin plats. Åk dit tidigt på morgonen och undvik lördagsmiddagen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">2. Sandhamn – seglarnas juli-mekka</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn är som busigast i juli med Sandhamn Regattan (Gotland Runt startar härifrån) och den legendomspunna Trouville-stranden. Det är folkgalet under midsommar och Gotland Runt-veckan, men de andra veckorna i juli är det fullt utan att vara outhärdligt. Boka bord på Sandhamns Värdshus eller picknick på Trouville.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">3. Grinda – familje-juliens favorit</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus med sandstrand, kajakhyrning och barnvänlig miljö är toppalternativet för barnfamiljer i juli. Det är tryggt, välordnat och alltid något att göra. Minus: det är populärt och kan bli stökigt under högsommarhelger. Bäst besökt en tisdag eller onsdag.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">4. Möja – lugnet mitt i stormen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja är tillräckligt stor för att ha service (butik, restaurang, cykeluthyrning) men tillräckligt svårtillgänglig för att hålla barnfamiljestockholmarna borta. Det tar 2,5 timme från stan men belöningen är en ö med karaktär. Passa perfekt för den som vill ha lite mer ö-känsla.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">5. Ornö – det stora, tysta alternativet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ornö är en av skärgårdens mest underskattade öar i juli. Det är stort, grönt och relativt obefolkat. Inga värdshus, men flera vandringsleder, naturhamnar och övernattningsstugor. Perfekt för den som vill ha riktig skärgård och inte riktig service.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">6. Nåttarö – campingens högborg</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö har södra skärgårdens bästa sandstrand och ett populärt campingområde. I juli är det fullt med tältare och barnfamiljer, men stranden är tillräckligt lång för att alla ska ha plats. Ta med picknickkorg och solskyddsmedel.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Juli-tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Undvik de populäraste öarna lördag–söndag i juli. Åk ut fredag kväll eller måndag morgon. Många av de bästa upplevelserna i skärgården sker mitt i veckan när stockholmarna är tillbaka på jobbet och öarna är nästan tomma.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk juliguide – transport</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör med högsommartidtabell hela juli. Cinderellabåtarna kör kvällsturer tillbaka från yttre skärgården. Köp Waxholmsbolagets sommarkort eller båtluffarkort om du planerar flera utflykter – det lönar sig redan vid tredje turen. Boka båtturerna inte – de är inte bokningsbara utan säljer biljetter ombord.</p>
+`,
+
+  'juli-skargarden-2026-aktiviteter': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är den månad då skärgårdens alla aktiviteter är tillgängliga samtidigt. Vattnet är varmt, solen är ute länge och det finns utrustning att hyra på varenda brygga. Här är de bästa aktiviteterna i Stockholms skärgård under juli 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På vattnet</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Kajakpaddling</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Juli är kajaksäsongens höjdpunkt. Vattnet är lugnt tidiga mornar, solen är ute länge och passagerna mellan öarna är relativt skyddade. Hyra kajak finns på Grinda, Finnhamn, Utö, Kymmendö och ett flertal andra öar. Priser ligger på 250–400 kr per timme eller 800–1 200 kr för heldag. Ta en guidad tur om du är nybörjare – guiden tar er till de bästa passagerna och berättar om öarnas historia.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">SUP och paddleboard</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stand-up-paddling är enkelt att lära och fantastiskt i lugna vikar. Grinda, Sandhamn och Vaxholm hyr ut SUP-brädor. Håll dig nära land och paddla tidigt på morgonen när det är vindstilla – juli eftermiddagsvindar kan göra det krångligt för nybörjare.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Snorkling och dykning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholms skärgårds sötvatten-saltvatten-blandning skapar unika förutsättningar. Sikten är bäst i juli innan algblomning sätter in. Bra snorkelplatser är Ornö, Landsort och de yttre öarna. Gädda, abborre och ål går att se i klarare vikar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fiske</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Juli är perfekt för abborre och gädda i innerskärgårdens vikar, och för havsöring längs yttre kusten. Fiske i skärgården är fritt med handredskap utan licens. Hyra båt med fiskeutrustning finns på Dalarö, Gustavsberg och Vaxholm.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På land</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Vandring och klipphopp</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholms skärgård har inga höga fjäll men massor med vackra lederna. Stockholm Archipelago Trail (270 km) är världsklass. Kortare alternativ: Utö Runt (18 km), Ornöleden och Möja runt. Klipphopp från gneisklipporna är en klassisk skärgårdsupplevelse – hitta en klippa som vetter mot djupt vatten och hoppa.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Cykling</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja, Utö, Gällnö och Ingmarsö är bäst för cykling. Alla bilfria eller nästan bilfria. Cykelhyrning finns på Möja (vid bryggan) och Utö (nära hamnen). Ta med egen cykel på Waxholmsbolaget mot en liten avgift.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Havsbastu</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vedeldad bastu med dopp i havet är en skärgårdsklassiker. Utö, Finnhamn, Grinda och ett flertal privata bastustugor längs skärgården erbjuder bastu. Boka i god tid – det är populärt under juli. Pris ca 300–600 kr per session.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Aktivitetstips för julimorgonen:</strong>
+<p style="margin:8px 0 0;font-size:14px">De bästa upplevelserna i skärgården sker tidigt på morgonen. Paddla kajak klockan 06–08 när havet är spegelblank, klättra upp för ett berg för soluppgången eller ta ett tidigt morgondopp i ännu lugnt vatten. Middag på restaurang är trevlig, men det är morgnarna som är oöverträffade.</p>
+</div>
+`,
+
+  'juli-skargarden-2026-mat': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgårdsköket är kärnan i upplevelsen. Räkor vid bryggan, grillad fisk på klippan och sommarens bästa glass i handen – mat i skärgården under juli är en upplevelse som sätter sig i minnet. Här är en guide till de bästa matupplevelserna i Stockholms skärgård sommaren 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klassisk skärgårdsmat</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Räkfrukost vid bryggan</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den mest ikoniska skärgårdsupplevelsen: en påse nyfångade räkor, ett par skorpor, smör och majonnäs vid bryggan med utsikt mot havet. Köps i Vaxholm, Sandhamn och Grinda direkt från fiskebryggan tidigt på morgonen. Inga bestick behövs – det är fingrarnas mat.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Rökt fisk från rökerierna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera öar i skärgården har egna rök­erier. Räfsnäs och Arholma röker lax och sik. Kymmendö och Möja har lokalt rökta produkter. Rökt ål är en delikatess som bara finns på ett fåtal ställen – fråga lokalt. Funkar utmärkt som picknickmat på en klippa.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Klippgrill</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Att grilla på klipphällarna vid havet är skärgårdens folkligaste tradition. Ta med engångsgrill (eller bärbar grill), färsk fisk från en lokal fiskare och grönsaker. Grillade gäddfilér, lax eller strömming med citrondill-smör – enkelt och oöverträffat. Tänk på att kontrollera brandrisk och undvika grill direkt på klippan (det ger sotfläckar).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa restaurangerna per ö</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Utö Värdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös restaurang är en av de finaste i skärgården med lokal fisk, skärgårdsinspirerade rätter och utsikt mot gästhamnen. Boka bord i förväg – kvällstiderna är fullbokade. Lunchen är öppen och inkluderar en klassisk skärgårdsbuffé på helger.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Sandhamns Värdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamns Värdshus serverar skärgårdsklassiker med seglarstämning. Räksmörgåsen är berömd och uteserveringen sommartid är oöverträffad. Det är dyrt och välbokat men rättvist för upplevelsen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grinda Wärdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mer avslappnat och familjevänligt. Grindas kök serverar bra husmanskost med skärgårdstema. Uteserveringen vid bryggan är mysig. Lunchmeny under högsäsong.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Möja krog</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möjas lilla krog mitt på ön serverar enkel och god mat med fokus på lokala råvaror. Mysig miljö i en gammal byggnad. Öppet bara under sommarsäsongen – kolla aktuella öppettider.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Picknick i skärgården – bästa maten att ta med</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Köp med räkor från Östermalms saluhall eller en fiskbil</li>
+<li>Hummus, pitabröd och skärgårdsost</li>
+<li>Baguette med lokalt rökt lax och kapris</li>
+<li>Kylda plommon och druvor – frukten smakar bättre i sommarvärmen</li>
+<li>Kallpressad citron-lime-dricka i termos</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Mat-tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">De bästa matupplevelserna i skärgården behöver inte kosta skjortan. En påse räkor vid bryggan (150–200 kr), egen medhavd dricka och utsikten på det – det slår de flesta restauranger. Spara restaurangbesöket till kvällsmaten och gör frukost och lunch enkel och lokal.</p>
+</div>
+`,
+
+  'semestervecka-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En hel vecka i Stockholms skärgård är ett minne för livet. Men utan planering riskerar du att fastna på en ö när du egentligen vill se fem. Här är ett komplett dag-för-dag-itinerary för sju dagar i skärgården – baserat på Waxholmsbolagets turer och vad som verkligen är värt din tid.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Förutsättningar och filosofi</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det här itinerariet utgår från Stockholm och använder Waxholmsbolagets reguljärtrafik. Det är designat för ett par eller en liten grupp utan barn (barnvänlig variant finns i slutet). Du behöver: Waxholmsbolagets sommarkort (995 kr), boende förbeställt, stövlar och regnkläder, och förmågan att ta det lugnt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 1 – Vaxholm: Introduktionen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Börja med det enkla. Ta pendelbåten till Vaxholm (45 min), promenera längs hamnpromenaden, besök Vaxholms fästning och ät lunch vid vattnet. Tillbaka för övernattning i Stockholm om du ännu inte åkt ut. Vaxholm ger dig känslan av skärgård utan att kräva planering – perfekt dag ett.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 2 – Grinda: Familje-favoriten</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Morgonbåten till Grinda (ca 2,5 h). Checka in på Grinda Wärdshus eller tältplatsen. Eftermiddag: sandstranden vid Lövudden, kajakhyrning och vandring runt ön. Kväll: middag på wärdshuset. Sov på Grinda.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 3 – Finnhamn: Ytterskärgårdens vildmark</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Morgonbåten från Grinda vidare norrut till Finnhamn (ca 1 h). Vandrarhem eller camping. Klättring på klipporna mot Söderarm, havsbastu och en av skärgårdens mest storslagn naturhamnar. Kvällsdopp i det öppna havet. Sov på Finnhamn.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 4 – Möja: Skärgårdslivet på riktigt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båt från Finnhamn till Möja (ca 1,5 h). Hyra cykel vid bryggan och cykla runt ön. Möja är skärgårdens hemligaste välbevarade hemlighet – en ö med riktigt skärgårdsliv, lokal butik och krog och natur utan turistkänsla. Lunch på Möja krog. Sov på Möja (stuga eller vandrarhem).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 5 – Sandhamn: Seglarlivet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båt från Möja till Sandhamn (via Stavsnäs, ca 1,5 h). Sandhamn är annorlunda – mer intensivt och befolkat, men Trouville-stranden är oöverträffad och seglarstämningen unik. Boka bord på Sandhamns Värdshus för middag. Sov på Sandhamn (dyrt men värt det en natt).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 6 – Utö: Kronjuvelen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Dag 6 ägnas åt Utö – södra skärgårdens kronjuvel. Ta båten från Sandhamn (byt i Dalarö), Utö Runt-leden eller bara häng vid hamnen. Havsbastu är obligatorisk. Sov på Utö Värdshus (boka tidigt!).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 7 – Hemresa via Dalarö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Frukost på Utö, ta morgonbåten till Dalarö och buss eller bil tillbaka till Stockholm. Dalarö förtjänar ett kortare stopp – den historiska hamnmiljön och fästningsruinen är ett avslutat kapitel för veckan.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Budget för veckan (per person):</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Waxholmsbolaget sommarkort: 995 kr</li>
+<li>Boende (mix vandrarhem/värdshus): 3 000–6 000 kr</li>
+<li>Mat och dryck: 2 000–4 000 kr</li>
+<li>Aktiviteter (kajak, bastu m.m.): 500–1 000 kr</li>
+<li><strong>Totalt: 6 500–12 000 kr per person</strong></li>
+</ul>
+</div>
+`,
+
+  'sommarlov-skargarden-barn': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården är gjord för barn. Sandstränder att bygga sandslott på, klipphällar att hoppa från, kajaker att paddla och naturupplevelser man aldrig glömmer. Här är en komplett plan för 14 dagars sommarlov med barn i Stockholms skärgård – anpassad för olika åldrar och med fokus på det som faktiskt håller hela familjen nöjd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering – det viktigaste</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Barn i skärgården kräver planering men belönar den generöst. Nycklarna är: boka barnvänliga övernattningar tidigt (Grinda, Utö och Nåttarö är bäst), ha ett grundschema men var flexibel, ta med solkräm och myggolja (de finns men kostar tredubbelt på öarna), och låt barnen vara med och välja destination.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vecka 1 – Inre skärgårdens trygghet</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 1–2: Vaxholm</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt introduktion. Pendelbåt dit (45 min), Vaxholms fästning (barn älskar det), glassbutiken vid hamnen och övernattning på Vaxholms Hotell eller Hembygdsgårdens stugor. Lugnt och tryggt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 3–5: Grinda</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda är den barnvänligaste ön i skärgården. Sandstrand, djur att titta på (höns, kor), kajaker anpassade för barn, havsbastu och ett wärdshus med full service. Perfekt bas för 2–3 nätter. Prova kvällsnaturen när solen går ned runt 10-tiden.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 6–7: Fjäderholmarna (dagstur)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna (25 min från Nybrokajen) har piratskepp att leka på och är perfekt för en kortare tur med trötta barn. Kombinera med en natt hemma i Stockholm för att ladda om.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vecka 2 – Södra skärgårdens äventyr</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 8–10: Nåttarö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö har södra skärgårdens längsta sandstrand – en klassisk familjestrand med grunt vatten perfekt för barn. Campingplatsen är välorganiserad med stugor och tältplatser. Barn kan tillbringa hela dagar på stranden utan att bli uttråkade.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 11–13: Utö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus tar emot barnfamiljer med cykeluthyrning (barnvagn-cyklar och träningscyklar), Utö Runt leden och en bilfri ö-känsla. Gruvan går att besöka med äldre barn (10+). Havsbastu med barnpool i anslutning.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Dag 14: Hemresa</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Morgonbåt från Utö via Dalarö till Stockholm. Stopp i Dalarö för fika och en sista titt på havet.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Barnvänlighets-checklista:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Gratis öluffarkort för barn under 6 år (Waxholmsbolaget)</li>
+<li>Halv avgift 6–15 år</li>
+<li>Ta med simväst för barn under 8 år</li>
+<li>Solkräm, myggolja och plåster är svårt att hitta på öarna</li>
+<li>Ta med simbälte – öppet hav har inga flytare</li>
+<li>Öarna stänger tidigt – kolla sista båten hem noga</li>
+</ul>
+</div>
+`,
+
+  'vad-gora-regn-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Regnet kommer alltid någon dag i skärgården. Men det behöver inte förstöra semestern – tvärtom är regnväder ofta det bästa tillfället att uppleva skärgården på ett annat sätt. Här är 15 konkreta tips på vad du gör när himlen öppnar sig.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför regn inte är en katastrof</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsregn har en alldeles unik karaktär. Doften av vatten mot granskogen, dimman som lägger sig över vattnet och tystnaden som uppstår när turisterna försvinner under tak – det är skärgårdsromantik av det äkta slaget. Ta med rätt kläder och se regndag som en möjlighet, inte ett problem.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">15 saker att göra när det regnar i skärgården</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">1. Havsbastu</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Regnväder och vedeldad bastu är en av skärgårdens bästa kombinationer. Värmen inne, regnet ute och det kalla havet att hoppa i. Utö, Finnhamn och Grinda har havsbastur. Boka i förväg – alla tänker likadant när det regnar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">2. Kajakpaddling i regn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Att paddla kajak i lätt regn är en upplevelse utöver det vanliga. Du blir blöt ändå, det är varmt och naturen runt dig är dramatisk och vacker. Undvik paddling i åska – men ett regnmoln utan blixt är lugnt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">3. Kafét och en bok</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Wärdshusens kaféer och restauranger är mysiga i regnväder. Ta en kopp te, en bulle och en bok. Det är den perfekta skärgårdsdagen för den som är ärlig med sig själv.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">4. Vaxholms fästningsmuseum</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholms fästning är ett utmärkt regnmål. Museet inne i fästningen berättar om skärgårdens försvarshistoria. Ta Waxholmsbolaget dit och tillbaka – en heldagsaktivitet utan ett enda utomhusmoment om du vill.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">5. Matlagning i stugan</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En regndag är perfekt för att laga ordentlig mat. Köp råvaror på värdshuset eller ta med hemifrån och tillaga en rejäl skärgårdsmåltid. Rökt fisk, potatissallad och kaviar på kex med ett glas vin i en stuga med regnet mot fönstret – det finns inget bättre.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">6–10. Fler tips</h3>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Bräda- och kortspel</strong> – ta med ett par spel, det funkar alltid</li>
+<li><strong>Havets Hus i Lysekil</strong> – om du är på västkusten</li>
+<li><strong>Svampplockning</strong> – kantareller dyker upp efter regn, perfekt plockningstillfälle</li>
+<li><strong>Fotografering</strong> – dimma och regnljus ger dramatiska bilder</li>
+<li><strong>Drönare</strong> – molniga dagar utan sol ger jämnare ljus för filmning</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">11–15. Fler tips</h3>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Lär dig knopa</strong> – köp en knoparbok och öva</li>
+<li><strong>Fiskmorgon i regn</strong> – fiskar biter bättre i mulet väder</li>
+<li><strong>Segling i vind</strong> – ett regnigt lågtryck brukar ge fin seglingswind</li>
+<li><strong>Sömndag</strong> – det är semester, du får sova</li>
+<li><strong>Planera nästa resa</strong> – hitta öar du vill besöka härnäst</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Rätt kläder gör hela skillnaden:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta alltid med regnkläder till skärgården, oavsett väderprognosprognos. Seglarbyxor och en vattentät jacka (Helly Hansen, Didriksons eller Haglöfs) håller dig torr och varm. Med rätt kläder spelar regnet ingen roll alls – du kan vara ute hela dagen och faktiskt trivas med det.</p>
+</div>
+`,
+
+  'juli-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är Bohusläns högsäsong. Klipporna glittrar i solen, räksmörgåsarna tar slut på Smögen redan klockan tolv och båtplatserna i gästhamnarna är bokade månader i förväg. Men med rätt planering – och lite insidekunskap – är Bohuslän i juli en av Sveriges allra bästa reseupplevelser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Bohuslän i juli?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän har ett mildare sommarklimat än resten av Sverige. Västerhavet ger färre varma sommardagar men också färre extremheta dagar. Vattnet är kallare än i Stockholms skärgård men renare och klarare – och badklipporna är oöverträffade. Juli är den månad då allt är öppet och alla är på plats.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa destinationerna i Bohuslän i juli</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Smögen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen är Bohusläns folkligaste sommarort och är i full blomning under juli. Smögenbryggan med sina 300-meter träplanka är fylld med turister, klipporna runt om erbjuder de bästa badplatserna och räksmörgåsarna är legendariska. Det är trångt – gå dit tidigt på morgonen eller sent på eftermiddagen för bättre upplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Marstrand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrand håller i juli sin stora internationella seglingsregatta – Marstrand Race – som attraherar båtfolk från hela Europa. Utöver det är Carlstens fästning en upplevelse för hela familjen och restaurangerna längs kajen serverar havets bästa råvaror. Bilfri ö nås med färja från fastlandet.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fjällbacka</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjällbacka med Kungsklyftan och Ingrid Bergman-torget är en av Bohusläns mest stämningsfulla orter. Lugnt och vackert. Bra restauranger och nära till Grebbestad. Camilla Läckbergs "Fjällbacka-morden" lockar krim-turisterna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grebbestad</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är ett aktivt fiskesamhälle med de bästa kräftorna och ostronen i Sverige. Lugnt och genuint jämfört med Smögen – perfekt för de som vill ha autentisk Bohuslän-upplevelse utan det värsta turisttrycket.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Juli-tips för Bohuslän</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Åk tidigt på morgonen – parkeringar och klippor är tomma klockan 07</li>
+<li>Undvik Smögenbryggan lördag 12–16 – välj istället en klippa utanför stan</li>
+<li>Boka boende månader i förväg – juli är fullbokat</li>
+<li>Prova Bohusbåten för kusttur längs öarna</li>
+<li>Besök hällristningarna i Tanum – UNESCO-världsarv 20 min från Grebbestad</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Transport till Bohuslän:</strong>
+<p style="margin:8px 0 0;font-size:14px">Tåg från Stockholm till Göteborg (3 h) och sedan Västtrafiks lokaltåg norrut längs kusten till Ljungskile, Stenungsund och vidare. Bil är enklare för att nå de mindre orterna. Från Göteborg tar det 1,5–2,5 timme med bil till Smögen eller Grebbestad beroende på trafikläge.</p>
+</div>
+`,
+
+  'juli-gotland-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är Gotlands mest intensiva månad. Medeltidsveckan lockar 40 000 besökare, restaurangerna är fullbokade och Visby ringmur lyser i sommarljuset. Men bortom festligheten finns ett Gotland som är strandernas, rasukarnas och cykelstigarnas ö. Guide till juli på Gotland 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Medeltidsveckan 2026</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Medeltidsveckan på Gotland hålls varje år i slutet av juli – 2026 troligen 8–16 augusti (datum bekräftas av gotlandsmedeltid.se). Det är Europas enda medeltidsfestival av den här skalan och förvandlar Visby till ett levande 1200-tal med marknadsplatser, riddarskolon och konserter. Vill du se det – boka boende ett år i förväg. Vill du undvika folkmassan – kom dagarna runt men inte under.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa stränderna på Gotland i juli</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Tofta strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta, 2 mil söder om Visby, är Gotlands populäraste sandstrand och med rätta. Långa sanddyner, grunt vatten för barn och ett campingområde med service. Vattnet är varmare här än på nordkusten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Gnisvärd</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gnisvärd söder om Tofta har ett av de mest filmiska lägena på hela Gotland – fiskeläge med gamla trärader och raukar i vattnet. Lugnt och pittoreskt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Raukarna på Fårö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö – Ingmar Bergmans ö – nås med färja norr om Fårösund och är obligatoriskt stopp. Langhammars rauk-fält är ett av Nordens mest surrealistiska landskap. Badplatsen Ekeviken på Fårö är kristallklar och relativt lugn jämfört med Tofta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och dryck på Gotland i juli</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands matscen exploderar i juli. Visby har restauranger i alla prisklasser – från Gotlandslammsburgare i en korridor till 5-rättersmeny på Gotlands äldsta restaurang. Götlandslammets lammkotlett är obligatorisk, liksom Gotlands Bryggeri Sleepy Bulldog-öl på en uteservering.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är också unikt som det enda län i Sverige med vinodlingar. Gotlands Vingård i Kattlunds producerar svenska viner – besök gärna om du kör förbi södra Gotland.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cykla på Gotland i juli</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är en av Sveriges bästa cykelöar. Platt terräng, låg biltrafik och välmarkerade leder. Hyra cykel finns i Visby. Populäraste rutten: Visby – Roma – Ljugarn – tillbaka (ca 120 km, 2 dagar). Kortare alternativ: rundtur söder om Visby via Tofta och Gnisvärd (ca 40 km).</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Transport till Gotland i juli:</strong>
+<p style="margin:8px 0 0;font-size:14px">Destination Gotlands färja från Nynäshamn (3 h) eller Oskarshamn (3,5 h). I juli går fler avgångar men de är fullbokade – boka bil och biljetter 3–4 månader i förväg. Flyg från Arlanda tar 45 min och är ofta billigare om du bokar tidigt. Under juli kostar boende på Gotland 3–5 gånger normalpriser – budgetera generöst.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Insider-tips för juli på Gotland</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Undvik Visby city lördag eftermiddag – folkmassan är extrem</li>
+<li>Hyr cykel och utforska landsbygden – det är där Gotland är som vackrast</li>
+<li>Ät lunch i Visby, middagen ute i en by – priserna sjunker dramatiskt</li>
+<li>Besök Lummelundagrottan en regnig dag – kul för alla åldrar</li>
+<li>Gå upp tidigt – Visby ringmur i soluppgång utan turister är magisk</li>
+</ul>
+`,
   }
 
   const content = guides[slug]
