@@ -2,8 +2,11 @@
 export function getGuideContent(slug: string): string {
   const guides: Record<string, string> = {
     'midsommar-skargarden-2026': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Midsommar i skärgården 2026 – 15 konkreta alternativ</h2>
-<p>Midsommar är årets viktigaste helg i Sverige, och skärgården erbjuder några av landets vackraste fester, folkparker och stillsamma klippfiranden. Här är 15 alternativ – 8 på ostkusten och 7 på västkusten – med kollektivtrafik, tips och restaurangrekommendationer.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Midsommarafton i skärgården är ett av de saker man berättar om i tjugo år efteråt. Det handlar sällan om majstången — den är likadan på varje ö. Det handlar om att solen inte riktigt gick ner, att någon hade med sig gitarr och att sista båten hem var klockan ett på natten och man tog den ändå.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">2026 är midsommarafton fredagen den 19 juni. Boka boende nu om du inte redan gjort det — Grinda, Utö och Sandhamn är fullbokade månader i förväg. Alternativet är dagsturen: ut tidigt, majstången vid tre, sista båten hem. Det funkar också, och kräver noll planering utöver biljetten.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är 15 alternativ — 8 på ostkusten, 7 på västkusten — med hur du tar dig dit, var du äter och vad som faktiskt är värt att åka till.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">OSTKUSTEN: 8 alternativ</h3>
 
@@ -101,8 +104,9 @@ export function getGuideContent(slug: string): string {
 `,
 
     'packlista-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Komplett packlista för skärgården</h2>
-<p>Oavsett om du planerar en dagstur eller en hel vecka i skärgården gäller samma grundprincip: skärgårdsväder är opålitligt och havet är kallare än du tror. Den här listan är indelad efter kategori – bocka av det som är relevant för din tur.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns alltid någon på båten som verkar ha tänkt på allt. Rätt solskydd, ett lager för mycket, den lilla fickkniven som faktiskt används. Den personen har packat skärgård förr. Det här är listan de aldrig delat med sig av.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Egentligen behöver du bara fem saker: något vattentätt, solskydd, tillräckligt med vatten, en filt och ett sätt att ta dig hem. Resten är comfort. Men comfort spelar roll.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kläder</h3>
 <p><strong>Baslagret (alltid med, oavsett väder):</strong></p>
@@ -938,10 +942,11 @@ export function getGuideContent(slug: string): string {
 `,
 
     'naturhamnar-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bästa naturhamnarna i Stockholms skärgård</h2>
-<p>En bra naturhamn ger dig vindskydd, svängrum för ankring, frisk luft och närheten till naturen. Här är skärgårdens bästa platser för en natt på ankaret eller vid en naturbrygga.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det bästa med en bra naturhamn är det som händer klockan nio på kvällen. Stekpannan är diskad, kaffe kokat och alla dagsbåtar har åkt hem. Det är bara ni kvar och mörkret och det stilla vattnet. Ingen gästhamn ger dig det.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör en bra naturhamn?</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturhamnar är inte märkta på turistkartor och de rankas inte i appar. De är vikar som folk med båt berättar om för folk med båt, och det är den kunskapen den här guiden bygger på. Kriterierna är enkla: vindskydd, svängrum och fastmark att gå i land på. Allt annat är bonus.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad som faktiskt avgör en bra naturhamn</h2>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Vindskydd från de dominerande sydvästliga vindarna</li>
 <li>Djup nog för att ankra (minst 2–3 m) men inte för djup (under 10 m)</li>
@@ -1091,10 +1096,11 @@ export function getGuideContent(slug: string): string {
 `,
 
     'weekend-i-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">En hel weekend i skärgården – så planerar du</h2>
-<p>En lyckad skärgårdshelg handlar om rätt förberedelse. Väljer du rätt destination, bokar du i tid och packar rätt – då är en skärgårdshelg en av de bästa semestrarna du kan ha i Sverige.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den bästa skärgårdshelgen börjar fredagkväll och slutar söndag förmiddag. Det är inte för att man måste åka hem — det är för att söndagseftermiddagen ute i öarna har ett eget ljus och en tystnad som inte existerar resten av veckan. Planerar du det rätt har du hunnit bada, äta ordentligt, sova för lång och ändå vara hemma till middag på söndag.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Steg 1: Välj destination utifrån din grupp</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En skärgårdshelg kräver egentligen inte mycket planering. Men den kräver att ett par beslut fattas i rätt ordning — annars spenderar man fredagen med att inse att Grinda Wärdshus är fullbokat och att sista båten till Sandhamn gick för en timme sedan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj destination — det är det enda som faktiskt måste bestämmas i förväg</h2>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Par utan barn:</strong> Sandhamn, Utö eller Grinda – alla med välrenommerade restauranger</li>
 <li><strong>Barnfamiljer:</strong> Grinda, Möja eller Ljusterö – lugna, barnvänliga och med låg trafik</li>
@@ -1647,11 +1653,11 @@ export function getGuideContent(slug: string): string {
 `,
 
     'barnfamilj-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgård med barnfamilj – bästa öarna och hur du planerar turen</h2>
-<p>Skärgård med barn kan vara ett av sommarens bästa äventyr – eller en logistisk mardröm om du inte planerat rätt. Rätt ö, rätt tidpunkt och rätt förväntningar är allt. Den goda nyheten: Stockholm har några av världens bästa förutsättningar för familjesemester i skärgården, och med lite förberedelse är tröskeln lägre än du tror.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det händer ungefär på timme tre. Barnen är hungriga, någon har tappat sin sandal i havet och vuxna håller på att bli trötta av att låtsas att det inte är det. Det är inte ett misslyckande. Det är information: du åkte till fel ö, eller vid fel tidpunkt, eller utan att äta lunch i tid.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör en ö barnvänlig?</h3>
-<p>Inte alla öar passar alla åldrar. Faktorer som avgör om en ö är bra för barn:</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgård med barn är ett av sommarens bästa saker — men det är ett annat sak att planera än vuxenresan. Öarna som fungerar bäst för familjer är inte nödvändigtvis de som fotograferas mest. De är öar med grunt vatten nära bryggan, en toalett utan kö och ett café där beställningen går fort.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad som faktiskt avgör om en ö fungerar med barn</h2>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Sandstrand eller lugnt grundvattenbad (inte branta klippor som enda badalternativ)</li>
 <li>Toaletter tillgängliga utan lång promenad</li>
@@ -1701,11 +1707,12 @@ export function getGuideContent(slug: string): string {
 `,
 
     'uto-komplett-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Utö – komplett guide till södra skärgårdens kronjuvel</h2>
-<p>Utö tar emot ungefär 400 000 besökare per år – en siffra som gör ön till en av Stockholms skärgårds mest besökta. Det är förtjänat. Utö är ovanligt mångsidig: en ö med järngruvhistoria från 1100-talet, en vandringsstig som går runt hela ön, sandstränder, havsbastu, ett av skärgårdens bästa värdshus och cykelvänliga vägar som gör ön perfekt att utforska utan bil.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Pendeltåget till Nynäshamn tar 55 minuter från Stockholm Central. Färjan därifrån tar 35 minuter till Utö. Det är värt att veta redan när du planerar, för det innebär att en av södra skärgårdens bästa öar faktiskt är tillgänglig på en dag utan bil, utan krångel och utan att man behöver oroa sig för parkeringen.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig till Utö</h3>
-<p>Det finns två huvudvägar till Utö:</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö är inte det enklaste valet — men det är nästan alltid det rätta. Järngruvorna från 1100-talet, Utö Runt-leden som går runt hela ön, den långa sandstranden på Ålö och en havsbastu som folk åker dit specifikt för. Det finns öar med fler restauranger. Det finns öar med kortare restid. Men det finns ingen ö i södra skärgården som ger mer tillbaka per timme nedlagd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Enklast: pendeltåg linje 36 från Stockholm Central till Nynäshamn (55 min), sedan Waxholmsbolagets pendelbåt till Utö (35–50 min). Det går avgångar hela dagen. Under sommaren finns också direktbåt från Strömkajen — längre restid men bekvämt om du är i city. Tar du bil till Årsta brygga nära Nynäshamn kan du ta med cyklar och mer utrustning.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Via Nynäshamn (rekommenderas):</strong> Pendeltåg linje 36 från Stockholm Central till Nynäshamn (ca 55 min), sedan Waxholmsbolagets pendelbåt till Utö (ca 35–50 min beroende på linje). Avgångar hela dagen.</li>
 <li><strong>Via Strömkajen (sommar):</strong> Direktbåt med Waxholmsbolaget under sommarsäsongen. Längre restid (~2,5 h) men bekvämare om du är i stan. Kontrollera aktuell tidtabell – direktlinjen avgår inte hela säsongen.</li>
@@ -1758,10 +1765,11 @@ export function getGuideContent(slug: string): string {
 `,
 
     'sandhamn-komplett-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Sandhamn – komplett guide till seglarnas ö</h2>
-<p>Sandhamn är Stockholms skärgårds mest kända destination – och med god anledning. Den lilla ön ytterst i skärgården har en unik kombination av seglartradition, ett levande socialt liv och naturupplevelser som slår de flesta andra öar. Under midsommar och högsommar pulserar Sandhamn av liv. Utanför den perioden hittar du stillhet, klar luft och vacker kustlinje.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Sandhamn är bäst i september. Det borde stå på biljetten.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig till Sandhamn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I juli är det vackert och det finns en anledning till att segelbåtarna vallfärdar hit — Trouville-stranden är genuint fin, Wärdshusets brygga är genuint njutbar och känslan av ytterskärgård är svår att hitta till det här priset. Men det är också fullt. Riktigt fullt. Lördag lunch i högsommar och du hittar knappt en klippa för dig själv. Accepterar du det villkoret är Sandhamn ett av skärgårdens bästa. I september är det skärgård på riktigt: tomma stigar, Östersjövind och ett värdshus som faktiskt har bord lediga.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Cinderellabåten (rekommenderas):</strong> Avgår från Strandvägen/Nybrokajen i Stockholm. Ca 2 h 30 min restid med stopp. Bekväm och klassisk – men dyrare än Waxholmsbolaget. Säsong maj–september.</li>
 <li><strong>Waxholmsbolaget via Stavsnäs:</strong> Buss 834 från Gullmarsplan till Stavsnäs (ca 1 h), sedan båt till Sandhamn (ca 1 h 30 min). Billigare alternativ. Stavsnäs-trafiken körs av SL men båten är Waxholmsbolaget.</li>
@@ -1990,10 +1998,11 @@ export function getGuideContent(slug: string): string {
 `,
 
     'grinda-guide': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Grinda – komplett guide till familjeön</h2>
-<p>Grinda är en av Stockholms skärgårds mest omtyckta öar – och det är lätt att förstå varför. Ön är liten nog att vara hanterbar för barnfamiljer, stor nog att ha en riktig värdshusupplevelse, och vacker nog att stanna kvar på i flera dagar. Här är inte mängden aktiviteter som lockar, utan kvaliteten på naturupplevelsen och känslan av att vara verkligt ute i skärgården.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Grinda är den ö man rekommenderar till folk som aldrig åkt ut i skärgården förut. Inte för att det är den vildaste eller vackraste — utan för att den levererar exakt det den lovar. Sandstrand, brygga, värdshus med riktiga dukar, kajaker att hyra. Korna och hönsen på gården är en bonus man inte räknade med.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Grinda</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är ett underskattat kvalitetsmärke: en ö som inte översäljer sig. Grinda är inte för alla, men det är rätt ö för fler än de flesta tror.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Grinda</h2>
 <p>Grinda nås med Waxholmsbolagets linje 80 eller 82 från Strömkajen i Stockholm. Restid ca 2 h 15 min. Cinderellabåten går också till Grinda under sommarsäsongen med kortare restid, ca 1 h 40 min.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Waxholmsbolaget linje 80 från Strömkajen: ca 2 h 15 min, avgångar morgon och kväll</li>
