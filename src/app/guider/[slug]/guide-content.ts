@@ -429,59 +429,6 @@ export function getGuideContent(slug: string): string {
 </div>
 `,
 
-    'vad-kostar-skargarden': `
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Vad kostar en dag i skärgården?</h2>
-<p>Skärgårdslivet behöver inte vara dyrt – men det kan bli det om du inte planerar. Här är en realistisk genomgång av vad olika typer av skärgårdsdagar faktiskt kostar 2025.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Dagstur med kollektivtrafik</h3>
-<p><strong>Budget: 400–900 kr/person</strong></p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Waxholmsbolaget tur/retur Strömkajen–Vaxholm: ca 280 kr</li>
-<li>Waxholmsbolaget tur/retur Strömkajen–Grinda: ca 400 kr</li>
-<li>Waxholmsbolaget tur/retur Nynäshamn–Utö: ca 420 kr (pendeltåg tillkommer)</li>
-<li>Lunch på skärgårdsrestaurang: 160–280 kr</li>
-<li>Fika: 50–90 kr</li>
-<li>Glass, räksmörgås, dricka: 80–150 kr</li>
-</ul>
-<p><strong>Spara pengar:</strong> Ta med matsäck och köp bara dricka och glass på plats. Pendeltåget till Nynäshamn ingår i SL-abonnemanget.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Dagstur med egen båt</h3>
-<p><strong>Budget: 300–800 kr/dag (exkl. båtköp och försäkring)</strong></p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Diesel/bensin: 100–400 kr beroende på avstånd och motorstorlek</li>
-<li>Gästhamnplats: 100–250 kr/natt (dagsliggare ofta gratis eller 50–100 kr)</li>
-<li>Bryggavgift i naturhamn: oftast 0 kr</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Weekendresa med övernattning</h3>
-<p><strong>Budget: 1 500–5 000 kr/person</strong></p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Rum på skärgårdsvärdshus: 800–2 200 kr/natt (per rum, delar du är det hälften)</li>
-<li>Vandrarhem: 300–500 kr/person/natt</li>
-<li>Stuga (hyrd): 1 500–3 500 kr/natt (delas av 4–6 pers)</li>
-<li>Restaurangmiddag: 200–400 kr/person</li>
-<li>Transport tur/retur: 300–500 kr</li>
-</ul>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Budget-alternativet: camping</h3>
-<p><strong>Budget: 400–700 kr/person för en hel helg</strong></p>
-<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Transport: 300–500 kr</li>
-<li>Tältplats: 0–150 kr/natt (allemansrätten eller campingavgift)</li>
-<li>Mat hemifrån: 100–200 kr för helgen</li>
-</ul>
-
-<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Pengaspartips:</strong>
-<ul style="margin:8px 0 0;padding-left:18px;line-height:1.9">
-<li>Köp Waxholmsbolagets Archipelago Card (dagskort) om du reser med en stor grupp</li>
-<li>Räkor köper du billigast direkt av fiskaren eller i Nynäshamn – inte på ön</li>
-<li>Undvik restauranger på populäraste öarna under högsäsong – ta med picknick istället</li>
-<li>Tält + matsäck + Waxholmsbolaget = full skärgårdsupplevelse för 600 kr</li>
-</ul>
-</div>
-`,
-
     'badtemperatur-skargard': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Badtemperaturen i skärgården – månad för månad</h2>
 <p>Havstemperaturen i Stockholms skärgård varierar kraftigt mellan säsongerna. Här är vad du faktiskt kan förvänta dig varje månad – och när det är som bäst att bada.</p>
@@ -1387,6 +1334,1798 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips för nybörjare:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontakta din närmaste segelsällskap och fråga om "öppet hus" eller provsegling. De flesta klubbar välkomnar intresserade och ger dig möjlighet att prova innan du bestämmer dig. Segla alltid med erfaren besättning de första gångerna.</p>
+</div>
+`,
+
+    'vad-kostar-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Vad kostar en dag i skärgården?</h2>
+<p>Skärgården behöver inte vara dyrt. Tack vare allemansrätten och ett väl utbyggt kollektivtrafiknät kan du tillbringa en hel dag ute i öarna för under 400 kronor – eller välja att spendera tre gånger mer på en restaurangmiddag med havsvy. Här är en ärlig budgetgenomgång för olika restyper.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport: den största posten</h3>
+<p>Waxholmsbolagets båtar tar dig till de flesta öarna i Stockholms skärgård. Priserna varierar med hur långt du åker och om du har SL-kort.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>SL-kort (månadsbiljett):</strong> Gäller på Waxholmsbolaget i SL-zonerna. Tilläggsbiljett krävs för öar i zon C och längre ut. Tillägg kostar ca 40–80 kr enkel resa beroende på zon.</li>
+<li><strong>Waxholmsbolaget utan SL-kort:</strong> Ca 80–200 kr enkel resa beroende på destination. Köp i appen – ca 10% billigare än ombord.</li>
+<li><strong>Cinderellabåten till Sandhamn:</strong> Ca 200–280 kr enkel resa. Tur-retur ca 400–550 kr.</li>
+<li><strong>Pendelbåt Nynäshamn–Utö:</strong> Pendeltåg till Nynäshamn (ingår i SL) + pendelbåt ca 130–160 kr enkel resa.</li>
+<li><strong>Fjäderholmarna:</strong> Ca 130 kr tur-retur från Strandvägen. Närmaste skärgårdsbudet.</li>
+</ul>
+<p><strong>Tips:</strong> Köp alltid i Waxholmsbolagets app i förväg. Betalning ombord kostar ofta 10–20 kr extra. Kontrollera aktuella priser på waxholmsbolaget.se.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat: från picknick till krogmiddag</h3>
+<p>Mat är den post du enklast kan styra. Skillnaden mellan att ta med matsäck och att äta lunch på restaurang kan vara 300–500 kronor per person.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Picknick hemifrån:</strong> 50–100 kr per person. Sandwichs, frukt, termoskaffe. Äts vid valfri klippa med havsvy – gratis tack vare allemansrätten.</li>
+<li><strong>Kiosk/korvvagn på ön:</strong> 80–150 kr för enklare lunch. Korv, glass, kaffe.</li>
+<li><strong>Restauranglunch:</strong> 150–280 kr. Räksmörgås, fiskrätt eller enklare rätter.</li>
+<li><strong>Restaurangmiddag (krogklass):</strong> 300–600 kr per person. Utö Värdshus, Sandhamns Värdshus, Grinda Wärdshus.</li>
+<li><strong>Räkor direkt från fiskaren:</strong> 150–250 kr/kg. Finns på många bryggor under sommarsäsongen.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Aktiviteter: mycket är gratis</h3>
+<p>Det bästa med skärgården är att nästan all naturupplevelse är kostnadsfri. Vandring, bad, klippklättring och sol kostar noll kronor.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bad från klippor:</strong> Gratis. Skärgårdens signaturupplevelse.</li>
+<li><strong>Vandring på markerade leder:</strong> Gratis.</li>
+<li><strong>Kajakhyrning:</strong> Ca 300–500 kr halvdag, 500–800 kr heldag per person.</li>
+<li><strong>SUP-bräda:</strong> Ca 250–400 kr för 2 timmar.</li>
+<li><strong>Cykelhyrning (Möja, Utö):</strong> Ca 150–300 kr/dag.</li>
+<li><strong>Havsbastu:</strong> Ca 150–300 kr per person och tillfälle.</li>
+<li><strong>Guidad tur:</strong> 400–800 kr per person.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Tre budgetscenarier</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Minibudget – under 350 kr/person</h4>
+<p>Waxholmsbolaget med SL-kort (tillägg ca 80 kr tur-retur) + matsäck hemifrån + bad från klippor + kaffe på bryggan. Destination: Grinda eller Finnhamn. Totalt: ca 150–200 kr med SL-kort, ca 350 kr utan.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Mellannivå – 500–900 kr/person</h4>
+<p>Waxholmsbolaget tur-retur (ca 200–300 kr) + enklare restauranglunch (ca 200 kr) + glass och kaffe (ca 80 kr) + kortare kajaktur (ca 300 kr halvdag). Destination: Sandhamn eller Möja. Totalt: ca 700–900 kr.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Lyxdag – 1 500–2 500 kr/person</h4>
+<p>Cinderellabåten tur-retur till Sandhamn (ca 500 kr) + restaurangmiddag (ca 500–700 kr) + havsbastu (ca 250 kr) + guidad kajaktur (ca 600 kr). Totalt: ca 1 800–2 500 kr.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Sparatips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Köp Waxholmsbolaget-biljetter i appen (billigare). Ta med all mat och dryck hemifrån – priserna i öarnas kiosker är höga. Välj vardagsutflykter om möjligt – färre folk och ibland lägre priser. Tältturer med övernattning slår hotell ekonomiskt om du har utrustning.</p>
+</div>
+`,
+
+    'stockholm-archipelago-trail': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Stockholm Archipelago Trail – 270 km vandringsled över 20 öar</h2>
+<p>Stockholm Archipelago Trail (SAT) är en av Sveriges mest extraordinära vandringsleder – och en av världens mest unika. Leden sträcker sig 270 kilometer över 20 öar, från Arholma i norr till Landsort i söder, och varje etapp nås med Waxholmsbolagets reguljära färjetrafik. TIME Magazine utsåg SAT till en av världens bästa upplevelser 2025. National Geographic landade i samma slutsats. Det är inte svårt att förstå varför.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad är Stockholm Archipelago Trail?</h3>
+<p>SAT öppnade hösten 2024 och finansierades av Tillväxtverket och EU i samverkan med Skärgårdsstiftelsen, Region Stockholm, Länsstyrelsen och åtta skärgårdskommuner. Leden är ett offentligt projekt – markerad, underhållen och fri för alla att gå.</p>
+<p>Det som skiljer SAT från nästan alla andra vandringsleder i Sverige är kombinationen: du vandrar på öar, du tar reguljärfärja mellan dem, och du kan anpassa din tur till exakt hur lång tid du har – allt från en dag på en enda ö till ett flerveckorsprojekt som tar dig hela vägen från norra till södra skärgård.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Leddata i korthet</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Total längd:</strong> 270 km (ca 168 miles)</li>
+<li><strong>Antal öar:</strong> 20 öar</li>
+<li><strong>Antal etapper:</strong> 20 etapper (en per ö)</li>
+<li><strong>Sträckning:</strong> Arholma (norra skärgård) → Landsort (södra ytterskärgård)</li>
+<li><strong>Transport:</strong> Waxholmsbolaget och pendelbåtar – alla etapper nås med kollektivtrafik</li>
+<li><strong>Svårighetsgrad:</strong> Övervägande medel – varierande terräng, inga extrema klätterstycken</li>
+<li><strong>Bästa säsong:</strong> Maj–juni och september. Juli fungerar men kan vara varmt och myggigt.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Utvalda etapper att börja med</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Grinda – 9,8 km (Medel)</h4>
+<p>Grinda är en av ledernas mer tillgängliga etapper och ett utmärkt startval för nybörjare. Ön är välmarkerad, fin och har café och vandrarhem om du vill stanna. Nås med Waxholmsbolaget från Strömkajen.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Arholma – 13,4 km (Medel)</h4>
+<p>Ledernas nordligaste ö. Arholma har en av skärgårdens stämningsfullaste karaktärer med täta skogar, klipppartier mot öppet hav och en känsla av att man är i verklig ytterskärgård. Nås via Norrtälje.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Landsort – 10,7 km (Medel)</h4>
+<p>Ledernas sydligaste punkt och en av skärgårdens mest säregna öar. Det unika klimatläget gör att Landsort ofta är grönare och mildare än omgivande öar. Det historiska fyrtornet och den lilla byn ger ett stark avslut på en SAT-tur.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du planerar din SAT-tur</h3>
+<p>Det finns tre sätt att vandra SAT:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Dagsturer:</strong> Välj en eller två etapper och åk ut och hem samma dag. Perfekt för den som vill prova leden utan att boka boende.</li>
+<li><strong>Helgtur (2–3 dagar):</strong> 2–3 etapper med övernattning på STF-vandrarhem eller tältplats. Planera med Waxholmsbolagets tidtabell.</li>
+<li><strong>Längre expedition (1–3 veckor):</strong> Gå hela eller stora delar av leden. Kräver mer logistik men belönar med en sammanhängande upplevelse av hela skärgårdens bredd.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktisk information</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Karta och etappinfo:</strong> stockholmarchipelagotrail.com – officiell site med interaktiv karta och detaljbeskrivningar av varje etapp</li>
+<li><strong>Boende:</strong> Tältplatser finns på flera öar (kontrollera Skärgårdsstiftelsens anläggningar). STF-vandrarhem på bl.a. Finnhamn och Grinda.</li>
+<li><strong>Utrustning:</strong> Bra vandringsskor (inte nödvändigt med tung bergssko – vanliga vandringsskor räcker). Regnkläder. Minst 2 liter vatten. Myggmedel juli–augusti.</li>
+<li><strong>Hund:</strong> Tillåten men kontrollera naturreservatsregler för varje ö. Waxholmsbolaget tillåter hundar ombord.</li>
+<li><strong>Avgifter:</strong> Leden är gratis. Du betalar bara transport och eventuellt övernattning.</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bra att veta:</strong>
+<p style="margin:8px 0 0;font-size:14px">Kolla alltid aktuell tidtabell för din valda ö på waxholmsbolaget.se innan du åker. Avgångarna kan vara glesa, särskilt till de yttre öarna. Missa du sista båten hem kan det innebära en oplanerad övernattning – se till att ha en backup-plan.</p>
+</div>
+`,
+
+    'sup-paddleboard-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">SUP och paddleboard i skärgården – guide för nybörjare och erfarna</h2>
+<p>Ståndupp-paddling – SUP – har blivit en av skärgårdens mest populära sommaraktiviteter, och det är lätt att förstå varför. Du rör dig tyst och nära vattnet, du kan pausa och bada precis var du vill, och du behöver varken segellicens eller körkort. Skärgårdens lugna fjärdar och vindskyddade vikar är perfekta för paddling.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad är SUP?</h3>
+<p>SUP (Stand Up Paddleboarding) innebär att du paddlar stående på en bred, stabil bräda med ett långt paddel. Brädan är betydligt bredare och stabilare än en surfbräda och flesta vuxna hittar balansen inom 10–15 minuter. Du kan också sitta ner på brädan och paddla – vanligt bland nybörjare eller de som vill slappna av.</p>
+<p>SUP är lägre ingångströskel än kajak, enklare att hyra, och erbjuder en unik utsiktsvinkel på skärgårdslandskapet: du ser precis ner i det klara vattnet och kan navigera in i grunda vikar där kajaker knappt kommer åt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du hyr SUP i Stockholm och skärgården</h3>
+<p>De flesta kajak- och uthyrningsbolagen i skärgårdsregionen hyr nu ut SUP-brädor parallellt med kajaker. Förvänta dig att betala ca 250–400 kr för 2–3 timmar, eller ca 500–700 kr för en heldag.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Stockholm stad:</strong> Flera uthyrare längs Djurgårdsbrunnsviken, vid Strandvägen och i Nacka. Bra för den som vill prova nära stan.</li>
+<li><strong>Vaxholm:</strong> Uthyrning vid hamnen. Perfekt för att paddla runt Vaxholm och mot Rindö.</li>
+<li><strong>Grinda:</strong> STF:s uthyrning på Grinda. Ön har utmärkt SUP-terräng med lugna sund och klippvikar.</li>
+<li><strong>Utö:</strong> Uthyrning vid Utö Värdshus brygga. Paddla längs Utös kust och utforska naturreservatet från vattnet.</li>
+<li><strong>Möja:</strong> Enklare uthyrning vid hamnen. Möjas lugna sund och bilfria karaktär ger perfekta paddlingsbetingelser.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa platserna för SUP i skärgården</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Nybörjare: vindskyddade fjärdar</h4>
+<p>Välj platser med vindskydd och lugnt vatten för din första tur. Fjärdarna innanför Vaxholm, Grindas norra sida och Finnhamns sund är utmärkta. Undvik öppna fjärdar och hav vid din första session – vind och vågor gör balansen avsevärt svårare.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Erfarna: öppen skärgård</h4>
+<p>Sandhamns yttersida och Utös västra kust erbjuder mer utmanande förhållanden med vind och svall. Kräver erfarenhet och rätt utrustning inklusive flytväst.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säkerhet och regler</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Flytväst:</strong> Rekommenderas starkt, obligatorisk för barn under 15 år. Kan bäras runt midjan som bältesväst.</li>
+<li><strong>Lina:</strong> Koppla alltid en säkerhetslina mellan dig och brädan. Om du ramlar av driver brädan snabbt iväg i vind.</li>
+<li><strong>Väder:</strong> Kolla vindriktning och vindstyrka innan du ger dig ut. Vindstyrka över 5–6 m/s ger besvärliga förhållanden för nybörjare.</li>
+<li><strong>Avstånd från båttrafik:</strong> Håll dig borta från farleder och områden med tät båttrafik. Du är svår att se från en motorbåt.</li>
+<li><strong>Kyla:</strong> Vattnet i Stockholms skärgård är kallt även på sommaren – 18–21°C i juli. Ta inte ut dig längre från land än du kan simma.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta med SUP på Waxholmsbolaget</h3>
+<p>Waxholmsbolaget tillåter SUP-brädor ombord om de är uppblåsbara (iSUP) och kan rullas ihop. En uppblåsbar bräda i säck tar ungefär lika stor plats som en stor ryggsäck. Hårda brädor är normalt inte tillåtna ombord. Kontrollera alltid med Waxholmsbolaget om du planerar att ta med brädan på en specifik linje.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Nybörjartips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Börja på knä och paddla tills du är bekväm med brädan innan du reser dig. Titta mot horisonten snarare än ner i vattnet – det hjälper balansen. Välj morgontimmarna för din första tur – vinden är oftast svagast då och trafiken är liten.</p>
+</div>
+`,
+
+    'o-luffa-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Ö-luffa i Stockholms skärgård – guide till båtluffarkortet</h2>
+<p>Att ö-luffa i Stockholms skärgård är en av sommarens bästa saker du kan göra i Sverige. Med Waxholmsbolagets båtluffarkort kan du hoppa på och av i princip obegränsat under en hel månad – och utforska öar du aldrig annars skulle ha hittat. Det är backpacking-tanken anpassad till den svenska skärgården.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad är båtluffarkortet?</h3>
+<p>Waxholmsbolagets båtluffarkort (officiellt "Luffarkort") ger dig obegränsade resor med Waxholmsbolagets alla linjer under 30 dagar från första gångsstämpel. Du kan kliva på och av precis när du vill, sova på en ö, ta nästa båt till nästa destination och fortsätta utan att köpa ny biljett varje gång.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Giltighet:</strong> 30 dagar från aktivering, alla Waxholmsbolagets linjer</li>
+<li><strong>Pris:</strong> Kontrollera aktuellt pris på waxholmsbolaget.se – brukar ligga runt 1 500–2 000 kr för 30 dagar. Köps i Waxholmsbolagets app eller vid Strömkajen.</li>
+<li><strong>Åldersgränser:</strong> Ungdomskort och seniorkort kan finnas – kontrollera vid köp.</li>
+<li><strong>SL-kortet:</strong> Ingår INTE i luffarkortet. SL-zoner gäller separat för landtransport till avgångspunkterna.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Planera din ruttstruktur</h3>
+<p>Det smarta med ö-luffarkortet är att du inte behöver planera allt i förväg – men en grov struktur hjälper dig att faktiskt se det du vill se.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Förslag: Norra skärgårdsrundan (4–5 dagar)</h4>
+<ul style="margin:8px 0 12px;padding-left:20px;line-height:1.85">
+<li><strong>Dag 1:</strong> Strömkajen → Vaxholm (1 h 15 min). Övernatta eller vidare till Grinda.</li>
+<li><strong>Dag 2:</strong> Grinda → Finnhamn (ca 1 h). Overnight på STF-vandrarhem.</li>
+<li><strong>Dag 3:</strong> Finnhamn → Ingmarsö (rodd över sundet, SAT-leden) → Möja (pendelbåt).</li>
+<li><strong>Dag 4:</strong> Möja → Arholma (längre resa, ca 3 h). Orörd ytterskärgård.</li>
+<li><strong>Dag 5:</strong> Arholma → Strömkajen hem (ca 3–3,5 h med stopp).</li>
+</ul>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Förslag: Södra skärgårdsrundan (3–4 dagar)</h4>
+<ul style="margin:8px 0 12px;padding-left:20px;line-height:1.85">
+<li><strong>Dag 1:</strong> Nynäshamn (pendeltåg) → Utö (pendelbåt, ca 35 min). Gruvorna, havsbastu, värdshuset.</li>
+<li><strong>Dag 2:</strong> Utö → Nåttarö (ca 30 min). Naturreservat, sandstrand, tält.</li>
+<li><strong>Dag 3:</strong> Nåttarö → Ornö (pendelbåt). Skogsö med unik karaktär.</li>
+<li><strong>Dag 4:</strong> Ornö → Dalarö → Stockholm. Bilfärja eller Waxholmsbolaget.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Övernattning under ö-luffet</h3>
+<p>Det finns tre alternativ för att sova ute i skärgården:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Tält (allemansrätten):</strong> Gratis. Du får tälta 1–2 nätter på samma plats om du håller dig undan naturreservat med egna regler. Ta med toalettpapper och gräv ner allt avfall.</li>
+<li><strong>Skärgårdsstiftelsens anläggningar:</strong> Primitivcamping och enklare stugor på öar som Nåttarö, Huvudskär och Gällnö. Boka i förväg via skargardsstiftelsen.se.</li>
+<li><strong>STF vandrarhem:</strong> Finnhamn och Grinda har STF-vandrarhem. Boka tidigt – är fullbokade veckor i förväg under högsäsong.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad du måste ha med</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Tält och sovsäck (om du tältar)</li>
+<li>Regnkläder och ett extra lager – skärgårdsväder kan slå om snabbt</li>
+<li>Stövlar eller vattentåliga skor för landstigning vid primitiva bryggor</li>
+<li>Myggmedel (absolut nödvändigt juli–aug)</li>
+<li>Matsäck och vattenflaska – kiosker finns på de flesta öar men inte alla</li>
+<li>Kontanter – några öar tar inte kort</li>
+<li>Powerbank – laddmöjligheter saknas ute på öarna</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Insider-tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ladda alltid ned Waxholmsbolagets app och kolla tidtabeller offline – mobilnätet kan vara dåligt ute i ytterskärgården. Ha alltid en backup-natt planerad (tält eller sovplats) ifall vädret ändras och du missar sista båten. Avgångarna är exakta – båtarna väntar inte.</p>
+</div>
+`,
+
+    'camping-talta-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Camping och tälta i skärgården – komplett guide</h2>
+<p>Att tälta i skärgården är en av de mer råa och minnesvärda upplevelserna du kan ha i Sverige. Tystnaden ute på en ö på natten, branden av en tidigt soluppgång mot havet, och känslan av att ha hittat en plats som känns som bara din. Den svenska allemansrätten gör det möjligt för alla – men det finns regler och knep som avgör om det blir en bra upplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad säger allemansrätten om tältning?</h3>
+<p>Allemansrätten tillåter tältning i naturen, men med viktiga begränsningar som är extra relevanta i skärgården:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>1–2 nätter på samma plats:</strong> Du får slå läger kortare tid på samma ställe. Längre vistelse räknas som camping och kan kräva markägarens tillstånd.</li>
+<li><strong>Avstånd från bebyggelse:</strong> Respektera privata tomter och boende. Håll tillräckligt avstånd – riktmärket är att du inte ska störa eller synas direkt från huset.</li>
+<li><strong>Naturreservat:</strong> Naturreservat har egna regler som ibland förbjuder tältning helt, eller begränsar den till anvisade platser. Kontrollera Länsstyrelsens information för varje specifikt reservat.</li>
+<li><strong>Fågelskyddsområden:</strong> Beträd inte fågelskyddsområden under häckningstid (generellt 1 april – 15 juli).</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa tältöarna i Stockholms skärgård</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Nåttarö – naturreservat med anvisade platser</h4>
+<p>En av skärgårdens vackraste och mest orörda öar i södra skärgården. Nåttarö är naturreservat med anvisade tältplatser – bokningsbara via Skärgårdsstiftelsen. Inga restauranger eller kiosker – ta med allt du behöver. Nås via Nynäshamn + pendelbåt.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Arholma – norra ytterskärgården</h4>
+<p>Norra skärgårdens unika ö med tätare skog och mer vild karaktär. Tältmöjligheter vid anläggningen. Lång restid (ca 3 h) håller nere turisttrycket. Ingångspunkt till Stockholm Archipelago Trail:s norra etapper.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö – södra skärgårdens stora ö</h4>
+<p>Utö har ett vandrarhem och anvisade platser. Känd för Utö Runt-leden, gruvorna och havsbastunet. Starka skärgårdsupplevelse med full dag att fylla med aktiviteter.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Gällnö – naturvårdsreservat</h4>
+<p>Relativt nära Stockholm men med känsla av riktig ytterskärgård. Skärgårdsstiftelsen driver en anläggning med tältplatser och enkla faciliteter. Lugn ö utan mycket kommersiell verksamhet.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Huvudskär – ytterskärgårdens utpost</h4>
+<p>En av skärgårdens mest avlägsna och dramatiska öar. Klippterräng, öppet hav och absolut stillhet. Kräver längre planering och uthärda av lite primitiva förhållanden. För den erfarne tältaren.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Eldning och matlagning</h3>
+<p>Eldning är tillåten enligt allemansrätten när det inte råder eldningsförbud – men i praktiken är det nästintill alltid förbjudet att göra öppen eld direkt på hällar och klippor i skärgården. Använd alltid:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Campingkök med gas (primus). Snabbast, enklast och inga spår.</li>
+<li>Medhavd engångsgrill på upphöjt underlag – aldrig direkt mot klippa.</li>
+<li>Kontrollera alltid Länsstyrelsens webbplats för aktuellt eldningsförbud.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettfrågan – det du måste veta</h3>
+<p>På öar utan toaletter gäller: gå minst 50–100 meter från strandlinjen och vattendrag. Gräv ett litet hål, 15–20 cm djupt. Ta med toalettpapper i en återförslutningsbar påse och ta det med dig hem eller bränn det (när eldförbud inte gäller). Lämna inga spår. Det är din insats för att bevara skärgårdens unika miljö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Packlista för skärgårdscamping</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Tält med bra vattenresistans (regn kan komma snabbt)</li>
+<li>Sovsäck anpassad till temperatur (skärgårdsnätter kan vara svala även i juli)</li>
+<li>Campingkök + gas + tändstickor/tändare</li>
+<li>Mat för hela vistelsen + extra dag (försening)</li>
+<li>Vatten eller filtreringskit (vattenkvalitet varierar per ö)</li>
+<li>Myggmedel – absolut nödvändigt juli–aug</li>
+<li>Sopfria principer: zip-påsar, ta med allt skräp hem</li>
+<li>Karta (nedladdad offline) + laddad mobiltelefon + powerbank</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Boka i förväg:</strong>
+<p style="margin:8px 0 0;font-size:14px">Skärgårdsstiftelsens anvisade tältplatser på Nåttarö, Gällnö, Huvudskär och andra öar fylls snabbt under sommarmånaderna. Boka via skargardsstiftelsen.se. Det är gratis eller mycket billigt – men populärt.</p>
+</div>
+`,
+
+    'havsbastu-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Havsbastu i skärgården – de bästa platserna och hur du bokar</h2>
+<p>Det finns något nästan meditativt med kombinationen av vedeldad bastu, havsutsikt och ett kallt dopp i saltvatten. Havsbastu har länge funnits i skärgården, men de senaste åren har antalet platser ökat markant – allt från enkla stugbastur vid vattnet till moderna havsbastuer med design och service i toppklass.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör havsbastu speciellt?</h3>
+<p>En vanlig bastu är en bastu. En havsbastu är en upplevelse. Du svettas i en vedeldad ugn med doft av björk, du öppnar dörren och kliver ut i saltluft, och du dyker ner i Östersjön direkt från bastudörren. Kontrasten mellan het bastu och svalt hav (Östersjön är 14–22°C beroende på säsong och plats) ger en intensiv känsla av närvaro som är svår att jämföra med annat.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">De bästa havsbastuplatserna i Stockholms skärgård</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö Havsbastu</h4>
+<p>Utö Värdshus driver en av skärgårdens mest omtalade havsbastuer, vid vattnet med utsikt mot Utös kustlinje. Kombinera med middag på värdshuset för en komplett Utö-dag. Bokning via Utö Värdshus hemsida. Nås med pendelbåt från Nynäshamn.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Dalarö</h4>
+<p>Dalarö är ett av de enklaste ställena att nå söder om Stockholm med bil (ca 40 min) och har flera bastuanläggningar vid havet. Populärt helårsmål – vinterbastu och isvak är en stark tradition här.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Sandhamn – Seglarhotellet</h4>
+<p>Seglarhotellet på Sandhamn erbjuder spafaciliteter med bastu och havsutsikt. Passar bra att kombinera med en Sandhamn-dag. Bokas via Seglarhotellets hemsida. Mer hotellkänsla än primitiv havsbastu.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Björkö och omgivningar</h4>
+<p>Flera privata bastuer och enklare anläggningar vid vattnet i området runt Björkö i Mälaren och Stockholms yttre skärgård. Sök lokalt via booking eller airbnb för senaste utbud.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Stockholms skärgård – bastuflottar</h4>
+<p>Bastuflottar (flytande bastur du hyr och tar ut på vattnet med) finns att hyra på flera ställen i Stockholmsregionen. Du kör ut med motorbåt och ankrar i en naturhamn. Pris: ca 2 000–4 000 kr per kväll för ett sällskap. Söka på "bastuflotte Stockholm" för aktuella aktörer.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vinter vs. sommar – när är bäst?</h3>
+<p>Sommarbastu är fantastisk – varm kväll, ljus natt, varmt vatten. Men vinterbastuupplevelsen är något alldeles eget. Doppa i ett isvak (eller isbrytningshål om det är riktigt kallt) efter bastun är en stark kontrast som gett upphov till hälsorörelsen vinterbad. Januarimörker ger ett dramatiskt stämningsljus som du inte hittar på sommaren.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Priser och praktisk info</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Drop-in-bastu:</strong> Ca 150–250 kr per person. Ingen bokning krävs men kontrollera öppettider.</li>
+<li><strong>Bokad privatbastu (sällskap):</strong> Ca 500–1 500 kr per tillfälle för hela sällskapet.</li>
+<li><strong>Bastuflotte med båt:</strong> 1 500–4 000 kr per kväll för hela sällskapet exkl. transport.</li>
+<li><strong>Hotellbastu (Seglarhotellet m.fl.):</strong> Ingår i övernattningspris eller tillval ca 200–400 kr/person.</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka havsbastu i god tid under sommarsäsongen – populära anläggningar som Utö och Dalarö fylls snabbt. Ta med egna handdukar (medbornas en stor handduk), tofflor och en flaska vatten – bastun torkar ut. Ät lätt innan bastun och undvik alkohol i bastun – kroppens värmereglering påverkas.</p>
+</div>
+`,
+
+    'barnfamilj-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgård med barnfamilj – bästa öarna och hur du planerar turen</h2>
+<p>Skärgård med barn kan vara ett av sommarens bästa äventyr – eller en logistisk mardröm om du inte planerat rätt. Rätt ö, rätt tidpunkt och rätt förväntningar är allt. Den goda nyheten: Stockholm har några av världens bästa förutsättningar för familjesemester i skärgården, och med lite förberedelse är tröskeln lägre än du tror.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör en ö barnvänlig?</h3>
+<p>Inte alla öar passar alla åldrar. Faktorer som avgör om en ö är bra för barn:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Sandstrand eller lugnt grundvattenbad (inte branta klippor som enda badalternativ)</li>
+<li>Toaletter tillgängliga utan lång promenad</li>
+<li>Café eller kiosk med barnmat i närheten</li>
+<li>Kort restid med båt – barn orkar sällan mer än 1,5–2 timmar på färja</li>
+<li>Välmarkerade, breda stigar utan branta steg</li>
+<li>Möjlighet att stanna och vila utan att missa "allt"</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för barnfamiljer</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Grinda – bästa valet under 10 år</h4>
+<p>Grinda är överlägset bästa valet för familjer med barn under 10 år. Sandstrand med grunt och lugnt vatten, STF-café med barnmat, välmarkerade stigar och en familjär stämning. Restid ca 1 h 45 min med Waxholmsbolaget från Strömkajen. Wärdshuset erbjuder boende om ni vill stanna natten.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Fjäderholmarna – perfekt med de minsta</h4>
+<p>Bara 25 minuter från Strandvägen – och du är i skärgård. Fjäderholmarna är idéalet för dagstur med riktigt småbarn eller de som inte är redo för längre färjeresor. Restauranger, hantverksbutiker och ett rökerioververk. Begränsat badalternativ men fint att promenera och upptäcka.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Sandhamn – välmarkerat med strandliv</h4>
+<p>Sandhamns strand Trouville är en av skärgårdens vackraste och passar barn utmärkt med sin mjuka sand och gradvisa instegsdjup. Välbesökt med Seglarhotellet och Sandhamns Värdshus i närheten. Restid ca 2 h 30 min via Stavsnäs.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö – familjedagen med innehåll</h4>
+<p>Utö passar äldre barn (8+) som kan cykla. Hyr cykel vid bryggan och ta er till Stora Sand – en lång och barnvänlig sandstrand. Utö Värdshus serverar barnvänlig mat. Restid ca 2 h via Nynäshamn.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Möja – bilfritt äventyr</h4>
+<p>Möja är bilfri, lugn och har grusvägar som är perfekta för cyklar och balanscyklar. Glassbaren vid hamnen är ett givet stopp. Äldre barn (6+) tycker ofta att Möjas karaktär är spännande. Restid ca 2 h 30 min via Stavsnäs.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säkerhet på båt och i vatten</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Flytväst:</strong> Barn under 15 år ska ha godkänd flytväst vid vatten och ombord på öppna båtar. Waxholmsbolagets färjor är räknas som slutna passagerarbåtar – väst krävs inte ombord men är klokt vid bryggor och i kajaker.</li>
+<li><strong>Badöversikt:</strong> Skärgårdens klippbad saknar strandkant – håll koll på barn vid kanten. Välj sandstrand med gradvis djuphöjning för de minsta.</li>
+<li><strong>Sol och värme:</strong> Reflexer från vatten förstärker solstrålning. Solkräm faktor 30+ och keps är ett måste.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktiska tips för en lyckad familjedag</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Ta morgonbåten – undvik middagsträngseln och ha mest tid på ön</li>
+<li>Ta med mer snacks än du tror att barnen behöver – skärgårdsluft ger hunger</li>
+<li>Ha badkläder lättillgängliga – spontana dopp sker oavsett om du planerat det</li>
+<li>Planera kortare etapper än du tänkt – räkna hälften av din normala dagsplan</li>
+<li>Kolla sista avgångstiden HEM innan du ger er iväg. Sätt ett larm.</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Insider-tips för familjer:</strong>
+<p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget har barnbiljetter (barn under 7 år åker gratis med betalande vuxen). Kolla appen för aktuella regler. Midvecka-turer undviker helgträngseln och gör upplevelsen mer avslappnad för barnen.</p>
+</div>
+`,
+
+    'uto-komplett-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Utö – komplett guide till södra skärgårdens kronjuvel</h2>
+<p>Utö tar emot ungefär 400 000 besökare per år – en siffra som gör ön till en av Stockholms skärgårds mest besökta. Det är förtjänat. Utö är ovanligt mångsidig: en ö med järngruvhistoria från 1100-talet, en vandringsstig som går runt hela ön, sandstränder, havsbastu, ett av skärgårdens bästa värdshus och cykelvänliga vägar som gör ön perfekt att utforska utan bil.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig till Utö</h3>
+<p>Det finns två huvudvägar till Utö:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Via Nynäshamn (rekommenderas):</strong> Pendeltåg linje 36 från Stockholm Central till Nynäshamn (ca 55 min), sedan Waxholmsbolagets pendelbåt till Utö (ca 35–50 min beroende på linje). Avgångar hela dagen.</li>
+<li><strong>Via Strömkajen (sommar):</strong> Direktbåt med Waxholmsbolaget under sommarsäsongen. Längre restid (~2,5 h) men bekvämare om du är i stan. Kontrollera aktuell tidtabell – direktlinjen avgår inte hela säsongen.</li>
+<li><strong>Med bil till Årsta brygga:</strong> Bil söderut till Årsta brygga vid Nynäshamn, sedan pendelbåt. Möjliggör transport av cyklar och utrustning.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad du gör på Utö</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Gruvorna – historia från 1100-talet</h4>
+<p>Utö har Sveriges äldsta kända järngruvor, daterade till 1100-talet. Gruvbrytningen pågick under hundratals år och lämnade djupa vattenfyllda schakt och dramatiska gruvlandskap. Du kan promenera runt gruvområdet och läsa historisk information på informationsskyltar. En av skärgårdens mest fascinerande historiska miljöer.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16kså 6px">Utö Runt – vandring runt hela ön</h4>
+<p>Utö Runt är en ca 8 km lång vandringsled som följer kustlinjen runt stora delar av ön. Startar vid Gruvbyn-hamnen och går via klipphällar, skog och naturreservat. Lagom krävande (medel), med möjlighet till bad på flera ställen längs vägen. Planera minst 3–4 timmar.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Stora Sand – Utös sandstrand</h4>
+<p>Stora Sand på Utö-Ålö är en av skärgårdens bredaste sandstränder med gradvis djuphöjning – perfekt för bad och för familjer. Ligger ca 3 km från Gruvbyn – enklast med cykel. Kontrollera om delar av stranden är tillgängliga (militärt område kan periodvis begränsa tillträdet – kontakta Utö Turistbyrå).</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Havsbastu</h4>
+<p>Utö Värdshus driver havsbastu vid vattnet. En av skärgårdens mest omtalade bastuer – boka i god tid. Varm bastu + kallt dopp i Östersjön = en upplevelse du minns.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Cykling</h4>
+<p>Utö är perfekt för cykling. Hyr cykel vid bryggan (ca 150–250 kr/dag) och ta dig från Gruvbyn till Ålö och Stora Sand. Lugna grusvägar och asfalt, inga branta backar. Ta med picknick och ät vid stranden.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du äter</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Utö Värdshus:</strong> Flaggskeppet. Säsongsbetonad mat med havets råvaror. Lunch och middag. Boka bord – fullt under högsäsong. Havsvy och klassisk skärgårdsatmosfär.</li>
+<li><strong>Bakfickan:</strong> Enklare och mer avslappnat alternativ vid hamnen. Räksmörgåsar, skaldjur och en öl vid bryggan. Drop-in möjligt.</li>
+<li><strong>Vandrarhemsköket:</strong> Om du bor på vandrarhemmet finns ett självhushållningskök.</li>
+<li><strong>Kiosken vid hamnen:</strong> Glass, kaffe, enkla smörgåsar. Perfekt efter en lång dag.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du bor</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Utö Värdshus (hotell):</strong> Öns lyxigaste alternativ. Rum med havsutsikt, spa och havsbastu. Boka månader i förväg för sommarveckorna.</li>
+<li><strong>Vandrarhem:</strong> Enklare och billigare. Delade rum och dorm-alternativ. Bokas via Utö Värdshus.</li>
+<li><strong>Camping:</strong> Anvisade tältplatser finns – kontakta Utö Värdshus eller kommunen för aktuell info.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktisk info</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Säsong:</strong> Utö har aktivitet hela året men peak-säsong är juni–september. Julmarknaden är ett populärt vinterbesök.</li>
+<li><strong>Butik:</strong> Liten livsmedelsbutik vid hamnen – ta med det mesta du behöver hemifrån.</li>
+<li><strong>Parkering:</strong> Du kan inte ta med privat bil till Utö. Parkering vid Nynäshamns hamn.</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa dagsplanen:</strong>
+<p style="margin:8px 0 0;font-size:14px">Morgonbåt från Nynäshamn → hyr cykel vid hamnen → Gruvorna (1 h) → cykel till Stora Sand (bad + lunch-picknick) → havsbastu (boka i förväg) → kvällsbåt hem. En fullspäckad Utö-dag på 8–10 timmar som täcker det bästa.</p>
+</div>
+`,
+
+    'sandhamn-komplett-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Sandhamn – komplett guide till seglarnas ö</h2>
+<p>Sandhamn är Stockholms skärgårds mest kända destination – och med god anledning. Den lilla ön ytterst i skärgården har en unik kombination av seglartradition, ett levande socialt liv och naturupplevelser som slår de flesta andra öar. Under midsommar och högsommar pulserar Sandhamn av liv. Utanför den perioden hittar du stillhet, klar luft och vacker kustlinje.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig till Sandhamn</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Cinderellabåten (rekommenderas):</strong> Avgår från Strandvägen/Nybrokajen i Stockholm. Ca 2 h 30 min restid med stopp. Bekväm och klassisk – men dyrare än Waxholmsbolaget. Säsong maj–september.</li>
+<li><strong>Waxholmsbolaget via Stavsnäs:</strong> Buss 834 från Gullmarsplan till Stavsnäs (ca 1 h), sedan båt till Sandhamn (ca 1 h 30 min). Billigare alternativ. Stavsnäs-trafiken körs av SL men båten är Waxholmsbolaget.</li>
+<li><strong>Med segelbåt eller motorbåt:</strong> Sandhamns gästhamn är en av Östersjöns mest välbesökta. Fasta och mojtöjbollar finns. Boka plats under högsäsong.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Trouvillestranden – en av skärgårdens finaste</h3>
+<p>Sandhamns sydöstra strand Trouville är ett säreget inslag i Stockholms skärgård – lång, vit sand med klart vatten och gradvis instegsdjup. Det är en ovanlig lyx i en skärgård som annars domineras av klippor. Stranden nås med ca 15–20 minuters promenad från hamnen genom blandskog. Ta med picknick och stanna hela eftermiddagen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Seglarlivet på Sandhamn</h3>
+<p>Sandhamn har länge varit hjärtat i Stockholms segelliv. KSSS (Kungliga Svenska Segel Sällskapet) har klubbhus på ön, och under sommarsäsongen – framför allt under Gotlandsruntet och de stora regattveckorna – fylls hamnen med hundratals segelbåtar från hela Skandinavien. Atmosfären är unik: sportig, avslappnad och internationell på samma gång.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad du gör på Sandhamn</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Promenera byn:</strong> Sandhamns bykärna med dess vindlande trägatubitar, röda sjöbodar och utsiktsplatser är liten men charmig. Räkna med max 2–3 timmar att utforska hela byn.</li>
+<li><strong>Vandra till Trouville:</strong> 15–20 min från hamnen. En av skärgårdens bästa promenader.</li>
+<li><strong>Bada:</strong> Trouvillestranden och klippbad längs södra sidan av ön.</li>
+<li><strong>Besöka KSSS:</strong> Vaktmästeriporten är öppen och det är fritt att ta en titt på segelsällskapets historiska byggnader.</li>
+<li><strong>Kajak och SUP:</strong> Uthyrning finns vid hamnen under sommarsäsongen.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du äter och dricker</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Sandhamns Värdshus:</strong> Öns klassiker. Gedigen husmanskost, rökta räkor och skärgårdsstämning. Boka bord i förväg under högsäsong – kan vara fullsatt dagar i förväg.</li>
+<li><strong>Seglarhotellet:</strong> Mer upscale-alternativ med restaurang, bar och havsutsikt. Bra för middag när Värdshuset är fullsatt.</li>
+<li><strong>Dykarbaren:</strong> Populär pub med avslappnad stämning. Bra för öl och enklare mat i hamnatmosfär.</li>
+<li><strong>Sandhamn Kiosk:</strong> Glass, räksmörgåsar och kaffe vid hamnen. För den som vill hålla nere kostnaderna.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var du bor</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Seglarhotellet:</strong> Öns mest bekväma boende. Boka månader i förväg för högsommarveckor.</li>
+<li><strong>Sandhamns Värdshus (rum):</strong> Klassisk skärgårdsupplevelse med sjöbodskaraktär. Populärt och bokningsbart.</li>
+<li><strong>Tältplatser:</strong> Begränsade möjligheter – kontakta kommunen för anvisade platser.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa årstid</h3>
+<p>Juni och september slår juli för den som vill undvika folkmassor. Under Gotlandsruntet (normalt tidigt juli) är hamnen extra full av segelbåtar – kan vara fantastiskt eller kaotiskt beroende på vad du söker. Midsommar på Sandhamn är en legend – men boka boende och bord månader i förväg.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Viktigt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Sandhamn är en liten ö och kapaciteten är begränsad. Under högsäsongen (midsommar–tidig augustihelg) kan bryggor, restauranger och stranden bli trångt. Kom tidigt på morgonen – helst med Cinderellabåtens tidiga avgång – för att undvika trängseln och ha mesta möjliga tid på ön.</p>
+</div>
+`,
+
+    'vinter-i-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgården på vintern – öppna öar, skridskor och stillhet</h2>
+<p>De flesta som besöker Stockholm tar sig aldrig ut i skärgården på vintern. Det är ett misstag. Vinter i skärgården är en helt annan upplevelse – och för rätt person, den bästa upplevelsen av dem alla. Tomma bryggor, isfrusen fjärd, vedeldad bastu och ett mörker som bryter mot den vita snön. Ingen trängsel. Inga köer. Bara du och havet.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vilka öar är öppna på vintern?</h3>
+<p>Utbudet av öppna destinationer minskar under vintermånaderna, men fler platser håller öppet än de flesta tror:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vaxholm:</strong> Öppet hela året. Stad med restauranger, café och fästning. Utmärkt vinterdag med promenad och middag.</li>
+<li><strong>Utö:</strong> Utö Värdshus håller öppet hela året och arrangerar den populära julmarknaden. Gruvorna och naturen är lika vackra – faktiskt mer dramatiska – i vinterskrud.</li>
+<li><strong>Fjäderholmarna:</strong> Stängt vintertid.</li>
+<li><strong>Sandhamn:</strong> Seglarhotellet och Sandhamns Värdshus har begränsad drift vintertid. Kontrollera aktuella öppettider.</li>
+<li><strong>Möja:</strong> Waxholmsbolaget kör Möja-linjen hela året men med glesare turer. Ön är i stort sett touristfri och tyst på vintern – en upplevelse.</li>
+<li><strong>Grinda:</strong> STF-vandrarhem håller periodvis öppet vintertid – kontrollera stf.se.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Skridskor på fjärdarna</h3>
+<p>En av de mest spektakulära upplevelserna i Stockholmsregionen är långfärdsskridskor på de inre fjärdarna under en kall vinter. När Waxholmsfjärden och de inre fjärdarna fryser till (brukar inträffa i januari–februari, men varierar kraftigt år till år) öppnar sig ett landskap av svart is som sträcker sig in mot horisonten.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Istjocklek:</strong> Minst 10 cm bärig is för skridskogång. Kontrollera alltid lokala rapporter – Stockholm Skridskoseglarklubb och SSKK publicerar israpporter online.</li>
+<li><strong>Utrustning:</strong> Långfärdsskridskor (inte hockeyskridskor), ispik (livräddare om du går igenom), isräddningslina, telefon i vattentätt fodral och ishobbet med möjlighet att krypa upp.</li>
+<li><strong>Guideturer:</strong> Flera aktörer i Stockholm erbjuder guidade långfärdsskridskoture med säkerhetsutrustning och instruktörer. Rekommenderas för nybörjare.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vinterbad och bastu</h3>
+<p>Vinterbadet har fått en renässans i Sverige och Stockholms skärgård är ett av de bästa ställena att utöva det. Dalarö, Vaxholm och Utö har bastuanläggningar med vinterbadsmöjligheter. Kontrasten mellan en het vedeldad bastu och ett dopp i ett isbrytningshål i havet är svår att beskriva – och svår att glömma.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets vinterlinjer</h3>
+<p>Waxholmsbolaget kör reducerad trafik på vintern men de flesta linjer går hela året. Turtätheten minskar – ofta 2–4 avgångar per dag istället för sommarens 8–12. Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se inför din vintertur. Söndagstrafiken kan vara ytterst gles på perifera linjer.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad du klär dig i</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Ullunderkläder (inte bomull – bomull håller kvar fukt och kyler snabbt)</li>
+<li>Mellanlager – fleece eller ull</li>
+<li>Vindtät och vattentät ytjacka</li>
+<li>Vinterbyxor eller overallbyxor vid riktigt kallt väder</li>
+<li>Varma vantar (inte tunna handske)</li>
+<li>Mössa som täcker öronen</li>
+<li>Varma skor eller vinterkängor – skärgårdsbryggor är kalla och ofta blöta</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa vinterturen:</strong>
+<p style="margin:8px 0 0;font-size:14px">Vaxholm en januaridag är en av skärgårdsregionens mest stämningsfulla upplevelser. Ta Waxholmsbolaget dit, promenera till fästningen (öppen till viss del vintertid), ät lunch på Waxholms Hotell med utsikt mot den iskalla fjärden, och ta kvällsbåten hem i det blå vintermörkret. Omedelbart minnesvärdt.</p>
+</div>
+`,
+
+    'fiske-i-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Fiske i Stockholms skärgård – guide till arter, platser och säsonger</h2>
+<p>Stockholms skärgård är ett av Sveriges bästa fiskevatten. Östersjöns blandvatten, med sin lägre salthalt, skapar en unik miljö som lockar till sig både sötvattensarter som abborre och gädda, och havsarter som havsöring. Med ca 30 000 öar, holmar och skär finns det i princip oändliga fiskeplatser – och med allemansrätten och ett sportfiskekort är det fritt för alla.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Fiskeregler och licens</h3>
+<p>Fiske i Stockholms skärgård är fritt att utöva utan fiskelicens för fritidsfiske med handredskap (spö, krok och lina). Undantag:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Havsöring och lax:</strong> Kräver sportfiskekort för kustfiske i vissa vatten. Köps via Sportfiskarnas webshop eller fiskekortslösningar i appen.</li>
+<li><strong>Hummerrevir:</strong> Bohuslänska hummerfisket regleras med licens och säsong (normalt öppnar hummersäsongen i september).</li>
+<li><strong>Minimimått och fredningsperioder:</strong> Kontrollera Havs- och vattenmyndighetens aktuella regler för respektive art – dessa ändras och varierar per vattenområde.</li>
+<li><strong>Landägares vatten:</strong> Insjöar och vikar nära fastlandet kan ha privata fiskerättigheter. Fiske i öppna havsvatten är normalt fritt.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">De vanligaste arterna och var du hittar dem</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Abborre</h4>
+<p>Abborren är skärgårdens mest lättillgängliga sportfisk och trivs i grunda fjärdar, runt vassar, klippor och bryggor. Bäst fiskas med lättare spinn och jigg. Vass- och sundet intill Grinda, Vaxholm och Fjäderholmarna är klassiska abborrevattnen. Bästa säsong: April–maj och september–november.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Gädda</h4>
+<p>Gäddan håller till i grunda och skyddade fjärdar med vegetation. Kring Ornö, Möja och de inre fjärdarna finns utmärkta gäddreviron. Fiska med större drag, wobbler och jigg längs vassar och grundgrunder. Gäddan är rovfisk – kasta nära undervattensvegetation och dra snabbt. Bäst: maj–juni och september–oktober.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Havsöring</h4>
+<p>Havsöringen är skärgårdens mest eftertraktade sportfisk och kräver mer kompetens och rätt förhållanden. Fiskas längs klippiga kuster, vid mynningar och i sund. Yttre skärgårdens öar – Sandhamn, Landsort, Ornö yttersidor – är klassiska havsörings­vatten. Flugfiske och medelstora drag fungerar bra. Bäst: mars–april och september–november.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Strömming</h4>
+<p>Strömmingen (Östersjöns sill) förekommer i enorma stim längs hela kusten. Fiskas med pilk, sabikiriggar och enkla spöset. Populärt familjefiske – strömming biter i stort sett alltid när stimet är inne. Rök din fångst för en äkta skärgårdsupplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa fiskeplatser</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Inre fjärdar (Vaxholm, Blidö, Rindö):</strong> Bäst för abborre och gädda. Tillgängliga med Waxholmsbolaget.</li>
+<li><strong>Ornös östsida:</strong> Utmärkt för havsöring längs klipporna.</li>
+<li><strong>Landsorts omgivningar:</strong> Yttre skärgårdens starka fiskevatten – abborre, havsöring och strömming.</li>
+<li><strong>Möja södra sundet:</strong> Klassiskt gädd- och abborrvatten i naturskön miljö.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Guidade fisketurer</h3>
+<p>Flera aktörer erbjuder guidade fisketurer i Stockholms skärgård, med utrustning, guide och båt ingår. Pris ca 600–1 200 kr per person för halvdag. Sök lokalt på "fiskeguide Stockholm skärgård" för aktuella aktörer. Utmärkt om du är nybörjare eller vill lära dig rätt teknik för en specifik art.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktisk info:</strong>
+<p style="margin:8px 0 0;font-size:14px">Kontrollera alltid Havs- och vattenmyndighetens (HaV) aktuella regler på havochvatten.se innan du fiskar. Regler för fredningsperioder, minimimått och fångstbegränsningar uppdateras regelbundet. Respektera alltid fångstbegränsningar och sätt tillbaka fiskar som är för små.</p>
+</div>
+`,
+
+    'cykling-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Cykla i skärgården – de bästa öarna och hur du planerar turen</h2>
+<p>Kombinationen av bilfria eller bilfria öar, lugna grusvägar och chansen att runda hela en ö på en eftermiddag gör cykling i skärgården till en av sommarens bästa aktiviteter. Du rör dig snabbare än till fots, du kan bära mer utrustning, och du når platser som vandrare ofta missar. Med Waxholmsbolagets cykelpolicy kan du ta med din cykel och sättta ihop egna rutter.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Öar att cykla på – rankat</h3>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Möja – bästa cykelön</h4>
+<p>Möja är en av de bäst lämpade öarna för cykling i hela Stockholms skärgård. Ön är i princip bilfri, platt till lätt kuperad, och har grus- och asfaltsvägar som binder ihop byarna. Hyrcyklar finns vid hamnen. Runt hela ön tar ca 3–4 timmar med pauser. Glassbaren och Möja Krog är givna stopp. Nås med Waxholmsbolaget via Stavsnäs.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö – längsta turen</h4>
+<p>Utö har den mest varierade cykelturen av skärgårdsöarna. Gruvbyn till Ålö och Stora Sand är ca 6 km enkel väg längs grusväg och asfalt. Kuperad men inte krävande. Hyr cykel vid hamnen (ca 150–250 kr/dag). Paret med Utös havsbastu och värdshuset gör det till en komplett dag.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Gällnö – lugn naturö</h4>
+<p>Gällnö är bilfri och relativt liten, vilket gör en cykelrunda till en avslappnad halvdagstur. Skärgårdsstiftelsen driver anläggning på ön. Grusvägar och stig. Mest känd för bra fågelliv och stillsam naturupplevelse.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Ingmarsö</h4>
+<p>Ingmarsö är uppdelad i östra och västra delen – de kopplas ihop med en roddöverfart (del av Stockholm Archipelago Trail). Bilfritt på delar av ön. Natursköna grusvägar längs kusten.</p>
+
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Sandön (Sandhamn)</h4>
+<p>Sandhamn är litet men har grusvägar längs delar av ön. Promenad till Trouvillestranden är lika snabb till fots, men cykel passar om du vill se mer av ön. Begränsat hyrningsutbud – ta med eget om du planerar att cykla.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta med cykel på Waxholmsbolaget</h3>
+<p>Waxholmsbolaget tillåter cyklar på de flesta linjer med vissa villkor:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Cyklar placeras i fören (bogserbåten) eller på däck om plats finns</li>
+<li>Extra avgift för cykel tillkommer (kontrollera aktuell taxa i appen)</li>
+<li>Under högsäsong kan utrymme för cyklar vara begränsat – kom tidigt till bryggan</li>
+<li>Elcyklar (tyngre) kan ha begränsningar – kontakta Waxholmsbolaget i förväg</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hyr cykel på öarna</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Utö:</strong> Cykelhyrning vid Gruvbyns hamn. Ca 150–250 kr/dag. Vanliga och elektriska cyklar.</li>
+<li><strong>Möja:</strong> Enklare uthyrning vid hamnen. Ca 100–200 kr/dag.</li>
+<li><strong>Vaxholm:</strong> Cykelhyrning i Vaxholms stad, bra om du vill cykla runt Vaxholmsön.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktiska cykeltips i skärgård</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Ta med pump och cykelflicka – grus kan punktera</li>
+<li>Packa lätt – ryggsäck med picknick, vatten och regnkläder</li>
+<li>Grusvägar är vanliga – däcktrycket bör vara lite lägre än på asfalt</li>
+<li>Kolla om cykelkarta finns att ladda ned för respektive ö – Utö och Möja har digitala kartor</li>
+<li>Respektera vandrar och andra på grusvägar – håll hastigheten låg i byar</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa endagskombon:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja med din cykel, cykla runt hela ön (ca 3 h med stopp), lunch på Möja Krog, glass vid hamnen och kvällsbåten hem. Perfekt skärgårdsdag utan att stressa. Möja är litet nog att hinna allt – stort nog att det alltid finns något nytt att hitta.</p>
+</div>
+`,
+
+    'moja-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Möja – guide till skärgårdens egna stad</h2>
+<p>Möja är en av Stockholms skärgårds folkrikaste öar med drygt 200 bofasta invånare – och det märks. Här finns affär, krog, pizzeria, biblitek, skola och en levande lokalgemenskap som skiljer sig markant från de öar som bara har ett sommarvärdshus. Möja är skärgårdslivet på riktigt, inte en kuliss.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Möja?</h3>
+<p>Möja nås med Waxholmsbolagets linje 444 från Stavsnäs brygga. Stavsnäs når du med SL-buss 834 från Slussen (ca 1 h 10 min) eller SL-buss 835 från Gullmarsplan. Restid från Stavsnäs till Möja är ca 1 h 15 min. Totalt från Stockholm centrum: ca 2 h 30 min.</p>
+<p>Möja har tre angöringsplatser: Möja Söderhamn, Sandvik och Möja Norra. De flesta väljer Möja Söderhamn som bas – det är här affären, krogen och hamnen finns.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>SL-buss 834 från Slussen till Stavsnäs: ca 1 h 10 min</li>
+<li>Waxholmsbolaget linje 444, Stavsnäs–Möja Söderhamn: ca 1 h 15 min</li>
+<li>Biljett: SL-kort + tilläggsbiljett (zon C), eller Waxholmsbolaget-biljett ca 140–160 kr enkel resa</li>
+<li>Sommar: avgångar 3–5 ggr/dag. Kolla tidtabellen i Waxholmsbolagets app.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Möja?</h3>
+<p>Möja är en av de bästa öarna för cykling i skärgården. Ön har ca 14 km vägnät, mestadels grusvägar, och är lagom stor för att cykla runt på en dag. Hyr cykel vid hamnen i Söderhamn – vanlig och elektrisk cykel, ca 100–200 kr/dag.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Cykla runt ön:</strong> Komplett runda ca 14 km, 2–3 h med stopp</li>
+<li><strong>Badplatser:</strong> Flera klippbad längs östra sidan. Söderhamn-sidan har också fina badklippor.</li>
+<li><strong>Vandring:</strong> Markerade stigar i naturreservat i norra delen av ön</li>
+<li><strong>Hamn och fiskebåtar:</strong> Möja Söderhamn är en aktiv fiskehamn – spana in fångsten</li>
+<li><strong>Affären:</strong> ICA Nära på Möja är en lokal institution. Öppen sommartid.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Var äter du på Möja?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Möja Krog:</strong> Klassisk skärgårdskrog med husmanskost, räkor och lokal fisk. Lunchservering under sommarsäsongen. Boka bord vid längre middagar.</li>
+<li><strong>Möja Pizzeria:</strong> Ja, det finns pizza på Möja. Sommartid, populärt bland bofasta och besökare.</li>
+<li><strong>Picknick:</strong> Köp räkor och bröd i affären och ät vid hamnen. Det enkla valet.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende på Möja</h3>
+<p>Möja saknar hotell men har stugor och B&B. Möja Stuguthyrning erbjuder stugor för 2–8 personer. Boka tidigt – sommarveckorna är fullbokade månader i förväg. Tältning längs östra naturreservatssidan är möjlig med allemansrätten.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Insider-tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta morgonbåten, hyr cykel direkt vid bryggan och cykla till norra reservatet innan turisterna anländer. Luncha på krogen (kom tidigt – den fylls snabbt) och ta kvällsbåten hem. En perfekt dag utan att stressa.</p>
+</div>
+`,
+
+    'grinda-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Grinda – komplett guide till familjeön</h2>
+<p>Grinda är en av Stockholms skärgårds mest omtyckta öar – och det är lätt att förstå varför. Ön är liten nog att vara hanterbar för barnfamiljer, stor nog att ha en riktig värdshusupplevelse, och vacker nog att stanna kvar på i flera dagar. Här är inte mängden aktiviteter som lockar, utan kvaliteten på naturupplevelsen och känslan av att vara verkligt ute i skärgården.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Grinda</h3>
+<p>Grinda nås med Waxholmsbolagets linje 80 eller 82 från Strömkajen i Stockholm. Restid ca 2 h 15 min. Cinderellabåten går också till Grinda under sommarsäsongen med kortare restid, ca 1 h 40 min.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Waxholmsbolaget linje 80 från Strömkajen: ca 2 h 15 min, avgångar morgon och kväll</li>
+<li>Cinderellabåten (sommar): ca 1 h 40 min från Strandvägen</li>
+<li>Biljett Waxholmsbolaget: ca 170–200 kr enkel resa</li>
+<li>Grinda har två bryggor – Grinda Södra (Wärdshuset) och Grinda Norra</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Grinda?</h3>
+<p>Grinda är perfekt för lugna aktiviteter: bad, vandring, kajak och naturupplevelser. Ön är ca 3 km lång och kan promeneras runt på 1,5–2 timmar.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bad:</strong> Sandstrand på södra delen av ön, klippbad på östra sidan. Varmt och grunt – barnvänligt.</li>
+<li><strong>Vandring:</strong> Markerade stigar runt hela ön. Utsiktspunkter mot Furusundet och öppet hav.</li>
+<li><strong>Kajak:</strong> Grinda Wärdshus hyr ut kajaker och kanoter sommartid. Ca 300–400 kr halvdag.</li>
+<li><strong>Naturreservat:</strong> Norra Grinda ingår i Stockholms skärgårds naturreservat.</li>
+<li><strong>Fågelskådning:</strong> Grinda är känt för häckande sjöfågel, speciellt i maj–juni.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Grinda Wärdshus</h3>
+<p>Grinda Wärdshus är öns hjärta – ett klassiskt skärgårdsvärdshus från tidigt 1900-tal med restaurang, café och stugor. Maten är traditionell husmanskost med lokala råvaror: räkor, sill, fisk och jordgubbar på sommaren. Lunchbuffé serveras dagligen under högsäsong.</p>
+<p>Boka bord vid middagen i förväg, gärna 1–2 veckor för högsäsongshelger. Wärdshuset erbjuder också stugor för övernattning – ca 1 500–2 800 kr/natt för en stuga för 2–4 personer.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Grinda för barnfamiljer</h3>
+<p>Grinda är en av de bästa öarna för barnfamiljer i Stockholms skärgård. Anledningarna är flera: säkra badplatser med grunt vatten, inga bilar, markerade stigar som är barnvänliga, och ett värdshus med barnmeny. Båtresan (2 h) är lagom lång för de flesta barn.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka en stuga på Grinda Wärdshus för en övernattning. Att vakna på Grinda en tidig sommarmorgon innan dagsbesökarna anländer är en upplevelse utöver det vanliga. Baden, promenaden och frukosten med havsutsikt är svåra att slå.</p>
+</div>
+`,
+
+    'finnhamn-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Finnhamn – guide till norra skärgårdens pärla</h2>
+<p>Finnhamn är en av Stockholms skärgårds bäst bevarade hemligheter – åtminstone jämfört med mer välkända öar som Sandhamn och Grinda. Här finns Sveriges äldsta vandrarhem, en naturhamn som lockar segelentusiaster från hela Östersjön, och en natur som är vildare och mer storslagen än många sydligare öar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Finnhamn</h3>
+<p>Finnhamn ligger i norra Stockholms skärgård och nås med Waxholmsbolagets linje 80 från Strömkajen. Restid ca 2 h 45 min. Det är en av de längre båtresorna i innerskärgården, men varje minut är värd det.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Waxholmsbolaget linje 80, Strömkajen–Finnhamn: ca 2 h 45 min</li>
+<li>Avgångar: vanligtvis 1–2 per dag sommartid, morgon och/eller tidig eftermiddag</li>
+<li>Biljett: ca 200–230 kr enkel resa</li>
+<li>Kolla tidtabellen noggrant – sista båten hem går tidigt</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Finnhamns vandrarhem</h3>
+<p>Finnhamns vandrarhem är ett av Sveriges äldsta och mest karaktäristiska. Det drivs av STF (Svenska Turistföreningen) och erbjuder sovsal, privata rum och stugor. Priset är ca 250–350 kr/person och natt i sovsal, 800–1 500 kr för privata rum.</p>
+<p>Vandrarhemmet har restaurang, bastu och utomhusduschar. Det är basen för de flesta som besöker Finnhamn. Boka i förväg via STF:s hemsida – sommarveckorna är fullbokade.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Finnhamn?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vandring:</strong> Markerade leder på ön och till grannöarna via vadställen vid lågvatten</li>
+<li><strong>Bad:</strong> Badplatser på östra och södra sidan. Vattnet är kallare här än i innerskärgården</li>
+<li><strong>Kajakpaddling:</strong> Paddla mellan Finnhamn och grannöarna Stor-Lådna och Lill-Lådna</li>
+<li><strong>Naturhamn:</strong> Finnhamn har en av skärgårdens mest använda naturhamnar för segelbåtar. Fantastisk stämning kvällstid under sommaren</li>
+<li><strong>Stjärnskådning:</strong> Lite ljusföroreningar från Stockholm – bra förutsättningar för natthimmel</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Finnhamn vs andra norra öar</h3>
+<p>Finnhamn passar dig som vill ha mer vildmarkskänsla och mindre turism än Grinda eller Vaxholm. Ön är mer rå och vindpinad, naturen är mer oregelbunden, och du är ett steg längre ut mot ytterskärgården. Räkna med att träffa fler seglare och erfarna skärgårdsbesökare än familjeturister.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktisk info:</strong>
+<p style="margin:8px 0 0;font-size:14px">Kolla sista båten hem innan du åker. Finnhamn har relativt begränsad trafik och att missa sista båten är ett verkligt problem. Övernattning på vandrarhemmet är det säkraste valet. Ta med kontanter – kortterminalen på ön kan vara opålitlig.</p>
+</div>
+`,
+
+    'nattaro-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Nåttarö – tältarens favorit i södra skärgården</h2>
+<p>Nåttarö är en av de mest omtyckta tältöarna i Stockholms skärgård – och en av de vackraste. Ön har ett av skärgårdens finaste campingområden, långa sandstränder, tallskogar och en naturskönhet som slår de flesta mer kända öarna. Nåttarö är för den som vill sova under bar himmel och vakna med havsluft.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Nåttarö</h3>
+<p>Nåttarö ligger i södra Stockholms skärgård och nås via Nynäshamn. Ta pendeltåget till Nynäshamn (ca 55 min från Stockholm Central, ingår i SL), sedan Waxholmsbolagets båt till Nåttarö.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Pendeltåg Stockholm Central–Nynäshamn: ca 55 min (SL)</li>
+<li>Waxholmsbolaget Nynäshamn–Nåttarö: ca 45 min</li>
+<li>Total restid: ca 1 h 45 min från Stockholm</li>
+<li>Sommar: 2–4 avgångar per dag. Kontrollera tidtabell.</li>
+<li>Tilläggsbiljett Nynäshamn–Nåttarö: ca 80–100 kr enkel resa</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Camping på Nåttarö</h3>
+<p>Nåttarö Camping drivs av Skärgårdsstiftelsen och erbjuder tältplatser i tallskogen nära stranden. Det är enkelt och naturligt – toaletter, vatten och grillplatser finns. Ingen el eller avancerade faciliteter.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Tältplats: ca 150–200 kr/natt per tält</li>
+<li>Boka i förväg via Skärgårdsstiftelsens hemsida under högsäsong</li>
+<li>Allemansrätten gäller utanför campingområdet men respektera zonerna</li>
+<li>Max 3 nätters tältning på samma plats med allemansrätten</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Nåttarö?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Strand:</strong> Nåttarö har en av skärgårdens längsta sandstränder. Grunt och barnvänligt vatten på södra sidan.</li>
+<li><strong>Vandring:</strong> Markerade leder genom tallskogen och längs kusten. Ca 8 km sammanlagt.</li>
+<li><strong>Bad:</strong> Sandstrand och klippbad. Södra ytterskärgården – vattnet är klart men kyligare.</li>
+<li><strong>Naturupplevelse:</strong> Nåttarö ingår i naturreservat. Rik fågellivet, speciellt ejder och havstrut.</li>
+<li><strong>Fiske:</strong> Bra abborre och gäddafiske i grunda vikar.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och service på Nåttarö</h3>
+<p>Nåttarö är avskalat – det finns en liten kiosk/servering vid bryggan under högsäsong men ingen egentlig restaurang. Ta med all mat du behöver. Butik saknas. Vatten finns vid campingplatsens facilitetshus.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:08px;margin-top:24px">
+<strong style="color:var(--sea)">Bäst för:</strong>
+<p style="margin:8px 0 0;font-size:14px">Nåttarö passar dig som vill ha äkta naturupplevelse utan turism. Det är en ö för den som klarar sig utan restaurang och affär – och som belönas med en av skärgårdens vackraste nätter under stjärnorna. Ta med allt du behöver hemifrån.</p>
+</div>
+`,
+
+    'orno-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Ornö – det stora, stilla alternativet</h2>
+<p>Ornö är en av Stockholms skärgårds allra största öar – ungefär 15 km lång och 5 km bred – men trots storleken är den förvånansvärt okänd bland turister. Det är precis det som gör Ornö så speciellt. Här bor ca 300 permanentboende, ön har en kommunal bilfärja och ett inre landskap av skogar, sjöar och skärgårdslandskap som skiljer sig markant från yttre klippöarna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Ornö?</h3>
+<p>Ornö nås med bilfärja från Dalarö (nås med buss från Handen T-bana) eller med Waxholmsbolagets passagerarbåtar.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bilfärja från Dalarö:</strong> Avgår flera gånger dagligen. Restid ca 25 min. Bilbiljett ca 150 kr, gångpassagerare ca 40 kr.</li>
+<li><strong>Buss till Dalarö:</strong> Buss 849 från Handen T-bana, ca 40 min.</li>
+<li><strong>Waxholmsbolaget:</strong> Passagerarbåt från Nynäshamn, restid ca 1 h.</li>
+<li>Total restid med buss + färja: ca 1 h 20 min från Stockholm</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Ornö?</h3>
+<p>Ornö är en ö för den som vill röra sig – antingen till fots, på cykel eller med kajak. Det inre landskapet med skogar och sjöar bjuder på vandringsupplevelser som är ovanliga i Stockholms skärgård.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vandring:</strong> Stockholm Archipelago Trail passerar Ornö. Leden sträcker sig längs kusten och genom naturreservat.</li>
+<li><strong>Cykling:</strong> Ornö har landsvägar – ta med cykeln på bilfärjan och cykla runt ön (ca 40 km)</li>
+<li><strong>Bad:</strong> Flera fina badplatser längs östra kusten, bl.a. Ornöbadet</li>
+<li><strong>Naturreservat:</strong> Ornö naturreservat täcker stora delar av ön med primärskog och gammelskog</li>
+<li><strong>Fiske:</strong> Ornö är känt för bra havsöringsfiske längs klippkusten</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och service</h3>
+<p>Ornö har en lanthandel (säsongsöppen), en krog/pizzeria och en restaurang vid Ornö Hamnkrog. Det är enkelt och lokalt – inga turistkrogsfällor. Ta med det viktigaste hemifrån om du ska övernatta.</p>
+<p>Övernattning: Ornö erbjuder stugor och B&B via lokala uthyrare. Söka på Ornö stuguthyrning. Tältning med allemansrätten fungerar i naturreservat.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Varför Ornö?</strong>
+<p style="margin:8px 0 0;font-size:14px">Ornö är rätt ö om du vill ha skärgårdsupplevelse utan turistmassor, gärna kombinerar natur med lite rörelse, och inte bryr dig om att det saknas spa och lyxrestaurang. Öns storlek gör att du kan vara hela dagen utan att träffa en enda annan turist.</p>
+</div>
+`,
+
+    'hund-i-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgården med hund – regler, öar och praktiska tips</h2>
+<p>Att ta med hunden till skärgården är en fantastisk upplevelse – men det kräver lite förberedelse. Reglerna varierar beroende på ö, tid på året och om du befinner dig i naturreservat. Här är vad du faktiskt behöver veta.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Grundregler: hund och allemansrätten</h3>
+<p>Allemansrätten ger dig rätt att röra dig i naturen – men med hund gäller extra regler. Under häckningstid (1 mars–20 juli) ska hunden hållas kopplad i naturreservat och i känsliga naturmiljöer. Utanför reservat gäller normal aktsam koppelhantering.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>1 mars–20 juli:</strong> Koppeltvång i naturreservat – skyddar häckande fåglar</li>
+<li><strong>21 juli–28 februari:</strong> Hund i koppel rekommenderas starkt men krävs inte utanför reservat</li>
+<li><strong>Alltid:</strong> Hunden ska inte störa andra besökare, husdjur eller vilda djur</li>
+<li><strong>Alltid:</strong> Plocka upp hundbajs – ta med påsar</li>
+<li>Privat mark (stugor, tomter): hunden ska alltid hållas under kontroll</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hund på Waxholmsbolagets båtar</h3>
+<p>Hundar är tillåtna på Waxholmsbolagets fartyg. Hunden betalar ingen extra biljett men ska vara kopplad ombord. På trängre linjer under högsäsong kan det vara trångt – välj platser i fören eller aktern av båten. Waxholmsbolaget kräver att hunden inte stör andra passagerare.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för hund</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Ornö:</strong> Stor ö med mycket skog och lite turister. Bra för långa promenader utan konflikt.</li>
+<li><strong>Möja:</strong> Grusvägar runt hela ön – perfekt hundpromenad. Affären säljer hundmat.</li>
+<li><strong>Nåttarö (utanför högsäsong):</strong> Strand och skog, gott om plats. Undvik under midsommar-helgen.</li>
+<li><strong>Vaxholm:</strong> Stadsön med trottoarer och parker. Hundvänlig miljö.</li>
+<li><strong>Utö:</strong> Stora naturområden. Koppeltvång i delar av reservatet sommartid.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hundvänliga restauranger i skärgården</h3>
+<p>Många skärgårdsrestauranger tillåter hundar på uteserveringen men inte inomhus. Fråga alltid när du anländer. Grinda Wärdshus, Möja Krog och flera restauranger i Vaxholm tar emot hundar utomhus. Sandhamns Värdshus är mer restriktivt under högsäsong.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Packlista för hund</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Koppel och ev. lång lina för strandlekar</li>
+<li>Vattenflaska och hopfällbar skål</li>
+<li>Tillräckligt med mat + lite extra</li>
+<li>Bajspåsar (mer än du tror)</li>
+<li>Hundhandduk – klippbaden är kladdiga</li>
+<li>Fästingmedel (skärgårdens tallskogar har fästingar)</li>
+<li>Hundens ID-bricka med ditt telefonnummer</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Fästingvarning:</strong>
+<p style="margin:8px 0 0;font-size:14px">Skärgårdens öar har rikligt med fästingar under maj–september. Kontrollera hunden noggrant efter varje utflykt. Fästingmedel för hund finns på de flesta veterinärers hemsidor och apotek. Tidig borrelia-behandling är viktigt om hunden blivit biten.</p>
+</div>
+`,
+
+    'romantisk-weekend-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Romantisk weekend i skärgården – de bästa alternativen</h2>
+<p>Stockholms skärgård är skapt för romantik. Solnedgångar från klippor, middagar med havsutsikt, morgonbad i stiltje och känslan av att vara verkligt bortom vardagen. Här är de bästa öarna och boendena för en par-weekend som ni minns länge.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för romantisk weekend</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">1. Sandhamn – seglarnas ö med karaktär</h4>
+<p>Sandhamn är skärgårdens mest romantiska by. Trångt och pittoreskt med rödfärgade hus, segelbåtskultur och en av skärgårdens bästa restauranger. Boka Sandhamns Värdshus eller Seglarhotellet. Promenera längs bryggan på kvällen när dagsturister åkt hem – öns bästa stund.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">2. Grinda – intimt och naturskyddat</h4>
+<p>Grinda Wärdshus erbjuder stugor omgivna av natur, ett litet och intimt värdshus och en ö som är tillräckligt liten för att kännas som er egen. Perfekt för par som vill ha ro och natur utan att ge upp god mat och komfort.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">3. Utö – det kompletta paketet</h4>
+<p>Utö har allt: havsbastu, sandstrand (Stora Sand), gruvhistoria, cykling och ett av skärgårdens finaste värdshus. Utö Värdshus serverar mat av hög kvalitet. Boka ett rum med havsutsikt och havsbastu som tillägg – ca 1 800–3 000 kr/natt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">4. Finnhamn – vild och ostörd</h4>
+<p>Finnhamns vandrarhem erbjuder privata rum till lägre pris (ca 800–1 200 kr/natt). Ön är mer rå och vild – rätt för par som vill ha natur och stillhet framför spa och lyxkrog.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Romantiska aktiviteter i skärgården</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Havsbastu för två:</strong> Boka privat bastutid på Utö, Dalarö eller Sandhamn. Ca 500–800 kr för 1,5 h</li>
+<li><strong>Solnedgångspaddling:</strong> Hyra kajak och paddla ut mot kvällssolen. Bäst i juli–augusti 20.00–22.00</li>
+<li><strong>Middagar med havsutsikt:</strong> Utö Värdshus, Sandhamns Värdshus, Grinda Wärdshus – alla har uteserveringar med panoramautsikt</li>
+<li><strong>Klippbad i gryning:</strong> Vakna tidigt, gå ner till klippan med termoskaffe. Ingen annan är uppe.</li>
+<li><strong>Räkfrukost på bryggan:</strong> Nyfångad räka, majonnäs, knäckebröd och morgonkaffe vid vattnet</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktisk info</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Boka boende minst 4–8 veckor i förväg för sommarhelger</li>
+<li>Midsommar, midsommaraftonen och första veckan i juli: boka 2–3 månader i förväg</li>
+<li>Budget: räkna med 2 000–4 000 kr/person för en helg inklusive transport, mat och boende</li>
+<li>Transport: Waxholmsbolaget eller Cinderellabåten – bekräfta returavgång</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Det hemliga tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Välj en helg i slutet av maj eller början av juni. Öarna är öppna, naturen är grön, hafsbastun är uppvärmd – och det finns inga köer. Priserna är lägre och upplevelsen är bättre än under högsäsong. Skärgårdens bästa romantik hittas utanför turistsäsongen.</p>
+</div>
+`,
+
+    'svampplockning-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Svampplockning i skärgården – säsong, platser och tips</h2>
+<p>Skärgårdens öar har något som fastlandet sällan kan matcha: ostörda svampskogar utan konkurrens från andra plockare. Tallskogar, blandskog och fuktig mark skapar perfekta förutsättningar för kantareller, karljohanssvamp och trattkantarell. Och med Waxholmsbolagets båtar är du snabbt ute i de bästa svampmarkerna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Svampsäsong i skärgården</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Juni–juli:</strong> Kantareller börjar dyka upp efter varm regnperiod. Tidig säsong.</li>
+<li><strong>Augusti:</strong> Högsäsong för kantareller och karljohanssvamp. Bästa månaden.</li>
+<li><strong>September:</strong> Trattkantarell och höstmusseron. Skärgårdens svamp är framme länge.</li>
+<li><strong>Oktober:</strong> Sen säsong. Trattkantarell klarar frost och kan plockas till november i mild höst.</li>
+</ul>
+<p>Svampsäsongen styrs av väder. En varm period följd av regn ger explosion av kantareller inom 3–5 dagar. Följ SVT Naturnyheternas svamptips och lokala Facebook-grupper för aktuell info.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för svampplockning</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Möja:</strong> Tallskog och blandskog runt hela ön. Goda kantarellmarker längs grusvägar i norra delen.</li>
+<li><strong>Ornö:</strong> Skärgårdens största och mest varierade skog. Utmärkta förutsättningar för alla vanliga matsvampar.</li>
+<li><strong>Gällnö:</strong> Naturreservat med gammelskog och gammal tallmark. Bra karljohanssvamp.</li>
+<li><strong>Nåttarö:</strong> Tallskogen kring campingplatsen är känd för bra kantareller.</li>
+<li><strong>Utö:</strong> Ön har varierad skog i norra delarna. Bra höstsvamp i september–oktober.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vanligaste matsvamparna</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Kantarell (Cantharellus cibarius):</strong> Gul och trattformad. Växer i mossig barrskog. Omöjlig att blanda ihop om du lär dig den.</li>
+<li><strong>Karljohanssvamp (Boletus edulis):</strong> Brun hatt, vitt nät på stammen. Växer nära gran och tall.</li>
+<li><strong>Trattkantarell (Cantharellus tubaeformis):</strong> Mindre och mörkare än vanlig kantarell. Höstsvamp, tålig för frost.</li>
+<li><strong>Rödhätting (Leccinum sp.):</strong> Vanlig under björk. God men mörknar vid tillagning.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och etik</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Allemansrätten tillåter svampplockning – plocka fritt men lämna inga spår</li>
+<li>Plocka inte mer än du kan använda – svamp som kastas är slöseri</li>
+<li>I naturreservat kan det finnas begränsningar – kontrollera lokalt</li>
+<li>Använd korg, inte plastpåse – svampen behöver andas</li>
+<li>Sätt tillbaka missfärgade eller maskanfrätta svampar i skogen</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Osäker på svampen?</strong>
+<p style="margin:8px 0 0;font-size:14px">Plocka aldrig svamp du inte kan identifiera med 100% säkerhet. Sveriges mykologiska sällskap erbjuder svampkurser och identifieringshjälp. Appen iNaturalist kan ge viss ledning men ersätter inte kunskap. Plockad svamp kan visas på apoteket för kostnadsfri identifiering.</p>
+</div>
+`,
+
+    'pingst-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Pingst i skärgården – startskottet på säsongen</h2>
+<p>Pingst är det officiella startskottet för skärgårdssäsongen. Waxholmsbolaget utökar trafiken, värdshus öppnar sina dörrar för säsongen och tusentals stockholmare beger sig ut till öarna för helgens första stora skärgårdstur. Det är folkfest, men också vacker natur – löven är nyutslagna och naturen är i bästa skick.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad händer under pingsthelgen?</h3>
+<p>Pingst är en lördagsrörelsens högtid i skärgården. Många öar arrangerar pingstfiranden med musik, dans och traditionell mat. Det är också den helgen då segelklubbar håller sina årsavslutningar och de första regattorna. Vädret varierar kraftigt – pingsthelgen är lika ofta regnig som solig, men det stoppar aldrig stockholmarna.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Waxholmsbolaget ökar trafiken – extra avgångar lördagen och söndagen</li>
+<li>De flesta värdshus och restauranger öppnar för säsongen under pingsthelgen</li>
+<li>Populäraste öarna (Sandhamn, Vaxholm, Grinda) är fullpackade – boka tidigt</li>
+<li>Seglare fyller naturhamnarna under pingsthelgen</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vilka öar är öppna till pingst?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vaxholm:</strong> Alltid öppet. Restauranger, caféer och affärer. Bra val för pingstdagsturen.</li>
+<li><strong>Grinda:</strong> Grinda Wärdshus öppnar för säsongen kring pingst.</li>
+<li><strong>Sandhamn:</strong> Säsongsstart. Seglarhotellet och Sandhamns Värdshus öppnar.</li>
+<li><strong>Fjäderholmarna:</strong> Öppnar vanligtvis på pingsthelgen. Nära och lättillgängligt.</li>
+<li><strong>Utö:</strong> Utö Värdshus öppnar. Havsbasstu och restaurang igång.</li>
+<li>Mindre öar utan fast service är naturligtvis tillgängliga hela året</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Pingsttips: undvik köerna</h3>
+<p>Pingsthelgen är en av årets mest trafikintensiva helger i skärgården. Vill du ha en bra upplevelse utan trängsel, välj lördag framför söndag – söndag är röd dag och alla åker hem. Ännu bättre: åk redan pingstafton (fredag) och bo kvar hela helgen.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Ta tidiga båtar (07–09) – de är inte fulla</li>
+<li>Välj mindre kända öar som Möja, Finnhamn eller Nåttarö</li>
+<li>Boka bord på restaurang i förväg – pingsthelgen är fullbokad</li>
+<li>Ha returbiljett bokad – populäraste kvällsbåtarna kan vara fullsatta</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad kostar pingsthelgen?</h3>
+<p>Pingsthelgen är inte speciellt dyrare än en vanlig sommardagtur – det är snarare konkurrensen om platserna som är utmaningen. Boende är svårast att hitta och bör bokas 2–4 veckor i förväg. Restauranger bör bokas 1–2 veckor i förväg.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa pingstupplevelsen:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta fredagskvällsbåten ut till Grinda eller Finnhamn. Övernatta. Ha hela lördagen på en lugn ö medan alla dagsturister är på Sandhamn och Vaxholm. Åk hem på söndagseftermiddagen med solbränd och nöjd. Det slår folkvimlet på de populäraste öarna varje gång.</p>
+</div>
+`,
+
+    'foretagsevent-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Företagsevent i skärgården – guide och inspiration</h2>
+<p>Skärgården är en av Stockholmsregionens mest uppskattade platser för kickoff, AW, teambuilding och företagskonferenser. Kombinationen av naturmiljö, aktiviteter och kvällsmiddagar i makalös miljö skapar upplevelser som håller länge. Här är vad du behöver veta för att planera ett lyckat företagsevent.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna för företagsevent</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">Sandhamn – seglarklassikern</h4>
+<p>Sandhamn erbjuder seglingsevent, firande på Sandhamns Värdshus och en unik atmosfär. Seglarhotellet tar emot grupper och kan anordna privata middagar och boka lokal. Bra för grupper på 10–40 personer som vill ha karaktäristisk skärgårdsmiljö.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">Utö – det kompletta konferensalternativet</h4>
+<p>Utö Värdshus erbjuder konferenslokaler, gruppboende, aktiviteter (cykling, havsbastu, kajak) och restaurang. En av skärgårdens mest genomarbetade konferensanläggningar. Passar grupper på 15–80 personer.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">Grinda – intimt värdshus</h4>
+<p>Grinda Wärdshus tar emot grupper för privata middagar och konferenser. Ön är bilfri och ger naturlig fokus bort från vardagen. Bra för kreativa workshops och ledningsgrupper.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">Vaxholm – tillgängligt och flexibelt</h4>
+<p>Vaxholm är lättast att nå med kollektivtrafik (50 min från Stockholm). Waxholms Hotell erbjuder konferenslokaler. Bra för halvdagskonferens kombinerat med stadsutflykt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Populära teambuilding-aktiviteter</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Kajakloppet:</strong> Gruppen paddlar i lag mellan öar. 2–3 h, arrangeras av lokala aktivitetsbolag</li>
+<li><strong>Orientering i skärgård:</strong> Lagbas navigerar grupp genom ö-terräng med karta och kompass</li>
+<li><strong>Båtcharter:</strong> Hyra segelbåt med skeppare för en dag. Lär er segla tillsammans</li>
+<li><strong>Matlagningskurs med lokala råvaror:</strong> Laga räkor, fisk och skärgårdsmat tillsammans</li>
+<li><strong>Havsfiske i grupp:</strong> Fiskebåt med guide, täcker artfiske efter strömming och sill</li>
+<li><strong>Havsbastu och vinterbad:</strong> Extremt populärt för kickoff – gemensam upplevelse utanför komfortzonen</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Planering och budget</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Boka anläggning minst 3–6 månader i förväg för sommarperioden</li>
+<li>Budget: ca 2 500–5 000 kr/person för en endags-AW, 5 000–12 000 kr för övernattningsevent</li>
+<li>Transport: boka privat båt för grupper &gt;20 personer – billigare och smidigare än reguljärfärja</li>
+<li>Aktivitetsbolag att kontakta: Adventure Team, Stockholms Skärgårds Aktiviteter, Saltwater</li>
+<li>Högsäsong: juni–augusti. Lägre priser och bättre tillgänglighet i maj och september</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Proffstips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka hela ön eller hela värdshuset om ni är tillräckligt många (20+). Känslan av att ha Grinda eller Finnhamn för er själva är ovärderlig och gör eventet minnesvärdt. Kräver tidig bokning men är möjligt.</p>
+</div>
+`,
+
+    'digital-detox-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Digital detox i skärgården – öar utan uppkoppling</h2>
+<p>Stockholms skärgård erbjuder något sällsynt i modern tid: platser där telefonen faktiskt inte fungerar. Ytterskärgårdens öar har begränsad eller ingen mobiltäckning, och den naturliga bristen på WiFi och 5G-nät gör dem till perfekta detox-destinationer för den som vill koppla av på riktigt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Öar med minimal uppkoppling</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Svenska Högarna:</strong> Yttersta ytterskärgård, ca 6 h båtresa från Stockholm. Fyrvaktarboende, noll täckning för de flesta operatörer. Det ultimata valet.</li>
+<li><strong>Huvudskär:</strong> Längst ut i södra ytterskärgård. Fyren, vindpinade klippor och minimal täckning.</li>
+<li><strong>Nåttarö – norra delarna:</strong> Inne i skogen försvinner signalen. Campingplatsen har begränsad täckning.</li>
+<li><strong>Finnhamn:</strong> Sporadisk täckning. Vandrarhemmet har begränsad WiFi – kan väljas bort.</li>
+<li><strong>Ornö – inre delar:</strong> Stor ö med många döda zoner i skogslandskapet.</li>
+</ul>
+<p>Täckning varierar med operatör. Telia och Tele2 har bäst täckning i skärgården, men ytterskärgården är fortfarande utmanande för alla. Prova din operatörs täckningstjänst för specifika platser.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du utan telefon?</h3>
+<p>Det är en bra fråga som avslöjar hur beroende vi blivit. Svaret: du gör det du brukade göra. Du läser bok. Du pratar med de du är med. Du ser på havet. Du lagar mat. Du lyssnar på fåglarna.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Simma och bada utan att kolla om det kommit notiser efteråt</li>
+<li>Läsa hela boken utan att avbryta dig för sociala medier</li>
+<li>Laga mat från grunden med ingredienser ni tagit med</li>
+<li>Paddla kajak utan att filma det för Instagram</li>
+<li>Sova när det mörknar och vakna när solen går upp</li>
+<li>Observera naturen – fåglar, insekter, havet – utan att googla vad det är</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Förbered dig rätt</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Ladda ned offlineskartor (Maps.me eller Google Maps offline) innan du åker</li>
+<li>Ta med pappersbiljetter – Waxholmsbolaget-appen fungerar offline men ha utskrift som backup</li>
+<li>Informera viktiga kontakter att du är onåbar och när du är tillbaka</li>
+<li>Ta med fysisk kamera om du vill fotografera</li>
+<li>Ta med pappersböcker – e-läsare funkar, men pappret är mer detox-känsla</li>
+<li>Ha telefonen på flygplansläge, inte av – du kan ändå använda kamera och karta</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur länge ska du detox:a?</h3>
+<p>En dag utan telefon ger märkbar återhämtning. En helg (fredag kväll–söndag) räcker för att faktiskt landa i en annan rytm. En vecka förändrar din relation till uppkoppling mer permanent – de flesta som provat rapporterar att de inte längre vill kolla telefonen lika compulsivt efteråt.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Realistisk förväntan:</strong>
+<p style="margin:8px 0 0;font-size:14px">De första timmarna utan telefon är ofta obehagliga – din hjärna letar efter dopaminpulsen. Det är helt normalt. Håll ut förbi de första 4–6 timmarna och känslan vänder. Dag två är nästan alltid bättre än dag ett. Det är därför en helg ger mer än en dag.</p>
+</div>
+`,
+
+    'aland-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Åland – komplett guide till det svenska Finland</h2>
+<p>Åland är en av Nordeuropas mest unika destinationer: ett autonomt, demilitariserat örike som tillhör Finland men är till 100 % svenskspråkigt. Här gäller finska regler för skattefria inköp (Åland är utanför EU:s momsunion), svenska är enda officiella språket, och man kör på höger sida. Resultatet är en destination som känns mer europeisk semester än typisk skandinavisk utflyktsö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Åland?</h3>
+<p>Åland nås enklast med färja från Stockholm. Resorna går nattetid och är en upplevelse i sig – du vaknar i Mariehamn.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Viking Line, Stockholm–Mariehamn–Helsingfors:</strong> Avgår ca 17.00 från Stockholm. Ankommer Mariehamn ca 06.00. Restid Stockholm–Mariehamn ca 11 h. Fartyget stannar ca 3 h.</li>
+<li><strong>Tallink Silja, Stockholm–Mariehamn–Åbo/Helsingfors:</strong> Liknande tider. Avgår ca 17.00, ankommer Mariehamn tidigt morgon.</li>
+<li><strong>Resa enbart till Åland (Mariehamn):</strong> Du kan stiga av och ta en annan avgång tillbaka – ett bra val för 1–3 dagars besök.</li>
+<li><strong>Flyg:</strong> Finnair flyger Stockholm Arlanda–Mariehamn, ca 45 min. Dyrare men snabbare.</li>
+<li><strong>Från Finland:</strong> Färja från Turku (ca 5 h) eller snabbfärja från Helsingfors.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mariehamn – Ålands enda stad</h3>
+<p>Mariehamn är en av Nordens minsta städer med ca 11 000 invånare – men en stad med ordentliga restauranger, butiker, museer och ett levande hamnliv. Stadens centrum är litet och promenadvänligt. Östhamnen är Ålands turistiska nav under sommaren.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Pommern:</strong> Världens bäst bevarade skepp av stålbarkstyp, byggt 1903. Museifartyg i Mariehamn. Ingår i Ålands sjöfartsmuseum.</li>
+<li><strong>Ålands Museum och Ålands Konstmuseum:</strong> Öns historia och konst på ett ställe</li>
+<li><strong>Stortorget:</strong> Stadens hjärta med restauranger och caféer</li>
+<li><strong>Taxfree-shopping:</strong> Åland är utanför EU:s skatteunion – alkohol, parfym och tobak köps skattefritt ombord eller i Mariehamns butiker</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykla på Åland</h3>
+<p>Åland är ett av Skandinaviens bästa cykellandskap. Ön (fastlandet) är relativt plant, vägarna är lugna och cykelinfrastrukturen är välskyltat. Hyrcyklar finns att hyra i Mariehamn vid hamnen och via flera turistbyråer.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Markerad cykelrunda runt fastlandet: ca 180 km (3–5 dagars tur)</li>
+<li>Kortare rundor: Lumparn (sjön i mitten), norra fastlandet, Lemland</li>
+<li>Hyrcykel: ca 150–250 kr/dag i Mariehamn</li>
+<li>Elektriska cyklar tillgängliga via de flesta uthyrare</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Sevärdigheter utanför Mariehamn</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Kastelholm slott:</strong> Medeltida borg från 1300-talet, öppen för visning sommar. Ca 40 km från Mariehamn.</li>
+<li><strong>Bomarsund fästningsruin:</strong> Rysk fästning från 1800-talet, sprängd under Krimkriget 1854. Unik militärhistoria.</li>
+<li><strong>Sund socken:</strong> Pittoreskt jordbrukslandskap med röda ladugårdar och stiltje – typiskt Åland</li>
+<li><strong>Ålands skärgård:</strong> Mer än 6 700 öar. Reguljär skärgårdstrafik med mindre passagerarbåtar.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktisk info</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Valuta:</strong> Euro. Kort accepteras överallt.</li>
+<li><strong>Språk:</strong> Svenska – du klarar dig utan finska</li>
+<li><strong>Pass:</strong> Inte obligatoriskt för EU-medborgare, men legitimation krävs ombord</li>
+<li><strong>Vistelsetid:</strong> 1–2 dagar räcker för Mariehamn. 4–7 dagar för cykelrunda + skärgård</li>
+<li><strong>Bästa säsong:</strong> Juni–augusti. Maj och september är lugnare och billigare.</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Taxfree-tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Färjorna Stockholm–Åland är en av Europas sista rutter med riktig taxfree-försäljning ombord. Alkohol, parfym och choklad säljs till priser som är 30–50% lägre än i svenska butiker. Notera att du måste sätta fot i Mariehamn (passera gränsen) för att köpen ska vara skattefria.</p>
+</div>
+`,
+
+    'gotland-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Gotland – komplett guide till Sveriges största ö</h2>
+<p>Gotland är Sveriges populäraste sommardestination och det är lätt att förstå varför. En medeltidsstad som är UNESCO-världsarv, raukar som inget annat i världen, Skandinaviens varmaste och solrikaste klimat, och en matscen som under sommaren rivaliserar med Stockholm och Köpenhamn. Gotland är inte en ö du besöker en gång – det är en ö du återvänder till.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Gotland?</h3>
+<p>Gotland nås med färja från Nynäshamn (söder om Stockholm) eller Oskarshamn (Småland). Destination Gotland trafikerar båda linjerna.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Nynäshamn–Visby:</strong> Snabbfärja ca 3 h 15 min, vanlig färja ca 3 h. Nynäshamn nås med pendeltåg (SL) ca 55 min från Stockholm C.</li>
+<li><strong>Oskarshamn–Visby:</strong> Ca 4 h. Bra alternativ söderifrån.</li>
+<li><strong>Flyg:</strong> Gotlandsflyg och SAS flyger Stockholm–Visby, ca 45 min. Dyrare men snabbt.</li>
+<li><strong>Bil ombord:</strong> Möjligt men kostar extra. Reservera tidigt – sommarbilplatser är besvärliga att boka.</li>
+<li><strong>Boka tidigt:</strong> Juli-avgångar bokas ofta slut månader i förväg. Gotland Sommar = boka färja i januari–februari.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Visby – medeltidsstaden</h3>
+<p>Visby är Gotlands absoluta höjdpunkt. Stadsmuren (3,4 km lång, bevarad sedan 1200-talet), kyrkoruinerna och hanseatiska köpmannagårdar gör Visby till en av Europas bäst bevarade medeltidsstäder – och ett UNESCO-världsarv sedan 1995.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Stadsmuren:</strong> Promenera längs hela muren, ca 3,4 km. Fri entré.</li>
+<li><strong>Kyrkoruinerna:</strong> 10+ medeltidskyrkor varav 4 i ruin. S:t Nicolai är störst och vackrast.</li>
+<li><strong>Almedalen:</strong> Parken innanför muren, känd för politikerveckan i juli men vacker hela sommaren</li>
+<li><strong>Restaurangscenen:</strong> Visby har fler Michelin-rekommenderade restauranger per capita än de flesta svenska städer. Boka bord i förväg.</li>
+<li><strong>Medeltidsveckan:</strong> Första veckan i augusti. Hela Visby klär ut sig i medeltidsdräkt. Turister vimlar – fantastiskt men fullpackat.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Raukar – Gotlands naturunder</h3>
+<p>Raukar är kalkstensformationer som skapades av havet för 400 miljoner år sedan. De är Gotlands mest ikoniska naturinslag och finns framför allt längs norra och västra kusten.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Langhammars (Fårö):</strong> Gotlands mest dramatiska raukfält. Ta Fårö-färjan från Fårösund.</li>
+<li><strong>Digerhuvud (Fårö):</strong> Lättillgängliga raukar strax norr om Langhammars</li>
+<li><strong>Holmhällar (södra Gotland):</strong> Vackra raukar med havsöring i vattnet intill</li>
+<li><strong>Gamle Hamn (Fårö):</strong> Ingmar Bergmans favoritmiljö – raukfält vid havet</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Stränder och bad</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Tofta strand:</strong> Gotlands mest populära sandstrand, ca 15 km söder om Visby. Bred strand, grunt vatten.</li>
+<li><strong>Sudersand (Fårö):</strong> Fårös bästa sandstrand. Ljust sand, klart vatten, hippie-stämning.</li>
+<li><strong>Ljugarn:</strong> Gammal badort på östkusten med lummig miljö och lugnt vatten</li>
+<li><strong>Vattnet:</strong> Gotland är Sveriges varmaste badvatten – 20–24°C i juli är vanligt på sydöstra sidan</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Praktisk info</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Bil är i princip nödvändig för att utforska utanför Visby</li>
+<li>Kollektivtrafik finns men är begränsad – Gotlandsbuss, inte tillräcklig för effektiv turism</li>
+<li>Cykel fungerar bra för Visbytrakten och norra Gotland</li>
+<li>Budget: 800–2 500 kr/person och natt för boende. Högsäsong (juli) = styr priserna uppåt kraftigt</li>
+<li>Boka allt månader i förväg för juli</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa sättet att se Gotland:</strong>
+<p style="margin:8px 0 0;font-size:14px">Hyra bil och bo utanför Visby är det smartaste valet. Visby är fullt och dyrt i juli. Välj en gård eller stuga i Fårösund, Ljugarn eller Burgsvik och kör in till Visby för ett besök. Du får bättre Gotland-upplevelse och halva priset på boende.</p>
+</div>
+`,
+
+    'oland-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Öland – guide till solens och vindarnas ö</h2>
+<p>Öland är unikt i Sverige: en lång, smal ö (13 km bred, 137 km lång) som är sammankopplad med fastlandet via en av Europas längsta broar. Ölandsbron gör ön unik – du kan köra hit med bil utan färja – och det kombinerat med Sveriges solrikaste klimat gör Öland till ett av landets mest besökta sommarmål.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Öland</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bil via Ölandsbron:</strong> Bron är 6,07 km lång och binder Kalmar med Mörbylånga. Gratis passage. Från Stockholm ca 4 h, från Malmö ca 2 h 30 min, från Göteborg ca 3 h 30 min.</li>
+<li><strong>Buss:</strong> Länstrafiken Kalmar kör bussar till Öland men utbudet är begränsat. Bil rekommenderas för att se mer än Borgholm.</li>
+<li><strong>Tåg + buss:</strong> Tåg till Kalmar (ca 3 h från Stockholm), sedan buss över Ölandsbron till Borgholm.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Borgholm – Ölands centralort</h3>
+<p>Borgholm är öns enda stad och ett populärt sommarnav med restauranger, butiker och caféer längs strandpromenaden. Sommarkalendern är fullspäckad – Borgholm Music Festival i juli samlar stora artister till Borgholms slottsträdgård.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Borgholms slottsruin:</strong> En av Skandinaviens mest imponerande slottsruiner. Fribiljett vid solnedgång för en magisk upplevelse.</li>
+<li><strong>Borgholm Musik:</strong> Storslagen utomhuskonsert varje sommar i slottsparken</li>
+<li><strong>Strandpromenaden:</strong> Caféer, glass och souvenirishop längs hamnkanten</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Solliden – kungafamiljens sommarpalats</h3>
+<p>Solliden är den svenska kungafamiljens sommarresidens och ligger strax söder om Borgholm. Parken är öppen för allmänheten under sommarmånaderna (ca 80 kr entré). Parken är välskött och erbjuder fina utsikter mot Kalmarsund.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Alvaret – UNESCO-världsarvet</h3>
+<p>Alvaret är ett av Europas mest unika landskap: ett flackt, stenigt kalkstenshav som sträcker sig längs hela södra Öland. Landskapet är ett UNESCO-världsarv sedan 2000 (tillsammans med omgivande jordbrukslandskap) och hyser ett unikt växt- och djurliv.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Bäst att uppleva i maj–juni när Alvaret blommar</li>
+<li>Promenera på markerade stigar – kliv inte utanför, vegetationen är extremt känslig</li>
+<li>Naturum Öland vid Mörbylånga erbjuder info om Alvaret och Ölands natur</li>
+<li>Storslagna solnedgångar med horisont i alla riktningar</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda sands och vindmöllor</h3>
+<p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges näst längsta sandstrand och ett sommarmål i sig – ca 10 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Böda sand:</strong> Ca 10 km sandstrand i norra Öland. Grunt och barnvänligt.</li>
+<li><strong>Historiska vindmöllor:</strong> Öland har fler bevarade traditionella vindmöllor än något annat landskap i Sverige – ca 400 st</li>
+<li><strong>Trollskogen:</strong> Gammal vresig ekskog vid Böda – unik naturupplevelse</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykla Öland</h3>
+<p>Öland är perfekt för cykling: platt, vindskyddat längs ostkusten och med utmärkta cykelvägar längs hela ön. EuroVelo 10 (Östersjöleden) passerar Öland. Hyrcyklar finns i Borgholm och vid de flesta campingplatser.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Besök Öland i maj eller september. Klimatet är bra, Alvaret blommar (maj) eller är guldgult (september), och turistmassorna är borta. Juli är fullt av barnfamiljer och priserna är höga. Ölandsbron under solnedgång är en upplevelse oavsett årstid.</p>
+</div>
+`,
+
+    'kosterarna-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Kosteröarna – Sveriges första marina nationalpark</h2>
+<p>Kosteröarna – Nordkoster och Sydkoster – är två av Sveriges mest unika öar. De ligger vid den norska gränsen i Bohuslän, och vattnet runt dem (Kosterfjorden) är Sveriges djupaste fjord och hyser ett marint liv som inte finns någon annanstans i landet. 2009 bildades Kosterhavets nationalpark – Sveriges första marina nationalpark – och sedan dess är Kosteröarna ett av Skandinaviens viktigaste naturarv.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Kosteröarna</h3>
+<p>Kosteröarna nås via Strömstad, nära norska gränsen.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Tåg till Strömstad:</strong> Från Göteborg ca 1 h 45 min med Västtrafik. Från Stockholm ca 5 h (byte i Göteborg eller Uddevalla).</li>
+<li><strong>Bil till Strömstad:</strong> Ca 1 h 30 min från Göteborg (E6), ca 6 h från Stockholm.</li>
+<li><strong>Färja Strömstad–Sydkoster:</strong> Ca 40 min. Avgår regelbundet under sommarsäsongen.</li>
+<li><strong>Färja Strömstad–Nordkoster:</strong> Ca 1 h via Sydkoster eller direkt ca 50 min.</li>
+<li>Kosteröarnas Linjetrafik och Koster Service trafikerar linjerna. Kolla aktuella tidtabeller.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Nordkoster vs Sydkoster</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Sydkoster:</strong> Större ö med ca 250 bofasta. Har affär, restauranger, vandrarhem. Inga bilar (förutom lokaltransport). Mer service och lättare att ta sig runt.</li>
+<li><strong>Nordkoster:</strong> Liten, helt bilfri ö med ca 70 bofasta. Vildare natur, färre besökare, mer isolerad känsla. Välj Nordkoster för vildmark, Sydkoster för bekvämlighet.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kosterhavets nationalpark</h3>
+<p>Kosterfjorden är ett av de biologiskt rikaste havsområdena i Sverige. Djupet (upp till 247 m) skapar unika förutsättningar för liv som annars bara finns djupt i Atlanten: sjöfjädrar, havsfans (Paramuricera placomus), sjöpungar och en mångfald av bottendjur som inte finns i Östersjön eller längs svenska Atlantkusten.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Dykning:</strong> Kosterfjorden är ett av Europas bästa dykmål för nordlig marina arter. Dykklubb och guidade dyk finns via lokala operatörer</li>
+<li><strong>Snorkling:</strong> Grunt snorkling runt öarna ger möjlighet att se krabba, sjöstjärna och spigg</li>
+<li><strong>Kajakpaddling:</strong> Paddla runt öarna och in i smalare sund. Hyrkajaker finns på Sydkoster.</li>
+<li><strong>Guidade naturvandringar:</strong> Nationalparkens personal arrangerar vandringar. Kolla Naturum Kosteröarna.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och boende</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Sydkoster: Kosters Trädgårdar (restaurang, inriktad på lokala råvaror), Kosteröarnas Värdshus</li>
+<li>Nordkoster: Enklare kiosk och café. Självhushåll rekommenderas.</li>
+<li>Boende: Vandrarhem och stugor på Sydkoster. Tältning med allemansrätten på Nordkoster (utom i kärnzoner)</li>
+<li>Ta med tillräckligt med mat och kontanter – service är begränsad</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa säsong</h3>
+<p>Juni–september. Dykarna föredrar september–oktober när vattnet är klarast. Undvik midsommarhelgen om du vill ha lugn – öarna är folktäta. Maj är fantastiskt för häckande fågellivet.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Nationalparkstipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka en guidar snorkel- eller dyktur via Kosterhavets nationalpark. Det är en av de billigare upplevelserna på öarna (ca 200–400 kr) och ger ett exklusivt fönster mot det marina livet som du inte hittar någon annanstans i Sverige. Guiden visar dig vad du annars inte ser.</p>
+</div>
+`,
+
+    'missat-sista-baten': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Missat sista båten – vad gör du nu?</h2>
+<p>Det händer. Du satt kvar för länge vid värdshuset, kajakpadlingen tog längre tid än planerat, eller tidtabellen var felläst. Nu är sista reguljärbåten borta och du är kvar på ön. Det är frustrerande – men det är inte en katastrof. Här är vad du gör.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Steg 1: Kontrollera om det finns fler alternativ</h3>
+<p>Waxholmsbolaget kör ibland sena avgångar som inte syns i standardtidtabellen. Kolla appen eller ring Waxholmsbolaget (08-600 10 00) direkt.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Kontrollera Waxholmsbolagets app för eventuella sena eller extra avgångar</li>
+<li>Kolla om Cinderellabåten eller Strömma kör sent på kvällen till din destination</li>
+<li>Fråga värdshuset eller lokalbefolkningen om de känner till alternativa avgångar</li>
+<li>Under högsäsong (juni–aug) går fler avgångar och sista båten är senare</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Steg 2: Hitta en plats att sova</h3>
+<p>Om det inte finns fler båtar är övernattning det smidigaste alternativet. Det finns oftast möjligheter:</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Fråga värdshuset/restaurangen:</strong> Många skärgårdsvärdshus har rum. Fråga om de har ett rum kvar – de tar ibland in gäster utan bokning om det finns plats.</li>
+<li><strong>Allemansrätten:</strong> Du har rätt att tälta på allemansrättsmark i 1–2 nätter. Har du tält med? Om inte, gå till nästa alternativ.</li>
+<li><strong>Båt:</strong> Om du känner någon med segelbåt i hamnen – fråga artigt om de kan köra dig. Det är vanligare att folk hjälper till än du tror.</li>
+<li><strong>Vandrarhem:</strong> Finska Finnhamn har STF-vandrarhem med sovsalar. Ring dem direkt (08-542 462 12).</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Steg 3: Privat vattentaxi</h3>
+<p>Om du absolut måste hem och har budget för det, finns privata vattentaxi-tjänster i Stockholms skärgård.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Waxholmsbolagets jourtrafik:</strong> I nödfall kan specialavgångar bokas men det är dyrt (från ca 1 500 kr)</li>
+<li><strong>Privata båtentreprenörer:</strong> Sök på "vattentaxi skärgården" eller fråga värdshuset om kontakter</li>
+<li><strong>Grannöar med bättre förbindelser:</strong> Kan du ta dig till en grannö med bättre trafik? Fråga om privat båttransport.</li>
+<li>Budget: 1 000–5 000 kr för privat vattentaxi beroende på avstånd och tid på dygnet</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Steg 4: Acceptera läget – och njut</h3>
+<p>Många av de bästa skärgårdsupplevelserna har börjat med ett missat sista båt. En oplanerad övernattning ger dig skärgårdens bästa stunder: morgonbadet i stiltje, frukost vid bryggan när dagsturister ännu inte anlänt, och tystnad du aldrig får om du åker hem varje kväll.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Förebygg nästa gång</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Lägg alltid in sista avgångstid som en notis i telefonen när du anländer</li>
+<li>Waxholmsbolagets app: du kan se avgångar live och planera hemresan</li>
+<li>Ha alltid en plan B: vet om det finns ett vandrarhem på ön</li>
+<li>Ta med en lättviktstält och sovsäck för dagsturer – inte för att du planerar att stanna, utan för att du kan</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Nödnummer:</strong>
+<p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kundservice: <strong>08-600 10 00</strong> (öppet sommartid till ca 22.00). SOS Alarm (sjönöd): <strong>112</strong> (bara vid livsfara). Sjöräddningssällskapet: <strong>0771-57 05 70</strong> (haveri och olycka, inte för missade båtar).</p>
+</div>
+`,
+
+    'batkorkort-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Båtkörkort i Sverige – vad gäller och hur tar du det?</h2>
+<p>Sverige har inget lagstadgat krav på körkort för att framföra fritidsbåt – men det innebär inte att du kan köra utan kunskaper. Sjölagen ställer krav på kompetens, och försäkringsbolag kräver ofta förarbevis. Här är vad som faktiskt gäller och vilka certifikat som är relevanta.
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Grinda vs Finnhamn – vilken ö passar dig?</h2>
+<p>Grinda och Finnhamn är båda populära öar i norra Stockholms skärgård, båda nås med Waxholmsbolagets linje 80, och båda erbjuder naturskönhet och skärgårdsupplevelse. Men karaktären är helt olika. Här är den ärliga jämförelsen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport och restid</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Grinda:</strong> Linje 80/82 från Strömkajen, ca 2 h 15 min. Cinderellabåten ca 1 h 40 min (sommar).</li>
+<li><strong>Finnhamn:</strong> Linje 80 från Strömkajen, ca 2 h 45 min. Ytterligare 30 min längre ut.</li>
+<li><strong>Vinnare:</strong> Grinda – kortare och mer flexibla avgångar</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Grinda:</strong> Grinda Wärdshus – klassiskt skärgårdsvärdshus med stugor och rum. Ca 1 500–2 800 kr/natt stuga.</li>
+<li><strong>Finnhamn:</strong> STF Vandrarhem – sovsal, privata rum och stugor. Ca 250–350 kr/person (sovsal), 800–1 500 kr privat rum.</li>
+<li><strong>Vinnare:</strong> Beror på budget. Finnhamn är billigare, Grinda är mer komfortabelt.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och restaurang</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Grinda:</strong> Grinda Wärdshus serverar traditionell husmanskost av hög kvalitet. Lunchbuffé och middagsmeny. Café vid bryggan.</li>
+<li><strong>Finnhamn:</strong> STF-restaurang med enklare mat. Duger men inte lika imponerande som Grinda. Kiosken håller basutbudet.</li>
+<li><strong>Vinnare:</strong> Grinda – tydligt bättre matupplevelse</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Natur och aktiviteter</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Grinda:</strong> Sandstrand, klippbad, markerade vandringsstigar, kajakhyrning. Mer tillgänglig och barnvänlig natur.</li>
+<li><strong>Finnhamn:</strong> Mer vild och orörd natur, bättre för den som vill ha riktig skärgårdskänsla. Fantastisk naturhamn. Möjlighet att vada till grannöar vid lågvatten.</li>
+<li><strong>Vinnare:</strong> Finnhamn för vildmarkskänsla, Grinda för barnfamiljer</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vilken ö passar vem?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Välj Grinda om:</strong> du har barn, vill ha god restaurangmat, föredrar kortare båtresa, eller är nybörjare i skärgård</li>
+<li><strong>Välj Finnhamn om:</strong> du söker mer äventyr, reser med begränsad budget, trivs med vandrarhemsatmosfär, eller vill ha mer avskildhet och vildmark</li>
+<li><strong>Välj båda om:</strong> du har mer tid – de kompletterar varandra perfekt på en fleröarstur</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:08px;margin-top:24px">
+<strong style="color:var(--sea)">Sammanfattning:</strong>
+<p style="margin:8px 0 0;font-size:14px">Grinda vinner på komfort, mat och tillgänglighet. Finnhamn vinner på äkthet, naturupplevelse och pris. De flesta som åkt till båda säger att Finnhamn gav den starkare känslan – men att Grinda var enklare att njuta av. Rätt val beror helt på vad du söker.</p>
+</div>
+`,
+
+    'ingmarso-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Ingmarsö – bilfri ö med riktigt skärgårdsliv</h2>
+<p>Ingmarsö är en av de sista genuint bilfria öarna i Stockholms norra skärgård med en liten fast befolkning och ett skärgårdsliv som faktiskt lever. Inga bilar, inga affärskedjor, inga lyxspa. Bara natur, stiltje och det lugn som bara öar som inte hunnit bli turistattraktioner kan erbjuda.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Ingmarsö</h3>
+<p>Ingmarsö nås med Waxholmsbolagets linje 80 från Strömkajen i Stockholm. Linjen stannar på Ingmarsö på vägen mot Finnhamn och Arholma.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Waxholmsbolaget linje 80, Strömkajen–Ingmarsö: ca 2 h 30 min</li>
+<li>Avgångar: 1–2 per dag sommartid. Kontrollera tidtabellen noggrant.</li>
+<li>Biljett: ca 190–210 kr enkel resa</li>
+<li>Inga bilar kan medtas – Ingmarsö är bilfri ö</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Ingmarsö?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vandring:</strong> Rund vandring längs kusten, ca 8–10 km. Passerar klippstränder och skogspartier med vyer mot öppet hav</li>
+<li><strong>Bad:</strong> Klippbad längs östra sidan. Vattnet är kallare i norra skärgården men kristallklart</li>
+<li><strong>Naturupplevelse:</strong> Ön ingår i naturreservat. Rik fågellivet – havsörn ses regelbundet</li>
+<li><strong>Stiltje:</strong> Inga bilar, inga köer. Ingmarsö ger en känsla av verklig avskilning som de mer kända öarna inte kan matcha</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende och mat</h3>
+<p>Ingmarsö har minimal turistservice – ingen restaurang öppen för drop-in och ingen affär. Ta med all mat och dryck hemifrån. Stugor finns via privata uthyrare (sök Ingmarsö stuga). Tältning med allemansrätten fungerar men välj plats med hänsyn till privat mark.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Perfekt för:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ingmarsö passar den som vill ha äkta skärgård utan att spendera pengar på restauranger. Ta matsäck, bad och bok. Ön belönar den som tar sig hit och orkar gå bort från bryggan.</p>
+</div>
+`,
+
+    'arholma-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Arholma – norra ytterskärgårdens utpost</h2>
+<p>Arholma är Stockholms skärgårds nordligaste punkt och startpunkten för Stockholm Archipelago Trail. Ön ligger ca 90 km nordost om Stockholm och är känd bland vandrare, kajakpaddlare och segelentusiaster som söker äkta ytterskärgård. Det är en lång resa att ta sig hit – och det är exakt det som gör det värt det.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Arholma</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Alternativ 1 – Norrtälje + landstransport:</strong> Buss 676 från Stockholm till Norrtälje (ca 1 h 15 min). Därifrån regional buss mot Väddö, sedan lokalbåt till Arholma. Total restid ca 3–4 h.</li>
+<li><strong>Alternativ 2 – Waxholmsbolaget sommarlinje:</strong> Sommartid (juni–aug) kan direktbåt från Strömkajen, linje 80, gå mot Arholma via norra linjen. Kontrollera om linjen är aktiv aktuellt år. Ca 4 h.</li>
+<li><strong>Alternativ 3 – Bil till Simpnäs + lokalbåt:</strong> Kör till Simpnäs norr om Väddö, ta lokalbåten till Arholma. Ca 2 h totalt.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Stockholm Archipelago Trail – startpunkten</h3>
+<p>Arholma är nordstartpunkten för Stockholm Archipelago Trail (SAT) – den 270 km långa vandringsleden som passerar 20 öar och slutar vid Landsort i söder. Att starta på Arholma och vandra söderut är ett av Skandinaviens mest unika fleröarsprojekt.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Hela leden: 270 km, 20 öar, ca 3–4 veckors vandring</li>
+<li>Arholma–Simpnäs: första etappen, ca 15 km</li>
+<li>Karta och etappinfo på stockholmarchipelagotrail.com</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vad gör du på Arholma?</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vandring:</strong> Markerade leder runt ön, ca 10–12 km. Utsiktsplatser mot norra skärgård och Ålandshav</li>
+<li><strong>Havskajakpaddling:</strong> Utgångspunkt för paddling norrut mot Singö och Gräsö</li>
+<li><strong>Bad:</strong> Klippbad längs västra sidan, sandstrand på östra sidan (Arholma Norra)</li>
+<li><strong>Fisk:</strong> Arholma har ett aktivt fiskesamhälle. Färsk fisk kan köpas direkt sommartid</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
+<p>Arholma Vandrarhem (STF) erbjuder boende för vandrare och besökare. Boka via stf.se. En liten kiosk och sommaröppet café finns vid bryggan. Ta med det mesta hemifrån.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Reseplaneringstips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Planera Arholma-resan som ett projekt, inte en spontan utflykt. Kontrollera båt- och busstider en vecka i förväg, boka vandrarhem och ta med mer mat än du tror. Belöningen – att stå på Arholmas klippor med ytterskärgård i alla riktningar – är helt värd ansträngningen.</p>
+</div>
+`,
+
+    'hoga-kusten-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Höga Kusten – guide till UNESCO-världsarvet</h2>
+<p>Höga Kusten är ett av Skandinaviens mest dramatiska kustlandskap och UNESCO-världsarv sedan 2000. Det unika är landhöjningen: efter att inlandsisen smält har landet rest sig upp till 285 meter – mer än någon annan plats på jordklotet. Resultatet är en brant, fjordliknande kust med dramatiska klippor, djupa fjärdar och en skärgård med en storslagenhet som saknar motstycke längs Sveriges kust.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig dit</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bil via E4:</strong> Ca 5 h från Stockholm, ca 3 h från Sundsvall. Av vid Härnösand eller Kramfors.</li>
+<li><strong>Tåg:</strong> SJ till Härnösand (Botniabanan). Lokalbuss till Skuleskogen och Höga Kustenbron.</li>
+<li><strong>Flyg:</strong> Flyg till Sundsvall-Timrå (45 min från Stockholm), sedan bil ca 1 h.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Skuleskogen nationalpark</h3>
+<p>Skuleskogen är Höga Kustens nationalpark och en av Skandinaviens vackraste vandringsdestinationer. Urskog klättrar längs landhöjda klippor med utsikter mot fjärdar och öar.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Slåttdalskrevan:</strong> Ca 200 m lång och 40 m djup klippspricka – nationalparkens mest fotograferade naturformation</li>
+<li><strong>Naturum Skuleskogen:</strong> Besökscentrum med info om geologi och fauna</li>
+<li><strong>Vandringsleder:</strong> Allt från 2-timmarsrundor till Höga Kustenleden (130 km)</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Höga Kustenbron</h3>
+<p>Höga Kustenbron (1 867 m) var vid invigningen 1997 världens längsta hängbro. Den sträcker sig över Ångermanälven vid Veda söder om Härnösand. Spektakulär utsikt och en sevärhet i sig.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Höga Kustenleden</h3>
+<p>130 km lång vandringsledsom sträcker sig längs kusten, indelad i 13 etapper. Ca 7–10 dagars vandring i sin helhet. STF-stugor längs leden, ca 200–350 kr/natt. Bästa säsong: juli–september.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bäst med bil:</strong>
+<p style="margin:8px 0 0;font-size:14px">Höga Kusten är svårt att utforska utan bil – sevärdheterna är utspridda längs en lång kuststräcka. Planera minst 3 dagar. En dag räcker inte för att förstå varför UNESCO utsåg platsen till världsarv.</p>
+</div>
+`,
+
+    'fjallbacka-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Fjällbacka – klippornas stad på västkusten</h2>
+<p>Fjällbacka är en av Sveriges mest karismatiska kuststäder – ett kompakt samhälle klämt mellan havet och dramatiska granitklippor längs Bohusläns kust. Känd som Camilla Läckbergs hemort och platsen där Ingrid Bergman tillbringade sina somrar. Men Fjällbacka är mer än litterär kuliss – det är en av Bohusläns vackraste hamnstäder.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Fjällbacka</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bil:</strong> E6 mot Göteborg, av vid Tanumshede mot Fjällbacka. Ca 3 h från Göteborg, ca 5 h från Stockholm.</li>
+<li><strong>Tåg + buss:</strong> Tåg till Göteborg (ca 3 h), sedan Västtrafik-buss mot Tanumshede och Fjällbacka. Total tid ca 4 h 30 min.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kungsklyftan</h3>
+<p>Kungsklyftan är Fjällbackas mest fotograferade plats – en djup spricka i granitberget rätt i stadens centrum, ca 30 m djup och 2 m bred på smalaste stället. Oscar II besökte platsen 1887. Utsikten uppifrån ger en av Bohusläns bästa utblickar mot hamn och hav.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ingrid Bergman-torget och Camilla Läckberg</h3>
+<p>Stortorget heter officiellt Ingrid Bergmans Torg – ett hyllningstorg till Hollywood-legenden som hade sommarhem på ön Dannholmen utanför Fjällbacka. Camilla Läckbergs kriminalromaner utspelar sig här, och guidade Fjällbacka-vandringar baserade på böckerna arrangeras sommartid.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Mat och sjömat</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Räkbåtarna vid hamnen:</strong> Köp nyfångad räka direkt från fiskebåtarna sommartid</li>
+<li><strong>Fjällbacka Värdshus:</strong> Klassisk krog vid hamnen med sjömat och husmanskost</li>
+<li><strong>Hummerpremiären i september:</strong> Fjällbacka är ett av de bästa ställena att fira hummerpremiär</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa tid att besöka:</strong>
+<p style="margin:8px 0 0;font-size:14px">Fjällbacka är superfolkfyllt i juli. Maj, juni och september är bättre – restaurangerna är öppna och du slipper trängsel i Kungsklyftan. Hummerpremiären i september är ett skäl i sig att besöka höst.</p>
+</div>
+`,
+
+    'lysekil-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Lysekil – Havets Hus och klipporna</h2>
+<p>Lysekil är en av Bohusläns viktigaste kuststäder med genuint sjöstadskaraktär, ett av Skandinaviens bästa akvarier och ett omland av klippöar och fjordar. Gullmarns fjord – Sveriges djupaste havsfjord – skapar ett unikt marint ekosystem som Havets Hus gör tillgängligt för alla.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Lysekil</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bil:</strong> E6 mot Göteborg, av vid Munkedal mot Lysekil. Ca 1 h 30 min från Göteborg, ca 4 h från Stockholm.</li>
+<li><strong>Tåg + buss:</strong> Tåg till Göteborg, sedan Västtrafik-buss mot Lysekil (ca 2 h 30 min buss).</li>
+<li><strong>Bilfärja Lysekil–Fiskebäckskil:</strong> 5 min, mycket frekvent. Bra för att utforska Skaftö.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Havets Hus</h3>
+<p>Havets Hus är ett av Skandinaviens bästa havscentrum. Exponaten fokuserar på Bohusläns marina liv – torskar, rockor, hummer, sälar och djupseas organismer från Gullmarns fjord visas i storskaliga akvarium.</p>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Öppet dagligen under sommarsäsongen</li>
+<li>Entré: ca 175 kr vuxen, 100 kr barn</li>
+<li>Sälfodring: dagliga utfodringsshower sommarsäsong</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Klippbad och natur</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Pinneviksklippan:</strong> Populäraste klippbadet nära centrum. Hoppa från klipporna.</li>
+<li><strong>Stångehuvud:</strong> Naturreservat på halvöns norra udde med spektakulär klippmiljö</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kombinera med:</strong>
+<p style="margin:8px 0 0;font-size:14px">Lysekil och Smögen är ca 30 min bort med bil. Kombinera ett Lysekil-besök (Havets Hus + klippbad) med Smögens brygga och räksmörgås samma dag. Eller lägg till Fjällbacka (1 h norr) för en riktig bohuslänsrunda.</p>
+</div>
+`,
+
+    'bornholm-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bornholm från Sverige – guide till den danska klippön</h2>
+<p>Bornholm är Danmarks sydligaste ö och en av Skandinaviens bästa cykeldestinationer. Ön kombinerar medeltida rundkyrkor, rökta sillanläggningar, granitklippor och ett klimat som är mildare och solrikare än fastlandssverige. Den nås med färja från Ystad och är en utmärkt semesterdestination utan att flyga.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig dit från Sverige</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Färja Ystad–Rønne (Bornholmslinjen):</strong> 80 min med snabbfärja, ca 5 h 30 min med nattseglingen. Avgår dagligen.</li>
+<li><strong>Ystad med tåg:</strong> Öresundståg Malmö–Ystad ca 1 h. Från Stockholm: X2000 till Malmö (4 h 30 min) + Ystad (1 h).</li>
+<li><strong>Biljett:</strong> Ca 300–600 kr enkel resa per person. Bil tillkommer ca 500–900 kr.</li>
+<li>Boka 4–6 veckor i förväg för julisäsongen.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hammershus och rundkyrkorna</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Hammershus:</strong> Nordeuropas största borgruin, byggd på 1200-talet. Fri entré. Fantastisk utsikt mot havet.</li>
+<li><strong>Rundkyrkorna:</strong> Fyra unika cylindriska kyrkor från 1100-talet. Østerlars (störst), Nylars och Olsker är mest besökta.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Rökt sill och mat</h3>
+<p>Den klassiska bornholmska rätten är Sol over Gudhjem: rökt sill på rågbröd med rå äggula, rädisor och gräslök. Røgerierna (rökerier) i Svaneke, Hasle och Gudhjem är välkända.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Cykla runt Bornholm</h3>
+<p>235 km markerade cykelleder runt hela ön. Komplett runda tar 3–5 dagar. Elcyklar finns i Rønne. Terrängen varierar – platt i söder, kuperat i norr.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta nattfärjan från Ystad och vakna i Rønne på morgonen. Hyr cykel vid hamnen, cykla söderut mot Dueodde (landets finaste sandstrand), middag i Svaneke. En perfekt Bornholm-weekend på två dagar.</p>
+</div>
+`,
+
+    'dalaro-guide': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Dalarö – porten till södra Stockholms skärgård</h2>
+<p>Dalarö är ett av Stockholms skärgårds mest historiska samhällen. Beläget 50 km söder om Stockholm på Haninge-halvön har Dalarö fungerat som infartsport till södra skärgård i hundratals år. Det välbevarade 1700-talstullhuset, en levande hamnmiljö och startpunkt för Ornö- och Utö-turer gör Dalarö värt ett besök i sig.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Dalarö</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Buss:</strong> SL-buss 849 från Handen T-bana (röda linjen) till Dalarö brygga. Ca 40 min. Ingår i SL-zoner.</li>
+<li><strong>Bil:</strong> Motorväg 73 söderut mot Nynäshamn, av vid Haninge mot Dalarö. Ca 45–55 min från Stockholm.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Tullhuset och historien</h3>
+<p>Dalarö Tullhus byggdes på 1600-talet och var aktivt tills 1865. Alla fartyg som passerade in i Stockholms skärgård på södra inloppet var tvungna att angöra här och betala tull. Tullhuset är idag museum och en av södra skärgårdens bäst bevarade historiska byggnader.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Dalarö som startpunkt för skärgården</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bilfärja Dalarö–Ornö:</strong> Ca 25 min. Avgår regelbundet. Bilpris ca 150 kr enkel resa.</li>
+<li><strong>Lokalbåt till Utö och Nåttarö:</strong> Via Waxholmsbolagets sydliga linjer</li>
+<li><strong>Parkering:</strong> Avgiftsbelagd vid bryggan sommarsäsong</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kombinera rätt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Dalarö är bäst som kombination med Ornö eller Utö. Ta bussen, fika på Dalarö Skärgårdshotell, ta sedan bilfärjan till Ornö eller pendelbåt mot Utö. Mer effektivt än att starta från Nynäshamn om du åker kollektivt.</p>
+</div>
+`,
+
+    'barplockning-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bärplockning i skärgården – blåbär, lingon och hallon</h2>
+<p>Skärgårdens öar är en av de bäst bevarade bärplockningsplatserna i Stockholmsregionen. Täta bosättningar och stadsbruset har inte nått ut till de yttre öarna, och tallskogarna och ljunghedarna är fullproppade med blåbär, lingon, hallon och smultron under rätt säsong.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Säsong för respektive bär</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Smultron:</strong> Juli–augusti. Längs vägkanter och öppna skogsbryn.</li>
+<li><strong>Hallon:</strong> Juli–september. Öppna hyggen, skogsbryn och klippsidor med sol.</li>
+<li><strong>Blåbär:</strong> Juli–september. Tallskogar med mossig mark. Högsäsong mitten av juli–mitten av augusti.</li>
+<li><strong>Lingon:</strong> Augusti–oktober. Tallmark och hedar. Mognar lite senare och håller sig längre.</li>
+<li><strong>Nypon:</strong> September–november. Häggbuskar längs strandkanter – goda för te och sylt.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa öarna</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Möja:</strong> Tallskogar längs norra och östra sidan. Bra blåbär och lingon.</li>
+<li><strong>Ornö:</strong> Stor ö med varierad skog och lite besökstryck. Rik på alla vanliga bär.</li>
+<li><strong>Nåttarö:</strong> Tallskogen nära campingplatsen är känd för blåbär och lingon.</li>
+<li><strong>Finnhamn:</strong> Skog och hedar på norra sidan. Bra hallon längs skogsstigar.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och etik</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Bärplockning är alltid tillåtet med allemansrätten – på alla marker, även privat</li>
+<li>I naturreservat kan det finnas begränsningar – kontrollera lokala regler</li>
+<li>Använd korg, inte plastpåse – bären behöver andas</li>
+<li>Ta med fästingspray och kontrollera kroppen efteråt</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kombination att prova:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja, hyr cykel, cykla till norra skogen och plocka blåbär, lunch på krogen, kvällsbåten hem med en full korg. En sommardag som inte kostar mer än båtbiljetten.</p>
+</div>
+`,
+
+    'solnedgang-skargarden': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Bästa solnedgångarna i Stockholms skärgård</h2>
+<p>Stockholms skärgård bjuder på några av Skandinaviens vackraste solnedgångar. Det unika är kombinationen: öppet hav mot väster, klippor att sitta på och ett vattenlandskap som speglar solens färger i alla riktningar. Men alla öar är inte lika bra – här är platserna med det bästa ljuset.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa platserna</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">1. Sandhamn – södra udden mot Kanholmsfjärden</h4>
+<p>Gå söder från Sandhamns by, ca 20 min, till klipporna mot Kanholmsfjärden. Fri horisont, ytterskärgård och ett ljus som stiger ur vattnet.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">2. Utö – klipporna mot Mysingen</h4>
+<p>Utös västra kust mot Mysingen har öppen horisont mot sydväst. Gå mot Utö fyr och hitta en plats med fri vy. Ljuset reflekteras mot vattnet och ger ett guldorange landskap.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">3. Landsort – öppet Östersjö</h4>
+<p>Skärgårdens sydligaste utpost och ytterskärgårdens råaste horisont. Klipporna runt den gamla fyren erbjuder solnedgång med öppet Östersjö som fond.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:16px 0 8px">4. Ornö – västra kusten</h4>
+<p>Ornös västra kust mot Mysingen ger fin vy med vindskyddade platser – perfekt för picknick och solnedgång utan konkurrens om platserna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa tid på året</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Juni:</strong> Solen går ner ca 22.00–22.30. Fantastiskt kvällsljus men kräver sen båtresa hem.</li>
+<li><strong>Augusti:</strong> Solen börjar gå ner ca 21.30 – bättre för att hinna hem med sista båten.</li>
+<li><strong>September:</strong> Solnedgång ca 19.30–20.00. Luften är klarare, färgerna starkare och öarna tomma.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Fotograferingstips</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Gyllene timmen börjar ca 60 min före solnedgång – det bästa ljuset</li>
+<li>Spegeleffekten på lugnt vatten ger dubblerat ljus – bäst i stiltje</li>
+<li>Ta bilder mot solen med siluetter av klippor och horisont</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Viktigt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Kolla sista båten hem INNAN du hittar din klippa. Det är omöjligt att rycka sig loss under en bra solnedgång. Ha returbiljett och ett alarm satt 30 min före sista avgång.</p>
+</div>
+`,
+
+    'ankra-sova-bat': `
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Ankra och övernatta på båt i skärgården</h2>
+<p>En natt på ankar i en skärgårdshamn är en av de bästa upplevelserna ute i öarna. Tystnaden, vattenrörelsen och känslan av att ligga mitt i naturen är svår att matcha. Men en bra ankarnatt kräver rätt plats, rätt teknik och koll på väder och regler.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Välja rätt naturhamn</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Vindskydd:</strong> Land åt den vindriktning du förväntar dig. Kolla väderprognos för nästa 24 h.</li>
+<li><strong>Djup:</strong> 3–8 m är idealiskt. Sjökortet visar djup och bottentyp.</li>
+<li><strong>Botten:</strong> Lera (m) och sand (s) är bäst för ankaret. Sten ger dåligt grepp.</li>
+<li><strong>Svängrum:</strong> Kätting = 2–3× djupet. Se till att du har svängrum om vinden vrider.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Bästa naturhamnarna i Stockholms skärgård</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li><strong>Bullerö:</strong> Naturreservat i mellanskärgård. Sandlera, vindskydd från sydväst.</li>
+<li><strong>Rödlöga:</strong> Populär naturhamn i norra skärgård. God svängrum och vindskydd från väst.</li>
+<li><strong>Björkskär:</strong> Liten ö i södra ytterskärgård med naturlig hamn i det nordliga sundet.</li>
+<li><strong>Mälsten:</strong> Traditionell naturhamn i sydöstra skärgård, populär bland seglare.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Regler och toalett</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Toalettavfall får INTE tömmas i Stockholms skärgård – använd gästhamnens pumpstationer</li>
+<li>Ankarlykta är obligatorisk vid ankring</li>
+<li>Max 2 nätter på samma plats utan tillstånd</li>
+<li>Kontrollera naturreservatsregler för specifika hamnar</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ankringsteknik – kortfattat</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<li>Gå in mot vinden och sakta ner till stopp</li>
+<li>Fira ankaret, backa och fira kätting (2–3× djupet)</li>
+<li>Lås och ge lite bakframdrift för att sätta ankaret</li>
+<li>Kontrollera position med GPS – sätt ankarvakt vid behov</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Bästa rådet:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ankra tidigt – senast 17.00 – för att hinna testa ankaret och eventuellt flytta om det sitter dåligt. De som ankrar i mörker tar fel platser. En tidig ankomst ger tid att bada, laga mat och uppleva solnedgången lugnt.</p>
+</div>
+`,
+  'grinda-vs-finnhamn': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Grinda och Finnhamn är två av Waxholmsbolagets mest populära resmål i Stockholms skärgård – men de är fundamentalt olika. Den här guiden hjälper dig välja rätt beroende på vad du söker.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grinda – den välordnade familjeön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda ligger i Värmdö skärgård och tar ungefär 2,5 timme från Strömkajen med Waxholmsbolaget. Ön drivs av Grinda Wärdshus som erbjuder alltifrån hotellrum och stugbyar till camping. Det finns en sandstrand vid Lövudden, restaurang med skärgårdsmat, kajak- och kanothyrning samt välmarkerade vandringsstigar.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda passar perfekt för barnfamiljer och par som vill ha komfort utan att köra bil. Det finns sängplatser, mat och aktiviteter på plats – du behöver i princip bara ta med dig själv. Nackdelen är att det kan bli ganska fullsatt under högsäsong, framför allt i juli.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Grinda i korthet:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:1.9">
+<li>Wärdshus med restaurang, övernattning och camping</li>
+<li>Sandstrand vid Lövudden</li>
+<li>Kajak, kanoter och SUP-brädor att hyra</li>
+<li>Välmarkerade leder runt ön (ca 5 km)</li>
+<li>Båt: ca 2,5 h från Strömkajen (Waxholmsbolaget)</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finnhamn – vildmarkskänsla med vandrarhemskomfort</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn ligger i Norrtälje skärgård, norra ytterskärgården, och tar ca 3 timmar från Stockholm. Ön drivs av STF och erbjuder vandrarhem, stugor och campingplatser. Naturen är mer storslagen och ödemark-liknande – Finnhamn är känd för sina branta klipphällar mot öppet hav och sin populära naturhamn för båtar.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Restaurangen på Finnhamn serverar mat under högsäsong, men det är mer av en vandrarhemsstämning än ett wärdshusliv. Öns gäster är ofta vandrare, kajakpaddlare och de som söker ro och utsikt snarare än service. Det finns havsbastu, brygga och fantastisk utsikt mot Söderarm.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Finnhamn i korthet:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:1.9">
+<li>STF vandrarhem, stugor och camping</li>
+<li>Populär naturhamn med bryggor för båtar</li>
+<li>Havsbastu med klipphopp</li>
+<li>Storslagna klippor mot Söderarm och öppet hav</li>
+<li>Båt: ca 3 h från Stockholm (Waxholmsbolaget/Cinderella)</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grinda vs Finnhamn – direkt jämförelse</h2>
+
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-size:15px">
+<thead>
+<tr style="background:var(--sea);color:#fff">
+<th style="padding:12px 16px;text-align:left">Faktor</th>
+<th style="padding:12px 16px;text-align:left">Grinda</th>
+<th style="padding:12px 16px;text-align:left">Finnhamn</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:rgba(10,123,140,0.04)">
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Stämning</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Välordnat, folkligt</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Vildare, mer naturliv</td>
+</tr>
+<tr>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Familjer</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Utmärkt</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Fungerar, men mer avancerat</td>
+</tr>
+<tr style="background:rgba(10,123,140,0.04)">
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Boende</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Hotell, stugor, camping</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Vandrarhem, stugor, camping</td>
+</tr>
+<tr>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Mat</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Wärdshusrestaurang</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Enklare café/kök</td>
+</tr>
+<tr style="background:rgba(10,123,140,0.04)">
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Natur</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Fin, men inre skärgård</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">Dramatisk ytterskärgård</td>
+</tr>
+<tr>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Resetid</strong></td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">~2,5 h</td>
+<td style="padding:10px 16px;border-bottom:1px solid rgba(0,0,0,0.07)">~3 h</td>
+</tr>
+<tr style="background:rgba(10,123,140,0.04)">
+<td style="padding:10px 16px"><strong>Folksamling</strong></td>
+<td style="padding:10px 16px">Hög i juli</td>
+<td style="padding:10px 16px">Lägre, mer avskilt</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Grinda om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Har barn och vill ha service och sandstrand nära till hands</li>
+<li>Vill äta god skärgårdsmat på wärdshus utan att ha med mat</li>
+<li>Föredrar bekvämt boende framför tältupplevelse</li>
+<li>Vill ha en kortare resa och enkel planering</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Finnhamn om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Söker vildare natur och dramatisk ytterskärgård</li>
+<li>Trivs i vandrarhemsatmosfär och vill träffa likasinnade naturälskare</li>
+<li>Tar med båt och vill ligga i en klassisk naturhamn</li>
+<li>Gillar att klättra på klippor och doppa i det öppna havet</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kan man göra båda?</strong>
+<p style="margin:8px 0 0;font-size:14px">Absolut. Med Waxholmsbolagets båtluffarkort kan du besöka båda öarna under samma resa. Många väljer att stanna en natt på Grinda och sedan ta båten vidare norrut till Finnhamn. Det ger den perfekta balansen mellan komfort och vildmark.</p>
 </div>
 `,
   }
