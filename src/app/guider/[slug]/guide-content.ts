@@ -3650,6 +3650,431 @@ export function getGuideContent(slug: string): string {
 </div>
 `,
 
+  // ── Batch E: Barnvänligt-serien ──────────────────────────────────────────────
+  'barnvanliga-oar-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är en av Sveriges bästa barnfamiljedestinationer. Klipphällarna är naturliga lekplatser, vattnet är klart och avstånden mellan orterna är korta. Här är de tio bästa platserna för barnfamiljer längs Bohusläns kust.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">1. Smögen – klippliv för barn</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen är folkligt och lättillgängligt. Smögenbryggan är säker att promenera längs, klipporna runt om har naturliga pooler som värms upp av solen och är perfekta för barn. Glasskiosker och enkla restauranger med barnmenyer finns längs hela bryggan. Parkeringen är begränsad – åk dit tidigt på morgonen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">2. Lysekil – Havets Hus</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havets Hus i Lysekil är Bohusläns bästa aktivitet för barn. Akvarium med hajar, rockor och lokala Västerhavsarter. Barn under 4 år är gratis. Kombinera med bad på Pinneviksbadet, en skyddad sandstrand ett par kilometer utanför centrum. Lysekil nås med Lysekilslinjen från Uddevalla.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">3. Marstrand – fästning och bilfri ö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrands bilfria miljö gör det tryggt för barn att springa fritt. Carlstens fästning med guidade turer är fascinerande för barn 6+. Bryggan och Kungsbackafärjan tillbaka är en del av upplevelsen. Badplatser finns på öns västra sida.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Kosteröarna – Europas rikaste hav</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordkoster och Sydkoster är bilfria och barnvänliga. Kosterfjordens nationalpark erbjuder snorkling med sjöstjärnor och krabbor som fascinerar barn. Cykeluthyrning finns och öarna är lagom stora för en familj att utforska på en dag. Nås med färja från Strömstad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">5. Fjällbacka – kulturupplevelse</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjällbacka är kompakt och lättnavigerat med barn. Kungsklyftan (den smala klippspringan mitt i samhället) är magisk för barn. Glassboden vid kajen är obligatorisk. Badplatser finns strax utanför samhället.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">6–10. Fler barnvänliga platser i Bohuslän</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Grebbestad</strong> – lugnt fiskesamhälle med skyddade vikar för bad</li>
+<li><strong>Grundsund</strong> – pittoreskt fiskeläge med tryggt vatten</li>
+<li><strong>Hamburgsund</strong> – gästhamn med barnvänlig uteservering och klipphällar</li>
+<li><strong>Tjörn</strong> – Nordiska Akvarellmuseet har barnaktiviteter och klippbad</li>
+<li><strong>Orust</strong> – bilfria delar med cykelleder och stränderna vid Ellös</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt för barnfamiljer i Bohuslän:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Västtrafik Sommarkort (barn under 6 gratis, 6–19 halv pris)</li>
+<li>Ta med simväst – klipphällar saknar flytare</li>
+<li>Skor med halkskydd för klipphällarna är ett måste</li>
+<li>Boka boende tidigt – Bohuslän är fullbokat i juli</li>
+</ul>
+</div>
+`,
+
+  'barnfamilj-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är en av Sveriges bästa familjesemesterdestinationer. Långa sandstränder, medeltidsborgar, cykelleder utan trafik och ett sommarklimat som är mildare och torrare än fastlandet. Här är guiden till att planera en perfekt barnfamiljesemester på Gotland.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Gotland passar barnfamiljer</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland har en unik kombination av historia, natur och stränder som gör det till en av Sveriges mest kompletta barnfamiljedestinationer. Visby ringmur är en levande saga för barn, Lummelundagrottan en underjordisk äventyrsupplevelse och Tofta strand en av Sveriges finaste sandstränder. Dessutom: Gotlands sommarklimat är torrare och varmare än Stockholmsregionen, med fler soltimmar per dag.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa aktiviteterna för barn på Gotland</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Lummelundagrottan</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lummelundagrottan norr om Visby är en av Sveriges mest besökta turistattraktioner och med rätta. Guidade turer under jord med stalaktiter och underjordiska sjöar – barn 4+ brukar vara helt fascinerade. Öppen maj–september, boka i förväg under högsäsong.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Visby ringmur och medeltidskvarter</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur är en av Nordens bäst bevarade medeltidsmurer. Promenera längs muren, hitta portar och torn och besök Gotlandsmuseet med sin utmärkta barnsektion om gotländsk historia. Under Medeltidsveckan (slutet av juli) förvandlas hela Visby – fascinerande för barn 5+.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Tofta strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta, 2 mil söder om Visby, är Gotlands bästa familj­strand med grunt vatten långt ut, sanddyner att rulla nerför och serviceanläggningar på plats. Glasskiosk, omklädning och parkering finns. Vattnet är varmare här än på nordöst-kusten tack vare söderläget.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Cykling</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är platt och perfekt för familjecykling. Hyra cyklar med barnstol och trailercyklar finns i Visby. Populärt rundtur: Visby–Tofta (ca 15 km) längs kustnära vägar med minimal biltrafik.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk information</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland nås med Destination Gotlands färja (barn under 6 gratis, 6–15 halv pris). Bil är nödvändigt om du vill utforska hela ön. Boka boende och färjeplats 3–4 månader i förväg för juli. Boende för barnfamiljer: Tofta Strandpensionat, Visby Lägenhetshotell eller stugor via Gotlands Stugservice.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Gotland-tips för barnfamiljer:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Boka färja med bil – kollektivtrafik på ön är begränsad</li>
+<li>Köp gotländskt saffransbröd på bageriet i Visby – barnen älskar det</li>
+<li>Ta med lekhinkar och spadar till Tofta – sanden är perfekt för slott</li>
+<li>Lummelundagrottan är svalare – ta med tröja trots värmen ute</li>
+</ul>
+</div>
+`,
+
+  'barnvanliga-bad-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att bada med barn i skärgården kräver lite mer planering än en vanlig strand. Det handlar om grunt vatten, mjuk botten och inga starka strömmar. Här är de bästa och tryggaste badplatserna för barn i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en badplats barnvänlig?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdens badplatser varierar enormt. Klipphällar med djupt vatten direkt – inte lämpliga för små barn. Grunda sandstränder eller mjukbottnad vikar med gradvis sjunkande djup – perfekta. Det viktigaste att titta efter: gradvist sjunkande djup, skyddad från båttrafik och vågor, och helst sandiga eller grusbotten snarare än hala klippor.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa barnvänliga badplatser</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Lövudden, Grinda</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grindas sandstrand på södra sidan är skärgårdens bästa barnstrand. Grunt vatten som sträcker sig långt ut, mjuk sandbotten och ett lugnt läge skyddat från båttrafik. Grinda Wärdshus finns 200 meter bort med mat, toaletter och kajakhyrning.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Nåttarö strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarös långa sandstrand i södra skärgården är en av de finaste familjestränderna. Grunt, varmt och välsköttat campingområde i anslutning. Perfekt för en hel dag med yngre barn.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fjäderholmarna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarnas badvikar är ett av de enklaste sätten att bada i skärgården med barn – bara 25 minuter från Nybrokajen. Grunda, skyddade vikar med klart vatten. Bra för yngre barn som inte pallar en lång båtresa.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Rindö badplats, Vaxholm</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Rindö intill Vaxholm har en fin kommunal badplats med sandstrand, hopptorn för äldre barn och grunda delar för de yngsta. Lättillgänglig med bil eller pendelbåt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Lådnabadet, Dalarö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lådna nära Dalarö är en skyddad, grund vik med sandbotten och en välskött badplats med brygga, omklädning och parkering. Perfekt dagsutflykt från Stockholm med bil.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Säkerhetstips för bad med barn i skärgården:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Simväst för barn under 8 år – öppet hav saknar flytare</li>
+<li>Kolla djupet innan barnen hoppar – klipphällar sluttar plötsligt</li>
+<li>Håll koll på båttrafik – håll dig i märkta badzoner</li>
+<li>Solkräm faktor 50 – reflektionen från vattnet förstärker solen</li>
+<li>Aldrig bada ensam – skärgårdens strömmar varierar</li>
+</ul>
+</div>
+`,
+
+  'barnvanliga-batresor-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En båtresa är i sig en upplevelse för barn – men rätt val av tur gör skillnaden mellan ett tröttsamt tvång och ett minne för livet. Guide till de bästa och barnvänligaste båtturerna i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en båtresa barnvänlig?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kortare resor är bättre för yngre barn. Under 60 minuter är lagom för barn under 5 år. 6–10-åringar klarar 2-3 timmar utan problem om det händer saker längs vägen. Det viktigaste: välj båtlinjer med stora fönster så barnen kan se öarna passera, undvik de tidiga morgonturerna (barn är inte tåliga) och ta med snacks.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa barnvänliga båtturer</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Nybrokajen–Fjäderholmarna (25 min)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den kortaste och barnvänligaste turen. 25 minuter med Strömma och barnen hinner njuta av utsikten utan att tröttna. På Fjäderholmarna finns piratlekar, djur och restauranger. Perfekt för barn 2–8 år.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Strömkajen–Vaxholm (45 min)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Pendelbåten till Vaxholm är en av skärgårdens mest trafikerade linjer och Waxholmsbolagets moderna fartyg har stora salonger med bra insyn. Barnen ser fästningar, fyrar och öar längs vägen. Vid Vaxholm finns glass, museum och fästning att besöka.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Cinderellabåten – dagskryssning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömmas Cinderellabåt gör dagsturer till Sandhamn och Utö med café och servering ombord. Barnen kan röra sig fritt på däck, titta på öar som glider förbi och äta glass. En av de roligaste heldagsupplevelserna för barnfamiljer i skärgården.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Strömkajen–Grinda (2,5 h)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lite längre men belönar med Grindas sandstrand och barnvänliga miljö. 2,5 timmar är lagom för barn 6+ som har något att göra ombord. Ta med kort, leksaker och mellanmål för resan ut.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiska tips för båtresa med barn:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Barn under 6 år åker gratis med Waxholmsbolaget</li>
+<li>6–15 år betalar halv taxa</li>
+<li>Ta med sjösjukemedicin för känsliga barn (eller vuxna)</li>
+<li>Sola inte på övre däck utan solskydd – solen reflekterar från vattnet</li>
+<li>Åk tur och retur samma dag för yngre barn – övernattning är krävande</li>
+</ul>
+</div>
+`,
+
+  'barnvanliga-restauranger-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att äta ute med barn i skärgården kan vara en utmaning – men det finns restauranger som verkligen välkomnar familjer med barnmenyer, höga stolar och gott tålamod. Här är de bästa barnvänliga matställena i skärgården.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en restaurang barnvänlig?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tre saker avgör: barnmeny (med rätter som barn faktiskt vill äta), tillgång på höga stolar, och uteplats där barn kan leka eller röra sig utan att störa andra gäster. Bonus om det finns aktiviteter för barn, ritpapper eller liknande.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa barnvänliga restaurangerna</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grinda Wärdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus är skärgårdens mest barnvänliga restaurang. Barnmeny med pannkakor och pasta, höga stolar på plats och en stor uteplats omgiven av gräsmatta där barn kan springa fritt. Djuren på ön (höns, kor) ger extra underhållning. Öppet hela sommaren.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Utö Värdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus har en väldig uteplats med utsikt mot hamnen och en barnmeny som faktiskt håller klass. Personalen är van vid barnfamiljer. Helgluncher med buffé är bra för familjer eftersom barnen kan ta vad de vill.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Fjäderholmarnas Krog</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna har ett heltäckande matutbud och deras restaurang har barnmeny med fisk och chips och enkla barnrätter. Uteserveringen är stor och trygg, och den korta båtresan dit (25 min) är perfekt för yngre barn.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Sandhamns Värdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lite dyrare men välkomnar barnfamiljer med separat barnmeny och uteservering nära bryggan. Barnen kan se båtar komma och gå medan de äter – underhållning ingår automatiskt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Alternativet – picknick</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det ärligaste barnvänliga alternativet i skärgården är picknick. Köp in mat och dryck hemma, ta med termos och ät på en klippa eller strand. Barn äter ofta bättre utomhus och slipper sitta still på en stol. Spara restaurangbesöket till kvällsmaten.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka bord i förväg under högsäsong – skärgårdsrestaurangerna är små och fulltecknade snabbt. Ring direkt till restaurangen, de flesta tar inte online-bokningar. Kom tidigt (11.30–12.00) för lunchen – kön till de populäraste ställena är lång på helgmiddagarna.</p>
+</div>
+`,
+
+  'barnvanliga-aktiviteter-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården är ett naturligt äventyrsland för barn. Klipphällar att utforska, djur att hitta under stenar, kajaker att paddla och naturupplevelser man aldrig glömmer. Här är 20 aktiviteter för barn i alla åldrar i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utomhusäventyr (alla åldrar)</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Klippklättring</strong> – de gneis-klipporna är perfekta för klättring utan utrustning</li>
+<li><strong>Stensökning</strong> – hitta den vackraste stenen, plattaste stenen, konstigaste stenen</li>
+<li><strong>Krabbfångst</strong> – snöre, lite bröd och ett hink. Krabbar finns under varje sten</li>
+<li><strong>Sandslottsbygge</strong> – Grinda och Nåttarö har sandstränder</li>
+<li><strong>Naturpromenad</strong> – hitta svamp, insekter och fågelbon</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vattenaktiviteter</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Barnkajak</strong> – Grinda, Finnhamn och Utö erbjuder kajaker för barn 5+</li>
+<li><strong>SUP-paddling</strong> – stabila brädor passar äldre barn 10+ med vuxen nära</li>
+<li><strong>Snorkling i grund vik</strong> – mask och snorkel räcker i klara skärgårdsvikar</li>
+<li><strong>Klipphopp</strong> – hitta en låg klippa (1–2 m) med djupt vatten, barn älskar det</li>
+<li><strong>Fiske från brygga</strong> – abborre och mört tar betet, roligt för barn 4+</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Organiserade aktiviteter</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Guidad naturtur</strong> – arrangeras av Grinda och Finnhamn under sommaren</li>
+<li><strong>Kajakskola för barn</strong> – finns på Grinda och Björkö</li>
+<li><strong>Vaxholms fästning</strong> – guidade turer i fästningen, historia och militärliv</li>
+<li><strong>Fjäderholmarnas pirataktiviteter</strong> – piratskepp och äventyrsmiljö</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kreativa och lärorika aktiviteter</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Naturalbum</strong> – samla blad, fjädrar och snäckor i ett häfte</li>
+<li><strong>Fågelskådning</strong> – ta med kikare och hitta ejder, skärpiplärka och havstrut</li>
+<li><strong>Sjöstjärnor och sjöborrar</strong> – se och lär om livet i tidvattnet</li>
+<li><strong>Solnedgångspromenad</strong> – barn som ser sin första skärgårdssolnedgång glömmer det aldrig</li>
+<li><strong>Morgondopp</strong> – instifta traditionen med dopp klockan 7 på morgonen</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Packlistan för barn i skärgården:</strong>
+<p style="margin:8px 0 0;font-size:14px">Simväst, solkräm, halkfria skor för klipphällar, myggolja (myggen kan vara intensiva efter solnedgången), snöre och brödbitar för krabbfångst, termos med varm dricka för kvällarna och ett litet nät för djurjakten vid vattenlinjen.</p>
+</div>
+`,
+
+  // ── Batch E: Bad-serien ────────────────────────────────────────────────────────
+  'basta-badplatser-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohusläns klippkust erbjuder Sveriges mest dramatiska badupplevelser. Gneisklippor som sluttats av havet under tusentals år, kristallklart Västerhav och solvarma hällar att torka på. Här är de 15 bästa badplatserna längs Bohusläns kust.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör Bohusläns badplatser unika?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Västerhavet är kallare än Östersjön (ca 18–20°C i juli mot 22°C i Stockholms skärgård) men renare och klarare. Salthaltens påverkan gör att alger och grumligt vatten är sällsynt. Klipphällarna värms upp av solen och håller värmen länge efter solnedgången – perfekt för kvällsdopp.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Topp 15 badplatser i Bohuslän</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">1. Ramsvikslandet, Sotenäset</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ramsvikslandet är ett naturreservat med urklippta klippbad och naturpooler. En av Bohusläns mest dramatiska miljöer – öppet hav, klippor och tystnad. Nås via vandring (ca 4 km) från parkeringen, vilket håller folkmassan nere.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">2. Smögen klipphällar</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna runt Smögen är lätta att nå och populära med rätta. Naturliga pooler som fylls med Västerhavet i vågsvallet, djupare delar för hopp och stora hällar att sola på. Kom tidigt under Juli.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">3. Pinneviksbadet, Lysekil</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lysekils mest barnvänliga badplats med sandstrand, grunt vatten och bra service. Enkelt nå med bil eller buss från centrum.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">4. Stångehuvud, Lysekil</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klippudde med öppet hav mot Skagerrak. Dramatisk natur och djupt, klart vatten. Perfekt för erfarna simare och de som vill ha ett mer äventyrligt bad.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">5. Tjurpannan, Resö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av Bohusläns bäst bevarade badhemligheter. Naturreservat med klipphällar, naturliga pooler och Bohusläns klaraste vatten. Rätt svår att nå utan bil men belönar de som tar sig dit.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">6–15. Fler badplatser</h3>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Nordkoster</strong> – klippbad med utsikt mot Norska havet</li>
+<li><strong>Sydkoster</strong> – sandstränder och grunda vikar för familjer</li>
+<li><strong>Marstrand klipphällar</strong> – välbesökt men utsikten mot hamnen är oslagbar</li>
+<li><strong>Käringön</strong> – fridfull ö med klipphällar och naturhamn</li>
+<li><strong>Skärhamn, Tjörn</strong> – kommunal badplats med hopptorn och brygga</li>
+<li><strong>Hälleviksstrand, Orust</strong> – populär sandstrand med service</li>
+<li><strong>Fiskebäckskil</strong> – pittoreskt fiskeläge med klippbad</li>
+<li><strong>Grebbestad klipphällar</strong> – lokalt favorit utanför turistströmmarna</li>
+<li><strong>Hamburgsund</strong> – skyddad vik med familjebad</li>
+<li><strong>Fjällbacka klipphällar</strong> – badliv runt Ingrid Bergmans hemort</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Badtips för Bohuslän:</strong>
+<p style="margin:8px 0 0;font-size:14px">Halkfria skor är ett måste på Bohusläns klipphällar – alger gör dem extremt hala. Vattentemperaturen är ca 18–20°C i juli och sjunker till 15–16°C i september. Ta med neoprenskor för sensommar. De bästa dagarna är klara dagar med måttlig nordlig vind – vattnet är som klarast.</p>
+</div>
+`,
+
+  'basta-badplatser-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland har Sveriges mest underskattade stränder. Kalkstensformationer, kristallklart Östersjövatten och en säsong som sträcker sig från juni till september. Guide till de 12 bästa badplatserna på Sveriges sommarö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gotlands stränder – vad gör dem unika</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands stränder är unika i Sverige. Kalkstensraukar (naturliga skulpturer formade av havet), vita sandstränder och ett grundt Östersjö som värms snabbt till 22–24°C i juli. Gotland har fler soltimmar per år än de flesta andra regioner i Sverige, vilket gör att säsongen är lång.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De 12 bästa badplatserna</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">1. Tofta strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta är Gotlands folkligaste och bästa familjestrand. Lång sandstrand, grunt vatten, sanddyner och full service. Vattnet är varmt tack vare sydläget. Populärt – kom tidigt under juli.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">2. Ekeviken, Fårö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ekeviken på Fårö är en av Gotlands vackraste stränder med naturliga raukar i vattnet och kristallklart hav. Lite svår att nå (färja till Fårö, sedan bil), men belönar med en av öns finaste strandupplevelser.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">3. Sudersand, Fårö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös mest kända strand – en bred, lång sandstrand mot öppet Östersjön. Känd för sin naturliga skönhet och det klara blåa vattnet. Populär bland fotointresserade och de som söker naturupplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">4. Gnisvärd</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gnisvärd söder om Tofta har kalkstensraukar direkt i vattnet och ett pittoreskt fiskeläge. Klarare och lugnare än Tofta, perfekt för snorkling bland raukarna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">5. Ljugarn östkust</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ljugarn på östkusten är ett charmigt badsamhälle med sandstrand, brygga och goda restauranger i närheten. Vattnet är varmare på östkusten tidigt på säsongen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">6–12. Fler gotländska badplatser</h3>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Burgsviken</strong> – grund och varm lagun, perfekt för barn</li>
+<li><strong>Närsholmen</strong> – vild sydspets med raukar och klart vatten</li>
+<li><strong>Herrvik</strong> – litet fiskeläge med naturlig hamn och klart vatten</li>
+<li><strong>Kappelshamn</strong> – norra Gotland, lugnt med brygga och cafér</li>
+<li><strong>Visby Norrstrand</strong> – stadsnära strand med utsikt mot ringmuren</li>
+<li><strong>Snäckgärdet</strong> – populärt lokalt bad strax norr om Visby</li>
+<li><strong>Fårö klippstränder</strong> – klippor och raukar längs Fårös nordkust</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Gotland bad-tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Gotlands vattentemperatur toppar i slutet av juli och tidigt i augusti (22–24°C). September är faktiskt en utmärkt badmånad – vattnet fortfarande varmt, stränderna tomma. Ta med snorkelutrustning till Gnisvärd – det är en av Östersjöns tydligaste badplatser med raukar under vatten.</p>
+</div>
+`,
+
+  'klippbad-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Klippbad är skärgårdslivets kärna. Att sitta på en gneis-häll som värms av solen, hoppa i det klara vattnet och klättra upp igen – det är en upplevelse som inte kan ersättas. Guide till de bästa klippbadsplatserna i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du söker i ett bra klippbad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det perfekta klippbadet har: klippor som sluttade gradvis ner i vattnet (inte brant stup direkt), tillräckligt djupt vatten för hopp (minst 2 meter under hopp­platsen), södervända lägen som får mest sol och skydd från vind, och klart vatten utan alger. De bästa klippbaden i skärgården hittas på yttre öarna mot öppet hav.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa klippbaden i skärgården</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn – Trouville-klipporna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna bakom Trouville-stranden på Sandhamn är skärgårdens mest välkända klippbad. Söderläge, djupt vatten och en känsla av öppenhet mot havet. Populärt och välbesökt – kom tidigt på morgonen för bästa upplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Landsort – yttersta spetsen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Landsort är skärgårdens sydligaste utpost och klipporna här ger en känsla av verklig ytterskärgård. Klart vatten, djup direkt och en fyrkänsla som är svår att hitta inne i skärgården. Nås med Waxholmsbolaget.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Arholma – norra ytterskärgården</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholmas klipphällar mot Ålands hav är dramatiska och vackra. Ytterskärgårdsluft, klart vatten och en av norras klippbadsplatser. Lite längre åkväg men belönar med genuint skärgårdsliv.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nåttarö – södra skärgårdens pärla</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö kombinerar sandstrand med klippor och ger det bästa av två världar. Klipporna på öns västra sida mot öppet hav är solvärmda och omgivna av klart vatten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Finnhamn – ytterskärgårdens klippor</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamns dramatiska klipphällar mot Söderarm är ikoniska. Det finns naturliga hopphällar på 2–4 meters höjd med djupt vatten under – ett av skärgårdens mest uppskattade klippbad för erfarna simmare.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Säkerhetstips för klippbad:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Kontrollera alltid djupet vid hopphällen innan du hoppar</li>
+<li>Hoppa aldrig i okänt vatten – stenar kan ligga under ytan</li>
+<li>Halkfria badtofflor är värdefulla på alger-täckta klipphällar</li>
+<li>Bada aldrig ensam på avlägsna klipphällar</li>
+<li>Kontrollera väder – klippbad i hög sjögång är farligt</li>
+</ul>
+</div>
+`,
+
+  'sandstrand-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är mest känd för sina gneisklippor – men det finns sandstränder. De är sällsynta och värdefulla, och de som finns är populära med rätta. Här är en komplett guide till alla sandstränder i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför sandstränder är sällsynta i skärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholms skärgårds berggrund består av gneis och granit – hård berggrund som ger klippor, inte sand. Sand uppstår när berggrunden eroderas till finkornigt material och sedimenteras i grunda vikar. Det sker i begränsad omfattning i skärgården, vilket gör sandbottnade stränder ovanliga och uppskattade.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Alla sandstränder i skärgården</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Lövudden, Grinda</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grindas sandstrand på södra sidan är skärgårdens mest välkända och mest välskött sandstrand. Mjuk sand, grunt vatten och Grinda Wärdshus 200 meter bort. Populärt under högsäsong – ta morgonbåten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Nåttarö strand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nåttarö i södra skärgården har den längsta sandstranden i Stockholms skärgård. Lång, vid och naturlig med campingområde i anslutning. Perfekt för familjer med barn.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Långa bryggan, Utö</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös sandstrand vid Långa bryggan är välbesökt men vacker. Kombinera med Utö Värdshus havsbastu och cykelturen runt ön. Gratis att besöka, nås med Waxholmsbolaget.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Trouville, Sandhamn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Trouville är Sandhamns berömda strand – inte tekniskt en sandstrand utan mer av en sandiga klippstrand, men omtyckt för sin stämning och utsikt mot öppet hav.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Björkö strand, Mälaren</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Om du är villig att byta saltvatten mot sötvatten: Björkös sandstrand i Mälaren är en av Stockholmsregionens finaste. Varmare vatten än i skärgården och vida sandstränder. Nås med båt från Köpingsvik.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Sandstränderna i skärgården är populära och kan bli överfulla under högsäsongshelger. Prova att besöka en tisdag eller onsdag – stränderna är nästan tomma och upplevelsen är mycket bättre. Alternativet är att ta morgonbåten och vara på plats innan 10.00.</p>
+</div>
+`,
+
+  'hemliga-badplatser-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">De bästa badplatserna i skärgården är de som inte finns på Google Maps. Ostörda klipphällar, naturliga pooler och vikar som bara de som har paddlat dit känner till. Guide till skärgårdens dolda pärlor.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför hemliga badplatser finns</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholms skärgård har 30 000 öar, kobbar och skär. De flesta har aldrig fått ett officiellt namn och syns inte på turistkartor. Att hitta sin egna plats i skärgården är en del av kulturen – och en av de saker som gör upplevelsen personlig och minnesvärd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du hittar dina egna hemliga platser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det bästa sättet att hitta ostörda badplatser är att ha egna eller hyra en kajak eller liten motorbåt och utforska kobbar och skär som inte nås med reguljär båttrafik. De yttre öarna har alltid platser som turisterna aldrig hittar – gå bortom den markerade stigen, runda udden och leta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips på typer av platser att leta efter</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Naturliga havspooler</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havspooler bildas när klipphällar skapar ett avskärmat område nära havet. Vattnet in och hav kommunicerar vid högtide och stormväder, men annars är det en skyddad liten pool. De är vanliga i ytterskärgården och är ofta solvarma och lugna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Norrsidorna på öarna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla går till söder- och väst-sidan för solen. Norrsidorna är ofta tomma. Klart vatten, lugnt – och du har klippan för dig själv.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smala sund mellan öar</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smala sund mellan öar skapar naturliga kanaler med ström och klart vatten. Bada i strömmens kyla, klättra upp på kanten och hoppa in igen. Klassisk skärgårdsaktivitet för de som kan simma.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Obebodda kobbar</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av skärgårdens verkliga friheter under allemansrätten: att kliva av på en obebodd kobbe, bada, äta lunch och åka vidare. Med kajak eller liten båt är detta tillgängligt för alla. Respektera fågelskyddsområden (markerade på sjökortet).</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Allemansrätten på sjön:</strong>
+<p style="margin:8px 0 0;font-size:14px">Du får tillfälligt vistas och bada på i princip alla öar och kobbar som inte är privata tomter (normalt 50–70 meter från bebyggelse). Naturreservat kan ha begränsningar – kolla Länsstyrelsens karta. Fågelskyddsområden är förbjudna att beträda under häckningstiden (april–juli).</p>
+</div>
+`,
+
+  'bad-med-bastu-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kombinationen av vedeldad bastu och kallt havsvatten är skärgårdens lyxigaste upplevelse. Kroppen bränner i bastuvärmen, havet kyler ner och sedan värms du upp igen – om och om igen. Guide till de bästa platserna för bad och bastu i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför bastu och havsvatten hör ihop</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kontrasten mellan bastuvärme (70–90°C) och havsvatten (18–22°C i sommaren) ger en kraftfull fysiologisk upplevelse. Blodkärlen vidgas i bastun och drar ihop sig snabbt i det kalla vattnet. Kroppen frisätter endorfiner och du mår extremt bra efteråt. Det är en tradition med rötter i Finland och Norden som är mer populär än någonsin i skärgården.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa bastuplatserna i skärgården</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö Värdshus havsbastu</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös havsbastu är en av skärgårdens mest välkända. Vedeldad bastu direkt vid vattnet med trappa ner i havet. Boka i förväg på Utö Värdshus hemsida – 2 timmar per session, ca 400–600 kr för 4 personer. Kombinera med Utö Runt-cykelturen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Finnhamn bastu</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamns STF-anläggning har en vedeldad bastu med direktaccess till Söderarms kalla Östersjövatten. Dramatisk miljö med klipphällar och öppet hav. Boka via STF eller i samband med övernattning på vandrarhem.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda Wärdshus bastu</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda har bastu med tillgång till brygga och havsvatten. Bokningsbar för gäster och dag-besökare. Mysig miljö med skog runt om.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Privata flytande bastubåtar</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En ny trend: hyra en flytande bastu som bogseras ut till en ankarplats i skärgården. Konceptet erbjuds av flera aktörer runt Stockholm och Vaxholm. Du väljer din egen vik, badar i havet och äter medhavd mat. Prisnivå 2 000–4 000 kr för grupp om 4–6 per halvdag.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Badtemperaturen under bastusäsongen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bastukombinationen funkar hela säsongen – faktum är att det är bäst i sensommar och höst. September och oktober, när havstemperaturen sjunker till 14–16°C, ger den starkaste kontrast-upplevelsen. Vinterbastuning (med is om det fryser) är för de riktigt tuffa.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Basturegler att känna till:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Börja med kortare bastusessioner (10–15 min) om du är ovan</li>
+<li>Drick vatten mellan sessionerna – bastun dehydrerar</li>
+<li>Undvik alkohol i kombination med bastu – riskabelt</li>
+<li>Gå ner i havet försiktigt första gången – kall chock kan vara kraftfull</li>
+<li>Håll upp bastun varm – lägg på ved var 20:e minut</li>
+</ul>
+</div>
+`,
+
   'juli-gotland-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är Gotlands mest intensiva månad. Medeltidsveckan lockar 40 000 besökare, restaurangerna är fullbokade och Visby ringmur lyser i sommarljuset. Men bortom festligheten finns ett Gotland som är strandernas, rasukarnas och cykelstigarnas ö. Guide till juli på Gotland 2026.</p>
 
