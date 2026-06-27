@@ -4116,6 +4116,844 @@ export function getGuideContent(slug: string): string {
 `,
   }
 
+  // ── Batch F: Beslutsguider ────────────────────────────────────────────────────
+  'uto-vs-sandhamn': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Utö och Sandhamn är Stockholms skärgårds två mest kända öar – men de riktar sig till helt olika typer av besökare. Den här guiden hjälper dig välja rätt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utö – lugnet och naturen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö i södra skärgården är en ö med djup karaktär. Gruvhistoria från 1100-talet, Utö Runt-leden på 18 km, havsbastu, sandstrand och ett värdshus som tar emot gäster med genuint skärgårdsengagemang. Utö är en ö man åker till för att koppla av, röra på sig och uppleva natur. Det finns inte mycket nattliv – och det är poängen.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:16px 0">
+<strong style="color:var(--sea)">Utö i korthet:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:1.9">
+<li>Restid: ca 2,5–3 h från Stockholm (Waxholmsbolaget via Dalarö)</li>
+<li>Boende: Utö Värdshus (hotell, stugor, camping)</li>
+<li>Bäst för: natur, vandring, cykling, havsbastu, par</li>
+<li>Badstrand: Långa bryggan (sand), havsbastubryggan</li>
+<li>Restaurang: Utö Värdshus – god mat, boka i förväg</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sandhamn – seglingen och feststämningen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn är seglarnas ö och en av skärgårdens mest folkrika destinationer under sommaren. Trouville-stranden är ikonisk, Sandhamns Värdshus är välkänt och under Gotland Runt-veckan i juli är ön fylld med segelbåtar och festligheter. Sandhamn är mer intensivt, mer socialt och dyrare – men utsikten mot öppet hav och känslan av riktigt yttre skärgård är svår att slå.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:16px 0">
+<strong style="color:var(--sea)">Sandhamn i korthet:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:1.9">
+<li>Restid: ca 3 h från Stockholm (Cinderellabåten eller Waxholmsbolaget)</li>
+<li>Boende: Sandhamns Värdshus, stugor</li>
+<li>Bäst för: segling, strandliv, socialt umgänge, par utan barn</li>
+<li>Badstrand: Trouville (sandstrand mot öppet hav)</li>
+<li>Restaurang: Sandhamns Värdshus, Seglarhotellet</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Direkt jämförelse</h2>
+<div style="overflow-x:auto;margin:16px 0">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<thead><tr style="background:var(--sea);color:#fff">
+<th style="padding:10px 14px;text-align:left">Faktor</th>
+<th style="padding:10px 14px;text-align:left">Utö</th>
+<th style="padding:10px 14px;text-align:left">Sandhamn</th>
+</tr></thead>
+<tbody>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Stämning</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Lugnt, naturliv</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Socialt, seglarfest</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Barnfamiljer</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Bra</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Fungerar</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Pris</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Högt</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Mycket högt</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Vandring</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Utmärkt (18 km led)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Begränsad</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Havsbastu</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Ja, bokningsbar</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Nej</td></tr>
+<tr><td style="padding:9px 14px"><strong>Folksamling juli</strong></td><td style="padding:9px 14px">Måttlig</td><td style="padding:9px 14px">Hög–mycket hög</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Utö om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vill ha lugn, natur och röra på dig</li>
+<li>Reser med barnfamilj och vill ha sandstrand och cykel</li>
+<li>Älskar havsbastu</li>
+<li>Föredrar att undvika folkmassorna</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Sandhamn om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Är intresserad av segling och seglarstämning</li>
+<li>Vill ha utsikt mot öppet hav och känsla av yttre skärgård</li>
+<li>Söker ett aktivt socialt liv på ön</li>
+<li>Vill bada på Trouville-stranden en sommarkväll</li>
+</ul>
+`,
+
+  'marstrand-vs-smogen': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Marstrand och Smögen är Bohusläns två mest kända sommardestinationer – men de är grundläggande olika. Marstrand är fästning, segling och exklusivitet. Smögen är räkor, klippliv och folkfest. Vilken passar dig?</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Marstrand – fästningsstaden</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrand är en bilfri ö med Carlstens fästning som landmärke. Ön nås med en kort färja från Koön och har ett välordnat centrum med restauranger, gallerier och ett intensivt segelliv under sommaren. Marstrands Regatta och Sweden Match Cup drar världsklass-seglare och publik varje juli. Det är lite mer exklusivt och välordnat – men också med fler regler och tätare befolkat på kajen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Smögen – klippstaden</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen är Bohusläns folkligaste sommarort. Den 300 meter långa träbryggan – Smögenbryggan – är full av turister, räksmörgåskiosker och ett intensivt sommarlivlager. Klipporna runt om är fritt tillgängliga och fullt av badlivet. Smögen är mer öppet, mer rörigt och mer autentiskt Bohuslän än Marstrand – men det kan bli stökigt under högsäsong.</p>
+
+<div style="overflow-x:auto;margin:24px 0">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<thead><tr style="background:var(--sea);color:#fff">
+<th style="padding:10px 14px;text-align:left">Faktor</th>
+<th style="padding:10px 14px;text-align:left">Marstrand</th>
+<th style="padding:10px 14px;text-align:left">Smögen</th>
+</tr></thead>
+<tbody>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Karaktär</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Exklusivt, historiskt</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Folkligt, livligt</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Segling</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Världsklass-regatta</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Fiskebåtar och charter</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Sjömat</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">God restaurangmat</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Räkor och fisk vid bryggan</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Bad</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Klipphällar runt ön</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Naturliga pooler och klippor</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Barnfamiljer</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Bra (bilfri, trygg)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Fungerar (klipphällar)</td></tr>
+<tr><td style="padding:9px 14px"><strong>Restid från Göteborg</strong></td><td style="padding:9px 14px">45 min</td><td style="padding:9px 14px">1,5–2 h</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Marstrand om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Är intresserad av segling och vill se Marstrands Regatta</li>
+<li>Uppskattar historia (Carlstens fästning är fantastisk)</li>
+<li>Föredrar välordnad miljö med bra restauranger</li>
+<li>Reser från Göteborg och vill ha kort restid</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Smögen om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vill äta räksmörgås vid bryggan och bada på klippor</li>
+<li>Söker det folkliga, autentiska Bohuslän</li>
+<li>Gillar att mixas med sommarsverige i en levande miljö</li>
+<li>Vill kombinera med Grebbestad och kräftornas hemort</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kan man göra båda?</strong>
+<p style="margin:8px 0 0;font-size:14px">Absolut – och det är faktiskt det bästa alternativet om du har tid. Marstrand en dag, kör sedan norrut längs kusten via Lysekil och Fjällbacka och avsluta med Smögen. Det ger hela spektret av Bohuslän på en weekend.</p>
+</div>
+`,
+
+  'gotland-vs-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland eller Bohuslän? Det är Sveriges stora sommerfråga. Östersjöns kalkstensö med medeltidsvisby mot Västerhavets dramatiska klippkust. Här är en grundlig jämförelse som hjälper dig välja.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gotland – ön som är en värld för sig</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är unikt i Sverige. Det är en ö stor nog att köra runt på i bil, med sin egen historia, sina egna traditioner och ett sommarklimat som är torrare och varmare än fastlandet. Visby ringmur, raukarnas mystiska formationer, långa sandstränder och en matscen som exploderat de senaste åren gör Gotland till mer av en destination än en utflykt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bohuslän – klippornas och havets kust</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän är en lång kuststräcka, inte en ö. Det är ett landskap av kala klipphällar, små fiskesamhällen och Västerhavet. Smögen, Marstrand, Grebbestad och Kosteröarna är var och en unika platser med egen karaktär. Bohuslän ger mer frihet att utforska – du kan hoppa i bilen och röra dig längs kusten och hitta nya platser varje dag.</p>
+
+<div style="overflow-x:auto;margin:24px 0">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<thead><tr style="background:var(--sea);color:#fff">
+<th style="padding:10px 14px;text-align:left">Faktor</th>
+<th style="padding:10px 14px;text-align:left">Gotland</th>
+<th style="padding:10px 14px;text-align:left">Bohuslän</th>
+</tr></thead>
+<tbody>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Natur</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Raukar, alvar, sandstränder</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Klipphällar, Västerhavet</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Stad</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Visby – medeltidsstad</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Smögen, Marstrand, Lysekil</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Mat</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Gotlandslamm, saffransbröd, vin</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Räkor, hummer, ostron, kräftor</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Transport</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Färja eller flyg (dyrare)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Bil längs E6/E45 (enklare)</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Cykling</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Utmärkt (platt)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Varierande (kuperat)</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Badsäsong</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Juni–september (varmt)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Juli–aug (kallare hav)</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px"><strong>Pris i juli</strong></td><td style="padding:9px 14px">Mycket högt</td><td style="padding:9px 14px">Högt</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Gotland om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vill ha en tydlig destination med stark identitet</li>
+<li>Är intresserad av historia, medeltid och kulturupplevelser</li>
+<li>Vill ha sandstränder och varmt Östersjövatten</li>
+<li>Reser med cykel och vill ha platt terräng</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj Bohuslän om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vill ha klipphällar och Västerhavet</li>
+<li>Planerar att äta sjömat – kräftor, hummer, räkor</li>
+<li>Föredrar att resa med bil och utforska längs en kust</li>
+<li>Åker från Stockholm och vill undvika flygbyte eller lång färja</li>
+</ul>
+`,
+
+  'inre-vs-yttre-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är inte ett enda landskap – det är tre. Inre skärgården är grön och lantlig. Mellanskärgården balanserar tillgänglighet och natur. Yttre skärgården är sten, hav och dramatik. Guide till vilken del som passar din resa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Inre skärgården – grönska och lantlighet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den inre skärgården – Värmdö, Vaxholm, Ekerö – har fortfarande barrskog, ängsmarker och sommarstugor. Öarna är gröna, vattnet lite mörkare (mer sötvatten) och det är lättillgängligt med bil eller pendelbåt. Perfekt för korta utflykter, dag-turer och de som vill ha skärgårdskänsla utan att åka för långt. Nackdelen: det är tätbefolkat och kan kännas mer som förorten på sommaren.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mellanskärgården – den söta mitten</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda, Sandhamn och Möja ligger i mellanskärgården. Det är här du hittar kombination av tillgänglighet (2–3 timmar med Waxholmsbolaget) och riktigt skärgårdsliv. Öarna har service (värdshus, mat, aktiviteter) men ändå riktig naturkänsla. Det är den del som de flesta tänker på när de säger "skärgård".</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Yttre skärgården – sten och öppet hav</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Landsort, Arholma, Finnhamn och Svenska Högarna är yttre skärgården. Här är öarna kala och klippiga, vattnet klart och salthaltigt och himlen vid. Det är den skärgård som påminner om Bohuslän. Liten service, långa restider – men de som åker hit vet vad de söker. Tystnad, dramatik och genuint friluftsliv.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktisk guide:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li><strong>Dagstur:</strong> Inre skärgården eller Fjäderholmarna</li>
+<li><strong>Weekend med service:</strong> Mellanskärgården (Grinda, Sandhamn, Möja)</li>
+<li><strong>Äkta friluftsliv:</strong> Yttre skärgården (Landsort, Arholma, Finnhamn)</li>
+<li><strong>Barnfamilj:</strong> Mellanskärgården med sandstrand (Grinda, Nåttarö)</li>
+<li><strong>Kajak och vandring:</strong> Yttre skärgården med Stockholm Archipelago Trail</li>
+</ul>
+</div>
+`,
+
+  'dagstur-vs-overnight-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Dagstur eller övernattning – det är skärgårdens grundläggande vägval. Båda har sina förtjänster. Den här guiden hjälper dig avgöra vilket som passar din resa, ditt sällskap och din budget.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagsturen – fördelar och nackdelar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En dagstur ger maximal flexibilitet. Du behöver inte boka boende, kan välja ö på morgonen beroende på väder och åker hem till din egen säng på kvällen. Det är billigare och kräver mindre planering. Nackdelen är att du missar det bästa med skärgården – solnedgången, morgondoppet och tystnaden när dagstrips-båten åkt hem.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Övernattningen – upplevelsen som stannar kvar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En övernattning i skärgården är en annan dimension. Efter att dagsbåtarna åkt hem vid 18–19-tiden förändras öarna totalt. Tystnaden, solnedgången över vattnet och morgondoppet i stilla hav – det är vad man minns. Övernattning kostar mer och kräver planering, men erbjuder en upplevelse som en dagstur aldrig kan matcha.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj dagstur om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Reser spontant utan förbokning</li>
+<li>Har begränsad budget</li>
+<li>Reser med yngre barn som sover bättre hemma</li>
+<li>Vill besöka flera öar under en vecka</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Välj övernattning om du…</h2>
+<ul style="font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px">
+<li>Vill uppleva solnedgången och morgondoppet</li>
+<li>Har bokat på ett värdshus eller stuga</li>
+<li>Reser med partner och söker en minnesvärd upplevelse</li>
+<li>Vill ha tid att verkligen utforska en ö ordentligt</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Kompromissen – kvällsbåten:</strong>
+<p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kör kvällsbåtar tillbaka till Stockholm från de flesta populära öar. Det innebär att du kan stanna kvar till solnedgången och ta en sen båt hem. Kontrollera sista avgångstiden innan du åker ut – den varierar per ö och dag.</p>
+</div>
+`,
+
+  'stockholm-vs-bohuslan-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård och Bohuslän är Sveriges två stora skärgårdar – och de är fundamentalt olika. 30 000 öar av gneis mot en lång klippkust vid Västerhavet. Vilken är rätt för dig?</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stockholms skärgård – bredd och djup</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med 30 000 öar, kobbar och skär är Stockholms skärgård världens artrikaste skärgårdslandskap. Gröna inre öar med björkskog övergår i kala yttre ytterskär med öppet Östersjö. Waxholmsbolagets nät av båtlinjer gör det möjligt att utforska utan bil. Det finns öar för varje smak – lugna, livliga, barnvänliga, avskilda. Svagheten: vattnet är lite gråbrunt och inte alltid kristallklart.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bohuslän – klippornas och havets kust</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän är inte 30 000 öar – men det som finns är dramatiskt. Kala gneiis-hällar slipade av havet, Västerhavet klarare och kallare, skaldjur av världsklass och en kustkultur med starka traditioner. Smögen, Marstrand, Fjällbacka och Kosteröarna är var och en starka destinationer. Nackdelen: du behöver bil för att ta dig runt och kollektivtrafiken längs kusten är begränsad.</p>
+
+<div style="overflow-x:auto;margin:24px 0">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+<thead><tr style="background:var(--sea);color:#fff">
+<th style="padding:10px 14px;text-align:left">Faktor</th>
+<th style="padding:10px 14px;text-align:left">Stockholms skärgård</th>
+<th style="padding:10px 14px;text-align:left">Bohuslän</th>
+</tr></thead>
+<tbody>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Öar</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">30 000</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Färre, men dramatiska</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Vatten</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Bräckt, grönbrunt</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Salt, klart, kallare</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Transport</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Utmärkt (Waxholmsbolaget)</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Bil rekommenderas</td></tr>
+<tr><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Sjömat</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Räkor, strömming</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Hummer, kräftor, räkor, ostron</td></tr>
+<tr style="background:rgba(10,123,140,0.04)"><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)"><strong>Utan bil</strong></td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Utmärkt</td><td style="padding:9px 14px;border-bottom:1px solid rgba(0,0,0,0.07)">Svårt</td></tr>
+<tr><td style="padding:9px 14px"><strong>Restid från Stockholm</strong></td><td style="padding:9px 14px">25 min–3 h</td><td style="padding:9px 14px">4–6 h (bil eller tåg)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Svaret:</strong>
+<p style="margin:8px 0 0;font-size:14px">Om du bor i Stockholm och vill ha en enkel utflykt – välj Stockholms skärgård. Om du planerar en veckas semester med bil och vill ha klart vatten och bättre sjömat – välj Bohuslän. Perfekt semesterplan: en vecka i vardera.</p>
+</div>
+`,
+
+  // ── Batch F: Säsongsmotorer ───────────────────────────────────────────────────
+  'sensommar-skargarden-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Sensommaren i skärgården är den bäst bevarade hemligheten i Sverige. Havet är som varmast, folkmassan är borta och ljuset får en gyllene ton som fotografer och romantiker älskar. Guide till augusti och september 2026 i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför sensommar är bäst</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havets temperatur toppar i slutet av juli och tidigt i augusti. Det innebär att badtemperaturen är som högst precis när barnfamiljerna åker hem och Stockholm återtar sin rytm. I slutet av augusti och september är öarna nästan tomma – men havet är fortfarande badbart och vädret ofta som finast med klara, vindstilla dagar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad som händer i sensommarskärgården</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Kräftskivan (5 aug 2026)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftpremiären markerar sensommarens inledning. Kräftor, snaps och lyktor – se vår separata guide till kräftskiva i skärgården för detaljer.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Svampplockning (aug–sep)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kantareller, karljohan och trattkantareller dyker upp i skärgårdens skogar efter augustiregnen. Möja, Ornö och Gällnö är kända för bra svampmarker. Ta med en korg och en svampbok – det är en av höstens bästa aktiviteter.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Bärplockning (aug–sep)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blåbär, lingon och hallon är rikliga i sensommarskärgården. Allemansrätten ger fri tillgång på alla öar utan privat mark.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Solnedgångssäsong</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sensommarens solnedgångar är skärgårdens vackraste. Solen går ner lägre och ger ett varmt orange ljus som reflekteras i det stilla vattnet. De bästa platserna är västsida öar – Utös västra strand och Ornös klipphällar mot kvällssolen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktiskt om sensommar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör med mer begränsad tidtabell från september – kolla aktuella tider på waxholmsbolaget.se. Många värdshus och caféer stänger i mitten av september. Utö Värdshus håller öppet till och med september och är ett bra val för höstbesök.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Sensommar-tips:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka ett sensommarbesök på Utö eller Grinda i september. Priserna sjunker 20–30% jämfört med juli, öarna är nästan tomma och badtemperaturen är fortfarande 18–20°C. Det är skärgårdens bäst bevarade hemlighet och nu vet du den.</p>
+</div>
+`,
+
+  'september-skargarden-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">September är skärgårdens bäst bevarade hemlighet. Medan resten av Sverige tänker på höst och mörker sitter skärgårdens inbitna besökare på klipphällar med svamp i korgen och 19°C i havet. Guide till september 2026 i Stockholms skärgård.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför september är skärgårdens bästa månad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tre saker gör september exceptionellt: havstemperaturen är fortfarande badbar (18–20°C tidigt i månaden, 15–17°C i slutet), turisterna är borta (öarna är tomma måndag–fredag) och ljuset är guld. Solens lägre vinkel ger ett dramatiskt, varmt ljus som fotografer vallfärdar till skärgården för. Dessutom: svamp, bär och en stillhet som är omöjlig att hitta i juli.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du gör i september</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Svampplockning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">September är svampsäsongens höjdpunkt. Kantareller från augustiregnen och karljohan som dyker upp tidigt i september. Möja, Gällnö och Ornö har rika svampmarker. Ta med korg, kniv och Karl-Johan svamp-appen för bestämning.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Septemberbad</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Att bada i september i ett tomt skärgårdsvatten med höstens ljus och inga andra människor i sikte är en av livets fina upplevelser. Ta med neoprenväst om du är känslig för kyla. Havsbastur lyser upp – kontrasten är maximal.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Vandring i höstljus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stockholm Archipelago Trail och öleders vandringsstigar är som vackrast i september. Lövfärger börjar i slutet av månaden och kombinationen av rött löv och blå havshorisont är svårligen beskriven.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Öppna öar i september</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus, Finnhamn (STF), Grinda Wärdshus och Sandhamns Värdshus håller öppet under september. Kontrollera stängningsdatum innan – de flesta stänger i mitten av september. Tältning fungerar utmärkt med rätt sovsäck.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">September-checklistan:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Neoprenväst eller tjockare baddräkt för bad</li>
+<li>Svampkorg och svampbok</li>
+<li>Varm lager-jacka för kvällarna (10–15°C efter solnedgång)</li>
+<li>Kontrollera sista båttiderna – hösttidtabell gäller</li>
+<li>Kamera – septemberljuset är oöverträffat</li>
+</ul>
+</div>
+`,
+
+  'host-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hösten förvandlar Bohuslän. Turisterna är borta, ostronsäsongen öppnar och klipphällarna får en dramatisk höststämning som är svår att slå. Guide till höst i Bohuslän 2026 – september och oktober.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bohusläns höst – varför det funkar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän är faktiskt bättre på hösten för många. Sommaren är intensiv och överfull – men i september och oktober är kustsamhällena tillbaka i sin naturliga rytm. Fiskarna är ute, restaurangerna serverar höstmenyer med ostron och hummer och klipphällarna är tomma. Västerhavet i höststorm är ett av de mest dramatiska naturfenomenen i Sverige.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostronstangning – Bohusläns höstpremiär</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostron är lagom att äta från september till april – månader med R i namnet. Grebbestad och Lysekil är ostronhuvudstäderna. Du kan boka ostronsafari där en guide tar dig ut till ostronbankarna, plockar och öppnar ostronen direkt. Priset är ca 500–800 kr per person inkl. ostron och dryck. Det är en av Bohusläns bästa upplevelser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hummersäsongen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerpremiären är alltid den tredje onsdagen i september (2026: 16 september). Det är årets festligaste kustdag i Bohuslän – fiskarna har haft sina tinor ute och hämtar upp den första fångsten. Restaurangerna i Smögen, Marstrand och Grebbestad fyller sina menyer med nyfångad hummer. Boka bord veckan innan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring i Bohusläns höst</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusleden är en 900 km lång vandringsled längs Bohusläns kust. I höst är det perfekt – svalt, klart och utan sommarsol. Kortare etapper runt Smögen, Ramsvikslandet och Kosteröarna ger fantastiska dagsutflykter. Ta med termos och nötkaka.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Höst i Bohuslän – att veta:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Hummerpremiär: tredje onsdagen i september (16 sep 2026)</li>
+<li>Ostron: tillgängliga september–april</li>
+<li>Kräftor: sista chansen i september</li>
+<li>Väder: september är ofta fin, oktober kan bli stormigt</li>
+<li>Boende: bokas enkelt, priserna sjunker 30–40% från sommaren</li>
+</ul>
+</div>
+`,
+
+  'host-gotland-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland i höst är ett helt annat Gotland. Medan sommaren är festival och restaurangkö är höstens Gotland raukar i dimma, svamp i skogen och mysiga restauranger utan väntetid. Guide till höst på Gotland 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför höst på Gotland är underbart</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är överfyllt i juli. I september förändras allt. Turisterna är borta, byborna tar tillbaka sina gator och restaurangerna börjar laga mer avslappnad, säsongsbetonad mat. Raukarnas kalkstensformationer är dramatiska i höstdimma. Svampskogen är oöverträffad – Gotlands blandskog ger bra förutsättningar för kantarell och trattkantarell.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du gör på höst-Gotland</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Svampplockning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands blandskog är rik på svamp i september. Kantarellerna toppar i slutet av augusti och september, Karl Johan dyker upp i samma period. Cykla ut från Visby och leta i tallskogarna söder om staden eller runt Roma.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Raukar i höstljus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Raukarna på Fårö och vid Gnisvärd och Närsholmen ser fantastiska ut i höstljuset. Det lägre solljuset ger mer dramatiska skuggor och formationerna framträder bättre. Fotografer vallfärdar hit i september och oktober.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gotlands vineager och matkultur</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands Vingård skördar sina druvor i september och oktober. Besök vingården i Kattlunds söder om Visby för guidade visningar och provsmakning av gotländskt vin. Restaurangerna i Visby serverar höstmenyer med lokala råvaror – lammrätter, rotfrukter och saffransbröd.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Cykling utan bil</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">September är den bästa månaden för Gotland-cykling. Svalt väder, inga motorcyklar i mötande trafik och tystare vägar. Cykla den populära rutten Visby–Tofta–Gnisvärd och tillbaka längs kusten (ca 50 km, perfekt dagstur).</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt om höst på Gotland:</strong>
+<p style="margin:8px 0 0;font-size:14px">Destination Gotland kör färja till och med oktober. Priserna är 40–60% lägre än i juli. Visby restauranger håller öppet till och med oktober – boka bord en dag innan snarare än månader i förväg. Cykelhyrning finns i Visby hela säsongen.</p>
+</div>
+`,
+
+  // ── Batch F: Regionala djupguider ────────────────────────────────────────────
+  'karlskrona-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Karlskrona är en av Sveriges mest unika städer. Sveriges enda barockstad, UNESCO-världsarv, örlogsflottans historiska hemvist och utgångspunkt för Blekinges vackra skärgård. Komplett guide till Karlskrona och Blekinge.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Karlskrona är ett UNESCO-världsarv</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona grundades 1680 som en ny hemvist för den svenska örlogsflottan. Staden planerades från scratch i barockstil på en serie öar och är ett av de bäst bevarade exemplen på en europeisk örlogsstad. Stadsplanen, örlogsvarvet Marinmuseum och kyrkobyggnaderna är alla del av det som gett UNESCO-statusen 1998. Det är en stad som tar tid att förstå men som belönar de nyfikna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Måste se i Karlskrona</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marinmuseum</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sveriges bästa sjöfartsmuseum med en gammal ubåt man kan gå ombord i, ett fullstort slagskepp och utställningar om Sveriges marinehistoria från 1600-talet till idag. Perfekt regnvädersmål och ypperligt för barn 8+.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Stortorget och barockkyrkorna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskronas stortorg är ett av Sveriges vackraste – stort, öppet och omgivet av barockarkitektur. Fredrikskyrkan och Trefaldighetskyrkan på torget är båda ritade av Nicodemus Tessin d.y., som även ritade Stockholms slott.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Blekinges skärgård</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Blekinges skärgård är Sveriges minst kända skärgård – och den är vacker. Mjuka klippor, klart vatten och få turister. Utflykter med Blekingetrafikens båtar till Tjurkö, Sturkö och de yttre öarna är obligatoriska. Hanö i östra Blekinge är ett av skärgårdens pärlor.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och dryck</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona har en levande matscen med fokus på Östersjöns råvaror. Torskrätter och sill är lokala specialiteter. Restaurang Saltö vid hamnen och Fiskets Hus vid marinan är bra val. Blekingebröd – ett enkelt surt tunnbröd – hittas på lokala bagerier.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Karlskrona</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Stockholm tar ca 3,5 timme (Kalmarbanan via Alvesta). Med bil från Stockholm tar det ca 4,5 timme via E22. Från Malmö/Köpenhamn är det ca 2 timme med bil längs E22. Bla Line kör färja från Gdynia i Polen till Karlskrona – ett alternativ för de som vill kombinera med Polen-besök.</p>
+`,
+
+  'varberg-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Varberg är Hallands stoltaste stad och en av Sveriges mest kompletta kustdestinationer. Medeltidsfästningen, det unika kallbadhuset, Sveriges bästa surfstrand och en levande stadskärna – allt på en och samma plats.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varbergs fästning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varbergs fästning från 1200-talet är en av Sveriges bäst bevarade medeltidsfästningar. Inne i fästningen finns Varbergs museum med den berömda "Bockstensmannen" – ett fullständigt bevarat medeltida lik hittat i en mosse. Fästningens läge direkt vid havet är dramatisk och fotogeniskt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kallbadhuset</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varbergs kallbadhus är ett af Sveriges mest kända och är en arkitektonisk pärla från 1903. Det flytande träbadhuset delar upp manlig och kvinnlig sida med öppna bad direkt i havet. Bastun och det kalla Västerhavet är en fantastisk kombination. Öppet hela året.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Surfen och Apelviken</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Apelviken söder om Varberg är Sveriges bästa surfstrand. Västerhavet genererar tillräckliga vågor för att surfa och det finns surfskolor för nybörjare. Även vindsurfing och kitesurfing är populärt. Under sommarmånaderna är Apelviken en av landets mest sociala stränder.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och stadsliv</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varberg har en kompakt och trevlig stadskärna med kaféer, restauranger och en populär saluhall. Fisk och räkor från Västerhavet serveras på flertalet restauranger vid hamnen. Varbergs torg med sitt karaktäristiska rådhus är hjärtat i stadspromenaden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Varberg</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Göteborg tar ca 45 minuter (Västkustbanan). Från Stockholm tar det ca 3,5 timme med tåg (byt i Göteborg eller Halmstad). Med bil längs E6 från Göteborg tar det 45 minuter. Färja till Grimmeton (Danmark) avgår från Varberg – en unik möjlighet att kombinera med ett dansk-besök.</p>
+`,
+
+  'borgholm-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Borgholm är Ölands sommarstad och öns naturliga centrum. Med slottsruinen som fond och ett levande sommarlivlager är Borgholm Ölands hjärta under juli och augusti. Komplett guide till Borgholm och närmaste omgivningar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Borgholms slott</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms slott är en av Sveriges mest imponerande ruiner. Det stora renässansslottet brann ner 1806 och är sedan dess en dramatisk ruin med fria ytor och utsikt över Kalmarsund. Konserter och evenemang arrangeras i slottsruinen under sommaren – Öland Roots och andra festivaler nyttjar den magiska miljön. Öppet för besök hela sommarsäsongen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Solliden – kungligheternas sommarslott</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solliden slott strax söder om Borgholm är de svenska kungligheternas sommarresidens. Parkerna runt slottet är öppna för allmänheten under sommaren och är vackra med blomsterparterrer och Kalmarsunds utsikt. Det är vanligt att kungen och familjen vistas här i juli.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Borgholm stad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholms centrum är litet men livligt under sommaren. Storgatan har butiker, kaféer och restauranger. Borgholms hamn med gästbryggor och ett antal restauranger vid vattnet är populärt. Borgholms saluhall mitt i centrum har lokala Ölands-produkter.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utflykter från Borgholm</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Borgholm är ett utmärkt bascamp för Ölandssemestern. Norrut längs kusten: Böda sand (lång sandstrand), Trollskogen (gammal naturskog) och Lange Jan fyr i söder. Ölands alvar – UNESCO-listat – nås med kort bilresa söderut. Cykla längs kusten i båda riktningar för de bästa vyerna.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Ta dig till Borgholm:</strong>
+<p style="margin:8px 0 0;font-size:14px">Borgholm nås bäst med bil via Ölandsbron från Kalmar (gratis bro, 6 km). Buss från Kalmar station kör regelbundet till Borgholm. Från Stockholm tar det ca 3,5 timme med bil eller 4 timme med tåg till Kalmar och sedan buss. Boka boende tidigt – Borgholm är fullbokat under Ölands högsäsong i juli.</p>
+</div>
+`,
+
+  'tjorn-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Tjörn är Bohusläns näst största ö och en av kustens mest mångfacetterade destinationer. Nordiska Akvarellmuseet, magnifika klippbad, ett rikt konstliv och en öppen karaktär som är annorlunda än grannarna Orust och Marstrand. Komplett guide till Tjörn.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nordiska Akvarellmuseet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordiska Akvarellmuseet i Skärhamn är Tjörns stoltaste attraktion och ett av Skandinaviens mest välbesökta konstmuseer. Den vackra byggnaden direkt vid vattnet härbärgerar skiftande utställningar om akvarell och vattenbaserade konstformer. Museet har ett bra barnkafé och barnaktiviteter under sommaren.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klippbad och badplatser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tjörns klipphällar är magnifika. Skärhamn kommunala badplats har hopptorn och brygga. Längs Tjörns västra sida mot Västerhavet finns klipphällar med öppet hav och fantastiska solnedgångar. Hälleviksstrand på grannön Orust (nås via bro) är en populär sandstrand.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Skärhamn</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tjörns centralort Skärhamn har en charmig hamn med gästbryggor, fiskeläge och ett par bra restauranger. Bilfärjan till Marstrand avgår härifrån. Sommartid är Skärhamn folkrikt och levande.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk information</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tjörn nås med bil via Stenungsundsbron från E6 (gratis). Buss från Stenungsund och Göteborg. Från Göteborg tar det ca 45 minuter med bil. Cykla gärna runt ön – Tjörn har ett bra cykelvägnät och kuperad terräng för de som gillar utmaning. Cykelhyrning finns i Skärhamn.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tjörn-kombinationen:</strong>
+<p style="margin:8px 0 0;font-size:14px">Tjörn kombineras naturligt med grannöarna. Ta bron till Orust för Hälleviksstrand eller till Skåpesundsbron mot Stenungsund. Färjan från Skärhamn till Marstrand ger ett bra dagsprogram: Tjörn på morgonen, Marstrand på eftermiddagen.</p>
+</div>
+`,
+
+  'visby-sommar-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Visby är Sveriges vackraste stad och Gotlands hjärta. Medeltidsringmuren, rosenrabatterna inom murarna och en restaurangscen som exploderat de senaste åren gör Visby till mer än en turistattraktion. Guide till sommarens Visby 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ringmuren – Europas bäst bevarade</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visbys ringmur från 1200-talet är 3,6 km lång och innehåller 27 torn. Den är en av de bäst bevarade medeltida ringmurarna i Nordeuropa och är del av UNESCO:s världsarvslista. Promenera längs murens insida och utsida – in och ut genom de medeltida portarna. Kvällspromenad längs muren i solnedgång är en av Sveriges bästa stadsupplevelser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Rosorna och ruinerna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby är känt för sina rosor – de täcker husfasader och klättrar längs stenmurar. I kombination med kyrkoruinerna (12 medeltida kyrkor varav 9 ruiner) skapar det en unik atmosfär som inte liknar någon annan stad i Sverige. Sankt Nicolai kyrkoruin är den vackraste – öppen sommartid.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Medeltidsveckan 2026</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby Medeltidsvecka är Europas enda medeltidsfestival i denna skala. Under en vecka i slutet av juli förvandlas hela Visby – marknadsplatser med medeltida hantverk, riddarskolon och konserter. Festivalen är gratis att bevittna (evenemang inomhus tar betalt). Kolla exakt datum på gotlandsmedeltid.se.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Restaurangscenen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visbys matscen är en av Sveriges bästa under sommaren. Restaurangerna inne i ringmuren serverar allt från gotlandslammets finare rätter till enklare fika-lunchmöjligheter. Munkkällarens medeltidskällare, Aifurs vikingarestaurang och Bakfickan för enklare lunch är alla rekommenderade. Boka alltid bord i förväg under juli.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bortom ringmuren</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby är mer än ringmuren. Norrstrand-stranden är stadsnära och populär, Botaniska trädgården inne i murarna är vacker och Gotlandsmuseet berättar om öns historia. Ta en cykel utanför murarna och utforska de gotländska byvägarna – byn Visby omges av charmiga byar och gårdsbutiker.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Visby i praktiken:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Promenera inne i ringmuren – bil är inte tillåten i delar av gamla stan</li>
+<li>Bäst upplevelse: tidigt på morgonen (08–10) innan turisterna vaknar</li>
+<li>Köp glass på Gateau vid Stortorget – en institution</li>
+<li>Ta kvällspromenad längs ringmuren i solnedgång</li>
+<li>Boka restauranger minst 2 veckor i förväg i juli</li>
+</ul>
+</div>
+`,
+
+  // ── Batch G: Alla återstående guider ─────────────────────────────────────────
+  'jul-skargarden-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården i december är ett helt annat landskap. Tystnad, is och lyktors ljus reflekterade i havet. Några öar håller öppet under advent och jul – och de som gör det erbjuder en upplevelse som är svår att hitta någon annanstans.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar är öppna i december</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus håller öppet under de flesta advent-helger med julbuffé och vinterbastu. Sandhamns Värdshus har ett begränsat öppethållande under december. Vaxholm är öppet hela året och har ett charmigt julmarknadsliv med tända lyktor längs hamnpromenaden.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vinterbastu i adventsskärgård</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">December-bastun är en av årets höjdpunkter för den som vill ha den ultimata kontrasten. Vedeldad bastu i 80°C och sedan ut i 2–3°C havsvatten. Utös havsbastu och Finnhamns bastu är öppna under delar av vintern – kolla aktuellt öppethållande på respektive hemsida och boka tidigt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Julmarknader och advent</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm har en julmarknad första advent-helgen med hantverk, glögg och pepparkakor längs hamnpromenaden. Det är en av skärgårdens mysigaste händelser. Kolla även Fjäderholmarnas eventkalender – de arrangerar ibland adventsevenemang.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Vinterskärgård i praktiken:</strong>
+<p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kör vintertidig turtäthet – max 1–2 avgångar per dag till yttre öarna. Kolla alltid sista båttiden innan du åker. Ta med handvärmare, yllelager och stövlar. Havsisen kan blockera vissa linjer under kalla vintrar.</p>
+</div>
+`,
+
+  'nyar-skargarden-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Nyår i skärgården med fyrverkeri speglade i havet och champagnen på en klippa – det är en av de mest minnesvärda sätten att välkomna ett nytt år. Guide till nyårsfirandet i skärgården 2026–2027.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var firar du nyår i skärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus arrangerar nyårsmiddag och fest med övernattning – boka månader i förväg, det är ett av de mest eftertraktade nyårspaketen i skärgården. Sandhamns Värdshus har liknande arrangemang. Vaxholm med sina belyspta gränder är ett enklare men lika stämningsfullt alternativ för de som vill ha nyår i skärgårdsmiljö utan lång restid.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Eget nyår i skärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hyr en stuga på Utö, Möja eller en privat ö och fira nyår med nära vänner. Ta med champagne, goda råvaror och fyrverkeri. Att se fyrverkeriet reflekterat i ett stilla mörkt hav är oöverträffat. Kolla brandförbud – vintrarna kan vara torra och fyrverkerier kräver tillstånd i vissa kommuner.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Boka tidigt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Nyårspaket på Utö och Sandhamn är fullbokade i september–oktober. Vill du ha ett värdshus-nyår i skärgården måste du boka nu. Stugor via privata uthyrare är mer tillgängliga men boka även det i god tid.</p>
+</div>
+`,
+
+  'pask-skargarden-2027': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Påsk i skärgården är startskottet för säsongen. Vattnet är fortfarande kallt, björkarna knappt gröna – men öarna börjar vakna och de som är först ut belönas med tystnad, fjädersångfåglar och det unika förkänning av sommar som bara påsk ger.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Påsk 2027 – datum och väder</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påsk 2027 infaller 28 mars (påskdagen). Det är tidigt på våren och vädret kan vara allt från snöiga dagar till solig skärgårdsdag. Genomsnittstemperaturen i mars–april i skärgården är 5–10°C. Ta med rejäla kläder och planera för alla väder.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka öar är öppna i påsk</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är alltid öppet. Utö Värdshus öppnar i påsk och erbjuder påskpaketet med övernattning och påskbuffé. Sandhamns Värdshus öppnar säsongen i påsk. Waxholmsbolaget kör mer begränsad trafik – kolla aktuell tidtabell för påskhelgen.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför påsk är speciellt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påskskärgården är tyst. Sommarens folkmassor är månader borta. Fåglarna återvänder – ejdern, skärpiplärkan och havsörnens skrik hör man tydligt i den stilla luften. Det är en av årets bästa upplevelser för fågelskådare och naturälskare.</p>
+`,
+
+  'valborg-skargarden-2027': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Valborg den 30 april är en av de festligaste kvällarna i den svenska kalendern – och i skärgården tar det en extra dimension. Brasor på klipphällarna, studentsångerna borta i fjärran och sommarens förkänning som hänger i luften.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Valborg i skärgården 2027</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Valborgsmässoafton i skärgården firas med brasor på klipphällarna på många öar. Det är en gammal tradition att tända eld för att välkomna sommaren. Kontrollera brandförbud – om det är torrt kan kommunerna ha förbjudit öppen eld. Alternativet: lyktor att hänga i träden och fira med mat och musik utan öppen eld.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öar att fira valborg på</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm brukar ha aktiviteter på valborg. Fjäderholmarna kan ha evenemang – kolla deras eventkalender. Grinda öppnar sin säsong runt valborg och välkomnar gäster. Egen stuga eller tält på en ö med god utsikt är det puraste sättet att fira.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Valborg-tipset:</strong>
+<p style="margin:8px 0 0;font-size:14px">Kolla alltid sista båten hem – valborg infaller en vardag och Waxholmsbolaget kör normal veckotidtabell. Det är lätt att missa sista avgången om festen drar ut på tiden.</p>
+</div>
+`,
+
+  'kajakpaddling-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Västerhavet med sina klippor, sund och tusentals öar är ett kajakparadis. Bohuslän erbjuder några av Sveriges bästa kajakrutter – från lugna innerskärgårdens sund till öppet hav mot norska gränsen. Guide till kajakpaddling i Bohuslän.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Bohuslän är ett kajakparadis</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns skärgård har en unik kombination av skyddat innervattnen och öppet hav. De korta avstånden mellan öarna gör det möjligt att paddla från ö till ö utan långa öppna havspassager. Vattnet är klart och salthaltigt, vilket gör det enklare att se djur och natur under ytan.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kajakrutter</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kosteröarna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterfjordens nationalpark är Bohusläns klaraste vatten och ett kajakdröm. Paddla runt Sydkoster och Nordkoster med stopp vid klipphällar och naturhamnar. Guidade kajaktur arrangeras av lokala aktörer från Strömstad.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marstrandsfjorden</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Paddla runt Marstrands fästning och utforska de mindre öarna i Marstrandsfjorden. Skyddat vatten med vackra miljöer och möjlighet att landa på obebodda kobbar för picknick.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ramsvikslandet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Paddla längs Ramsviklandens dramatiska klipphällar – en av Bohusläns mest storslagn naturupplevelser. Naturreservat med fri tillgång för kajaker. Passa på att kliva i land och vandra längs klipptopparna.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Säkerhet och hyrning:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Hyr kajak i Strömstad, Lysekil eller Marstrand</li>
+<li>Paddla aldrig ensam i öppet hav utan erfarenhet</li>
+<li>Bär alltid flytväst – Västerhavet kan vara oförlåtande</li>
+<li>Kolla väderprognoser och vindriktning innan paddling</li>
+<li>Guidade turer rekommenderas för nybörjare</li>
+</ul>
+</div>
+`,
+
+  'vandring-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland erbjuder ett unikt vandringslandskap – platt men varierat, med kalkstensraukar, kustklippor och blomsterängar som varierar med årstiderna. Guide till de bästa vandringslederna och -turerna på Gotland.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring på Gotland – vad gör det unikt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland saknar höjdskillnader men kompenserar med raukfält, medeltidsruiner längs lederna och ett landskapsskifte från tätare blandskog till det öppna alvar-landskapet. Gotlandsleden är öns huvudled och sträcker sig 870 km runt hela ön.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa vandringarna</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gotlandsleden – hela varvet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">870 km runt hela Gotland – för den ambitiöse. Delat på ca 30–40 dagsetapper. De flesta vandrar delar av leden och kombinerar med cykel eller bil för att ta sig mellan etapperna.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fårö raukleder</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös raukleder leder dig runt de mest spektakulära raukfälten på ön. Langhammars raukfält har de högsta och mest dramatiska raukarna. Enkel vandringsled på 3–5 km med stopp vid varje rauk.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Närsholmen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands sydspets med sin fyrtornsudd och sina vilda stränder. Vandringen runt Närsholmen (ca 6 km) ger utsikt mot öppet Östersjön och är ett av öns vackraste rundturer.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Gotlandsleden är välmärkt med orange markeringar. Kartor finns på gotlandsleden.se. Vattenkällor är begränsade längs leden – ta med tillräckligt med vatten. De bästa månaderna för vandring är maj–juni och september–oktober.</p>
+</div>
+`,
+
+  'cykling-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är en av Sveriges bästa cykelöar. Platt terräng, relativt lite trafik utanför högsäsongen och vackra kustleder gör Gotland till ett perfekt cykelmål. Guide till att cykla på Gotland – en dag, tre dagar eller en hel vecka.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför cykla på Gotland</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är ca 170 km långt och 52 km brett på det bredaste stället. Med cykel kan du utforska både kusten och det inre landskapet i din egen takt, stanna vid raukar och medeltidskyrkor och ta spontana omvägar som bilen aldrig tillåter.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa cykelrutter</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Visby–Tofta–Gnisvärd (1 dag, 50 km)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt dagstur. Cykla söderut längs kusten från Visby till Tofta strand, vidare till Gnisvärds raukar och tillbaka via inlandet. Varierande landskap och avslutning med glass i Visby.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Runt Gotland (7 dagar, ca 500 km)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En veckas cykelsemester runt hela ön. Planera 60–80 km per dag med stopp vid medeltidskyrkor, raukfält och fiskelägen. Övernatta på vandrarhem och gårdar längs vägen.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Norra Gotland och Fårö (3 dagar)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Cykla från Visby norrut till Kappelshamn, ta färja till Fårö och utforska raukfälten och Sudersand-stranden. Tillbaka via östra kusten till Visby.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Hyrning och praktiskt:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Cykelhyrning finns i Visby – boka i förväg i juli</li>
+<li>Elcyklar tillgängliga för de som vill ha hjälp i motvinden</li>
+<li>Ta färjan med cykel – cykel kostar 50–100 kr extra ombord</li>
+<li>Vindkarta rekommenderas – Gotland kan ha starka vindar</li>
+</ul>
+</div>
+`,
+
+  'cykling-oland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland är Sveriges plattaste och en av landets bästa cykelöar. Kustleder längs Kalmarsund, UNESCO-listade alvaret och historiska vindmöllor sätter ramen för en enastående cykelsemester.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Öland är perfekt för cykling</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öland är 137 km långt och aldrig mer än 16 km brett. Det innebär korta avstånd, minimal höjdskillnad och hela ön går att utforska på 3–5 dagar med cykel. Ölandsleden sträcker sig längs hela öns västra kust med havsutsikt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa cykelrutter på Öland</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ölandsleden – hela ön (5 dagar)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ca 500 km runt hela Öland längs väster- och östkusten. Dela upp i 5 etapper om 80–100 km per dag. Börja i Borgholm, cykla söderut längs Alvaret, runda södra spetsen vid Lange Jan och cykla norrut längs östkusten tillbaka.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Borgholm–Böda (1 dag, 60 km)</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norrut från Borgholm längs kusten till Böda sand, en av Ölands bästa sandstränder. Flackt och enkelt, perfekt för familjer med cykel.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Alvaret – det stora tomrummet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Cykla tvärs över Öland via Alvaret – det UNESCO-listade kalkstensalvaret som är unikt i Europa. En platt, öppen väg med vindmöllor i siluett och inga träd. En surrealistisk upplevelse.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ta med cykeln via Ölandsbron från Kalmar (cyklar tillåtna på bron). Cykelhyrning finns i Borgholm och Mörbylånga. Vinden på Öland kan vara kraftig – planera rutter i medvindsvarianter. Vandrarhem längs ölandsleden finns i de flesta samhällen.</p>
+</div>
+`,
+
+  'snorkling-kosterhavet': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kosterhavets nationalpark hyser Europas artrikaste marina miljö utanför tropikerna. Under ytan väntar ett landskap av korallrev, sjöborrar, kräftdjur och hundratals fiskarter i kristallklart Västerhavsvatten. Guide till snorkling och dykning i Kosterhavet.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Kosterhavet är unikt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterfjorden är en av få fjordar i världen med vatten djupare än 240 meter. Det djupa, kalla och syrerika vattnet skapar förutsättningar för en marin artrikedom som saknar motstycke i Europa norr om Biscayabukten. Norska ström-vatten för med sig arktiska arter söderifrån och skapar en unik blandning.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snorkling – vad du ser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I grunda vikar runt Sydkoster och Nordkoster ser du sjöstjärnor, sjöborrar (taggsvinens kalla havsversion), hundkrabba och massor av fisk. Sjögräsängarna vid stränderna är rika på sjönålar och havstulpaner. Sikten är generellt 5–10 meter beroende på väder och årstid.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dykning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterhavet är ett av Sveriges bästa dykmål. Djupdykning ner mot 30–50 meter ger tillgång till Europas nordligaste korallrev (Lophelia pertusa-korall), hummer, manet och grottor. Strömstad Dykarklubb arrangerar guidade dykutflykter för certifierade dykare.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Neoprendräkt rekommenderas – Västerhavet är 18–20°C i juli</li>
+<li>Kosteröarna nås med färja från Strömstad (ca 45 min)</li>
+<li>Nationalparksregler gäller – ta inte med djur eller växter</li>
+<li>Bästa snorkeltid: lugna dagar med svag vind, god sikt</li>
+</ul>
+</div>
+`,
+
+  'ostronstangning-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är landets ostronhuvudstad. I de kalla, klara fjordarna vid Grebbestad och Lysekil odlas och skördas ostron av världsklass. Säsongen öppnar i september och pågår till april. Guide till ostronsafari och ostronkultur i Bohuslän.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Bohusläns ostron är unika</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns fjordar har en kombination av kallt, rent och syrerikt Västerhavsvatten som skapar perfekta förutsättningar för ostron. Arten Ostrea edulis (platt europeisk ostron) är vad som förekommer naturligt i Bohuslän. Dessa ostron tar 4–6 år att växa till skördemogen storlek och har en komplex, nötig smak som skiljer sig markant från odlade Stilla Havet-ostron.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostronsafari</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronsafari innebär att du åker ut med en ostronguide, snorklar längs havsbotten och plockar egna ostron som du sedan öppnar och äter direkt vid havet. Det är Bohusläns mest autentiska matupplevelse. Aktiviteten arrangeras av aktörer i Grebbestad och Lysekil. Pris ca 500–800 kr per person inkl. utrustning och ostron.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du äter ostron</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öppna ostronet med en ostronkniv vid gångjärnet. Kapa den undre muskeln och låt det havssaltade vattnet stanna i skalet. Ät direkt – ingen citron nödvändig för ett riktigt fräscht ostron, men en droppe kan lyfta smaken. Kombinera med ett glas torrt vitt vin eller kall snaps.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Säsong och bokning:</strong>
+<p style="margin:8px 0 0;font-size:14px">Ostron äts i månader med R – september till april. Säsongstoppen är oktober–december. Boka ostronsafari direkt med lokala aktörer i Grebbestad. Grebbestads Fiskekrog serverar ostron hela ostronssäsongen.</p>
+</div>
+`,
+
+  'hyra-stuga-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att hyra stuga i skärgården är det mest flexibla sättet att uppleva ölivet. Du sover i ditt eget, lagar mat när du vill och har bastu och brygga för dig själv. Guide till hur du hittar rätt stuga, vad du bör kräva och hur du jämför pris.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du bör leta efter i en skärgårdsstuga</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li><strong>Läge</strong> – söderläge för sol, brygga för bad och båt, avskilt läge för lugn</li>
+<li><strong>Bastu</strong> – vedeldad bastu är guldstandarden, inte elbastu</li>
+<li><strong>Båt</strong> – är det inkluderat? Nödvändigt på öar utan reguljär trafik</li>
+<li><strong>WC och vatten</strong> – utedasset är tradition men inte alltid önskvärt</li>
+<li><strong>Storlek</strong> – sängplatser inklusive bäddsoffa räcker, men kolla sommarvärmen</li>
+</ul>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa sajterna för uthyrning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Blocket.se</strong> – fortfarande landets bästa sajt för privat stuguthyrning i skärgården. Sökt på "stuga skärgård" och välj ö eller region. Direktkontakt med ägaren ger bäst pris. <strong>Airbnb</strong> – mer internationellt men täcker nu även svenska skärgårdsöar. Bra recensioner. <strong>Stugknuten.se</strong> – specialiserad på fritidshus uthyrning i Sverige. <strong>Blocket Fritidshus</strong> – populär för längre hyresperioder (en vecka eller mer).</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Prisnivåer</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En normal skärgårdsstuga kostar 3 000–8 000 kr per vecka utanför högsäsong. I juli stiger priset till 6 000–15 000 kr per vecka för ett bra läge. Stugor på öar med reguljär båttrafik (Grinda, Utö) tenderar att vara dyrare än stugor med privat båt på avlägsnare öar.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Boka tidigt:</strong>
+<p style="margin:8px 0 0;font-size:14px">De bästa skärgårdsstugorna för juli är bokade i december–januari. Populära öar som Grinda, Sandhamn och Utö har de snabbast utgångna stugorna. Vill du ha specifik ö och specifik vecka i juli – boka nu, inte i mars.</p>
+</div>
+`,
+
+  'hyra-stuga-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland har massor med stuguthyrning – från enkla lantbrukskojan till lyxvilla med havsutsikt och pool. Guide till hur du hittar rätt stuga på Gotland, bästa platserna och vad du bör veta om gotländska hyrregler.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa lägen för stugor på Gotland</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Tofta och västra kusten</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nära Tofta strand och med utsikt mot Kalmarsund i väster. Populäraste läget med närmast till sand och sol. Dyrast men enklast att boka.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ljugarn och östkusten</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lugna östkusten med klart vatten. Stugor nära Ljugarns badhamn är mysiga och lite mer avskilda. Lägre priser än västra kusten.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Runt Visby</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Praktisk om du vill ha nära till Visbys restauranger men ändå ha en stuga. Cykelvikstång till Visby är möjlig från de flesta stugor i 10 km-radie.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sajter och bokning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotlands Stugservice</strong> – den mest etablerade gotländska uthyrningssajten med hundratals stugor. <strong>Airbnb</strong> – bra urval och recensioner. <strong>Blocket</strong> – direktkontakt med ägare, bäst pris. Priserna i juli är höga – räkna 8 000–20 000 kr per vecka för ett bra läge. Boka i november–december för bästa urval.</p>
+`,
+
+  'faro-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Färö är Ingmar Bergmans ö och hem till Nordens mest dramatiska raukformationer. Den lilla ön norr om Gotland nås med en kort färja och belönar med ett landskap som är svårt att hitta någon annanstans i Sverige.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Färö och Ingmar Bergman</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman bosatte sig på Färö 1966 och bodde där till sin död 2007. Filmen "Persona" spelades in på Färö och öns dramatiska landskap präglar många av hans filmer. Bergmancenter vid Fårösund ger introduktion till Bergmans liv och konstnärskap. Det är ett pilgrimsmål för filmintresserade från hela världen.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukarnas landskap</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Färö har två stora raukfält. Langhammars raukar i nordväst är de mest dramatiska med höga, smala kalkstenar formade som troll och figurer. Digerhuvud raukfält söder om hamnen är mer lättillgängliga. Beräkna minst en halvdag för att utforska ordentligt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sudersand och stränder</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersand är Färös mest kända strand och en av Gotlandsregionens vackraste. Lång, vid och med ett kristallklart Östersjön framför sig. Ekeviken på östra Färö är en mer skyddad sandstrand med raukar i vattnet.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport till Färö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gratisfärja kör från Fårösund på norra Gotland till Färö (5 minuter, kör kontinuerligt). Nå Fårösund med bil från Visby på ca 1 timme. Cykel fungerar utmärkt på Färö – ön är liten och vägnätet enkelt.</p>
+`,
+
+  'ulvon-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Ulvön i Höga Kusten är surströmmingens heliga land och en av Norrlands vackraste öar. Rökt sik, traditionellt fiskeliv och dramatiska Höga Kustens klipphällar gör Ulvön till en destination utöver det vanliga.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Surströmmingens hemort</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ulvön är surströmmingens symboliska hemort. Den fermenterade strömmingen – legendarisk i Sverige och missförstådd internationellt – produceras längs Höga Kustens kust och Ulvön är centrum för traditionen. Surströmmingens premiär inträffar tredje torsdagen i augusti – en lokal högtid med traditionell surstömningsskiva längs vattnet.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Rökt sik och lokal mat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ulvöns berömda rökeri producerar rökt sik som är nationellt känt. Fisken röks i traditionella rökerior och kan köpas direkt. Rökt sik på knäckebröd med smör och rödlök – enkel och fantastisk mat. Det finns ett par restauranger och ett vandrarhem på ön.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Natur och vandring</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ulvön är en del av Höga Kustens dramatiska landskap med världsarvsstatusen från UNESCO. Klippor, skogslandskap och utsikt mot öppet Bottenhavet. Vandringsleder runt ön tar ca 2–3 timmar.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Transport till Ulvön:</strong>
+<p style="margin:8px 0 0;font-size:14px">Färja från Ullånger och Docksta på fastlandet. Närmaste stad är Kramfors. Bäst nådd med bil till färjeläget och sedan båt ut till ön. Från Stockholm tar det ca 5 timme med bil. Alternativt tåg till Kramfors och taxi till färjeläget.</p>
+</div>
+`,
+
+  'grebbestad-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Grebbestad är det mest genuina fiskesamhället i Bohuslän och hem till landets bästa kräftor och ostron. Det lilla samhället norr om Fjällbacka lever fortfarande av havet och välkomnar gäster som vill uppleva autentisk Bohuslän.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad – kräftornas hemstad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är mer känt för kräftor och ostron än för turism – och det gör det mer autentiskt. Lokala fiskare säljer nyfångat direkt vid kajen. Restaurangerna längs hamnen serverar årets bästa kräftor under premiärperioden i augusti. Under ostronsäsongen (september–april) är Grebbestad lika aktivt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Att se och göra</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Promenera längs hamnpromenaden och titta in i fiskebodarna. Besök den lokala fiskeauktionen (kontakta Grebbestads Fiskekrog för tider). Ta en båttur till de närmaste öarna i fjorden. Grebbestads omgivningar med Kosteröarna och Fjällbacka ger fler dagar av utforskning.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestads Fiskekrog är öns bästa och mest välkända restaurang med lokalt fångad sjömat. Krokholmens Fiskerestaurang ute på en liten ö nås med privat båt. Under kräftpremiären är båda fullbokade – reservera månader i förväg.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Ta dig till Grebbestad:</strong>
+<p style="margin:8px 0 0;font-size:14px">Grebbestad ligger på väg 163 norr om Fjällbacka och 30 km söder om Strömstad. Ca 2,5 timme med bil från Göteborg. Buss från Göteborg via Stenungsund och Tanumshede. Begränsad parkering i hamnen – kom tidigt.</p>
+</div>
+`,
+
+  'stromstad-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Strömstad är Sveriges nordligaste kuststad och porten till Kosterhavets nationalpark och norska skärgårdsön Hvaler. En levande hamnstad med stark sjömatkultur och enkel åtkomst till Bohuslän norrra yttersta.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Strömstad och hummern</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad är landets hummercentrum. Hummerpremiären i september (16 sep 2026) firas med fanfar i Strömstads hamn och fiskeflottan kommer in med årets första fångst. Restaurangerna längs Norra Hamngatan är fyllda med hummerfirare. Boka bord nu för premiärkvällen.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarna – porten till nationalparkerna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Strömstad tar färjan ut till Sydkoster (ca 45 min) och Nordkoster (ca 1 h). Kosteröarna är bilfria och del av Kosterhavets nationalpark. Kajakpaddling, snorkling och vandring på bilfria öar är Strömstads stora utflyktsmål.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och läge</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad nås med tåg från Göteborg (1,5 timme, Bohusbanan) eller bil längs E6. Norska gränsen är bara 8 km norrut. Möjlighet att kombinera med ett besök i norska Halden eller Oslofjorden.</p>
+`,
+
+  'hano-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hanö är Blekinges mest avlägsna och dramatiska ö – ett naturreservat i Hanöbukten med rik historia kring engelska sjömän och ostindiefararna. Guide till en av Östersjöns minst kända pärlor.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hanös historia</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Under Napoleonkrigen 1810–1812 användes Hanö av brittiska flottan som vinterhamn och reparationsplats. Engelskyrkogården på ön med sina engelska sjömansgravar är ett unikt historiskt minne. Hanö var också ett viktigt landmärke för ostindiefarare på väg mellan Stockholm och Ostindien.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Natur och fågelskådning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hanö är ett utmärkt fågelskådningsmål. Under vår- och höstflyttningen passerar tusentals fåglar och ön har bra möjligheter att observera sångare och rovfåglar. Havsörnen syns ofta. Naturreservatet skyddar öns natur och stränder.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport till Hanö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hanö nås med sommarbåt från Sölvesborg och Nogersund. Säsongen är juni–september. Det tar ca 40 minuter från fastlandet. Ön saknar service utöver ett enkelt café – ta med mat och vatten. Övernattning i tält är möjlig i reservatets anvisade tältplats.</p>
+`,
+
+  'bastad-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Båstad är Hallands mest exklusiva och berömda sommardestination. World-class tennis, vackra klippor längs Bjärehalvön och ett sommarliv som attraherar hela Sverigeeliten varje juli. Guide till Båstad och Bjärehalvön.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Swedish Open – tennisturneringen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Swedish Open är Skandinaviens mest prestigefyllda tennisturnering och arrangeras i Båstad varje juli. Världsstjärnor och tusental åskådare fyller Bjärehallen och Stan Wawrinkas tenniscenter. Biljetter säljs på tennisbadstad.se – köp i god tid för de bästa matcherna.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bjärehalvön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bjärehalvön söder om Båstad är ett naturreservat med dramatiska klippor mot Skälderviken, öppna betesmarker och en kustvandringsled (Bjäreleden). Cykla halvön runt eller vandra längs kustleden för fantastiska vyer mot Hallands Väderö och Kattegatt.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hallands Väderö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hallands Väderö – en naturreservatsö utanför Båstad – nås med sommarbåt från Torekov (ca 15 min). Ön har sälkoloni, klippbad och en dramatisk ytterskärskänsla. En av Västsveriges bästa dagsutflykter.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Transport:</strong>
+<p style="margin:8px 0 0;font-size:14px">Tåg från Malmö (45 min) eller Göteborg (1,5 h) längs Västkustbanan. Bil längs E6 från Malmö 1 timme, från Göteborg 1,5 timme. Parkering i Båstad centrum är begränsad och dyr under Swedish Open.</p>
+</div>
+`,
+
+  'skargard-instagramguide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård erbjuder ett ändlöst galleri av fotogeniska platser. Från solnedgångar bakom silhuetterade öar till kristallklara vikar och gammaldags fiskestugor – guide till de vackraste och mest fotogeniska platserna i skärgården.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna för foto</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Solnedgång från Utös västra sida</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös västra klipphällar mot kvällssolen är klassisk. Havet orange, öar i siluett och det lugna havet som spegel. Kom dit 30 minuter innan solnedgång, hitta en bra klippa och vänta.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sandhamn – segelbåtar i hamnen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamns hamn med masterna mot kvällshimlen och det gamla värdshuset i bakgrunden är ett klassiskt fotomotiv. Bäst tidig morgon (06–08) eller sen kväll när ljuset är mjukt.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Arholma – ytterskärgårdens minimalism</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra ytterskärgården har en nästan nordisk minimalism – kala klippor, rödmålade sjöbodar och öppet hav. Dramatisk fotografering i alla ljusförhållanden.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gamla stan Vaxholm vid gryningen</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholms trähusarkitektur i morgonljuset med dimma från havet är en av skärgårdens vackraste scener. Ta pendelbåten tidigt och var på plats innan turisterna vaknar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fototips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Golden hour (1 h efter soluppgång, 1 h innan solnedgång) ger bäst ljus</li>
+<li>Molniga dagar ger jämnare ljus utan hårda skuggor</li>
+<li>Spegelblankt hav tidiga mornar ger reflektionsfotografering</li>
+<li>Ta med stativ för lång slutartid i svagt ljus</li>
+<li>September–oktober ger varmast höstljus</li>
+</ul>
+`,
+
+  'wellness-retreat-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården är gjord för wellness. Tystnaden, naturen och havsluftens renhet skapar naturliga förutsättningar för återhämtning och mindfulness. Guide till wellness-upplevelser och retreat-alternativ i Stockholms skärgård.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför skärgården är perfekt för wellness</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havsluftens salthalt och ozon, tystnaden från trafikbruset och naturens rytm har kliniskt bevisade effekter på stress och välmående. Blå miljöer (vatten) har en dokumenterad lugnande effekt. Och bastun, kalla dopp och tidig morgon ger fysiologiska fördelar som kräver ett bokningsbart spa för att imitera.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Wellness-alternativ i skärgården</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Yoga retreat</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera arrangörer håller yoga-retreat på skärgårdsöar under sommaren. Söka "yoga retreat skärgård" eller "yoga Grinda" för aktuella arrangemang. Typiskt format: 3–5 dagar med morgonyoga, meditation, vegansk kost och havsbastu.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Bastu och kalla dopp</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den enklaste och effektivaste wellnessupplevelsen i skärgården är vedeldad bastu + kallt havsdopp. Boka havsbastu på Utö, Finnhamn eller Grinda och räkna med att känna dig nyfödda efteråt.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Digital detox</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välj en ö med dålig mobilsignal och lägg ner telefonen i ett par dagar. Finnhamn och de yttre öarna har begränsad täckning. Se vår separata guide till digital detox i skärgården.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Enklaste wellness-paketet:</strong>
+<p style="margin:8px 0 0;font-size:14px">Boka en natt på Utö eller Finnhamn. Ta en lång promenad, bada, bastua och ät god mat. Inga appar, inga möten, inga pushnotiser. Det är wellness på riktigt och kräver ingen speciell bokning eller dyrt paket.</p>
+</div>
+`,
+
+  'brollop-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården med sin naturliga skönhet, havsutsikt och intimitet är en av de vackraste bröllopsplatserna i Sverige. Guide till att planera drömbröllopet i skärgården – lokaler, transport och praktiska råd.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför skärgårdsbröllopet är unikt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsbröllopet erbjuder en naturlig inramning som inga dekorationer kan matcha. Klipphällar, havshorisont och det mjuka sommarsknuset ger en intimitet och skönhet som är svår att hitta i festlokaler. Gästernas gemensamma båtresa ut till ön skapar dessutom en händelse i sig.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa bröllopsöar och lokaler</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Grinda Wärdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus hyr ut sin anläggning för bröllop med upp till ca 80 gäster. Full catering, övernattning och en vacker naturmiljö. Kontakta Grinda direkt för bröllopspaket.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö Värdshus</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus tar emot bröllop med sin restauranglokal och tillgång till öns naturmiljö. Vacker för festarrangemang vid havet.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Privat öhyrning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det mest exklusiva alternativet är att hyra en privat ö eller stuga i skärgården och arrangera bröllopet där. Kräver mer planering men ger total integritet och personlighet.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk planering</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Boka båttransport för gästerna – charterbåt från Stockholm</li>
+<li>Planera för regnalternativ – skärgårdsbröllopet behöver inomhusalternativ</li>
+<li>Boka fotograf med erfarenhet av skärgårdsmiljöer</li>
+<li>Informera gäster om sista båttider hem</li>
+<li>Beräkna extra för catering och transport till ön</li>
+</ul>
+`,
+
+  'orust-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Orust är Bohusläns och Sveriges tredje största ö. Känd för sina varvsnäring, fantastiska klippbad och pittoreska fiskelägen – men långt ifrån lika touristpackad som Smögen och Marstrand. Komplett guide till Orust.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Orust och båtbyggeriet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Orust är ett av Sveriges mest aktiva varvscentrum. Bohusläns kustbefolkning har byggt båtar i generationer och Orustbåten – "Orustyxan" – är en legendomspunnen klinkbåt. Marstrand 22 och Nimbus är båtmärken med anknytning till ön. Varvet i Ellös är fortfarande aktivt och välkomnar besökare.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Klippbad och badplatser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hälleviksstrand är Orusts mest populära sandstrand med klart vatten och god service. Klippbaden längs öns västra sida mot Västerhavet är magnifika – kala gneis-hällar och öppet hav. Mollösund i söder är ett charmigt fiskeläge med klippbad och brygga.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fiskelägen och mat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Mollösund och Grundsund är Orusts mest karaktärsfulla fiskelägen med röda sjöbodar, bryggor och ett par restauranger. Lokalt fångad fisk och räkor serveras i enkel stil. Cykla längs kusten och utforska leden från fiskeläge till fiskeläge.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Ta dig till Orust:</strong>
+<p style="margin:8px 0 0;font-size:14px">Orust nås via broar från fastlandet (gratis). Från E6 ta avfart mot Tjörn/Orust. Från Göteborg tar det ca 1 timme. Buss från Stenungsund kör till Henån (Orusts centralort). Cykla gärna runt ön – det tar 1–2 dagar och är en av Bohusläns bästa cykelupplevelser.</p>
+</div>
+`,
+
+  'sensommar-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Sensommaren förvandlar Bohuslän. Turiststormen lägger sig i slutet av juli och börjat på september råder en speciell stillhet. Samtidigt öppnar ostronsäsongen, hummern är på gång och klipphällarna svalnar lagom för långa kvällssittningar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför sensommar är Bohusläns bästa tid</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I juli är Smögen fullpackat och parkeringarna längs kusten fulla. I september är klipporna tomma, restaurangerna har bord och Västerhavet har fortfarande sommarvärme (18–20°C). Det är kustliv utan kustomsättningens nackdelar.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftskivan (5 aug 2026)</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sensommarens viktigaste tradition: kräftpremiären markerar slutet på sommaren och inledningen på höstens skaldjurssäsong. Grebbestad och Smögen firar med kräftskivor och det autentiska Bohuslän är som tydligast.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostron och hummer (sep–okt)</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronsäsongen öppnar i september och hummerpremiären (tredje onsdagen i september) är Bohusläns folkligaste sensommarhögtid. Restaurangerna längs kusten är fyllda och fiskarna är ute med sina tinor. Det är den bästa tiden att äta sjömat i Bohuslän.</p>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sensommarklipporna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna är varma i september tack vare sommarens sol. Bada tidigt i september – havet är fortfarande varmt och klipporna varma – och kombinera med en halvdag vandring längs Bohusleden. Det är friluftsliv i sin renaste form.</p>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Boende i sensommar:</strong>
+<p style="margin:8px 0 0;font-size:14px">Priserna på boende i Bohuslän sjunker 30–40% från juli till september. Boka nu för en September-resa utan stress och till ett rimligare pris. Smögen, Lysekil och Grebbestad har alla boende tillgängligt i september utan förhandsbokning.</p>
+</div>
+`,
+
   const content = guides[slug]
   if (content) return content
 
