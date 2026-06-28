@@ -89,23 +89,19 @@ export default function GuiderClient() {
               gridTemplateColumns: 'minmax(160px, 240px) 1fr',
               border: '2px solid rgba(232,146,74,0.25)',
             }}>
-              <div style={{
-                background: 'linear-gradient(135deg, #1a4a5e, #2a8a8a)',
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-                justifyContent: 'center', padding: 32, position: 'relative',
-                minWidth: 160,
-              }}>
+              <div style={{ position: 'relative', minWidth: 220, overflow: 'hidden', flexShrink: 0 }}>
                 <span style={{
-                  position: 'absolute', top: 12, left: 12,
+                  position: 'absolute', top: 12, left: 12, zIndex: 2,
                   background: '#e8924a', color: '#fff',
                   fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em',
                   padding: '3px 10px', borderRadius: 20,
                 }}>Redaktionens val</span>
-                <svg viewBox="0 0 48 48" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" style={{ width: 64, height: 64 }}>
-                  <path d="M4 34 Q12 20 24 28 Q36 36 44 18" strokeLinecap="round"/>
-                  <circle cx="10" cy="38" r="3" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                  <circle cx="38" cy="14" r="3" fill="rgba(255,255,255,0.15)" stroke="none"/>
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://commons.wikimedia.org/wiki/Special:FilePath/Midsommar_Pole_-_Maypole_in_Sweden.jpg?width=480"
+                  alt="Midsommar i skärgården"
+                  style={{ width: '100%', height: '100%', minHeight: 200, objectFit: 'cover', display: 'block' }}
+                />
               </div>
               <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--sea)', marginBottom: 8, display: 'block' }}>
