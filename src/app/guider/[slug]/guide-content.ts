@@ -3567,8 +3567,8 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
 <strong style="color:var(--sea)">Barnvänlighets-checklista:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Gratis öluffarkort för barn under 6 år (Waxholmsbolaget)</li>
-<li>Halv avgift 6–15 år</li>
+<li>Gratis öluffarkort för barn under 7 år (Waxholmsbolaget)</li>
+<li>Halv avgift 7–19 år</li>
 <li>Ta med simväst för barn under 8 år</li>
 <li>Solkräm, myggolja och plåster är svårt att hitta på öarna</li>
 <li>Ta med simbälte – öppet hav har inga flytare</li>
@@ -3690,7 +3690,7 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiskt för barnfamiljer i Bohuslän:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Västtrafik Sommarkort (barn under 6 gratis, 6–19 halv pris)</li>
+<li>Västtrafik Sommarkort (barn under 7 gratis, 7–19 halv pris)</li>
 <li>Ta med simväst – klipphällar saknar flytare</li>
 <li>Skor med halkskydd för klipphällarna är ett måste</li>
 <li>Boka boende tidigt – Bohuslän är fullbokat i juli</li>
@@ -3710,7 +3710,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lummelundagrottan norr om Visby är en av Sveriges mest besökta turistattraktioner och med rätta. Guidade turer under jord med stalaktiter och underjordiska sjöar – barn 4+ brukar vara helt fascinerade. Öppen maj–september, boka i förväg under högsäsong.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Visby ringmur och medeltidskvarter</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur är en av Nordens bäst bevarade medeltidsmurer. Promenera längs muren, hitta portar och torn och besök Gotlandsmuseet med sin utmärkta barnsektion om gotländsk historia. Under Medeltidsveckan (slutet av juli) förvandlas hela Visby – fascinerande för barn 5+.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur är en av Nordens bäst bevarade medeltidsmurer. Promenera längs muren, hitta portar och torn och besök Gotlandsmuseet med sin utmärkta barnsektion om gotländsk historia. Under Medeltidsveckan (2–9 augusti 2026) förvandlas hela Visby – fascinerande för barn 5+.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Tofta strand</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta, 2 mil söder om Visby, är Gotlands bästa familj­strand med grunt vatten långt ut, sanddyner att rulla nerför och serviceanläggningar på plats. Glasskiosk, omklädning och parkering finns. Vattnet är varmare här än på nordöst-kusten tack vare söderläget.</p>
@@ -3719,7 +3719,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är platt och perfekt för familjecykling. Hyra cyklar med barnstol och trailercyklar finns i Visby. Populärt rundtur: Visby–Tofta (ca 15 km) längs kustnära vägar med minimal biltrafik.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk information</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland nås med Destination Gotlands färja (barn under 6 gratis, 6–15 halv pris). Bil är nödvändigt om du vill utforska hela ön. Boka boende och färjeplats 3–4 månader i förväg för juli. Boende för barnfamiljer: Tofta Strandpensionat, Visby Lägenhetshotell eller stugor via Gotlands Stugservice.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland nås med Destination Gotlands färja (barn under 7 gratis, 7–19 halv pris). Bil är nödvändigt om du vill utforska hela ön. Boka boende och färjeplats 3–4 månader i förväg för juli. Boende för barnfamiljer: Tofta Strandpensionat, Visby Lägenhetshotell eller stugor via Gotlands Stugservice.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Gotland-tips för barnfamiljer:</strong>
@@ -3790,8 +3790,8 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiska tips för båtresa med barn:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Barn under 6 år åker gratis med Waxholmsbolaget</li>
-<li>6–15 år betalar halv taxa</li>
+<li>Barn under 7 år åker gratis med Waxholmsbolaget</li>
+<li>7–19 år betalar halv taxa</li>
 <li>Ta med sjösjukemedicin för känsliga barn (eller vuxna)</li>
 <li>Sola inte på övre däck utan solskydd – solen reflekterar från vattnet</li>
 <li>Åk tur och retur samma dag för yngre barn – övernattning är krävande</li>
@@ -4088,7 +4088,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Juli är Gotlands mest intensiva månad. Medeltidsveckan lockar 40 000 besökare, restaurangerna är fullbokade och Visby ringmur lyser i sommarljuset. Men bortom festligheten finns ett Gotland som är strandernas, rasukarnas och cykelstigarnas ö. Guide till juli på Gotland 2026.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Medeltidsveckan 2026</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Medeltidsveckan på Gotland hålls varje år i slutet av juli – 2026 troligen 8–16 augusti (datum bekräftas av gotlandsmedeltid.se). Det är Europas enda medeltidsfestival av den här skalan och förvandlar Visby till ett levande 1200-tal med marknadsplatser, riddarskolon och konserter. Vill du se det – boka boende ett år i förväg. Vill du undvika folkmassan – kom dagarna runt men inte under.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Medeltidsveckan 2026 pågår 2–9 augusti. Det är Europas enda medeltidsfestival av den här skalan och förvandlar Visby till ett levande 1200-tal med marknadsplatser, riddarskolon och konserter – 40 000 besökare under en vecka. Vill du se det: boka boende nu, inte i mars. Vill du undvika folkmassan: kom dagarna runt men inte under.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa stränderna på Gotland i juli</h2>
 
@@ -4447,7 +4447,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostron är lagom att äta från september till april – månader med R i namnet. Grebbestad och Lysekil är ostronhuvudstäderna. Du kan boka ostronsafari där en guide tar dig ut till ostronbankarna, plockar och öppnar ostronen direkt. Priset är ca 500–800 kr per person inkl. ostron och dryck. Det är en av Bohusläns bästa upplevelser.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hummersäsongen</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerpremiären är alltid den tredje onsdagen i september (2026: 16 september). Det är årets festligaste kustdag i Bohuslän – fiskarna har haft sina tinor ute och hämtar upp den första fångsten. Restaurangerna i Smögen, Marstrand och Grebbestad fyller sina menyer med nyfångad hummer. Boka bord veckan innan.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummerpremiären är alltid första måndagen efter 20 september (2026: 21 september, kl 07.00). Det är årets festligaste kustdag i Bohuslän – fiskarna har haft sina tinor ute och hämtar upp den första fångsten. Restaurangerna i Smögen, Marstrand och Grebbestad fyller sina menyer med nyfångad hummer. Boka bord veckan innan.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring i Bohusläns höst</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusleden är en 900 km lång vandringsled längs Bohusläns kust. I höst är det perfekt – svalt, klart och utan sommarsol. Kortare etapper runt Smögen, Ramsvikslandet och Kosteröarna ger fantastiska dagsutflykter. Ta med termos och nötkaka.</p>
@@ -4455,7 +4455,7 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Höst i Bohuslän – att veta:</strong>
 <ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
-<li>Hummerpremiär: tredje onsdagen i september (16 sep 2026)</li>
+<li>Hummerpremiär: 21 september 2026 (första måndagen efter 20 september, kl 07.00)</li>
 <li>Ostron: tillgängliga september–april</li>
 <li>Kräftor: sista chansen i september</li>
 <li>Väder: september är ofta fin, oktober kan bli stormigt</li>
@@ -4531,7 +4531,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Varberg har en kompakt och trevlig stadskärna med kaféer, restauranger och en populär saluhall. Fisk och räkor från Västerhavet serveras på flertalet restauranger vid hamnen. Varbergs torg med sitt karaktäristiska rådhus är hjärtat i stadspromenaden.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Varberg</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Göteborg tar ca 45 minuter (Västkustbanan). Från Stockholm tar det ca 3,5 timme med tåg (byt i Göteborg eller Halmstad). Med bil längs E6 från Göteborg tar det 45 minuter. Färja till Grimmeton (Danmark) avgår från Varberg – en unik möjlighet att kombinera med ett dansk-besök.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Göteborg tar ca 45 minuter (Västkustbanan). Från Stockholm tar det ca 3,5 timme med tåg (byt i Göteborg eller Halmstad). Med bil längs E6 från Göteborg tar det 45 minuter. Stena Lines färja till Grenå i Danmark avgår från Varberg – en unik möjlighet att kombinera med ett dansk-besök. Överfarten tar ca 4 timmar.</p>
 `,
 
   'borgholm-guide': `
@@ -4954,7 +4954,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kräftskivan (5 aug 2026)</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sensommarens viktigaste tradition: kräftpremiären markerar slutet på sommaren och inledningen på höstens skaldjurssäsong. Grebbestad och Smögen firar med kräftskivor och det autentiska Bohuslän är som tydligast.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostron och hummer (sep–okt)</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronsäsongen öppnar i september och hummerpremiären (tredje onsdagen i september) är Bohusläns folkligaste sensommarhögtid. Restaurangerna längs kusten är fyllda och fiskarna är ute med sina tinor. Det är den bästa tiden att äta sjömat i Bohuslän.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronsäsongen öppnar i september och hummerpremiären (21 september 2026) är Bohusläns folkligaste sensommarhögtid. Restaurangerna längs kusten är fyllda och fiskarna är ute med sina tinor. Det är den bästa tiden att äta sjömat i Bohuslän.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sensommarklipporna</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna är varma i september tack vare sommarens sol. Bada tidigt i september – havet är fortfarande varmt och klipporna varma – och kombinera med en halvdag vandring längs Bohusleden. Det är friluftsliv i sin renaste form.</p>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
