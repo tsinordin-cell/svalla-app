@@ -4961,6 +4961,7 @@ export function getGuideContent(slug: string): string {
 <p style="margin:8px 0 0;font-size:14px">Priserna på boende i Bohuslän sjunker 30–40% från juli till september. Boka nu för en September-resa utan stress och till ett rimligare pris. Smögen, Lysekil och Grebbestad har alla boende tillgängligt i september utan förhandsbokning.</p>
 </div>
 `,
+  }
 
   const content = guides[slug]
   if (content) return content
