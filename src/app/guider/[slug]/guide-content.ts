@@ -4123,7 +4123,6 @@ export function getGuideContent(slug: string): string {
 <li>Gå upp tidigt – Visby ringmur i soluppgång utan turister är magisk</li>
 </ul>
 `,
-  }
 
   // ── Batch F: Beslutsguider ────────────────────────────────────────────────────
   'uto-vs-sandhamn': `
