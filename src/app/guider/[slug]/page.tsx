@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
+import FAQSection from '@/components/FAQSection'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -24,6 +25,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${guide.title} – Svalla`,
       description: guide.excerpt,
       url: `https://svalla.se/guider/${slug}`,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${guide.title} – Svalla`,
+      description: guide.excerpt,
     },
   }
 }
@@ -35,6 +42,11 @@ export default async function GuidePage({ params }: Props) {
 
   const content = getGuideContent(slug)
 
+  // Relaterade guider — samma kategori, exklusive aktuell guide
+  const related = GUIDES
+    .filter(g => g.slug !== slug && g.category === guide.category)
+    .slice(0, 4)
+
   // Schema.org Article — för E-E-A-T + AI Overviews-citation
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -45,6 +57,7 @@ export default async function GuidePage({ params }: Props) {
     about: guide.category,
     inLanguage: 'sv-SE',
     timeRequired: guide.readTime,
+    dateModified: '2025-06-01',
     url: `https://svalla.se/guider/${slug}`,
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://svalla.se/guider/${slug}` },
     author: { '@type': 'Organization', '@id': 'https://svalla.se/#organization', name: 'Svalla' },
@@ -181,6 +194,50 @@ export default async function GuidePage({ params }: Props) {
           </Link>
         </div>
       </div>
+
+      {/* FAQ — renderas om guiden har faqs-data */}
+      {guide.faqs && guide.faqs.length > 0 && (
+        <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 60px' }}>
+          <FAQSection
+            items={guide.faqs}
+            schemaUrl={`https://svalla.se/guider/${guide.slug}`}
+          />
+        </div>
+      )}
+
+      {/* Relaterade guider */}
+      {related.length > 0 && (
+        <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 60px' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)',
+            fontSize: 22, fontWeight: 700, color: 'var(--txt)',
+            margin: '0 0 20px',
+          }}>
+            Fler guider i {guide.category}
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
+            {related.map(r => (
+              <Link key={r.slug} href={`/guider/${r.slug}`} style={{
+                display: 'block', textDecoration: 'none',
+                background: 'var(--white)',
+                borderRadius: 14, padding: '16px 18px',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+                border: '1px solid rgba(10,123,140,0.08)',
+                transition: 'box-shadow 0.15s',
+              }}>
+                <div style={{ fontSize: 22, marginBottom: 8 }}>{r.emoji}</div>
+                <div style={{
+                  fontSize: 13.5, fontWeight: 700, color: 'var(--txt)',
+                  lineHeight: 1.35, marginBottom: 6,
+                }}>
+                  {r.title}
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{r.readTime}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
