@@ -1,5 +1,7 @@
 export type GuideCategory = "Praktisk" | "Transport" | "Aktivitet" | "Mat" | "Säsong" | "Region"
 
+export type FAQItem = { q: string; a: string }
+
 export type GuideMeta = {
   slug: string
   title: string
@@ -9,6 +11,7 @@ export type GuideMeta = {
   readTime: string
   featured?: boolean
   fullContent?: boolean
+  faqs?: FAQItem[]
 }
 
 export const GUIDES: GuideMeta[] = [
@@ -21,6 +24,14 @@ export const GUIDES: GuideMeta[] = [
     readTime: "14 min",
     featured: true,
     fullContent: true,
+    faqs: [
+      { q: 'Vad kostar det att fira midsommar på Sandhamn?', a: 'En dagstur med Cinderellabåten kostar ca 350 kr tur/retur. Boende på Sandhamn kostar 1 500–3 000 kr/natt per rum under midsommar. Räkna med att boka minst 3–4 månader i förväg för boende.' },
+      { q: 'Behöver man boka biljett till Cinderellabåten på midsommaraftonen?', a: 'Ja, absolut. Cinderellabåten kör med full kapacitet midsommaraftonen och biljetter tar slut veckor i förväg. Boka via Waxholmsbolagets app eller hemsida så snart du bestämt dig.' },
+      { q: 'Vilken ö är bäst för midsommar med barn?', a: 'Grinda är det bästa valet för barnfamiljer — kort restid (1h 45min), sandstrand, grunt vatten och ett genuint midsommarfirande med majstång. Alternativt Vaxholm (1h) om barnen tröttnar snabbt på resor.' },
+      { q: 'Hur tidigt ska man boka boende inför midsommar i skärgården?', a: 'Minst 3–4 månader i förväg för Sandhamn, Utö och Grinda. Vaxholm och Möja är lättare att boka 4–6 veckor i förväg. Dagsturerna kräver bara biljettbokning — inget boende.' },
+      { q: 'Kan man åka på dagstur utan övernattning på midsommar?', a: 'Ja, dagsturen fungerar utmärkt. Fjäderholmarna (25 min), Vaxholm (1h) och Grinda (1h 45min) är perfekta för dagstur. Kom tidigt — båtarna är fulla från lunch.' },
+      { q: 'Är det skillnad på midsommar i Stockholm vs Bohuslän?', a: 'Bohuslän har klippor, räksmörgåsar och västkustkaraktär. Stockholm har de klassiska skärgårdsöarna med majstång och Waxholmsbolaget. Bohuslän är bättre för klippbad; Stockholm för öhoppning och segelbåtsatmosfär.' },
+    ],
   },
   {
     slug: "packlista-skargarden",
@@ -30,6 +41,13 @@ export const GUIDES: GuideMeta[] = [
     emoji: "🎒",
     readTime: "8 min",
     fullContent: true,
+    faqs: [
+      { q: 'Behöver man flytväst i skärgården?', a: 'Flytväst är lagkrav för alla ombord på motordrivna fartyg och starkt rekommenderat vid paddling och segling. Barn under 15 år måste ha flytväst på sig när båten är i rörelse. Påföljd för brott mot kravet kan bli böter.' },
+      { q: 'Vad är det vanligaste att glömma till skärgården?', a: 'Solskydd (UV-strålning är starkare på öppet vatten), vattentätt telefonfodral, en extra lager (det blir alltid kallare än man tror på kvällen) och kontanter (många skärgårdskrogar har instabil kortläsare).' },
+      { q: 'Hur mycket vatten ska man ta med per person?', a: 'Räkna med 1 liter per person och timme i sol och värme, mer om du paddlar eller seglar aktivt. För en typisk dagstur: minst 2–3 liter per person. Sötvatten finns att fylla på vid de flesta gästhamnar men inte i naturhamnar.' },
+      { q: 'Kan man hyra utrustning på öarna?', a: 'Ja, de flesta större öar (Utö, Grinda, Sandhamn, Finnhamn) hyr ut cyklar och kajaker. Dykutrustning och snorklingsset finns på ett fåtal platser. Hyra på plats är ofta billigare än att ta med egna saker på båten.' },
+      { q: 'Vad ska man tänka på med packning om man åker med egna båt?', a: 'Packa i vattentäta säckar eller drybags. Tyngre saker placeras lågt och centrerat för stabiliteten. Ta med en liten dagryggsäck separat för landutflykter — du vill inte ta med hela packen varje gång du går iland.' },
+    ],
   },
   {
     slug: "allemansratten-pa-sjon",
@@ -39,6 +57,12 @@ export const GUIDES: GuideMeta[] = [
     emoji: "⚓",
     readTime: "7 min",
     fullContent: true,
+    faqs: [
+      { q: 'Hur länge får man ankra på samma plats?', a: 'Allemansrätten ger rätt att ankra eller lägga till på en plats i 1–2 nätter utan att be om lov. Vill du stanna längre bör du fråga markägaren. I naturreservat kan det finnas specifika regler som gäller framför allemansrätten.' },
+      { q: 'Är det gratis att ankra i naturhamnar?', a: 'Ja, ankring i naturhamnar är i regel gratis via allemansrätten. Du betalar inget kajplatsavgift som du gör i gästhamnar. I vissa naturreservat finns dock avgiftspliktiga lägesplatser — kolla Länsstyrelsens webbplats för specifika reservat.' },
+      { q: 'Var får man tälta i skärgården?', a: 'Du får tälta en eller ett par nätter på de flesta platser via allemansrätten. Undantag: naturreservat med tältförbud, privat tomtmark och strandskyddszon närmast bebyggelse. Kolla alltid skyltning på plats.' },
+      { q: 'Vad gäller för toalettavfall på båt?', a: 'Det är förbjudet att pumpa ut orenat toalettavfall inom 12 sjömil från land i Sverige. Antingen töms tanken på en pump-out-station i gästhamn, eller används miljövänliga alternativ. Greywaste (disk- och tvättvatten) är i regel tillåtet att tömma.' },
+    ],
   },
   {
     slug: "waxholmsbolaget-guide",
@@ -48,6 +72,13 @@ export const GUIDES: GuideMeta[] = [
     emoji: "⛴",
     readTime: "9 min",
     fullContent: true,
+    faqs: [
+      { q: 'Är SL-kortet giltigt på Waxholmsbolaget?', a: 'SL-kortet (månadskort, reskassa) gäller INTE på Waxholmsbolagets båtlinjer. Du behöver köpa separat biljett via Waxholmsbolagets app, hemsida eller ombord. Biljetten är prisvärd men du kan inte använda SL-appen.' },
+      { q: 'Hur köper man biljett till Waxholmsbolaget?', a: 'Enklast via Waxholmsbolagets app (iOS/Android) eller på waxholmsbolaget.se. Du kan också köpa biljett ombord på båten — kontant eller kort. Ombordköp är något dyrare för sällsynta linjer.' },
+      { q: 'Kan man ta med cykel på Waxholmsbolaget?', a: 'Ja, cyklar är välkomna på Waxholmsbolagets båtar. Det kostar en liten extra avgift (ca 50–80 kr beroende på linje och säsong). Cyklar lastas i fören — kontrollera kapaciteten för din specifika linje.' },
+      { q: 'Hur tidigt bör man vara vid bryggan?', a: 'Räkna med att vara vid bryggan 5–10 minuter före avgång. På populära linjer under högsäsong (juli) kan båtarna bli fulla. Förboka biljett digitalt — det garanterar inte plats på alla linjer men möjliggör smidig ombordstigning.' },
+      { q: 'Kör Waxholmsbolaget hela året?', a: 'Ja, men med reducerad tidtabell utanför sommarsäsongen (maj–september). Vissa linjer kör dagligen hela året, andra bara under sommarsäsongen. Kontrollera aktuell tidtabell på waxholmsbolaget.se för din linje.' },
+    ],
   },
   {
     slug: "skargard-utan-bat",
