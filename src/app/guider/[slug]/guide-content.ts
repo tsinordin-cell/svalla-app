@@ -11,7 +11,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">OSTKUSTEN: 8 alternativ</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm – skärgårdens klassiker</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets linje 80 från Strömkajen, ca 1 h 15 min. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm.</p>
+<p><strong>Hur du tar dig dit:</strong> Pendelbåt 83/83X från Strömkajen, ca 55 min. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm.</p>
 <p><strong>Vad du gör:</strong> Vaxholm arrangerar en av skärgårdens finaste midsommarfiranden med majstång på Rådhustrappan. Stadens gator fylls av folk i folkdräkt, lokalt hantverk säljs och stämningen är genuint gammalsvensk utan att kännas kitschig. Klättra upp på Vaxholms fästning för en fantastisk utsikt över Mysingen.</p>
 <p><strong>Var du äter:</strong> Vaxholms Hembygdsgård serverar traditionell midsommarbuffé med sill, potatis och jordgubbar. Boka minst två veckor i förväg. Hemma hos Josephine på Fiskaregatan är ett intimt alternativ med husmanskost. Waxholms Hotell erbjuder en fullmatad midsommarbuffé med havsvy direkt mot fästningen.</p>
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
@@ -23,7 +23,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Kom gärna kvällen innan (midsommarafton minus ett) och inta de bästa bryggplatserna. Ta med tält om du planerar övernattning – alla boenden är fullbokade månader i förväg.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Grinda – den barnvänliga ön</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget linje 80 eller 82 från Strömkajen, ca 2 h 15 min. Cinderellabåten går också midsommaraftonen med direktavgång.</p>
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget linje 11 från Strömkajen, ca 1 h 45 min. Cinderellabåten går också midsommaraftonen med direktavgång.</p>
 <p><strong>Vad du gör:</strong> Grinda är perfekt för barnfamiljer och de som vill ha midsommar utan folkmassor. Majstången reses på Grindas gamla gård med utsikt mot Furusundet. Ön är liten nog att gå runt på ett par timmar och stor nog att ha egna stränder.</p>
 <p><strong>Var du äter:</strong> Grinda Wärdshus serverar buffé i en klassisk skärgårdsmiljö. Maten är gedigen husmanskost med lokala råvaror – räkor, sill, nykokt färskpotatis och jordgubbar från fastlandet.</p>
 <p><strong>Insider-tips:</strong> Sov i en av Grinda Wärdshus stugor för en komplett skärgårdsmidsommar. Ön har också gratis tältplatser vid södra stranden.</p>
@@ -41,7 +41,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Ta morgonbåten och undvik de värsta trängseln på eftermiddagen. Hamnen blir fullproppade med båtar vid lunchtid.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Möja – bilfri midsommarstämning</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget via Stavsnäs, ca 2 h 30 min. SL-buss till Stavsnäs från Slussen (linje 834).</p>
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget via Stavsnäs, ca 2 h 30 min. SL-buss 433 till Stavsnäs från Slussen.</p>
 <p><strong>Vad du gör:</strong> Möja är en av skärgårdens bäst bevarade hemligheter – bilfri, lugn och autentisk. Midsommarfirandet samlar hela ön vid majstången på Möja Handelsträdgård. Det är folkfest i ordets rätta bemärkelse: grannar, turister och sommargäster sida vid sida.</p>
 <p><strong>Var du äter:</strong> Möja Krog vid södra Möja serverar säsongsbetonad mat. Söndagsbrunch med räkor och jordgubbar är deras midsommarspecialitet.</p>
 <p><strong>Insider-tips:</strong> Ta med cykeln på båten – ön är perfekt att utforska under midsommardagen. Ingen bil på ön, vilket gör det lugnt och barnvänligt.</p>
@@ -53,7 +53,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Kontrollera väderleksprognosen noga – det är en utsatt plats. Ha backup-plan om båten ställs in på grund av väder.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Ornö – söder om Stockholm, norr om alla</h4>
-<p><strong>Hur du tar dig dit:</strong> Bilfärja från Dalarö (nås med SL-buss 849 från Handen), ca 20 min. Alternativt Waxholmsbolaget.</p>
+<p><strong>Hur du tar dig dit:</strong> Bilfärja från Dalarö (nås med SL-buss 839 från Handen), ca 20 min. Alternativt Waxholmsbolaget.</p>
 <p><strong>Vad du gör:</strong> Ornö är en stor ö med unik karaktär – mestadels skog och naturreservat. Midsommarfirandet är genuint lokalt och lockar inga turister i märkbar mängd. Bra för dig som vill vara "inne i Sverige" utan att åka till Dalarna.</p>
 <p><strong>Var du äter:</strong> Ornö Krog, öns enda restaurang, serverar husmanskost och arrangerar midsommarbuffé för bokade sällskap.</p>
 <p><strong>Insider-tips:</strong> Ta med bilen på färjan och utforska öns vindlande vägar – det är en annorlunda skärgårdsupplevelse.</p>
@@ -215,7 +215,7 @@ export function getGuideContent(slug: string): string {
 
     'allemansratten-pa-sjon': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Allemansrätten på sjön – vad som faktiskt gäller</h2>
-<p>Allemansrätten är en av Sveriges grundlagar, men den är skriven för land – inte för vatten. Till sjöss gäller delvis andra regler, och många skärgårdsbesökare är osäkra på vad som gäller. Den här guiden reder ut de vanligaste frågorna på ett enkelt och tydligt sätt.</p>
+<p>Allemansrätten är inskriven i Regeringsformen – en av Sveriges grundlagar – men den gäller primärt land, inte vatten. Till sjöss gäller delvis andra regler, och många skärgårdsbesökare är osäkra på vad som gäller. Den här guiden reder ut de vanligaste frågorna på ett enkelt och tydligt sätt.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ankring</h3>
 <p><strong>Får du ankra var som helst?</strong> I princip ja, men med viktiga undantag.</p>
@@ -298,7 +298,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Avgångsplatser i Stockholm</h3>
 <p><strong>Strömkajen (Strömkajen, City):</strong> Waxholmsbolagets huvudterminal. Avgångar till de flesta destinationer inkl. Vaxholm, Grinda, Sandhamn och Arholma. T-bana Kungsträdgården, 5 min promenad.</p>
-<p><strong>Stavsnäs Vinterhamn (Stavsnäs):</strong> Terminal för södra och mellersta skärgården inkl. Sandhamn, Möja, Gällnö och Blidö. Nås med SL-buss 834 från Gullmarsplan. Ca 50 min med buss. Gratis parkering för dagsturister.</p>
+<p><strong>Stavsnäs Vinterhamn (Stavsnäs):</strong> Terminal för södra och mellersta skärgården inkl. Sandhamn, Möja, Gällnö och Blidö. Nås med SL-buss 433 från Slussen. Ca 50 min med buss. Gratis parkering för dagsturister.</p>
 <p><strong>Nynäshamn:</strong> Avgångspunkt för Utö och Landsort. Nås med Pendeltåg (Pendeltåg linje 36/37 från Stockholm Central, ca 55 min). Nynäshamn har bra parkeringsmöjligheter.</p>
 <p><strong>Furusund:</strong> Liten terminal för norra skärgårdens linjer. Nås med buss från Norrtälje eller bil.</p>
 <p><strong>Kapellskär:</strong> Norra ytterskärgårdens terminal. Buss från Norrtälje.</p>
@@ -361,21 +361,21 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Vaxholm – pendla som en lokalbo</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
-<p><strong>Transport:</strong> SL-buss 670 från Tekniska Högskolan T, ca 50 min. Alternativt Waxholmsbolaget linje 80, ca 1 h 15 min. Buss ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 670 från Tekniska Högskolan T, ca 50 min. Alternativt Waxholmsbolaget/pendelbåt från Strömkajen, ca 55 min. Buss ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> SL-buss gratis med månadskort. Waxholmsbåt ca 140 kr enkel resa.</p>
 <p><strong>Vad du gör:</strong> Vaxholm är en riktig stad – historia, handel, restauranger och fästning. Perfekt dagstur med familj eller vänner. Vaxholms fästning är ett museum man inte bör missa.</p>
 <p><strong>Praktisk info:</strong> Buss och båt kör hela året. Sommarens avgångstätheter är bäst, men Vaxholm fungerar som utflyktsmål nästan hela året.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Grinda – dagstur eller weekendvistelse</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
-<p><strong>Transport:</strong> Waxholmsbolaget linje 80 från Strömkajen, ca 2 h 15 min. Eller Cinderellabåten (direktavgång, dyrare).</p>
+<p><strong>Transport:</strong> Waxholmsbolaget linje 11 från Strömkajen, ca 1 h 45 min. Eller Cinderellabåten (direktavgång, dyrare).</p>
 <p><strong>Pris:</strong> Ca 200 kr enkel resa.</p>
 <p><strong>Vad du gör:</strong> Grinda är en av skärgårdens vackraste öar med klippor, skog och Grinda Wärdshus – en av skärgårdens bästa restauranger. Perfekt för en barnfamiljshelg utan bil.</p>
 <p><strong>Praktisk info:</strong> Grinda Wärdshus har stugor och vandrarhem. Tältning möjligt på södra sidan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Möja – bilfri skärgårdsidyll</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
-<p><strong>Transport:</strong> SL-buss 834 till Stavsnäs Vinterhamn, sedan Waxholmsbolaget linje 350/360 till Möja. Totalt ca 2 h 30 min. SL-bussen ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 433 till Stavsnäs Vinterhamn, sedan Waxholmsbolaget till Möja. Totalt ca 2 h 30 min. SL-bussen ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 190 kr enkel resa.</p>
 <p><strong>Vad du gör:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Krog och Möja Handelsträdgård är must-visits.</p>
 <p><strong>Praktisk info:</strong> Boende finns på Möja Vandrarhem och i privata stugor. Tältning möjligt i anvisade områden.</p>
@@ -389,7 +389,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Ornö – söder om Stockholm, bortom turisterna</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
-<p><strong>Transport:</strong> SL-buss 849 från Handen T (40 min), sedan bilfärja till Ornö från Dalarö (20 min). Totalt ca 1 h 15 min. Bussen ingår i SL-abonnemanget.</p>
+<p><strong>Transport:</strong> SL-buss 839 från Handen T (40 min), sedan bilfärja till Ornö från Dalarö (20 min). Totalt ca 1 h 15 min. Bussen ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, bilfärja ca 60 kr per person, ca 120 kr med cykel.</p>
 <p><strong>Vad du gör:</strong> Ornö är stor, skogsrik och har knappt några turister. Perfekt för vandring och att hyra cykel för att utforska öns skogar och klippor.</p>
 <p><strong>Praktisk info:</strong> Ornö har begränsat med restauranger – ta med matsäck. Tältning möjlig i naturreservatet.</p>
@@ -403,7 +403,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Sandhamn – seglarklassikern</h4>
 <p><strong>Tillgänglighet:</strong> ★★☆☆☆</p>
-<p><strong>Transport:</strong> SL-buss 834 till Stavsnäs, sedan Waxholmsbolaget linje 444 till Sandhamn. Totalt ca 2 h 30 min.</p>
+<p><strong>Transport:</strong> SL-buss 433 till Stavsnäs, sedan Waxholmsbolaget linje 444 till Sandhamn. Totalt ca 2 h 30 min.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 220 kr enkel resa.</p>
 <p><strong>Vad du gör:</strong> Sandhamn är skärgårdslivet i koncentrat – seglarbåtar, klassiska restauranger och klippbad vid Trouville. Under sommarveckan (Juni KSSS) är det ett evenemang av rang.</p>
 <p><strong>Praktisk info:</strong> Boende bör bokas månader i förväg. Sandhamns Seglarhotell och Sandhamns Värdshus är de bästa alternativen.</p>
@@ -472,8 +472,8 @@ export function getGuideContent(slug: string): string {
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Pendeltåg till Nynäshamn</strong> (linje 36/37) – nå Utö och Landsort med SL-kort</li>
 <li><strong>SL-buss 670/671</strong> till Vaxholm – alternativ till båten</li>
-<li><strong>SL-buss 834</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
-<li><strong>SL-buss 849</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
+<li><strong>SL-buss 433</strong> till Stavsnäs Vinterhamn – utgångspunkt för Sandhamn, Möja, Gällnö</li>
+<li><strong>SL-buss 839</strong> till Dalarö – utgångspunkt för bilfärja till Ornö</li>
 <li><strong>SL-buss 676</strong> till Ljusterö – inklusive bilfärjan över till ön (ingår i SL!)</li>
 <li><strong>Pendeltåg till Bålsta</strong> och anslutningsbussar till Mälaren-öar</li>
 </ul>
@@ -797,7 +797,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Sandhamn – seglarnas och festisvans paradis</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Karaktär:</strong> Livlig, social, välbesökt. Sandhamn är skärgårdens metropol – relativt sett</li>
-<li><strong>Transport:</strong> 2,5–3,5 h från Stockholm (Waxholmsbolaget via Stavsnäs eller linje 80)</li>
+<li><strong>Transport:</strong> 2,5–3,5 h från Stockholm (Waxholmsbolaget via Stavsnäs)</li>
 <li><strong>Boende:</strong> Sandhamns Värdshus, Sandhamns Seglarhotell – boka månader i förväg</li>
 <li><strong>Mat:</strong> Sandhamns Värdshus med husmanskost och havsfrukter, Dykarbaren för lättare mat</li>
 <li><strong>Bäst för:</strong> Seglare, festglada, de som vill ha service och folkliv</li>
@@ -808,7 +808,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Grinda – naturälskarnas och barnfamiljernas ö</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Karaktär:</strong> Lugn, naturskön, välkomnande. Grinda är skärgårdsidyllen utan köer</li>
-<li><strong>Transport:</strong> 2–2,5 h från Stockholm (Waxholmsbolaget linje 80 eller Cinderellabåten)</li>
+<li><strong>Transport:</strong> 2–2,5 h från Stockholm (Waxholmsbolaget linje 11 eller Cinderellabåten)</li>
 <li><strong>Boende:</strong> Grinda Wärdshus (stugor, vandrarhem, rum), tältplatser</li>
 <li><strong>Mat:</strong> Grinda Wärdshus med råvaror från ön och grannskapet</li>
 <li><strong>Bäst för:</strong> Barnfamiljer, naturälskare, de som vill ha lugn och ro</li>
@@ -1183,7 +1183,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur du tar dig dit</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>SL-buss 670/671</strong> från Tekniska Högskolan T: ca 50 min. Ingår i SL-abonnemanget.</li>
-<li><strong>Waxholmsbolaget linje 80</strong> från Strömkajen: ca 1 h 15 min. Ca 140 kr enkel resa.</li>
+<li><strong>Waxholmsbolaget/pendelbåt</strong> från Strömkajen: ca 55 min. Ca 140 kr enkel resa.</li>
 <li><strong>Med bil:</strong> E18 norrut, avfart mot Vaxholm via väg 274. Ca 40 min. Parkering vid hamnen.</li>
 </ul>
 
@@ -1202,7 +1202,7 @@ export function getGuideContent(slug: string): string {
 <p>Vaxholms centrum har ett antal butiker med skandinaviskt hantverk, textil och souvenirer. Ingen storhandel men charmig lokal shopping i gamla trähus.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vaxholm som basläger</h3>
-<p>Vaxholm fungerar som utmärkt utgångspunkt för vidare färd i skärgården. Waxholmsbolagets linje 80 fortsätter från Vaxholm till Grinda och Sandhamn. Du kan hämta matsäcken och fortsätta resan utan att gå tillbaka till Stockholm.</p>
+<p>Vaxholm fungerar som utmärkt utgångspunkt för vidare färd i skärgården. Waxholmsbolagets linjer fortsätter från Vaxholm till Grinda och Sandhamn. Du kan hämta matsäcken och fortsätta resan utan att gå tillbaka till Stockholm.</p>
 `,
 
     'landsort-guide': `
@@ -1297,7 +1297,7 @@ export function getGuideContent(slug: string): string {
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Strömkajen:</strong> Waxholmsbolagets huvudterminal. T-bana Kungsträdgården.</li>
 <li><strong>Strandvägen/Nybrokajen:</strong> Cinderellabåtarna och Fjäderholmarna</li>
-<li><strong>Stavsnäs:</strong> SL-buss 834 från Gullmarsplan</li>
+<li><strong>Stavsnäs:</strong> SL-buss 433 från Slussen</li>
 <li><strong>Nynäshamn:</strong> Pendeltåg + Utö/Landsort-linjerna</li>
 </ul>
 
@@ -1772,7 +1772,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Cinderellabåten (rekommenderas):</strong> Avgår från Strandvägen/Nybrokajen i Stockholm. Ca 2 h 30 min restid med stopp. Bekväm och klassisk – men dyrare än Waxholmsbolaget. Säsong maj–september.</li>
-<li><strong>Waxholmsbolaget via Stavsnäs:</strong> Buss 834 från Gullmarsplan till Stavsnäs (ca 1 h), sedan båt till Sandhamn (ca 1 h 30 min). Billigare alternativ. Stavsnäs-trafiken körs av SL men båten är Waxholmsbolaget.</li>
+<li><strong>Waxholmsbolaget via Stavsnäs:</strong> Buss 433 från Slussen till Stavsnäs (ca 1 h), sedan båt till Sandhamn (ca 1 h 30 min). Billigare alternativ. Stavsnäs-trafiken körs av SL men båten är Waxholmsbolaget.</li>
 <li><strong>Med segelbåt eller motorbåt:</strong> Sandhamns gästhamn är en av Östersjöns mest välbesökta. Fasta och mojtöjbollar finns. Boka plats under högsäsong.</li>
 </ul>
 
@@ -1962,10 +1962,10 @@ export function getGuideContent(slug: string): string {
 <p>Möja är en av Stockholms skärgårds folkrikaste öar med drygt 200 bofasta invånare – och det märks. Här finns affär, krog, pizzeria, biblitek, skola och en levande lokalgemenskap som skiljer sig markant från de öar som bara har ett sommarvärdshus. Möja är skärgårdslivet på riktigt, inte en kuliss.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Möja?</h3>
-<p>Möja nås med Waxholmsbolagets linje 444 från Stavsnäs brygga. Stavsnäs når du med SL-buss 834 från Slussen (ca 1 h 10 min) eller SL-buss 835 från Gullmarsplan. Restid från Stavsnäs till Möja är ca 1 h 15 min. Totalt från Stockholm centrum: ca 2 h 30 min.</p>
+<p>Möja nås med Waxholmsbolagets linje 444 från Stavsnäs brygga. Stavsnäs når du med SL-buss 433 från Slussen (ca 55 min). Restid från Stavsnäs till Möja är ca 1 h 15 min. Totalt från Stockholm centrum: ca 2 h 30 min.</p>
 <p>Möja har tre angöringsplatser: Möja Söderhamn, Sandvik och Möja Norra. De flesta väljer Möja Söderhamn som bas – det är här affären, krogen och hamnen finns.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>SL-buss 834 från Slussen till Stavsnäs: ca 1 h 10 min</li>
+<li>SL-buss 433 från Slussen till Stavsnäs: ca 55 min</li>
 <li>Waxholmsbolaget linje 444, Stavsnäs–Möja Söderhamn: ca 1 h 15 min</li>
 <li>Biljett: SL-kort + tilläggsbiljett (zon C), eller Waxholmsbolaget-biljett ca 140–160 kr enkel resa</li>
 <li>Sommar: avgångar 3–5 ggr/dag. Kolla tidtabellen i Waxholmsbolagets app.</li>
@@ -2003,9 +2003,9 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är ett underskattat kvalitetsmärke: en ö som inte översäljer sig. Grinda är inte för alla, men det är rätt ö för fler än de flesta tror.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Grinda</h2>
-<p>Grinda nås med Waxholmsbolagets linje 80 eller 82 från Strömkajen i Stockholm. Restid ca 2 h 15 min. Cinderellabåten går också till Grinda under sommarsäsongen med kortare restid, ca 1 h 40 min.</p>
+<p>Grinda nås med Waxholmsbolaget (linje 11) från Strömkajen i Stockholm. Restid ca 1 h 45 min. Cinderellabåten går också till Grinda under sommarsäsongen med kortare restid, ca 1 h 20 min.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Waxholmsbolaget linje 80 från Strömkajen: ca 2 h 15 min, avgångar morgon och kväll</li>
+<li>Waxholmsbolaget linje 11 från Strömkajen: ca 1 h 45 min, avgångar morgon och kväll</li>
 <li>Cinderellabåten (sommar): ca 1 h 40 min från Strandvägen</li>
 <li>Biljett Waxholmsbolaget: ca 170–200 kr enkel resa</li>
 <li>Grinda har två bryggor – Grinda Södra (Wärdshuset) och Grinda Norra</li>
@@ -2039,9 +2039,9 @@ export function getGuideContent(slug: string): string {
 <p>Finnhamn är en av Stockholms skärgårds bäst bevarade hemligheter – åtminstone jämfört med mer välkända öar som Sandhamn och Grinda. Här finns Sveriges äldsta vandrarhem, en naturhamn som lockar segelentusiaster från hela Östersjön, och en natur som är vildare och mer storslagen än många sydligare öar.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Finnhamn</h3>
-<p>Finnhamn ligger i norra Stockholms skärgård och nås med Waxholmsbolagets linje 80 från Strömkajen. Restid ca 2 h 45 min. Det är en av de längre båtresorna i innerskärgården, men varje minut är värd det.</p>
+<p>Finnhamn ligger i norra Stockholms skärgård och nås med Waxholmsbolaget (linje 12) från Strömkajen. Restid ca 2 h 30 min. Det är en av de längre båtresorna i innerskärgården, men varje minut är värd det.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Waxholmsbolaget linje 80, Strömkajen–Finnhamn: ca 2 h 45 min</li>
+<li>Waxholmsbolaget linje 12, Strömkajen–Finnhamn: ca 2 h 30 min</li>
 <li>Avgångar: vanligtvis 1–2 per dag sommartid, morgon och/eller tidig eftermiddag</li>
 <li>Biljett: ca 200–230 kr enkel resa</li>
 <li>Kolla tidtabellen noggrant – sista båten hem går tidigt</li>
@@ -2118,7 +2118,7 @@ export function getGuideContent(slug: string): string {
 <p>Ornö nås med bilfärja från Dalarö (nås med buss från Handen T-bana) eller med Waxholmsbolagets passagerarbåtar.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Bilfärja från Dalarö:</strong> Avgår flera gånger dagligen. Restid ca 25 min. Bilbiljett ca 150 kr, gångpassagerare ca 40 kr.</li>
-<li><strong>Buss till Dalarö:</strong> Buss 849 från Handen T-bana, ca 40 min.</li>
+<li><strong>Buss till Dalarö:</strong> Buss 839 från Handen T-bana, ca 40 min.</li>
 <li><strong>Waxholmsbolaget:</strong> Passagerarbåt från Nynäshamn, restid ca 1 h.</li>
 <li>Total restid med buss + färja: ca 1 h 20 min från Stockholm</li>
 </ul>
@@ -2516,7 +2516,7 @@ export function getGuideContent(slug: string): string {
 
     'oland-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Öland – guide till solens och vindarnas ö</h2>
-<p>Öland är unikt i Sverige: en lång, smal ö (13 km bred, 137 km lång) som är sammankopplad med fastlandet via en av Europas längsta broar. Ölandsbron gör ön unik – du kan köra hit med bil utan färja – och det kombinerat med Sveriges solrikaste klimat gör Öland till ett av landets mest besökta sommarmål.</p>
+<p>Öland är unikt i Sverige: en lång, smal ö (16 km bred på bredaste stället, 137 km lång) som är sammankopplad med fastlandet via en av Europas längsta broar. Ölandsbron gör ön unik – du kan köra hit med bil utan färja – och det kombinerat med Sveriges solrikaste klimat gör Öland till ett av landets mest besökta sommarmål.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Öland</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2546,7 +2546,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda sands och vindmöllor</h3>
-<p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges näst längsta sandstrand och ett sommarmål i sig – ca 10 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
+<p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges längsta sandstrand och ett sommarmål i sig – ca 20 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Böda sand:</strong> Ca 10 km sandstrand i norra Öland. Grunt och barnvänligt.</li>
 <li><strong>Historiska vindmöllor:</strong> Öland har fler bevarade traditionella vindmöllor än något annat landskap i Sverige – ca 400 st</li>
@@ -2660,7 +2660,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Båtkörkort i Sverige – vad gäller och hur tar du det?</h2>
 <p>Sverige har inget lagstadgat krav på körkort för att framföra fritidsbåt – men det innebär inte att du kan köra utan kunskaper. Sjölagen ställer krav på kompetens, och försäkringsbolag kräver ofta förarbevis. Här är vad som faktiskt gäller och vilka certifikat som är relevanta.
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Grinda vs Finnhamn – vilken ö passar dig?</h2>
-<p>Grinda och Finnhamn är båda populära öar i norra Stockholms skärgård, båda nås med Waxholmsbolagets linje 80, och båda erbjuder naturskönhet och skärgårdsupplevelse. Men karaktären är helt olika. Här är den ärliga jämförelsen.</p>
+<p>Grinda och Finnhamn är båda populära öar i norra Stockholms skärgård, båda nås med Waxholmsbolaget från Strömkajen, och båda erbjuder naturskönhet och skärgårdsupplevelse. Men karaktären är helt olika. Här är den ärliga jämförelsen.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport och restid</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2708,9 +2708,9 @@ export function getGuideContent(slug: string): string {
 <p>Ingmarsö är en av de sista genuint bilfria öarna i Stockholms norra skärgård med en liten fast befolkning och ett skärgårdsliv som faktiskt lever. Inga bilar, inga affärskedjor, inga lyxspa. Bara natur, stiltje och det lugn som bara öar som inte hunnit bli turistattraktioner kan erbjuda.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Ingmarsö</h3>
-<p>Ingmarsö nås med Waxholmsbolagets linje 80 från Strömkajen i Stockholm. Linjen stannar på Ingmarsö på vägen mot Finnhamn och Arholma.</p>
+<p>Ingmarsö nås med Waxholmsbolaget från Strömkajen i Stockholm. Kontrollera aktuell linje på waxholmsbolaget.se – ön ligger på norra linjen mot Finnhamn och Arholma.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li>Waxholmsbolaget linje 80, Strömkajen–Ingmarsö: ca 2 h 30 min</li>
+<li>Waxholmsbolaget, Strömkajen–Ingmarsö: ca 2 h 30 min (se waxholmsbolaget.se)</li>
 <li>Avgångar: 1–2 per dag sommartid. Kontrollera tidtabellen noggrant.</li>
 <li>Biljett: ca 190–210 kr enkel resa</li>
 <li>Inga bilar kan medtas – Ingmarsö är bilfri ö</li>
@@ -2740,7 +2740,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport till Arholma</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Alternativ 1 – Norrtälje + landstransport:</strong> Buss 676 från Stockholm till Norrtälje (ca 1 h 15 min). Därifrån regional buss mot Väddö, sedan lokalbåt till Arholma. Total restid ca 3–4 h.</li>
-<li><strong>Alternativ 2 – Waxholmsbolaget sommarlinje:</strong> Sommartid (juni–aug) kan direktbåt från Strömkajen, linje 80, gå mot Arholma via norra linjen. Kontrollera om linjen är aktiv aktuellt år. Ca 4 h.</li>
+<li><strong>Alternativ 2 – Waxholmsbolaget sommarlinje:</strong> Sommartid (juni–aug) kan direktbåt från Strömkajen gå mot Arholma via norra linjen. Kontrollera på waxholmsbolaget.se om linjen är aktiv aktuellt år. Ca 4 h.</li>
 <li><strong>Alternativ 3 – Bil till Simpnäs + lokalbåt:</strong> Kör till Simpnäs norr om Väddö, ta lokalbåten till Arholma. Ca 2 h totalt.</li>
 </ul>
 
@@ -2771,7 +2771,7 @@ export function getGuideContent(slug: string): string {
 
     'hoga-kusten-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Höga Kusten – guide till UNESCO-världsarvet</h2>
-<p>Höga Kusten är ett av Skandinaviens mest dramatiska kustlandskap och UNESCO-världsarv sedan 2000. Det unika är landhöjningen: efter att inlandsisen smält har landet rest sig upp till 285 meter – mer än någon annan plats på jordklotet. Resultatet är en brant, fjordliknande kust med dramatiska klippor, djupa fjärdar och en skärgård med en storslagenhet som saknar motstycke längs Sveriges kust.</p>
+<p>Höga Kusten är ett av Skandinaviens mest dramatiska kustlandskap och UNESCO-världsarv sedan 2000. Det unika är landhöjningen: efter att inlandsisen smält har landet rest sig upp till 286 meter – mer än någon annan plats på jordklotet. Resultatet är en brant, fjordliknande kust med dramatiska klippor, djupa fjärdar och en skärgård med en storslagenhet som saknar motstycke längs Sveriges kust.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig dit</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2783,7 +2783,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Skuleskogen nationalpark</h3>
 <p>Skuleskogen är Höga Kustens nationalpark och en av Skandinaviens vackraste vandringsdestinationer. Urskog klättrar längs landhöjda klippor med utsikter mot fjärdar och öar.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Slåttdalskrevan:</strong> Ca 200 m lång och 40 m djup klippspricka – nationalparkens mest fotograferade naturformation</li>
+<li><strong>Slåttdalskrevan:</strong> Ca 200 m lång och 30 m djup klippspricka – nationalparkens mest fotograferade naturformation</li>
 <li><strong>Naturum Skuleskogen:</strong> Besökscentrum med info om geologi och fauna</li>
 <li><strong>Vandringsleder:</strong> Allt från 2-timmarsrundor till Höga Kustenleden (130 km)</li>
 </ul>
@@ -2831,7 +2831,7 @@ export function getGuideContent(slug: string): string {
 
     'lysekil-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Lysekil – Havets Hus och klipporna</h2>
-<p>Lysekil är en av Bohusläns viktigaste kuststäder med genuint sjöstadskaraktär, ett av Skandinaviens bästa akvarier och ett omland av klippöar och fjordar. Gullmarns fjord – Sveriges djupaste havsfjord – skapar ett unikt marint ekosystem som Havets Hus gör tillgängligt för alla.</p>
+<p>Lysekil är en av Bohusläns viktigaste kuststäder med genuint sjöstadskaraktär, ett av Skandinaviens bästa akvarier och ett omland av klippöar och fjordar. Gullmarns fjord – Sveriges enda äkta fjord – skapar ett unikt marint ekosystem som Havets Hus gör tillgängligt för alla.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Lysekil</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -2896,7 +2896,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ta dig till Dalarö</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Buss:</strong> SL-buss 849 från Handen T-bana (röda linjen) till Dalarö brygga. Ca 40 min. Ingår i SL-zoner.</li>
+<li><strong>Buss:</strong> SL-buss 839 från Handen T-bana (röda linjen) till Dalarö brygga. Ca 40 min. Ingår i SL-zoner.</li>
 <li><strong>Bil:</strong> Motorväg 73 söderut mot Nynäshamn, av vid Haninge mot Dalarö. Ca 45–55 min från Stockholm.</li>
 </ul>
 
