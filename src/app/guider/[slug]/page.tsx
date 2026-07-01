@@ -26,11 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: guide.excerpt,
       url: `https://svalla.se/guider/${slug}`,
       type: 'article',
+      images: [{
+        url: `https://svalla.se/guider/${slug}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: guide.title,
+      }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${guide.title} – Svalla`,
       description: guide.excerpt,
+      images: [`https://svalla.se/guider/${slug}/opengraph-image`],
     },
   }
 }
