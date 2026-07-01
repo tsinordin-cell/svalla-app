@@ -4,6 +4,7 @@ import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
 import { UPPLÄGG } from './dag/dag-data'
+import { GUIDES } from './guider/guides-data'
 
 // Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
 const JAMFOR_PAIRS: Array<[string, string]> = [
@@ -111,38 +112,7 @@ const BLOG_SLUGS = [
 
 
 // Guide-slugs (speglar guides-data.ts)
-const GUIDE_SLUGS = [
-  'midsommar-skargarden-2026',
-  'packlista-skargarden',
-  'allemansratten-pa-sjon',
-  'waxholmsbolaget-guide',
-  'skargard-utan-bat',
-  'vad-kostar-skargarden',
-  'badtemperatur-skargard',
-  'sl-kort-skargarden',
-  'dykning-snorkling-skargard',
-  'rakfrukost-skargard',
-  'sjomatkrogar-guide',
-  'hummersafari-bohuslan',
-  'surstrommning-guide',
-  'skargard-host',
-  'midsommar-bohuslan',
-  'sandhamn-vs-grinda',
-  'gotland-vs-oland',
-  'marstrand-guide',
-  'smogen-guide',
-  'naturhamnar-guide',
-  'bohuslan-skargard-guide',
-  'norrtelje-guide',
-  'fjaderholmarna-guide',
-  'weekend-i-skargarden',
-  'basta-oar-stockholms-skargard',
-  'vaxholm-guide-komplett',
-  'landsort-guide',
-  'hyrbat-guide',
-  'pendelbat-guide',
-  'seglingsklubbar-guide',
-]
+// Guide-slugs hämtas dynamiskt från GUIDES — ingen manuell lista behövs
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = 'https://svalla.se'
@@ -332,12 +302,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  // ── Guide-sidor ──────────────────────────────────────────────────
-  const guidePages: MetadataRoute.Sitemap = GUIDE_SLUGS.map(slug => ({
-    url: `${base}/guider/${slug}`,
+  // ── Guide-sidor — alla 133 guider, dynamiskt från guides-data.ts ─
+  const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
+    url: `${base}/guider/${g.slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
-    priority: 0.6,
+    priority: 0.75,
   }))
 
   // ── Dynamiska platser från Supabase ─────────────────────────────
