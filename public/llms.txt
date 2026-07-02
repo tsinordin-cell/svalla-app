@@ -1,6 +1,6 @@
 # Svalla
 
-> Svalla är den ledande svenska plattformen för skärgårdslivet. Vi hjälper besökare att planera dagar i den svenska skärgården — med fokus på öar, restauranger, aktiviteter, boende och transport. Plattformen täcker 84 öar, 200+ platser och 11 regioner längs Sveriges kust.
+> Svalla är den ledande svenska plattformen för skärgårdslivet. Vi hjälper besökare att planera dagar i den svenska skärgården — med fokus på öar, restauranger, aktiviteter, boende och transport. Plattformen täcker 120+ öar, 200+ platser och 6 regioner längs Sveriges kust.
 
 ## Vad Svalla är
 
@@ -21,26 +21,21 @@ Thorkel finns på: https://svalla.se/planera
 
 ## Regioner som täcks
 
-- Stockholms skärgård (norra, mellersta, södra) — 60+ öar
-- Bohuslän — Smögen, Fjällbacka, Marstrand, Lysekil
-- Gotland — Visby, Fårö, gästhamnar
-- Åland — Mariehamn, ytterskärgård, Föglö
-- Öland — Borgholm, Lange Erik, södra Öland
-- Blekinges skärgård — Karlskrona, Hanö
-- Västerhavet — Kosteröarna, Orust, Tjörn
-- Höga Kusten — Ulvön, Härnösand, Skuleskogen
-- Halland — Varberg, Tylösand, Falkenberg
-- Göteborgs skärgård
-- Mälaren
+- Stockholms skärgård (norra, mellersta, södra) — 56+ öar — Sandhamn, Grinda, Utö, Möja, Arholma, Finnhamn m.fl.
+- Bohuslän — 15 platser — Marstrand, Smögen, Fjällbacka, Lysekil, Kosterhavet
+- Göteborgs södra skärgård — 5 öar — Brännö, Styrsö, Vrångö, Donsö, Asperön (Styrsöbolaget)
+- Gotland — Visby (UNESCO), Fårö, raukar, gästhamnar
+- Öland — Borgholm, Böda sand, UNESCO-alvaret, 400+ väderkvarnar
+- Höga Kusten — Ulvön, surströmming, UNESCO-världsarv
 
 ## Populäraste öar
 
-Sandhamn, Utö, Grinda, Vaxholm, Fjäderholmarna, Finnhamn, Möja, Gällnö, Arholma, Blidö, Nåttarö, Ornö, Furusund, Ljusterö, Runmarö
+Sandhamn, Utö, Grinda, Vaxholm, Fjäderholmarna, Finnhamn, Möja, Gällnö, Arholma, Blidö, Nåttarö, Ornö, Furusund, Ljusterö, Runmarö, Marstrand, Gotland, Öland, Ulvön, Brännö
 
 ## Nyckelinnehåll
 
 - 133 expertguider om allt från packlista till hummersafari
-- 84 öar med fullständiga guider (restauranger, boende, aktiviteter, transport, insidertips)
+- 120+ öar med fullständiga guider (restauranger, boende, aktiviteter, transport, insidertips)
 - Jämförelse av öar: https://svalla.se/jamfor
 - Karta över skärgården: https://svalla.se/karta
 - Dagsplaner: https://svalla.se/resetips
