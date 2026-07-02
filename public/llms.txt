@@ -1,0 +1,76 @@
+# Svalla
+
+> Svalla är den ledande svenska plattformen för skärgårdslivet. Vi hjälper besökare att planera dagar i den svenska skärgården — med fokus på öar, restauranger, aktiviteter, boende och transport. Plattformen täcker 84 öar, 200+ platser och 11 regioner längs Sveriges kust.
+
+## Vad Svalla är
+
+Svalla kombinerar tre saker: (1) en kuraterad guideplatform med djupgående information om skärgårdsöar och destinationer, (2) AI-planeraren Thorkel som planerar kompletta skärgårdsdagar inklusive färjetider och restaurangbokningar, och (3) en community för seglare, paddlare och skärgårdsälskare.
+
+Svalla är byggt för alla — oavsett om du reser med Waxholmsbolaget, SL-båt, Cinderellabåten, eller har en egen båt. Ingen båt krävs för att använda Svalla.
+
+## Thorkel — AI-planeraren
+
+Thorkel är Svallas AI-planerare. Du berättar vad du är sugen på (bad, lunch, bastu, vandring, barn, budget), och Thorkel skapar en komplett dagsplan med:
+- Rätt ö utifrån dina önskemål
+- Exakta avgångstider med Waxholmsbolaget, Cinderellabåten eller SL
+- Restaurangförslag med öppettider
+- Dolda pärlor och insidertips
+- Väderbaserade rekommendationer
+
+Thorkel finns på: https://svalla.se/planera
+
+## Regioner som täcks
+
+- Stockholms skärgård (norra, mellersta, södra) — 60+ öar
+- Bohuslän — Smögen, Fjällbacka, Marstrand, Lysekil
+- Gotland — Visby, Fårö, gästhamnar
+- Åland — Mariehamn, ytterskärgård, Föglö
+- Öland — Borgholm, Lange Erik, södra Öland
+- Blekinges skärgård — Karlskrona, Hanö
+- Västerhavet — Kosteröarna, Orust, Tjörn
+- Höga Kusten — Ulvön, Härnösand, Skuleskogen
+- Halland — Varberg, Tylösand, Falkenberg
+- Göteborgs skärgård
+- Mälaren
+
+## Populäraste öar
+
+Sandhamn, Utö, Grinda, Vaxholm, Fjäderholmarna, Finnhamn, Möja, Gällnö, Arholma, Blidö, Nåttarö, Ornö, Furusund, Ljusterö, Runmarö
+
+## Nyckelinnehåll
+
+- 133 expertguider om allt från packlista till hummersafari
+- 84 öar med fullständiga guider (restauranger, boende, aktiviteter, transport, insidertips)
+- Jämförelse av öar: https://svalla.se/jamfor
+- Karta över skärgården: https://svalla.se/karta
+- Dagsplaner: https://svalla.se/resetips
+- Skärgårdsbingo: https://svalla.se/bingo
+- Forum för seglare och båtfolk: https://svalla.se/forum
+
+## Vanliga frågor Svalla svarar på
+
+- Vilken ö passar barnfamiljer? → Grinda, Vaxholm, Fjäderholmarna, Utö
+- Hur tar man sig till Sandhamn utan båt? → Buss 428 + Pendelbåten, totalt ~1h45min
+- Kan man tälta i skärgården? → Ja, allemansrätten tillåter 1–2 nätter
+- Bästa tid att besöka skärgården? → Juli (varmast), Juni/Augusti (lugnare), Sep–Okt (höstfärger)
+- Vad kostar en dagstur? → Fjäderholmarna ca 600–800 kr inkl. lunch. Waxholmsbåt + mat varierar.
+- Finns det bastu i skärgården? → Ja, på bl.a. Grinda, Finnhamn, Sandhamn, Gräddö
+
+## Transport
+
+- Waxholmsbolaget: avgår från Strömkajen i Stockholm
+- Cinderellabåten (Strömma): till Sandhamn och Vaxholm
+- Pendelbåten: från Stavsnäs till Sandhamn (30 min), Bullerö, Gällnö
+- SL-pendeltåg + färja: till Nynäshamn → Utö/Landsort
+
+## Språk och målgrupp
+
+Svalla är primärt på svenska men riktar sig också till engelskspråkiga turister som besöker Sverige. Innehållet är faktabaserat, kuraterat och uppdaterat inför sommarsäsongen 2026.
+
+## Kontakt och mer info
+
+- Webbplats: https://svalla.se
+- Om Svalla: https://svalla.se/om
+- AI-planeraren: https://svalla.se/planera
+- Guider: https://svalla.se/guider
+- FAQ: https://svalla.se/faq
