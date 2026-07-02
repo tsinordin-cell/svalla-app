@@ -3,6 +3,49 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
+import { getIsland } from '../../o/island-data'
+
+// Koppling guide → öar (intern länkning för SEO)
+const GUIDE_ISLAND_MAP: Record<string, string[]> = {
+  'midsommar-skargarden-2026':     ['sandhamn', 'grinda', 'fjaderholmarna', 'vaxholm'],
+  'sandhamn-vs-grinda':            ['sandhamn', 'grinda'],
+  'grinda-vs-finnhamn':            ['grinda', 'finnhamn'],
+  'gotland-vs-oland':              ['gotland', 'oland'],
+  'basta-oar-stockholms-skargard': ['sandhamn', 'grinda', 'uto', 'fjaderholmarna', 'finnhamn', 'moja', 'arholma'],
+  'marstrand-guide':               ['marstrand'],
+  'smogen-guide':                  ['smogen'],
+  'fjaderholmarna-guide':          ['fjaderholmarna'],
+  'vaxholm-guide-komplett':        ['vaxholm'],
+  'landsort-guide':                ['landsort'],
+  'ingmarso-guide':                ['ingmarso'],
+  'arholma-guide':                 ['arholma'],
+  'gotland-guide':                 ['gotland'],
+  'oland-guide':                   ['oland'],
+  'moja-guide':                    ['moja'],
+  'grinda-guide':                  ['grinda'],
+  'finnhamn-guide':                ['finnhamn'],
+  'nattaro-guide':                 ['nattaro'],
+  'orno-guide':                    ['orno'],
+  'hoga-kusten-guide':             ['ulvon'],
+  'surstrommning-guide':           ['ulvon'],
+  'hummersafari-bohuslan':         ['marstrand', 'smogen', 'kungshamn'],
+  'bohuslan-skargard-guide':       ['marstrand', 'smogen', 'kungshamn', 'lysekil'],
+  'midsommar-bohuslan':            ['marstrand', 'smogen'],
+  'fjallbacka-guide':              ['fjallbacka'],
+  'lysekil-guide':                 ['lysekil'],
+  'kosterarna-guide':              ['kungshamn'],
+  'stockholm-archipelago-trail':   ['arholma', 'ingmarso'],
+  'norrtelje-guide':               ['arholma', 'ingmarso'],
+  'weekend-i-skargarden':          ['sandhamn', 'grinda', 'finnhamn', 'uto'],
+  'romantisk-weekend-skargarden':  ['sandhamn', 'grinda', 'uto'],
+  'foretagsevent-skargarden':      ['fjaderholmarna', 'grinda'],
+  'pingst-skargarden':             ['sandhamn', 'fjaderholmarna', 'vaxholm'],
+  'naturhamnar-guide':             ['sandhamn', 'finnhamn', 'moja', 'arholma'],
+  'barplockning-skargarden':       ['moja', 'orno', 'nattaro'],
+  'svampplockning-skargarden':     ['moja', 'orno', 'ingmarso'],
+  'solnedgang-skargarden':         ['sandhamn', 'grinda', 'uto'],
+  'dalaro-guide':                  ['orno', 'uto'],
+}
 import FAQSection from '@/components/FAQSection'
 
 type Props = {
@@ -211,6 +254,43 @@ export default async function GuidePage({ params }: Props) {
           />
         </div>
       )}
+
+      {/* Relaterade öar — intern länkning guide → /o/[slug] */}
+      {(() => {
+        const islandSlugs = GUIDE_ISLAND_MAP[slug] ?? []
+        const islands = islandSlugs.map(s => getIsland(s)).filter(Boolean)
+        if (islands.length === 0) return null
+        return (
+          <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 48px' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)',
+              fontSize: 22, fontWeight: 700, color: 'var(--txt)',
+              margin: '0 0 16px',
+            }}>
+              Utforska öarna
+            </h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {islands.map(island => island && (
+                <Link
+                  key={island.slug}
+                  href={`/o/${island.slug}`}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                    padding: '10px 18px', borderRadius: 999,
+                    background: 'var(--white)', color: 'var(--sea)',
+                    textDecoration: 'none', fontSize: 14, fontWeight: 600,
+                    border: '1px solid rgba(10,123,140,0.18)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+                  }}
+                >
+                  <span style={{ fontSize: 16 }}>{island.emoji}</span>
+                  {island.name} →
+                </Link>
+              ))}
+            </div>
+          </div>
+        )
+      })()}
 
       {/* Relaterade guider */}
       {related.length > 0 && (
