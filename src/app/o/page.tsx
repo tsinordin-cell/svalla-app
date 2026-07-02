@@ -5,8 +5,8 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: 'Alla öar – Stockholms skärgård & Bohuslän | Svalla',
-  description: 'Utforska öar i Stockholms skärgård och Bohuslän. Hitta guider, aktiviteter, restauranger och praktisk info om 80+ öar.',
+  title: 'Alla öar – Stockholms skärgård, Bohuslän, Göteborg, Gotland & mer | Svalla',
+  description: 'Utforska svenska öar: Stockholms skärgård, Bohuslän, Göteborg södra skärgård, Gotland, Öland och Höga Kusten. Guider, restauranger och praktisk info.',
 }
 
 const regions = [
@@ -14,6 +14,8 @@ const regions = [
   { key: 'mellersta', label: 'Mellersta skärgården', desc: 'Det klassiska skärgårdslivet — Sandhamn, Möja och öarna däremellan', accent: '#0a7b8c' },
   { key: 'södra', label: 'Södra skärgården', desc: 'Bilfria naturreservat och lugna vikar söder om Stockholm', accent: '#0a7b8c' },
   { key: 'bohuslan', label: 'Bohuslän', desc: 'Västkustens skärgård — räkor, klippor och Sveriges mest fotograferade fiskelägen', accent: '#a8381e' },
+  { key: 'goteborg', label: 'Göteborgs södra skärgård', desc: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö och Donsö', accent: '#a8381e' },
+  { key: 'ovriga', label: 'Övriga Sverige', desc: 'Gotland, Öland, Höga Kusten och mer — Sverige bortom Stockholmsskärgården', accent: '#6b4f9e' },
 ]
 
 export default function OarPage() {
@@ -58,12 +60,12 @@ export default function OarPage() {
       <div className="oar-hero">
         <a href="/" className="back-link">← Tillbaka till Svalla</a>
         <h1>Alla öar</h1>
-        <p>Utforska {ALL_ISLANDS.length} öar — Stockholms skärgård och Bohusläns västkust.</p>
+        <p>Utforska {ALL_ISLANDS.length} öar — Stockholms skärgård, Bohuslän, Göteborg, Gotland och mer.</p>
       </div>
 
       <nav className="oar-nav">
         {regions.map(r => (
-          <a key={r.key} href={`#${r.key}`} className={r.key === 'bohuslan' ? 'bohuslan' : ''}>{r.label}</a>
+          <a key={r.key} href={`#${r.key}`} className={['bohuslan','goteborg','ovriga'].includes(r.key) ? 'bohuslan' : ''}>{r.label}</a>
         ))}
       </nav>
 
@@ -71,7 +73,7 @@ export default function OarPage() {
         {regions.map((region, idx) => {
           const islands = ALL_ISLANDS.filter(i => i.region === region.key)
           if (islands.length === 0) return null
-          const isBohuslan = region.key === 'bohuslan'
+          const isBohuslan = ['bohuslan', 'goteborg', 'ovriga'].includes(region.key)
           return (
             <section key={region.key} id={region.key} className="region-section">
               {isBohuslan && <div className="region-divider" />}
