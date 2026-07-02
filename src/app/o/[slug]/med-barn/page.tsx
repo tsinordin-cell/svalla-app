@@ -93,7 +93,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
 
       <IslandSubPageHeader
         island={island}
-        tab="aktiviteter"
+        tab="med-barn"
         subtitle={
           isFamilyFriendly
             ? `${island.name} är ett populärt val för barnfamiljer — ${island.facts.best_for.toLowerCase()}.`
