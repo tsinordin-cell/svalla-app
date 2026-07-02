@@ -16,6 +16,7 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
 import LastBoatPanel from '@/components/LastBoatPanel'
+import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -76,12 +77,15 @@ export default async function IslandPage({ params }: Props) {
  const island = getIsland(slug)
  if (!island) notFound()
 
- // Hämta antal unika besökare för denna ö
+ // Hämta antal unika besökare + senaste forumtrådar parallellt
  const supabase = await createServerSupabaseClient()
- const { count: visitorCount } = await supabase
- .from('visited_islands')
- .select('*', { count: 'exact', head: true })
- .eq('island_slug', slug)
+ const [{ count: visitorCount }, recentThreads] = await Promise.all([
+   supabase
+     .from('visited_islands')
+     .select('*', { count: 'exact', head: true })
+     .eq('island_slug', slug),
+   getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
+ ])
 
  const regionColor = island.region === 'norra'
  ? '#1a5276'
@@ -887,71 +891,149 @@ export default async function IslandPage({ params }: Props) {
   </section>
  )}
 
- {/* Forum-sektion */}
+ {/* Forum-sektion — live trådar + CTA */}
  <section style={{ marginTop: 48, marginBottom: 0 }}>
  <div style={{
   background: 'linear-gradient(135deg, #0a1e2e 0%, #1a4a5e 100%)',
   borderRadius: 20,
-  padding: '28px 28px 24px',
+  padding: '24px 20px 20px',
   position: 'relative',
   overflow: 'hidden',
  }}>
-  {/* Dekorativ cirkel */}
   <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
-  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, position: 'relative', zIndex: 1 }}>
-  <div style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(232,146,74,0.18)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-   <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="#e8924a" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-   <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
-   </svg>
-  </div>
-  <div style={{ flex: 1 }}>
-   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#e8924a', marginBottom: 6 }}>
-   Community
+
+  {/* Header */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, position: 'relative', zIndex: 1 }}>
+   <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(232,146,74,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+    <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#e8924a" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+     <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z" />
+    </svg>
    </div>
-   <h3 style={{ fontSize: 18, fontWeight: 700, color: '#fff', margin: '0 0 8px', lineHeight: 1.3 }}>
-   Diskutera {island.name} med andra
-   </h3>
-   <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.7)', margin: '0 0 20px', lineHeight: 1.6 }}>
-   Ställ frågor till lokalkännare, dela tips om evenemang och loppmarknader, eller erbjud tjänster och samarbeten kopplade till {island.name}.
-   </p>
-   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+   <div>
+    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#e8924a' }}>Community</div>
+    <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>Forum — {island.name}</div>
+   </div>
    <Link
     href={`/forum/o/${island.slug}`}
-    style={{
-    display: 'inline-flex', alignItems: 'center', gap: 7,
-    padding: '11px 20px',
-    background: '#e8924a',
-    color: '#fff',
-    borderRadius: 12,
-    textDecoration: 'none',
-    fontSize: 14,
-    fontWeight: 700,
-    boxShadow: '0 4px 14px rgba(232,146,74,0.35)',
-    }}
+    style={{ marginLeft: 'auto', fontSize: 12, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', whiteSpace: 'nowrap' }}
    >
-    Gå till forumet
-    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
+    Se alla →
    </Link>
-   <Link
-    href={`/forum/ny-trad?island=${island.slug}`}
-    style={{
-    display: 'inline-flex', alignItems: 'center', gap: 7,
-    padding: '11px 20px',
-    background: 'rgba(255,255,255,0.1)',
-    color: 'rgba(255,255,255,0.9)',
-    borderRadius: 12,
-    textDecoration: 'none',
-    fontSize: 14,
-    fontWeight: 600,
-    border: '1px solid rgba(255,255,255,0.15)',
-    }}
-   >
-    Starta en diskussion
-   </Link>
-   </div>
   </div>
+
+  {/* Live trådar — visas om det finns, annars seed-prompts */}
+  <div style={{ position: 'relative', zIndex: 1 }}>
+   {recentThreads.length > 0 ? (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
+     {recentThreads.map(t => (
+      <Link
+       key={t.id}
+       href={`/forum/${t.category_id}/${t.id}`}
+       style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        padding: '11px 14px',
+        background: 'rgba(255,255,255,0.07)',
+        borderRadius: 12,
+        border: '1px solid rgba(255,255,255,0.1)',
+        textDecoration: 'none',
+       }}
+      >
+       <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: '#fff', lineHeight: 1.3, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+         {t.title}
+        </div>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 2 }}>
+         {t.author?.username ?? 'Anonym'} · {formatForumDate(t.created_at)}
+         {t.reply_count > 0 && ` · ${t.reply_count} svar`}
+        </div>
+       </div>
+       <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+        <path d="M9 5.5L15.5 12L9 18.5" />
+       </svg>
+      </Link>
+     ))}
+    </div>
+   ) : (
+    /* Inga trådar — visa klickbara startfrågor */
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
+     <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>
+      Inga diskussioner ännu — bli den första:
+     </div>
+     {[
+      `Vad ska man inte missa på ${island.name}?`,
+      `Bästa restaurangen på ${island.name}?`,
+      `Tips för förstagångsbesökare?`,
+     ].map(prompt => (
+      <Link
+       key={prompt}
+       href={`/forum/ny-trad?island=${island.slug}&titel=${encodeURIComponent(prompt)}`}
+       style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        padding: '10px 14px',
+        background: 'rgba(255,255,255,0.06)',
+        border: '1px dashed rgba(255,255,255,0.2)',
+        borderRadius: 10,
+        textDecoration: 'none',
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: 13,
+       }}
+      >
+       <span style={{ opacity: 0.7 }}>💬</span>
+       <span style={{ flex: 1 }}>{prompt}</span>
+       <span style={{ fontSize: 11, color: '#e8924a', fontWeight: 700, flexShrink: 0 }}>Starta →</span>
+      </Link>
+     ))}
+    </div>
+   )}
+
+   {/* CTA-knappar */}
+   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <Link
+     href={`/forum/ny-trad?island=${island.slug}`}
+     style={{
+      flex: 1,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+      padding: '11px 16px',
+      background: '#e8924a',
+      color: '#fff',
+      borderRadius: 12,
+      textDecoration: 'none',
+      fontSize: 14,
+      fontWeight: 700,
+      boxShadow: '0 4px 14px rgba(232,146,74,0.35)',
+      whiteSpace: 'nowrap',
+     }}
+    >
+     <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z" />
+     </svg>
+     Starta diskussion
+    </Link>
+    {recentThreads.length > 0 && (
+     <Link
+      href={`/forum/o/${island.slug}`}
+      style={{
+       display: 'inline-flex', alignItems: 'center', gap: 6,
+       padding: '11px 16px',
+       background: 'rgba(255,255,255,0.1)',
+       color: 'rgba(255,255,255,0.9)',
+       borderRadius: 12,
+       textDecoration: 'none',
+       fontSize: 14,
+       fontWeight: 600,
+       border: '1px solid rgba(255,255,255,0.15)',
+       whiteSpace: 'nowrap',
+      }}
+     >
+      Alla trådar →
+     </Link>
+    )}
+   </div>
   </div>
  </div>
  </section>
