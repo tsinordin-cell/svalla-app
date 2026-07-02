@@ -709,6 +709,9 @@ img {
 }
 
 /* ── Button / card tap feedback ── */
+.press-feedback {
+  touch-action: manipulation; /* eliminerar 300ms tap-delay på iOS Safari */
+}
 .press-feedback:active {
   transform: scale(0.97);
   transition: transform 80ms ease;
