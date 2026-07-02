@@ -38,7 +38,7 @@ export default function PublicFooter() {
               margin: 0,
               maxWidth: 360,
             }}>
-              Skärgårdens guide. 84 öar, 200+ krogar och hamnar, färjetider i realtid.
+              Skärgårdens guide. 120+ öar, 200+ krogar och hamnar, färjetider i realtid.
               Ingen reklam, inga trick — bara skärgården.
             </p>
           </div>
