@@ -11,9 +11,10 @@ function NyTradForm() {
   const sp           = useSearchParams()
   const preCategory  = sp.get('kategori') ?? ''
   const preIsland    = sp.get('island') ?? ''
+  const preTitel     = sp.get('titel') ?? ''
 
   const [kategori, setKategori]   = useState(preCategory)
-  const [title, setTitle]         = useState('')
+  const [title, setTitle]         = useState(preTitel)
   const [body, setBody]           = useState('')
   const [loading, setLoading]     = useState(false)
   const [err, setErr]             = useState('')
@@ -135,12 +136,49 @@ function NyTradForm() {
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
-              placeholder="Vad handlar diskussionen om?"
+              placeholder={preIsland ? `Fråga eller tips om ${preIsland}…` : 'Vad handlar diskussionen om?'}
               maxLength={200}
               style={fieldBase}
               onFocus={e => { e.target.style.borderColor = 'var(--sea)'; e.target.style.boxShadow = '0 0 0 3px rgba(10,123,140,0.10)' }}
               onBlur={e => { e.target.style.borderColor = 'rgba(10,123,140,0.15)'; e.target.style.boxShadow = 'none' }}
             />
+            {/* Snabbförslag — visas bara om man kom via en ö-sida och titel är tom */}
+            {preIsland && !title && (
+              <div style={{ marginTop: 10 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 6 }}>
+                  Snabbförslag:
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {[
+                    'Bästa restaurangen?',
+                    'Tips för nybörjare?',
+                    'Barnvänlig ö?',
+                    'Hur tar man sig dit?',
+                    'Vad ska man inte missa?',
+                    'Bästa badplatsen?',
+                  ].map(s => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => setTitle(s)}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: 20,
+                        border: '1.5px solid rgba(10,123,140,0.2)',
+                        background: 'rgba(10,123,140,0.05)',
+                        color: 'var(--sea)',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        fontFamily: 'inherit',
+                      }}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Text */}
