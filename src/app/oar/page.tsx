@@ -8,19 +8,21 @@ import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 
 export const metadata: Metadata = {
-  title: 'Alla öar i skärgården — 84 destinationer | Svalla',
-  description: 'Utforska 84 öar i Stockholms skärgård och Bohuslän. Sandhamn, Grinda, Utö, Marstrand och 80 till — guider, restauranger, hamnar och färjetider.',
+  title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
+  description: 'Utforska svenska öar: Sandhamn, Grinda, Utö, Marstrand, Gotland, Ulvön och mer. Guider, restauranger, hamnar och färjetider för hela Sverige.',
   keywords: [
     'alla öar stockholms skärgård',
     'skärgården stockholm',
     'öar bohuslän',
+    'gotland guide',
+    'ulvön höga kusten',
     'svalla öar',
-    'stockholms skärgård guide',
+    'svenska öar',
   ],
   alternates: { canonical: 'https://svalla.se/oar' },
   openGraph: {
-    title: 'Alla öar i skärgården — 84 destinationer',
-    description: 'Stockholms skärgård + Bohuslän. Komplett guide.',
+    title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer',
+    description: 'Stockholms skärgård, Bohuslän, Gotland, Höga Kusten. Komplett guide.',
     url: 'https://svalla.se/oar',
   },
 }
@@ -30,6 +32,7 @@ const REGION_LABELS: Record<string, string> = {
   mellersta: 'Mellersta skärgården',
   södra: 'Södra skärgården',
   bohuslan: 'Bohuslän',
+  ovriga: 'Övriga Sverige',
 }
 
 const REGION_TAGLINES: Record<string, string> = {
@@ -37,11 +40,12 @@ const REGION_TAGLINES: Record<string, string> = {
   mellersta: 'Det klassiska skärgårdslivet — Sandhamn, Möja, Finnhamn.',
   södra: 'Söderskärgården — Utö, Nåttarö, Ornö, Landsort.',
   bohuslan: 'Västkusten — Marstrand, Smögen, Kosterhavet.',
+  ovriga: 'Höga Kusten, Gotland och mer — Sverige bortom Stockholmsskärgården.',
 }
 
 export default function OarIndexPage() {
   // Gruppera per region för listvy
-  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], bohuslan: [] }
+  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], bohuslan: [], ovriga: [] }
   for (const i of ALL_ISLANDS) {
     const region = i.region in grouped ? i.region : 'mellersta'
     const bucket = grouped[region]
@@ -112,7 +116,7 @@ export default function OarIndexPage() {
       }}>
         <div style={{ maxWidth: 920, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, opacity: 0.85, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 14 }}>
-            {ALL_ISLANDS.length} öar · Stockholm + Bohuslän
+            {ALL_ISLANDS.length} öar · Stockholm · Bohuslän · Gotland · Höga Kusten
           </div>
           <h1 style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
@@ -128,7 +132,7 @@ export default function OarIndexPage() {
             margin: '0 0 32px', maxWidth: 640,
             color: 'rgba(255,255,255,0.88)',
           }}>
-            Från Arholma längst i norr till Marstrand på västkusten. {ALL_ISLANDS.length} kuraterade öar med restauranger, hamnar, färjetider och våra bästa tips för varje destination.
+            Från Arholma i norr till Marstrand på västkusten, Gotlands medeltida Visby och Ulvöns surströmming i Höga Kusten. {ALL_ISLANDS.length} kuraterade öar med restauranger, hamnar, färjetider och våra bästa tips.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -256,13 +260,13 @@ export default function OarIndexPage() {
             color: 'var(--txt)', margin: '0 0 8px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Alla {ALL_ISLANDS.length} öar
+            Alla {ALL_ISLANDS.length}+ öar
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
             Bläddra per region eller scrolla för att hitta din destination.
           </p>
 
-          {(['norra', 'mellersta', 'södra', 'bohuslan'] as const).map(region => {
+          {(['norra', 'mellersta', 'södra', 'bohuslan', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (
