@@ -118,7 +118,7 @@ export default function OarIndexPage() {
       }}>
         <div style={{ maxWidth: 920, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ fontSize: 11, opacity: 0.85, letterSpacing: 1.4, textTransform: 'uppercase', marginBottom: 14 }}>
-            {ALL_ISLANDS.length} öar · Stockholm · Bohuslän · Gotland · Höga Kusten
+            {ALL_ISLANDS.length} öar · Stockholm · Bohuslän · Göteborg · Gotland · Öland · Höga Kusten
           </div>
           <h1 style={{
             fontSize: 'clamp(36px, 6vw, 56px)',
