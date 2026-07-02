@@ -344,7 +344,7 @@ function LoginContent() {
                 color: '#fff', fontSize: 15, fontWeight: 600, marginTop: 4,
                 boxShadow: '0 4px 18px rgba(30,92,130,0.30)',
                 opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s', fontFamily: 'inherit',
-                letterSpacing: '0.2px',
+                letterSpacing: '0.2px', touchAction: 'manipulation',
               }}
             >
               {loading ? '…' : isNew ? 'Kasta loss →' : 'Logga in'}
