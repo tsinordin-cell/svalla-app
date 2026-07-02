@@ -286,12 +286,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  // ── Per-ö kategorisidor (aktiviteter / restauranger / hamnar / boende) ─
+  // ── Per-ö kategorisidor (7 sub-sidor per ö) ─────────────────────
   const islandCategoryPages: MetadataRoute.Sitemap = ALL_ISLANDS.flatMap(island => [
     { url: `${base}/o/${island.slug}/aktiviteter`,  lastModified: now, changeFrequency: 'monthly' as const, priority: 0.75 },
     { url: `${base}/o/${island.slug}/restauranger`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${base}/o/${island.slug}/hamnar`,       lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
     { url: `${base}/o/${island.slug}/boende`,       lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+    { url: `${base}/o/${island.slug}/komma-dit`,    lastModified: now, changeFrequency: 'monthly' as const, priority: 0.75 },
+    { url: `${base}/o/${island.slug}/bad`,          lastModified: now, changeFrequency: 'monthly' as const, priority: 0.75 },
+    { url: `${base}/o/${island.slug}/med-barn`,     lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
   ])
 
   // ── Blogg-artiklar ──────────────────────────────────────────────
