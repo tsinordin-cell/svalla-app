@@ -70,7 +70,7 @@ export default async function IslandBadPage({ params }: Props) {
 
       <IslandSubPageHeader
         island={island}
-        tab="aktiviteter"
+        tab="bad"
         subtitle={
           !hasBad && beaches.length === 0
             ? `${island.name} är inte känt som badö — men det finns alltid klippor och bryggor att doppa sig från.`
