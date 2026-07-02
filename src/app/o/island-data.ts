@@ -3009,7 +3009,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [
       { name: 'Clarion Hotel Wisby', type: 'Hotell', desc: 'Mitt i Visby med pool och utsikt mot ringmuren. Klassiker för sommarvisiter.' },
-      { name: 'Strandridargården', type: 'Hotell & Spa', desc: 'Spa-hotell vid stranden i Tofta — perfekt om du vill kombinera Visby med stranddagar.' },
+      { name: 'Strandridargården', type: 'Hotell', desc: 'Spa-hotell vid stranden i Tofta — perfekt om du vill kombinera Visby med stranddagar.' },
       { name: 'Fårösund Camping & Stugby', type: 'Camping', desc: 'Välskött camping vid Fårösund med närheten till Fårö och Bergmans landskap.' },
     ],
     getting_there: [
@@ -3085,7 +3085,7 @@ export const ISLANDS: Island[] = [
     accommodation: [
       { name: 'Borgholms Stadshotell', type: 'Hotell', desc: 'Klassiskt hotell i centrum av Borgholm med terrass och sommarstämning.' },
       { name: 'Böda Sand Camping', type: 'Camping', desc: 'Stor välskött camping direkt vid stranden i norra Öland. Boka i god tid.' },
-      { name: 'Halltorps Gästgiveri', type: 'Gästgiveri', desc: 'Historisk herrgård i ek- och bokskogen nära Borgholm. Stillsamt och naturnära.' },
+      { name: 'Halltorps Gästgiveri', type: 'Hotell', desc: 'Historisk herrgård i ek- och bokskogen nära Borgholm. Stillsamt och naturnära.' },
     ],
     getting_there: [
       { method: 'Bil via Ölandsbron', from: 'Stockholm', time: '3,5 h', desc: 'Kör E4 söderut till Södertälje, sedan E22 via Norrköping och Kalmar. Ölandsbron tar dig direkt in på ön. Kostnads- och tullfri bro.', icon: '🚗' },
@@ -3143,7 +3143,7 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Gästhamn', desc: 'Välutrustad gästhamn i Rödsten på östra sidan.' },
     ],
     accommodation: [
-      { name: 'Brännö Värdshus & Pensionat', type: 'Värdshus', desc: 'Öns enda övernattning — enkelt, genuint och fullt sommartid. Boka långt i förväg.' },
+      { name: 'Brännö Värdshus & Pensionat', type: 'Pensionat', desc: 'Öns enda övernattning — enkelt, genuint och fullt sommartid. Boka långt i förväg.' },
     ],
     getting_there: [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn linje 11 till Saltholmen (25 min), sedan Styrsöbolagets linje 281/283 till Brännö (25–30 min). Avgår ofta sommartid.', icon: '🚋' },
@@ -3278,7 +3278,7 @@ export const ISLANDS: Island[] = [
       { icon: '🏖', name: 'Bad', desc: 'Badplatser på östra sidan av ön med klart vatten och klippor.' },
     ],
     accommodation: [
-      { name: 'Donsö Gästhem', type: 'Gästhem', desc: 'Enkelt boende nära hamnen. Sommarsäsong.' },
+      { name: 'Donsö Gästhem', type: 'Vandrarhem', desc: 'Enkelt boende nära hamnen. Sommarsäsong.' },
     ],
     getting_there: [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281 via Köpstadsö till Donsö (35–40 min).', icon: '🚋' },
