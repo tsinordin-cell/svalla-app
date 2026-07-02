@@ -80,7 +80,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
 
       <IslandSubPageHeader
         island={island}
-        tab="aktiviteter"
+        tab="komma-dit"
         subtitle={`Restid: ${island.facts.travel_time}. Ingen egen båt krävs.`}
       />
 
