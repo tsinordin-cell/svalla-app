@@ -46,7 +46,7 @@ export type Island = {
   name: string
   /** URL till coverbild (Wikimedia, Unsplash etc.) — visas i listsidor och OG-bilder */
   coverImage?: string
-  region: 'norra' | 'mellersta' | 'södra' | 'bohuslan' | 'ovriga'
+  region: 'norra' | 'mellersta' | 'södra' | 'bohuslan' | 'ovriga' | 'goteborg'
   regionLabel: string
   emoji: string
   tagline: string
@@ -3054,6 +3054,287 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
     },
     did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
+  },
+
+  {
+    slug: 'oland',
+    name: 'Öland',
+    region: 'ovriga',
+    regionLabel: 'Öland',
+    emoji: '🌾',
+    tagline: 'Solens och vindarnas ö — UNESCO-alvaret, 400 väderkvarnar och Östersjöns längsta sandstrand.',
+    description: [
+      'Öland är Sveriges näst längsta ö och ett av landets mest omtyckta sommermål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
+      'Södra Ölands odlingslandskap är UNESCO-världsarv sedan 2000. Det så kallade Alvaret — en unik, kalkstensbaserad stäpp — är en av Europas mest sällsynta naturmiljöer och hem till hundratals växt- och fågelarter. Mer än 400 väderkvarnar ger Öland sin karaktäristiska siluett.',
+      'I norr väntar Böda Sand, en av Skandinaviens längsta sandstränder, omgiven av Trollskogen — en vresig bokskog som ger en närmast magisk atmosfär. Eketorps ringborg från järnåldern och Borgholms slottsruin är välbevarade pärlor längs landsvägen.',
+    ],
+    facts: {
+      travel_time: '3,5–4 h med bil från Stockholm (E4 + E22 via Kalmar)',
+      character: 'Soligt, öppet, historiskt, naturvård',
+      season: 'Maj–September (peak juli–aug)',
+      best_for: 'Familjer, naturälskare, historia, cykling, strand',
+    },
+    activities: [
+      { icon: '🌾', name: 'Alvaret', desc: 'Vandra i det UNESCO-listade odlingslandskapet i söder — en unik kalkstäpp med sällsynt flora.' },
+      { icon: '🏰', name: 'Borgholms slottsruin', desc: 'En av Skandinaviens största slottsruiner, med utsikt över sundet mot fastlandet.' },
+      { icon: '🏖', name: 'Böda Sand', desc: 'Norra Ölands långa sandstrand — ett av Sveriges populäraste badsställen.' },
+      { icon: '🌲', name: 'Trollskogen', desc: 'Vresig bokskog på norra spetsen med knöliga, vindpinade träd och en närmast sagolik stämning.' },
+      { icon: '⛺', name: 'Eketorps ringborg', desc: 'Rekonstruerad järnåldersby och fornborg från 400-talet. Levande historia för hela familjen.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Platt landskap och välskyltad cykelväg längs hela ön. Hyr cykel i Borgholm eller Mörbylånga.' },
+    ],
+    accommodation: [
+      { name: 'Borgholms Stadshotell', type: 'Hotell', desc: 'Klassiskt hotell i centrum av Borgholm med terrass och sommarstämning.' },
+      { name: 'Böda Sand Camping', type: 'Camping', desc: 'Stor välskött camping direkt vid stranden i norra Öland. Boka i god tid.' },
+      { name: 'Halltorps Gästgiveri', type: 'Gästgiveri', desc: 'Historisk herrgård i ek- och bokskogen nära Borgholm. Stillsamt och naturnära.' },
+    ],
+    getting_there: [
+      { method: 'Bil via Ölandsbron', from: 'Stockholm', time: '3,5 h', desc: 'Kör E4 söderut till Södertälje, sedan E22 via Norrköping och Kalmar. Ölandsbron tar dig direkt in på ön. Kostnads- och tullfri bro.', icon: '🚗' },
+      { method: 'Tåg + buss', from: 'Stockholm Central', time: '4–5 h', desc: 'SJ tåg till Kalmar (ca 3 h), sedan buss 101 mot Borgholm via Ölandsbron (45 min).', icon: '🚆' },
+      { method: 'Flyg till Kalmar', from: 'Stockholm Arlanda', time: '3 h totalt', desc: 'BRA flyger Stockholm–Kalmar (55 min), sedan hyrbil eller taxi över bron (15 min).', icon: '✈️' },
+    ],
+    harbors: [
+      { name: 'Borgholms Gästhamn', desc: 'Välutrustad gästhamn i Borgholm med el, vatten och service. Nära centrum och slottsruinen.', spots: 200, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      { name: 'Köpingsvik Gästhamn', desc: 'Lugn hamn på nordvästra Öland. Populär bland seglare på väg norrut längs kusten.', spots: 80, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Hamnkrogen Borgholm', type: 'Restaurang', desc: 'Klassisk hamnkrog med lokala råvaror — ölandslamm, abborre och rödspätta.', slug: 'hamnkrogen-borgholm' },
+      { name: 'Källarporten', type: 'Restaurang', desc: 'Inne i Borgholms slottsruin. Unik atmosfär med historisk inramning.', slug: 'kallarporten-borgholm' },
+    ],
+    tips: [
+      'Boka camping och hotell i god tid — Öland är fullbokat i juli och första halvan av augusti.',
+      'Kör eller cykla landsvägarna längs östra och västra kusten — vyn över Kalmarsund är fantastisk.',
+      'Solliden Palace (kungafamiljens sommarresidens) har öppna trädgårdar — värt ett besök.',
+      'Besök Eketorps ringborg med barn — rekonstruktionen är imponerande och pedagogisk.',
+    ],
+    related: ['gotland', 'ulvon'],
+    tags: ['öland', 'alvaret', 'böda sand', 'väderkvarnar', 'borgholm', 'unesco', 'strand', 'historia', 'cykling'],
+    insiderTips: [
+      'Alvaret blommar som vackrast i juni — orkidéer, backsippa och andra sällsynta arter täcker kalkstenen.',
+      'Trollskogen på norra spetsen är allra vackrast i morgondimma eller solnedgång.',
+      'Ölandsmarknaden i Borgholm (tidig juli) är en av Sveriges äldsta marknader och ett lokalt evenemang i särklass.',
+    ],
+    did_you_know: 'Öland har fler soltimmar per år än nästan hela övriga Sverige — och fler än många platser på kontinenten. Klimatet liknar centrala Europa mer än norra Skandinavien.',
+  },
+
+  // ── Göteborgs södra skärgård (Styrsöbolaget) ─────────────────────────────
+
+  {
+    slug: 'branno',
+    name: 'Brännö',
+    region: 'goteborg',
+    regionLabel: 'Göteborgs södra skärgård',
+    emoji: '💃',
+    tagline: 'Folkdansön — hambo på bryggan varje fredag och ett genuint Göteborgsliv utanför staden.',
+    description: [
+      'Brännö är känd i hela Göteborg för en sak: folkdansen på bryggan varje fredag kväll sommartid. Sedan decennier samlas hundratals människor på Brännö Brygga för att dansa hambo och polska i solnedgången — en tradition utan like i Sverige.',
+      'Ön är den folkrikaste i södra skärgården utanför Donsö, med ett genuint ösamhälle och en atmosfär som är svår att beskriva utan att ha upplevt den. Ingen bil får köras på ön — transporter sker med moped och kärra.',
+      'Brännö nås med Styrsöbolaget från Saltholmen (spårvagn 11 från centrum). Restid ca 30 minuter. En fullständigt annan värld, 8 km från Göteborg.',
+    ],
+    facts: {
+      travel_time: '30 min med färja från Saltholmen (spårvagn 11 från Göteborg C)',
+      character: 'Autentiskt, folkligt, levande, bilfritt',
+      season: 'Maj–September (folkdansen: juni–aug)',
+      best_for: 'Göteborgare som vill komma bort, dansintresserade, naturälskare',
+    },
+    activities: [
+      { icon: '💃', name: 'Folkdans på Brännö Brygga', desc: 'Varje fredag kväll i sommar (juni–aug). Hambo, polska och glädje — kom tidigt för att få plats.' },
+      { icon: '🏖', name: 'Bad', desc: 'Flera badplatser runt ön. Rävholmen på östra sidan är populärast.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Välskyltade stigar runt hela ön. Vacker västkustsnatur med klippor och hedar.' },
+      { icon: '⛵', name: 'Gästhamn', desc: 'Välutrustad gästhamn i Rödsten på östra sidan.' },
+    ],
+    accommodation: [
+      { name: 'Brännö Värdshus & Pensionat', type: 'Värdshus', desc: 'Öns enda övernattning — enkelt, genuint och fullt sommartid. Boka långt i förväg.' },
+    ],
+    getting_there: [
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn linje 11 till Saltholmen (25 min), sedan Styrsöbolagets linje 281/283 till Brännö (25–30 min). Avgår ofta sommartid.', icon: '🚋' },
+      { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Kör till Saltholmen (parkering finns), ta färjan. Bilar får ej tas med till ön.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Rödstens Gästhamn', desc: 'Skyddad gästhamn på östra sidan. El och vatten. Populär sommarhamn.', spots: 60, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Brännö Värdshus', type: 'Krog', desc: 'Klassisk ömat — räkor, sill och husmanskost i ösamhällets mitt.', slug: 'branno-vardshus' },
+    ],
+    tips: [
+      'Folkdansen på fredag kväll är gratis — men kom 30 min tidigt för att få plats vid bryggan.',
+      'Inga bilar på ön: lämna bilen i Saltholmens parkeringshus och njut av bilfrihetens lugn.',
+      'Ta med picnic — det finns begränsad matservice utanför värdshuset.',
+    ],
+    related: ['styrso', 'vrango', 'donso', 'asperon'],
+    tags: ['göteborg', 'södra skärgård', 'folkdans', 'bilfritt', 'styrsöbolaget', 'västkust'],
+    did_you_know: 'Folkdansen på Brännö Brygga startade på 1930-talet och har hållits nästan varje fredag sommartid sedan dess. Det är en av Göteborgs mest omtyckta sommartraditioner.',
+  },
+
+  {
+    slug: 'styrso',
+    name: 'Styrsö',
+    region: 'goteborg',
+    regionLabel: 'Göteborgs södra skärgård',
+    emoji: '🌿',
+    tagline: 'Göteborgs södra skärgårds hjärta — vacker natur, topprankad restaurang och tyst ölivstempo.',
+    description: [
+      'Styrsö är den folkrikaste ön i södra skärgården med cirka 1 500 fast bosatta och den naturliga knutpunkten i arkipelagen. Ön har skola, bibliotek, mataffär och samhällsservice — ett komplett ösamhälle utan bilar.',
+      'Restaurang Styrsö Bratten är en av Göteborgs mest hyllade — trots (eller tack vare) läget ute i skärgården. Hit reser göteborgare enbart för maten: nordisk mat gjord på råvaror från havet och trädgården.',
+      'Styrsö södra spets, Tången, är ett naturreservat med fri utsikt över Kattegatt. Att sitta där i solnedgången är en av Göteborgstraktens finest.',
+    ],
+    facts: {
+      travel_time: '25–35 min med Styrsöbolaget från Saltholmen',
+      character: 'Levande, naturskön, gastronomisk, bilfritt',
+      season: 'Hela året (topprestaurang öppen sommarsäsongen)',
+      best_for: 'Matälskare, barnfamiljer, de som vill bo kvar i skärgården',
+    },
+    activities: [
+      { icon: '🍽', name: 'Styrsö Bratten', desc: 'En av Göteborgs bästa restauranger. Nordisk mat, lokala råvaror, fantastisk utsikt. Boka månader i förväg.' },
+      { icon: '🌿', name: 'Tångens naturreservat', desc: 'Södra spetsen med fri havsutsikt. Vandring genom ljunghed och klippor.' },
+      { icon: '🏖', name: 'Bad', desc: 'Badklippor runt hela ön. Brevik på östra sidan populärast.' },
+      { icon: '⛵', name: 'Gästhamn', desc: 'Gästhamn i Styrsö Tången med service sommartid.' },
+    ],
+    accommodation: [
+      { name: 'Styrsö Seglora Pensionat', type: 'Pensionat', desc: 'Enkelt och charmigt pensionat med trädgård. Familjedrivet och mysigt.' },
+    ],
+    getting_there: [
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50–60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/282/283. Avgångstider på styrsöbolaget.se.', icon: '🚋' },
+    ],
+    harbors: [
+      { name: 'Styrsö Tångens Gästhamn', desc: 'Gästhamn vid södra spetsen. Bra utgångspunkt för segling längs kusten.', spots: 50, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Styrsö Bratten', type: 'Topprestaurang', desc: 'Nordens kök i skärgårdsidyll. Säsongsmeny, lokala råvaror, en av Göteborgs bästa. Boka tidigt.', slug: 'styrso-bratten' },
+    ],
+    tips: [
+      'Styrsö Bratten bokar upp månader i förväg under sommaren — gå in på deras hemsida direkt.',
+      'Tångens naturreservat är gratis och öppet dygnet runt — ta med termos och se solnedgången.',
+      'Mataffären på Styrsö håller rimliga tider sommartid — handla proviant för dagen.',
+    ],
+    related: ['branno', 'vrango', 'donso'],
+    tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'naturreservat'],
+    did_you_know: 'Styrsö har haft fast befolkning sedan medeltiden. Ön var länge ett centrum för fiske och båtbyggeri längs Göteborgs kust.',
+  },
+
+  {
+    slug: 'vrango',
+    name: 'Vrångö',
+    region: 'goteborg',
+    regionLabel: 'Göteborgs södra skärgård',
+    emoji: '🦅',
+    tagline: 'Södra skärgårdens yttersta punkt — naturreservat, vild klippkust och havets ständiga närvaro.',
+    description: [
+      'Vrångö är den sydligaste bebodda ön i Göteborgs södra skärgård, med knappt 150 fast bosatta året om. Öns södra del är naturreservat och skyddat fågelområde — en vild, orörd klippkust med utsikt rakt ut mot Nordsjön.',
+      'Känslan på Vrångö är annorlunda jämfört med Brännö och Styrsö. Lugnet är mer påtagligt, turistströmmen lättare och naturen tar mer plats. Det är hit göteborgare åker när de verkligen vill slita sig från stadens tempo.',
+      'Inga bilar. Ingen kommersiell turism att tala om. En liten mataffär, ett kafé och naturens egna ljud.',
+    ],
+    facts: {
+      travel_time: '45–55 min med Styrsöbolaget från Saltholmen',
+      character: 'Vilt, stilla, natur, ytterst',
+      season: 'Maj–September (fågelskydd: undvik klippreservatet april–juli)',
+      best_for: 'Naturälskare, fågelskådare, de som söker verkligt lugn',
+    },
+    activities: [
+      { icon: '🦅', name: 'Naturreservat i söder', desc: 'Vild klippkust och rikt fågelliv. Promenadstigen runt sydspetsen ger panoramautsikt mot havet.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klippbad på östra och norra sidan. Vattnet är klart och kallt.' },
+      { icon: '🚶', name: 'Vandring', desc: 'Välmärkta stigar runt ön — ca 6 km runt hela Vrångö.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '70–80 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/283 via Brännö och Styrsö till Vrångö. Kontrollera tidtabell på styrsöbolaget.se.', icon: '🚋' },
+    ],
+    harbors: [
+      { name: 'Vrångö Gästhamn', desc: 'Liten gästhamn på norra sidan. Enkelt men välskyddat läge.', spots: 25, fuel: false, service: ['el'] },
+    ],
+    restaurants: [
+      { name: 'Vrångö Café & Kiosk', type: 'Kafé', desc: 'Enkelt sommarcafé med glass, kaffe och enklare mat. Öppet sommartid.', slug: 'vrango-cafe' },
+    ],
+    tips: [
+      'Gå hela vägen till sydspetsen — utsikten mot Nordsjön och de yttre skären är enastående.',
+      'Fågelskyddsperioden gäller i reservatets klippzoner april–juli: håll dig till stigen.',
+      'Ta med egen mat — utbudet är mycket begränsat på ön.',
+    ],
+    related: ['branno', 'styrso', 'asperon'],
+    tags: ['göteborg', 'södra skärgård', 'naturreservat', 'bilfritt', 'fågelliv', 'ytterst'],
+    did_you_know: 'Vrångö naturreservats klippzoner är klassade som riksintresse för naturvård och hyser häckande skarvar, ejdrar och tärnor.',
+  },
+
+  {
+    slug: 'donso',
+    name: 'Donsö',
+    region: 'goteborg',
+    regionLabel: 'Göteborgs södra skärgård',
+    emoji: '⚓',
+    tagline: 'Rederiornas ö — ett litet samhälle med stor historia inom sjöfart och en av Göteborgs finaste hamnar.',
+    description: [
+      'Donsö är känt som "rederiornas ö". Trots att bara 1 500 personer bor här äger donsöborna en oproportionerligt stor del av den svenska handelsflottan — en tradition som går tillbaka till 1800-talets segelsjöfart. Sjöfartshistorien är inbäddad i öns DNA.',
+      'I praktiken är Donsö ett välordnat, välmående ösamhälle med bred service: mataffär, restaurang, bensinmack och en av södra skärgårdens bästa gästhamnar. Perfekt för seglare längs Bohuslänskusten.',
+      'Ön är bilfri (för besökare). Invånarna kör moped och elcykel. Det ger ett lugn som gör det lätt att förstå varför folk väljer att bo här.',
+    ],
+    facts: {
+      travel_time: '35–40 min med Styrsöbolaget från Saltholmen',
+      character: 'Välordnat, maritim historia, praktisk, bilfritt',
+      season: 'Hela året (gästhamnen: maj–sept)',
+      best_for: 'Seglare, maritimintresserade, barnfamiljer',
+    },
+    activities: [
+      { icon: '⚓', name: 'Maritim historia', desc: 'Vandra bland de storslagna villorna längs hamnpromenaden — byggda av sjökaptensfamiljer på 1800-talet.' },
+      { icon: '⛵', name: 'Gästhamn', desc: 'En av södra skärgårdens mest välservicerade gästhamnar med fuel, el och vatten.' },
+      { icon: '🏖', name: 'Bad', desc: 'Badplatser på östra sidan av ön med klart vatten och klippor.' },
+    ],
+    accommodation: [
+      { name: 'Donsö Gästhem', type: 'Gästhem', desc: 'Enkelt boende nära hamnen. Sommarsäsong.' },
+    ],
+    getting_there: [
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281 via Köpstadsö till Donsö (35–40 min).', icon: '🚋' },
+    ],
+    harbors: [
+      { name: 'Donsö Gästhamn', desc: 'Fullservicehamn med bränsle, el, vatten och servicebyggnader. En av södra skärgårdens bästa.', spots: 100, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch', 'wi-fi'] },
+    ],
+    restaurants: [
+      { name: 'Donsö Hamnkrog', type: 'Restaurang', desc: 'Klassisk hamnkrog med räkor och säsongsmat. Populär bland seglare.', slug: 'donso-hamnkrog' },
+    ],
+    tips: [
+      'Donsö hamn har bränsle — ovanligt i södra skärgården. Planera bunkringen hit om du seglar söderut.',
+      'Gå längs hamnpromenaden och titta på de gamla kaptensfamiljernas villor — arkitektonisk historia.',
+      'Mataffären är välsorterad — handla proviant inför norrlandsskärgårdens glapp.',
+    ],
+    related: ['branno', 'styrso', 'asperon'],
+    tags: ['göteborg', 'södra skärgård', 'sjöfart', 'gästhamn', 'bilfritt', 'styrsöbolaget'],
+    did_you_know: 'Donsöborna äger rederiflottor värderade till miljarder kronor. Ön producerade per capita fler sjökaptener än något annat samhälle i Sverige under 1900-talets första hälft.',
+  },
+
+  {
+    slug: 'asperon',
+    name: 'Asperön',
+    region: 'goteborg',
+    regionLabel: 'Göteborgs södra skärgård',
+    emoji: '🌊',
+    tagline: 'Göteborgs södra skärgårds stillaste ö — inga bilar, ingen brådska, bara klippor och hav.',
+    description: [
+      'Asperön är den minsta av de bebodda öarna i södra skärgården, med ett hundratal fast bosatta. Det är öns lugn och enkelhet som lockar: inga bilar, inga turistmassor, ingen affär att tala om.',
+      'Ön passar perfekt som ett steg i en längre skärgårdsdag — du tar färjan via Brännö eller Styrsö och stannar ett par timmar för att promenera, bada och ta in tystnaden. Eller stannar du längre än du planerat.',
+      'Klipporna på östra sidan med utsikten mot Vrångö och ytterhavet är Asperöns bästa sida.',
+    ],
+    facts: {
+      travel_time: '25 min med Styrsöbolaget från Saltholmen',
+      character: 'Stilla, litet, okommersiellt, bilfritt',
+      season: 'Maj–September',
+      best_for: 'De som söker lugn, dagsturer i kombination med Brännö/Styrsö',
+    },
+    activities: [
+      { icon: '🌊', name: 'Klippbad', desc: 'Klart vatten och klippor på östra sidan. Lugnt och oavbrutet.' },
+      { icon: '🚶', name: 'Promenad runt ön', desc: 'En rund tur tar ca 45 minuter. Lätt vandring med vacker utsikt.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 282 till Asperön (ca 25 min).', icon: '🚋' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      'Ta med all mat och dryck — det finns ingen service på ön.',
+      'Kombinera gärna med Brännö under samma dag — de ligger nära varandra.',
+      'Perfekt för barnfamiljer: liten, säker och promenadvänlig.',
+    ],
+    related: ['branno', 'styrso', 'vrango', 'donso'],
+    tags: ['göteborg', 'södra skärgård', 'bilfritt', 'lugnt', 'styrsöbolaget', 'klippbad'],
+    did_you_know: 'Asperön är en av de öar som historiskt hörde till Styrsö socken och ingick i det fiskelägessystem som försörjde Göteborg med fisk under 1700- och 1800-talen.',
   },
 
 ]
