@@ -525,7 +525,7 @@ const LANDING_HTML = `
  <div class="nav-dd-divider"></div>
  <div class="nav-dd-section">Hitta</div>
  <a href="/karta" class="nav-dd-link">Karta över skärgården</a>
- <a href="/o" class="nav-dd-link">Alla 69 öar</a>
+ <a href="/o" class="nav-dd-link">Alla öar</a>
  <a href="/jamfor" class="nav-dd-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="nav-dd-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="nav-dd-link">Avskilda pärlor</a>
@@ -649,7 +649,7 @@ const LANDING_HTML = `
  <a href="/malaren" class="mob-acc-link">Mälaren</a>
  <div class="mob-acc-section">Hitta</div>
  <a href="/karta" class="mob-acc-link">Karta över skärgården</a>
- <a href="/o" class="mob-acc-link">Alla 69 öar</a>
+ <a href="/o" class="mob-acc-link">Alla öar</a>
  <a href="/jamfor" class="mob-acc-link">Jämför öar</a>
  <a href="/oar/barnvanliga" class="mob-acc-link">Barnvänliga öar</a>
  <a href="/oar/avskild" class="mob-acc-link">Avskilda pärlor</a>
