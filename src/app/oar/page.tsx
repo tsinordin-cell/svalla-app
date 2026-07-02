@@ -32,6 +32,7 @@ const REGION_LABELS: Record<string, string> = {
   mellersta: 'Mellersta skärgården',
   södra: 'Södra skärgården',
   bohuslan: 'Bohuslän',
+  goteborg: 'Göteborgs södra skärgård',
   ovriga: 'Övriga Sverige',
 }
 
@@ -40,12 +41,13 @@ const REGION_TAGLINES: Record<string, string> = {
   mellersta: 'Det klassiska skärgårdslivet — Sandhamn, Möja, Finnhamn.',
   södra: 'Söderskärgården — Utö, Nåttarö, Ornö, Landsort.',
   bohuslan: 'Västkusten — Marstrand, Smögen, Kosterhavet.',
-  ovriga: 'Höga Kusten, Gotland och mer — Sverige bortom Stockholmsskärgården.',
+  goteborg: 'Styrsöbolaget från Saltholmen — Brännö, Styrsö, Vrångö, Donsö.',
+  ovriga: 'Höga Kusten, Gotland, Öland och mer — Sverige bortom Stockholmsskärgården.',
 }
 
 export default function OarIndexPage() {
   // Gruppera per region för listvy
-  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], bohuslan: [], ovriga: [] }
+  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of ALL_ISLANDS) {
     const region = i.region in grouped ? i.region : 'mellersta'
     const bucket = grouped[region]
@@ -180,7 +182,7 @@ export default function OarIndexPage() {
           {([
             { icon: 'anchor'    as IconName, label: 'Spara öar',     desc: 'Bygg din lista över ställen att besöka.', color: '#0a7b8c' },
             { icon: 'map'       as IconName, label: 'Planera turer', desc: 'Få restid, packlista och krogar längs vägen.', color: '#1e5c82' },
-            { icon: 'pin'       as IconName, label: 'Logga besök',   desc: 'Se vilka av 84 öar du klarat av.', color: '#0a7b3c' },
+            { icon: 'pin'       as IconName, label: 'Logga besök',   desc: `Se vilka av ${ALL_ISLANDS.length} öar du klarat av.`, color: '#0a7b3c' },
             { icon: 'star'      as IconName, label: 'Helt gratis',   desc: 'Ingen prenumeration, inga annonser.', color: '#c96e2a' },
           ]).map(b => (
             <div key={b.label}>
@@ -208,7 +210,7 @@ export default function OarIndexPage() {
             Hitta efter vad du vill göra
           </h2>
           <p style={{ fontSize: 15, color: 'var(--txt2)', margin: '0 0 24px' }}>
-            Vi har grupperat de 84 öarna efter intresse — välj din typ.
+            Vi har grupperat de {ALL_ISLANDS.length} öarna efter intresse — välj din typ.
           </p>
           <div style={{
             display: 'grid',
@@ -266,7 +268,7 @@ export default function OarIndexPage() {
             Bläddra per region eller scrolla för att hitta din destination.
           </p>
 
-          {(['norra', 'mellersta', 'södra', 'bohuslan', 'ovriga'] as const).map(region => {
+          {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (
