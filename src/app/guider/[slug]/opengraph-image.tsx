@@ -57,7 +57,7 @@ const THEMES: Record<string, {
   },
 }
 
-const DEFAULT_THEME = THEMES.Region
+const DEFAULT_THEME = THEMES['Region']!
 
 // ── Dekorativ ikon per kategori (inline SVG i JSX) ─────────────────────────
 function CategoryIcon({ category, slug }: { category: string; slug: string }) {
