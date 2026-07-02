@@ -28,9 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const island = getIsland(slug)
  if (!island) return {}
  return {
- title: `${island.name} – Guide till ön | Svalla`,
- description: `Allt om ${island.name}: restauranger, aktiviteter, boende och hur du tar dig dit. ${island.tagline}`,
- keywords: [`${island.name.toLowerCase()} skärgård`, `${island.name.toLowerCase()} restaurang`, `resa till ${island.name.toLowerCase()}`, 'stockholms skärgård guide'],
+ title: `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
+ description: `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
+ keywords: [
+  `${island.name.toLowerCase()} guide`,
+  `${island.name.toLowerCase()} restaurang`,
+  `${island.name.toLowerCase()} boende`,
+  `${island.name.toLowerCase()} aktiviteter`,
+  `vad göra på ${island.name.toLowerCase()}`,
+  `resa till ${island.name.toLowerCase()}`,
+  `${island.regionLabel.toLowerCase()} guide`,
+ ],
  alternates: {
  canonical: `https://svalla.se/o/${slug}`,
  },
