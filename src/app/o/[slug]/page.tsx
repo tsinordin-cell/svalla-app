@@ -613,6 +613,11 @@ export default async function IslandPage({ params }: Props) {
  </div>
  ))}
  </div>
+ <div style={{ marginTop: 16, textAlign: 'right' }}>
+  <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
+   Komplett transportguide till {island.name} →
+  </Link>
+ </div>
  </section>
  )}
 
@@ -733,7 +738,77 @@ export default async function IslandPage({ params }: Props) {
  )
  })()}
 
- {/* Related islands */}
+   {/* Utforska mer om ön — intern länkning till bad, komma-dit, med-barn */}
+   <section style={{ marginBottom: 36 }}>
+    <SectionHeader icon="✦" title={`Mer om ${island.name}`} />
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12 }}>
+     <Link href={`/o/${slug}/bad`} style={{ textDecoration: 'none' }}>
+      <div style={{
+       background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
+       boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--surface-3)',
+       display: 'flex', gap: 14, alignItems: 'center',
+       transition: 'box-shadow 0.15s',
+      }}>
+       <div style={{
+        width: 40, height: 40, flexShrink: 0, borderRadius: 10,
+        background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+       }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M2 12h20M2 12c3-4 5-4 8 0s5 4 8 0M2 18h20M2 18c3-4 5-4 8 0s5 4 8 0"/></svg>
+       </div>
+       <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Bästa badplatserna på {island.name}</div>
+       </div>
+       <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
+      </div>
+     </Link>
+     <Link href={`/o/${slug}/komma-dit`} style={{ textDecoration: 'none' }}>
+      <div style={{
+       background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
+       boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--surface-3)',
+       display: 'flex', gap: 14, alignItems: 'center',
+       transition: 'box-shadow 0.15s',
+      }}>
+       <div style={{
+        width: 40, height: 40, flexShrink: 0, borderRadius: 10,
+        background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+       }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M12 19V5m0 0l-7 7m7-7 7 7"/></svg>
+       </div>
+       <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Komma dit</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Båt, färja och transport till {island.name}</div>
+       </div>
+       <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
+      </div>
+     </Link>
+     <Link href={`/o/${slug}/med-barn`} style={{ textDecoration: 'none' }}>
+      <div style={{
+       background: 'var(--white)', borderRadius: 14, padding: '18px 20px',
+       boxShadow: '0 2px 10px rgba(0,0,0,0.06)', border: '1px solid var(--surface-3)',
+       display: 'flex', gap: 14, alignItems: 'center',
+       transition: 'box-shadow 0.15s',
+      }}>
+       <div style={{
+        width: 40, height: 40, flexShrink: 0, borderRadius: 10,
+        background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+       }}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+       </div>
+       <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Med barn</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Barnvänlig guide till {island.name}</div>
+       </div>
+       <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
+      </div>
+     </Link>
+    </div>
+   </section>
+
+   {/* Related islands */}
  {relatedIslands.length > 0 && (
  <section style={{ marginBottom: 0 }}>
  <SectionHeader icon="" title="Besök också" />
