@@ -398,7 +398,7 @@ function ManuellForm() {
             </div>
           )}
         </button>
-        <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={handleFile} style={{ display: 'none' }} />
+        <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} style={{ display: 'none' }} />
         <input ref={extraFileRef} type="file" accept="image/*" multiple onChange={handleExtraFiles} style={{ display: 'none' }} />
 
         {/* ── Extra foton (visas bara om huvud-bild är vald) ── */}
