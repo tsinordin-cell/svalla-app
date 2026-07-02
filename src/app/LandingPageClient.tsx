@@ -120,9 +120,9 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:30px;padding:7px 16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;backdrop-filter:blur(8px);}
 .hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,82px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:14px;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,66px);font-weight:900;line-height:1.06;color:var(--white);margin-bottom:14px;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);}
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;}
-.hero-sub{font-size:clamp(16px,2.2vw,20px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:8px auto 18px;line-height:1.6;text-shadow:0 1px 10px rgba(5,15,30,.55);}
+.hero-sub{font-size:clamp(14px,1.8vw,16px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:8px auto 18px;line-height:1.6;text-shadow:0 1px 10px rgba(5,15,30,.55);}
 .hero-search{display:flex;max-width:480px;margin:0 auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
 .hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:transparent;}
 .hero-search input::placeholder{color:rgba(15,30,45,.55)}
