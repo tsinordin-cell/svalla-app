@@ -754,9 +754,9 @@ const LANDING_HTML = `
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
- <span onclick="location.href='/sok?q=Gällnö'">Gällnö</span>
+ <span onclick="location.href='/o/gallno'">Gällnö</span>
  <span onclick="location.href='/sok?q=Ulvön'">Ulvön</span>
- <span onclick="location.href='/sok?q=Marstrand'">Marstrand</span>
+ <span onclick="location.href='/o/marstrand'">Marstrand</span>
  <span onclick="location.href='/sok?q=Gotland'">Gotland</span>
  </div>
  <div class="hero-scroll">
