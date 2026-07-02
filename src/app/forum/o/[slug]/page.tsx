@@ -83,28 +83,70 @@ export default async function IslandForumPage({ params }: Props) {
       {/* Tråd-lista */}
       <div style={{ padding: '20px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         {threads.length === 0 ? (
-          /* Tom-state */
+          /* Tom-state med seed-prompts */
           <div style={{
-            padding: '40px 24px',
-            textAlign: 'center',
+            padding: '32px 20px',
             background: 'var(--card-bg, #fff)',
             borderRadius: 18,
             border: '1px solid rgba(10,123,140,0.1)',
           }}>
-            <div style={{ fontSize: 36, marginBottom: 14 }}>🏝️</div>
-            <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', marginBottom: 8 }}>
-              Inga diskussioner om {island.name} ännu
+            <div style={{ textAlign: 'center', marginBottom: 24 }}>
+              <div style={{ fontSize: 36, marginBottom: 12 }}>🏝️</div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', marginBottom: 6 }}>
+                Bli den första att skriva om {island.name}!
+              </div>
+              <div style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.55 }}>
+                Inga frågor är för enkla. Lokalkännedom är guld värd.
+              </div>
             </div>
-            <div style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.55, marginBottom: 20 }}>
-              Bli först med att ställa en fråga, dela ett tips eller erbjuda en tjänst på {island.name}.
+
+            {/* Klickbara startfrågor */}
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 10 }}>
+                Förslag — klicka för att starta:
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {[
+                  `Vad ska man absolut inte missa på ${island.name}?`,
+                  `Bästa restaurangen på ${island.name} sommaren 2026?`,
+                  `Tips för förstagångsbesökare på ${island.name}?`,
+                  `Hur tar man sig till ${island.name} snabbast från Stockholm?`,
+                  `Är ${island.name} barnvänlig — vad rekommenderar ni?`,
+                ].map(prompt => (
+                  <Link
+                    key={prompt}
+                    href={`/forum/ny-trad?island=${slug}&titel=${encodeURIComponent(prompt)}`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      padding: '12px 14px',
+                      background: 'rgba(10,123,140,0.05)',
+                      border: '1.5px dashed rgba(10,123,140,0.2)',
+                      borderRadius: 12,
+                      textDecoration: 'none',
+                      color: 'var(--txt2)',
+                      fontSize: 14,
+                      lineHeight: 1.4,
+                      transition: 'background 0.15s, border-color 0.15s',
+                    }}
+                  >
+                    <span style={{ fontSize: 16, flexShrink: 0 }}>💬</span>
+                    <span>{prompt}</span>
+                    <span style={{ marginLeft: 'auto', color: 'var(--sea)', fontWeight: 700, fontSize: 13, flexShrink: 0 }}>Starta →</span>
+                  </Link>
+                ))}
+              </div>
             </div>
+
             <Link
               href={`/forum/ny-trad?island=${slug}`}
               style={{
-                display: 'inline-flex',
+                display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: 8,
-                padding: '12px 22px',
+                padding: '13px 22px',
                 background: 'var(--sea)',
                 color: '#fff',
                 borderRadius: 12,
@@ -113,7 +155,7 @@ export default async function IslandForumPage({ params }: Props) {
                 fontWeight: 600,
               }}
             >
-              Starta första diskussionen →
+              Skriv egen fråga eller tips →
             </Link>
           </div>
         ) : (
