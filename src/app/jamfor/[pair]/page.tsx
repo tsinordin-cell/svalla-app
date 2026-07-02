@@ -88,6 +88,21 @@ const PAIRS: Array<[string, string]> = [
   ['kungshamn', 'pater-noster'],
   ['pater-noster', 'smogen'],
   ['hono', 'vinga'],
+  // ── Gotland, Öland, Ulvön & Göteborgs södra skärgård ──────────
+  ['gotland', 'oland'],
+  ['oland', 'gotland'],
+  ['gotland', 'sandhamn'],
+  ['gotland', 'uto'],
+  ['gotland', 'marstrand'],
+  ['gotland', 'grinda'],
+  ['oland', 'uto'],
+  ['oland', 'grinda'],
+  ['ulvon', 'gotland'],
+  ['ulvon', 'arholma'],
+  ['branno', 'styrso'],
+  ['styrso', 'vrango'],
+  ['branno', 'donso'],
+  ['donso', 'styrso'],
 ]
 
 export async function generateStaticParams() {
