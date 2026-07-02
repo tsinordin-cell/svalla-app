@@ -736,18 +736,13 @@ const LANDING_HTML = `
 
 <section class="hero" style="background:transparent">
  <div class="hero-top">
- <div class="hero-eyebrow">
- <span class="hero-eyebrow-dot"></span>
- 200+ platser kartlagda — Stockholm, Bohuslän, Gotland & mer
- </div>
- <h1 class="hero-title">
+<h1 class="hero-title">
  Planera din perfekta<br>
  <em>dag i skärgården</em>
  </h1>
  <p class="hero-sub">
  Krogar, badplatser och dolda pärlor tipsade av folk som faktiskt är där ute.
  </p>
- <p style="color:rgba(255,255,255,.72);font-size:13px;font-weight:500;margin-top:8px;letter-spacing:.01em">Reser du med Waxholm, SL-båt eller färja? Thorkel planerar hela turen åt dig.</p>
  </div>
  <div class="hero-bottom">
  <form class="hero-search" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
@@ -756,14 +751,13 @@ const LANDING_HTML = `
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
  <a href="/planera" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din tur med Thorkel &rarr;</a>
- <a href="/forum" style="color:rgba(255,255,255,.65);font-size:12px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11.5L7.5 19.8a.6.6 0 0 1-1-.5V16H6a2 2 0 0 1-2-2Z"/></svg> Diskutera med din ös community</a>
  </div>
  <div class="hero-search-hint">
  Populärt just nu:
- <span onclick="location.href='/sok?q=Sandhamn'">Sandhamn</span>
- <span onclick="location.href='/sok?q=Grinda'">Grinda</span>
- <span onclick="location.href='/sok?q=Utö'">Utö</span>
- <span onclick="location.href='/sok?q=Finnhamn'">Finnhamn</span>
+ <span onclick="location.href='/sok?q=Gällnö'">Gällnö</span>
+ <span onclick="location.href='/sok?q=Ulvön'">Ulvön</span>
+ <span onclick="location.href='/sok?q=Marstrand'">Marstrand</span>
+ <span onclick="location.href='/sok?q=Gotland'">Gotland</span>
  </div>
  <div class="hero-scroll">
  <div class="hero-scroll-line"></div>
