@@ -46,7 +46,7 @@ export type Island = {
   name: string
   /** URL till coverbild (Wikimedia, Unsplash etc.) — visas i listsidor och OG-bilder */
   coverImage?: string
-  region: 'norra' | 'mellersta' | 'södra' | 'bohuslan'
+  region: 'norra' | 'mellersta' | 'södra' | 'bohuslan' | 'ovriga'
   regionLabel: string
   emoji: string
   tagline: string
@@ -2923,6 +2923,137 @@ export const ISLANDS: Island[] = [
     related: ['moja', 'kanholmen', 'norrora'],
     tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
     did_you_know: 'Naturen i Storskärs naturreservat är representativ för mellanskärgården och förvaltas av Länsstyrelsen i Stockholms län.',
+  },
+
+  // ── Övriga Sverige — Höga Kusten, Gotland m.fl. ────────────────────────────
+
+  {
+    slug: 'ulvon',
+    name: 'Ulvön',
+    region: 'ovriga',
+    regionLabel: 'Höga Kusten',
+    emoji: '🐟',
+    tagline: 'Höga Kustens hjärta — världsarv, surströmming och dramatiska klippor.',
+    description: [
+      'Ulvön är Höga Kustens mest välkända ö och en av Sveriges bäst bevarade fiskebyar. Två samhällen — Ulvöhamn i norr och Sörvik i söder — lever kvar med ett genuint kustliv i en miljö som inte förändrats nämnvärt på hundra år.',
+      'Ön är oupplösligt förknippad med surströmming. Den jästa strömmingen produceras här och exporteras över hela landet. Surströmmingsfabriken i Ulvöhamn är öppen för besök sommartid — luktupplevelsen är garanterad oavsett avstånd.',
+      'Höga Kusten är UNESCO-världsarv tack vare en av världens mest dramatiska landhöjningar sedan istiden. Klipporna stiger brant ur havet, skogarna är täta och utsikten från höjderna är enastående. Ulvön är navet i detta landskap.',
+    ],
+    facts: {
+      travel_time: '4–5 h från Stockholm (tåg till Härnösand + buss + färja)',
+      character: 'Genuint, vilt, historiskt, surströmming',
+      season: 'Maj–September',
+      best_for: 'Naturälskare, fiskentusiaster, de som söker äkta kustkultur',
+    },
+    activities: [
+      { icon: '🐟', name: 'Surströmmingsupplevelse', desc: 'Besök surströmmingsfabriken i Ulvöhamn. Smaka om du törs — en klassisk svensk upplevelse.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Välmärkta leder längs kusten och upp till klippor med utsikt över Höga Kusten.' },
+      { icon: '🏖', name: 'Sandstrand', desc: 'Sälesstranden på södra Ulvön är ovanligt lång för norrlandskusten — ett sällsynt fynd.' },
+      { icon: '⛵', name: 'Båtliv', desc: 'Välskyddad gästhamn i Ulvöhamn. Populär etapp för seglare längs norrlandskusten.' },
+    ],
+    accommodation: [
+      { name: 'Ulvö Hotell', type: 'Hotell', desc: 'Öns hotell i Ulvöhamn med havsutsikt och restaurang. Boka i god tid inför sommarsäsongen.' },
+      { name: 'Ulvöhamns Camping', type: 'Camping', desc: 'Enkla camingmöjligheter i närheten av hamnen.' },
+    ],
+    getting_there: [
+      { method: 'Tåg + buss + färja', from: 'Stockholm Central', time: '4–5 h', desc: 'SJ tåg till Härnösand, buss mot Docksta, sedan reguljärfärja (M/S Solleftea) till Ulvön (ca 1 h). Färjan går dagligen sommartid.', icon: '🚆' },
+      { method: 'Flyg + hyrbil + färja', from: 'Stockholm Arlanda', time: '3 h', desc: 'Flyg till Härnösand/Kramfors Airport, hyrbil till Docksta eller Köpmanholmen, sedan färja till Ulvön.', icon: '✈️' },
+      { method: 'Bil + färja', from: 'Stockholm', time: '5–6 h', desc: 'Kör E4 norrut till Docksta (ca 470 km), parkera och ta färjan till Ulvön.', icon: '🚗' },
+    ],
+    harbors: [
+      { name: 'Ulvöhamns Gästhamn', desc: 'Välskyddad hamn med full service. Populär etapp för seglare längs norrlandskusten.', spots: 80, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+    ],
+    restaurants: [
+      { name: 'Ulvö Hotell Restaurant', type: 'Restaurang', desc: 'Husmanskost och lokala råvaror i hamnmiljö. Surströmming serveras förstås på menyn.', slug: 'ulvo-hotell-restaurant' },
+    ],
+    tips: [
+      'Boka färja och boende tidigt — sommarsäsongen på Ulvön är kort och populär.',
+      'Ta med myggmedel. Höga Kusten-natten är vacker men myggen är på.',
+      'Surströmmingspremiären sker tredje torsdagen i augusti — om du vill delta, planera i god tid.',
+      'Ulvökapellet från 1622 är ett av Sveriges äldsta bevarade kustkapell — inte att missa.',
+    ],
+    related: ['arholma', 'sandhamn', 'landsort'],
+    tags: ['höga kusten', 'naturreservat', 'surströmming', 'fiske', 'norrland', 'världsarv', 'sandstrand'],
+    insiderTips: [
+      'Sälesstranden på södra Ulvön är en av norrlandskustens längsta sandstränder — nästan tropiskt känslig en solig julidag.',
+      'Höga Kusten-leden passerar förbi Ulvön och är en av Sveriges mest dramatiska vandringsleder.',
+      'Ulvöhamn har ett fiskelägeskapell från 1622 — ett av de äldsta i Sverige.',
+    ],
+    did_you_know: 'Ulvön kallas "Surströmmingsön" och är hem till en av Sveriges sista aktiva surströmmingsfabriker. Ön nämns i historiska dokument redan på 1500-talet som en viktig fiskehamn längs norrlandskusten.',
+  },
+
+  {
+    slug: 'gotland',
+    name: 'Gotland',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🏰',
+    tagline: 'Sveriges största ö — medeltida Visby, kalkstensraukar och Östersjösommar.',
+    description: [
+      'Gotland är Sveriges mest besökta ö och med goda skäl. Visby är en levande medeltidsstad med en välbevarad ringmur, imponerande kyrkoruiner och ett av Sveriges starkaste restaurangutbud. UNESCO-listade sedan 1995.',
+      'Raukar längs kusten — de skulpturala kalkstensformationerna — sandstränder och ett klimat som är märkbart varmare än fastlandet gör Gotland till ett naturligt sommarresemål. Nästan var tredje soltimme i Sverige noteras här.',
+      'Gotland är mer än Visby. Landsbygden har egna kvaliteter: vindmöllor, medeltidskyrkor i varje socken, mathantverk i världsklass och ett tempo som saktar ner av sig självt. Fårö, ön norr om Gotland, är Ingmar Bergmans landskap.',
+    ],
+    facts: {
+      travel_time: '3 h med Destination Gotland-färja från Nynäshamn',
+      character: 'Kulturellt rikt, soligt, levande, medeltida',
+      season: 'April–Oktober (peak juli)',
+      best_for: 'Alla — par, familjer, kulturresenärer, matälskare',
+    },
+    activities: [
+      { icon: '🏰', name: 'Visby medeltidsstad', desc: 'Utforska UNESCO-listade ringmuren, kyrkoruin­er och det medeltida gatunätet. Bäst tidigt på morgonen eller sent på kvällen.' },
+      { icon: '🪨', name: 'Raukar', desc: 'Kalkstensformationer längs kusten. Langhammar på Fårö och Hoburgen i söder är de mest spektakulära.' },
+      { icon: '🏖', name: 'Stränder', desc: 'Tofta strand, Ljugarn och Sudersand på Fårö. Gotlands vatten är varmt och grunt — perfekt för barnfamiljer.' },
+      { icon: '🚲', name: 'Cykling', desc: 'Platt landskap och välskyltade cykelvägar — Gotland är Sveriges bästa cykelö. Hyr i Visby och cykla ut på landsbygden.' },
+      { icon: '🍷', name: 'Mat & dryck', desc: 'Gotlandslammets hemö. Världsklassrestauranger i Visby, lokala vingårdar och hantverk­sbryggerier.' },
+    ],
+    accommodation: [
+      { name: 'Clarion Hotel Wisby', type: 'Hotell', desc: 'Mitt i Visby med pool och utsikt mot ringmuren. Klassiker för sommarvisiter.' },
+      { name: 'Strandridargården', type: 'Hotell & Spa', desc: 'Spa-hotell vid stranden i Tofta — perfekt om du vill kombinera Visby med stranddagar.' },
+      { name: 'Fårösund Camping & Stugby', type: 'Camping', desc: 'Välskött camping vid Fårösund med närheten till Fårö och Bergmans landskap.' },
+    ],
+    getting_there: [
+      { method: 'Destination Gotland-färja', from: 'Nynäshamn', time: '3 h', desc: 'Avgår flera gånger per dag. Bil eller gående passagerare. Boka bil minst 2–3 månader i förväg under juli.', icon: '⛴' },
+      { method: 'Destination Gotland-färja', from: 'Oskarshamn', time: '3,5 h', desc: 'Alternativ rutt söderifrån. Smidigare om du reser från Sydsverige eller Kalmar-hållet.', icon: '⛴' },
+      { method: 'Flyg', from: 'Stockholm Arlanda / Bromma', time: '55 min', desc: 'BRA och SAS flyger dagligen sommartid. Snabbaste alternativet — men dyrare och utan bil.', icon: '✈️' },
+    ],
+    transport_meta: {
+      from_city_min: 180,
+      nearest_hub: 'Nynäshamn',
+      from_nearest_hub_min: 180,
+      operator: 'Destination Gotland',
+      frequency: 'Flera avgångar dagligen',
+      booking_url: 'https://www.destinationgotland.se',
+      car_parking: 'Parkering finns vid Nynäshamns färjeterminal (avgift). I Visby — planera för trängsel i juli.',
+    },
+    harbors: [
+      { name: 'Visby Gästhamn', desc: 'Stor välutrustad gästhamn direkt i Visby. Bränsle, service och gångavstånd till allt. Boka plats i förväg under högsäsong.', spots: 500, fuel: true, service: ['el', 'vatten', 'bränsle', 'pump-out', 'dusch', 'wi-fi'] },
+      { name: 'Klintehamns Gästhamn', desc: 'Lugn hamn på Gotlands västkust. Bra alternativ till Visby om du vill undvika folkvimlet.', spots: 120, fuel: false, service: ['el', 'vatten'] },
+    ],
+    restaurants: [
+      { name: 'Gutekällaren', type: 'Restaurang', desc: 'Inne i Visby ringmur. Gotlandslamm, rödspätta och lokalt hantverk­söl i medeltida valvmiljö.', slug: 'gutekallaren-gotland' },
+      { name: 'Bakfickan', type: 'Bistro', desc: 'Enkel bistro i Visby med lokala råvaror och sommarvibb. Populär för lunch.', slug: 'bakfickan-gotland' },
+      { name: 'Krakas Krog', type: 'Restaurang', desc: 'Landsbygdskrog utanför Visby. Starka lokala råvaror — bokningsbar sommaroplevelse.', slug: 'krakas-krog-gotland' },
+    ],
+    tips: [
+      'Boka Destination Gotland-färjan minst 2–3 månader i förväg om du reser i juli med bil.',
+      'Almedalsveckan (tidig juli) gör Visby fullbokat och hektiskt — undvik om du inte är där för det.',
+      'Hyr cykel och ta dig till Fårö för en dag. Bergmans landskap, raukar och en annan tid.',
+      'Gotland har 93 medeltidskyrkor — fler än något annat landskap i Sverige. Ta en spontan av­stickare.',
+    ],
+    related: ['sandhamn', 'arholma', 'ulvon'],
+    tags: ['gotland', 'visby', 'medeltid', 'stränder', 'raukar', 'cykling', 'mat', 'världsarv', 'färja'],
+    insiderTips: [
+      'Gotland har det varmaste klimatet i Sverige med flest soltimmar. Medeltemperaturen i juli är 2–3 grader högre än Stockholm.',
+      'Fårö, ön norr om Gotland, är känd som Ingmar Bergmans hemö och har en av landets finaste raukmiljöer vid Langhammar.',
+      'Gotlands 93 medeltidskyrkor gör landskapet unikt i Europa — de flesta är öppna och fria att besöka.',
+      'Restaurangscenen i Visby är oproportionerligt stark för en stad med 25 000 invånare — sommartid håller den Stockholmsnivå.',
+    ],
+    activity_meta: {
+      cykel: { rental: true, notes: 'Gotland är Sveriges bästa cykelö med välskyltade leder och relativt plant landskap.' },
+      bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
+    },
+    did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
   },
 
 ]
