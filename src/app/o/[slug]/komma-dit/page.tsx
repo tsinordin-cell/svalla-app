@@ -142,7 +142,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2, marginBottom: 6 }}>Från: {t.from}</div>
                     )}
                     <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65 }}>{t.desc}</div>
-                    {island.transport_meta?.booking_url && t.method.toLowerCase().includes(island.transport_meta.operator.toLowerCase().split(' ')[0].toLowerCase()) && (
+                    {island.transport_meta && island.transport_meta.booking_url && t.method.toLowerCase().includes(island.transport_meta.operator.toLowerCase().split(' ')[0].toLowerCase()) && (
                       <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{
                         display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                         color: 'var(--sea)', textDecoration: 'none',
@@ -189,7 +189,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
             <li>SL-periodbiljett och SL Access-kort gäller på vissa Waxholmsbolaget-linjer (kontrollera aktuell info)</li>
             <li>Boka sittplats i förväg på populära rutter under högsäsong (juli)</li>
             <li>Kom i god tid — båtarna avgår exakt på utsatt tid</li>
-            {island.transport_meta?.car_parking && (
+            {island.transport_meta && island.transport_meta.car_parking && (
               <li>Parkering: {island.transport_meta.car_parking}</li>
             )}
           </ul>
