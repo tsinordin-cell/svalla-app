@@ -142,14 +142,14 @@ export default async function IslandKommaDitPage({ params }: Props) {
                       <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2, marginBottom: 6 }}>Från: {t.from}</div>
                     )}
                     <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65 }}>{t.desc}</div>
-                    {island.transport_meta && island.transport_meta.booking_url && t.method.toLowerCase().includes(island.transport_meta.operator.toLowerCase().split(' ')[0].toLowerCase()) && (
+                    {island.transport_meta?.booking_url ? (
                       <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{
                         display: 'inline-block', marginTop: 10, fontSize: 13, fontWeight: 700,
                         color: 'var(--sea)', textDecoration: 'none',
                       }}>
                         Köp biljett / Se tidtabell →
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               ))}
