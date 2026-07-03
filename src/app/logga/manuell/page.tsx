@@ -72,6 +72,16 @@ function ManuellForm() {
   const [routeId, setRouteId]               = useState<string | null>(null)
   const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
 
+  // ── Bildpositionering ──
+  const posImgRef  = useRef<HTMLImageElement>(null)
+  const posDragRef = useRef<{ sx: number; sy: number; stx: number; sty: number } | null>(null)
+  const [positioning,   setPositioning]   = useState(false)
+  const [rawPreview,    setRawPreview]    = useState('')
+  const [rawFile,       setRawFile]       = useState<File | null>(null)
+  const [posTranslate,  setPosTranslate]  = useState({ x: 0, y: 0 })
+  const [posMaxT,       setPosMaxT]       = useState({ minX: 0, maxX: 0, minY: 0, maxY: 0 })
+  const [posImgDim,     setPosImgDim]     = useState({ w: 0, h: 0 })
+
   // ── Thorkel AI ──
   const [aiVariants,  setAiVariants]  = useState<string[]>([])
   const [aiSummary,   setAiSummary]   = useState<string | null>(null)
@@ -126,11 +136,73 @@ function ManuellForm() {
       return
     }
     const compressed = await compressImage(f)
-    setFile(compressed)
-    // Use FileReader for a stable base64 data-URL (avoids revoked blob URL bugs)
+    setRawFile(compressed)
     const reader = new FileReader()
-    reader.onload = () => setPreview(reader.result as string)
+    reader.onload = () => {
+      setRawPreview(reader.result as string)
+      setPosTranslate({ x: 0, y: 0 })
+      setPosImgDim({ w: 0, h: 0 })
+      setPositioning(true)
+    }
     reader.readAsDataURL(compressed)
+  }
+
+  function handlePosLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+    const img = e.currentTarget
+    const nW  = img.naturalWidth
+    const nH  = img.naturalHeight
+    const cW  = window.innerWidth
+    const cH  = 260
+    const sc  = Math.max(cW / nW, cH / nH)
+    const dW  = Math.round(nW * sc)
+    const dH  = Math.round(nH * sc)
+    setPosImgDim({ w: dW, h: dH })
+    setPosTranslate({ x: Math.round(-(dW - cW) / 2), y: Math.round(-(dH - cH) / 2) })
+    setPosMaxT({ minX: Math.min(0, -(dW - cW)), maxX: 0, minY: Math.min(0, -(dH - cH)), maxY: 0 })
+  }
+
+  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    posDragRef.current = { sx: e.clientX, sy: e.clientY, stx: posTranslate.x, sty: posTranslate.y }
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+
+  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!posDragRef.current) return
+    const dx = e.clientX - posDragRef.current.sx
+    const dy = e.clientY - posDragRef.current.sy
+    setPosTranslate({
+      x: Math.max(posMaxT.minX, Math.min(posMaxT.maxX, posDragRef.current.stx + dx)),
+      y: Math.max(posMaxT.minY, Math.min(posMaxT.maxY, posDragRef.current.sty + dy)),
+    })
+  }
+
+  async function confirmCrop() {
+    if (!rawFile || !rawPreview) return
+    const cW = window.innerWidth
+    const cH = 260
+    const fullImg = new Image()
+    await new Promise<void>(r => { fullImg.onload = () => r(); fullImg.src = rawPreview })
+    const nW  = fullImg.naturalWidth
+    const nH  = fullImg.naturalHeight
+    const sc  = Math.max(cW / nW, cH / nH)
+    const srcX = Math.max(0, Math.round(-posTranslate.x / sc))
+    const srcY = Math.max(0, Math.round(-posTranslate.y / sc))
+    const srcW = Math.min(nW - srcX, Math.round(cW / sc))
+    const srcH = Math.min(nH - srcY, Math.round(cH / sc))
+    const canvas = document.createElement('canvas')
+    canvas.width  = srcW
+    canvas.height = srcH
+    canvas.getContext('2d')!.drawImage(fullImg, srcX, srcY, srcW, srcH, 0, 0, srcW, srcH)
+    canvas.toBlob(async blob => {
+      if (!blob) return
+      const cropped = new File([blob], rawFile.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' })
+      const final = await compressImage(cropped)
+      setFile(final)
+      const reader = new FileReader()
+      reader.onload = () => setPreview(reader.result as string)
+      reader.readAsDataURL(final)
+      setPositioning(false)
+    }, 'image/jpeg', 0.92)
   }
 
   async function handleExtraFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -307,6 +379,90 @@ function ManuellForm() {
 
   // Block render until auth resolved — prevents flash + premature file picker
   if (authLoading) return null
+
+  // ── Bildpositionerings-läge ──────────────────────────────────────────────────
+  if (positioning && rawPreview) {
+    return (
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        background: '#000',
+        display: 'flex', flexDirection: 'column',
+        touchAction: 'none',
+      }}>
+        {/* Rubrikrad */}
+        <div style={{
+          padding: 'calc(env(safe-area-inset-top, 0px) + 12px) 16px 12px',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexShrink: 0,
+        }}>
+          <button
+            type="button"
+            onClick={() => { setPositioning(false); setRawPreview(''); setRawFile(null) }}
+            style={{ color: 'rgba(255,255,255,0.7)', background: 'none', border: 'none', fontSize: 15, cursor: 'pointer', padding: '4px 0', fontFamily: 'inherit' }}
+          >
+            Avbryt
+          </button>
+          <span style={{ color: '#fff', fontWeight: 700, fontSize: 16 }}>Välj utsnitt</span>
+          <button
+            type="button"
+            onClick={confirmCrop}
+            style={{
+              color: '#fff', background: 'var(--sea)', border: 'none',
+              padding: '8px 18px', borderRadius: 20,
+              fontWeight: 700, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit',
+            }}
+          >
+            Klar
+          </button>
+        </div>
+
+        {/* Dragbart bildområde */}
+        <div
+          style={{
+            width: '100%', height: 260, position: 'relative',
+            overflow: 'hidden', cursor: 'grab',
+            touchAction: 'none', userSelect: 'none', flexShrink: 0,
+          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={() => { posDragRef.current = null }}
+          onPointerCancel={() => { posDragRef.current = null }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            ref={posImgRef}
+            src={rawPreview}
+            alt=""
+            onLoad={handlePosLoad}
+            draggable={false}
+            style={{
+              position: 'absolute',
+              width: posImgDim.w > 0 ? posImgDim.w : '100%',
+              height: posImgDim.w > 0 ? posImgDim.h : 'auto',
+              maxWidth: 'none',
+              transform: `translate(${posTranslate.x}px, ${posTranslate.y}px)`,
+              userSelect: 'none', pointerEvents: 'none',
+            } as React.CSSProperties}
+          />
+          {/* Rutnät-overlay */}
+          <div style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: [
+              'linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)',
+              'linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px)',
+            ].join(', '),
+            backgroundSize: '33.33% 33.33%',
+          }} />
+          {/* Ram */}
+          <div style={{ position: 'absolute', inset: 0, boxShadow: '0 0 0 1.5px rgba(255,255,255,0.35)', pointerEvents: 'none' }} />
+        </div>
+
+        <div style={{ padding: '18px 16px', textAlign: 'center', flexShrink: 0 }}>
+          <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: 13 }}>Dra bilden för att välja vad som visas</span>
+        </div>
+      </div>
+    )
+  }
 
   if (posted) {
     return (
