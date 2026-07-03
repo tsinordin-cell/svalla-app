@@ -76,7 +76,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Var hittar man bra segelkurser i Stockholm?',
-        a: 'Svenska Seglarförbundets hemsida listar certifierade segelsällskap med kursverksamhet. KSSS (Kungliga Svenska Segelsällskapet) och Lidingö Segelklubb är bland de mest välrenommerade i Stockholmsregionen.',
+        a: 'Svenska Seglarförbundets hemsida listar certifierade segelsällskap med kursverksamhet. KSSS (Kungliga Svenska Segelsällskapet) i Djurgården och Stockholms Segelsällskap (SSS) är bland de mest aktiva kursarrangörerna i Stockholmsregionen.',
       },
       {
         q: 'Vad kostar en segelkurs i Stockholm?',
@@ -97,7 +97,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
     tags: ['Västerhavet', 'Bohuslän klippmiljö', 'Utmanande seglarvatten', 'Kustskepparintyg'],
     intro: [
       'Göteborg och Bohuslän är den perfekta platsen att ta nästa steg i seglingen. Västerhavet är mer krävande än innerskärgårdar med starkare vindbyar och vågor som faktiskt "räknas" – det formar bättre seglare på kortare tid.',
-      'Göteborg har ett levande segelsällskapsliv med många aktörer som erbjuder kurser från nybörjarnivå upp till offshore. Gøteborgs Segelsällskap (GSS) och Kungälvs Segelsällskap är bland de mest aktiva. Med bil når du Bohuslänska kursanläggningar längs kusten norrut mot Smögen.',
+      'Göteborg har ett levande segelsällskapsliv. GKSS (Göteborgs Kungliga Segel Sällskap) i Långedrag och Marstrands Segelsällskap är bland de mest aktiva kursarrangörerna på västkusten. Med bil når du Bohuslänska kursanläggningar längs kusten norrut mot Smögen.',
       'Kurssäsongen i Göteborg är längre än många tror – maj till september med bra väder. Sommarkurser med övernattning ombord längs Bohusläns kust är populärt och ger ett komprimerat lärande mitt i naturupplevelsen.',
     ],
     kurstyper: [
@@ -125,7 +125,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Var i Göteborg hittar man segelkurser?',
-        a: 'Göteborgs Segelsällskap (GSS) i centrala Göteborg är ett bra alternativ. Kungälvs SS, Marstrand och Stenungsund har aktiv kursverksamhet. Kontakta Svenska Seglarförbundets lokalföreningar för heltäckande lista.',
+        a: 'GKSS (Göteborgs Kungliga Segel Sällskap) i Långedrag och Marstrands Segelsällskap är välkända kursarrangörer på västkusten. Kontakta Svenska Seglarförbundets lokalföreningar via seglarforbundet.se för en heltäckande lista av klubbar med kursverksamhet.',
       },
     ],
   },
