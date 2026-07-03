@@ -19,7 +19,7 @@ import { Home } from '@/components/icons/LucideIcons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
 
 function getGreeting(): string {
  const h = new Date().getHours()
