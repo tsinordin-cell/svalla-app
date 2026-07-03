@@ -2,6 +2,214 @@ export type GuideCategory = "Praktisk" | "Transport" | "Aktivitet" | "Mat" | "S�
 
 export type TransactionalTopic = 'hyra-bat' | 'segelkurs' | 'teambuilding' | 'kajak'
 
+// ── Geografisk region-arkitektur ────────────────────────────────────────────
+export type GuideRegion =
+  'stockholm' | 'goteborg' | 'gotland' | 'oland' |
+  'hogakusten' | 'sydkusten' | 'utlandet' | 'sverige'
+
+export const ALL_REGIONS: GuideRegion[] = [
+  'stockholm', 'goteborg', 'gotland', 'oland', 'hogakusten', 'sydkusten', 'utlandet', 'sverige',
+]
+
+export const REGION_LABELS: Record<GuideRegion, string> = {
+  stockholm:  'Stockholms skärgård',
+  goteborg:   'Göteborg & Bohuslän',
+  gotland:    'Gotland',
+  oland:      'Öland',
+  hogakusten: 'Höga Kusten',
+  sydkusten:  'Sydkusten & Halland',
+  utlandet:   'Åland & Utlandet',
+  sverige:    'Praktiska guider',
+}
+
+export const REGION_EMOJIS: Record<GuideRegion, string> = {
+  stockholm:  '🏝',
+  goteborg:   '🌊',
+  gotland:    '🏰',
+  oland:      '🌾',
+  hogakusten: '🏔',
+  sydkusten:  '⚓',
+  utlandet:   '🗺',
+  sverige:    '📖',
+}
+
+// URL-slug för /guider/[region]/ sidorna
+export const REGION_URL_SLUG: Record<GuideRegion, string> = {
+  stockholm:  'stockholm',
+  goteborg:   'goteborg',
+  gotland:    'gotland',
+  oland:      'oland',
+  hogakusten: 'hoga-kusten',
+  sydkusten:  'sydkusten',
+  utlandet:   'utlandet',
+  sverige:    'sverige',
+}
+
+export const URL_SLUG_TO_REGION: Record<string, GuideRegion> = {
+  'stockholm':   'stockholm',
+  'goteborg':    'goteborg',
+  'gotland':     'gotland',
+  'oland':       'oland',
+  'hoga-kusten': 'hogakusten',
+  'sydkusten':   'sydkusten',
+  'utlandet':    'utlandet',
+  'sverige':     'sverige',
+}
+
+// Guide slug → region mapping
+const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
+  // ── Stockholms skärgård ─────────────────────────────────────────
+  'midsommar-skargarden-2026':            'stockholm',
+  'waxholmsbolaget-guide':                'stockholm',
+  'skargard-utan-bat':                    'stockholm',
+  'vad-kostar-skargarden':                'stockholm',
+  'badtemperatur-skargard':               'stockholm',
+  'sl-kort-skargarden':                   'stockholm',
+  'dykning-snorkling-skargard':           'stockholm',
+  'skargard-host':                        'stockholm',
+  'sandhamn-vs-grinda':                   'stockholm',
+  'naturhamnar-guide':                    'stockholm',
+  'norrtelje-guide':                      'stockholm',
+  'fjaderholmarna-guide':                 'stockholm',
+  'weekend-i-skargarden':                 'stockholm',
+  'basta-oar-stockholms-skargard':        'stockholm',
+  'vaxholm-guide-komplett':               'stockholm',
+  'landsort-guide':                       'stockholm',
+  'hyrbat-guide':                         'stockholm',
+  'pendelbat-guide':                      'stockholm',
+  'seglingsklubbar-guide':                'stockholm',
+  'ingmarso-guide':                       'stockholm',
+  'arholma-guide':                        'stockholm',
+  'dalaro-guide':                         'stockholm',
+  'barplockning-skargarden':              'stockholm',
+  'solnedgang-skargarden':                'stockholm',
+  'ankra-sova-bat':                       'stockholm',
+  'moja-guide':                           'stockholm',
+  'grinda-guide':                         'stockholm',
+  'finnhamn-guide':                       'stockholm',
+  'nattaro-guide':                        'stockholm',
+  'orno-guide':                           'stockholm',
+  'romantisk-weekend-skargarden':         'stockholm',
+  'svampplockning-skargarden':            'stockholm',
+  'pingst-skargarden':                    'stockholm',
+  'foretagsevent-skargarden':             'stockholm',
+  'digital-detox-skargarden':             'stockholm',
+  'grinda-vs-finnhamn':                   'stockholm',
+  'stockholm-archipelago-trail':          'stockholm',
+  'sup-paddleboard-skargarden':           'stockholm',
+  'o-luffa-guide':                        'stockholm',
+  'camping-talta-skargarden':             'stockholm',
+  'havsbastu-skargarden':                 'stockholm',
+  'barnfamilj-skargarden':                'stockholm',
+  'uto-komplett-guide':                   'stockholm',
+  'sandhamn-komplett-guide':              'stockholm',
+  'vinter-i-skargarden':                  'stockholm',
+  'fiske-i-skargarden':                   'stockholm',
+  'cykling-skargarden':                   'stockholm',
+  'kraftskiva-skargarden-2026':           'stockholm',
+  'juli-skargarden-2026-oar':             'stockholm',
+  'juli-skargarden-2026-aktiviteter':     'stockholm',
+  'juli-skargarden-2026-mat':             'stockholm',
+  'semestervecka-skargarden':             'stockholm',
+  'sommarlov-skargarden-barn':            'stockholm',
+  'barnvanliga-bad-skargarden':           'stockholm',
+  'barnvanliga-batresor-skargarden':      'stockholm',
+  'barnvanliga-restauranger-skargarden':  'stockholm',
+  'barnvanliga-aktiviteter-skargarden':   'stockholm',
+  'klippbad-skargarden':                  'stockholm',
+  'sandstrand-skargarden':                'stockholm',
+  'hemliga-badplatser-skargarden':        'stockholm',
+  'bad-med-bastu-skargarden':             'stockholm',
+  'uto-vs-sandhamn':                      'stockholm',
+  'inre-vs-yttre-skargard':               'stockholm',
+  'sensommar-skargarden-2026':            'stockholm',
+  'september-skargarden-2026':            'stockholm',
+  'jul-skargarden-2026':                  'stockholm',
+  'nyar-skargarden-2026':                 'stockholm',
+  'pask-skargarden-2027':                 'stockholm',
+  'valborg-skargarden-2027':              'stockholm',
+  'skargard-instagramguide':              'stockholm',
+  'wellness-retreat-skargarden':          'stockholm',
+  'brollop-skargarden':                   'stockholm',
+  // ── Göteborg & Bohuslän ─────────────────────────────────────────
+  'rakfrukost-skargard':                  'goteborg',
+  'hummersafari-bohuslan':                'goteborg',
+  'midsommar-bohuslan':                   'goteborg',
+  'marstrand-guide':                      'goteborg',
+  'smogen-guide':                         'goteborg',
+  'bohuslan-skargard-guide':              'goteborg',
+  'kosterarna-guide':                     'goteborg',
+  'fjallbacka-guide':                     'goteborg',
+  'lysekil-guide':                        'goteborg',
+  'kraftskiva-bohuslan-2026':             'goteborg',
+  'juli-bohuslan-2026':                   'goteborg',
+  'barnvanliga-oar-bohuslan':             'goteborg',
+  'basta-badplatser-bohuslan':            'goteborg',
+  'marstrand-vs-smogen':                  'goteborg',
+  'host-bohuslan-2026':                   'goteborg',
+  'kajakpaddling-bohuslan':               'goteborg',
+  'snorkling-kosterhavet':                'goteborg',
+  'ostronstangning-bohuslan':             'goteborg',
+  'grebbestad-kraftskiva-2026':           'goteborg',
+  'grebbestad-guide':                     'goteborg',
+  'stromstad-guide':                      'goteborg',
+  'tjorn-guide':                          'goteborg',
+  'orust-guide':                          'goteborg',
+  'sensommar-bohuslan-2026':              'goteborg',
+  // ── Gotland ─────────────────────────────────────────────────────
+  'gotland-guide':                        'gotland',
+  'kraftskiva-gotland-2026':              'gotland',
+  'juli-gotland-2026':                    'gotland',
+  'barnfamilj-gotland':                   'gotland',
+  'basta-badplatser-gotland':             'gotland',
+  'gotland-vs-bohuslan':                  'gotland',
+  'host-gotland-2026':                    'gotland',
+  'vandring-gotland':                     'gotland',
+  'cykling-gotland':                      'gotland',
+  'hyra-stuga-gotland':                   'gotland',
+  'faro-guide':                           'gotland',
+  'visby-sommar-guide':                   'gotland',
+  // ── Öland ───────────────────────────────────────────────────────
+  'oland-guide':                          'oland',
+  'kraftskiva-oland-2026':                'oland',
+  'cykling-oland':                        'oland',
+  'borgholm-guide':                       'oland',
+  // ── Höga Kusten ─────────────────────────────────────────────────
+  'surstrommning-guide':                  'hogakusten',
+  'hoga-kusten-guide':                    'hogakusten',
+  'ulvon-guide':                          'hogakusten',
+  // ── Sydkusten & Halland ─────────────────────────────────────────
+  'karlskrona-guide':                     'sydkusten',
+  'varberg-guide':                        'sydkusten',
+  'hano-guide':                           'sydkusten',
+  'bastad-guide':                         'sydkusten',
+  // ── Åland & Utlandet ────────────────────────────────────────────
+  'aland-guide':                          'utlandet',
+  'bornholm-guide':                       'utlandet',
+  // ── Praktiska guider (sverige = inget specifikt område) ─────────
+  'packlista-skargarden':                 'sverige',
+  'allemansratten-pa-sjon':               'sverige',
+  'batkorkort-guide':                     'sverige',
+  'hund-i-skargarden':                    'sverige',
+  'kraftskiva-recept-meny':               'sverige',
+  'gotland-vs-oland':                     'sverige',
+  'sjomatkrogar-guide':                   'sverige',
+  'vad-gora-regn-skargarden':             'sverige',
+  'hyra-stuga-skargarden':                'sverige',
+  'missat-sista-baten':                   'sverige',
+  'dagstur-vs-overnight-skargarden':      'sverige',
+  'stockholm-vs-bohuslan-skargard':       'sverige',
+}
+
+export function getGuideRegion(slug: string): GuideRegion {
+  return GUIDE_REGION_MAP[slug] ?? 'sverige'
+}
+
+export function getGuidesByRegion(region: GuideRegion): GuideMeta[] {
+  return GUIDES.filter(g => getGuideRegion(g.slug) === region)
+}
+// ───────────────────────────────────────────────────────────────────────────
+
 export type FAQItem = { q: string; a: string }
 
 export type GuideMeta = {
