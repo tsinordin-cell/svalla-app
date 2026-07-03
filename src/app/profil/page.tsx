@@ -161,7 +161,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
-      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column' }}>
+      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
@@ -253,12 +253,23 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
             ))}
           </div>
           {error && <div style={{ padding: '10px 14px', background: 'rgba(220,38,38,0.07)', borderRadius: 12, fontSize: 13, color: 'var(--red)', marginBottom: 12 }}>{error}</div>}
-        </div>
-        <div style={{ padding: '12px 20px', paddingBottom: 'max(20px, env(safe-area-inset-bottom))', borderTop: '1px solid rgba(10,123,140,0.08)', display: 'flex', gap: 10, flexShrink: 0 }}>
-          <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
-          <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'var(--grad-sea)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
-            {saving ? 'Sparar…' : 'Spara'}
-          </button>
+
+          {/* Spara-knappar: sticky inuti scroll-containern så att de alltid syns
+              oavsett Safari-toolbar, tangentbord eller skärmstorlek. */}
+          <div style={{
+            position: 'sticky', bottom: 0,
+            background: 'var(--white)',
+            borderTop: '1px solid rgba(10,123,140,0.08)',
+            marginLeft: -20, marginRight: -20,
+            padding: '12px 20px',
+            paddingBottom: 'max(16px, env(safe-area-inset-bottom, 16px))',
+            display: 'flex', gap: 10,
+          }}>
+            <button onClick={onClose} className="press-feedback" style={{ flex: 1, padding: '14px', borderRadius: 16, border: '1.5px solid rgba(10,123,140,0.15)', background: 'var(--white)', fontSize: 14, fontWeight: 700, color: 'var(--txt2)', cursor: 'pointer' }}>Avbryt</button>
+            <button onClick={handleSave} disabled={saving} className="press-feedback" style={{ flex: 2, padding: '14px', borderRadius: 16, border: 'none', background: saving ? 'var(--txt3)' : 'var(--grad-sea)', fontSize: 14, fontWeight: 600, color: '#fff', cursor: saving ? 'not-allowed' : 'pointer', boxShadow: saving ? 'none' : '0 3px 12px rgba(30,92,130,0.35)' }}>
+              {saving ? 'Sparar…' : 'Spara'}
+            </button>
+          </div>
         </div>
       </div>
     </>
