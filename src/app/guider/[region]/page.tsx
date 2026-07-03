@@ -93,7 +93,7 @@ export default async function GuiderRegionPage({ params }: Props) {
   // Gruppa per kategori för intern organisation
   const byCategory = guides.reduce<Record<string, typeof guides>>((acc, g) => {
     if (!acc[g.category]) acc[g.category] = []
-    acc[g.category].push(g)
+    acc[g.category]!.push(g)
     return acc
   }, {})
 
