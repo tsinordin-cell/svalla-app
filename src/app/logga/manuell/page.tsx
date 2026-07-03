@@ -9,6 +9,13 @@ import LocationSearch from '@/components/LocationSearch'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
 
+// ── Hjälp: nuvarande lokal tid som datetime-local-sträng ─────────────────────
+function nowLocalDatetime(): string {
+  const d = new Date()
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
+}
+
 // ── Pinnar rating ────────────────────────────────────────────────────────────
 const PINNAR = [
   { value: 1, label: 'Okej' },
@@ -71,6 +78,8 @@ function ManuellForm() {
   const [tagged, setTagged]                 = useState<TaggedUser[]>([])
   const [routeId, setRouteId]               = useState<string | null>(null)
   const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
+  const [startedAtLocal, setStartedAtLocal] = useState(nowLocalDatetime)
+  const [endedAtLocal,   setEndedAtLocal]   = useState(nowLocalDatetime)
 
   // ── Bildpositionering ──
   const posImgRef  = useRef<HTMLImageElement>(null)
@@ -327,8 +336,8 @@ function ManuellForm() {
         average_speed_knots: 0,
         max_speed_knots:     0,
         route_id:       routeId,
-        started_at:     new Date().toISOString(),
-        ended_at:       new Date().toISOString(),
+        started_at:     new Date(startedAtLocal).toISOString(),
+        ended_at:       new Date(endedAtLocal).toISOString(),
       }).select('id').single()
 
       if (insErr || !trip) {
@@ -627,6 +636,35 @@ function ManuellForm() {
             placeholder="Stockholms ström, Nynäshamn…"
             label="Avreste från"
           />
+
+          {/* ── Tidpunkter ── */}
+          <div>
+            <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'block', marginBottom: 8 }}>
+              Tidpunkter
+            </span>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              {([
+                { label: 'Kasta loss', value: startedAtLocal, set: setStartedAtLocal },
+                { label: 'Ankrar',     value: endedAtLocal,   set: setEndedAtLocal },
+              ] as const).map(({ label, value, set }) => (
+                <div key={label}>
+                  <label style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
+                  <input
+                    type="datetime-local"
+                    value={value}
+                    onChange={e => set(e.target.value)}
+                    style={{
+                      width: '100%', padding: '10px 8px', borderRadius: 12,
+                      border: '1.5px solid rgba(10,123,140,0.15)',
+                      background: 'var(--white)', fontSize: 13,
+                      color: 'var(--txt)', outline: 'none',
+                      boxSizing: 'border-box', fontFamily: 'inherit',
+                    } as React.CSSProperties}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* ── Pinnar rating ── */}
           <div role="group" aria-labelledby="pinnar-label">
