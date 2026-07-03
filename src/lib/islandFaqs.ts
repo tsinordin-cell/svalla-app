@@ -256,6 +256,38 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
   ],
 }
 
+// ─── Unika FAQ för Gotland, Öland, Höga Kusten m.fl. ───────────────────────
+const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
+  gotland: [
+    { q: 'Hur tar jag mig till Gotland?',
+      a: 'Destination Gotland trafikerar Gotland med färja från Nynäshamn (ca 3 h) och Oskarshamn (ca 3 h). Avgångar hela dygnet under högsäsong. Boka biljett på destinationgotland.se — boka i god tid inför sommaren, särskilt om du ska ta med bil.' },
+    { q: 'Finns det restaurang på Gotland?',
+      a: 'Ja, ett brett utbud — från enkla strandkiosker till stjärnkrogsnivå. Visby centrum har tätt med krogar. Resto, Gotlandskällaren, Furillen och Crêperie & Logi är populära. Matscenen präglas av lokala råvaror som lamm, saffran och tryffel.' },
+    { q: 'Kan man övernatta på Gotland?',
+      a: 'Absolut — allt från camping och vandrarhem till designhotell. Fabriken, Wisby Strand och Clarion Hotel Wisby är centrala alternativ i Visby. Stugbyar och gårdsboenden finns runt om på ön. Boka 3–6 månader i förväg inför sommaren.' },
+    { q: 'Är Gotland bra för en dagstur?',
+      a: 'Möjligt men inte optimalt — färjan tar 3 timmar var väg, vilket ger lite tid på ön. En övernattning rekommenderas. Flyg från Arlanda eller Bromma (ca 45 min, Gotlandsflyg och SAS) är ett snabbare alternativ för en tätare dagstur.' },
+    { q: 'Finns det gästhamn för egen båt på Gotland?',
+      a: 'Ja. Visby gästhamn (ca 400 platser, el, dusch, tankstation) är störst och centralast. Slite, Klintehamn, Burgsvik och Ljugarn har också gästhamnar. Pris 300–400 kr/natt högsäsong. Förboka vid Medeltidsveckan i Visby (tidig augusti) — hamnen fylls snabbt.' },
+    { q: 'Är Gotland barnvänligt?',
+      a: 'Mycket. Långa sandstränder (Tofta, Ljugarn), raukar att klättra på, Visby medeltidsstad att utforska, och Gotlands museum för regniga dagar. Cykla runt ön med barn fungerar utmärkt — ön är relativt plan och har goda cykelvägar.' },
+  ],
+  ulvon: [
+    { q: 'Hur tar jag mig till Ulvön?',
+      a: 'Passagerarfärjan M/S Storön trafikerar Ulvön från Docksta (ca 25 min) och Ullånger. Avgångar dagligen sommarsäsongen, mer begränsat på vinterhalvåret. Boka på rederiet eller lokalt. Från Härnösand: ca 1 h bil till Docksta.' },
+    { q: 'Finns det restaurang på Ulvön?',
+      a: 'Ulvö Hotell & Värdshus serverar klassisk husmanskost med fokus på färsk fisk och kräftor. Surströmming-premiären i Ulvöhamn (tredje torsdagen i augusti) är ett rikskänt evenemang. Café Kapten vid hamnen serverar enklare mat och fika.' },
+    { q: 'Kan man övernatta på Ulvön?',
+      a: 'Ja — Ulvö Hotell har rum och stugor i anslutning till hamnen. Stuguthyrning finns också privat. Boka tidigt inför surströmningspremiären och högsommar. Ulvön är en av Höga Kustens mest välbesökta öar.' },
+    { q: 'Är Ulvön bra för en dagstur?',
+      a: 'Ja, men en övernattning ger mer. Färjan tar 25 min och det går att hinna vandring, lunch och bad på en dag. Promenaden från Ulvöhamn till Sandviken (ca 3 km, 45 min) är en av Höga Kustens finaste stigar.' },
+    { q: 'Finns det gästhamn för egen båt på Ulvön?',
+      a: 'Ja, Ulvöhamn har gästbrygga med el, vatten och toaletter. Plats för ca 40 båtar. Pris ca 200–280 kr/natt. Naturskyddad hamn med lä från alla väderstreck — populär anhalt på Höga Kusten-leden.' },
+    { q: 'Är Ulvön barnvänligt?',
+      a: 'Ja. Bilfri ö, sandstrand i Sandviken, korta promenader och lugn miljö. Klyvbåtar i hamnen och möjlighet att se sälarna i skärgården utanför. Perfekt för familjer som vill ha natur utan trängsel.' },
+  ],
+}
+
 // ─── Region-specifika mall-FAQ för icke-unika öar ────────────────────────────
 
 const TEMPLATE_STOCKHOLM: FAQ[] = [
@@ -288,16 +320,33 @@ const TEMPLATE_BOHUSLAN: FAQ[] = [
     a: 'Bohusläns kust har många trygga klippbad, lekplatser och korta promenader. Bilfria fiskelägen är särskilt familjevänliga. Saknas oftast inomhusalternativ — välj fina dagar.' },
 ]
 
+const TEMPLATE_OVRIGA: FAQ[] = [
+  { q: 'Hur tar jag mig till {{name}}?',
+    a: 'Ta dig till närmaste färjeterminal och åk med passagerarfärja eller bilfärja ut till ön. Kontrollera aktuella tidtabeller hos det lokala rederiet — avgångarna varierar mellan säsong och vinterhalvår.' },
+  { q: 'Finns det restaurang på {{name}}?',
+    a: 'Många öar har minst ett sommaröppet café eller en enklare krog. Se "Mat & krogar"-sektionen på denna sida för aktuella alternativ. Öppettider varierar starkt per säsong.' },
+  { q: 'Kan man övernatta på {{name}}?',
+    a: 'Beroende på ön finns vandrarhem, pensionat, stughyrning eller hotell. Boka i god tid inför sommarsäsongen. Se "Boende"-sektionen för alternativ.' },
+  { q: 'Är {{name}} bra för en dagstur?',
+    a: 'Ja, om resvägen tillåter det. Räkna med restid tur och retur plus minst 3–4 timmar på platsen. Kontrollera sista returavgång — den kan gå tidigare än man tror.' },
+  { q: 'Finns det gästhamn för egen båt på {{name}}?',
+    a: 'Många öar har gästbrygga med el och dusch. Pris varierar. Förboka vid storhelger och högsäsong — populära hamnar fylls snabbt.' },
+  { q: 'Är {{name}} barnvänligt?',
+    a: 'De flesta kustöar har badmöjligheter och korta promenader som passar familjer. Kolla "Med barn"-sektionen på denna sida för mer specifik information.' },
+]
+
 // ─── Region-routing ─────────────────────────────────────────────────────────
 
 function getUniqueForRegion(region: IslandRegion): Record<string, FAQ[]> {
   if (region === 'bohuslan') return UNIQUE_BOHUSLAN
+  if (region === 'ovriga') return UNIQUE_OVRIGA
   // norra/mellersta/södra → Stockholms skärgård
   return UNIQUE_STOCKHOLM
 }
 
 function getTemplateForRegion(region: IslandRegion): FAQ[] {
   if (region === 'bohuslan') return TEMPLATE_BOHUSLAN
+  if (region === 'ovriga') return TEMPLATE_OVRIGA
   return TEMPLATE_STOCKHOLM
 }
 
