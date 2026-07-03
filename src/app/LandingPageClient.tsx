@@ -3,6 +3,7 @@ import { useEffect, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
+import { ISLANDS } from '@/app/o/island-data'
 
 const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
  ssr: false,
@@ -767,7 +768,7 @@ const LANDING_HTML = `
 </section>
 
 <div class="trust-bar">
- <div class="trust-item"><strong data-stat="islands">84</strong> Öar med guider</div>
+ <div class="trust-item"><strong data-stat="islands">${ISLANDS.length}</strong> Öar med guider</div>
  <div class="trust-divider"></div>
  <div class="trust-item"><strong data-stat="places">200+</strong> Krogar &amp; hamnar kartlagda</div>
  <div class="trust-divider"></div>
@@ -1363,7 +1364,7 @@ const LANDING_HTML = `
  <div class="section-inner">
  <div class="stats-grid">
  <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
- <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">84</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
+ <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">${ISLANDS.length}</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
  <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
  </div>
