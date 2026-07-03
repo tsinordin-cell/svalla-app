@@ -18,6 +18,7 @@ function NyTradForm() {
   const [body, setBody]           = useState('')
   const [loading, setLoading]     = useState(false)
   const [err, setErr]             = useState('')
+  const [pendingKategori, setPendingKategori] = useState('')
   const honeypotRef               = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -48,11 +49,54 @@ function NyTradForm() {
       const data = await res.json()
       if (!res.ok) { setErr(data.error ?? 'Något gick fel.'); setLoading(false); return }
       analytics.forumPostCreated({ category: kategori })
-      router.push(`/forum/${kategori}/${data.id}`)
+      if (data.in_spam_queue) {
+        // Ny användare: tråden granskas innan den publiceras.
+        // Navigera INTE till tråd-sidan (den är osynlig och ger 404).
+        // Visa ett bekräftelsemeddelande och skicka sedan till kategorisidan.
+        setPendingKategori(kategori)
+        setLoading(false)
+        setTimeout(() => router.push(`/forum/${kategori}`), 3500)
+      } else {
+        router.push(`/forum/${kategori}/${data.id}`)
+      }
     } catch {
       setErr('Nätverksfel. Försök igen.')
       setLoading(false)
     }
+  }
+
+  // ── Bekräftelseskärm för spam-köade trådar ──────────────────────────────
+  if (pendingKategori) {
+    const catName = STATIC_CATEGORIES.find(c => c.id === pendingKategori)?.name ?? pendingKategori
+    return (
+      <main style={{
+        minHeight: '100vh', background: 'var(--bg)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        padding: '40px 24px', textAlign: 'center',
+      }}>
+        <div style={{
+          background: 'var(--card-bg, #fff)', borderRadius: 20, padding: '36px 28px',
+          border: '1px solid rgba(10,123,140,0.12)', boxShadow: '0 4px 24px rgba(10,123,140,0.10)',
+          maxWidth: 380,
+        }}>
+          <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
+            Tråden är inskickad!
+          </h2>
+          <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 20px' }}>
+            Den granskas kort av en moderator innan den visas i <strong>{catName}</strong>. Det brukar gå snabbt — tack för ditt tålamod!
+          </p>
+          <Link href={`/forum/${pendingKategori}`} style={{
+            display: 'inline-block', padding: '12px 24px',
+            background: 'var(--grad-sea)', color: '#fff',
+            borderRadius: 12, textDecoration: 'none',
+            fontSize: 14, fontWeight: 600,
+          }}>
+            Tillbaka till {catName}
+          </Link>
+        </div>
+      </main>
+    )
   }
 
   const fieldBase: React.CSSProperties = {
