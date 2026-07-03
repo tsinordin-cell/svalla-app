@@ -4,7 +4,10 @@ import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
 import { UPPLÄGG } from './dag/dag-data'
-import { GUIDES } from './guider/guides-data'
+import { GUIDES, ALL_REGIONS, REGION_URL_SLUG } from './guider/guides-data'
+import { TEAMBUILDING_SUBS } from './teambuilding/teambuilding-data'
+import { HYRBAT_SUBS } from './hyra-bat/hyrbat-data'
+import { SEGELKURS_SUBS } from './segelkurs/segelkurs-data'
 
 // Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
 const JAMFOR_PAIRS: Array<[string, string]> = [
@@ -206,9 +209,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/cinderella-baaten`,      lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
-    // Guider
-    { url: `${base}/guider`,                 lastModified: now, priority: 0.8,  changeFrequency: 'weekly'  as const },
+    // Guider (hub)
+    { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
     { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
+    // Transaktionella SEO-sektioner
+    { url: `${base}/teambuilding`,           lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
+    { url: `${base}/hyra-bat`,               lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
+    { url: `${base}/segelkurs`,              lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     // Äventyrssidor
     { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
@@ -320,12 +327,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  // ── Guide-sidor — alla 133 guider, dynamiskt från guides-data.ts ─
+  // ── Guide-sidor — dynamiskt från guides-data.ts ─────────────────
   const guidePages: MetadataRoute.Sitemap = GUIDES.map(g => ({
     url: `${base}/guider/${g.slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,
     priority: 0.75,
+  }))
+
+  // ── Geografiska guide-hubsidor /guider/[region]/ ─────────────────
+  const guideRegionPages: MetadataRoute.Sitemap = ALL_REGIONS.map(r => ({
+    url: `${base}/guider/${REGION_URL_SLUG[r]}`,
+    lastModified: now,
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  // ── Transaktionella sub-sidor ─────────────────────────────────────
+  const teambuildingPages: MetadataRoute.Sitemap = TEAMBUILDING_SUBS.map(s => ({
+    url: `${base}/teambuilding/${s.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+  const hyrasBatPages: MetadataRoute.Sitemap = HYRBAT_SUBS.map(s => ({
+    url: `${base}/hyra-bat/${s.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+  const segelkursPages: MetadataRoute.Sitemap = SEGELKURS_SUBS.map(s => ({
+    url: `${base}/segelkurs/${s.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
   }))
 
   // ── Dynamiska platser från Supabase ─────────────────────────────
@@ -410,6 +445,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...oarCategoryPages,
     ...blogPages,
     ...guidePages,
+    ...guideRegionPages,
+    ...teambuildingPages,
+    ...hyrasBatPages,
+    ...segelkursPages,
     ...platsPages,
     ...rutterPages,
     ...tipsPages,
