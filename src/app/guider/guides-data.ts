@@ -1,5 +1,7 @@
 export type GuideCategory = "Praktisk" | "Transport" | "Aktivitet" | "Mat" | "Säsong" | "Region"
 
+export type TransactionalTopic = 'hyra-bat' | 'segelkurs' | 'teambuilding' | 'kajak'
+
 export type FAQItem = { q: string; a: string }
 
 export type GuideMeta = {
@@ -12,6 +14,7 @@ export type GuideMeta = {
   featured?: boolean
   fullContent?: boolean
   faqs?: FAQItem[]
+  topics?: TransactionalTopic[]
 }
 
 export const GUIDES: GuideMeta[] = [
@@ -239,7 +242,7 @@ export const GUIDES: GuideMeta[] = [
       { q: 'När är Fjäderholmarna öppet?', a: 'Säsongen är maj–september. Under höst och vinter går begränsad trafik och de flesta restauranger och butiker är stängda.' },
     ],
   },
-  { slug: "weekend-i-skargarden",        title: "En hel weekend i skärgården – så planerar du",    excerpt: "Vad packar du, var bor du och hur strukturerar du dagarna för maximal upplevelse?",       category: "Praktisk",  emoji: "🏕", readTime: "9 min", fullContent: true },
+  { slug: "weekend-i-skargarden",        title: "En hel weekend i skärgården – så planerar du",    excerpt: "Vad packar du, var bor du och hur strukturerar du dagarna för maximal upplevelse?",       category: "Praktisk",  emoji: "🏕", readTime: "9 min", fullContent: true, topics: ['teambuilding'] },
   { slug: "basta-oar-stockholms-skargard", title: "De 15 bästa öarna i Stockholms skärgård",      excerpt: "Från lättillgängliga Fjäderholmarna till avlägsna Svenska Högarna. Rankad lista.",         category: "Region",    emoji: "🏝", readTime: "10 min", fullContent: true },
   {
     slug: "vaxholm-guide-komplett",
@@ -266,6 +269,7 @@ export const GUIDES: GuideMeta[] = [
     emoji: "⛵",
     readTime: "8 min",
     fullContent: true,
+    topics: ['hyra-bat'],
     faqs: [
       { q: 'Behöver man båtkörkort för att hyra båt?', a: 'Det finns inget lagkrav på båtkörkort i Sverige för de flesta fritidsbåtar. Men hyrbåtsbolag kräver vanligen att du kan uppvisa behörighet – antingen SBF/SSRS förarintyg eller ett krav om att du genomgår en introduktion. Fråga alltid det specifika bolaget.' },
       { q: 'Vad kostar det att hyra båt i skärgården?', a: 'En enkel motorbåt kostar ca 900–1 800 kr/dag. En lite större övernattningsbåt kostar 2 000–4 500 kr/dag. Segelkryssare med 4–6 bäddar kostar 3 500–8 000 kr/dag. Boka tidigt för sommarsäsongen – de bästa båtarna är fullbokade månader i förväg.' },
@@ -288,7 +292,7 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Hur bokar man biljett till Waxholmsbolaget?', a: 'Biljetter köps i appen Waxholmsbolaget, på waxholmsbolaget.se eller direkt ombord med kort. Årskortet "Skärgårdskortet" är lönsamt om du gör fler resor per säsong.' },
     ],
   },
-  { slug: "seglingsklubbar-guide",       title: "Seglingsklubbar i Stockholm och skärgården",      excerpt: "Hitta rätt klubb, kurser och community för dig som vill börja segla.",                    category: "Aktivitet", emoji: "⛵", readTime: "5 min", fullContent: true },
+  { slug: "seglingsklubbar-guide",       title: "Seglingsklubbar i Stockholm och skärgården",      excerpt: "Hitta rätt klubb, kurser och community för dig som vill börja segla.",                    category: "Aktivitet", emoji: "⛵", readTime: "5 min", fullContent: true, topics: ['segelkurs'] },
   // ── Batch C: destinationer + praktiska guider ──────────────────────────────
   {
     slug: "aland-guide",
@@ -339,7 +343,7 @@ export const GUIDES: GuideMeta[] = [
   },
   { slug: "kosterarna-guide",            title: "Kosteröarna – guide till Sverige första marina nationalpark", excerpt: "Nordkoster och Sydkoster vid norska gränsen. Dykning, cykling, bilfria öar och Kosterfjordens unika marina liv.", category: "Region",    emoji: "🌊", readTime: "8 min",  fullContent: true },
   { slug: "missat-sista-baten",          title: "Missat sista båten – vad gör du nu?",               excerpt: "Råd, alternativ och lugn i en stressig situation. Övernattning, taxi och hur du tar dig hem om du missar sista avgången.", category: "Praktisk",  emoji: "⚠️", readTime: "5 min",  fullContent: true },
-  { slug: "batkorkort-guide",            title: "Båtkörkort i Sverige – guide till sjömansmärket",   excerpt: "Vad krävs egentligen för att köra båt i Sverige? Sjömansmärket, kustskepparexamen och hur du tar körkortet.", category: "Praktisk",  emoji: "🎓", readTime: "7 min",  fullContent: true },
+  { slug: "batkorkort-guide",            title: "Båtkörkort i Sverige – guide till sjömansmärket",   excerpt: "Vad krävs egentligen för att köra båt i Sverige? Sjömansmärket, kustskepparexamen och hur du tar körkortet.", category: "Praktisk",  emoji: "🎓", readTime: "7 min",  fullContent: true, topics: ['hyra-bat'] },
   { slug: "ingmarso-guide",              title: "Ingmarsö – guide till det bilfria livet i norra skärgården", excerpt: "Ingmarsö är en bilfri ö med vandringsleder, badplatser och ett riktigt skärgårdsliv. Transport, aktiviteter och praktisk info.", category: "Region",    emoji: "🌿", readTime: "6 min",  fullContent: true },
   { slug: "arholma-guide",               title: "Arholma – norra ytterskärgårdens utpost",           excerpt: "Startpunkten för Stockholm Archipelago Trail. Arholma är en av skärgårdens vackraste öar – och en av de svårast att nå.", category: "Region",    emoji: "🗺", readTime: "6 min",  fullContent: true },
   {
@@ -388,7 +392,7 @@ export const GUIDES: GuideMeta[] = [
   { slug: "romantisk-weekend-skargarden", title: "Romantisk weekend i skärgården – bästa alternativen", excerpt: "Havsutsikt, värdshus och solnedgång från klippan. De bästa öarna och boendena för en par-weekend i skärgården.", category: "Praktisk", emoji: "❤️", readTime: "7 min", fullContent: true },
   { slug: "svampplockning-skargarden",   title: "Svampplockning i skärgården – säsong och platser", excerpt: "Kantareller, karljohan och trattkantareller väntar i skärgårdens skogar. Bästa öarna och säsongstips.", category: "Aktivitet", emoji: "🍄", readTime: "5 min", fullContent: true },
   { slug: "pingst-skargarden",           title: "Pingst i skärgården – öppna öar och första sol",   excerpt: "Pingst är startskottet för skärgårdssäsongen. Vilka öar är öppna, var håller de pingstfirande och vad kan du göra?", category: "Säsong",   emoji: "🌷", readTime: "5 min", fullContent: true },
-  { slug: "foretagsevent-skargarden",    title: "Företagsevent i skärgården – guide och inspiration", excerpt: "Skärgården är den perfekta scenen för kickoff, AW och teambuilding. Öar, anläggningar och aktiviteter för grupper.", category: "Praktisk", emoji: "🏢", readTime: "7 min", fullContent: true },
+  { slug: "foretagsevent-skargarden",    title: "Företagsevent i skärgården – guide och inspiration", excerpt: "Skärgården är den perfekta scenen för kickoff, AW och teambuilding. Öar, anläggningar och aktiviteter för grupper.", category: "Praktisk", emoji: "🏢", readTime: "7 min", fullContent: true, topics: ['teambuilding'] },
   { slug: "digital-detox-skargarden",   title: "Digital detox i skärgården – öar utan uppkoppling", excerpt: "Öar med dålig täckning, inga tv-apparater och naturlig tystnad. En guide för dig som vill koppla bort ordentligt.", category: "Praktisk", emoji: "📵", readTime: "6 min", fullContent: true },
   { slug: "grinda-vs-finnhamn",          title: "Grinda vs Finnhamn – vilken ö passar dig?",        excerpt: "Grinda är familjevänligt med värdshus, Finnhamn är vandrarhem och vildmark. En ärlig jämförelse.", category: "Region",    emoji: "⚖", readTime: "5 min", fullContent: true },
   // ── Batch A: nya fullContent-guider ────────────────────────────────────────
