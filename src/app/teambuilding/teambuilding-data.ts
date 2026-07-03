@@ -142,10 +142,10 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     ],
     venues: [
       {
-        name: 'Smögen Havsbad',
+        name: 'Smögens Hafvsbad',
         location: 'Smögen, ca 1h 45min norr om Göteborg',
-        capacity: '10–100 personer',
-        description: 'Konferenshotell med havsutsikt, spa och restaurang med lokalt skaldjur. Passar 1–3-dagarskonferenser med hög servicegrad.',
+        capacity: 'Upp till 200 personer (8 konferensrum)',
+        description: 'Historiskt havsbadshotell med spa, restaurang och havsutsikt. Åtta konferensrum från 25 till 215 m². Passar allt från intimt ledningsgruppsmöte till storkonferens. Öppet hela året.',
         type: 'Konferenshotell',
       },
       {
