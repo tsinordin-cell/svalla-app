@@ -263,8 +263,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  const pinnarEmoji = trip.pinnar_rating === 3 ? ' ' : trip.pinnar_rating === 2 ? ' ' : trip.pinnar_rating === 1 ? '' : null
  const pinnarLabel = trip.pinnar_rating === 3 ? 'Magisk tur ' : trip.pinnar_rating === 2 ? 'Bra tur!' : trip.pinnar_rating === 1 ? 'Okej' : null
  const dateStr = trip.started_at
- ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
- : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' })
+ ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' })
+ : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' })
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
@@ -652,7 +652,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  )}
  </div>
  <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', flexShrink: 0, fontVariantNumeric: 'tabular-nums' }}>
- {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) : ''}
+ {ev.time ? new Date(ev.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Stockholm' }) : ''}
  </span>
  </div>
  </div>
