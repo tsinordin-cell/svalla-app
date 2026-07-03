@@ -60,7 +60,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       },
       {
         q: 'Var är bäst att hyra båt nära Stockholm?',
-        a: 'Båtbörsen i Djurgårdsbrunnsviken och Sealifecenter i Nacka är centralt belägna. Vaxholm och Stavsnäs är bra startpunkter om du vill vara ute i skärgården direkt utan att navigera länge från stan.',
+        a: 'Plattformar som Skipperi och Click&Boat listar tillgängliga båtar i hela Stockholmsregionen. Vill du starta nära stan: Galärbryggan vid Djurgården och Brostugan vid Djurgårdsbrunnsviken hyr ut båtar. Vaxholm och Stavsnäs är bra startpunkter om du vill vara ute i skärgården direkt utan att navigera länge från stan.',
       },
       {
         q: 'Kan man hyra båt och övernatta ombord i Stockholms skärgård?',
