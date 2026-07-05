@@ -22,6 +22,7 @@ import OfflineToast from '@/components/OfflineToast'
 import PostHogProvider from '@/components/PostHogProvider'
 import PostHogPageView from '@/components/PostHogPageView'
 import CookieConsent from '@/components/CookieConsent'
+import FeedbackWidget from '@/components/FeedbackWidget'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 // Note: Leaflet CSS is imported dynamically in client components that need it, not here
@@ -168,6 +169,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ToastContainer />
             <OfflineToast />
             <CookieConsent />
+            <FeedbackWidget />
             <Analytics />
             <SpeedInsights />
           </ThemeProvider>
