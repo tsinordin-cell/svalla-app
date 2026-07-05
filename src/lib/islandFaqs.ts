@@ -306,9 +306,9 @@ const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
 
 const TEMPLATE_STOCKHOLM: FAQ[] = [
   { q: 'Hur tar jag mig till {{name}}?',
-    a: 'Vanligaste sättet är med Waxholmsbolaget eller Cinderellabåtarna från närmaste avgångshamn (Strömkajen, Vaxholm eller Stavsnäs). Sommarsäsongen har tätare turer. Se aktuell tidtabell på Waxholmsbolagets webbplats eller på vår färjsida (/farjor).' },
+    a: 'Transport varierar beroende på ö. Se "Komma dit"-sektionen på denna sida för aktuell information om färjor, båtar och andra alternativ för just {{name}}.' },
   { q: 'Finns det restaurang på {{name}}?',
-    a: 'Många öar i Stockholms skärgård har minst en sommaröppen krog eller café. Se "Mat & krogar"-sektionen på denna sida för aktuella alternativ. Öppettider varierar per säsong.' },
+    a: 'Se "Restauranger"-sektionen på denna sida för aktuell information om mat och dryck på {{name}}. Utbudet varierar kraftigt mellan öar och säsonger.' },
   { q: 'Kan man övernatta på {{name}}?',
     a: 'Beroende på ön finns vandrarhem, värdshus, B&B eller stughyrning. Sommarbokningar fylls snabbt — boka 2–3 månader i förväg för juli. Se "Boende"-sektionen.' },
   { q: 'Är {{name}} bra för en dagstur?',
