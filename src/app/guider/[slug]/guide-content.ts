@@ -4963,6 +4963,544 @@ export function getGuideContent(slug: string): string {
 `,
   }
 
+    'hyra-bat-utan-korkort-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Du behöver inget båtkörkort för att hyra och köra de flesta fritidsbåtar i Sverige. Lagen säger att alla som är fyllda 15 år får framföra en motorbåt – det är båtens effekt och din förmåga att hantera den som avgör, inte ett papper. I praktiken erbjuder de flesta uthyrare en kort genomgång och sedan är du ute på vattnet.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilka båtar får du hyra utan körkort?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De allra flesta uthyrare i Stockholm erbjuder båtar som inte kräver körkort. Det handlar primärt om tre typer:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Elmotorbåtar</strong> – tyst, enkelt och populärt. Funkar utmärkt för picknickturer och dagsturer i innerskärgården. Räckvidd 4–8 timmar beroende på modell.</li>
+  <li><strong>Bobåtar / mindre motorbåtar</strong> – öppen aluminiumskiva eller fiberbåt med utombordsmotor på 5–15 hk. Stabila och enkla att köra.</li>
+  <li><strong>Lättare RIB-båtar</strong> – snabba och stabila men kräver mer erfarenhet. Vissa uthyrare kräver erfarenhetsintyg, inte körkort.</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ponttonbåtar (party boats) och större kabinbåtar kräver normalt sjökortet D (förut kustskepparexamen) hos uthyraren.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa uthyrarna i Stockholm 2026</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">BoatUS / GetMyBoat Stockholm</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Stor plattform med hundratals båtar i Stockholmsområdet. Priser från 600 kr/halvdag för elmotorbåt. Uthyrarna sätter egna krav – filtrera på "inget körkort krävs".</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Ekohamn (elbåtar)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på elektriska båtar i Stockholm. Ingen kurs krävs, kort genomgång ingår. Utgångspunkt vid Hammarby sjöstad eller Nacka. Priser från 650 kr/timme för 2–6 pers.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Skärgårdsbåten (Vaxholm och Strömkajen)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Halvdags- och heldagsuthyrning av öppna motorbåtar. Ingen licens behövs. Från 1 200 kr/halvdag. Populärt för grupper upp till 6 personer.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser 2026 – vad kostar det?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Priserna varierar beroende på båttyp, säsong och uthyrare. Ungefärliga priser:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Elmotorbåt (2–4 pers): 400–800 kr/timme, 1 500–3 000 kr/heldag</li>
+  <li>Bobåt/öppen motorbåt (4–6 pers): 800–1 500 kr/halvdag, 1 500–2 800 kr/heldag</li>
+  <li>Kajak (se separat guide): 250–400 kr/halvdag per person</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka i förväg under juni–aug – populära uthyrare är fullbokade på helger.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhetsregler utan körkort</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan formell utbildning är det extra viktigt att känna till grundreglerna: farlederna är markerade med röda och gröna prickar (röd till höger vid inkommande), hastighetsgränsen är 5 knop inom 300 m från land, och flytväst ska finnas för varje person ombord. Alla seriösa uthyrare går igenom dessa regler vid uthyrningen.</p>
+`,
+
+    'aw-pa-bat-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">AW på båt har blivit Stockholms standard för sommarfirande. Det finns en anledning – skärgårdens vatten och solnedgångar ger en stämning som ingen restaurang kan matcha. Oavsett om det är gänget, avdelningen eller ett klientmöte ger en kvällstur på vattnet ett naturligt mingel och en gemensam upplevelse.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tre typer av AW på båt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marknaden för charter-AW i Stockholm delas grovt i tre segment:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Öppen charter (turbåt)</strong> – du köper platser på en gemensam tur. 20–200 pers. Operatörer som Strömma och Djurgårdslinjen kör detta. Ca 300–600 kr/pers inkl. en drink.</li>
+  <li><strong>Privat charter (exklusiv)</strong> – ni hyr hela båten. 10–300 pers beroende på fartyg. Pris från 8 000 kr/timme. Full kontroll på gästlista, mat och musik.</li>
+  <li><strong>Segelbåt-AW</strong> – hyra en segelbåt med eller utan skeppare. Mer intimt, 6–12 pers. Ger en känsla av äventyr. Pris från 3 500 kr/timme.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa operatörerna 2026</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Strömma Kanalbolaget</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst i Stockholm med flest fartyg. Öppna AW-turer maj–sept från Strömkajen. Priser runt 395 kr/pers för 2-timmarskryssning inkl. välkomstdrink. Privatbokning möjlig för 30–400 pers.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Stockholm Archipelago Events</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på privata boat parties och företagsevent. Anpassade menyer, DJ-utrustning och ruttval inkluderat. Kontakta för offerter.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">GetMyBoat / Boatsetter</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Plattformar där privata båtägare hyr ut till AW-grupper. Bra för mindre grupper, 6–20 pers. Priser varierar men ofta mer prisvärt än kommersiella operatörer.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering – så gör du det bra</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka minst 4–6 veckor i förväg för privatbåt under juni–aug. Fråga operatören om de kan stanna vid en ö (Fjäderholmarna, Nacka Strand) för mingel på land – det höjer upplevelsen markant. Tänk på att catering ombord kostar mer per person än restaurang; matcha mat-ambitionsnivå med budgeten.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solnedgångsturer (avg ca 19:00, hemkomst 21:30) är det populäraste AW-formatet. Boka med option på väderskyddat däck – sommarvädret i Stockholm är opålitligt.</p>
+`,
+
+    'konferens-skargard-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En konferens i skärgården ger något som kontorsmiljön aldrig kan: avskildhet, fokus och en naturlig brytpunkt från vardagen. Deltagarna är borta från sina skrivbord, telefonen förlorar lite av sin dragningskraft och samtalen på konferensen tar ett djup som sällan uppstår inomhus i stan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa konferensanläggningarna i skärgården</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Grinda Wärdshus</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Klassisk skärgårdskonferens på Grinda, nås med Waxholmsbåten från Strömkajen (ca 1,5 h). Konferenspaket för 10–80 pers inkl. helpension, lokaler och aktiviteter. Helger och vardagar.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Finnhamns Konferens</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">STF:s anläggning på Finnhamn med fullständiga konferensfaciliteter. Grupper 15–100 pers. Unik miljö med naturreservat runt knuten. Prisvärd jämfört med stadens konferenshotell.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Fejan Konferens & Retreat</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Exklusivt konferenshotell i norra skärgården. Hyr hela anläggningen för 20–50 pers. Hög servicenivå, bra mat och havsnära miljö. Priser på förfrågan.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Sandhamns Segelsällskap / Sandhamn Marina</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Konferens mitt i seglarcentrum. Kombineras gärna med segeldag. Lokaler för 20–120 pers. Bra för företag med seglingsintressen.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och vad som brukar ingå</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Konferenspaket i skärgården kostar typiskt 1 800–3 500 kr/pers/dag allt inkluderat (helpension, lokaler, teknik, aktivitet). Jämfört med Stockholms konferenshotell är det i linje eller något dyrare – men värdet i upplevelse och teamkänsla brukar anses väl motivera mellanskillnaden.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagskonferenser med lunchavfärd och hemresa på eftermiddagen kostar 800–1 500 kr/pers och är ett billigare alternativ för kortare träffar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och praktik</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta konferensanläggningar i skärgården kan ordna privat båttransport eller ge detaljerade instruktioner för Waxholmsbolagets reguljära linjer. Räkna med 1–2 timmar till de populäraste anläggningarna. Ön-känslan av att ta sig dit med båt är del av upplevelsen – välkomna det i agendan.</p>
+`,
+
+    'kajak-vaxholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vaxholm är en av de bästa startpunkterna för kajak i Stockholms skärgård. Staden ligger precis där inre skärgården möter mellankärgården – du kan paddla till skyddade vikar och hamnar, men också ta dig ut mot mer öppet vatten om du är erfaren. Kajakuthyrning finns direkt i centrum.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kajakhyrning i Vaxholm</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Vaxholm Outdoor & Kajak</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Uthyrning av havskajaker, sittsajter och dubblar. Halvdag ca 350 kr/pers, heldag 500–650 kr/pers. Paketerade paddlingsturer med guide tillgängliga.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Vaxholm Kajakcenter</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Erbjuder guidade turer och uthyrning för grupper. Bra för nybörjare – introduktionskurs ingår i priset. Bokning rekommenderas vardag, krävs helg.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa rutter från Vaxholm</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholm – Rindö – Vaxholm</strong> (ca 12 km, 3–4 h): En enkel rundtur längs Rindön. Skyddade farleder och vacker natur. Perfekt för nybörjare.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholm – Bogesundslandet</strong> (ca 8 km, 2–3 h): Paddla till det bilfria naturreservatet söder om Vaxholm. Fantastiska badplatser och ingen biltrafik.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Flerdagarstur mot Grinda</strong> (ca 25 km, 2 dagar): Erfarna paddlare kan ta sig till Grinda via Styrsvik. Övernattning på Grinda Wärdshus eller eget tält.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Vaxholm</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Buss 670 från Tekniska Högskolan T-bana, ca 45–55 min. Waxholmsbåten (linje 1) från Strömkajen ca 55 min. Med bil via E18 och Vaxholmsleden, ca 35–40 min från Stockholm City (parkering vid hamnen).</p>
+`,
+
+    'hyra-kajak-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kajakhyrning i Stockholms skärgård är enklare och billigare än de flesta tror. Du behöver ingen kurs för att hyra en kajak – de flesta uthyrare ger en kort genomgång på plats. Det enda som krävs är att du är simkunnig och kan följa enkla instruktioner.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa uthyrarna i Stockholmsområdet</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Näcken Kajak & Kanot (Djurgården)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Centralt beläget på Djurgården. Hyra från 350 kr/halvdag. Paddla direkt ut i Djurgårdsbrunnsviken och Lilla Värtan. Perfekt för nybörjare.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Angö Kajak (Nacka strand)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Uthyrning och guidade turer i Baggensfjärden och mot yttre skärgården. Halvdag 380 kr, heldag 550 kr. Bra för de som vill ut lite längre.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Vaxholm Kajakcenter</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Utanför tullarna med direkt tillgång till skärgården. Guidade dagsturer till Rindö, Bogesundslandet och inre skärgården. Från 450 kr/halvdag.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Tyresta Kajak (söderut)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Söder om Stockholm vid Dalarö och Haninge. Bra för dem som bor i södra Stockholm. Uthyrning och paketerade turer.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser 2026</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Halvdag (4 h): 300–450 kr/pers för enkel kajak</li>
+  <li>Heldag: 450–650 kr/pers för enkel kajak</li>
+  <li>Dubbel kajak: 20–30% tillägg</li>
+  <li>Guidead tur (halvdag): 600–900 kr/pers allt inkl.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet och vad du behöver veta</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla seriösa uthyrare tillhandahåller flytväst och paddeljakka ingår i priset. Du behöver vara simkunnig. Kontrollera vädret – paddling i Stockholms skärgård är säkert i normalt väder men vindvarning 10+ m/s bör respekteras av nybörjare. De flesta uthyrare har rätt att neka uthyrning vid dåliga väderförhållanden.</p>
+`,
+
+    'hyra-elektrisk-bat-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Elbåtar i Stockholm är tyst, miljövänligt och körkortsfritt. Du kan glida längs Stockholms vattenvägar eller ta dig ut i innerskärgården utan avgaser, utan buller och utan krav på sjömansmärke. Marknaden för elbåtsuthyrning har exploderat de senaste åren.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa elbåtsuthyrarna i Stockholm</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Ekohamn</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst på elbåtar i Stockholm. Utgångspunkter i Hammarby Sjöstad och Nacka. Båtar för 2–8 pers. Priser från 595 kr/timme. Bokning online, omedelbar start.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Sjöstaden Elbåt</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Centralt i Hammarby Sjöstad. Fokus på picknick- och middagsturer. Möjlighet att ta med egen mat och dryck. Från 550 kr/timme för upp till 5 pers.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">GoBoat Stockholm</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Danska konceptet med runda picknickbåtar etablerat i Stockholm. Självkörande, ingen licens. 8 pers per båt. Populärt för AW och firande. Priser ca 750 kr/timme.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Räckvidd och begränsningar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta elbåtar i Stockholm är avsedda för stadsvattenvägarna, Mälaren och innerskärgården. Räckvidd är typiskt 4–8 timmar i normaltakt, men varierar med last och vind. Kontrollera med uthyraren om du planerar att ta dig ut bortom Fjäderholmarna – vissa elbåtar är begränsade till skyddade vatten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa rutter för elbåt</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Hammarby Sjöstad – Fjäderholmarna – Nacka strand (ca 3 h)</li>
+  <li>Djurgårdskanalen runt och picknick vid Blockhusudden</li>
+  <li>Mälarpiraten – Riddarfjärden och Ekerön</li>
+  <li>Baggensfjärden (från Nacka) – lugn och vacker inre skärgård</li>
+</ul>
+`,
+
+    'glamping-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Glamping i skärgården är det bästa av två världar: naturens stillhet och havets ljud utan att offra bekvämligheten. Marknaden har vuxit enormt – idag finns allt från utrustade tältpaket på strandtomter till lyxhyddor med vedeldad bastu och privat brygga.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Typer av glamping i skärgården</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Glamping-tält</strong> – stora säkta tält med riktiga sängar, linnebäddar och ibland eget badrum. Prismodell per natt per tält.</li>
+  <li><strong>Naturhydda / eco-lodge</strong> – träkonstruktioner med glasväggar, verandor och havsutsikt. Kräver ofta bokning månader i förväg.</li>
+  <li><strong>Husbåtar / floating lodges</strong> – ligger förtöjda i hamnar och erbjuder havsutsikt 360°. Finns runt Vaxholm, Sandhamn och Marstrand.</li>
+  <li><strong>Packrafting-glamping</strong> – du paddlar till ett förutbestämt läger som redan är upprättat med allt du behöver.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa glamping-ställen i Stockholms skärgård</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Grinda Wärdshus Glamping</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Glamping-tält på Grinda med direktlänk till Wärdshuset. Frukost ingår. Vedeldad bastu tillgänglig. Nås med Waxholmsbåten. Priser från 1 900 kr/natt för 2 pers.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Utö Camping Glamping</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Utrustade stugor och glamping-tält på Utö. Havsnära läge. Cykeluthyrning och bastu på plats. Från 1 500 kr/natt.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Sommarstugor.se / Stugorpåsverige.se</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Bokningsplattformar med stor mängd glamping och unika boenden i skärgårdslägen. Filtrera på "skärgård" + "glamping" för ett hundratal alternativ i olika prisklasser.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boka i tid – glamping är eftertraktat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De bästa glamping-platserna i skärgården är fullbokade månader i förväg för juli och midsommarhelgen. Bästa tillgängligheten finns i maj–juni och aug–sept – dessutom är priserna 20–30% lägre utanför högsäsongen.</p>
+`,
+
+    'segeldag-foretag-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En segeldag för företaget är ett av de mest uppskattade teamevent du kan ordna. Det kräver samarbete, kommunikation och ett gemensamt mål – och resultatet är en upplevelse som kollegor pratar om länge efteråt. Du behöver ingen seglarvana; erfarna skeppare och besättning sköter allt teknik.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Format och upplägg</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Regatta (tävling)</strong> – 2–6 båtar mot varandra, debriefing och prisceremoni efteråt. Skapar mest teamkänsla och konkurrens. Bäst för 20–80 pers uppdelat på båtar.</li>
+  <li><strong>Kryssning</strong> – lugn tur längs skärgårdsleden med mat ombord. Fokus på umgänge och avkoppling snarare än tävling.</li>
+  <li><strong>Segelkurs för teamet</strong> – lär er segla tillsammans. Tar en hel dag och ger en gemensam ny färdighet.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arrangörer i Stockholm</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Stockholm Sailing Events</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på företagssegling. Regattor och kryssningar för 10–200 pers. Avgår från Hammarby Sjöstad, Lidingö och Vaxholm. Priser från 1 200 kr/pers.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">KSSS (Kungliga Svenska Segel Sällskapet)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Erbjuder företagsevent och segeldagar med professionell instruktion. Sandhamn som bas ger extra wow-faktor. Boka via deras eventavdelning.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Teambuilding.se (segelpaket)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Aggregator för teambuilding-leverantörer. Jämför paket för segeldag från flera arrangörer på ett och samma ställe.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och att tänka på</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med 1 000–2 500 kr/pers för en heldags segeldag inkl. skipper, mat ombord och priset för instruktion. Halvdagspaket finns från 700 kr/pers. Boka 4–8 veckor i förväg för sommarhalvåret. Eventförsäkring rekommenderas.</p>
+`,
+
+    'teambuilding-kajak-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kajakpaddling som teambuilding ger något som konferensrummet aldrig kan – ett äkta äventyr, fysisk utmaning och skärgårdsupplevelse i ett. Inga förkunskaper krävs. Erfarna guider sköter säkerheten och ser till att alla, oavsett erfarenhet, klarar dagen och har roligt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför kajak funkar som teambuilding</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kajak kräver kommunikation (i dubbelkajak), problemlösning (rutt och väder) och ömsesidigt stöd (hjälpa varandra i och ur). Det är konkret samarbete – inte konstlade övningar. Och skärgårdslandskapet ger en naturlig "wow-känsla" som alla delar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arrangörer för kajakteambuilding i Stockholm</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Skärgårds Kajak (Stockholms skärgård)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserat på grupper. Paket från halvdag till 2-dagarsäventyr med övernattning i tält. 10–60 pers. Priser från 900 kr/pers halvdag, 1 800 kr/pers heldag.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Arctic Kayak & Outdoor</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Teambuilding-paket med kajakpaddling kombinerat med naturguide och friluftsövningar. Bra för grupper som vill ha mer än bara paddling.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Angö Kajak (Nacka)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Guidade gruppturer i Baggensfjärden. Möjlighet att kombinera med lunch på klipporna och havsbad. Från 800 kr/pers för halvdag med guide.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad ingår normalt i ett teambuildingpaket</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Professionell guide hela dagen</li>
+  <li>Kajak och all utrustning (flytväst, paddeljakka, vattentät packsäck)</li>
+  <li>Säkerhetsgenomgång och grundläggande paddlingteknik</li>
+  <li>Lunch eller fika på vattnet</li>
+  <li>Transport till startpunkt (ibland inkluderat)</li>
+</ul>
+`,
+
+    'cykeluthyrning-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är en av Sveriges bästa cykelöar – platt, vacker och med gott om bilfria vägar. Att hyra cykel i Visby och ge sig ut i landskapet är ett av de bästa sätten att uppleva ön. Det finns cykeluthyrare direkt vid färjehamnen om du anländer utan cykel.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cykeluthyrning i Visby</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Gotlands Cykeluthyrning (hamnen)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Beläget direkt vid Destination Gotlands hamn i Visby. Öppnar när färjorna anländer. Vanlig cykel ca 120–160 kr/dag, elcykel 250–350 kr/dag. Barnvagnar och barnstolar tillgängliga.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Visby Cykel</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Centralt i Visby. Erbjuder turbeskrivningar och kartor med hyrcykeln. Priser från 110 kr/dag. Mängdrabatt för 3+ dagar.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Elcykel Gotland</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på elcyklar, perfekt för de som vill ta sig längre (Fårö, södra Gotland) utan att slita ut sig. Räckvidd 80–120 km per laddning. Heldagshyra från 295 kr.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa cykeldagsturerna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Visby – Lummelunda – Visby</strong> (ca 40 km, 1 dag): Längs norra Gotland förbi grottan i Lummelunda. Kuperat men hanterbart.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Visby – Tofta strand – Visby</strong> (ca 35 km, 1 dag): Längs kusten till Toftas sandstrand, en av Gotlands vackraste. Platt och enkel.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fårö-leden</strong> (ca 50 km, 1–2 dagar): Norra Gotland och Fårö med färjeöverfart. Raukar, ödslig natur och Bergmansmuseet. Kräver elcykel eller god kondis.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och tips</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vanlig cykel 100–160 kr/dag, elcykel 250–350 kr/dag. Boka elcykel i förväg under juli – de tar slut fort. Ta med pannkakelkorg och äta picknick vid raukarna på Fårö.</p>
+`,
+
+    'kursgard-skargard-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En kursgård i skärgården ger konferensen det som stadens hotell saknar: avskildhet, fokus och en naturmiljö som laddar om hjärnan. Skärgårdens öar erbjuder kursgårdar för allt från intensiva planeringsdagar till flerdagarsretreat för ledningsgruppen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är skillnaden på kursgård och konferenshotell?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En kursgård är normalt enklare i standarden – fokus är på arbetsrum och naturmiljön, inte på spa och gastronomisk ambition. Priset är lägre, möjligheten att boka ut hela anläggningen är vanligare och känslan av "privat retreat" är starkare. Passar grupper som vill fokusera på arbete och lagandan snarare än representation.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kursgårdar i Stockholms skärgård</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Finnhamns Konferens (STF)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Fullständig kursgård på Finnhamn i norra skärgården. Möjlighet att boka hela anläggningen för 15–100 pers. Enkelt boende, bra lokaler, naturreservat direkt utanför dörren. Från 1 200 kr/pers dygn.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Arholma Krog & Konferens</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Ytterskärgårdens kursgård på Arholma. Liten och intim, max 30 pers. Exklusivt läge och riktig skärgårdskänsla. Nås med båt från Simpnäs eller Furusund.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Blidö Kursgård</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">I norra Stockholms skärgård, nås med bil och färja. 20–60 pers. Prisvärd och med enkel skärgårdsmiljö. Populär bland NGO:er och utbildningsorganisationer.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering och bokning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kursgårdar i skärgården är ofta mer tillgängliga för bokning med kortare framförhållning än hotell i stan – men de bästa datumen på sommaren fylls fort. Boka 2–3 månader i förväg för juni–aug. Vår och höst (april–maj, sept–okt) är ofta lediga och kan ge ett lugnt och prisvänligt alternativ.</p>
+`,
+
+    'kickoff-ideer-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården ger en naturlig ram för årets kick-off. Ingen konferenssal slår känslan av att anlända med båt till en ö, se kollegorna mot bakgrund av öppet hav och veta att ni har en hel dag framför er utan distraktioner. Här är de 15 bästa aktiviteterna – från tyst och reflekterande till högt och energiskt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tävlande aktiviteter (skapar energi)</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Segelregatta</strong> – 2–6 båtar mot varandra. Kräver samarbete och strategi. Arrangörer i Stockholm från ca 1 200 kr/pers.</li>
+  <li><strong>Kajak-orientering</strong> – paddla till specifika punkter på kartan, tid och precision avgör. Perfekt för grupper 20–60 pers.</li>
+  <li><strong>Skärgårds-OS</strong> – stafetter, hinderbana och öar-quiz. Arrangörer bygger skräddarsydda upplägg.</li>
+  <li><strong>Fiske-SM</strong> – vem fångar störst? Båt, handredskap och en naturskönt läge. Enkelt att arrangera själv.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lugnare aktiviteter (skapar fördjupning)</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Havsbastu med kall havsdopp</strong> – 30 min i bastun, 10 sek i havet. Alla pratar om det länge efteråt.</li>
+  <li><strong>Guided skärgårdsvandring</strong> – naturguide leder gruppen och berättar om ekologi och historia. Fungerar som "airing out" efter intensiva workshopar.</li>
+  <li><strong>Matlagning från havet</strong> – fiska räka, koka och äta. Enkelt och minnesvärt.</li>
+  <li><strong>Yoga och mindfulness vid klipporna</strong> – morgonupptakt eller avslutning. Skapar fokus inför dagen.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Helpaket-arrangörer</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Archipelago Events</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på kick-off i skärgården. Sammansatta paket med aktiviteter, mat och boende för 10–150 pers. Kontakta för offert.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Teambuilding.se (skärgårdsfilter)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Jämförelsesajt för teambuilding-leverantörer i Sverige. Filtrera på skärgård och antal deltagare för att se vad som passar ert lag.</p>
+</div>
+`,
+
+    'hyra-stuga-marstrand-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stuguthyrning längs Bohusläns klippkust är bland de mest eftertraktade i Sverige. Med havet, klipporna och de vitlackade husen som fond är en vecka i en bohuslänsk stuga något som sätter sig i minnet för alltid. Boka tidigt – de bästa lägena fylls i januari.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var i Bohuslän ska du bo?</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Marstrand</strong> – exklusivt, mycket att göra, promenadsavstånd till fästning och restauranger. Populärast och dyrast.</li>
+  <li><strong>Smögen och Kungshamn</strong> – klassisk bohuslänsk kustkultur. Räksmörgåsar och klippbad. Högt söktryck.</li>
+  <li><strong>Grebbestad och Hamburgsund</strong> – lugnare och mer prisvärt. Perfekt för barnfamiljer och de som vill ha egen strand.</li>
+  <li><strong>Lysekil och Fiskebäckskil</strong> – vackra sammanhängande stadsdelar, nära havet och med bra restauranger.</li>
+  <li><strong>Tjörn och Orust</strong> – bilfria delar, konstliv och genuina fiskebyer. Nordiska Akvarellmuseet på Tjörn.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa bokningssajterna</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Novasol / Blocket Bostad</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst utbud av stuguthyrning i Bohuslän. Filtrera på karta och välj beachfront-lägen. Priser varierar 5 000–25 000 kr/vecka beroende på storlek och läge.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Visit Bohuslan (visitbohuslan.se)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Regionens officiella sajt med bokningslänkar. Bra för att hitta mindre aktörer och lokala stuguthyrare som inte finns på de stora plattformarna.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Airbnb (Marstrand)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Stor mängd privata stugor och villor i och runt Marstrand. Läs recensioner noga – havsläge kan tolkas brett.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser 2026</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Veckovecka i juli: 8 000–20 000 kr för en stuga för 4–6 pers i attraktivt läge. Maj–juni och aug–sept är 30–40% billigare och ofta lika vackert väder. Korttidsuthyrning (3–4 nätter) möjlig utanför juli men ovanlig i högsäsong.</p>
+`,
+
+    'workshop-skargard-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En workshop i skärgården ger kreativiteten det utrymme den förtjänar. Bort från kontorets distraktioner, med havsljuset som bakgrund och fågelljudet i stället för kollegornas telefonsamtal, jobbar hjärnan på ett annat sätt. Det är inte mys – det är en bevisad effektskillnad i kreativt arbete.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en bra workshop-lokal i skärgården?</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Stabil internetuppkoppling (kolla med anläggningen – det varierar enormt)</li>
+  <li>Rätt rumsstorlek för gruppen (inte för stor, inte för liten)</li>
+  <li>Naturlig ljusinsläpp – dagljus är avgörande för kreativt arbete</li>
+  <li>Möjlighet till pauser utomhus – en 20-minuters promenad ger mer än en kaffemaskin</li>
+  <li>Boende på plats om det är flerdagsworkshop</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa workshop-lokaler i Stockholms skärgård</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Grinda Wärdshus</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Workshop-lokaler för 10–60 pers. Helpension ingår i paket. Naturreservat runt knuten. Stark wifi. Boka via deras företagssida. Priser från 1 800 kr/pers dygn.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Nacka Konferens & Event</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Inte ute på ö, men havsnära i Nacka. Snabbt att ta sig till, stark teknik och full konferensservice. Bra för halvdags-workshopar med deltagare i hela Stockholm.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Vaxholm Konferens</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Centralt i Vaxholm med havsutsikt. Nås med buss från stan. Konferenslokaler för 8–50 pers. Lunchalternativ inom promenadsavstånd.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Halvdag vs heldag vs flerdags</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsworkshop (9:00–13:00) är populärast för kreativa sprint. Heldagsformat (9:00–17:00) med lunch ute i naturen ger mer djup. Flerdagars (2 nätter) ger tid för reflektion och är optimalt för strategiplaneringen – men kräver mer planering och budget.</p>
+`,
+
+    'teambuilding-skargard-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är Nordens bästa naturliga teambuilding-arena. Öar, vatten och friluftsliv skapar äkta utmaningar som team-övningar inomhus aldrig kan matcha. Alla oavsett kontorshierarki är lika noviser ute på havet – det skapar en jämbördighet och gemenskap som hänger med länge efter kvittot.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Populäraste aktiviteterna</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Segelregatta</strong> – 2–6 lag mot varandra. Bäst för 20–80 pers. Kräver samarbete, kommunikation och strategi. Pris 1 000–2 000 kr/pers.</li>
+  <li><strong>Kajakpaddling</strong> – nybörjarvänlig och naturnära. Guider sköter säkerheten. Passar 10–60 pers. Pris 800–1 500 kr/pers halvdag.</li>
+  <li><strong>Skärgårds-OS</strong> – stafetter, orientering och utmaningar. Arrangörer bygger skräddarsydda upplägg för 20–150 pers.</li>
+  <li><strong>Havsbastu + kall bad</strong> – enkel och effektiv lagbyggare. Alla gör samma sak, alla är lika nakna och det skapar omedelbar samhörighet.</li>
+  <li><strong>Matlagning på ön</strong> – laga gemensam middag med råvaror från havet. Kombineras gärna med kvällsvistelse.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ledande arrangörer 2026</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Archipelago Events</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Fullservice-leverantör för skärgårds-teambuilding. Allt från transport och aktiviteter till mat och boende. 10–200 pers. Kontakta för skräddarsydd offert.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Teambuilding.se (skärgård)</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Jämförelsesajt med 50+ leverantörer i Stockholmsregionen. Filtrera på skärgård, antal pers och aktivitetstyp.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Grinda Wärdshus Konferens</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Kombinera konferens, teambuilding och middag på Grinda. Helpaket 1 800–2 800 kr/pers/dag. Nås med Waxholmsbåten. Perfekt för övernattande event.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget och planering</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsevent: 800–1 500 kr/pers. Heldagsevent utan boende: 1 200–2 500 kr/pers. Övernattande event (2 dagar): 2 500–4 500 kr/pers. Boka 6–8 veckor i förväg för sommarhalvåret, 2–4 veckor för höst och vår.</p>
+`,
+
+    'segelkurs-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är en av världens bästa miljöer för att lära sig segla. Skyddade vatten nära land, rikligt med segelsällskap och ett nätverk av erfarna instruktörer gör att du kan gå från nybörjare till självständig kustseglare på en sommar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad vill du uppnå?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välj kurs utifrån målet:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Nybörjarkurs (1–2 dagar)</strong> – grunderna i segelteori, säkerhet och enkel manövrering. Inga förkunskaper krävs. Pris 1 500–3 000 kr.</li>
+  <li><strong>Kustskepparexamen (5–7 dagar)</strong> – officiellt kompetensbevis som du kan använda för att hyra segelbåt i hela Europa. Teori + praktik. Pris 6 000–12 000 kr.</li>
+  <li><strong>Privat undervisning</strong> – skräddarsytt med en instruktör. Dyrt men effektivt. Från 1 500 kr/timme.</li>
+  <li><strong>Segeldag för grupp</strong> – inte en formell kurs men ni lär er grunderna under en dag med skeppare. Populärt som teambuilding.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Segelsällskap och skolor i Stockholm</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">KSSS – Kungliga Svenska Segel Sällskapet</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Landets mest prestigefyllda segelsällskap med kurser för alla nivåer. Kustskepparexamen och specialkurser. Sandhamn som bas.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">Stockholm Sailing School</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Kommersiell segelskola med kurser för nybörjare och erfarna. Avgår från Hammarby Sjöstad och Nacka. Bra för snabb start utan sällskapskrav.</p>
+</div>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:var(--sea)">SAFA – Svenska Amatörsegelsällskapets Förbund</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Paraplysajt för segelsällskapen i Sverige. Hitta ditt närmaste sällskap med kursverksamhet.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kustskepparexamen – vad gäller?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustskepparexamen (tidigare "kustskepparexamen D") är inget lagkrav i Sverige men ett internationellt erkänt kompetensbevis som krävs av de flesta kommersiella uthyrare i Europa. Teoridelen klaras av de flesta på 2–3 veckors självstudier. Praktikdelen tar 3–5 dagar på vattnet. Total kostnad inkl. teorikurs och examen: 6 000–12 000 kr.</p>
+`,
+
+    'yttre-garden-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Yttre Gården är en av de minst kända – och mest orörda – öarna i Nynäshamns skärgård. Beläget i Gårdsfjärden precis öster om Bedarön är det ett naturreservat som nästan bara nås med kajak, och det är just det som gör den speciell. Inga reguljärfartyg, inga parkeringsnödiga bilar, ingen massa turister. Bara klippor, havstorn och det historiska fiskarstället Gårdsund.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Viktiga regler – ADF-förbud gäller</h2>
+<div style="background:rgba(192,32,32,0.07);border-left:3px solid #c02020;padding:16px 20px;border-radius:8px;margin-bottom:16px">
+  <strong style="color:#c02020">Ankring, dykning och fiske är förbjudet</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Yttre Gården är naturreservat med ADF-förbud (Ankring, Dykning, Fiske). Dessa aktiviteter är förbjudna inom reservatsgränserna. Bad är däremot tillåtet. Kom med kajak – ankra inte din motorbåt vid ön.</p>
+</div>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havsörn häckar i reservatets omgivningar och sjöfågelbeståndet är skyddat. Hundar ska hållas kopplade om de tas med. Respektera reservatets regler – det är de som håller ön orörda och värdefull för besök.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gårdsund – fiskarstället från 1912</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På öns nordöstra sida finns resterna av fiskarstället Gårdsund, uppfört 1912. Det var ett arbetsläge för yrkesfiskare som försörjde sig på Gårdsfjärdens vatten. Grundmurar, stenfundament och annan bebyggelserester vittnar om livet som levdes här – ett välbevarat stycke lokal maritim historia i naturreservatets mitt.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lämningarna är lätta att missa om man inte vet var man letar. Gå mot nordöstra stranden och sök längs strandkanten – stenfundamenten framträder ur vegetationen när man är nära.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Yttre Gården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det finns ingen reguljär båttrafik till Yttre Gården. Det är en av dess stora förtjänster. Dina alternativ:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Kajak från Nynäshamns fiskehamn</strong> – ca 3–4 km paddling, 45–60 min. Kajakhyrning finns i Nynäshamn. Gårdsfjärden kan vara blåsig – kolla väder och vind.</li>
+  <li><strong>Kajak från Lövhagen/Segersäng</strong> – alternativ startpunkt sydväst om ön. Kortare paddling men kräver bil dit.</li>
+  <li><strong>Egen motorbåt</strong> – gå inte i land med ankare. Ankring är förbjudet inom reservatsgränserna. Lägg upp längs stranden kortvarigt och ro/paddla iland istället.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du gör på ön</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Bad</strong> – klara klippor på östra och södra sidan. Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården.</li>
+  <li><strong>Fågelskådning</strong> – havsörn, sjöorre, ejder och alfågel syns regelbundet. Ta med kikare.</li>
+  <li><strong>Utforskning av Gårdsund</strong> – promenera till nordöstra sidan och hitta lämningarna av det historiska fiskarstället.</li>
+  <li><strong>Picknick</strong> – inga kiosker, inga krogar. Ta med allt eget. Det hör till upplevelsen.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kombination med andra öar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Yttre Gården kombineras naturligt med Bedarön (väster om Yttre Gården, mer tillgänglig med Waxholmsbåt), Landsort (längs södra ytterskärgården) och Nåttarö (liknande naturreservatskaraktär). En dag som börjar i Nynäshamn, paddlar till Yttre Gården och avslutas med middag i Nynäshamn hamn är ett klassiskt upplägg.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Ingen service på ön – ta med mat, vatten och allt du behöver</li>
+  <li>Ingen mobilmast på ön – förvänta dig dålig täckning</li>
+  <li>Gårdsfjärden är ett yttre vatten – kolla vind och väder noggrant</li>
+  <li>Bäst att besöka maj–september</li>
+  <li>ADF-förbud gäller strikt – respektera det</li>
+</ul>
+`,
+
+    'dagstur-marstrand': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Marstrand på en dag är fullt genomförbart från Göteborg och ger en av Bohusläns starkaste upplevelser. Den lilla ön med Carlstens fästning, tighta gränder och räksmörgåsar vid kajen är unik i Sverige – och du behöver bara en dag för att se det bästa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Marstrand</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil från Göteborg:</strong> Via E6 norr och sedan väg 168 mot Marstrand. Ca 50 min. Parkera i Koön (gratis, stor parkering) och ta bilbåten till Marstrand – 5 minuter, avgår kontinuerligt.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med kollektivtrafik:</strong> Västtrafik buss 301 från Göteborg Centralstationen till Koön/Marstrands färjeläge, ca 1 h 15 min. Sedan bilbåten till Marstrand.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagsplan – det bästa av Marstrand</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>09:30</strong> – Ankomst med morgonbåten. Marstrand är lugnast på förmiddagen – gå längs gränderna och ta en kaffe på kajen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>10:30</strong> – Carlstens fästning öppnar. Guidad tur tar 1 h och ger historiken bakom fångarna och fästningens militärhistoria. Utsikten från tornets topp är hisnande.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>12:30</strong> – Räksmörgås vid kajen. Gå till en av fiskebodarna och köp nyfångad räka. Det är obligatoriskt. Mossby Strandkrog och Societetshusets restaurang är de bästa sittplatserna med havsvy.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>14:00</strong> – Promenad till klipporna söder om ön. Badplatser med kristallklart vatten. Ta ett dopp om vädret tillåter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>16:00</strong> – Kaffe och kaka i stan. Marstrand har utmärkta konditorier längs huvudgatan.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>17:30</strong> – Sista bilbåten tillbaka till Koön och hemvägen till Göteborg.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Inga bilar på Marstrand – ön är bilfri</li>
+  <li>Bilbåten kostar ca 30 kr/pers tur och retur</li>
+  <li>Carlstens fästning: 120 kr vuxen, barn gratis</li>
+  <li>Bästa säsong: juni–aug. Marstrand är halvdött sept–maj</li>
+  <li>Boka restaurang i förväg under juli och midsommarhelgen</li>
+</ul>
+`,
+  }
+
   const content = guides[slug]
   if (content) return content
 
