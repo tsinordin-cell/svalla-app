@@ -3362,7 +3362,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Yttre Gården är ett av de bästa kajaktutflykterna i Nynäshamns skärgård. Klarvatten, klippor och vindskyddade vikar.' },
-      { icon: '🏊', name: 'Bad', desc: 'Bad är tillåtet vid ön. Östra sidan har en stor sandstrand med varmt, grunt vatten — perfekt för barfotabad. Södra sidan bjuder på klipphällar och djupare vatten.' },
+      { icon: '🏊', name: 'Bad', desc: 'Bad är tillåtet vid ön. Östra sidan har en stor sandstrand med varmt, grunt vatten som passar utmärkt för barfotabad. Södra sidan bjuder på klipphällar och djupare vatten.' },
       { icon: '🦅', name: 'Fågelskådning', desc: 'Ön och dess omgivningar i Gårdsfjärden är rika på sjöfågel. Havsörn syns regelbundet.' },
       { icon: '🏛', name: 'Gårdsund fiskarläge', desc: 'Besök resterna av det historiska fiskarstället Gårdsund från 1912 på öns nordöstra sida.' },
     ],
