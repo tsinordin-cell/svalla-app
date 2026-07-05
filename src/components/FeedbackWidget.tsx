@@ -49,6 +49,17 @@ export default function FeedbackWidget() {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
+  // Öppnas utifrån via custom event (t.ex. från inline-feedbacklänk på ö-sidor)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { type?: FeedbackType } | undefined
+      if (detail?.type) setType(detail.type)
+      setOpen(true)
+    }
+    window.addEventListener('svalla:openFeedback', handler)
+    return () => window.removeEventListener('svalla:openFeedback', handler)
+  }, [])
+
   // Lås scroll när modalen är öppen
   useEffect(() => {
     if (open) {
