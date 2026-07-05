@@ -1044,8 +1044,21 @@ export default async function IslandPage({ params }: Props) {
  variant="card"
  source={`o-${island.slug}`}
  title={`Vill du veta mer om ${island.name}?`}
- description="Få tips på krogar, evenemang och nya rutter — 2 mail i månaden, lätt att avregistrera."
+ description={`Vill du få säsongsbaserade tips om skärgården? Vi hör av oss när det är värt att läsa.`}
  />
+ </div>
+
+ {/* Inline feedbacklänk */}
+ <div style={{ marginTop: 20, textAlign: 'center', paddingTop: 16, borderTop: '1px solid rgba(10,123,140,0.08)' }}>
+   <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
+     Hittar du information som verkar felaktig?{' '}
+     <button
+       onClick={() => window.dispatchEvent(new CustomEvent('svalla:openFeedback', { detail: { type: 'fel-info' } }))}
+       style={{ color: 'var(--sea)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, padding: 0, textDecoration: 'underline' }}
+     >
+       Berätta för oss
+     </button>
+   </p>
  </div>
  </div>
 
