@@ -4961,7 +4961,6 @@ export function getGuideContent(slug: string): string {
 <p style="margin:8px 0 0;font-size:14px">Priserna på boende i Bohuslän sjunker 30–40% från juli till september. Boka nu för en September-resa utan stress och till ett rimligare pris. Smögen, Lysekil och Grebbestad har alla boende tillgängligt i september utan förhandsbokning.</p>
 </div>
 `,
-  }
 
     'hyra-bat-utan-korkort-stockholm': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Du behöver inget båtkörkort för att hyra och köra de flesta fritidsbåtar i Sverige. Lagen säger att alla som är fyllda 15 år får framföra en motorbåt – det är båtens effekt och din förmåga att hantera den som avgör, inte ett papper. I praktiken erbjuder de flesta uthyrare en kort genomgång och sedan är du ute på vattnet.</p>
