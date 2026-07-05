@@ -1044,7 +1044,7 @@ export default async function IslandPage({ params }: Props) {
  variant="card"
  source={`o-${island.slug}`}
  title={`Vill du veta mer om ${island.name}?`}
- description={`Vill du få säsongsbaserade tips om skärgården? Vi hör av oss när det är värt att läsa.`}
+ description={`De bästa öarna hittar du inte via Google. Prenumerera och vi visar dig.`}
  />
  </div>
 
