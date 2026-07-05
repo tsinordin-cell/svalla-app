@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
+import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
  title: 'Forum — Svalla',
@@ -10,8 +11,17 @@ export const metadata: Metadata = {
 
 export const revalidate = 300
 
+// Populära öar som visas direkt i ö-navigeringen (resten nås via "Sök ö")
+const PINNED_ISLANDS = [
+  'sandhamn', 'grinda', 'vaxholm', 'fjaderholmarna', 'uto',
+  'finnhamn', 'moja', 'marstrand', 'gotland', 'arholma',
+]
+
 export default async function ForumPage() {
  const categories = await getForumCategories()
+ const pinnedIslands = PINNED_ISLANDS
+   .map(slug => ALL_ISLANDS.find(i => i.slug === slug))
+   .filter(Boolean)
 
  const jsonLd = {
  '@context': 'https://schema.org',
@@ -92,6 +102,107 @@ export default async function ForumPage() {
  <path d="M21 21l-4.35-4.35" />
  </svg>
  </Link>
+ </div>
+
+ {/* Ö-forum snabbnavigering */}
+ <div style={{ padding: '20px 16px 0' }}>
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+   <h2 style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt3)', letterSpacing: '0.08em', textTransform: 'uppercase', margin: 0 }}>
+    Forum per ö
+   </h2>
+   <Link href="/oar" style={{ fontSize: 12, color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>
+    Alla öar →
+   </Link>
+  </div>
+
+  {/* Scrollbar rad med populära öar */}
+  <div style={{
+   display: 'flex',
+   gap: 8,
+   overflowX: 'auto',
+   paddingBottom: 4,
+   scrollbarWidth: 'none',
+   WebkitOverflowScrolling: 'touch',
+  }}>
+   {(pinnedIslands as NonNullable<typeof pinnedIslands[0]>[]).map(island => (
+    <Link
+     key={island.slug}
+     href={`/forum/o/${island.slug}`}
+     style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 5,
+      padding: '10px 14px',
+      background: 'var(--card-bg, #fff)',
+      border: '1px solid rgba(10,123,140,0.12)',
+      borderRadius: 14,
+      textDecoration: 'none',
+      flexShrink: 0,
+      minWidth: 80,
+      boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+     }}
+    >
+     <span style={{ fontSize: 22 }}>{island.emoji}</span>
+     <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', textAlign: 'center', lineHeight: 1.2, whiteSpace: 'nowrap' }}>
+      {island.name}
+     </span>
+    </Link>
+   ))}
+  </div>
+
+  {/* Sök specifik ö — enkel länksamling i collapsed form */}
+  <details style={{ marginTop: 10 }}>
+   <summary style={{
+    fontSize: 13,
+    color: 'var(--sea)',
+    fontWeight: 600,
+    cursor: 'pointer',
+    listStyle: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 6,
+    padding: '8px 0',
+   }}>
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+     <circle cx="11" cy="11" r="8" />
+     <path d="M21 21l-4.35-4.35" />
+    </svg>
+    Hitta din ö — visa alla öforum
+   </summary>
+   <div style={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 6,
+    paddingTop: 10,
+    maxHeight: 220,
+    overflowY: 'auto',
+   }}>
+    {ALL_ISLANDS.map(island => (
+     <Link
+      key={island.slug}
+      href={`/forum/o/${island.slug}`}
+      style={{
+       display: 'inline-flex',
+       alignItems: 'center',
+       gap: 5,
+       padding: '5px 10px',
+       background: 'rgba(10,123,140,0.05)',
+       border: '1px solid rgba(10,123,140,0.12)',
+       borderRadius: 20,
+       textDecoration: 'none',
+       fontSize: 12,
+       color: 'var(--txt2)',
+       fontWeight: 500,
+       whiteSpace: 'nowrap',
+      }}
+     >
+      <span style={{ fontSize: 13 }}>{island.emoji}</span>
+      {island.name}
+     </Link>
+    ))}
+   </div>
+  </details>
  </div>
 
  {/* Kategorilistning */}
