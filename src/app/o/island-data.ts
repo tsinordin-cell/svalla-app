@@ -3337,6 +3337,78 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Asperön är en av de öar som historiskt hörde till Styrsö socken och ingick i det fiskelägessystem som försörjde Göteborg med fisk under 1700- och 1800-talen.',
   },
 
+  // ─── YTTRE GÅRDEN ────────────────────────────────────────────
+  {
+    slug: 'yttre-garden',
+    name: 'Yttre Gården',
+    region: 'södra',
+    regionLabel: 'Södra skärgården',
+    emoji: '🪨',
+    tagline: 'Naturreservat i Nynäshamns skärgård — kajakparadis med historiska fiskarspår och klart vatten.',
+    lat: 58.895,
+    lng: 17.925,
+    description: [
+      'Yttre Gården är en ö och ett naturreservat i Nynäshamns skärgård, beläget i Gårdsfjärden precis öster om Bedarön. Ön är ett populärt mål för kajakpaddlare och naturälskare som söker orördhet i den södra skärgårdens yttre delar.',
+      'På öns nordöstra sida finns resterna av det historiska fiskarstället Gårdsund, uppfört 1912 och en gång i tiden ett levande arbetsläge för yrkesfiskare som försörjde sig på Gårdsfjärdens rika vatten. Idag vittnar grundmurar och stenfundament om livet som levdes här, ett stycke lokal maritim historia i naturreservatets mitt.',
+      'Yttre Gården är ett naturreservat och det råder viktiga regler att känna till innan besök: ankring, dykning och fiske är förbjudet (ADF-förbud) inom reservatets gränser. Däremot är bad tillåtet och ön är fritt tillgänglig för besök under den tid fågelskyddsbestämmelserna tillåter.',
+      'Öns karaktär är typisk för den yttre södra skärgården: flacka klipphällar, tät havtornsbuskage och ett öppet landskap med vidsträckt havsutsikt. Vattenklarheten i Gårdsfjärden är god, tack vare det yttre läget och den ringa mänskliga belastningen. Kajak är det naturliga sättet att ta sig till och runt ön.',
+      'Yttre Gården nås enklast med kajak eller egen liten motorbåt från Nynäshamns fiskehamn eller från Lövhagen och Segersäng. Det är ingen reguljär båttrafik till ön, vilket bidrar till dess stillhet. Räkna med 30–60 minuters paddling från närmaste kajakhyrning eller startpunkt.',
+    ],
+    facts: {
+      travel_time: '30–60 min med kajak från Nynäshamns fiskehamn',
+      character: 'Naturreservat, bilfri, ADF-förbud, kajak',
+      season: 'Maj–September',
+      best_for: 'Kajakpaddlare, naturälskare, fågelskådning',
+    },
+    activities: [
+      { icon: '🛶', name: 'Kajakpaddling', desc: 'Yttre Gården är ett av de bästa kajaktutflykterna i Nynäshamns skärgård. Klarvatten, klippor och vindskyddade vikar.' },
+      { icon: '🏊', name: 'Bad', desc: 'Bad är tillåtet vid ön. Klart vatten och klippor på östra och södra sidan.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Ön och dess omgivningar i Gårdsfjärden är rika på sjöfågel. Havsörn syns regelbundet.' },
+      { icon: '🏛', name: 'Gårdsund fiskarläge', desc: 'Besök resterna av det historiska fiskarstället Gårdsund från 1912 på öns nordöstra sida.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Kajak', from: 'Nynäshamns fiskehamn eller Lövhagen', time: '30–60 min', desc: 'Naturligaste sättet att ta sig till ön. Kajakhyrning finns i Nynäshamn.', icon: '🛶' },
+      { method: 'Egen motorbåt', from: 'Nynäshamns gästhamn', time: '20–30 min', desc: 'Ankring EJ tillåtet inom reservatsgränserna. Ankra utanför och ro eller paddla iland.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      'Kom ihåg ADF-reglerna: ankring, dykning och fiske är förbjudet inom reservatsgränserna.',
+      'Ta med all mat och dryck — ingen service finns på ön.',
+      'Kombinera gärna med ett besök till Bedarön eller Landsort i närheten.',
+      'Tidigt morgon eller sen eftermiddag ger bäst ljus och störst chans att se havsörn.',
+      'Planera paddlingen efter väder — ön har yttre läge och kan vara blåsig.',
+    ],
+    related: ['landsort', 'nattaro', 'uto'],
+    tags: ['naturreservat', 'kajak', 'ADF', 'södra', 'nynäshamn', 'fiske förbjudet', 'orört'],
+    did_you_know: 'Det historiska fiskarstället Gårdsund på Yttre Gårdens nordöstra sida uppfördes 1912. Platsen är ett av skärgårdens välbevarade fiskelämningar och visar hur yrkesfisket i den yttre skärgården bedrevs under tidigt 1900-tal.',
+    insiderTips: [
+      'ADF-förbud gäller — ankring, dykning och fiske är förbjudet. Kom med kajak och ankra inte.',
+      'Gårdsund-lämningarna på nordöstra sidan är lätta att missa — sök upp stenfundamenten och grundmurarna nära strandkanten.',
+      'Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården tack vare det yttre läget.',
+      'Ingen reguljär båttrafik — det håller folkmassor borta och ger äkta stillhet.',
+    ],
+    transport_meta: {
+      from_city_min: 90,
+      from_nearest_hub_min: 40,
+      nearest_hub: 'Nynäshamns fiskehamn',
+      operator: 'Kajak / Egen båt',
+      frequency: 'Ingen reguljär trafik',
+    },
+    activity_meta: {
+      kajak: { difficulty: 'medel', rental: false, notes: 'Kajakhyrning i Nynäshamn, ca 3 km från ön' },
+      bad: { beaches: ['Östra klippor', 'Södra klipphällar'] },
+      fiske: false,
+    },
+    amenities: {
+      toilets: false,
+      shower: false,
+      cafe: false,
+      grocery: false,
+    },
+  },
+
 ]
 
 // ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
