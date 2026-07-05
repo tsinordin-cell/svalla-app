@@ -5449,29 +5449,33 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Yttre Gården</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det finns ingen reguljär båttrafik till Yttre Gården. Det är en av dess stora förtjänster. Dina alternativ:</p>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li><strong>Kajak från Nynäshamns fiskehamn</strong> – ca 3–4 km paddling, 45–60 min. Kajakhyrning finns i Nynäshamn. Gårdsfjärden kan vara blåsig – kolla väder och vind.</li>
+  <li><strong>Kajak från Nynäshamns fiskehamn</strong> – ca 3–4 km paddling, 45–60 min. Paddla söderut och sedan in genom Gårdsund — sundet mellan Yttre Gården och Bedarön — till öns östsida. Kajakhyrning finns i Nynäshamn. Gårdsfjärden kan vara blåsig — kolla väder och vind.</li>
   <li><strong>Kajak från Lövhagen/Segersäng</strong> – alternativ startpunkt sydväst om ön. Kortare paddling men kräver bil dit.</li>
   <li><strong>Egen motorbåt</strong> – gå inte i land med ankare. Ankring är förbjudet inom reservatsgränserna. Lägg upp längs stranden kortvarigt och ro/paddla iland istället.</li>
 </ul>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du gör på ön</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
-  <li><strong>Bad</strong> – klara klippor på östra och södra sidan. Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården.</li>
-  <li><strong>Fågelskådning</strong> – havsörn, sjöorre, ejder och alfågel syns regelbundet. Ta med kikare.</li>
-  <li><strong>Utforskning av Gårdsund</strong> – promenera till nordöstra sidan och hitta lämningarna av det historiska fiskarstället.</li>
-  <li><strong>Picknick</strong> – inga kiosker, inga krogar. Ta med allt eget. Det hör till upplevelsen.</li>
+  <li><strong>Bad vid sandstranden</strong> – Yttre Gårdens östsida har en stor, öppen sandstrand — ovanlig i den yttre skärgården. Vattnet är grunt och varmt längs stranden, perfekt för barfotabad. Södra sidan bjuder på klipphällar och djupare vatten. Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården.</li>
+  <li><strong>Fågelskådning</strong> – havsörn ses regelbundet, ofta i par. Sjöorre, ejder och alfågel syns i Gårdsfjärdens vatten. Ta med kikare.</li>
+  <li><strong>Utforskning av Gårdsund fiskarläge</strong> – promenera till nordöstra sidan och hitta lämningarna av det historiska fiskarstället från 1912.</li>
+  <li><strong>Picknick och övernattning</strong> – inga kiosker, inga krogar. Ta med allt eget. Tältning är tillåtet enligt allemansrätten — sandstranden och klipphällarna fungerar utmärkt för övernattning under bar himmel.</li>
 </ul>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kombination med andra öar</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Yttre Gården kombineras naturligt med Bedarön (väster om Yttre Gården, mer tillgänglig med Waxholmsbåt), Landsort (längs södra ytterskärgården) och Nåttarö (liknande naturreservatskaraktär). En dag som börjar i Nynäshamn, paddlar till Yttre Gården och avslutas med middag i Nynäshamn hamn är ett klassiskt upplägg.</p>
 
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Övernatta på Yttre Gården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Övernattning med tält är tillåtet på Yttre Gården enligt allemansrätten. Ön saknar anläggningar, men det är just det som gör det magiskt. Ta med allt eget: tält, sovsäck, mat, vatten och ett stormkök. Sandstranden på östsidan är ett naturligt läger — plant, öppet och med utsikt ut mot Gårdsfjärden. Klipphällarna på södra sidan ger skydd vid nordavind. Kom ihåg: ADF-förbud innebär att fiske inte är tillåtet, så ta med all mat hemifrån.</p>
+
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
 <ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
   <li>Ingen service på ön – ta med mat, vatten och allt du behöver</li>
-  <li>Ingen mobilmast på ön – förvänta dig dålig täckning</li>
-  <li>Gårdsfjärden är ett yttre vatten – kolla vind och väder noggrant</li>
+  <li>Dålig mobilmast-täckning – ladda ner kartor och väderprognos offline</li>
+  <li>Gårdsfjärden är ett yttre vatten – kolla vind och väder noggrant innan paddling</li>
+  <li>Tältning tillåtet (allemansrätten) – ta med allt eget och lämna inga spår</li>
   <li>Bäst att besöka maj–september</li>
-  <li>ADF-förbud gäller strikt – respektera det</li>
+  <li>ADF-förbud gäller strikt – ankring, dykning och fiske är förbjudet</li>
 </ul>
 `,
 
