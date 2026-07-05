@@ -95,7 +95,6 @@ export default async function IslandBadPage({ params }: Props) {
                   border: '1px solid rgba(10,123,140,0.07)',
                   display: 'flex', alignItems: 'center', gap: 14,
                 }}>
-                  <span style={{ fontSize: 24, flexShrink: 0 }}>🏊</span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
                     <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>Badplats på {island.name}</div>
@@ -121,7 +120,7 @@ export default async function IslandBadPage({ params }: Props) {
                   border: '1px solid rgba(10,123,140,0.07)',
                 }}>
                   <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)', marginBottom: 6 }}>
-                    {a.icon} {a.name}
+                    {a.name}
                   </div>
                   <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.6 }}>{a.desc}</div>
                 </div>
