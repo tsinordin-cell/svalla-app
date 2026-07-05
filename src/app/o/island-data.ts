@@ -3362,32 +3362,34 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Yttre Gården är ett av de bästa kajaktutflykterna i Nynäshamns skärgård. Klarvatten, klippor och vindskyddade vikar.' },
-      { icon: '🏊', name: 'Bad', desc: 'Bad är tillåtet vid ön. Klart vatten och klippor på östra och södra sidan.' },
+      { icon: '🏊', name: 'Bad', desc: 'Bad är tillåtet vid ön. Östra sidan har en stor sandstrand med varmt, grunt vatten — perfekt för barfotabad. Södra sidan bjuder på klipphällar och djupare vatten.' },
       { icon: '🦅', name: 'Fågelskådning', desc: 'Ön och dess omgivningar i Gårdsfjärden är rika på sjöfågel. Havsörn syns regelbundet.' },
       { icon: '🏛', name: 'Gårdsund fiskarläge', desc: 'Besök resterna av det historiska fiskarstället Gårdsund från 1912 på öns nordöstra sida.' },
     ],
-    accommodation: [],
+    accommodation: [
+      { name: 'Tältning (allemansrätten)', type: 'Camping', desc: 'Tältning är tillåtet enligt allemansrätten. Öns klipphällar och platsen nära sandstranden på östsidan fungerar bra för övernattning. Ta med allt eget och lämna inga spår. Kom ihåg att ADF-förbud gäller — ankra inte, dyk inte, fiska inte.' },
+    ],
     getting_there: [
-      { method: 'Kajak', from: 'Nynäshamns fiskehamn eller Lövhagen', time: '30–60 min', desc: 'Naturligaste sättet att ta sig till ön. Kajakhyrning finns i Nynäshamn.', icon: '🛶' },
-      { method: 'Egen motorbåt', from: 'Nynäshamns gästhamn', time: '20–30 min', desc: 'Ankring EJ tillåtet inom reservatsgränserna. Ankra utanför och ro eller paddla iland.', icon: '⛵' },
+      { method: 'Kajak', from: 'Nynäshamns fiskehamn eller Lövhagen', time: '30–60 min', desc: 'Naturligaste sättet att ta sig till ön. Paddla söderut och sedan genom Gårdsund — sundet mellan Yttre Gården och Bedarön — till öns ostliga sida. Kajakhyrning finns i Nynäshamn.', icon: '🛶' },
+      { method: 'Egen motorbåt', from: 'Nynäshamns gästhamn', time: '20–30 min', desc: 'Ankring EJ tillåtet inom reservatsgränserna. Lägg upp längs stranden kortvarigt och ro eller paddla iland istället.', icon: '⛵' },
     ],
     harbors: [],
     restaurants: [],
     tips: [
       'Kom ihåg ADF-reglerna: ankring, dykning och fiske är förbjudet inom reservatsgränserna.',
       'Ta med all mat och dryck — ingen service finns på ön.',
-      'Kombinera gärna med ett besök till Bedarön eller Landsort i närheten.',
-      'Tidigt morgon eller sen eftermiddag ger bäst ljus och störst chans att se havsörn.',
-      'Planera paddlingen efter väder — ön har yttre läge och kan vara blåsig.',
+      'Vill du övernatta? Tältning är tillåtet enligt allemansrätten. Sandstranden på östsidan är en ypperlig plats för tält.',
+      'Tidigt morgon eller sen eftermiddag ger bäst ljus och störst chans att se havsörn — två exemplar brukar kretsa över ön.',
+      'Planera paddlingen efter väder — passagen genom Gårdsund och det yttre läget kan vara blåsiga.',
     ],
     related: ['landsort', 'nattaro', 'uto'],
     tags: ['naturreservat', 'kajak', 'ADF', 'södra', 'nynäshamn', 'fiske förbjudet', 'orört'],
     did_you_know: 'Det historiska fiskarstället Gårdsund på Yttre Gårdens nordöstra sida uppfördes 1912. Platsen är ett av skärgårdens välbevarade fiskelämningar och visar hur yrkesfisket i den yttre skärgården bedrevs under tidigt 1900-tal.',
     insiderTips: [
       'ADF-förbud gäller — ankring, dykning och fiske är förbjudet. Kom med kajak och ankra inte.',
+      'Österstrandens sand är ovanlig i södra skärgården — ta av skorna och njut. Stranden är stor och grund, perfekt för barn.',
       'Gårdsund-lämningarna på nordöstra sidan är lätta att missa — sök upp stenfundamenten och grundmurarna nära strandkanten.',
-      'Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården tack vare det yttre läget.',
-      'Ingen reguljär båttrafik — det håller folkmassor borta och ger äkta stillhet.',
+      'Övernattning fungerar utmärkt — tälta på klipphällarna eller nära sandstranden. Ingen el, ingen service — bara stjärnhimmel.',
     ],
     transport_meta: {
       from_city_min: 90,
@@ -3398,7 +3400,7 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'medel', rental: false, notes: 'Kajakhyrning i Nynäshamn, ca 3 km från ön' },
-      bad: { beaches: ['Östra klippor', 'Södra klipphällar'] },
+      bad: { beaches: ['Östra sandstranden (stor och grund)', 'Södra klipphällar'] },
       fiske: false,
     },
     amenities: {
