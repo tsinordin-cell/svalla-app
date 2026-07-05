@@ -45,6 +45,25 @@ const GUIDE_ISLAND_MAP: Record<string, string[]> = {
   'svampplockning-skargarden':     ['moja', 'orno', 'ingmarso'],
   'solnedgang-skargarden':         ['sandhamn', 'grinda', 'uto'],
   'dalaro-guide':                  ['orno', 'uto'],
+  // Batch H – transaktionella guider 2026
+  'hyra-bat-utan-korkort-stockholm':  ['fjaderholmarna', 'vaxholm'],
+  'aw-pa-bat-stockholm':              ['fjaderholmarna'],
+  'konferens-skargard-stockholm':     ['grinda', 'finnhamn'],
+  'kajak-vaxholm':                    ['vaxholm'],
+  'hyra-kajak-stockholm':             ['fjaderholmarna', 'vaxholm'],
+  'hyra-elektrisk-bat-stockholm':     ['fjaderholmarna'],
+  'glamping-skargard':                ['grinda', 'uto'],
+  'segeldag-foretag-stockholm':       ['sandhamn', 'vaxholm'],
+  'teambuilding-kajak-stockholm':     ['vaxholm', 'fjaderholmarna'],
+  'cykeluthyrning-gotland':           ['gotland'],
+  'kursgard-skargard-stockholm':      ['grinda', 'finnhamn'],
+  'kickoff-ideer-skargard':           ['grinda', 'fjaderholmarna', 'vaxholm'],
+  'hyra-stuga-marstrand-bohuslan':    ['marstrand'],
+  'workshop-skargard-stockholm':      ['grinda', 'vaxholm'],
+  'teambuilding-skargard-stockholm':  ['grinda', 'fjaderholmarna', 'vaxholm'],
+  'segelkurs-stockholm':              ['sandhamn', 'vaxholm'],
+  'dagstur-marstrand':                ['marstrand'],
+  'yttre-garden-guide':               ['yttre-garden'],
 }
 import FAQSection from '@/components/FAQSection'
 
