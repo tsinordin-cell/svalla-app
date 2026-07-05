@@ -286,6 +286,20 @@ const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
     { q: 'Är Ulvön barnvänligt?',
       a: 'Ja. Bilfri ö, sandstrand i Sandviken, korta promenader och lugn miljö. Klyvbåtar i hamnen och möjlighet att se sälarna i skärgården utanför. Perfekt för familjer som vill ha natur utan trängsel.' },
   ],
+  'yttre-garden': [
+    { q: 'Hur tar jag mig till Yttre Gården?',
+      a: 'Yttre Gården har ingen reguljär båttrafik — det är en del av öns charm. Det vanligaste sättet är kajak från Nynäshamns fiskehamn: ca 3–4 km paddling (45–60 min) söderut och sedan genom Gårdsund, sundet mellan Yttre Gården och Bedarön. Kajakhyrning finns i Nynäshamn. Med egen motorbåt tar sig dit på 20–30 min från Nynäshamn, men observera att ankring är förbjudet inom reservatsgränserna (ADF-förbud).' },
+    { q: 'Finns det restaurang på Yttre Gården?',
+      a: 'Nej — det finns inga restauranger, caféer eller kiosker på Yttre Gården överhuvudtaget. Ön är ett orört naturreservat helt utan service. Ta med all mat, dryck, solskydd och allt du behöver hemifrån. Det hör till upplevelsen.' },
+    { q: 'Kan man övernatta på Yttre Gården?',
+      a: 'Ja! Tältning är tillåtet på Yttre Gården enligt allemansrätten. Ön saknar anläggningar — ta med tält, sovsäck, mat och vatten. Sandstranden på östsidan och klipphällarna söderut är populära tältplatser. Havsörn brukar synas i gryningen. Kom ihåg: ADF-förbud gäller, så fiske och ankring är förbjudet.' },
+    { q: 'Är Yttre Gården bra för en dagstur?',
+      a: 'Absolut. Kajak från Nynäshamn till Yttre Gården är en av södra skärgårdens bästa dagsturer. Räkna med ca 1 timme paddling dit, 3–5 timmar på ön (bad på sandstranden, utforskning av Gårdsund-lämningarna från 1912, picknick) och 1 timme tillbaka. Kolla vind och väder — Gårdsfjärden är ett yttre vatten som kan vara blåsigt.' },
+    { q: 'Finns det gästhamn för egen båt på Yttre Gården?',
+      a: 'Nej. Yttre Gården är naturreservat med ADF-förbud vilket innebär att ankring är förbjudet inom reservatsgränserna. Med motorbåt kan du lägga upp kortvarigt längs strandkanten och ro eller paddla iland — men inte förtöja eller ankra. Kajak rekommenderas starkt.' },
+    { q: 'Är Yttre Gården barnvänligt?',
+      a: 'Ja, ön passar familjer bra. Sandstranden på östsidan är stor, grund och varm — perfekt för barn att bada och leka i sanden. Det finns inga farliga platser nära stranden. Tänk på att ta med all mat, dryck och solskydd — ingen service finns. Paddlingen ut kräver att barnen är bekväma i kajak.' },
+  ],
 }
 
 // ─── Region-specifika mall-FAQ för icke-unika öar ────────────────────────────
