@@ -6509,6 +6509,394 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän om du vill ha havsmat, lite folk runt dig och varmt bad. Höga Kusten om du söker dramatisk natur och är beredd att ta dig an mer krävande terräng. Båda är världsklass – de är bara inte samma resa.</p>
 `,
 
+  // ── Batch K ────────────────────────────────────────────────────────────────
+
+  'varmdo-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Värmdö är Stockholms närmaste riktiga skärgårdsupplevelse. Halvtimmen med bil eller buss från city tar dig till en kommunkedja av öar, badplatser och vikar som räcker för en hel vecka – och med en karaktär som Djurgården eller Lidingö aldrig kan ge.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kommunen Värmdö täcker hundratals öar och kobbar i Stockholms södra och mellersta skärgård. Baggensfjärden, Gustavsbergs kanal, Ingaröfjärden – alla vattenvägar att utforska med kajak, SUP eller segelbåt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Värmdö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med bil:</strong> Värmdöleden (väg 222) från Stockholm direkt ut till Gustavsberg och vidare söderut. Ca 30 min till Gustavsberg, 40–50 min till Stavsnäs i söder.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Buss 474 och 433 från Slussen mot Gustavsberg och Hemmesta. Buss 834 från Slussen till Stavsnäs brygga – härifrån avgår Waxholmsbåtar till Runmarö, Sandhamn och Möja.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Höjdpunkter</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Baggensfjärden:</strong> Vindlande fjärd med klippor, strandängar och kajakuthyrning vid Baggensudde. Nås med buss 474 eller bil.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Hemmesta Sjöäng:</strong> Naturreservat med sandstrand och grunt, barnvänligt vatten. Populär badplats för Stockholmare.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stavsnäs brygga:</strong> Utgångspunkten för södra skärgårdens öar. Parkering, café och Waxholmsbåtar till Sandhamn, Möja och Runmarö.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Brunn och Vindö:</strong> Inre skärgårdsöar nåbara med bilfärja och kajak. Lugnare och mer naturnära än de yttre destinationerna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingaröleden och Svartsöleden ger vandring med havsutsikt. Vindö naturreservat erbjuder kortare slingor med klippkust och gammal skog. Cykling längs Värmdöleden är ett populärt alternativ.</p>
+`,
+
+  'vinterbastu-isbastu': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vinterbastu kombinerat med ett dopp i iskallt hav är en av de starkaste upplevelserna du kan ha i Sverige. Bastuvärmen driver upp temperaturen, kroppen förbereds och sedan – det kalla hoppet. Efteråt är du vaken på ett sätt som inget kaffe kan konkurrera med.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Trenden med havsbastu och vinterbad har exploderat de senaste åren. Längs hela den svenska kusten öppnar anläggningar med flytande bastuer, kallbadsbryggor och ombytesrum. Det här är de bästa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa vinterbastu-anläggningar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stockholms skärgård:</strong> Flytande bastuer vid Djurgårdsbrunnsviken, Frihamnen och Nacka strand. Flera är öppna hela vintern med bokningssystem online. Sök "flytande bastu Stockholm" för aktuella aktörer.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän:</strong> Badhusen längs klippkusten ger den råaste kombinationen – klipporna luktar salt och vinden är kall. Smögens och Lysekils badanläggningar håller öppet vintertid. Fiskebäckskil och Grundsund på Skaftö har charmiga alternativ.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Gotländska vinterbadsklubbar arrangerar gemensamma dipp i Östersjön. Visby strand och Tofta är populära platser. Håll ögonen öppna för lokala badklubbar som arrangerar gemensamma vinterbad.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Höga Kusten:</strong> Kallbad i Bottenhavets salta vatten vid Härnösand och Kramfors. Lokala sällskap arrangerar vinterbad – fråga på Naturum Höga Kusten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kom igång med vinterbad</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Börja med en varm bastu i 10–15 minuter innan kallbad</li>
+  <li>Sitt ner i det kalla vattnet sakta – pressa inte kroppen direkt</li>
+  <li>30–60 sekunder räcker för nybörjaren – bygg upp gradvis</li>
+  <li>Klä på dig snabbt efteråt och ha termos med varmt</li>
+  <li>Bada aldrig ensam på okänd plats utan sällskap</li>
+</ul>
+`,
+
+  'fagelskadning-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är ett av Europas rikaste fågellandskap. Havsörnar glider över klipporna, ejderhonor driver sina kultingar längs grunden, tärnorna störtdyker efter spigg och på hösten samlas tusentals rastande vadare och sjöfåglar. Det händer hela säsongen – du behöver bara veta var du ska titta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa arterna att se</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Havsörn:</strong> Återetablerad i skärgården sedan 1980-talet. Ses längs hela skärgården – håll utkik vid Landsort och Utö i söder. Sitter gärna vid vatten och klippor i väntan på fisk.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ejder:</strong> Skärgårdens vanligaste sjöfågel. Hanarna är spektakulärt svartvita. Ruggar i juli–aug och familjegrupper med ungar är charmiga i juni. Syns längs alla skärgårdsöar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skräntärna och fisktärna:</strong> Sommargäster som häckar på kobbar. Aggressiva försvarare av bon – håll avstånd 1 april–31 juli. Ser ut som levande pilar över vattnet.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Groddar och lunnefåglar:</strong> I ytterskärgården. Landsorts groddar och Arholma är bra platser för mer sällsynta arter.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa platserna</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Landsort:</strong> Bästa fågelstationen i södra skärgården. Ringmärkning och observationer – vårmigration i maj är magisk</li>
+  <li><strong>Ottenby, Öland:</strong> En av Sveriges bästa fågelstationer. Höstmigration med hundratusentals fåglar i september</li>
+  <li><strong>Arholma:</strong> Norra skärgårdens fågelparadis med häckande havsörn</li>
+  <li><strong>Nåttarö:</strong> Naturreservat med rikt fågelliv längs strandängar</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utrustning och tips</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kikare 8x42 är standardvalet. Ta med fälthandbok – Lars Svensson och Peter Grandi är standardverken på svenska. Appen Artportalen låter dig rapportera fynd och se vad andra observerat i närheten.</p>
+`,
+
+  'snorkling-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård har förvånansvärt klart vatten och ett rikt marint liv. Abborre, gädda, tånglake och blåmusslebankar längs klipporna – och på de bästa platserna sikt ner till 3–6 meter. Det är inte tropikerna, men det är mer än du tror.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vattentemperaturen når 18–22°C i juli–august på grunda platser och siktförhållandena är bäst i slutet av sommaren när algtillväxten planat ut. Med våtdräkt förlängs säsongen till maj och september.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa snorklingsplatser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Baggensfjärden, Nacka:</strong> Klart vatten, varierande djup och tångbäddar längs klipporna. Nås med buss 474 från Stockholm. Bäst i slutet av juli–aug.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandhamn, östsidan:</strong> Klippsidor mot öppet hav med bättre sikt än inre fjärdar. Ta Cinderella direkt eller Waxholmsbåt via Stavsnäs. Stensund och klippvikarna mot Östersjön.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utö, södra klippor:</strong> Bra sikt mot öppet Östersjövatten. Snorkla längs klipporna söder om hamnen. Ta Pendelbåten från Årstaberg.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Nåttarö, naturreservat:</strong> Skyddad vik med grundt grunt vatten och tångbäddar. Bra för nybörjare. Nås med Waxholmsbåt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utrustning</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Mask och snorkel – basutrusning. Köp anständig kvalitet, inte leksaksversionen</li>
+  <li>Fenor – rekommenderas för att snabbt manövrera längs klippor</li>
+  <li>Våtdräkt 3 mm – nödvändig i maj–juni och september. Valfri i varm juli</li>
+  <li>Flytväst eller snorkeljacka för barn och osäkra simmare</li>
+</ul>
+`,
+
+  'vinter-oland-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Öland på vintern är en helt annan ö. Alvaret vilar under grå himmel, tranorna är borta och de tusentals sommargästerna med dem. Vad som är kvar är ett stilla och vackert landskap med lägre priser och en frihet att se ön som gotlänningarna – och öländningarna – faktiskt upplevs.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vinterpriserna på stugor och hotell är 40–60% lägre än sommaren. Och du slipper letar p-plats vid Böda Sand.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Öland</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil via Ölandsbron (gratis, 6 km) från Kalmar. Tåg till Kalmar med SJ eller Kustpilen, sedan buss 101 längs öns västra sida – men busstrafiken är glesare på vintern. Bil rekommenderas för vintertur.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad man gör på Öland på vintern</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Alvaret i vinterskrud:</strong> Det flacka kalkstenslandskapet ger ett storslagen öppet panorama under lågt vinterljus. Kvarnar och fornlämningar utan kö.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Trollskogen:</strong> Den magiska urskogen med skruvade enar är om möjligt ännu mer dramatisk utan sommarens gröna löv. Tyst och helt ensam på stigarna.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fågelskådning:</strong> Ottenby fågelstation är aktiv hela vintern med vinterfåglar som havsörn, snösparv och sjöfågel i råkar. Bästa fågelskådningsperiod är december–mars.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Borgholm i vinter:</strong> Ruinen är fri att gå runt hela vintern. Slottets dramatik förstärks av vintervädret. Borgholm stad har ett par kaféer och restauranger öppna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Kolla restauranger och sevärdheters öppethållande – stänger tidigt på vintern</li>
+  <li>Vind från Östersjön ger kraftig vindkyla – klä dig varmare än du tror</li>
+  <li>Stugor och hotell tillgängliga men boka i förväg – utbudet är lägre</li>
+</ul>
+`,
+
+  'skridskor-havet': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">När Stockholms inre skärgård fryser till is i januari och februari öppnas ett vintereventyr som få länder i världen kan matcha: skridskoåkning på havet. Mil av öppen is utan hinder, utsikt mot öar och klippor, och en känsla av frihet som en bandyplan aldrig kan ge.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havsisen är bäst i inre skärgård – ytterskärgården fryser mer sällan och är mer rörlig. Lida-skärgård, Baggensfjärden och inre Vaxholm-vatten är de klassiska platserna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var man åker</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Baggensfjärden, Nacka:</strong> Nära Stockholm, skyddad fjärd som fryser tidigt. Nås med buss 474 från Slussen. Kontrollera alltid isläget via SMHI eller lokala rapporter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholmsfjärden:</strong> Inre vatten runt Vaxholm. Tillgänglig med Waxholmsbåt om sjön frusit – eller bil via Norrtäljevägen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gällnöfjärden och Erstaviksfjärden:</strong> Södra Värmdö. Populärt bland lokala och en av de säkrare inre fjärdarna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet – det viktigaste</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Ispigg:</strong> Alltid med dig – räddningsredskap om du ramlar i</li>
+  <li><strong>Isbetsel och lina:</strong> Ta med och skicka in med en partner</li>
+  <li><strong>Minimumtjocklek:</strong> 10 cm för en person, 15 cm för grupper</li>
+  <li><strong>Undvik strömmande vatten och råkar:</strong> Istjockleken varierar kraftigt</li>
+  <li><strong>Åk aldrig ensam:</strong> Om du faller i ensam kan det vara fatalt</li>
+  <li>Kolla islägesrapporter på SMHI eller lokala facebooksgrupper för skärgårdsskridskor</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utrustning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Landsskridskor (långa och smala) ger längst räckvidd. Hockeyskridskor funkar men är tyngre och mindre effektiva på lång is. Skyddsutrustning: hjälm och ispigg är absoluta krav.</p>
+`,
+
+  'julmarknad-havet': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En julmarknad vid havet är något alldeles eget. Saltig luft, lyktor i mörkret, lokalt hantverk och räkor och ostron på julmarknads-borden. Sveriges kustnära julmarknader är mindre och mer autentiska än stadsvarianten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa julmarknaderna vid kusten</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Marstrand:</strong> Julmarknaden på Marstrand är liten, charmig och bilfri. Lokala hantverkare, julmat och fästningens silhuett i advent-ljuset. December. Ta bil till Koön och sedan bilbåten (ca 30 kr).</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Smögen:</strong> Bryggan i december är oväntat stämningsfull. Färre turister, mer lokalt och en julfärja av autentisk fiskehamnstämning.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Visby, Gotland:</strong> Medeltidsstaden i adventsbelysning är en av Sveriges vackraste julmiljöer. Gotlands julmarknad i november–december drar besökare från hela landet. Destination Gotland från Nynäshamn.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Lysekil:</strong> Liten men genuin kustnär julmarknad med lokala producenter och havsmat. December.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholm:</strong> Charmig julmarknad i hamnstaden med direktbåt från Strömkajen. December – kolla exakta datum varje år.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Datum varierar år till år – kolla kommunernas eventsajter i november</li>
+  <li>Klä dig för havsvind – det är kall december-luft längs kustmarknaderna</li>
+  <li>Kombinera med middag på lokalt krog för den fullständiga upplevelsen</li>
+</ul>
+`,
+
+  'fjallalternativet-kust': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Inte alla gillar skidliftar, pistjackor och apres-ski-priser. Om du är en av dem som hoppar av fjällresorna finns ett alternativ som är billigare, mildare och med en alldeles egen vintersäsong: den svenska kusten.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustvintern har egna upplevelser som fjällen aldrig kan erbjuda – havsbastu, ostron och kräftor i vinterkylan, dramatiska stormar mot klippor och en stillhet som är annorlunda än fjällets.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför kust i vinter?</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Pris:</strong> Boende längs kusten kostar 40–70% mindre på vintern än sommar. Inga lift-pass.</li>
+  <li><strong>Mat:</strong> Vinterostron, råräkor och lokalt fiske är i säsong. Restaurangerna är tomma.</li>
+  <li><strong>Upplevelse:</strong> Storm mot klippor, havsbastu, vinterbad, mörker och ljus</li>
+  <li><strong>Avstånd:</strong> Bohuslän och Gotland är kortare res från Stockholm och Göteborg än Åre och Sälen</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kust-alternativ till fjäll</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän, januari–mars:</strong> Havsbastu, klippvandring, ostron och vinterhavet. Bil via E6. Marstrand, Lysekil och Smögen ger fullständig kustupplevelse utan fjällets folkmassor.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland, december–februari:</strong> Visby utan turister, raukfält i vinterjus, vinterbad i Östersjön. Destination Gotland från Nynäshamn. Priser halverade mot sommaren.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Höga Kusten, januari–februari:</strong> Skuleskogen i vinterskrud, havsskridskoåkning när det fryser och en dramatik som fjällens öppna sluttningar inte har.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du offrar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skidåkning. Det finns inga alternativa aktiviteter som ersätter det om det är anledningen du åker till fjälls. Men om du åker fjäll för naturen, maten och känslan av att komma ifrån – kusten ger dig allt det.</p>
+`,
+
+  'ekologisk-semester-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgårdsresan kan göras med minimalt klimatavtryck – och ofta med bättre upplevelse på köpet. Kollektivt, tält, lokal mat och respekt för naturreservaten är grunden för en hållbar skärgårdssemester.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Att resa hållbart i skärgården är inte komplicerat. Det handlar om att välja rätt transport, stödja lokala producenter och följa naturvårdens regler.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> SL-pendelbåtar och Waxholmsbolaget i Stockholm. Västtrafik buss längs Bohuslän. Tåg till Kalmar + buss till Öland. Att välja tåg och kollektivt istället för flyg och privatbil halverar ungefär klimatavtrycket för resan.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kajak och cykel:</strong> Noll utsläpp och en bättre naturupplevelse. Kajakpaddling i skärgården och cykling på Gotland och Öland ger mer per kilometer än motoriserade alternativ.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende och mat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tält via allemansrätten är den hållbaraste boende-formen. STF vandrarhem (Finnhamn, Utö, Sandhamn) driver med hänsyn till natur och miljö. Välj lokala producenter – öarnas fiskare, ostar och honungsproducenter stödjer ett lokalt ekosystem.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Naturhänsyn</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Respektera fågelskyddsförbud 1 april–31 juli på kobbar och skär</li>
+  <li>Lämna inga spår – ta med allt skräp, även organiskt</li>
+  <li>Ankra inte på känsliga bottentyper – sand och gräs skadas av ankare</li>
+  <li>Välj miljömärkt solkräm – korallsäker kräm skonar det marina livet</li>
+  <li>Stöd Håll Sverige Rent och Skärgårdsstiftelsen ekonomiskt om du kan</li>
+</ul>
+`,
+
+  'skargard-med-husbil': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Husbil och kust är en perfekt kombination. Du bär ditt boende, du stannar där det är vackert och du behöver inte boka hotell tre månader i förväg för att säkra en plats med havsutsikt. Det är semesterfrihet på riktigt.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längs Bohuslän, Öland och Gotlands kust finns välförsedda campingplatser med servicepunkter för husbil. Men med en laddad tank och allemansrätten är du aldrig tvungen att hålla dig till dem.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kustregioner för husbil</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän:</strong> E6 längs kusten med avfarter till fiskbyar och klippplatåer. Husbilar är välkomna på de flesta campingplatser och vid många hamnar. Smögen, Fjällbacka och Hamburgsund är klassiska stopp.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Öland:</strong> Platt och lättkörd. Böda Sand, Neptuni Åkrar och Mörbylånga camping är stora anläggningar med full service för husbil. Bil via Ölandsbron (gratis).</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Ta husbilen med på Destination Gotland-färjan (boka fordonsbiljett i förväg). Gotland är perfekt för husbilar med inga berg och breda kustvägar. Tofta och Klintehamn camping är favoriter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Höga Kusten:</strong> E4 norrut med dramatisk kustlinje. Norrfällsviken camping är bäst placerad. Mer utmanande terräng men häpnadsväckande natur.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Boka populärcampingar i juli minst 3–6 månader i förväg</li>
+  <li>Husbilsapp som Park4Night visar gratis uppställningsplatser vid havet</li>
+  <li>Tömningsstationer för gråvatten och toalett finns vid de flesta campingplatser</li>
+  <li>Solpaneler rekommenderas för att minska behovet av elanslutning</li>
+</ul>
+`,
+
+  'hundstrand-sverige': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hunden älskar havet. Saltvatten och sand är hundparadiset – och det finns gott om stränder och platser längs den svenska kusten där hunden är välkommen. Nyckeln är att veta var och vilka regler som gäller.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Koppeltvång 1 mars–20 aug gäller i naturreservat nära fågelbon. Utanför dessa zoner och under övriga tider gäller allemansrätten – hunden är välkommen på de allra flesta stränder.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa hundstränder</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohuslän:</strong> Klippstränder längs hela kusten är tillgängliga för hundar utanför badreservat. Sotenäset, Ramsvikslandet och Kosteröarna (september–februari) är fantastiska hundvänliga miljöer.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Öland:</strong> Strandängarna längs östra Öland och stora delar av alvaret är fria. Ottenby har restriktioner nära fågelstationen – kolla aktuella regler hos Länsstyrelsen Kalmar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Gotlands långa stränder är generellt hundvänliga utanför kommunalt avgränsade badplatser. Kolla kommunens hundbadsplatser i Visby för officiella platser.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stockholms skärgård:</strong> Många öar och klippstränder tillgängliga för hundar. Naturreservat med koppeltvång 1/3–20/8 – kolla kartan via Länsstyrelsen Stockholm.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Regler att komma ihåg</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Koppeltvång 1 mars–20 aug i naturreservat med häckande fåglar</li>
+  <li>Kommunala badplatser förbjuder ofta hundar under badsäsong – kolla skyltning</li>
+  <li>Plocka upp – hundbajspåsar är din ansvar längs hela kusten</li>
+  <li>Saltvatten är generellt säkert för hundar att dricka i mängder – ha med eget vatten</li>
+</ul>
+`,
+
+  'hyra-husbil-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Husbil på Gotland är ett av de bästa sätten att uppleva ön. Inget hotell att boka, friheten att stanna vid en raukviken du inte visste existerade och ön i din egna takt. Gotland är platt, lättkörd och perfekt för husbilar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tre sätt att ha husbil på Gotland</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ta med egen husbil på färjan:</strong> Destination Gotland från Nynäshamn eller Oskarshamn. Boka fordonsbiljett tidigt – platserna för stora fordon tar slut månader i förväg för juli. Husbil räknas som lastbil prisprincipet, kolla aktuella priser på destinationgotland.se.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Hyra husbil på Gotland:</strong> Lokala uthyrare finns i och runt Visby. Fördelen är att du inte behöver ta med din husbil på färjan. Sök "husbilsuthyrning Gotland" för aktuella operatörer och priser.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Flyg + hyrbil + stuga:</strong> Om husbil känns omständigt – flyg med BRA till Visby och hyr bil. Lägre kostnad och mer flexibelt för kortare besök.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa campingplatser för husbil</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Tofta Strand:</strong> Direkt vid havet, stor och välorganiserad med full service</li>
+  <li><strong>Klintehamn Camping:</strong> Nära klintebys raukfält, bra läge för sydgotländsk utflykt</li>
+  <li><strong>Visby Camping:</strong> Centralt för stadbesök, buss till Visby centrum</li>
+  <li><strong>Fårösund:</strong> Utgångspunkt för Fårö – ta bilfärjan till Ingmar Bergmans ö</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka campingplatser i Gotlands juli minst 3–4 månader i förväg. Park4Night-appen visar gratis uppställningsplatser utanför campingplatser. Gotland har goda asfaltvägar men många grusvägar till raukfält – kolla om din husbil klarar dem.</p>
+`,
+
+  'aspo-sturko-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Aspö och Sturkö är Blekinges mest besökta öar – och ändå okända för de flesta utanför regionen. Sandstränder, fågelrika kuster och en genuint avslappnad ö-atmosfär som inte kommersialiserats. Det är Blekinge på sitt bästa.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Båda öarna ligger precis utanför Karlskrona och nås enkelt med lokala färjor. Karlskrona är en av Sveriges vackraste städer med marinhistoria och barockstadsplan som Unescos världsarv.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig dit</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bil eller tåg till Karlskrona:</strong> E22 längs sydkusten, ca 3,5 h från Malmö eller 5,5 h från Stockholm. SJ och Öresundståg till Karlskrona Centralstation.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Till Aspö:</strong> Passagerarfärja från Karlskrona Fisktorget, ca 45 min. Sommartidtabell – kolla Blekingetrafikens tidtabell.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Till Sturkö:</strong> Bilfärja från Sturkö färjeläge (norrut från Karlskrona via E22). Gratis. Kör bil av och utforska ön fritt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Aspö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandstränder med grunt, barnvänligt Östersjövatten. Camping och ett litet café sommartid. Vandringsleder längs kust och skogsmark. Lugnt och genuint – utan turistaffärer och souvenirhyllor.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Sturkö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Större ö med bilfärja – du kan utforska med bil. Naturreservat med rik fågelmark, klippkust mot Östersjön och några gårdar med direktförsäljning av fisk. Mer lantlig karaktär än Aspö.</p>
+`,
+
+  'trysunda-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Trysunda är Höga Kustens mest välbevarade fiskeläge. Röda stugor klättrar upp längs klippan, bryggor och båtlyor ger en bild av hur Höga Kusten såg ut för hundra år sedan. Och havet är lika dramatiskt som alltid.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ön tillhör Kramfors kommun och nås med sommarbåt. Det finns ingen permanentbefolkning men ett aktivt fritidsboende-community.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Trysunda</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bil till fastlandet:</strong> E4 norrut till Kramfors/Härnösand. Parkera i Barstavik eller Nordingrå.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sommarbåt:</strong> Lokala båtoperatörer kör passagerare från Barstavik och Nordingrå till Trysunda under sommarsäsongen. Kolla aktuella avgångstider och operatörer hos Kramfors turistbyrå – trafiken varierar från år till år.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kajak:</strong> Trysunda är en populär kajakdestination med tydlig rutt från Bönhamn (ca 4 km). Kräver havskajak-erfarenhet.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Trysunda</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Promenad längs fiskelägets bryggor och stugor ger en autentisk bild av kustliv. Klippbad i klart Bottenhavsvatten. Fågelskådning i naturreservat – öns natur är skyddad. Begränsad service – ta med mat och vatten.</p>
+`,
+
+  'skafto-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skaftö är en stor Bohuslänsö med två av kustens mest fotograferade miljöer: Fiskebäckskil och Grundsund. Båda är pittoreska fiskebyar med trähus längs klippan, båtar i hamnen och en charm som fortfarande är äkta och inte arrangerad.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Carl Wilhelmson – en av Sveriges mest kända Bohusläns-konstnärer – levde och målade i Fiskebäckskil. Ljuset och klipporna förstår du när du ser dem.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Skaftö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bilfärja från Skår:</strong> Trafikverkets vägfärja från Skår på fastlandet till Skaftö – gratis, avgår tätt. Ta bil via E6 norrut och sedan mot Lysekil och Skår. Bil på ön ger frihet att se bägge byarna.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kollektivt:</strong> Västtrafik buss till Lysekil, sedan lokal trafik mot Skår och färjan. Tidskrävande men möjligt utan bil.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fiskebäckskil</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns vackraste fiskeby enligt många. Vita och gula trähus längs klippan, en liten hamn och ett atmosfärisk sommarfika. Carl Wilhelmson-museet är öppet sommartid. Vandring längs kustklipporna ger fantastisk utsikt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grundsund</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lugnar fiskeby med ett genuint sammanhang. Sommarrestaurang, klippbad och en känsla av att se äkta Bohuslän utan turisttrampet. Perfekt för en halv dag med picknick och klippbad.</p>
+`,
+
+  'holmon-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Holmön är Bottenhavets bilfria ö och en av Sveriges nordligaste skärgårdsöar. Utanför Umeå, norr om de vanliga semesterkartan – men med en natur och lugn som är unik i landet.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ön är ett naturreservat med ett av Nordsverige rikaste fågellivet och en speciell geologisk historia – landhöjningen är fortfarande aktiv och skapar ständigt ny mark.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Holmön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bilfärja från Norrfjärden, Holmöns Kanal:</strong> Länstrafikens bilfärja avgår från Norrfjärden norr om Umeå. Sommartid täta avgångar, vinter mer gles trafik. Kolla Länstrafiken Västernorrland för tidtabell.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bil till Norrfjärden:</strong> E4 norrut mot Umeå, sedan norrut mot Holmöns Kanal. Ca 35 km norr om Umeå centrum. Flyg till Umeå och hyrbil är ett smidigt alternativ utifrån.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Holmön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Cykeltur:</strong> Ön är bilfri (utom för fastboende) och perfekt för cykeln. Hyr cykel vid ankomst. 20 km runt ön ger en komplett bild.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fågelskådning:</strong> Holmön är en av Nordsveriges bästa fågelstationer för migration. Vår och höst med havsörn, alfågel och svarttärnor.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandstrand:</strong> Holmöns sandstränder är unika för Norrlands kust – mer ovanlig och ödsligare än Bohusläns.</p>
+`,
+
+  'klattring-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohusläns granit är Skandinaviens bästa klättersten. Det flata, friktionsrika berget ger en klätterupplevelse som man söker sig till från hela Europa. Med klippor direkt vid havet och en kust som fotograferas av klättrare från hela världen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän är hemvist för slab-klättring – vertikalt eller flakt berg utan tak eller överhäng. Det kräver precision och känsla snarare än styrka, och är tillgängligt för nybörjare med guide.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa klätterområden</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kungshamn och Sotenäset:</strong> Ett av Bohusläns rikaste klätterområden med hundratals leder i alla svårigheter. Bil till Kungshamn via E6 + väg 171.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fjällbacka:</strong> Dramatisk klippterräng med havsvy. Leder med varierad svårighet och vacker miljö. Bil via E6 och sedan kustväg.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Hamburgsund:</strong> Tillgängliga klippor med leder nära hamn och parkering.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nybörjare och kurser</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svenska Klätterförbundet har lista på aktiva klättersällskap längs Bohuslän som erbjuder kurser och guidade klätterturar. Nybörjarkurs rekommenderas – klättring vid havet kräver förståelse för säkerhet och väder.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Klätterskor och sele är krav – hyr via klättergymmet i närmaste stad</li>
+  <li>Undvik klättring efter regn – graniten är halt i 12–24 h efter</li>
+  <li>Bästa säsong: maj–juni och september–oktober (sommarvärmen gör greppet sämre)</li>
+</ul>
+`,
+
+  'strandridning-kust': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Ridning längs havet är en av de vackraste aktiviteterna du kan göra på hästrygg. Sand under hovarna, havsvinden i ansiktet och horisonten öppen framför dig. Det finns stall och ridrutter längs hela Sveriges kust.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa regionerna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotland:</strong> Gotlands öppna landskap och långa sandstränder är perfekta för ridning. Flera ridstall runt om ön med utrittsturer längs kust och alvar. Nyttig kombination med ett Gotlandsveckan-besök.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Öland:</strong> Alvaret och kuststranden ger varierade ridmiljöer. Ridstall finns på ön – sök på Ölands ridklubb eller i reklam längs väg 136.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Falsterbo och Skåne:</strong> Långa sandstränder längs Skånes sydkust med ridstall och organiserade strandriturer. Kolla Falsterbo Ryttarklubbs utrittsalternativ.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohusläns inland:</strong> Ridstall med utrittsturer mot kusten. Inte strandridning i egentlig mening men med havet som bakgrund.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktiskt</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Boka i förväg – strandriturer har begränsade platsantal</li>
+  <li>Ridhjälm är obligatorisk och ingår vanligen i uthyrningen</li>
+  <li>Nybörjare välkomna hos de flesta stall med ledda turer</li>
+  <li>Bästa säsong: maj–juni och september för behagligt väder utan sommarhettan</li>
+</ul>
+`,
+
+  'vegansk-mat-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det veganska utbudet i skärgården har förbättrats markant de senaste åren. Fler restauranger erbjuder genomarbetade vegetariska och veganska alternativ, och med rätt planering är en skärgårdssemester fullt njutbar även utan kött och fisk.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nyckeln är att kombinera restaurangbesök med egenlagad mat och lokala råvaror – svamp, bär och grönsaker från skärgårdsöarnas lanthandlar och gårdsbutiker.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Restauranger med bra veganskt utbud</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Stockholm och Nacka:</strong> Restauranger nära Nacka Strand och i Gustavsberg erbjuder växtbaserade menyer. Fjäderholmarna har numera veganska alternativ på sina serveringar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Visby, Gotland:</strong> Gotlands restaurangscen är progressiv. Flera restauranger i Visby erbjuder genomarbetad vegansk mat med gotländska råvaror. Kolla HappyCow för uppdaterade tips.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Göteborg:</strong> Stadens restaurangscen har ett starkt veganskt utbud. Kombinera stadsmåltid med en dagstur ut i skärgård via Styrsöbolaget.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Laga din egen mat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsöarnas natur ger rikliga möjligheter att komplettera med insamlad mat: kantareller, blåbär, hallon och strandkrabbans kiselalger är allemansrättens gåvor. Ta med ett veganskt grundpaket och komplettera med det du hittar.</p>
+`,
+
+  'restauranger-havsvy-stockholm': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholm är en stad på vatten och de bästa restaurangupplevelserna i staden är de som utnyttjar det. Havsvy, skärgårdsluft och en meny med Östersjöns smaker – det är en kombination som ingen stad i världen kan kopiera.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa restaurangerna med havsvy</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fjäderholmarnas Krog:</strong> 25 minuter från Nybroplan med båt. Finrestaurang med havsutsikt och klassisk sjömat. Boka bord i förväg – populärt på fredags- och lördagskvällar. Öppen sommar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grinda Wärdshus:</strong> Restaurang med direkt havsutsikt på Grinda. Waxholmsbåt från Strömkajen. Boka bord i förväg i juli – sommarsemestrare fyller det snabbt. Brunch och middag.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Seglarhotellet, Sandhamn:</strong> Ytterskärgårdens finrestaurang. Bäst i landet för den som söker havsvy + finmat-kombination. Boka månader i förväg för julhelger och midsommar. Waxholmsbåt eller Cinderella dit.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Smådalarö Gård:</strong> Söder om Stockholm vid Ornöfjärden. Klassisk skärgårdsgård med restaurang och havsvy. Bil via Nynäsvägen eller kombinera med båttur.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Nacka Strand:</strong> Flera restauranger vid vattnet i Nacka Strand. Pendelbåt från Slussen. Prisvärdare än öarnas restauranger och med fin utsikt mot Baggensfjärden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Boka alltid i förväg – havsvy-restauranger är fullbokade snabbt på sommaren</li>
+  <li>Utomhussittning kräver soliga dagar – kolla väder och ha backup-plan</li>
+  <li>Lunch är ofta bättre pris-per-bit än middag på öarnas restauranger</li>
+</ul>
+`,
+
+  'vandring-var-kust': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vår är den bästa vandringssäsongen längs den svenska kusten. Naturen vaknar, fågellivet är på topp, havet blinkar under lågt aprilsol – och du har lederna för dig själv. Maj och juni är högsäsong för naturupplevelse, inte turisttrafik.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Klipporna är fortfarande torra från vintern, blomsterprakten sätter in i maj och de flesta restauranger längs kusten börjar öppna i slutet av maj. Det är skärgårdens söta smekmånad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa vårvandringsleder</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Landsortsleden, Stockholms skärgård:</strong> 55 km längs ytterskärgårdens klippkust. Maj ger blomsterfält på strandängarna och hav utan sommarens turister. Ta Waxholmsbåt eller pendelbåt till startpunkter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Bohusledan, Kosteröarna:</strong> April–maj är perfekt för klättring längs Bohusläns klippor. Kosteröarna når du med båt från Strömstad. Fågelskyddsregler gäller – håll avstånd till häckande fåglar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skuleskogen, Höga Kusten:</strong> Lövskogen slår ut i maj och ger ett helt annat skogslandskap än sommarens täta grönska. E4 norrut till Kramfors/Härnösand.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ölands Alvarleden:</strong> Alvaret blommar i maj med unika stäppväxter. Inga turister, fantastiskt ljus och tranorna har passerat. Bil via Ölandsbron.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tänk på</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Fågelskyddsförbud 1 april–31 juli – håll avstånd till kobbar och skär</li>
+  <li>Myggor börjar i slutet av maj i inre skärgård – ta med myggmedel</li>
+  <li>Havsvattnet är 8–12°C i maj – paddling och simning kräver våtdräkt</li>
+  <li>Restauranger öppnar gradvis – kolla i förväg om du planerar lunch på ön</li>
+</ul>
+`,
+
   'gotland-vs-bornholm': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland och Bornholm är Östersjöns två stora öar – och konkurrenter om sommarresenärernas hjärtan. Båda har medeltidsruiner, klara vatten och en distinkt ö-känsla. Men de är inte samma resa, och rätt val beror på vad du söker.</p>
 
