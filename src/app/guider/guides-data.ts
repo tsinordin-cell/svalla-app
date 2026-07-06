@@ -218,6 +218,66 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'segelkurs-stockholm':                  'stockholm',
   'dagstur-marstrand':                    'goteborg',
   'yttre-garden-guide':                   'stockholm',
+  // ── Batch J: SEO-gap-guider – säsong, region, tematiska ─────────────────
+  // Säsong
+  'juni-skargarden-2026':               'stockholm',
+  'folkfria-oar-juli':                  'stockholm',
+  'oktober-skargarden':                 'stockholm',
+  'host-oland-2026':                    'oland',
+  'host-hoga-kusten-2026':              'hogakusten',
+  'vinter-gotland-2026':                'gotland',
+  'vinter-bohuslan-2026':               'goteborg',
+  'isbad-vinterbad-sverige':            'sverige',
+  // Öland expansion
+  'badplatser-oland':                   'oland',
+  'barnfamilj-oland':                   'oland',
+  'vandring-oland':                     'oland',
+  'hyra-stuga-oland':                   'oland',
+  'hyra-bil-oland':                     'oland',
+  'camping-oland':                      'oland',
+  'mat-oland':                          'oland',
+  // Höga Kusten expansion
+  'kajak-hoga-kusten':                  'hogakusten',
+  'vandring-skuleskogen':               'hogakusten',
+  'barnfamilj-hoga-kusten':             'hogakusten',
+  'camping-hoga-kusten':                'hogakusten',
+  // Bohuslän transaktionella
+  'hyra-bat-goteborg':                  'goteborg',
+  'hyra-bat-marstrand':                 'goteborg',
+  'hyra-kajak-bohuslan':                'goteborg',
+  'segelkurs-goteborg':                 'goteborg',
+  'teambuilding-goteborg-skargard':     'goteborg',
+  'aw-pa-bat-goteborg':                 'goteborg',
+  'konferens-bohuslan':                 'goteborg',
+  // Gotland expansion
+  'flyga-till-gotland':                 'gotland',
+  'hyra-bil-gotland':                   'gotland',
+  // Blekinge
+  'blekinge-skargard-guide':            'sydkusten',
+  // Stockholm – nya öar
+  'nacka-skargard-guide':               'stockholm',
+  'svartloga-guide':                    'stockholm',
+  'ljustero-guide':                     'stockholm',
+  'runmaro-guide':                      'stockholm',
+  'blido-guide':                        'stockholm',
+  // Bohuslän – nya ö-guider
+  'karingon-guide':                     'goteborg',
+  'gullholmen-guide':                   'goteborg',
+  // Tematiska
+  'skargard-pa-budget':                 'sverige',
+  'camping-kust-sverige':               'sverige',
+  'vattensport-guide':                  'sverige',
+  'skargard-solo':                      'sverige',
+  'skargard-seniorer':                  'sverige',
+  'nationalparkerna-havet':             'sverige',
+  'skargard-tillganglighet':            'sverige',
+  'batsaerhet-guide':                   'sverige',
+  'fiske-host':                         'sverige',
+  'vandring-host-skargard':             'sverige',
+  // Jämförelse
+  'skargard-vs-fjall':                  'sverige',
+  'bohuslan-vs-hoga-kusten':            'sverige',
+  'gotland-vs-bornholm':                'gotland',
 }
 
 export function getGuideRegion(slug: string): GuideRegion {
@@ -798,4 +858,65 @@ export const GUIDES: GuideMeta[] = [
   { slug: "dagstur-marstrand",             title: "Dagstur Marstrand – hur du tar dig dit och vad du gör", excerpt: "Marstrand på en dag: hur du tar dig dit från Göteborg, vad som finns att göra, var du äter och varför Carlstens fästning är värd besöket.", category: "Region", emoji: "🏰", readTime: "6 min", fullContent: true },
   // Batch I – Yttre Gården
   { slug: "yttre-garden-guide", title: "Yttre Gården – kajakparadis och historiska fiskarspår i Nynäshamns skärgård", excerpt: "Yttre Gården är ett naturreservat i Gårdsfjärden öster om Bedarön. Guide till kajak, regler (ADF-förbud), transport och det historiska fiskarstället Gårdsund från 1912.", category: "Region", emoji: "🪨", readTime: "6 min", fullContent: true, topics: ['kajak'] },
+
+  // ── Batch J: SEO-gap-guider ────────────────────────────────────────────────
+  // Säsong
+  { slug: "juni-skargarden-2026", title: "Juni i skärgården 2026 – den bästa månaden ingen berättar om", excerpt: "Juni är skärgårdens bästa hemlighet: inga folkmassor, naturen på topp och restaurangerna precis öppnade. Guide till vad som gäller och varför juni slår juli.", category: "Säsong", emoji: "🌿", readTime: "7 min", fullContent: true },
+  { slug: "folkfria-oar-juli", title: "Folkfria öar i juli – alternativ till Sandhamn och Marstrand", excerpt: "Juli behöver inte innebära köer och fullbokade bryggor. Guide till öar och platser med plats kvar när de kända är överfulla.", category: "Säsong", emoji: "🏝", readTime: "8 min", fullContent: true },
+  { slug: "oktober-skargarden", title: "Oktober i skärgården – stillhet och höstfärger vid havet", excerpt: "Oktober är den mest underskattade skärgårdsmånaden. Havet är fortfarande varmt, löven glöder och du har öarna för dig själv.", category: "Säsong", emoji: "🍁", readTime: "6 min", fullContent: true },
+  { slug: "host-oland-2026", title: "Höst på Öland 2026 – alvaret och kusten i höstskrud", excerpt: "Öland på hösten är ett helt annat landskap än sommaren. Tystnad, fågelflyttning och alvaret i gulbrunt ljus. Guide till höstens Öland.", category: "Säsong", emoji: "🌾", readTime: "6 min", fullContent: true },
+  { slug: "host-hoga-kusten-2026", title: "Höst i Höga Kusten 2026 – UNESCO-världsarvet i höstljus", excerpt: "Höga Kusten är vackrast på hösten. Lövfärger mot havet, inga turister och klipporna för dig själv. Guide till höstens Höga Kusten.", category: "Säsong", emoji: "🏔", readTime: "6 min", fullContent: true },
+  { slug: "vinter-gotland-2026", title: "Vinter på Gotland 2026 – medeltid och stillhet utan turisterna", excerpt: "Gotland på vintern är en helt annan ö. Visby utan folkmassor, öppna krogar och raukar i vinterdimma. Guide till vinterGotland.", category: "Säsong", emoji: "❄️", readTime: "7 min", fullContent: true },
+  { slug: "vinter-bohuslan-2026", title: "Vinter i Bohuslän 2026 – klippor, havsluft och vinterstämning", excerpt: "Bohuslän i vinterskrud är dramatiskt och vackert. Ostron, empty klippor och mysiga krogkvällar i fiskebykerna. Guide till vinterBbohuslän.", category: "Säsong", emoji: "🌊", readTime: "6 min", fullContent: true },
+  { slug: "isbad-vinterbad-sverige", title: "Isbad och vinterbad i Sverige – guide till vinterhavet", excerpt: "Vinterbadningen ökar explosivt i Sverige. Guide till bästa platserna för isbad och vinterbad vid havet – Bohuslän, Skåne, skärgården och Höga Kusten.", category: "Aktivitet", emoji: "🧊", readTime: "7 min", fullContent: true },
+  // Öland
+  { slug: "badplatser-oland", title: "Bästa badplatserna på Öland – sandstränder och kalkstensklippor", excerpt: "Öland har Sveriges längsta sandstrand och dramatiska kalkstensklippor. Guide till de 10 bästa badplatserna på Öland 2026.", category: "Aktivitet", emoji: "🏖", readTime: "7 min", fullContent: true },
+  { slug: "barnfamilj-oland", title: "Öland med barnfamilj – sandstränder, borg och cykelvägar", excerpt: "Öland är ett av Sveriges bästa barnfamiljresmål. Böda sand, Borgholms slottsruin och bilfria leder. Komplett guide för familjesemester på Öland.", category: "Praktisk", emoji: "👨‍👩‍👧", readTime: "8 min", fullContent: true },
+  { slug: "vandring-oland", title: "Vandring på Öland – kustleder, alvar och naturreservat", excerpt: "Öland är platt och perfekt för vandring. Kustleden längs Västkusten, Alvaret och Trollskogen. Guide till de bästa vandringslederna på Öland.", category: "Aktivitet", emoji: "🥾", readTime: "7 min", fullContent: true },
+  { slug: "hyra-stuga-oland", title: "Hyra stuga Öland 2026 – guide till bästa lägena och sajterna", excerpt: "Stugor på Öland finns längs hela ön – vid havet, på alvaret och nära Borgholm. Guide till var du hittar de bästa stugorna och vad du bör tänka på.", category: "Praktisk", emoji: "🏡", readTime: "6 min", fullContent: true },
+  { slug: "hyra-bil-oland", title: "Hyra bil Öland – guide till biluthyrning och hur du tar dig dit", excerpt: "Öland kräver bil för att utforska på riktigt. Guide till biluthyrning på Öland och i Kalmar, priser 2026 och tips för att köra runt ön.", category: "Praktisk", emoji: "🚗", readTime: "5 min", fullContent: true },
+  { slug: "camping-oland", title: "Camping Öland – bästa campingplatser vid havet och alvaret", excerpt: "Öland har ett av Sveriges rikaste camping-utbud. Guide till de bästa campingplatserna vid Böda sand, Borgholm och södra Öland.", category: "Praktisk", emoji: "⛺", readTime: "6 min", fullContent: true },
+  { slug: "mat-oland", title: "Mat och restauranger på Öland – lokala råvaror och sommarliv", excerpt: "Öland har en stark matidentitet med lamm, potatis och smör i världsklass. Guide till de bästa restaurangerna och matupplevelserna på Öland.", category: "Mat", emoji: "🍽", readTime: "6 min", fullContent: true },
+  // Höga Kusten
+  { slug: "kajak-hoga-kusten", title: "Kajak Höga Kusten – paddling i UNESCO-världsarvet", excerpt: "Höga Kustens djupa fjärdar och dramatiska klippor är ett kajakparadis. Guide till kajakhyrning, bästa rutter och säkerhet längs Höga Kusten.", category: "Aktivitet", emoji: "🛶", readTime: "7 min", fullContent: true, topics: ['kajak'] },
+  { slug: "vandring-skuleskogen", title: "Vandring i Skuleskogen – guide till nationalparken i Höga Kusten", excerpt: "Skuleskogen är en av Sveriges vackraste nationalparker med 300 meter höga klippor och djupa raviner. Guide till stigar, svårighet och transport.", category: "Aktivitet", emoji: "🏔", readTime: "8 min", fullContent: true },
+  { slug: "barnfamilj-hoga-kusten", title: "Höga Kusten med barnfamilj – klippor, bad och naturäventyr", excerpt: "Höga Kusten med barn är en naturupplevelse utöver det vanliga. Guide till barnvänliga aktiviteter, badplatser och boende längs Höga Kusten.", category: "Praktisk", emoji: "👦", readTime: "7 min", fullContent: true },
+  { slug: "camping-hoga-kusten", title: "Camping Höga Kusten – platser med utsikt mot havet", excerpt: "Camping i Höga Kusten ger en naturupplevelse som är svår att slå. Guide till campingplatser i och runt Skuleskogen och längs kusten.", category: "Praktisk", emoji: "⛺", readTime: "6 min", fullContent: true },
+  // Bohuslän transaktionella
+  { slug: "hyra-bat-goteborg", title: "Hyra båt Göteborg – guide till uthyrning i sydskärgården", excerpt: "Göteborg har ett rikt utbud av båtuthyrning. Guide till var du hyr, vad det kostar och vilka rutter som passar från Göteborg ut i skärgården.", category: "Praktisk", emoji: "⛵", readTime: "7 min", fullContent: true, topics: ['hyra-bat'] },
+  { slug: "hyra-bat-marstrand", title: "Hyra båt Marstrand – uthyrning och rutter längs Bohusläns kust", excerpt: "Marstrand är ett perfekt nav för båtuthyrning längs Bohusläns norra kust. Guide till uthyrare, priser och de bästa dagstursrutterna.", category: "Praktisk", emoji: "⛵", readTime: "6 min", fullContent: true, topics: ['hyra-bat'] },
+  { slug: "hyra-kajak-bohuslan", title: "Hyra kajak Bohuslän – paddling längs klippkusten", excerpt: "Bohusläns klippkust är ett kajakparadis med sund, kobbar och dramatiska vyer. Guide till kajakhyrning, bästa rutter och operatörer.", category: "Aktivitet", emoji: "🛶", readTime: "7 min", fullContent: true, topics: ['kajak'] },
+  { slug: "segelkurs-goteborg", title: "Segelkurs Göteborg – skolor, kurser och kustskepparexamen", excerpt: "Göteborg är en av Sveriges bästa städer att lära sig segla. Guide till segelskolor, kurstyper och vad en segelkurs i Göteborg kostar 2026.", category: "Aktivitet", emoji: "⛵", readTime: "7 min", fullContent: true, topics: ['segelkurs'] },
+  { slug: "teambuilding-goteborg-skargard", title: "Teambuilding Göteborg skärgård – aktiviteter och arrangörer", excerpt: "Göteborgs sydskärgård och Bohuslän erbjuder utmärkta förutsättningar för teambuilding. Guide till aktiviteter, arrangörer och paket 2026.", category: "Aktivitet", emoji: "🤝", readTime: "7 min", fullContent: true, topics: ['teambuilding'] },
+  { slug: "aw-pa-bat-goteborg", title: "AW på båt Göteborg – charter och paket i sydskärgården", excerpt: "AW på båt i Göteborgs skärgård kombinerar västkustens bästa med en minnesvärd after work. Guide till charterbåtar, operatörer och priser.", category: "Aktivitet", emoji: "🥂", readTime: "6 min", fullContent: true, topics: ['teambuilding'] },
+  { slug: "konferens-bohuslan", title: "Konferens Bohuslän – anläggningar vid havet och kustmiljö", excerpt: "Bohuslän erbjuder unika konferensmöjligheter vid havet. Guide till konferensanläggningar, hotell med mötesrum och hur du bokar en skärgårdskonferens.", category: "Praktisk", emoji: "🏢", readTime: "6 min", fullContent: true, topics: ['teambuilding'] },
+  // Gotland
+  { slug: "flyga-till-gotland", title: "Flyga till Gotland – guide till flyg vs färja", excerpt: "Flyg eller färja till Gotland? Guide till flygbolag, flygtider, priser och när det lönar sig att flyga istället för att ta färjan.", category: "Transport", emoji: "✈️", readTime: "6 min", fullContent: true },
+  { slug: "hyra-bil-gotland", title: "Hyra bil Gotland – guide till biluthyrning i Visby 2026", excerpt: "Bil är det bästa sättet att uppleva Gotland utanför Visby. Guide till biluthyrning på Gotland, priser 2026 och var du hämtar bilen.", category: "Praktisk", emoji: "🚗", readTime: "5 min", fullContent: true },
+  // Blekinge
+  { slug: "blekinge-skargard-guide", title: "Blekinges skärgård – guide till Aspö, Sturkö och Karlskronas öar", excerpt: "Blekinges skärgård är en av Sveriges minst kända och vackraste. Guide till öarna runt Karlskrona, hur du tar dig dit och vad du hittar.", category: "Region", emoji: "⚓", readTime: "8 min", fullContent: true },
+  // Stockholm nya öar
+  { slug: "nacka-skargard-guide", title: "Nacka skärgård – naturreservat och paddling nära Stockholm", excerpt: "Nacka skärgård är Stockholms närmaste vildmark. Naturreservat, kajak, vandring och bad bara 20 minuter från city. Guide till Nacka.", category: "Region", emoji: "🌿", readTime: "7 min", fullContent: true },
+  { slug: "svartloga-guide", title: "Svartlöga – ytterskärgårdens isolerade pärla", excerpt: "Svartlöga är en av Stockholms skärgårds mest avlägsna öar – bilfri, krogfri och genuint vild. Guide till transport och vad du hittar där.", category: "Region", emoji: "🏝", readTime: "6 min", fullContent: true },
+  { slug: "ljustero-guide", title: "Ljusterö – stora skogen och havet i norra skärgården", excerpt: "Ljusterö är en stor ö med bilfärja, vandringsleder och en unik mix av skärgård och fastlandskaraktär. Guide till Ljusterö i Stockholms skärgård.", category: "Region", emoji: "🌲", readTime: "6 min", fullContent: true },
+  { slug: "runmaro-guide", title: "Runmarö – lugn och genuint skärgårdsliv i Stockholms ytterskärgård", excerpt: "Runmarö är en av Stockholms skärgårds bäst bevarade hemligheter. Inga turister, genuint liv och vacker natur. Guide till Runmarö.", category: "Region", emoji: "⛵", readTime: "6 min", fullContent: true },
+  { slug: "blido-guide", title: "Blidö – norra skärgårdens gröna ö med bilfärja", excerpt: "Blidö nås med bilfärja och erbjuder en avkopplande mix av skog, bad och genuint skärgårdsliv. Guide till Blidö i norra Stockholms skärgård.", category: "Region", emoji: "🌿", readTime: "6 min", fullContent: true },
+  // Bohuslän nya öar
+  { slug: "karingon-guide", title: "Käringön – Bohusläns mysigaste fiskeby", excerpt: "Käringön är en bilfri ö i Bohuslän med tätt packade hus och en av Västkustens bästa restauranger. Guide till transport, mat och upplevelserna.", category: "Region", emoji: "🏘", readTime: "7 min", fullContent: true },
+  { slug: "gullholmen-guide", title: "Gullholmen – världens minsta stad och Bohusläns pittoreska pärla", excerpt: "Gullholmen har titeln världens minsta stad och ett av Bohusläns vackraste stadslandskap. Guide till transport och vad du hittar på ön.", category: "Region", emoji: "🐚", readTime: "6 min", fullContent: true },
+  // Tematiska
+  { slug: "skargard-pa-budget", title: "Skärgård på budget – semester vid havet för under 500 kr/dag", excerpt: "Skärgård behöver inte kosta skjortan. Guide till hur du upplever det bästa av svensk kust och skärgård utan att tömma plånboken.", category: "Praktisk", emoji: "💰", readTime: "8 min", fullContent: true },
+  { slug: "camping-kust-sverige", title: "Campingplatser vid havet Sverige – bästa kust-campingen 2026", excerpt: "Sveriges kuststräcka har landets bästa campingplatser. Guide till de finaste campingplatserna vid havet från Bohuslän till Blekinge.", category: "Praktisk", emoji: "⛺", readTime: "9 min", fullContent: true },
+  { slug: "vattensport-guide", title: "Vattensport i skärgården – SUP, windsurfing, wakeboard och mer", excerpt: "Stockholms skärgård och Bohuslän erbjuder fler vattensporter än de flesta anar. Guide till SUP, windsurfing, kitesurfing och wakeboard.", category: "Aktivitet", emoji: "🏄", readTime: "7 min", fullContent: true },
+  { slug: "skargard-solo", title: "Skärgården som ensamresenär – tips för soloäventyret", excerpt: "Skärgård solo är en av de bästa upplevelserna du kan ge dig själv. Guide till öar, säkerhet, community och hur du planerar solotur i skärgården.", category: "Praktisk", emoji: "🧭", readTime: "7 min", fullContent: true },
+  { slug: "skargard-seniorer", title: "Skärgård för seniorer – tillgängliga öar och lugna upplevelser", excerpt: "Skärgårdsupplevelsen är inte förbehållen unga. Guide till de mest tillgängliga öarna, båtturer och upplevelserna för seniorer i skärgården.", category: "Praktisk", emoji: "🧓", readTime: "7 min", fullContent: true },
+  { slug: "nationalparkerna-havet", title: "Nationalparker vid havet Sverige – guide till havets skyddade områden", excerpt: "Sverige har flera nationalparker längs havet. Kosterhavet, Ängsö, Haparanda skärgård och fler. Guide till landets vackraste marina nationalparker.", category: "Aktivitet", emoji: "🌊", readTime: "8 min", fullContent: true },
+  { slug: "skargard-tillganglighet", title: "Skärgård för rörelsehindrade – tillgängliga öar och anpassade turer", excerpt: "Skärgårdsupplevelsen ska vara tillgänglig för alla. Guide till öar med tillgängliga bryggor, stigar och aktiviteter för dig med rörelsenedsättning.", category: "Praktisk", emoji: "♿", readTime: "7 min", fullContent: true },
+  { slug: "batsaerhet-guide", title: "Båtsäkerhet för nybörjare – VHF, sjökort och säker tur", excerpt: "Att ge sig ut på havet kräver grundläggande säkerhetskunskap. Guide till flytvästar, VHF-radio, sjökort och vad du måste kunna innan du lämnar hamnen.", category: "Praktisk", emoji: "⛑️", readTime: "8 min", fullContent: true },
+  { slug: "fiske-host", title: "Fiske på hösten – abborre, havsöring och gädda vid kusten", excerpt: "Hösten är fiskarens bästa säsong vid havet. Guide till höstfiske längs kusten och i skärgården – arter, platser, redskap och regler.", category: "Aktivitet", emoji: "🎣", readTime: "7 min", fullContent: true },
+  { slug: "vandring-host-skargard", title: "Vandring på hösten i skärgården – leder utan folkmassor", excerpt: "Höstvandring i skärgården ger naturen i en annan dager. Guide till de bästa höstvandringslederna längs kusten och ute på öarna.", category: "Aktivitet", emoji: "🥾", readTime: "7 min", fullContent: true },
+  // Jämförelse
+  { slug: "skargard-vs-fjall", title: "Skärgård vs fjäll – vilken sommarsemester vinner?", excerpt: "Två av Sveriges stoltaste semesteralternativ ställs mot varandra. En ärlig jämförelse av skärgård och fjäll för sommar, pris, aktiviteter och stämning.", category: "Praktisk", emoji: "⚖", readTime: "7 min", fullContent: true },
+  { slug: "bohuslan-vs-hoga-kusten", title: "Bohuslän vs Höga Kusten – vilken kust är bäst?", excerpt: "Västkustens klippor mot Höga Kustens dramatiska topografi. En jämförelse av Sveriges två vildaste kustlinjer.", category: "Region", emoji: "⚖", readTime: "6 min", fullContent: true },
+  { slug: "gotland-vs-bornholm", title: "Gotland vs Bornholm – bästa östersjöön för sommaren?", excerpt: "Gotland och Bornholm är Östersjöns två stora semesteröar. En jämförelse av natur, mat, transport och vad du faktiskt får ut av varje ö.", category: "Region", emoji: "🗺", readTime: "7 min", fullContent: true },
 ]
