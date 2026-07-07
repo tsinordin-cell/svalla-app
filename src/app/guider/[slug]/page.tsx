@@ -4,67 +4,8 @@ import Link from 'next/link'
 import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
 import { getIsland } from '../../o/island-data'
+import { GUIDE_ISLAND_MAP } from '../guide-island-map'
 
-// Koppling guide → öar (intern länkning för SEO)
-const GUIDE_ISLAND_MAP: Record<string, string[]> = {
-  'midsommar-skargarden-2026':     ['sandhamn', 'grinda', 'fjaderholmarna', 'vaxholm'],
-  'sandhamn-vs-grinda':            ['sandhamn', 'grinda'],
-  'grinda-vs-finnhamn':            ['grinda', 'finnhamn'],
-  'gotland-vs-oland':              ['gotland', 'oland'],
-  'basta-oar-stockholms-skargard': ['sandhamn', 'grinda', 'uto', 'fjaderholmarna', 'finnhamn', 'moja', 'arholma'],
-  'marstrand-guide':               ['marstrand'],
-  'smogen-guide':                  ['smogen'],
-  'fjaderholmarna-guide':          ['fjaderholmarna'],
-  'vaxholm-guide-komplett':        ['vaxholm'],
-  'landsort-guide':                ['landsort'],
-  'ingmarso-guide':                ['ingmarso'],
-  'arholma-guide':                 ['arholma'],
-  'gotland-guide':                 ['gotland'],
-  'oland-guide':                   ['oland'],
-  'moja-guide':                    ['moja'],
-  'grinda-guide':                  ['grinda'],
-  'finnhamn-guide':                ['finnhamn'],
-  'nattaro-guide':                 ['nattaro'],
-  'orno-guide':                    ['orno'],
-  'hoga-kusten-guide':             ['ulvon'],
-  'surstrommning-guide':           ['ulvon'],
-  'hummersafari-bohuslan':         ['marstrand', 'smogen', 'kungshamn'],
-  'bohuslan-skargard-guide':       ['marstrand', 'smogen', 'kungshamn', 'lysekil'],
-  'midsommar-bohuslan':            ['marstrand', 'smogen'],
-  'fjallbacka-guide':              ['fjallbacka'],
-  'lysekil-guide':                 ['lysekil'],
-  'kosterarna-guide':              ['kungshamn'],
-  'stockholm-archipelago-trail':   ['arholma', 'ingmarso'],
-  'norrtelje-guide':               ['arholma', 'ingmarso'],
-  'weekend-i-skargarden':          ['sandhamn', 'grinda', 'finnhamn', 'uto'],
-  'romantisk-weekend-skargarden':  ['sandhamn', 'grinda', 'uto'],
-  'foretagsevent-skargarden':      ['fjaderholmarna', 'grinda'],
-  'pingst-skargarden':             ['sandhamn', 'fjaderholmarna', 'vaxholm'],
-  'naturhamnar-guide':             ['sandhamn', 'finnhamn', 'moja', 'arholma'],
-  'barplockning-skargarden':       ['moja', 'orno', 'nattaro'],
-  'svampplockning-skargarden':     ['moja', 'orno', 'ingmarso'],
-  'solnedgang-skargarden':         ['sandhamn', 'grinda', 'uto'],
-  'dalaro-guide':                  ['orno', 'uto'],
-  // Batch H – transaktionella guider 2026
-  'hyra-bat-utan-korkort-stockholm':  ['fjaderholmarna', 'vaxholm'],
-  'aw-pa-bat-stockholm':              ['fjaderholmarna'],
-  'konferens-skargard-stockholm':     ['grinda', 'finnhamn'],
-  'kajak-vaxholm':                    ['vaxholm'],
-  'hyra-kajak-stockholm':             ['fjaderholmarna', 'vaxholm'],
-  'hyra-elektrisk-bat-stockholm':     ['fjaderholmarna'],
-  'glamping-skargard':                ['grinda', 'uto'],
-  'segeldag-foretag-stockholm':       ['sandhamn', 'vaxholm'],
-  'teambuilding-kajak-stockholm':     ['vaxholm', 'fjaderholmarna'],
-  'cykeluthyrning-gotland':           ['gotland'],
-  'kursgard-skargard-stockholm':      ['grinda', 'finnhamn'],
-  'kickoff-ideer-skargard':           ['grinda', 'fjaderholmarna', 'vaxholm'],
-  'hyra-stuga-marstrand-bohuslan':    ['marstrand'],
-  'workshop-skargard-stockholm':      ['grinda', 'vaxholm'],
-  'teambuilding-skargard-stockholm':  ['grinda', 'fjaderholmarna', 'vaxholm'],
-  'segelkurs-stockholm':              ['sandhamn', 'vaxholm'],
-  'dagstur-marstrand':                ['marstrand'],
-  'yttre-garden-guide':               ['yttre-garden'],
-}
 import FAQSection from '@/components/FAQSection'
 
 type Props = {
@@ -111,10 +52,20 @@ export default async function GuidePage({ params }: Props) {
 
   const content = getGuideContent(slug)
 
-  // Relaterade guider — samma kategori, exklusive aktuell guide
-  const related = GUIDES
-    .filter(g => g.slug !== slug && g.category === guide.category)
-    .slice(0, 4)
+  // Relaterade guider — topic-aware: topic-match > category-match
+  // Ger starkare topisk auktoritet än ren kategori-matchning
+  const byTopic = (guide.topics?.length ?? 0) > 0
+    ? GUIDES.filter(g =>
+        g.slug !== slug &&
+        g.topics?.some(t => guide.topics!.includes(t))
+      )
+    : []
+  const byCategory = GUIDES.filter(g =>
+    g.slug !== slug &&
+    !byTopic.find(b => b.slug === g.slug) &&
+    g.category === guide.category
+  )
+  const related = [...byTopic.slice(0, 3), ...byCategory].slice(0, 4)
 
   // Schema.org Article — för E-E-A-T + AI Overviews-citation
   const articleSchema = {
@@ -126,8 +77,13 @@ export default async function GuidePage({ params }: Props) {
     about: guide.category,
     inLanguage: 'sv-SE',
     timeRequired: guide.readTime,
-    dateModified: '2025-06-01',
     url: `https://svalla.se/guider/${slug}`,
+    image: {
+      '@type': 'ImageObject',
+      url: `https://svalla.se/guider/${slug}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://svalla.se/guider/${slug}` },
     author: { '@type': 'Organization', '@id': 'https://svalla.se/#organization', name: 'Svalla' },
     publisher: { '@id': 'https://svalla.se/#organization' },
@@ -319,7 +275,7 @@ export default async function GuidePage({ params }: Props) {
             fontSize: 22, fontWeight: 700, color: 'var(--txt)',
             margin: '0 0 20px',
           }}>
-            Fler guider i {guide.category}
+            Relaterade guider
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
             {related.map(r => (
