@@ -17,6 +17,8 @@ import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
 import LastBoatPanel from '@/components/LastBoatPanel'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
+import { GUIDES } from '../../guider/guides-data'
+import { getGuidesForIsland } from '../../guider/guide-island-map'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -94,6 +96,9 @@ export default async function IslandPage({ params }: Props) {
  : 'var(--sea)'
 
  const relatedIslands = ALL_ISLANDS.filter(i => island.related.includes(i.slug))
+ const guideLinks = getGuidesForIsland(slug)
+   .map(gs => GUIDES.find(g => g.slug === gs))
+   .filter((g): g is NonNullable<typeof g> => Boolean(g))
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
@@ -861,6 +866,40 @@ export default async function IslandPage({ params }: Props) {
  ))}
  </div>
  </section>
+ )}
+
+ {/* Guider om ön — intern länkning till /guider/[slug] (220 artiklar) */}
+ {guideLinks.length > 0 && (
+  <section style={{ marginBottom: 36 }}>
+   <SectionHeader icon="📖" title={`Guider om ${island.name}`} />
+   <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+    gap: 10,
+   }}>
+    {guideLinks.map(g => (
+     <Link
+      key={g.slug}
+      href={`/guider/${g.slug}`}
+      style={{
+       display: 'flex', alignItems: 'center', gap: 12,
+       padding: '14px 16px', borderRadius: 12,
+       background: 'var(--white)',
+       border: '1px solid var(--surface-3)',
+       textDecoration: 'none',
+       boxShadow: '0 1px 6px rgba(0,0,0,0.04)',
+      }}
+     >
+      <span style={{ fontSize: 20, flexShrink: 0 }}>{g.emoji}</span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+       <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.35, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{g.title}</div>
+       <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{g.readTime}</div>
+      </div>
+      <span style={{ color: 'var(--sea)', fontWeight: 700, flexShrink: 0 }}>→</span>
+     </Link>
+    ))}
+   </div>
+  </section>
  )}
 
  {/* Guider om ön — intern länkning till bloggartiklar */}
