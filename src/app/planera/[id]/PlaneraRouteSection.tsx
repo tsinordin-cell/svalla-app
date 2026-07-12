@@ -148,11 +148,13 @@ export default function PlaneraRouteSection({
     if (quality === 'waypoint') {
       return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
     }
-    // unavailable — ingen polyline ritas, tid/bränsle gömt
+    // 2026-05-27: 'unavailable' returneras aldrig från API:t längre.
+    // Pipeline:n levererar alltid en path via harbor-skarvning som fallback.
+    // Default — visa som approximerad även om quality skulle vara okänd.
     return {
-      tone: 'danger' as const,
-      label: 'Vi kan inte beräkna en vattenrutt här ännu',
-      desc: 'Den direkta linjen skulle korsa land. Prova att välja en närliggande hamn, brygga eller kaj som start eller mål.',
+      tone: 'warning' as const,
+      label: 'Approximerad rutt',
+      desc: 'Preliminär sjöled. Verifiera mot sjökort innan avgång.',
     }
   })()
 

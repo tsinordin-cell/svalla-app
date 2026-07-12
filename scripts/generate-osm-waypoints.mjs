@@ -28,8 +28,9 @@ import { dirname } from 'node:path'
 const OUT_WAYPOINTS = 'src/lib/data/osm-waypoints.json'
 const OUT_EDGES     = 'src/lib/data/osm-edges.json'
 
-// Sveriges bounding box
-const BBOX = '55.0,10.5,69.1,24.2'  // syd,väst,nord,öst
+// Scandinavien bounding box: Sverige + Norge + Finland + Danmark + Åland
+// Syd: Lolland/Falster (DK), Väst: Stad (NO), Nord: Nordkapp, Öst: Kainuu (FI)
+const BBOX = '54.5,4.0,71.5,32.0'  // syd,väst,nord,öst
 
 const OVERPASS_URL = 'https://overpass-api.de/api/interpreter'
 

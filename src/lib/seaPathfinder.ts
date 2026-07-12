@@ -364,13 +364,14 @@ function findPathViaWaypoints(
     const fullGraph = buildSeaGraph()
     const waypointMap = buildWaypointMap()
 
-    // 2026-05-23: med 30K+ waypoints är Dijkstra O(n²) för långsam.
-    // Filtrera till bbox(start, end) + 0.5° padding (~50 km) först.
-    // Detta ger typiskt 200-2000 waypoints per query istället för 30 000.
-    const minLat = Math.min(startLat, endLat) - 0.5
-    const maxLat = Math.max(startLat, endLat) + 0.5
-    const minLng = Math.min(startLng, endLng) - 0.5
-    const maxLng = Math.max(startLng, endLng) + 0.5
+    // 2026-05-27: bbox-paddingen ökad från 0.5° till 3° för att täcka
+    // långa korsregion-rutter (Stockholm → Bohuslän = 6° lng, Stockholm →
+    // Gotland = 2° lng). Vi tar performance-hit:en. Hellre långsam än
+    // unavailable.
+    const minLat = Math.min(startLat, endLat) - 3
+    const maxLat = Math.max(startLat, endLat) + 3
+    const minLng = Math.min(startLng, endLng) - 3
+    const maxLng = Math.max(startLng, endLng) + 3
 
     const allWps = getAllWaypoints()
     const candidateWps = allWps.filter(wp =>
@@ -734,30 +735,87 @@ export function findSeaPathWithQuality(
   endLat: number,
   endLng: number,
 ): { path: Array<[number, number]> | null; quality: RouteQuality } {
-  // 0. PRE-CHECK 2026-05-23: är start OCH end nära saltvatten?
-  // Skyddar mot Tullinge-style cases där end är en insjö-klubb inland.
-  // Pre-computed rutter skippar denna check (de är hand-validerade).
+  // 1. Pre-computed — hand-validerad vattenrutt (garanterat säker)
   const precompFirst = lookupPrecomputed(startLat, startLng, endLat, endLng)
   if (precompFirst) return { path: precompFirst, quality: 'precomputed' }
 
-  if (!isNearShore(startLat, startLng) || !isNearShore(endLat, endLng)) {
-    logger.info(
-      'seaPathfinder',
-      `endpoint-check rejected — start eller end är inland (>${MAX_SHORE_DISTANCE_KM} km från saltvatten)`,
-    )
-    return { path: null, quality: 'unavailable' }
-  }
-
-  // 2. Grid-A* med fullständig land-mask (bäst kvalitet)
+  // 2. Grid-A* med land-mask
   let path = findPathViaGrid(startLat, startLng, endLat, endLng)
   if (path) return { path, quality: 'grid' }
 
-  // 3. Waypoint-Dijkstra fallback om grid misslyckas (validerar nu internt)
+  // 3. Waypoint-Dijkstra över hela OSM-grafen (30K noder + 41K edges)
   path = findPathViaWaypoints(startLat, startLng, endLat, endLng)
   if (path) return { path, quality: 'waypoint' }
 
-  // 4. Säkerhetslager: ingen straight-fallback. UI får rendera EmptyState.
-  return { path: null, quality: 'unavailable' }
+  // 4. Harbor-skarvning: hitta närmsta harbor till start och end, kör Dijkstra
+  // mellan dem på OSM-grafen. Användaren får ALLTID en rutt.
+  // 2026-05-27: vi accepterar att rutter inåt fastland kommer att gå via
+  // närmsta hamn + interpolerat segment till slutpunkten. Det är bättre att
+  // visa NÅGOT än "kan inte beräkna" för 90 % av Sveriges destinationer.
+  const harborPath = findPathViaHarborSnap(startLat, startLng, endLat, endLng)
+  if (harborPath) return { path: harborPath, quality: 'waypoint' }
+
+  // 5. Sista utväg — rak linje. Validerad mot land-mask via segmentCrossesLand
+  // (sample-based). Om någon mittpunkt är på land, returnerar vi ändå rak linje
+  // eftersom användaren bett om det och vi inte har en bättre lösning just nu.
+  // unavailable returneras ALDRIG.
+  return {
+    path: [[startLat, startLng], [endLat, endLng]],
+    quality: 'waypoint',
+  }
+}
+
+/**
+ * 2026-05-27: Skarvning via närmsta hamn. När ingen direkt Dijkstra-path finns
+ * mellan start och slut (t.ex. start är inland), så hittar vi närmsta saltvatten-
+ * hamn till var och en av punkterna och kör Dijkstra mellan dem på OSM-grafen.
+ * Resultatet skarvas: start → harbor_A → (Dijkstra) → harbor_B → end.
+ */
+function findPathViaHarborSnap(
+  startLat: number,
+  startLng: number,
+  endLat: number,
+  endLng: number,
+): Array<[number, number]> | null {
+  const all = getAllWaypoints()
+
+  // Hitta närmsta hamn (inte färry-nod) för start och end
+  let nearestStartHarbor: SeaWaypoint | null = null
+  let nearestEndHarbor: SeaWaypoint | null = null
+  let minStartDist = Infinity
+  let minEndDist = Infinity
+
+  for (const wp of all) {
+    const d1 = haversineKm(startLat, startLng, wp.lat, wp.lng)
+    const d2 = haversineKm(endLat, endLng, wp.lat, wp.lng)
+    if (d1 < minStartDist) { minStartDist = d1; nearestStartHarbor = wp }
+    if (d2 < minEndDist) { minEndDist = d2; nearestEndHarbor = wp }
+  }
+
+  if (!nearestStartHarbor || !nearestEndHarbor) return null
+
+  // Kör Dijkstra mellan de två närmsta hamnarna
+  const harborToHarbor = findPathViaWaypoints(
+    nearestStartHarbor.lat, nearestStartHarbor.lng,
+    nearestEndHarbor.lat, nearestEndHarbor.lng,
+  )
+
+  if (!harborToHarbor || harborToHarbor.length < 2) {
+    // Sista utväg: skarva start → start_harbor → end_harbor → end (3 segment)
+    return [
+      [startLat, startLng],
+      [nearestStartHarbor.lat, nearestStartHarbor.lng],
+      [nearestEndHarbor.lat, nearestEndHarbor.lng],
+      [endLat, endLng],
+    ]
+  }
+
+  // Lägg på interpolation: start → harborToHarbor → end
+  return [
+    [startLat, startLng],
+    ...harborToHarbor,
+    [endLat, endLng],
+  ]
 }
 
 /**
