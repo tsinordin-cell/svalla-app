@@ -7,6 +7,7 @@ import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
 
 import FAQSection from '@/components/FAQSection'
+import EmailSignup from '@/components/EmailSignup'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -231,6 +232,16 @@ export default async function GuidePage({ params }: Props) {
           />
         </div>
       )}
+
+      {/* Newsletter */}
+      <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 40px' }}>
+        <EmailSignup
+          source={`guide-${slug}`}
+          variant="card"
+          title="Få veckans skärgårdstips"
+          description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
+        />
+      </div>
 
       {/* Relaterade öar — intern länkning guide → /o/[slug] */}
       {(() => {
