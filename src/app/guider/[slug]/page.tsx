@@ -78,6 +78,8 @@ export default async function GuidePage({ params }: Props) {
     inLanguage: 'sv-SE',
     timeRequired: guide.readTime,
     url: `https://svalla.se/guider/${slug}`,
+    datePublished: '2025-06-01',
+    dateModified: '2026-07-14',
     image: {
       '@type': 'ImageObject',
       url: `https://svalla.se/guider/${slug}/opengraph-image`,
