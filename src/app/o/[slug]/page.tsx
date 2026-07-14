@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  },
  openGraph: {
  title: `${island.name} – ${island.tagline}`,
- description: `Komplett guide till ${island.name} i Stockholms skärgård.`,
+ description: `Komplett guide till ${island.name} i ${island.regionLabel.toLowerCase()}.`,
  url: `https://svalla.se/o/${slug}`,
  type: 'article',
  images: [{
