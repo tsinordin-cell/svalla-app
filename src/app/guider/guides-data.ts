@@ -170,7 +170,10 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'faro-guide':                           'gotland',
   'visby-sommar-guide':                   'gotland',
   'camping-gotland':                      'gotland',
+  'gotland-med-barn':                     'gotland',
   'camping-bohuslan':                     'goteborg',
+  'fiskelage-bohuslan':                   'goteborg',
+  'camping-stockholm-skargard':           'stockholm',
   // ── Öland ───────────────────────────────────────────────────────
   'oland-guide':                          'oland',
   'kraftskiva-oland-2026':                'oland',
@@ -1564,6 +1567,42 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Vilken är den bästa campingen i Bohuslän?', a: 'Havstenssund Stugby & Camping utanför Fjällbacka har ett av Bohusläns vackraste lägen med utsikt mot öar och klippor. Grebbestads Camping vid fjorden passar den som vill ha genuint fiskesamhällsliv. Kosteröarnas Camping på Sydkoster är unik — bilfri ö, nationalpark och snorkling.' },
       { q: 'Kan man tälta fritt på klipporna i Bohuslän?', a: 'Ja, Allemansrätten tillåter tält 1–2 nätter på de flesta klipphällar längs kusten. Undvik privatägda tomter, bryggor och naturreservat med tältförbud. Elda aldrig direkt på klippan — det missfärgar och är brandfarligt. Ta med allt skräp.' },
       { q: 'Hur varmt är havet i Bohuslän?', a: 'Västerhavet är varmare än Östersjön: 18–22°C i juli–augusti. Strömmar från Nordsjön för in varmt vatten och gör Bohuslän till ett av Sveriges bästa ställen för havsbad.' },
+    ],
+  },
+  {
+    slug: "gotland-med-barn",
+    title: "10 aktiviteter på Gotland med barn – sommarsemester",
+    excerpt: "Gotland är ett av Sveriges bästa barnfamiljeresmål. Lummelundagrottan, Kneippbyn, raukar och cykling på platt terräng — här är tio saker du inte bör missa med barnen.",
+    category: "Region", emoji: "👨‍👩‍👧‍👦", readTime: "7 min", fullContent: true,
+    topics: ['barn', 'gotland', 'familj'],
+    faqs: [
+      { q: 'Vad är bäst att göra på Gotland med barn?', a: 'Lummelundagrottan är Gotlands mest populära attraktion för barn. Kneippbyn Resort söder om Visby har vattenpark och aktiviteter. Tofta strand är perfekt för baddag med grunt vatten. Fårö med gratisfärjan och raukarna engagerar barn i alla åldrar.' },
+      { q: 'Hur gammal bör barnet vara för Lummelundagrottan?', a: 'Barn från 5 år och uppåt brukar tycka grottan är rolig. Yngre barn kan bli rädda i mörkret. Guidade turer tar ca 50 minuter. Temperaturen inne är alltid ca 8°C — ta med en tröja till alla.' },
+      { q: 'Behöver man bil på Gotland med barn?', a: 'Ja, bil är praktiskt taget nödvändigt för att ta sig runt med barn på Gotland. Kollektivtrafiken täcker bara de större orterna. Cykelhyra fungerar utmärkt inom Visby och längs kortare sträckor, men inte för hela ön med yngre barn.' },
+    ],
+  },
+  {
+    slug: "camping-stockholm-skargard",
+    title: "Camping i Stockholms skärgård – STF, friluft och båtcamping",
+    excerpt: "Stockholms skärgård är ett av världens bästa naturcampingmål. Finnhamn, Arholma och Utö via STF, eller fri tältplats längs öarnas klipphällar med Allemansrätten.",
+    category: "Aktivitet", emoji: "⛺", readTime: "7 min", fullContent: true,
+    topics: ['camping', 'stockholm', 'natur'],
+    faqs: [
+      { q: 'Var kan man campa i Stockholms skärgård?', a: 'STF driver vandrarhem och campingplatser på Finnhamn, Arholma, Kymmendö och fler öar. Allemansrätten tillåter fria tältövernattningar på naturreservatens mark. Bullerö naturreservat i södra skärgården är populärt för fri camping via kajak. Utö har kommersiell camping och stuguthyrning.' },
+      { q: 'Kan man ta Waxholmsbåten till campingplatsen?', a: 'Finnhamn nås med Waxholmsbåt direkt från Stockholm. Arholma likaså med byte. Bullerö och andra friluftsmål nås enklast med kajak eller egen båt — inga reguljära linjer. Utö nås med pendelbåt från Nynäshamn.' },
+      { q: 'Behöver man båt för att campa i skärgården?', a: 'Nej, Finnhamn, Arholma och Utö nås med kollektivtrafik (Waxholmsbolaget). Däremot är fria tältplatser på naturreservatsöar enklast att nå med kajak eller liten motorbåt. Kajak kan hyras i Vaxholm och Stavsnäs.' },
+    ],
+  },
+  {
+    slug: "fiskelage-bohuslan",
+    title: "Bohusläns bästa fiskelägen – Smögen, Fjällbacka och Grebbestad",
+    excerpt: "Bohusläns fiskelägen är mer äkta Sverige än de flesta vet — vita trähus på klippor, räka direkt från båten och genuint kustliv. Guide till de vackraste och mest autentiska lägena.",
+    category: "Region", emoji: "🎣", readTime: "7 min", fullContent: true,
+    topics: ['bohuslan', 'mat', 'natur'],
+    faqs: [
+      { q: 'Vilket fiskeläge i Bohuslän är mest värt att besöka?', a: 'Smögen är det mest kända med den långa bryggan och skaldjursbutikernad. Fjällbacka är vackrast och lugnast. Grebbestad är bäst för att köpa färsk räka och ostron direkt från fiskehamnen. Käringön på Orust är mest äkta och orörd av turistindustrin.' },
+      { q: 'När kan man köpa färsk räka i Bohuslän?', a: 'Räka är tillgänglig hela sommarsäsongen (maj–sept) och köps bäst tidigt på morgonen direkt från fiskebåtarna vid bryggan i Smögen och Grebbestad. Räka ska ätas samma dag den köps — den håller inte länge.' },
+      { q: 'Hur tar man sig till Bohusläns fiskelägen?', a: 'Smögen, Fjällbacka och Grebbestad nås med bil längs E6 och lokala vägar. Västtrafik buss 870/871 kör längs kusten. Käringön på Orust nås med bilfärja från Svanesund. Kosteröarna nås med färja från Strömstad.' },
     ],
   },
   // ── Batch G: Resterande guider – alla serier ──────────────────────────────────
