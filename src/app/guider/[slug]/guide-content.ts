@@ -4800,15 +4800,120 @@ export function getGuideContent(slug: string): string {
 `,
 
   'faro-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Färö är Ingmar Bergmans ö och hem till Nordens mest dramatiska raukformationer. Den lilla ön norr om Gotland nås med en kort färja och belönar med ett landskap som är svårt att hitta någon annanstans i Sverige.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Färö och Ingmar Bergman</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman bosatte sig på Färö 1966 och bodde där till sin död 2007. Filmen "Persona" spelades in på Färö och öns dramatiska landskap präglar många av hans filmer. Bergmancenter vid Fårösund ger introduktion till Bergmans liv och konstnärskap. Det är ett pilgrimsmål för filmintresserade från hela världen.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukarnas landskap</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Färö har två stora raukfält. Langhammars raukar i nordväst är de mest dramatiska med höga, smala kalkstenar formade som troll och figurer. Digerhuvud raukfält söder om hamnen är mer lättillgängliga. Beräkna minst en halvdag för att utforska ordentligt.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sudersand och stränder</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersand är Färös mest kända strand och en av Gotlandsregionens vackraste. Lång, vid och med ett kristallklart Östersjön framför sig. Ekeviken på östra Färö är en mer skyddad sandstrand med raukar i vattnet.</p>
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport till Färö</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gratisfärja kör från Fårösund på norra Gotland till Färö (5 minuter, kör kontinuerligt). Nå Fårösund med bil från Visby på ca 1 timme. Cykel fungerar utmärkt på Färö – ön är liten och vägnätet enkelt.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Fårö är Sveriges mest unika ö — Ingmar Bergmans hemvist i 40 år, hem till Nordens mest dramatiska raukformationer och tre av Gotlands vackraste sandstränder. Den lilla ön norr om Gotland nås med gratisfärja på tio minuter och belönar med ett landskap som inte finns någon annanstans.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö nås med bilfärja från Fårösund på norra Gotland. Överfarten tar tio minuter och avgår kontinuerligt under sommarsäsongen — ingen bokning behövs och resan är gratis. Kör norrut från Visby i ca 55–65 minuter längs väg 148 till Fårösund färjeläge. Cykel passar utmärkt på Fårö — ön är liten, flack och vägnätet är enkelt. Cyklar kan hyras i Fårösund innan färjan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ingmar Bergman och Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman kom till Fårö 1960 när han filmade "Såsom i en spegel" och lät sig fullständigt fascineras av öns karga skönhet. Han bosatte sig permanent 1966 och bodde här till sin död 2007. Filmer som "Persona", "Skammen" och "En passion" är djupt präglade av Fårös landskap — de kala klipporna, det vida havet och det speciella ljuset som bara finns här. Bergmans bostad Hammars är privat och ej öppen för besök, men atmosfären av ensamhet och konstnärskap finns överallt på ön.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergman Center i Fårösund — på fastlandssidan strax innan färjan — är det naturliga startbesöket. Centret berättar om Bergmans liv, filmer och relation till Fårö med utställningar, filmer och originaldokument. Öppet maj–september, ca 100 kr inträde.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukar — tre fält att välja mellan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö har tre raukfält och varje fält har sin egen karaktär. Langhammars i nordväst är det mest spektakulära — höga, smala kalkstensformationer reste av Östersjöns vågor under tusentals år, formade som monument, troll och figurer. Beräkna minst 1–2 timmar här. Gamla Hamn på norra Fårö har raukar vid strandlinjen med en stor vik som bakgrund — dramatiska foton och ett lugnare besöksflöde. Digerhuvud söder om Fårö hamn är det mest lättillgängliga fältet med bra parkering och en kort promenad ut till kalkstenarna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Stränder — tre av Gotlands bästa</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Sudersand</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös mest kända strand och en av Gotlandsregionens absolut vackraste. Bred, lång sandstrand med kristallklart vatten och sanddyner i bakgrunden. Café Sudersand vid stranden serverar mat, glass och kaffe — ett av öns bästa ställen att äta. Parkeringen fylls snabbt i juli, kom tidigt på morgonen.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ekeviken</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Östkustens mest skyddade bad — en djup vik med lugnt vatten och raukar ut i havet. Perfekt när det blåser på Sudersand. Ekeviken är Fårös hemliga strand, långt ifrån turistströmmarna.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Norsta Auren</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös nordligaste strand, öppen och vild mot Östersjön. Lång promenad dit, men nästan aldrig trångt. Dramatisk stämning och fantastiskt kvällsljus.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fårö kyrka och fyrtornet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö kyrka är från 1200-talet och ett av de vackraste exemplen på gotländsk medeltidskyrkoarkitektur. Den massiva kalkstenstornet och de romanska murarna är välbevarade. Inne finns medeltida muralmålningar. Öppen dagligen under sommarsäsongen, fri entré. Fårö fyr i norr markerar öns nordligaste punkt och ger utsikt över öppet hav — ett perfekt stopp på cykelrundan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cykla runt Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö är ungefär 8 × 12 km och perfekt för cykling. En fullrunda tar 4–6 timmar beroende på stopp. Klassisk rutt: Fårö hamn → Langhammars raukar → Sudersand strand → Fårö kyrka → Gamla Hamn raukar → Norsta Auren → fyrtornet → tillbaka. Cyklar med god standard finns att hyra i Fårösund. Ta med vatten och mat — servicen på ön är begränsad till ett fåtal ställen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mat och dryck på Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårö har inga restauranger i traditionell mening — det är en liten ö med begränsad service. Café Sudersand vid Sudersandsstranden är det självklara matstellät — enkel mat, glass, fika och kaffe i strandsand. Öppet i stort sett hela sommarsäsongen. Handla med dig mat från Fårösund eller Visby för längre utflykter. En väl packad kylväska är mer användbar än en restaurangguide på Fårö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende på och nära Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sudersands Camping vid Sudersandstranden är det enklaste sättet att övernatta — tältplatser och stugor direkt vid havet. Boka tidigt för juli. Privatuthyrda stugor och lägenheter på Fårö hittas via Airbnb och semesterboende.se. Fårösund på fastlandssidan har fler hotellalternativ om du hellre bor kvar på Gotland och åker dagstur till Fårö. Visby med sina hotell är 60 km söderut.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Norra Gotland – utforska mer</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårösund och norra Gotland erbjuder mer än färjeläget. Bunge friluftsmuseum norr om Bunge samhälle är ett av Gotlands bästa friluftsmuser med historiska byggnader, forntida bilstenar och medeltida kalk. Fårösunds hamn har ett par restauranger. Lummelundagrottan — Gotlands mest besökta attraktion — ligger ca 20 km söder om Fårösund på vägen mot Visby.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiska tips för Fårö:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Ta med kontanter — kortterminaler är osäkra på ön</li>
+<li>Fyll på vatten och mat i Fårösund eller Visby innan färjan</li>
+<li>Bäst tid: juni och tidig juli — folktommare och vackrast ljus</li>
+<li>Mygg finns vid inre delar av ön kvällstid — ta med myggmedel</li>
+<li>Gratisfärjan kör kontinuerligt, ingen bokning behövs</li>
+<li>Langhammars raukar: ca 15 min bilfärd från hamnen, sedan 10 min promenad</li>
+</ul>
+</div>
+`,
+
+  'camping-gotland': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är ett av Sveriges bästa campingmål — långa sandstränder, milt klimat med fler soltimmar än fastlandet och campingplatser från enkelt tältäventyr till resort-standard. Guide till de bästa campingarna och vad du behöver veta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tofta Strand Camping</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tofta Strand söder om Visby är Gotlands mest populära familjecamping — och med rätta. Campingen ligger direkt vid Tofta strand, en av öns finaste sandstränder med grunt och varmt vatten. Välskött anläggning med stugor, husvagnsplatser och tältplatser, service­hus, matbutik och restaurang. Perfekt bas för dagsutflykter till Visby (15 min med bil) och raukar. Boka i november–december för juli — campingen är fullbelagd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sudersands Camping, Fårö</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Direkt vid Sudersands världsklassstrand på Fårö — en av Gotlands absolutt vackraste campingplatser. Tält, husvagn och enkla stugor. Servicenivån är enklare än Tofta men läget är oöverträffat. Nära Langhammars och Gamla Hamn raukar för dagsutflykter. Kom tidigt i juli — campingen fylls snabbt och har begränsad kapacitet. Fårö nås med gratisfärja från Fårösund.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kneippbyn Resort & Camping</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kneippbyn strax söder om Visby är mer resort än traditionell camping — med vattenpark, minigolf, restauranger och ett brett utbud av stugor och lägenheter utöver tält- och husvagnsplatser. Passar barnfamiljer perfekt som bas i Visby. Prisbild: högre än övriga campingar, men ingår mer service och aktiviteter.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lummelunda Camping</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturnära camping norr om Visby, perfekt kombinerad med besök på Lummelundagrottan (100 m bort). Lugn och rofylld utan den stora campingens folkmassor. Stugor och tältplatser. Bra bas för norra Gotland — nära Bro kyrka, Fårösunds färjeläge och Lickershamn raukar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping och övernattning i tält</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Allemansrätten gäller på Gotland, men med en viktig skillnad mot fastlandet: mycket av Gotlands mark är privatägd och det finns gott om "Privat ägor" och "Camping förbjuden"-skyltar. Fria övernattningar är möjliga längs kustens naturreservat och på utpekade platser längs vandringsleder. Kolla alltid Länsstyrelsen Gotlands karta för aktuella reservat och regler. Det är aldrig tillåtet att campa inom 300 m från bebyggelse utan markägarens tillstånd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Att tänka på — camping på Gotland</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+<li>Boka husvagnplats och stuga <strong>senast november–december</strong> för juli</li>
+<li>Bil är nödvändigt för att ta sig runt — kollektivtrafiken är begränsad</li>
+<li>Gotland har fler soltimmar per dag än fastlandet — solkräm och hatt viktigt</li>
+<li>Ta med kontanter till mindre campingar och direkthandel</li>
+<li>Gotland är ovanligt torrt — skogsbrandrisken kan vara hög; elda bara på anvisad plats</li>
+<li>Medeltidsveckan (tidig aug) fyller ALLT på Gotland — boka extratidigt de åren</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Ta sig till Gotland med husvagn eller tält:</strong>
+<p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Destination Gotland kör bilfärja från Nynäshamn (3 tim) och Oskarshamn (3,5 tim) — husvagn och bil bokas separat. Priser för husvagn: ca 2 000–4 000 kr tur/retur beroende på storlek och säsong. Boka färja och camping samtidigt för bästa tillgänglighet i juli.</p>
+</div>
+`,
+
+  'camping-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän är ett av Sveriges populäraste campingmål — dramatiska klipphällar, varmt Västerhavet och campingplatser från enkel tältplats på klippan till fullserviceanläggningar med stugor och pool. Guide till de bästa campingarna längs Bohusläns kust.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Havstenssund Stugby & Camping</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">En av Bohusläns vackraste campingplatser — direkt vid Havstenssundet utanför Fjällbacka med utsikt mot öar och klippor. Blandning av tältplatser, husvagnsplatser och stugor. Nära Fjällbacka, Hamburgsund och Väderöarnas naturreservat. Kajakuthyrning finns i anslutning. Familjevänlig med lugnt vatten och klippbad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestads Camping</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välskött camping i Grebbestad med nära till fjord, fiskebåtar och det mest genuina fiskesamhällslivet i Bohuslän. Stugor och platser för tält och husvagn. Utsikt mot Grebbestadsfjorden. Grebbestad är känt för kräftor och ostron — campinggästerna kan köpa direkt från fiskarna. Populärt bland barnfamiljer och skaldjursentusiaster.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarnas Camping, Sydkoster</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Camping på bilfria Sydkoster — Kosterhavets nationalpark och ett av Sveriges artrikaste hav. Tältplatser och enkla stugor. Nås med färja från Strömstad (ca 45 min). Ingen bil behövs på ön — cykla eller gå. Snorkling, kajakpaddling och vandring i nationalparken är höjdpunkterna. Unik upplevelse för den som vill vara omgiven av natur.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Camping nära Smögen och Kungshamn</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögenbryggan och Kungshamn är centrum för Bohusläns sommarliv. Flera campingar i området erbjuder enklare husvagns- och tältplatser nära allt. Passa på att besöka Smögenbryggan på morgonen för nyfångad räka direkt från båten. Snabbmat, glassbarer och aktiviteter finns inom gångavstånd.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping på klipporna — Allemansrätten i Bohuslän</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns klipphällar och kust lämpar sig väl för friluftsövernattning via Allemansrätten. Du får tälta 1–2 nätter på de flesta platser längs kustlinjen. Undantag: naturreservat med tältförbud, privata tomter och bryggor. Praktiska regler: tält 150 m från bebyggelse, elda aldrig på klippan (brandfarligt och missfärgar), ta med allt skräp och lämna platsen som du fann den. Bohuslän är ett paradis för paddlare som vill campa längs leden — ta kajak eller SUP och välj egna sovplatser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Camping på Tjörn och Orust</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tjörn och Orust — Bohusläns två stora öar anslutna med bro — har flera campingalternativ. Nära Nordiska Akvarellmuseet på Tjörn och de historiska fiskelägena på Orust (Mollösund, Käringön och Gullholmen nås med korta bilfärjor). Orust är Bohusläns bästa ö för camping med varierat landskap och fler alternativ till de överfulla populärortena.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tips för camping i Bohuslän:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Boka campingplats i god tid — Bohuslän är fullbokat vecka 27–31</li>
+<li>Ta med halkskyddsskor för klipphällarna — de kan vara halt vid regnväder</li>
+<li>Temperaturen i Västerhavet är varmare än Östersjön: 18–22°C i juli–aug</li>
+<li>Västtrafik Sommarkort täcker buss och båt i hela Bohuslän</li>
+<li>Trafikverkets vägfärjor till öar (Orust, Käringön) är gratis</li>
+<li>Mygg är inget problem på klippkusten — en fördel mot inlandet</li>
+</ul>
+</div>
 `,
 
   'ulvon-guide': `
