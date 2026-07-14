@@ -5,6 +5,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import RelatedPosts from '@/components/RelatedPosts'
 import { getRelatedPosts } from '@/lib/postRelated'
 import Icon, { type IconName } from '@/components/Icon'
+import EmailSignup from '@/components/EmailSignup'
 
 // ─── Post content ───────────────────────────────────────────────────────────
 
@@ -1482,6 +1483,16 @@ export default async function BloggPostPage({
      </div>
    </div>
  )}
+
+ {/* Newsletter */}
+ <div style={{ marginTop: 40 }}>
+   <EmailSignup
+     source="blogg-article"
+     variant="card"
+     title="Få veckans skärgårdstips"
+     description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
+   />
+ </div>
 
  {/* Back + CTA */}
  <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
