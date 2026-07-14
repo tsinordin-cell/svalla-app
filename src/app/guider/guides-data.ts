@@ -169,6 +169,8 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'hyra-stuga-gotland':                   'gotland',
   'faro-guide':                           'gotland',
   'visby-sommar-guide':                   'gotland',
+  'camping-gotland':                      'gotland',
+  'camping-bohuslan':                     'goteborg',
   // ── Öland ───────────────────────────────────────────────────────
   'oland-guide':                          'oland',
   'kraftskiva-oland-2026':                'oland',
@@ -1538,6 +1540,30 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Vad kostar det att besöka Visby ringmur?', a: 'Att promenera längs ringmuren är gratis. Gotlands Museum (inne i Visby) kostar ca 120 kr. Guidade turer runt muren kostar 150–250 kr. Medeltidsveckan i aug är i sig gratis att delta i som åskådare.' },
       { q: 'Vilka är de bästa restaurangerna i Visby?', a: 'Gotlands matscen är en av Sveriges bästa. Stjärnrestaurangen Bäckahästen och Clematis i Klostret är finare alternativ. Bolaget, Gustavsvik och Skeppsbron är mer avslappnade. Boka alltid bord i förväg i juli.' },
       { q: 'Hur länge behöver man i Visby?', a: '2–3 dagar räcker för att se ringmuren, Gotlands Museum, restaurangscenen och stränderna närmast stan. Med bil kan du kombinera Visby med Fårö och raukar på 4–5 dagar.' },
+    ],
+  },
+  {
+    slug: "camping-gotland",
+    title: "Camping på Gotland – de bästa campingarna 2025",
+    excerpt: "Gotland har några av Sveriges bästa campingplatser — Tofta Strand, Sudersand på Fårö och Kneippbyn. Guide till campingarna, boknings­tips och vad du behöver veta.",
+    category: "Region", emoji: "⛺", readTime: "7 min", fullContent: true,
+    topics: ['camping', 'gotland', 'familj'],
+    faqs: [
+      { q: 'Vilken är den bästa campingen på Gotland?', a: 'Tofta Strand Camping är Gotlands populäraste familjecamping med direktläge vid Tofta strand — en av öns vackraste sandstränder. Sudersands Camping på Fårö är det vackraste läget med fantastiska raukar nära. Kneippbyn Resort söder om Visby passar familjer med höga krav på service och aktiviteter.' },
+      { q: 'Kan man tälta fritt på Gotland?', a: 'Allemansrätten gäller på Gotland, men myckt mark är privatägd. Tält 1–2 nätter är möjligt i naturreservat och längs kustens allmänna marker. Kolla alltid Länsstyrelsen Gotlands karta och undvik privatägd mark. Campingförbud finns på delar av ön.' },
+      { q: 'När ska man boka camping på Gotland?', a: 'Boka stuga och husvagnsplats senast november–december för juli. Populära campingar är fullbokade månader i förväg inför högsäsongen. Tältplatser är lite lättare att få men också de tar slut tidigt för vecka 28–30.' },
+    ],
+  },
+  {
+    slug: "camping-bohuslan",
+    title: "Camping i Bohuslän – klippor, fjordar och havsbad",
+    excerpt: "Bohusläns kust är ett av Sveriges bästa campingmål — dramatiska klipphällar, varmt Västerhavet och campingplatser från Kosteröarna till Havstenssund. Komplett guide.",
+    category: "Region", emoji: "⛺", readTime: "7 min", fullContent: true,
+    topics: ['camping', 'bohuslan', 'familj'],
+    faqs: [
+      { q: 'Vilken är den bästa campingen i Bohuslän?', a: 'Havstenssund Stugby & Camping utanför Fjällbacka har ett av Bohusläns vackraste lägen med utsikt mot öar och klippor. Grebbestads Camping vid fjorden passar den som vill ha genuint fiskesamhällsliv. Kosteröarnas Camping på Sydkoster är unik — bilfri ö, nationalpark och snorkling.' },
+      { q: 'Kan man tälta fritt på klipporna i Bohuslän?', a: 'Ja, Allemansrätten tillåter tält 1–2 nätter på de flesta klipphällar längs kusten. Undvik privatägda tomter, bryggor och naturreservat med tältförbud. Elda aldrig direkt på klippan — det missfärgar och är brandfarligt. Ta med allt skräp.' },
+      { q: 'Hur varmt är havet i Bohuslän?', a: 'Västerhavet är varmare än Östersjön: 18–22°C i juli–augusti. Strömmar från Nordsjön för in varmt vatten och gör Bohuslän till ett av Sveriges bästa ställen för havsbad.' },
     ],
   },
   // ── Batch G: Resterande guider – alla serier ──────────────────────────────────
