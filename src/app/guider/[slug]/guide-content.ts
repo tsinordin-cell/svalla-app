@@ -4916,6 +4916,118 @@ export function getGuideContent(slug: string): string {
 </div>
 `,
 
+  'gotland-med-barn': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland är ett av Sveriges bästa resmål för barnfamiljer — solgaranterat klimat, platt terräng för cykling, fantastiska sandstränder och aktiviteter som träffar rätt i alla åldrar. Här är tio saker du inte bör missa med barnen på ön.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">1. Lummelundagrottan</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands mest besökta attraktion och ett självklart barnfamiljestopp. Den underjordiska grottan norr om Visby är 4 km lång och bildades av smältvatten för 10 000 år sedan. Guidade turer tar ca 50 minuter och leder genom stalaktiter, underjordiska sjöar och dramatiska formationer. Barn mellan 5 och 12 år brukar tycka att grottan är roligast. Ljackan, en liten å i grottsystemet, rinner fortfarande. Ta med en tunn jacka — temperaturen inne är alltid 8°C oavsett hur varmt det är utomhus.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">2. Kneippbyn Resort</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kneippbyn strax söder om Visby är Gotlands roligaste barnfamiljsdestination. Vattenpark med rutschbanor, utomhuspool och barnpool. Minigolf, aktivitetsytor och restauranger. Kneippbyn är ett heldag-ställe — kom tidigt och stanna till kvällen. Boende finns också på området för den som vill ha allt under ett tak. Populärt redan från kl. 10, så kom inte efter lunch i juli.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">3. Tofta strand</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands bästa familjestrand — bred sandstrand, grunt och långsamt inströmmande vatten som gör det tryggt för yngre barn att bada. Servicehuset har toaletter, café och glass. Parkeringen är stor men fylls ändå på högsommaren — kom senast 9:30 på morgonen. Tofta Strand Camping ligger intill, bra om ni vill campa nära stranden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Visby ringmur och medeltidsstaden</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Visby ringmur från 1200-talet är ett av Nordens bäst bevarade medeltida stadsmurssystem. Barn förvandlas ofta till riddare och prinsessor när de kliver in genom portarna. Promenera längs murens insida, utforska kyrkoruinerna (S:ta Katarina-ruinen är mest imponerande) och bli vilse i kullerstensgatornas labyrint. Gotlands Museum inne i Visby har en bra sektion om medeltiden med föremål och berättelser som engagerar barn.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">5. Fårö-äventyret</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gratisfärjan till Fårö är ett äventyr i sig för barnen — bilar på en båt! Väl på ön är Langhammars raukfält dramatiska som ett Troll-landskap. Barn älskar att klättra på och runt raukarna (men aldrig på dem — det är förbjudet och farligt). Sudersand strand på Fårö är en av Gotlands bästa och i sig värd resan. Planera ca en hel dag för Fårö-utflykten.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">6. Cykla runt på ön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland är ett av Sveriges absolut bästa cykelresmål för barnfamiljer. Ön är platt, vägnätet är enkelt och bilden med vita kalkstensvägar och blommande ängar är unik. Cykeluthyrning finns i Visby centrum, inkl. barnstolar, kärror och elcyklar för föräldrar med lite tröttare ben. Klassisk familjeetapp: Visby → Tofta strand tur/retur (ca 14 km total, längs cykelled).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">7. Gutefår och lantgårdsliv</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gutefåret är Gotlands eget fårraser — en av de äldsta i världen. Längs Gotlands vägar stöter du på dem hela tiden, och barn älskar de raggiga, hornbärande djuren. Flera bondgårdar och naturturismföretag på ön erbjuder guidade besök och möjlighet att mata djuren. Gotlands lokala lamb är också fantastisk mat — grillade lammkotletter från en lokal gård är en av öns bästa matupplevelser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">8. Raukfält — naturens lekplats</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands kalkstensformationer (raukar) är spännande för barn på ett helt annat sätt än för vuxna — de är naturens egna klätterställningar och fantasifigurer. Digerhuvud-raukfältet på Fårö är lättillgängligt. Lickershamn norr om Visby på fastlandet har raukar direkt vid havet med en dramatisk siluett. Hallshuk på nordvästra Gotland har raukar längs en vacker vandringsstig.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">9. Fiska och paddla</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands inre sjöar och kustlinje lämpar sig väl för fiske med barn. Uthyrning av kajaker och SUP finns i Visby och vid flera stränder. Snorkling på Gotlands klara östra kust är en upplevelse — sikten under ytan är bättre än i Stockholms skärgård. Havstemperaturen i Östersjön vid Gotland når 20–23°C i juli–aug, varmare än fastlandet.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">10. Glasskvällen i Visby</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingen Gotland-resa för barnfamiljer är komplett utan en glasspromenad längs Visbys hamnfront på kvällen. Flera glasskaféer längs Strandgatan och hamnen håller öppet till sent. Välj local glassproducenter som använder gotländsk mjölk. Det enkla nöjet — glass i solnedgångsljuset med utsikt mot Östersjön och medeltidsmurens silhuett — är svårt att slå.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktiskt för barnfamiljer på Gotland:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Bil behövs — kollektivtrafiken är begränsad utanför Visby</li>
+<li>Boka färja (Destination Gotland) tidigt — jul och sommar fylls fort</li>
+<li>Bästa tid: tidig juli eller sen juni — varmare hav, lite färre turister</li>
+<li>Solkräm är viktigare på Gotland — mer sol per dag än fastlandet</li>
+<li>Ta med cykelsäten om ni har — det sparar hyrkostnad</li>
+</ul>
+</div>
+`,
+
+  'camping-stockholm-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård är ett av världens bästa naturcampingmål — 30 000 öar och skär, gott om naturreservat med fria övernattningsplatser och STF-anläggningar på nyckelöar. Guide till campingplatserna, friluftscamping och vad du behöver veta.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Finnhamn — det enklaste valet</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Finnhamn i mellanskärgården är Stockholms mest tillgängliga skärgårdsö för camping och övernattning. STF driver vandrarhem och stugby på ön, med tält- och hängmattsplatser under sommaren. Åker med Waxholmsbåten direkt från Strömkajen (ca 2,5 tim) eller kortare från Ljusterö. Café, bastu och fina bad. Perfekt för en nybörjarövernattning i skärgården — service finns men naturen dominerar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arholma — yttre skärgårdens pärla</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra skärgårdens yttersta del är en av Stockholms vackraste öar — klippiga hällar, öppet hav och ett fiskeläge som inte förändrats på decennier. STF Arholma har vandrarhem med enkla övernattningsplatser. Nås med buss till Simpnäs + Waxholmsbåt, eller direktlinje säsongsvis. Fyrtornet på öns norra udde ger utsikt mot öppet Bottenhavet. Mer avlägset och vildare än Finnhamn — passa för den som vill komma bort på riktigt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utö — söder om Stockholm</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö i södra skärgården är ett av Stockholms mest populära övernattningsresmål med ett varierat utbud av boende. Utö Värdshus är klassiskt (och dyrt), men det finns enklare alternativ inklusive vandrarhem och stuguthyrning. Nås med pendelbåt från Nynäshamn (ca 1,5 tim). Cykla runt ön, bada vid Gruvbryggan och besök landets äldsta fortfarande aktiva gruva. Mer "resort" än tält — passa för den som vill ha bekvämlighet med skärgårdsatmosfär.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Friluftscamping — Allemansrätten i skärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdens absoluta höjdpunkt för friluftsmänniskan är att campa fritt via Allemansrätten. Du får tälta 1–2 nätter på de flesta öar och klipphällar. Välj platser i naturreservat — Stockholms skärgårds nationalpark och de många naturreservaten har gott om mark utan byggförbud. Viktiga regler: tält minst 70 m från bebyggelse, elda bara i grillplats och aldrig direkt på klipphäll (det missfärgar permanent), ta med allt skräp. Många öar har STF-rastkojor och tältplatser att boka via STF.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Båtcamping — skärgårdens bästa sätt</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Egentligen är båtcamping det naturliga sättet att uppleva Stockholms skärgård. Hyra en liten motorbåt (kan göras utan körkort upp till 12 hk), paddla kajak eller hyra en segelbåt och välj själv var du ankrar. Kajak och SUP-uthyrning finns i Vaxholm, Gustavsberg och Stavsnäs. Kajak är smidigt för att ta sig till öar som inte har Waxholmsångare. Populär kajakrutt: Stavsnäs → Bullerö naturreservat → Kymmendö (1–3 dagars paddling beroende på tempo).</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bullerö naturreservat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bullerö i yttre skärgården (södra delen) är ett populärt mål för båtfolk och kajakpaddlare. Naturreservat med fina tältplatser och en gammal fiskestation. Nås enklast med kajak från Stavsnäs eller egen båt — ingen reguljär Waxholmslinje. Gott om gömda vikar och klippbad.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Praktisk info för skärgårdscamping:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>SL-kortet gäller INTE på Waxholmsbåtarna — köp separat Waxholmsbolagets biljett</li>
+<li>Waxholmsbolaget kör till ca 100 öar i Stockholms skärgård</li>
+<li>Ta med alla sopor — det finns sällan sopkärl på öarna</li>
+<li>Sötvatten finns inte på alla öar — ha med extra</li>
+<li>Myggmedel är ett måste innanför den yttre skärgårdens klipphällar</li>
+<li>Boka STF-platser (Finnhamn, Arholma, Kymmendö) via stfturist.se</li>
+</ul>
+</div>
+`,
+
+  'fiskelage-bohuslan': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohusläns fiskelägen är mer äkta Sverige än de flesta vet — vita trähus på klippor, saltluft och starka luktande hummer och räka direkt från båten. Guide till de vackraste och mest genuina fiskelägena längs Bohusläns kust.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Smögen — Bohusläns hjärta</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen är Bohusläns mest besökta plats och med rätta — den långa bryggan (Smögenbryggan) kantad av färgglada bodar och restauranger är unik i Sverige. Gå upp tidigt på morgonen och köp nyfångad räka och skaldjur direkt från fiskebåtarna vid bryggan. Smögen är trångt i juli men fantastiskt vackert utanför högsäsong. Nås med bro från Kungshamn på fastlandet.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Fjällbacka — Camilla Läckbergs hemstad</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjällbacka är ett av Bohusläns vackraste fiskelägen — kompakt, dramatiskt inramat av klippväggar och med en centralt placerad torg bredvid vattnet. Känt som Camilla Läckbergs hemstad och decor för Fjällbackamorden. Väderöarna naturreservat nås med båt från hamnen. Ingrid Bergman tillbringade somrar här — torget är uppkallat efter henne. Enklare att andas i än Smögen, med mer genuint fiskesamhällskänsla.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad — skaldjurshuvudstaden</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad vid Grebbestadsfjorden är Bohusläns skaldjurshuvudstad. Hit kommer folk för kräftor, ostron och hummer direkt från havet. Lokal fiskauktion och fiskehamn ger en autentisk känsla som inte finns i de mer turistifierade grannsambällena. Hamnen är aktiv och genuint levande. Sommaröppna restauranger längs vattnet serverar det bästa Västerhavet har att erbjuda.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hamburgsund — lugnets oas</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hamburgsund utanför Fjällbacka är Bohusläns lugnaste och mest genuina fiskeläge. Ingen av stororternas intensitet, bara ett litet samhälle med hamn, fiskeläge och utsikt mot Hamburgön (dit gratisfärja kör). Perfekt som bas för utflykter till Fjällbacka och Väderöarna. Hamburgön mittemot är bilfri och har fina vandringsleder och badplatser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lysekil — fiskestaden med historia</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lysekil är Bohusläns äldsta stad och fortfarande en aktiv fiskehamnstad. Gågatorna i centrum är fulla av liv och Stångehuvud-naturreservatet norr om stan har dramatiska klippvandringsleder ner till havet. Havets Hus — ett av Sveriges bästa akvariemuseer — är perfekt för regniga dagar. Färja tar dig till Fiskebäckskil på andra sidan fjorden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Mollösund och Käringön — Orusts dolda pärlor</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På ön Orust (Bohusläns största ö, nådd med bro) finns fiskelägena Mollösund och Käringön som är bland de äkta pärlorna längs kusten. Käringön nås med bilfärja och är ett utpräglat fiskesamhälle med trångboddhet, klippor och genuint skärgårdsliv. Mollösund är något mer tillgängligt med bil. Båda ger en upplevelse av ett Bohuslän som inte marknadsförts ihjäl sig.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
+<strong style="color:var(--sea)">Tips för att uppleva fiskelägena:</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;color:var(--txt2);line-height:2">
+<li>Räka köper du bäst tidigt på morgonen direkt från fiskebåtarna vid bryggan</li>
+<li>Parkeringsplatser är begränsade i Smögen och Fjällbacka — åk kollektivt eller cykla</li>
+<li>Västtrafik buss 870/871 kör längs kusten mellan Göteborg och Strömstad</li>
+<li>Bor du i ett fiskeläge: boka tidigt — sommarstugorna och BB är fullbokade i juli</li>
+<li>Säsongen är kort: fiskelägena är som bäst juni–aug, sedan stänger det mesta</li>
+</ul>
+</div>
+`,
+
   'ulvon-guide': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Ulvön i Höga Kusten är surströmmingens heliga land och en av Norrlands vackraste öar. Rökt sik, traditionellt fiskeliv och dramatiska Höga Kustens klipphällar gör Ulvön till en destination utöver det vanliga.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Surströmmingens hemort</h2>
