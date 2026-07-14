@@ -17,6 +17,8 @@ type Post = {
  emoji: string
  content: string
  tags: string[]
+ faqs?: Array<{ q: string; a: string }>
+ updatedAt?: string
 }
 
 const POSTS: Record<string, Post> = {
@@ -463,9 +465,16 @@ Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplev
  excerpt: 'Klippbad, sandstrand eller bastu vid vattnet? Vi har listat de absolut bästa badplatserna.',
  category: 'Aktiviteter',
  date: '2026-04-08',
+ updatedAt: '2026-07-14',
  readTime: '6 min',
  emoji: '',
  tags: ['Bad', 'Badplatser', 'Sommar'],
+ faqs: [
+   { q: 'Vilka är de bästa badplatserna i Stockholms skärgård?', a: 'Trouville på Sandhamn är den mest kända sandstranden. Stora Sand på Utö är bäst för barnfamiljer med grunt vatten. Fejan naturreservat norr om Furusund har kristallklart vatten och vita klipphällar. Kymmendö (Strindbergs ö) är en av de mest stämningsfulla platserna att bada på i hela skärgården.' },
+   { q: 'Kan man bada gratis i Stockholms skärgård?', a: 'Ja — alla badplatser i Stockholms skärgård är gratis tack vare Allemansrätten. Du har rätt att bada och vistas på land som inte är privattomt, vilket täcker de allra flesta klippor och stränder i skärgårdslandskapet.' },
+   { q: 'Vilken badplats i skärgården är bäst för barn?', a: 'Stora Sand på Utö har grunt, sandigt vatten och är ett av de säkraste badfamiljealternativen. Dalarö klapperstensstrand nås med bil och passar för barn. Fjäderholmarna (25 min från Stockholm) har klippbad som är tryggt och lättillgängligt utan lång resväg.' },
+   { q: 'Hur tar man sig till badplatser i skärgården utan båt?', a: 'Waxholmsbolaget kör till Sandhamn, Utö, Möja, Ingmarsö och många fler. Dalarö nås med buss 834/840 från Handen. Fjäderholmarna nås med båt från Strandvägen på 25 minuter. Västerudd på Värmdö nås med buss och promenad från Gustavsberg.' },
+ ],
  content: `
 Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Alla är gratis tack vare allemansrätten. Här är våra tolv favoriter.
 
@@ -1311,33 +1320,34 @@ export default async function BloggPostPage({
  const jsonLd = {
  '@context': 'https://schema.org',
  '@type': 'Article',
+ '@id': `https://svalla.se/blogg/${slug}#article`,
  headline: post.title,
  description: post.excerpt,
  datePublished: post.date,
- dateModified: post.date,
+ dateModified: post.updatedAt ?? post.date,
  url: `https://svalla.se/blogg/${slug}`,
- image: 'https://svalla.se/og-image.jpg',
- author: {
- '@type': 'Organization',
- name: 'Svalla',
- url: 'https://svalla.se',
+ image: {
+   '@type': 'ImageObject',
+   url: `https://svalla.se/api/og/blogg/${slug}`,
+   width: 1200,
+   height: 630,
  },
- publisher: {
- '@type': 'Organization',
- name: 'Svalla',
- url: 'https://svalla.se',
- logo: {
- '@type': 'ImageObject',
- url: 'https://svalla.se/icon-192.png',
- },
- },
+ author: { '@type': 'Organization', '@id': 'https://svalla.se/#organization', name: 'Svalla' },
+ publisher: { '@id': 'https://svalla.se/#organization' },
  keywords: post.tags.join(', '),
  inLanguage: 'sv-SE',
- about: {
- '@type': 'Thing',
- name: 'Stockholms skärgård',
- },
+ mainEntityOfPage: { '@type': 'WebPage', '@id': `https://svalla.se/blogg/${slug}` },
  }
+
+ const faqSchema = post.faqs && post.faqs.length > 0 ? {
+   '@context': 'https://schema.org',
+   '@type': 'FAQPage',
+   mainEntity: post.faqs.map(f => ({
+     '@type': 'Question',
+     name: f.q,
+     acceptedAnswer: { '@type': 'Answer', text: f.a },
+   })),
+ } : null
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
@@ -1345,6 +1355,12 @@ export default async function BloggPostPage({
  type="application/ld+json"
  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
  />
+ {faqSchema && (
+   <script
+     type="application/ld+json"
+     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+   />
+ )}
  <script
  type="application/ld+json"
  dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -1439,6 +1455,32 @@ export default async function BloggPostPage({
  ))}
  </div>
  </div>
+ )}
+
+ {/* FAQ-sektion */}
+ {post.faqs && post.faqs.length > 0 && (
+   <div style={{ marginTop: 40 }}>
+     <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', marginBottom: 16 }}>
+       Vanliga frågor
+     </h2>
+     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+       {post.faqs.map((faq, i) => (
+         <div key={i} style={{
+           background: 'var(--white)',
+           border: '1px solid rgba(10,123,140,0.12)',
+           borderRadius: 12,
+           padding: '16px 20px',
+         }}>
+           <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--txt)', marginBottom: 8 }}>
+             {faq.q}
+           </div>
+           <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7 }}>
+             {faq.a}
+           </div>
+         </div>
+       ))}
+     </div>
+   </div>
  )}
 
  {/* Back + CTA */}
