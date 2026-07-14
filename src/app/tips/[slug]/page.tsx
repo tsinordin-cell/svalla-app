@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import { getArticleBySlug, renderMarkdown } from '@/lib/articles'
+import EmailSignup from '@/components/EmailSignup'
 
 export const revalidate = 300
 
@@ -135,6 +136,16 @@ export default async function TipsArticlePage({ params }: Props) {
           ))}
         </div>
       )}
+
+      {/* Newsletter */}
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 40px' }}>
+        <EmailSignup
+          source="tips-article"
+          variant="card"
+          title="Få veckans skärgårdstips"
+          description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
+        />
+      </div>
 
       {/* Typography for markdown body */}
       <style>{`
