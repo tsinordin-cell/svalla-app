@@ -1,6 +1,9 @@
 export type GuideCategory = "Praktisk" | "Transport" | "Aktivitet" | "Mat" | "Säsong" | "Region"
 
-export type TransactionalTopic = 'hyra-bat' | 'segelkurs' | 'teambuilding' | 'kajak'
+export type TransactionalTopic =
+  | 'hyra-bat' | 'segelkurs' | 'teambuilding' | 'kajak'
+  | 'camping' | 'familj' | 'barn' | 'natur' | 'mat'
+  | 'gotland' | 'bohuslan' | 'stockholm' | 'aland' | 'oland'
 
 // ── Geografisk region-arkitektur ────────────────────────────────────────────
 export type GuideRegion =
