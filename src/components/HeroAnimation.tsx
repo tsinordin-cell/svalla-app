@@ -172,6 +172,15 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       return peakY(soft)
     }
 
+    // islandY — används för de gröna öarna.
+    // På mobil plattas de ner till samma låga proportioner som bakgrundsöarna (faktor 0.40).
+    // På desktop är islandY identisk med peakY.
+    const islandY = (hFrac: number): number => {
+      if (W >= 600) return peakY(hFrac)
+      const soft = 0.58 - (0.58 - hFrac) * 0.40
+      return peakY(soft)
+    }
+
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
     const wave = (x: number): number => {
       const b  = WL()
@@ -547,8 +556,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Flat granite island — low profile, wide shape
       cx.beginPath()
       cx.moveTo(-6, wb + ext)
-      cx.bezierCurveTo(W*0.010, peakY(0.448), W*0.058, peakY(0.428), W*0.138, peakY(0.440))
-      cx.bezierCurveTo(W*0.195, peakY(0.455), W*0.240, peakY(0.480), W*0.268, wb + ext)
+      cx.bezierCurveTo(W*0.010, islandY(0.448), W*0.058, islandY(0.428), W*0.138, islandY(0.440))
+      cx.bezierCurveTo(W*0.195, islandY(0.455), W*0.240, islandY(0.480), W*0.268, wb + ext)
       cx.lineTo(-6, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
@@ -595,32 +604,34 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Flat rocky island — lower, wider
       cx.beginPath()
       cx.moveTo(W*0.508, wb + ext)
-      cx.bezierCurveTo(W*0.528, peakY(0.400), W*0.595, peakY(0.378), W*0.682, peakY(0.398))
-      cx.bezierCurveTo(W*0.740, peakY(0.425), W*0.780, peakY(0.470), W*0.796, wb + ext)
+      cx.bezierCurveTo(W*0.528, islandY(0.400), W*0.595, islandY(0.378), W*0.682, islandY(0.398))
+      cx.bezierCurveTo(W*0.740, islandY(0.425), W*0.780, islandY(0.470), W*0.796, wb + ext)
       cx.lineTo(W*0.508, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
-      // Rocky extension — udde-topp sedan sluttning mot kanten
-      cx.beginPath()
-      cx.moveTo(W*0.788, wb + ext)
-      cx.bezierCurveTo(W*0.808, rockY(0.456), W*0.840, rockY(0.436), W*0.868, rockY(0.430))
-      cx.bezierCurveTo(W*0.896, rockY(0.440), W*0.930, rockY(0.452), W*0.962, rockY(0.458))
-      cx.bezierCurveTo(W*0.980, rockY(0.460), W*0.993, rockY(0.462), W+8, rockY(0.462))
-      cx.lineTo(W+8, wb + ext)
-      cx.fillStyle = th.rockColor; cx.fill()
-
-      // Granite speckle
-      cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), rockY(0.464), 2, 2)
-
-      // Strata lines right shore
-      cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
-      for (let l = 0; l < 2; l++) {
-        const ly = wb * (0.962 + l * 0.014)
+      // Rocky extension — döljs på mobil (ritas bara på desktop)
+      if (W >= 600) {
         cx.beginPath()
-        cx.moveTo(W*0.796, ly)
-        cx.bezierCurveTo(W*0.838, ly - H*0.002, W*0.878, ly + H*0.002, W*0.928, ly)
-        cx.stroke()
+        cx.moveTo(W*0.788, wb + ext)
+        cx.bezierCurveTo(W*0.808, rockY(0.456), W*0.840, rockY(0.436), W*0.868, rockY(0.430))
+        cx.bezierCurveTo(W*0.896, rockY(0.440), W*0.930, rockY(0.452), W*0.962, rockY(0.458))
+        cx.bezierCurveTo(W*0.980, rockY(0.460), W*0.993, rockY(0.462), W+8, rockY(0.462))
+        cx.lineTo(W+8, wb + ext)
+        cx.fillStyle = th.rockColor; cx.fill()
+
+        // Granite speckle
+        cx.fillStyle = 'rgba(195,188,175,0.16)'
+        for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), rockY(0.464), 2, 2)
+
+        // Strata lines right shore
+        cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
+        for (let l = 0; l < 2; l++) {
+          const ly = wb * (0.962 + l * 0.014)
+          cx.beginPath()
+          cx.moveTo(W*0.796, ly)
+          cx.bezierCurveTo(W*0.838, ly - H*0.002, W*0.878, ly + H*0.002, W*0.928, ly)
+          cx.stroke()
+        }
       }
 
       // Two pines
@@ -635,15 +646,17 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
-      // ── Mid skerry — udde-form med tydlig topp (som bakgrundsöarna)
-      cx.beginPath()
-      cx.moveTo(W*0.322, wb + ext)
-      cx.bezierCurveTo(W*0.332, wb * 0.988, W*0.348, rockY(0.466), W*0.366, rockY(0.460))
-      cx.bezierCurveTo(W*0.378, rockY(0.464), W*0.392, rockY(0.461), W*0.406, rockY(0.468))
-      cx.bezierCurveTo(W*0.416, wb * 0.990, W*0.424, wb, W*0.428, wb + ext)
-      cx.fillStyle = th.rockColor; cx.fill()
-      cx.fillStyle = 'rgba(195,188,175,0.20)'
-      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.342 + i*0.016), rockY(0.464), 2, 2)
+      // ── Mid skerry — döljs på mobil (ritas bara på desktop)
+      if (W >= 600) {
+        cx.beginPath()
+        cx.moveTo(W*0.322, wb + ext)
+        cx.bezierCurveTo(W*0.332, wb * 0.988, W*0.348, rockY(0.466), W*0.366, rockY(0.460))
+        cx.bezierCurveTo(W*0.378, rockY(0.464), W*0.392, rockY(0.461), W*0.406, rockY(0.468))
+        cx.bezierCurveTo(W*0.416, wb * 0.990, W*0.424, wb, W*0.428, wb + ext)
+        cx.fillStyle = th.rockColor; cx.fill()
+        cx.fillStyle = 'rgba(195,188,175,0.20)'
+        for (let i = 0; i < 3; i++) cx.fillRect(W*(0.342 + i*0.016), rockY(0.464), 2, 2)
+      }
 
       cx.restore()
     }
