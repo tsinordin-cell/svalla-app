@@ -152,6 +152,14 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     /* ── Layout ─────────────────────────────────────────────────────────── */
     const WL = () => H * 0.58
 
+    // On portrait/mobile screens, islands would become finger-thin because heights
+    // scale with H but widths scale with W. peakY() caps how far above the waterline
+    // a point can be — on mobile (narrow W, tall H) peaks are pushed down toward water.
+    const peakY = (hFrac: number): number => {
+      const scale = Math.min(1, (W / H) * 1.2)
+      return WL() - (WL() - H * hFrac) * scale
+    }
+
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
     const wave = (x: number): number => {
       const b  = WL()
@@ -256,19 +264,19 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     const drawFarIslands = () => {
       cx.fillStyle = th.farIsland
       cx.beginPath()
-      cx.moveTo(0, H * 0.445)
-      cx.bezierCurveTo(W*0.04, H*0.400, W*0.11, H*0.382, W*0.185, H*0.400)
-      cx.bezierCurveTo(W*0.23, H*0.415, W*0.265, H*0.435, W*0.295, H*0.445)
-      cx.lineTo(0, H * 0.445); cx.fill()
+      cx.moveTo(0, peakY(0.445))
+      cx.bezierCurveTo(W*0.04, peakY(0.400), W*0.11, peakY(0.382), W*0.185, peakY(0.400))
+      cx.bezierCurveTo(W*0.23, peakY(0.415), W*0.265, peakY(0.435), W*0.295, peakY(0.445))
+      cx.lineTo(0, peakY(0.445)); cx.fill()
       cx.beginPath()
-      cx.moveTo(W*0.365, H*0.445)
-      cx.bezierCurveTo(W*0.395, H*0.388, W*0.495, H*0.368, W*0.608, H*0.386)
-      cx.bezierCurveTo(W*0.672, H*0.400, W*0.722, H*0.428, W*0.752, H*0.445)
-      cx.lineTo(W*0.365, H*0.445); cx.fill()
+      cx.moveTo(W*0.365, peakY(0.445))
+      cx.bezierCurveTo(W*0.395, peakY(0.388), W*0.495, peakY(0.368), W*0.608, peakY(0.386))
+      cx.bezierCurveTo(W*0.672, peakY(0.400), W*0.722, peakY(0.428), W*0.752, peakY(0.445))
+      cx.lineTo(W*0.365, peakY(0.445)); cx.fill()
       cx.beginPath()
-      cx.moveTo(W*0.825, H*0.445)
-      cx.bezierCurveTo(W*0.862, H*0.382, W*0.930, H*0.372, W, H*0.390)
-      cx.lineTo(W, H * 0.445); cx.fill()
+      cx.moveTo(W*0.825, peakY(0.445))
+      cx.bezierCurveTo(W*0.862, peakY(0.382), W*0.930, peakY(0.372), W, peakY(0.390))
+      cx.lineTo(W, peakY(0.445)); cx.fill()
       // Colorful sjöbodar on far islands — west-coast style (red, yellow, blue, ochre)
       const sjobod = (bx: number, by: number, bw: number, bh: number, bodyColor: string) => {
         cx.fillStyle = bodyColor
@@ -280,16 +288,16 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }
       // Island 1 (left) — röd · gul · blå — tight west-coast row
       const bhb = H * 0.015, bwb = W * 0.015
-      sjobod(W*0.080, H*0.411, bwb, bhb, 'rgba(192,40,28,0.84)')
-      sjobod(W*0.099, H*0.411, bwb, bhb, 'rgba(200,162,22,0.82)')
-      sjobod(W*0.118, H*0.411, bwb, bhb, 'rgba(28,76,168,0.80)')
+      sjobod(W*0.080, peakY(0.411), bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.099, peakY(0.411), bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.118, peakY(0.411), bwb, bhb, 'rgba(28,76,168,0.80)')
       // Island 2 (centre) — röd · gul · blå · vit — tight west-coast row, centred
-      sjobod(W*0.474, H*0.400, bwb, bhb, 'rgba(192,40,28,0.84)')
-      sjobod(W*0.493, H*0.400, bwb, bhb, 'rgba(200,162,22,0.82)')
-      sjobod(W*0.512, H*0.400, bwb, bhb, 'rgba(28,76,168,0.80)')
-      sjobod(W*0.531, H*0.400, bwb, bhb, 'rgba(228,220,206,0.78)')
+      sjobod(W*0.474, peakY(0.400), bwb, bhb, 'rgba(192,40,28,0.84)')
+      sjobod(W*0.493, peakY(0.400), bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.512, peakY(0.400), bwb, bhb, 'rgba(28,76,168,0.80)')
+      sjobod(W*0.531, peakY(0.400), bwb, bhb, 'rgba(228,220,206,0.78)')
       // Island 3 (right) — gul sjöbod
-      sjobod(W*0.888, H*0.396, bwb, bhb, 'rgba(200,162,22,0.82)')
+      sjobod(W*0.888, peakY(0.396), bwb, bhb, 'rgba(200,162,22,0.82)')
     }
 
     /* ── Pine tree ───────────────────────────────────────────────────────── */
@@ -521,16 +529,16 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Flat granite island — low profile, wide shape
       cx.beginPath()
       cx.moveTo(-6, wb + ext)
-      cx.bezierCurveTo(W*0.010, H*0.448, W*0.058, H*0.428, W*0.138, H*0.440)
-      cx.bezierCurveTo(W*0.195, H*0.455, W*0.240, H*0.480, W*0.268, wb + ext)
+      cx.bezierCurveTo(W*0.010, peakY(0.448), W*0.058, peakY(0.428), W*0.138, peakY(0.440))
+      cx.bezierCurveTo(W*0.195, peakY(0.455), W*0.240, peakY(0.480), W*0.268, wb + ext)
       cx.lineTo(-6, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
       // Granite rock face — lower left shore
       cx.beginPath()
       cx.moveTo(-6, wb + ext)
-      cx.lineTo(-6, H*0.465)
-      cx.bezierCurveTo(W*0.012, H*0.428, W*0.040, H*0.418, W*0.062, H*0.445)
+      cx.lineTo(-6, peakY(0.465))
+      cx.bezierCurveTo(W*0.012, peakY(0.428), W*0.040, peakY(0.418), W*0.062, peakY(0.445))
       cx.lineTo(W*0.075, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
@@ -569,16 +577,16 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Flat rocky island — lower, wider
       cx.beginPath()
       cx.moveTo(W*0.508, wb + ext)
-      cx.bezierCurveTo(W*0.528, H*0.400, W*0.595, H*0.378, W*0.682, H*0.398)
-      cx.bezierCurveTo(W*0.740, H*0.425, W*0.780, H*0.470, W*0.796, wb + ext)
+      cx.bezierCurveTo(W*0.528, peakY(0.400), W*0.595, peakY(0.378), W*0.682, peakY(0.398))
+      cx.bezierCurveTo(W*0.740, peakY(0.425), W*0.780, peakY(0.470), W*0.796, wb + ext)
       cx.lineTo(W*0.508, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
       // Rocky extension — smooth to right edge
       cx.beginPath()
       cx.moveTo(W*0.788, wb + ext)
-      cx.bezierCurveTo(W*0.818, H*0.452, W*0.872, H*0.440, W*0.925, H*0.462)
-      cx.bezierCurveTo(W*0.955, H*0.456, W*0.982, H*0.452, W+8, H*0.454)
+      cx.bezierCurveTo(W*0.818, peakY(0.452), W*0.872, peakY(0.440), W*0.925, peakY(0.462))
+      cx.bezierCurveTo(W*0.955, peakY(0.456), W*0.982, peakY(0.452), W+8, peakY(0.454))
       cx.lineTo(W+8, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
