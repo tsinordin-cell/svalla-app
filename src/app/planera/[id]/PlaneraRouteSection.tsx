@@ -178,24 +178,18 @@ export default function PlaneraRouteSection({
           display: 'flex', alignItems: 'flex-start', gap: 10,
           background: qualityBanner.tone === 'success'
             ? 'rgba(42,157,92,0.08)'
-            : qualityBanner.tone === 'danger'
-              ? 'rgba(192,57,43,0.10)'
-              : 'rgba(232,146,74,0.10)',
+            : 'rgba(232,146,74,0.10)',
           border: `1px solid ${
             qualityBanner.tone === 'success'
               ? 'rgba(42,157,92,0.22)'
-              : qualityBanner.tone === 'danger'
-                ? 'rgba(192,57,43,0.32)'
-                : 'rgba(232,146,74,0.32)'
+              : 'rgba(232,146,74,0.32)'
           }`,
           borderRadius: 12, padding: '10px 14px',
           marginBottom: 12, marginTop: -8,
           fontSize: 12.5,
           color: qualityBanner.tone === 'success'
             ? '#157a3e'
-            : qualityBanner.tone === 'danger'
-              ? '#a32d20'
-              : '#a4561e',
+            : '#a4561e',
         }}>
           <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
             {qualityBanner.tone === 'success' ? (
