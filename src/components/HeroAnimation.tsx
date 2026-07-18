@@ -660,13 +660,13 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Pines — extra på mobil för bredare ö
       pine(W*0.568, wb * 0.930, szH * 0.048)
       pine(W*0.635, wb * 0.920, szH * 0.054)
-      if (W < 600) pine(W*0.820, wb * 0.938, szH * 0.044)
+      if (W < 600) pine(W*0.820, wb * 0.946, szH * 0.044)
 
       // Boathouse left side
       boathouse(W * 0.518, wb)
 
       // Sauna with short dock + ladder on right side
-      sauna(W * 0.740, wb * 0.968)
+      sauna(W * 0.740, W < 600 ? wb * 0.927 : wb * 0.968)
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
