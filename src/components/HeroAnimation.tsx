@@ -341,7 +341,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Faluröd cottage ────────────────────────────────────────────────── */
     const cottage = (x: number, y: number, small = false) => {
-      const cw = W * (small ? 0.018 : 0.026), ch = H * (small ? 0.020 : 0.027)
+      // ch bundet till W (inte H) på mobil — annars blir stugor onödigt höga på porträttskärm
+      const cw = W * (small ? 0.018 : 0.026)
+      const ch = W < 600
+        ? W * (small ? 0.036 : 0.050)
+        : H * (small ? 0.020 : 0.027)
       cx.fillStyle = small ? '#8a2020' : '#952420'
       cx.fillRect(x - cw/2, y, cw, ch)
       cx.fillStyle = '#ede8dc'
@@ -359,8 +363,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Bastu / sauna ──────────────────────────────────────────────────── */
     const sauna = (x: number, y: number) => {
-      const sw = W * (W < 600 ? 0.020 : 0.032), sh = H * (W < 600 ? 0.016 : 0.024)
-      const chimH = H * (W < 600 ? 0.013 : 0.022)
+      const sw = W * (W < 600 ? 0.020 : 0.032), sh = H * (W < 600 ? 0.014 : 0.024)
+      // chimH bundet till sh (inte H) — annars blir skorstenen oproportionerlig på hög mobil-canvas
+      const chimH = sh * (W < 600 ? 0.40 : 0.90)
       // Horizontal log body — dark reddish brown
       cx.fillStyle = '#5a1818'
       cx.fillRect(x - sw/2, y - sh, sw, sh)
@@ -404,7 +409,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Fishing net ────────────────────────────────────────────────────── */
     const fishingNet = (x: number, y: number) => {
-      const nw = W * (W < 600 ? 0.038 : 0.062), nh = H * (W < 600 ? 0.028 : 0.048)
+      const nw = W * (W < 600 ? 0.042 : 0.062), nh = H * (W < 600 ? 0.042 : 0.048)
       const cols = 13, rows = 7
       // Drying posts
       cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
@@ -428,9 +433,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }
       const nodeY = (col: number, row: number): number => {
         const base = y - nh + row * nh / rows
-        // catenary-style gentle bow per column
-        const bow = Math.sin(col * Math.PI / cols) * H * 0.006
-        const wiggle = Math.sin(col * 1.1 + row * 0.9 + t * 0.20) * H * 0.0008
+        // catenary-style gentle bow per column — bundet till nh så spänning håller vid alla storlekar
+        const bow = Math.sin(col * Math.PI / cols) * nh * 0.13
+        const wiggle = Math.sin(col * 1.1 + row * 0.9 + t * 0.20) * nh * 0.016
         return base + bow + wiggle
       }
       // Vertical threads
