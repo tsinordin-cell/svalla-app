@@ -359,7 +359,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Bastu / sauna ──────────────────────────────────────────────────── */
     const sauna = (x: number, y: number) => {
-      const sw = W * 0.032, sh = H * 0.024
+      const sw = W * (W < 600 ? 0.020 : 0.032), sh = H * (W < 600 ? 0.016 : 0.024)
+      const chimH = H * (W < 600 ? 0.013 : 0.022)
       // Horizontal log body — dark reddish brown
       cx.fillStyle = '#5a1818'
       cx.fillRect(x - sw/2, y - sh, sw, sh)
@@ -385,17 +386,17 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Chimney
       const chimX = x + sw * 0.22
       cx.fillStyle = '#3a2a20'
-      cx.fillRect(chimX - 3, y - sh - sh*0.35 - H*0.022, 6, H*0.022)
+      cx.fillRect(chimX - 3, y - sh - sh*0.35 - chimH, 6, chimH)
       // Smoke — slow animated wisp
       cx.save()
       cx.strokeStyle = 'rgba(210,200,188,0.28)'; cx.lineWidth = 1.8; cx.lineCap = 'round'
       cx.beginPath()
       const st = t * 0.30
-      cx.moveTo(chimX, y - sh - sh*0.35 - H*0.022)
+      cx.moveTo(chimX, y - sh - sh*0.35 - chimH)
       cx.bezierCurveTo(
-        chimX + Math.sin(st)       * 4, y - sh - sh*0.35 - H*0.034,
-        chimX + Math.sin(st + 1.0) * 6, y - sh - sh*0.35 - H*0.048,
-        chimX + Math.sin(st + 2.0) * 5, y - sh - sh*0.35 - H*0.062
+        chimX + Math.sin(st)       * 4, y - sh - sh*0.35 - chimH * 1.55,
+        chimX + Math.sin(st + 1.0) * 6, y - sh - sh*0.35 - chimH * 2.18,
+        chimX + Math.sin(st + 2.0) * 5, y - sh - sh*0.35 - chimH * 2.82
       )
       cx.stroke()
       cx.restore()
@@ -403,7 +404,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Fishing net ────────────────────────────────────────────────────── */
     const fishingNet = (x: number, y: number) => {
-      const nw = W * 0.062, nh = H * 0.048
+      const nw = W * (W < 600 ? 0.038 : 0.062), nh = H * (W < 600 ? 0.028 : 0.048)
       const cols = 13, rows = 7
       // Drying posts
       cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
