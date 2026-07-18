@@ -666,7 +666,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       boathouse(W * 0.518, wb)
 
       // Sauna with short dock + ladder on right side
-      sauna(W * 0.740, W < 600 ? wb * 0.927 : wb * 0.968)
+      sauna(W * 0.740, W < 600 ? wb * 0.927 : wb * 0.990)
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
