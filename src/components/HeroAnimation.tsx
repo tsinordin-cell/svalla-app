@@ -556,8 +556,14 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Flat granite island — low profile, wide shape
       cx.beginPath()
       cx.moveTo(-6, wb + ext)
-      cx.bezierCurveTo(W*0.010, islandY(0.448), W*0.058, islandY(0.428), W*0.138, islandY(0.440))
-      cx.bezierCurveTo(W*0.195, islandY(0.455), W*0.240, islandY(0.480), W*0.268, wb + ext)
+      if (W < 600) {
+        // Mobil: bredare ö, fyller mer av skärmen
+        cx.bezierCurveTo(W*0.010, islandY(0.448), W*0.075, islandY(0.428), W*0.195, islandY(0.440))
+        cx.bezierCurveTo(W*0.290, islandY(0.455), W*0.350, islandY(0.480), W*0.378, wb + ext)
+      } else {
+        cx.bezierCurveTo(W*0.010, islandY(0.448), W*0.058, islandY(0.428), W*0.138, islandY(0.440))
+        cx.bezierCurveTo(W*0.195, islandY(0.455), W*0.240, islandY(0.480), W*0.268, wb + ext)
+      }
       cx.lineTo(-6, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
@@ -590,8 +596,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cottage(W * 0.095, wb * 0.958, true)
       cottage(W * 0.142, wb * 0.952, false)
 
-      // Dock — left island
-      dock(W * 0.222, wb)
+      // Dock — left island (flytta höger på mobil för att matcha bredare ö)
+      dock(W < 600 ? W * 0.312 : W * 0.222, wb)
 
       // Fishing net — drying on shore, larger and visible
       fishingNet(W * 0.178, wb * 0.995)
@@ -603,10 +609,19 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // ── RIGHT ISLAND — rocky, sauna side ─────────────────────────────────
       // Flat rocky island — lower, wider
       cx.beginPath()
-      cx.moveTo(W*0.508, wb + ext)
-      cx.bezierCurveTo(W*0.528, islandY(0.400), W*0.595, islandY(0.378), W*0.682, islandY(0.398))
-      cx.bezierCurveTo(W*0.740, islandY(0.425), W*0.780, islandY(0.470), W*0.796, wb + ext)
-      cx.lineTo(W*0.508, wb + ext); cx.closePath()
+      if (W < 600) {
+        // Mobil: bredare ö, tar upp mer av höger halva
+        cx.moveTo(W*0.452, wb + ext)
+        cx.bezierCurveTo(W*0.468, islandY(0.400), W*0.548, islandY(0.378), W*0.665, islandY(0.398))
+        cx.bezierCurveTo(W*0.770, islandY(0.425), W*0.878, islandY(0.470), W*0.962, wb + ext)
+        cx.lineTo(W*0.452, wb + ext)
+      } else {
+        cx.moveTo(W*0.508, wb + ext)
+        cx.bezierCurveTo(W*0.528, islandY(0.400), W*0.595, islandY(0.378), W*0.682, islandY(0.398))
+        cx.bezierCurveTo(W*0.740, islandY(0.425), W*0.780, islandY(0.470), W*0.796, wb + ext)
+        cx.lineTo(W*0.508, wb + ext)
+      }
+      cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
       // Rocky extension — döljs på mobil (ritas bara på desktop)
@@ -634,9 +649,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         }
       }
 
-      // Two pines
+      // Pines — extra på mobil för bredare ö
       pine(W*0.568, wb * 0.930, H * 0.048)
       pine(W*0.635, wb * 0.920, H * 0.054)
+      if (W < 600) pine(W*0.820, wb * 0.938, H * 0.044)
 
       // Boathouse left side
       boathouse(W * 0.518, wb)
