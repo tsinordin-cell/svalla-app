@@ -156,9 +156,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     // scale with H but widths scale with W. peakY() caps how far above the waterline
     // a point can be — on mobile (narrow W, tall H) peaks are pushed down toward water.
     const peakY = (hFrac: number): number => {
-      const maxAbove = W * 0.18          // aldrig mer än 18% av bredden ovan vattenlinjen
-      const natural  = WL() - H * hFrac // naturlig höjd ovan vattnet
-      return WL() - Math.min(natural, maxAbove)
+      // På stående skärmar är H >> W vilket gör öar fingertunna om höjder skalas med H.
+      // Begränsa effektiv scenhöjd till max W*1.3 — bevarar öarnas form på alla skärmar.
+      const sceneH = Math.min(H, W * 1.3)
+      return WL() - sceneH * (0.58 - hFrac)
     }
 
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
@@ -553,7 +554,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.stroke()
       }
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), H*0.450, 2, 2)
+      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), peakY(0.450), 2, 2)
 
       // Pines — 3, sparsely placed
       pine(W*0.058, wb * 0.964, H * 0.050)
@@ -593,7 +594,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
       // Granite speckle
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), H*0.464, 2, 2)
+      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), peakY(0.464), 2, 2)
 
       // Strata lines right shore
       cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
@@ -620,11 +621,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // ── Small mid skerry — low granite
       cx.beginPath()
       cx.moveTo(W*0.340, wb + ext)
-      cx.bezierCurveTo(W*0.346, H*0.492, W*0.362, H*0.480, W*0.380, H*0.485)
-      cx.bezierCurveTo(W*0.394, H*0.490, W*0.404, H*0.493, W*0.412, wb + ext)
+      cx.bezierCurveTo(W*0.346, peakY(0.492), W*0.362, peakY(0.480), W*0.380, peakY(0.485))
+      cx.bezierCurveTo(W*0.394, peakY(0.490), W*0.404, peakY(0.493), W*0.412, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
       cx.fillStyle = 'rgba(195,188,175,0.20)'
-      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.352 + i*0.014), H*0.486, 2, 2)
+      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.352 + i*0.014), peakY(0.486), 2, 2)
 
       cx.restore()
     }
