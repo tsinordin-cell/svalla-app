@@ -156,8 +156,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
     // scale with H but widths scale with W. peakY() caps how far above the waterline
     // a point can be — on mobile (narrow W, tall H) peaks are pushed down toward water.
     const peakY = (hFrac: number): number => {
-      const scale = Math.min(1, (W / H) * 1.2)
-      return WL() - (WL() - H * hFrac) * scale
+      const maxAbove = W * 0.18          // aldrig mer än 18% av bredden ovan vattenlinjen
+      const natural  = WL() - H * hFrac // naturlig höjd ovan vattnet
+      return WL() - Math.min(natural, maxAbove)
     }
 
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
