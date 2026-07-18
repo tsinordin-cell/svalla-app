@@ -12,6 +12,7 @@ import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
 import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
 import EmailSignup from '@/components/EmailSignup'
+import InlineFeedbackButton from '@/components/InlineFeedbackButton'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
@@ -1091,12 +1092,7 @@ export default async function IslandPage({ params }: Props) {
  <div style={{ marginTop: 20, textAlign: 'center', paddingTop: 16, borderTop: '1px solid rgba(10,123,140,0.08)' }}>
    <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
      Hittar du information som verkar felaktig?{' '}
-     <button
-       onClick={() => window.dispatchEvent(new CustomEvent('svalla:openFeedback', { detail: { type: 'fel-info' } }))}
-       style={{ color: 'var(--sea)', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, padding: 0, textDecoration: 'underline' }}
-     >
-       Berätta för oss
-     </button>
+     <InlineFeedbackButton />
    </p>
  </div>
  </div>
