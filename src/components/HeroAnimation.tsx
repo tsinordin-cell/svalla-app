@@ -212,11 +212,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Mobil (W<600): 5 fiskar — luftigare vy. Desktop: alla 14.
       const isMobile = W < 600
       fish = isMobile ? [
-        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'   },
-        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'  },
-        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander' },
-        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'    },
-        { x: rnd()*W, y: H*0.79, spd: 2,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 88,  type: 'eel'    },
+        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 13, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'   },
+        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz:  6, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'  },
+        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 10, ph: rnd()*Math.PI*2, hue: 130, type: 'zander' },
+        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'    },
+        { x: rnd()*W, y: H*0.79, spd: 2,  dir:  1, sz: 11, ph: rnd()*Math.PI*2, hue: 88,  type: 'eel'    },
       ] : [
         { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'     },
         { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'     },
@@ -313,8 +313,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.moveTo(bx - bw/2 - 1, by); cx.lineTo(bx + bw/2 + 1, by); cx.lineTo(bx, by - bh * 0.60)
         cx.closePath(); cx.fill()
       }
-      // Island 1 (left) — röd · gul · blå — tight west-coast row
-      const bhb = H * 0.015, bwb = W * 0.015
+      // Sjöbodsstorlek bunden till sceneH (inte H) — annars för stora på hög mobil-canvas
+      const sceneHF = Math.min(H, W * 1.3)
+      const bhb = sceneHF * 0.012, bwb = W * 0.015
       sjobod(W*0.080, peakY(0.411), bwb, bhb, 'rgba(192,40,28,0.84)')
       sjobod(W*0.099, peakY(0.411), bwb, bhb, 'rgba(200,162,22,0.82)')
       sjobod(W*0.118, peakY(0.411), bwb, bhb, 'rgba(28,76,168,0.80)')
@@ -536,11 +537,14 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Swedish flagpole ───────────────────────────────────────────────── */
     const flagpole = (x: number, y: number) => {
-      const ph = H * 0.055
+      // ph/fw/fh bundna till W på mobil — annars oproportionerliga på hög porträttskärm
+      const ph = W < 600 ? W * 0.078 : H * 0.055
       cx.strokeStyle = '#b0b0b0'; cx.lineWidth = 1.4; cx.lineCap = 'round'
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
       // Flag — blue with yellow cross
-      const fw = H * 0.022, fh = H * 0.015, fy2 = y - ph
+      const fw = W < 600 ? W * 0.032 : H * 0.022
+      const fh = W < 600 ? W * 0.022 : H * 0.015
+      const fy2 = y - ph
       cx.fillStyle = '#006AA7'
       cx.fillRect(x, fy2, fw, fh)
       // Cross: horizontal
