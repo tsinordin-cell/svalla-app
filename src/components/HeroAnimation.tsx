@@ -162,6 +162,16 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       return WL() - sceneH * (0.58 - hFrac)
     }
 
+    // rockY — används för grå klippformer (INTE de gröna öarna).
+    // På mobil (W<600) komprimeras klipphöjden till 45% av normalt → mjuka kullar
+    // som liknar bakgrundsöarna istället för fingerspetsiga kanter.
+    // På desktop är rockY identisk med peakY.
+    const rockY = (hFrac: number): number => {
+      if (W >= 600) return peakY(hFrac)
+      const soft = 0.58 - (0.58 - hFrac) * 0.45
+      return peakY(soft)
+    }
+
     /* ── Multi-sine wave — calm by default ──────────────────────────────── */
     const wave = (x: number): number => {
       const b  = WL()
@@ -190,9 +200,15 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         amp:   H * (0.004 + rnd() * 0.003),
         ph:    rnd() * Math.PI * 2,
       }))
-      // 14 fish — gädda, abborre, gös, braxen, torsk, sill, flundra, ål, simpa
-      // (alla 9 arter kvar — färre individer för luftigare scen)
-      fish = [
+      // Mobil (W<600): 5 fiskar — luftigare vy. Desktop: alla 14.
+      const isMobile = W < 600
+      fish = isMobile ? [
+        { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'   },
+        { x: rnd()*W, y: H*0.75, spd: 7,  dir:  1, sz: 12, ph: rnd()*Math.PI*2, hue: 105, type: 'perch'  },
+        { x: rnd()*W, y: H*0.72, spd: 5,  dir:  1, sz: 20, ph: rnd()*Math.PI*2, hue: 130, type: 'zander' },
+        { x: rnd()*W, y: H*0.76, spd: 3,  dir:  1, sz: 24, ph: rnd()*Math.PI*2, hue: 170, type: 'cod'    },
+        { x: rnd()*W, y: H*0.79, spd: 2,  dir:  1, sz: 22, ph: rnd()*Math.PI*2, hue: 88,  type: 'eel'    },
+      ] : [
         { x: rnd()*W, y: H*0.68, spd: 4,  dir:  1, sz: 26, ph: rnd()*Math.PI*2, hue: 110, type: 'pike'     },
         { x: rnd()*W, y: H*0.80, spd: 3,  dir: -1, sz: 22, ph: rnd()*Math.PI*2, hue: 118, type: 'pike'     },
         { x: rnd()*W, y: H*0.63, spd: 8,  dir: -1, sz: 14, ph: rnd()*Math.PI*2, hue: 95,  type: 'perch'    },
@@ -539,8 +555,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       // Granite rock face — lower left shore
       cx.beginPath()
       cx.moveTo(-6, wb + ext)
-      cx.lineTo(-6, peakY(0.465))
-      cx.bezierCurveTo(W*0.012, peakY(0.428), W*0.040, peakY(0.418), W*0.062, peakY(0.445))
+      cx.lineTo(-6, rockY(0.465))
+      cx.bezierCurveTo(W*0.012, rockY(0.428), W*0.040, rockY(0.418), W*0.062, rockY(0.445))
       cx.lineTo(W*0.075, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
@@ -554,7 +570,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
         cx.stroke()
       }
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), peakY(0.450), 2, 2)
+      for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), rockY(0.450), 2, 2)
 
       // Pines — 3, sparsely placed
       pine(W*0.058, wb * 0.964, H * 0.050)
@@ -584,17 +600,18 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.lineTo(W*0.508, wb + ext); cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
-      // Rocky extension — smooth to right edge
+      // Rocky extension — udde-topp sedan sluttning mot kanten
       cx.beginPath()
       cx.moveTo(W*0.788, wb + ext)
-      cx.bezierCurveTo(W*0.818, peakY(0.452), W*0.872, peakY(0.440), W*0.925, peakY(0.462))
-      cx.bezierCurveTo(W*0.955, peakY(0.456), W*0.982, peakY(0.452), W+8, peakY(0.454))
+      cx.bezierCurveTo(W*0.808, rockY(0.456), W*0.840, rockY(0.436), W*0.868, rockY(0.430))
+      cx.bezierCurveTo(W*0.896, rockY(0.440), W*0.930, rockY(0.452), W*0.962, rockY(0.458))
+      cx.bezierCurveTo(W*0.980, rockY(0.460), W*0.993, rockY(0.462), W+8, rockY(0.462))
       cx.lineTo(W+8, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
 
       // Granite speckle
       cx.fillStyle = 'rgba(195,188,175,0.16)'
-      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), peakY(0.464), 2, 2)
+      for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), rockY(0.464), 2, 2)
 
       // Strata lines right shore
       cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
@@ -618,14 +635,15 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
-      // ── Small mid skerry — low granite
+      // ── Mid skerry — udde-form med tydlig topp (som bakgrundsöarna)
       cx.beginPath()
-      cx.moveTo(W*0.340, wb + ext)
-      cx.bezierCurveTo(W*0.346, peakY(0.492), W*0.362, peakY(0.480), W*0.380, peakY(0.485))
-      cx.bezierCurveTo(W*0.394, peakY(0.490), W*0.404, peakY(0.493), W*0.412, wb + ext)
+      cx.moveTo(W*0.322, wb + ext)
+      cx.bezierCurveTo(W*0.332, wb * 0.988, W*0.348, rockY(0.466), W*0.366, rockY(0.460))
+      cx.bezierCurveTo(W*0.378, rockY(0.464), W*0.392, rockY(0.461), W*0.406, rockY(0.468))
+      cx.bezierCurveTo(W*0.416, wb * 0.990, W*0.424, wb, W*0.428, wb + ext)
       cx.fillStyle = th.rockColor; cx.fill()
       cx.fillStyle = 'rgba(195,188,175,0.20)'
-      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.352 + i*0.014), peakY(0.486), 2, 2)
+      for (let i = 0; i < 3; i++) cx.fillRect(W*(0.342 + i*0.016), rockY(0.464), 2, 2)
 
       cx.restore()
     }
