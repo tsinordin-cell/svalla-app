@@ -143,7 +143,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     const th = THEMES[variant]
 
-    let W = 0, H = 0, dpr = 1
+    let W = 0, H = 0, dpr = 1, szH = 0
     let raf = 0, last = 0, t = 0
     let boats: Boat[] = [], birds: Bird[] = [], fish: Fish[] = [], whales: Whale[] = []
     let bubbles: Bubble[] = []
@@ -253,6 +253,10 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       dpr = window.devicePixelRatio || 1
       const r = cv.getBoundingClientRect()
       W = r.width; H = r.height
+      // szH = "scene height" — samma referens som peakY använder.
+      // På desktop (landscape) szH≈H. På mobil (portrait) szH≈W*1.3≈507px.
+      // Alla element-storlekar bör använda szH så de ser likadana ut på alla skärmar.
+      szH = Math.min(H, W * 1.3)
       cv.width  = Math.round(W * dpr)
       cv.height = Math.round(H * dpr)
       cx.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -342,11 +346,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Faluröd cottage ────────────────────────────────────────────────── */
     const cottage = (x: number, y: number, small = false) => {
-      // ch bundet till W (inte H) på mobil — annars blir stugor onödigt höga på porträttskärm
-      const cw = W * (small ? 0.018 : 0.026)
-      const ch = W < 600
-        ? W * (small ? 0.036 : 0.050)
-        : H * (small ? 0.020 : 0.027)
+      const cw = W < 600 ? szH * (small ? 0.026 : 0.038) : W * (small ? 0.018 : 0.026)
+      const ch = szH * (small ? 0.020 : 0.027)
       cx.fillStyle = small ? '#8a2020' : '#952420'
       cx.fillRect(x - cw/2, y, cw, ch)
       cx.fillStyle = '#ede8dc'
@@ -364,9 +365,8 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Bastu / sauna ──────────────────────────────────────────────────── */
     const sauna = (x: number, y: number) => {
-      const sw = W * (W < 600 ? 0.020 : 0.032), sh = H * (W < 600 ? 0.014 : 0.024)
-      // chimH bundet till sh (inte H) — annars blir skorstenen oproportionerlig på hög mobil-canvas
-      const chimH = sh * (W < 600 ? 0.40 : 0.90)
+      const sw = W < 600 ? szH * 0.040 : W * 0.032, sh = szH * 0.024
+      const chimH = sh * 0.75
       // Horizontal log body — dark reddish brown
       cx.fillStyle = '#5a1818'
       cx.fillRect(x - sw/2, y - sh, sw, sh)
@@ -410,20 +410,21 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Fishing net ────────────────────────────────────────────────────── */
     const fishingNet = (x: number, y: number) => {
-      const nw = W * (W < 600 ? 0.042 : 0.062), nh = H * (W < 600 ? 0.042 : 0.048)
+      const nw = W < 600 ? szH * 0.090 : W * 0.062, nh = szH * 0.048
+      const postExtra = szH * 0.012, ropeOff = szH * 0.006
       const cols = 13, rows = 7
       // Drying posts
       cx.strokeStyle = '#4a3010'; cx.lineWidth = 2.2
-      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - nh - H*0.012); cx.stroke()
-      cx.beginPath(); cx.moveTo(x + nw, y); cx.lineTo(x + nw, y - nh - H*0.012); cx.stroke()
+      cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - nh - postExtra); cx.stroke()
+      cx.beginPath(); cx.moveTo(x + nw, y); cx.lineTo(x + nw, y - nh - postExtra); cx.stroke()
       // Top rope line
       cx.strokeStyle = 'rgba(160,125,70,0.88)'; cx.lineWidth = 1.5
-      cx.beginPath(); cx.moveTo(x, y - nh - H*0.006); cx.lineTo(x + nw, y - nh - H*0.006); cx.stroke()
+      cx.beginPath(); cx.moveTo(x, y - nh - ropeOff); cx.lineTo(x + nw, y - nh - ropeOff); cx.stroke()
       // Cork floats
       cx.fillStyle = '#d47818'
       for (let i = 0; i <= 6; i++) {
         const fx = x + i * nw / 6
-        cx.beginPath(); cx.ellipse(fx, y - nh - H*0.006, 2.8, 1.8, 0, 0, Math.PI * 2); cx.fill()
+        cx.beginPath(); cx.ellipse(fx, y - nh - ropeOff, 2.8, 1.8, 0, 0, Math.PI * 2); cx.fill()
       }
       // Pre-compute node positions with organic irregularity
       const nodeX = (col: number, row: number): number => {
@@ -537,14 +538,11 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Swedish flagpole ───────────────────────────────────────────────── */
     const flagpole = (x: number, y: number) => {
-      // ph/fw/fh bundna till W på mobil — annars oproportionerliga på hög porträttskärm
-      const ph = W < 600 ? W * 0.078 : H * 0.055
+      const ph = szH * 0.055
       cx.strokeStyle = '#b0b0b0'; cx.lineWidth = 1.4; cx.lineCap = 'round'
       cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y - ph); cx.stroke()
       // Flag — blue with yellow cross
-      const fw = W < 600 ? W * 0.032 : H * 0.022
-      const fh = W < 600 ? W * 0.022 : H * 0.015
-      const fy2 = y - ph
+      const fw = szH * 0.022, fh = szH * 0.015, fy2 = y - ph
       cx.fillStyle = '#006AA7'
       cx.fillRect(x, fy2, fw, fh)
       // Cross: horizontal
@@ -598,9 +596,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       for (let i = 0; i < 5; i++) cx.fillRect(W*(0.012 + i*0.009), rockY(0.450), 2, 2)
 
       // Pines — 3, sparsely placed
-      pine(W*0.058, wb * 0.964, H * 0.050)
-      pine(W*0.098, wb * 0.942, H * 0.056)
-      pine(W*0.155, wb * 0.938, H * 0.050)
+      pine(W*0.058, wb * 0.964, szH * 0.050)
+      pine(W*0.098, wb * 0.942, szH * 0.056)
+      pine(W*0.155, wb * 0.938, szH * 0.050)
 
       // Two cottages — small hamlet
       cottage(W * 0.095, wb * 0.958, true)
@@ -660,9 +658,9 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       }
 
       // Pines — extra på mobil för bredare ö
-      pine(W*0.568, wb * 0.930, H * 0.048)
-      pine(W*0.635, wb * 0.920, H * 0.054)
-      if (W < 600) pine(W*0.820, wb * 0.938, H * 0.044)
+      pine(W*0.568, wb * 0.930, szH * 0.048)
+      pine(W*0.635, wb * 0.920, szH * 0.054)
+      if (W < 600) pine(W*0.820, wb * 0.938, szH * 0.044)
 
       // Boathouse left side
       boathouse(W * 0.518, wb)
