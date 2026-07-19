@@ -365,7 +365,7 @@ export default function HeroAnimation({ variant = 1 }: Props) {
 
     /* ── Bastu / sauna ──────────────────────────────────────────────────── */
     const sauna = (x: number, y: number) => {
-      const sw = W < 600 ? szH * 0.040 : W * 0.032, sh = szH * 0.024
+      const sw = W < 600 ? szH * 0.064 : W * 0.032, sh = szH * 0.024
       const chimH = sh * 0.75
       // Horizontal log body — dark reddish brown
       cx.fillStyle = '#5a1818'
@@ -389,20 +389,22 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.lineTo(x, y - sh - sh * 0.35)
       cx.lineTo(x + sw/2 + 3, y - sh)
       cx.closePath(); cx.fill()
-      // Chimney
+      // Chimney — anchored at roof-slope height at chimX (not at peak)
       const chimX = x + sw * 0.22
+      const chimFrac = (sw * 0.22) / (sw / 2 + 3)
+      const chimBase = (y - sh - sh * 0.35) + chimFrac * sh * 0.35
       cx.fillStyle = '#3a2a20'
-      cx.fillRect(chimX - 3, y - sh - sh*0.35 - chimH, 6, chimH)
+      cx.fillRect(chimX - 3, chimBase - chimH, 6, chimH)
       // Smoke — slow animated wisp
       cx.save()
       cx.strokeStyle = 'rgba(210,200,188,0.28)'; cx.lineWidth = 1.8; cx.lineCap = 'round'
       cx.beginPath()
       const st = t * 0.30
-      cx.moveTo(chimX, y - sh - sh*0.35 - chimH)
+      cx.moveTo(chimX, chimBase - chimH)
       cx.bezierCurveTo(
-        chimX + Math.sin(st)       * 4, y - sh - sh*0.35 - chimH * 1.55,
-        chimX + Math.sin(st + 1.0) * 6, y - sh - sh*0.35 - chimH * 2.18,
-        chimX + Math.sin(st + 2.0) * 5, y - sh - sh*0.35 - chimH * 2.82
+        chimX + Math.sin(st)       * 4, chimBase - chimH * 1.55,
+        chimX + Math.sin(st + 1.0) * 6, chimBase - chimH * 2.18,
+        chimX + Math.sin(st + 2.0) * 5, chimBase - chimH * 2.82
       )
       cx.stroke()
       cx.restore()
@@ -632,30 +634,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       cx.closePath()
       cx.fillStyle = th.islandGreen; cx.fill()
 
-      // Rocky extension — döljs på mobil (ritas bara på desktop)
-      if (W >= 600) {
-        cx.beginPath()
-        cx.moveTo(W*0.788, wb + ext)
-        cx.bezierCurveTo(W*0.808, rockY(0.456), W*0.840, rockY(0.436), W*0.868, rockY(0.430))
-        cx.bezierCurveTo(W*0.896, rockY(0.440), W*0.930, rockY(0.452), W*0.962, rockY(0.458))
-        cx.bezierCurveTo(W*0.980, rockY(0.460), W*0.993, rockY(0.462), W+8, rockY(0.462))
-        cx.lineTo(W+8, wb + ext)
-        cx.fillStyle = th.rockColor; cx.fill()
-
-        // Granite speckle
-        cx.fillStyle = 'rgba(195,188,175,0.16)'
-        for (let i = 0; i < 6; i++) cx.fillRect(W*(0.806 + i*0.010), rockY(0.464), 2, 2)
-
-        // Strata lines right shore
-        cx.strokeStyle = 'rgba(155,148,135,0.10)'; cx.lineWidth = 0.8
-        for (let l = 0; l < 2; l++) {
-          const ly = wb * (0.962 + l * 0.014)
-          cx.beginPath()
-          cx.moveTo(W*0.796, ly)
-          cx.bezierCurveTo(W*0.838, ly - H*0.002, W*0.878, ly + H*0.002, W*0.928, ly)
-          cx.stroke()
-        }
-      }
 
       // Pines — extra på mobil för bredare ö
       pine(W*0.568, wb * 0.930, szH * 0.048)
@@ -670,17 +648,6 @@ export default function HeroAnimation({ variant = 1 }: Props) {
       saunaDock(W * 0.758, wb)
       ladder(W * 0.772, wb)
 
-      // ── Mid skerry — döljs på mobil (ritas bara på desktop)
-      if (W >= 600) {
-        cx.beginPath()
-        cx.moveTo(W*0.322, wb + ext)
-        cx.bezierCurveTo(W*0.332, wb * 0.988, W*0.348, rockY(0.466), W*0.366, rockY(0.460))
-        cx.bezierCurveTo(W*0.378, rockY(0.464), W*0.392, rockY(0.461), W*0.406, rockY(0.468))
-        cx.bezierCurveTo(W*0.416, wb * 0.990, W*0.424, wb, W*0.428, wb + ext)
-        cx.fillStyle = th.rockColor; cx.fill()
-        cx.fillStyle = 'rgba(195,188,175,0.20)'
-        for (let i = 0; i < 3; i++) cx.fillRect(W*(0.342 + i*0.016), rockY(0.464), 2, 2)
-      }
 
       cx.restore()
     }
