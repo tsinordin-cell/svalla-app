@@ -61,7 +61,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       // img-src: tillåt egna bilder, data:URI (avatars, ikoner), Supabase Storage (publika buckets) och Unsplash.
       // Tidigare 'https:' tillät vilken HTTPS-bild som helst — exfiltrationskanal för session-cookies via <img onerror>.
-      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
+      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
       "font-src 'self' data:",
       "media-src 'self' blob: https://*.supabase.co",
       "worker-src 'self' blob:", // service worker + Capacitor
@@ -170,6 +170,11 @@ const nextConfig: NextConfig = {
         destination: '/event/:path*',
         permanent: true,
       },
+      { source: '/blogg/midsommar-skargarden-2026', destination: '/guider/midsommar-skargarden-2026', permanent: true },
+      { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
+      { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
+      { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },
+      { source: '/blogg/skargard-utan-bat', destination: '/guider/skargard-utan-bat', permanent: true },
     ]
   },
 }

@@ -1150,7 +1150,7 @@ export async function generateMetadata({
  const post = POSTS[slug]
  if (!post) return { title: 'Artikel hittades inte – Svalla' }
  return {
- title: `${post.title} – Svalla`,
+ title: post.title,
  description: post.excerpt,
  keywords: post.tags,
  alternates: { canonical: `https://svalla.se/blogg/${slug}` },

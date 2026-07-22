@@ -5,11 +5,12 @@ import { POSTS_META } from './posts-data'
 import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
-  title: 'Skärgårdsbloggen – Svalla',
+  title: 'Skärgårdsbloggen',
   description: 'Tips, guider och inspiration för Stockholms skärgård. Bästa restaurangerna, dolda pärlor, ruttguider och säsongsuppdateringar.',
   keywords: ['stockholms skärgård guide', 'skärgård restaurang tips', 'bästa öarna stockholm', 'skärgård kajak', 'segla stockholms skärgård'],
+  alternates: { canonical: 'https://svalla.se/blogg' },
   openGraph: {
-    title: 'Skärgårdsbloggen – Svalla',
+    title: 'Skärgårdsbloggen',
     description: 'Tips, guider och inspiration för Stockholms skärgård.',
     url: 'https://svalla.se/blogg',
   },
