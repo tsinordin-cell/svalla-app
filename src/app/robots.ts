@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
           '/logga',
           '/feed',
           '/notiser',
+          '/u/',
           // Privata användarsidor — kräver inloggning
           '/bjud-in',
           '/meddelanden',
