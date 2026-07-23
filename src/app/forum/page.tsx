@@ -5,8 +5,15 @@ import Icon from '@/components/Icon'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
- title: 'Forum — Svalla',
- description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
+  title: 'Forum',
+  description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
+  alternates: { canonical: 'https://svalla.se/forum' },
+  openGraph: {
+    title: 'Svalla Forum – skärgårdsliv och båtliv',
+    description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
+    url: 'https://svalla.se/forum',
+    type: 'website',
+  },
 }
 
 export const revalidate = 300
