@@ -1,12 +1,5 @@
 'use client'
 export const dynamic = 'force-dynamic'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Glömt lösenord – Svalla',
-  robots: { index: false, follow: false },
-}
-
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'

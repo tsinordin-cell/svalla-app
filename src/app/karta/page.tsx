@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  'skärgårdsöar karta',
  ],
  openGraph: {
- title: 'Karta över Stockholms skärgård — Svalla',
+ title: { absolute: 'Karta över Stockholms skärgård — Svalla' },
  description: 'Interaktiv karta med krogar, bryggor, bastun och badplatser i hela Stockholms skärgård.',
  url: 'https://svalla.se/karta',
  },

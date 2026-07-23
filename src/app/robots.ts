@@ -14,14 +14,16 @@ export default function robots(): MetadataRoute.Robots {
           '/feed',
           '/notiser',
           '/u/',
-          // Privata användarsidor — kräver inloggning
+          // Privata/utility-sidor
           '/bjud-in',
           '/meddelanden',
           '/importera',
+          '/glomt-losenord',
+          '/hero-preview',
           // Privata Loppis-sidor
           '/loppis/sparat',
           '/loppis/mina-annonser',
-          // Redigera-flöden ska inte indexeras
+          // Redigera-flöden
           '/forum/loppis/*/redigera',
           '/forum/loppis/ny-annons',
         ],
