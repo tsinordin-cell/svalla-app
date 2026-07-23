@@ -29,7 +29,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { trad, kategori } = await params
   const thread = await getThreadById(trad)
-  if (!thread) return { title: 'Forum — Svalla' }
+  if (!thread) return { title: { absolute: 'Forum — Svalla' } }
 
   // Loppis-annons → optimerade SEO-tags för Google-indexering.
   // Title: "Modell från ÅR — Pris kr i Plats" (long-tail keywords).
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (ld.category) keywords.push(`${ld.category.toLowerCase()} svalla`)
 
     return {
-      title,
+      title: { absolute: title },
       description,
       keywords,
       alternates: { canonical: canonicalUrl },
@@ -93,7 +93,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = thread.body.slice(0, 160)
   const ogImage = `/api/og/forum/${trad}`
   return {
-    title: `${thread.title} — Svalla Forum`,
+    title: { absolute: `${thread.title} — Svalla Forum` },
     description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
