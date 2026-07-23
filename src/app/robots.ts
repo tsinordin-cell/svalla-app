@@ -13,7 +13,6 @@ export default function robots(): MetadataRoute.Robots {
           '/logga',
           '/feed',
           '/notiser',
-          '/u/',
           // Privata Loppis-sidor — innehåller inloggad användares wishlist/säljarvy
           '/loppis/sparat',
           '/loppis/mina-annonser',
