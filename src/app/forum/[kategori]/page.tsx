@@ -21,10 +21,18 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { kategori } = await params
  const cat = await getCategoryById(kategori)
- if (!cat) return { title: 'Forum — Svalla' }
+ if (!cat) return { title: 'Forum' }
+ const canonicalUrl = `https://svalla.se/forum/${kategori}`
  return {
- title: `${cat.name} — Svalla Forum`,
- description: cat.description ?? undefined,
+  title: { absolute: `${cat.name} – Svalla Forum` },
+  description: cat.description ?? undefined,
+  alternates: { canonical: canonicalUrl },
+  openGraph: {
+   title: `${cat.name} – Svalla Forum`,
+   description: cat.description ?? undefined,
+   url: canonicalUrl,
+   type: 'website',
+  },
  }
 }
 
