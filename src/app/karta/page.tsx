@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Karta över Stockholms skärgård — Svalla',
+ title: { absolute: 'Karta över Stockholms skärgård — Svalla' },
  description: 'Interaktiv karta över krogar, bryggor, bastun, badplatser och sevärdheter i Stockholms skärgård — från Arholma till Landsort.',
  keywords: [
  'karta stockholms skärgård',
