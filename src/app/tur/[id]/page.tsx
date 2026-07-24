@@ -61,6 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  description: desc,
  images: [ogImageUrl],
  },
+ alternates: { canonical: `https://svalla.se/tur/${id}` },
  }
 }
 

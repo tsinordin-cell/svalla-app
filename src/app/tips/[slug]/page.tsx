@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: a.excerpt || '',
       images: [ogUrl],
     },
+    alternates: { canonical: `https://svalla.se/tips/${a.slug}` },
   }
 }
 

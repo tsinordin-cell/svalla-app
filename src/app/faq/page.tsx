@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: 'Allt du behöver veta om Svalla och Stockholms skärgård.',
     url: 'https://svalla.se/faq',
   },
+  alternates: { canonical: 'https://svalla.se/faq' },
 }
 
 const FAQS = [

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: 'Veckans bästa skärgårdsseglare',
     url: 'https://svalla.se/topplista',
   },
+  alternates: { canonical: 'https://svalla.se/topplista' },
 }
 
 function medal(rank: number) {

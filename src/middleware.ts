@@ -7,7 +7,7 @@ import { verifyAdminToken } from '@/lib/adminToken'
 const PROTECTED_ROUTES = [
   '/feed', '/profil', '/spara', '/logga', '/notiser',
   '/planera', '/sparade', '/meddelanden', '/min-skargard',
-  '/onboarding', '/check-in', '/dag', '/loppis/sparat', '/loppis/mina-annonser',
+  '/onboarding', '/check-in', '/loppis/sparat', '/loppis/mina-annonser',
 ]
 
 // Routes som har en publik version för utloggade besökare —

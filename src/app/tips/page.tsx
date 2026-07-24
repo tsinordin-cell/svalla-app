@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård.',
     url: 'https://svalla.se/tips',
   },
+  alternates: { canonical: 'https://svalla.se/tips' },
 }
 
 export const revalidate = 300 // 5 min ISR

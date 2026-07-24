@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  return {
  title: `#${tag} — Svalla`,
  description: `Turer taggade med #${tag} på Svalla`,
+ alternates: { canonical: `https://svalla.se/tagg/${slug}` },
  }
 }
 

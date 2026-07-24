@@ -108,6 +108,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  description: desc,
  images: data.image_url ? [data.image_url] : [],
  },
+ alternates: { canonical: `https://svalla.se/plats/${slug}` },
  }
 }
 
