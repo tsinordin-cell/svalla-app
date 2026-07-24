@@ -211,7 +211,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
     // Guider (hub)
     { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
-    { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
     // Transaktionella SEO-sektioner
     { url: `${base}/teambuilding`,           lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/hyra-bat`,               lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
