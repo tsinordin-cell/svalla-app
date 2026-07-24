@@ -40,3 +40,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: 'https://svalla.se/sitemap.xml',
   }
 }
+
