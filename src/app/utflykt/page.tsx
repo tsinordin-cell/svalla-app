@@ -8,7 +8,7 @@ import { DEPARTURES } from './utflykt-data'
 import UtflyktClient from './UtflyktClient'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Planera din utflykt — välj ö, få allt du behöver | Svalla' },
+  title: 'Planera din utflykt — välj ö, få allt du behöver | Svalla',
   description: 'Smart utflyktsplanerare för skärgården. Välj startpunkt och ö — få restid, packlista, krogar och tips på en sida.',
   alternates: { canonical: 'https://svalla.se/utflykt' },
   openGraph: {
@@ -24,14 +24,14 @@ export default function UtflyktPage() {
     slug: i.slug,
     name: i.name,
     region: i.region,
-    regionLabel: i.regionLabel,
+    regionLabel: i.regionLabel ?? '',
     tagline: i.tagline,
     lat: i.lat,
     lng: i.lng,
-    travel_time: i.facts.travel_time,
-    season: i.facts.season,
-    character: i.facts.character,
-    best_for: i.facts.best_for,
+    travel_time: i.facts.travel_time ?? '',
+    season: i.facts.season ?? '',
+    character: i.facts.character ?? '',
+    best_for: i.facts.best_for ?? '',
     tags: i.tags,
     tips: i.tips.slice(0, 3),
     restaurants: i.restaurants.slice(0, 3).map(r => ({ name: r.name, type: r.type, desc: r.desc })),
