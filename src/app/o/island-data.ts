@@ -6,7 +6,7 @@ export type IslandActivity = {
 
 export type IslandAccommodation = {
   name: string
-  type: 'Hotell' | 'Vandrarhem' | 'Stugor' | 'Camping' | 'B&B' | 'Gästhamn' | 'Pensionat'
+  type: 'Hotell' | 'Vandrarhem' | 'Stugor' | 'Camping' | 'B&B' | 'Gästhamn' | 'Pensionat' | 'Värdshus'
   desc: string
   /** Boknings-URL — visas som "Boka →" på boende-undersidan */
   bookingUrl?: string
