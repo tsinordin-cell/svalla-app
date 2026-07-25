@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: { absolute: `${island.name} med barn — barnvänlig guide 2026 | Svalla` },
+    title: `${island.name} med barn — barnvänlig guide 2026 | Svalla`,
     description: `Är ${island.name} bra för barnfamiljer? Stränder, lugnt vatten, restauranger och tips för familjer med barn. Komplett guide.`,
     keywords: [
       `${island.name.toLowerCase()} med barn`,
@@ -39,14 +39,14 @@ export default async function IslandMedBarnPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const isFamilyFriendly = island.dog_friendly !== undefined
-    ? island.facts.best_for.toLowerCase().includes('barn') || island.facts.best_for.toLowerCase().includes('familj')
-    : island.facts.best_for.toLowerCase().includes('barn') || island.facts.best_for.toLowerCase().includes('familj')
+  const bestFor = (island.facts.best_for ?? '').toLowerCase()
+  const isFamilyFriendly = bestFor.includes('barn') || bestFor.includes('familj')
 
   const beaches = island.activity_meta?.bad?.beaches ?? []
+  const travelTime = island.facts.travel_time ?? ''
   const shortTravel = island.transport_meta
     ? island.transport_meta.from_city_min <= 90
-    : island.facts.travel_time.includes('20') || island.facts.travel_time.includes('30') || island.facts.travel_time.includes('40') || island.facts.travel_time.includes('45') || island.facts.travel_time.includes('1 tim')
+    : travelTime.includes('20') || travelTime.includes('30') || travelTime.includes('40') || travelTime.includes('45') || travelTime.includes('1 tim')
 
   const kidFriendlyActivities = island.activities.filter(a =>
     ['barn', 'familj', 'bad', 'strand', 'cykel', 'lätt', 'nybörjar'].some(k =>
