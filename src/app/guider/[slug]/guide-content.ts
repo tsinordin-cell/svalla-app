@@ -7137,6 +7137,271 @@ export function getGuideContent(slug: string): string {
 </ul>
 `,
 
+  // ── Batch L ───────────────────────────────────────────────────────────────
+
+  'host-stockholms-skargard-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hösten är skärgårdens bästa säsong. Det är nästan heretiskt att säga det under juli, men det är sant. Lövfärgerna i oktober, morgnarna med dis över fjärdarna, havsbastuångorna som stiger mot en ljusblå hösthimmel – och nästan inga andra. Det är skillnaden.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör till de flesta öar hela hösten. Priserna halveras. Restaurangerna andas ut och börjar faktiskt ta hand om gästerna. Och du slipper köerna vid bryggan.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA ÖARNA PÅ HÖSTEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sandhamn – seglarnas ö utan seglarna</h4>
+<p>I september är hamnarna lugna och Sandhamns Värdshus serverar samma mat men med halva väntetiden. Promenaden runt Trouville och ut mot Koben är vacker med lövfärger och havet blåare än på sommaren. Ta Waxholmsbolaget via Stavsnäs – koll på reducerad hösttidtabell.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utö – mineraler, skog och höstbastu</h4>
+<p>Utö är vackrast när björkarna gulnat och gruvparken är folktom. Cykla runt ön på en timme. Utö Värdshus erbjuder höstmeny med lokalt viltkött. Havsbastuplatser längs öns södra kust är perfekta – boka i förväg. Nås med Waxholmsbolaget från Nynäshamn (pendeltåg + ca 1h15 min båt).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Möja – bilfri och tyst</h4>
+<p>Möja på hösten är bilfri tystnad med svamprik skog. Ta med korgen – karljohansvamp och kantareller i september, trattkantareller i oktober. Möja Krog är öppen september. Waxholmsbolaget via Stavsnäs, ca 2,5 timmar.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vaxholm – allsäsong</h4>
+<p>Vaxholm fungerar hela året som en liten stad. Kaféer och restauranger håller öppet, fästningsmuseet kör höstöppettider. En enkel dagsturs-skärgård utan planering. Pendelbåt 83/83X från Strömkajen, 55 minuter.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Grinda – höstens lugn</h4>
+<p>Grinda är ett naturreservat och skärgårdens kanske vackraste vandringsterräng på hösten. Grinda Wärdshus håller höstöppet. Ta Waxholmsbolaget linje 11 från Strömkajen, ca 1h45 min.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD GÖR MAN PÅ HÖSTEN?</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Svamp- och bärplockning</h4>
+<p>Stockholms skärgårdsöar har rikliga svampskogar. September–oktober är säsongen för karljohansvamp (Sandhamn, Möja, Norrpada) och trattkantarell. Ta med korg, kniv och en svampguide-app. Allemansrätten gäller.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu</h4>
+<p>Höstbad i havet kombinerat med bastu är en av Skandinaviens bästa upplevelser. Utö Havsbastu, Arholma bastu och Smådalarö Gård SPA har bastuer. Boka 1–2 veckor i förväg.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Höstfiske</h4>
+<p>Havsöringen vandrar längs kusten september–november och är ett eftertraktat byte. Fiske vid åmynningar och bäckar på skärgårdsöar. Inga fiskekort krävs för salt havsfiske. Pilkfiske efter abborre fungerar i innerskärgårdens grunda vikar.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring</h4>
+<p>De flesta öar har stigar och naturreservat. Grinda, Utö, Möja och Ornö har välmarkerade leder. Oktober är det vackraste månaden för lövskogar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISKT</h3>
+<p><strong>Tidtabell:</strong> Waxholmsbolaget kör höstschema från september. Avgångarna är färre – kolla waxholmsbolaget.se. Mest kritiskt: sista båten hem kan vara 17–18 på vardagar till mer avlägsna öar.</p>
+<p><strong>Boende:</strong> Stugbyar och värdshus har höstpriser, ofta 30–50% lägre än juli. Utö Värdshus, Grinda Wärdshus och Sandhamns Värdshus har rumsbokning hela hösten.</p>
+<p><strong>Kläder:</strong> September: fleece + vindjakka. Oktober: vinterjacka + mössa. Skärgårdsvindar gör att det känns kallare än temperaturen.</p>
+`,
+
+  'hummerpremiar-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Hummerpremiären är en av Bohusläns stoltaste traditioner. Den sista lördagen i september – 2026 den 26 september – öppnar hummerburar längs hela Bohuslänska kusten och tusentals fiskare drar sin första bur i gryningen. Det finns en anledning till att lördagsnatten innan kallas Bohusläns stiltjälle.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummer (Homarus gammarus) är en av världens mest uppskattade delikatesser och den europeiska hummern längs Bohusläns kust räknas av kockar som en av de finaste. Den är också reglerad – och det är precis det som gör premiären till ett evenemang.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH REGLER 2026</h3>
+
+<p><strong>Hummerpremiären 2026: lördag 26 september</strong></p>
+<p>Fisket öppnar klockan 07:00. Hummerburar får sättas ut redan fredagskvällen, men bурarna får inte vittjas förrän 07:00 lördag.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Regler du måste kunna</h4>
+<ul style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
+  <li><strong>Minimimått:</strong> 87 mm karapaxlängd (huvud + mellankropp). Mät noga – för liten hummer ska sättas tillbaka.</li>
+  <li><strong>Max antal burar:</strong> 3 burar per person vid husbehovsfiske. Yrkesfiske har separata regler.</li>
+  <li><strong>Romhona:</strong> Honor med synlig rom (ägg under stjärten) måste alltid sättas tillbaka oavsett storlek.</li>
+  <li><strong>Fiskekort:</strong> Fridfiskelicens för husbehovsfiske krävs, köps på havochvatten.se.</li>
+  <li><strong>Burmärkning:</strong> Märk bурarna med namn och adress.</li>
+</ul>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA PLATSERNA FÖR HUMMERFISKE</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kosterfjorden och yttre Koster</h4>
+<p>Ett av Europas artrikaste havsområden och en utmärkt hummerlokal. Djup 10–40 meter längs klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögenskäret och Pater Noster</h4>
+<p>Trakterna kring Smögen och Väderöarna är klassisk hummerfiskevattne. Klippbottnar på 5–25 meters djup. Hyr båt i Smögen, sätt bурarna kvällen innan premiären.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Gullholmen och Orusts kust</h4>
+<p>Den södra Bohuslänska kusten kring Orust och Tjörn har rika hummervatten. Lokal kännedom är ovärderlig – kontakta Gullholmens fiskelag eller lokala båtklubbar.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR DU FIRAR</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Laga hummern själv – klassiken</h4>
+<p>Koka hummern i välsaltat vatten (1 msk salt per liter) i 12–15 minuter beroende på storlek. Servera med aioli, gott bröd och ett glas Chablis. Inget krångligare än så.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Restauranger som firar premiären</h4>
+<p>Smögen Fisk & Skaldjur, Krog+Bar i Lysekil och Restaurang Bryggan i Strömstad brukar ha specialmeny på premiärhelgen. Boka i god tid – premiärhelgen är fullbokad längs hela kusten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG DIT?</h3>
+<p><strong>Till Smögen:</strong> Tåg från Göteborg till Munkedal (ca 1h), sedan buss 840 till Smögen (ca 45 min). Med bil: E6 norrut mot Munkedal, sedan väg 174 till Smögen.</p>
+<p><strong>Till Strömstad:</strong> Tåg från Göteborg, ca 2h. Med bil: E6 norrut ca 1h45 min.</p>
+<p><strong>Till Lysekil:</strong> Tåg till Uddevalla + buss, ca 1h45 min totalt. Med bil via E6 + väg 161.</p>
+`,
+
+  'surstrommingspremiar-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den tredje torsdagen i augusti är en högtidsdag längs Norrlandskusten. Butiker längs Höga Kusten börjar stapla konservburkar med silhuetter av fisk och den distinkta lukten av fermenterad strömming sprider sig i luften. Det är surströmmingspremiär.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är torsdag 20 augusti. Konserverna – legalt sett – får inte säljas förrän detta datum. Det är en tradition sedan 1937, då kung Gustav V-tiden slog fast att ny skörd av surströmming inte fick säljas förrän tredje torsdagen i augusti.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR SURSTRÖMMING?</h3>
+
+<p>Surströmming är fermenterad östersjöströmming – vanlig fisk som tillåts jäsa i konservburken i månader. Smaken är kraftigt salt med djupt umami. Lukten är en av världens starkaste livsmedelslukter och är anledningen till att flertalet länder förbjuder öppning av burkar inomhus.</p>
+
+<p>Det är en mat du älskar eller fruktar. Men längs Höga Kusten äts den med stolthet – och det finns en konst i det.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR ÄTer MAN DET RÄTT?</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Traditionellt tunnbrödsklämma</h4>
+<ol style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
+  <li>Lägg ut ett mjukt tunnbröd (inte det knäckiga)</li>
+  <li>Bred ut ett lager gräddfil eller filmjölk</li>
+  <li>Lägg på skivor av mandelpotatis (kokt med dill)</li>
+  <li>Lägg på ett par bitar filéad surströmming</li>
+  <li>Hacka rödlök ovanpå</li>
+  <li>Toppa med gräslök</li>
+  <li>Rulla ihop och ät med öl eller snaps</li>
+</ol>
+
+<p><strong>Absolut utomhus:</strong> Öppna aldrig burken inomhus. Trycket i burken gör att vätskan kan stänka och lukten tränger in i allt. Öppna i vatten eller på avstand från öppna fönster.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAR FIRAR DU PREMIÄREN?</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Ulvön – hjärtat av surströmming</h4>
+<p>Ulvön i Härnösand/Kramfors-skärgård är Höga Kustens symboliska mittelpunkt. Ulvöns Hotell arrangerar traditionell surströmningsfest på premiärdagen. Hit vallfärdar genuina surströmmingsentusiaster. Nås med färja från Ullånger eller Docksta sommartid.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kramfors och Härnösand</h4>
+<p>Städerna längs Höga Kustenfjärden har butiker som öppnar sina surströmningslager exakt vid midnatt torsdagen. Boka boende i god tid – premiärhelgen har många evenemang och besökare.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hemmafest – var som helst</h4>
+<p>Surströmming säljs i ICA och Coop från premiärdagen – inklusive i Stockholm. Köp en burk, bjud vänner utomhus och arrangera din egen premiärfest. Det är så de flesta norrlänningar faktiskt firar det.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG TILL HÖGA KUSTEN?</h3>
+<p><strong>Tåg:</strong> SJ Norrlandståg från Stockholm C till Härnösand, ca 3h30 min. Från Härnösand buss till Kramfors och vidare.</p>
+<p><strong>Flyg:</strong> Sundsvall/Timrå flygplats (SDL) med SAS eller BRA – ca 1h från Stockholm. Hyr bil på plats.</p>
+<p><strong>Bil:</strong> E4 norrut från Stockholm, ca 4h till Härnösand.</p>
+`,
+
+  'michelin-havet-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En Michelin-stjärna kräver exceptionell råvara. Och råvaran är bäst direkt från havet. Det är anledningen till att en oproportionerligt stor andel av Sveriges finaste restauranger finns längs kusten – inte i Stockholm.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hummer fångad i morse. Räkor kokta vid kajen. Ostron öppnade på restaurangens egen båt. Det är vad kustnära finmat handlar om, och det skiljer sig fundamentalt från samma råvaror efter 48 timmars kylkedja.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">GÖTEBORG OCH BOHUSLÄN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sjömagasinet, Göteborg</h4>
+<p>En Michelin-stjärna och klassisk göteborgsk sjömat i ett gammalt magasin vid Eriksberg. Menyn baseras på Bohusläns dag-fångster – räkor, havskräftor, hummer och sjötunga. Utsikt mot Göta älv. Boka 2–3 veckor i förväg på helger.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Bhoga, Göteborg</h4>
+<p>Michelin-stjärna i Göteborg med fokus på nordisk smak och säsongsbetonad kust-råvara. Inte direkt vid kusten men med djupa band till Bohusläns producenter. Krögarduon bakom Bhoga räknas som en av Skandinaviens mest intressanta.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Salt & Sill, Tjörn (Klädesholmen)</h4>
+<p>Sveriges enda Michelin-anslutna flytande restaurang, på en ponton i Klädesholmens gamla sillhamn. Specialiserade på sill i alla former – men menyn rör sig över hela skaldjurssortimentet. Klädesholmen nås med bro via Tjörn (Göteborg + buss/bil).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögens Fisk & Skaldjur</h4>
+<p>Inga Michelin-stjärnor, men en av Sveriges bästa skaldjursupplevelser. Räkorna är fångade samma morgon och den klassiska räksmörgåsen vid bryggan är en upplevelse varje sommar-och höst-besökare bör ha haft.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">STOCKHOLM OCH SKÄRGÅRDEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fjäderholmarnas Krog</h4>
+<p>Stockholms klassiska skärgårdskrog på Stora Fjäderholmen. Inga Michelin-stjärnor men konsekvent hög klass och råvara direkt från skärgårdens fiskare. 25 minuters båtresa från Strandvägen. Boka en månad i förväg under sommaren.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sandhamns Värdshus</h4>
+<p>Skärgårdens finaste adress utan Michelin-status – ännu. Havskräftor, räkor och säsongsbetonad meny. Ön nås med Waxholmsbolaget från Stavsnäs. Bord i förväg obligatoriskt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utö Värdshus</h4>
+<p>Öns kronjuvel på Utö i Stockholms södra skärgård. Stark lokal råvara, välkuraterad vinlista. Nås med pendeltåg till Nynäshamn + Waxholmsbåt. Boka boende + middag ihop för en komplett Utö-upplevelse.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">SKÅNE OCH SYDKUSTEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Gastro, Malmö</h4>
+<p>Nära Öresund och med tillgång till Skånes kustnära råvaror. Inte Michelin-stjärnat men med en av Sydsveriges starka fiskmeny. Perfekt för den som kombinerar Malmö med Öresunds-upplevelse.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Råå Fisk och Krog, Helsingborg</h4>
+<p>I fiskebyn Råå utanför Helsingborg – en av Sydsveriges bäst bevarade fiskeby-upplevelser. Färsk torsk, långa och ål direkt från Öresund. Inga stjärnor men ett av Skånes bästa lägen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOKNINGSRÅD</h3>
+<p>Sommar (juni–aug): boka 3–6 veckor i förväg för Michelin-restaurangerna. Höst och vinter: 1–2 veckor räcker till de flesta. Uddevalla-, Strömstad- och Lysekil-krogen är mer spontanvänliga än Göteborgskrogarna.</p>
+`,
+
+  'sandhamn-vaxholm-grinda-host': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Tre öar som varje stockholmare besökt minst en gång – på sommaren. Men det är på hösten de verkligen är sig själva. Utan köerna. Med lövfärgerna. Med personal som hinner titta på dig.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">SANDHAMN PÅ HÖSTEN</h3>
+
+<p>Sandhamn i september och oktober är en annan ö än Sandhamn i juli. Hamnen är halvtom, gatorna går att gå på och Sandhamns Värdshus serverar samma utmärkta mat utan tre veckors förbokning.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
+<p>Waxholmsbolaget från Stavsnäs (buss 834 från Slussen, ca 1h till Stavsnäs, sedan båt ca 1h). Kontrollera hösttidtabell – avgångarna är färre men fortfarande dagliga. Alternativt ta bil till Stavsnäs och ta båten därifrån.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
+<p>Promenera ut till Trouville och Koben – ytterskärgårdens stränder som på sommaren är fullpackade men på hösten är folktoma. Vandra Sandhamns gamla strandväg. Ta en öl på Sandhamns Värdshus bar och titta ut mot den nu lugnare hamnen.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Var du äter</h4>
+<p>Sandhamns Värdshus är den naturliga ankarpunkten. Höstmenyn prioriterar säsongsbetonade råvaror och är generellt bättre genomtänkt än sommarens snabbköksmentalitet. Boka bord – de har färre sittplatser öppna på hösten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAXHOLM PÅ HÖSTEN</h3>
+
+<p>Vaxholm är skärgårdens mest pålitliga allsäsongs-destination. Kök, café och restauranger håller öppet. Fästningsmuseet kör höstöppettider. Och båten från Stockholm är under en timme.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
+<p>Pendelbåt 83/83X från Strömkajen, ca 55 minuter. Avgårnar varannan timme ungefär – kolla tidtabellen. Buss 670 från Tekniska Högskolan T går hela året.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
+<p>Vaxholms fästning är värd ett besök i sig – museet visar Stockholms försvarshistoria och utsikten mot Vaxholmsleden är fantastisk på hösten med klara, skarpa dagar. Promenera Rådhusgatan och de gamla träkvarteren. Köp räkor direkt från fiskebåtar vid hamnen.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Var du äter</h4>
+<p>Waxholms Hotell är öns finaste alternativ med utsikt mot fästningen. Hamnkrogen är enklare men populär med lokala och besökare. Hemma hos Josephine för husmanskost i intim miljö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">GRINDA PÅ HÖSTEN</h3>
+
+<p>Grinda är ett naturreservat och det märks på hösten. Ön är tyst, skogen är gulnande och promenaden runt ön är en av de finaste höstpromenaderna i hela skärgården.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hur du tar dig dit</h4>
+<p>Waxholmsbolaget linje 11 från Strömkajen, ca 1h45 min. Kolla hösttidtabellen – lördagar och söndagar har bäst anslutningar. Sista båten hem kan vara tidig – planera dagen ordentligt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vad du gör</h4>
+<p>Promenera öns norra och södra udde – ca 3 km runt-ön. Plocka svamp (karljohan och trattkantarell är vanliga i september och oktober). Sitt vid bryggan och ta kaffe ur termosen. Enkelt och vackert.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Var du äter</h4>
+<p>Grinda Wärdshus håller höstöppet med begränsad meny. Ring i förväg och bekräfta öppettider. Alternativt: ta med matsäck hemifrån och ät vid kajen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HÖSTKALENDER</h3>
+<p><strong>September</strong> – Varmast av höstmånaderna (10–15°C). Sandhamn och Grinda har restauranger öppna. Perfekt kombination av sommarens känsla och höstens lugn.</p>
+<p><strong>Oktober</strong> – Lövfärgerna är på topp i mitten av månaden. Kallare (5–10°C) men klarare luft. Vaxholm är säkraste valet om du vill garanterat hitta öppna kaféer.</p>
+`,
+
+  'camping-host-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Höstcamping i skärgården är när du förstår varför friluftsfolk pratar om det hela vintern. Inga mygg. Inga grannars musik. Havet klarare och tystare. Och stämningen när du vaknar i tältet till dis över fjärden och en termos kaffe – den är inte möjlig att sätta pris på.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det kräver lite mer förberedelse än sommarcamping. Rätt utrustning och rätt förväntningar. Här är allt du behöver veta.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA PLATSERNA FÖR HÖSTCAMPING</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sandön naturreservat</h4>
+<p>En av Stockholms skärgårds vackraste camping-öar. Sandstrand, naturreservat och gratis tältplatser längs öns södra kust. Nås med Waxholmsbolaget via Stavsnäs. September och oktober är perfekta månader – folktom och klart vatten.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kobbar runt Möja</h4>
+<p>Möja och omgivande kobbar och holmar är klassisk friluftsskärgård. Tälta på kobbar med allemansrätt – 1–2 nätter per plats. Ta mat och vatten för hela perioden. Waxholmsbolaget till Möja, sedan kajak eller simbåt till omgivande kobbar.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Norra Skärgårdens reservat (Arholma, Norrpada)</h4>
+<p>Ytterskärgårdens reserver i norra Stockholm. Arholma har STF-stuga och tältplatser. Norrpada är kargare och vildare. Nås med Waxholmsbolaget – lång resa men väl värd det för äkta höstskärgård.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Dalaro och Haninge skärgård</h4>
+<p>Södra stockholmska skärgården nås med bil till Dalarö och sedan kajak eller passagerarfärja ut till öarna. Ornö och Muskö har fina camingplatser. Lugnt och vackert med lövfärgerna i oktober.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">UTRUSTNINGSLISTA FÖR HÖST</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Tält</h4>
+<p>4-säsongstält eller 3-säsong med bra regnflygel. Skärgårdsvindar är starka – välj tält med bra stormstag och metallpinnar (inte plast). Placera alltid med baksidan mot vinden.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sovsäck och matta</h4>
+<p>Sovsäck till -5°C minimum för september, till -10°C för oktober. Isolerande sovmatta är lika viktig – kölden kommer underifrån. Termarest eller liknande isolerande matta, inte bara skumplast.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kläder</h4>
+<p>Lagerprincipen: underställ (merinoull), fleece, vindtät ytjacka. Mössa och vantar för morgnarna i oktober. Byt alltid till torra kläder vid läger – fukt + vind ger kyla snabbt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Mat och vatten</h4>
+<p>Ta med mer mat än du tror – höstluften ger aptit. Primus eller Jetboil för kokning. Vatten: enklare öar har inget dricksvatten – ta med filtreringsutrustning eller 2L per person per dag.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Säkerhet</h4>
+<p>Berätta alltid för någon var du ska tälta och när du är tillbaka. Ta med VHF-handhållen radio om du åker till ytterskären. Pannlampa (mörkret kommer kl 18–19 i oktober). Nödraketer vid längre tur.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">ALLEMANSRÄTTEN OCH REGLERNA</h3>
+<p>Allemansrätten tillåter tältning 1–2 nätter på de flesta platser. Undantag: naturreservat med restriktioner (markerat med skyltar), privat tomtmark och fågelskyddsområden (april–juli – inga restriktioner på hösten). Lämna ingen skit efter dig och tänk på brandrisk – eldningsförbud kan gälla.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">TEMPERATURER</h3>
+<p><strong>September:</strong> 12–17°C dag, 5–10°C natt. Varmt i solen, kallt i skugga och vind.</p>
+<p><strong>Oktober:</strong> 6–12°C dag, 1–6°C natt. Kan frysa tidigt. Extra isolering kritiskt.</p>
+<p><strong>November:</strong> Möjligt med rätt utrustning men kräver vintercampingutrustning.</p>
+`,
+
   }
 
   const content = guides[slug]
