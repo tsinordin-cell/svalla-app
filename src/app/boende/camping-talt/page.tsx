@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Camping och tält i skärgården | Naturnära övernattning | Svalla',
+  title: { absolute: 'Camping och tält i skärgården | Naturnära övernattning | Svalla' },
   description: 'Hitta campingplatser och tältvänliga platser i skärgården nära bad, vandring, paddling och färjor.',
   keywords: ['camping skärgård', 'tälta skärgård', 'tältplats skärgården', 'camping nära havet', 'tälta ö stockholm'],
   alternates: { canonical: 'https://svalla.se/boende/camping-talt' },

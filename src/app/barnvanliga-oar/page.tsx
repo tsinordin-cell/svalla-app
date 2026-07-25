@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer | Svalla',
+ title: { absolute: 'Barnvänliga öar i Stockholms skärgård — Guide för familjer | Svalla' },
  description: 'De bästa barnvänliga öarna i Stockholms skärgård. Sandstränder, lugnt vatten, restauranger för familjer och enkla färjeförbindelser. Grinda, Finnhamn, Möja och fler.',
  keywords: [
  'barnvänliga öar',

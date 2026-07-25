@@ -12,7 +12,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Sparade platser — Svalla',
+  title: { absolute: 'Sparade platser — Svalla' },
   description: 'Dina sparade krogar, bryggor och hamnar i skärgården.',
   robots: { index: false, follow: false },
 }

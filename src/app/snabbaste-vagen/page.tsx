@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Snabbaste vägen — rutter för motorbåt & RIB | Svalla',
+  title: { absolute: 'Snabbaste vägen — rutter för motorbåt & RIB | Svalla' },
   description: 'Snabbaste vägen till populära destinationer i Stockholms skärgård. För motorbåt, RIB och vattenskoter — med tankställen och farledstips.',
   keywords: [
     'snabbaste vägen sandhamn',

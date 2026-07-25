@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Segelrutter i Sverige — Östersjöleden, Gotland Runt, Bohuslän — Svalla',
+ title: { absolute: 'Segelrutter i Sverige — Östersjöleden, Gotland Runt, Bohuslän — Svalla' },
  description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker 300 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
  keywords: [
  'segelrutter sverige',

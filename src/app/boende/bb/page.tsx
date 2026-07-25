@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'B&B och pensionat i skärgården | Personliga boenden | Svalla',
+  title: { absolute: 'B&B och pensionat i skärgården | Personliga boenden | Svalla' },
   description: 'Hitta B&B, pensionat och små personliga boenden i skärgården för lugna helger och nära skärgårdsliv.',
   keywords: ['B&B skärgård', 'pensionat skärgård', 'bed and breakfast skärgård', 'bo personligt skärgård', 'pensionat havet'],
   alternates: { canonical: 'https://svalla.se/boende/bb' },

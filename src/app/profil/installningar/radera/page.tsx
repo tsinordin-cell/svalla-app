@@ -4,7 +4,7 @@ import DeleteAccountForm from './DeleteAccountForm'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Radera konto — Svalla',
+  title: { absolute: 'Radera konto — Svalla' },
   robots: { index: false, follow: false },
 }
 

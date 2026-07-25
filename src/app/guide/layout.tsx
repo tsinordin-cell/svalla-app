@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Prata med Thorkel — skärgårdsplaneraren — Svalla',
+  title: { absolute: 'Prata med Thorkel — skärgårdsplaneraren — Svalla' },
   description: 'Thorkel är Svallas AI-lots. Berätta vad du vill göra i skärgården — han ger dig en färdig plan med rutter, krogar och transport.',
   alternates: { canonical: 'https://svalla.se/guide' },
   openGraph: {

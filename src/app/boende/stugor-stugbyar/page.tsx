@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: 'Hyr stuga i skärgården | Stugor och stugbyar nära havet | Svalla',
+  title: { absolute: 'Hyr stuga i skärgården | Stugor och stugbyar nära havet | Svalla' },
   description: 'Hitta stugor och stugbyar i skärgården nära bad, bryggor, färjor och sommarkrogar.',
   keywords: ['hyra stuga skärgården', 'stugby skärgård', 'stuga nära havet', 'sommarstuga skärgård', 'stuga med brygga'],
   alternates: { canonical: 'https://svalla.se/boende/stugor-stugbyar' },

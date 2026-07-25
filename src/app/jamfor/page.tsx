@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Jämför öar i skärgården — vilken passar dig? | Svalla',
+  title: { absolute: 'Jämför öar i skärgården — vilken passar dig? | Svalla' },
   description: 'Sandhamn eller Grinda? Möja eller Utö? Jämför öar i Stockholms skärgård sida vid sida — fakta, bästa-för, hur man tar sig dit.',
   keywords: ['jämför skärgårdsöar', 'sandhamn eller grinda', 'utö eller möja', 'vilken ö stockholms skärgård'],
   openGraph: {

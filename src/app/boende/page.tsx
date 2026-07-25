@@ -13,7 +13,7 @@ const TYP_REDIRECT: Record<string, string> = {
 }
 
 export const metadata: Metadata = {
-  title: 'Boende i Stockholms skärgård — Svalla',
+  title: { absolute: 'Boende i Stockholms skärgård — Svalla' },
   description: 'Hotell, vandrarhem, stugor, pensionat och B&B i Stockholms skärgård. Boende från Arholma i norr till Landsort i söder.',
   keywords: [
     'boende stockholms skärgård',
