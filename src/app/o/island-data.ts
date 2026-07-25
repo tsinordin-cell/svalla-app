@@ -3423,6 +3423,725 @@ export const ISLANDS: Island[] = [
     },
   },
 
+
+  // ─── TYNNINGÖ ────────────────────────────────────────────────────────────
+  {
+    slug: 'tynningö',
+    name: 'Tynningö',
+    region: 'norra',
+    emoji: '🌿',
+    tagline: 'Bilfri idyllö nära Vaxholm — klippor, sommarstugor och skärgårdsro.',
+    description: [
+      'Tynningö är en liten bilfri ö strax nordöst om Vaxholm, perfekt för dem som vill ha skärgårdens lugn utan att åka långt. Ön nås med Waxholmsbolaget och välkomnar besökare med klippor, badskelett och sommarstugornas täta grönska.',
+      'Det finns inga affärer, inga restauranger öppna för allmänheten, och absolut ingen stress. Tynningö är skärgården i sin renaste form: komma dit, kliva upp på en klippa och låta timmar bli till timmar.',
+    ],
+    facts: {
+      area: 'ca 3 km²',
+      population: 'ca 300 (helårsboende)',
+      known_for: 'Bilfritt, nära Vaxholm, klippor och bad',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten runt hela ön. Hoppklippor och grunda sandvikar på öns södra sida.' },
+      { icon: '🚶', name: 'Promenader', desc: 'Välmärkta gångstigar runt ön. Kombinera med ett picknick­stopp vid vattnet.' },
+      { icon: '⛵', name: 'Segla till', desc: 'Populärt mål för dagsseglare från Stockholm och Vaxholm. Gott ankrings­läge på öns sydöstra sida.' },
+    ],
+    accommodation: [
+      { name: 'Sommarstugor Tynningö', type: 'Stugor', desc: 'Privata stuguthyrningar via Airbnb och lokala uthyrare. Boka tidigt.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbolaget', from: 'Stockholm / Vaxholm', time: 'ca 60–75 min från Stockholm', desc: 'Waxholmsbolaget trafikerar Tynningö via Vaxholm. Kolla aktuell tidtabell på waxholmsbolaget.se.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 70,
+      nearest_hub: 'Vaxholm',
+      from_nearest_hub_min: 20,
+      operator: 'Waxholmsbolaget',
+      frequency: 'Sommartid dagligen, vinter mer sällan',
+    },
+    harbors: [
+      { name: 'Tynningö Gästbrygga', desc: 'Enkel brygga på öns södra sida. Lämplig för mindre båtar.', spots: 15, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Ta med all mat — ingen affär på ön.',
+      'Perfekt halvdagsutflykt kombinerat med Vaxholm: ta morgonbåten, bada, ta kvällsbåten tillbaka.',
+    ],
+    related: ['vaxholm', 'resaro', 'rindo'],
+    tags: ['bilfritt', 'bad', 'norra skärgård', 'dagsutflykt', 'familjer'],
+    did_you_know: 'Tynningö är en av öarna i det historiska Östersjö­archipelaget nära Vaxholm, en stad som sedan 1600-talet tjänat som Stockholm­s yttre försvarslinje.',
+    amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: false },
+    activity_meta: { bad: { beaches: ['Södra klippbaden', 'Sandvik östra'] } },
+  },
+
+  // ─── DJURÖ ───────────────────────────────────────────────────────────────
+  {
+    slug: 'djuro',
+    name: 'Djurö',
+    region: 'mellersta',
+    emoji: '🦌',
+    tagline: 'Naturreservat med orörd skärgård — kajakparadis i mellersta skärgården.',
+    description: [
+      'Djurö naturreservat skyddar ett område i Värmdö kommuns yttre skärgård med hundratals öar, skär och kobbar. Ön Djurö i reservatets centrum är välkänd bland kajakpaddlare och naturentusiaster som söker en outsliten skärgård.',
+      'Här dominerar den yttre skärgårdens karaktär: skogklädda klippöar, vassbälten och ett rikt fågelliv. Reservatet är hemvist för havsörn, skarv och ett brett spektrum av vadare.',
+    ],
+    facts: {
+      area: 'Reservatet ca 100 km²',
+      population: 'Få helårsboende',
+      known_for: 'Naturreservat, kajak, havsörn, orörda öar',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🚣', name: 'Kajakpaddling', desc: 'Djurö är ett av Stockholms skärgårds bästa kajakdestinationer. Lugna fjärdar, gott om ankringsplatser och naturhamnarna.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Havsörn observeras regelbundet i reservatet. Goda skådningsplatser längs reservatets klipputsikter.' },
+      { icon: '⛺', name: 'Tältning', desc: 'Tältning tillåten på anvisade platser inom reservatet. Kolla Länsstyrelsens regler för aktuell säsong.' },
+    ],
+    accommodation: [
+      { name: 'Tält i naturreservat', type: 'Camping', desc: 'Tältning på anvisade platser. Toaletter saknas på de flesta öar — ta med allt du behöver.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbolaget', from: 'Stavsnäs', time: 'ca 20–30 min', desc: 'Waxholmsbolaget trafikerar öarna nära Djurö från Stavsnäs brygga. Kolla aktuell tidtabell.', icon: '⛴' },
+      { method: 'Kajak', from: 'Stavsnäs', time: 'varierar', desc: 'Stavsnäs Vinterhamn är bas för kajakuthyrning och -turer in i reservatet.', icon: '🚣' },
+    ],
+    transport_meta: {
+      from_city_min: 60,
+      nearest_hub: 'Stavsnäs',
+      from_nearest_hub_min: 25,
+      operator: 'Waxholmsbolaget / kajak',
+      frequency: 'Sommarsäsong — kolla tidtabell',
+    },
+    harbors: [
+      { name: 'Naturhamnar i reservatet', desc: 'Gott om naturliga ankrings­platser för segelbåtar och motorbåtar. Kom tidigt på helger i juli.', spots: 0, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Kajak är överlägset det bästa sättet att utforska Djurö — ger tillgång till öar och vikar som båt inte kan nå.',
+      'Havsörnen syns oftast tidigt på morgonen. Ha kikaren framme.',
+      'Kolla Länsstyrelsens regler för eldning och tältning i reservatet — de varierar med brandrisken.',
+    ],
+    related: ['namdo', 'runmaro', 'ingmarso'],
+    tags: ['naturreservat', 'kajak', 'fågelskådning', 'tält', 'mellersta skärgård'],
+    did_you_know: 'Djurö naturreservat bildades för att skydda ett av Stockholms skärgårds finaste bestånd av havs­örn. Reservatet omfattar över 300 öar och skär.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: true },
+    activity_meta: {
+      kajak: { difficulty: 'medel', rental: true, notes: 'Kajakhyrning i Stavsnäs Vinterhamn' },
+      bad: { beaches: ['Klippbad längs reservatets öar'] },
+    },
+  },
+
+  // ─── BIRKA ───────────────────────────────────────────────────────────────
+  {
+    slug: 'birka',
+    name: 'Birka',
+    region: 'ovriga',
+    regionLabel: 'Mälaren',
+    emoji: '⚔️',
+    tagline: 'Sveriges vikingastad — UNESCO-listat världsarv på en ö i Mälaren.',
+    description: [
+      'Birka på ön Björkö i Mälaren var Sveriges viktigaste handelsstad under 700–900-talen. Här möttes handelsmän från hela den kända världen — arabiska silvermynt, frankiska vapen och östliga sidenstoffer har hittats i de tusentals gravarna runt staden.',
+      'I dag är Birka ett av Sveriges mest fascinerande arkeologiska platser och ett UNESCO-världsarv. Välbevarade vallar, gravfält och museet Vikingastad ger en av de klaraste bilderna av hur livet såg ut i Nordens forntid.',
+      'Birka nås med dagstursbåt från Stockholm och är utmärkt för historieintresserade i alla åldrar.',
+    ],
+    facts: {
+      area: 'Björkö ca 5 km²',
+      population: 'Inga fast boende',
+      known_for: 'Vikingahandelsstad, UNESCO-världsarv, arkeologi',
+      season: 'Maj–September (dagstursbåtar)',
+    },
+    activities: [
+      { icon: '🏛', name: 'Vikingastads­museet', desc: 'Utställning om Birkas historia med original­fynd. Guidade turer sommartid ger sammanhang åt gravfälten och vallarna.' },
+      { icon: '⚔️', name: 'Gravfält & vallar', desc: 'Tusentals gravar synliga på marken runt Björkö. Vandring i gravfältet med guide rekommenderas.' },
+      { icon: '🚢', name: 'Dagstur med Strömma', desc: 'Strömma Kanalbolaget kör dagstursbåtar från Stadshusbron i Stockholm med guide, museiinträde och lunch ingår.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Dagstursbåt från Stockholm', from: 'Stadshusbron, Stockholm', time: 'ca 2 h', desc: 'Strömma och andra operatörer kör dagsturer till Birka sommartid. Biljetter inkluderar ofta guide och museum. Kolla aktuellt utbud på strömma.se.', icon: '⛴' },
+      { method: 'Bil + lokalbåt', from: 'Adelsö / Ekerö', time: 'ca 5 min båt', desc: 'Kör via Ekerö (ca 30 min från Stockholm, väg 261). Från Adelsö går en liten lokalbåt till Björkö.', icon: '🚗' },
+    ],
+    transport_meta: {
+      from_city_min: 120,
+      nearest_hub: 'Stockholm Stadshusbron',
+      from_nearest_hub_min: 120,
+      operator: 'Strömma / lokal färja',
+      frequency: 'Sommarsäsong dagligen',
+    },
+    harbors: [
+      { name: 'Björkö Gästbrygga', desc: 'Brygga för båtar. Smalt inlopp — kliv av och bese Birka.', spots: 20, fuel: false, service: [] },
+    ],
+    restaurants: [
+      { name: 'Birka Vikingastad Café', type: 'Café', desc: 'Enkel servering i anslutning till museet. Sommaröppen.' },
+    ],
+    tips: [
+      'Boka dagstur med guide — det ger sammanhanget som krävs för att förstå vad man ser på gravfälten.',
+      'Barn brukar gilla historien om vikingarna och det arkeologiska fynden. Bra familjeutflykt.',
+      'Ta med picknick — det är vackert att äta i gräset vid gravfälten.',
+    ],
+    related: ['adelsjo', 'vaxholm', 'sandhamn'],
+    tags: ['historia', 'UNESCO', 'vikingar', 'arkeologi', 'familjer', 'dagsutflykt', 'mälaren'],
+    insiderTips: [
+      'Strömmas dagstur inkluderar guide — men om du tar den lokala färjan från Adelsö kan du gå runt på egen hand i lugn och ro.',
+    ],
+    did_you_know: 'Birka grundades ca 750 e.Kr. och fungerade som Skandinaviens mest livliga handelscentrum i 200 år. I Birkas gravfält har arkeologer hittat fynd från England, Frankerriket, Bysans och Mellanöstern — ett bevis på hur globala vikingarna faktiskt var.',
+    amenities: { restaurant: true, shop: true, accommodation: false, beach: false, camping: false },
+    activity_meta: { cykel: { rental: false, notes: 'Cyklar olämpliga på det lilla Björkö' } },
+  },
+
+  // ─── LILLA KARLSÖ ────────────────────────────────────────────────────────
+  {
+    slug: 'lilla-karlso',
+    name: 'Lilla Karlsö',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🐦',
+    tagline: 'Gotlands fågelö — klippfästning med 15 000 häckande havssjöfåglar.',
+    description: [
+      'Lilla Karlsö är en klippö väster om Gotlands södra kust, och ett av Sveriges märkligaste naturskyddsområden. Varje sommar häckar upp till 15 000 sillgrisslor och tordmular på öns klippavsatser — ett naturspektakel utan like i Östersjön.',
+      'Ön är ett naturreservat med starkt begränsad tillgång. Besök sker uteslutande med guidade turer från Klintehamn — du kan inte sätta foten på ön utan guide. Det är en av anledningarna till att upplevelsen är så stark.',
+      'Lilla Karlsö är en halvdags- eller dagsturs­upplevelse, inte ett resmål att övernatta på. Men de timmar du tillbringar där är bland de mest minnesvärda i Östersjöns natur.',
+    ],
+    facts: {
+      area: 'ca 1,5 km²',
+      population: '0 (naturreservat)',
+      known_for: '15 000 häckande sillgrisslor och tordmular, klippfaunan',
+      season: 'Maj–Augusti (häckningssäsong)',
+    },
+    activities: [
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Sillgrisslor och tordmular på klippavsatserna. Möjlighet att se alkor, havsörn och ett rikt kärlväxtflora. Guide medverkar på alla turer.' },
+      { icon: '🌿', name: 'Naturguidad tur', desc: 'Alla besök är guidade. Turerna tar ca 2 timmar och inkluderar promenad på öns leder med information om flora och fauna.' },
+      { icon: '📸', name: 'Fotografera fåglar', desc: 'Möjlighet att komma mycket nära sillgrisslorna. En av de bästa möjligheterna för fågelfoto i norra Europa under häckningssäsongen.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Guidad tur från Klintehamn', from: 'Klintehamn (Gotland)', time: 'ca 25 min båt', desc: 'Boka tur via Lilla Karlsö Naturreservat. Alla besök är guidade — det är inte tillåtet att besöka ön på egen hand. Kolla bokningssystem och tidtabell på lillakarlso.se.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 240,
+      nearest_hub: 'Klintehamn (Gotland)',
+      from_nearest_hub_min: 25,
+      operator: 'Lilla Karlsö Naturreservat',
+      frequency: 'Guidade turer dagligen maj–aug, boka i förväg',
+    },
+    harbors: [],
+    restaurants: [],
+    tips: [
+      'Boka tur via lillakarlso.se — platserna är begränsade och tar slut tidigt i säsongen.',
+      'Havsörn syns ofta kring ön. Ta kikare.',
+      'Bäst fågelupplevelse: maj–juni när ungarna är på väg ut ur äggskalen.',
+      'Kombinera med Stora Karlsö samma dag — liknade tur erbjuds dit från Klintehamn.',
+    ],
+    related: ['gotland', 'faro', 'oland'],
+    tags: ['fågelliv', 'naturreservat', 'gotland', 'dagsutflykt', 'guidad tur', 'fotografi'],
+    did_you_know: 'Sillgrisslorna på Lilla Karlsö lägger sina ägg direkt på kala klippavsatser — inga bon. Äggets päronform är en evolution­är anpassning: om ägget nuddar till, rullar det i en cirkel snarare än utanför kanten.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
+    activity_meta: { bad: { beaches: [] } },
+  },
+
+  // ─── GOTSKA SANDÖN ───────────────────────────────────────────────────────
+  {
+    slug: 'gotska-sandon',
+    name: 'Gotska Sandön',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🏝',
+    tagline: 'Östersjöns ensliga nationalpark — sanddyner, tallar och absolut avskildhet.',
+    description: [
+      'Gotska Sandön är en av Sveriges mest avlägsna öar — och en av de mest fascinerande. Nationalparken i öppet Östersjövatten, ca 90 km norr om Fårö, har inga vägar, inga butiker och ingen fast bebyggelse utöver fyrvaktarbostaden och ett antal stugor.',
+      'Ön är ett geologiskt unikum: ett sandrevlande landskap format av Östersjöns vindar, med vandringsdyner, tallskogar som växer på sand och stränder som skiftar form varje år. Det är en ö som inte alls liknar någon annan i Sverige.',
+      'Hit tar man sig med sommarbåt från Nynäshamn eller Fårösund under juni–september. Turen är lång, platserna begränsade och upplevelsen nästintill ogreppbar. Det är därför Gotska Sandön är en av de svenska bucket-list-destinationerna.',
+    ],
+    facts: {
+      area: 'ca 37 km²',
+      population: '0 (nationalparkspersonal sommartid)',
+      known_for: 'Avlägsen nationalpark, sanddyner, unika ekosystem',
+      season: 'Juni–September (sommartrafik)',
+    },
+    activities: [
+      { icon: '🏖', name: 'Sandstränder', desc: 'Öns hela kust är strand — vita sanddyner och relativt varmt Östersjövatten. Nästan alltid öde.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Markerade leder runt ön och genom nationalparken. Fullrunda ca 18 km. Sandig underlag — gott om insekter i Juli.' },
+      { icon: '🔭', name: 'Mörkertidsstjärnor', desc: 'Gotska Sandön har en av Sveriges lägsta ljusföroreningar. Vintergatan syns med blotta ögat på en klar natt.' },
+      { icon: '🌿', name: 'Naturstudier', desc: 'Unika sand­växter, havsörn, sälkoloni på norra stranden och ett ekosystem som saknar direkt jämförelse.' },
+    ],
+    accommodation: [
+      { name: 'STF Stugor Gotska Sandön', type: 'Stugor', desc: 'Enklare stugor och raststugor i parken. Begränsat antal platser — boka månader i förväg via STF.' },
+      { name: 'Tältning i nationalpark', type: 'Camping', desc: 'Tältning på anvisade platser i nationalparken. Koll aktuella regler hos Naturvårdsverket.' },
+    ],
+    getting_there: [
+      { method: 'Sommarbåt från Nynäshamn', from: 'Nynäshamn', time: 'ca 5–6 h', desc: 'Gotska Sandön Trafik AB kör sommarbåt ett fåtal avgångsdagar per vecka juni–september. Boka i god tid — begränsat antal platser.', icon: '⛴' },
+      { method: 'Sommarbåt från Fårösund', from: 'Fårösund (Gotland)', time: 'ca 2,5–3 h', desc: 'Kortare rutt. Kolla Gotska Sandön Trafik AB:s tidtabell för avgångsdagar.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 420,
+      nearest_hub: 'Nynäshamn / Fårösund',
+      from_nearest_hub_min: 300,
+      operator: 'Gotska Sandön Trafik AB',
+      frequency: 'Begränsade avgångsdagar juni–sept — kolla aktuell tidtabell',
+    },
+    harbors: [
+      { name: 'Bränn­vigeln', desc: 'Öns enda angörings­plats. Ogästvänlig vid hög sjö — tur­operatörerna avgör om landstigning är möjlig.', spots: 10, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Boka plats på båt och stuga minst 2–3 månader i förväg. Gotska Sandön är liten och fullbokad tidigt.',
+      'Insekter kan vara besvärliga i juli. Ta med bra myggskydd.',
+      'Ön är inte nåbar om sjön är för grov — tur­operatören kan ställa in utan förvarning.',
+      'Ta med allt du behöver — ingen mat, inget vatten och ingen affär på ön.',
+    ],
+    related: ['gotland', 'faro', 'arholma'],
+    tags: ['nationalpark', 'avlägsen', 'sanddyner', 'äventyr', 'natur', 'bucket list', 'gotland'],
+    insiderTips: [
+      'Prata med nationalparkspersonalen när du landar — de vet var havsörnen sitter och var sälarna vilar på stranden.',
+      'Ta med handlinor och fiska längs stranden. Gotska Sandöns stränder är fria för alla.',
+    ],
+    did_you_know: 'Gotska Sandön blev nationalpark 1909 — ett av Sveriges allra första. Ön är ett geologiskt sällsynt sanddynlandskap mitt i Östersjön, med arter som inte förekommer på Gotland trots att de är nära grannar.',
+    amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: true },
+    activity_meta: {
+      bad: { beaches: ['Hela kusten är strand, ca 18 km'] },
+      fiske: true,
+    },
+  },
+
+  // ─── ASPÖ (BLEKINGE) ─────────────────────────────────────────────────────
+  {
+    slug: 'aspo-blekinge',
+    name: 'Aspö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🦀',
+    tagline: 'Karlskrona-skärgårdens vackraste ö — granit, barrskog och fri natur.',
+    description: [
+      'Aspö är en av de mer besökta öarna i Karlskronas skärgård — en kuperad klipp­ö med barrskog, klippstränder och det typiska Blekinges möte mellan granit och hav. Ön är naturreservat till stora delar och välbesökt av seglare, kajakpaddlare och naturentusiaster.',
+      'Från Aspö kan man se Karlskronas östra utkant och navigera vidare till Sturkö och skärgårdens yttre delar. Ön erbjuder camping, vandring och ett av de bättre klippbaden längs den blekingska kusten.',
+    ],
+    facts: {
+      area: 'ca 9 km²',
+      population: 'ca 100 (helårsboende)',
+      known_for: 'Naturreservat, klipplandskap, Karlskrona-skärgård',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🏊', name: 'Klippbad', desc: 'Klart Östersjövatten längs öns klippkust. Vackra badplatser på sydöst­sidan.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Markerade leder runt ön och in i naturreservatet. Utsikter mot Hanöbukten och Karlskrona-skärgården.' },
+      { icon: '🚣', name: 'Kajak', desc: 'Aspö ingår i Blekinges kajak­rutter. Paddla vidare mot Yttre Pölsan eller mot Sturkö.' },
+    ],
+    accommodation: [
+      { name: 'Aspö Camping', type: 'Camping', desc: 'Camping­möjligheter på ön sommartid. Kolla aktuellt utbud med Karlskrona Turism.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Karlskrona', from: 'Karlskrona (Fisktorget/Polhemspiren)', time: 'ca 30–40 min', desc: 'Lokal passagerarfärja till Aspö sommar­säsong. Kolla aktuell tidtabell hos Blekingetrafiken.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 240,
+      nearest_hub: 'Karlskrona',
+      from_nearest_hub_min: 35,
+      operator: 'Blekingetrafiken',
+      frequency: 'Sommarsäsong — kolla aktuell tidtabell',
+    },
+    harbors: [
+      { name: 'Aspö Gästhamn', desc: 'Liten gästhamn i öns nordvästra del. Relativt skyddad sommartid.', spots: 30, fuel: false, service: ['Vatten'] },
+    ],
+    restaurants: [],
+    tips: [
+      'Kombinerbar med Sturkö: ta båten till Aspö, paddla eller ta sig vidare till Sturkö.',
+      'Ta med mat — serviceutbudet på ön är begränsat.',
+    ],
+    related: ['hano', 'sturko', 'landsort'],
+    tags: ['blekinge', 'naturreservat', 'kajak', 'bad', 'dagsutflykt'],
+    did_you_know: 'Karlskronas skärgård med Aspö och omgivande öar ingår i det område som präglade den svenska örlogsflottans historia från 1680-talet. Karlskrona är sedan 1998 ett UNESCO-världsarv, och marken och vattnet runt Aspö bär fortfarande spår av den militär­strategiska historien.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
+    activity_meta: {
+      kajak: { difficulty: 'lätt–medel', rental: false, notes: 'Kajakhyrning i Karlskrona' },
+      bad: { beaches: ['Sydöstra klippstranden', 'Västra viken'] },
+    },
+  },
+
+  // ─── STURKÖ ──────────────────────────────────────────────────────────────
+  {
+    slug: 'sturko',
+    name: 'Sturkö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🌲',
+    tagline: 'Blekinges största ö — skog, klippor och bilfri skärgårds­känsla.',
+    description: [
+      'Sturkö är den till ytan störst­a av de bebodda öarna i Blekinges skärgård. Ön är välkänd för sin skogiga karaktär, goda camping­möjligheter och de vackra utsikterna mot Hanöbukten och ut mot öppet Östersjövatten.',
+      'Till skillnad från många skärgårdsöar kan man nå Sturkö med bil via bro­förbindelser från Karlskrona-hållet, vilket gör den tillgänglig för dem utan båt. Ön kombinerar skärgårdens frihet med den praktiska tillgängligheten.',
+    ],
+    facts: {
+      area: 'ca 23 km²',
+      population: 'ca 700 (helårsboende)',
+      known_for: 'Blekinges största ö, camping, skogsmiljö',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '⛺', name: 'Camping', desc: 'Sturkö är ett välkänt sommarcampingmål i Blekinge. Campingplatser med gott om utrymme.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Skogspartier och klippkust erbjuder varierade vandrings­möjligheter. Utsikter mot öppet hav.' },
+      { icon: '🏊', name: 'Bad', desc: 'Klippbad och sandiga vikar längs östkusten. Klart Östersjövatten.' },
+    ],
+    accommodation: [
+      { name: 'Sturkö Camping', type: 'Camping', desc: 'Camping­anläggning med gott om plats. Populär i juli — boka i förväg eller kom tidigt.' },
+      { name: 'Stuguthyrning Sturkö', type: 'Stugor', desc: 'Sommarstugor via lokala uthyrare.' },
+    ],
+    getting_there: [
+      { method: 'Bil via bro­förbindelser', from: 'Karlskrona', time: 'ca 20–30 min', desc: 'Sturkö nås med bil via broförbindelser från Karlskrona-hållet. Kör mot Lyckeby och följ skyltning mot Sturkö.', icon: '🚗' },
+      { method: 'Passagerarfärja', from: 'Karlskrona', time: 'ca 25–35 min', desc: 'Blekingetrafiken trafikerar ön sommar­säsong. Kolla aktuell tidtabell.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 240,
+      nearest_hub: 'Karlskrona',
+      from_nearest_hub_min: 25,
+      operator: 'Bil (broförbunden) / Blekingetrafiken',
+      frequency: 'Tillgänglig med bil hela året',
+    },
+    harbors: [
+      { name: 'Sturkö Gästhamn', desc: 'Gästhamn med grundläggande service. Populär bland seglare i Blekinges skärgård.', spots: 50, fuel: false, service: ['Vatten', 'El'] },
+    ],
+    restaurants: [
+      { name: 'Sturkö Krog', type: 'Krog', desc: 'Lokal krog med husmanskost. Sommaröppen — kolla aktuella öppettider.' },
+    ],
+    tips: [
+      'Sturkö är bra om du vill ha skärgård men inte vill vara beroende av båtturer — ta bilen dit.',
+      'Kombinerbar med Aspö och Hanö om du har tillgång till båt.',
+    ],
+    related: ['hano', 'aspo-blekinge', 'landsort'],
+    tags: ['blekinge', 'camping', 'bil', 'familjer', 'skärgård'],
+    did_you_know: 'Sturkö har en av de äldsta kontinuerligt bebodda fiskebefolkningarna i Blekinges skärgård. Fisket och sjöfarten präglade ön ända fram till 1900-talets mitt.',
+    amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: true },
+    activity_meta: { bad: { beaches: ['Östra klippstranden', 'Sandviken'] } },
+  },
+
+  // ─── BLÅ JUNGFRUN ────────────────────────────────────────────────────────
+  {
+    slug: 'bla-jungfrun',
+    name: 'Blå Jungfrun',
+    region: 'ovriga',
+    regionLabel: 'Kalmarsund',
+    emoji: '🪄',
+    tagline: 'Förtrollad nationalpark i Kalmarsund — häxor, labyrinter och urberg.',
+    description: [
+      'Blå Jungfrun är en av Sveriges märkligaste platser — en rund granitö mitt i Kalmarsund som i folklig tradition ansågs vara samlings­platsen för svenska häxor varje Skärtorsdag (Blåkulla-legenden). I verkligheten är ön ett geologiskt unikum: en rundad granitklump formad av inlandsisen med stenlabyrinten Trollebo som dess mest kända inslag.',
+      'Ön är nationalpark sedan 1926 och kan endast besökas med dagstur­båt från Oskarshamn eller Byxelkrok på Öland. Övernattning är inte tillåten. Varje besök är ett kortare men djupt minneslöst möte med urbergets Sverige.',
+    ],
+    facts: {
+      area: 'ca 0,66 km²',
+      population: '0 (nationalpark)',
+      known_for: 'Häxlegenden (Blåkulla), stenlabyrint Trollebo, rundad granitklump, nationalpark',
+      season: 'Maj–September (dagstursbåtar)',
+    },
+    activities: [
+      { icon: '🪄', name: 'Trollebo stenlabyrint', desc: 'Forntida stenlabyrint — liknande labyrinter finns längs hela svenska kusten men Blå Jungfruns är en av de välbevarade. Ursprunget okänt.' },
+      { icon: '🥾', name: 'Vandring på ön', desc: 'Välmärkta leder runt ön (ca 3–4 km). Utsikter från öns topp mot Öland och fastlandet.' },
+      { icon: '🔮', name: 'Häxhistorian', desc: 'Guider berättar om Blåkulla-legenden, varför just Blå Jungfrun valdes ut av folktron och hur påskkärrings­traditionen hänger ihop.' },
+      { icon: '🌿', name: 'Naturupplevelse', desc: 'Orörda urskogspartier med gamla ekar och tallskogar. Havsörn och pilgrimsfalk observeras.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      { method: 'Dagstursbåt från Oskarshamn', from: 'Oskarshamn', time: 'ca 1,5–2 h', desc: 'Sommarsäsong kör operatörer dagstursbåtar till Blå Jungfrun från Oskarshamn. Boka i förväg.', icon: '⛴' },
+      { method: 'Dagstursbåt från Byxelkrok', from: 'Byxelkrok (Ölands nordspets)', time: 'ca 45 min', desc: 'Kortare rutt från Ölands nordspets. Sommaroperatörer — kolla aktuellt utbud.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 240,
+      nearest_hub: 'Oskarshamn / Byxelkrok',
+      from_nearest_hub_min: 100,
+      operator: 'Lokala dagstursbåtar (sommarsäsong)',
+      frequency: 'Begränsade dagar per vecka, boka i förväg',
+    },
+    harbors: [],
+    restaurants: [],
+    tips: [
+      'Övernattning är INTE tillåtet — det är en dagstur utan undantag.',
+      'Boka dagstur­båt i god tid — platserna är begränsade.',
+      'Högt upp på ön finns de bästa utsikterna mot Öland och fastlandet — ta med kameran.',
+      'Legenden säger att om man tar en sten från ön, tar man med sig olycka. Lämna stenarna kvar.',
+    ],
+    related: ['oland', 'gotland', 'faro'],
+    tags: ['nationalpark', 'historia', 'naturreservat', 'dagsutflykt', 'mystik', 'kalmarsund'],
+    insiderTips: [
+      'Guidade turer inkluderas vanligen i dagstursbiljetterna — hoppa inte av guiden. Historien om häxlegenden och geologin kräver sammanhang.',
+    ],
+    did_you_know: 'Blå Jungfrun fick sitt namn av sjömän som fruktat ön och kallat den "Blåkulla" — the Blue Island — som i folketro var häxornas samlingsplats. Det officiella "Blå Jungfrun" (Blå Jungfru) är en eufemism för att inte nämna det fruktade namnet direkt.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: false },
+    activity_meta: { bad: { beaches: [] } },
+  },
+
+  // ─── HEMSÖN ──────────────────────────────────────────────────────────────
+  {
+    slug: 'hemson',
+    name: 'Hemsön',
+    region: 'ovriga',
+    regionLabel: 'Höga Kusten',
+    emoji: '🏰',
+    tagline: 'Höga Kustens hemliga ö — berömda fästningsverk, urskogar och klippstränder.',
+    description: [
+      'Hemsön är en stor ö utanför Härnösand i Ångermanland, och en av Höga Kustens mest besöksvärda men undermarknadsförda destinationer. Öns domineras av Hemsö fästning — ett skalskydds­anläggning byggd i berg under det kalla krigets era som idag är ett öppet historiskt monument.',
+      'Utöver fästningen bjuder Hemsön på typisk Höga Kusten-natur: dramatiska klippor som landar rakt i havet, barrskogs­täta marker och utsikter mot Ångermanälvens mynning och de inre fjärdarna.',
+      'Ön nås med passagerarfärja från Härnösand och är tillgänglig som dagsutflykt eller för övernattning via camping.',
+    ],
+    facts: {
+      area: 'ca 30 km²',
+      population: 'ca 200 (helårsboende)',
+      known_for: 'Hemsö fästning, klippnatur, Höga Kusten',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '🏰', name: 'Hemsö fästning', desc: 'Bergfästning från kalla krigets era uthuggd i klippan. Guidade turer sommartid visar kasematter, tunnel­system och pjässällningar. En av Sveriges mest unika militär­historiska platser.' },
+      { icon: '🥾', name: 'Vandring i urskog', desc: 'Välmärkta leder genom Hemsöns barrskogar och längs klippkusten. Stigar med fantastisk utsikt mot Ångermans­landskapet.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Klart Bottenhavsvatten längs öns stränder. Avskilt och rent.' },
+    ],
+    accommodation: [
+      { name: 'Hemsön Camping', type: 'Camping', desc: 'Camping­möjligheter sommartid. Koll aktuellt utbud.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Härnösand', from: 'Härnösand', time: 'ca 20–30 min', desc: 'Lokal passagerarfärja till Hemsön från Härnösand hamn. Kolla aktuell tidtabell hos Länstrafiken Västernorrland.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 300,
+      nearest_hub: 'Härnösand',
+      from_nearest_hub_min: 25,
+      operator: 'Länstrafiken Västernorrland',
+      frequency: 'Sommarsäsong — kolla aktuell tidtabell',
+    },
+    harbors: [
+      { name: 'Hemsö Gästhamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som utforskar Höga Kusten.', spots: 30, fuel: false, service: ['Vatten', 'El'] },
+    ],
+    restaurants: [],
+    tips: [
+      'Boka guidad tur till fästningen i förväg — en av de mest häpnadsväckande platserna i norra Sverige.',
+      'Kombinerbar med Ulvön och Trysunda för en längre Höga Kusten-vistelse.',
+    ],
+    related: ['ulvon', 'trysunda', 'arholma'],
+    tags: ['höga kusten', 'historia', 'fästning', 'natur', 'vandring', 'UNESCO'],
+    did_you_know: 'Hemsö fästning byggdes in i berget under 1950–60-talen som en del av Sveriges kall­krigsförsvar. Bergrum, tunnel­system och kanon­pjässällningar är bevarade och öppna för besök — ett tidskapsel från en era då Sverige tog sin militärstrategiska neutralitet på extremt allvar.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
+    activity_meta: { bad: { beaches: ['Klippstränder östra sidan'] } },
+  },
+
+  // ─── FÅRÖ ────────────────────────────────────────────────────────────────
+  {
+    slug: 'faro',
+    name: 'Fårö',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🪨',
+    tagline: 'Bergmans ö — raukar, vild natur och Östersjöns tystnad.',
+    description: [
+      'Fårö är Gotlands nordligaste utpost — och en av Sveriges mest mytomspunna öar. Ingmar Bergman anlände hit 1960 när han sökte inspelningsplats för Såsom i en spegel, och kom aldrig riktigt tillbaka. Han bodde kvar till sin död 2007.',
+      'Landskapet är radikalt annorlunda än resten av Gotland: vindpinade tallar, öppen hed och kalkstensraukar som reser sig längs stränderna som skulpterade pelarhallar. Fårö är inte en ö man passerar — den är ett resmål i sig.',
+      'Via den kostnadsfria färjan från Fårösund är Fårö lätt att nå med bil. Men ön belönar dem som stannar. Sudersandstranden, rauk-vandringarna vid Langhammars och den tidlösa stämningen i fiskelägena är svåra att kombinera på ett och samma dagsutflyktsstopp.',
+    ],
+    facts: {
+      area: '113 km²',
+      population: 'ca 550 (helårsboende)',
+      known_for: 'Raukar, Ingmar Bergman, Sudersandstranden',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🪨', name: 'Langhammars raukar', desc: 'Fårös och Gotlands mest imponerande raukfält. Kalkstens­pelarema står tätt och höga längs den svept­öppna nordvästkusten. Bäst i morgon- eller kvällsljus.' },
+      { icon: '🏖', name: 'Sudersandstranden', desc: 'Fårös populäraste strand — lång, ljus sand och Östersjöns klara vatten. Strandbar och café sommartid.' },
+      { icon: '🎬', name: 'Bergmancentret', desc: 'Utställning om Ingmar Bergmans liv och arv, med fokus på åren på Fårö. Guidade turer till Hammars (hans sista hem) sommartid — boka i förväg.' },
+      { icon: '🚲', name: 'Cykla Fårö', desc: 'Platt terräng och lite trafik gör ön idealisk för cykling. Runtur ca 40 km — Sudersand, Langhammars, Gamla Hamn och tillbaka.' },
+      { icon: '⛵', name: 'Gamla Hamn', desc: 'Fårös gamla fiskehamn på nordostsidan. Ovanliga raukformer, praktiskt taget inga turister. Stämningsfull tidvattens­basin vid lågvatten.' },
+    ],
+    accommodation: [
+      { name: 'Fårö Sudersand Resort', type: 'Hotell/Camping', desc: 'Strandnära anläggning med hotellrum, stugor och camping. Boka månader i förväg till juli.' },
+      { name: 'Fårö Bed & Breakfast', type: 'B&B', desc: 'Enklare och charmigare alternativ i gammal gårds­miljö. Perfekt för par.' },
+      { name: 'Stuguthyrning Fårö', type: 'Stugor', desc: 'Privata stugor via Airbnb och Blocket. Stor variation — boka senast mars för midsommar–juli.' },
+    ],
+    getting_there: [
+      { method: 'Gratis färja Fårösund–Broa', from: 'Fårösund (Gotland)', time: '5 min', desc: 'Färjan går dygnet runt och kostar ingenting. Kör till Fårösund via Gotlands vägnät, ca 80 km från Visby. Köbildning väntas i juli.', icon: '⛴' },
+      { method: 'Destination Gotland + hyrbil', from: 'Nynäshamn eller Oskarshamn', time: '3–3,5 h + bil', desc: 'Färja till Visby, hyr bil och kör norrut. Boka bil­platsen på färjan minst 2–3 månader i förväg under högsäsong.', icon: '🚢' },
+      { method: 'Flyg + hyrbil', from: 'Stockholm Arlanda / Bromma', time: '55 min flyg + 90 min bil', desc: 'BRA och SAS flyger dagligen till Visby. Hyr bil på flygplatsen och kör till Fårösund.', icon: '✈️' },
+    ],
+    transport_meta: {
+      from_city_min: 300,
+      nearest_hub: 'Visby / Fårösund',
+      from_nearest_hub_min: 5,
+      operator: 'Gratis bilfärja (Region Gotland)',
+      frequency: 'Dygnet runt, tät trafik',
+    },
+    harbors: [
+      { name: 'Fårösund Gästhamn', desc: 'Hamnen ligger på Gotlands sida av sundet, strax söder om färjeläget. Bra utgångspunkt för seglare som vill utforska Fårö.', spots: 60, fuel: false, service: ['Vatten', 'El', 'Dusch'] },
+    ],
+    restaurants: [
+      { name: 'Kuttersmöjan', type: 'Krog', desc: 'Öns klassiska krog i Fårösund. Husmanskost, fisk och havsutsikt. Sommaröppen.' },
+      { name: 'Sudersand Strandbar', type: 'Bar/Café', desc: 'Strandbar vid campingen. Hamburgare, glass och drinkar med havsutsikt.' },
+      { name: 'Broas Handelsbod', type: 'Café/Handel', desc: 'Öns enda affär och café. Öppnar tidigt, viktig knutpunkt för ön.' },
+    ],
+    tips: [
+      'Boka boende senast mars om du åker midsommar–juli. Fårö är litet och fyllbokat.',
+      'Langhammars är bäst i tidigt morgon- eller kvällsljus — turist­bubblan på eftermiddagen är påtaglig.',
+      'Guidad tur till Hammars (Bergmans hem) via Bergmancentret — boka online, begränsat antal platser.',
+      'Ta gärna en dag extra och cykla hela ön. Det är Fårös rätta tempo.',
+    ],
+    related: ['gotland', 'ulvon', 'arholma'],
+    tags: ['natur', 'kultur', 'strand', 'cykling', 'romantisk', 'historia', 'raukar'],
+    insiderTips: [
+      'De flesta besökare stannar vid Sudersand och Langhammars. Ge dig istället till Gamla Hamn på nordostsidan — ovanliga raukformer och nästan inga turister ens i juli.',
+      'Fårö-dokumentären (Bergman, 1969) och Fårö-dokument 1979 finns på streaming — titta innan du åker för att förstå varför ön fastnar i en.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund tillåten på de flesta platser. Undvikt Sudersandstrandens badbälte under badsäsongen (15/6–15/8).',
+    did_you_know: 'Ingmar Bergman hittade Fårö 1960 när han sökte inspelnings­plats för Såsom i en spegel. Han köpte sin första tomt 1966, byggde ut gården Hammars och bodde kvar till sin död 2007 — varefter han begravdes på Fårö kyrka­gård.',
+    amenities: {
+      restaurant: true,
+      shop: true,
+      accommodation: true,
+      beach: true,
+      camping: true,
+    },
+    activity_meta: {
+      cykel: { rental: true, notes: 'Cykelhyrning via Sudersand Resort och i Fårösund.' },
+      bad: { beaches: ['Sudersandstranden', 'Ekeviken', 'Norsta Auren'] },
+    },
+  },
+
+  // ─── TRYSUNDA ─────────────────────────────────────────────────────────────
+  {
+    slug: 'trysunda',
+    name: 'Trysunda',
+    region: 'ovriga',
+    regionLabel: 'Höga Kusten',
+    emoji: '🏡',
+    tagline: 'Höga Kustens pärlstav — ett levande 1700-tals fiskesamhälle utan bilar.',
+    description: [
+      'Trysunda är en av Höga Kustens mest välbevarade öar — ett fiskesamhälle som nästan inte förändrats sedan 1700-talet. Röda stugor tätt i tätt, byssgränder utan asfaltering och ett kapell från 1666 som fortfarande håller sommargudstjänster.',
+      'Ön är bilfri och nås med passagerarfärja från fastlandet. Det är avsiktligt. Trysunda är en ö för dem som vill stanna, inte passera — för kajakpaddlaren, vandrandets entusiast och den som vill förstå vad Höga Kusten egentligen är bortom vybilarna.',
+      'Höga Kusten är UNESCO:s världsarv för sin landhöjning — den snabbaste i världen. Trysundas klippor, stänk av havsnäring och det omgivande vidfrämmande tystnad är ett av världsarvets finaste kapitel.',
+    ],
+    facts: {
+      area: 'ca 2 km²',
+      population: 'ca 30 (helårsboende), ca 200 (sommar)',
+      known_for: 'Välbevarat fiskesamhälle, kapell från 1666, bilfritt',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '⛵', name: 'Kajakpaddling', desc: 'Trysunda är ett nav för Höga Kustens kajak­rutter. Paddla till Ulvön (ca 45 min) eller längs klippkusten söderut.' },
+      { icon: '⛪', name: 'Trysunda kapell', desc: 'Kapellet från 1666 är ett av Höga Kustens äldsta bevarade byggnader. Sommargudstjänster hålls än idag.' },
+      { icon: '🥾', name: 'Vandring på ön', desc: 'Välmärkta leder runt öns klipp­kust och genom fiskesamhället. Utsikter över Ulvöfjärden.' },
+      { icon: '🏊', name: 'Bad från klippor', desc: 'Klart, djupt vatten runt hela ön. Klassiska klipp­bad i skydd av vindstilla vikar.' },
+      { icon: '🎣', name: 'Fiske', desc: 'Handlina, abborre och gädda i fjärdarna. Fråga på ön om rätt platser.' },
+    ],
+    accommodation: [
+      { name: 'Trysunda Stugby', type: 'Stugor', desc: 'Enkla men charmiga stugor i fiskesamhällets hjärta. Boka tidigt — begränsat antal.' },
+      { name: 'Tält på ön', type: 'Camping', desc: 'Tältning tillåten på utpekade platser. Kolla aktuella regler med länsstyrelsen.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Ullånger/Bönhamn', from: 'Nordingrå-området', time: 'ca 45 min', desc: 'Sommarsäsong kör passagerarfärja från Bönhamn och/eller Ullånger. Kolla aktuella tidtabeller med Höga Kustens Båttrafik.', icon: '⛴' },
+      { method: 'Passagerarfärja från Ulvöhamn', from: 'Ulvön', time: 'ca 20 min', desc: 'Möjligt att ta sig från Ulvön till Trysunda med båt. Kombinerbar dag­utflykt.', icon: '⛴' },
+      { method: 'Kajak', from: 'Nordingrå / Ulvön', time: 'varierar', desc: 'Erfarna paddlare tar sig till Trysunda med kajak från Nordingrå-halvön (ca 5–6 km) eller från Ulvöhamn.', icon: '🚣' },
+    ],
+    transport_meta: {
+      from_city_min: 300,
+      nearest_hub: 'Kramfors / Härnösand',
+      from_nearest_hub_min: 45,
+      operator: 'Höga Kustens Båttrafik',
+      frequency: 'Sommarsäsong — begränsade avgångar, kolla tidtabell',
+    },
+    harbors: [
+      { name: 'Trysunda Gästhamn', desc: 'Liten gästhamn i fiskeläget. Grundare inlopp — lämpligt för mindre kölbåtar och jollar.', spots: 20, fuel: false, service: ['Vatten'] },
+    ],
+    restaurants: [
+      { name: 'Trysunda Värdshus', type: 'Värdshus', desc: 'Öns enda servering med husmanskost och lokal fisk. Sommaröppen — begränsade platser.' },
+    ],
+    tips: [
+      'Boka färjebiljett och boende i god tid — Trysunda är liten och söks av många.',
+      'Kombinerbar med Ulvön: ta färjan till Trysunda på förmiddagen, paddla eller ta båt till Ulvön på eftermiddagen.',
+      'Ta med proviant — öns affär är minimal och stänger tidigt.',
+      'Kapellet är öppet utan guide. Kliv in, det är värt fem tysta minuter.',
+    ],
+    related: ['ulvon', 'arholma', 'furusund'],
+    tags: ['höga kusten', 'bilfritt', 'historia', 'kajak', 'UNESCO', 'natur', 'fiske'],
+    insiderTips: [
+      'Trysunda är inte Ulvöns surströmmings­glamour — den är stillsammare och mer autentisk. Perfekt om du vill ha Höga Kusten utan folkvimmel.',
+      'De röda fiskebodarna längs hamnen fotograferas flitigt — men den egentliga pärlstaben är gränderna innanför, där husen ligger nästan axel mot axel.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund tillåten på de flesta ödeplatser. Håll koppel i fiskesamhällets tätbebyggda delar.',
+    did_you_know: 'Höga Kusten är ett UNESCO-världsarv för sin land­höjning — havsytan sjunker relativt land med ca 8 mm per år, den snabbaste landhöjningen i världen. Trysundas klippor som idag är strandbred var för 10 000 år sedan havsbotten.',
+    amenities: {
+      restaurant: true,
+      shop: false,
+      accommodation: true,
+      beach: false,
+      camping: true,
+    },
+    activity_meta: {
+      kajak: { difficulty: 'medel', rental: false, notes: 'Kajakhyrning rekommenderas från fastlandet i Nordingrå' },
+      bad: { beaches: ['Klippbad norra sidan', 'Skyddad vik vid hamnen'] },
+    },
+  },
+
+  // ─── HANÖ ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'hano',
+    name: 'Hanö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '⚓',
+    tagline: 'Blekinges klippö — engelsk kyrkogård, raukar och vild Östersjönatur.',
+    description: [
+      'Hanö är en av Blekinges mest besökta öar — och en av de mest ovanliga. Ön är naturreservat, har inga fasta boende och nås med båt från Karlshamn. Det är ett resmål som kräver lite ansträngning, och som belönar den ansträngningen generöst.',
+      'Det mest oväntade på Hanö är dess engelska historia. Under Napoleonkrigen 1809–1812 använde brittiska Royal Navy Hanö som flottbas i Östersjön. Sjömän som dog under övervintringen begravdes på ön — kyrkogården är i dag en av de märkligaste platserna längs hela svenska kusten.',
+      'Naturen är dramatisk: kuperade klippor, barrskog, strandhed och den steniga stranden vid Engelskabadet. En liten fyr markerar öns höjdpunkt.',
+    ],
+    facts: {
+      area: '2,8 km²',
+      population: '0 (naturreservat, inga fasta boende)',
+      known_for: 'Engelsk kyrkogård, naturreservat, klipplandskap',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '⚱️', name: 'Engelska kyrkogården', desc: 'Brittiska sjömän begravda 1809–1812. En av Sverige mest ovanliga historiska platser — läs inskriptionerna och unna dig ett stilla ögonblick.' },
+      { icon: '🥾', name: 'Vandringsleder', desc: 'Välmärkta leder runt hela ön, ca 8 km totalt. Klippstränder, barrskog och vid utsikt över Hanöbukten.' },
+      { icon: '🏊', name: 'Engelskabadet', desc: 'Öns populäraste badplats. Stenig strand med klart vatten och tillräcklig avskildheten för att kännas som en hemlighet.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Hanö är rastplats för sträckande fåglar höst och vår. Havsörn observeras regelbundet.' },
+      { icon: '🏠', name: 'Fyren', desc: 'Hanös gamla fyr på öns högsta punkt. Fri att besöka — fin utsikt över Östersjön och mot fastlandet.' },
+    ],
+    accommodation: [
+      { name: 'Tält på Hanö', type: 'Camping', desc: 'Tältning tillåten i naturreservatet på anvisad plats. Ta med allt du behöver — ingen service på ön.' },
+    ],
+    getting_there: [
+      { method: 'Båt från Karlshamn', from: 'Karlshamn', time: 'ca 45 min', desc: 'Passagerarfärja sommarsäsong. Kolla aktuella avgångstider med Karlshamns Turism eller lokala båtoperatörer.', icon: '⛴' },
+      { method: 'Privat- eller charterbåt', from: 'Karlshamn / Sölvesborg', time: '30–60 min', desc: 'Egen båt eller chartrad — Hanöbukten är öppen vatten, undvik vid kuling.', icon: '⛵' },
+    ],
+    transport_meta: {
+      from_city_min: 240,
+      nearest_hub: 'Karlshamn',
+      from_nearest_hub_min: 45,
+      operator: 'Lokal båtoperatör (sommarsäsong)',
+      frequency: 'Begränsade avgångar, kolla tidtabell',
+    },
+    harbors: [
+      { name: 'Hanö Gästhamn', desc: 'Liten naturhamn på öns skyddade sida. Smalare inlopp — ankra i skälet utanför om hamnen är full.', spots: 15, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Ta med all mat, vatten och utrustning — ingenting säljs på ön.',
+      'Den engelska kyrkogården är liten men djupt stämningsfull. Ta dig tid.',
+      'Kolla väderprognoser noga — Hanöbukten är öppet hav och trafiken ställs in vid sämre väder.',
+      'Kombinerbar med Karlskrona: ligga i Karlskrona, dagstur till Hanö.',
+    ],
+    related: ['gotland', 'ulvon', 'landsort'],
+    tags: ['historia', 'natur', 'naturreservat', 'fågelskådning', 'blekinge', 'dagsutflykt'],
+    insiderTips: [
+      'De flesta besöker Hanö på dagsutflykt. Att övernatta med tält ger en helt annan upplevelse — tidig morgon på klipporna med havsörn och ingenting annat.',
+      'Den engelska kyrkogårdens stenar är vittrade men läsliga. Sjömanens namn, skeppets namn, dödsdatum — det finns berättelser i varje sten.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund tillåten i naturreservatet. Håll koppel nära fågelhäcknings­områden (april–juli).',
+    did_you_know: 'Under Napoleonkrigen blockerade brittiska flottan Napoleons allierades hamnar i Östersjön. Hanö valdes som bas för sin strategiska position och naturliga hamn. Mer än 200 brittiska sjömän avled och begravdes på ön under åren 1809–1812.',
+    amenities: {
+      restaurant: false,
+      shop: false,
+      accommodation: false,
+      beach: true,
+      camping: true,
+    },
+    activity_meta: {
+      bad: { beaches: ['Engelskabadet', 'Norra klippstranden'] },
+      fiske: true,
+    },
+  },
+
 ]
 
 // ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
