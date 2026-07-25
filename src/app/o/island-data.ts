@@ -84,7 +84,7 @@ export type Island = {
    * Separerat från activities[] som är display-fokuserad med ikon + beskrivning.
    */
   activity_meta?: {
-    kajak?: { difficulty: 'lätt' | 'medel' | 'svår', rental: boolean, notes?: string }
+    kajak?: { difficulty: string, rental: boolean, notes?: string }
     cykel?: { rental: boolean, km_track?: number, notes?: string }
     bad?: { beaches: string[] }
     vandring?: { trails: number, max_km?: number }
