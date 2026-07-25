@@ -53,12 +53,7 @@ export type Island = {
   lat?: number   // approx center coordinate
   lng?: number
   description: string[]
-  facts: {
-    travel_time: string
-    character: string
-    season: string
-    best_for: string
-  }
+  facts: Record<string, string>
   activities: IslandActivity[]
   accommodation: IslandAccommodation[]
   getting_there: IslandTransport[]
