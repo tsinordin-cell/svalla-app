@@ -139,7 +139,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Statiska sidor ──────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
-    // /platser omdirigerar till /upptack — tas bort ur sitemap för att undvika "Page with redirect" i GSC
+    { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
@@ -211,6 +211,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
     // Guider (hub)
     { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
+    { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
     // Transaktionella SEO-sektioner
     { url: `${base}/teambuilding`,           lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/hyra-bat`,               lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
@@ -219,7 +220,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/oland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
-    // /planera är skyddad rutt (kräver inloggning) — tas bort ur sitemap
+    { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
@@ -451,7 +452,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...platsPages,
     ...rutterPages,
     ...tipsPages,
-    // planeraPages borttagna — /planera/* är skyddade rutter som omdirigerar Googlebot
+    ...planeraPages,
     ...forumCatPages,
     ...forumThreadPages,
   ]
