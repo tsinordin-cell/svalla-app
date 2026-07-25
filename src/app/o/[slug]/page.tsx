@@ -81,14 +81,23 @@ export default async function IslandPage({ params }: Props) {
  if (!island) notFound()
 
  // Hämta antal unika besökare + senaste forumtrådar parallellt
- const supabase = await createServerSupabaseClient()
- const [{ count: visitorCount }, recentThreads] = await Promise.all([
-   supabase
-     .from('visited_islands')
-     .select('*', { count: 'exact', head: true })
-     .eq('island_slug', slug),
-   getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
- ])
+ // try/catch: om Supabase är nere eller env vars saknas, visa sidan ändå
+ let visitorCount: number | null = null
+ let recentThreads: Awaited<ReturnType<typeof getThreadsByIsland>> = []
+ try {
+   const supabase = await createServerSupabaseClient()
+   const [visitResult, threadResult] = await Promise.all([
+     supabase
+       .from('visited_islands')
+       .select('*', { count: 'exact', head: true })
+       .eq('island_slug', slug),
+     getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
+   ])
+   visitorCount = visitResult.count
+   recentThreads = threadResult
+ } catch {
+   // Supabase-fel: rendera sidan utan besökarräknare och forumtrådar
+ }
 
  const regionColor = island.region === 'norra'
  ? '#1a5276'
