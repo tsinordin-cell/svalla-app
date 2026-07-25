@@ -232,7 +232,7 @@ function SokPageInner() {
  const islandResults: Result[] = isHashtagQuery ? [] : ALL_ISLANDS
  .filter(i =>
  i.name.toLowerCase().includes(needle) ||
- i.regionLabel.toLowerCase().includes(needle) ||
+ (i.regionLabel ?? '').toLowerCase().includes(needle) ||
  i.tagline.toLowerCase().includes(needle) ||
  i.tags.some(t => t.toLowerCase().includes(needle))
  )
@@ -241,7 +241,7 @@ function SokPageInner() {
  type: 'o' as const,
  id: i.slug,
  title: i.name,
- subtitle: `${i.regionLabel} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
+ subtitle: `${i.regionLabel ?? ''} · ${i.tagline.slice(0, 50)}${i.tagline.length > 50 ? '…' : ''}`,
  href: `/o/${i.slug}`,
  }))
 
