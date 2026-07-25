@@ -38,7 +38,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     description: 'Öar du tar dig till på morgonen och hem på kvällen. Färjebåt eller pendelbåt från Strömkajen, Stavsnäs eller Nynäshamn. Inga övernattningar — bara perfekta dagsutflykter.',
     intro: 'En dagstur kräver att du är hemma till middag. Det betyder restid på max 2 h enkel väg, regelbundna båtar och tillräckligt på ön för att fylla 4–6 timmar. Det är öarna nedan.',
     filter: (i) => {
-      const t = i.facts.travel_time.toLowerCase()
+      const t = (i.facts.travel_time ?? '').toLowerCase()
       // Inkluderar grovt: "1 h", "1,5 h", "2 h" — exkluderar längre
       const isShort = /(\b30\s*min|\b1[,.]?\d?\s*h|\b2\s*h)/.test(t) && !t.includes('3 h') && !t.includes('4 h')
       const isStockholmRegion = i.region === 'norra' || i.region === 'mellersta' || i.region === 'södra'
