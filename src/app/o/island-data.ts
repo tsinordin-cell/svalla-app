@@ -4142,6 +4142,414 @@ export const ISLANDS: Island[] = [
     },
   },
 
+  // ─── SVARTLÖGA ───────────────────────────────────────────────────────────
+  {
+    slug: 'svartloga',
+    name: 'Svartlöga',
+    region: 'norra',
+    emoji: '🌑',
+    tagline: 'Norra skärgårdens mest avskilda ö — ytterskärgård utan bilar och affärer.',
+    description: [
+      'Svartlöga är en av Stockholms skärgårds mest avlägsna och orörda öar. Belägen långt ut i norra skärgården, ca 7 timmar med Waxholmsbolaget från Stockholm, är Svartlöga ett resmål för dem som söker äkta ytterskärgård utan kompromisser: inga bilar, ingen affär och mycket lite folk utanför högsäsongen.',
+      'Ön är bilfri och knappt 3 km² stor med en fast befolkning om bara några tiotal helårsboende. Naturen domineras av tallskogsklippornas karaktär — lavtäckta berghällar som möter öppet Östersjövatten. Havsörn och säl syns regelbundet.',
+      'Svartlöga är en av de öar i Stockholms skärgård som kräver planering och tålamod att nå — och det är precis det som gör det värt det.',
+    ],
+    facts: {
+      area: 'ca 3 km²',
+      population: 'ca 20–30 (helårsboende)',
+      known_for: 'Ytterskärgård, bilfritt, havsörn, absolut avskildhet',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '🦅', name: 'Havsörn & säl', desc: 'Norra ytterskärgården hyser en stark population av havsörn. Säl observeras på klipporna i öns yttre delar.' },
+      { icon: '⛺', name: 'Tältning', desc: 'Allemansrätten gäller. Klipporna erbjuder unika tältplatser med öppet havsläge och solnedgångar österut.' },
+      { icon: '🚣', name: 'Kajak', desc: 'Paddla runt ön och utforska de omgivande skären. Lugn och skyddad inre fjärd på västra sidan.' },
+    ],
+    accommodation: [
+      { name: 'Tältning på klipporna', type: 'Camping', desc: 'Inga bokningsbara boenden. Ta med tält och allt du behöver.' },
+    ],
+    getting_there: [
+      { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen)', time: 'ca 6–7 h', desc: 'Lång båtresa via norra skärgårdens öar. Kolla aktuell tidtabell på waxholmsbolaget.se — avgångarna är sällsynta.', icon: '⛴' },
+      { method: 'Privat båt', from: 'Furusund / Norrtälje', time: 'ca 45–60 min', desc: 'Från Furusund eller Norrtälje är det kortare båtväg. Det naturliga sättet att besöka ön om du har tillgång till båt.', icon: '⛵' },
+    ],
+    transport_meta: {
+      from_city_min: 400,
+      nearest_hub: 'Furusund / Norrtälje',
+      from_nearest_hub_min: 50,
+      operator: 'Waxholmsbolaget / privat båt',
+      frequency: 'Sällsynta avgångar — kolla tidtabell noggrant',
+    },
+    harbors: [
+      { name: 'Svartlöga naturhamn', desc: 'Naturliga ankringslägen på öns västra sida. Populärt bland seglare.', spots: 20, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Ta med allt — mat, vatten, utrustning. Ingenting säljs på ön.',
+      'Kolla Waxholmsbolagets tidtabell noga. Avgångarna är begränsade och missar du sista båten stannar du kvar.',
+      'Svartlöga är bäst under veckorna, inte helgerna i juli. Lugnet är poängen.',
+    ],
+    related: ['arholma', 'rodloga', 'fejan'],
+    tags: ['ytterskärgård', 'bilfritt', 'natur', 'avskilt', 'norra skärgård', 'havsörn'],
+    insiderTips: [
+      'Solnedgången sedd från Svartlögas östklippa — med inget annat land synligt på horisonten — är en av skärgårdens mest oslagbara upplevelser.',
+    ],
+    did_you_know: 'Svartlöga är en av de öar i norra Stockholms skärgård som kallas "svart" av historiska skäl — de yttre, karga, mörkfärgade granitöarna fick epitetet "svart" för att skilja dem från de inre, skogklädda "gröna" öarna.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: true },
+    activity_meta: {
+      kajak: { difficulty: 'medel', rental: false, notes: 'Ta med egen kajak — ingen uthyrning på ön' },
+      bad: { beaches: ['Klippbad östra sidan'] },
+    },
+  },
+
+  // ─── VISINGSÖ ────────────────────────────────────────────────────────────
+  {
+    slug: 'visingo',
+    name: 'Visingsö',
+    region: 'ovriga',
+    regionLabel: 'Vättern',
+    emoji: '🏇',
+    tagline: 'Vätterns sagolika ö — Brahehus, ekskog och häst­skjuts i Europas näst renaste sjö.',
+    description: [
+      'Visingsö är en långsmal ö i södra Vättern, ett par kilometer utanför Gränna i Jönköpings län. Ön är 14 km lång och känd för sin dramatiska historia, märkliga natur och det faktum att man tar sig runt med häst och vagn — en tradition som lockar hundratusentals besökare varje år.',
+      'Ruinerna av Brahehus (1600-tal) och Näs slott (medeltid) ger historisk tyngd, och ekskogen som planterades på 1800-talet för att ge virke till den svenska flottan täcker idag delar av ön med en urgammal karaktär.',
+      'Vättern är Europas näst renaste sjö, och vattnet runt Visingsö är kristallklart med sikt ned till 10–20 meter. Bad och fiske hör sommaren till.',
+    ],
+    facts: {
+      area: 'ca 24 km²',
+      population: 'ca 800 (helårsboende)',
+      known_for: 'Brahehus ruiner, ekskogen, häst­skjuts, Vätterns klara vatten',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🏇', name: 'Häst och vagn', desc: 'En av Visingsös signaturer. Ta häst­skjuts från färjeläget och åk runt ön i traditionellt stil.' },
+      { icon: '🏰', name: 'Brahehus', desc: 'Ruinerna av Per Brahes slott (1600-tal) på en klippudde med fantastisk utsikt över Vättern mot Gränna och fastlandet.' },
+      { icon: '🌳', name: 'Ekskogen', desc: 'En av Sveriges mest ovanliga skogar — planterad på 1800-talet för flottans framtida virkesbe­hov. En djup, urskogsaktig upplevelse.' },
+      { icon: '🏊', name: 'Bad i Vättern', desc: 'Vätterns klara vatten ger ett av Sveriges renaste badsäsonger. Sandstränder på öns östra sida.' },
+    ],
+    accommodation: [
+      { name: 'Visingsö Vandrarhem', type: 'Vandrarhem', desc: 'Vandrarhem och stuguthyrning på ön. Boka i god tid sommartid.' },
+    ],
+    getting_there: [
+      { method: 'Bilfärja från Gränna', from: 'Gränna', time: 'ca 25 min', desc: 'Visingsöbåten trafikerar rutten Gränna–Visingsö dagligen. Bilen kan tas med sommartid. Gränna nås med bil (ca 30 min söder om Jönköping längs E4) eller buss från Jönköping.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 200,
+      nearest_hub: 'Gränna',
+      from_nearest_hub_min: 25,
+      operator: 'Visingsöbåten',
+      frequency: 'Dagligen, sommarsäsong täta avgångar',
+    },
+    harbors: [
+      { name: 'Visingsö Hamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som kryssar i Vättern.', spots: 40, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+    ],
+    restaurants: [
+      { name: 'Visingsö Krögeri', type: 'Restaurang', desc: 'Lokal matservering med Vätternfisk och husmanskost. Sommarsäsong.' },
+    ],
+    tips: [
+      'Ta häst­skjuts direkt när du kliver av färjan — det är en del av Visingsöupplevelsen.',
+      'Brahehus är mest magiskt i solnedgången. Planer din dag dit mot kvällen.',
+      'Cykelhyra finns på ön — perfekt för att ta sig runt på egna villkor.',
+    ],
+    related: ['oland', 'gotland', 'birka'],
+    tags: ['historia', 'natur', 'bad', 'familjer', 'vättern', 'kulturarv'],
+    insiderTips: [
+      'Eken i Ekskogen är planterad specifikt för att ge mastvirke till 1800-talets örlogsfartyg. Skogen är redo att avverkas runt år 2050 — en gåva från ett sekel till nästa.',
+    ],
+    did_you_know: 'Visingsö var säte för den mäktiga Brahe-ätten på 1600-talet. Per Brahe d.y., riksdrots och Finlands generalguvern­ör, grundade bland annat Brahehus och Brahestads stad (nuv. Brahestad i Finland) härifrån.',
+    amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
+    activity_meta: {
+      cykel: { rental: true, notes: 'Cykelhyra vid färjeläget' },
+      bad: { beaches: ['Österstrand', 'Norra sandstranden'] },
+    },
+  },
+
+  // ─── VEN ─────────────────────────────────────────────────────────────────
+  {
+    slug: 'ven',
+    name: 'Ven',
+    region: 'ovriga',
+    regionLabel: 'Öresund',
+    emoji: '🔭',
+    tagline: 'Tycho Brahes ö i Öresund — observatorieruiner, vindruvor och cykelleder.',
+    description: [
+      'Ven (historiskt Hven) är en liten ö i Öresund mellan Landskrona och Helsingborg. Ön är globalt känd som platsen där den danske astronomen Tycho Brahe grundade Uraniborg 1576 — ett av de första observatorier som byggdes uteslutande för astronomiska observationer, och platsen därifrån han kartlade planeters rörelser med en precision som inte skulle överträffas förrän teleskopet uppfanns.',
+      'I dag är Ven ett populärt utflyktsmål sommartid med cykelleder runt hela ön, Tycho Brahes museum och klipputsikter mot Öresundsbrons silhuett och danska kusten. Vingårdar har etablerats på ön de senaste decennierna — Vens mikroklimat med lång solskenstid och klarblå Öresunds-vind visar sig lämpa sig för odling.',
+    ],
+    facts: {
+      area: 'ca 7,5 km²',
+      population: 'ca 400 (helårsboende)',
+      known_for: 'Tycho Brahes Uraniborg, astronomisk historia, cykelleder, vingårdar',
+      season: 'April–Oktober',
+    },
+    activities: [
+      { icon: '🔭', name: 'Tycho Brahe Museum', desc: 'Museum om den store astronomen och hans observatorier Uraniborg och Stjärneborg. Resterna av Stjärneborg är bevarade och synliga.' },
+      { icon: '🚴', name: 'Cykling runt ön', desc: 'Ca 8 km runt hela Ven. Välmarkerade leder via klipputsikter, kyrkan S:t Ibbs och lantliga vägar.' },
+      { icon: '🍷', name: 'Vingårdar', desc: 'Vens vingårdar producerar vita och rosé­viner. Vingårdsbesök och provning sommartid — kolla Ven Vineyard och Backaskog.' },
+    ],
+    accommodation: [
+      { name: 'Stuguthyrning Ven', type: 'Stugor', desc: 'Stugor och B&B via lokala uthyrare. Boka i god tid sommartid.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Landskrona', from: 'Landskrona', time: 'ca 25 min', desc: 'Färja till Ven trafikeras av Ven Ferries och Öresundsfärjan. Avgångar dagligen, tätt sommartid. Kolla aktuella tider och priser på fergudansen.dk eller lokala operatörers sajter.', icon: '⛴' },
+      { method: 'Tåg + färja', from: 'Malmö / Helsingborg → Landskrona', time: 'ca 60–80 min totalt', desc: 'Tåg till Landskrona C (Pågatågen/SJ) sedan promenad till färjeterminalen. Hela resan från Malmö/Helsingborg ca 60–80 min.', icon: '🚆' },
+    ],
+    transport_meta: {
+      from_city_min: 75,
+      nearest_hub: 'Landskrona',
+      from_nearest_hub_min: 25,
+      operator: 'Ven Ferries / lokala operatörer',
+      frequency: 'Dagligen, sommartid täta avgångar',
+    },
+    harbors: [
+      { name: 'Bäckviken gästhamn', desc: 'Välkänd gästhamn för seglare korsandes Öresund. Bra service och skyddat läge.', spots: 80, fuel: true, service: ['Vatten', 'El', 'Dusch', 'Restaurang'] },
+    ],
+    restaurants: [
+      { name: 'Sankt Ibb Krog', type: 'Krog', desc: 'Lokal krog på Ven med säsongsbetonad mat och havsutsikt. Populär — boka.' },
+    ],
+    tips: [
+      'Hyr cykel direkt vid färjeläget i Kyrkbacken — det är det naturliga sättet att se hela ön.',
+      'Tycho Brahes museum är litet men välgjort. Kombinera med ett besök till Stjärneborg-ruinerna.',
+      'Vens vingårdar har ofta drop-in provning vid besök, men ring och bekräfta på sommaren.',
+    ],
+    related: ['gotland', 'bornholm', 'oland'],
+    tags: ['historia', 'astronomi', 'cykling', 'vingård', 'öresund', 'dagsutflykt', 'skåne'],
+    insiderTips: [
+      'Ta kvällsfärjan hem och se solen gå ner mot Öresundsbron på vägen tillbaka — en av Sydsveriges vackraste kvällsvyer.',
+    ],
+    did_you_know: 'Tycho Brahe observerade från Ven 1576–1597. Hans mätningar av Marspositionen gav Johannes Kepler det data han behövde för att formulera planetrörelsens lagar — fundamentet för modern astronomi. Allt det skedde på den lilla ön mitt i Öresund.',
+    amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
+    activity_meta: {
+      cykel: { rental: true, notes: 'Cykelhyra vid Kyrkbacken färjeläge' },
+      bad: { beaches: ['Klippbad östra sidan'] },
+    },
+  },
+
+  // ─── TJÄRÖ ───────────────────────────────────────────────────────────────
+  {
+    slug: 'tjaro',
+    name: 'Tjärö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🏕',
+    tagline: 'Blekinges naturreservat med sandstränder — camping och urskogar vid Östersjön.',
+    description: [
+      'Tjärö är ett naturreservat och en av Blekinges vackraste öar — en skogig klippö i Ronneby kommuns ytterskärgård med vita sandstränder, tallskogsmiljöer och ett rikt maritimt fågelliv.',
+      'Ön är nästan bilfri och känd för sin välordnade camping som driftas av Blekinges naturturism. Sandstranden på öns sydöstra sida är en av de finaste längs hela Blekingekusten. Tjärö är ett populärt mål för familjer, vandrare och kajakpaddlare.',
+    ],
+    facts: {
+      area: 'ca 1,5 km²',
+      population: '0 (naturreservat)',
+      known_for: 'Sandstrand, naturreservat, camping, fågelskådning',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🏕', name: 'Camping på naturreservat', desc: 'Välskött camping i naturreservat med stugor, tältplatser och kanotuthyrning. Boka i god tid sommartid.' },
+      { icon: '🏊', name: 'Sandstrand', desc: 'Öns sydöstra sandstrand är en av Blekinges finaste med vitt sand och klart Östersjövatten.' },
+      { icon: '🚣', name: 'Kajak', desc: 'Kajakpaddling runt ön och till omgivande kobbar. Uthyrning finns via campingen.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Havsörn, fisktärna och ett rikt spektrum av kustfåglar under häckningssäsongen.' },
+    ],
+    accommodation: [
+      { name: 'Tjärö Camping & Stugor', type: 'Camping', desc: 'Driftas av Ronneby Naturturism. Campingplatser och enklare stugor. Boka via deras hemsida i god tid.' },
+    ],
+    getting_there: [
+      { method: 'Båt från Ronneby / Karö', from: 'Ronneby / Karö brygga', time: 'ca 20–30 min', desc: 'Sommarbåt till Tjärö från Ronneby/Karö-området. Kolla Ronneby Naturturisms aktuella tidtabell.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 250,
+      nearest_hub: 'Ronneby',
+      from_nearest_hub_min: 25,
+      operator: 'Ronneby Naturturism',
+      frequency: 'Sommarsäsong — kolla aktuell tidtabell',
+    },
+    harbors: [
+      { name: 'Tjärö brygga', desc: 'Enkel brygga vid campingplatsen.', spots: 20, fuel: false, service: [] },
+    ],
+    restaurants: [
+      { name: 'Tjärö Café', type: 'Café', desc: 'Enkelt café vid campingen. Sommarsäsong.' },
+    ],
+    tips: [
+      'Boka campingplats/stuga tidigt — Tjärö är ett populärt Blekingemål och tar slut i juli.',
+      'Sandstranden på sydöstsidan är öns finaste. Gå dit tidigt på morgonen för att ha den för dig själv.',
+    ],
+    related: ['hano', 'aspo-blekinge', 'sturko'],
+    tags: ['blekinge', 'naturreservat', 'sandstrand', 'camping', 'kajak', 'familjer'],
+    did_you_know: 'Tjärö naturreservat är ett av Blekinges mest uppskattade friluftsmål. Öns blandning av sandstrand, urskog och Östersjöklippor är ovanlig — de flesta kustöar i söder har antingen sand eller klippa, sällan båda.',
+    amenities: { restaurant: true, shop: false, accommodation: true, beach: true, camping: true },
+    activity_meta: {
+      kajak: { difficulty: 'lätt–medel', rental: true, notes: 'Kajakhyrning via campingen' },
+      bad: { beaches: ['Sydöstra sandstranden', 'Norra klippbad'] },
+    },
+  },
+
+  // ─── ÖCKERÖ ──────────────────────────────────────────────────────────────
+  {
+    slug: 'ockero',
+    name: 'Öckerö',
+    region: 'goteborg',
+    emoji: '🚢',
+    tagline: 'Göteborgs fiskeö — sjöfartens hjärta och Hönöleden utanför hamnen.',
+    description: [
+      'Öckerö är huvudön i Öckerö kommun — en samling öar i Göteborgs norra skärgård med djupa rötter i sjöfart och fiske. Ön är broförbunden med Öckeröarkipelagen och nås med Västtrafiks färjelinje från Hinsholmen i Göteborg.',
+      'Öckerö och de omgivande öarna — Hönö, Björkö, Fotö, Kalvsund, Hyppeln — bildar en levande skärgård med genuina fiskesamhällen. Sjöfartsträditionen är stark: Öckerö är en av de kommuner i Sverige med flest sjökapten per capita.',
+      'Som utflyktsmål erbjuder Öckerö klippor, fiskehamnar och en autentisk skärgårds­känsla utan turisttrycket på Bohusläns mer kända öar.',
+    ],
+    facts: {
+      area: 'ca 3 km²',
+      population: 'ca 4 500 (Öckerö ö, hela kommunen ca 13 000)',
+      known_for: 'Sjöfart, fiske, Öckerö-skärgård, Hönöleden',
+      season: 'Hela året (Göteborg-närheten)',
+    },
+    activities: [
+      { icon: '🚢', name: 'Sjöfartshistoria', desc: 'Öckerö Sjöfartsmuseum (kolla öppettider) och de många fiskehamnarnas berättelser. En av Sveriges mest sjöfartstäta kommuner.' },
+      { icon: '🥾', name: 'Hönöleden', desc: 'Vandringsleder via brofar­bunden öar — Öckerö, Hönö, Björkö. Kombinera klippor, hamnar och fiskelägen.' },
+      { icon: '🦞', name: 'Hummer & räkor', desc: 'Färska räkor och hummer säljs direkt från fiskebåtarna i hamnarna. En av de äkta upplevelserna i Göteborgsskärgården.' },
+    ],
+    accommodation: [
+      { name: 'Stuguthyrning Öckerö', type: 'Stugor', desc: 'Privata stuguthyrningar och B&B via lokala uthyrare.' },
+    ],
+    getting_there: [
+      { method: 'Västtrafik färja från Hinsholmen', from: 'Hinsholmen, Göteborg', time: 'ca 15–20 min', desc: 'Buss 281/282 från Göteborg C till Hinsholmen (ca 20 min), sedan färja till Öckerö. Hela resan ca 35–40 min från Göteborg C.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 40,
+      nearest_hub: 'Hinsholmen (Göteborg)',
+      from_nearest_hub_min: 18,
+      operator: 'Västtrafik',
+      frequency: 'Tät trafik hela dagen med SL-liknande turtäthet',
+    },
+    harbors: [
+      { name: 'Öckerö Gästhamn', desc: 'Gästhamn i öns södra del. Fullgod service.', spots: 50, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+    ],
+    restaurants: [
+      { name: 'Fiskehamnsrestauranger', type: 'Restaurang', desc: 'Lokala restauranger i fiskehamnen med färsk sjömat. Räkor och skaldjur direkt från fiskebåtarna.' },
+    ],
+    tips: [
+      'Räkor direkt från fiskebåtarna i hamnen — billigare och färskare än någon restaurang.',
+      'Kör eller gå vidare till Hönö och Björkö via broarna — hela Öckerö-archipelagen är värd att utforska.',
+      'Västtrafik-kortet/reskassan gäller på färjan — ingen extra biljett behövs.',
+    ],
+    related: ['branno', 'styrso', 'vinga'],
+    tags: ['göteborg', 'fiske', 'sjöfart', 'familjer', 'dagsutflykt', 'skaldjur'],
+    did_you_know: 'Öckerö kommun har per capita fler sjöfarare och sjökaptener än nästan någon annan svensk kommun. Sjöfartstraditionens rötter sträcker sig till 1700-talets handel och fiske — en tradition som lever kvar i de marinmålade trähusen längs hamnkajerna.',
+    amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
+    activity_meta: { bad: { beaches: ['Klippbad östra sidan'] } },
+  },
+
+  // ─── RÖRÖ ────────────────────────────────────────────────────────────────
+  {
+    slug: 'roro',
+    name: 'Rörö',
+    region: 'goteborg',
+    emoji: '🔴',
+    tagline: 'Göteborgs lilla bilfria skärgårdsö — fyr, klippor och räksmörgås vid hamnen.',
+    description: [
+      'Rörö är en liten bilfri ö i yttre Göteborgs­skärgård, nåbar med färja via Öckerö. Ön är känd för sin pittoreska fiskehamnsmiljö, fyren Rörö fyr och de dramatiska klipporna som möter Västerhavet på öns västra sida.',
+      'Turistmässigt är Rörö Göteborgs svar på Smögen: kompakt, vackert och fullt av sommarstämning kring hamnen. Det finns en restaurang, en handelsbod och en gästhamn — men annars är det klipporna, badet och tystnaden som är poängen.',
+    ],
+    facts: {
+      area: 'ca 0,5 km²',
+      population: 'ca 100 (helårsboende)',
+      known_for: 'Fyr, klippor, bilfritt, fiskehamn, Göteborgs skärgård',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '🔴', name: 'Rörö fyr', desc: 'Fyren Rörö fyr är öns landmärke. Strosa längs klipporna fram till fyren och upplev den öppna Västerhavshoris­onten.' },
+      { icon: '🏊', name: 'Klippbad Västerhavet', desc: 'Klart Västerhavsvatten längs öns västra och norra klippkust. Saltare och svalare än inre skärgårdsvatten.' },
+      { icon: '🍤', name: 'Räksmörgås vid hamnen', desc: 'Fiskebåtarna levererar räkor direkt till hamnen. Sommarklassikern: räksmörgås och öl vid bryggkanten.' },
+    ],
+    accommodation: [
+      { name: 'Stugor Rörö', type: 'Stugor', desc: 'Begränsat antal stuguthyrningar. Boka tidigt.' },
+    ],
+    getting_there: [
+      { method: 'Västtrafik färja via Öckerö / Hönö', from: 'Hinsholmen, Göteborg → Öckerö → Rörö', time: 'ca 40–50 min totalt', desc: 'Ta Västtrafik-färjan från Hinsholmen till Öckerö/Hönö och byt till lokal linje mot Rörö. Kolla Västtrafiks reseplanerare för aktuella linjer och tider.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 50,
+      nearest_hub: 'Öckerö / Hönö',
+      from_nearest_hub_min: 15,
+      operator: 'Västtrafik',
+      frequency: 'Sommartid regelbundna avgångar',
+    },
+    harbors: [
+      { name: 'Rörö Gästhamn', desc: 'Liten gästhamn med grundläggande service.', spots: 25, fuel: false, service: ['Vatten'] },
+    ],
+    restaurants: [
+      { name: 'Rörö Fisk & Kök', type: 'Restaurang', desc: 'Lokal sjömatstservering vid hamnen. Räkor, musslor och fisk. Sommarsäsong.' },
+    ],
+    tips: [
+      'Dagstur från Göteborg är perfekt — ut med morgonfärjan, lunch vid hamnen, hem till kvällen.',
+      'Kombinera med Hönö eller Öckerö på samma resa.',
+      'Ta med egna drycker — utbudet är begränsat.',
+    ],
+    related: ['ockero', 'hono', 'branno'],
+    tags: ['göteborg', 'bilfritt', 'fyr', 'klippor', 'dagsutflykt', 'skaldjur'],
+    did_you_know: 'Rörö fyr har väglett sjöfarten in mot Göteborg i mer än ett sekel. Ön har trots sin ringa storlek spelat en viktig roll i Västerhavet-sjöfartens historia.',
+    amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
+    activity_meta: { bad: { beaches: ['Norra klippbad', 'Västra klipputsprång'] } },
+  },
+
+  // ─── HOLMÖN ──────────────────────────────────────────────────────────────
+  {
+    slug: 'holmon',
+    name: 'Holmön',
+    region: 'ovriga',
+    regionLabel: 'Västerbotten',
+    emoji: '🦭',
+    tagline: 'Nordens glömda skärgård — sälar, havsörn och öde Bottenhavsöar.',
+    description: [
+      'Holmön är en ö utanför Umeå i Västerbottens skärgård — en av de störst­a och vackraste öarna i norra Sverige men knappast känd utanför regionen. Det är precis det som gör den unik.',
+      'Ön är ett naturreservat med dramatisk kustlinje, gammelska­lar och ett rikt djurliv. Säl, havsörn och vipa är vanliga inslag. Sommartid brusar strandängar av blomster och fågelliv — ett av norra Sveriges bäst bevarade kustnatur­landskap.',
+      'Holmön nås med färja från Norrfjärden utanför Umeå. Resan tar ca 35 minuter och landar i en värld som känns som att kliva tillbaka ett sekel i tid.',
+    ],
+    facts: {
+      area: 'ca 24 km²',
+      population: 'ca 70 (helårsboende)',
+      known_for: 'Naturreservat, sälar, havsörn, Bottenhavets ytterskärgård',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '🦭', name: 'Sälskådning', desc: 'Gråsäl och vikare håller till på öns yttre klippor och runt Holmöar­nas skärgård. Sälsafaris arrangeras sommartid.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Holmön är en av Bottenhavet-regionens bästa fågelskådningslokaler. Havsörn, fiskgjuse och ett brett spektrum av vadare och sjöfåglar.' },
+      { icon: '🥾', name: 'Vandring i naturreservat', desc: 'Välmärkta leder genom naturreservatet. Strandängar, tallskogar och klippkust. Ca 20 km leder runt ön.' },
+      { icon: '🚴', name: 'Cykling', desc: 'Ön har ett enkelt vägsy­stem — cykeln är utmärkt för att ta sig runt. Hyr cykel vid färjeläget.' },
+    ],
+    accommodation: [
+      { name: 'Holmöns Camping & Stugor', type: 'Camping', desc: 'Camping och enklare stugor. Kolla Holmöns turistbyrå för aktuellt utbud.' },
+    ],
+    getting_there: [
+      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Länstrafiken Västernorrland / Region Västerbotten för aktuell tidtabell.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 60,
+      nearest_hub: 'Umeå / Norrfjärden',
+      from_nearest_hub_min: 35,
+      operator: 'Holmöfärjan / Region Västerbotten',
+      frequency: 'Dagligen, sommarsäsong täta avgångar',
+    },
+    harbors: [
+      { name: 'Holmöns hamn', desc: 'Liten gästhamn vid öns södra del.', spots: 20, fuel: false, service: ['Vatten'] },
+    ],
+    restaurants: [
+      { name: 'Holmöns Wärdshus', type: 'Wärdshus', desc: 'Sommarsäsongens krog med lokalt tillagad mat. Meny varierar med säsongens råvaror.' },
+    ],
+    tips: [
+      'Hyr cykel på ön direkt när du landar — du hinner runt hela ön på en dag.',
+      'Sälfoto: sälarna är mest synliga på morgonen när de solar på ytterskären.',
+      'Holmön är glest turistad — kom med en mer öppen agenda, utan för många förväntningar.',
+    ],
+    related: ['ulvon', 'hemson', 'trysunda'],
+    tags: ['norrland', 'naturreservat', 'säl', 'fågelskådning', 'natur', 'avskilt', 'västerbotten'],
+    insiderTips: [
+      'Fråga lokalborna om de bästa platserna. Holmön är liten nog att alla känner varandra — och stora nog att det finns hemligheter de inte marknadsför.',
+    ],
+    did_you_know: 'Holmön är en av de öar längs Norrlandskusten som drabbades hårdast av landhöjningen efter istiden — havet steg relativt sett, men landet höjer sig fortfarande med ca 8 mm per år, vilket gör att strandlinjen förändras mätbart under en mänsklig livstid.',
+    amenities: { restaurant: true, shop: false, accommodation: true, beach: false, camping: true },
+    activity_meta: {
+      cykel: { rental: true, notes: 'Cykelhyrning vid färjeläget' },
+      bad: { beaches: ['Strandäng nordvästra sidan'] },
+    },
+  },
+
 ]
 
 // ── Bohuslän-utvidgning (västkustens öar, sedan 2026-04) ─────────────────
