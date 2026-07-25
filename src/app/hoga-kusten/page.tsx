@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Höga Kusten — Norrlands dramatiska klippkust | Svalla',
+  title: { absolute: 'Höga Kusten — Norrlands dramatiska klippkust | Svalla' },
   description: 'Höga Kusten: Unescos världsarv, Skuleskogens nationalpark, Ulvön, Härnösand och dramatiska klippor. Utforska Norrlandskusten med Svalla.',
   keywords: [
     'höga kusten',

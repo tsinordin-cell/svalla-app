@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Skärgården på hösten — September & Oktober Guide | Svalla',
+  title: { absolute: 'Skärgården på hösten — September & Oktober Guide | Svalla' },
   description: 'Hösten är skärgårdens bästa hemlighet. Varmt vatten, inga köer och öppna krogar. Guide till skärgården i september och oktober 2026.',
   keywords: ['skärgården höst','skärgård september','skärgård oktober','höst stockholm skärgård','skärgården efter sommaren','hösttur skärgård','september skärgård'],
   alternates: { canonical: 'https://svalla.se/host' },

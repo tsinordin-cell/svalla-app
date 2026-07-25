@@ -5,7 +5,7 @@ import Icon from '@/components/Icon'
 import FeedbackActions from './FeedbackActions'
 
 export const metadata: Metadata = {
-  title: 'Felrapporter — Admin · Svalla',
+  title: { absolute: 'Felrapporter — Admin · Svalla' },
   robots: { index: false, follow: false },
 }
 

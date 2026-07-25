@@ -6,7 +6,7 @@ import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
 
 export const metadata: Metadata = {
-  title: 'Skärgårdsbingo 2026 — 25 utmaningar för en perfekt sommar | Svalla',
+  title: { absolute: 'Skärgårdsbingo 2026 — 25 utmaningar för en perfekt sommar | Svalla' },
   description: 'Skärgårdens bingobricka: 25 öar, aktiviteter och utmaningar att bocka av i sommar. Sandhamn, havsbastu, sandstrand, fyr, säl. Dela din bricka.',
   keywords: ['skärgårdsbingo', 'sommarutmaning skärgård', 'svalla bingo', 'bucket list skärgård', 'sommar 2026 stockholm'],
   alternates: { canonical: 'https://svalla.se/bingo' },

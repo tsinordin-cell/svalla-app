@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: `Boende på ${island.name} — hotell, vandrarhem och stugor | Svalla`,
+    title: { absolute: `Boende på ${island.name} — hotell, vandrarhem och stugor | Svalla` },
     description: `Hela utbudet av boende på ${island.name}: hotell, värdshus, B&B, stugor och vandrarhem. Bokningstips inför sommaren.`,
     keywords: [
       `${island.name.toLowerCase()} hotell`,

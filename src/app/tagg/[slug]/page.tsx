@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { slug } = await params
  const tag = decodeURIComponent(slug).toLowerCase()
  return {
- title: `#${tag} — Svalla`,
+ title: { absolute: `#${tag} — Svalla` },
  description: `Turer taggade med #${tag} på Svalla`,
  alternates: { canonical: `https://svalla.se/tagg/${slug}` },
  }

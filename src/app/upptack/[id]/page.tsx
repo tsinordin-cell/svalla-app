@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
    image_url?: string; tags?: string[]; slug?: string;
    google_photo_refs?: { reference: string }[] | null;
  } | null
- if (!data) return { title: 'Restaurang – Svalla' }
+ if (!data) return { title: { absolute: 'Restaurang – Svalla' } }
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
  const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`

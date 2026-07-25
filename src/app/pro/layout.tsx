@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Svalla Pro — obegränsat loggande och avancerade funktioner',
+  title: { absolute: 'Svalla Pro — obegränsat loggande och avancerade funktioner' },
   description: 'Uppgradera till Svalla Pro och få tillgång till avancerad statistik, obegränsad turdagbok och exklusiva skärgårdskartor.',
   alternates: { canonical: 'https://svalla.se/pro' },
   openGraph: {

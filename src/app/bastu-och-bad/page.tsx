@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Bastu & bad i Stockholms skärgård — Svalla',
+ title: { absolute: 'Bastu & bad i Stockholms skärgård — Svalla' },
  description: 'Publika bastur, bastuflottar, badklippor och sandstränder i Stockholms skärgård. Året-runt-dopp och långa vedbastur.',
  keywords: [
  'bastu stockholms skärgård',

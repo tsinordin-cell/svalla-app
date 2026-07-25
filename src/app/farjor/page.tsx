@@ -4,7 +4,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { SEED_FERRY_ROUTES, fetchDepartures, type FerryDeparture } from '@/lib/ferries'
 
 export const metadata: Metadata = {
-  title: 'Färjetider Stockholms skärgård — Cinderella & Waxholmsbolaget | Svalla',
+  title: { absolute: 'Färjetider Stockholms skärgård — Cinderella & Waxholmsbolaget | Svalla' },
   description: 'Färjetider för Stockholms skärgård 2026. Cinderella tidtabell Sandhamn, Waxholmsbolaget linjer och avgångar från Stockholm. Aktuella tider och hållplatser.',
   keywords: [
     'cinderella tidtabell',

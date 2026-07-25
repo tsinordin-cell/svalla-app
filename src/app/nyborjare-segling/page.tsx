@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Börja segla — Nybörjarguide | Svalla',
+ title: { absolute: 'Börja segla — Nybörjarguide | Svalla' },
  description: 'Allt du behöver veta för att börja segla. Kurser, båtval, revir, säkerhet och checklista för nybörjare segling i Sverige.',
  keywords: [
  'nybörjare segling',

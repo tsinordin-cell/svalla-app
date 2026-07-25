@@ -4,7 +4,7 @@ import IslandWeather from '@/components/IslandWeather'
 import { UPPLÄGG, WEATHER_TAG, tagColor } from './dag-data'
 
 export const metadata: Metadata = {
-  title: 'Dagsupplägg i skärgården — vad gör man idag? | Svalla',
+  title: { absolute: 'Dagsupplägg i skärgården — vad gör man idag? | Svalla' },
   description: 'Kurerade dagsupplägg för Stockholms skärgård — familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
   openGraph: {
     title: 'Dagsupplägg i skärgården | Svalla',

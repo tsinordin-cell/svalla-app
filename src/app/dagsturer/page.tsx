@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt | Svalla',
+ title: { absolute: 'Dagsturer i Stockholms skärgård — Bästa dagsutflykterna med båt | Svalla' },
  description: 'De bästa dagsturerna från Stockholm till skärgården. Fjäderholmarna, Vaxholm, Sandhamn, Grinda och fler — restider, färjor och vad som väntar. Planera din dagstur 2026.',
  keywords: [
  'dagsturer stockholm skärgård',

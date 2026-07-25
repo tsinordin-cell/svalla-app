@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Halland — Västkustens sandstränder och fästningsstäder | Svalla',
+  title: { absolute: 'Halland — Västkustens sandstränder och fästningsstäder | Svalla' },
   description: 'Halland: Varbergs fästning, Tylösand, Falkenberg, Båstad och Laholmsbukten. Utforska Hallands långa kust med Svalla.',
   keywords: [
     'halland kust',

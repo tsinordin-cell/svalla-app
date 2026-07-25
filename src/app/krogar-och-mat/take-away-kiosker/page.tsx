@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Take-away, kiosker och lanthandlar i skärgården | Svalla',
+  title: { absolute: 'Take-away, kiosker och lanthandlar i skärgården | Svalla' },
   description: 'Glass, räksmörgåsar, hamburgare och lanthandlar i Stockholms skärgård. Enkelt och gott utan bokning — för barnfamiljen och snabbstoppen i hamnen.',
   keywords: [
     'glass skärgård',

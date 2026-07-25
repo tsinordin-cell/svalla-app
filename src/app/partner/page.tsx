@@ -6,7 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: 'Partner — Synas på Svalla | För restauranger, hamnar och upplevelser',
+  title: { absolute: 'Partner — Synas på Svalla | För restauranger, hamnar och upplevelser' },
   description: 'Sätt din verksamhet i karta över skärgården. 200+ platser, 120+ ösidor, växande organisk trafik. Från 500 kr/mån.',
   keywords: ['skärgård restaurang marknadsföring', 'gästhamn synas online', 'svalla partner', 'skärgård annonsering'],
   openGraph: {

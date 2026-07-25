@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Fika och caféer i skärgården | Svalla',
+  title: { absolute: 'Fika och caféer i skärgården | Svalla' },
   description: 'Bagerier, caféer och fikaställen i Stockholms skärgård. Sandhamns Bageriet, Möja Bageri och mer — kanelbullar och kaffe med havsutsikt.',
   keywords: [
     'café skärgård',

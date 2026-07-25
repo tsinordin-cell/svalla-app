@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Statistik om Stockholms skärgård — fakta, siffror och data | Svalla',
+  title: { absolute: 'Statistik om Stockholms skärgård — fakta, siffror och data | Svalla' },
   description: 'Fakta och statistik om Stockholms skärgård: antal öar, besökare, trafik, natur och säsong. Verifierade siffror med källhänvisningar.',
   keywords: [
     'statistik stockholms skärgård',

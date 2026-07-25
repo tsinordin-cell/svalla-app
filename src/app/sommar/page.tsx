@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Skärgården på sommaren 2026 — Guide & Tips | Svalla',
+  title: { absolute: 'Skärgården på sommaren 2026 — Guide & Tips | Svalla' },
   description: 'Allt du behöver veta om skärgården på sommaren. Bästa öarna, krogar, badplatser och hur du tar dig dit utan båt. Uppdaterad guide för sommaren 2026.',
   keywords: ['skärgården sommar','sommarsemester skärgård','skärgård juli','skärgård juni','bästa tid skärgården','sommar stockholm skärgård','skärgård utan båt sommar','sandhamn sommar','utö sommar','grinda sommar'],
   alternates: { canonical: 'https://svalla.se/sommar' },

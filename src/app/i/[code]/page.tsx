@@ -15,7 +15,7 @@ import InviteRedeemClient from './InviteRedeemClient'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
- title: 'Inbjudan till Svalla',
+ title: { absolute: 'Inbjudan till Svalla' },
  description: 'Du har blivit inbjuden till Svalla — sociala loggboken för båtliv och skärgård.',
  robots: { index: false, follow: false },
  openGraph: {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Vandring & natur i Stockholms skärgård — Svalla',
+  title: { absolute: 'Vandring & natur i Stockholms skärgård — Svalla' },
   description: 'Naturreservat, vandringsleder och ödemarksupplevelser i Stockholms skärgård. Dagsturer, flerdagsvandringar och orörda öar.',
   keywords: [
     'vandring stockholms skärgård',

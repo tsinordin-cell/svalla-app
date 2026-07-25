@@ -11,7 +11,7 @@ import type { ListingData } from '@/lib/forum'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Redigera annons — Svalla Loppis',
+  title: { absolute: 'Redigera annons — Svalla Loppis' },
   robots: { index: false, follow: false },
 }
 

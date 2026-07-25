@@ -85,11 +85,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  .eq('status', 'published')
  .single()
 
- if (!data) return { title: 'Rutt — Svalla' }
+ if (!data) return { title: { absolute: 'Rutt — Svalla' } }
  const desc = `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`
  const ogImage = `https://svalla.se/api/og/planera/${id}`
  return {
- title: `${data.start_name} → ${data.end_name} — Svalla`,
+ title: { absolute: `${data.start_name} → ${data.end_name} — Svalla` },
  description: desc,
  openGraph: {
  title: `${data.start_name} → ${data.end_name} — Svalla`,

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Svenska gästhamnar och naturhamnar — Hamnar & bryggor — Svalla',
+  title: { absolute: 'Svenska gästhamnar och naturhamnar — Hamnar & bryggor — Svalla' },
   description: 'Guide till svenska gästhamnar och naturhamnar. Från Stockholms skärgård till Bohuslän, Gotland, Blekinge och Östersjön. VHF-kommunikation, priser 2026, bokning och allemansrätt.',
   keywords: [
     'gästhamnar sverige',

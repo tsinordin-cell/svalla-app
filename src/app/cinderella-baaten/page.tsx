@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026 | Svalla',
+  title: { absolute: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026 | Svalla' },
   description: 'Cinderellabåten går från Strömkajen till Sandhamn via Vaxholm. Komplett tidtabell 2026, alla hållplatser, priser och tips för resan. Säsong maj–september.',
   keywords: [
     'cinderella båten',

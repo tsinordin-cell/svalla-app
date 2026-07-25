@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: 'Kom igång med Svalla — skapa konto',
+  title: { absolute: 'Kom igång med Svalla — skapa konto' },
   description: 'Skapa ett gratis konto på Svalla och börja logga dina båtturer, hitta restauranger längs kusten och följ andra skärgårdsälskare.',
   alternates: { canonical: 'https://svalla.se/kom-igang' },
   openGraph: {

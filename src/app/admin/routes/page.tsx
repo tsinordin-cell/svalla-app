@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 export const metadata: Metadata = {
-  title: 'Rutt-kvalitet — Admin · Svalla',
+  title: { absolute: 'Rutt-kvalitet — Admin · Svalla' },
   robots: { index: false, follow: false },
 }
 

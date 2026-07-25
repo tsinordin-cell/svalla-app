@@ -97,11 +97,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  .eq('slug', slug)
  .single()
 
- if (!data) return { title: 'Plats – Svalla' }
+ if (!data) return { title: { absolute: 'Plats – Svalla' } }
 
  const desc = data.core_experience || (data.description?.slice(0, 155) ?? '')
  return {
- title: `${data.name} – Svalla`,
+ title: { absolute: `${data.name} – Svalla` },
  description: desc,
  openGraph: {
  title: `${data.name} – Svalla`,

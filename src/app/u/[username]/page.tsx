@@ -43,7 +43,7 @@ function formatNationality(raw: string): string {
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
  const { username } = await params
  return {
- title: `${username} – Svalla`,
+ title: { absolute: `${username} – Svalla` },
  description: `Se ${username}s seglarturer på Svalla.`,
  openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${username}` },
  alternates: { canonical: `https://svalla.se/u/${username}` },

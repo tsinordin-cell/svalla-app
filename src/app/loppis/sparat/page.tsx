@@ -13,7 +13,7 @@ import type { ListingData } from '@/lib/forum'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Sparade annonser — Svalla Loppis',
+  title: { absolute: 'Sparade annonser — Svalla Loppis' },
   description: 'Dina sparade annonser från Svalla Loppis & köp/sälj.',
   robots: { index: false, follow: false },
 }

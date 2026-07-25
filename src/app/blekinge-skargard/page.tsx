@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Blekinges skärgård — Logga turer, hitta platser | Svalla',
+ title: { absolute: 'Blekinges skärgård — Logga turer, hitta platser | Svalla' },
  description: 'Segling i Blekinges skärgård: Karlskrona gästhamn, Hanö, Östersjöleden. Logga båtturer, ankringsplatser och naturhamnar på Svalla.',
  keywords: [
  'blekinge skärgård',

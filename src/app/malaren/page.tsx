@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Mälaren — Segla Sveriges tredje största sjö | Svalla',
+ title: { absolute: 'Mälaren — Segla Sveriges tredje största sjö | Svalla' },
  description: 'Utforska Mälaren med Svalla. 8 000+ öar, historiska hamnar, kafébryggor och lugna segelvatten — perfekt för familjer och nybörjare.',
  keywords: [
  'mälaren segla',

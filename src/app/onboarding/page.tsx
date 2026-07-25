@@ -4,7 +4,7 @@ import OnboardingFlow from './OnboardingFlow'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Välkommen till Svalla',
+  title: { absolute: 'Välkommen till Svalla' },
   robots: { index: false, follow: false },
 }
 

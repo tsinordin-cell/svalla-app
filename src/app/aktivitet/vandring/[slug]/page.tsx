@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hike) return {}
   const region = REGIONS.find(r => r.id === hike.region)
   return {
-    title: `Vandra ${hike.name} — guide, led och tips | Svalla`,
+    title: { absolute: `Vandra ${hike.name} — guide, led och tips | Svalla` },
     description: `${hike.tagline} ${hike.distanceKm > 0 ? `${hike.distanceKm} km, ` : ''}${hike.durationMin}–${hike.durationMax} timmar. ${hike.transport}.`,
     keywords: [
       `vandra ${hike.name.toLowerCase()}`,

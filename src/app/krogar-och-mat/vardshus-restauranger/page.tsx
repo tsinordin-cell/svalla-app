@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: 'Värdshus och restauranger i skärgården | Svalla',
+  title: { absolute: 'Värdshus och restauranger i skärgården | Svalla' },
   description: 'Klassiska skärgårdsvärdshus och sommarrestauranger — Sandhamns Värdshus, Utö Värdshus, Grinda Wärdshus och Fjäderholmarnas Krog. Öppettider och bokningslänkar.',
   keywords: [
     'värdshus skärgård',
