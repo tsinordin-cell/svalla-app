@@ -96,7 +96,7 @@ export default async function IslandMedBarnPage({ params }: Props) {
         tab="med-barn"
         subtitle={
           isFamilyFriendly
-            ? `${island.name} är ett populärt val för barnfamiljer — ${island.facts.best_for.toLowerCase()}.`
+            ? `${island.name} är ett populärt val för barnfamiljer — ${(island.facts.best_for ?? '').toLowerCase()}.`
             : `Guide för dig som planerar att besöka ${island.name} med barn.`
         }
       />
