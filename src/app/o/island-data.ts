@@ -92,11 +92,16 @@ export type Island = {
   }
   /** Praktisk serviceinformation på ön — för schema och filter */
   amenities?: {
-    toilets: boolean
-    shower: boolean
-    cafe: boolean
-    grocery: boolean
+    toilets?: boolean
+    shower?: boolean
+    cafe?: boolean
+    grocery?: boolean
     atm?: boolean
+    restaurant?: boolean
+    shop?: boolean
+    accommodation?: boolean
+    beach?: boolean
+    camping?: boolean
   }
   /** Hundvänlighet — för /oar/hundvanliga och ö-sida */
   dog_friendly?: boolean
