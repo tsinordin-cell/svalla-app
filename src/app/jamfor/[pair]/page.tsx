@@ -123,7 +123,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const b = getIsland(parsed[1])
   if (!a || !b) return {}
   return {
-    title: { absolute: `${a.name} eller ${b.name}? Jämför öarna | Svalla` },
+    title: `${a.name} eller ${b.name}? Jämför öarna | Svalla`,
     description: `Sandhamn eller Grinda? Vi jämför ${a.name} och ${b.name} sida vid sida — restider, restauranger, bästa-för, fakta. Hjälper dig välja rätt skärgårdsdestination.`.replace('Sandhamn eller Grinda? ', ''),
     keywords: [`${a.name.toLowerCase()} eller ${b.name.toLowerCase()}`, `${a.name.toLowerCase()} vs ${b.name.toLowerCase()}`, 'jämför skärgårdsöar'],
     openGraph: {
@@ -208,11 +208,11 @@ function IslandCol({ island, color }: { island: Island; color: string }) {
   )
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function Row({ label, value }: { label: string; value: string | undefined }) {
   return (
     <div style={{ display: 'flex', gap: 8, padding: '8px 0', borderBottom: '1px solid var(--surface-3)', fontSize: 13 }}>
       <span style={{ flex: '0 0 80px', color: 'var(--txt2)', fontWeight: 600 }}>{label}</span>
-      <span style={{ flex: 1, color: 'var(--txt)' }}>{value}</span>
+      <span style={{ flex: 1, color: 'var(--txt)' }}>{value ?? '—'}</span>
     </div>
   )
 }
