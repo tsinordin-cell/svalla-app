@@ -8,7 +8,7 @@ import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla' },
+  title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
   description: 'Utforska svenska öar: Sandhamn, Grinda, Utö, Marstrand, Gotland, Ulvön och mer. Guider, restauranger, hamnar och färjetider för hela Sverige.',
   keywords: [
     'alla öar stockholms skärgård',
