@@ -103,6 +103,7 @@ const GUIDE_REGION_MAP: Record<string, GuideRegion> = {
   'o-luffa-guide':                        'stockholm',
   'camping-talta-skargarden':             'stockholm',
   'havsbastu-skargarden':                 'stockholm',
+  '20-bastustallen-skargarden-boka':      'stockholm',
   'barnfamilj-skargarden':                'stockholm',
   'uto-komplett-guide':                   'stockholm',
   'sandhamn-komplett-guide':              'stockholm',
@@ -1039,6 +1040,18 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Vilka öar i skärgården är bäst för tälta?', a: 'Nåttarö, Gällnö, Östra Lagnö och Ornö är klassiker för tältare. Nåttarö har en etablerad tältplats med toalett och sophantering – perfekt för familjer. Ytterskärgårdens klippöar ger mer vildmarkskänsla.' },
       { q: 'Behöver man eld-/grillplats i skärgården?', a: 'Öppen eld är förbjudet på klipphäll och vid högt brandindex. Använd alltid medförd spritkök eller kol i upphöjd grill. Eldförbud gäller ofta juni–augusti. Kolla SMHI och länsstyrelsens information före resan.' },
       { q: 'Vad kostar det att campa i skärgården?', a: 'Viltcampning (allemansrätten) är gratis. Anvisade tältplatser kostar 100–250 kr/natt/tält. Campingplatser med service kostar 300–500 kr/natt.' },
+    ],
+  },
+  {
+    slug: "20-bastustallen-skargarden-boka",
+    title: "20 bastuställen i Stockholms skärgård att boka 2026",
+    excerpt: "Vedeldade bastubåtar, Skärgårdsstiftelsens öppna klippbastus, värdshus och privata ö-bastus — alla 20 verifierade platser med bokningsinfo och Swish-nummer.",
+    category: "Aktivitet", emoji: "🧖", readTime: "12 min", fullContent: true, featured: true,
+    faqs: [
+      { q: 'Vilka bastun kan man boka i Stockholms skärgård?', a: 'Det finns tre kategorier: bastubåtar (t.ex. Gustafstaxibåtar vid Gällnö, Bastuflottestockholm.se), Skärgårdsstiftelsens öppna bastustugor (50 kr/person via Swish, på Möjaskärgården, Nämdö och Träskö-Storö) och värdshus/lodges med bastu (Utö Värdshus, Grinda Vandrarhem, Lidö Värdshus, Arholma Nord).' },
+      { q: 'Kostar det att basta i Skärgårdsstiftelsens bastus?', a: 'Ja — 50 kr per vuxen, betalas med Swish. Bastusäsongen öppnar kring Valborg och håller öppet sommartid. Max en timme, ingen förbokning — first come, first served.' },
+      { q: 'Hur bokar man bastubåt i Stockholms skärgård?', a: 'Bastubåtar bokas direkt via respektive aktör: Bastuflottestockholm.se, Bastuflotten.com (ReLaxa), Stockholmsbastuflotte.se eller Gustafstaxibåtar. Boka 2–4 veckor i förväg på sommaren — helger i juli är fulltecknade snabbt.' },
+      { q: 'Vilken tid på året är bäst för havsbastu?', a: 'Hösten — september och oktober. Luften är kall (kontrast mot bastuvärmen), havet är fortfarande 14–17°C i september och du delar knappt platsen med andra. Sommaren fungerar också, men september ger en annan dimension av skärgårdsbastu.' },
     ],
   },
   {
