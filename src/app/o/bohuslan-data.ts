@@ -900,6 +900,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     slug: 'dyron',
     name: 'Dyrön',
     region: 'bohuslan',
+    regionLabel: 'Bohuslän',
     emoji: '⛺',
     tagline: 'Bohusläns friaste camping­ö — klippor, vild natur och Skärgårdsbo­hemian.',
     description: [
