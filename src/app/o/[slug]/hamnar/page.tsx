@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: { absolute: `Gästhamnar på ${island.name} — bryggor och båtplatser | Svalla` },
+    title: `Gästhamnar på ${island.name} — bryggor och båtplatser | Svalla`,
     description: `Alla gästhamnar och bryggor på ${island.name}. Antal platser, bränsle, dusch, el och bokning. Aktuell info inför sommaren.`,
     keywords: [`${island.name.toLowerCase()} gästhamn`, `${island.name.toLowerCase()} brygga`, `båt till ${island.name.toLowerCase()}`],
     openGraph: {
