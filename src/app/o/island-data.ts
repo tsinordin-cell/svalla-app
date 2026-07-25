@@ -47,7 +47,7 @@ export type Island = {
   /** URL till coverbild (Wikimedia, Unsplash etc.) — visas i listsidor och OG-bilder */
   coverImage?: string
   region: 'norra' | 'mellersta' | 'södra' | 'bohuslan' | 'ovriga' | 'goteborg'
-  regionLabel: string
+  regionLabel?: string
   emoji: string
   tagline: string
   lat?: number   // approx center coordinate
