@@ -54,7 +54,7 @@ export default function UtflyktClient({ islands, departures }: Props) {
     const q = searchTerm.toLowerCase()
     return islands.filter(i =>
       i.name.toLowerCase().includes(q) ||
-      i.regionLabel.toLowerCase().includes(q) ||
+      (i.regionLabel ?? '').toLowerCase().includes(q) ||
       i.tags.some(t => t.toLowerCase().includes(q))
     )
   }, [islands, searchTerm])
