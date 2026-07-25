@@ -3440,6 +3440,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 300 (helårsboende)',
       known_for: 'Bilfritt, nära Vaxholm, klippor och bad',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 1–1,5 tim',
+      character: 'Bilfritt, sommarstugeö',
+      best_for: 'Bad, barnfamiljer, skärgårdsro',
     },
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten runt hela ön. Hoppklippor och grunda sandvikar på öns södra sida.' },
@@ -3490,6 +3494,10 @@ export const ISLANDS: Island[] = [
       population: 'Få helårsboende',
       known_for: 'Naturreservat, kajak, havsörn, orörda öar',
       season: 'Maj–September',
+    
+      travel_time: 'ca 1 tim',
+      character: 'Naturreservat, kajak',
+      best_for: 'Kajakpaddlare, naturentusiaster, fågelskådare',
     },
     activities: [
       { icon: '🚣', name: 'Kajakpaddling', desc: 'Djurö är ett av Stockholms skärgårds bästa kajakdestinationer. Lugna fjärdar, gott om ankringsplatser och naturhamnarna.' },
@@ -3547,6 +3555,10 @@ export const ISLANDS: Island[] = [
       population: 'Inga fast boende',
       known_for: 'Vikingahandelsstad, UNESCO-världsarv, arkeologi',
       season: 'Maj–September (dagstursbåtar)',
+    
+      travel_time: 'ca 2 tim',
+      character: 'Vikingastad, UNESCO-arv',
+      best_for: 'Historieintresserade, familjer, dagsutflykt',
     },
     activities: [
       { icon: '🏛', name: 'Vikingastads­museet', desc: 'Utställning om Birkas historia med original­fynd. Guidade turer sommartid ger sammanhang åt gravfälten och vallarna.' },
@@ -3604,6 +3616,10 @@ export const ISLANDS: Island[] = [
       population: '0 (naturreservat)',
       known_for: '15 000 häckande sillgrisslor och tordmular, klippfaunan',
       season: 'Maj–Augusti (häckningssäsong)',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Naturreservat med fågelliv',
+      best_for: 'Fågelskådare, fotografer, naturguider',
     },
     activities: [
       { icon: '🦅', name: 'Fågelskådning', desc: 'Sillgrisslor och tordmular på klippavsatserna. Möjlighet att se alkor, havsörn och ett rikt kärlväxtflora. Guide medverkar på alla turer.' },
@@ -3654,6 +3670,10 @@ export const ISLANDS: Island[] = [
       population: '0 (nationalparkspersonal sommartid)',
       known_for: 'Avlägsen nationalpark, sanddyner, unika ekosystem',
       season: 'Juni–September (sommartrafik)',
+    
+      travel_time: 'ca 7 tim',
+      character: 'Avlägsen sandöpark',
+      best_for: 'Äventyrare, naturentusiaster, bucket list',
     },
     activities: [
       { icon: '🏖', name: 'Sandstränder', desc: 'Öns hela kust är strand — vita sanddyner och relativt varmt Östersjövatten. Nästan alltid öde.' },
@@ -3717,6 +3737,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 100 (helårsboende)',
       known_for: 'Naturreservat, klipplandskap, Karlskrona-skärgård',
       season: 'Maj–September',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Blekinges naturreservat',
+      best_for: 'Kajakpaddlare, badare, naturliv',
     },
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Klart Östersjövatten längs öns klippkust. Vackra badplatser på sydöst­sidan.' },
@@ -3771,6 +3795,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 700 (helårsboende)',
       known_for: 'Blekinges största ö, camping, skogsmiljö',
       season: 'Maj–September',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Camping, klippkust',
+      best_for: 'Barnfamiljer, campare, bad',
     },
     activities: [
       { icon: '⛺', name: 'Camping', desc: 'Sturkö är ett välkänt sommarcampingmål i Blekinge. Campingplatser med gott om utrymme.' },
@@ -3826,6 +3854,10 @@ export const ISLANDS: Island[] = [
       population: '0 (nationalpark)',
       known_for: 'Häxlegenden (Blåkulla), stenlabyrint Trollebo, rundad granitklump, nationalpark',
       season: 'Maj–September (dagstursbåtar)',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Nationalpark, mystik',
+      best_for: 'Historieintresserade, naturentusiaster, dagsutflykt',
     },
     activities: [
       { icon: '🪄', name: 'Trollebo stenlabyrint', desc: 'Forntida stenlabyrint — liknande labyrinter finns längs hela svenska kusten men Blå Jungfruns är en av de välbevarade. Ursprunget okänt.' },
@@ -3881,6 +3913,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 200 (helårsboende)',
       known_for: 'Hemsö fästning, klippnatur, Höga Kusten',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 5 tim',
+      character: 'Fästning, Höga Kusten',
+      best_for: 'Historieintresserade, vandrare, seglare',
     },
     activities: [
       { icon: '🏰', name: 'Hemsö fästning', desc: 'Bergfästning från kalla krigets era uthuggd i klippan. Guidade turer sommartid visar kasematter, tunnel­system och pjässällningar. En av Sveriges mest unika militär­historiska platser.' },
@@ -3933,6 +3969,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 550 (helårsboende)',
       known_for: 'Raukar, Ingmar Bergman, Sudersandstranden',
       season: 'Maj–September',
+    
+      travel_time: 'ca 5 tim',
+      character: 'Raukar, Bergman, Östersjö',
+      best_for: 'Kulturturister, cyklister, badare',
     },
     activities: [
       { icon: '🪨', name: 'Langhammars raukar', desc: 'Fårös och Gotlands mest imponerande raukfält. Kalkstens­pelarema står tätt och höga längs den svept­öppna nordvästkusten. Bäst i morgon- eller kvällsljus.' },
@@ -4012,6 +4052,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 30 (helårsboende), ca 200 (sommar)',
       known_for: 'Välbevarat fiskesamhälle, kapell från 1666, bilfritt',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 5 tim',
+      character: 'Fiskeläge, Höga Kusten',
+      best_for: 'Kajakpaddlare, fiskare, naturliv',
     },
     activities: [
       { icon: '⛵', name: 'Kajakpaddling', desc: 'Trysunda är ett nav för Höga Kustens kajak­rutter. Paddla till Ulvön (ca 45 min) eller längs klippkusten söderut.' },
@@ -4088,6 +4132,10 @@ export const ISLANDS: Island[] = [
       population: '0 (naturreservat, inga fasta boende)',
       known_for: 'Engelsk kyrkogård, naturreservat, klipplandskap',
       season: 'Maj–September',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Historia, naturreservat',
+      best_for: 'Historieintresserade, vandrare, fågelskådare',
     },
     activities: [
       { icon: '⚱️', name: 'Engelska kyrkogården', desc: 'Brittiska sjömän begravda 1809–1812. En av Sverige mest ovanliga historiska platser — läs inskriptionerna och unna dig ett stilla ögonblick.' },
@@ -4159,6 +4207,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 20–30 (helårsboende)',
       known_for: 'Ytterskärgård, bilfritt, havsörn, absolut avskildhet',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 6–7 tim',
+      character: 'Vild ytterskärgård',
+      best_for: 'Seglare, naturentusiaster, havsörn',
     },
     activities: [
       { icon: '🦅', name: 'Havsörn & säl', desc: 'Norra ytterskärgården hyser en stark population av havsörn. Säl observeras på klipporna i öns yttre delar.' },
@@ -4219,6 +4271,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 800 (helårsboende)',
       known_for: 'Brahehus ruiner, ekskogen, häst­skjuts, Vätterns klara vatten',
       season: 'Maj–September',
+    
+      travel_time: 'ca 3 tim',
+      character: 'Historisk Vätternö',
+      best_for: 'Historieintresserade, familjer, cyklister',
     },
     activities: [
       { icon: '🏇', name: 'Häst och vagn', desc: 'En av Visingsös signaturer. Ta häst­skjuts från färjeläget och åk runt ön i traditionellt stil.' },
@@ -4280,6 +4336,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 400 (helårsboende)',
       known_for: 'Tycho Brahes Uraniborg, astronomisk historia, cykelleder, vingårdar',
       season: 'April–Oktober',
+    
+      travel_time: 'ca 1,5 tim',
+      character: 'Astronomisk öklassiker',
+      best_for: 'Cyklister, historieintresserade, vingårdsbesök',
     },
     activities: [
       { icon: '🔭', name: 'Tycho Brahe Museum', desc: 'Museum om den store astronomen och hans observatorier Uraniborg och Stjärneborg. Resterna av Stjärneborg är bevarade och synliga.' },
@@ -4341,6 +4401,10 @@ export const ISLANDS: Island[] = [
       population: '0 (naturreservat)',
       known_for: 'Sandstrand, naturreservat, camping, fågelskådning',
       season: 'Maj–September',
+    
+      travel_time: 'ca 4 tim',
+      character: 'Sandstrand, naturreservat',
+      best_for: 'Barnfamiljer, campare, bad',
     },
     activities: [
       { icon: '🏕', name: 'Camping på naturreservat', desc: 'Välskött camping i naturreservat med stugor, tältplatser och kanotuthyrning. Boka i god tid sommartid.' },
@@ -4398,6 +4462,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 4 500 (Öckerö ö, hela kommunen ca 13 000)',
       known_for: 'Sjöfart, fiske, Öckerö-skärgård, Hönöleden',
       season: 'Hela året (Göteborg-närheten)',
+    
+      travel_time: 'ca 40 min',
+      character: 'Fiske, sjöfart, skaldjur',
+      best_for: 'Matturister, familjer, dagsutflykt',
     },
     activities: [
       { icon: '🚢', name: 'Sjöfartshistoria', desc: 'Öckerö Sjöfartsmuseum (kolla öppettider) och de många fiskehamnarnas berättelser. En av Sveriges mest sjöfartstäta kommuner.' },
@@ -4451,6 +4519,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 100 (helårsboende)',
       known_for: 'Fyr, klippor, bilfritt, fiskehamn, Göteborgs skärgård',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 50 min',
+      character: 'Bilfritt, fyr, Västerhavet',
+      best_for: 'Dagsutflykt, skaldjur, klippbad',
     },
     activities: [
       { icon: '🔴', name: 'Rörö fyr', desc: 'Fyren Rörö fyr är öns landmärke. Strosa längs klipporna fram till fyren och upplev den öppna Västerhavshoris­onten.' },
@@ -4506,6 +4578,10 @@ export const ISLANDS: Island[] = [
       population: 'ca 70 (helårsboende)',
       known_for: 'Naturreservat, sälar, havsörn, Bottenhavets ytterskärgård',
       season: 'Juni–Augusti',
+    
+      travel_time: 'ca 1 tim',
+      character: 'Norrlands naturreservat',
+      best_for: 'Sälskådare, fågelskådare, naturentusiaster',
     },
     activities: [
       { icon: '🦭', name: 'Sälskådning', desc: 'Gråsäl och vikare håller till på öns yttre klippor och runt Holmöar­nas skärgård. Sälsafaris arrangeras sommartid.' },
