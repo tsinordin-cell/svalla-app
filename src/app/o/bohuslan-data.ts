@@ -668,6 +668,288 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tags: ['nära göteborg', 'bilfärja', 'fiskeläge', 'familjer'],
     did_you_know: 'Hönö, Öckerö och Hälsö är sammanbundna med broar och bildar Sveriges minsta kommun räknat i landyta — Öckerö kommun.',
   },
+
+  // ─── GULLHOLMEN ──────────────────────────────────────────────────────────
+  {
+    slug: 'gullholmen',
+    name: 'Gullholmen',
+    region: 'bohuslan',
+    regionLabel: 'Bohuslän',
+    emoji: '🏘',
+    tagline: 'Bohuslänsk stadsby på ett klippkorn — trängsta gränderna, rödaste husen.',
+    description: [
+      'Gullholmen är en av Bohusläns mest fascinerande öar. Staden grundades 1585 som fiskesamhälle och hade vid 1800-talets mitt över tusen invånare — trängda på en bergknalle knappt 400 meter bred. Resultatet är ett av Sveriges märkligaste gatubilder: hus staplade på hus, gränder som knappt låter en person gå, och utsikter som öppnar sig i slutet av varje kurva.',
+      'Ön är bilfri — och det märks. Stillheten är påtaglig, sällskapstonen annorlunda. Gullholmen är ett resmål för dem som vill förstå vad det egentligen innebar att leva av och med havet i Bohuslän.',
+      'Grannen Flatön, förbunden med en liten bro, ger kontrasten: platt, öppen mark, strand och campingmöjligheter.',
+    ],
+    facts: {
+      area: 'ca 0,4 km² (Gullholmen) + Flatön',
+      population: 'ca 150 (helårsboende)',
+      known_for: 'Välbevarat historiskt fiskesamhälle, täta gränder, bilfritt',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '🚶', name: 'Vandra gränderna', desc: 'Gullholmens gränder är öns upplevelse. Följ dem utan karta — det tar en halvtimme att bli vilse och hitta hem igen.' },
+      { icon: '🏊', name: 'Bad på Flatön', desc: 'Flatöns östra sida har klippbad och sandstränder. Klar, frisk Västerhavstemperatur — varmare än Östersjön.' },
+      { icon: '🎨', name: 'Konst och hantverk', desc: 'Sommartid öppnar lokala konstnärer sina ateljéer. Keramik, akvarell och textil med Bohuslänskt motiv.' },
+      { icon: '⛵', name: 'Paddla Orust­sidan', desc: 'Kajak runt Gullholmen och ut mot holmarna utanför — lugnt vatten på Orust­sidan, öppet hav mot väst.' },
+      { icon: '📸', name: 'Fotografera', desc: 'Gullholmen är ett av Bohusläns mest fotograferade fiskesamhällen. Morgon­ljuset på röda husfasader ger de bästa bilderna.' },
+    ],
+    accommodation: [
+      { name: 'Gullholmens Värdshus', type: 'Värdshus', desc: 'Klassiskt värdshus med enkla rum och lokal mat. Sommaröppen — boka tidigt.' },
+      { name: 'Flatön Camping', type: 'Camping', desc: 'Camping på grannen Flatön med strand­närheten som Gullholmen saknar. Populär — boka i förväg.' },
+      { name: 'Stuga Gullholmen/Flatön', type: 'Stugor', desc: 'Stuguthyrning via lokala uthyrare och Airbnb. Boka 3–6 månader i förväg för sommarmånaderna.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Tuvesvik', from: 'Tuvesvik (Orust)', time: 'ca 10 min', desc: 'Reguljär passagerarfärja sommarsäsong. Tuvesvik nås med bil från Orust via Coupé­vägen (E6-avfart Henån). Gratis parkering vid färje­läget.', icon: '⛴' },
+      { method: 'Bil till Flatön', from: 'Orust / Henån', time: 'ca 30 min bil + 10 min båt', desc: 'Flatön är bro­förbunden med Orust från Tuvesvik-sidan. Du kan köra till Flatön och sedan gå eller paddla till Gullholmen.', icon: '🚗' },
+    ],
+    transport_meta: {
+      from_city_min: 120,
+      nearest_hub: 'Henån (Orust) / Tuvesvik',
+      from_nearest_hub_min: 10,
+      operator: 'Lokal passagerarfärja (sommarsäsong)',
+      frequency: 'Flera avgångar dagligen sommartid',
+    },
+    harbors: [
+      { name: 'Gullholmens Gästhamn', desc: 'Liten gästhamn i fiskeläget. Charmig men trång — kom tidigt sommarmorgon för att säkra plats.', spots: 30, fuel: false, service: ['Vatten', 'El'] },
+    ],
+    restaurants: [
+      { name: 'Gullholmens Värdshus', type: 'Restaurang', desc: 'Lokal mat med skaldjur och fisk. Det naturliga valet för lunch eller middag på ön.' },
+      { name: 'Kiosk/Café Gullholmen', type: 'Café', desc: 'Enkel fika och glass nära hamnen. Sommarsäsong.' },
+    ],
+    tips: [
+      'Kom på en vardag om möjligt — helger i juli är Gullholmen trängre än sina gränder.',
+      'Flatön bredvid har strand och camping. Kombinera en dag mellan öarna.',
+      'Morgon­ljuset på röda fasaderna är magiskt. Stå upp tidigt och ha kameran klar.',
+      'Parkera vid Tuvesvik-färje­läget (gratis) och låt färjan sköta resten.',
+    ],
+    related: ['marstrand', 'karingon', 'orust'],
+    tags: ['bohuslän', 'historisk', 'bilfritt', 'fiskeläge', 'fotografi', 'familjer'],
+    insiderTips: [
+      'De tätaste gränderna hittar du norr om hamnen — gå uppåt längs bergets östsida. Det är inte skyltade, det är bara gränderna.',
+      'Flatön är Gullholmens hemliga komplement: strand, camping, lätt vandring och nästan inga turister trots att de hänger ihop.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund tillåten på de flesta platser på ön. Håll koppel i fiskesamhällets gränder.',
+    did_you_know: 'Gullholmen grundades 1585 och var under 1800-talets blomstringstid hem för fler än tusen invånare — på en ö som knappt är 400 meter bred. Befolknings­tätheten var då en av de högsta i hela Sverige.',
+    amenities: {
+      restaurant: true,
+      shop: true,
+      accommodation: true,
+      beach: true,
+      camping: true,
+    },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: false, notes: 'Kajak­hyrning via Flatön Camping' },
+      bad: { beaches: ['Flatöns östra strand', 'Klippbad vid Gullholmens norra udde'] },
+    },
+  },
+
+  // ─── KLÄDESHOLMEN ────────────────────────────────────────────────────────
+  {
+    slug: 'kladesholmen',
+    name: 'Klädesholmen',
+    region: 'bohuslan',
+    regionLabel: 'Bohuslän',
+    emoji: '🐟',
+    tagline: 'Sillöns kronjuvel — historiska rök­erier, prisad sjömat och havsbastu.',
+    description: [
+      'Klädesholmen har i decennier levt på sill. Ön var under 1700- och 1800-talen centrum för Bohusläns sillsalteri — en industri så stor att den formade hela kustens ekonomi. Rök­erierna och fiskelägena är kvar i stenhuset nere vid hamnen.',
+      'I dag har ön fått nytt rykte tack vare Salt & Sill, ett av Bohusläns mest hyllade sjömatskök. Kombinationen gammalt och nytt — historiska fiskelägen och modern gastronomisk ambition — gör Klädesholmen till ett av Bohusläns mest besöksvärda resmål.',
+      'Ön nås enkelt via bro från Tjörn och är inte bilfri, men stämningen längs hamnfronten och i de gamla salteriekvarteren är ett steg bort från det moderna Sverige.',
+    ],
+    facts: {
+      area: 'ca 1 km²',
+      population: 'ca 400 (helårsboende)',
+      known_for: 'Sillhistoria, Salt & Sill restaurang, havsbastu',
+      season: 'Maj–Oktober',
+    },
+    activities: [
+      { icon: '🍽', name: 'Salt & Sill', desc: 'Bohusläns mest hyllade sjömatskrog med fokus på lokalt fångad fisk och skaldjur. Designhotell integrerat i den gamla rökerimilj­ön. Boka bord månader i förväg.' },
+      { icon: '🧖', name: 'Havsbastu', desc: 'Bastu med direkt in­hopp i Västerhavet. En av Klädesholmens populäraste upplevelser — finns vid Salt & Sill och fristående.' },
+      { icon: '🏛', name: 'Sillsalteriet', desc: 'Historisk vandring längs hamnens gamla salteribyggnader. Skylt­arna berättar om sill­epoken som en gång nästan fick Bohuslän att flytta in till sig självt.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Klara Västerhavsvågor och klipp­hällar i alla väderstreck. Dyk in på den skyddade sidan vid kall nordanvind.' },
+      { icon: '🚣', name: 'Kajak och sup', desc: 'Lugnt vatten innanför ön, öppen Västerhavskaraktär utanför. Perfekt för sup sommartid.' },
+    ],
+    accommodation: [
+      { name: 'Salt & Sill Boutique Hotel', type: 'Hotell', desc: 'Designhotell integrerat i de gamla rökerianläggningarna. Havsutsikt, havsbastu och direkt till restaurangen. Boka 3–6 månader i förväg.' },
+      { name: 'Klädesholmen Stugor', type: 'Stugor', desc: 'Stuguthyrning på ön via lokala uthyrare. Mer prisvärt alternativ till Salt & Sill.' },
+    ],
+    getting_there: [
+      { method: 'Bil via Tjörn', from: 'Stenungsund / Göteborg', time: 'ca 60–75 min', desc: 'Kör E6 norrut, avfart mot Tjörn­bron (Stenungsund). Fortsätt över Tjörn till Rönnäng-hållet och ta av mot Klädesholmen. Bro­förbunden — inga färjeköer.', icon: '🚗' },
+      { method: 'Västtrafik buss', from: 'Stenungsund', time: 'ca 50 min', desc: 'Västtrafik kör buss till Klädesholmen från Stenungsund under sommarsäsong. Kolla aktuell tidtabell.', icon: '🚌' },
+    ],
+    transport_meta: {
+      from_city_min: 75,
+      nearest_hub: 'Stenungsund',
+      from_nearest_hub_min: 50,
+      operator: 'Väg (broförbunden) + Västtrafik',
+      frequency: 'Tillgänglig hela året med bil',
+    },
+    harbors: [
+      { name: 'Klädesholmens Gästhamn', desc: 'Välskyddad gästhamn i det historiska fiskeläget. Nära restauranger och havsbastu.', spots: 80, fuel: false, service: ['Vatten', 'El', 'Dusch'] },
+    ],
+    restaurants: [
+      { name: 'Salt & Sill', type: 'Restaurang', desc: 'Bohusläns mest hyllade sjömatsrestaurang. Lokala skaldjur, kreativ meny och havsutsikt. Boka bord långt i förväg.' },
+      { name: 'Hamnkrogen Klädesholmen', type: 'Krog', desc: 'Enklare sjökrog i hamnen. Räkor, fisk och en öl i kvällssolen.' },
+    ],
+    tips: [
+      'Salt & Sill är fullbokat veckor i förväg sommartid — boka innan du planerar resan.',
+      'Havsbastu kan bokas separat från Salt & Sill. Perfekt avslut på en dag i Bohuslän.',
+      'Klädesholmen är bilanpassad — kom på förmiddagen och undvik helgruschen på Tjörn­bron.',
+      'Historieintresserade: ta en promenad längs salteriernas hamnfront och läs skyltarna.',
+    ],
+    related: ['tjorn', 'orust', 'marstrand'],
+    tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],
+    insiderTips: [
+      'Salt & Sill är populärt — men hamnkrogen bredvid ger liknande råvaror till halva priset om du vill ha räkor och utsikt utan restaurangkön.',
+      'Boka hav­sastu tidigt på morgonen (öppnar 07:00) — du har hela Västerhavet för dig själv och inga andra gäster.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund välkommen på de flesta platser. Restaurangens uteservering tillåter hundar — fråga personalen.',
+    did_you_know: 'Under 1700-talets stora sillperiod i Bohuslän var Klädesholmen ett av de viktigaste saltericentren längs kusten. Sillen kom i sådana mängder att man talar om "sillryssjan" — en sällsynt biologisk och ekonomisk händelse som formade hela väst­kustens befolkningstillväxt.',
+    amenities: {
+      restaurant: true,
+      shop: true,
+      accommodation: true,
+      beach: false,
+      camping: false,
+    },
+    activity_meta: {
+      bad: { beaches: ['Klippbad västra sidan', 'Havsbastu vid Salt & Sill'] },
+    },
+  },
+
+  // ─── ÅSTOL ───────────────────────────────────────────────────────────────
+  {
+    slug: 'astol',
+    name: 'Åstol',
+    region: 'bohuslan',
+    regionLabel: 'Bohuslän',
+    emoji: '🏚',
+    tagline: 'Bohusläns vackraste fiskeö — inga bilar, bara hav och röda bodar.',
+    description: [
+      'Åstol är en liten ö utanför Tjörns sydvästkust — och en av Bohusläns mest älskade. Öns fiskesamhälle är välbevarat med traditionella röda stugor och bodar tätt packade längs klipp­kanterna. Det finns inga bilar, inga signaler, inga uppmaningar att skynda sig någonstans.',
+      'Ön nås med passagerarfärja från Rönnäng på Tjörn. Överfarten tar tio minuter och tar dig rakt in i en annan tid. Åstol är bilfritt av nödvändighet snarare än lag — vägnätet är inte mer än en smal gångbana.',
+      'Sommar­tid fylls ön av seglare, badgäster och fotografer. Men Åstol har klarat av det bättre än de flesta — byborna är fortfarande kvar, fiskebåtarna fortfarande i hamn.',
+    ],
+    facts: {
+      area: 'ca 0,5 km²',
+      population: 'ca 100 (helårsboende)',
+      known_for: 'Bilfritt fiskesamhälle, traditionell bohusländsk bystruktur, fotografi',
+      season: 'Maj–September',
+    },
+    activities: [
+      { icon: '📸', name: 'Fotografera bybild', desc: 'Åstol är ett av Bohusläns mest fotade fiskesamhällen. Röda bodar mot grå klippor och blått hav — ljuset är som bäst i gryning och skymning.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Klart Västerhav runt hela ön. Norra sidan skyddad vid sydvind, södra sidan öppnare. Grunda vikar för barn.' },
+      { icon: '🚶', name: 'Promenad runt ön', desc: 'Liten ö men full av detaljer. En runda tar ca 30 minuter och ger utsikt i alla väderstreck.' },
+      { icon: '🎣', name: 'Fiske från bryggor', desc: 'Handlina från bryggorna ger makrill och sej i sommarhalvåret. Enkelt och avkopplande.' },
+      { icon: '⛵', name: 'Ankra utanför', desc: 'Populärt ankrings­ställe för seglare. Lugnt vatten på insidan av ön sommartid.' },
+    ],
+    accommodation: [
+      { name: 'Åstols Rökeri & Café', type: 'Café/Enkel mat', desc: 'Öns samlings­punkt med café och rökta delikatesser. Inget boende — ta dagsturen från Rönnäng.' },
+      { name: 'Stuga på Tjörn', type: 'Stugor', desc: 'Närmaste boende finns på Tjörn i Rönnäng-området. Enkel pendling med färjan.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Rönnäng', from: 'Rönnäng (Tjörn)', time: '10 min', desc: 'Reguljär passagerarfärja som går flera gånger per dag sommarsäsong. Rönnäng nås med bil via Tjörn­bron och E6 norrut. Parkering vid färjeläget i Rönnäng.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 90,
+      nearest_hub: 'Rönnäng (Tjörn)',
+      from_nearest_hub_min: 10,
+      operator: 'Västtrafik / lokal passagerarfärja',
+      frequency: 'Flera avgångar dagligen sommartid',
+    },
+    harbors: [
+      { name: 'Åstols Gästhamn', desc: 'Liten välbesökt hamn. Sommartid fullbokad tidigt på dagen — ankra utanför eller kom tidigt.', spots: 25, fuel: false, service: ['Vatten'] },
+    ],
+    restaurants: [
+      { name: 'Åstols Rökeri', type: 'Café/Deli', desc: 'Rökt fisk, räkor och enkla skaldjurs­rätter. Den självklara lunchen på Åstol.' },
+    ],
+    tips: [
+      'Kom tidigt — Åstol är litet och fyllbokat på sena sommarförmiddagar.',
+      'Rök­eriet säljer färska räkor och rökt makrill. Ta en räkmacka vid bryggan.',
+      'Ta dagsturen — Åstol har inget boende på ön, men en dag räcker och ger mer.',
+      'Kolla in Rönnäng-marknaden på Tjörn efter du återvänt — lokal producenter och hantverk.',
+    ],
+    related: ['tjorn', 'kladesholmen', 'orust'],
+    tags: ['bohuslän', 'bilfritt', 'fiskeläge', 'fotografi', 'bad', 'romantisk'],
+    insiderTips: [
+      'Gryningsljuset på Åstols röda bodar och grå klippor är ett av Bohusläns bästa fotomotiv. Overnight i Rönnäng och ta morgon­färjan är värt det.',
+      'Rök­eriet tar slut på räkor ibland. Kom tidigt om det är en prioritet.',
+    ],
+    dog_friendly: true,
+    dog_notes: 'Hund välkommen på ön. Håll koppel nära de tätbebyggda delarna och byborna.',
+    did_you_know: 'Åstol är en av få öar längs Bohus­länsk­usten som fortfarande har kvar en aktiv fiske­befolkning. De flesta liknande samhällen har omvandlats till rena sommarstugeöar — Åstol har lyckats behålla sin karaktär tack vare öbornas aktiva val att bo kvar.',
+    amenities: {
+      restaurant: true,
+      shop: false,
+      accommodation: false,
+      beach: false,
+      camping: false,
+    },
+    activity_meta: {
+      bad: { beaches: ['Klippbad norra sidan', 'Grunda vikar vid hamnen'] },
+      fiske: true,
+    },
+  },
+
+  // ─── DYRÖN ───────────────────────────────────────────────────────────────
+  {
+    slug: 'dyron',
+    name: 'Dyrön',
+    region: 'bohuslan',
+    emoji: '⛺',
+    tagline: 'Bohusläns friaste camping­ö — klippor, vild natur och Skärgårdsbo­hemian.',
+    description: [
+      'Dyrön är en bilfri ö utanför Tjörns västra kust och en av Bohusläns mest uppskattade camping­destinationer. Ön lockar vandrare, kajakpaddlare och friluftsentusiaster som vill ha vild klippnatur utan massor av service­utbud.',
+      'Ön är liten och relativt orörد — röda stugor och klippor dominerar. Det finns ingen affär, ingen restaurang av större format och inga bilar. Det är precis vad Dyrön-besökaren söker.',
+      'Sommartid tar Tjörnsförbifararen färja till Dyrön och vandrar runt ön, badar från klipporna och grilla vid havet. Det är enkel skärgård i bästa mening.',
+    ],
+    facts: {
+      area: 'ca 2 km²',
+      population: 'ca 30 (helårsboende)',
+      known_for: 'Bilfritt, vild natur, camping, klipplandskap',
+      season: 'Juni–Augusti',
+    },
+    activities: [
+      { icon: '⛺', name: 'Camping', desc: 'Primitiv camping på ön i naturmiljö. Ingen boknings­bar camping­anläggning — kom förbered.' },
+      { icon: '🚣', name: 'Kajak', desc: 'Gott om klipphålor, vikar och skyddade paddlingsstråk runt Dyrön och angränsande öar.' },
+      { icon: '🏊', name: 'Klippbad', desc: 'Typisk Bohuslän-klippbad med klart Västerhavsvatten. Perfekt sommarbad.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Runt­vandringsled på ön. Utsikter mot Kattegatt och Bohusläns yttre skärgård.' },
+    ],
+    accommodation: [
+      { name: 'Primitiv camping', type: 'Camping', desc: 'Camping i naturen. Ta med allt du behöver — inget säljs på ön.' },
+    ],
+    getting_there: [
+      { method: 'Passagerarfärja från Skärhamn', from: 'Skärhamn (Tjörn)', time: 'ca 15–20 min', desc: 'Färja till Dyrön avgår från Skärhamn på Tjörn. Kolla aktuell tidtabell hos Västtrafik.', icon: '⛴' },
+    ],
+    transport_meta: {
+      from_city_min: 90,
+      nearest_hub: 'Skärhamn (Tjörn)',
+      from_nearest_hub_min: 18,
+      operator: 'Västtrafik',
+      frequency: 'Sommarsäsong — kolla aktuell tidtabell',
+    },
+    harbors: [
+      { name: 'Dyrön brygga', desc: 'Liten brygga. Utrymmet är begränsat — ankra och rodd in är vanligare.', spots: 10, fuel: false, service: [] },
+    ],
+    restaurants: [],
+    tips: [
+      'Ta med allt — vatten, mat och utrustning. Ön har ingen service.',
+      'Dyrön är liten — en fullrunda tar ca 2–3 timmar på avslappnad promenad.',
+      'Bäst i juni–juli. Augustihelger kan vara trängre på camping­yta.',
+    ],
+    related: ['astol', 'kladesholmen', 'tjorn'],
+    tags: ['bilfritt', 'camping', 'klippor', 'natur', 'bohuslän', 'kajak'],
+    did_you_know: 'Dyrön nämns i litteraturen om Bohusläns fiskebefolkning och var ett av de öar som försörjde sig på säsongsvis sill­fiske och hummer­fångst. I dag är sommarbesökarna fler än fisket — men klipporna och tystnaden är oförändrade.',
+    amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: false, notes: 'Kajakhyrning i Skärhamn' },
+      bad: { beaches: ['Klippbad östra sidan', 'Norra udden'] },
+    },
+  },
 ]
 
 // Export region-rad till regionsidan
