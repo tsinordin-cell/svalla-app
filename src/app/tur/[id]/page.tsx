@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  .eq('id', id)
  .single()
 
- if (!trip || trip.deleted_at) return { title: { absolute: 'Tur – Svalla' } }
+ if (!trip || trip.deleted_at) return { title: 'Tur – Svalla' }
 
  const { data: metaUser } = await supabase
  .from('users').select('username').eq('id', trip.user_id).single()
@@ -61,7 +61,6 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  description: desc,
  images: [ogImageUrl],
  },
- alternates: { canonical: `https://svalla.se/tur/${id}` },
  }
 }
 
