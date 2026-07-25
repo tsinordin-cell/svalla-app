@@ -7228,7 +7228,7 @@ export function getGuideContent(slug: string): string {
   'surstrommingspremiar-2026': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Den tredje torsdagen i augusti är en högtidsdag längs Norrlandskusten. Butiker längs Höga Kusten börjar stapla konservburkar med silhuetter av fisk och den distinkta lukten av fermenterad strömming sprider sig i luften. Det är surströmmingspremiär.</p>
 
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är torsdag 20 augusti. Konserverna – legalt sett – får inte säljas förrän detta datum. Det är en tradition sedan 1937, då kung Gustav V-tiden slog fast att ny skörd av surströmming inte fick säljas förrän tredje torsdagen i augusti.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Surströmmingspremiären 2026 är torsdag 20 augusti. Konserverna – legalt sett – får inte säljas förrän detta datum. Det är en reglerad tradition sedan 1930-talet, då en kunglig förordning fastslog att ny skörd av surströmming inte fick säljas förrän tredje torsdagen i augusti.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR SURSTRÖMMING?</h3>
 
@@ -7236,7 +7236,7 @@ export function getGuideContent(slug: string): string {
 
 <p>Det är en mat du älskar eller fruktar. Men längs Höga Kusten äts den med stolthet – och det finns en konst i det.</p>
 
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR ÄTer MAN DET RÄTT?</h3>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR ÄTER MAN DET RÄTT?</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Traditionellt tunnbrödsklämma</h4>
 <ol style="font-size:16px;line-height:1.8;color:var(--txt2);padding-left:20px">
@@ -7249,12 +7249,12 @@ export function getGuideContent(slug: string): string {
   <li>Rulla ihop och ät med öl eller snaps</li>
 </ol>
 
-<p><strong>Absolut utomhus:</strong> Öppna aldrig burken inomhus. Trycket i burken gör att vätskan kan stänka och lukten tränger in i allt. Öppna i vatten eller på avstand från öppna fönster.</p>
+<p><strong>Absolut utomhus:</strong> Öppna aldrig burken inomhus. Trycket i burken gör att vätskan kan stänka och lukten tränger in i allt. Öppna i vatten eller på avstånd från öppna fönster.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAR FIRAR DU PREMIÄREN?</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Ulvön – hjärtat av surströmming</h4>
-<p>Ulvön i Härnösand/Kramfors-skärgård är Höga Kustens symboliska mittelpunkt. Ulvöns Hotell arrangerar traditionell surströmningsfest på premiärdagen. Hit vallfärdar genuina surströmmingsentusiaster. Nås med färja från Ullånger eller Docksta sommartid.</p>
+<p>Ulvön i Härnösand/Kramfors-skärgård är Höga Kustens symboliska mittelpunkt. Ulvöns Hotell arrangerar traditionell surströmmingsfest på premiärdagen. Hit vallfärdar genuina surströmmingsentusiaster. Nås med färja från Ullånger eller Docksta sommartid.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kramfors och Härnösand</h4>
 <p>Städerna längs Höga Kustenfjärden har butiker som öppnar sina surströmningslager exakt vid midnatt torsdagen. Boka boende i god tid – premiärhelgen har många evenemang och besökare.</p>
@@ -7263,7 +7263,7 @@ export function getGuideContent(slug: string): string {
 <p>Surströmming säljs i ICA och Coop från premiärdagen – inklusive i Stockholm. Köp en burk, bjud vänner utomhus och arrangera din egen premiärfest. Det är så de flesta norrlänningar faktiskt firar det.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR TAR DU DIG TILL HÖGA KUSTEN?</h3>
-<p><strong>Tåg:</strong> SJ Norrlandståg från Stockholm C till Härnösand, ca 3h30 min. Från Härnösand buss till Kramfors och vidare.</p>
+<p><strong>Tåg:</strong> SJ från Stockholm C mot Härnösand, ca 3,5–4 timmar beroende på tåg. Kräver ibland byte i Sundsvall. Från Härnösand buss till Kramfors och vidare.</p>
 <p><strong>Flyg:</strong> Sundsvall/Timrå flygplats (SDL) med SAS eller BRA – ca 1h från Stockholm. Hyr bil på plats.</p>
 <p><strong>Bil:</strong> E4 norrut från Stockholm, ca 4h till Härnösand.</p>
 `,
@@ -7276,13 +7276,13 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">GÖTEBORG OCH BOHUSLÄN</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sjömagasinet, Göteborg</h4>
-<p>En Michelin-stjärna och klassisk göteborgsk sjömat i ett gammalt magasin vid Eriksberg. Menyn baseras på Bohusläns dag-fångster – räkor, havskräftor, hummer och sjötunga. Utsikt mot Göta älv. Boka 2–3 veckor i förväg på helger.</p>
+<p>En av Göteborgs mest hyllade sjömatskrogar i ett gammalt magasin vid Eriksberg. Menyn baseras på Bohusläns dag-fångster – räkor, havskräftor, hummer och sjötunga. Utsikt mot Göta älv. Boka 2–3 veckor i förväg på helger.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Bhoga, Göteborg</h4>
-<p>Michelin-stjärna i Göteborg med fokus på nordisk smak och säsongsbetonad kust-råvara. Inte direkt vid kusten men med djupa band till Bohusläns producenter. Krögarduon bakom Bhoga räknas som en av Skandinaviens mest intressanta.</p>
+<p>Michelin-belönad Göteborgskrog med fokus på nordisk smak och säsongsbetonad kust-råvara. Inte direkt vid kusten men med djupa band till Bohusläns producenter. Krögarduon bakom Bhoga räknas som en av Skandinaviens mest intressanta.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Salt & Sill, Tjörn (Klädesholmen)</h4>
-<p>Sveriges enda Michelin-anslutna flytande restaurang, på en ponton i Klädesholmens gamla sillhamn. Specialiserade på sill i alla former – men menyn rör sig över hela skaldjurssortimentet. Klädesholmen nås med bro via Tjörn (Göteborg + buss/bil).</p>
+<p>Flytande restaurang och hotell på en ponton i Klädesholmens gamla sillhamn. Specialiserade på sill i alla former – men menyn rör sig över hela skaldjurssortimentet. Klädesholmen nås med bro via Tjörn (Göteborg + buss/bil).</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögens Fisk & Skaldjur</h4>
 <p>Inga Michelin-stjärnor, men en av Sveriges bästa skaldjursupplevelser. Räkorna är fångade samma morgon och den klassiska räksmörgåsen vid bryggan är en upplevelse varje sommar-och höst-besökare bör ha haft.</p>
@@ -7300,8 +7300,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">SKÅNE OCH SYDKUSTEN</h3>
 
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Gastro, Malmö</h4>
-<p>Nära Öresund och med tillgång till Skånes kustnära råvaror. Inte Michelin-stjärnat men med en av Sydsveriges starka fiskmeny. Perfekt för den som kombinerar Malmö med Öresunds-upplevelse.</p>
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Malmö och Öresund</h4>
+<p>Malmö har flera topprestauranger med tillgång till Öresunds kustfisk och danska råvaror. Kolla Malmös restaurangguide på visitskane.com för aktuella adresser – utbudet växlar och nya krogar öppnar. Kombinera med en dag i Köpenhamn för Nordeuropas starkaste matscen.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Råå Fisk och Krog, Helsingborg</h4>
 <p>I fiskebyn Råå utanför Helsingborg – en av Sydsveriges bäst bevarade fiskeby-upplevelser. Färsk torsk, långa och ål direkt från Öresund. Inga stjärnor men ett av Skånes bästa lägen.</p>
