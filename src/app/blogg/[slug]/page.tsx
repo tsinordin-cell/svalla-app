@@ -1148,7 +1148,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
  const { slug } = await params
  const post = POSTS[slug]
- if (!post) return { title: { absolute: 'Artikel hittades inte – Svalla' } }
+ if (!post) return { title: 'Artikel hittades inte – Svalla' }
  return {
  title: post.title,
  description: post.excerpt,
