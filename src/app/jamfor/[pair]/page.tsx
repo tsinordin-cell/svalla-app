@@ -326,13 +326,13 @@ export default async function ComparisonPage({ params }: Props) {
             <div>
               <div style={{ fontWeight: 700, color: '#1e5c82', marginBottom: 4 }}>Välj {islandA.name} om…</div>
               <div style={{ color: 'var(--txt2)' }}>
-                Du vill {islandA.facts.best_for.toLowerCase()}. {islandA.tagline}
+                Du vill {(islandA.facts.best_for ?? '').toLowerCase()}. {islandA.tagline}
               </div>
             </div>
             <div>
               <div style={{ fontWeight: 700, color: '#c96e2a', marginBottom: 4 }}>Välj {islandB.name} om…</div>
               <div style={{ color: 'var(--txt2)' }}>
-                Du vill {islandB.facts.best_for.toLowerCase()}. {islandB.tagline}
+                Du vill {(islandB.facts.best_for ?? '').toLowerCase()}. {islandB.tagline}
               </div>
             </div>
           </div>
