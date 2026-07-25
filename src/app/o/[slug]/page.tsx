@@ -41,14 +41,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   `${island.name.toLowerCase()} aktiviteter`,
   `vad göra på ${island.name.toLowerCase()}`,
   `resa till ${island.name.toLowerCase()}`,
-  `${island.regionLabel.toLowerCase()} guide`,
+  `${(island.regionLabel ?? '').toLowerCase()} guide`,
  ],
  alternates: {
  canonical: `https://svalla.se/o/${slug}`,
  },
  openGraph: {
  title: `${island.name} – ${island.tagline}`,
- description: `Komplett guide till ${island.name} i ${island.regionLabel.toLowerCase()}.`,
+ description: `Komplett guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
  url: `https://svalla.se/o/${slug}`,
  type: 'article',
  images: [{
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  twitter: {
  card: 'summary_large_image',
  title: `${island.name} – ${island.tagline}`,
- description: `Guide till ${island.name} i ${island.regionLabel.toLowerCase()}.`,
+ description: `Guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
  images: [`https://svalla.se/api/og/island/${slug}`],
  },
  }
