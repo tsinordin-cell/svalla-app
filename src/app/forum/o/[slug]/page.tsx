@@ -11,19 +11,10 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
-  if (!island) return { title: { absolute: 'Forum — Svalla' } }
-  const canonicalUrl = `https://svalla.se/forum/o/${slug}`
-  const description = `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`
+  if (!island) return { title: 'Forum — Svalla' }
   return {
-    title: { absolute: `Forum om ${island.name} – Svalla` },
-    description,
-    alternates: { canonical: canonicalUrl },
-    openGraph: {
-      title: `Forum om ${island.name} – Svalla`,
-      description,
-      url: canonicalUrl,
-      type: 'website',
-    },
+    title: `Forum om ${island.name} — Svalla`,
+    description: `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`,
   }
 }
 
