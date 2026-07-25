@@ -7402,6 +7402,101 @@ export function getGuideContent(slug: string): string {
 <p><strong>November:</strong> Möjligt med rätt utrustning men kräver vintercampingutrustning.</p>
 `,
 
+  '20-bastustallen-skargarden-boka': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns inget bättre i Stockholms skärgård på hösten — och inte heller på sommaren — än en vedeldad bastu med direktutsikt mot havet, ett kallt Östersjöhopp och sedan tillbaka in i värmen. Problemet är att de bästa bastustäl&shy;lena är svåra att hitta. De marknadsförs inte, de dyker inte upp i vanliga sökmotorer och de är fullbokade den dag de läggs ut.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den här guiden samlar 20 verifierade bastuplatser i Stockholms skärgård — från skärgårdsstiftelsens öppna klippbastus till privata bastuflottar och välkända värdshus. Alla har vi kontrollerat. Bokningssystem, Swish-nummer och kontaktuppgifter stämmer som av publiceringstillfället — men kontrollera alltid aktuell information hos respektive arrangör, öppettider förändras.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 1: Bastubåtar och bastuflottar</h3>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Att basta ute på vattnet — med Stockholm i horisonten och ingen byggnad i sikte — är en upplevelse som slår det mesta. Bastubåtar kan bokas privat för 2–20 personer och levererar en kombination av bastu, avkoppling och havsvy som inte liknar något annat.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">1. Bastuflottestockholm.se — bastuflotte på Lidingösidan</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">En av de mer etablerade bastubåts&shy;tjänsterna i Stockholms inre skärgård. Avhämtning sker från Hustegavägen 1 på Lidingö, och flotten rör sig ut mot det öppna vattnet kring Värtan och Lilla Värtan. Boka privat — antalet platser är begränsat och helger på sommaren tar slut snabbt. Besök bastuflottestockholm.se för priser och tillgänglighet.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">2. Bastuflotten.com — ReLaxa, privat bastuflotte</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">ReLaxa drivs via bastuflotten.com och erbjuder privata bastuturer på Stockholms vatten. Vedeldad bastu, relaxdäck och möjlighet att ta med egna drycker och mat. Lämpar sig för grupper om 4–10 personer. Kolla tillgänglighet via bastuflotten.com — de bokas ofta ut flera veckor i förväg under högsäsong.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">3. Stockholmsbastuflotte.se — bastuflotte vid inre skärgård</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Ytterligare en aktör i bastubåtsmarknaden kring Stockholm. Kolla stockholmsbastuflotte.se för aktuellt utbud, priser och avgångsplats. Marknaden för bastubåtar i Stockholm har vuxit de senaste åren — alltid värt att jämföra flera aktörer för bästa pris och tillgänglighet.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">4. Gustafstaxibåtar — bastuflotte vid Gällnö</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Gustafstaxibåtar erbjuder en av de mer unika bastulösningarna: en bastuflotte förankrad i den vackra skärgården vid Gällnö i Värmdö kommun. Vedeldad bastu, relaxrum, trädäck, kolgrill och plats för upp till 20 personer. Perfekt för gruppbokning — julfester, team-events och familjefiranden. Boka via gustafstaxibat.se och fråga specifikt om bastuflotten.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 2: Skärgårdsstiftelsens öppna bastus</h3>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Skärgårdsstiftelsen driftar ett antal vedeldade bastustugor på öar i Stockholms skärgård. Principen är enkel och demokratisk: 50 kr per vuxen, betalning via Swish, max en timme, inga förbokningar — first come, first served. Bastusäsongen öppnar kring Valborg och håller öppet sommartid (precisa datum varierar per år och anläggning — kolla skargardsstiftelsen.se för aktuell information).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">5. Möjaskärgården — Ostholmen</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Vedeldad bastu på Ostholmen i Möjaskärgården. Betalas med Swish till <strong>123 345 63 99</strong>. Typisk klippbastu med omklädningsutrymme och direkt tillgång till havet för dopp. Ingen bokning — kom och kolla om det finns plats.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">6. Möjaskärgården — Österviken</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Ytterligare en bastu i Möjaskärgården, belägen vid Österviken. Swish: <strong>123 559 71 25</strong>. Samma princip — 50 kr/person, max 1h, inga förbokningar. Fantastisk utsikt och skyddat läge.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">7. Nämdö</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Skärgårdsstiftelsens bastu på Nämdö — en av de mer avlägsna öarna med fantastisk ytterskärgårdskaraktär. Nås med Waxholmsbolaget via Stavsnäs. Swish: <strong>123 568 68 11</strong>. 50 kr/person, max 1h. Kombinera bastun med en promenad runt ön — Nämdö är en av de vackraste öarna i mellersta skärgården.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">8. Träskö-Storö — Lilla bastun</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Träskö-Storö naturreservat har inte en utan två bastustugor. Lilla bastun: Swish <strong>123 199 37 99</strong>. 50 kr/person, max 1h. Reservatet är bilfritt och nås med båt från Stockholm. Ta med picknick — det finns vackra klipplatser runt bastun.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">9. Träskö-Storö — Stora bastun</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Samma reservat, lite större bastu med plats för ett par extra. Swish: <strong>123 199 37 99</strong> (samma nummer som Lilla bastun). Kolla stiftelsens hemsida för att se om Stora och Lilla kan bokas växelvis på helger.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 3: Aktivitetscentra och paddlingsbaser med bastu</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">10. Skärgårdens Kanotcenter, Vaxholm</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">En av de mest bokningsvänliga bastuplatserna nära Stockholm. Skärgårdens Kanotcenter på Resarövägen 10 i Vaxholm driver en vedeldad havsbastu med sessioner om ca 1,5 timme och temperaturer runt 60–80°C. Kajakuthyrning och paddlingsturer erbjuds parallellt. Drop-ins är möjliga men förbokning rekommenderas, framför allt på helger. Besök kanotcenter.com för aktuella tider och priser.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 4: Värdshus och lodges med bastu i skärgården</h3>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Flera av skärgårdens värdshus, vandrarhem och lodges inkluderar bastu som del av övernattningspaketet — eller som tillköp. Att kombinera en natt på ön med kvällsbastu är bland de bästa skärgårdsupplevelserna du kan boka.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">11. Utö Värdshus — havsbastu vid Östersjön</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Utös havsbastu är legendar i skärgårdssammanhang. Värdshuset på södra skärgårdens kronjuvel har bastu med direkt tillgång till havet och plats att ta ett svalkande dopp. Bastun är tillgänglig för gäster som övernatt&shy;ar — kombinera med en cykelrunda på ön och middag på värdshuset för ett fullständigt Utö-program. Boka via utovardshus.se.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">12. Grinda Vandrarhem — bastu mitt i mellersta skärgården</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Grinda är en av de mest familjevänliga öarna i Stockholms skärgård, och vandrarhemsboendets bastu är ett välkommet tillskott. Nås med Waxholmsbolaget på ca 1h 45 min från Strömkajen. Bastun används av övernattande gäster — boka i god tid, Grinda är välbokad i juli. Besök grindavardshus.se.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">13. Lidö Värdshus — bastu och badtunnor på norra ön</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Lidö i norra skärgården är en av de mest pittoreska öarna norrut, och Lidö Värdshus har bastu, badtunnor och möjlighet att hyra havskajak. En kombination av bastu och paddling är svårslagen. Lidö är ganska avlägset — räkna med ca 2–2,5h från Stockholm med Waxholmsbolaget. Besök lidovardshus.se för bokning.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">14. Arholma Nord — skärgårdslodge med vedeldad bastu</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Arholma i den yttersta norra skärgården är en av Stockholms mest avlägsna bebodda öar. Arholma Nord är en skärgårdslodge med 46 bäddar, vedeldad bastu och havskajaker. Bastun kombineras med klippbad direkt i havet. Ytterskärgårdens karaktär — vind, klipp&shy;or och inga sommarträngsel — gör Arholma Nord till ett utmärkt val för dig som vill ha bastu i riktig vildmark. Nås via Waxholmsbolaget (lång resa) eller privat båt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">15. Finnhamn STF Vandrarhem</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">STF Finnhamn är ett av skärgårdens mest välkända vandrarhem med bastu, restaurang och en av de vackraste lägena i mellersta skärgården. Nås med Waxholmsbolaget från Strömkajen på ca 2,5h. Bastun används av övernattande gäster och är populär kring påsk och midsommar. Boka i god tid via STF:s hemsida.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">16. Sandhamns Seglarhotell — inomhusspa och utomhusbastuflottar</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Seglarhotellet på Sandhamn erbjuder två bastualternativ: inomhusspa med pool, jacuzzi och bastu (tillgängligt för hotellets gäster samt externa besökare mot avgift, ca 195 kr/person), och vedeldade utomhusbastuflottar att hyra privat — från ca 2 600 kr för 1–6 personer. Bastufloatarna kan bokas separat utan att man bor på hotellet. Sandhamn nås via Waxholmsbolaget från Stavsnäs (buss 833 från Slussen) — ca 1,5–2h totalt. Boka via sandhamn.se.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 5: Privata öar och stugbastus att hyra</h3>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">En kategori som har vuxit snabbt: privata bastustugor och egna ö-bastus som kan hyras exklusivt. Här får du bastu, naturmiljö och total avskildhet — utan att dela badrummet med någon annan.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">17. Gistholmen — basta på en egen ö</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Gistholmen i mellersta skärgården är en ö med 21 stugor och tillhörande bastu. Att hyra en stuga på Gistholmen innebär tillgång till bastun på en ö som känns som din egen. Kolla aktuellt utbud och bokningssystem via gistholmen.se eller kontakta dem direkt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">18. Smådalarö Gård — vedeldad bastuhyra nära Dalarö</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Smådalarö Gård söder om Stockholm erbjuder vedeldad bastuhyra — en privat bastu för ditt sällskap, direkt vid vattnet. Dalarö-området är lättillgängligt med bil från Stockholm (ca 45–55 min), vilket gör det till ett utmärkt alternativ för dem som inte vill ta båt. Kolla smadalarogard.se för aktuell bokning och priser.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 6: Bastuplattformar och söktjänster</h3>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Marknaden för privata bastuhyrningar i skärgården har professionali&shy;serats. Dessa plattformar aggregerar bastustugor från privatpersoner och ger dig tillgång till ett brett utbud av uthyrarbastur över hela Stockholms skärgård.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">19. Bastuhyra.se — hela skärgårdens bastukatalog</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Bastuhyra.se är en plattform som samlar privata bastuthyrare längs hela Stockholms skärgård — från Arholma i norr till Landsort i söder. På plattformen hittar du bastustugor med havsutsikt, bastubåtar och ö-bastus med varierande priser och tillgänglighet. Bra startpunkt om du inte hittat din plats bland de konkreta alternativen ovan.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">20. Nynäs Havsbad — spa-hotell med bastuhus på bryggan</h4>
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)">Nynäs Havsbad är ett anrikt spa-hotell söder om Stockholm med adress Oskarsgatan 9 i Nynäshamn. Havspaviljongen rymmer inomhuspool, relaxavdelning och behandlingar, och ute på bryggan finns ett bastuhus med havsutsikt samt en varm sittpool — öppen även på vintern med isvak. Dagspa kan bokas utan övernattning via nynashavsbad.se. Nynäshamn nås med pendeltåg på ca 55 min från Stockholm C.</p>
+
+<h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">Praktiska tips innan du bokar</h3>
+
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Skärgårdsstiftelsens bastus:</strong> Kräver ingen bokning — first come, first served. Ta med Swish och 50 kr/vuxen. Öppnar Valborgsmässoafton (30 april), håller öppet sommar och höst. Kolla skargardsstiftelsen.se för aktuell säsongsinfo — stängningstidpunkten varierar per år.</p>
+
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bastubåtar:</strong> Boka 2–4 veckor i förväg på sommaren. Helger i juli är praktiskt taget alltid fullbokade. Sökvardagar och maj/september för bästa tillgänglighet.</p>
+
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Värdshus och vandrarhem:</strong> Bastun är ofta kopplad till övernattning. Boka boende i god tid och bekräfta bastutillgång — inte alla rum ger automatisk bastutillgång.</p>
+
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Ta med:</strong> Badlakan, badkläder (för bastubåtar och värdshus), flip-flops, vattenflaska. En kall öl eller saft efter bastun är praxis — men ta med din egen till de anläggningar som saknar servering.</p>
+
+<p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bästa säsong:</strong> Bastun är faktiskt bäst på hösten — september och oktober. Lufttemperaturen är lägre (kontrasterna blir mer dramatiska), havet är fortfarande relativt varmt (14–17°C i september) och du delar knappt platsen med någon annan. Sommarbastun funkar fint — men höst&shy;bastun i skärgården är en annan nivå.</p>
+`,
+
   }
 
   const content = guides[slug]
