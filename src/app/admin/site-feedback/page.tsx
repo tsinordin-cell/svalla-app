@@ -4,7 +4,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import SiteFeedbackActions from './SiteFeedbackActions'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Feedback & Tips — Admin · Svalla' },
+  title: 'Feedback & Tips — Admin · Svalla',
   robots: { index: false, follow: false },
 }
 
