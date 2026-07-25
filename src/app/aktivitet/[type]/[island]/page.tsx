@@ -33,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const verb = activity.shortName.toLowerCase()
   return {
-    title: { absolute: `${activity.name} på ${island.name} — guide, tips och bästa säsong | Svalla` },
+    title: `${activity.name} på ${island.name} — guide, tips och bästa säsong | Svalla`,
     description: `${verb} på ${island.name}: vad du kan göra, var du startar och vad du behöver packa. ${island.tagline}`,
-    keywords: [`${verb} ${island.name.toLowerCase()}`, `${island.name.toLowerCase()} ${verb}`, `${verb} skärgården`, island.regionLabel.toLowerCase()],
+    keywords: [`${verb} ${island.name.toLowerCase()}`, `${island.name.toLowerCase()} ${verb}`, `${verb} skärgården`, (island.regionLabel ?? '').toLowerCase()],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}` },
     openGraph: {
       title: `${activity.name} på ${island.name}`,
