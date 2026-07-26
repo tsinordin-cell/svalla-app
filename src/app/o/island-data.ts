@@ -4450,6 +4450,7 @@ export const ISLANDS: Island[] = [
     slug: 'ockero',
     name: 'Öckerö',
     region: 'goteborg',
+    regionLabel: 'Göteborgs norra skärgård',
     emoji: '🚢',
     tagline: 'Göteborgs fiskeö — sjöfartens hjärta och Hönöleden utanför hamnen.',
     description: [
@@ -4508,6 +4509,7 @@ export const ISLANDS: Island[] = [
     slug: 'roro',
     name: 'Rörö',
     region: 'goteborg',
+    regionLabel: 'Göteborgs norra skärgård',
     emoji: '🔴',
     tagline: 'Göteborgs lilla bilfria skärgårdsö — fyr, klippor och räksmörgås vid hamnen.',
     description: [
