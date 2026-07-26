@@ -913,6 +913,9 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       population: 'ca 30 (helårsboende)',
       known_for: 'Bilfritt, vild natur, camping, klipplandskap',
       season: 'Juni–Augusti',
+      travel_time: 'ca 1 h 15 min (bil + färja från Göteborg)',
+      character: 'Bilfritt, camping, vild klippnatur',
+      best_for: 'Friluftsliv, kajak, klippbad',
     },
     activities: [
       { icon: '⛺', name: 'Camping', desc: 'Primitiv camping på ön i naturmiljö. Ingen boknings­bar camping­anläggning — kom förbered.' },
