@@ -49,7 +49,7 @@ export const DEPARTURES: Departure[] = [
     lat: 59.4022,
     lng: 18.3283,
     description: 'Skärgårdens portal. Bilfärja och pendelbåtar in mot inre och mellersta skärgården.',
-    primaryDestinations: ['rindo', 'tynningö', 'ramsmora', 'grinda', 'svartso', 'ingmarso'],
+    primaryDestinations: ['rindo', 'tynningo', 'ramsmora', 'grinda', 'svartso', 'ingmarso'],
   },
   {
     slug: 'arholma',
