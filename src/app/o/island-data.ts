@@ -3426,7 +3426,7 @@ export const ISLANDS: Island[] = [
 
   // ─── TYNNINGÖ ────────────────────────────────────────────────────────────
   {
-    slug: 'tynningö',
+    slug: 'tynningo',
     name: 'Tynningö',
     region: 'norra',
     emoji: '🌿',
