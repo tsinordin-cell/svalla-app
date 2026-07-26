@@ -141,7 +141,7 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
       .order('last_reply_at', { ascending: false })
       .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)
 
-    if (!data) return []
+    if (!data || data.length === 0) return []
 
     // Enrich with author names + last reply authors
     const authorIds = [...new Set(data.map(t => t.user_id))]
@@ -149,6 +149,9 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
       .map(t => t.last_reply_user_id)
       .filter((id): id is string => !!id && !authorIds.includes(id))
     const allUserIds = [...new Set([...authorIds, ...lastReplyIds])]
+
+    // Undvik .in('id', []) med tom array — PostgREST-beteende är odefinierat
+    if (allUserIds.length === 0) return data as ForumThread[]
 
     const { data: users } = await supabase
       .from('users')
@@ -180,13 +183,16 @@ export async function getThreadsByIsland(islandSlug: string, page = 0): Promise<
       .order('last_reply_at', { ascending: false })
       .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1)
 
-    if (!data) return []
+    if (!data || data.length === 0) return []
 
     const authorIds = [...new Set(data.map(t => t.user_id))]
     const lastReplyIds = data
       .map(t => t.last_reply_user_id)
       .filter((id): id is string => !!id && !authorIds.includes(id))
     const allUserIds = [...new Set([...authorIds, ...lastReplyIds])]
+
+    // Undvik .in('id', []) med tom array — PostgREST-beteende är odefinierat
+    if (allUserIds.length === 0) return data as ForumThread[]
 
     const { data: users } = await supabase
       .from('users')
