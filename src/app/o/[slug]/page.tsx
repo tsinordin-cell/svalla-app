@@ -83,21 +83,31 @@ export default async function IslandPage({ params }: Props) {
  const island = getIsland(slug)
  if (!island) notFound()
 
- // Hämta antal unika besökare + senaste forumtrådar parallellt
- // try/catch: om Supabase är nere eller env vars saknas, visa sidan ändå
+ // Hämta antal unika besökare + senaste forumtrådar parallellt.
+ // Timeout på 5 s: populära öar (sandhamn, vaxholm) kan ha många DB-rader
+ // vilket gör COUNT-frågan långsam. Om Vercel-funktionen hänger > timeout
+ // avbryts hela processen och sidan returnerar tom. Promise.race säkerställer
+ // att vi alltid renderar sidan — även om Supabase är långsam eller nere.
  let visitorCount: number | null = null
  let recentThreads: Awaited<ReturnType<typeof getThreadsByIsland>> = []
  try {
    const supabase = await createServerSupabaseClient()
-   const [visitResult, threadResult] = await Promise.all([
-     supabase
-       .from('visited_islands')
-       .select('*', { count: 'exact', head: true })
-       .eq('island_slug', slug),
-     getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
+   const dbTimeout = new Promise<null>(resolve => setTimeout(() => resolve(null), 5_000))
+   const dbResult = await Promise.race([
+     Promise.all([
+       supabase
+         .from('visited_islands')
+         .select('*', { count: 'exact', head: true })
+         .eq('island_slug', slug),
+       getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
+     ]),
+     dbTimeout,
    ])
-   visitorCount = visitResult.count
-   recentThreads = threadResult
+   if (dbResult !== null) {
+     const [visitResult, threadResult] = dbResult
+     visitorCount = visitResult.count
+     recentThreads = threadResult
+   }
  } catch {
    // Supabase-fel: rendera sidan utan besökarräknare och forumtrådar
  }
