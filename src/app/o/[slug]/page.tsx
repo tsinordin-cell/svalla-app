@@ -66,7 +66,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  }
 }
 
-export const revalidate = 3600 // uppdatera besöksräknaren max en gång/timme
+// force-dynamic: cookies() kräver request-kontext och kan inte köras i ISR/static.
+// Med revalidate=3600 + generateStaticParams kastade Next.js 15 DynamicServerError
+// som inte fångades av try/catch → 500. force-dynamic renderar vid varje request.
+export const dynamic = 'force-dynamic'
 
 // Öar med egna äventyrssidor
 const ADVENTURE_PAGES: Record<string, { url: string; title: string; desc: string }> = {
