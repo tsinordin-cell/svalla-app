@@ -47,6 +47,21 @@ export default function EmailSignup({
       }
       setStatus('success')
       setEmail('')
+
+      // GA4 sign_up event (fires when GA4 is configured via gtag.js)
+      // Set up: https://developers.google.com/analytics/devguides/collection/ga4
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const w = window as any
+        if (typeof w.gtag === 'function') {
+          w.gtag('event', 'sign_up', {
+            method: 'newsletter',
+            source: source,
+          })
+        }
+      } catch {
+        // Tyst fel — GA4 ej konfigurerat än
+      }
     } catch {
       setError('Nätverksfel — försök igen')
       setStatus('error')
