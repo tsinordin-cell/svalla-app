@@ -12,8 +12,8 @@ const SAMPLE = {
   subject: 'September i skärgården – det ingen pratar om',
   date: 'Tisdag 12 aug 2026',
   body: [
-    'De flesta stänger ner skärgårdsplanerna runt midsommar. Bokat klart, gjort det.',
-    'Det är ett misstag.',
+    'Från midsommar till slutet av juli är skärgården fullbokad. Kö till morgonbåten, fullsatta gästhamnar och ett halvt Stockholm på samma brygga.',
+    'Sedan händer något.',
     'September är den månaden vi helst hade hållit hemlig. Vattentemperaturen är fortfarande 17–19 grader. Gästhamnarna har plats. Restaurangerna tar emot dig utan 45 minuters väntetid. Ljuset är lägre, varmare och längre än det någonsin är i juli.',
   ],
   island: {
