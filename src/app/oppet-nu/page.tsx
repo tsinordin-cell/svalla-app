@@ -138,7 +138,7 @@ export default function OppetNuPage() {
           gap: 12,
           marginBottom: 36,
         }}>
-          {STATUS_ORDER.map(status => (
+          {STATUS_ORDER.filter(status => grouped[status].length > 0).map(status => (
             <div key={status} style={{
               background: 'var(--white)',
               borderRadius: 14,
