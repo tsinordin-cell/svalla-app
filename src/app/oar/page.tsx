@@ -343,7 +343,7 @@ export default function OarIndexPage() {
             variant="card"
             source="oar-index"
             title="Få tips inför sommaren"
-            description="2 mail i månaden — säsong, evenemang, nya guider. Ingen reklam."
+            description="Varannan tisdag — säsong, evenemang och nya guider. Ingen reklam."
           />
         </section>
 
