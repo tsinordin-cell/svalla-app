@@ -109,6 +109,7 @@ export default function PublicFooter() {
               { href: '/forum', label: 'Forum' },
               { href: '/tips', label: 'Tips & artiklar' },
               { href: '/blogg', label: 'Bloggen' },
+              { href: '/nyhetsbrev', label: 'Nyhetsbrevet' },
               { href: '/integritetspolicy', label: 'Integritetspolicy' },
             ]}
           />
