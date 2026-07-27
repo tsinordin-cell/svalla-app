@@ -7,7 +7,7 @@ import EmailSignup from '@/components/EmailSignup'
 import { REGIONS, hikesForRegion, type Hike } from './hike-data'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Vandring i skärgården — kustleder, öar och tips | Svalla' },
+  title: 'Vandring i skärgården — kustleder, öar och tips | Svalla',
   description: 'Hitta de bästa vandringarna längs Sveriges kust och skärgård. Topp 10 per region, filtrera på svårighet, transport och bad. Från Stockholms skärgård till Höga kusten.',
   keywords: [
     'vandring skärgård',
@@ -662,7 +662,7 @@ export default function VandringPage() {
               variant="card"
               source="aktivitet-vandring"
               title="Mer om vandring i skärgården"
-              description="Nya guider, säsongstips och insidertips direkt i mailen. 2 mail i månaden."
+              description="Nya guider, säsongstips och insidertips direkt i inkorgen. Varannan tisdag."
             />
           </div>
 
