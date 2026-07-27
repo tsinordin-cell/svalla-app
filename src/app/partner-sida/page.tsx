@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Annonsera och samarbeta med Svalla – mediakit 2026',
-  description: 'Nå skärgårds- och kustintresserade resenärer via Svalla. Nyhetsbrevssponsorskap, redaktionella samarbeten och destinationspartnerskap. Se priser och kontakta oss.',
+  description: 'Nå skärgårds- och kustintresserade resenärer via Svalla. Nyhetsbrevssponsorskap, redaktionella samarbeten och destinationspartnerskap. Kontakta oss för offert.',
   alternates: { canonical: 'https://svalla.se/partner-sida' },
   robots: { index: true, follow: true },
   openGraph: {
@@ -257,7 +257,7 @@ export default function PartnerSidaPage() {
         {/* ── Samarbetsformer ── */}
         <section style={{ marginBottom: 60 }}>
           <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', fontWeight: 800, color: 'var(--txt)', margin: '0 0 6px' }}>Samarbetsformer</h2>
-          <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 32px' }}>Alla priser exkl. moms. Rabatt vid återkommande bokningar.</p>
+          <p style={{ fontSize: 14, color: 'var(--txt3)', margin: '0 0 32px' }}>Tre former av samarbete — maila oss för offert och vi skräddarsyr ett upplägg.</p>
 
           {/* Paket */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18, marginBottom: 20 }}>
@@ -266,8 +266,6 @@ export default function PartnerSidaPage() {
                 emoji: '📬',
                 name: 'Nyhetsbrevssponsor',
                 tagline: 'Exklusiv plats i Svallanyheter varannan tisdag',
-                price: 'från 2 500 kr',
-                period: 'per utskick',
                 highlight: false,
                 badge: null,
                 bullets: [
@@ -283,8 +281,6 @@ export default function PartnerSidaPage() {
                 emoji: '✏️',
                 name: 'Redaktionellt samarbete',
                 tagline: 'Djupguide eller destinationsartikel skriven av Svalla',
-                price: 'från 5 500 kr',
-                period: 'per artikel',
                 highlight: true,
                 badge: 'Mest populärt',
                 bullets: [
@@ -300,8 +296,6 @@ export default function PartnerSidaPage() {
                 emoji: '🏝',
                 name: 'Destinationspartner',
                 tagline: 'Löpande synlighet under hela säsongen',
-                price: 'från 12 000 kr',
-                period: 'per kvartal',
                 highlight: false,
                 badge: null,
                 bullets: [
@@ -366,10 +360,6 @@ export default function PartnerSidaPage() {
                 </p>
 
                 <div style={{ borderTop: `1px solid ${pkg.highlight ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.08)'}`, paddingTop: 18 }}>
-                  <div style={{ marginBottom: 14 }}>
-                    <span style={{ fontSize: 22, fontWeight: 800, color: pkg.highlight ? '#fff' : 'var(--sea)' }}>{pkg.price}</span>
-                    <span style={{ fontSize: 13, color: pkg.highlight ? 'rgba(255,255,255,0.45)' : 'var(--txt3)', marginLeft: 6 }}>{pkg.period}</span>
-                  </div>
                   <a
                     href={`mailto:hej@svalla.se?subject=${encodeURIComponent(`Partnerförfrågan: ${pkg.name}`)}&body=${encodeURIComponent(`Hej!\n\nJag är intresserad av "${pkg.name}" på Svalla.\n\nVår verksamhet:\n\nVad vi vill uppnå:\n\n`)}`}
                     style={{
@@ -385,7 +375,7 @@ export default function PartnerSidaPage() {
                       border: `1px solid ${pkg.highlight ? 'rgba(255,255,255,0.2)' : 'rgba(10,123,140,0.16)'}`,
                     }}
                   >
-                    Skicka förfrågan →
+                    Kontakta oss för samarbete →
                   </a>
                 </div>
               </div>
