@@ -82,11 +82,11 @@ export default function PublicFooter() {
           <FooterColumn
             title="Hitta din ö"
             links={[
+              { href: '/oppet-nu', label: 'Öppet nu →' },
+              { href: '/ostlistan', label: 'Ölistorna' },
               { href: '/oar/barnvanliga', label: 'Barnvänliga' },
               { href: '/oar/dagstur-stockholm', label: 'Dagstur från Stockholm' },
               { href: '/oar/romantiska', label: 'Romantiska weekends' },
-              { href: '/oar/avskild', label: 'Avskilda pärlor' },
-              { href: '/oar/utan-bil', label: 'Utan bil' },
               { href: '/oar', label: 'Alla kategorier →' },
             ]}
           />
