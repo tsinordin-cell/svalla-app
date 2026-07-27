@@ -502,7 +502,7 @@ Välkommen till Svallanyheter!
 subject_options:
   - "{{temp}}° i skärgården i helgen — dags att planera"
 preheader: Prognosen ser bra ut. Tre öar att fundera på.
-from: "Thomas på Svalla <hello@svalla.se>"
+from: "Svalla <hej@svalla.se>"
 ---
 # Skärgårdsväder i helgen
 
