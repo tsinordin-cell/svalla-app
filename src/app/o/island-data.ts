@@ -129,6 +129,25 @@ export type Island = {
    * Använd exakta slugs från src/app/blogg/posts-data.ts.
    */
   blogLinks?: { slug: string; title: string }[]
+  /**
+   * Strukturerad säsongsdata — visas som månadskalender + rekommendation på ö-sidan.
+   * Används också för säsongs-SEO ("Sandhamn september öppet?").
+   * months[0] = januari … months[11] = december
+   */
+  seasonal?: {
+    /** T.ex. "Maj–September" */
+    open: string
+    /** T.ex. "Juli–mitten av Augusti" */
+    peak: string
+    /** T.ex. "Juni eller September" */
+    best: string
+    /** Förklaring till best — visas under kalenderraden */
+    bestReason: string
+    /** Varning om t.ex. begränsad service utanför säsong */
+    warning?: string
+    /** Månader 1-12: 'off' = stängt/vinter, 'limited' = begränsad service, 'open' = öppet, 'peak' = högsäsong */
+    months: ('off' | 'limited' | 'open' | 'peak')[]
+  }
 }
 
 export const ISLANDS: Island[] = [
@@ -240,6 +259,14 @@ export const ISLANDS: Island[] = [
       { slug: 'gasthamnar-guide', title: 'Bästa gästhamnarna i Stockholms skärgård 2026' },
       { slug: 'segling-nyborjare-guide', title: 'Segla för första gången – allt du behöver veta' },
     ],
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli–mitten av Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: allt öppet utan trängseln. September: badbart vatten, tomma restauranger och billigare boende.',
+      warning: 'Seglarhotellet är öppet hela året men de flesta caféer och barer stänger oktober–april.',
+      months: ['off','off','off','limited','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── UTÖ ─────────────────────────────────────────────────────
@@ -348,6 +375,13 @@ export const ISLANDS: Island[] = [
       { slug: 'vandring-orno-uto', title: 'Vandring i skärgården – bästa lederna på Ornö och Utö' },
       { slug: 'havsbastu-guide', title: 'Havsbastu i skärgården – de bästa platserna 2026' },
     ],
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Sandstrand, cykel och värdshus — utan juliträngseln. Havsbastu är ett plus i september.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── VAXHOLM ─────────────────────────────────────────────────
@@ -452,6 +486,13 @@ export const ISLANDS: Island[] = [
       { slug: 'vaxholm-guide', title: 'Vaxholm – skärgårdsstadens kompletta guide' },
       { slug: 'waxholmsbolaget-guide', title: 'Waxholmsbolaget – komplett guide till båttrafiken' },
     ],
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli–Augusti',
+      best: 'Maj–Juni eller September',
+      bestReason: 'Vaxholm är en stad med åretruntservice. Undvik högsommarens trängseln — maj och september ger samma upplevelse med halva folkligheten.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── GRINDA ──────────────────────────────────────────────────
@@ -558,6 +599,14 @@ export const ISLANDS: Island[] = [
       { slug: 'kajak-stockholms-skargard-nyborjare', title: 'Kajak i skärgården – guide för nybörjaren' },
       { slug: 'barnfamilj-skargard', title: 'Skärgård med barnfamilj – 8 tips för en lyckad tur' },
     ],
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Grinda är som vackrast i juni — allt öppet, massor av blommor och bara hälften så många besökare som i juli.',
+      warning: 'Grinda Wärdshus stänger normalt oktober–april. Gästhamnen har begränsad service utanför säsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── FINNHAMN ────────────────────────────────────────────────
@@ -640,6 +689,14 @@ export const ISLANDS: Island[] = [
       'Kajakuthyrning finns på Finnhamn under sommarsäsongen. Ön är ett av de bättre utgångspunkterna för kajakpaddling i mellersta skärgården.',
       'Caféet och kiosken på Finnhamn stänger relativt tidigt under kvällen. Ta med proviant om du planerar en sen ankomst.',
     ],
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Lugn ö som sällan är fullsatt. Juni ger grönare natur och September ger svamprika skogar.',
+      warning: 'Båttrafiken till Finnhamn är begränsad utanför sommarsäsongen. Kontrollera tidtabellen i förväg.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── MÖJA ────────────────────────────────────────────────────
@@ -744,6 +801,14 @@ export const ISLANDS: Island[] = [
       { slug: 'dolda-parlor-moja', title: 'Möjas dolda pärlor – bilfri ö med äkta skärgårdsstämning' },
       { slug: 'cykling-moja-gallno', title: 'Cykla i skärgården – guide för Möja och Gällnö' },
     ],
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Möja är aldrig överfylld men juni och september ger lugnast stämning och de bästa ljusförhållandena för cykelturen.',
+      warning: 'Caféet och mataffären håller begränsade öppettider utanför juli–aug. Ta med extra proviant.',
+      months: ['off','off','off','off','limited','open','peak','open','open','limited','off','off'],
+    },
   },
 
   // ─── FJÄDERHOLMARNA ──────────────────────────────────────────
@@ -824,6 +889,14 @@ export const ISLANDS: Island[] = [
       'Rökeriet på Fjäderholmarna säljer rökt fisk och skaldjur och är öppet under sommarsäsongen.',
       'Fjäderholmarna trafikeras av Strömma-båtar från Slussen och ingår inte i SL-kortet.',
     ],
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Maj–Juni',
+      bestReason: 'Maj och juni ger sommarstemning utan trängsel. Gå promenaden runt ön och lunta på rökeriet utan kö.',
+      warning: 'Sommarsäsongen är kort. De flesta verksamheter är stängda november–mars.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── LJUSTERÖ ─────────────────────────────────────────────────
@@ -856,9 +929,6 @@ export const ISLANDS: Island[] = [
       'Kommunikationssystemet runt Ljusterö är mer flexibelt än för de flesta ytterskärgårdsöar. Bilfärjan, Waxholmsbåten och de lokala taxibåtarna som kör i området skapar ett system med flera alternativa ingångsvinklar. Den flexibiliteten minskar det planeringstryck som många upplever med mer isolerade skärgårdsöar.',
       'Det specifika med Ljusterö i jämförelse med de flesta skärgårdsöar är kombinationen av storlek och tillgänglighet. Ön är tillräckligt stor för att erbjuda genuint varierad naturupplevelse men tillräckligt nåbar för att fungera som ett praktiskt mål. Den kombinationen är ovanligare än man kan tro i Stockholms skärgårdssystem.',
       'Ljusterö har också en funktion som förklaring för stockholmare som undrar hur det faktiskt fungerar att bo i skärgården under vinterhalvåret. Öns permanenta population, med sin skola, sina butiker och sin vardag bortom sommarsäsongen, är ett levande svar på den frågan.',
-    
-    
-    
     ],
     facts: {
       travel_time: '60 min med buss och bilfärja från Stockholm',
@@ -903,6 +973,13 @@ export const ISLANDS: Island[] = [
       'Det finns en ICA-butik, skola och bensinstation på Ljusterö, en av de mer självförsörjande öarna i norra skärgården.',
       'Ljusterö och trakterna runt Östanå är kända för goda förutsättningar för fågelskådning, särskilt under fågelsträcket på vår och höst.',
     ],
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: cykellederna är tomma och kajakpaddlingen är fantastisk. September: lummig höstfärg, badbar sjö och inga köer till Klintan.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── DALARÖ ──────────────────────────────────────────────────
@@ -1052,6 +1129,14 @@ export const ISLANDS: Island[] = [
       'Arholma är ett naturreservat med vandringsstigar som leder ut till klippor med utsikt mot öppet hav mot norr.',
       'Sommarsäsongen är kortare på Arholma än på öar längre söderut. Caféet och hamnen är öppna ungefär juni till mitten av september.',
     ],
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Mitten av Augusti',
+      best: 'Juli',
+      bestReason: 'Längst ut i norra skärgården med råaste naturen — i juli är caféet öppet, hamnen välkomnar och havsörnarna cirkulerar fortfarande.',
+      warning: 'Säsongen är kort. Café och hamn stänger i mitten av september. Kolla tidtabellen — Arholma kräver lång restid och planering.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── ORNÖ ─────────────────────────────────────────────────────
@@ -1127,6 +1212,14 @@ export const ISLANDS: Island[] = [
       'Ornö södra del erbjuder skyddade vikar och bra förutsättningar för kajakpaddling.',
       'Det finns lanthandel och kafé sommartid men utbudet är begränsat. Planera med matsäck om du ska ut på en heldagstur.',
     ],
+    seasonal: {
+      open: 'Hela året (bilfärja)',
+      peak: 'Juli',
+      best: 'Maj–Juni eller September',
+      bestReason: 'Bilfärjan går året runt men turismen är låg utanför sommar. September ger höstfärger och total stillhet.',
+      warning: 'Kafé och lanthandel kan ha begränsade öppettider utanför juli–aug. Kontrollera inför besöket.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── LANDSORT ────────────────────────────────────────────────
@@ -1296,6 +1389,13 @@ export const ISLANDS: Island[] = [
     related: ['furusund', 'arholma', 'norrora'],
     tags: ['lugnt', 'norra', 'bilfärja', 'lantligt'],
     did_you_know: 'Blidö omnämns i medeltida dokument som "Blidhe" och var en viktig plats för fiske och vedhugning redan på 1300-talet.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: lugn norra skärgård med öppna bryggor och färre besökare. September: naturupplevelsen är som finast och vattnet fortfarande badbart.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── GÄLLNÖ ──────────────────────────────────────────────────
@@ -1342,6 +1442,14 @@ export const ISLANDS: Island[] = [
     related: ['moja', 'svartso', 'ingmarso'],
     tags: ['bilfri', 'naturreservat', 'läger', 'orört'],
     did_you_know: 'Gällnö är ett av skärgårdens bäst bevarade kulturlandskap med ängar som hålls öppna med betande djur precis som för hundratals år sedan.',
+    seasonal: {
+      open: 'Juni–Augusti',
+      peak: 'Juli',
+      best: 'Slutet av Juli',
+      bestReason: 'Ljunghedarna blommar lila i sensommaren — en av skärgårdens vackraste naturskådespel. Havsörnen syns tidiga morgnar.',
+      warning: 'Mycket begränsad service. Ta alltid med mat och vatten — baren och handelsboden kan ha stängt vid ankomst.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── NORRÖRA ─────────────────────────────────────────────────
@@ -1501,6 +1609,14 @@ export const ISLANDS: Island[] = [
     related: ['finnhamn', 'svartso', 'ljustero'],
     tags: ['bilfri', 'båtluffarleden', 'vandring', 'natur', 'mellersta'],
     did_you_know: 'Båtluffarleden mellan Ingmarsö och Finnhamn är en av Stockholms skärgårds mest karakteristiska vandringsetapper — vid det smala sundet mellan Kålgårdsön och Finnhamn finns roddbåtar som vandrare själva får dra över. Den blå-markerade leden ingår sedan 2024 i den 270 km långa Stockholm Archipelago Trail.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Mitten av Augusti',
+      best: 'Juni',
+      bestReason: 'Bageri och krog öppna, Båtluffarleden i toppskick, och inga köer till roddbåten vid Kålgårdsön-sundet.',
+      warning: 'Bageri och krog stänger efter säsongen. Vid besök utanför juni–aug — ta med mat.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── NÄMDÖ ───────────────────────────────────────────────────
@@ -1575,6 +1691,14 @@ export const ISLANDS: Island[] = [
       'Ön är känd bland seglare för sina skyddade naturhamnar och är ett populärt ankringsställe.',
       'Det finns inget kafé eller restaurang på Nämdö. Ta med eget.',
     ],
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller Juli',
+      bestReason: 'Midsommar vid den gamla kyrkan är skärgård på riktigt. Juni ger lugnet, blomstret och det tomma sundet — utan juli-trängseln.',
+      warning: 'Inget kafé eller restaurang på Nämdö. Ta alltid med mat och dryck — lanthandeln har begränsade öppettider.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── SVARTSÖ ─────────────────────────────────────────────────
@@ -1650,6 +1774,13 @@ export const ISLANDS: Island[] = [
       'Svartsö har en av skärgårdens mest välkända konstnärsmiljöer och har lockat bildkonstnärer sedan tidigt 1900-tal.',
       'Det bor ungefär 200 fastboende på Svartsö åretrunt, vilket gör ön till en av de mer välbefolkade i mellersta skärgården.',
     ],
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Genuint skärgårdsliv utan trängseln. Lanthandeln, krogen och vandrarhemmet håller öppet — men du delar ön med byborna istället för turisterna.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── RUNMARÖ ─────────────────────────────────────────────────
@@ -1725,6 +1856,14 @@ export const ISLANDS: Island[] = [
       'Ön är en av de mer lantliga och tystlåtna i mellersta skärgården med goda möjligheter för cykling och vandring.',
       'Lanthandeln och caféet på Runmarö har kort säsong. Öppettiderna är begränsade utanför juli och delar av augusti.',
     ],
+    seasonal: {
+      open: 'Juni–Augusti',
+      peak: 'Juli',
+      best: 'Juli',
+      bestReason: 'Det är i juli som Runmarö vaknar — lanthandeln och caféet öppna, gästhamnen med liv, och Runmarösund i sitt vackraste.',
+      warning: 'Lanthandeln och caféet har kort säsong — öppet i juli och delar av augusti. Ta med egna proviant om du besöker utanför den perioden.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── RESARÖ ──────────────────────────────────────────────────
@@ -2417,6 +2556,14 @@ export const ISLANDS: Island[] = [
     related: ['nattaro', 'gallno', 'sandhamn'],
     tags: ['naturreservat', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
     did_you_know: 'Konstnären Bruno Liljefors — en av Sveriges mest kända djurmålare och guldmedaljör vid Stockholmsutställningen 1897 — köpte Bullerö 1908. Idag är hans jaktstuga och ateljé Naturum, och flera av hans mest kända motiv föddes i skärgårdsnaturen runt ön.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Maj–Juni eller September',
+      bestReason: 'Naturreservat utan fast boende — alltid lugnt. Naturum öppnar i maj. September ger havsfärger och inga andra besökare.',
+      warning: 'Inga restauranger, ingen service. Ta med allt du behöver. Båttrafik begränsad — kontrollera Waxholmsbåtens tidtabell.',
+      months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
+    },
   },
 
   {
