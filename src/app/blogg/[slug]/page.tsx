@@ -1137,6 +1137,352 @@ Söder om Stockholm mot Dalarö, Utö och Landsort. Det öppnare vattnet och mer
 Oavsett vilken led du väljer: ta tid på dig. De bästa seglarupplevelserna i Stockholms skärgård händer inte när du har bråttom.
  `,
  },
+
+ // ── Säsongsredaktionella artiklar ────────────────────────────────────────
+
+ 'host-i-skargarden-2026': {
+   title: 'Höst i skärgården 2026 – varför september är årets bästa månad',
+   excerpt: 'Lugnet efter högsäsongen, varmt vatten kvar, öppna restauranger och inga köer. September och tidigt oktober är skärgårdens bäst bevarade hemlighet.',
+   category: 'Inspiration',
+   date: '2026-07-27',
+   readTime: '6 min',
+   emoji: 'leaf',
+   tags: ['Höst', 'September', 'Säsong', 'Tips'],
+   content: `
+Fråga vem som helst som bott i eller nära skärgården länge vad årets bästa månad är. Svaret är nästan alltid september.
+
+Inte juli. Inte midsommar. September.
+
+Anledningarna är uppenbara när man tänker på det – men de flesta missar dem, för vi är programmerade att tänka "skärgård = sommar = juli". Det är ett dyrt misstag.
+
+## Varmt vatten, kalla nätter, inga köer
+
+I september är Östersjön och innerskärgårdens vikar fortfarande badvarma – ytvattentemperaturen brukar ligga runt 17–20 grader de första veckorna. Lufttemperaturen på dagen är 18–22 grader, perfekt för att sitta ute utan att svettas. Nätterna är svala, sömnen är god.
+
+Och gästhamnarna? Du bokar dagen innan. Ibland bara dyker du upp.
+
+Sandhamn i september är en annan planet jämfört med Sandhamn i juli. Restaurangen tar emot dig. Du hittar en brygga att lägga till vid. Det finns bord.
+
+## Vad som faktiskt är öppet
+
+Det här är den vanligaste frågan: "Men är ju allt stängt i september?"
+
+Nej. Inte alls.
+
+De flesta restauranger och gästhamnar håller öppet till och med september, och många till mitten av oktober. Sandhamns Värdshus, Möja Krog, Utö Värdshus, Bullerö och Furusunds Gästhamn är alla öppna september ut och tar emot besökare. Ring och bekräfta – men förvänta dig inte att det är stängt.
+
+Det som stänger tidigt är strandbarer och enklare baguettekiosker. Det som håller öppet längt är restauranger med kök och historia.
+
+## Ljuset i september är unikt
+
+Fotografer vet det. Färgtemperaturen på ljuset i september är varmare och lägre än i juli. Gyllene timmar som varar längre. Solnedgångar som slår allt du ser på Instagram i somras. Om du ska fota skärgården – september är rätt.
+
+Lövens första antydning av höstfärger börjar synas i ytterskärgårdens lövträd mot slutet av månaden. Det är inte höst på allvar – det är höstens début, och den är vacker.
+
+## Vilka öar fungerar bäst i september?
+
+**Sandhamn** – Nästan alltid öppet, sämre alternativ finns inte i september. Tar emot oavsett väder.
+
+**Utö** – Utö Värdshus håller öppet och cykelleder är bättre att cykla nu än i sommarvärmen. Lugnt, genuint.
+
+**Möja** – Bilfritt, lugnt, en av de vackraste öarna i eftersäsongen. Möja Krog håller öppet septmber ut.
+
+**Nämndö** – Litet, stilla, naturhamnarna är tomma. Perfekt för segling utan att stressa om bystor.
+
+**Bullerö** – Naturreservat i ytterskärgården. Vandringsled runt ön, inga restauranger – men en av de vackraste naturupplevelserna i skärgården.
+
+## Vad du behöver tänka på
+
+Klädsel förändras. Ta med ett lager extra – en rejäl fleece och regnfria ytterkläder om du är i båt. Nätterna är kalla.
+
+Solnedgångarna är tidiga – runt 20:00 i september mot 21:30 i juli. Planera rutter med det i åtanke.
+
+Kollektivtrafiken tunnas ut. Waxholmsbolaget kör färre turer efter högsäsong. Kolla tidtabellen innan du lämnar bryggan.
+
+---
+
+Det bästa med september i skärgården? Du hinner faktiskt lyssna. På vattnet. På löven. På det du missar i juli när allt är brus.
+
+Boka en tur. Du ångrar dig inte.
+   `,
+   faqs: [
+     { q: 'Är skärgården öppen i september?', a: 'Ja. De flesta restauranger, gästhamnar och aktiviteter håller öppet genom hela september. Vissa stänger i mitten av oktober. Ring och bekräfta för specifika ställen, men räkna inte med att det är stängt.' },
+     { q: 'Hur varmt är vattnet i skärgården i september?', a: 'Normalt 17–20 grader i ytvattnet de första veckorna av september. Det är fullt badbart. Mot slutet av månaden sjunker temperaturen mot 15–16 grader.' },
+     { q: 'Kör Waxholmsbolaget i september?', a: 'Ja, men med reducerad tidtabell jämfört med högsäsong. Kontrollera aktuell tidtabell på waxholmsbolaget.se innan du planerar resan.' },
+   ],
+ },
+
+ 'dagstur-skargard-fyra-timmar': {
+   title: 'Dagstur till skärgården på 4 timmar – 6 konkreta förslag från Stockholm',
+   excerpt: 'Inget eget fartyg, inget tält, inga dagar ledigt. Bara en förmiddag och en retur med Waxholmsbåten. Här är sex rutter som faktiskt fungerar.',
+   category: 'Guide',
+   date: '2026-07-27',
+   readTime: '7 min',
+   emoji: 'compass',
+   tags: ['Dagstur', 'Stockholm', 'Kollektivt', 'Planering'],
+   content: `
+"Man måste ha båt för att uppleva skärgården." Det är myten som håller folk borta.
+
+Sanningen: Waxholmsbolaget har avgångar från Strömkajen och Nybrokajen nästan varje timme under sommarsäsongen. En dagstur till några av de vackraste öarna tar 25 minuter till 2,5 timmar, beroende på destination. Ingen båt behövs. Ingen camping krävs. Ingen ledighet utöver en dag.
+
+Här är sex konkreta rutter du kan boka idag.
+
+---
+
+## 1. Fjäderholmarna – 25 minuter, 4 timmars utflykt
+
+**Avresa:** Strömkajen, Nybroplan eller Slussen. Avgångar var 30:e minut i högsäsong.
+**Restid:** 25 minuter.
+**Vad du gör:** Hantverksgallerier, rökeri, pub och en häftigt fin utsikt över inloppet till Stockholm. En av de kortaste skärgårdsturerna som faktiskt känns som skärgård.
+**Bäst för:** Första gångare, barnfamiljer, spontanbesök.
+**Tip:** Gå till östra sidan av ön bort från turisterna. Klipphällar, stillhet och faktisk skärgårdskvakt.
+
+---
+
+## 2. Vaxholm – 1 timme, halvdagsutflykt
+
+**Avresa:** Strömkajen. Frekventa avgångar.
+**Restid:** 55–65 minuter.
+**Vad du gör:** Promenera runt på Vaxholm stad, besök fästningen (sommarperiod), ät lunch vid hamnen. Vaxholm Stadshotells restaurang har utmärkt skärgårdsmat.
+**Bäst för:** Historieintresserade, par, de som vill ha en lugn halvdag med kafékultur.
+**Tips:** Ta snabbfärjan tillbaka till Stockholm istället för ordinarie linje – det sparar 20 minuter.
+
+---
+
+## 3. Grinda – 1,5 timme, klassisk heldagsö
+
+**Avresa:** Strömkajen. 2–3 avgångar per dag beroende på säsong.
+**Restid:** Cirka 1,5 timme.
+**Vad du gör:** Grinda är en av yttreskärgårdens bäst tillgängliga öar utan egen båt. Vandringsstig runt ön (ca 2 km), badklippor, naturhamn och Grinda Wärdshus med klassisk skärgårdsmat.
+**Bäst för:** De som vill ha äkta skärgård, utan att ta en hel dag.
+**Tips:** Boka bord på Grinda Wärdshus i förväg – fullt de flesta sommarlördagar.
+
+---
+
+## 4. Möja – 2 timmar, bilfri upplevelse
+
+**Avresa:** Stavsnäs (pendeltåg till Hässelby, buss till Stavsnäs) eller Strömkajen via Sandhamn.
+**Restid:** Circa 2 timmar från Strömkajen.
+**Vad du gör:** En av skärgårdens vackraste bilfria öar. Hyr cykel vid bryggan (150–200 kr/dag), cykla runt hela ön (ca 15 km), ät lunch på Möja Krog.
+**Bäst för:** Cyklister, friluftsmänniskor, den som vill ha en hel dag på en ö.
+**Tips:** Ta morgonbåten – det ger dig 5–6 timmar på ön.
+
+---
+
+## 5. Utö – 2,5 timmar, södra skärgårdens kronjuvel
+
+**Avresa:** Nynäshamn (pendeltåg från Stockholm) + bilfärja. Avgångar 3–4 gånger per dag.
+**Restid:** Totalt 2–2,5 timmar.
+**Vad du gör:** Cykelleder, gruvmuseeum, havsbastu, Utö Värdshus. En av de öar som ger mest upplevelse per besök.
+**Bäst för:** De som vill ha en rik heldagsupplevelse och kan starta tidigt.
+**Tips:** Hyr cykel vid bryggan (finns flera uthyrare). Cykla inte Utö runt på 3 timmar – ta det lugnt.
+
+---
+
+## 6. Sandhamn – 2,5 timmar, seglingsikonen
+
+**Avresa:** Strömkajen (lång tur) eller Stavsnäs (snabbgående, ca 40 min).
+**Restid:** 40 min (Stavsnäs) eller 2,5 timmar (Strömkajen).
+**Vad du gör:** Sandhamn är det klassiska skärgårdsnamnet. Segelbåtshamn, vita trävillor, goda restauranger och en atmosfär som är svår att replikera.
+**Bäst för:** De som vill ha "ikonen". Inte den lugnaste ön men en av de vackraste.
+**Tips:** Från Stavsnäs nås Sandhamn med snabbgående båt på 40 minuter. Enklare och snabbare än du tror.
+
+---
+
+## Praktisk checklista
+
+- **Biljetter:** Köp via Waxholmsbolaget-appen eller på bryggan. SL-kortet gäller inte på Waxholmsbåtarna.
+- **Mat och vatten:** Ta med lunch om du inte planerar restaurang – det sparar tid och pengar.
+- **Kläder:** Alltid ett vindtätt lager extra på båten, även i juli.
+- **Tidtabell:** Kolla sista båten tillbaka innan du ger dig av. Det finns inga taxi-alternativ till havs.
+
+Skärgården är närmre än du tror. Börja med ett av förslagen ovan – och du förstår varför folk återkommer år efter år.
+   `,
+   faqs: [
+     { q: 'Kostar det något att åka med Waxholmsbolaget?', a: 'Ja, Waxholmsbolaget är ett separat biljettsystem från SL. SL-kortet gäller inte. Köp biljetter via appen Waxholmsbolaget eller på bryggan. Priser varierar med destination.' },
+     { q: 'Vilken är den kortaste dagsturen till skärgården?', a: 'Fjäderholmarna – 25 minuter med båt från Strömkajen eller Nybroplan. Öppet under sommarsäsongen med avgångar var 30:e minut.' },
+     { q: 'Kan man göra dagstur till Utö?', a: 'Ja, men det kräver tidig start. Ta pendeltåget till Nynäshamn och sedan bilfärjan till Utö. Totalt cirka 2,5 timme. Ta morgonbåten för att få maximalt med tid på ön.' },
+   ],
+ },
+
+ 'eftersasong-skargard-oktober': {
+   title: 'Eftersäsongen i skärgården – vad som håller öppet i oktober',
+   excerpt: 'Många tror att skärgården stänger i september. Det stämmer inte. Här är en genomgång av vilka öar, restauranger och aktiviteter som håller öppet in i oktober.',
+   category: 'Praktiskt',
+   date: '2026-07-27',
+   readTime: '5 min',
+   emoji: 'sun',
+   tags: ['Oktober', 'Höst', 'Eftersäsong', 'Öppettider'],
+   content: `
+Det finns en utbredd missuppfattning om skärgårdens eftersäsong: att allt stänger efter midsommar, senast efter sommarlovet, och definitivt innan oktober.
+
+Det stämmer inte.
+
+Skärgården i oktober är inte detsamma som skärgården i juli – men den är öppen, vacker och i många avseenden mer autentisk. Här är ett konkret genomgång av vad som faktiskt håller öppet.
+
+## Restauranger och kaféer
+
+Flera av skärgårdens bäst etablerade restauranger håller öppet hela Oktober. Gemensamt för dem: de har en lojal lokal kundkrets, starka varumärken och matsalar som tål att vara tomma en kväll då och då.
+
+**Sandhamn:**
+Sandhamns Värdshus håller öppet september–oktober (ring och bekräfta aktuellt datum, öppettider varierar per år). Seglarhotellet har matsalsservering tom tredje veckan i oktober.
+
+**Utö:**
+Utö Värdshus är öppet hela oktober och är faktiskt ett av de bästa alternativen för en hösthelg. Lugnt, vackert och med menyändringar mot säsong.
+
+**Möja:**
+Möja Krog håller normalt öppet september ut och helger i oktober. Ring i förväg.
+
+**Grinda:**
+Grinda Wärdshus brukar ha öppet tom andra helgen i oktober. Kontrollera deras sociala medier för aktuell info.
+
+**Fjäderholmarna:**
+Restaurangerna håller öppet september ut. Oktober beror på år och väderlek.
+
+## Gästhamnar
+
+Gästhamnarna har generellt sett längre säsong än restaurangerna. De flesta av Waxholmsbåtarnas gästhamnar håller öppet tom mitten–slutet av oktober.
+
+**Furusunds Gästhamn** brukar ta emot gäster tom sista veckan i oktober. **Sandhamns Gästhamn** håller öppet så länge trafiken tillåter.
+
+Naturhamnarna – ankringsplatser utan service – är förstås alltid öppna.
+
+## Waxholmsbolaget och kollektivtrafik
+
+Waxholmsbolaget kör reducerad tidtabell efter högsäsong (normalt från slutet av augusti) men linjer till de större öarna – Sandhamn, Vaxholm, Grinda, Utö – trafikeras hela oktober.
+
+Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se. Söndagskvällar har färre avgångar.
+
+## Aktiviteter
+
+Vandring och cykling är faktiskt bättre i oktober än i juli: färre mygg, svalare luft och höstfärger i lövträden. De markerade lederna på Utö och Ornö fungerar utmärkt.
+
+Paddling är möjlig med rätt utrustning (våtdräkt eller torrdräkt), men kräver mer erfarenhet i oktober när vattnet svalnat till 12–15 grader.
+
+Naturreservaten och fågelskären är om möjligt ännu mer intressanta i oktober – höstflytten gör att ovanliga fågelarter dyker upp i ytterskärgården.
+
+## Vad stänger tidigt?
+
+Det som stänger i september eller tidigt oktober: strandbarer och enklare sommarkiosker, de flesta aktivitetsbolag (kajak-uthyrning, paddel-guider), vattenscooteruthyrning.
+
+## Tips för en hösttur
+
+Ring innan. Det sparar dig besvikelsen av en stängd restaurang. En snabb samtal tar 2 minuter.
+
+Ta med rätt kläder. Oktober i skärgården kan vara en strålande solig dag på 15 grader – eller en fuktig grå dag på 8. Ha alltid ett isolerande lager och regnkläder.
+
+Njut av stillheten. Oktober-skärgården är tyst på ett sätt som inte finns i juli. Det är inte ett minus. Det är ett annat sätt att uppleva havet.
+   `,
+   faqs: [
+     { q: 'Är Sandhamn öppet i oktober?', a: 'Ja, Sandhamns Värdshus och Seglarhotellet håller normalt öppet i oktober (ring och bekräfta aktuella datum). Gästhamnen tar emot besökare tom slutet av oktober.' },
+     { q: 'Kör Waxholmsbolaget i oktober?', a: 'Ja, med reducerad tidtabell. Linjer till de stora öarna (Sandhamn, Vaxholm, Grinda, Utö) trafikeras under hela oktober. Kontrollera aktuell tidtabell på waxholmsbolaget.se.' },
+     { q: 'Är det värt att åka till skärgården på hösten?', a: 'Absolut. Eftersäsongen bjuder på lugn, tomma hamnar, öppna restauranger utan köer och ett unikt höstljus. Många som besökt skärgården både i juli och oktober föredrar oktober.' },
+   ],
+ },
+
+ 'skargard-barnfamilj-sommar-2026': {
+   title: 'Skärgård med barnfamilj sommaren 2026 – de 7 bästa öarna',
+   excerpt: 'Sandstrand, grunt vatten, direktbåt och restaurang som faktiskt fungerar med barn. Vi har rangordnat de bästa alternativen för barnfamiljer i Stockholms skärgård.',
+   category: 'Familj',
+   date: '2026-07-27',
+   readTime: '8 min',
+   emoji: 'anchor',
+   tags: ['Barnfamilj', 'Sommar', 'Barn', '2026'],
+   content: `
+Att ta med barn till skärgården kräver lite annorlunda tänk än en vuxentur. Vattendjupet vid bryggan spelar roll. Badmöjligheterna avgör humöret. Restaurangen måste kunna ta emot buggy och inte ha 45 minuters väntetid.
+
+Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är vackrast, utan vad som faktiskt fungerar med barn.
+
+---
+
+## 1. Fjäderholmarna – bäst för de minsta (0–4 år)
+
+**Varför:** Kortast restid (25 min), inga farliga bryggor, lugnt vatten, kafé och restaurang, barnvagnsanpassad.
+**Hur tar man sig dit:** Med Fjäderholmsbåtarna från Strömkajen, Nybroplan eller Slussen. Frekventa avgångar.
+**Badmöjligheter:** Klippor och lite strandkant på baksidan av ön. Inte sandstrand, men grunt och lugnt.
+**Att göra:** Rökeri, hantverksgallerier, promenad runt ön (~20 min). Barnen är nöjda med att titta på båtarna.
+**Bra att veta:** Kan bli trångt i juli. Kom tidigt.
+
+---
+
+## 2. Vaxholm – bäst för kulturhistorisk familjedag
+
+**Varför:** Barnvagnsvänligt, tydlig stad, fästning att besöka (sommaröppet), badbrygga med grunt inhopp.
+**Hur tar man sig dit:** Med Waxholmsbåt från Strömkajen, ca 55 min. Eller bil och SL-buss.
+**Badmöjligheter:** Badbrygga i centrum, relativt grunt. Bra för barn som lärt sig simma.
+**Att göra:** Fästningen (museum och torn), promenad på strandpromenaden, glass vid hamnen.
+**Bra att veta:** Vaxholm är en riktig stad – det finns apotek, matbutik och alla bekvämligheter.
+
+---
+
+## 3. Grinda – bäst för barnfamilj som vill ha äkta skärgård
+
+**Varför:** Naturliga badplatser med grund stenig strand, ö-känsla utan att vara krånglig att nå, barnvänlig restaurang.
+**Hur tar man sig dit:** Med Waxholmsbåt från Strömkajen, ca 1,5 timme.
+**Badmöjligheter:** Flera badplatser runt ön med grunt inhopp. Perfekt för barn i åldern 4–10 år.
+**Att göra:** Vandringsstig runt ön (2 km, barnvagnsanpassad på de flesta sträckor), bad, picknick.
+**Bra att veta:** Boka bord på Grinda Wärdshus i förväg under högsäsong.
+
+---
+
+## 4. Möja – bäst för cyklande barnfamiljer (barn 6+)
+
+**Varför:** Bilfritt, cykeluthyrning vid bryggan, lugna vägar, ingen biltrafik att oroa sig för.
+**Hur tar man sig dit:** Stavsnäs (buss/tåg+buss från Stockholm) + Waxholmsbåt, totalt ca 2 timmar.
+**Badmöjligheter:** Flera badvikar runt ön, lugnt vatten.
+**Att göra:** Cykla runt ön med barnen, picknick vid naturhamnarna, bad.
+**Bra att veta:** Cyklar med barnstol och lådcykel finns att hyra vid bryggan. Boka i förväg under juli.
+
+---
+
+## 5. Utö – bäst för aktiva familjer med äldre barn (barn 8+)
+
+**Varför:** Cykelleder, gruvmuseum, havsbastu, sandstrand (Alsvik), heldagsupplevelse.
+**Hur tar man sig dit:** Pendeltåg till Nynäshamn + bilfärja till Utö. Totalt ca 2,5 timme.
+**Badmöjligheter:** Alsvik på Utö har en av skärgårdens enda riktiga sandstränder. Värd resan i sig.
+**Att göra:** Gruvmuseum, cykling, sandstrand, havsbastu (Utö Värdshus), vandring.
+**Bra att veta:** Utö är stor – det finns matbutik, restauranger och alla bekvämligheter. Planera att stanna minst en dag.
+
+---
+
+## 6. Dalarö – bäst för barnfamilj med bil
+
+**Varför:** Nås med bil (ca 40 km söder om Stockholm), fin bathing möjligheter, lugnt och överkomligt.
+**Hur tar man sig dit:** Bil från Stockholm (E4 söderut mot Handen, skyltning mot Dalarö).
+**Badmöjligheter:** Grunt vatten, sandstrand, idealiskt för barn under 6 år.
+**Att göra:** Bad, promenad, kajakuthyrning, glass vid hamnen.
+**Bra att veta:** Dalarö är faktiskt fastlandsbaserat men har stark skärgårdskänsla. Parkeringssituation kan vara tight i högsäsong.
+
+---
+
+## 7. Nynäshamn (stadsnära) – bäst som startpunkt med barn
+
+**Varför:** Pendeltåg direkt från Stockholm central (50 min), god sandstrand, hamnstämning.
+**Hur tar man sig dit:** Pendeltåg från Stockholm C.
+**Badmöjligheter:** Nynäshamns sandstrand är fin och barnvänlig med grunt vatten.
+**Att göra:** Bad på stranden, glass, äta lunch vid hamnen, se båttrafiken. Bra halvdagsutflykt.
+**Bra att veta:** Nynäshamn är startpunkten för Utö-färjan – kombinera gärna med ett Utö-besök.
+
+---
+
+## Checklista för barnfamiljen
+
+**Ta med:** Ombyteskläder (fler än du tror), solskydd, vattenflaskor, snacks, barnväst om ni är på båt.
+
+**Boka:** Restaurangbord i förväg om ni ska äta ute – särskilt Grinda och Utö i juli.
+
+**Kolla:** Sista båten tillbaka innan ni ger er iväg. Med trötta barn vill du inte missa den.
+
+**Tänk på:** Barn och vatten i skärgården kräver att vuxna är nära. Klippor kan vara hala. Flytväst för icke-simmare är ett enkelt beslut.
+
+Skärgården med barn är en av de bästa sommarminnena man kan ge. Välj rätt ö för barnens ålder – och resten löser sig.
+   `,
+   faqs: [
+     { q: 'Vilken är den bästa skärgårdsön för barn?', a: 'Det beror på barnens ålder. För de minsta (0–4 år): Fjäderholmarna. För familjer med barn 6–10 år: Grinda eller Möja. För äldre barn: Utö med sandstrand och cykelleder.' },
+     { q: 'Finns det sandstränder i Stockholms skärgård?', a: 'Ja, men de är få. Utö (Alsvik) har en av de finaste sandstränderna. Nynäshamn har också sandstrand nära pendeltågsstationen.' },
+     { q: 'Kan man ta med barnvagn på Waxholmsbåtarna?', a: 'Ja. Waxholmsbåtarna tar emot barnvagnar. Vik ihop den vid påstigning om möjligt. Vaxholm och Fjäderholmarna är barnvagnsanpassade destinationer med plana gångvägar.' },
+   ],
+ },
 }
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
