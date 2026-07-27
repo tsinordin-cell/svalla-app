@@ -276,7 +276,7 @@ function renderWelcomeBody(firstName: string): string {
 function renderNewsletterWelcomeBody(): string {
   return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.2">Välkommen till Svallanyheter.</h1>
 
-<p style="font-size:16px;line-height:1.65;margin:0 0 28px;color:#3d5865">Varannan tisdag i inkorgen. Öppna öar just nu, insider-tips och säsongsguider — skrivna av Max och Thomas, utan annonser och utan fluff.</p>
+<p style="font-size:16px;line-height:1.65;margin:0 0 28px;color:#3d5865">Varannan tisdag i inkorgen. Öppna öar just nu, insider-tips och säsongsguider — utan annonser och utan fluff.</p>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:#f4f9fb;border-radius:14px;border-left:3px solid #0a7b8c">
   <tr>
@@ -322,7 +322,7 @@ function renderNewsletterWelcomeBody(): string {
 
 <p style="font-size:15px;line-height:1.65;margin:0 0 12px;color:#3d5865">Nästa nummer kommer om två veckor. Tills dess — har du frågor om en specifik ö eller planerar något konkret? Svara på det här mailet. Vi läser allt.</p>
 
-<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">Max &amp; Thomas<br>från Svalla</span></p>
+<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">/ Svalla</span></p>
 
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto">
   <tr>
@@ -442,20 +442,26 @@ Tack för att du gick med. Svalla är skärgårdens guide — vart du ska, vad s
 
   day7: `---
 subject_options:
-  - "Har du planerat sommarturen än?"
-preheader: En vecka senare — här är några konkreta starts.
+  - "En ö du förmodligen inte tänkt på"
+preheader: Det är inte Sandhamn. Inte Fjäderholmarna heller.
 ---
-# Hej {{first_name}}!
-Ser att du varit i kontakt med Svalla en vecka. Vill du komma igång med en riktig tur?
+Hej {{first_name}},
 
-## Tre vägar in
-- **Boka middag på Sandhamn** — [Sandhamn-guiden](https://svalla.se/o/sandhamn)
-- **Cykla Utö** — [Utö-guiden](https://svalla.se/o/uto)
-- **Övernatta Finnhamn** — [Finnhamn-guiden](https://svalla.se/o/finnhamn)
+Det är en vecka sedan du prenumererade. Har du hunnit planera något, eller är det fortfarande ett vagt "i sommar"-projekt?
 
-[Planera utflykt →](https://svalla.se/utflykt)
+De flesta börjar med Sandhamn eller Fjäderholmarna. Inget fel med det. Men om du vill ha något som inte är fullt av turister, som faktiskt är enkelt att ta sig till och som har mat som håller — prova Grinda.
 
-— Teamet på Svalla`,
+Det är ungefär 2,5 timmar med Waxholmsbåten från Strömkajen. Naturreservat, vandringsleder, klippbad och ett värdshus som har ett av de bättre köken i skärgården. Det fullbokas inte till tusen på en dag i juli.
+
+[Läs Grinda-guiden →](https://svalla.se/o/grinda)
+
+Om du redan vet vart du ska och bara behöver hjälp att planera:
+
+[Planera turen →](https://svalla.se/utflykt)
+
+Nästa brev från oss kommer varannan tisdag. Hör av dig om du har frågor om en specifik ö — svara bara på det här mailet.
+
+/ Svalla`,
 
   season_open: `---
 subject_options:
@@ -526,5 +532,5 @@ STF-anläggning med naturreservat, fri camping och bra kajaktillgång. Lugnt och
 
 [Planera helgturen →](https://svalla.se/planera)
 
-— Thomas, Svalla`,
+— Svalla`,
 }
