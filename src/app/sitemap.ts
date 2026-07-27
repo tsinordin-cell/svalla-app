@@ -126,6 +126,24 @@ const BLOG_SLUGS = [
   'packlista-bat',
   'havsbastu-guide',
   'segling-klassiska-leder',
+  // Strategiska SEO-artiklar (2026)
+  'midsommar-skargarden-2026',
+  'packlista-skargarden',
+  'allemansratten-pa-sjon',
+  'waxholmsbolaget-guide',
+  'skargard-utan-bat',
+  'weekend-skargard-stockholm',
+  'sandhamn-guide-2026',
+  'boende-skargard-2026',
+  'skargard-med-hund',
+  'vandring-skargard-guide',
+  'naturhamnar-stockholm-skargard',
+  'grinda-guide-2026',
+  'basta-utflykter-skargard-2026',
+  'host-i-skargarden-2026',
+  'dagstur-skargard-fyra-timmar',
+  'eftersasong-skargard-oktober',
+  'skargard-barnfamilj-sommar-2026',
 ]
 
 
@@ -209,6 +227,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/cinderella-baaten`,      lastModified: now, priority: 0.9,  changeFrequency: 'monthly' as const },
     { url: `${base}/tips`,                   lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/blogg`,                  lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
+    { url: `${base}/ostlistan`,              lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: `${base}/oppet-nu`,              lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     // Guider (hub)
     { url: `${base}/guider`,                 lastModified: now, priority: 0.85, changeFrequency: 'weekly'  as const },
     { url: `${base}/guider/midsommar-skargarden-2026`, lastModified: now, priority: 0.9, changeFrequency: 'weekly' as const },
