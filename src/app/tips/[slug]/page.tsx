@@ -143,7 +143,7 @@ export default async function TipsArticlePage({ params }: Props) {
           source="tips-article"
           variant="card"
           title="Få veckans skärgårdstips"
-          description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
+          description="Guider, öppna öar och tips — direkt i inkorgen. Varannan tisdag."
         />
       </div>
 
