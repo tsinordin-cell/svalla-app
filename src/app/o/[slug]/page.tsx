@@ -12,6 +12,7 @@ import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
 import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
 import EmailSignup from '@/components/EmailSignup'
+import ShareButton from '@/components/ShareButton'
 import InlineFeedbackButton from '@/components/InlineFeedbackButton'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
@@ -130,39 +131,60 @@ export default async function IslandPage({ params }: Props) {
  <div style={{ minHeight: '100vh', background: 'var(--bg)', fontFamily: "'Inter','Helvetica Neue',sans-serif" }}>
  
  {/* JSON-LD Structured Data */}
- <script
- type="application/ld+json"
- dangerouslySetInnerHTML={{
- __html: JSON.stringify({
- '@context': 'https://schema.org',
- '@type': ['TouristDestination', 'TouristAttraction'],
- name: island.name,
- description: island.description?.[0] ?? island.tagline,
- url: `https://svalla.se/o/${island.slug}`,
- image: `https://svalla.se/api/og/island/${island.slug}`,
- containedInPlace: {
- '@type': 'Place',
- name: island.regionLabel,
- url: 'https://svalla.se/rutter?vy=oar',
- },
- touristType: island.facts?.best_for ?? undefined,
- ...(island.activities?.length > 0 ? {
- amenityFeature: island.activities.slice(0, 5).map(a => ({
- '@type': 'LocationFeatureSpecification',
- name: a.name,
- value: true,
- })),
- } : {}),
- ...(island.lat && island.lng ? {
- geo: {
- '@type': 'GeoCoordinates',
- latitude: island.lat,
- longitude: island.lng,
- },
- } : {}),
- })
- }}
- />
+ {(() => {
+   // Koordinater: island-data har prioritet, ISLAND_COORD_MAP är fallback
+   const coordLat = island.lat ?? ISLAND_COORD_MAP[slug]?.lat
+   const coordLng = island.lng ?? ISLAND_COORD_MAP[slug]?.lng
+   const hasCoords = !!(coordLat && coordLng)
+   const mapsUrl = hasCoords
+     ? `https://www.google.com/maps?q=${coordLat},${coordLng}`
+     : undefined
+
+   return (
+     <script
+       type="application/ld+json"
+       dangerouslySetInnerHTML={{
+         __html: JSON.stringify({
+           '@context': 'https://schema.org',
+           '@type': ['TouristDestination', 'TouristAttraction'],
+           '@id': `https://svalla.se/o/${island.slug}#place`,
+           name: island.name,
+           description: island.description?.[0] ?? island.tagline,
+           url: `https://svalla.se/o/${island.slug}`,
+           image: `https://svalla.se/api/og/island/${island.slug}`,
+           isAccessibleForFree: true,
+           publicAccess: true,
+           containedInPlace: {
+             '@type': 'Place',
+             name: island.regionLabel ?? 'Stockholms skärgård',
+             url: 'https://svalla.se/rutter?vy=oar',
+           },
+           ...(mapsUrl ? { hasMap: mapsUrl } : {}),
+           ...(island.facts?.best_for ? {
+             touristType: {
+               '@type': 'Audience',
+               audienceType: island.facts.best_for,
+             }
+           } : {}),
+           ...(island.activities && island.activities.length > 0 ? {
+             amenityFeature: island.activities.slice(0, 6).map(a => ({
+               '@type': 'LocationFeatureSpecification',
+               name: a.name,
+               value: true,
+             })),
+           } : {}),
+           ...(hasCoords ? {
+             geo: {
+               '@type': 'GeoCoordinates',
+               latitude: coordLat,
+               longitude: coordLng,
+             },
+           } : {}),
+         })
+       }}
+     />
+   )
+ })()}
  <script
  type="application/ld+json"
  dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -201,9 +223,18 @@ export default async function IslandPage({ params }: Props) {
  <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
  <SvallaLogo height={24} color="#ffffff" />
  </Link>
- <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
- ← Alla öar
- </Link>
+ <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+   <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
+     ← Alla öar
+   </Link>
+   <Link href="/nyhetsbrev" style={{
+     color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none',
+     background: 'rgba(255,255,255,0.18)', borderRadius: 20,
+     padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
+   }}>
+     ✉ Nyhetsbrev
+   </Link>
+ </div>
  </div>
  </nav>
 
@@ -281,9 +312,16 @@ export default async function IslandPage({ params }: Props) {
  </div>
  </div>
 
- {/* Spara ön + logga besök + forum CTA */}
+ {/* Spara ön + logga besök + dela + forum CTA */}
  <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
  <SaveIslandButton islandSlug={island.slug} islandName={island.name} variant="pill" />
+ <ShareButton
+   title={island.name}
+   description={island.tagline}
+   url={`https://svalla.se/o/${island.slug}`}
+   surface="island-page"
+   entityId={island.slug}
+ />
  <MarkVisitedButton islandSlug={island.slug} islandName={island.name} />
  <Link
   href={`/forum/o/${island.slug}`}
