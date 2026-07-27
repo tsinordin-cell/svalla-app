@@ -1359,6 +1359,15 @@ export const ISLANDS: Island[] = [
     related: ['blido', 'arholma', 'norrora'],
     tags: ['segling', 'Strindberg', 'norra', 'passage', 'historia'],
     did_you_know: 'Furusund var på 1800-talet ett av Stockholms läns mest populära sommarutflyktsställen. August Strindberg tillbringade flera somrar här och lät sig inspireras av ön.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Juni: seglarlivet börjar, värdshuset öppet och inga köer. September: stilla vatten och dramatiska ljusförhållanden.',
+      warning: 'Värdshuset stänger oktober–april. Begränsad service utanför högsäsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── BLIDÖ ────────────────────────────────────────────────────
@@ -1503,6 +1512,15 @@ export const ISLANDS: Island[] = [
     related: ['arholma', 'blido', 'furusund'],
     tags: ['familj', 'Saltkråkan', 'norra', 'lugnt'],
     did_you_know: '"Vi på Saltkråkan" är den enda av Astrid Lindgrens berättelser som skrevs direkt för TV — TV-serien spelades in på Norröra och Söderöra sommaren 1963 och hade premiär 18 januari 1964. Boken kom samma år och är skriven utifrån manuset, inte tvärtom.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Midsommarveckan med ljusa nätter, lite folk och ännu inte högsommarträngseln.',
+      warning: 'Inga reguljära förbindelser — kräver egen båt. Servicen är extremt begränsad.',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
+
   },
 
   // ─── NÅTTARÖ ─────────────────────────────────────────────────
@@ -1935,6 +1953,14 @@ export const ISLANDS: Island[] = [
     related: ['vaxholm', 'rindo', 'grinda'],
     tags: ['lättillgänglig', 'bad', 'villa', 'dag-tur', 'bil'],
     did_you_know: 'Resarö nås landvägen från Vaxholm via Eriksberg och är en av få ”skärgårdsöar” där man når sjönära klippbad på en kort bilresa från Stockholm. Stora delar av öns äldre bebyggelse är från sekelskiftet 1900 då Resarö blev sommarö för Stockholmsfamiljer.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Nära Stockholm med bra kommunikationer — fungerar bra utanför högsäsong.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','open','limited','off'],
+    },
+
   },
 
   // ─── HUSARÖ ──────────────────────────────────────────────────
@@ -1982,6 +2008,14 @@ export const ISLANDS: Island[] = [
     related: ['finnhamn', 'ingmarso', 'ljustero'],
     tags: ['bilfri', 'orört', 'segling', 'vandring', 'lugnt'],
     did_you_know: 'Husarö är bilfri och har stark seglartradition — namnet är gammalt och kommer troligen från fornsvenskt "husa" (gård) plus "ö", inte från husarregementet. Ön är ett av Skärgårdsstiftelsens naturskyddade områden.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Lugnt vatten, öppna naturhamnar och inga turister — perfekt för segling.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── FEJAN ───────────────────────────────────────────────────
@@ -2028,6 +2062,15 @@ export const ISLANDS: Island[] = [
     related: ['furusund', 'arholma', 'graddo'],
     tags: ['naturreservat', 'klippor', 'segling', 'snorkling', 'norra'],
     did_you_know: 'Fejan var östkustens karantänsstation från 1892 — fartyg och passagerare med smittsamma sjukdomar fick stanna här innan de fick fortsätta in mot fastlandet. Sjukhuset "Wasa" låg i drift fram till 1930-talet och vandrarhemmet idag bedrivs i de bevarade byggnaderna.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Ljusa nätter och tomt — känslan av att ha ytterskärgården för sig själv.',
+      warning: 'Inga reguljära förbindelser. Kräver egen båt och god väderkunskap.',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
+
   },
 
   // ─── RÖDLÖGA ─────────────────────────────────────────────────
@@ -2133,6 +2176,14 @@ export const ISLANDS: Island[] = [
     related: ['arholma', 'vaddo', 'norrora'],
     tags: ['genuint', 'orört', 'bilfärja', 'norra', 'kulturhistoria'],
     did_you_know: 'Singö kyrka (1753) hyser ett votivskepp från 1752 som räknas till Stockholms läns äldsta — skänkt av Norrtälje-borgaren Eric Brant och hans hustru Maria Tillman. Fram till 1951 trafikerade Waxholmsbåtarna sträckan Stockholm–Norrtälje–Singö–Östhammar/Öregrund som ordinarie passagerarlinje.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Norra skärgårdens karaktär utan Stockholmsöarnas folkmassor. Bra paddlingsvatten.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── LIDÖ ────────────────────────────────────────────────────
@@ -2181,6 +2232,14 @@ export const ISLANDS: Island[] = [
     related: ['furusund', 'blido', 'arholma'],
     tags: ['naturhotell', 'värdshus', 'norra', 'herrgård'],
     did_you_know: 'Lidö herrgård har medeltida rötter och nuvarande huvudbyggnad är från 1769. Sedan 1998 ägs ön av Skärgårdsstiftelsen, som arrenderar ut värdshuset till externa entreprenörer.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Gott om naturliga ankringsplatser i norra skärgården, lugnt och fint före högsäsongen.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── GRÄDDÖ ──────────────────────────────────────────────────
@@ -2228,6 +2287,14 @@ export const ISLANDS: Island[] = [
     related: ['furusund', 'blido', 'norrora'],
     tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
     did_you_know: 'Gräddö har ett av Stockholms äldsta och fortfarande aktiva skeppsvarf. Träbåtar har byggts och reparerats här sedan 1800-talets mitt.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Gräddö är en stor norrskärgårdsö med karaktär och egna hamnar — bäst besökt utanför peak.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── VÄDDÖ ───────────────────────────────────────────────────
@@ -2321,6 +2388,15 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['marinbiologi', 'naturreservat', 'ytterskärgård', 'forskning', 'södra'],
     did_you_know: 'Askölaboratoriet grundades 1961 och är Stockholms universitets fältstation för marin forskning i Östersjön. Det är en av de äldsta och mest produktiva marinbiologiska forskningsstationerna i Sverige — flera centrala studier kring Östersjöns övergödning och miljöövervakning av blåstång och bottenfauna har sitt ursprung här.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Naturreservat i sydskärgården — bäst när hackfågelskyddet lyfts och turisterna inte anlänt.',
+      warning: 'Fågelskydd begränsar landstigning i delar av reservatet april–mitten av juni.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── GÅLÖ ────────────────────────────────────────────────────
@@ -2464,6 +2540,15 @@ export const ISLANDS: Island[] = [
     related: ['uto', 'nattaro', 'landsort'],
     tags: ['naturreservat', 'skärgårdsstiftelsen', 'vandrarhem', 'södra'],
     did_you_know: 'Fjärdlång förvaltas av Skärgårdsstiftelsen och vandrarhemmet med 32 bäddar är öppet maj till mitten av september. Stugan Norrötorpet — 33 m² utan el — är en av få platser i Stockholms skärgård där man fortfarande hämtar vatten med handpump och bastubadar vid egen brygga.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Naturreservat i yttre sydskärgården — bäst precis före högsäsongen när allt är öppet och tomt.',
+      warning: 'Begränsad service. Inga reguljära förbindelser — kräver egen båt.',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
+
   },
 
   // ── BATCH 3: Ytterligare öar för full konkurrenskraft ───────────────────
@@ -2559,6 +2644,14 @@ export const ISLANDS: Island[] = [
     related: ['orno', 'dalaro', 'nattaro'],
     tags: ['Strindberg', 'literär', 'orört', 'historia', 'mellersta'],
     did_you_know: 'Kymmendö är känd som platsen där August Strindberg skildrade skärgårdslivet i romanen "Hemsöborna" från 1887 — en av Sveriges mest lästa böcker.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Lugn sydskärgårdsö med bra ankring — bäst besökt utanför juli-toppet.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   {
@@ -2688,6 +2781,14 @@ export const ISLANDS: Island[] = [
     related: ['orno', 'dalaro', 'fjardlang'],
     tags: ['fiske', 'genuin', 'södra', 'orört'],
     did_you_know: 'Mörkö är broförbundet med fastlandet sedan 1972 (Mörköbron från Hölö-sidan) men kan också nås via Trafikverkets avgiftsfria färja Skanssund från Sorunda-Grödinge — en av få platser där en fast bro och en gratisfärja båda finns kvar parallellt.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Mörkö nås med bilväg och är en stor naturö i sydskärgården. Bra vandringsterräng utan högsäsongsträngseln.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   {
@@ -2717,6 +2818,14 @@ export const ISLANDS: Island[] = [
     related: ['dalaro', 'toro', 'galo'],
     tags: ['marinbas', 'industrihistoria', 'södra', 'klippor'],
     did_you_know: 'Musköbasen är en av världens största underjordiska örlogsbaser — 1,5 miljoner kubikmeter berg sprängdes ut under 19 års byggtid (klar 1969), större volym än Gamla stan i Stockholm. Tunneln dit (Muskötunneln, invigd 1964) går max 65 meter under havsytan.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Stora naturytor och marinahistoria — bäst besökt utanför juli.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   {
@@ -2807,6 +2916,14 @@ export const ISLANDS: Island[] = [
     related: ['vindo', 'gallno', 'moja'],
     tags: ['tillgänglig', 'skog', 'segling', 'bad', 'mellersta'],
     did_you_know: 'Ingarö är känt för att ha ett av Stockholms läns varmaste badvatten om sommaren — skyddade vikar värms snabbt upp av solen.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Stor ö med bil- och busstillgång. Fin natur och stränder hela säsongen — utan juliträngseln.',
+      months: ['limited','limited','off','limited','open','open','peak','peak','open','open','limited','off'],
+    },
+
   },
 
   {
@@ -2840,6 +2957,15 @@ export const ISLANDS: Island[] = [
     related: ['sandhamn', 'rodloga', 'huvudskar'],
     tags: ['ytterskärgård', 'heidenstam', 'fyr', 'naturreservat', 'segling'],
     did_you_know: 'Svenska Högarna är den enda platsen i Stockholms skärgård där det står en Heidenstam-fyr — Gustaf von Heidenstams banbrytande öppna järntornkonstruktion (samma typ som Pater Noster utanför Marstrand). Fyren restes 1874 och tillverkades på Ludvigsbergs Verkstad i Stockholm.',
+    seasonal: {
+      open: 'Juni–Augusti',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Gotland Runt-perioden: seglartäthet och festivalstämning ute i ytterskärgården.',
+      warning: 'Inga reguljära förbindelser. Kräver erfaren besättning och god väderprognos. Fågelskydd begränsar landstigning april–mitten av juni.',
+      months: ['off','off','off','off','off','limited','peak','open','limited','off','off','off'],
+    },
+
   },
 
   {
@@ -3398,6 +3524,14 @@ export const ISLANDS: Island[] = [
     related: ['styrso', 'vrango', 'donso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'folkdans', 'bilfritt', 'styrsöbolaget', 'västkust'],
     did_you_know: 'Folkdansen på Brännö Brygga startade på 1930-talet och har hållits nästan varje fredag sommartid sedan dess. Det är en av Göteborgs mest omtyckta sommartraditioner.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli',
+      best: 'Maj–Juni eller September',
+      bestReason: 'Göteborgsarkipelagen har service året om. Undvik juli — välj juni för bästa möjliga upplevelse med allt öppet.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
+
   },
 
   {
@@ -3444,6 +3578,14 @@ export const ISLANDS: Island[] = [
     related: ['branno', 'vrango', 'donso'],
     tags: ['göteborg', 'södra skärgård', 'restaurang', 'bilfritt', 'styrsöbolaget', 'naturreservat'],
     did_you_know: 'Styrsö har haft fast befolkning sedan medeltiden. Ön var länge ett centrum för fiske och båtbyggeri längs Göteborgs kust.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli',
+      best: 'Maj–Juni eller September',
+      bestReason: 'Bilfri klassiker i Göteborgsskärgården med reguljär spårvagnsfärja. Funkar utmärkt utanför högsäsong.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
+
   },
 
   {
@@ -4271,6 +4413,15 @@ export const ISLANDS: Island[] = [
       cykel: { rental: true, notes: 'Cykelhyrning via Sudersand Resort och i Fårösund.' },
       bad: { beaches: ['Sudersandstranden', 'Ekeviken', 'Norsta Auren'] },
     },
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Bergmans ö är vacker hela säsongen. I juni är Sudersandsstranden tom och vindskärmarna tillgängliga. September: havstemperaturen håller och Bergman Center har höst-event.',
+      warning: 'Boende i juli svårt att hitta — boka månader i förväg. Fårösund-färjan har begränsad kapacitet högsäsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── TRYSUNDA ─────────────────────────────────────────────────────────────
@@ -4490,6 +4641,15 @@ export const ISLANDS: Island[] = [
       kajak: { difficulty: 'medel', rental: false, notes: 'Ta med egen kajak — ingen uthyrning på ön' },
       bad: { beaches: ['Klippbad östra sidan'] },
     },
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli',
+      best: 'Mitten av juni',
+      bestReason: 'Yttre norrskärgård med dramatiska solnedgångar — bäst besökt precis före högsäsongen när öarna är tomma.',
+      warning: 'Inga reguljära förbindelser. Kräver egen båt och god väderkunskap.',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
+
   },
 
   // ─── VISINGSÖ ────────────────────────────────────────────────────────────
@@ -4682,6 +4842,14 @@ export const ISLANDS: Island[] = [
       kajak: { difficulty: 'lätt–medel', rental: true, notes: 'Kajakhyrning via campingen' },
       bad: { beaches: ['Sydöstra sandstranden', 'Norra klippbad'] },
     },
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller mitten av augusti',
+      bestReason: 'Tjärö naturreservat med sandstrand och camping i Blekinge. I juni: tomt och mysigt. Mitten av aug: varmt hav utan juli-trängseln.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
+
   },
 
   // ─── ÖCKERÖ ──────────────────────────────────────────────────────────────
