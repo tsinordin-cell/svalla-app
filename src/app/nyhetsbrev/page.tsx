@@ -25,12 +25,6 @@ const SAMPLE = {
   question: 'Har du någonsin besökt skärgården utanför högsäsong? Svara direkt på mailet — vi läser allt.',
 }
 
-const FEATURES = [
-  { icon: '🗓', label: 'Varannan tisdag', desc: 'Kl. 08:00. Kort, konkret, läsvärt på fem minuter.' },
-  { icon: '📍', label: 'En ö per utgåva', desc: 'Vilken ö som är i säsong just nu — med ett specifikt tips du kan använda direkt.' },
-  { icon: '🔍', label: 'Inte turistguide', desc: 'Saker som faktiskt stämmer: öppettider, hur det ser ut i september, vad som är överskatttat.' },
-  { icon: '✉️', label: 'Aldrig mer än 2', desc: 'Inga länklistor. Inga reklamdrivna topplistor. Bara det som är värt att läsa.' },
-]
 
 export default function NyhetsbrevPage() {
   return (
@@ -68,28 +62,16 @@ export default function NyhetsbrevPage() {
       </div>
 
       {/* Vad du får */}
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: '56px 20px 0' }}>
-        <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', textAlign: 'center', marginBottom: 8 }}>
-          Vad får du?
-        </h2>
-        <p style={{ textAlign: 'center', color: 'var(--txt2)', marginBottom: 36, fontSize: 15 }}>
-          Varje utgåva har samma struktur — lätt att skumma, lätt att använda.
+      <div style={{ maxWidth: 640, margin: '0 auto', padding: '56px 20px 0' }}>
+        <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 16px' }}>
+          Varje brev handlar om <strong style={{ color: 'var(--txt)' }}>vilka öar som faktiskt är öppna just nu</strong> — inte en generell sommarguide utan vad som stämmer den månaden du läser det. Möja Krog stänger i mitten av september. Finnhamn är fullbokat varje lördag i juli men tomt en tisdag i juni. Det är den typen av saker.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-          {FEATURES.map(f => (
-            <div key={f.label} style={{
-              background: 'var(--white)',
-              borderRadius: 14,
-              padding: '20px',
-              border: '1px solid rgba(30,92,130,0.10)',
-              boxShadow: '0 1px 8px rgba(0,0,0,0.04)',
-            }}>
-              <div style={{ fontSize: 24, marginBottom: 10 }}>{f.icon}</div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--txt)', marginBottom: 6 }}>{f.label}</div>
-              <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6 }}>{f.desc}</div>
-            </div>
-          ))}
-        </div>
+        <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 16px' }}>
+          Varje utgåva har en specifik ö med ett konkret besökstips — inte "Sandhamn är vackert" utan "ta morgonbåten 08:30 från Stavsnäs, hyr cykel vid bryggan och boka bord på Värdshuset till lunch, annars är det fullt".
+        </p>
+        <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: 0 }}>
+          Varannan tisdag. Aldrig mer än det.
+        </p>
       </div>
 
       {/* Smakprov */}
