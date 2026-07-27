@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!activity) return {}
   const islandCount = islandsForActivity(activity.slug).length
   return {
-    title: { absolute: `${activity.name} i skärgården — ${islandCount} öar att välja mellan | Svalla` },
+    title: `${activity.name} i skärgården — ${islandCount} öar att välja mellan | Svalla`,
     description: `Hitta de bästa öarna för ${activity.name.toLowerCase()} i Stockholms och Bohusläns skärgård. ${activity.description.split('.')[0]}.`,
     keywords: [`${activity.name.toLowerCase()} skärgården`, `${activity.name.toLowerCase()} stockholm`, `${activity.name.toLowerCase()} bohuslän`, 'skärgården'],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}` },
@@ -354,7 +354,7 @@ export default async function ActivityTypePage({ params }: Props) {
             variant="card"
             source={`aktivitet-${activity.slug}`}
             title={`Mer om ${activity.shortName.toLowerCase()} i skärgården`}
-            description="Få nya guider, säsongstips och insidertips direkt i mailen. 2 mail i månaden."
+            description="Nya guider, säsongstips och insidertips direkt i inkorgen. Varannan tisdag."
           />
         </div>
       </main>
