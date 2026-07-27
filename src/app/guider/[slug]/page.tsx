@@ -8,6 +8,7 @@ import { GUIDE_ISLAND_MAP } from '../guide-island-map'
 
 import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
+import ShareButton from '@/components/ShareButton'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -233,14 +234,30 @@ export default async function GuidePage({ params }: Props) {
         </div>
       )}
 
-      {/* Newsletter */}
+      {/* Dela + Newsletter */}
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '0 20px 40px' }}>
-        <EmailSignup
-          source={`guide-${slug}`}
-          variant="card"
-          title="Få veckans skärgårdstips"
-          description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
-        />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Dela guiden:</span>
+          <ShareButton
+            title={guide.title}
+            description={guide.excerpt}
+            url={`https://svalla.se/guider/${guide.slug}`}
+            surface="guide-page"
+            entityId={guide.slug}
+          />
+        </div>
+        <div style={{ borderTop: '2px solid rgba(30,92,130,0.10)', paddingTop: 28 }}>
+          <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.8px', margin: '0 0 8px' }}>
+            Gillade du den här guiden?
+          </p>
+          <EmailSignup
+            source={`guide-${slug}-bottom`}
+            variant="inline"
+            title="Fler guider likt denna, varannan tisdag"
+            description="Vi skriver om skärgårdsöar, öppettider och insider-tips du inte hittar på TripAdvisor. Gratis."
+            buttonLabel="Skriv upp mig →"
+          />
+        </div>
       </div>
 
       {/* Relaterade öar — intern länkning guide → /o/[slug] */}
