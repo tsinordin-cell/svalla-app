@@ -180,6 +180,16 @@ export default async function IslandPage({ params }: Props) {
                longitude: coordLng,
              },
            } : {}),
+           ...(island.seasonal ? {
+             openingHoursSpecification: {
+               '@type': 'OpeningHoursSpecification',
+               description: `Säsong: ${island.seasonal.open}. Bäst tid: ${island.seasonal.best}.`,
+               ...(island.seasonal.open !== 'Hela året' ? {
+                 validFrom: '2026-05-01',
+                 validThrough: '2026-10-31',
+               } : {}),
+             },
+           } : {}),
          })
        }}
      />
@@ -567,7 +577,7 @@ export default async function IslandPage({ params }: Props) {
      variant="inline"
      source={`o-${island.slug}-midpage`}
      title={`Planerar du en tur till ${island.name}?`}
-     description="Prenumerera och få säsongsuppdateringar, öppettider och insider-tips direkt till din inkorg. 2 mail i månaden."
+     description="Säsongsuppdateringar, öppettider och insider-tips direkt i inkorgen. Varannan tisdag, inga annonser."
      buttonLabel="Ja, prenumerera"
    />
  </div>
