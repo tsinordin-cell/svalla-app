@@ -1055,6 +1055,13 @@ export const ISLANDS: Island[] = [
       'Dalarö är ett känt mål för sportdykare med flera intressanta vrakplatser i närheten.',
       'Gästhamnen i Dalarö är en av de mer välservade i södra skärgården med dusch, el och servicebyggnad.',
     ],
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Dalarö är tillgängligt med bil hela året men touristlivet blommar juni–september. September ger historisk stämning utan folkmassor och gästhamnen är på topp utan köer.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   // ─── ARHOLMA ─────────────────────────────────────────────────
@@ -1294,6 +1301,14 @@ export const ISLANDS: Island[] = [
       'Ön räknas som ett av de bästa fågelskådningsställena i regionen, framförallt under fågelsträcket i maj och september.',
       'Det bor ett fåtal fastboende på Landsort åretrunt. Ön är en av de mest avskilda i skärgården trots reguljär båttrafik.',
     ],
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Mitten av Augusti',
+      best: 'Maj eller September',
+      bestReason: 'Fågelstationen vid fyren är aktivast under sträcktiderna i maj och september. Då är Landsort på sitt allra mest dramatiska — vind, fyr och tusentals migrerande fåglar.',
+      warning: 'Waxholmsbåten till Landsort trafikerar bara sommarsäsongen. Utanför juni–sept: ingen reguljär trafik. Enda matalternativet är Saltboden — kontrollera öppettider.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── FURUSUND ────────────────────────────────────────────────
@@ -1555,6 +1570,14 @@ export const ISLANDS: Island[] = [
       'Ön är helt fri från bebyggelse och privata fastigheter, ett av skärgårdens mest orörda naturreservat.',
       'Det finns sandstränder på Nåttarö, vilket är ovanligt i den yttre skärgårdens annars klippdominerade landskap.',
     ],
+    seasonal: {
+      open: 'Juni–Augusti',
+      peak: 'Juli–Mitten av Augusti',
+      best: 'Juli',
+      bestReason: 'Sandstranden blomstrar i juli. Kombinera med ankring i naturhamnen och morgonvandring i reservatet — havsörnen flyger tidigt.',
+      warning: 'Utö Express trafikerar juni–aug. Ingen reguljär trafik övrig tid. Enda matalternativet är Nåttarö Krog — ta alltid med matsäck.',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── INGMARSÖ ────────────────────────────────────────────────
@@ -2055,6 +2078,14 @@ export const ISLANDS: Island[] = [
     related: ['arholma', 'furusund', 'fejan'],
     tags: ['ytterskärgård', 'segling', 'ankring', 'norra', 'äventyr'],
     did_you_know: 'Rödlöga är omgiven av ett av Stockholms läns rikaste fiskevatten. Abborrar, gäddor och havsöring fångas här i stor mängd.',
+    seasonal: {
+      open: 'Juni–Mitten av September',
+      peak: 'Juli',
+      best: 'Juli',
+      bestReason: 'Rödlöga är extra livlig under Gotland Runt-helgen i tidig juli. Krogen och hamnen är öppna och norra ytterskärgårdens vildaste stämning.',
+      warning: 'Kräver god navigationskunskap — ytterskärgård med grunder. Lång restid från Stockholm (3–4 h med Waxholmsbåt).',
+      months: ['off','off','off','off','off','open','peak','open','limited','off','off','off'],
+    },
   },
 
   // ─── SINGÖ ───────────────────────────────────────────────────
@@ -3668,6 +3699,14 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Tynningö är en av öarna i det historiska Östersjö­archipelaget nära Vaxholm, en stad som sedan 1600-talet tjänat som Stockholm­s yttre försvarslinje.',
     amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: false },
     activity_meta: { bad: { beaches: ['Södra klippbaden', 'Sandvik östra'] } },
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller Augusti',
+      bestReason: 'Bilfritt, nära Vaxholm och klippbaden är på topp. Perfekt halvdagstur kombinerat med Vaxholm.',
+      warning: 'Ingen affär eller restaurang på ön. Ta alltid med mat och dryck.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── DJURÖ ───────────────────────────────────────────────────────────────
@@ -3726,6 +3765,14 @@ export const ISLANDS: Island[] = [
     activity_meta: {
       kajak: { difficulty: 'medel', rental: true, notes: 'Kajakhyrning i Stavsnäs Vinterhamn' },
       bad: { beaches: ['Klippbad längs reservatets öar'] },
+    },
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Kajakpaddlare har reservatet nästan för sig själva i juni och september. Juli är högsäsong med fler båtar men full naturhamnslista.',
+      warning: 'Inga restauranger eller affärer i reservatet. Ta med all mat och vatten. Eldning förbjuden under högsommarens brandriskperioder.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
 
