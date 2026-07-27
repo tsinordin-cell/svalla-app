@@ -10,7 +10,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip'
+export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome'
 
 const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   welcome: '01_welcome.md',
@@ -18,6 +18,7 @@ const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   season_open: '03_season_open.md',
   season_close: '04_season_close.md',
   weather_tip: '05_weather_tip.md',
+  newsletter_welcome: '06_newsletter_welcome.md',
 }
 
 type Frontmatter = {
@@ -267,6 +268,71 @@ function renderWelcomeBody(firstName: string): string {
 <p style="font-size:15px;line-height:1.65;margin:32px 0 0;color:#0d2a3e;text-align:center">Ses därute.<br><span style="color:#6a8a96">från teamet på Svalla</span></p>`
 }
 
+/**
+ * Välkomstmail för nyhetsbrevsprenumeranter (från /api/subscribe).
+ * Skiljer sig från app-välkomsten: mer redaktionell, lyfter nyhetsbrevets värde,
+ * inga app-feature-knappar. Prenumeranten har inget konto.
+ */
+function renderNewsletterWelcomeBody(): string {
+  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.2">Välkommen till Svallanyheter.</h1>
+
+<p style="font-size:16px;line-height:1.65;margin:0 0 28px;color:#3d5865">Varannan tisdag i inkorgen. Öppna öar just nu, insider-tips och säsongsguider — skrivna av Max och Thomas, utan annonser och utan fluff.</p>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:#f4f9fb;border-radius:14px;border-left:3px solid #0a7b8c">
+  <tr>
+    <td style="padding:20px 22px">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-weight:700;color:#0d2a3e;margin-bottom:10px">Det här kan du förvänta dig:</div>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">🏝 <strong>Öar som är öppna just nu</strong> — vad som faktiskt är tillgängligt den här månaden</td></tr>
+        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">⚓ <strong>Hamnar &amp; krogar</strong> — uppdaterat om vad som öppnat, stängt eller ändrat</td></tr>
+        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">🌤 <strong>Väderfönster</strong> — när vi ser en bra helg skickar vi ett extra tips</td></tr>
+        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">📌 <strong>Insider-tips</strong> — platser, lägen och timing som inte syns på Google Maps</td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Bra ställen att börja</h2>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px">
+  <tr>
+    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0;margin-bottom:10px">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Öppet just nu →</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Vilka öar som är i högsäsong, vad som är öppet och vad som har begränsad service — uppdateras varje månad.</p>
+      <a href="https://svalla.se/oppet-nu" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/oppet-nu →</a>
+    </td>
+  </tr>
+  <tr><td style="height:10px"></td></tr>
+  <tr>
+    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Hitta din ö →</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">120+ öar. Filtrera på barnvänlig, romantisk, bilfri, segling — eller bläddra igenom och låt dig överraskas.</p>
+      <a href="https://svalla.se/oar" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/oar →</a>
+    </td>
+  </tr>
+  <tr><td style="height:10px"></td></tr>
+  <tr>
+    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Säsongsguider →</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Vad som är bäst per säsong — höst, vinter, vår, sommar. Inklusive tips om när turister försvunnit och öarna är som finast.</p>
+      <a href="https://svalla.se/sasong" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/sasong →</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 12px;color:#3d5865">Nästa nummer kommer om två veckor. Tills dess — har du frågor om en specifik ö eller planerar något konkret? Svara på det här mailet. Vi läser allt.</p>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">Max &amp; Thomas<br>från Svalla</span></p>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto">
+  <tr>
+    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
+      <a href="https://svalla.se/oppet-nu" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Utforska vad som är öppet nu →</a>
+    </td>
+  </tr>
+</table>`
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate
@@ -316,11 +382,13 @@ export async function sendEmail(opts: {
   const subject = (meta.subject_options?.[0] || 'Svalla')
   const subjectFinal = substitute(subject, vars)
 
-  // Welcome-mailet hardkodas pga card-layout. Övriga templates kör markdown.
+  // Hardkodade HTML-mallar (card-layout). Övriga templates kör markdown.
   let htmlBody: string
   if (opts.template === 'welcome') {
     const firstName = String(opts.vars?.first_name ?? 'där')
     htmlBody = renderWelcomeBody(firstName)
+  } else if (opts.template === 'newsletter_welcome') {
+    htmlBody = renderNewsletterWelcomeBody()
   } else {
     const bodyFinal = substitute(body, vars)
     htmlBody = markdownToHtml(bodyFinal)
@@ -415,6 +483,14 @@ Du loggade {{trip_count}} turer och besökte {{visited_count}} öar.
 [Se din wrapped →](https://svalla.se/wrapped/{{username}}/2026)
 
 — Teamet på Svalla`,
+
+  newsletter_welcome: `---
+subject_options:
+  - "Välkommen till Svallanyheter — din första öinsider"
+preheader: Varannan tisdag i inkorgen. Öppna öar, tips och skärgårdsinsider.
+---
+Välkommen till Svallanyheter!
+`,
 
   weather_tip: `---
 subject_options:
