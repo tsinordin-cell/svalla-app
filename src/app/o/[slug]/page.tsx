@@ -401,6 +401,80 @@ export default async function IslandPage({ params }: Props) {
  </div>
  )}
 
+ {/* ── SÄSONGSKALENDER ──────────────────────────────────────── */}
+ {island.seasonal && (() => {
+   const MONTH_LABELS = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec']
+   const COLOR: Record<string, string> = {
+     off:     'rgba(120,140,160,0.18)',
+     limited: 'rgba(246,173,72,0.35)',
+     open:    'rgba(10,123,140,0.35)',
+     peak:    'rgba(10,123,140,0.85)',
+   }
+   const TEXT: Record<string, string> = {
+     off: 'rgba(120,140,160,0.6)', limited: '#b07d20', open: '#0a7b8c', peak: '#fff',
+   }
+   const LABEL: Record<string, string> = {
+     off: 'Stängt', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',
+   }
+   const currentMonth = new Date().getMonth() // 0-indexed
+   return (
+     <div style={{ background: 'var(--white)', borderRadius: 20, padding: '22px 24px', marginBottom: 32, boxShadow: '0 2px 16px rgba(0,0,0,0.06)', border: '1px solid rgba(10,123,140,0.08)' }}>
+       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+         <span style={{ fontSize: 20 }}>🗓</span>
+         <h3 style={{ fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)', fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
+           Bäst tid att besöka {island.name}
+         </h3>
+       </div>
+
+       {/* Månadsrutnät */}
+       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12,1fr)', gap: 3, marginBottom: 14 }}>
+         {island.seasonal.months.map((status, i) => (
+           <div key={i} style={{
+             background: COLOR[status],
+             borderRadius: 6,
+             padding: '8px 2px 6px',
+             textAlign: 'center',
+             border: i === currentMonth ? '2px solid var(--sea)' : '2px solid transparent',
+             position: 'relative',
+           }}>
+             <div style={{ fontSize: 9, fontWeight: 700, color: TEXT[status], letterSpacing: 0.3 }}>
+               {MONTH_LABELS[i]}
+             </div>
+             {i === currentMonth && (
+               <div style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', width: 6, height: 6, borderRadius: '50%', background: 'var(--sea)' }} />
+             )}
+           </div>
+         ))}
+       </div>
+
+       {/* Förklaring */}
+       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
+         {(['peak','open','limited','off'] as const).map(s => (
+           <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11 }}>
+             <div style={{ width: 12, height: 12, borderRadius: 3, background: COLOR[s], flexShrink: 0 }} />
+             <span style={{ color: 'var(--txt2)', fontWeight: 600 }}>{LABEL[s]}</span>
+           </div>
+         ))}
+       </div>
+
+       {/* Rekommendation */}
+       <div style={{ background: 'rgba(10,123,140,0.07)', borderRadius: 12, padding: '14px 16px', borderLeft: '3px solid var(--sea)' }}>
+         <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 0.8, color: 'var(--sea)', marginBottom: 4 }}>
+           Rekommenderat: {island.seasonal.best}
+         </div>
+         <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.6 }}>
+           {island.seasonal.bestReason}
+         </p>
+         {island.seasonal.warning && (
+           <p style={{ fontSize: 12, color: '#9a6b00', margin: '8px 0 0', lineHeight: 1.5, fontStyle: 'italic' }}>
+             ⚠️ {island.seasonal.warning}
+           </p>
+         )}
+       </div>
+     </div>
+   )
+ })()}
+
  {/* Hur tar jag mig hit — transit-widget */}
  <DepartureWidget islandSlug={island.slug} islandName={island.name} />
 
