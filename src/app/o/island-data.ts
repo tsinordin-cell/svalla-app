@@ -64,6 +64,17 @@ export type Island = {
   tags: string[]
   /** 2–3 meningar om boendeutbudet på denna specifika ö — visas på /o/[slug]/boende */
   accommodationIntro?: string
+  /**
+   * Anpassad SEO-title som ersätter den generiska mallen.
+   * Ange för högtrafik-öar för att bättre matcha sökintent.
+   * Max ~60 tecken inkl. " | Svalla" (12 tecken) = 48 tecken för titeln.
+   */
+  seoTitle?: string
+  /**
+   * Anpassad meta description som ersätter den generiska mallen.
+   * Ange för högtrafik-öar. Max ~155 tecken.
+   */
+  seoDescription?: string
   did_you_know?: string
   /**
    * Maskinläsbar transport-sammanfattning för /ta-dig-till/[slug] och BusTrip-schema.
@@ -130,6 +141,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: 'sailboat',
     tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
+    seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',
+    seoDescription: 'Guide till Sandhamn: bästa restaurangerna, Trouville-stranden, Seglarhotellet och båt från Stockholm. Bilfri ö i Stockholms skärgård.',
     description: [
       'Sandhamn är ett av Stockholms skärgårds mest välkända namn, och med rätta. Ön är hem för KSSS (Kungliga Svenska Segel Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
       'Trots att Sandhamn är populärt har det bevarat sin karaktär. Ön är bilfri och smalare stigar leder mellan trävillorna. Det vita sandstranden Trouville på öns södra sida är en av skärgårdens finaste. Klipporna österut erbjuder solbad med utsikt mot öppet hav.',
@@ -237,6 +250,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Södra skärgården',
     emoji: '🚲',
     tagline: 'Södra skärgårdens kronjuvel — cykling, gruvhistoria och havsbastu.',
+    seoTitle: 'Utö 2026 – cykling, havsbastu & Utö Värdshus',
+    seoDescription: 'Guide till Utö: cykelleder, havsbastu och Utö Värdshus. Pendeltåg till Nynäshamn + färja. Södra skärgårdens bästa helgdestination.',
     description: [
       'Utö är södra skärgårdens mest kompletta destination. Ön är känd för sina cykelleder, sin gruvhistoria (järn bröts här i mer än 700 år, från 1100-talet till 1879) och sin havsbastu som numera är en av skärgårdens mest omtalade upplevelser. Utö Värdshus håller hög klass och är ett självklart mål för dem som vill kombinera god mat med naturupplevelse.',
       'Till skillnad från Sandhamn är Utö lugnare och mer familjevänlig. Öns storlek gör att man kan cykla runt hela dagen och ändå inte upprepa sig. Det finns sandstränder, klippor, naturreservat och ett litet museum om gruvdriften.',
@@ -343,6 +358,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: 'building',
     tagline: 'Porten till skärgården — stad, fästning och direktbåt från Strömkajen.',
+    seoTitle: 'Vaxholm 2026 – fästning, historisk stad & dagstur',
+    seoDescription: 'Guide till Vaxholm: Vaxholms fästning, restauranger och direktbåt från Strömkajen. Perfekt dagstur eller weekendresa i Stockholms skärgård.',
     description: [
       'Vaxholm kallas "porten till skärgården", och det stämmer. Staden kontrollerade i 500 år ingången till Stockholms inre skärgård via fästningen mitt i sundet. Idag är den röda fästningen ett museum och ett av skärgårdens mest fotograferade motiv.',
       'Vaxholm är en riktig stad med permanentboende, butiker, restauranger och en levande hamn. Det gör den unik bland skärgårdens öar. Man kan ta en kaffepaus, handla souvenirer och sitta ned på ett riktigt café utan att det känns som turistfälla.',
@@ -445,6 +462,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '🌿',
     tagline: 'Skärgårdens hjärta — natur, värdshus och gästhamn mitt i skärgårdskorridoren.',
+    seoTitle: 'Grinda 2026 – Grinda Wärdshus, natur & gästhamn',
+    seoDescription: 'Guide till Grinda: Grinda Wärdshus, bilfri natur, gästhamn och direktbåt från Strömkajen. Perfekt stopp för seglare i mellersta skärgården.',
     description: [
       'Grinda kallas ibland för "skärgårdens hjärta" och det är svårt att argumentera emot. Ön ligger strategiskt mitt i den populäraste seglingskorridoren mot Sandhamn, har en välskött gästhamn och ett av skärgårdens mest omtyckta värdshus.',
       'Ön är bilfri och naturskönt med blandad skog, klippor och en lång strand. Grinda Wärdshus håller hög standard i köket och erbjuder boende i flera kategorier, från hotellrum till stugor och camping.',
@@ -631,6 +650,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: 'island',
     tagline: 'Bilfri och genuint lantlig — skärgårdens bäst bevarade hemlighet.',
+    seoTitle: 'Möja 2026 – bilfri ö med krog & äkta skärgård',
+    seoDescription: 'Guide till Möja: bilfri ö med Möja Krog, cykelleder och genuint lantliv. Hur du tar dig dit och vad du inte får missa.',
     description: [
       'Möja är en av Stockholms skärgårds mest autentiska öar. Bilfri, lugn och med en genuint lantlig karaktär som saknar motstycke. Här bor ett par hundra permanentbor och sommartid dubbleras befolkningen, men det är inget som stör den stilla stämningen.',
       'Ön är tillräckligt stor för att ha en varierad geografi: skog, öppna fält, klippor och flera hamnar. Roland Svensson-museet och den vackra kyrkan är kulturella pärlor. Fisket är utmärkt och havsutsikterna ovanliga.',
@@ -733,6 +754,8 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Mellersta skärgården',
     emoji: '⛴',
     tagline: '25 minuter från Strandvägen — närmaste skärgårdsupplevelsen från Stockholm.',
+    seoTitle: 'Fjäderholmarna 2026 – dagstur 25 min från Stockholm',
+    seoDescription: 'Fjäderholmarna – närmaste skärgårdsupplevelsen från Stockholm. Båt från Strandvägen, restauranger och hantverksgallerier. Guide till din dagstur.',
     description: [
       'Fjäderholmarna är det enklaste svaret på frågan "hur tar man sig snabbt ut i skärgården?". Bara 25 minuters båtresa från Strandvägen och du är på en ö med rökerier, restauranger, bryggerier och hantverk. Inga bilar, inga långpendlingar.',
       'Ögruppen består av fyra öar varav Stora Fjäderholmen är den besökta. Här finns bland annat Rökeriet, ett av Stockholms mest klassiska rökeri sedan 1980-talet, och Fjäderholmarnas Krog med en av stadens bästa terrasser.',
@@ -1265,7 +1288,11 @@ export const ISLANDS: Island[] = [
       { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Öns samlingspunkt vid bryggan.', slug: 'blido-brygga-bistro' },
       { name: 'Blidö Värdshus', type: 'Restaurang', desc: 'Klassiskt värdshus på ön.' },
     ],
-    tips: ['Blidö passar bäst som del av en längre norra skärgårdstur.'],
+    tips: [
+      'Blidö passar bäst som del av en längre norra skärgårdstur — kombinera gärna med Arholma eller Räfsnäs.',
+      'Hyr cykel vid Blidö brygga för att utforska hela ön — vägarna är nästan bilfria och landskapet varierar från skog till kust.',
+      'Blidö Brygga & Bistro är öns naturliga hjärta för båtfolk — bra lunch och enkel service utan pretentioner.',
+    ],
     related: ['furusund', 'arholma', 'norrora'],
     tags: ['lugnt', 'norra', 'bilfärja', 'lantligt'],
     did_you_know: 'Blidö omnämns i medeltida dokument som "Blidhe" och var en viktig plats för fiske och vedhugning redan på 1300-talet.',
@@ -1307,7 +1334,11 @@ export const ISLANDS: Island[] = [
       { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar' },
       { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Proviant och enkla drycker.' },
     ],
-    tips: ['Ta med mat — restaurangutbudet är mycket begränsat.'],
+    tips: [
+      'Ta med mat — restaurangutbudet är mycket begränsat. En enkel handelsbod finns vid hamnen men räkna inte med varm mat.',
+      'Ljunghedarna blommar lila i sensommaren (slutet av juli–aug) — ett av de vackraste naturskådestunden på ön.',
+      'Havsörn häckar i reservatets yttre delar och syns regelbundet tidiga morgnar. Ta med kikare.',
+    ],
     related: ['moja', 'svartso', 'ingmarso'],
     tags: ['bilfri', 'naturreservat', 'läger', 'orört'],
     did_you_know: 'Gällnö är ett av skärgårdens bäst bevarade kulturlandskap med ängar som hålls öppna med betande djur precis som för hundratals år sedan.',
@@ -1341,7 +1372,11 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Waxholmsbåt', from: 'Norrtälje', time: '3 h', desc: 'Norra linjen.', icon: '⛴' }],
     harbors: [{ name: 'Norröra Hamn', desc: 'Liten hamn.', fuel: false }],
     restaurants: [{ name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.' }],
-    tips: ['Norröra är bäst kombinerat med en tur till Fejan eller Arholma.'],
+    tips: [
+      'Norröra är bäst kombinerat med en tur till Fejan eller Arholma för en längre norrskärgårdsdag.',
+      'Inspelningsplatserna från "Vi på Saltkråkan" är utmärkta på ön — Saltkråkans hus och bryggan känns igen direkt om du vuxit upp med TV-serien.',
+      'Badplatserna på öns norra sida är grundare och lugnare — perfekt för barn och familjer.',
+    ],
     related: ['arholma', 'blido', 'furusund'],
     tags: ['familj', 'Saltkråkan', 'norra', 'lugnt'],
     did_you_know: '"Vi på Saltkråkan" är den enda av Astrid Lindgrens berättelser som skrevs direkt för TV — TV-serien spelades in på Norröra och Söderöra sommaren 1963 och hade premiär 18 januari 1964. Boken kom samma år och är skriven utifrån manuset, inte tvärtom.',
@@ -1398,7 +1433,11 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
-    tips: ['Nåttarö kräver egen båt — ingen reguljärtrafik.'],
+    tips: [
+      'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
+      'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
+      'Fågelhäckning pågår april–juni på öns yttre klippor — håll avstånd, ta med kikare och njut av tärna och ejder.',
+    ],
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
     did_you_know: 'Nattarö naturreservat skyddar ett av Stockholms läns finaste havsörnsrevir. Det bor fler havsörnar än människor på ön.',
@@ -2582,7 +2621,11 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Bil/bro', time: '45 min', desc: 'Via Gustavsbergsleden, bro till Ingarö.', icon: '🚗' }],
     harbors: [{ name: 'Brunns hamn', desc: 'Populär gästhamn med full service.', spots: 50, fuel: true, service: ['El', 'Vatten', 'Duschar'] }],
     restaurants: [{ name: 'Ingarö Krog', type: 'Restaurang', desc: 'Skärgårdskrog med lokalt fångad fisk.' }],
-    tips: ['Populärt utflyktsmål för stockholmare — undvik veckoslutshelger i juli.'],
+    tips: [
+      'Populärt utflyktsmål för stockholmare — undvik högsommarhelger i juli om du vill ha lugn och ro.',
+      'Buss 428 från Slussen (via Gustavsberg) når Ingarö — bra alternativ utan bil och ganska snabbt.',
+      'Velamsunds naturreservat på Ingarö har markerade leder med fina utsiktspunkter — besök tidigt på dagen.',
+    ],
     related: ['vindo', 'gallno', 'moja'],
     tags: ['tillgänglig', 'skog', 'segling', 'bad', 'mellersta'],
     did_you_know: 'Ingarö är känt för att ha ett av Stockholms läns varmaste badvatten om sommaren — skyddade vikar värms snabbt upp av solen.',
@@ -2689,9 +2732,10 @@ export const ISLANDS: Island[] = [
     emoji: '🌻',
     tagline: 'Liten ö i mellersta skärgården nordost om Sandhamn',
     description: [
-      'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, omkring 3 sjömil nordost om Sandhamn. Norr om ön ligger Kanholmsfjärden och i söder Eknösundet.',
-      'Ön är permanent bebodd och trafikeras året runt av Waxholmsbolaget. Service är begränsad, främst sommarstugor och naturmark.',
-      'Hasselö passar för seglare och dagsbesökare som söker en ostörd ö i området kring Sandhamn.',
+      'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, belägen runt tre sjömil nordost om Sandhamn med Kanholmsfjärden norr om sig och Eknösundet i söder. Läget gör den till ett naturligt mellansteg för seglare som rör sig mellan Sandhamn och de norra öarna.',
+      'Ön är permanent bebodd och trafikeras av Waxholmsbolaget — en sällsynthet bland de mindre öarna i mellersta skärgården. Service är begränsad och vardagslivet här är stilla, men det är just det som gör Hasselö attraktiv för den som söker ett lugnt alternativ till Sandhamns sommarvimmel.',
+      'Naturmarken dominerar öns inre med barrskog och öppna klipphällar. Ankringsplatsen på nordvästsidan ger bra skydd vid de vanligaste vindriktningarna och klipporna längs östsidan är rena och inbjudande för bad.',
+      'Hasselö är ön du väljer när du vill komma bort från det du åkte till Sandhamn för att undvika. Tyst, enkel och genuint skärgård.',
     ],
     facts: { travel_time: '3–4 h med segelbåt från Dalarö', character: 'Liten, obebodd, naturhamn', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
     activities: [
@@ -2770,9 +2814,10 @@ export const ISLANDS: Island[] = [
     emoji: '🦩',
     tagline: 'Liten skärgårdsö med fågelliv och naturhamn',
     description: [
-      'Norrpada är en mindre skärgårdsö i Stockholms mellersta skärgård, i området kring Möja. Ön är obebodd permanent och fungerar primärt som naturhamn för seglare och kajakpaddlare.',
-      'Klippig kust, stilla vikar och rikt sjöfågelliv präglar miljön. Inga reguljära förbindelser, ingen service.',
-      'Norrpada passar för erfarna seglare och paddlare som söker en lugnare naturhamn.',
+      'Norrpada är en mindre skärgårdsö i Stockholms mellersta skärgård, i området kring Möja. Ön är obebodd permanent och fungerar primärt som naturhamn för seglare och kajakpaddlare som söker ett ögonblick av stillhet.',
+      'Klippig kust, stilla vikar och rikt sjöfågelliv präglar miljön. Fisktärna, silltrut och ejder häckar i området och gör Norrpada till ett tyst men levande naturrum. Inga reguljära förbindelser, ingen service — det är tanken.',
+      'För kajakpaddlare är Norrpada ett naturligt mål längs den led som löper mellan Stavsnäs och Möja. Lä-sidan av ön ger skyddat vatten och ankringsplatsen på nordvästsidan rymmer ett tiotal båtar.',
+      'Norrpada är inte för den som vill ha bekvämligheter. Det är för den som vill ha tystnad, klipphällar och en morgon utan mobilnät. De som hittar dit sällan glömmer det.',
     ],
     facts: { travel_time: '2–3 h med segelbåt eller kajak från Stavsnäs', character: 'Liten naturö, fågelliv, ankring', season: 'Juni–augusti', best_for: 'Fågelskådning, kajak, segling' },
     activities: [
