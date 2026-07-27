@@ -2370,7 +2370,7 @@ export default async function BloggPostPage({
            variant="inline"
            source={`blogg-${slug}-mid`}
            title="Häng med i skärgårdsvärlden"
-           description="Insider-tips och öppna öar — varannan tisdag. 2 mail i månaden, helt gratis."
+           description="Insider-tips och öppna öar — varannan tisdag. Helt gratis."
            buttonLabel="Prenumerera gratis"
          />
        </div>
