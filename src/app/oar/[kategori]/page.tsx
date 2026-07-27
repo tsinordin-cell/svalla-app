@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {}
   const count = islandsForCategory(kategori).length
   return {
-    title: { absolute: `${cat.title} — ${count} öar | Svalla` },
+    title: `${cat.title} — ${count} öar | Svalla`,
     description: cat.description,
     keywords: cat.searchTerms,
     alternates: { canonical: `https://svalla.se/oar/${cat.slug}` },
@@ -203,7 +203,7 @@ export default async function OarCategoryPage({ params }: Props) {
             variant="card"
             source={`oar-${cat.slug}`}
             title="Få fler skärgårdstips"
-            description="2 mail i månaden — säsong, evenemang, nya guider."
+            description="Varannan tisdag — säsong, evenemang och nya guider."
           />
         </div>
       </main>
