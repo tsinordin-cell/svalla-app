@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const island = getIsland(slug)
  if (!island) return {}
  return {
- title: `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
- description: `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
+ title: island.seoTitle ? `${island.seoTitle} | Svalla` : `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
+ description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
  keywords: [
   `${island.name.toLowerCase()} guide`,
   `${island.name.toLowerCase()} restaurang`,
@@ -434,7 +434,7 @@ export default async function IslandPage({ params }: Props) {
  })()}
 
  {/* Om ön */}
- <section style={{ marginBottom: 52 }}>
+ <section style={{ marginBottom: 36 }}>
  <SectionHeader icon="📖" title={`Om ${island.name}`} />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
  {island.description.map((para, i) => (
@@ -442,6 +442,23 @@ export default async function IslandPage({ params }: Props) {
  ))}
  </div>
  </section>
+
+ {/* Mid-page email — fångar besökare som läst beskrivningen men kanske inte scrollar till botten */}
+ <div style={{
+   marginBottom: 52,
+   background: 'linear-gradient(135deg, rgba(30,92,130,0.06) 0%, rgba(45,125,138,0.06) 100%)',
+   borderRadius: 16,
+   padding: '22px 24px',
+   border: '1px solid rgba(30,92,130,0.10)',
+ }}>
+   <EmailSignup
+     variant="inline"
+     source={`o-${island.slug}-midpage`}
+     title={`Planerar du en tur till ${island.name}?`}
+     description="Prenumerera och få säsongsuppdateringar, öppettider och insider-tips direkt till din inkorg. 2 mail i månaden."
+     buttonLabel="Ja, prenumerera"
+   />
+ </div>
 
  {/* Aktiviteter */}
  {island.activities.length > 0 && (
