@@ -105,7 +105,7 @@ export default function PublicFooter() {
             title="Svalla"
             links={[
               { href: '/om', label: 'Om oss' },
-              { href: '/partner', label: 'För partners' },
+              { href: '/partner-sida', label: 'Annonsera' },
               { href: '/forum', label: 'Forum' },
               { href: '/tips', label: 'Tips & artiklar' },
               { href: '/blogg', label: 'Bloggen' },
