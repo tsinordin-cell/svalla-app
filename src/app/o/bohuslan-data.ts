@@ -22,6 +22,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     regionLabel: 'Bohuslän',
     emoji: '🏰',
     tagline: 'Carlstens fästning, segling och västkustens kungsdestination.',
+    seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
+    seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfri ö på Bohuskusten, Match Cup Sweden och de bästa restaurangerna. Hur du tar dig dit och var du bor.',
     description: [
       'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning — påbörjad 1658 och utbyggd från 1682 efter Erik Dahlbergs ritningar — tornar över hamnen och är ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
       'Som segeldestination är Marstrand utan motstycke i Sverige. Match Cup Sweden — en av världens mest prestigefyllda match-racing-regattor — lockar världens bästa seglare till Marstrands gästhamn varje juli. Hamnen är med sina 200 platser en av västkustens absolut största och ligger skyddad innanför Koön.',
@@ -384,9 +386,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🏘',
     tagline: 'Bilfri pittoresk pärla med trähus från 1800-talet och oförglömlig hamnstämning.',
     description: [
-      'Käringön är en av Bohusläns mest välbevarade öar — bilfri, med tätt placerade trähus och smala stigar. Den känns som en tidskapsel från 1800-talet.',
-      'Hamnen är navet i bylivet. Klassiska Karingö Värdshus serverar bohuslänsk mat, och de små butikerna säljer hantverk och konst.',
-      'Ön är liten — du går runt den på en timme — men intensiteten i miljön gör att besöket sätter sig.',
+      'Käringön är en av Bohusläns mest välbevarade öar — bilfri, med tätt placerade trähus i vitt och rött och smala stigar som slingrar sig mellan husraderna. Den känns som en tidskapsel från 1800-talet, men den är levande och välskött, inte nostalgisk.',
+      'Hamnen är navet i bylivet. Klassiska Käringö Värdshus serverar bohuslänsk mat med lokalt fångad fisk och räkor, och de små butikerna längs stranden säljer keramik, konst och lokalt hantverk. Sommartid är ön livlig men aldrig kaotisk.',
+      'Ön är liten — du går runt den på en timme — men intensiteten i miljön gör att besöket sätter sig. Fotografer återkommer gång på gång för husens reflektioner i det stilla hamnvattnet.',
+      'Käringön nås med bilfärja från Tuvesvik (ca 15 min). Det är enkelt — och ändå kommer inte alla dit. Det är en av Bohusläns bäst bevarade hemligheter, trots att den egentligen inte är hemlig alls.',
     ],
     facts: {
       travel_time: '1 h 30 min med bil + 15 min båt från Göteborg',
@@ -596,9 +599,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🎵',
     tagline: 'Evert Taubes hemö — fyr, klippor och visans hjärta.',
     description: [
-      'Vinga ligger 12 kilometer utanför Göteborg och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrvaktare här och Evert växte upp på ön.',
-      'Vinga fyr (1854) är fortfarande aktiv och syns långt ut till sjöss. Ön har också en kapell, en liten museum dedikerad åt Taube och fina klippvandringar.',
-      'Inga övernattningsmöjligheter på själva ön. Dagsturer från Göteborg är lätta — båt går 4–6 gånger dagligen sommartid.',
+      'Vinga ligger 12 kilometer utanför Göteborg och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrvaktare här och Evert växte upp på ön under sent 1800-tal. Det är från Vingas klippor, havsljus och fiskarkultur han hämtade bilderna som genomsyrar hans visor.',
+      'Vinga fyr (1854) är fortfarande aktiv och syns långt ut till sjöss. Ön rymmer en liten Taube-utställning i det gamla fyrmästarbostaden, ett kapell och välmarkerade klippvandringar med utsikt mot öppet hav och Göteborgs inlopp.',
+      'Inga övernattningsmöjligheter på ön. Dagsturer från Göteborg är enkla — Vingabåten avgår från Saltholmen 4–6 gånger dagligen sommartid och tar drygt en timme. Planera 2–3 timmar på ön.',
+      'Vinga är en pelgrimsresa för Taube-älskare och en naturupplevelse för alla andra. Klipporna på öns yttersta spets, med utsikt mot havet som Evert beskrev i "Fritiof och Carmencita", är svåra att glömma.',
     ],
     facts: {
       travel_time: '1 h 15 min med båt från Göteborg',
@@ -634,9 +638,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🐟',
     tagline: 'Närmast Göteborg av södra skärgården — livlig, autentisk och tillgänglig.',
     description: [
-      'Hönö är en av södra skärgårdens mest populära öar — närmast Göteborg och därför lättast att nå. Bilfärja från Lilla Varholmen ger snabb access (5 min).',
-      'Hönö har en stark fiskartradition men har också blivit ett populärt boendealternativ för göteborgare som vill ha skärgårdsläge utan att lämna jobbpendling.',
-      'Båtövergången binder ihop Hönö med Öckerö och Hälsö. Tre öar — en upplevelse — och rent geografiskt det närmaste skärgårdsupplevelse du kan få från Göteborg.',
+      'Hönö är en av södra skärgårdens mest populära öar — närmast Göteborg och därför lättast att nå. Bilfärjan från Lilla Varholmen tar bara fem minuter och avgår nästan kontinuerligt. Det är skärgård utan ansträngning.',
+      'Hönö har en lång fiskartradition. Hönö Klåva är en av de få aktiva fiskehamnar som fortfarande drivs kommersiellt i norra Göteborgs skärgård — du kan köpa färsk fisk direkt från båten sommartid. Den traditionen lever parallellt med att ön blivit ett attraktivt boendealternativ för göteborgare som prioriterar havsläge.',
+      'Båtövergångarna binder ihop Hönö med Öckerö och Hälsö. Tre öar — en sammanhängande cykelupplevelse — totalt 15 km längs kusten med flera badplatser längs vägen. Det är en av de enklaste och vackraste cykelturerna i hela Göteborgs skärgård.',
+      'Hönö är inte den dramatiskt vilda skärgårdsön. Det är den tillgängliga, vardagliga, äkta — och det är ett värde i sig.',
     ],
     facts: {
       travel_time: '40 min från Göteborg (bil + färja)',
