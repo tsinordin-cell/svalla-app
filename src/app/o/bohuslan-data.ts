@@ -64,6 +64,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['smogen', 'kungshamn', 'lysekil'],
     tags: ['fästning', 'segling', 'restauranger', 'sommardestination', 'lyx'],
     did_you_know: 'Carlstens fästning började byggas 1658 efter freden i Roskilde när Bohuslän blev svenskt — huvudkonstruktionen tog form från 1682 efter Erik Dahlbergs ritningar. Den var i militär drift till 1882, blev sedan fängelse, och är idag museum.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: fästning, hamn och restauranger öppna utan trängseln. September: högsäsongskaos borta, boende halvpris och höstljuset över fästningsmuren är magiskt.',
+      warning: 'Match Cup Sweden i Juli gör hamnen fullbelagd och boende sällsynt. Boka månader i förväg om du vill vara på ön under regattaveckan.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'smogen',
@@ -112,6 +120,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['kungshamn', 'grundsund', 'hamburgsund'],
     tags: ['räkor', 'fiskeby', 'sommardestination', 'fotogen'],
     did_you_know: 'Smögenbryggan är 600 meter lång och var ursprungligen byggd för fiskeflottan på 1800-talet — idag är den helt gågata.',
+    seasonal: {
+      open: 'Juni–Augusti',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Räkorna är lika färska men bryggan är hanterbar. Restaurangerna öppna, hamnen inte fullbelagd — och du kan faktiskt se bryggsbodarnas fasader utan att tryckas ihop av folkmassan.',
+      warning: 'Juli är extremt trångt på Smögenbryggan och gästhamnen är fullbelagd. Kom tidigt på morgonen (06–08) för räkorna och undvik helger i juli.',
+      months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
+    },
   },
   {
     slug: 'lysekil',
