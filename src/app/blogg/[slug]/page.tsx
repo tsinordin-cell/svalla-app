@@ -1161,7 +1161,7 @@ I september är Östersjön och innerskärgårdens vikar fortfarande badvarma �
 
 Och gästhamnarna? Du bokar dagen innan. Ibland bara dyker du upp.
 
-Sandhamn i september är en annan planet jämfört med Sandhamn i juli. Restaurangen tar emot dig. Du hittar en brygga att lägga till vid. Det finns bord.
+[Sandhamn](/o/sandhamn) i september är en annan planet jämfört med Sandhamn i juli. Restaurangen tar emot dig. Du hittar en brygga att lägga till vid. Det finns bord.
 
 ## Vad som faktiskt är öppet
 
@@ -1169,7 +1169,7 @@ Det här är den vanligaste frågan: "Men är ju allt stängt i september?"
 
 Nej. Inte alls.
 
-De flesta restauranger och gästhamnar håller öppet till och med september, och många till mitten av oktober. Sandhamns Värdshus, Möja Krog, Utö Värdshus, Bullerö och Furusunds Gästhamn är alla öppna september ut och tar emot besökare. Ring och bekräfta – men förvänta dig inte att det är stängt.
+De flesta restauranger och gästhamnar håller öppet till och med september, och många till mitten av oktober. Sandhamns Värdshus, [Möja](/o/moja) Krog, [Utö](/o/uto) Värdshus, [Bullerö](/o/bullero) och Furusunds Gästhamn är alla öppna september ut och tar emot besökare. Ring och bekräfta – men förvänta dig inte att det är stängt.
 
 Det som stänger tidigt är strandbarer och enklare baguettekiosker. Det som håller öppet längt är restauranger med kök och historia.
 
@@ -1229,7 +1229,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 1. Fjäderholmarna – 25 minuter, 4 timmars utflykt
+## 1. [Fjäderholmarna](/o/fjaderholmarna) – 25 minuter, 4 timmars utflykt
 
 **Avresa:** Strömkajen, Nybroplan eller Slussen. Avgångar var 30:e minut i högsäsong.
 **Restid:** 25 minuter.
@@ -1239,7 +1239,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 2. Vaxholm – 1 timme, halvdagsutflykt
+## 2. [Vaxholm](/o/vaxholm) – 1 timme, halvdagsutflykt
 
 **Avresa:** Strömkajen. Frekventa avgångar.
 **Restid:** 55–65 minuter.
@@ -1249,7 +1249,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 3. Grinda – 1,5 timme, klassisk heldagsö
+## 3. [Grinda](/o/grinda) – 1,5 timme, klassisk heldagsö
 
 **Avresa:** Strömkajen. 2–3 avgångar per dag beroende på säsong.
 **Restid:** Cirka 1,5 timme.
@@ -1259,7 +1259,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 4. Möja – 2 timmar, bilfri upplevelse
+## 4. [Möja](/o/moja) – 2 timmar, bilfri upplevelse
 
 **Avresa:** Stavsnäs (pendeltåg till Hässelby, buss till Stavsnäs) eller Strömkajen via Sandhamn.
 **Restid:** Circa 2 timmar från Strömkajen.
@@ -1269,7 +1269,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 5. Utö – 2,5 timmar, södra skärgårdens kronjuvel
+## 5. [Utö](/o/uto) – 2,5 timmar, södra skärgårdens kronjuvel
 
 **Avresa:** Nynäshamn (pendeltåg från Stockholm) + bilfärja. Avgångar 3–4 gånger per dag.
 **Restid:** Totalt 2–2,5 timmar.
@@ -1279,7 +1279,7 @@ Här är sex konkreta rutter du kan boka idag.
 
 ---
 
-## 6. Sandhamn – 2,5 timmar, seglingsikonen
+## 6. [Sandhamn](/o/sandhamn) – 2,5 timmar, seglingsikonen
 
 **Avresa:** Strömkajen (lång tur) eller Stavsnäs (snabbgående, ca 40 min).
 **Restid:** 40 min (Stavsnäs) eller 2,5 timmar (Strömkajen).
@@ -1328,13 +1328,13 @@ Flera av skärgårdens bäst etablerade restauranger håller öppet hela Oktober
 Sandhamns Värdshus håller öppet september–oktober (ring och bekräfta aktuellt datum, öppettider varierar per år). Seglarhotellet har matsalsservering tom tredje veckan i oktober.
 
 **Utö:**
-Utö Värdshus är öppet hela oktober och är faktiskt ett av de bästa alternativen för en hösthelg. Lugnt, vackert och med menyändringar mot säsong.
+[Utö](/o/uto) Värdshus är öppet hela oktober och är faktiskt ett av de bästa alternativen för en hösthelg. Lugnt, vackert och med menyändringar mot säsong.
 
 **Möja:**
-Möja Krog håller normalt öppet september ut och helger i oktober. Ring i förväg.
+[Möja](/o/moja) Krog håller normalt öppet september ut och helger i oktober. Ring i förväg.
 
 **Grinda:**
-Grinda Wärdshus brukar ha öppet tom andra helgen i oktober. Kontrollera deras sociala medier för aktuell info.
+[Grinda](/o/grinda) Wärdshus brukar ha öppet tom andra helgen i oktober. Kontrollera deras sociala medier för aktuell info.
 
 **Fjäderholmarna:**
 Restaurangerna håller öppet september ut. Oktober beror på år och väderlek.
@@ -1349,7 +1349,7 @@ Naturhamnarna – ankringsplatser utan service – är förstås alltid öppna.
 
 ## Waxholmsbolaget och kollektivtrafik
 
-Waxholmsbolaget kör reducerad tidtabell efter högsäsong (normalt från slutet av augusti) men linjer till de större öarna – Sandhamn, Vaxholm, Grinda, Utö – trafikeras hela oktober.
+Waxholmsbolaget kör reducerad tidtabell efter högsäsong (normalt från slutet av augusti) men linjer till de större öarna – [Sandhamn](/o/sandhamn), [Vaxholm](/o/vaxholm), [Grinda](/o/grinda), [Utö](/o/uto) – trafikeras hela oktober.
 
 Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se. Söndagskvällar har färre avgångar.
 
@@ -1395,7 +1395,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ---
 
-## 1. Fjäderholmarna – bäst för de minsta (0–4 år)
+## 1. [Fjäderholmarna](/o/fjaderholmarna) – bäst för de minsta (0–4 år)
 
 **Varför:** Kortast restid (25 min), inga farliga bryggor, lugnt vatten, kafé och restaurang, barnvagnsanpassad.
 **Hur tar man sig dit:** Med Fjäderholmsbåtarna från Strömkajen, Nybroplan eller Slussen. Frekventa avgångar.
@@ -1405,7 +1405,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ---
 
-## 2. Vaxholm – bäst för kulturhistorisk familjedag
+## 2. [Vaxholm](/o/vaxholm) – bäst för kulturhistorisk familjedag
 
 **Varför:** Barnvagnsvänligt, tydlig stad, fästning att besöka (sommaröppet), badbrygga med grunt inhopp.
 **Hur tar man sig dit:** Med Waxholmsbåt från Strömkajen, ca 55 min. Eller bil och SL-buss.
@@ -1415,7 +1415,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ---
 
-## 3. Grinda – bäst för barnfamilj som vill ha äkta skärgård
+## 3. [Grinda](/o/grinda) – bäst för barnfamilj som vill ha äkta skärgård
 
 **Varför:** Naturliga badplatser med grund stenig strand, ö-känsla utan att vara krånglig att nå, barnvänlig restaurang.
 **Hur tar man sig dit:** Med Waxholmsbåt från Strömkajen, ca 1,5 timme.
@@ -1425,7 +1425,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ---
 
-## 4. Möja – bäst för cyklande barnfamiljer (barn 6+)
+## 4. [Möja](/o/moja) – bäst för cyklande barnfamiljer (barn 6+)
 
 **Varför:** Bilfritt, cykeluthyrning vid bryggan, lugna vägar, ingen biltrafik att oroa sig för.
 **Hur tar man sig dit:** Stavsnäs (buss/tåg+buss från Stockholm) + Waxholmsbåt, totalt ca 2 timmar.
@@ -1435,7 +1435,7 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ---
 
-## 5. Utö – bäst för aktiva familjer med äldre barn (barn 8+)
+## 5. [Utö](/o/uto) – bäst för aktiva familjer med äldre barn (barn 8+)
 
 **Varför:** Cykelleder, gruvmuseum, havsbastu, sandstrand (Alsvik), heldagsupplevelse.
 **Hur tar man sig dit:** Pendeltåg till Nynäshamn + bilfärja till Utö. Totalt ca 2,5 timme.
@@ -1483,6 +1483,553 @@ Skärgården med barn är en av de bästa sommarminnena man kan ge. Välj rätt 
      { q: 'Kan man ta med barnvagn på Waxholmsbåtarna?', a: 'Ja. Waxholmsbåtarna tar emot barnvagnar. Vik ihop den vid påstigning om möjligt. Vaxholm och Fjäderholmarna är barnvagnsanpassade destinationer med plana gångvägar.' },
    ],
  },
+
+ 'weekend-skargard-stockholm': {
+   title: 'Weekend i skärgården 2026 – 8 kompletta upplägg från Stockholm',
+   excerpt: 'Hur planerar man en perfekt skärgårdshelg? Här är åtta konkreta upplägg — från dagsturen som känns som ett äventyr till weekendresan som laddar batterierna ordentligt.',
+   category: 'Guide',
+   date: '2026-07-28',
+   readTime: '9 min',
+   emoji: '⚓',
+   tags: ['Weekend', 'Helgresa', 'Stockholm', 'Planering'],
+   content: `
+En skärgårdshelg kräver ingen avancerad planering. Det kräver att du vet vart du ska och varför. Här är åtta upplägg – ett för varje typ av helg du kan vilja ha.
+
+## 1. Dagstur till Fjäderholmarna (3–4 timmar, familjevänlig)
+
+Det kortaste och enklaste alternativet. [Fjäderholmarna](/o/fjaderholmarna) ligger 25 minuter från Strömkajen med Waxholmsbåten och passar perfekt om du vill smaka på skärgården utan att planera övernattning. Kaféer, hantverk, en liten naturslinga och utsikt tillbaka mot Stockholm. Åk dit på en tisdag eller onsdag – helger är trånga.
+
+**Bäst för:** Barnfamiljer, sista minuten, besökare från utlandet.
+
+## 2. En natt på Grinda (2 dagar, romantik eller vilsam)
+
+[Grinda](/o/grinda) är Waxholmsbåtens mest välskötta stopp. Grinda Wärdshus tar emot gäster i en miljö som känns som ett naturreservat – för det är ett. Bok en natt, ta med lite vin och gå runt ön på kvällen. Direktbåt från Strömkajen.
+
+**Bäst för:** Par, vilsam helg, ingen bil krävs.
+
+## 3. Sandhamns-weekend (2 dagar, segling & restauranger)
+
+[Sandhamn](/o/sandhamn) är skärgårdens stora namn och lever upp till ryktet. Seglarhotellet, Trouville-stranden, kvällsmaten på Sandhamns Värdshus. Boka boende tidigt – sommarsäsongen fyller på redan i april. Snabbåt från Stavsnäs (40 min) eller Waxholmsbåt (2,5 timmar).
+
+**Bäst för:** De som vill ha ett komplett resort-känsla ute i skären.
+
+## 4. Möja på cykel (2 dagar, aktiv naturupplevelse)
+
+[Möja](/o/moja) är bilfri, kuperad och har en egen mataffär och café. Hyr cykel på ön och utforska de tre byarna – Mojaland, Möja och Yttre Möja – längs vägar som knappt finns på kartan. Waxholmsbåten dit tar ca 1 timme 45 minuter.
+
+**Bäst för:** Cyklister, friluftsmänniskor, de som vill uppleva en äkta skärgårdsö.
+
+---
+
+## 5. Vaxholms historia och fästning (1 dag, kulturintresserade)
+
+[Vaxholm](/o/vaxholm) är en hel stad – med stenhusen vid hamnen, fästningen på sin lilla ö och ett gatukök som serverar den bästa räksmörgåsen i skärgården. Ta pendelbåten från Strömkajen (55 min) och ha en dag att utforska. Fästningsmuseet är öppet sommartid.
+
+**Bäst för:** Kulturresor, kortare turer, historieintresserade.
+
+## 6. Kajak och tält på Bullerö (2–3 dagar, äventyr)
+
+[Bullerö](/o/bullero) är ett naturreservat utan fast boende – du ankrar eller paddlar dit och tältar under allemansrätten. Ett av Stockholms skärgårds vackraste öar att övernatta på. Kombinera med kajakuthyrning från Dalarö eller charter.
+
+**Bäst för:** Äventyrare, kajakpaddlare, de som vill ha riktig vildmark.
+
+## 7. Utö – strand, sand och cykel (2–3 dagar, sommar)
+
+[Utö](/o/uto) är unik i Stockholms skärgård med sin sandstrand vid Alsvik. Cykeluthyrning, en charmig hamn och Utö Värdshus för middag. Nås med båt från Nynäshamn (ca 1 timme).
+
+**Bäst för:** De som vill ha strand, sommarliv och en ö att utforska.
+
+## 8. Norrskärens yttre skärgård (2 dagar, havsluft)
+
+Den yttre skärgårdens öar – nakna klippor, havsluft och total stillhet. Chartra en båt från Stavsnäs eller Nynäshamn och sätt kurs mot de öar få turister hittar. Kräver lite mer planering men ger mest av allt.
+
+**Bäst för:** Båtägare, de som söker ro och inte vill möta andra turister.
+
+## Boka i tid
+
+Under sommarsäsongen (juni–aug) är populära öar som Sandhamn och Grinda fullbokade veckor i förväg. Om du reser i juli – boka boende redan i april. Off-season (maj, september) är skärgårdens bäst bevarade hemlighet: all skönhet, halva trängseln.
+   `,
+   faqs: [
+     { q: 'Vilken skärgårdsö är bäst för en weekend?', a: 'Det beror på vad du söker. För romantik: Grinda. För aktivt: Möja eller Utö. För restauranger och stämning: Sandhamn. För kortast möjliga tidsåtgång: Fjäderholmarna.' },
+     { q: 'Hur tar man sig till skärgårdsöarna utan bil?', a: 'Waxholmsbåtarna och Cinderella Boats går från Strömkajen i Stockholm city. Bil krävs inte till de flesta öar – pendelbåtar är snabba och bekväma.' },
+     { q: 'Vad kostar en skärgårdshelg?', a: 'En övernattning på Grinda Wärdshus kostar från ~1 500 kr/natt. Budget-alternativet är att campa med tält under allemansrätten. Boten till/från kostar ~180–350 kr tur-retur beroende på destination.' },
+   ],
+ },
+
+ 'sandhamn-guide-2026': {
+   title: 'Sandhamn guide 2026 – restauranger, bad, boende och hur du tar dig dit',
+   excerpt: 'Sandhamn är skärgårdens mest välkända destination. Komplett guide: de bästa restaurangerna, Trouville-stranden, var du bor och allt om båten från Stockholm.',
+   category: 'Öguide',
+   date: '2026-07-28',
+   readTime: '8 min',
+   emoji: '⛵',
+   tags: ['Sandhamn', 'Guide', 'Restauranger', 'Segling'],
+   content: `
+[Sandhamn](/o/sandhamn) är Stockholms skärgårds mest kända destination och lever upp till ryktet. Segelbåtar i hamnen, välskötta restauranger, vita trävillor och en skärgårdsstämning som är svår att hitta längre in mot Stockholm. Den här guiden är allt du behöver för ett besök 2026.
+
+## Hur du tar dig till Sandhamn
+
+**Snabbaste vägen:** Waxholmsbåtens snabba linjer från Stavsnäs (tar sig dit med bil/buss från Slussen) — ca 40 minuter. Stavsnäs är enklast med bil; parkering kostar 80–100 kr/dygn.
+
+**Direkt från Stockholm city:** Waxholmsbåten från Strömkajen — ca 2,5 timmar. Längre men scenisk; passa på att se skärgårdens karaktär förändras längs vägen.
+
+**Snabbaste linjen sommartid:** Cinderella Boats kör expresser i sommarperioden.
+
+## Stränderna
+
+**Trouville** är Sandhamns ikoniska strand – vit sand, klart vatten och en vy mot havet. Nås med 15 minuters promenad från hamnen längs byns enda väg. Kom tidigt på högsommar; den fyller på fort.
+
+**Flaskbrottet** är en lite mer undanstoppad strand söder om byn. Lugnare, mer klippor, fint för solbad.
+
+---
+
+## Restauranger 2026
+
+**Seglarhotellets Restaurang** – Det finaste alternativet på ön. Svenska råvaror, kök med säsongsvariation och en historia sedan 1897. Boka bord minst en vecka i förväg i juli–aug.
+
+**Sandhamns Värdshus** – Det klassiska stoppet vid bryggan. Fisksoppa, räkor och smörgåsar. Prisvärt och med direkt hamnutsikt. Ingen bokning behövs.
+
+**Dykarbaren** – Bryggservering med hamburgare och öl. Det avslappnade alternativet, bra för sundowner.
+
+**Bryggcafé 7an** – Bäst för frukost eller fika. Nybakat och hamnutsikt. Köen bildas fort på helger.
+
+## Boende
+
+**Seglarhotellet** (seglarhotellet.se) — Historiskt hotell i trävillor. Dubbel från ~1 800 kr/natt högsäsong. Boka månader i förväg.
+
+**Sandhamns Pensionat** — Mer budgetvänlig, lite enklare standard. Perfekt för de som prioriterar priset över poolen.
+
+**Villor och stugor** — Går att hyra via Blocket och Airbnb. Priserna varierar kraftigt; förvänta dig minst 3 000–5 000 kr/natt för hyvärdiga sommarveckor.
+
+## Vad du inte får missa
+
+- **Sandhamns Segelsällskap** — Seglarnas hjärta på ön. Under Match Cup Sweden i juni är ön fullpackad med seglare.
+- **Promenad längs Västerudd** — Det vackraste sundet på ön, med båttrafik in och ut mot havet.
+- **Lotsmuseet** — Litet och charmigt museum om öns historia som lots- och skepparstation.
+
+## Praktiska tips
+
+Sandhamn är bilfri. Allt du behöver ta med är det du bär på. Det finns en liten livsmedelsbutik på ön men räkna inte med att hitta allt du söker. Ta med solkräm, kontanter (inte allaställen tar kortbetalning ute i skären) och ett vindtätt plagg — havet kan vara kallare än du tror.
+
+Hög- vs lågsäsong: juli är turisternas månad. Maj och september är skärgårdens egentliga högsäsong — all skönhet, utan köerna.
+   `,
+   faqs: [
+     { q: 'Hur lång tid tar båten från Stockholm till Sandhamn?', a: 'Från Strömkajen med Waxholmsbåten tar det ca 2,5 timmar. Från Stavsnäs med snabbåt ca 40 minuter. Stavsnäs nås enklast med bil.' },
+     { q: 'Finns det strand på Sandhamn?', a: 'Ja. Trouville-stranden är den mest kända – vit sand och klart vatten, ca 15 min promenad från hamnen. Flaskbrottet är ett mer undanskymt alternativ med klippor.' },
+     { q: 'Är det bilfritt på Sandhamn?', a: 'Ja, Sandhamn är bilfri. Det finns inga bilar på ön. Allt nås till fots.' },
+   ],
+ },
+
+ 'boende-skargard-2026': {
+   title: 'Boende i skärgården 2026 – stugor, gästhamnar och camping',
+   excerpt: 'Ska du övernatta i skärgården? Här är en genomgång av alla alternativ — från lyxig värdshussvit till tält på klippan — med konkreta råd om vad som passar vem.',
+   category: 'Praktiskt',
+   date: '2026-07-28',
+   readTime: '7 min',
+   emoji: '🏕️',
+   tags: ['Boende', 'Stuga', 'Camping', 'Övernattning'],
+   content: `
+En övernattning i skärgården är annorlunda än att checka in på ett stadshotell. Det handlar om att vakna till ljud av vatten, fiskgjuse och lugn. Men alternativen är fler än du tror – och prisskalan bred.
+
+## Värdshus och hotell
+
+De klassiska värdshuset är kärnan i skärgårdens övernattningserbjudande. De bästa:
+
+**Grinda Wärdshus** ([Grinda](/o/grinda)) — Sverigebäst i sitt slag. Naturskönt läge, restaurang med lokalproducerat, enkla och dubbelrum. Boka tidigt; det fyller på fort.
+
+**Seglarhotellet** ([Sandhamn](/o/sandhamn)) — Historiskt hotell i trävillor. Räkna med 1 800–2 500 kr/natt för dubbel i juli.
+
+**Utö Värdshus** ([Utö](/o/uto)) — Lugnt, naturnära och med en av skärgårdens bästa restauranger. Populärt för par och familjer.
+
+**Vaxholms Kastell** ([Vaxholm](/o/vaxholm)) — Historisk fästning omgjord till vandrarhem och enklare boende. Billigare och unik upplevelse.
+
+---
+
+## Stuguthyrning
+
+Privatpersoner hyr ut allt från sjöbodar till villor i skärgården – och det är ofta det mest prisvärda alternativet för familjer.
+
+**Var du hittar:**
+- Blocket (blocket.se) — störst utbud
+- Airbnb — enklare bokningsprocess
+- Sverigestugor.se — specialiserat
+
+**Vad du kan förvänta dig:** Enklare stugor från ~800 kr/natt, veckohyra vanligare än dygn. Lyxvillor med brygga och sjöutsikt kan kosta 5 000–10 000 kr/vecka.
+
+**Tips:** Boka för sommarveckor senast i mars. Populäraste ölägena är slutsålda månader i förväg.
+
+## Camping och tältning
+
+Allemansrätten i Sverige ger rätt att tälta i naturen – även i skärgården. Det innebär att du faktiskt kan ta Waxholmsbåten ut, paddla till en öde ö och sova under stjärnorna gratis.
+
+**Regler att känna till:**
+- Tälta inte närmre än 70 meter från bebyggelse
+- Stör inte djurlivet (häckande fåglar, etc)
+- Ta med allt du tagit med dig hem
+- Elda inte på klipporna (brandrisk)
+
+**Campingplatser i skärgården:** [Utö](/o/uto) har en etablerad campingplats med faciliteter. Ornö camping på [Ornö](/o/orno) är ett lugnare alternativ söder om Stockholm.
+
+## Gästhamnar
+
+Om du har egen båt är gästhamnarna skärgårdens hotell. Flertalet öar med besöksbryggor tar ut ~150–300 kr/natt för en kajplats. De flesta har el, vatten, dusch och toalett.
+
+**Bästa gästhamnarna:** Grinda, Möja, Sandhamn, Utö och Vaxholm har välskötta anläggningar med god kapacitet.
+
+**Boka i förväg** under högsäsong — speciellt Sandhamns gästhamn kan vara fullbelagd veckor i förväg i juli.
+
+## Vad kostar en övernattning?
+
+| Typ | Prisnivå |
+|-----|----------|
+| Värdshus/hotell (dubbel) | 1 500–3 000 kr/natt |
+| Stuga (familj) | 1 000–2 500 kr/natt |
+| Gästhamn (båtplats) | 150–300 kr/natt |
+| Tältning (allemansrätten) | Gratis |
+| Vandrarhem | 350–700 kr/person/natt |
+
+Skärgårdsövernattning handlar inte nödvändigtvis om pengar. Med tält och rätt planering kan du ha en av sommarens bästa nätter — helt gratis.
+   `,
+   faqs: [
+     { q: 'Kan man tälta fritt i skärgården?', a: 'Ja, allemansrätten ger rätt att tälta 1–2 nätter på de flesta platser i naturen. Håll avstånd till bebyggelse (minst 70 m), ta med allt hem och elda inte på klipporna.' },
+     { q: 'Var hittar man stuguthyrning i skärgården?', a: 'Blocket.se har störst utbud av sommarstugor. Airbnb och Sverigestugor.se är kompletterande alternativ. Boka sommarveckor senast i mars.' },
+     { q: 'Finns det vandrarhem i skärgården?', a: 'Ja. Vaxholms Kastell är ett unikt alternativ i en historisk fästningsmiljö. STF driver vandrarhem på flera öar, bland annat Utö.' },
+   ],
+ },
+
+ 'skargard-med-hund': {
+   title: 'Skärgård med hund – 6 hundvänliga öar och regler du måste känna till',
+   excerpt: 'Hundar och skärgård är en perfekt kombination — om du vet vad som gäller. Här är de bästa hundvänliga öarna, när hunden måste vara kopplad och naturhamnar med grönyta.',
+   category: 'Guide',
+   date: '2026-07-28',
+   readTime: '6 min',
+   emoji: '🐕',
+   tags: ['Hund', 'Hundvänlig', 'Regler', 'Allemansrätten'],
+   content: `
+En skärgårdsdag med hund är annorlunda på ett bra sätt. Hunden elskar klippor, gräs och havsluften — och de flesta öar välkomnar hundar. Men det finns regler att känna till, och några öar har restriktioner under sommarmånaderna.
+
+## Regler du måste känna till
+
+**Kopplingstvång 1 mars–20 aug:** Under den här perioden ska hundar vara kopplade i de flesta naturreservat. Anledningen är fågelungar och häckande djur. Det gäller oavsett hur väluppfostrad hunden är.
+
+**Naturreservat med egna regler:** Varje reservat kan ha egna föreskrifter. Kontrollera alltid Länsstyrelsens webbplats för den specifika ön du ska besöka.
+
+**Badplatser:** Hundar är ofta förbjudna vid kommunala badplatser under badsäsongen. Privata klippor under allemansrätten är oftast okej.
+
+**Waxholmsbåtarna tar hundar:** Ja, hundar är välkomna ombord. Det kostar normalt inget extra. Håll hunden lugn och iaktta hänsyn mot medspassagerare.
+
+---
+
+## 6 hundvänliga öar
+
+**1. [Grinda](/o/grinda)** — Naturreservat med tydliga leder och stora gräsytor. Hunden kan springa fritt utanför kopplingstvångsperioden. Grinda Wärdshus tillåter hundar i uteserveringen.
+
+**2. [Möja](/o/moja)** — Bilfri ö med vägar och stigar. Lite trafik, lugnt tempo. Perfekt för en dag med hunden längs byvägarna.
+
+**3. [Vaxholm](/o/vaxholm)** — Stad med kaféer och restauranger med uteservering. Stadspromenaden längs vattnet är populär. Fästningsholmen kräver koppling.
+
+**4. Runmarö** — Lite större ö i Stockholms skärgård med skogspartier och klippor. Välbesökt av hundägare som vill ha plats att röra sig.
+
+**5. Blidö** — I norra skärgården, enklare att nå med bil. Stigar och skogar, lite turister. Bra för längre promenader med hunden.
+
+**6. [Ornö](/o/orno)** — En av de större skärgårdsöarna söder om Stockholm. Bil krävs (vägfärja från Nynäshamn). Stor ö med riktig natur att utforska.
+
+## Praktiska tips
+
+- Ta med **extra vatten** till hunden — saltvattnet är inte drickbart
+- Kontrollera att **klipporna inte är hala** innan hunden hoppar
+- Ha alltid **hundpåsar** med
+- **Flytväst till hunden** rekommenderas om ni ska ut i båt
+
+Skärgården med hund fungerar utmärkt med rätt planering. Välj öar med utrymme, kontrollera reservatets regler och åk på förmiddagen för att undvika trängseln vid bryggorna.
+   `,
+   faqs: [
+     { q: 'Är hundar tillåtna på Waxholmsbåtarna?', a: 'Ja, hundar är välkomna ombord på Waxholmsbåtarna. Det kostar normalt inget extra. Hunden ska vara i koppel ombord.' },
+     { q: 'Gäller kopplingstvång hela sommaren i skärgårdens naturreservat?', a: 'Kopplingstvång gäller 1 mars–20 aug i de flesta naturreservat för att skydda häckande fåglar. Kontrollera alltid det specifika reservatets regler på Länsstyrelsens webbplats.' },
+     { q: 'Vilka öar i skärgården är bäst för hundar?', a: 'Grinda och Möja är populära val med gott om utrymme och få bilar. Vaxholm passar för en stadsrunda med hunden. Ornö och Blidö är bra om du kan ta dig dit med bil.' },
+   ],
+ },
+
+ 'vandring-skargard-guide': {
+   title: 'Vandring i Stockholms skärgård 2026 – de 8 bästa lederna',
+   excerpt: 'Stockholms skärgård är inte bara vatten. De bästa lederna tar dig genom urbergslandskap, längs klippkuster och över bilfria öar. Här är åtta vandringar du faktiskt kan genomföra.',
+   category: 'Aktiviteter',
+   date: '2026-07-28',
+   readTime: '8 min',
+   emoji: '🥾',
+   tags: ['Vandring', 'Leder', 'Natur', 'Friluftsliv'],
+   content: `
+Skärgårdsvandraren har det bäst. Du sitter på en klippa, äter matsäcken och ser solen dala mot havet — och vet att du förtjänat det. Stockholms skärgård erbjuder fantastisk vandring längs kuster, genom skogar och över öar som flesta turister aldrig ser.
+
+## Vad du behöver veta
+
+Skärgårdens vandringsleder är sällan markerade på samma sätt som fjälleder. Kartappen Komoot (eller Alltrails) med nedladdad offline-karta är ett måste. Ta med vatten — det finns ingen vattenkälla ute på klipporna.
+
+---
+
+## De 8 bästa lederna
+
+### 1. Utö – Alsvik till Rånö (ca 12 km)
+[Utö](/o/uto) har en av skärgårdens bästa vandringsleder. Från Alsvik (med sandstrand!) söderut längs öns klippkust till Rånö. Kuperat, havsnära och med dramatiska vyer. Nås med båt från Nynäshamn.
+
+### 2. Ornö – Runt hela ön (ca 20 km)
+[Ornö](/o/orno) är en av de större öarna söder om Stockholm med ett välskyltat runt-öled. Gammelskogar, klippor och vyer mot yttre skärgården. Bra att kombinera med övernattning. Bil till Nynäshamn + vägfärja.
+
+### 3. Möja – Byvandring (ca 8 km)
+[Möja](/o/moja) är bilfri och perfekt för en dagstur med vandring. Vandra mellan de tre byarna längs byvägar och skogstigar. Kuperat, charmigt och med café-paus på vägen.
+
+### 4. Gällnö naturreservat (ca 6 km)
+Gällnö är ett naturreservat i Värmdö skärgård med markerade leder och vacker urbergsterräng. Enklare och kortare — perfekt för familjer med barn som kan gå.
+
+### 5. Bullerö naturreservat (ca 5 km)
+[Bullerö](/o/bullero) är en av skärgårdens vackraste öar och ett naturreservat utan fast boende. Kort slingled med utsiktsplatser. Nås med charter- eller privatbåt.
+
+### 6. Grinda – Runt ön (ca 4 km)
+[Grinda](/o/grinda) är liten nog att gå runt på en förmiddag. Välskötta stigar, utsiktsplatser och möjlighet att bada när du känner för det. Perfekt familjevandring.
+
+### 7. Tynningö (ca 6 km)
+Ö i Stockholms yttre skärgård med skogar och klippkust. Inga restauranger — ta med matsäck och niut av lugnet. Waxholmsbåt dit.
+
+### 8. Fjäderholmarnas naturslinga (ca 2 km)
+[Fjäderholmarna](/o/fjaderholmarna) har en kort naturslinga runt öns sydöstra del. Inte ett äventyr i sig men bra för en 25-minutersbåttur från Stockholm och en kort rörelse i naturen.
+
+## Packlista för skärgårdsvandring
+
+- Vatten (minst 1,5 l per person)
+- Energibar/matsäck (ingen service längs de flesta leder)
+- Kartapp med offline-karta
+- Vindtätt plagg (det blåser alltid mer vid vattnet)
+- Bra skor (klippor är hala vid regn)
+- Solkräm och myggolja
+
+Skärgårdens vandringsleder kräver respekt och planering men ger enormt tillbaka. Bästa säsongen: maj–juni och september — grönare och svalare, utan högsommarens trängsel.
+   `,
+   faqs: [
+     { q: 'Vilken är den bästa vandringen i Stockholms skärgård?', a: 'Utö (Alsvik–Rånö, 12 km) och Ornö runt-led (20 km) är de mest kompletta vandringarna. För kortare dagsvandringar är Grinda och Möja utmärkta.' },
+     { q: 'Behöver man bil för att vandra i skärgården?', a: 'Nej. De flesta vandringsleder nås med Waxholmsbåten direkt från Stockholm. Utö nås med båt från Nynäshamn (pendeltåg + byte).' },
+     { q: 'Är det markerade vandringsleder i skärgården?', a: 'Delvis. Gällnö naturreservat och Grinda har markerade leder. Utö och Ornö har skyltade leder men ladda ner kartappen Komoot med offline-karta som säkerhetsnet.' },
+   ],
+ },
+
+ 'naturhamnar-stockholm-skargard': {
+   title: 'Bästa naturhamnarna i Stockholms skärgård 2026 – seglares guide',
+   excerpt: 'De bästa platserna att ankra för natten är sällan i en gästhamn. Här är de naturhamnar i Stockholms skärgård som seglare pratar om — med djup, vindskydd och vad du behöver veta.',
+   category: 'Segling',
+   date: '2026-07-28',
+   readTime: '7 min',
+   emoji: '⚓',
+   tags: ['Naturhamn', 'Segling', 'Ankring', 'Båt'],
+   content: `
+En naturhamn är seglingslivets belöning. Du rundar en udde, ser en skyddad vik och förstår direkt att det är hit du ska för natten. Ingen avgift, inget grannskap av charterturister — bara berget, vattnet och stillheten.
+
+Här är de naturhamnar i Stockholms skärgård som erfarna seglare återkommer till år efter år.
+
+## Vad gör en naturhamn bra?
+
+- **Vindskydd** — skyddat från de vanligaste vindarna (S, SW och W i Stockholm)
+- **Lagom djup** — 2–5 meter är idealiskt för de flesta båtar
+- **Klippyta att gå upp på** — för att ta en promenad och göra fast en lina
+- **Ingen motorbotstrafik** — lugn och ro
+
+---
+
+## De bästa naturhamnarna
+
+### Bullerskär / Bullerö
+[Bullerö](/o/bullero) och de omgivande skären är ett av Stockholms skärgårds finaste ankringsområden. Naturreservat utan bofast befolkning, med klippor som sträcker sig ner i vattnet. Välskyddat från sydväst. Använd sjökortet noggrant — det är grunt på flera ställen.
+
+### Möja – Östersundet
+Ostlunden på [Möjas](/o/moja) östsida erbjuder ett välskyddat ankringsläge med bra vindskydd. Flera naturhamnar längs sundet. Populärt och kan vara trångt i juli — kom innan kl 15.
+
+### Rånö – södra sidan
+Sydöstnängsudden på Rånö har en skyddad vik med bra djup och fin klippterräng. Mer avlägset och därmed lugnare än de populärare alternativen.
+
+### Utö – Rånöviken
+Söder om [Utö](/o/uto) finns Rånöviken, ett omtyckt ankringsläge med bra vindskydd. Kombinera med en promenad upp till Utö fyr.
+
+### Svartsö – Norra änden
+Svartsö i Stockholms norra skärgård har en fin naturhamn i norra änden av ön. Lugnt, relativt lätttillgängligt och med möjlighet till promenad i skogen.
+
+### Kymöndö – Sundet
+Sundet mellan Kymöndö och den lilla grannön är ett smalt men välskyddat ankringsläge. Fint med kvällsljuset.
+
+### Fjärdlång – Innerskäret
+Söder om Ornö, ett av de mer avlägset belägna ankringsalternativen. Yttre skärgård, havsluft och total stillhet. För den som vill ha verkligheten på lagom avstånd.
+
+## Praktiska tips för naturhamnsankring
+
+**Sjökortet är viktigast.** Stockholms skärgård har grunt längs klipptornen. Navionics-appen med uppdaterat djupdata är oumbärlig.
+
+**Kom tidigt.** De populäraste naturhamnarna fylls på under eftermiddagen. Sikta på att vara ankrad senast 15–16 på högsommar.
+
+**Ta en lina till land.** De flesta naturhamnar kräver att du sätter fast en baklina i klippan — för att hålla båten stabil och minska svaj.
+
+**Respektera naturreservaten.** Bullerö och många av de finaste naturhamnarna är naturreservat. Elda inte (eldförbud råder vid torr väderlek), plocka inte blommor och ta med all sopor hem.
+
+Naturhamnens framtid beror på att vi som seglare behandlar dem rätt. Med respekt för reglerna och havsmiljön förblir de tillgängliga för generationer av seglare.
+   `,
+   faqs: [
+     { q: 'Vad är en naturhamn?', a: 'En naturhamn är en naturligt skyddad vik eller fjärd där båtar kan ankra utan att betala hamnavgift. Till skillnad från en gästhamn saknar den faciliter som dusch och el.' },
+     { q: 'Behöver man betala för att ankra i en naturhamn?', a: 'Nej, ankring i naturhamnar är normalt gratis i Sverige tack vare allemansrätten. Undantag kan finnas i vissa naturreservat med speciella regler.' },
+     { q: 'Vilken sjökortsapp rekommenderas för Stockholms skärgård?', a: 'Navionics är den vanligaste och mest uppdaterade sjökortsappen för Stockholms skärgård. Ladda ner offline-kartor för att klara dig utan nätuppkoppling ute i skären.' },
+   ],
+ },
+
+ 'grinda-guide-2026': {
+   title: 'Grinda guide 2026 – Grinda Wärdshus, gästhamn och direktbåt',
+   excerpt: 'Grinda kallas skärgårdens hjärta och lever upp till det. Komplett guide: Grinda Wärdshus, gästhamnen, stränderna och direktbåten från Strömkajen.',
+   category: 'Öguide',
+   date: '2026-07-28',
+   readTime: '6 min',
+   emoji: '🌿',
+   tags: ['Grinda', 'Värdshus', 'Gästhamn', 'Guide'],
+   content: `
+[Grinda](/o/grinda) är en av Stockholms skärgårds mest omtyckta öar — och med rätta. Naturreservat sedan 1968, bilfri, med ett välskött värdshus och en gästhamn som tar emot seglare från hela Östersjön. Den här guiden är allt du behöver för ett besök 2026.
+
+## Hur du tar dig till Grinda
+
+**Direktbåt från Strömkajen** med Waxholmsbåtarna — ca 1 timme 20 min. Sommartid går det flera avgångar per dag; se waxholmsbolaget.se för tidtabell.
+
+**Med segelbåt** — Grinda är ett populärt stopp längs den klassiska Stockholms skärgårdsrutten. Gästhamnen tar emot upp till 200 båtar.
+
+## Grinda Wärdshus
+
+Värdshuset är öns hjärta. Byggt i traditionell skärgårdsarkitektur med rödfärgade trävillor mot skogen, uteservering mot havet och rum med sjöutsikt.
+
+**Restaurangen** serverar lokalt och säsongsanpassat — torghandlad fisk, bär plockade på ön och brännvinsnuanser som passar maten. Boka bord i förväg för kvällsmaten; utflyktsgrupper och seglare konkurrerar om platserna.
+
+**Övernattning** — Dubbelrum från ~1 400 kr/natt. Boka på grinda.se. Högsäsong (juli) fylls på månader i förväg.
+
+**Uteserveringen** — Öppet för lunch och middag utan bokning. Kom tidigt på helger.
+
+---
+
+## Stränderna
+
+Grinda har tre godkända bad-ställen:
+
+**Södra bryggan** — En klippstrand med solbad och direkt tillgång från Waxholmsbåtens brygga.
+
+**Grindaviken** — En vik på öns södra sida med fin badplats och lugn vattenyta.
+
+**Naturreservat-leden** — Tar dig runt ön och förbi badplatser längs östra sidan.
+
+## Gästhamnen
+
+Grinda gästhamn är välskött med dusch, toalett, el och vatten vid bryggorna. Plats för ca 150–200 båtar.
+
+**Boka i förväg** via marinadata.se eller via Grinda Wärdshus hemsida. Helgveckor i juli är fullbelagda – ring/boka minst en vecka i förväg.
+
+Avgiften 2026: ~180–220 kr/natt för en standardbåt, inkl. el.
+
+## Aktiviteter på Grinda
+
+- **Vandring** — Runt hela ön ca 4 km längs välskötta stigar
+- **Kayak** — Uthyrning finns på ön sommartid
+- **Fiske** — Abborre och gädda i vikarna, havsöring längs ytterklipporna
+- **Svampplockning** — Höst (sept–okt) när turisterna är borta
+
+## Bra att veta
+
+Grinda är ett naturreservat. Det innebär att du inte får tälta utanför anvisade platser, plocka blommor eller köra motorbåt i höghastighet längs stränderna. Respektera djurlivet — öns fågelstam är rik och höjden av häckning sammanfaller med högsäsongen.
+
+Grinda med barn: barnvänlig, plana gångvägar, varm och lugn vattenyta vid södra bryggan. Perfekt för familjer med barn under tio år.
+   `,
+   faqs: [
+     { q: 'Hur lång är båtresan till Grinda från Stockholm?', a: 'Direktbåten från Strömkajen med Waxholmsbåten tar ca 1 timme 20 minuter. Sommartid går det flera avgångar per dag.' },
+     { q: 'Kan man övernatta på Grinda?', a: 'Ja. Grinda Wärdshus har rum från ~1 400 kr/natt. Gästhamnen tar emot båtar till ~200 kr/natt. Boka i god tid — högsäsong fyller på fort.' },
+     { q: 'Är Grinda lämplig för barnfamiljer?', a: 'Absolut. Grinda är bilfri, har lugna badplatser, plana gångvägar och ett barnvänligt värdshus. En av de bästa öarna i Stockholms skärgård för familjer med barn.' },
+   ],
+ },
+
+ 'basta-utflykter-skargard-2026': {
+   title: 'De 12 bästa utflykterna i Stockholms skärgård 2026',
+   excerpt: 'Från 25-minutersdagsturen till Fjäderholmarna till weekendäventyret på Sandhamn — tolv utflykter i Stockholms skärgård rangordnade efter tid, svårighetsgrad och upplevelse.',
+   category: 'Inspiration',
+   date: '2026-07-28',
+   readTime: '10 min',
+   emoji: '🗺️',
+   tags: ['Utflykter', 'Tips', 'Stockholm', '2026', 'Inspiration'],
+   content: `
+Stockholms skärgård är 30 000 öar. Det kan verka överväldigande. Den här guiden rangordnar de tolv bästa utflykterna — kortaste till längst, enklaste till mest äventyrliga — så att du kan välja rätt nivå för just din dag.
+
+## Snabbguide: Välj rätt utflykt
+
+| Utflykt | Tid | Svårighet | Kostnad |
+|---------|-----|-----------|---------|
+| Fjäderholmarna | 3–4 timmar | ⬜ Enkel | Låg |
+| Vaxholm | 1 dag | ⬜ Enkel | Låg |
+| Grinda | 1 dag | ⬜ Enkel | Medel |
+| Möja | 1 dag | 🟦 Medel | Medel |
+| Sandhamn | 1–2 dagar | 🟦 Medel | Hög |
+| Utö | 1–2 dagar | 🟦 Medel | Medel |
+
+---
+
+## 1. Fjäderholmarna – 25 minuter från Stockholm
+
+Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 minuter med Waxholmsbåten från Strömkajen. Kaféer, hantverk, utsikt tillbaka mot Stockholm. Perfekt för en förmiddag eller en kvällstur med sällskap som aldrig sett skärgården.
+
+**Res dit:** Waxholmsbåten från Strömkajen, avgår var 30:e minut sommartid.
+
+## 2. Vaxholm – stad och fästning
+
+[Vaxholm](/o/vaxholm) är ingen ö i traditionell mening — det är en stad som råkar ligga omgiven av vatten. Stenhusen vid hamnen, Vaxholms fästning på sin lilla klippö, och den bästa räksmörgåsen i skärgården. En komplett dagsutflykt.
+
+**Res dit:** Waxholmsbåten från Strömkajen, ca 55 minuter. Alternativt buss 676 från Tekniska Högskolan.
+
+## 3. Grinda – naturreservat och värdshus
+
+[Grinda](/o/grinda) kallas skärgårdens hjärta. Direktbåt (1h 20min), Grinda Wärdshus för lunch och en promenad runt ön på 4 km. En perfekt heldagsutflykt för den som vill ha natur och mat i kombination.
+
+## 4. Möja – bilfri ö med äkta karaktär
+
+[Möja](/o/moja) är annorlunda. Bilfri, kuperad och med tre byar sammanbundna av byvägar som knappt finns på Google Maps. Waxholmsbåten dit (ca 1h 45 min), ett café och en dag av genuint skärgårdsliv.
+
+## 5. Sandhamn – seglarnas ö
+
+[Sandhamn](/o/sandhamn) är skärgårdens mest kända destination. Snabbåt från Stavsnäs (40 min) eller Waxholmsbåt från Strömkajen (2,5 h). Restauranger, Trouville-strand och en hamn fylld med segelbåtar. Boka boende tidigt om du stannar.
+
+---
+
+## 6. Utö – sandstrand och cykel
+
+[Utö](/o/uto) är unik med sin sandstrand (Alsvik) och cykelleder. Nås med pendeltåg till Nynäshamn + båt (ca 1 timme). En av de bästa dagar du kan ha i Stockholms skärgård.
+
+## 7. Ornö – vandring och vildmark
+
+[Ornö](/o/orno) är för den som vill ha riktig natur. Bil krävs (vägfärja från Nynäshamn), men belöningen är en av skärgårdens bäst bevarade öar med runt-öled och total lugn.
+
+## 8. Bullerö naturreservat – klippor och frihet
+
+[Bullerö](/o/bullero) nås bara med båt och har ingen fast service. Charter eller privat båt, med tält och matsäck. En av Stockholms skärgårds vackraste öar för den som vill vara ifred.
+
+## 9. Fjärdlång – yttre skärgårdens stillhet
+
+En av de öar i yttre skärgården som fortfarande är relativt okänd. Charter- eller privat båt. Nakna klippor, havsluft och utsikt mot Östersjön.
+
+## 10. Gällnö naturreservat – vandring och paddling
+
+Norra Stockholms skärgård med markerade vandringsleder och möjlighet att hyra kajak i närheten. Kombinera vandring och paddling för en aktiv dag.
+
+## 11. Möja + Sandhamn kombinationstur
+
+Erfarna skärgårdsfarare gör gärna kombinationen: Möja på förmiddagen, med båt vidare till Sandhamn för middag och övernattning. Kräver planering men ger en bred bild av skärgårdens variation.
+
+## 12. Segelbåtsdag i yttre skärgården
+
+Det ultimate skärgårdsäventyret: chartra en segelbåt (med eller utan skeppare) och tillbringa en dag under segel i yttre skärgården. Erfarenhet rekommenderas men är inte obligatoriskt med skeppare ombord.
+
+## Boktips för sommaren 2026
+
+Boka Sandhamn och Grinda tidigt — helst i mars–april för sommarveckor. Fjäderholmarna och Vaxholm kräver ingen bokning. För de mer avlägsna öarna: ta med allt du behöver, informera någon om var du ska och planera för eventuellt dåligt väder.
+   `,
+   faqs: [
+     { q: 'Vilken är den bästa utflykten i Stockholms skärgård för nybörjare?', a: 'Fjäderholmarna är den enklaste introduktionen — 25 minuter med båt, inga bil och en rolig halvdag. Nästa steg är Vaxholm eller Grinda.' },
+     { q: 'Kan man åka till skärgårdsöarna utan bil?', a: 'Ja. De flesta populära öarna nås med Waxholmsbåtarna direkt från Strömkajen i Stockholm. Utö nås med pendeltåg till Nynäshamn + byte till båt.' },
+     { q: 'Vilken tid på året är bäst för skärgårdsutflykter?', a: 'Högsäsongen är juli, men maj–juni och september är bättre för de som vill undvika trängseln. All naturupplevelse finns kvar — men köerna vid bryggorna försvinner.' },
+   ],
+ },
 }
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
@@ -1525,6 +2072,32 @@ export function generateStaticParams() {
 
 // ─── Simple markdown-ish renderer ────────────────────────────────────────────
 
+/** Parses inline **bold** and [text](url) within a string */
+function parseInline(text: string, keyPrefix: string): React.ReactNode[] {
+ // Split on markdown links first
+ const linkChunks = text.split(/(\[[^\]]+\]\([^)]+\))/g)
+ const nodes: React.ReactNode[] = []
+ linkChunks.forEach((chunk, ci) => {
+  const linkMatch = chunk.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+  if (linkMatch) {
+   nodes.push(
+    <a key={`${keyPrefix}-l${ci}`} href={linkMatch[2]}
+     style={{ color: 'var(--sea)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+     {linkMatch[1]}
+    </a>
+   )
+  } else {
+   // Handle **bold** within plain text
+   const boldParts = chunk.split(/\*\*(.*?)\*\*/g)
+   boldParts.forEach((bp, bi) => {
+    if (bi % 2 === 1) nodes.push(<strong key={`${keyPrefix}-b${ci}-${bi}`} style={{ color: 'var(--txt)' }}>{bp}</strong>)
+    else if (bp) nodes.push(bp)
+   })
+  }
+ })
+ return nodes
+}
+
 function renderContent(content: string) {
  const lines = content.trim().split('\n')
  const elements: React.ReactNode[] = []
@@ -1536,13 +2109,13 @@ function renderContent(content: string) {
  if (line.startsWith('## ')) {
  elements.push(
  <h2 key={key++} style={{ color: 'var(--txt)', fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 12 }}>
- {line.slice(3)}
+ {parseInline(line.slice(3), `h2-${key}`)}
  </h2>
  )
  } else if (line.startsWith('### ')) {
  elements.push(
  <h3 key={key++} style={{ color: 'var(--sea)', fontSize: 16, fontWeight: 700, marginTop: 24, marginBottom: 8 }}>
- {line.slice(4)}
+ {parseInline(line.slice(4), `h3-${key}`)}
  </h3>
  )
  } else if (line.startsWith('**') && line.endsWith('**')) {
@@ -1554,7 +2127,7 @@ function renderContent(content: string) {
  } else if (line.startsWith('- ')) {
  elements.push(
  <li key={key++} style={{ marginBottom: 6, marginLeft: 20, color: 'var(--txt2)' }}>
- {line.slice(2).replace(/\*\*(.*?)\*\*/g, '$1')}
+ {parseInline(line.slice(2), `li-${key}`)}
  </li>
  )
  } else if (line.startsWith('| ') && line.includes('|')) {
@@ -1576,13 +2149,10 @@ function renderContent(content: string) {
  } else if (line.trim() === '') {
  // skip empty lines
  } else {
- // Regular paragraph – handle bold inline
- const parts = line.split(/\*\*(.*?)\*\*/g)
+ // Regular paragraph – handle bold + links inline
  elements.push(
  <p key={key++} style={{ margin: '10px 0', color: 'var(--txt2)', lineHeight: 1.75 }}>
- {parts.map((part, pi) =>
- pi % 2 === 1 ? <strong key={pi} style={{ color: 'var(--txt)' }}>{part}</strong> : part
- )}
+ {parseInline(line, `p-${key}`)}
  </p>
  )
  }
@@ -1730,9 +2300,18 @@ export default async function BloggPostPage({
  <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
  <SvallaLogo height={24} color="#ffffff" />
  </Link>
- <Link href="/blogg" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, textDecoration: 'none' }}>
- ← Bloggen
- </Link>
+ <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+   <Link href="/blogg" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, textDecoration: 'none' }}>
+     ← Bloggen
+   </Link>
+   <Link href="/nyhetsbrev" style={{
+     color: '#fff', fontSize: 12, fontWeight: 700, textDecoration: 'none',
+     background: 'rgba(255,255,255,0.18)', borderRadius: 20,
+     padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
+   }}>
+     ✉ Nyhetsbrev
+   </Link>
+ </div>
  </div>
  <div style={{ display: 'flex', gap: 10, marginTop: 16, marginBottom: 12, flexWrap: 'wrap' }}>
  <span style={{
@@ -1770,7 +2349,34 @@ export default async function BloggPostPage({
  boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
  fontSize: 15,
  }}>
- {renderContent(post.content)}
+ {(() => {
+   // Klyv vid första --- för mid-article email capture
+   const dividerIdx = post.content.indexOf('\n---\n')
+   if (dividerIdx === -1) return renderContent(post.content)
+   const firstHalf = post.content.slice(0, dividerIdx)
+   const secondHalf = post.content.slice(dividerIdx + 5)
+   return (
+     <>
+       {renderContent(firstHalf)}
+       <div style={{
+         margin: '32px 0',
+         background: 'linear-gradient(135deg, rgba(30,92,130,0.06) 0%, rgba(45,125,138,0.06) 100%)',
+         borderRadius: 14,
+         padding: '20px 22px',
+         border: '1px solid rgba(30,92,130,0.10)',
+       }}>
+         <EmailSignup
+           variant="inline"
+           source={`blogg-${slug}-mid`}
+           title="Häng med i skärgårdsvärlden"
+           description="Insider-tips och öppna öar — varannan tisdag. 2 mail i månaden, helt gratis."
+           buttonLabel="Prenumerera gratis"
+         />
+       </div>
+       {renderContent(secondHalf)}
+     </>
+   )
+ })()}
  </article>
 
  {/* Tags */}
@@ -1830,18 +2436,63 @@ export default async function BloggPostPage({
    </div>
  )}
 
- {/* Newsletter */}
- <div style={{ marginTop: 40 }}>
+ {/* Newsletter — kontextuell CTA */}
+ <div style={{
+   marginTop: 44,
+   borderTop: '2px solid rgba(30,92,130,0.10)',
+   paddingTop: 36,
+ }}>
+   <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textTransform: 'uppercase', letterSpacing: '0.8px', margin: '0 0 10px' }}>
+     Gillade du den här artikeln?
+   </p>
+   <h3 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', margin: '0 0 10px', lineHeight: 1.3 }}>
+     Fler guider likt denna, varannan tisdag
+   </h3>
+   <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7, margin: '0 0 22px', maxWidth: 480 }}>
+     Vi skriver om Stockholms skärgård — öppna öar, öppettider och insider-tips du inte hittar på TripAdvisor. Inga annonser. Inga länklistor. Bara skärgård.
+   </p>
    <EmailSignup
-     source="blogg-article"
-     variant="card"
-     title="Få veckans skärgårdstips"
-     description="Guider, öppna öar och tips — direkt i inkorgen. 2 mail i månaden."
+     source={`blogg-${slug}-bottom`}
+     variant="inline"
+     title=""
+     description=""
+     buttonLabel="Skriv upp mig gratis →"
    />
+   <p style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 10 }}>
+     Avregistrera dig när du vill. <a href="/nyhetsbrev" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Se ett smakprov →</a>
+   </p>
+ </div>
+
+ {/* Dela-knappar */}
+ <div style={{ marginTop: 32, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+   <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Dela:</span>
+   <a
+     href={`https://wa.me/?text=${encodeURIComponent(`${post.title} – svalla.se/blogg/${slug}`)}`}
+     target="_blank" rel="noopener noreferrer"
+     style={{
+       display: 'inline-flex', alignItems: 'center', gap: 6,
+       padding: '8px 14px', borderRadius: 20, textDecoration: 'none',
+       background: '#25d366', color: '#fff', fontSize: 13, fontWeight: 700,
+     }}
+   >
+     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.106 1.523 5.836L0 24l6.335-1.499A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.877 9.877 0 01-5.031-1.375l-.361-.214-3.741.885.924-3.641-.235-.374A9.86 9.86 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106c5.42 0 9.894 4.474 9.894 9.894 0 5.42-4.474 9.894-9.894 9.894z"/></svg>
+     WhatsApp
+   </a>
+   <button
+     onClick={() => { navigator.clipboard?.writeText(`svalla.se/blogg/${slug}`); }}
+     style={{
+       display: 'inline-flex', alignItems: 'center', gap: 6,
+       padding: '8px 14px', borderRadius: 20, cursor: 'pointer',
+       background: 'rgba(30,92,130,0.08)', color: 'var(--sea)',
+       border: '1.5px solid rgba(30,92,130,0.18)', fontSize: 13, fontWeight: 700,
+     }}
+   >
+     📋 Kopiera länk
+   </button>
  </div>
 
  {/* Back + CTA */}
- <div style={{ display: 'flex', gap: 12, marginTop: 32, flexWrap: 'wrap' }}>
+ <div style={{ display: 'flex', gap: 12, marginTop: 20, flexWrap: 'wrap' }}>
  <Link href="/blogg" style={{
  padding: '12px 24px', background: 'var(--white)', color: 'var(--sea)',
  borderRadius: 20, fontWeight: 700, fontSize: 14, textDecoration: 'none',
