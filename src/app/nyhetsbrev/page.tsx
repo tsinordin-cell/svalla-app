@@ -4,7 +4,7 @@ import EmailSignup from '@/components/EmailSignup'
 
 export const metadata: Metadata = {
   title: 'Svallanyheter – prenumerera på skärgårdsnyhetsbrevet | Svalla',
-  description: 'Varannan tisdag: öppna öar, insidertips och säsongsguider direkt i inkorgen. Skrivet av Max & Thomas på Svalla. Gratis.',
+  description: 'Varannan tisdag: öppna öar, insidertips och säsongsguider direkt i inkorgen. Gratis, inga annonser.',
   alternates: { canonical: 'https://svalla.se/nyhetsbrev' },
 }
 
@@ -14,7 +14,7 @@ const SAMPLE = {
   body: [
     'De flesta stänger ner skärgårdsplanerna runt midsommar. Bokat klart, gjort det.',
     'Det är ett misstag.',
-    'September är den månad vi på Svalla helst hade hållit hemlig – för oss själva. Vattentemperaturen är fortfarande 17–19 grader. Gästhamnarna har plats. Restaurangerna tar emot dig utan 45 minuters väntetid. Och ljuset är ett helt annat – varmare, lägre, längre.',
+    'September är den månaden vi helst hade hållit hemlig. Vattentemperaturen är fortfarande 17–19 grader. Gästhamnarna har plats. Restaurangerna tar emot dig utan 45 minuters väntetid. Ljuset är lägre, varmare och längre än det någonsin är i juli.',
   ],
   island: {
     name: 'Möja',
@@ -26,10 +26,10 @@ const SAMPLE = {
 }
 
 const FEATURES = [
-  { icon: '🗓', label: 'Varannan tisdag', desc: 'Kl. 08:00, när du dricker morgonkaffet.' },
-  { icon: '📍', label: 'En ö per utgåva', desc: 'Konkret rekommendation med ett specifikt tips du kan använda direkt.' },
-  { icon: '🔍', label: 'Insider-perspektiv', desc: 'Vi bor i och runt skärgården. Du får tipsen som inte syns på TripAdvisor.' },
-  { icon: '✉️', label: '2 mail i månaden', desc: 'Aldrig mer. Aldrig en länklista. Alltid läsvärt.' },
+  { icon: '🗓', label: 'Varannan tisdag', desc: 'Kl. 08:00. Kort, konkret, läsvärt på fem minuter.' },
+  { icon: '📍', label: 'En ö per utgåva', desc: 'Vilken ö som är i säsong just nu — med ett specifikt tips du kan använda direkt.' },
+  { icon: '🔍', label: 'Inte turistguide', desc: 'Saker som faktiskt stämmer: öppettider, hur det ser ut i september, vad som är överskatttat.' },
+  { icon: '✉️', label: 'Aldrig mer än 2', desc: 'Inga länklistor. Inga reklamdrivna topplistor. Bara det som är värt att läsa.' },
 ]
 
 export default function NyhetsbrevPage() {
@@ -50,7 +50,7 @@ export default function NyhetsbrevPage() {
             Skärgårdsnyhetsbrevet du faktiskt vill läsa
           </h1>
           <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.8)', margin: '0 0 36px', lineHeight: 1.6, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto' }}>
-            Varannan tisdag: öppna öar, insidertips och säsongsguider — skrivet av Max & Thomas. Ingen spam. Inga annonser. Bara skärgård.
+            Varannan tisdag: vilka öar som är öppna, vad som är värt att besöka och tips du inte hittar någon annanstans. Gratis, inga annonser.
           </p>
           <div style={{ maxWidth: 440, margin: '0 auto' }}>
             <EmailSignup
@@ -108,7 +108,7 @@ export default function NyhetsbrevPage() {
         }}>
           {/* Email header */}
           <div style={{ background: '#f7f9fb', borderBottom: '1px solid rgba(0,0,0,0.06)', padding: '14px 20px' }}>
-            <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 4 }}>Från: Max &amp; Thomas på Svalla &lt;hej@svalla.se&gt;</div>
+            <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 4 }}>Från: Svalla &lt;hej@svalla.se&gt;</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>✉ {SAMPLE.subject}</div>
           </div>
 
@@ -138,8 +138,7 @@ export default function NyhetsbrevPage() {
             </p>
 
             <p style={{ fontSize: 14, color: 'var(--txt2)', marginTop: 24, lineHeight: 1.7 }}>
-              Vi ses på havet,<br />
-              <strong>/ Max &amp; Thomas på Svalla</strong>
+              Vi ses därute.
             </p>
           </div>
         </div>
