@@ -356,6 +356,30 @@ export default async function IslandPage({ params }: Props) {
   </svg>
   Forum
  </Link>
+ <Link
+  href="/nyhetsbrev"
+  style={{
+   display: 'inline-flex',
+   alignItems: 'center',
+   gap: 7,
+   padding: '9px 16px',
+   background: 'rgba(255,255,255,0.92)',
+   color: '#0d3f5a',
+   borderRadius: 50,
+   textDecoration: 'none',
+   fontSize: 13,
+   fontWeight: 700,
+   border: '1px solid rgba(255,255,255,0.6)',
+   backdropFilter: 'blur(4px)',
+   whiteSpace: 'nowrap',
+  }}
+ >
+  <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+   <rect x="2" y="4" width="20" height="16" rx="2"/>
+   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+  </svg>
+  Nyhetsbrev
+ </Link>
  </div>
 
  {/* Quick facts */}
