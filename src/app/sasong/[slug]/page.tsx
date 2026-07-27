@@ -17,6 +17,7 @@ import { SEASONS, getSeason } from '../sasong-data'
 import { ALL_ISLANDS } from '../../o/island-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import EmailSignup from '@/components/EmailSignup'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -264,6 +265,29 @@ export default async function SasongPage({ params }: Props) {
               </div>
             </section>
           )}
+
+          {/* Newsletter CTA */}
+          <div style={{
+            background: 'linear-gradient(135deg, #0d3f5a 0%, #1a5f7a 100%)',
+            borderRadius: 20,
+            padding: '28px 24px',
+            marginBottom: 24,
+          }}>
+            <div style={{ fontSize: 22, marginBottom: 8 }}>{season.emoji}</div>
+            <h3 style={{ fontSize: 18, fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>
+              Få {season.name.toLowerCase()}ens bästa tips i inkorgen
+            </h3>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', margin: '0 0 20px', lineHeight: 1.55 }}>
+              Varannan tisdag: öppna öar, insider-tips och säsongsguider — direkt från Max & Thomas. Gratis, inga annonser.
+            </p>
+            <EmailSignup
+              variant="footer"
+              source={`sasong-${slug}`}
+              title=""
+              description=""
+              buttonLabel="Prenumerera gratis →"
+            />
+          </div>
 
           {/* Activity recommendations */}
           {season.recommendedActivities.length > 0 && (
