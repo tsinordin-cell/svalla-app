@@ -77,26 +77,31 @@ export default function ShareButton({ title, description, url, surface = 'place'
         aria-label={`Dela ${title}`}
         title="Dela"
         style={{
-          width: 44, height: 44,
-          borderRadius: '50%',
-          border: 'none',
-          background: 'transparent',
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          gap: 7,
+          padding: '9px 16px',
+          background: 'rgba(255,255,255,0.15)',
+          color: '#fff',
+          borderRadius: 50,
+          border: '1px solid rgba(255,255,255,0.25)',
+          backdropFilter: 'blur(4px)',
+          fontSize: 13,
+          fontWeight: 600,
           cursor: 'pointer',
-          padding: 0,
-          transition: 'transform 120ms ease',
-          transform: pressed ? 'scale(0.92)' : 'scale(1)',
+          whiteSpace: 'nowrap',
+          transition: 'opacity 120ms ease',
+          opacity: pressed ? 0.75 : 1,
         }}
       >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-          stroke="var(--sea, #1e5c82)" strokeWidth={2.2}
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none"
+          stroke="currentColor" strokeWidth={2.2}
           strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
           <polyline points="16 6 12 2 8 6"/>
           <line x1="12" y1="2" x2="12" y2="15"/>
         </svg>
+        Dela
       </button>
 
       {/* Toast — fixed bottom center, fade in/out */}
