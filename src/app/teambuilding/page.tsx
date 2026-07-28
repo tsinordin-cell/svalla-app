@@ -6,7 +6,7 @@ import { TEAMBUILDING_SUBS } from './teambuilding-data'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Teambuilding i skärgården – aktiviteter, regatta och konferens | Svalla',
+  title: { absolute: 'Teambuilding i skärgården – aktiviteter, regatta och konferens | Svalla' },
   description: 'Hitta det bästa teambuilding-eventet i skärgården. Segelregatta, kajak, konferensanläggningar och AW på öarna i Stockholm och Göteborg.',
   keywords: [
     'teambuilding skärgården',

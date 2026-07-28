@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Annonsera och samarbeta med Svalla – mediakit 2026',
+  title: { absolute: 'Annonsera och samarbeta med Svalla – mediakit 2026' },
   description: 'Nå skärgårds- och kustintresserade resenärer via Svalla. Nyhetsbrevssponsorskap, redaktionella samarbeten och destinationspartnerskap. Kontakta oss för offert.',
   alternates: { canonical: 'https://svalla.se/partner-sida' },
   robots: { index: true, follow: true },

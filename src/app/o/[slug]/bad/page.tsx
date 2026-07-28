@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: `Bästa badplatser på ${island.name} 2026 | Svalla`,
+    title: { absolute: `Bästa badplatser på ${island.name} 2026 | Svalla` },
     description: `Var badar man på ${island.name}? Klippbad, sandstränder och dolda badvikar — komplett guide med tips om hur du hittar dit.`,
     keywords: [
       `bada på ${island.name.toLowerCase()}`,

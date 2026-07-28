@@ -11,9 +11,9 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
-  if (!island) return { title: 'Forum — Svalla' }
+  if (!island) return { title: { absolute: 'Forum — Svalla' } }
   return {
-    title: `Forum om ${island.name} — Svalla`,
+    title: { absolute: `Forum om ${island.name} — Svalla` },
     description: `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`,
   }
 }
