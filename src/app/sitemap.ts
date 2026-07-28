@@ -455,7 +455,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Om Supabase inte svarar — returnera ändå resten av sitemap
   }
 
-  return [
+  // Deduplicera på URL innan sitemap returneras.
+  //
+  // Varför: restaurants.slug har dubbletter i Supabase (grebbestad, fjallbacka,
+  // hamburgsund-gasthamn). platsPages bygger `/upptack/${r.slug || r.id}` vilket
+  // därför genererar samma URL två gånger → GSC rapporterar duplicate.
+  // Samma sak kan uppstå om en slug råkar krocka med en statisk sida.
+  //
+  // Detta löser symptomet i sitemap. Grundorsaken (dubbla rader i databasen)
+  // åtgärdas separat med scripts/FIX_2026_07_24_restaurants_slug_dubbletter.sql.
+  // Dedupliceringen är ofarlig att behålla även efter att databasen är städad —
+  // den fungerar då som skydd mot att problemet återuppstår.
+  const dedupeByUrl = (entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap => {
+    const seen = new Set<string>()
+    return entries.filter((e) => {
+      const url = typeof e.url === 'string' ? e.url : String(e.url)
+      if (seen.has(url)) return false
+      seen.add(url)
+      return true
+    })
+  }
+
+  return dedupeByUrl([
     ...staticPages,
     ...transportIndex,
     ...transportPages,
@@ -480,5 +501,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...planeraPages,
     ...forumCatPages,
     ...forumThreadPages,
-  ]
+  ])
 }
