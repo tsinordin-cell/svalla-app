@@ -8,7 +8,7 @@ import Icon from '@/components/Icon'
 import IslandWeather from '@/components/IslandWeather'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Planera din skärgårdsrutt — Svalla' },
+  title: 'Planera din skärgårdsrutt',
   description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt — krogar, bastun, bryggor och naturupplevelser.',
   openGraph: {
     title: 'Planera din skärgårdsrutt — Svalla',

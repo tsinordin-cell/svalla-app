@@ -3,7 +3,7 @@ import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Svallanyheter – prenumerera på skärgårdsnyhetsbrevet | Svalla' },
+  title: 'Svallanyheter – prenumerera på skärgårdsnyhetsbrevet',
   description: 'Varannan tisdag: öppna öar, insidertips och säsongsguider direkt i inkorgen. Gratis, inga annonser.',
   alternates: { canonical: 'https://svalla.se/nyhetsbrev' },
 }

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return { title: { absolute: 'Forum — Svalla' } }
   return {
-    title: { absolute: `Forum om ${island.name} — Svalla` },
+    title: `Forum om ${island.name}`,
     description: `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`,
   }
 }

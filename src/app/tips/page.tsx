@@ -4,7 +4,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { listPublishedArticles } from '@/lib/articles'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Sthlmare tipsar — Svalla' },
+  title: 'Sthlmare tipsar',
   description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård. Var du äter, bor, badar och lägger till.',
   keywords: ['skärgård guide', 'stockholms skärgård tips', 'sthlmare tipsar', 'skärgård artiklar'],
   openGraph: {

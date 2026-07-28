@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: { absolute: `Hur tar man sig till ${island.name}? — Båt, buss, färja 2026 | Svalla` },
+    title: `Hur tar man sig till ${island.name}? — Båt, buss, färja 2026`,
     description: `Allt om transport till ${island.name}: Waxholmsbolaget, Cinderellabåten, SL eller bil. Avgångstider, priser och tips för ${island.facts.travel_time}.`,
     keywords: [
       `hur tar man sig till ${island.name.toLowerCase()}`,

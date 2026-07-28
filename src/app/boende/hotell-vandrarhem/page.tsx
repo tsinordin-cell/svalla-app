@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Hotell och vandrarhem i skärgården | Bo nära havet | Svalla' },
+  title: 'Hotell och vandrarhem i skärgården | Bo nära havet',
   description: 'Hitta hotell, värdshus och vandrarhem i skärgården för weekend, kortsemester och övernattning nära havet.',
   keywords: ['hotell skärgård', 'vandrarhem skärgård', 'värdshus skärgården', 'bo skärgård weekend', 'hotell sandhamn', 'hotell utö'],
   alternates: { canonical: 'https://svalla.se/boende/hotell-vandrarhem' },

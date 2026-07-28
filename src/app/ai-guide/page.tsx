@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Thorkel – AI-planeraren för skärgården | Svalla' },
+  title: 'Thorkel – AI-planeraren för skärgården',
   description: 'Planera din perfekta skärgårdsdag med AI. Thorkel hittar rätt ö, rätt båt och rätt restaurang på sekunder — inklusive Waxholmsbolagets tidtabeller. Ingen båt krävs.',
   keywords: [
     'ai planerare skärgård',

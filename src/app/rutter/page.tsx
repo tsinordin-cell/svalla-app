@@ -57,7 +57,7 @@ const ISLAND_SECTIONS = [
 const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))
 
 export const metadata: Metadata = {
-  title: { absolute: 'Rutter – Svalla' },
+  title: 'Rutter',
   description: 'Utforska kurerade skärgårdsrutter för motorbåt, segelbåt, kajak och mer. Hitta rätt rutt för din tur.',
   alternates: { canonical: 'https://svalla.se/rutter' },
   openGraph: {

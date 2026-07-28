@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Naturhamnar i Stockholms skärgård — Ankringsguide | Svalla' },
+  title: 'Naturhamnar i Stockholms skärgård — Ankringsguide',
   description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler — djupinfo, bottenbeskrivning och vindskydd för varje ankringsplats. Gratis ankring via allemansrätten.',
   keywords: [
     'naturhamnar stockholms skärgård',

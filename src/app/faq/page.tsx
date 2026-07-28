@@ -3,7 +3,7 @@ import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Vanliga frågor – Svalla' },
+  title: 'Vanliga frågor',
   description: 'Svar på de vanligaste frågorna om Svalla – appen för Stockholms skärgård. Hitta krogar, planera turer och logga dina äventyr.',
   keywords: ['svalla faq', 'stockholms skärgård app', 'skärgårdskarta', 'hitta krogar skärgård', 'logga båttur'],
   openGraph: {

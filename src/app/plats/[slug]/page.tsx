@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
  const desc = data.core_experience || (data.description?.slice(0, 155) ?? '')
  return {
- title: { absolute: `${data.name} – Svalla` },
+ title: `${data.name}`,
  description: desc,
  openGraph: {
  title: `${data.name} – Svalla`,

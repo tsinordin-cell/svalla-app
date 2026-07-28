@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { CATEGORIES, REGIONS, getPlacesForRegionCategory } from '@/components/RegionCategoryPage'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Göteborgs skärgård 2026 — krogar, hamnar, sjömackar — Svalla' },
+  title: 'Göteborgs skärgård 2026 — krogar, hamnar, sjömackar',
   description: 'Komplett guide till Göteborgs skärgård. Krogar, gästhamnar, sjömackar och bastu på Brännö, Donsö, Vrångö, Styrsö, Hönö och Öckerö.',
   alternates: { canonical: 'https://svalla.se/goteborg' },
 }

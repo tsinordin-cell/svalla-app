@@ -3,7 +3,7 @@ import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Integritetspolicy – Svalla' },
+  title: 'Integritetspolicy',
   description: 'Hur Svalla hanterar dina personuppgifter i enlighet med GDPR.',
   alternates: { canonical: 'https://svalla.se/integritetspolicy' },
 }

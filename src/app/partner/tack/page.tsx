@@ -3,7 +3,7 @@ import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Tack — du är nu partner | Svalla' },
+  title: 'Tack — du är nu partner',
   description: 'Tack för att du blev Svalla-partner. Vi hör av oss inom 24 timmar.',
   robots: { index: false, follow: false },
 }

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const trip = getTrip(slug)
   if (!trip) return {}
   return {
-    title: { absolute: `${trip.title} – Svalla` },
+    title: `${trip.title}`,
     description: trip.tagline,
     alternates: { canonical: `https://svalla.se/resetips/${slug}` },
     openGraph: {

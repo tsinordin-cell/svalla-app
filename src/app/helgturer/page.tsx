@@ -12,7 +12,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Helgturer i skärgården – Svalla' },
+  title: 'Helgturer i skärgården',
   description: 'Inspiration och planering för helgturer i Stockholms skärgård och längs svenska kusten. Lanseras snart.',
   robots: { index: false, follow: true },
 }

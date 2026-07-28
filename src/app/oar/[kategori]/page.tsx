@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cat) return {}
   const count = islandsForCategory(kategori).length
   return {
-    title: { absolute: `${cat.title} — ${count} öar | Svalla` },
+    title: `${cat.title} — ${count} öar`,
     description: cat.description,
     keywords: cat.searchTerms,
     alternates: { canonical: `https://svalla.se/oar/${cat.slug}` },

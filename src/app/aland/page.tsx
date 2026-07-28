@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: { absolute: 'Åland — Segla dit från Sverige, logga turen | Svalla' },
+ title: 'Åland — Segla dit från Sverige, logga turen',
  description: 'Seglingsguide till Åland: Mariehamn gästhamn, skärgårdshavets 6500 öar, Kökar & Föglö. Logga din rutt med GPS.',
  keywords: [
  'segla åland',

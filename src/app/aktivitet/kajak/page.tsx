@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna | Svalla' },
+  title: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
   description: 'Allt om kajakpaddling i skärgården: bästa öar, säkerhetstips, utrustning och uthyrning. Perfekt för nybörjare och erfarna paddlare.',
   keywords: [
     'kajak stockholms skärgård',

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: { absolute: 'Västerhavet — Segla Kattegatt & Skagerrak | Svalla' },
+ title: 'Västerhavet — Segla Kattegatt & Skagerrak',
  description: 'Utforska Västerhavet med Svalla. Logga båtturer i Kattegatt och Skagerrak med tidvatteninfo, vind och djupdata. Hitta gästhamnar, naturhamnar och kustrestauranger längs svenska västkusten.',
  keywords: [
  'västerhavet segla',

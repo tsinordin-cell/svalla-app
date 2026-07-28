@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: { absolute: 'Bohuslän — Segla västkusten, logga turer | Svalla' },
+ title: 'Bohuslän — Segla västkusten, logga turer',
  description: 'Bohuslän segling: hummerkrogar, Marstrand, Smögen, naturhamnar & gästhamnar. Logga turer med Svalla från Göteborg till norska gränsen.',
  keywords: [
  'bohuslän segla',

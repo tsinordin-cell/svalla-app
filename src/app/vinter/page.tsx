@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Skärgården på vintern — Julkryssning & Vinterguide | Svalla' },
+  title: 'Skärgården på vintern — Julkryssning & Vinterguide',
   description: 'Vinterskärgårdens magi — julkryssningar, isvandring och skärgårdsmat framför öppen spis. Guide till skärgården december, januari och februari.',
   keywords: ['skärgården vinter','julkryssning skärgård','skärgård december','vinter stockholm skärgård','påskkryssning skärgård','isvandring skärgård','vinter fjäderholmarna'],
   alternates: { canonical: 'https://svalla.se/vinter' },

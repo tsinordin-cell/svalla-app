@@ -10,7 +10,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Platsen kunde inte hittas — Svalla' },
+  title: 'Platsen kunde inte hittas',
   description: 'Den här platsen finns inte längre eller har bytt URL. Utforska andra hamnar, krogar och naturhamnar i skärgården.',
   robots: { index: false, follow: true },
 }

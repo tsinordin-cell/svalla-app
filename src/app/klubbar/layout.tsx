@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Segelsällskap och båtklubbar — Svalla' },
+  title: 'Segelsällskap och båtklubbar',
   description: 'Hitta segelsällskap och båtklubbar i din skärgård. Gå med i en flotta, organisera utflykter och träffa andra båtentusiaster.',
   alternates: { canonical: 'https://svalla.se/klubbar' },
   openGraph: {

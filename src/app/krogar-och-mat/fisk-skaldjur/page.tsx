@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Fisk och skaldjur i skärgården | Svalla' },
+  title: 'Fisk och skaldjur i skärgården',
   description: 'Fiskrökerier, räkförsäljning och skaldjursrestauranger i Stockholms skärgård. Rökt strömming, färska räkor och havskräftor — direkt från havet.',
   keywords: [
     'fisk skärgård',

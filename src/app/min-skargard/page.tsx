@@ -7,7 +7,7 @@ import { ISLAND_COORDS } from '@/lib/islandCoords'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Min skärgård | Svalla' },
+  title: 'Min skärgård',
   description: 'Dina sparade öar, dina besökta öar och nästa äventyr — allt på ett ställe.',
   robots: { index: false, follow: false },
 }

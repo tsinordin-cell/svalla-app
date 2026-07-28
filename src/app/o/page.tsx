@@ -5,7 +5,7 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Alla öar – Stockholms skärgård, Bohuslän, Göteborg, Gotland & mer | Svalla' },
+  title: 'Alla öar – Stockholms skärgård, Bohuslän, Göteborg, Gotland & mer',
   description: 'Utforska svenska öar: Stockholms skärgård, Bohuslän, Göteborg södra skärgård, Gotland, Öland och Höga Kusten. Guider, restauranger och praktisk info.',
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Populära turer i Stockholms skärgård — Svalla' },
+  title: 'Populära turer i Stockholms skärgård',
   description: 'Kurerade dagsturer, helgturer och fleradagsrutter i Stockholms skärgård. Från Strömkajen, Dalarö, Stavsnäs och Vaxholm.',
   keywords: [
     'skärgårdstur stockholm',

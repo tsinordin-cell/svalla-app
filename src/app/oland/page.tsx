@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Öland — Solön vid Östersjön | Svalla' },
+  title: 'Öland — Solön vid Östersjön',
   description: 'Guide till Öland: Borgholm slottsruin, Alvaret, Trollskogen, Långe Jan och Ölandsbron. Utforska Solön med bil, cykel och kollektivt.',
   keywords: [
     'öland guide',

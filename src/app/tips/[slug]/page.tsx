@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!a) return { title: { absolute: 'Artikel hittades inte — Svalla' } }
   const ogUrl = `https://svalla.se/api/og/tips/${a.slug}`
   return {
-    title: { absolute: `${a.title} — Svalla` },
+    title: `${a.title}`,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
     openGraph: {
       title: a.title,

@@ -8,7 +8,7 @@ import { DEPARTURES } from './utflykt-data'
 import UtflyktClient from './UtflyktClient'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Planera din utflykt — välj ö, få allt du behöver | Svalla' },
+  title: 'Planera din utflykt — välj ö, få allt du behöver',
   description: 'Smart utflyktsplanerare för skärgården. Välj startpunkt och ö — få restid, packlista, krogar och tips på en sida.',
   alternates: { canonical: 'https://svalla.se/utflykt' },
   openGraph: {

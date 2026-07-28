@@ -5,7 +5,7 @@ import ShareButton from '@/components/ShareButton'
 import PublicFooter from '@/components/PublicFooter'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema | Svalla' },
+  title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema',
   description: 'Kuraterade ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård – 2026.',
   alternates: { canonical: 'https://svalla.se/ostlistan' },
   openGraph: {

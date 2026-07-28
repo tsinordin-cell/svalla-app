@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 export const revalidate = 300   // uppdatera var 5:e minut
 
 export const metadata: Metadata = {
-  title: { absolute: 'Topplista – Svalla' },
+  title: 'Topplista',
   description: 'Veckans och alltidens bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
   openGraph: {
     title: 'Topplista – Svalla',

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: { absolute: 'Stockholms skärgård — Guide till öar, hamnar och segling 2026 | Svalla' },
+ title: 'Stockholms skärgård — Guide till öar, hamnar och segling 2026',
  description: 'Komplett guide till Stockholms skärgård 2026. Sandhamn, Utö, Vaxholm, Grinda, Möja — avstånd, färjetider, naturhamnar och seglingstips. 30 000 öar från innerskärgård till ytterskärgård.',
  keywords: [
  'stockholms skärgård',
