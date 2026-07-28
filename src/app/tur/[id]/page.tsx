@@ -48,6 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  return {
  title,
  description: desc,
+ alternates: { canonical: `https://svalla.se/tur/${id}` },
  openGraph: {
  title: `${title} – Svalla`,
  description: desc,

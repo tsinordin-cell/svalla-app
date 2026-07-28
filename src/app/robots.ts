@@ -5,7 +5,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/planera-tur'],
+        // '/planera/' (med slash) är längre än Disallow '/planera' och vinner
+        // därför enligt longest-match: publicerade, delbara rutter blir
+        // indexerbara medan själva planeringsverktyget /planera förblir blockerat.
+        allow: ['/', '/planera-tur', '/planera/'],
         disallow: [
           '/api/',
           '/profil',

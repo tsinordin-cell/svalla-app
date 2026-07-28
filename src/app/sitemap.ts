@@ -157,7 +157,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Statiska sidor ──────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
-    { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
+    // /platser borttagen — den är en ren redirect till /upptack (se
+    // src/app/platser/page.tsx). Redirect-URL:er i sitemap ger
+    // "Page with redirect" i GSC.
     { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
@@ -240,7 +242,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/oland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
-    { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
+    // /planera borttagen — den är Disallow i robots.ts (planeringsverktyget är
+    // interaktivt, inte indexerbart innehåll). Att ha den här gav
+    // "Submitted URL blocked by robots.txt" i GSC. Publicerade rutter
+    // (/planera/<id>) ligger kvar längre ned och är nu explicit Allow.
     { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
