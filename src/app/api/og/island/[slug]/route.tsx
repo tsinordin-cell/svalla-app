@@ -18,7 +18,7 @@ export async function GET(_request: Request, { params }: Props) {
   const { slug } = await params
   const island = getIsland(slug)
   if (!island) {
-    return new ImageResponse(<div>Not found</div>, SIZE)
+    return new ImageResponse(<div style={{ display: 'flex' }}>Not found</div>, SIZE)
   }
 
   const [c1, c2] = REGION_GRADIENT[island.region] ?? ['#1e5c82', '#2d7d8a']
@@ -64,9 +64,13 @@ export async function GET(_request: Request, { params }: Props) {
         </div>
 
         {/* Bottom: footer */}
+        {/* Satori kräver explicit display på varje div med fler än ett barn.
+            "svalla.se/o/" + {island.slug} räknades som två barn och kastade
+            "Expected <div> to have explicit display: flex" — 135 gånger.
+            Templatesträngar ger ett enda textbarn. */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 18, opacity: 0.85 }}>
-          <div>svalla.se/o/{island.slug}</div>
-          <div>{island.facts.travel_time}</div>
+          <div style={{ display: 'flex' }}>{`svalla.se/o/${island.slug}`}</div>
+          <div style={{ display: 'flex' }}>{island.facts?.travel_time ?? ''}</div>
         </div>
       </div>
     ),

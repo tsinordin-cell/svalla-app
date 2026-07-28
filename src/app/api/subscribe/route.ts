@@ -31,7 +31,15 @@ export async function POST(request: Request) {
 
   // Insert med ON CONFLICT — om e-posten redan finns, ignorera tyst
   // confirmed: true direkt (explicit opt-in via formulär, inget behov av double opt-in)
-  const { error, data: insertedRows } = await supabase.from('email_subscribers').insert({
+  //
+  // Skrivningen går via service-klienten, inte den RLS-scopade. Besökaren som
+  // prenumererar är anonym och har ingen insert-policy på email_subscribers,
+  // vilket gav 42501 "new row violates row-level security policy" och ett
+  // 500-svar på varje prenumeration. Alternativet vore en publik
+  // insert-policy, men då kan vem som helst skriva godtyckliga rader.
+  // Här är e-posten redan validerad och payloaden helt kontrollerad av oss.
+  const service = getAdminClient()
+  const { error, data: insertedRows } = await service.from('email_subscribers').insert({
     email: normalizedEmail,
     source: source ?? 'unknown',
     preferences: preferences ?? { weekly_tips: true, season_alerts: true },
@@ -58,7 +66,6 @@ export async function POST(request: Request) {
 
       // Logga skickat mail (för att undvika duplicat via cron-jobbet)
       if (mailResult.ok) {
-        const service = getAdminClient()
         await service.from('email_log').insert({
           email: normalizedEmail,
           template: 'newsletter_welcome',

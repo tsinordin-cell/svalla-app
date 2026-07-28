@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -11,14 +10,19 @@ import {
   type GuideRegion,
 } from '../guides-data'
 
-type Props = { params: Promise<{ region: string }> }
-
-export async function generateStaticParams() {
-  return ALL_REGIONS.map(r => ({ region: REGION_URL_SLUG[r] }))
-}
+/**
+ * Regionsvyn för /guider/<region>.
+ *
+ * Låg tidigare i en egen route `guider/[region]/`. Det gick inte: Next.js
+ * tillåter inte två olika parameternamn på samma dynamiska nivå
+ * (`[region]` och `[slug]` under `/guider/`), och kastade
+ * "You cannot use different slug names for the same dynamic path" vid varje
+ * on-demand-rendering — vilket sänkte 73 sidor i produktion i 25 dygn.
+ * Nu är regionsvyn en komponent som `[slug]`-routen väljer att rendera.
+ */
 
 // SEO-metadata per region
-const REGION_META: Record<GuideRegion, { title: string; description: string; keywords: string }> = {
+export const REGION_META: Record<GuideRegion, { title: string; description: string; keywords: string }> = {
   stockholm: {
     title: 'Guider till Stockholms skärgård – allt du behöver veta',
     description: 'Kompletta guider till Stockholms skärgård: Waxholmsbolaget, bästa öar, kajakpaddling, havsbastu och övernattning. Allt samlat på ett ställe.',
@@ -61,27 +65,7 @@ const REGION_META: Record<GuideRegion, { title: string; description: string; key
   },
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { region: regionSlug } = await params
-  const region = URL_SLUG_TO_REGION[regionSlug]
-  if (!region) return {}
-  const meta = REGION_META[region]
-  return {
-    title: meta.title,
-    description: meta.description,
-    keywords: meta.keywords,
-    alternates: { canonical: `https://svalla.se/guider/${regionSlug}` },
-    openGraph: {
-      title: meta.title,
-      description: meta.description,
-      url: `https://svalla.se/guider/${regionSlug}`,
-      type: 'website',
-    },
-  }
-}
-
-export default async function GuiderRegionPage({ params }: Props) {
-  const { region: regionSlug } = await params
+export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
   const region = URL_SLUG_TO_REGION[regionSlug]
   if (!region) return notFound()
 

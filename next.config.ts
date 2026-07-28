@@ -112,6 +112,15 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         headers: securityHeaders,
       },
+      {
+        // OG-bildrutterna hamnade i Googles index ("Indexed, though blocked
+        // by robots.txt"). De är bilder för delning, inte sidor någon ska
+        // hitta via sök. robots.txt räcker inte — den stoppar crawl, inte
+        // indexering — så de svarar med noindex och är samtidigt crawlbara
+        // (Allow: /api/og/ i robots.ts) så headern faktiskt läses.
+        source: '/api/og/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
     ]
   },
   // Reverse proxy för PostHog — kringgår AdBlock (30-40% av trafiken

@@ -8,9 +8,10 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return ALL_ISLANDS
-    .filter(i => i.transport_meta)
-    .map(i => ({ slug: i.slug }))
+  // Alla öar förgenereras, inte bara de med transport_meta. Sidan renderar
+  // redan utan transport_meta (allt som använder `tm` är villkorat), och de
+  // 73 öar som saknade fältet hamnade annars i on-demand-rendering.
+  return ALL_ISLANDS.map(i => ({ slug: i.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,6 +44,16 @@ export default async function TaDigTillPage({ params }: Props) {
 
   const tm = island.transport_meta
   const gt = island.getting_there ?? []
+
+  // `facts` är Record<string, string> och nycklarna varierar mellan öarna —
+  // Bohuslän-datan använder t.ex. area/population/known_for i stället för
+  // travel_time/character/best_for. Utan fallbacks renderas "undefined" i
+  // både JSON-LD och faktarutan.
+  const facts = island.facts ?? {}
+  const factTravelTime = facts.travel_time ?? facts.area ?? ''
+  const factCharacter  = facts.character   ?? facts.known_for ?? ''
+  const factSeason     = facts.season      ?? ''
+  const factBestFor    = facts.best_for    ?? facts.population ?? ''
 
   // ── BusTrip JSON-LD ────────────────────────────────────────────
   const busTrips = gt
@@ -96,7 +107,7 @@ export default async function TaDigTillPage({ params }: Props) {
         '@type': 'HowToStep',
         position: 3,
         name: `Anländer till ${island.name}`,
-        text: `Du kliver av vid ${island.name}s brygga. ${island.facts.travel_time}.`,
+        text: `Du kliver av vid ${island.name}s brygga.${factTravelTime ? ` ${factTravelTime}.` : ''}`,
       },
     ],
   }
@@ -208,11 +219,11 @@ export default async function TaDigTillPage({ params }: Props) {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 12 }}>
             {[
-              { label: 'Restid', value: island.facts.travel_time },
-              { label: 'Karaktär', value: island.facts.character },
-              { label: 'Säsong', value: island.facts.season },
-              { label: 'Bäst för', value: island.facts.best_for },
-            ].map(f => (
+              { label: 'Restid', value: factTravelTime },
+              { label: 'Karaktär', value: factCharacter },
+              { label: 'Säsong', value: factSeason },
+              { label: 'Bäst för', value: factBestFor },
+            ].filter(f => f.value).map(f => (
               <div key={f.label}>
                 <div style={{ fontSize: 12, color: 'var(--ink-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>{f.label}</div>
                 <div style={{ fontSize: 14, color: 'var(--ink)', lineHeight: 1.5 }}>{f.value}</div>

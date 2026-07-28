@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
-import { GUIDES } from '../guides-data'
+import { GUIDES, URL_SLUG_TO_REGION } from '../guides-data'
+import { REGION_META } from './RegionGuides'
 
 export const runtime = 'edge'
 export const size = { width: 1200, height: 630 }
@@ -225,8 +226,13 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
   const { slug } = await params
   const guide = GUIDES.find(g => g.slug === slug)
 
-  const title    = guide?.title    ?? 'Guide till skärgården'
-  const excerpt  = guide?.excerpt  ?? ''
+  // Regionssidorna delar route med guiderna. Har vi ingen guide kan sluggen
+  // vara en region — då används regionens egen titel i stället för fallbacken.
+  const region = URL_SLUG_TO_REGION[slug]
+  const regionMeta = region ? REGION_META[region] : undefined
+
+  const title    = guide?.title    ?? regionMeta?.title       ?? 'Guide till skärgården'
+  const excerpt  = guide?.excerpt  ?? regionMeta?.description ?? ''
   const category = guide?.category ?? 'Region'
   const readTime = guide?.readTime ?? ''
 

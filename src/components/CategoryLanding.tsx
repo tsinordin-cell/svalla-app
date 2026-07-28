@@ -295,8 +295,11 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  gap: 14,
  }}
  >
+ {/* Nyckeln får inte se ut som en URL: den hamnar i RSC-payloaden och
+ Googlebot plockade upp "/krogar-och-matMiddags-paket" som en riktig
+ länk, vilket gav 404 i Search Console. Separator mellan delarna. */}
  {items.map(it => (
- <LandingCard key={it.href + it.title} item={it} accent={heroGradient[0]} />
+ <LandingCard key={`${it.href}|${it.title}`} item={it} accent={heroGradient[0]} />
  ))}
  </div>
  </section>
