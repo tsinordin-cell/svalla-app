@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) return {}
   return {
-    title: `${island.name} med barn — barnvänlig guide 2026`,
+    title: `${island.name} med barn — barnvänlig guide 2026 | Svalla`,
     description: `Är ${island.name} bra för barnfamiljer? Stränder, lugnt vatten, restauranger och tips för familjer med barn. Komplett guide.`,
     keywords: [
       `${island.name.toLowerCase()} med barn`,
