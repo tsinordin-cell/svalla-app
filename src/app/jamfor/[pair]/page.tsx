@@ -123,7 +123,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const b = getIsland(parsed[1])
   if (!a || !b) return {}
   return {
-    title: `${a.name} eller ${b.name}? Jämför öarna`,
+    title: `${a.name} eller ${b.name}? Jämför öarna | Svalla`,
     description: `Sandhamn eller Grinda? Vi jämför ${a.name} och ${b.name} sida vid sida — restider, restauranger, bästa-för, fakta. Hjälper dig välja rätt skärgårdsdestination.`.replace('Sandhamn eller Grinda? ', ''),
     keywords: [`${a.name.toLowerCase()} eller ${b.name.toLowerCase()}`, `${a.name.toLowerCase()} vs ${b.name.toLowerCase()}`, 'jämför skärgårdsöar'],
     openGraph: {
