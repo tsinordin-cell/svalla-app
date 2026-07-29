@@ -157,9 +157,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ── Statiska sidor ──────────────────────────────────────────────
   const staticPages: MetadataRoute.Sitemap = [
     { url: base,                             lastModified: now, priority: 1.0, changeFrequency: 'daily'   as const },
-    // /platser borttagen — den är en ren redirect till /upptack (se
-    // src/app/platser/page.tsx). Redirect-URL:er i sitemap ger
-    // "Page with redirect" i GSC.
+    { url: `${base}/platser`,                lastModified: now, priority: 0.9, changeFrequency: 'daily'   as const },
     { url: `${base}/karta`,                  lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
     { url: `${base}/rutter`,                 lastModified: now, priority: 0.9, changeFrequency: 'weekly'  as const },
     // ?vy=oar och ?vy=farjor borttagna ur sitemap — query-strängar konkurrerar
@@ -242,10 +240,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/gotland/aventyr`,        lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/aland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
     { url: `${base}/oland/aventyr`,          lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
-    // /planera borttagen — den är Disallow i robots.ts (planeringsverktyget är
-    // interaktivt, inte indexerbart innehåll). Att ha den här gav
-    // "Submitted URL blocked by robots.txt" i GSC. Publicerade rutter
-    // (/planera/<id>) ligger kvar längre ned och är nu explicit Allow.
+    { url: `${base}/planera`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/utflykt`,                 lastModified: now, priority: 0.9,  changeFrequency: 'daily'   as const },
     { url: `${base}/bingo`,                   lastModified: now, priority: 0.85, changeFrequency: 'monthly' as const },
     { url: `${base}/forum`,                   lastModified: now, priority: 0.85, changeFrequency: 'daily'   as const },
@@ -455,28 +450,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Om Supabase inte svarar — returnera ändå resten av sitemap
   }
 
-  // Deduplicera på URL innan sitemap returneras.
-  //
-  // Varför: restaurants.slug har dubbletter i Supabase (grebbestad, fjallbacka,
-  // hamburgsund-gasthamn). platsPages bygger `/upptack/${r.slug || r.id}` vilket
-  // därför genererar samma URL två gånger → GSC rapporterar duplicate.
-  // Samma sak kan uppstå om en slug råkar krocka med en statisk sida.
-  //
-  // Detta löser symptomet i sitemap. Grundorsaken (dubbla rader i databasen)
-  // åtgärdas separat med scripts/FIX_2026_07_24_restaurants_slug_dubbletter.sql.
-  // Dedupliceringen är ofarlig att behålla även efter att databasen är städad —
-  // den fungerar då som skydd mot att problemet återuppstår.
-  const dedupeByUrl = (entries: MetadataRoute.Sitemap): MetadataRoute.Sitemap => {
-    const seen = new Set<string>()
-    return entries.filter((e) => {
-      const url = typeof e.url === 'string' ? e.url : String(e.url)
-      if (seen.has(url)) return false
-      seen.add(url)
-      return true
-    })
-  }
-
-  return dedupeByUrl([
+  return [
     ...staticPages,
     ...transportIndex,
     ...transportPages,
@@ -501,5 +475,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...planeraPages,
     ...forumCatPages,
     ...forumThreadPages,
-  ])
+  ]
 }
