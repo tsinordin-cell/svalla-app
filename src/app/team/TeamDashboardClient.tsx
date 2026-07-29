@@ -267,9 +267,24 @@ const GLOBAL_CSS = `
 .svt-iconbtn:hover { background: rgba(15,45,60,0.07); color: var(--txt); }
 .svt-iconbtn.danger:hover { background: rgba(192,57,43,0.10); color: #c0392b; }
 @keyframes svtFadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.svt-main { flex: 1; min-width: 0; padding: 28px 32px 100px; }
+.svt-mobile-projectbar { display: none; }
+.svt-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 600; color: var(--txt2); background: rgba(15,45,60,0.06);
+  border: none; white-space: nowrap; flex-shrink: 0; cursor: pointer;
+}
+.svt-chip.active { background: var(--sea); color: #fff; }
 @media (max-width: 860px) {
   .svt-sidebar { display: none; }
   .svt-mobile-nav { display: flex; }
+  .svt-main { padding: 16px 14px 88px; }
+  .svt-mobile-projectbar { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 16px; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+  /* Text-inputs under 16px triggar auto-zoom på iOS — tvinga 16px på mobil oavsett desktop-storlek. */
+  .svt-input { font-size: 16px !important; }
+  /* Tumme-vänliga tap-ytor — 26px är för litet för finger på en skärm. */
+  .svt-avbtn { width: 32px !important; height: 32px !important; font-size: 12px !important; }
+  .svt-iconbtn { width: 34px !important; height: 34px !important; }
 }
 `
 
@@ -542,7 +557,7 @@ export default function TeamDashboardClient({
         </div>
 
         {/* ── Huvudinnehåll ─────────────────────────────────────────────── */}
-        <main style={{ flex: 1, minWidth: 0, padding: '28px 32px 100px' }}>
+        <main className="svt-main">
           <div style={{ maxWidth: 980, margin: '0 auto' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, flexWrap: 'wrap', gap: 10 }}>
               <div>
@@ -557,6 +572,33 @@ export default function TeamDashboardClient({
                 </p>
               </div>
             </div>
+
+            {/* Projektväxlare — sidebaren är dold under 860px, så det här är
+                enda vägen att filtrera/skapa projekt på mobil. */}
+            <div className="svt-mobile-projectbar">
+              <button className={`svt-chip${projectFilter === null ? ' active' : ''}`} onClick={() => setProjectFilter(null)}>
+                Alla <span style={{ opacity: 0.7 }}>{tasks.length}</span>
+              </button>
+              {projects.map(p => (
+                <button key={p.id} className={`svt-chip${projectFilter === p.id ? ' active' : ''}`} onClick={() => setProjectFilter(projectFilter === p.id ? null : p.id)}>
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: projectFilter === p.id ? '#fff' : p.color, flexShrink: 0 }} />
+                  {p.name} <span style={{ opacity: 0.7 }}>{taskCountForProject(p.id)}</span>
+                </button>
+              ))}
+              <button className="svt-chip" onClick={() => setShowNewProject(v => !v)}><IcoPlus color="currentColor" /> Nytt</button>
+            </div>
+            {showNewProject && (
+              <div className="svt-mobile-projectbar" style={{ marginTop: -10, display: 'flex' }}>
+                <input
+                  value={newProjectName} onChange={e => setNewProjectName(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') submitNewProject() }}
+                  placeholder="Projektnamn…" className="svt-input"
+                  style={{ ...inputStyle, flex: 1 }}
+                />
+                <input type="color" value={newProjectColor} onChange={e => setNewProjectColor(e.target.value)} style={{ width: 36, border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer', flexShrink: 0 }} />
+                <button onClick={submitNewProject} style={{ ...btnPrimary, padding: '8px 14px', flexShrink: 0 }}>Skapa</button>
+              </div>
+            )}
 
             {tab === 'tasks' && (
               <TasksBoard
@@ -686,7 +728,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
         <button onClick={() => setShowForm(true)} style={{ ...btnPrimary, marginBottom: 18 }}><IcoPlus color="#fff" /> Ny uppgift</button>
       ) : (
         <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}>
               <option value="">Inget projekt</option>
@@ -872,7 +914,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
   return (
     <div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Sök promptar…" style={{ ...inputStyle, flex: 1, minWidth: 200 }} />
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Sök promptar…" className="svt-input" style={{ ...inputStyle, flex: 1, minWidth: 200 }} />
         <button onClick={() => setShowForm(v => !v)} style={btnPrimary}><IcoPlus color="#fff" /> {showForm ? 'Stäng' : 'Ny prompt'}</button>
       </div>
 
@@ -889,10 +931,10 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
 
       {showForm && (
         <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel — t.ex. 'Faktagranska guide-utkast'" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
-          <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Själva prompten…" rows={5} style={{ ...inputStyle, resize: 'vertical', fontFamily: 'ui-monospace, monospace' }} />
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel — t.ex. 'Faktagranska guide-utkast'" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+          <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Själva prompten…" rows={5} className="svt-input" style={{ ...inputStyle, resize: 'vertical', fontFamily: 'ui-monospace, monospace' }} />
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <input value={tagsInput} onChange={e => setTagsInput(e.target.value)} placeholder="Taggar, kommaseparerat" style={{ ...inputStyle, flex: 1, minWidth: 140 }} />
+            <input value={tagsInput} onChange={e => setTagsInput(e.target.value)} placeholder="Taggar, kommaseparerat" className="svt-input" style={{ ...inputStyle, flex: 1, minWidth: 140 }} />
             <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', minWidth: 140 }}>
               <option value="">Inget projekt</option>
               {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
@@ -990,6 +1032,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
           onChange={e => setMessage(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') submit() }}
           placeholder="Dela en uppdatering med Max/Tom…"
+          className="svt-input"
           style={{ ...inputStyle, flex: 1, minWidth: 200 }}
         />
         <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', minWidth: 140 }}>
