@@ -115,10 +115,7 @@ export const OAR_CATEGORIES: OarCategory[] = [
     searchTerms: ['avskild skärgård', 'lugn ö', 'ytterskärgård'],
   },
   {
-    // ASCII-slug. 'krogö' gav 404: Next matchar inte den percent-kodade
-    // förfrågan mot en statisk param med å/ä/ö, så sidan var oåtkomlig
-    // trots att den låg i sitemapen. Samtliga andra kategorier är ASCII.
-    slug: 'krogar',
+    slug: 'krogö',
     title: 'Skärgårdsöar med riktigt bra krogar',
     hero: 'Öar för matälskare',
     description: 'Värdshus, gastronomi och bryggrestauranger värda att åka för. Sandhamn, Utö, Marstrand — men också mindre kända.',
