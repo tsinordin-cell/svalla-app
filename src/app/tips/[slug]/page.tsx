@@ -12,12 +12,11 @@ type Props = { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const a = await getArticleBySlug(slug)
-  if (!a) return { title: { absolute: 'Artikel hittades inte — Svalla' } }
+  if (!a) return { title: 'Artikel hittades inte — Svalla' }
   const ogUrl = `https://svalla.se/api/og/tips/${a.slug}`
   return {
-    title: `${a.title}`,
+    title: `${a.title} — Svalla`,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
-    alternates: { canonical: `https://svalla.se/tips/${a.slug}` },
     openGraph: {
       title: a.title,
       description: a.excerpt || '',
