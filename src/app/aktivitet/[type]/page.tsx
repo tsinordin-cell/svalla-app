@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!activity) return {}
   const islandCount = islandsForActivity(activity.slug).length
   return {
-    title: `${activity.name} i skärgården — ${islandCount} öar att välja mellan`,
+    title: `${activity.name} i skärgården — ${islandCount} öar att välja mellan | Svalla`,
     description: `Hitta de bästa öarna för ${activity.name.toLowerCase()} i Stockholms och Bohusläns skärgård. ${activity.description.split('.')[0]}.`,
     keywords: [`${activity.name.toLowerCase()} skärgården`, `${activity.name.toLowerCase()} stockholm`, `${activity.name.toLowerCase()} bohuslän`, 'skärgården'],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}` },
