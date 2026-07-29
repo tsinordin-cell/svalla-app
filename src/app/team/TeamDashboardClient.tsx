@@ -64,9 +64,22 @@ const STATUS_LABEL: Record<TaskStatus, string> = {
   done: 'Klart',
 }
 const STATUS_ORDER: TaskStatus[] = ['todo', 'in_progress', 'done']
+const STATUS_ACCENT: Record<TaskStatus, string> = {
+  todo: '#94a3b8',
+  in_progress: '#c96e2a',
+  done: '#0a7b3c',
+}
 
 const PRIORITY_LABEL: Record<TaskPriority, string> = { low: 'Låg', normal: 'Normal', high: 'Hög' }
 const PRIORITY_COLOR: Record<TaskPriority, string> = { low: '#5a7a8a', normal: '#1e5c82', high: '#c0392b' }
+
+const AVATAR_PALETTE = ['#1e5c82', '#c96e2a', '#0a7b8c', '#7c3aed', '#0a7b3c', '#9d174d']
+
+function avatarColor(id: string): string {
+  let hash = 0
+  for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0
+  return AVATAR_PALETTE[hash % AVATAR_PALETTE.length]!
+}
 
 function relativeTime(iso: string): string {
   const diffMs = Date.now() - new Date(iso).getTime()
@@ -84,19 +97,89 @@ function initials(name: string): string {
   return name.slice(0, 2).toUpperCase()
 }
 
+// ── Ikoner (linje-stil, matchar admin-panelens SVG-ikoner) ──────────────────
+
+function IcoTasks({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <path d="m4 7 2 2 3-3" /><path d="M11 7h9" />
+      <path d="m4 14 2 2 3-3" /><path d="M11 14h9" />
+      <path d="m4 21 2 2 3-3" /><path d="M11 21h9" />
+    </svg>
+  )
+}
+function IcoPrompt({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="2.5" />
+      <path d="m7 9 3 3-3 3" /><path d="M13 15h4" />
+    </svg>
+  )
+}
+function IcoActivity({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 12h4l2.5-7L14 19l2.5-7H21" />
+    </svg>
+  )
+}
+function IcoFolder({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8A2 2 0 0 1 21 9.5V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+    </svg>
+  )
+}
+function IcoPlus({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  )
+}
+function IcoTrash({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.9} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7h16" /><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+      <path d="M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7" />
+    </svg>
+  )
+}
+function IcoChevron({ dir = 'right', color = 'currentColor' }: { dir?: 'left' | 'right'; color?: string }) {
+  return (
+    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
+      <path d={dir === 'right' ? 'M9 5.5 15.5 12 9 18.5' : 'M15 5.5 8.5 12 15 18.5'} />
+    </svg>
+  )
+}
+function IcoCopy({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
+    </svg>
+  )
+}
+function IcoCheck({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round">
+      <path d="m4 12 6 6L20 6" />
+    </svg>
+  )
+}
+
 // ── Delade stilar ─────────────────────────────────────────────────────────
 
-const card: React.CSSProperties = {
+const surface: React.CSSProperties = {
   background: 'var(--white)',
-  borderRadius: 'var(--radius-inner)',
-  border: '1px solid rgba(10,123,140,0.10)',
-  boxShadow: 'var(--shadow-xs)',
+  borderRadius: 12,
+  border: '1px solid rgba(15,45,60,0.08)',
+  boxShadow: '0 1px 2px rgba(15,45,60,0.04)',
 }
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  padding: '10px 12px',
-  borderRadius: 10,
+  padding: '9px 12px',
+  borderRadius: 8,
   border: '1.5px solid var(--input-border)',
   background: 'var(--input-bg)',
   fontSize: 13,
@@ -107,10 +190,11 @@ const inputStyle: React.CSSProperties = {
 }
 
 const btnPrimary: React.CSSProperties = {
+  display: 'inline-flex', alignItems: 'center', gap: 6,
   padding: '9px 16px',
-  borderRadius: 10,
+  borderRadius: 8,
   border: 'none',
-  background: 'var(--grad-sea)',
+  background: 'var(--sea)',
   color: '#fff',
   fontSize: 13,
   fontWeight: 600,
@@ -118,15 +202,76 @@ const btnPrimary: React.CSSProperties = {
 }
 
 const btnGhost: React.CSSProperties = {
+  display: 'inline-flex', alignItems: 'center', gap: 6,
   padding: '9px 16px',
-  borderRadius: 10,
-  border: '1.5px solid var(--input-border)',
+  borderRadius: 8,
+  border: '1.5px solid rgba(15,45,60,0.14)',
   background: 'transparent',
   color: 'var(--txt2)',
   fontSize: 13,
   fontWeight: 600,
   cursor: 'pointer',
 }
+
+const GLOBAL_CSS = `
+.svt-shell { display: flex; min-height: 100dvh; background: var(--bg); }
+.svt-sidebar {
+  width: 252px; flex-shrink: 0; min-height: 100dvh; position: sticky; top: 0;
+  background: linear-gradient(180deg, #16496a 0%, #0e2f45 100%);
+  display: flex; flex-direction: column; padding: 20px 14px;
+}
+.svt-mobile-nav { display: none; }
+.svt-navitem {
+  display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px;
+  color: rgba(255,255,255,0.68); font-size: 13.5px; font-weight: 600; cursor: pointer;
+  border: none; background: transparent; width: 100%; text-align: left;
+  transition: background .13s, color .13s;
+}
+.svt-navitem:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.92); }
+.svt-navitem.active { background: rgba(255,255,255,0.13); color: #fff; box-shadow: inset 3px 0 0 var(--acc); }
+.svt-projrow {
+  display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 8px;
+  color: rgba(255,255,255,0.72); font-size: 12.5px; font-weight: 500; cursor: pointer;
+  border: none; background: transparent; width: 100%; text-align: left;
+  transition: background .13s, color .13s;
+}
+.svt-projrow:hover { background: rgba(255,255,255,0.07); color: #fff; }
+.svt-projrow.active { background: rgba(255,255,255,0.13); color: #fff; }
+.svt-card {
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  animation: svtFadeUp .22s ease both;
+}
+.svt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15,45,60,0.10); border-color: rgba(15,45,60,0.14); }
+.svt-avbtn {
+  width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: #fff;
+  transition: transform .12s ease, opacity .12s ease, border-color .12s ease; opacity: 0.38;
+}
+.svt-avbtn:hover { transform: scale(1.12); opacity: 0.75; }
+.svt-avbtn.picked { opacity: 1; border-color: rgba(15,45,60,0.35); transform: scale(1.05); }
+.svt-empty-col {
+  border: 1.5px dashed rgba(15,45,60,0.14); border-radius: 12px; padding: 22px 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--txt3); font-size: 12px;
+}
+.svt-tab {
+  display: flex; align-items: center; gap: 7px; padding: 9px 4px; border: none; background: transparent;
+  font-size: 13.5px; font-weight: 600; color: var(--txt3); cursor: pointer; border-bottom: 2.5px solid transparent;
+  transition: color .13s, border-color .13s;
+}
+.svt-tab:hover { color: var(--txt2); }
+.svt-tab.active { color: var(--sea); border-color: var(--sea); }
+.svt-iconbtn {
+  width: 26px; height: 26px; border-radius: 7px; border: none; background: transparent; color: var(--txt3);
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .12s, color .12s;
+}
+.svt-iconbtn:hover { background: rgba(15,45,60,0.07); color: var(--txt); }
+.svt-iconbtn.danger:hover { background: rgba(192,57,43,0.10); color: #c0392b; }
+@keyframes svtFadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 860px) {
+  .svt-sidebar { display: none; }
+  .svt-mobile-nav { display: flex; }
+}
+`
 
 // ── Huvudkomponent ──────────────────────────────────────────────────────────
 
@@ -153,6 +298,9 @@ export default function TeamDashboardClient({
   const [prompts, setPrompts] = useState<Prompt[]>(initialPrompts)
   const [activity, setActivity] = useState<Activity[]>(initialActivity)
   const [projectFilter, setProjectFilter] = useState<string | null>(null)
+  const [showNewProject, setShowNewProject] = useState(false)
+  const [newProjectName, setNewProjectName] = useState('')
+  const [newProjectColor, setNewProjectColor] = useState('#1e5c82')
 
   const memberById = useMemo(() => {
     const m = new Map<string, TeamMember>()
@@ -259,113 +407,194 @@ export default function TeamDashboardClient({
     if (!error && data) setProjects(prev => [...prev, data as Project])
   }, [supabase, currentUser.id])
 
+  function submitNewProject() {
+    if (!newProjectName.trim()) return
+    createProject({ name: newProjectName.trim(), color: newProjectColor, description: null })
+    setNewProjectName(''); setShowNewProject(false)
+  }
+
   const filteredTasks = projectFilter ? tasks.filter(t => t.project_id === projectFilter) : tasks
   const filteredPrompts = projectFilter ? prompts.filter(p => p.project_id === projectFilter) : prompts
 
+  function taskCountForProject(projectId: string) {
+    return tasks.filter(t => t.project_id === projectId).length
+  }
+
+  const TAB_TITLE: Record<Tab, string> = { tasks: 'Uppgifter', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
+
+  const navItems: Array<{ key: Tab; label: string; icon: React.ReactNode }> = [
+    { key: 'tasks', label: 'Uppgifter', icon: <IcoTasks /> },
+    { key: 'prompts', label: 'Promptbibliotek', icon: <IcoPrompt /> },
+    { key: 'activity', label: 'Aktivitet', icon: <IcoActivity /> },
+  ]
+
   return (
-    <div style={{ minHeight: '100dvh', background: 'var(--bg)', padding: '20px 16px 100px' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto' }}>
-        {/* ── Header ────────────────────────────────────────────────────── */}
-        <Link href="/feed" style={{
-          display: 'inline-flex', alignItems: 'center', gap: 6,
-          fontSize: 13, color: 'var(--txt3)', textDecoration: 'none', marginBottom: 16,
-        }}>
-          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 5.5L8.5 12L15 18.5" />
-          </svg>
-          Tillbaka till appen
-        </Link>
-
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4, flexWrap: 'wrap', gap: 10 }}>
-          <div>
-            <h1 style={{
-              fontSize: 24, fontWeight: 700, color: 'var(--sea)', margin: 0,
+    <>
+      <style>{GLOBAL_CSS}</style>
+      <div className="svt-shell">
+        {/* ── Sidebar ────────────────────────────────────────────────────── */}
+        <aside className="svt-sidebar">
+          <div style={{ padding: '4px 10px 18px' }}>
+            <div style={{
+              fontSize: 17, fontWeight: 700, color: '#fff',
               fontFamily: 'var(--font-display), var(--font-display-fallback)',
+              display: 'flex', alignItems: 'center', gap: 8,
             }}>
-              Team
-            </h1>
-            <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '2px 0 0' }}>
-              Svalla — delad arbetsyta för Tom &amp; Max
-            </p>
+              <span style={{
+                width: 26, height: 26, borderRadius: 7, background: 'rgba(255,255,255,0.14)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 13,
+              }}>⛵</span>
+              Svalla Team
+            </div>
+            <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>Delad arbetsyta</div>
           </div>
-          <div style={{ display: 'flex' }}>
-            {teamMembers.map(m => (
-              <div key={m.id} title={m.username} style={{
-                width: 34, height: 34, borderRadius: '50%',
-                background: 'var(--grad-sea)', color: '#fff',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 12, fontWeight: 700, border: '2px solid var(--bg)',
-                marginLeft: -8,
-              }}>
-                {initials(m.username)}
-              </div>
+
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {navItems.map(item => (
+              <button key={item.key} className={`svt-navitem${tab === item.key ? ' active' : ''}`} onClick={() => setTab(item.key)}>
+                {item.icon}{item.label}
+              </button>
             ))}
+          </nav>
+
+          <div style={{ height: 1, background: 'rgba(255,255,255,0.10)', margin: '16px 4px' }} />
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px 6px' }}>
+            <span style={{ fontSize: 10.5, fontWeight: 700, color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', letterSpacing: 0.7 }}>
+              Projekt
+            </span>
           </div>
-        </div>
 
-        {/* ── Projekt-strip ─────────────────────────────────────────────── */}
-        <ProjectStrip
-          projects={projects}
-          tasks={tasks}
-          active={projectFilter}
-          onSelect={setProjectFilter}
-          onCreate={createProject}
-        />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1, overflowY: 'auto' }}>
+            <button className={`svt-projrow${projectFilter === null ? ' active' : ''}`} onClick={() => setProjectFilter(null)}>
+              <IcoFolder color="rgba(255,255,255,0.55)" />
+              <span style={{ flex: 1 }}>Alla projekt</span>
+              <span style={{ fontSize: 11, opacity: 0.6 }}>{tasks.length}</span>
+            </button>
+            {projects.map(p => (
+              <button key={p.id} className={`svt-projrow${projectFilter === p.id ? ' active' : ''}`} onClick={() => setProjectFilter(projectFilter === p.id ? null : p.id)}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: p.color, flexShrink: 0 }} />
+                <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</span>
+                <span style={{ fontSize: 11, opacity: 0.6 }}>{taskCountForProject(p.id)}</span>
+              </button>
+            ))}
 
-        {/* ── Tabbar ────────────────────────────────────────────────────── */}
-        <div style={{ display: 'flex', gap: 4, margin: '18px 0 16px', background: 'var(--surface-2)', padding: 4, borderRadius: 'var(--radius-pill)', width: 'fit-content' }}>
-          {(['tasks', 'prompts', 'activity'] as Tab[]).map(t => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              style={{
-                padding: '8px 18px', borderRadius: 'var(--radius-pill)', border: 'none',
-                background: tab === t ? 'var(--white)' : 'transparent',
-                color: tab === t ? 'var(--sea)' : 'var(--txt3)',
-                fontWeight: 700, fontSize: 13, cursor: 'pointer',
-                boxShadow: tab === t ? 'var(--shadow-xs)' : 'none',
-              }}
-            >
-              {t === 'tasks' ? 'Uppgifter' : t === 'prompts' ? 'Promptbibliotek' : 'Aktivitet'}
+            {showNewProject ? (
+              <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <input
+                    value={newProjectName} onChange={e => setNewProjectName(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') submitNewProject() }}
+                    placeholder="Projektnamn…" autoFocus
+                    style={{ ...inputStyle, flex: 1, background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.16)', color: '#fff', fontSize: 12 }}
+                  />
+                  <input type="color" value={newProjectColor} onChange={e => setNewProjectColor(e.target.value)} style={{ width: 28, height: '100%', border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer' }} />
+                </div>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <button onClick={submitNewProject} style={{ ...btnPrimary, padding: '6px 10px', fontSize: 11.5, flex: 1, justifyContent: 'center' }}>Skapa</button>
+                  <button onClick={() => setShowNewProject(false)} style={{ ...btnGhost, padding: '6px 10px', fontSize: 11.5, color: 'rgba(255,255,255,0.7)', border: '1.5px solid rgba(255,255,255,0.16)' }}>Avbryt</button>
+                </div>
+              </div>
+            ) : (
+              <button className="svt-projrow" onClick={() => setShowNewProject(true)} style={{ color: 'rgba(255,255,255,0.5)' }}>
+                <IcoPlus color="rgba(255,255,255,0.5)" /> Nytt projekt
+              </button>
+            )}
+          </div>
+
+          <div style={{ marginTop: 12, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.10)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '0 10px 10px' }}>
+              {teamMembers.map(m => (
+                <div key={m.id} title={m.username} style={{
+                  width: 26, height: 26, borderRadius: '50%', background: avatarColor(m.id), color: '#fff',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10.5, fontWeight: 700,
+                  border: m.id === currentUser.id ? '2px solid rgba(255,255,255,0.6)' : '2px solid transparent',
+                }}>
+                  {initials(m.username)}
+                </div>
+              ))}
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Tom &amp; Max</span>
+            </div>
+            <Link href="/feed" style={{
+              display: 'flex', alignItems: 'center', gap: 6, padding: '8px 10px',
+              fontSize: 12.5, color: 'rgba(255,255,255,0.55)', textDecoration: 'none',
+            }}>
+              <IcoChevron dir="left" color="rgba(255,255,255,0.55)" /> Tillbaka till appen
+            </Link>
+          </div>
+        </aside>
+
+        {/* ── Mobil-nav (visas bara under 860px) ───────────────────────────── */}
+        <div className="svt-mobile-nav" style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 20,
+          background: 'var(--white)', borderTop: '1px solid rgba(15,45,60,0.10)',
+          padding: '8px 10px', justifyContent: 'space-around',
+          boxShadow: '0 -4px 16px rgba(15,45,60,0.08)',
+        }}>
+          {navItems.map(item => (
+            <button key={item.key} onClick={() => setTab(item.key)} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none',
+              color: tab === item.key ? 'var(--sea)' : 'var(--txt3)', fontSize: 10.5, fontWeight: 600, cursor: 'pointer', padding: '4px 10px',
+            }}>
+              {item.icon}{item.label}
             </button>
           ))}
         </div>
 
-        {tab === 'tasks' && (
-          <TasksBoard
-            tasks={filteredTasks}
-            projects={projects}
-            projectById={projectById}
-            memberById={memberById}
-            teamMembers={teamMembers}
-            onCreate={createTask}
-            onStatusChange={updateTaskStatus}
-            onAssigneeChange={updateTaskAssignee}
-            onDelete={deleteTask}
-          />
-        )}
+        {/* ── Huvudinnehåll ─────────────────────────────────────────────── */}
+        <main style={{ flex: 1, minWidth: 0, padding: '28px 32px 100px' }}>
+          <div style={{ maxWidth: 980, margin: '0 auto' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 22, flexWrap: 'wrap', gap: 10 }}>
+              <div>
+                <h1 style={{
+                  fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: 0,
+                  fontFamily: 'var(--font-display), var(--font-display-fallback)',
+                }}>
+                  {TAB_TITLE[tab]}
+                </h1>
+                <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '2px 0 0' }}>
+                  {projectFilter ? projectById.get(projectFilter)?.name : 'Alla projekt'}
+                </p>
+              </div>
+            </div>
 
-        {tab === 'prompts' && (
-          <PromptLibrary
-            prompts={filteredPrompts}
-            projects={projects}
-            projectById={projectById}
-            onCreate={createPrompt}
-            onDelete={deletePrompt}
-          />
-        )}
+            {tab === 'tasks' && (
+              <TasksBoard
+                tasks={filteredTasks}
+                projects={projects}
+                projectById={projectById}
+                memberById={memberById}
+                teamMembers={teamMembers}
+                onCreate={createTask}
+                onStatusChange={updateTaskStatus}
+                onAssigneeChange={updateTaskAssignee}
+                onDelete={deleteTask}
+              />
+            )}
 
-        {tab === 'activity' && (
-          <ActivityFeed
-            activity={activity}
-            projects={projects}
-            memberById={memberById}
-            currentUser={currentUser}
-            onPost={postNote}
-          />
-        )}
+            {tab === 'prompts' && (
+              <PromptLibrary
+                prompts={filteredPrompts}
+                projects={projects}
+                projectById={projectById}
+                onCreate={createPrompt}
+                onDelete={deletePrompt}
+              />
+            )}
+
+            {tab === 'activity' && (
+              <ActivityFeed
+                activity={activity}
+                projects={projects}
+                memberById={memberById}
+                currentUser={currentUser}
+                onPost={postNote}
+              />
+            )}
+          </div>
+        </main>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -391,82 +620,30 @@ function applyRealtimeChange<T extends { id: string }>(
   return prev
 }
 
-// ── Projekt-strip ────────────────────────────────────────────────────────────
+// ── Delegera-väljare — klicka på en persons avatar för att tilldela ──────────
 
-function ProjectStrip({ projects, tasks, active, onSelect, onCreate }: {
-  projects: Project[]
-  tasks: Task[]
-  active: string | null
-  onSelect: (id: string | null) => void
-  onCreate: (input: { name: string; color: string; description: string | null }) => void
+function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
+  teamMembers: TeamMember[]
+  value: string | null
+  onChange: (id: string | null) => void
+  size?: number
 }) {
-  const [adding, setAdding] = useState(false)
-  const [name, setName] = useState('')
-  const [color, setColor] = useState('#1e5c82')
-
-  function progress(projectId: string) {
-    const ts = tasks.filter(t => t.project_id === projectId)
-    if (ts.length === 0) return null
-    const done = ts.filter(t => t.status === 'done').length
-    return { done, total: ts.length }
-  }
-
   return (
-    <div style={{ display: 'flex', gap: 10, overflowX: 'auto', paddingBottom: 4 }}>
-      <button
-        onClick={() => onSelect(null)}
-        style={{
-          ...card, flexShrink: 0, padding: '10px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 700,
-          color: active === null ? '#fff' : 'var(--txt2)',
-          background: active === null ? 'var(--grad-sea)' : 'var(--white)',
-          border: active === null ? 'none' : '1px solid rgba(10,123,140,0.10)',
-        }}
-      >
-        Alla projekt
-      </button>
-
-      {projects.map(p => {
-        const prog = progress(p.id)
+    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} onClick={e => e.stopPropagation()}>
+      {teamMembers.map(m => {
+        const picked = value === m.id
         return (
           <button
-            key={p.id}
-            onClick={() => onSelect(active === p.id ? null : p.id)}
-            style={{
-              ...card, flexShrink: 0, padding: '10px 16px', cursor: 'pointer', textAlign: 'left',
-              minWidth: 160,
-              borderLeft: `4px solid ${p.color}`,
-              outline: active === p.id ? `2px solid ${p.color}` : 'none',
-            }}
+            key={m.id}
+            className={`svt-avbtn${picked ? ' picked' : ''}`}
+            title={picked ? `Tilldelad: ${m.username} (klicka för att ta bort)` : `Delegera till ${m.username}`}
+            onClick={() => onChange(picked ? null : m.id)}
+            style={{ width: size, height: size, background: avatarColor(m.id), fontSize: size * 0.42 }}
           >
-            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>{p.name}</div>
-            {prog && (
-              <div style={{ marginTop: 6 }}>
-                <div style={{ height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.06)', overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${(prog.done / prog.total) * 100}%`, background: p.color }} />
-                </div>
-                <div style={{ fontSize: 10, color: 'var(--txt3)', marginTop: 3 }}>{prog.done}/{prog.total} klara</div>
-              </div>
-            )}
+            {initials(m.username)}
           </button>
         )
       })}
-
-      {adding ? (
-        <div style={{ ...card, flexShrink: 0, padding: 10, display: 'flex', gap: 6, alignItems: 'center', minWidth: 260 }}>
-          <input value={name} onChange={e => setName(e.target.value)} placeholder="Projektnamn…" style={{ ...inputStyle, width: 130 }} autoFocus />
-          <input type="color" value={color} onChange={e => setColor(e.target.value)} style={{ width: 32, height: 32, border: 'none', borderRadius: 8, padding: 0, background: 'none', cursor: 'pointer' }} />
-          <button
-            onClick={() => { if (name.trim()) { onCreate({ name: name.trim(), color, description: null }); setName(''); setAdding(false) } }}
-            style={{ ...btnPrimary, padding: '8px 12px' }}
-          >
-            Lägg till
-          </button>
-        </div>
-      ) : (
-        <button onClick={() => setAdding(true)} style={{ ...card, flexShrink: 0, padding: '10px 16px', cursor: 'pointer', fontSize: 13, color: 'var(--txt3)', border: '1.5px dashed rgba(10,123,140,0.25)' }}>
-          + Nytt projekt
-        </button>
-      )}
     </div>
   )
 }
@@ -487,7 +664,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
   const [showForm, setShowForm] = useState(false)
   const [title, setTitle] = useState('')
   const [projectId, setProjectId] = useState('')
-  const [assigneeId, setAssigneeId] = useState('')
+  const [assigneeId, setAssigneeId] = useState<string | null>(null)
   const [priority, setPriority] = useState<TaskPriority>('normal')
   const [dueDate, setDueDate] = useState('')
 
@@ -496,74 +673,93 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
     onCreate({
       title: title.trim(),
       project_id: projectId || null,
-      assignee_id: assigneeId || null,
+      assignee_id: assigneeId,
       priority,
       due_date: dueDate || null,
     })
-    setTitle(''); setProjectId(''); setAssigneeId(''); setPriority('normal'); setDueDate(''); setShowForm(false)
+    setTitle(''); setProjectId(''); setAssigneeId(null); setPriority('normal'); setDueDate(''); setShowForm(false)
   }
 
   return (
     <div>
       {!showForm ? (
-        <button onClick={() => setShowForm(true)} style={{ ...btnPrimary, marginBottom: 16 }}>+ Ny uppgift</button>
+        <button onClick={() => setShowForm(true)} style={{ ...btnPrimary, marginBottom: 18 }}><IcoPlus color="#fff" /> Ny uppgift</button>
       ) : (
-        <div style={{ ...card, padding: 14, marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" style={inputStyle} autoFocus />
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 120 }}>
+        <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}>
               <option value="">Inget projekt</option>
               {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
             </select>
-            <select value={assigneeId} onChange={e => setAssigneeId(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 100 }}>
-              <option value="">Ej tilldelad</option>
-              {teamMembers.map(m => <option key={m.id} value={m.id}>{m.username}</option>)}
-            </select>
             <select value={priority} onChange={e => setPriority(e.target.value as TaskPriority)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 90 }}>
-              <option value="low">Låg</option>
-              <option value="normal">Normal</option>
-              <option value="high">Hög</option>
+              <option value="low">Låg prioritet</option>
+              <option value="normal">Normal prioritet</option>
+              <option value="high">Hög prioritet</option>
             </select>
             <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }} />
           </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '2px 2px' }}>
+            <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>Delegera till:</span>
+            <AssigneePicker teamMembers={teamMembers} value={assigneeId} onChange={setAssigneeId} size={28} />
+            {assigneeId && (
+              <span style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>{memberById.get(assigneeId)?.username}</span>
+            )}
+          </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={submit} style={btnPrimary}>Skapa</button>
+            <button onClick={submit} style={btnPrimary}>Skapa uppgift</button>
             <button onClick={() => setShowForm(false)} style={btnGhost}>Avbryt</button>
           </div>
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 12 }}>
-        {STATUS_ORDER.map(status => (
-          <div key={status}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 8 }}>
-              {STATUS_LABEL[status]} · {tasks.filter(t => t.status === status).length}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
+        {STATUS_ORDER.map(status => {
+          const colTasks = tasks.filter(t => t.status === status)
+          return (
+            <div key={status}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 10 }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status] }} />
+                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                  {STATUS_LABEL[status]}
+                </span>
+                <span style={{
+                  fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'rgba(15,45,60,0.06)',
+                  padding: '1px 7px', borderRadius: 999,
+                }}>
+                  {colTasks.length}
+                </span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 60 }}>
+                {colTasks.length === 0 && (
+                  <div className="svt-empty-col">
+                    <IcoTasks color="rgba(15,45,60,0.28)" />
+                    Inga uppgifter här
+                  </div>
+                )}
+                {colTasks.map(task => (
+                  <TaskCard
+                    key={task.id}
+                    task={task}
+                    project={task.project_id ? projectById.get(task.project_id) : undefined}
+                    teamMembers={teamMembers}
+                    onStatusChange={onStatusChange}
+                    onAssigneeChange={onAssigneeChange}
+                    onDelete={onDelete}
+                  />
+                ))}
+              </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minHeight: 40 }}>
-              {tasks.filter(t => t.status === status).map(task => (
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                  project={task.project_id ? projectById.get(task.project_id) : undefined}
-                  assignee={task.assignee_id ? memberById.get(task.assignee_id) : undefined}
-                  teamMembers={teamMembers}
-                  onStatusChange={onStatusChange}
-                  onAssigneeChange={onAssigneeChange}
-                  onDelete={onDelete}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
 }
 
-function TaskCard({ task, project, assignee, teamMembers, onStatusChange, onAssigneeChange, onDelete }: {
+function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange, onDelete }: {
   task: Task
   project?: Project
-  assignee?: TeamMember
   teamMembers: TeamMember[]
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
@@ -573,55 +769,58 @@ function TaskCard({ task, project, assignee, teamMembers, onStatusChange, onAssi
   const idx = STATUS_ORDER.indexOf(task.status)
 
   return (
-    <div style={{ ...card, padding: 12, borderLeft: project ? `4px solid ${project.color}` : undefined }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 6 }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.35 }}>{task.title}</div>
-        <button onClick={() => onDelete(task.id)} title="Ta bort" style={{ background: 'none', border: 'none', color: 'var(--txt3)', cursor: 'pointer', fontSize: 14, lineHeight: 1, flexShrink: 0 }}>
-          ×
+    <div className="svt-card" style={{ ...surface, padding: 14, borderLeft: project ? `3px solid ${project.color}` : undefined }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+        <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.4 }}>{task.title}</div>
+        <button className="svt-iconbtn danger" onClick={() => onDelete(task.id)} title="Ta bort" style={{ flexShrink: 0 }}>
+          <IcoTrash />
         </button>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 10, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: `${PRIORITY_COLOR[task.priority]}18`, padding: '2px 7px', borderRadius: 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 10.5, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: `${PRIORITY_COLOR[task.priority]}16`, padding: '2px 8px', borderRadius: 6 }}>
           {PRIORITY_LABEL[task.priority]}
         </span>
         {project && (
-          <span style={{ fontSize: 10, color: 'var(--txt3)' }}>{project.name}</span>
+          <span style={{ fontSize: 10.5, fontWeight: 600, color: project.color, background: `${project.color}14`, padding: '2px 8px', borderRadius: 6 }}>
+            {project.name}
+          </span>
         )}
         {task.due_date && (
-          <span style={{ fontSize: 10, color: overdue ? '#c0392b' : 'var(--txt3)', fontWeight: overdue ? 700 : 400 }}>
+          <span style={{
+            fontSize: 10.5, fontWeight: overdue ? 700 : 500, color: overdue ? '#c0392b' : 'var(--txt3)',
+            background: overdue ? 'rgba(192,57,43,0.10)' : 'rgba(15,45,60,0.05)', padding: '2px 8px', borderRadius: 6,
+          }}>
             {overdue ? '⚠ ' : ''}{new Date(task.due_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
           </span>
         )}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10 }}>
-        <select
-          value={task.assignee_id ?? ''}
-          onChange={e => onAssigneeChange(task.id, e.target.value || null)}
-          style={{ fontSize: 11, border: 'none', background: 'transparent', color: assignee ? 'var(--sea)' : 'var(--txt3)', fontWeight: 600, cursor: 'pointer' }}
-        >
-          <option value="">Ej tilldelad</option>
-          {teamMembers.map(m => <option key={m.id} value={m.id}>{m.username}</option>)}
-        </select>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid rgba(15,45,60,0.06)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 10.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
+          <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
+        </div>
 
         <div style={{ display: 'flex', gap: 4 }}>
           {idx > 0 && (
-            <button onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`} style={miniBtn}>←</button>
+            <button className="svt-iconbtn" onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`}>
+              <IcoChevron dir="left" />
+            </button>
           )}
           {idx < STATUS_ORDER.length - 1 && (
-            <button onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx + 1]!]}`} style={{ ...miniBtn, background: 'var(--sea)', color: '#fff' }}>→</button>
+            <button
+              onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}
+              title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx + 1]!]}`}
+              style={{ width: 26, height: 26, borderRadius: 7, border: 'none', background: 'var(--sea)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+            >
+              <IcoChevron dir="right" color="#fff" />
+            </button>
           )}
         </div>
       </div>
     </div>
   )
-}
-
-const miniBtn: React.CSSProperties = {
-  width: 24, height: 24, borderRadius: 6, border: '1px solid var(--input-border)',
-  background: 'transparent', color: 'var(--txt2)', fontSize: 12, cursor: 'pointer',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
 }
 
 // ── Promptbibliotek ──────────────────────────────────────────────────────────
@@ -672,16 +871,16 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Sök promptar…" style={{ ...inputStyle, flex: 1, minWidth: 180 }} />
-        <button onClick={() => setShowForm(v => !v)} style={btnPrimary}>{showForm ? 'Stäng' : '+ Ny prompt'}</button>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
+        <input value={q} onChange={e => setQ(e.target.value)} placeholder="Sök promptar…" style={{ ...inputStyle, flex: 1, minWidth: 200 }} />
+        <button onClick={() => setShowForm(v => !v)} style={btnPrimary}><IcoPlus color="#fff" /> {showForm ? 'Stäng' : 'Ny prompt'}</button>
       </div>
 
       {allTags.length > 0 && (
-        <div style={{ display: 'flex', gap: 6, marginBottom: 14, flexWrap: 'wrap' }}>
-          <button onClick={() => setTagFilter(null)} style={{ ...tagChip, background: !tagFilter ? 'var(--sea)' : 'var(--surface-2)', color: !tagFilter ? '#fff' : 'var(--txt2)' }}>Alla</button>
+        <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
+          <button onClick={() => setTagFilter(null)} className="svt-tab" style={{ ...(!tagFilter ? { color: 'var(--sea)' } : {}), borderBottom: 'none', background: !tagFilter ? 'rgba(30,92,130,0.10)' : 'rgba(15,45,60,0.05)', borderRadius: 999, padding: '5px 12px' }}>Alla</button>
           {allTags.map(t => (
-            <button key={t} onClick={() => setTagFilter(t === tagFilter ? null : t)} style={{ ...tagChip, background: tagFilter === t ? 'var(--sea)' : 'var(--surface-2)', color: tagFilter === t ? '#fff' : 'var(--txt2)' }}>
+            <button key={t} onClick={() => setTagFilter(t === tagFilter ? null : t)} className="svt-tab" style={{ borderBottom: 'none', color: tagFilter === t ? 'var(--sea)' : 'var(--txt3)', background: tagFilter === t ? 'rgba(30,92,130,0.10)' : 'rgba(15,45,60,0.05)', borderRadius: 999, padding: '5px 12px' }}>
               #{t}
             </button>
           ))}
@@ -689,8 +888,8 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
       )}
 
       {showForm && (
-        <div style={{ ...card, padding: 14, marginBottom: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel — t.ex. 'Faktagranska guide-utkast'" style={inputStyle} autoFocus />
+        <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Titel — t.ex. 'Faktagranska guide-utkast'" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
           <textarea value={content} onChange={e => setContent(e.target.value)} placeholder="Själva prompten…" rows={5} style={{ ...inputStyle, resize: 'vertical', fontFamily: 'ui-monospace, monospace' }} />
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <input value={tagsInput} onChange={e => setTagsInput(e.target.value)} placeholder="Taggar, kommaseparerat" style={{ ...inputStyle, flex: 1, minWidth: 140 }} />
@@ -706,45 +905,51 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {filtered.length === 0 && (
-          <div style={{ fontSize: 13, color: 'var(--txt3)', padding: '20px 0', textAlign: 'center' }}>Inga promptar än — lägg till den första.</div>
-        )}
-        {filtered.map(p => {
-          const proj = p.project_id ? projectById.get(p.project_id) : undefined
-          return (
-            <div key={p.id} style={{ ...card, padding: 14, borderLeft: proj ? `4px solid ${proj.color}` : undefined }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{p.title}</div>
-                <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
-                  <button onClick={() => copy(p)} style={{ ...btnGhost, padding: '5px 10px', fontSize: 11 }}>
-                    {copiedId === p.id ? 'Kopierad ✓' : 'Kopiera'}
-                  </button>
-                  <button onClick={() => onDelete(p.id)} title="Ta bort" style={{ background: 'none', border: 'none', color: 'var(--txt3)', cursor: 'pointer', fontSize: 16 }}>×</button>
+      {filtered.length === 0 ? (
+        <div className="svt-empty-col" style={{ padding: '36px 12px' }}>
+          <IcoPrompt color="rgba(15,45,60,0.28)" />
+          Inga promptar än — lägg till den första.
+        </div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
+          {filtered.map(p => {
+            const proj = p.project_id ? projectById.get(p.project_id) : undefined
+            return (
+              <div key={p.id} className="svt-card" style={{ ...surface, padding: 16, borderTop: proj ? `3px solid ${proj.color}` : undefined, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{p.title}</div>
+                  <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+                    <button className="svt-iconbtn" onClick={() => copy(p)} title="Kopiera">
+                      {copiedId === p.id ? <IcoCheck color="#0a7b3c" /> : <IcoCopy />}
+                    </button>
+                    <button className="svt-iconbtn danger" onClick={() => onDelete(p.id)} title="Ta bort">
+                      <IcoTrash />
+                    </button>
+                  </div>
                 </div>
+                <pre style={{
+                  fontSize: 12, color: 'var(--txt2)', background: 'rgba(15,45,60,0.04)', borderRadius: 8,
+                  padding: '10px 12px', margin: '10px 0 0', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+                  fontFamily: 'ui-monospace, monospace', maxHeight: 160, overflowY: 'auto', flex: 1,
+                }}>
+                  {p.content}
+                </pre>
+                {p.tags.length > 0 && (
+                  <div style={{ display: 'flex', gap: 5, marginTop: 10, flexWrap: 'wrap' }}>
+                    {p.tags.map(t => (
+                      <span key={t} style={{ fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 999, background: 'rgba(15,45,60,0.06)', color: 'var(--txt3)' }}>
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-              <pre style={{
-                fontSize: 12, color: 'var(--txt2)', background: 'var(--surface-2)', borderRadius: 8,
-                padding: '10px 12px', margin: '8px 0 0', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-                fontFamily: 'ui-monospace, monospace', maxHeight: 160, overflowY: 'auto',
-              }}>
-                {p.content}
-              </pre>
-              {p.tags.length > 0 && (
-                <div style={{ display: 'flex', gap: 5, marginTop: 8, flexWrap: 'wrap' }}>
-                  {p.tags.map(t => <span key={t} style={{ ...tagChip, background: 'var(--surface-2)', color: 'var(--txt3)' }}>#{t}</span>)}
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
-}
-
-const tagChip: React.CSSProperties = {
-  fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 999, border: 'none', cursor: 'pointer',
 }
 
 // ── Aktivitetsflöde ──────────────────────────────────────────────────────────
@@ -765,57 +970,73 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
     setMessage(''); setProjectId('')
   }
 
+  const kindColor: Record<Activity['kind'], string> = {
+    task: '#0a7b3c', prompt: '#7c3aed', project: '#c96e2a', note: '#1e5c82',
+  }
   const iconFor = (kind: Activity['kind']) => {
     switch (kind) {
-      case 'task': return '✓'
-      case 'prompt': return '⌘'
-      case 'project': return '★'
-      default: return '💬'
+      case 'task': return <IcoCheck color={kindColor.task} />
+      case 'prompt': return <IcoPrompt color={kindColor.prompt} />
+      case 'project': return <IcoFolder color={kindColor.project} />
+      default: return <IcoActivity color={kindColor.note} />
     }
   }
 
   return (
     <div>
-      <div style={{ ...card, padding: 12, marginBottom: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <div style={{ ...surface, padding: 14, marginBottom: 18, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <input
           value={message}
           onChange={e => setMessage(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') submit() }}
           placeholder="Dela en uppdatering med Max/Tom…"
-          style={{ ...inputStyle, flex: 1, minWidth: 180 }}
+          style={{ ...inputStyle, flex: 1, minWidth: 200 }}
         />
-        <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', minWidth: 130 }}>
+        <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', minWidth: 140 }}>
           <option value="">Inget projekt</option>
           {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
         </select>
         <button onClick={submit} style={btnPrimary}>Dela</button>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {activity.length === 0 && (
-          <div style={{ fontSize: 13, color: 'var(--txt3)', padding: '20px 0', textAlign: 'center' }}>Inget har hänt än.</div>
-        )}
-        {activity.map(a => {
-          const author = a.created_by ? memberById.get(a.created_by) : undefined
-          const authorName = author?.username ?? (a.created_by === currentUser.id ? currentUser.username : 'System')
-          return (
-            <div key={a.id} style={{ display: 'flex', gap: 10, padding: '10px 4px', borderBottom: '1px solid rgba(10,123,140,0.06)' }}>
-              <div style={{
-                width: 26, height: 26, borderRadius: '50%', background: 'var(--surface-2)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, flexShrink: 0,
+      {activity.length === 0 ? (
+        <div className="svt-empty-col" style={{ padding: '36px 12px' }}>
+          <IcoActivity color="rgba(15,45,60,0.28)" />
+          Inget har hänt än.
+        </div>
+      ) : (
+        <div style={{ ...surface, padding: '4px 16px' }}>
+          {activity.map((a, i) => {
+            const author = a.created_by ? memberById.get(a.created_by) : undefined
+            const authorName = author?.username ?? (a.created_by === currentUser.id ? currentUser.username : 'System')
+            return (
+              <div key={a.id} style={{
+                display: 'flex', gap: 12, padding: '12px 0',
+                borderBottom: i < activity.length - 1 ? '1px solid rgba(15,45,60,0.06)' : 'none',
               }}>
-                {iconFor(a.kind)}
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 13, color: 'var(--txt)' }}>{a.message}</div>
-                <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>
-                  {authorName} · {relativeTime(a.created_at)}
+                <div style={{
+                  width: 28, height: 28, borderRadius: '50%', background: `${kindColor[a.kind]}14`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                }}>
+                  {iconFor(a.kind)}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 13.5, color: 'var(--txt)' }}>{a.message}</div>
+                  <div style={{ fontSize: 11.5, color: 'var(--txt3)', marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{
+                      width: 15, height: 15, borderRadius: '50%', background: author ? avatarColor(author.id) : 'var(--txt3)',
+                      color: '#fff', fontSize: 8, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    }}>
+                      {initials(authorName)}
+                    </span>
+                    {authorName} · {relativeTime(a.created_at)}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }
