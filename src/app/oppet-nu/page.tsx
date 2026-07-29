@@ -51,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const month = new Date().getMonth()
   const monthName = MONTH_NAMES_SV[month]
   return {
-    title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka?`,
+    title: `Öppet i skärgården i ${monthName} – vilka öar kan du besöka? | Svalla`,
     description: `Se vilka öar i Stockholms skärgård och Bohuslän som är öppna i ${monthName} 2026 — med restauranger, gästhamnar och service. Uppdateras varje månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
