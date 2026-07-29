@@ -2446,6 +2446,14 @@ export const ISLANDS: Island[] = [
     related: ['dalaro', 'orno', 'uto'],
     tags: ['sandstrand', 'lättillgänglig', 'södra', 'bad', 'camping'],
     did_you_know: 'Gålö Havsbad är en av Stockholmsregionens mest besökta badplatser — här fanns redan tidigt 1900-tal sommarkoloniverksamhet för Stockholms barn, och delar av området drivs idag av Skärgårdsstiftelsen som naturreservat och kulturmiljö.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Familjevänlig sandstrand nåbar med bil — bäst i juni och tidig juli innan parkeringen fylls och trängseln ökar.',
+      warning: 'Gålö Havsbad fylls snabbt på sommardagar — kom tidigt på morgonen.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── TORÖ ────────────────────────────────────────────────────
@@ -2493,6 +2501,13 @@ export const ISLANDS: Island[] = [
     related: ['nattaro', 'uto', 'galo'],
     tags: ['naturreservat', 'surf', 'kustlinje', 'södra', 'vandring'],
     did_you_know: 'Torö stenstrand på öns sydsida är en av Stockholms läns geologiska sevärdheter — en lång klapperstensstrand med stora rundslipade stenar formade under inlandsisens reträtt. Stranden är skyddad som naturreservat.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli',
+      best: 'September',
+      bestReason: 'Dramatisk kustlinje och bäst för havsöringsfiske i september. Surfvindarna är starkast på hösten — utan juliträngseln.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── FJÄRDLÅNG ───────────────────────────────────────────────
@@ -2581,6 +2596,13 @@ export const ISLANDS: Island[] = [
     related: ['vaxholm', 'resaro', 'ljustero'],
     tags: ['militärhistoria', 'KA 1', 'bostadsö', 'nära Vaxholm', 'mellersta'],
     did_you_know: 'Vaxholms kustartilleriregemente (KA 1) bildades på Rindö 1902 och bemannade Vaxholms och Oscar-Fredriksborgs fästningar. Efter regementets nedläggning 2000 omvandlade Vasallen de gamla kasernerna — ritade av Erik Josephson 1906 — till bostäder, vilket gjorde Rindö till ett av Sveriges mest kända exempel på militär konversion.',
+    seasonal: {
+      open: 'Helår',
+      peak: 'Juni–Augusti',
+      best: 'Maj–September',
+      bestReason: 'Militärhistorisk ö med enkel bilfärja från Vaxholm. Kasernerna och befästningarna är intressanta hela sommarhalvåret.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   {
@@ -2613,6 +2635,13 @@ export const ISLANDS: Island[] = [
     related: ['blido', 'furusund', 'graddo'],
     tags: ['stor ö', 'bilfärja', 'cykling', 'norra', 'köpmanholm'],
     did_you_know: 'Yxlan är broförbunden med både Furusund och Blidö via två avgiftsfria bilfärjor — Furusundsleden (600 m) i väster och Blidöleden (530 m) i öster. Tillsammans gör de Yxlan till en av de mest lättillgängliga större öarna i Roslagens skärgård, trots att den saknar fast brobindelse till fastlandet.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Stor norrröslagens ö — cykla och segla i juni när Köpmanholm är öppet men ännu inte fullpackat.',
+      months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -2719,6 +2748,13 @@ export const ISLANDS: Island[] = [
     related: ['gallno', 'namdo', 'moja'],
     tags: ['stor ö', 'broförbunden', 'skog', 'sommarstugor', 'mellersta'],
     did_you_know: 'Vindö nås landvägen utan färja — ön är broförbunden via Djurö i söder. Tillsammans med Djurö och Skarpö bildar den ett av få sammanhängande bilförbundna ö-områden i mellersta skärgården, vilket gjort området till en av Stockholms tätaste sommarstugekluster.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli',
+      best: 'Juni',
+      bestReason: 'Broförbunden mellanskärgårdsö — tillgänglig hela säsongen utan färja. Lugnast och grönast i juni och tidig september.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -2750,6 +2786,14 @@ export const ISLANDS: Island[] = [
     related: ['dalaro', 'orno', 'toro'],
     tags: ['spa-hotell', 'herrgård', 'broförbunden', 'södra', 'sabis'],
     did_you_know: 'Smådalarö Gård byggdes 1810 av kapten Per Niklas Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 är Gården ett av Sveriges mest påkostade spa-hotell med 118 rum och 2 000 m² spa.',
+    seasonal: {
+      open: 'Helår',
+      peak: 'Juli–Augusti',
+      best: 'Maj eller September',
+      bestReason: 'Smådalarö Gård är öppet helåret. Välj maj eller september för lägre pris, öppet spa och utan sommarträngseln.',
+      warning: 'Spa-tider bör bokas månader i förväg för juli–augustihelger.',
+      months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   {
@@ -2854,6 +2898,14 @@ export const ISLANDS: Island[] = [
     related: ['adelsjo', 'vaxholm', 'fjaderholmarna'],
     tags: ['UNESCO', 'vikingar', 'historia', 'Mälaren', 'dagstur'],
     did_you_know: 'Björkö är platsen för Birka, en av Nordens viktigaste vikingatida handelsstäder. UNESCO-platsen är aktiv arkeologisk utgrävning än idag.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Maj–Juni',
+      bestReason: 'Museet och de arkeologiska guidningarna öppnar i maj. Välj juni för turer utan köer och med plats på M/S Birka.',
+      warning: 'Museum och guidade turer är stängda oktober–april.',
+      months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -2883,6 +2935,13 @@ export const ISLANDS: Island[] = [
     related: ['bjorko', 'vindo', 'fjaderholmarna'],
     tags: ['kungsgård', 'historia', 'Mälaren', 'medeltid', 'cykling'],
     did_you_know: 'Adelsö hyser Hovgården — en kungsgård från vendel- och vikingatiden — och tillsammans med Birka på grannön Björkö är platsen sedan 1993 upptagen på UNESCO:s världsarvslista.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Maj–Juni',
+      bestReason: 'Kombinera med Björkö/Birka — bäst i maj och juni innan trängseln. Kulturlandskapet med utsikt mot Birka är vackrast när löven slår ut.',
+      months: ['off','off','off','off','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
