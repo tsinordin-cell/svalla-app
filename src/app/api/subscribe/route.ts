@@ -31,7 +31,11 @@ export async function POST(request: Request) {
 
   // Insert med ON CONFLICT — om e-posten redan finns, ignorera tyst
   // confirmed: true direkt (explicit opt-in via formulär, inget behov av double opt-in)
-  const { error, data: insertedRows } = await supabase.from('email_subscribers').insert({
+  // Skrivningen MÅSTE gå via service-klienten. Besökaren som prenumererar är
+  // anonym och har ingen insert-policy på email_subscribers → 42501 och 500 på
+  // varje prenumeration. Ändra inte tillbaka till `supabase.from(...)`.
+  const service = getAdminClient()
+  const { error, data: insertedRows } = await service.from('email_subscribers').insert({
     email: normalizedEmail,
     source: source ?? 'unknown',
     preferences: preferences ?? { weekly_tips: true, season_alerts: true },

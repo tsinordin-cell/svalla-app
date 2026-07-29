@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { GUIDES } from '../guides-data'
+import { GUIDES, ALL_REGIONS, REGION_URL_SLUG, URL_SLUG_TO_REGION } from '../guides-data'
+import RegionGuides, { REGION_META } from './RegionGuides'
 import { getGuideContent } from './guide-content'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
@@ -15,11 +16,35 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  return GUIDES.map(g => ({ slug: g.slug }))
+  // Regionssidorna (/guider/stockholm) och guiderna (/guider/packlista-...)
+  // delar dynamisk nivå. De hade tidigare varsin route med olika
+  // parameternamn, vilket Next.js förbjuder — se RegionGuides.tsx.
+  return [
+    ...ALL_REGIONS.map(r => ({ slug: REGION_URL_SLUG[r] })),
+    ...GUIDES.map(g => ({ slug: g.slug })),
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+
+  const region = URL_SLUG_TO_REGION[slug]
+  if (region) {
+    const meta = REGION_META[region]
+    return {
+      title: meta.title,
+      description: meta.description,
+      keywords: meta.keywords,
+      alternates: { canonical: `https://svalla.se/guider/${slug}` },
+      openGraph: {
+        title: meta.title,
+        description: meta.description,
+        url: `https://svalla.se/guider/${slug}`,
+        type: 'website',
+      },
+    }
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) return {}
   return {
@@ -49,6 +74,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params
+
+  // Är sluggen en region renderas regionsvyn, annars den enskilda guiden.
+  if (URL_SLUG_TO_REGION[slug]) {
+    return <RegionGuides regionSlug={slug} />
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) notFound()
 
