@@ -6,7 +6,7 @@ import { HYRBAT_SUBS } from './hyrbat-data'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'Hyra båt i Sverige 2026 – guide till båtuthyrning',
+  title: 'Hyra båt i Sverige 2026 – guide till båtuthyrning | Svalla',
   description: 'Komplett guide till båtuthyrning i Sverige. Priser, licenskrav och de bästa hyrbåtsbolagen i Stockholms skärgård, Göteborg, Gotland och Bohuslän.',
   keywords: [
     'hyra båt',
