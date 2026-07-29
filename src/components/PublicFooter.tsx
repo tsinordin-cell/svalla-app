@@ -147,7 +147,9 @@ export default function PublicFooter() {
             <Link href="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               FAQ
             </Link>
-            <Link href="/kontakt" style={{ color: 'inherit', textDecoration: 'none' }}>
+            {/* /kontakt finns inte — kontaktuppgifterna ligger under /om.
+                Länken låg i sidfoten på varje sida och gav 404. */}
+            <Link href="/om#kontakt" style={{ color: 'inherit', textDecoration: 'none' }}>
               Kontakt
             </Link>
           </span>

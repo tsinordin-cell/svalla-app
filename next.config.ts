@@ -184,6 +184,32 @@ const nextConfig: NextConfig = {
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
       { source: '/blogg/waxholmsbolaget-guide', destination: '/guider/waxholmsbolaget-guide', permanent: true },
       { source: '/blogg/skargard-utan-bat', destination: '/guider/skargard-utan-bat', permanent: true },
+
+      // ── 404:or funna i GSC 2026-07-28 ────────────────────────────────────
+      // Sidor som aldrig funnits på de adresser Google känner till, men vars
+      // innehåll finns någon annanstans. 301 i stället för 404 så att
+      // inbound links och gammal indexering landar rätt.
+
+      // Kontaktuppgifterna ligger under /om. Sidfoten länkade till /kontakt
+      // på varje sida i sajten och gav 404 för riktiga besökare.
+      { source: '/kontakt', destination: '/om#kontakt', permanent: true },
+
+      // Cookie-bannern och /kom-igang länkade till /integritet. Sidan heter
+      // /integritetspolicy — dvs en 404 mitt i samtyckesflödet.
+      { source: '/integritet', destination: '/integritetspolicy', permanent: true },
+
+      // Möja: ö-sidor ligger under /o/<slug>.
+      { source: '/moja', destination: '/o/moja', permanent: true },
+
+      // Regionen heter /hoga-kusten med bindestreck.
+      { source: '/hogakusten', destination: '/hoga-kusten', permanent: true },
+      { source: '/hogakusten/:path*', destination: '/hoga-kusten/:path*', permanent: true },
+
+      // Forumkategorin döptes om nybörjare → nyborjare (f54ae24) av samma
+      // ASCII-skäl som krogö → krogar. Trådlänkar med ö finns kvar utifrån.
+      { source: '/forum/nybörjare/:path*', destination: '/forum/nyborjare/:path*', permanent: true },
+      { source: '/forum/nyb%C3%B6rjare/:path*', destination: '/forum/nyborjare/:path*', permanent: true },
+      { source: '/forum/nybörjare', destination: '/forum/nyborjare', permanent: true },
     ]
   },
 }

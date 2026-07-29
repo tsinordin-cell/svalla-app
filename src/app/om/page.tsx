@@ -222,7 +222,8 @@ export default function OmPage() {
             border: '1px solid rgba(10,123,140,0.06)',
             lineHeight: 1.75, color: 'var(--txt2)', fontSize: 15,
           }}>
-            <h2 style={h2Style}>Kontakt</h2>
+            {/* Ankare — sidfotens "Kontakt" länkar hit (/om#kontakt). */}
+            <h2 id="kontakt" style={h2Style}>Kontakt</h2>
             <p style={{ margin: 0 }}>
               Frågor, platstips, samarbeten eller pressfrågor?{' '}
               <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 700 }}>info@svalla.se</a>

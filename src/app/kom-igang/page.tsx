@@ -750,7 +750,7 @@ function KomIgangInner() {
  Genom att skapa ett konto godkänner du våra{' '}
  <a href="/villkor" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>villkor</a>
  {' '}och{' '}
- <a href="/integritet" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
+ <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
  </p>
  </form>
 

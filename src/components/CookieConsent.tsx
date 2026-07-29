@@ -82,7 +82,7 @@ export default function CookieConsent() {
       }}>
         Nödvändiga cookies behövs för att Svalla ska fungera (inloggning, förfrågningar).
         För att förbättra upplevelsen använder vi även analys-cookies (PostHog) och kan skicka
-        push-notiser. Du kan ändra ditt val när som helst. <a href="/integritet" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Läs mer</a>.
+        push-notiser. Du kan ändra ditt val när som helst. <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'underline' }}>Läs mer</a>.
       </p>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
