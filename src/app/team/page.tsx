@@ -5,6 +5,34 @@ import TeamDashboardClient from './TeamDashboardClient'
 
 export const dynamic = 'force-dynamic'
 
+// users.username är ett sajt-brett fält (profilsidor, forum, loppis,
+// @mentions m.m. — se src/app/u/[username]) så vi byter INTE värdet i
+// databasen. Overriden här gäller bara vad /team visar, för visningsnamn
+// och avatar-initialer som inte matchar det publika användarnamnet.
+// Nycklarna är de faktiska username-värdena i databasen (verifierade mot
+// produktion: 'tsinordin' och 'Matte') — matchas skiftlägesokänsligt.
+const TEAM_DISPLAY: Record<string, { name: string; initials: string }> = {
+  tsinordin: { name: 'Tom', initials: 'TN' },
+  matte: { name: 'Max', initials: 'MB' },
+}
+
+type TeamDisplayUser = {
+  id: string
+  username: string
+  avatar: string | null
+  initials: string | null
+}
+
+function applyTeamDisplay(u: { id: string; username: string; avatar?: string | null }): TeamDisplayUser {
+  const override = TEAM_DISPLAY[u.username.toLowerCase()]
+  return {
+    id: u.id,
+    username: override?.name ?? u.username,
+    avatar: u.avatar ?? null,
+    initials: override?.initials ?? null,
+  }
+}
+
 export default async function TeamPage() {
   const supabase = await createServerSupabaseClient()
 
@@ -39,8 +67,8 @@ export default async function TeamPage() {
 
   return (
     <TeamDashboardClient
-      currentUser={{ id: user.id, username: userRow.username }}
-      teamMembers={teamMembers ?? []}
+      currentUser={applyTeamDisplay({ id: user.id, username: userRow.username })}
+      teamMembers={(teamMembers ?? []).map(applyTeamDisplay)}
       initialProjects={projects ?? []}
       initialTasks={tasks ?? []}
       initialPrompts={prompts ?? []}
