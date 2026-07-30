@@ -892,7 +892,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
         {STATUS_ORDER.map(status => {
           const colTasks = visibleTasks.filter(t => t.status === status)
           return (
@@ -909,23 +909,24 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
                   {colTasks.length}
                 </span>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 60 }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, minHeight: 60 }}>
                 {colTasks.length === 0 && (
-                  <div className="svt-empty-col">
+                  <div className="svt-empty-col" style={{ flex: '0 1 auto' }}>
                     <IcoTasks color="var(--txt3)" />
                     Inga uppgifter här
                   </div>
                 )}
                 {colTasks.map(task => (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    project={task.project_id ? projectById.get(task.project_id) : undefined}
-                    teamMembers={teamMembers}
-                    onStatusChange={onStatusChange}
-                    onAssigneeChange={onAssigneeChange}
-                    onDelete={onDelete}
-                  />
+                  <div key={task.id} style={{ flex: '1 1 280px', maxWidth: 420 }}>
+                    <TaskCard
+                      task={task}
+                      project={task.project_id ? projectById.get(task.project_id) : undefined}
+                      teamMembers={teamMembers}
+                      onStatusChange={onStatusChange}
+                      onAssigneeChange={onAssigneeChange}
+                      onDelete={onDelete}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
