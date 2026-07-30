@@ -70,10 +70,13 @@ export default function SuggestedUsers() {
     for (const p of profiles ?? []) profileMap[p.id] = { username: p.username, avatar: p.avatar ?? null }
 
     setUsers(
-      scored.filter(s => profileMap[s.uid]).slice(0, MAX_SUGGESTIONS).map(s => ({
-        id: s.uid, username: profileMap[s.uid]!.username, avatar: profileMap[s.uid]!.avatar,
-        tripCount: s.tripCount, recentCount: s.recentCount,
-      }))
+      scored
+        .filter(s => profileMap[s.uid] && profileMap[s.uid]!.username)
+        .slice(0, MAX_SUGGESTIONS)
+        .map(s => ({
+          id: s.uid, username: profileMap[s.uid]!.username, avatar: profileMap[s.uid]!.avatar,
+          tripCount: s.tripCount, recentCount: s.recentCount,
+        }))
     )
     setLoading(false)
   }, [supabase])
@@ -168,7 +171,7 @@ function SuggestedUserCard({ user, myId, onDismiss }: { user: SuggestedUser; myI
       </button>
 
       {/* Avatar */}
-      <Link href={`/u/${user.username}`} style={{ textDecoration: 'none' }}>
+      <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ textDecoration: 'none' }}>
         <div style={{
           width: 54, height: 54, borderRadius: '50%',
           background: grad, position: 'relative',
@@ -184,7 +187,7 @@ function SuggestedUserCard({ user, myId, onDismiss }: { user: SuggestedUser; myI
       </Link>
 
       {/* Name */}
-      <Link href={`/u/${user.username}`} style={{ textDecoration: 'none' }}>
+      <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ textDecoration: 'none' }}>
         <div style={{
           fontSize: 13, fontWeight: 600, color: 'var(--txt)',
           textAlign: 'center', lineHeight: 1.2,

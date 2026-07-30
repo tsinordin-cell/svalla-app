@@ -32,20 +32,20 @@ const ITEMS: LandingItem[] = [
   {
     icon: '',
     title: 'Segling',
-    description: 'Från nybörjarkurser i Saltsjön till kappseglingar runt Sandhamn — och charter om du inte har egen båt. Segling är möjligt året runt men maj–september är peak-säsongen.',
+    description: 'Från nybörjarkurser i Saltsjön till kappseglingar runt Sandhamn — och charter om du inte har egen båt. Segling är möjligt året runt men maj–september är högsäsongen.',
     href: '/segelrutter',
     meta: 'Hela säsongen',
   },
   {
     icon: '',
     title: 'Paddling & kajak',
-    description: 'Havskajak i ytterskärgården eller stillsam SUP i en naturhamn — från Bohuslän till Gotland är Sverige Europas bästa paddelrevir. Kurserna är långt enkla och billiga.',
+    description: 'Havskajak i ytterskärgården eller stillsam SUP i en naturhamn — från Bohuslän till Gotland är Sverige Europas bästa paddelrevir. Kurserna är dessutom enkla och billiga.',
     href: '/platser?kategori=paddling',
   },
   {
     icon: '',
     title: 'Fiske',
-    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöva du inget fiskekort, men regler och fredningsperioder gäller.',
+    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöver du inget fiskekort, men regler och fredningsperioder gäller.',
     href: '/platser?kategori=fiske',
   },
   {
@@ -69,7 +69,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🤿',
     title: 'Dykning & snorkling',
-    description: 'Vrakdykning i Dalarö och Bålsta, snorkling i Möjas grunda vikar och längs Gotlands östkust — Sverige har över 20 merkilledda vrak och fantastisk skaldjursfauna.',
+    description: 'Vrakdykning i Dalarö och Bålsta, snorkling i Möjas grunda vikar och längs Gotlands östkust — Sverige har över 20 välkända vrak och fantastisk skaldjursfauna.',
     href: '/platser?kategori=dyk',
   },
   {
@@ -98,7 +98,7 @@ export default function AktiviteterPage() {
       {
         '@type': 'Question',
         name: 'Kan man hyra kajak utan tidigare erfarenhet?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt säkert. En kajak-hyrkompani kommer alltid att ge dig 15–30 minuters instruktion. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, helt säkert. En kajakhyrningsföretag kommer alltid att ge dig 15–30 minuters instruktion. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.' },
       },
       {
         '@type': 'Question',
@@ -189,7 +189,7 @@ export default function AktiviteterPage() {
             Allemansrätten och havskajak
           </h3>
           <p>
-            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (1 april–15 juli). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på 1177.se eller kontakta räddningstjänsten.
+            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (1 april–15 juli). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på länsstyrelsens webbplats eller kontakta naturvårdsverket.
           </p>
           <p>
             Du bör inte paddla ensam långt från land. Använd alltid livväst, ha en väderstation på telefonen och säg till nära vän var du är på väg.
@@ -199,10 +199,10 @@ export default function AktiviteterPage() {
             Fiske i skärgården och på kusten
           </h2>
           <p>
-            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i saltvatten (havet) behöva du INGET fiskekort</strong>. Men i sjöar och älvar behöver du alltid ett fiskekort — det kostar omkring 100–200 kronor per dag från allemanswebben.
+            Fiske är en av de mest tillgängliga aktiviteterna längs kusten. Här är det viktiga att förstå: <strong>i saltvatten (havet) behöver du INGET fiskekort</strong>. Men i sjöar och älvar behöver du alltid ett fiskekort — det kostar omkring 100–200 kronor per dag från allemanswebben.
           </p>
           <p>
-            <strong>Havsöring</strong> är en premium-fisk som finns längs hela västkusten och Gotland. Den är fredadoch bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
+            <strong>Havsöring</strong> är en premium-fisk som finns längs hela västkusten och Gotland. Den är fredad och bör släppas tillbaka om du inte har särskild tillåtelse. <strong>Torsk</strong> och <strong>makrill</strong> fiskas från båt i djupare vatten. <strong>Strömming</strong> är gratis och rolig att fiska från brygga eller båt året runt.
           </p>
           <p>
             Från båt kan du även fiska <strong>gädda, abborre och gös</strong> — för dessa behövs fiskekort även i havet om du säljer eller skänker fisken. Många båtägare filar bara på tekniken eller slänger tillbaka fisken.
@@ -212,7 +212,7 @@ export default function AktiviteterPage() {
             Regler och fredningsperioder
           </h3>
           <p>
-            Havsöring är fredadfrån 1 oktober till 31 mars i de flesta områden — slapp då. Torsk har ibland fiskförbud sommartid för att ge den tid att föröka sig. Kolla fiskeriverkets hemsida före varje säsong.
+            Havsöring är fredad från 1 oktober till 31 mars i de flesta områden — slapp då. Torsk har ibland fiskförbud sommartid för att ge den tid att föröka sig. Kolla fiskeriverkets hemsida före varje säsong.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -228,14 +228,14 @@ export default function AktiviteterPage() {
             <strong>Gotland</strong> är känt för vita sandstränder och varmare vatten. Orsa Bad och Tofta strand är perfekta för familjer. Gotlands östra kust är ofta varmast — upp till 18–19 grader i augusti.
           </p>
           <p>
-            <strong>Stockholms skärgård</strong> har grynna vikar och klippbad tätt inblandade. Några öar är helt fria från turister om man paddlar lite längre. En klassisk dagatur från Stockholm tar två timmar båt till ett lugnt badställe.
+            <strong>Stockholms skärgård</strong> har grunda vikar och klippbad tätt inblandade. Några öar är helt fria från turister om man paddlar lite längre. En klassisk dagstur från Stockholm tar två timmar båt till ett lugnt badställe.
           </p>
           <p>
             <strong>Västra Vänern</strong> och <strong>Västra Götaland</strong> erbjuder också fantastiska badplatser — ofta helt gratis och ofta tomma även i juli.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
-            Vattentempraturer året om
+            Vattentemperaturer året om
           </h3>
           <p>
             Maj: 10–12 °C | Juni: 14–16 °C | Juli: 16–18 °C | Augusti: 16–19 °C | September: 14–16 °C | Oktober: 10–12 °C. I november–april är vattnet under 10 grader — en våtdräkt är nästan obligatorisk.
@@ -245,7 +245,7 @@ export default function AktiviteterPage() {
             Vandring från båt
           </h2>
           <p>
-            Många av Sveriges bästa vandringsleder ligger på öar eller nås bara från båt. Det öppnar upp helt nya möjligheter för aktivism — du kan kombinera segling, paddling eller motorbåt med promenad.
+            Många av Sveriges bästa vandringsleder ligger på öar eller nås bara från båt. Det öppnar upp helt nya möjligheter för friluftsliv — du kan kombinera segling, paddling eller motorbåt med promenad.
           </p>
           <p>
             <strong>Sörmlandsleden</strong> (genom Sörmland och öar utanför) är en klassisk multi-day trail — många gör den genom att paddla mellan nattställen. <strong>Roslagsleden</strong> går längs Stockholms skärgård och många avsnitt når du bara från båt. <strong>Stora Alvaret på Öland</strong> är del av UNESCO-världsarvet Södra Ölands odlingslandskap — där kan du vandra på öppen hedbygd. Många kombinerar det med både paddling och bad.
@@ -258,10 +258,10 @@ export default function AktiviteterPage() {
             När är bästa säsongen?
           </h2>
           <p>
-            <strong>Maj–juni</strong> är peak för segling, paddling och första baden — då är vattnet kallt (10–16 °C) men dagarna långa och väder ofta stabilt. <strong>Juli–augusti</strong> har varmast vatten (16–19 °C) och flest evenemang, men också trängsel i populära hamnar och högre priser.
+            <strong>Maj–juni</strong> är högsäsong för segling, paddling och första baden — då är vattnet kallt (10–16 °C) men dagarna långa och väder ofta stabilt. <strong>Juli–augusti</strong> har varmast vatten (16–19 °C) och flest evenemang, men också trängsel i populära hamnar och högre priser.
           </p>
           <p>
-            <strong>September</strong> ger klart vatten, tystare hamnar och ofta det bästa vädret för en längre expedition. <strong>Oktober–april</strong> är för de som gillar tom skärgård, vedeldade bastur och långfärdsskridsko — men väd och mörka dagarna är utmanande.
+            <strong>September</strong> ger klart vatten, tystare hamnar och ofta det bästa vädret för en längre expedition. <strong>Oktober–april</strong> är för de som gillar tom skärgård, vedeldade bastur och långfärdsskridsko — men vädret och de mörka dagarna är utmanande.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -271,7 +271,7 @@ export default function AktiviteterPage() {
             Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (1 april–15 juli) och naturreservat kan ha egna regler. Du får bygga läger överallt men du måste hålla minst 150 meter från närmaste bostad och inte lägga tält på samma plats mer än två nätter.
           </p>
           <p>
-            Många öar på karlskär och här längs är naturreservat — dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.
+            Många öar längs kusten är naturreservat — dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
@@ -299,14 +299,14 @@ export default function AktiviteterPage() {
             Kan man hyra kajak utan tidigare erfarenhet?
           </h3>
           <p>
-            <strong>Ja, helt säkert.</strong> En kajak-hyrkompani kommer alltid att ge dig 15–30 minuter instruktion innan du åker iväg. Du behöver inte kunna något i förväg — bara vilja. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simför.
+            <strong>Ja, helt säkert.</strong> En kajakhyrningsföretag kommer alltid att ge dig 15–30 minuter instruktion innan du åker iväg. Du behöver inte kunna något i förväg — bara vilja. Börja med en kortare tur (2–3 timmar) i ett lugnt område. Använd alltid livväst, även om du är simkunnig.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             När är havet varmt nog för simning utan våtdräkt?
           </h3>
           <p>
-            Det beror på personlig tålmodstolerans, men de flesta träna sig till att tycka 15–16 °C är okej. Utan träning är 17–18 °C minimun för många. <strong>Juli–augusti</strong> är det enda sättet att bada utan våtdräkt för de flesta — då är det ofta 17–19 °C. I Gotland är det ofta 1–2 grader varmare än övriga kusten.
+            Det beror på personlig smärtgräns, men de flesta vänjer sig vid att tycka 15–16 °C är okej. Utan vana är 17–18 °C minimum för många. <strong>Juli–augusti</strong> är det enda sättet att bada utan våtdräkt för de flesta — då är det ofta 17–19 °C. I Gotland är det ofta 1–2 grader varmare än övriga kusten.
           </p>
           <p>
             En billig våtdräkt kostar 300–500 kronor och öppnar upp möjligheten att bada året runt — även vinterbadare finns där det finns is.
@@ -322,16 +322,16 @@ export default function AktiviteterPage() {
             <strong>2. Informera någon.</strong> Berätta för en vän eller familjemedlem var du är på väg och när du förväntas vara tillbaka. Låt honom/henne veta när du är framme.
           </p>
           <p>
-            <strong>3. Använd alltid livväst.</strong> I båt är det lag. I kajak är det överlevnad. I båt är det lag.
+            <strong>3. Använd alltid livväst.</strong> I båt är det lag. I kajak är det överlevnad.
           </p>
           <p>
-            <strong>4. Börja små.</strong> Om du aldrig seglat förr — ta en kurs. Om du aldrig paddlat — hyra kajak i lugnt vatten innan du åker långt. Många olyckor beror på övermod.
+            <strong>4. Börja små.</strong> Om du aldrig seglat förr — ta en kurs. Om du aldrig paddlat — hyr kajak i lugnt vatten innan du åker långt. Många olyckor beror på övermod.
           </p>
           <p>
             <strong>5. Ha en mobil eller VHF med batteri.</strong> Många skärgårdsöar har svag täckning men en VHF radiomottagare kan rädda livet.
           </p>
           <p>
-            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Lämna ingen skräp, gräv ned ditt toalettfolk minst 50 meter från vattnet, och läs före du paddlar långt bort.
+            <strong>6. Respektera allemansrätten och naturreservaten.</strong> Lämna ingen skräp, gräv ned ditt toalettavfall minst 50 meter från vattnet, och läs före du paddlar långt bort.
           </p>
         </>
       }
