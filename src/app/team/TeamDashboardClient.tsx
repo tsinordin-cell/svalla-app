@@ -337,6 +337,8 @@ const GLOBAL_CSS = `
 @keyframes svtFadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .svt-main { flex: 1; min-width: 0; padding: 28px 32px 100px; }
 .svt-mobile-projectbar { display: none; }
+.svt-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.svt-status-col { min-width: 0; }
 .svt-chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
   font-size: 12px; font-weight: 600; color: var(--txt2); background: var(--svt-chip-bg);
@@ -359,6 +361,15 @@ const GLOBAL_CSS = `
   .svt-mobile-nav { display: flex; }
   .svt-main { padding: 16px 14px 88px; }
   .svt-mobile-projectbar { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 16px; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+  /* På smal skärm blir 4 fasta kolumner för trånga för korten — behåll
+     "vågrätt, vänster till höger" genom att låta raden scrolla i sidled
+     istället för att stapla kolumnerna på varandra. */
+  .svt-status-grid {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78vw;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity;
+    margin: 0 -14px; padding: 0 14px 6px; gap: 12px;
+  }
+  .svt-status-col { scroll-snap-align: start; }
   /* Text-inputs under 16px triggar auto-zoom på iOS — tvinga 16px på mobil oavsett desktop-storlek. */
   .svt-input { font-size: 16px !important; }
   /* Tumme-vänliga tap-ytor — 26px är för litet för finger på en skärm. */
@@ -892,41 +903,43 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+      <div className="svt-status-grid">
         {STATUS_ORDER.map(status => {
           const colTasks = visibleTasks.filter(t => t.status === status)
           return (
-            <div key={status}>
+            <div key={status} className="svt-status-col">
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 10 }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status] }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status], flexShrink: 0 }} />
+                <span style={{
+                  fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
                   {STATUS_LABEL[status]}
                 </span>
                 <span style={{
                   fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'var(--svt-chip-bg)',
-                  padding: '1px 7px', borderRadius: 999,
+                  padding: '1px 7px', borderRadius: 999, flexShrink: 0,
                 }}>
                   {colTasks.length}
                 </span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, minHeight: 60 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 60 }}>
                 {colTasks.length === 0 && (
-                  <div className="svt-empty-col" style={{ flex: '0 1 auto' }}>
+                  <div className="svt-empty-col">
                     <IcoTasks color="var(--txt3)" />
                     Inga uppgifter här
                   </div>
                 )}
                 {colTasks.map(task => (
-                  <div key={task.id} style={{ flex: '1 1 280px', maxWidth: 420 }}>
-                    <TaskCard
-                      task={task}
-                      project={task.project_id ? projectById.get(task.project_id) : undefined}
-                      teamMembers={teamMembers}
-                      onStatusChange={onStatusChange}
-                      onAssigneeChange={onAssigneeChange}
-                      onDelete={onDelete}
-                    />
-                  </div>
+                  <TaskCard
+                    key={task.id}
+                    task={task}
+                    project={task.project_id ? projectById.get(task.project_id) : undefined}
+                    teamMembers={teamMembers}
+                    onStatusChange={onStatusChange}
+                    onAssigneeChange={onAssigneeChange}
+                    onDelete={onDelete}
+                  />
                 ))}
               </div>
             </div>
