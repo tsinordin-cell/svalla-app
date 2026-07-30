@@ -18,7 +18,10 @@ type Project = {
   created_at: string
 }
 
-type TaskStatus = 'todo' | 'in_progress' | 'done'
+// Claude-arbetsflöde: Att göra → Claude jobbar → Redo att granska → Klart.
+// Matchar hur uppgifter faktiskt rör sig här — de flesta är "Claude-uppdrag",
+// inte ett generiskt kanban-flöde.
+type TaskStatus = 'todo' | 'working' | 'review' | 'done'
 type TaskPriority = 'low' | 'normal' | 'high'
 
 type Task = {
@@ -31,6 +34,8 @@ type Task = {
   assignee_id: string | null
   created_by: string | null
   due_date: string | null
+  pr_url: string | null
+  prompt: string | null
   created_at: string
   updated_at: string
 }
@@ -60,18 +65,28 @@ type Tab = 'tasks' | 'prompts' | 'activity'
 
 const STATUS_LABEL: Record<TaskStatus, string> = {
   todo: 'Att göra',
-  in_progress: 'Pågår',
+  working: 'Claude jobbar',
+  review: 'Redo att granska',
   done: 'Klart',
 }
-const STATUS_ORDER: TaskStatus[] = ['todo', 'in_progress', 'done']
+const STATUS_ORDER: TaskStatus[] = ['todo', 'working', 'review', 'done']
+// Återanvänder sajtens egna temafärger (--txt3/--amber/--green är redan
+// mörkt-läge-anpassade i globals.css) — bara "review" saknar en global
+// motsvarighet så den får en fast lila som funkar på båda bakgrunderna.
+const REVIEW_COLOR = '#8b5cf6'
 const STATUS_ACCENT: Record<TaskStatus, string> = {
-  todo: '#94a3b8',
-  in_progress: '#c96e2a',
-  done: '#0a7b3c',
+  todo: 'var(--txt3)',
+  working: 'var(--amber)',
+  review: REVIEW_COLOR,
+  done: 'var(--green)',
 }
 
 const PRIORITY_LABEL: Record<TaskPriority, string> = { low: 'Låg', normal: 'Normal', high: 'Hög' }
-const PRIORITY_COLOR: Record<TaskPriority, string> = { low: '#5a7a8a', normal: '#1e5c82', high: '#c0392b' }
+const PRIORITY_COLOR: Record<TaskPriority, string> = {
+  low: 'var(--txt3)',
+  normal: 'var(--sea)',
+  high: 'var(--red)',
+}
 
 const AVATAR_PALETTE = ['#1e5c82', '#c96e2a', '#0a7b8c', '#7c3aed', '#0a7b3c', '#9d174d']
 
@@ -95,6 +110,21 @@ function relativeTime(iso: string): string {
 
 function initials(name: string): string {
   return name.slice(0, 2).toUpperCase()
+}
+
+function hostFromUrl(url: string): string {
+  try {
+    const u = new URL(url)
+    if (u.hostname === 'github.com') {
+      const parts = u.pathname.split('/').filter(Boolean)
+      if (parts.length >= 4 && parts[2] === 'pull') return `PR #${parts[3]}`
+      if (parts.length >= 3 && parts[2] === 'tree') return `branch: ${parts.slice(3).join('/')}`
+      return u.pathname.split('/').slice(1, 3).join('/')
+    }
+    return u.hostname.replace('www.', '')
+  } catch {
+    return 'länk'
+  }
 }
 
 // ── Ikoner (linje-stil, matchar admin-panelens SVG-ikoner) ──────────────────
@@ -166,14 +196,22 @@ function IcoCheck({ color = 'currentColor' }: { color?: string }) {
     </svg>
   )
 }
+function IcoLink({ color = 'currentColor' }: { color?: string }) {
+  return (
+    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11.5 4.5" />
+      <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.36-1.36" />
+    </svg>
+  )
+}
 
 // ── Delade stilar ─────────────────────────────────────────────────────────
 
 const surface: React.CSSProperties = {
   background: 'var(--white)',
   borderRadius: 12,
-  border: '1px solid rgba(15,45,60,0.08)',
-  boxShadow: '0 1px 2px rgba(15,45,60,0.04)',
+  border: '1px solid var(--svt-border)',
+  boxShadow: 'var(--shadow-xs)',
 }
 
 const inputStyle: React.CSSProperties = {
@@ -205,7 +243,7 @@ const btnGhost: React.CSSProperties = {
   display: 'inline-flex', alignItems: 'center', gap: 6,
   padding: '9px 16px',
   borderRadius: 8,
-  border: '1.5px solid rgba(15,45,60,0.14)',
+  border: '1.5px solid var(--svt-border-strong)',
   background: 'transparent',
   color: 'var(--txt2)',
   fontSize: 13,
@@ -214,12 +252,37 @@ const btnGhost: React.CSSProperties = {
 }
 
 const GLOBAL_CSS = `
-.svt-shell { display: flex; min-height: 100dvh; background: var(--bg); }
+.svt-shell {
+  display: flex; min-height: 100dvh; background: var(--bg);
+  /* Lokala tokens för det här verktyget — ljust läge som grund, mörkt
+     läge skrivs över nedan. Färger/skuggor i övrigt återanvänder sajtens
+     egna --txt/--sea/--amber/--green/--red/--shadow-* som redan är
+     mörkt-läge-anpassade i globals.css. */
+  --svt-border:        rgba(15,45,60,0.08);
+  --svt-border-strong: rgba(15,45,60,0.14);
+  --svt-hover-border:  rgba(15,45,60,0.16);
+  --svt-hover-bg:      rgba(15,45,60,0.07);
+  --svt-chip-bg:       rgba(15,45,60,0.06);
+  --svt-divider:       rgba(15,45,60,0.06);
+  --svt-tint-bg:       rgba(30,92,130,0.10);
+  --svt-avatar-ring:   rgba(15,45,60,0.35);
+}
+[data-theme="dark"] .svt-shell {
+  --svt-border:        rgba(255,255,255,0.09);
+  --svt-border-strong: rgba(255,255,255,0.16);
+  --svt-hover-border:  rgba(255,255,255,0.20);
+  --svt-hover-bg:      rgba(255,255,255,0.08);
+  --svt-chip-bg:       rgba(255,255,255,0.07);
+  --svt-divider:       rgba(255,255,255,0.08);
+  --svt-tint-bg:       rgba(74,184,212,0.14);
+  --svt-avatar-ring:   rgba(255,255,255,0.55);
+}
 .svt-sidebar {
   width: 252px; flex-shrink: 0; min-height: 100dvh; position: sticky; top: 0;
   background: linear-gradient(180deg, #16496a 0%, #0e2f45 100%);
   display: flex; flex-direction: column; padding: 20px 14px;
 }
+[data-theme="dark"] .svt-sidebar { background: linear-gradient(180deg, #0e2f45 0%, #05131e 100%); }
 .svt-mobile-nav { display: none; }
 .svt-navitem {
   display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px;
@@ -241,16 +304,16 @@ const GLOBAL_CSS = `
   transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
   animation: svtFadeUp .22s ease both;
 }
-.svt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15,45,60,0.10); border-color: rgba(15,45,60,0.14); }
+.svt-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: var(--svt-hover-border); }
 .svt-avbtn {
   width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer;
   display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; color: #fff;
   transition: transform .12s ease, opacity .12s ease, border-color .12s ease; opacity: 0.38;
 }
 .svt-avbtn:hover { transform: scale(1.12); opacity: 0.75; }
-.svt-avbtn.picked { opacity: 1; border-color: rgba(15,45,60,0.35); transform: scale(1.05); }
+.svt-avbtn.picked { opacity: 1; border-color: var(--svt-avatar-ring); transform: scale(1.05); }
 .svt-empty-col {
-  border: 1.5px dashed rgba(15,45,60,0.14); border-radius: 12px; padding: 22px 12px;
+  border: 1.5px dashed var(--svt-border-strong); border-radius: 12px; padding: 22px 12px;
   display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--txt3); font-size: 12px;
 }
 .svt-tab {
@@ -264,17 +327,33 @@ const GLOBAL_CSS = `
   width: 26px; height: 26px; border-radius: 7px; border: none; background: transparent; color: var(--txt3);
   display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .12s, color .12s;
 }
-.svt-iconbtn:hover { background: rgba(15,45,60,0.07); color: var(--txt); }
-.svt-iconbtn.danger:hover { background: rgba(192,57,43,0.10); color: #c0392b; }
+.svt-iconbtn:hover { background: var(--svt-hover-bg); color: var(--txt); }
+.svt-iconbtn.danger:hover { background: rgba(192,57,43,0.14); color: var(--red); }
+.svt-iconbtn.active { background: var(--svt-tint-bg); color: var(--sea); }
+/* Primär-knappar: vit text i ljust läge, men på den ljusa cyanen --sea får
+   i mörkt läge blir vit text för svag kontrast — mörk text där istället. */
+.svt-btn-primary { color: #fff; }
+[data-theme="dark"] .svt-btn-primary { color: #04202b; }
 @keyframes svtFadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .svt-main { flex: 1; min-width: 0; padding: 28px 32px 100px; }
 .svt-mobile-projectbar { display: none; }
 .svt-chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
-  font-size: 12px; font-weight: 600; color: var(--txt2); background: rgba(15,45,60,0.06);
+  font-size: 12px; font-weight: 600; color: var(--txt2); background: var(--svt-chip-bg);
   border: none; white-space: nowrap; flex-shrink: 0; cursor: pointer;
 }
 .svt-chip.active { background: var(--sea); color: #fff; }
+.svt-link-chip {
+  display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 6px;
+  font-size: 10.5px; font-weight: 600; color: var(--sea); background: var(--svt-chip-bg);
+  text-decoration: none; border: none; cursor: pointer;
+}
+.svt-link-chip:hover { background: var(--svt-tint-bg); }
+.svt-prompt-box {
+  background: var(--svt-chip-bg); border-radius: 8px; padding: 9px 11px; margin-top: 8px;
+  font-family: ui-monospace, monospace; font-size: 11.5px; line-height: 1.5; color: var(--txt2);
+  white-space: pre-wrap; word-break: break-word; max-height: 160px; overflow-y: auto;
+}
 @media (max-width: 860px) {
   .svt-sidebar { display: none; }
   .svt-mobile-nav { display: flex; }
@@ -354,7 +433,7 @@ export default function TeamDashboardClient({
   // ── CRUD: tasks ───────────────────────────────────────────────────────────
   const createTask = useCallback(async (input: {
     title: string; project_id: string | null; assignee_id: string | null
-    priority: TaskPriority; due_date: string | null
+    priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
   }) => {
     const { data, error } = await supabase
       .from('team_tasks')
@@ -506,7 +585,7 @@ export default function TeamDashboardClient({
                   <input type="color" value={newProjectColor} onChange={e => setNewProjectColor(e.target.value)} style={{ width: 28, height: '100%', border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer' }} />
                 </div>
                 <div style={{ display: 'flex', gap: 6 }}>
-                  <button onClick={submitNewProject} style={{ ...btnPrimary, padding: '6px 10px', fontSize: 11.5, flex: 1, justifyContent: 'center' }}>Skapa</button>
+                  <button onClick={submitNewProject} className="svt-btn-primary" style={{ ...btnPrimary, padding: '6px 10px', fontSize: 11.5, flex: 1, justifyContent: 'center' }}>Skapa</button>
                   <button onClick={() => setShowNewProject(false)} style={{ ...btnGhost, padding: '6px 10px', fontSize: 11.5, color: 'rgba(255,255,255,0.7)', border: '1.5px solid rgba(255,255,255,0.16)' }}>Avbryt</button>
                 </div>
               </div>
@@ -542,9 +621,9 @@ export default function TeamDashboardClient({
         {/* ── Mobil-nav (visas bara under 860px) ───────────────────────────── */}
         <div className="svt-mobile-nav" style={{
           position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 20,
-          background: 'var(--white)', borderTop: '1px solid rgba(15,45,60,0.10)',
+          background: 'var(--white)', borderTop: '1px solid var(--svt-border-strong)',
           padding: '8px 10px', justifyContent: 'space-around',
-          boxShadow: '0 -4px 16px rgba(15,45,60,0.08)',
+          boxShadow: 'var(--shadow-md)',
         }}>
           {navItems.map(item => (
             <button key={item.key} onClick={() => setTab(item.key)} style={{
@@ -596,7 +675,7 @@ export default function TeamDashboardClient({
                   style={{ ...inputStyle, flex: 1 }}
                 />
                 <input type="color" value={newProjectColor} onChange={e => setNewProjectColor(e.target.value)} style={{ width: 36, border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer', flexShrink: 0 }} />
-                <button onClick={submitNewProject} style={{ ...btnPrimary, padding: '8px 14px', flexShrink: 0 }}>Skapa</button>
+                <button onClick={submitNewProject} className="svt-btn-primary" style={{ ...btnPrimary, padding: '8px 14px', flexShrink: 0 }}>Skapa</button>
               </div>
             )}
 
@@ -607,6 +686,7 @@ export default function TeamDashboardClient({
                 projectById={projectById}
                 memberById={memberById}
                 teamMembers={teamMembers}
+                currentUser={currentUser}
                 onCreate={createTask}
                 onStatusChange={updateTaskStatus}
                 onAssigneeChange={updateTaskAssignee}
@@ -692,23 +772,33 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
 
 // ── Uppgiftstavla ────────────────────────────────────────────────────────────
 
-function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onCreate, onStatusChange, onAssigneeChange, onDelete }: {
+type AssigneeFilter = 'all' | 'me' | 'unassigned' | string
+
+function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete }: {
   tasks: Task[]
   projects: Project[]
   projectById: Map<string, Project>
   memberById: Map<string, TeamMember>
   teamMembers: TeamMember[]
-  onCreate: (input: { title: string; project_id: string | null; assignee_id: string | null; priority: TaskPriority; due_date: string | null }) => void
+  currentUser: { id: string; username: string }
+  onCreate: (input: {
+    title: string; project_id: string | null; assignee_id: string | null
+    priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
+  }) => void
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
 }) {
   const [showForm, setShowForm] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
   const [title, setTitle] = useState('')
   const [projectId, setProjectId] = useState('')
   const [assigneeId, setAssigneeId] = useState<string | null>(null)
   const [priority, setPriority] = useState<TaskPriority>('normal')
   const [dueDate, setDueDate] = useState('')
+  const [prUrl, setPrUrl] = useState('')
+  const [prompt, setPrompt] = useState('')
+  const [assigneeFilter, setAssigneeFilter] = useState<AssigneeFilter>('all')
 
   function submit() {
     if (!title.trim()) return
@@ -718,15 +808,41 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
       assignee_id: assigneeId,
       priority,
       due_date: dueDate || null,
+      pr_url: prUrl.trim() || null,
+      prompt: prompt.trim() || null,
     })
-    setTitle(''); setProjectId(''); setAssigneeId(null); setPriority('normal'); setDueDate(''); setShowForm(false)
+    setTitle(''); setProjectId(''); setAssigneeId(null); setPriority('normal')
+    setDueDate(''); setPrUrl(''); setPrompt(''); setShowDetails(false); setShowForm(false)
   }
+
+  const visibleTasks = tasks.filter(t => {
+    if (assigneeFilter === 'all') return true
+    if (assigneeFilter === 'unassigned') return !t.assignee_id
+    if (assigneeFilter === 'me') return t.assignee_id === currentUser.id
+    return t.assignee_id === assigneeFilter
+  })
 
   return (
     <div>
-      {!showForm ? (
-        <button onClick={() => setShowForm(true)} style={{ ...btnPrimary, marginBottom: 18 }}><IcoPlus color="#fff" /> Ny uppgift</button>
-      ) : (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
+        {!showForm ? (
+          <button onClick={() => setShowForm(true)} className="svt-btn-primary" style={btnPrimary}><IcoPlus color="currentColor" /> Ny uppgift</button>
+        ) : <div />}
+
+        {/* Håll koll på vem som har vad — snabbfilter på tilldelning */}
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          <button className={`svt-chip${assigneeFilter === 'all' ? ' active' : ''}`} onClick={() => setAssigneeFilter('all')}>Alla</button>
+          <button className={`svt-chip${assigneeFilter === 'me' ? ' active' : ''}`} onClick={() => setAssigneeFilter('me')}>Mina</button>
+          {teamMembers.filter(m => m.id !== currentUser.id).map(m => (
+            <button key={m.id} className={`svt-chip${assigneeFilter === m.id ? ' active' : ''}`} onClick={() => setAssigneeFilter(m.id)}>
+              {m.username}s
+            </button>
+          ))}
+          <button className={`svt-chip${assigneeFilter === 'unassigned' ? ' active' : ''}`} onClick={() => setAssigneeFilter('unassigned')}>Otilldelat</button>
+        </div>
+      </div>
+
+      {showForm && (
         <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
           <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -748,16 +864,37 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
               <span style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>{memberById.get(assigneeId)?.username}</span>
             )}
           </div>
+
+          {!showDetails ? (
+            <button onClick={() => setShowDetails(true)} className="svt-tab" style={{ borderBottom: 'none', justifyContent: 'flex-start', padding: '2px 2px' }}>
+              <IcoPlus /> Lägg till prompt eller PR/branch-länk
+            </button>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, background: 'var(--svt-chip-bg)', borderRadius: 8, padding: 10 }}>
+              <input
+                value={prUrl} onChange={e => setPrUrl(e.target.value)}
+                placeholder="Länk till GitHub-PR eller branch (valfritt)"
+                className="svt-input" style={{ ...inputStyle, background: 'var(--white)' }}
+              />
+              <textarea
+                value={prompt} onChange={e => setPrompt(e.target.value)}
+                placeholder="Prompten Claude ska köra för den här uppgiften (valfritt)…"
+                rows={4} className="svt-input"
+                style={{ ...inputStyle, background: 'var(--white)', resize: 'vertical', fontFamily: 'ui-monospace, monospace' }}
+              />
+            </div>
+          )}
+
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={submit} style={btnPrimary}>Skapa uppgift</button>
-            <button onClick={() => setShowForm(false)} style={btnGhost}>Avbryt</button>
+            <button onClick={submit} className="svt-btn-primary" style={btnPrimary}>Skapa uppgift</button>
+            <button onClick={() => { setShowForm(false); setShowDetails(false) }} style={btnGhost}>Avbryt</button>
           </div>
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16 }}>
         {STATUS_ORDER.map(status => {
-          const colTasks = tasks.filter(t => t.status === status)
+          const colTasks = visibleTasks.filter(t => t.status === status)
           return (
             <div key={status}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 10 }}>
@@ -766,7 +903,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
                   {STATUS_LABEL[status]}
                 </span>
                 <span style={{
-                  fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'rgba(15,45,60,0.06)',
+                  fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'var(--svt-chip-bg)',
                   padding: '1px 7px', borderRadius: 999,
                 }}>
                   {colTasks.length}
@@ -775,7 +912,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, onC
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 60 }}>
                 {colTasks.length === 0 && (
                   <div className="svt-empty-col">
-                    <IcoTasks color="rgba(15,45,60,0.28)" />
+                    <IcoTasks color="var(--txt3)" />
                     Inga uppgifter här
                   </div>
                 )}
@@ -807,8 +944,19 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
 }) {
+  const [showPrompt, setShowPrompt] = useState(false)
+  const [copied, setCopied] = useState(false)
   const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
   const idx = STATUS_ORDER.indexOf(task.status)
+
+  async function copyPrompt() {
+    if (!task.prompt) return
+    try {
+      await navigator.clipboard.writeText(task.prompt)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch { /* no-op */ }
+  }
 
   return (
     <div className="svt-card" style={{ ...surface, padding: 14, borderLeft: project ? `3px solid ${project.color}` : undefined }}>
@@ -820,7 +968,7 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 10.5, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: `${PRIORITY_COLOR[task.priority]}16`, padding: '2px 8px', borderRadius: 6 }}>
+        <span style={{ fontSize: 10.5, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: 'var(--svt-chip-bg)', padding: '2px 8px', borderRadius: 6 }}>
           {PRIORITY_LABEL[task.priority]}
         </span>
         {project && (
@@ -830,15 +978,34 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
         )}
         {task.due_date && (
           <span style={{
-            fontSize: 10.5, fontWeight: overdue ? 700 : 500, color: overdue ? '#c0392b' : 'var(--txt3)',
-            background: overdue ? 'rgba(192,57,43,0.10)' : 'rgba(15,45,60,0.05)', padding: '2px 8px', borderRadius: 6,
+            fontSize: 10.5, fontWeight: overdue ? 700 : 500, color: overdue ? 'var(--red)' : 'var(--txt3)',
+            background: 'var(--svt-chip-bg)', padding: '2px 8px', borderRadius: 6,
           }}>
             {overdue ? '⚠ ' : ''}{new Date(task.due_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
           </span>
         )}
+        {task.pr_url && (
+          <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip">
+            <IcoLink /> {hostFromUrl(task.pr_url)}
+          </a>
+        )}
+        {task.prompt && (
+          <button className="svt-link-chip" onClick={() => setShowPrompt(v => !v)}>
+            <IcoPrompt color="currentColor" /> Prompt
+          </button>
+        )}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid rgba(15,45,60,0.06)' }}>
+      {task.prompt && showPrompt && (
+        <div>
+          <pre className="svt-prompt-box">{task.prompt}</pre>
+          <button onClick={copyPrompt} className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '4px 8px', fontSize: 11, fontWeight: 600 }}>
+            {copied ? <><IcoCheck color="var(--green)" /> Kopierad</> : <><IcoCopy /> Kopiera prompt</>}
+          </button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--svt-divider)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: 10.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
           <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
@@ -854,9 +1021,10 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
             <button
               onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}
               title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx + 1]!]}`}
-              style={{ width: 26, height: 26, borderRadius: 7, border: 'none', background: 'var(--sea)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+              className="svt-btn-primary"
+              style={{ width: 26, height: 26, borderRadius: 7, border: 'none', background: 'var(--sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
             >
-              <IcoChevron dir="right" color="#fff" />
+              <IcoChevron dir="right" color="currentColor" />
             </button>
           )}
         </div>
@@ -915,14 +1083,14 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
     <div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="Sök promptar…" className="svt-input" style={{ ...inputStyle, flex: 1, minWidth: 200 }} />
-        <button onClick={() => setShowForm(v => !v)} style={btnPrimary}><IcoPlus color="#fff" /> {showForm ? 'Stäng' : 'Ny prompt'}</button>
+        <button onClick={() => setShowForm(v => !v)} className="svt-btn-primary" style={btnPrimary}><IcoPlus color="currentColor" /> {showForm ? 'Stäng' : 'Ny prompt'}</button>
       </div>
 
       {allTags.length > 0 && (
         <div style={{ display: 'flex', gap: 6, marginBottom: 16, flexWrap: 'wrap' }}>
-          <button onClick={() => setTagFilter(null)} className="svt-tab" style={{ ...(!tagFilter ? { color: 'var(--sea)' } : {}), borderBottom: 'none', background: !tagFilter ? 'rgba(30,92,130,0.10)' : 'rgba(15,45,60,0.05)', borderRadius: 999, padding: '5px 12px' }}>Alla</button>
+          <button onClick={() => setTagFilter(null)} className={`svt-chip${!tagFilter ? ' active' : ''}`}>Alla</button>
           {allTags.map(t => (
-            <button key={t} onClick={() => setTagFilter(t === tagFilter ? null : t)} className="svt-tab" style={{ borderBottom: 'none', color: tagFilter === t ? 'var(--sea)' : 'var(--txt3)', background: tagFilter === t ? 'rgba(30,92,130,0.10)' : 'rgba(15,45,60,0.05)', borderRadius: 999, padding: '5px 12px' }}>
+            <button key={t} onClick={() => setTagFilter(t === tagFilter ? null : t)} className={`svt-chip${tagFilter === t ? ' active' : ''}`}>
               #{t}
             </button>
           ))}
@@ -941,7 +1109,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
             </select>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={submit} style={btnPrimary}>Spara prompt</button>
+            <button onClick={submit} className="svt-btn-primary" style={btnPrimary}>Spara prompt</button>
             <button onClick={() => setShowForm(false)} style={btnGhost}>Avbryt</button>
           </div>
         </div>
@@ -949,11 +1117,11 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
 
       {filtered.length === 0 ? (
         <div className="svt-empty-col" style={{ padding: '36px 12px' }}>
-          <IcoPrompt color="rgba(15,45,60,0.28)" />
+          <IcoPrompt color="var(--txt3)" />
           Inga promptar än — lägg till den första.
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 14 }}>
           {filtered.map(p => {
             const proj = p.project_id ? projectById.get(p.project_id) : undefined
             return (
@@ -962,7 +1130,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
                   <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{p.title}</div>
                   <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
                     <button className="svt-iconbtn" onClick={() => copy(p)} title="Kopiera">
-                      {copiedId === p.id ? <IcoCheck color="#0a7b3c" /> : <IcoCopy />}
+                      {copiedId === p.id ? <IcoCheck color="var(--green)" /> : <IcoCopy />}
                     </button>
                     <button className="svt-iconbtn danger" onClick={() => onDelete(p.id)} title="Ta bort">
                       <IcoTrash />
@@ -970,7 +1138,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
                   </div>
                 </div>
                 <pre style={{
-                  fontSize: 12, color: 'var(--txt2)', background: 'rgba(15,45,60,0.04)', borderRadius: 8,
+                  fontSize: 12, color: 'var(--txt2)', background: 'var(--svt-chip-bg)', borderRadius: 8,
                   padding: '10px 12px', margin: '10px 0 0', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                   fontFamily: 'ui-monospace, monospace', maxHeight: 160, overflowY: 'auto', flex: 1,
                 }}>
@@ -979,7 +1147,7 @@ function PromptLibrary({ prompts, projects, projectById, onCreate, onDelete }: {
                 {p.tags.length > 0 && (
                   <div style={{ display: 'flex', gap: 5, marginTop: 10, flexWrap: 'wrap' }}>
                     {p.tags.map(t => (
-                      <span key={t} style={{ fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 999, background: 'rgba(15,45,60,0.06)', color: 'var(--txt3)' }}>
+                      <span key={t} style={{ fontSize: 10.5, fontWeight: 600, padding: '3px 9px', borderRadius: 999, background: 'var(--svt-chip-bg)', color: 'var(--txt3)' }}>
                         #{t}
                       </span>
                     ))}
@@ -1013,7 +1181,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
   }
 
   const kindColor: Record<Activity['kind'], string> = {
-    task: '#0a7b3c', prompt: '#7c3aed', project: '#c96e2a', note: '#1e5c82',
+    task: 'var(--green)', prompt: REVIEW_COLOR, project: 'var(--amber)', note: 'var(--sea)',
   }
   const iconFor = (kind: Activity['kind']) => {
     switch (kind) {
@@ -1039,12 +1207,12 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
           <option value="">Inget projekt</option>
           {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
         </select>
-        <button onClick={submit} style={btnPrimary}>Dela</button>
+        <button onClick={submit} className="svt-btn-primary" style={btnPrimary}>Dela</button>
       </div>
 
       {activity.length === 0 ? (
         <div className="svt-empty-col" style={{ padding: '36px 12px' }}>
-          <IcoActivity color="rgba(15,45,60,0.28)" />
+          <IcoActivity color="var(--txt3)" />
           Inget har hänt än.
         </div>
       ) : (
@@ -1055,10 +1223,10 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
             return (
               <div key={a.id} style={{
                 display: 'flex', gap: 12, padding: '12px 0',
-                borderBottom: i < activity.length - 1 ? '1px solid rgba(15,45,60,0.06)' : 'none',
+                borderBottom: i < activity.length - 1 ? '1px solid var(--svt-divider)' : 'none',
               }}>
                 <div style={{
-                  width: 28, height: 28, borderRadius: '50%', background: `${kindColor[a.kind]}14`,
+                  width: 28, height: 28, borderRadius: '50%', background: 'var(--svt-chip-bg)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                 }}>
                   {iconFor(a.kind)}
