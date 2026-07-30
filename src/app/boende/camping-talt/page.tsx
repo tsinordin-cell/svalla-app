@@ -143,7 +143,7 @@ export default function CampingPage() {
             Packlista för tältning i skärgård
           </h2>
           <p>
-            Ta med alla ärenden: vatten för minst en dag (vattenkällor på öar är begränsade), sopor hem (ingenstans att lämna dem), sovsäck anpassad för 8–12°C nätter även i juli, och vattentät tältduk. En gasbrännare är att föredra framför öppen eld — eldningsförbud gäller ofta under torr sommar.
+            Tänk på det viktigaste: vatten för minst en dag (vattenkällor på öar är begränsade), sopor hem (ingenstans att lämna dem), sovsäck anpassad för 8–12°C nätter även i juli, och vattentät tältduk. En gasbrännare är att föredra framför öppen eld — eldningsförbud gäller ofta under torr sommar.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Hitta campingplatser

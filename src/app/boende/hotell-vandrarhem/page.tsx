@@ -130,7 +130,7 @@ export default function HotellPage() {
             Klassiska värdshus i skärgården
           </h2>
           <p>
-            Skärgårdens värdshus är en kategori för sig — historiska byggnader i gamla lotsstationer och fiskelägen som kombiner restaurang, bar och boende. <strong>Utö Värdshus</strong> och <strong>Sandhamns Värdshus</strong> rankas år efter år bland Sveriges bästa, och Grinda Wärdshus är känt för sin mat och naturnära läge. Boka restaurang och rum separat — de bokar ut i olika takt.
+            Skärgårdens värdshus är en kategori för sig — historiska byggnader i gamla lotsstationer och fiskelägen som kombinerar restaurang, bar och boende. <strong>Utö Värdshus</strong> och <strong>Sandhamns Värdshus</strong> rankas år efter år bland Sveriges bästa, och Grinda Wärdshus är känt för sin mat och naturnära läge. Boka restaurang och rum separat — de bokar ut i olika takt.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Vandrarhem — det billigaste sättet att sova ute

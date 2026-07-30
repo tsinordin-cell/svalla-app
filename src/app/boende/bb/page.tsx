@@ -35,7 +35,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏛',
     title: 'Små pensionat i skärgården',
-    description: 'Pensionat med halvpension eller frukost ingår — slipper planera alla måltider och kan lägga fokus på upplevelserna istället.',
+    description: 'Pensionat med halvpension eller frukost ingår — du slipper planera alla måltider och kan lägga fokus på upplevelserna istället.',
     href: '/o/vaxholm/boende',
   },
   {
@@ -136,7 +136,7 @@ export default function BBPage() {
             Att tänka på när du bokar
           </h2>
           <p>
-            Många B&B i skärgården tar inte kortbetalning — fråga i förväg. Avbokning är ofta strängare än på hotell; det är vanligt med full betalning vid bokning under högsäsong. Kolla alltid om frukost verkligen ingår och om det finns parkering eller om du måste ta sig ut med färja.
+            Många B&B i skärgården tar inte kortbetalning — fråga i förväg. Avbokning är ofta strängare än på hotell; det är vanligt med full betalning vid bokning under högsäsong. Kolla alltid om frukost verkligen ingår och om det finns parkering eller om du måste ta dig ut med färja.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '40px 0 8px' }}>
             Sök B&amp;B och pensionat direkt

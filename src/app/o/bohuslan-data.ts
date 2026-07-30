@@ -618,7 +618,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       'Vinga ligger 12 kilometer utanför Göteborg och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrvaktare här och Evert växte upp på ön under sent 1800-tal. Det är från Vingas klippor, havsljus och fiskarkultur han hämtade bilderna som genomsyrar hans visor.',
       'Vinga fyr (1854) är fortfarande aktiv och syns långt ut till sjöss. Ön rymmer en liten Taube-utställning i det gamla fyrmästarbostaden, ett kapell och välmarkerade klippvandringar med utsikt mot öppet hav och Göteborgs inlopp.',
       'Inga övernattningsmöjligheter på ön. Dagsturer från Göteborg är enkla — Vingabåten avgår från Saltholmen 4–6 gånger dagligen sommartid och tar drygt en timme. Planera 2–3 timmar på ön.',
-      'Vinga är en pelgrimsresa för Taube-älskare och en naturupplevelse för alla andra. Klipporna på öns yttersta spets, med utsikt mot havet som Evert beskrev i "Fritiof och Carmencita", är svåra att glömma.',
+      'Vinga är en pilgrimsresa för Taube-älskare och en naturupplevelse för alla andra. Klipporna på öns yttersta spets, med utsikt mot havet som Evert beskrev i "Fritiof och Carmencita", är svåra att glömma.',
     ],
     facts: {
       travel_time: '1 h 15 min med båt från Göteborg',
@@ -897,7 +897,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['tjorn', 'kladesholmen', 'orust'],
     tags: ['bohuslän', 'bilfritt', 'fiskeläge', 'fotografi', 'bad', 'romantisk'],
     insiderTips: [
-      'Gryningsljuset på Åstols röda bodar och grå klippor är ett av Bohusläns bästa fotomotiv. Overnight i Rönnäng och ta morgon­färjan är värt det.',
+      'Gryningsljuset på Åstols röda bodar och grå klippor är ett av Bohusläns bästa fotomotiv. Övernatta i Rönnäng och ta morgon­färjan är värt det.',
       'Rök­eriet tar slut på räkor ibland. Kom tidigt om det är en prioritet.',
     ],
     dog_friendly: true,
@@ -926,8 +926,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tagline: 'Bohusläns friaste camping­ö — klippor, vild natur och Skärgårdsbo­hemian.',
     description: [
       'Dyrön är en bilfri ö utanför Tjörns västra kust och en av Bohusläns mest uppskattade camping­destinationer. Ön lockar vandrare, kajakpaddlare och friluftsentusiaster som vill ha vild klippnatur utan massor av service­utbud.',
-      'Ön är liten och relativt orörد — röda stugor och klippor dominerar. Det finns ingen affär, ingen restaurang av större format och inga bilar. Det är precis vad Dyrön-besökaren söker.',
-      'Sommartid tar Tjörnsförbifararen färja till Dyrön och vandrar runt ön, badar från klipporna och grilla vid havet. Det är enkel skärgård i bästa mening.',
+      'Ön är liten och relativt orört — röda stugor och klippor dominerar. Det finns ingen affär, ingen restaurang av större format och inga bilar. Det är precis vad Dyrön-besökaren söker.',
+      'Sommartid tar besökaren färja till Dyrön och vandrar runt ön, badar från klipporna och grilla vid havet. Det är enkel skärgård i bästa mening.',
     ],
     facts: {
       area: 'ca 2 km²',
