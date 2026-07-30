@@ -38,7 +38,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Hur du tar dig dit:</strong> Direktbåt från Strandvägen eller Nybrokajen, 25 minuter. Avgångarna är täta under midsommarafton.</p>
 <p><strong>Vad du gör:</strong> Fjäderholmarna är perfekta för dig som har ont om tid eller pengar. Ögruppen har ett klassiskt midsommarfirande med majstång, folkdans och levande musik. Hantverksgallerierna är öppna och det finns gott om utrymme för picknick på klipporna.</p>
 <p><strong>Var du äter:</strong> Fjäderholmarnas Krog är en av Stockholms bästa skärgårdsrestauranger, men är fullbokad under midsommar. Ta istället med picknickkorgen – möjligheten att sitta vid vattnet kompenserar mer än väl.</p>
-<p><strong>Insider-tips:</strong> Ta morgonbåten och undvik de värsta trängseln på eftermiddagen. Hamnen blir fullproppade med båtar vid lunchtid.</p>
+<p><strong>Insider-tips:</strong> Ta morgonbåten och undvik de värsta trängseln på eftermiddagen. Hamnen blir fullproppad med båtar vid lunchtid.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Möja – bilfri midsommarstämning</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget via Stavsnäs, ca 2 h 30 min. SL-buss 433 till Stavsnäs från Slussen.</p>
@@ -242,8 +242,8 @@ export function getGuideContent(slug: string): string {
 <p>Eldning i skärgården är tillåtet med hänsyn, men reglerna är viktiga:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Eldningsförbud</strong>: Under torrt väder utfärdar kommuner eller länsstyrelsen eldningsförbud. Dessa gäller alltid och kan innebära böter. Kontrollera alltid på krisinformation.se eller din länsstyrelses webbplats.</li>
-<li>Elda alltid på berg och klippa – aldrig på gräsmark eller nära torr vegetation</li>
-<li>Anlägga en eldhärdar (ringa in med stenar) är god sed</li>
+<li>Elda aldrig direkt på berghällar eller gräsmark – alltid i befintliga eldstäder eller på bärbar grill med ben</li>
+<li>Anlägga en eldhärd (ringa in med stenar) är god sed</li>
 <li>Grillkol kan antändas och flyga – använd grillpåse eller glöd, inte öppen låga i vind</li>
 <li>Engångsgrillar är förbjudna i många naturreservat och kommuner – kolla lokala regler</li>
 <li>Släck alltid med vatten – inte jord. Kol under jord kan glöda i dagar</li>
@@ -251,7 +251,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettavfall på båt</h3>
 <p>Det här är ett område där många gör fel utan att veta om det.</p>
-<p><strong>I havet mer än 3 sjömil (5,5 km) från land:</strong> Det är tillåtet att pumpa ut orenat toalettvfall i internationellt vatten (utanför 12 nautiska mil) men Sverige är mer restriktivt.</p>
+<p><strong>I havet mer än 3 sjömil (5,5 km) från land:</strong> Det är tillåtet att pumpa ut orenat toalettavfall i internationellt vatten (utanför 12 nautiska mil) men Sverige är mer restriktivt.</p>
 <p><strong>I svenska inre vatten (skärgård och inomskärs):</strong> Det är <em>förbjudet</em> att pumpa ut orenat toalettavfall. Regler:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Använd alltid sugtömningsstationen i gästhamnar – dessa är gratis på de flesta ställen</li>
@@ -286,7 +286,7 @@ export function getGuideContent(slug: string): string {
 
     'waxholmsbolaget-guide': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Waxholmsbolaget – komplett guide</h2>
-<p>Waxholmsbolaget är Stockholms läns landstings skärgårstrafik och driver en av Skandinaviens mest komplexa och vackraste båtlinjenät. Här är allt du behöver veta för att navigera systemet effektivt.</p>
+<p>Waxholmsbolaget är Stockholms läns landstings skärgårdstrafik och driver en av Skandinaviens mest komplexa och vackraste båtlinjenät. Här är allt du behöver veta för att navigera systemet effektivt.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur systemet fungerar</h3>
 <p>Waxholmsbolaget driver ca 50 linjer med ca 60 fartyg och trafikerar över 100 bryggor i Stockholms skärgård. Trafiken är uppdelad i tre zoner:</p>
@@ -444,7 +444,7 @@ export function getGuideContent(slug: string): string {
 <li><strong>Maj:</strong> 7–12°C. Fortfarande kallt för de flesta, men de första djärva badarna dyker upp. Ytterskärgården kallare än innerskärgården.</li>
 <li><strong>Juni:</strong> 12–17°C. Badbart för de flesta om solen är framme. Temperaturen stiger snabbt vid grunda stränder och vikar.</li>
 <li><strong>Juli:</strong> 17–22°C. Högsäsong. Ytvattnet värms av solen och vikar kan nå 22–24°C under varma somrar. Ytterskärgården är alltid 3–5°C kallare.</li>
-<li><strong>Augusti:</strong> 18–21°C. Ofta det bästa badmånaden – vattnet har lagrat sommarsolvärmen. Fantastiskt för kvällsbad.</li>
+<li><strong>Augusti:</strong> 18–21°C. Ofta den bästa badmånaden – vattnet har lagrat sommarsolvärmen. Fantastiskt för kvällsbad.</li>
 <li><strong>September:</strong> 14–18°C. Fortfarande badbart men sjunker snabbt. De flesta restauranger stänger efter första helgen i september.</li>
 <li><strong>Oktober:</strong> 10–13°C. Kallbad för entusiasterna. Havet är fridfullast och vackrast – men bara för de härdade.</li>
 <li><strong>November–December:</strong> 4–8°C. Havsbasturundor, inte simrundor.</li>
@@ -595,7 +595,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Stockholms skärgård</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Sandhamns Värdshus, Sandhamn</h4>
-<p>En skärgårdslegendar som levererar säsong efter säsong. Smörgåsbordet med gravad lax, sill och räkor är värt resan i sig. Boka bord minst två veckor i förväg under högsäsong. Prisläge: 300–500 kr/person för middag.</p>
+<p>En skärgårdslegend som levererar säsong efter säsong. Smörgåsbordet med gravad lax, sill och räkor är värt resan i sig. Boka bord minst två veckor i förväg under högsäsong. Prisläge: 300–500 kr/person för middag.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:16px 0 6px">Grinda Wärdshus, Grinda</h4>
 <p>Kanske skärgårdens vackrast belägna restaurang. Husmanskost med lokala råvaror – räkor, abborre och strömming från grannskapet. Prisläge: 200–380 kr/person.</p>

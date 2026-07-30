@@ -748,7 +748,7 @@ Eller — och det här är vårt egentliga råd — gör båda. Inte samma dag, 
 
 **Oktober** — övergångsmånad. Många restauranger har stängt eller övergått till helgöppet. Trafiken glesar ut. Lövfärgerna kommer. Bra för stillare promenader och boendet är billigt.
 
-**November** — definitivt off-season. Många turer går bara på begäran eller med begränsade tider. Atmosfär av tomhet och förfall — kan vara magiskt om du är beredd. Sista båt-tider är tidiga.
+**November** — definitivt lågsäsong. Många turer går bara på begäran eller med begränsade tider. Atmosfär av tomhet och förfall — kan vara magiskt om du är beredd. Sista båt-tider är tidiga.
 
 ## Vad du faktiskt kan göra
 

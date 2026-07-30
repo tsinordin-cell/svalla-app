@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Erbjudanden & paket i Stockholms skärgård',
+ title: 'Erbjudanden & paket i Stockholms skärgård — Svalla',
  description: 'Aktuella erbjudanden och paket för skärgårdsvistelser: hotell, restauranger, aktiviteter och båtcharter i Stockholms skärgård.',
  keywords: [
  'erbjudanden stockholms skärgård',
@@ -25,7 +25,7 @@ const ITEMS: LandingItem[] = [
  title: 'Boende-paket',
  description: 'Hotellpaket med frukost, spa och färjebiljetter — ofta tillgängliga utanför högsäsong.',
  href: '/boende',
- meta: 'Off-season',
+ meta: 'Lågsäsong',
  },
  {
  icon: '',

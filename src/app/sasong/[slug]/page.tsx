@@ -278,7 +278,7 @@ export default async function SasongPage({ params }: Props) {
               Få {season.name.toLowerCase()}ens bästa tips i inkorgen
             </h3>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', margin: '0 0 20px', lineHeight: 1.55 }}>
-              Varannan tisdag: öppna öar, insider-tips och säsongsguider — direkt från Max & Thomas. Gratis, inga annonser.
+              Varannan tisdag: öppna öar, insider-tips och säsongsguider — direkt från Svalla. Gratis, inga annonser.
             </p>
             <EmailSignup
               variant="footer"
