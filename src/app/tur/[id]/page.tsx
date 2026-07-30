@@ -48,6 +48,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  return {
  title,
  description: desc,
+ // Tredje gången auto-verktyget stryker denna (07-24, 07-29). Se
+ // CLAUDE.md punkt 1 innan den tas bort igen.
+ alternates: { canonical: `https://svalla.se/tur/${id}` },
  openGraph: {
  title: `${title} – Svalla`,
  description: desc,
