@@ -1,11 +1,13 @@
 'use client'
-import { useEffect, useMemo, useState, useCallback } from 'react'
+import { useEffect, useMemo, useState, useCallback, Fragment } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
 
-type TeamMember = { id: string; username: string; avatar: string | null }
+// initials: valfri override för avatar-bokstäverna (t.ex. "TN", "MB") —
+// annars faller vi tillbaka på de två första bokstäverna i username.
+type TeamMember = { id: string; username: string; avatar: string | null; initials?: string | null }
 
 type Project = {
   id: string
@@ -110,6 +112,12 @@ function relativeTime(iso: string): string {
 
 function initials(name: string): string {
   return name.slice(0, 2).toUpperCase()
+}
+
+// Avatar-bokstäver: använd explicit override om den finns (t.ex. "TN" för
+// Tom Nordin, "MB" för Max), annars de två första bokstäverna i namnet.
+function memberInitials(m: { username: string; initials?: string | null }): string {
+  return m.initials || initials(m.username)
 }
 
 function hostFromUrl(url: string): string {
@@ -344,6 +352,10 @@ const GLOBAL_CSS = `
 .svt-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 16px; align-items: start; }
 .svt-status-col { min-width: 0; }
 .svt-swim-header { display: flex; align-items: center; gap: 7px; padding-bottom: 8px; border-bottom: 1px solid var(--svt-divider); }
+/* Svagt band bakom hela uppgiftsraden — gör raden läsbar som en enhet
+   (en uppgifts väg genom flödet) utan att fylla tomma kolumner med
+   rutor. Ligger bakom kortet, ingen egen kant. */
+.svt-swim-band { align-self: stretch; background: var(--svt-chip-bg); border-radius: 12px; opacity: 0.5; }
 .svt-swimlanes-mobile { display: none; }
 .svt-chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
@@ -390,7 +402,7 @@ export default function TeamDashboardClient({
   initialPrompts,
   initialActivity,
 }: {
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   teamMembers: TeamMember[]
   initialProjects: Project[]
   initialTasks: Task[]
@@ -617,7 +629,7 @@ export default function TeamDashboardClient({
                   display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10.5, fontWeight: 700,
                   border: m.id === currentUser.id ? '2px solid rgba(255,255,255,0.6)' : '2px solid transparent',
                 }}>
-                  {initials(m.username)}
+                  {memberInitials(m)}
                 </div>
               ))}
               <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Tom &amp; Max</span>
@@ -775,7 +787,7 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
             onClick={() => onChange(picked ? null : m.id)}
             style={{ width: size, height: size, background: avatarColor(m.id), fontSize: size * 0.42 }}
           >
-            {initials(m.username)}
+            {memberInitials(m)}
           </button>
         )
       })}
@@ -793,7 +805,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   projectById: Map<string, Project>
   memberById: Map<string, TeamMember>
   teamMembers: TeamMember[]
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   onCreate: (input: {
     title: string; project_id: string | null; assignee_id: string | null
     priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
@@ -855,7 +867,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           <button className={`svt-chip${assigneeFilter === 'me' ? ' active' : ''}`} onClick={() => setAssigneeFilter('me')}>Mina</button>
           {teamMembers.filter(m => m.id !== currentUser.id).map(m => (
             <button key={m.id} className={`svt-chip${assigneeFilter === m.id ? ' active' : ''}`} onClick={() => setAssigneeFilter(m.id)}>
-              {m.username}s
+              {m.username}
             </button>
           ))}
           <button className={`svt-chip${assigneeFilter === 'unassigned' ? ' active' : ''}`} onClick={() => setAssigneeFilter('unassigned')}>Otilldelat</button>
@@ -942,18 +954,27 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           </div>
         )}
 
-        {orderedTasks.map((task, i) => (
-          <div key={task.id} style={{ gridColumn: STATUS_ORDER.indexOf(task.status) + 1, gridRow: i + 2 }}>
-            <TaskCard
-              task={task}
-              project={task.project_id ? projectById.get(task.project_id) : undefined}
-              teamMembers={teamMembers}
-              onStatusChange={onStatusChange}
-              onAssigneeChange={onAssigneeChange}
-              onDelete={onDelete}
-            />
-          </div>
-        ))}
+        {orderedTasks.map((task, i) => {
+          const rowIdx = i + 2
+          return (
+            <Fragment key={task.id}>
+              {/* Ett svagt band över hela raden — knyter ihop uppgiftens rad
+                  visuellt så kortet inte ser ut att sväva ensamt i ett tomt
+                  fält, utan att lägga till tre tomma rutor per rad. */}
+              <div className="svt-swim-band" style={{ gridColumn: '1 / -1', gridRow: rowIdx }} />
+              <div style={{ gridColumn: STATUS_ORDER.indexOf(task.status) + 1, gridRow: rowIdx }}>
+                <TaskCard
+                  task={task}
+                  project={task.project_id ? projectById.get(task.project_id) : undefined}
+                  teamMembers={teamMembers}
+                  onStatusChange={onStatusChange}
+                  onAssigneeChange={onAssigneeChange}
+                  onDelete={onDelete}
+                />
+              </div>
+            </Fragment>
+          )
+        })}
       </div>
 
       {/* Mobil: 4 fasta kolumner + en rad per uppgift blir för trångt för att
@@ -1235,7 +1256,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
   activity: Activity[]
   projects: Project[]
   memberById: Map<string, TeamMember>
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   onPost: (message: string, project_id: string | null) => void
 }) {
   const [message, setMessage] = useState('')
@@ -1286,7 +1307,8 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
         <div style={{ ...surface, padding: '4px 16px' }}>
           {activity.map((a, i) => {
             const author = a.created_by ? memberById.get(a.created_by) : undefined
-            const authorName = author?.username ?? (a.created_by === currentUser.id ? currentUser.username : 'System')
+            const authorObj = author ?? (a.created_by === currentUser.id ? currentUser : undefined)
+            const authorName = authorObj?.username ?? 'System'
             return (
               <div key={a.id} style={{
                 display: 'flex', gap: 12, padding: '12px 0',
@@ -1305,7 +1327,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
                       width: 15, height: 15, borderRadius: '50%', background: author ? avatarColor(author.id) : 'var(--txt3)',
                       color: '#fff', fontSize: 8, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      {initials(authorName)}
+                      {authorObj ? memberInitials(authorObj) : initials(authorName)}
                     </span>
                     {authorName} · {relativeTime(a.created_at)}
                   </div>
