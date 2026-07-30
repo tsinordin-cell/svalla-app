@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useState, useCallback, Fragment } from 'react'
+import { useEffect, useMemo, useState, useCallback, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 
@@ -26,6 +26,19 @@ type Project = {
 type TaskStatus = 'todo' | 'working' | 'review' | 'done'
 type TaskPriority = 'low' | 'normal' | 'high'
 
+type TeamSupabase = ReturnType<typeof createClient>
+
+// Bildbilaga på en uppgift. Vi sparar sökvägen (inte en färdig URL) eftersom
+// bucketen är privat — URL:en måste signeras om varje gång den ska visas.
+type TaskImage = {
+  path: string
+  name?: string | null
+  w?: number | null
+  h?: number | null
+  by?: string | null
+  at?: string | null
+}
+
 type Task = {
   id: string
   project_id: string | null
@@ -38,6 +51,7 @@ type Task = {
   due_date: string | null
   pr_url: string | null
   prompt: string | null
+  images: TaskImage[]
   created_at: string
   updated_at: string
 }
@@ -212,6 +226,65 @@ function IcoLink({ color = 'currentColor' }: { color?: string }) {
     </svg>
   )
 }
+function IcoImage({ color = 'currentColor', size = 12 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2.5" />
+      <circle cx="8.5" cy="8.5" r="1.6" />
+      <path d="m21 15-4.5-4.5L7 21" />
+    </svg>
+  )
+}
+function IcoClose({ color = 'currentColor', size = 16 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.2} strokeLinecap="round">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  )
+}
+
+// ── Bildhjälpare ──────────────────────────────────────────────────────────
+
+/** Krymper och komprimerar i webbläsaren före upload — samma mönster som
+ *  /spara och /logga/manuell. En mobilskärmdump på 3 MB blir ~200 kB. */
+async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<{ file: File; w: number; h: number }> {
+  return new Promise(resolve => {
+    const img = new window.Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      let { width, height } = img
+      if (width > maxPx || height > maxPx) {
+        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx }
+        else                 { width = Math.round(width * maxPx / height);  height = maxPx }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width; canvas.height = height
+      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        blob => resolve({
+          file: blob ? new File([blob], file.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }) : file,
+          w: width, h: height,
+        }),
+        'image/jpeg', quality
+      )
+    }
+    img.onerror = () => resolve({ file, w: 0, h: 0 })
+    img.src = url
+  })
+}
+
+/** Plockar ut bildfiler ur en drop eller inklistring (Cmd+V av skärmdump). */
+function imageFilesFrom(list: FileList | DataTransferItemList | null): File[] {
+  if (!list) return []
+  const out: File[] = []
+  for (let i = 0; i < list.length; i++) {
+    const entry = list[i] as File | DataTransferItem
+    const file = 'getAsFile' in entry ? entry.getAsFile() : entry
+    if (file && file.type.startsWith('image/')) out.push(file)
+  }
+  return out
+}
 
 // ── Delade stilar ─────────────────────────────────────────────────────────
 
@@ -357,6 +430,59 @@ const GLOBAL_CSS = `
    rutor. Ligger bakom kortet, ingen egen kant. */
 .svt-swim-band { align-self: stretch; background: var(--svt-chip-bg); border-radius: 12px; opacity: 0.5; }
 .svt-swimlanes-mobile { display: none; }
+.svt-card-open { cursor: pointer; }
+.svt-card-open:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+
+/* ── Detaljvy ─────────────────────────────────────────────────────────── */
+.svt-modal-backdrop {
+  position: fixed; inset: 0; z-index: 900; background: rgba(3, 22, 32, 0.55);
+  backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: svtFade .14s ease both;
+}
+.svt-modal {
+  background: var(--white); border: 1px solid var(--svt-border); border-radius: 16px;
+  box-shadow: var(--shadow-md); width: 100%; max-width: 680px; max-height: 88vh;
+  display: flex; flex-direction: column; overflow: hidden; animation: svtPop .16s ease both;
+}
+.svt-modal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 18px; border-bottom: 1px solid var(--svt-divider); flex-shrink: 0;
+}
+.svt-modal-body { padding: 18px; overflow-y: auto; flex: 1; }
+.svt-modal-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 12px 18px; border-top: 1px solid var(--svt-divider); flex-shrink: 0; background: var(--svt-chip-bg);
+}
+@keyframes svtFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes svtPop { from { opacity: 0; transform: translateY(8px) scale(.99) } to { opacity: 1; transform: none } }
+
+.svt-dropzone {
+  border: 1.5px dashed var(--svt-border-strong); border-radius: 12px; padding: 26px 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center;
+  color: var(--txt2); font-size: 12.5px; cursor: pointer; transition: border-color .12s, background .12s;
+}
+.svt-dropzone.slim { padding: 12px; flex-direction: row; justify-content: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--txt3); }
+.svt-dropzone:hover, .svt-dropzone.over { border-color: var(--sea); background: var(--svt-tint-bg); }
+
+.svt-img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.svt-img-cell { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--svt-border); background: var(--svt-chip-bg); }
+.svt-img-cell img { display: block; width: 100%; height: 150px; object-fit: cover; cursor: zoom-in; }
+.svt-img-skeleton { width: 100%; height: 150px; background: var(--svt-chip-bg); }
+.svt-img-remove {
+  position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 7px;
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  background: rgba(3, 22, 32, 0.62); color: #fff; opacity: 0; transition: opacity .12s;
+}
+.svt-img-cell:hover .svt-img-remove { opacity: 1; }
+.svt-img-remove:hover { background: var(--red); }
+
+.svt-lightbox {
+  position: fixed; inset: 0; z-index: 950; background: rgba(3, 22, 32, 0.88);
+  display: flex; align-items: center; justify-content: center; padding: 32px; cursor: zoom-out;
+  animation: svtFade .12s ease both;
+}
+.svt-lightbox img { max-width: 100%; max-height: 100%; border-radius: 10px; cursor: default; }
+.svt-lightbox-close { position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.14); color: #fff; }
 .svt-chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
   font-size: 12px; font-weight: 600; color: var(--txt2); background: var(--svt-chip-bg);
@@ -389,6 +515,14 @@ const GLOBAL_CSS = `
   /* Tumme-vänliga tap-ytor — 26px är för litet för finger på en skärm. */
   .svt-avbtn { width: 32px !important; height: 32px !important; font-size: 12px !important; }
   .svt-iconbtn { width: 34px !important; height: 34px !important; }
+  /* Detaljvyn tar hela skärmen på mobil — en centrerad ruta med marginal
+     äter för mycket yta när man ska granska en skärmdump. */
+  .svt-modal-backdrop { padding: 0; }
+  .svt-modal { max-width: none; max-height: none; height: 100%; border-radius: 0; border: none; }
+  .svt-img-cell img, .svt-img-skeleton { height: 190px; }
+  /* Ta bort-knappen syns alltid — det finns ingen hover på touch. */
+  .svt-img-remove { opacity: 1; }
+  .svt-lightbox { padding: 12px; }
 }
 `
 
@@ -481,6 +615,43 @@ export default function TeamDashboardClient({
   const deleteTask = useCallback(async (id: string) => {
     setTasks(prev => prev.filter(t => t.id !== id))
     await supabase.from('team_tasks').delete().eq('id', id)
+  }, [supabase])
+
+  // ── Bildbilagor ───────────────────────────────────────────────────────────
+  // Buggbilder låg tidigare i en WhatsApp-tråd; nu hänger de på uppgiften.
+  // Bucketen är privat, så vi sparar sökvägen och signerar URL:en vid visning.
+  const addTaskImages = useCallback(async (taskId: string, files: File[]): Promise<string | null> => {
+    if (!files.length) return null
+    const uploaded: TaskImage[] = []
+
+    for (const raw of files) {
+      const { file, w, h } = await compressImage(raw)
+      const path = `${taskId}/${crypto.randomUUID()}.jpg`
+      const { error } = await supabase.storage
+        .from('team-attachments')
+        .upload(path, file, { contentType: 'image/jpeg', upsert: false })
+      if (error) return `Kunde inte ladda upp ${raw.name}: ${error.message}`
+      uploaded.push({ path, name: raw.name, w, h, by: currentUser.id, at: new Date().toISOString() })
+    }
+
+    // Läs aktuell lista från servern först — Tom och Max kan ladda upp
+    // samtidigt, och en blind överskrivning hade tappat den andres bilder.
+    const { data: fresh } = await supabase.from('team_tasks').select('images').eq('id', taskId).single()
+    const next = [ ...(((fresh?.images as TaskImage[]) ?? [])), ...uploaded ]
+
+    const { error: upErr } = await supabase.from('team_tasks').update({ images: next }).eq('id', taskId)
+    if (upErr) return `Bilden laddades upp men kunde inte kopplas till uppgiften: ${upErr.message}`
+
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, images: next } : t))
+    return null
+  }, [supabase, currentUser.id])
+
+  const removeTaskImage = useCallback(async (taskId: string, path: string) => {
+    const { data: fresh } = await supabase.from('team_tasks').select('images').eq('id', taskId).single()
+    const next = (((fresh?.images as TaskImage[]) ?? [])).filter(im => im.path !== path)
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, images: next } : t))
+    await supabase.from('team_tasks').update({ images: next }).eq('id', taskId)
+    await supabase.storage.from('team-attachments').remove([path])
   }, [supabase])
 
   // ── CRUD: prompts ─────────────────────────────────────────────────────────
@@ -716,6 +887,9 @@ export default function TeamDashboardClient({
                 onStatusChange={updateTaskStatus}
                 onAssigneeChange={updateTaskAssignee}
                 onDelete={deleteTask}
+                onAddImages={addTaskImages}
+                onRemoveImage={removeTaskImage}
+                supabase={supabase}
               />
             )}
 
@@ -799,7 +973,7 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
 
 type AssigneeFilter = 'all' | 'me' | 'unassigned' | string
 
-function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete }: {
+function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete, onAddImages, onRemoveImage, supabase }: {
   tasks: Task[]
   projects: Project[]
   projectById: Map<string, Project>
@@ -813,9 +987,13 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
+  onAddImages: (taskId: string, files: File[]) => Promise<string | null>
+  onRemoveImage: (taskId: string, path: string) => void
+  supabase: TeamSupabase
 }) {
   const [showForm, setShowForm] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+  const [openTaskId, setOpenTaskId] = useState<string | null>(null)
   const [title, setTitle] = useState('')
   const [projectId, setProjectId] = useState('')
   const [assigneeId, setAssigneeId] = useState<string | null>(null)
@@ -853,6 +1031,10 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   const orderedTasks = [...visibleTasks].sort(
     (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
   )
+
+  // Hämtas ur tasks (inte sparad i state) så detaljvyn uppdateras direkt när
+  // en bild läggs till eller status ändras, även om Max gör det samtidigt.
+  const openTask = openTaskId ? tasks.find(t => t.id === openTaskId) ?? null : null
 
   return (
     <div>
@@ -970,6 +1152,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
                   onStatusChange={onStatusChange}
                   onAssigneeChange={onAssigneeChange}
                   onDelete={onDelete}
+                  onOpen={() => setOpenTaskId(task.id)}
                 />
               </div>
             </Fragment>
@@ -1013,6 +1196,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
                     onStatusChange={onStatusChange}
                     onAssigneeChange={onAssigneeChange}
                     onDelete={onDelete}
+                    onOpen={() => setOpenTaskId(task.id)}
                   />
                 ))}
               </div>
@@ -1020,22 +1204,39 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           )
         })}
       </div>
+
+      {openTask && (
+        <TaskDetail
+          task={openTask}
+          project={openTask.project_id ? projectById.get(openTask.project_id) : undefined}
+          memberById={memberById}
+          teamMembers={teamMembers}
+          supabase={supabase}
+          onClose={() => setOpenTaskId(null)}
+          onStatusChange={onStatusChange}
+          onAssigneeChange={onAssigneeChange}
+          onAddImages={onAddImages}
+          onRemoveImage={onRemoveImage}
+        />
+      )}
     </div>
   )
 }
 
-function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange, onDelete }: {
+function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange, onDelete, onOpen }: {
   task: Task
   project?: Project
   teamMembers: TeamMember[]
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
+  onOpen: () => void
 }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
   const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
   const idx = STATUS_ORDER.indexOf(task.status)
+  const imageCount = task.images?.length ?? 0
 
   async function copyPrompt() {
     if (!task.prompt) return
@@ -1046,11 +1247,22 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
     } catch { /* no-op */ }
   }
 
+  // Kortet i sin helhet öppnar uppgiften. Knappar/länkar inuti stoppar
+  // bubblingen, annars hade ett klick på t.ex. "ta bort" också öppnat vyn.
+  const stop = (e: React.MouseEvent) => e.stopPropagation()
+
   return (
-    <div className="svt-card" style={{ ...surface, padding: 14, borderLeft: project ? `3px solid ${project.color}` : undefined }}>
+    <div
+      className="svt-card svt-card-open"
+      style={{ ...surface, padding: 14, borderLeft: project ? `3px solid ${project.color}` : undefined }}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen() } }}
+    >
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
         <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.4 }}>{task.title}</div>
-        <button className="svt-iconbtn danger" onClick={() => onDelete(task.id)} title="Ta bort" style={{ flexShrink: 0 }}>
+        <button className="svt-iconbtn danger" onClick={e => { stop(e); onDelete(task.id) }} title="Ta bort" style={{ flexShrink: 0 }}>
           <IcoTrash />
         </button>
       </div>
@@ -1073,41 +1285,46 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
           </span>
         )}
         {task.pr_url && (
-          <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip">
+          <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip" onClick={stop}>
             <IcoLink /> {hostFromUrl(task.pr_url)}
           </a>
         )}
         {task.prompt && (
-          <button className="svt-link-chip" onClick={() => setShowPrompt(v => !v)}>
+          <button className="svt-link-chip" onClick={e => { stop(e); setShowPrompt(v => !v) }}>
             <IcoPrompt color="currentColor" /> Prompt
           </button>
+        )}
+        {imageCount > 0 && (
+          <span className="svt-link-chip" title={`${imageCount} bild${imageCount === 1 ? '' : 'er'}`}>
+            <IcoImage /> {imageCount}
+          </span>
         )}
       </div>
 
       {task.prompt && showPrompt && (
-        <div>
+        <div onClick={stop}>
           <pre className="svt-prompt-box">{task.prompt}</pre>
-          <button onClick={copyPrompt} className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '4px 8px', fontSize: 11, fontWeight: 600 }}>
+          <button onClick={e => { stop(e); copyPrompt() }} className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '4px 8px', fontSize: 11, fontWeight: 600 }}>
             {copied ? <><IcoCheck color="var(--green)" /> Kopierad</> : <><IcoCopy /> Kopiera prompt</>}
           </button>
         </div>
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--svt-divider)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} onClick={stop}>
           <span style={{ fontSize: 10.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
           <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
         </div>
 
         <div style={{ display: 'flex', gap: 4 }}>
           {idx > 0 && (
-            <button className="svt-iconbtn" onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`}>
+            <button className="svt-iconbtn" onClick={e => { stop(e); onStatusChange(task.id, STATUS_ORDER[idx - 1]!) }} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`}>
               <IcoChevron dir="left" />
             </button>
           )}
           {idx < STATUS_ORDER.length - 1 && (
             <button
-              onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}
+              onClick={e => { stop(e); onStatusChange(task.id, STATUS_ORDER[idx + 1]!) }}
               title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx + 1]!]}`}
               className="svt-btn-primary"
               style={{ width: 26, height: 26, borderRadius: 7, border: 'none', background: 'var(--sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
@@ -1118,6 +1335,258 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
         </div>
       </div>
     </div>
+  )
+}
+
+// ── Detaljvy: uppgiften i stort format, med bildbilagor ─────────────────────
+// Ersätter WhatsApp-flödet: en buggskärmdump hör hemma på uppgiften, inte i
+// en chatt. Tavlans layout är oförändrad — det här ligger ovanpå.
+
+function TaskDetail({
+  task, project, memberById, teamMembers, supabase,
+  onClose, onStatusChange, onAssigneeChange, onAddImages, onRemoveImage,
+}: {
+  task: Task
+  project?: Project
+  memberById: Map<string, TeamMember>
+  teamMembers: TeamMember[]
+  supabase: TeamSupabase
+  onClose: () => void
+  onStatusChange: (id: string, status: TaskStatus) => void
+  onAssigneeChange: (id: string, assignee_id: string | null) => void
+  onAddImages: (taskId: string, files: File[]) => Promise<string | null>
+  onRemoveImage: (taskId: string, path: string) => void
+}) {
+  const [urls, setUrls] = useState<Record<string, string>>({})
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [dragOver, setDragOver] = useState(false)
+  const [lightbox, setLightbox] = useState<string | null>(null)
+  const fileInput = useRef<HTMLInputElement>(null)
+
+  const images = useMemo(() => task.images ?? [], [task.images])
+  const idx = STATUS_ORDER.indexOf(task.status)
+  const assignee = task.assignee_id ? memberById.get(task.assignee_id) : undefined
+  const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
+
+  // Privat bucket → varje bild behöver en signerad URL. `requested` gör att en
+  // sökväg bara signeras en gång; utan den hade en bild som misslyckas att
+  // signeras försökt om i all oändlighet (effekten kör om när urls ändras).
+  const requested = useRef<Set<string>>(new Set())
+  useEffect(() => {
+    const missing = images.map(im => im.path).filter(p => !requested.current.has(p))
+    if (!missing.length) return
+    missing.forEach(p => requested.current.add(p))
+    let alive = true
+    supabase.storage.from('team-attachments').createSignedUrls(missing, 3600).then(({ data }) => {
+      if (!alive || !data) return
+      const next: Record<string, string> = {}
+      for (const row of data) if (row.path && row.signedUrl) next[row.path] = row.signedUrl
+      setUrls(prev => ({ ...prev, ...next }))
+    })
+    return () => { alive = false }
+  }, [images, supabase])
+
+  const upload = useCallback(async (files: File[]) => {
+    if (!files.length) return
+    setBusy(true); setError(null)
+    const err = await onAddImages(task.id, files)
+    if (err) setError(err)
+    setBusy(false)
+  }, [onAddImages, task.id])
+
+  // Esc stänger, och Cmd+V klistrar in en skärmdump direkt — det är så här
+  // en bugg faktiskt fångas: skärmdump, växla till tavlan, klistra in.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { if (lightbox) setLightbox(null); else onClose() }
+    }
+    const onPaste = (e: ClipboardEvent) => {
+      const files = imageFilesFrom(e.clipboardData?.items ?? null)
+      if (files.length) { e.preventDefault(); upload(files) }
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('paste', onPaste)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('paste', onPaste)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [onClose, upload, lightbox])
+
+  return (
+    <>
+      <div className="svt-modal-backdrop" onClick={onClose}>
+        <div
+          className="svt-modal"
+          onClick={e => e.stopPropagation()}
+          onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={e => {
+            e.preventDefault(); setDragOver(false)
+            upload(imageFilesFrom(e.dataTransfer.files))
+          }}
+        >
+          {/* Rubrik */}
+          <div className="svt-modal-head">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: STATUS_ACCENT[task.status], flexShrink: 0 }} />
+              <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                {STATUS_LABEL[task.status]}
+              </span>
+            </div>
+            <button className="svt-iconbtn" onClick={onClose} title="Stäng (Esc)">
+              <IcoClose />
+            </button>
+          </div>
+
+          <div className="svt-modal-body">
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px', lineHeight: 1.3 }}>
+              {task.title}
+            </h2>
+
+            {/* Metadata */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 18 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: 'var(--svt-chip-bg)', padding: '3px 9px', borderRadius: 6 }}>
+                {PRIORITY_LABEL[task.priority]}
+              </span>
+              {project && (
+                <span style={{ fontSize: 11, fontWeight: 600, color: project.color, background: `${project.color}14`, padding: '3px 9px', borderRadius: 6 }}>
+                  {project.name}
+                </span>
+              )}
+              {task.due_date && (
+                <span style={{
+                  fontSize: 11, fontWeight: overdue ? 700 : 500, color: overdue ? 'var(--red)' : 'var(--txt3)',
+                  background: 'var(--svt-chip-bg)', padding: '3px 9px', borderRadius: 6,
+                }}>
+                  {overdue ? '⚠ ' : ''}{new Date(task.due_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' })}
+                </span>
+              )}
+              {task.pr_url && (
+                <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip">
+                  <IcoLink /> {hostFromUrl(task.pr_url)}
+                </a>
+              )}
+            </div>
+
+            {/* Bilder */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
+              <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                Bilder {images.length > 0 && <span style={{ color: 'var(--txt3)' }}>({images.length})</span>}
+              </span>
+              <button
+                className="svt-link-chip"
+                onClick={() => fileInput.current?.click()}
+                disabled={busy}
+                style={{ opacity: busy ? 0.5 : 1 }}
+              >
+                <IcoPlus color="currentColor" /> {busy ? 'Laddar upp…' : 'Lägg till'}
+              </button>
+              <input
+                ref={fileInput} type="file" accept="image/*" multiple hidden
+                onChange={e => { upload(imageFilesFrom(e.target.files)); e.target.value = '' }}
+              />
+            </div>
+
+            {error && (
+              <div style={{ fontSize: 12, color: 'var(--red)', background: 'rgba(239,68,68,0.1)', padding: '8px 10px', borderRadius: 8, marginBottom: 10 }}>
+                {error}
+              </div>
+            )}
+
+            {images.length === 0 ? (
+              <div className={`svt-dropzone${dragOver ? ' over' : ''}`} onClick={() => fileInput.current?.click()}>
+                <IcoImage size={22} color="var(--txt3)" />
+                <span style={{ fontWeight: 600 }}>Dra hit en bild, klistra in med ⌘V, eller klicka</span>
+                <span style={{ fontSize: 11, color: 'var(--txt3)' }}>
+                  Skärmdumpar på buggar hör hemma här — inte i en chatt
+                </span>
+              </div>
+            ) : (
+              <>
+                <div className="svt-img-grid">
+                  {images.map(im => {
+                    const url = urls[im.path]
+                    return (
+                      <div key={im.path} className="svt-img-cell">
+                        {url ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={url} alt={im.name ?? 'Bilaga'}
+                            onClick={() => setLightbox(url)}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="svt-img-skeleton" />
+                        )}
+                        <button
+                          className="svt-img-remove"
+                          title="Ta bort bild"
+                          onClick={() => onRemoveImage(task.id, im.path)}
+                        >
+                          <IcoClose size={13} />
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className={`svt-dropzone slim${dragOver ? ' over' : ''}`} onClick={() => fileInput.current?.click()}>
+                  <IcoPlus color="var(--txt3)" />
+                  <span>Dra hit fler, eller klistra in med ⌘V</span>
+                </div>
+              </>
+            )}
+
+            {/* Prompt */}
+            {task.prompt && (
+              <div style={{ marginTop: 20 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                  Prompt
+                </span>
+                <pre className="svt-prompt-box" style={{ maxHeight: 240 }}>{task.prompt}</pre>
+              </div>
+            )}
+          </div>
+
+          {/* Fot: delegera + flytta i flödet */}
+          <div className="svt-modal-foot">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 11.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
+              <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} size={26} />
+              {assignee && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--sea)' }}>{assignee.username}</span>}
+            </div>
+            <div style={{ display: 'flex', gap: 6 }}>
+              {idx > 0 && (
+                <button className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '6px 10px', fontSize: 12, fontWeight: 600 }}
+                  onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)}>
+                  <IcoChevron dir="left" /> {STATUS_LABEL[STATUS_ORDER[idx - 1]!]}
+                </button>
+              )}
+              {idx < STATUS_ORDER.length - 1 && (
+                <button className="svt-btn-primary" style={{ ...btnPrimary, padding: '7px 12px', fontSize: 12.5 }}
+                  onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}>
+                  {STATUS_LABEL[STATUS_ORDER[idx + 1]!]} <IcoChevron dir="right" color="currentColor" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Fullstor visning — en mobilskärmdump måste kunna läsas */}
+      {lightbox && (
+        <div className="svt-lightbox" onClick={() => setLightbox(null)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={lightbox} alt="Bilaga i full storlek" onClick={e => e.stopPropagation()} />
+          <button className="svt-iconbtn svt-lightbox-close" onClick={() => setLightbox(null)} title="Stäng (Esc)">
+            <IcoClose size={20} />
+          </button>
+        </div>
+      )}
+    </>
   )
 }
 
