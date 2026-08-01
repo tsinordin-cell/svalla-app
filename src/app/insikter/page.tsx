@@ -56,7 +56,7 @@ export default function InsikterPage() {
  `${insights.total_trips} turer · ${Math.round(insights.total_nm)} NM · ⏱ ${insights.total_hours.toFixed(1)} h\n` +
  `🏆 ${insights.magic_count} magiska turer · 🚀 Topp ${insights.top_speed.toFixed(1)} kn\n` +
  (insights.most_active_month ? `📅 Mest aktiv: ${insights.most_active_month.label}\n` : '') +
- `→ svalla.se${username ? `/u/${username}` : ''}`
+ `→ svalla.se${username ? `/u/${encodeURIComponent(username)}` : ''}`
  try {
  if (navigator.share) {
  await navigator.share({ title: 'Min Svalla Wrapped', text: txt })

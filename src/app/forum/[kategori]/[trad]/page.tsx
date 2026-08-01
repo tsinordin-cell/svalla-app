@@ -313,7 +313,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           {thread.author?.username ? (
             <Link
-              href={`/u/${thread.author.username}`}
+              href={`/u/${encodeURIComponent(thread.author.username)}`}
               style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 textDecoration: 'none',

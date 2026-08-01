@@ -313,7 +313,7 @@ export default async function WrappedPage({ params }: Props) {
  </div>
 
  <div style={{ marginTop: 24, textAlign: 'center' }}>
- <Link href={`/u/${username}`} style={{ color: 'var(--txt3)', fontSize: 13, textDecoration: 'none' }}>
+ <Link href={`/u/${encodeURIComponent(username)}`} style={{ color: 'var(--txt3)', fontSize: 13, textDecoration: 'none' }}>
  ← Se {username}s profil
  </Link>
  </div>

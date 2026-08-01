@@ -539,7 +539,7 @@ export default async function PublicProfilePage({
  return (
  <Link
  key={key}
- href={key === 'turer' ? `/u/${username}` : `/u/${username}?tab=${key}`}
+ href={key === 'turer' ? `/u/${encodeURIComponent(username)}` : `/u/${username}?tab=${key}`}
  style={{
  flex: 1, textAlign: 'center', textDecoration: 'none',
  padding: '13px 8px 11px',

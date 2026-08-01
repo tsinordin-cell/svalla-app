@@ -113,7 +113,7 @@ export default function TripTagger({
             padding: '4px 10px 4px 4px', borderRadius: 20,
             background: 'rgba(10,123,140,0.06)',
           }}>
-            <Link href={`/u/${t.username}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Link href={`/u/${encodeURIComponent(t.username ?? '')}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
               <div style={{
                 width: 24, height: 24, borderRadius: '50%', overflow: 'hidden', position: 'relative',
                 background: avatarGradient(t.username ?? t.tagged_user_id),

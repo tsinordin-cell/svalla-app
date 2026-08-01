@@ -615,7 +615,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           }),
           fetch('/api/push/send', {
             method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ targetUserId: fid, title: 'Ny följare', body: `${myName} börjar följa dig`, url: `/u/${myName}` }),
+            body: JSON.stringify({ targetUserId: fid, title: 'Ny följare', body: `${myName} börjar följa dig`, url: `/u/${encodeURIComponent(myName)}` }),
           }),
         ]))
       }

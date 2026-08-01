@@ -390,7 +390,7 @@ export default async function MinSkargardPage() {
                   Din publika profil visar öar, turer och märken.
                 </div>
               </div>
-              <Link href={`/u/${profileUsername}`} style={{
+              <Link href={`/u/${encodeURIComponent(profileUsername)}`} style={{
                 padding: '8px 14px', borderRadius: 10,
                 background: 'rgba(255,255,255,0.20)',
                 color: '#fff', fontSize: 13, fontWeight: 700,

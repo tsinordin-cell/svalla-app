@@ -20,7 +20,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
       WebkitTapHighlightColor: 'transparent',
     }}>
       <ProfileTeaserPopover username={ev.username}>
-        <Link href={`/u/${ev.username}`} style={{ display: 'inline-block' }}>
+        <Link href={`/u/${encodeURIComponent(ev.username)}`} style={{ display: 'inline-block' }}>
           <div style={{
             width: 40, height: 40, borderRadius: '50%', flexShrink: 0, overflow: 'hidden',
             background: 'var(--grad-sea)', position: 'relative',
@@ -36,7 +36,7 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
 
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.35 }}>
-          <Link href={`/u/${ev.username}`} style={{ fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
+          <Link href={`/u/${encodeURIComponent(ev.username)}`} style={{ fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
             @{ev.username}
           </Link>
           {' '}låste upp{' '}

@@ -232,7 +232,7 @@ function StoryViewer({
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', padding: 12, gap: 10 }}>
-        <Link href={`/u/${group.username}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Link href={`/u/${encodeURIComponent(group.username)}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
           <div style={{
             width: 32, height: 32, borderRadius: '50%', overflow: 'hidden', position: 'relative',
             background: avatarGradient(group.username),
