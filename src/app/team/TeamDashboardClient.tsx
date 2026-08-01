@@ -58,7 +58,7 @@ type Task = {
 }
 
 // Fält som går att ändra i efterhand från detaljvyn.
-type TaskPatch = Partial<Pick<Task, 'description' | 'color'>>
+type TaskPatch = Partial<Pick<Task, 'description' | 'color' | 'priority' | 'project_id' | 'due_date'>>
 
 type Prompt = {
   id: string
@@ -511,6 +511,13 @@ const GLOBAL_CSS = `
 }
 .svt-notes:hover { background: var(--svt-chip-bg); }
 
+/* Bekräfta radering — röd och tydlig, men bara två klick bort. */
+.svt-confirm-del {
+  border: none; border-radius: 7px; cursor: pointer; padding: 0 9px; height: 26px;
+  background: var(--red); color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap;
+}
+.svt-confirm-del:hover { filter: brightness(1.08); }
+
 /* Färgprick i rubrikraden — fäller ut färgväljaren först när man vill. */
 .svt-colordot {
   width: 26px; height: 26px; border-radius: 50%; cursor: pointer; padding: 0;
@@ -693,8 +700,14 @@ export default function TeamDashboardClient({
   }, [supabase])
 
   const deleteTask = useCallback(async (id: string) => {
+    // Läs bilagorna först — annars blir filerna kvar i bucketen för alltid
+    // när raden är borta, utan något som pekar på dem.
+    const { data } = await supabase.from('team_tasks').select('images').eq('id', id).single()
+    const paths = (((data?.images as TaskImage[]) ?? [])).map(im => im.path)
+
     setTasks(prev => prev.filter(t => t.id !== id))
     await supabase.from('team_tasks').delete().eq('id', id)
+    if (paths.length) await supabase.storage.from('team-attachments').remove(paths)
   }, [supabase])
 
   // ── Bildbilagor ───────────────────────────────────────────────────────────
@@ -1408,6 +1421,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
         <TaskDetail
           task={openTask}
           project={openTask.project_id ? projectById.get(openTask.project_id) : undefined}
+          projects={projects}
           memberById={memberById}
           teamMembers={teamMembers}
           supabase={supabase}
@@ -1464,11 +1478,21 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
 }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
+  // Radering är oåterkallelig och tar bilagorna med sig — kräver två klick.
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
   const idx = STATUS_ORDER.indexOf(task.status)
   const imageCount = task.images?.length ?? 0
   // Uppgiftens egen färg vinner över projektfärgen — den är mer specifik.
   const accent = task.color ?? project?.color ?? null
+
+  // Låt inte kortet stå kvar i "redo att radera" — då ligger en röd knapp
+  // och väntar på ett slarvigt klick långt senare.
+  useEffect(() => {
+    if (!confirmDelete) return
+    const t = setTimeout(() => setConfirmDelete(false), 5000)
+    return () => clearTimeout(t)
+  }, [confirmDelete])
 
   async function copyPrompt() {
     if (!task.prompt) return
@@ -1494,9 +1518,29 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
         <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.4 }}>{task.title}</div>
-        <button className="svt-iconbtn danger" onClick={e => { stop(e); onDelete(task.id) }} title="Ta bort" style={{ flexShrink: 0 }}>
-          <IcoTrash />
-        </button>
+        {confirmDelete ? (
+          <div style={{ display: 'flex', gap: 3, flexShrink: 0 }} onClick={stop}>
+            <button
+              className="svt-confirm-del"
+              onClick={e => { stop(e); onDelete(task.id) }}
+              title="Ja, ta bort uppgiften och dess bilder"
+            >
+              Ta bort
+            </button>
+            <button className="svt-iconbtn" onClick={e => { stop(e); setConfirmDelete(false) }} title="Avbryt">
+              <IcoClose size={13} />
+            </button>
+          </div>
+        ) : (
+          <button
+            className="svt-iconbtn danger"
+            onClick={e => { stop(e); setConfirmDelete(true) }}
+            title="Ta bort"
+            style={{ flexShrink: 0 }}
+          >
+            <IcoTrash />
+          </button>
+        )}
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
@@ -1580,11 +1624,12 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
 // en chatt. Tavlans layout är oförändrad — det här ligger ovanpå.
 
 function TaskDetail({
-  task, project, memberById, teamMembers, supabase,
+  task, project, projects, memberById, teamMembers, supabase,
   onClose, onStatusChange, onAssigneeChange, onAddImages, onRemoveImage, onUpdate,
 }: {
   task: Task
   project?: Project
+  projects: Project[]
   memberById: Map<string, TeamMember>
   teamMembers: TeamMember[]
   supabase: TeamSupabase
@@ -1606,6 +1651,7 @@ function TaskDetail({
   const [notes, setNotes] = useState(task.description ?? '')
   const [editingNotes, setEditingNotes] = useState(false)
   const [showColors, setShowColors] = useState(false)
+  const [editingMeta, setEditingMeta] = useState(false)
 
   const images = useMemo(() => task.images ?? [], [task.images])
   const idx = STATUS_ORDER.indexOf(task.status)
@@ -1621,7 +1667,9 @@ function TaskDetail({
     if (!missing.length) return
     missing.forEach(p => requested.current.add(p))
     let alive = true
-    supabase.storage.from('team-attachments').createSignedUrls(missing, 3600).then(({ data }) => {
+    // 8 timmar, inte 1 — en detaljvy som stått öppen över lunchen ska inte
+    // visa trasiga bilder när man kommer tillbaka.
+    supabase.storage.from('team-attachments').createSignedUrls(missing, 28800).then(({ data }) => {
       if (!alive || !data) return
       const next: Record<string, string> = {}
       for (const row of data) if (row.path && row.signedUrl) next[row.path] = row.signedUrl
@@ -1745,7 +1793,41 @@ function TaskDetail({
                   <IcoLink /> {hostFromUrl(task.pr_url)}
                 </a>
               )}
+              <button className="svt-link-chip" onClick={() => setEditingMeta(v => !v)}>
+                {editingMeta ? 'Klar' : 'Ändra'}
+              </button>
             </div>
+
+            {/* Prioritet, projekt och deadline går att ändra i efterhand —
+                annars måste en feltajmad eller felprioriterad uppgift skapas
+                om från början. Ändringar slår igenom direkt. */}
+            {editingMeta && (
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
+                <select
+                  value={task.priority}
+                  onChange={e => onUpdate(task.id, { priority: e.target.value as TaskPriority })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}
+                >
+                  <option value="low">Låg prioritet</option>
+                  <option value="normal">Normal prioritet</option>
+                  <option value="high">Hög prioritet</option>
+                </select>
+                <select
+                  value={task.project_id ?? ''}
+                  onChange={e => onUpdate(task.id, { project_id: e.target.value || null })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}
+                >
+                  <option value="">Inget projekt</option>
+                  {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                </select>
+                <input
+                  type="date"
+                  value={task.due_date ?? ''}
+                  onChange={e => onUpdate(task.id, { due_date: e.target.value || null })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 140 }}
+                />
+              </div>
+            )}
 
             {/* Anteckningar — visas som text. Redigering öppnas medvetet,
                 så att man inte landar i ett formulär när man bara vill läsa. */}
