@@ -466,6 +466,7 @@ const GLOBAL_CSS = `
   padding: 24px; animation: svtFade .14s ease both;
 }
 .svt-modal {
+  position: relative;
   background: var(--white); border: 1px solid var(--svt-border); border-radius: 16px;
   box-shadow: var(--shadow-md); width: 100%; max-width: 680px; max-height: 88vh;
   display: flex; flex-direction: column; overflow: hidden; animation: svtPop .16s ease both;
@@ -499,6 +500,30 @@ const GLOBAL_CSS = `
 .svt-swatch.none {
   background: var(--svt-chip-bg);
   background-image: linear-gradient(45deg, transparent 44%, var(--red) 44%, var(--red) 56%, transparent 56%);
+}
+
+/* Anteckningar i läsläge — ser ut som text, inte som ett ifyllt fält.
+   Hela ytan går att klicka för att börja redigera. */
+.svt-notes {
+  font-size: 13.5px; line-height: 1.6; color: var(--txt); white-space: pre-wrap;
+  word-break: break-word; padding: 9px 11px; margin: 0 -11px; border-radius: 9px;
+  cursor: text; transition: background .12s;
+}
+.svt-notes:hover { background: var(--svt-chip-bg); }
+
+/* Färgprick i rubrikraden — fäller ut färgväljaren först när man vill. */
+.svt-colordot {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer; padding: 0;
+  background: transparent; border: 2px dashed var(--svt-border-strong);
+  transition: transform .12s ease, border-color .12s ease;
+}
+.svt-colordot:hover, .svt-colordot.open { transform: scale(1.1); border-style: solid; border-color: var(--sea); }
+
+.svt-drop-overlay {
+  position: absolute; inset: 0; z-index: 5; border-radius: 16px;
+  background: var(--white); border: 2px dashed var(--sea);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  font-size: 13.5px; font-weight: 600; color: var(--sea); pointer-events: none;
 }
 
 .svt-dropzone {
@@ -1218,7 +1243,10 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
               onDragLeave={() => setDragNew(false)}
               onDrop={e => {
                 e.preventDefault(); setDragNew(false)
-                setPendingFiles(prev => [...prev, ...imageFilesFrom(e.dataTransfer.files)])
+                // Läs ut filerna direkt. React kör state-uppdateraren senare,
+                // och då är dataTransfer redan tömd av webbläsaren.
+                const files = imageFilesFrom(e.dataTransfer.files)
+                setPendingFiles(prev => [...prev, ...files])
               }}
             >
               {pendingFiles.length ? (
@@ -1233,7 +1261,13 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
             </div>
             <input
               ref={newFileInput} type="file" accept="image/*" multiple hidden
-              onChange={e => { setPendingFiles(prev => [...prev, ...imageFilesFrom(e.target.files)]); e.target.value = '' }}
+              onChange={e => {
+                // Samma sak här: fillistan måste läsas ut innan inputen
+                // nollställs, annars ser den lata uppdateraren en tom lista.
+                const files = imageFilesFrom(e.target.files)
+                setPendingFiles(prev => [...prev, ...files])
+                e.target.value = ''
+              }}
             />
           </div>
 
@@ -1567,8 +1601,11 @@ function TaskDetail({
   const [dragOver, setDragOver] = useState(false)
   const [lightbox, setLightbox] = useState<string | null>(null)
   const fileInput = useRef<HTMLInputElement>(null)
+  // Detaljvyn är i första hand en läsvy — att redigera ska vara ett aktivt
+  // val, inte det man landar i så fort man öppnar en uppgift.
   const [notes, setNotes] = useState(task.description ?? '')
-  const [notesSaved, setNotesSaved] = useState(false)
+  const [editingNotes, setEditingNotes] = useState(false)
+  const [showColors, setShowColors] = useState(false)
 
   const images = useMemo(() => task.images ?? [], [task.images])
   const idx = STATUS_ORDER.indexOf(task.status)
@@ -1642,6 +1679,14 @@ function TaskDetail({
           {/* Uppgiftens färg som topplist — samma signal som kortets kant */}
           {task.color && <div style={{ height: 4, background: task.color, flexShrink: 0 }} />}
 
+          {/* Släppyta syns bara medan man drar — ingen permanent ruta */}
+          {dragOver && (
+            <div className="svt-drop-overlay">
+              <IcoImage size={26} color="var(--sea)" />
+              <span>Släpp för att lägga till bilden</span>
+            </div>
+          )}
+
           {/* Rubrik */}
           <div className="svt-modal-head">
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
@@ -1650,10 +1695,27 @@ function TaskDetail({
                 {STATUS_LABEL[task.status]}
               </span>
             </div>
-            <button className="svt-iconbtn" onClick={onClose} title="Stäng (Esc)">
-              <IcoClose />
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <button
+                className={`svt-colordot${showColors ? ' open' : ''}`}
+                onClick={() => setShowColors(v => !v)}
+                title="Färg"
+                style={task.color ? { background: task.color, borderColor: task.color } : undefined}
+              />
+              <button className="svt-iconbtn" onClick={onClose} title="Stäng (Esc)">
+                <IcoClose />
+              </button>
+            </div>
           </div>
+
+          {/* Färgväljaren fälls ut på begäran — annars ligger det en rad
+              redigeringskontroller framme så fort man öppnat en uppgift. */}
+          {showColors && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 18px', borderBottom: '1px solid var(--svt-divider)', flexWrap: 'wrap' }}>
+              <span className="svt-field-label" style={{ margin: 0 }}>Färg</span>
+              <ColorPicker value={task.color} onChange={c => onUpdate(task.id, { color: c })} size={24} />
+            </div>
+          )}
 
           <div className="svt-modal-body">
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px', lineHeight: 1.3 }}>
@@ -1685,33 +1747,52 @@ function TaskDetail({
               )}
             </div>
 
-            {/* Anteckningar — redigerbara, så instruktioner kan fyllas på
-                efterhand utan att uppgiften behöver skapas om. */}
+            {/* Anteckningar — visas som text. Redigering öppnas medvetet,
+                så att man inte landar i ett formulär när man bara vill läsa. */}
             <div style={{ marginBottom: 18 }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
-                <span className="svt-field-label" style={{ margin: 0 }}>Anteckningar</span>
-                {notesSaved && <span style={{ fontSize: 11, color: 'var(--green)', fontWeight: 600 }}>Sparat</span>}
-              </div>
-              <textarea
-                value={notes}
-                onChange={e => { setNotes(e.target.value); setNotesSaved(false) }}
-                onBlur={() => {
-                  const next = notes.trim() || null
-                  if (next === (task.description ?? null)) return
-                  onUpdate(task.id, { description: next })
-                  setNotesSaved(true)
-                  setTimeout(() => setNotesSaved(false), 2000)
-                }}
-                placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
-                rows={4} className="svt-input"
-                style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.55 }}
-              />
-            </div>
-
-            {/* Färg */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
-              <span className="svt-field-label" style={{ margin: 0 }}>Färg</span>
-              <ColorPicker value={task.color} onChange={c => onUpdate(task.id, { color: c })} size={24} />
+              <span className="svt-field-label">Anteckningar</span>
+              {editingNotes ? (
+                <>
+                  <textarea
+                    value={notes}
+                    onChange={e => setNotes(e.target.value)}
+                    placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
+                    rows={5} className="svt-input" autoFocus
+                    style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.55 }}
+                  />
+                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                    <button
+                      className="svt-btn-primary"
+                      style={{ ...btnPrimary, padding: '6px 12px', fontSize: 12.5 }}
+                      onClick={() => {
+                        const next = notes.trim() || null
+                        if (next !== (task.description ?? null)) onUpdate(task.id, { description: next })
+                        setEditingNotes(false)
+                      }}
+                    >
+                      Spara
+                    </button>
+                    <button
+                      style={{ ...btnGhost, padding: '6px 12px', fontSize: 12.5 }}
+                      onClick={() => { setNotes(task.description ?? ''); setEditingNotes(false) }}
+                    >
+                      Avbryt
+                    </button>
+                  </div>
+                </>
+              ) : task.description ? (
+                <div
+                  className="svt-notes"
+                  onClick={() => setEditingNotes(true)}
+                  title="Klicka för att redigera"
+                >
+                  {task.description}
+                </div>
+              ) : (
+                <button className="svt-link-chip" onClick={() => setEditingNotes(true)}>
+                  <IcoPlus color="currentColor" /> Lägg till anteckning
+                </button>
+              )}
             </div>
 
             {/* Bilder */}
@@ -1724,6 +1805,7 @@ function TaskDetail({
                 onClick={() => fileInput.current?.click()}
                 disabled={busy}
                 style={{ opacity: busy ? 0.5 : 1 }}
+                title="Du kan också dra hit en bild eller klistra in med ⌘V"
               >
                 <IcoPlus color="currentColor" /> {busy ? 'Laddar upp…' : 'Lägg till'}
               </button>
@@ -1740,46 +1822,36 @@ function TaskDetail({
             )}
 
             {images.length === 0 ? (
-              <div className={`svt-dropzone${dragOver ? ' over' : ''}`} onClick={() => fileInput.current?.click()}>
-                <IcoImage size={22} color="var(--txt3)" />
-                <span style={{ fontWeight: 600 }}>Dra hit en bild, klistra in med ⌘V, eller klicka</span>
-                <span style={{ fontSize: 11, color: 'var(--txt3)' }}>
-                  Skärmdumpar på buggar hör hemma här — inte i en chatt
-                </span>
-              </div>
+              <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '0 0 4px' }}>
+                Inga bilder än — dra hit en, klistra in med ⌘V, eller använd Lägg till.
+              </p>
             ) : (
-              <>
-                <div className="svt-img-grid">
-                  {images.map(im => {
-                    const url = urls[im.path]
-                    return (
-                      <div key={im.path} className="svt-img-cell">
-                        {url ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={url} alt={im.name ?? 'Bilaga'}
-                            onClick={() => setLightbox(url)}
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="svt-img-skeleton" />
-                        )}
-                        <button
-                          className="svt-img-remove"
-                          title="Ta bort bild"
-                          onClick={() => onRemoveImage(task.id, im.path)}
-                        >
-                          <IcoClose size={13} />
-                        </button>
-                      </div>
-                    )
-                  })}
-                </div>
-                <div className={`svt-dropzone slim${dragOver ? ' over' : ''}`} onClick={() => fileInput.current?.click()}>
-                  <IcoPlus color="var(--txt3)" />
-                  <span>Dra hit fler, eller klistra in med ⌘V</span>
-                </div>
-              </>
+              <div className="svt-img-grid">
+                {images.map(im => {
+                  const url = urls[im.path]
+                  return (
+                    <div key={im.path} className="svt-img-cell">
+                      {url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={url} alt={im.name ?? 'Bilaga'}
+                          onClick={() => setLightbox(url)}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="svt-img-skeleton" />
+                      )}
+                      <button
+                        className="svt-img-remove"
+                        title="Ta bort bild"
+                        onClick={() => onRemoveImage(task.id, im.path)}
+                      >
+                        <IcoClose size={13} />
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
             )}
 
             {/* Prompt */}
