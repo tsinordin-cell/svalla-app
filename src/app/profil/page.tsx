@@ -10,6 +10,7 @@ import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import { validateUsername } from '@/lib/username'
 import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
@@ -146,10 +147,11 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
 
   async function handleSave() {
     const trimmed = username.trim().toLowerCase()
-    if (!trimmed || trimmed.length < 3) { setError('Aliaset måste vara minst 3 tecken.'); return }
-    if (trimmed.length > 20) { setError('Aliaset får max vara 20 tecken.'); return }
-    if (trimmed.includes(' ')) { setError('Aliaset får inte innehålla mellanslag.'); return }
-    if (!/^[a-z0-9_.-]+$/.test(trimmed)) { setError('Bara a-z, siffror och _ . - är tillåtna.'); return }
+    // Samma regler som vid registrering — en enda källa i src/lib/username.ts.
+    // Reglerna fanns bara här förut, vilket är exakt varför signup kunde
+    // släppa igenom en hel e-postadress.
+    const usernameErr = validateUsername(trimmed)
+    if (usernameErr) { setError(usernameErr); return }
     setSaving(true); setError(null)
 
     let avatarUrl = user.avatar
