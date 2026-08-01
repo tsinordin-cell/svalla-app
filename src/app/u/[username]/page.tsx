@@ -41,7 +41,14 @@ function formatNationality(raw: string): string {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
- const { username } = await params
+ // Next.js dekodar INTE dynamiska segment automatiskt (verifierat live 2026-08-01:
+ // params.username kom in som t.ex. "ingriidleek%40yahoo.se" med kvarvarande %40
+ // istallet for "@", vilket gjorde att Supabase-uppslaget aldrig matchade och alla
+ // profiler med specialtecken i username (fran e-postadress i signup-flodet) 404:ade
+ // aven efter att encodeURIComponent lades pa lankarna. decodeURIComponent ar en
+ // no-op for redan avkodade strangar, sa detta ar sakert aven for vanliga username.
+ const { username: rawUsername } = await params
+ const username = decodeURIComponent(rawUsername)
  return {
  title: `${username}`,
  description: `Se ${username}s seglarturer på Svalla.`,
@@ -58,7 +65,9 @@ export default async function PublicProfilePage({
  params: Promise<{ username: string }>
  searchParams: Promise<{ tab?: string }>
 }) {
- const { username } = await params
+ // Se kommentar i generateMetadata ovan: dekoda alltid params.username.
+ const { username: rawUsername } = await params
+ const username = decodeURIComponent(rawUsername)
  const { tab } = await searchParams
  const activeTab = tab === 'taggad' ? 'taggad' : tab === 'forum' ? 'forum' : 'turer'
  // Server component → server-klient som forwardar auth-cookies.
@@ -492,7 +501,7 @@ export default async function PublicProfilePage({
 
  {/* ── Wrapped teaser ── */}
  {wrappedYear && wrappedTrips.length >= 3 && (
- <Link href={`/wrapped/${username}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
+ <Link href={`/wrapped/${encodeURIComponent(username)}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
  <div style={{
  background: 'linear-gradient(135deg, #0d2240 0%, #1a4a5e 55%, #0a7b8c 100%)',
  borderRadius: 18, padding: '18px 20px',
@@ -539,7 +548,7 @@ export default async function PublicProfilePage({
  return (
  <Link
  key={key}
- href={key === 'turer' ? `/u/${encodeURIComponent(username)}` : `/u/${username}?tab=${key}`}
+ href={key === 'turer' ? `/u/${encodeURIComponent(username)}` : `/u/${encodeURIComponent(username)}?tab=${key}`}
  style={{
  flex: 1, textAlign: 'center', textDecoration: 'none',
  padding: '13px 8px 11px',
