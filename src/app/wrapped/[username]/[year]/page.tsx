@@ -11,19 +11,22 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
- const { username, year } = await params
+ // Se kommentar i src/app/u/[username]/page.tsx: Next.js dekodar inte dynamiska
+ // segment automatiskt, sa params.username kan komma in som t.ex. "namn%40host.se".
+ const { username: rawUsername, year } = await params
+ const username = decodeURIComponent(rawUsername)
  const title = `${username}s ${year} på Svalla`
  const description = `Se ${username}s seglarsäsong ${year} — turer, distans och höjdpunkter.`
- const ogUrl = `/wrapped/${username}/${year}/opengraph-image`
+ const ogUrl = `/wrapped/${encodeURIComponent(username)}/${year}/opengraph-image`
  return {
  title,
  description,
  robots: { index: true, follow: true },
- alternates: { canonical: `https://svalla.se/wrapped/${username}/${year}` },
+ alternates: { canonical: `https://svalla.se/wrapped/${encodeURIComponent(username)}/${year}` },
  openGraph: {
  title,
  description,
- url: `https://svalla.se/wrapped/${username}/${year}`,
+ url: `https://svalla.se/wrapped/${encodeURIComponent(username)}/${year}`,
  images: [{ url: ogUrl, width: 1200, height: 630, alt: title }],
  },
  twitter: { card: 'summary_large_image', title, description, images: [ogUrl] },
@@ -62,7 +65,8 @@ function fmtDur(mins: number) {
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
 
 export default async function WrappedPage({ params }: Props) {
- const { username, year } = await params
+ const { username: rawUsername, year } = await params
+ const username = decodeURIComponent(rawUsername)
  const yr = parseInt(year, 10)
  if (isNaN(yr) || yr < 2020 || yr > new Date().getFullYear() + 1) notFound()
 
@@ -119,7 +123,7 @@ export default async function WrappedPage({ params }: Props) {
  const spaghettiPath = buildSpaghettiPath(routeGroups, SW, SH)
 
  const u = userRow as Record<string, string | null>
- const shareUrl = `https://svalla.se/wrapped/${username}/${year}`
+ const shareUrl = `https://svalla.se/wrapped/${encodeURIComponent(username)}/${year}`
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
