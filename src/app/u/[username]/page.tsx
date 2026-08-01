@@ -50,21 +50,23 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
  const { username: rawUsername } = await params
  const username = decodeURIComponent(rawUsername)
 
- // INTEGRITET: username visas publikt och sidan är annars index:true. Ett fåtal
- // konton har fått hela sin e-postadress som username via det ovaliderade
- // signup-formuläret (åtgärdat i src/lib/username.ts 2026-08-01), och då låg
- // en privatpersons mejladress publikt och sökbar. Nya konton kan inte längre
- // hamna här, men befintliga ska inte indexeras förrän de bytt alias.
- const isEmailLikeUsername = /\S+@\S+/.test(username)
-
  return {
  title: `${username}`,
  description: `Se ${username}s seglarturer på Svalla.`,
  openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${encodeURIComponent(username)}` },
  alternates: { canonical: `https://svalla.se/u/${encodeURIComponent(username)}` },
- robots: isEmailLikeUsername
- ? { index: false, follow: false }
- : { index: true, follow: true },
+ // MEDVETET noindex (2026-08-01). Sidan hade index:true samtidigt som
+ // robots.txt hade 'Disallow: /u/' — en motsägelse som gav det sämsta
+ // utfallet: sidorna kunde indexeras via inlänkar men noindexen gick inte
+ // att läsa, så de kunde aldrig plockas bort. Utlösande fall: sju konton
+ // hade fått hela sin e-postadress som username via det ovaliderade
+ // signup-formuläret, så en privatpersons mejladress låg publikt sökbar –
+ // både i rubriken och i själva URL:en.
+ // Profilsidor ligger inte i sitemapen och gav ingen SEO-nytta, medan
+ // medlemmars namn, hemmahamn och båt inte bör vara googlingsbara.
+ // Vill vi ha profil-SEO senare: gör det till ett opt-in per användare
+ // (kolumnen public_fields finns redan) i stället för på som standard.
+ robots: { index: false, follow: true },
  }
 }
 
