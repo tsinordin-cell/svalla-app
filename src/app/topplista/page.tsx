@@ -301,7 +301,7 @@ function LeaderboardSection({
             return (
               <Link
                 key={row.uid}
-                href={`/u/${row.username}`}
+                href={`/u/${encodeURIComponent(row.username)}`}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 10,
                   padding: '10px 12px', borderRadius: 14,

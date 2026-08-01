@@ -289,7 +289,7 @@ export default function LoppisListingCard({
           boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
         }}>
           <Link
-            href={`/u/${author.username}`}
+            href={`/u/${encodeURIComponent(author.username)}`}
             style={{ flexShrink: 0, lineHeight: 0 }}
           >
             {author.avatar ? (
@@ -324,7 +324,7 @@ export default function LoppisListingCard({
               Säljare
             </div>
             <Link
-              href={`/u/${author.username}`}
+              href={`/u/${encodeURIComponent(author.username)}`}
               style={{
                 fontSize: 16, fontWeight: 700, color: 'var(--txt)',
                 textDecoration: 'none',

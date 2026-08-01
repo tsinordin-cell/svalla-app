@@ -172,7 +172,7 @@ export default function ProfileTeaserPopover({
             {!loading && data && (
               <>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-                  <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ flexShrink: 0 }}>
+                  <Link href={`/u/${encodeURIComponent(data.username)}`} onClick={() => setOpen(false)} style={{ flexShrink: 0 }}>
                     {data.avatar ? (
                       <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden', position: 'relative' }}>
                         <Image src={data.avatar} alt={data.username} fill sizes="64px" style={{ objectFit: 'cover' }} />
@@ -187,7 +187,7 @@ export default function ProfileTeaserPopover({
                     )}
                   </Link>
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <Link href={`/u/${data.username}`} onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
+                    <Link href={`/u/${encodeURIComponent(data.username)}`} onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
                       <div style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)' }}>
                         @{data.username}
                         {data.nationality && <span style={{ marginLeft: 6, fontSize: 14 }}>{data.nationality}</span>}
@@ -224,7 +224,7 @@ export default function ProfileTeaserPopover({
                 </div>
 
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <Link href={`/u/${data.username}`} onClick={() => setOpen(false)}
+                  <Link href={`/u/${encodeURIComponent(data.username)}`} onClick={() => setOpen(false)}
                     style={{
                       flex: 1, padding: 12, borderRadius: 12,
                       border: '1px solid rgba(10,123,140,0.20)', textAlign: 'center',

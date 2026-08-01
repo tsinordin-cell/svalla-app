@@ -559,7 +559,7 @@ export default function ChatPage() {
           </button>
 
           {/* Centrerad avatar + namn — tappable till profil */}
-          <Link href={otherUsername ? `/u/${otherUsername}` : '#'} style={{
+          <Link href={otherUsername ? `/u/${encodeURIComponent(otherUsername)}` : '#'} style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center',
             gap: 2,
             padding: '4px 48px 0',

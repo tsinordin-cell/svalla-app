@@ -141,7 +141,7 @@ export default function FollowListButton({
                 {users.map(u => (
                   <Link
                     key={u.id}
-                    href={`/u/${u.username}`}
+                    href={`/u/${encodeURIComponent(u.username)}`}
                     onClick={() => setOpen(false)}
                     style={{ textDecoration: 'none' }}
                   >

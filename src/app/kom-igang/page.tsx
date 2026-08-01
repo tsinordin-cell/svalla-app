@@ -841,7 +841,7 @@ function KomIgangInner() {
  <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', maxWidth: 320 }}>
  {fromUser ? (
  <button
- onClick={() => router.push(`/u/${fromUser}`)}
+ onClick={() => router.push(`/u/${encodeURIComponent(fromUser)}`)}
  style={{
  padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
  background: 'linear-gradient(135deg, #0f9e64, #0d8554)',

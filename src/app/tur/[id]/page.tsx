@@ -343,7 +343,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
  {/* ── User row ── */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
- <Link href={`/u/${username}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
+ <Link href={`/u/${encodeURIComponent(username)}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
  <div style={{
  width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
  background: 'var(--grad-sea)',
@@ -418,7 +418,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
  <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>Med:</span>
  {taggedUsers.map((u: { id: string; username: string }) => (
- <Link key={u.id} href={`/u/${u.username}`} style={{ textDecoration: 'none' }}>
+ <Link key={u.id} href={`/u/${encodeURIComponent(u.username)}`} style={{ textDecoration: 'none' }}>
  <span style={{
  fontSize: 12, fontWeight: 700, color: 'var(--sea)',
  background: 'rgba(30,92,130,0.08)', borderRadius: 20,

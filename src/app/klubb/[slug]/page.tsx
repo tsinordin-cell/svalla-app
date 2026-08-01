@@ -278,7 +278,7 @@ export default function KlubbPage() {
  {tab === 'medlemmar' && (
  <div>
  {members.map(m => (
- <Link key={m.user_id} href={`/u/${m.username}`} style={{ textDecoration: 'none' }}>
+ <Link key={m.user_id} href={`/u/${encodeURIComponent(m.username)}`} style={{ textDecoration: 'none' }}>
  <div style={{
  display: 'flex', alignItems: 'center', gap: 12,
  padding: '10px 0', borderBottom: '1px solid rgba(10,123,140,0.06)',

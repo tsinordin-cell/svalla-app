@@ -119,6 +119,27 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
+  // Spara-raden hamnade under mobilens tangentbord: dialogen tog `92dvh` av
+  // FÖNSTRETS höjd, men iOS Safari räknar inte om `dvh` tillförlitligt när
+  // tangentbordet skjuter upp — den synliga ytan (visualViewport) krymper,
+  // dialogens maxHeight gör det inte, så sticky-footern hamnar utanför synligt
+  // område så fort man klickar i ett textfält. Håll dialogen istället bunden
+  // till `visualViewport.height`, som iOS faktiskt uppdaterar live.
+  const [viewportH, setViewportH] = useState<number | null>(null)
+  useEffect(() => {
+    const vv = typeof window !== 'undefined' ? window.visualViewport : null
+    if (!vv) return
+    const update = () => setViewportH(vv.height)
+    update()
+    vv.addEventListener('resize', update)
+    vv.addEventListener('scroll', update)
+    return () => {
+      vv.removeEventListener('resize', update)
+      vv.removeEventListener('scroll', update)
+    }
+  }, [])
+  const dialogMaxHeight = viewportH ? `${Math.round(viewportH * 0.92)}px` : '92dvh'
+
   function togglePublic(key: string) {
     setPublicFields(prev => prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key])
   }
@@ -161,7 +182,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
-      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: dialogMaxHeight, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
@@ -453,7 +474,7 @@ export default function ProfilPage() {
               </div>
             )}
             {user?.username && (
-              <Link href={`/u/${user.username}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
                 <Eye size={12} /> Min sida
               </Link>
             )}
