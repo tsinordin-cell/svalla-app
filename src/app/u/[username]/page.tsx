@@ -49,12 +49,22 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
  // no-op for redan avkodade strangar, sa detta ar sakert aven for vanliga username.
  const { username: rawUsername } = await params
  const username = decodeURIComponent(rawUsername)
+
+ // INTEGRITET: username visas publikt och sidan är annars index:true. Ett fåtal
+ // konton har fått hela sin e-postadress som username via det ovaliderade
+ // signup-formuläret (åtgärdat i src/lib/username.ts 2026-08-01), och då låg
+ // en privatpersons mejladress publikt och sökbar. Nya konton kan inte längre
+ // hamna här, men befintliga ska inte indexeras förrän de bytt alias.
+ const isEmailLikeUsername = /\S+@\S+/.test(username)
+
  return {
  title: `${username}`,
  description: `Se ${username}s seglarturer på Svalla.`,
- openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${username}` },
- alternates: { canonical: `https://svalla.se/u/${username}` },
- robots: { index: true, follow: true },
+ openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${encodeURIComponent(username)}` },
+ alternates: { canonical: `https://svalla.se/u/${encodeURIComponent(username)}` },
+ robots: isEmailLikeUsername
+ ? { index: false, follow: false }
+ : { index: true, follow: true },
  }
 }
 

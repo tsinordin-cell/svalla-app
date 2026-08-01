@@ -3,6 +3,7 @@ import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
+import { validateUsername, deriveUsername } from '@/lib/username'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -82,16 +83,24 @@ function LoginContent() {
 
     try {
       if (isNew) {
+        // Username validerades ALDRIG här tidigare — en hel e-postadress kunde
+        // bli username och hamna publikt indexerad. Se src/lib/username.ts.
+        if (username.trim()) {
+          const usernameErr = validateUsername(username)
+          if (usernameErr) { setErr(usernameErr); return }
+        }
+        const newUsername = username.trim() ? username.trim().toLowerCase() : deriveUsername(email)
+
         const { data, error } = await supabase.auth.signUp({
           email, password,
-          options: { data: { username: username.trim() || email.split('@')[0] } },
+          options: { data: { username: newUsername } },
         })
         if (error) { setErr(mapAuthError(error.message)); return }
         if (data.user) {
           // Icke-blockerande — databasen har trigger för detta
           supabase.from('users').upsert({
             id:       data.user.id,
-            username: username.trim() || email.split('@')[0],
+            username: newUsername,
             email,
           }, { onConflict: 'id', ignoreDuplicates: true }).then(() => {})
 
@@ -127,7 +136,7 @@ function LoginContent() {
         if (data.user) {
           supabase.from('users').upsert({
             id:       data.user.id,
-            username: data.user.user_metadata?.username || data.user.email?.split('@')[0] || 'seglare',
+            username: deriveUsername(data.user.user_metadata?.username || data.user.email),
             email:    data.user.email ?? '',
           }, { onConflict: 'id' }).then(() => {})
         }

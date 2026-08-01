@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
+import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
 
@@ -293,7 +294,7 @@ function ManuellForm() {
       // Säkerställ public.users-rad (FK-skydd)
       await supabase.from('users').upsert({
         id:       user.id,
-        username: user.user_metadata?.username || user.email?.split('@')[0] || 'seglare',
+        username: deriveUsername(user.user_metadata?.username || user.email),
         email:    user.email ?? '',
       }, { onConflict: 'id', ignoreDuplicates: true })
 

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { buildRoutePoints } from '@/lib/routeSmooth'
+import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
@@ -641,7 +642,7 @@ export default function SparaPage() {
 
     await supabase.from('users').upsert({
       id: user.id,
-      username: user.user_metadata?.username || user.email?.split('@')[0] || 'seglare',
+      username: deriveUsername(user.user_metadata?.username || user.email),
       email: user.email ?? '',
     }, { onConflict: 'id', ignoreDuplicates: true })
 
