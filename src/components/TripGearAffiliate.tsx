@@ -126,14 +126,14 @@ function pickGearForTrip(boatType: string | null, distanceNm: number | null): re
 type Props = {
   boatType: string | null
   distanceNm: number | null
-  isOwner: boolean
   /** Trip-ID — används som UTM-content för per-trip-attribuering */
   tripId: string
 }
 
-export default function TripGearAffiliate({ boatType, distanceNm, isOwner, tripId }: Props) {
+export default function TripGearAffiliate({ boatType, distanceNm, tripId }: Props) {
   // Visa inte för ägaren — de behöver inte se annonser för sin egen utrustning
-  if (isOwner) return null
+  // "Visas aldrig för ägaren" avgörs numera av ViewerGate i /tur/[id] —
+  // komponenten själv behöver inte veta vem som tittar.
   // Visa inte på 0-distans-turer (incheckningar, planning-turer)
   if (distanceNm == null || distanceNm < 0.5) return null
 

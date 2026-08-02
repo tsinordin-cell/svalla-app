@@ -18,13 +18,23 @@ type UserLite = { id: string; username: string; avatar: string | null }
 export default function TripTagger({
   tripId,
   tripOwnerId,
-  currentUserId,
 }: {
   tripId: string
   tripOwnerId: string
-  currentUserId: string | null
 }) {
   const supabase = useRef(createClient()).current
+  // Hämtar besökaren själv i stället för att få den som prop från servern.
+  // Serverns auth.getUser() läser cookies och gjorde hela /tur/[id] dynamisk
+  // — sidan kunde aldrig cachas trots att inloggningen bara styrde UI.
+  // Samma flytt som DmButton/ViewerGate, se ViewerGate.tsx.
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
+  useEffect(() => {
+    let avbruten = false
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!avbruten) setCurrentUserId(user?.id ?? null)
+    })
+    return () => { avbruten = true }
+  }, [supabase])
   const [tags, setTags] = useState<TripTag[]>([])
   const [loading, setLoading] = useState(true)
   const [picking, setPicking] = useState(false)
