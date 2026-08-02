@@ -27,6 +27,17 @@
   --green: #22c55e;
   --red:   #ef4444;
   --nav-h: 64px;
+  /* ── "Tipsa oss"-knappens yta i nedre högra hörnet ──
+     FeedbackWidget är position:fixed och renderas i layout.tsx, alltså på
+     VARJE sida. Den ligger på z-index 800 och äter upp hörnet.
+     --fb-top = avståndet från viewportens nederkant upp till knappens
+     ÖVERKANT (nav-höjd + safe-area + 14px marginal + 37px knapphöjd).
+
+     REGEL: allt annat som placeras i nedre högra hörnet måste ha
+     `bottom: calc(var(--fb-top) + luft)`, annars hamnar det under knappen.
+     Upptäckt 2026-08-02: väderpillret på /upptack låg bottom:18px och
+     doldes helt av knappen (108x34 px överlapp, mätt live). */
+  --fb-top: calc(var(--nav-h, 0px) + env(safe-area-inset-bottom, 0px) + 51px);
   /* ── Surface system ── */
   --surface-1:  rgba(250,254,255,1);
   --surface-2:  rgba(10,123,140,0.06);
