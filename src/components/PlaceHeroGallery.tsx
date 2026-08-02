@@ -19,10 +19,27 @@ interface Props {
   alt: string                       // Plats-namnet, för aria/alt
 }
 
-export default function PlaceHeroGallery({ photos, alt }: Props) {
+export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
+
+  // En bild som inte går att ladda ska ALDRIG lämna en tom ruta efter sig.
+  // Bakgrund (2026-08-01): samtliga Google Places-foton slutade fungera
+  // (proxyn får 400 från Google), och eftersom galleriet renderade en ruta
+  // per URL såg platssidorna ut att ha "6 bilder" där fem var blanka.
+  // Nu plockas trasiga URL:er bort ur listan så bildräknaren och pilarna
+  // speglar det som faktiskt går att visa.
+  const [broken, setBroken] = useState<Set<string>>(new Set())
+  const photos = incomingPhotos.filter(p => !broken.has(p))
+  function markBroken(src: string) {
+    setBroken(prev => {
+      if (prev.has(src)) return prev
+      const next = new Set(prev)
+      next.add(src)
+      return next
+    })
+  }
 
   // ── Beräkna om vi kan scrolla mer åt något håll ──
   function updateArrowVisibility() {
@@ -128,6 +145,7 @@ export default function PlaceHeroGallery({ photos, alt }: Props) {
               style={{ objectFit: 'cover' }}
               priority={i === 0}
               unoptimized={src.startsWith('/api/places/photo/')}
+              onError={() => markBroken(src)}
             />
           </div>
         ))}

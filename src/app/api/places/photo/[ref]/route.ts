@@ -18,6 +18,13 @@ export const dynamic = 'force-dynamic'
 
 const KEY = process.env.GOOGLE_PLACES_API_KEY
 
+// 1x1 genomskinlig PNG — används när Google inte kan leverera bilden, så att
+// svaret alltid är ett giltigt bildformat (se kommentar vid felhanteringen).
+const TRANSPARENT_PNG = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+  'base64'
+)
+
 export async function GET(
   req: NextRequest,
   ctx: { params: Promise<{ ref: string }> }
@@ -63,7 +70,29 @@ export async function GET(
 
   const r = await fetch(googleUrl, { redirect: 'follow' })
   if (!r.ok) {
-    return new Response(`Google Photos error: ${r.status}`, { status: r.status })
+    // Logga Googles FAKTISKA felmeddelande. Tidigare kastades det bort och
+    // bara statuskoden returnerades, vilket gjorde det omöjligt att se varför
+    // bilderna slutat fungera (2026-08-01: 100% av platsfotona gav 400 utan
+    // att någon kunde se orsaken). Loggen syns i Vercel runtime logs.
+    let detalj = ''
+    try { detalj = (await r.text()).slice(0, 500) } catch { /* strunt samma */ }
+    console.error(
+      `[places/photo] Google svarade ${r.status} for ${photoName.slice(0, 60)}... :: ${detalj.replace(/\s+/g, ' ')}`
+    )
+
+    // Returnera ALDRIG text/plain till en <img>. Det renderas som en trasig
+    // ruta i galleriet och far Satori att krascha hela OG-bilden med
+    // "Unsupported image type: unknown". En genomskinlig 1x1-PNG later
+    // klienten dolja rutan i stallet (se PlaceHeroGallery onError).
+    return new Response(TRANSPARENT_PNG, {
+      status: 502,
+      headers: {
+        'Content-Type': 'image/png',
+        // Kort cache: sa fort referenserna lagas ska sidorna self-healas.
+        'Cache-Control': 'public, max-age=300, s-maxage=300',
+        'X-Photo-Error': String(r.status),
+      },
+    })
   }
   const buf = await r.arrayBuffer()
 
