@@ -1,6 +1,5 @@
 'use client'
-import { useSearchParams } from 'next/navigation'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 
 type Flik = 'turer' | 'taggad' | 'forum'
@@ -27,8 +26,16 @@ type Flik = 'turer' | 'taggad' | 'forum'
  * en: sidan är 94 kB och skillnaden mellan flikarna var 87–94 kB, alltså runt
  * 15 kB extra. Försumbart mot att sidan i gengäld serveras från CDN.
  *
- * OBS: useSearchParams() kräver en Suspense-gräns på en statiskt renderad
- * sida. Anroparen måste alltså wrappa den här komponenten i <Suspense>.
+ * VARFÖR INTE useSearchParams(): första försöket använde den, och då hoppar
+ * Next.js över hela subträdet vid prerendering — den statiska HTML:en
+ * innehöll bara Suspense-fallbacken, så besökaren såg en tom ruta där
+ * turrutnätet skulle vara tills JS hunnit ladda. Sidan blev snabb men såg
+ * trasig ut under laddningen.
+ *
+ * Nu hålls fliken i vanligt klient-state med 'turer' som utgångsläge, vilket
+ * betyder att servern renderar den panelen direkt i HTML:en. `?tab=` läses en
+ * gång efter montering, så delbara länkar fungerar fortfarande — de byter
+ * bara flik strax efter att sidan visats, i stället för att blockera den.
  */
 export default function ProfileTabs({
   username,
@@ -43,9 +50,24 @@ export default function ProfileTabs({
   taggad: ReactNode
   forum: ReactNode
 }) {
-  const sp = useSearchParams()
-  const raw = sp.get('tab')
-  const aktiv: Flik = raw === 'taggad' ? 'taggad' : raw === 'forum' ? 'forum' : 'turer'
+  // Utgångsläget måste vara samma på server och klient, annars blir det
+  // hydreringsfel. Därför alltid 'turer' först, och ?tab= läses efter mount.
+  const [aktiv, setAktiv] = useState<Flik>('turer')
+
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get('tab')
+    if (t === 'taggad' || t === 'forum') setAktiv(t)
+  }, [])
+
+  function valj(flik: Flik) {
+    setAktiv(flik)
+    // Håll URL:en i synk så att fliken går att dela och backa till, utan att
+    // navigera om sidan (och utan att servern behöver läsa searchParams).
+    const url = flik === 'turer'
+      ? `/u/${encodeURIComponent(username)}`
+      : `/u/${encodeURIComponent(username)}?tab=${flik}`
+    window.history.replaceState(null, '', url)
+  }
 
   const flikar = [
     { key: 'turer' as const, label: 'Turer', count: antal.turer },
@@ -61,13 +83,14 @@ export default function ProfileTabs({
         {flikar.map(({ key, label, count }) => {
           const active = aktiv === key
           return (
-            <Link
+            <button
               key={key}
-              href={key === 'turer'
-                ? `/u/${encodeURIComponent(username)}`
-                : `/u/${encodeURIComponent(username)}?tab=${key}`}
-              scroll={false}
+              type="button"
+              onClick={() => valj(key)}
+              aria-pressed={active}
               style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontFamily: 'inherit',
                 flex: 1, textAlign: 'center', textDecoration: 'none',
                 padding: '13px 8px 11px',
                 fontSize: 12, fontWeight: 700,
@@ -80,7 +103,7 @@ export default function ProfileTabs({
               <span style={{ marginLeft: 5, fontSize: 11, fontWeight: 400, opacity: 0.75 }}>
                 {count}
               </span>
-            </Link>
+            </button>
           )
         })}
       </div>
