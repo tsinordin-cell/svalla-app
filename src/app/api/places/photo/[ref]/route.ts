@@ -18,13 +18,6 @@ export const dynamic = 'force-dynamic'
 
 const KEY = process.env.GOOGLE_PLACES_API_KEY
 
-// 1x1 genomskinlig PNG — används när Google inte kan leverera bilden, så att
-// svaret alltid är ett giltigt bildformat (se kommentar vid felhanteringen).
-const TRANSPARENT_PNG = Buffer.from(
-  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
-  'base64'
-)
-
 export async function GET(
   req: NextRequest,
   ctx: { params: Promise<{ ref: string }> }
@@ -80,14 +73,17 @@ export async function GET(
       `[places/photo] Google svarade ${r.status} for ${photoName.slice(0, 60)}... :: ${detalj.replace(/\s+/g, ' ')}`
     )
 
-    // Returnera ALDRIG text/plain till en <img>. Det renderas som en trasig
-    // ruta i galleriet och far Satori att krascha hela OG-bilden med
-    // "Unsupported image type: unknown". En genomskinlig 1x1-PNG later
-    // klienten dolja rutan i stallet (se PlaceHeroGallery onError).
-    return new Response(TRANSPARENT_PNG, {
+    // Svara med ett RIKTIGT fel och utan bildkropp. Det far <img> att kasta
+    // sitt error-event, vilket ar det PlaceHeroGallery lyssnar pa for att
+    // plocka bort rutan helt (annars star en tom ruta kvar och bildraknaren
+    // ljuger). Testade forst en genomskinlig 1x1-PNG har — den avkodas utan
+    // fel av webblasaren, sa onError triggade aldrig och rutan blev kvar.
+    //
+    // Satori/OG-bilden tal detta eftersom /api/og/upptack forst kontrollerar
+    // att bakgrundsbilden verkligen ar en bild (se bildFungerar dar).
+    return new Response(null, {
       status: 502,
       headers: {
-        'Content-Type': 'image/png',
         // Kort cache: sa fort referenserna lagas ska sidorna self-healas.
         'Cache-Control': 'public, max-age=300, s-maxage=300',
         'X-Photo-Error': String(r.status),
