@@ -123,23 +123,53 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // Migration 20260505000002 byggde tabellen men den lästes aldrig. Nu mixar vi
  // in den efter Google-foton men före r.images-arrayen. Felar tyst om tabell
  // är tom eller saknar rader för denna plats.
- const { data: placePhotoRowsRaw } = await supabase
-   .from('place_photos')
-   .select('url, credit, sort_order, is_hero')
-   .eq('place_id', id)
-   .order('is_hero', { ascending: false })
-   .order('sort_order', { ascending: true })
-   .limit(12)
+ // PRESTANDA (2026-08-02): de här fyra frågorna är oberoende av varandra och
+ // kördes tidigare i serie, en efter en. Varje led lade på full nätverkslatens
+ // mot Supabase — platssidan låg på ~4 s TTFB, och det är sajtens tyngsta
+ // sidtyp (699 sidor). Nu körs de parallellt. Bara users-uppslaget nedan är
+ // äkta beroende (det behöver user_id från trips).
+ //
+ // place_photos: admin-uppladdade foton (separat tabell). Migration
+ // 20260505000002 byggde tabellen men den lästes aldrig. Mixas in efter
+ // Google-foton men före r.images-arrayen. Felar tyst om tabellen är tom.
+ //
+ // tours: hoppas över helt när platsen saknar koordinater — nearbyTours blir
+ // ändå tom då, så anropet var rent slöseri. Frågan är dessutom begränsad nu;
+ // förut hämtades HELA tours-tabellen för att sedan filtreras i JavaScript.
+ const [
+   { data: placePhotoRowsRaw },
+   { data: recentTripsRaw },
+   { data: allTours },
+   { data: reviewStats },
+ ] = await Promise.all([
+   supabase
+     .from('place_photos')
+     .select('url, credit, sort_order, is_hero')
+     .eq('place_id', id)
+     .order('is_hero', { ascending: false })
+     .order('sort_order', { ascending: true })
+     .limit(12),
+   supabase
+     .from('trips')
+     .select('id, image, location_name, created_at, user_id')
+     .not('image', 'is', null)
+     .order('created_at', { ascending: false })
+     .limit(6),
+   r.latitude && r.longitude
+     ? supabase
+         .from('tours')
+         .select('id, title, usp, duration_label, start_location, destination, waypoints, best_for, cover_image')
+         .order('title', { ascending: true })
+         .limit(200)
+     : Promise.resolve({ data: null }),
+   supabase
+     .from('reviews')
+     .select('rating')
+     .eq('place_id', id),
+ ])
+
  const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
 
- // Fetch recent trips nearby this restaurant (trips linking to this place)
- // Visa senaste turer med bild — matchas mot restaurangens namn om möjligt, annars senaste globalt
- const { data: recentTripsRaw } = await supabase
- .from('trips')
- .select('id, image, location_name, created_at, user_id')
- .not('image', 'is', null)
- .order('created_at', { ascending: false })
- .limit(6)
  const tripUids = [...new Set((recentTripsRaw ?? []).map((t: { user_id: string }) => t.user_id).filter(Boolean))]
  const { data: tripUserRows } = tripUids.length
  ? await supabase.from('users').select('id, username').in('id', tripUids)
@@ -151,12 +181,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  const recentTrips = (recentTripsRaw ?? []).map((t: any) => ({ ...t, users: { username: tripUmap[t.user_id] ?? 'Seglare' } }))
 
- // Rutter som passerar nära platsen
- const { data: allTours } = await supabase
- .from('tours')
- .select('id, title, usp, duration_label, start_location, destination, waypoints, best_for, cover_image')
- .order('title', { ascending: true })
-
+ // Rutter som passerar nära platsen (allTours hämtas parallellt ovan)
  function haversineNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
  const R = 3440.065
  const dLat = (lat2 - lat1) * Math.PI / 180
@@ -165,8 +190,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
  }
 
+ type TourRad = { waypoints: { lat: number; lng: number }[] }
  const nearbyTours = r.latitude && r.longitude
- ? (allTours ?? []).filter((t: { waypoints: { lat: number; lng: number }[] }) =>
+ ? ((allTours ?? []) as TourRad[]).filter((t: TourRad) =>
  Array.isArray(t.waypoints) &&
  t.waypoints.some((wp: { lat: number; lng: number }) =>
  haversineNM(r.latitude!, r.longitude!, wp.lat, wp.lng) <= 25
@@ -174,12 +200,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  ).slice(0, 3)
  : []
 
- // Aggregate review stats for header
- const { data: reviewStats } = await supabase
- .from('reviews')
- .select('rating')
- .eq('place_id', id)
-
+ // Aggregate review stats for header (reviewStats hämtas parallellt ovan)
  const avgRating = reviewStats && reviewStats.length > 0
  ? (reviewStats.reduce((a: number, r: { rating?: number }) => a + (r?.rating ?? 0), 0) / reviewStats.length)
  : null
