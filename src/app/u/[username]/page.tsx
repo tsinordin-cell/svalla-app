@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
+import ProfileTabs from '@/components/ProfileTabs'
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
 import DmButton from '@/components/DmButton'
@@ -98,16 +100,12 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
 
 export default async function PublicProfilePage({
  params,
- searchParams,
-}: {
+ }: {
  params: Promise<{ username: string }>
- searchParams: Promise<{ tab?: string }>
 }) {
  // Se kommentar i generateMetadata ovan: dekoda alltid params.username.
  const { username: rawUsername } = await params
  const username = decodeURIComponent(rawUsername)
- const { tab } = await searchParams
- const activeTab = tab === 'taggad' ? 'taggad' : tab === 'forum' ? 'forum' : 'turer'
  // Server component → server-klient som forwardar auth-cookies.
  // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
  // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
@@ -552,89 +550,21 @@ export default async function PublicProfilePage({
  </Link>
  )}
 
- {/* ── Trip grid with tabs ── */}
- <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-
- {/* Tab bar */}
- <div style={{ display: 'flex', borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
- {[
- { key: 'turer', label: 'Turer', count: trips.length },
- ...(taggedTrips.length > 0 ? [{ key: 'taggad', label: 'Taggad i', count: taggedTrips.length }] : []),
- ...(forumCount > 0 ? [{ key: 'forum', label: 'Forum', count: forumCount }] : []),
- ].map(({ key, label, count }) => {
- const active = activeTab === key
- return (
- <Link
- key={key}
- href={key === 'turer' ? `/u/${encodeURIComponent(username)}` : `/u/${encodeURIComponent(username)}?tab=${key}`}
- style={{
- flex: 1, textAlign: 'center', textDecoration: 'none',
- padding: '13px 8px 11px',
- fontSize: 12, fontWeight: 700,
- color: active ? 'var(--sea)' : 'var(--txt3)',
- borderBottom: active ? '2px solid var(--sea)' : '2px solid transparent',
- transition: 'color .15s',
- }}
- >
- {label}
- <span style={{ marginLeft: 5, fontSize: 11, fontWeight: 400, opacity: 0.75 }}>
- {count}
- </span>
- </Link>
- )
- })}
- </div>
-
- {/* Tab content */}
- {activeTab === 'forum' ? (
- <ForumActivityTab
- threads={forumThreads}
- posts={forumPosts}
+ {/* ── Flikar ──
+     Flikvalet ligger i ProfileTabs (klient). Servern läser INTE searchParams:
+     det tvingar dynamisk rendering och var det som gjorde att revalidate = 60
+     aldrig fick effekt. Panelerna renderas fortfarande här på servern och
+     skickas in som slots. Suspense krävs runt useSearchParams på en statisk
+     sida. */}
+ <Suspense fallback={<div style={{ background: 'var(--white)', borderRadius: 18, minHeight: 160 }} />}>
+ <ProfileTabs
  username={userRow.username}
+ antal={{ turer: trips.length, taggad: taggedTrips.length, forum: forumCount }}
+ turer={<TripRutnat trips={trips} tomTitel="Inga turer ännu" tomText={`${userRow.username} har inte loggat någon tur på Svalla än.`} />}
+ taggad={<TripRutnat trips={taggedTrips} tomTitel="Inte taggad i några turer" tomText={`${userRow.username} har inte blivit taggad i någon tur ännu.`} />}
+ forum={<ForumActivityTab threads={forumThreads} posts={forumPosts} username={userRow.username} />}
  />
- ) : (() => {
- const displayTrips = activeTab === 'taggad' ? taggedTrips : trips
- if (displayTrips.length === 0) {
- return (
- <EmptyState
- icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
- title={activeTab === 'taggad' ? 'Inte taggad i några turer' : 'Inga turer ännu'}
- body={activeTab === 'taggad'
- ? `${userRow.username} har inte blivit taggad i någon tur ännu.`
- : `${userRow.username} har inte loggat någon tur på Svalla än.`}
- marginTop={0}
- />
- )
- }
- return (
- <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '2px 2px 2px' }}>
- {displayTrips.map(t => (
- <Link key={t.id} href={`/tur/${t.id}`} style={{
- position: 'relative', aspectRatio: '1/1',
- overflow: 'hidden', background: 'var(--grad-sea)',
- display: 'block', borderRadius: 4,
- }}>
- {t.image ? (
- <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
- ) : (
- <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }}> </div>
- )}
- {t.pinnar_rating === 3 && (
- <div style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.5)', borderRadius: 6, padding: '2px 5px', fontSize: 8, fontWeight: 700, color: '#fff' }}> </div>
- )}
- <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
- {t.location_name && (
- <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
- {t.location_name}
- </p>
- )}
- </div>
- </Link>
- ))}
- </div>
- )
- })()}
- </div>
+ </Suspense>
  </div>
  </div>
  )
@@ -782,4 +712,45 @@ function ForumActivityTab({
  )}
  </div>
  )
+}
+
+
+// ── Rutnät av turer ─────────────────────────────────────────────────────────
+// Bruten ur fliksektionen så att alla tre panelerna kan renderas på servern
+// och skickas som slots till ProfileTabs. Se ProfileTabs.tsx för varför.
+function TripRutnat({ trips, tomTitel, tomText }: { trips: Trip[]; tomTitel: string; tomText: string }) {
+  if (trips.length === 0) {
+    return (
+      <EmptyState
+        icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+        title={tomTitel}
+        body={tomText}
+        marginTop={0}
+      />
+    )
+  }
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '2px 2px 2px' }}>
+      {trips.map(t => (
+        <Link key={t.id} href={`/tur/${t.id}`} style={{
+          position: 'relative', aspectRatio: '1/1',
+          overflow: 'hidden', background: 'var(--grad-sea)',
+          display: 'block', borderRadius: 4,
+        }}>
+          {t.image ? (
+            <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
+          ) : (
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }} />
+          )}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
+            {t.location_name && (
+              <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {t.location_name}
+              </p>
+            )}
+          </div>
+        </Link>
+      ))}
+    </div>
+  )
 }
