@@ -18,7 +18,14 @@ import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
 import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
 
-export const revalidate = 60 // refresh reviews regularly
+// PRESTANDA (2026-08-02): stod tidigare på 60 s "för att uppdatera recensioner
+// ofta". Med 699 platssidor hann cachen nästan alltid gå ut mellan två besök på
+// samma sida, så i praktiken byggdes varje sida om vid varje besök —
+// x-vercel-cache: MISS genomgående och ~3-4 s svarstid.
+// Platsdata (namn, bilder, öppettider) ändras via /admin och recensioner är
+// sällsynta; en timme är gott om färskhet och gör att de allra flesta besök
+// serveras direkt från CDN:en i stället.
+export const revalidate = 3600
 
 /**
  * Hämta restaurang via slug ELLER UUID. UUIDv4 har 36 tecken med bindestreck.
