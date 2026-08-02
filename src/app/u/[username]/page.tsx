@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Trip } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -6,6 +6,7 @@ import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
+import DmButton from '@/components/DmButton'
 import FollowPrefsButton from '@/components/FollowPrefsButton'
 import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
@@ -19,6 +20,31 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const revalidate = 60
+
+/**
+ * Utan generateStaticParams behandlas en dynamisk route som on-demand och
+ * hamnar aldrig i CDN-cachen, aven om revalidate ar satt (CLAUDE.md punkt 18
+ * och 26 - det var det avgorande steget bade for /upptack/[id] och /o/[slug]).
+ *
+ * Profiler ar fa (~100) sa det kostar nastan ingenting att forgenerera dem.
+ * Nya anvandare renderas on-demand och cachas darefter, eftersom
+ * dynamicParams ar pa som standard.
+ */
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data } = await supabase.from('users').select('username').limit(1000)
+    return (data ?? [])
+      .map((u: { username: string | null }) => u.username)
+      .filter((u): u is string => !!u)
+      .map(username => ({ username }))
+  } catch {
+    // Hellre on-demand-rendering an ett trasigt bygge. Samma skydd som
+    // /upptack/[id] redan har: utan Supabase-env (t.ex. en lokal maskin utan
+    // .env.local) kastar klienten, och da ska bygget anda ga igenom.
+    return []
+  }
+}
 
 const COUNTRIES = [
  { flag: '🇸🇪', name: 'Sverige' }, { flag: '🇳🇴', name: 'Norge' },
@@ -85,7 +111,7 @@ export default async function PublicProfilePage({
  // Server component → server-klient som forwardar auth-cookies.
  // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
  // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
- const supabase = await createServerSupabaseClient()
+ const supabase = createPublicSupabaseClient()
 
  const { data: userRow, error: userErr } = await supabase
  .from('users')
@@ -94,10 +120,10 @@ export default async function PublicProfilePage({
  .single()
  if (userErr || !userRow) notFound()
 
- // Vem tittar — för att avgöra om DM-knappen ska visas och inte på egen profil.
- const { data: { user: viewer } } = await supabase.auth.getUser()
- const isOwnProfile = !!viewer && viewer.id === userRow.id
- const showDmButton = !!viewer && !isOwnProfile
+ // Ingen auth här. Villkoret "visa DM-knappen" räknas ut i DmButton på
+ // klienten i stället. auth.getUser() läser cookies, vilket gjorde hela
+ // sidan dynamisk och satte revalidate = 60 ur spel: sidan svarade MISS på
+ // varje anrop och tog 1042-2219 ms. Se DmButton.tsx.
 
  // Användarens aktiva Loppis-annonser (max 3) för cross-link på publika profilen
  const { data: rawActiveListings } = await supabase
@@ -231,27 +257,7 @@ export default async function PublicProfilePage({
  <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)' }}>{userRow.username}</span>
  <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
  <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
- {showDmButton && (
- <Link
- href={`/meddelanden/ny?to=${userRow.id}`}
- aria-label={`Skicka meddelande till ${userRow.username}`}
- title="Skicka meddelande"
- style={{
- width: 38, height: 38, borderRadius: '50%',
- background: 'rgba(10,123,140,0.10)',
- color: 'var(--sea)',
- border: '1px solid rgba(10,123,140,0.18)',
- display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
- textDecoration: 'none',
- transition: 'background 0.12s, border-color 0.12s',
- flexShrink: 0,
- }}
- >
- <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
- <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
- </svg>
- </Link>
- )}
+ <DmButton targetUserId={userRow.id} targetUsername={userRow.username} />
  <FollowButton targetUserId={userRow.id} hideCount />
  <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
  </div>
