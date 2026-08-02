@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
+import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -450,9 +451,11 @@ export default function ChatPage() {
   }
 
   async function onPickImage(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0]
+    const rawFile = e.target.files?.[0]
     e.target.value = ''
-    if (!file || !me) return
+    if (!rawFile || !me) return
+    // Komprimera före upload — samma skäl som i /check-in och /logga/manuell.
+    const file = await komprimeraBild(rawFile)
     const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg'
     const path = `dm/${me}/${Date.now()}.${ext}`
     const { data, error } = await supabase.storage.from('trip-images').upload(path, file, { upsert: false })

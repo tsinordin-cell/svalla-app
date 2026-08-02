@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import type { Trip, User } from '@/lib/supabase'
@@ -156,9 +157,13 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
 
     let avatarUrl = user.avatar
     if (avatarFile) {
-      const ext  = avatarFile.name.split('.').pop() ?? 'jpg'
+      // Komprimera först. En avatar visas aldrig större än ~200 px, men
+      // laddades tidigare upp i telefonens fulla upplösning (upp till
+      // 3024x4032 / 2,7 MB uppmätt i produktionen).
+      const avatarKomprimerad = await komprimeraBild(avatarFile, AVATAR_MAX_PX)
+      const ext  = avatarKomprimerad.name.split('.').pop() ?? 'jpg'
       const path = `avatars/${user.id}.${ext}`
-      const { error: upErr } = await supabase.storage.from('images').upload(path, avatarFile, { upsert: true })
+      const { error: upErr } = await supabase.storage.from('images').upload(path, avatarKomprimerad, { upsert: true })
       if (upErr) { setError(`Kunde inte ladda upp bild: ${upErr.message}`); setSaving(false); return }
       avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
