@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,7 +34,7 @@ export const revalidate = 3600
  */
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 async function fetchRestaurant(idOrSlug: string, columns: string) {
-  const supabase = await createServerSupabaseClient()
+  const supabase = createPublicSupabaseClient()
   const isUuid = UUID_RE.test(idOrSlug)
   const col = isUuid ? 'id' : 'slug'
   const { data } = await supabase.from('restaurants').select(columns).eq(col, idOrSlug).maybeSingle()
@@ -99,7 +99,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
  const { id: idOrSlug } = await params
- const supabase = await createServerSupabaseClient()
+ const supabase = createPublicSupabaseClient()
 
  const data = await fetchRestaurant(
    idOrSlug,
