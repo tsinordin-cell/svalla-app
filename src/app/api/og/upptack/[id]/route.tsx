@@ -33,6 +33,25 @@ const TYPE_LABEL: Record<string, string> = {
 // UUID v4 regex
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
+/**
+ * Svarar URL:en med en riktig bild? Satori kraschar på allt annat, och en
+ * kraschad OG-bild är värre än ingen bakgrundsbild alls.
+ * Timeout så en långsam extern bild inte hänger hela renderingen.
+ */
+async function bildFungerar(url: string): Promise<boolean> {
+  try {
+    const ctrl = new AbortController()
+    const t = setTimeout(() => ctrl.abort(), 4000)
+    const r = await fetch(url, { signal: ctrl.signal })
+    clearTimeout(t)
+    if (!r.ok) return false
+    const ct = r.headers.get('content-type') ?? ''
+    return ct.startsWith('image/')
+  } catch {
+    return false
+  }
+}
+
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ id: string }> },
@@ -75,6 +94,21 @@ export async function GET(
     bgUrl = `${SITE}/api/places/photo/${encoded}?w=1600&h=900`
   } else if (data.image_url) {
     bgUrl = data.image_url.startsWith('http') ? data.image_url : `${SITE}${data.image_url.startsWith('/') ? '' : '/'}${data.image_url}`
+  }
+
+  // Kontrollera att bakgrundsbilden faktiskt går att hämta INNAN Satori får
+  // den. Satori kastar "Unsupported image type: unknown" och sänker hela
+  // OG-bilden om URL:en svarar med något som inte är en bild — vilket hände
+  // för varje plats med Google-foto (95 fel/vecka innan 2026-08-01).
+  // Faller tillbaka på image_url, annars bara gradienten.
+  if (bgUrl) {
+    const fungerar = await bildFungerar(bgUrl)
+    if (!fungerar) {
+      const reserv = data.image_url
+        ? (data.image_url.startsWith('http') ? data.image_url : `${SITE}${data.image_url.startsWith('/') ? '' : '/'}${data.image_url}`)
+        : null
+      bgUrl = reserv && reserv !== bgUrl && await bildFungerar(reserv) ? reserv : null
+    }
   }
 
   const typeLabel = data.type ? TYPE_LABEL[data.type] : null
