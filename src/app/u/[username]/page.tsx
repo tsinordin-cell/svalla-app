@@ -173,7 +173,13 @@ export default async function PublicProfilePage({
  .select('id, title, category_id, created_at, reply_count')
  .eq('user_id', userRow.id)
  .eq('in_spam_queue', false)
- .eq('is_deleted', false)
+ // INGET is_deleted-filter: den kolumnen finns bara pa forum_posts, aldrig
+ // pa forum_threads. Fragan gav darfor 400 "column forum_threads.is_deleted
+ // does not exist", resultatet blev null, och `?? []` svalde felet tyst —
+ // sa Forum-fliken har ALDRIG visats pa nagon profil. tsinordin har 14
+ // tradar som varit dolda. Samma monster som users.updated_at, CLAUDE.md
+ // punkt 14: en fraga mot en kolumn som inte finns, dold av en fallback.
+ // Ovriga stallen som listar tradar filtrerar ocksa bara pa in_spam_queue.
  .order('created_at', { ascending: false })
  .limit(20),
  supabase
