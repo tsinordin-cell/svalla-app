@@ -145,6 +145,11 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
               style={{ objectFit: 'cover' }}
               priority={i === 0}
               unoptimized={src.startsWith('/api/places/photo/')}
+              // Google-proxyns bilder laddas ivrigt i stallet for lazy. Annars
+              // hamtas de forst nar rutan scrollas in, sa onError hinner inte
+              // koras och bildraknaren ("6 bilder") star kvar och ljuger tills
+              // anvandaren swajpar dit. Max 6 bilder per plats — billigt.
+              loading={src.startsWith('/api/places/photo/') ? 'eager' : undefined}
               onError={() => markBroken(src)}
             />
           </div>
