@@ -1,11 +1,13 @@
 'use client'
 // Glass-pills som läggs över Upptäck-kartan i högra hörnet.
 //
-// • WeatherPill   — temp, vind, områdesnamn för (lat,lng). Debouncas externt.
-// • DestinationPill — vald destination + avstånd & bäring från kartcentrum.
+// • WeatherPill — temp, vind, områdesnamn för (lat,lng). Debouncas externt.
 //
-// Båda är rent presentationskomponenter: state och map-hooks ligger i
-// UpptackClient.tsx, som uppdaterar props vid moveend/zoomend.
+// Rent presentationskomponent: state och map-hooks ligger i UpptackExplorer,
+// som uppdaterar props vid moveend/zoomend.
+//
+// DestinationPill låg här tidigare men användes bara av UpptackClient, som
+// togs bort 2026-08-02 (död kod). Finns i git-historiken om den behövs.
 
 import { useEffect, useRef, useState } from 'react'
 import {
@@ -13,8 +15,6 @@ import {
   fetchPlaceName,
   weatherDesc,
   windDirLabel,
-  haversineNM,
-  bearingDeg,
   type WeatherPoint,
 } from '@/lib/weatherGrid'
 
@@ -174,77 +174,6 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
             </span>
           </span>
         )}
-      </span>
-    </PillShell>
-  )
-}
-
-// ── Destination pill ─────────────────────────────────────────────────────────
-export function DestinationPill({
-  destination, mapCenter, onGo, onClear,
-}: {
-  destination: { name: string; lat: number; lng: number; label?: string }
-  mapCenter:   { lat: number; lng: number }
-  onGo:        () => void
-  onClear:     () => void
-}) {
-  const distNM = haversineNM(mapCenter, destination)
-  const brg    = bearingDeg(mapCenter, destination)
-  const distStr = distNM >= 10 ? distNM.toFixed(0) : distNM.toFixed(1)
-
-  return (
-    <PillShell
-      onClick={onGo}
-      onClose={onClear}
-      ariaLabel={`Destination ${destination.name}, ${distStr} nautiska mil, klick zoomar dit`}
-    >
-      <span
-        aria-hidden="true"
-        style={{
-          width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-          background: 'var(--grad-sea)',
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 2px 6px rgba(30,92,130,0.25)',
-        }}
-      >
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
-      </span>
-      <span style={{
-        display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        overflow: 'hidden', textAlign: 'left', minWidth: 0, lineHeight: 1.15,
-      }}>
-        {destination.label && (
-          <span style={{
-            fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px',
-            color: 'var(--txt3, #8a9aa7)',
-          }}>
-            {destination.label}
-          </span>
-        )}
-        <span style={{
-          fontSize: 13, fontWeight: 700, color: 'var(--txt, #0a2d3c)',
-          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-          marginTop: destination.label ? 1 : 0,
-        }}>
-          {destination.name}
-        </span>
-        <span style={{
-          fontSize: 11, fontWeight: 600, color: 'var(--txt2, #5a7a8a)',
-          display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 1,
-        }}>
-          <svg
-            viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor"
-            strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
-            style={{ transform: `rotate(${brg}deg)`, transformOrigin: '50% 50%', color: 'var(--acc, #c96e2a)' }}
-          >
-            <path d="M12 2v20" />
-            <path d="M5 9l7-7 7 7" />
-          </svg>
-          {distStr} NM · {windDirLabel(brg)}
-        </span>
       </span>
     </PillShell>
   )

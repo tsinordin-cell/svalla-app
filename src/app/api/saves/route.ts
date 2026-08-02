@@ -2,7 +2,7 @@
  * GET /api/saves
  *
  * Returnerar inloggad användares sparade platser, sorterat på senast tillagt först.
- * Används av /sparade-sidan och av UpptackClient för att visa "redan sparat"-status.
+ * Används av /sparade-sidan och av UpptackExplorer för att visa "redan sparat"-status.
  */
 
 export const dynamic = 'force-dynamic'

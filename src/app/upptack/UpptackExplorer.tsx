@@ -1344,10 +1344,13 @@ export default function UpptackExplorer() {
           to   { transform: rotate(360deg); }
         }
 
-        /* Vädervisare — bottom-right (samma hörn som reset, men under den) */
+        /* Vädervisare — bottom-right.
+           Måste hålla sig ovanför den globala "Tipsa oss"-knappen
+           (FeedbackWidget, fixed, z-index 800). Med bottom:18px låg pillret
+           helt under knappen. Se --fb-top i globals.css. */
         .upx-weather-wrap {
           position: absolute;
-          bottom: 18px;
+          bottom: calc(var(--fb-top) + 10px);
           right: 18px;
           z-index: 500;
           pointer-events: auto;
@@ -1451,7 +1454,10 @@ export default function UpptackExplorer() {
           .upx-header { padding-right: 84px; }
           /* Mindre kart-knappar på mobil — flytta upp ovanför sheet (sheet-min) */
           .upx-locate { width: 36px; height: 36px; bottom: 104px; left: 12px; }
-          .upx-weather-wrap { bottom: 104px; right: 12px; }
+          /* 104px lyfter pillret ovanför bottom-sheet i sheet-min-läget, men
+             på mobil ligger "Tipsa oss"-knappen högre än så (--nav-h är 64px
+             här mot 0 på desktop). max() tar det som råkar vara högst. */
+          .upx-weather-wrap { bottom: max(104px, calc(var(--fb-top) + 10px)); right: 12px; }
           .upx-split.sheet-half .upx-locate,
           .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
           .upx-split.sheet-full .upx-locate,

@@ -86,8 +86,8 @@ export async function GET(req: Request) {
       return {
         id: r.id, name: r.name, latitude: r.latitude, longitude: r.longitude,
         type: r.type, categories: r.categories,
-        // Beskrivningen klipps till två rader med CSS i både UpptackClient och
-        // UpptackExplorer, så allt över ~300 tecken syns aldrig. Den var den
+        // Beskrivningen klipps till två rader med CSS i UpptackExplorer, så
+        // allt över ~300 tecken syns aldrig. Den var den
         // enskilt tyngsta posten i svaret (699 platser × full text).
         // Sökningen matchar fortfarande mot den korta texten.
         description: r.description ? r.description.slice(0, 300) : null,
