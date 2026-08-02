@@ -1,6 +1,7 @@
 'use client'
 
 import { Suspense, useEffect, useRef, useState } from 'react'
+import { komprimeraBild } from '@/lib/komprimeraBild'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
@@ -59,8 +60,11 @@ function CheckInPage() {
     setPreview(URL.createObjectURL(f))
   }
 
-  async function uploadImage(file: File): Promise<string | null> {
+  async function uploadImage(rawFile: File): Promise<string | null> {
     if (!me) return null
+    // Komprimera i webbläsaren först — annars laddas telefonens original upp
+    // (uppmätt upp till 2,7 MB), vilket är plågsamt på mobildata till sjöss.
+    const file = await komprimeraBild(rawFile)
     const ext = (file.name.split('.').pop() ?? 'jpg').toLowerCase()
     const path = `checkin/${me}/${Date.now()}.${ext}`
     const { error } = await supabase.storage.from('trip-images').upload(path, file, {
