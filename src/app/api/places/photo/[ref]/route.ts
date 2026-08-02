@@ -172,6 +172,20 @@ async function forsokLagaPlats(
     )
     if (!r.ok) {
       console.error(`[places/photo] Kunde inte hamta farska foton for ${placeId}: ${r.status}`)
+      // 404 = platsen finns inte kvar hos Google (borttagen eller sammanslagen).
+      // Da kommer referenserna aldrig att bli giltiga igen. Rensa dem, sa att
+      // sidan tyst faller tillbaka pa sina egna bilder i stallet for att fraga
+      // Google om och om igen vid varje sidvisning.
+      if (r.status === 404) {
+        try {
+          const { getAdminClient } = await import('@/lib/supabase-admin')
+          await getAdminClient()
+            .from('restaurants')
+            .update({ google_photo_refs: null })
+            .eq('google_place_id', placeId)
+          console.log(`[places/photo] Rensade doda foto-referenser for ${placeId}`)
+        } catch { /* inte kritiskt — sidan funkar anda via fallback */ }
+      }
       return null
     }
     const data = await r.json() as { photos?: { name?: string }[] }
