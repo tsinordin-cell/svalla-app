@@ -450,7 +450,20 @@ const GLOBAL_CSS = `
    samma höjd bara för att de är först i sin kolumn. */
 .svt-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 16px; align-items: start; }
 .svt-status-col { min-width: 0; }
-.svt-swim-header { display: flex; align-items: center; gap: 7px; padding-bottom: 8px; border-bottom: 1px solid var(--svt-divider); }
+/* Kolumnrubrikerna följer med vid scroll. Utan sticky försvinner de så fort
+   man scrollat förbi första raden, och då går det inte att se vilken status
+   ett kort har — kolumnen ÄR statusen. Rapporterat av Tom (kortet "Finputs
+   av dashboard", två skärmdumpar: före och efter scroll).
+   Bakgrunden behövs för att korten ska scrolla UNDER rubriken i stället för
+   igenom den; negativ margin-top kompenserar padding-top så radhöjden
+   är oförändrad. */
+.svt-swim-header {
+  display: flex; align-items: center; gap: 7px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--svt-divider);
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg);
+  padding-top: 10px; margin-top: -10px;
+}
 /* Svagt band bakom hela uppgiftsraden — gör raden läsbar som en enhet
    (en uppgifts väg genom flödet) utan att fylla tomma kolumner med
    rutor. Ligger bakom kortet, ingen egen kant. */
