@@ -28,6 +28,35 @@ import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
 export const revalidate = 3600
 
 /**
+ * Förgenerera alla platssidor.
+ *
+ * Utan generateStaticParams behandlar Next.js en dynamisk route som
+ * on-demand-renderad (`ƒ` i byggutdata) och sidorna hamnar aldrig i CDN-cachen
+ * — verifierat live 2026-08-02: `x-vercel-cache: MISS` på varje besök, även
+ * efter att cookie-beroendet tagits bort och revalidate satts till en timme.
+ * Samma sak drabbade /ta-dig-till tidigare, se CLAUDE.md punkt 7.
+ *
+ * Med förgenerering byggs sidorna en gång och serveras därefter från cache,
+ * med ISR-uppdatering en gång i timmen.
+ */
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data } = await supabase
+      .from('restaurants')
+      .select('id, slug')
+      .order('id')
+    // Föredra slug (snyggare URL och det sitemapen pekar på), fallback till id.
+    return (data ?? []).map((r: { id: string; slug: string | null }) => ({
+      id: r.slug || r.id,
+    }))
+  } catch {
+    // Hellre on-demand-rendering än ett trasigt bygge.
+    return []
+  }
+}
+
+/**
  * Hämta restaurang via slug ELLER UUID. UUIDv4 har 36 tecken med bindestreck.
  * Slugs är kortare och innehåller bara a-z/0-9/-. Vi försöker slug först
  * (snyggare URL), fallback till UUID för bakåtkompatibilitet.
