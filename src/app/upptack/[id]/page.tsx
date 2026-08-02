@@ -16,6 +16,7 @@ import PlaceMiniMap from '@/components/PlaceMiniMap'
 import TrackPlaceView from '@/components/TrackPlaceView'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
+import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
 
 export const revalidate = 60 // refresh reviews regularly
 
@@ -98,6 +99,20 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
  )
  if (!data) notFound()
+ // Sanera dubbelkodad UTF-8 innan raden anvands. En del platsdata har
+ // importerats med fel teckenkodning, sa taggar visades som "mÃ¶lle" och
+ // "Ã¶resund" i stallet for "molle"/"oresund" (upptackt 2026-08-01).
+ // Datan bor stadas i databasen ocksa, men detta gor att inget nagonsin
+ // visas trasigt for besokaren. fixMojibake ar idempotent — korrekt text
+ // passerar orord. Se src/lib/mojibake.ts.
+ const raden = data as unknown as Record<string, unknown>
+ for (const nyckel of ['name', 'description', 'core_experience', 'island', 'formatted_address', 'city'] as const) {
+   const v = raden[nyckel]
+   if (typeof v === 'string') raden[nyckel] = fixMojibake(v)
+ }
+ for (const nyckel of ['tags', 'best_for', 'categories', 'facilities'] as const) {
+   if (Array.isArray(raden[nyckel])) raden[nyckel] = fixMojibakeLista(raden[nyckel] as string[])
+ }
  const r = data as unknown as Restaurant & { slug?: string; postal_code?: string | null; city?: string | null }
  // Verklig UUID — används för reviews/place-relations som har FK till restaurants.id
  const id = r.id
