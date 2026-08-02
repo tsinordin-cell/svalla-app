@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
 import ProfileTabs from '@/components/ProfileTabs'
-import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
 import DmButton from '@/components/DmButton'
@@ -560,9 +559,8 @@ export default async function PublicProfilePage({
      Flikvalet ligger i ProfileTabs (klient). Servern läser INTE searchParams:
      det tvingar dynamisk rendering och var det som gjorde att revalidate = 60
      aldrig fick effekt. Panelerna renderas fortfarande här på servern och
-     skickas in som slots. Suspense krävs runt useSearchParams på en statisk
-     sida. */}
- <Suspense fallback={<div style={{ background: 'var(--white)', borderRadius: 18, minHeight: 160 }} />}>
+     skickas in som slots — inklusive den som är aktiv från start, så
+     turrutnätet finns i HTML:en direkt och inte först efter hydrering. */}
  <ProfileTabs
  username={userRow.username}
  antal={{ turer: trips.length, taggad: taggedTrips.length, forum: forumCount }}
@@ -570,7 +568,6 @@ export default async function PublicProfilePage({
  taggad={<TripRutnat trips={taggedTrips} tomTitel="Inte taggad i några turer" tomText={`${userRow.username} har inte blivit taggad i någon tur ännu.`} />}
  forum={<ForumActivityTab threads={forumThreads} posts={forumPosts} username={userRow.username} />}
  />
- </Suspense>
  </div>
  </div>
  )
