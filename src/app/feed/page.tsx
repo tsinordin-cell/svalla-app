@@ -98,9 +98,13 @@ export default async function FeedPage(
  // auth och flödet (192 ms som allt annat väntade på).
  let feedUsername: string | null = null
  let shouldRedirectOnboarding = false
+ let followsResult: { following_id: string }[] = []
  try {
  let profilRes: { data: { username: string | null; onboarded_at?: string | null } | null } = { data: null }
- ;[allRes, followRes, profilRes] = await Promise.all([
+ // follows behöver också bara user.id — den låg tidigare i nästa våg och
+ // gjorde att achievements (som behöver följlistan) startade ett helt led
+ // senare. Nu: allt som bara kräver user.id går i EN våg.
+ ;[allRes, followRes, profilRes, followsResult] = await Promise.all([
  fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
  user
  ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
@@ -108,6 +112,9 @@ export default async function FeedPage(
  user
  ? supabase!.from('users').select('username, onboarded_at').eq('id', user.id).single()
  : Promise.resolve({ data: null }),
+ user
+ ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
+ : Promise.resolve([] as { following_id: string }[]),
  ])
  if (user && profilRes.data) {
  // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
@@ -145,14 +152,24 @@ export default async function FeedPage(
  )
  }
 
- // Run enrichWithTags AND the follows query in parallel — eliminates a
- // sequential round-trip that previously blocked achievements from starting.
- const [tripsWithUsers, followingTrips, followsResult] = await Promise.all([
+ // Sista vågen: tag-berikningen och achievements är oberoende av varandra
+ // (achievements behöver bara följlistan, som redan hämtades i våg ett) och
+ // körs därför parallellt. Kedjan är nu tre vågor totalt: claims (~0 ms
+ // lokal JWT) → [flöden + profil + follows] → [tags + achievements].
+ const [tripsWithUsers, followingTrips, recentAchievements] = await Promise.all([
  enrichWithTags(supabase!, allRes.trips),
  enrichWithTags(supabase!, followRes.error ? [] : followRes.trips),
- user
- ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
- : Promise.resolve([] as { following_id: string }[]),
+ (async () => {
+ if (!user) return [] as Awaited<ReturnType<typeof listRecentAchievementEvents>>
+ try {
+ const networkIds = [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)]
+ const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+ return await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
+ } catch (err) {
+ console.error('[FeedPage] achievements failed (non-blocking):', err)
+ return [] as Awaited<ReturnType<typeof listRecentAchievementEvents>>
+ }
+ })(),
  ])
 
  // Social proof — senaste 7 dagarna
@@ -161,18 +178,6 @@ export default async function FeedPage(
  const uniqueUsers = new Set(thisWeek.map((t: { user_id: string }) => t.user_id)).size
  const uniquePlaces = new Set(thisWeek.map((t: { location_name: string | null }) => t.location_name).filter(Boolean)).size
 
- // Achievement-events — follows data is already available from the parallel query above.
- let recentAchievements: Awaited<ReturnType<typeof listRecentAchievementEvents>> = []
- if (user) {
- try {
- const networkIds = [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)]
- const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
- recentAchievements = await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
- } catch (err) {
- console.error('[FeedPage] achievements failed (non-blocking):', err)
- recentAchievements = []
- }
- }
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
