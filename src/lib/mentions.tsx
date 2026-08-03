@@ -80,7 +80,7 @@ export function renderMentions(text: string) {
       return (
         <Link
           key={i}
-          href={`/u/${s.value}`}
+          href={`/u/${encodeURIComponent(s.value)}`}
           style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
         >
           @{s.value}

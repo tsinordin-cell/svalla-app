@@ -159,7 +159,7 @@ export default function PlaceSocialSection({
  </h2>
  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
  {visitors.slice(0, 12).map(v => (
- <Link key={v.user_id} href={`/u/${v.username}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 56 }}>
+ <Link key={v.user_id} href={`/u/${encodeURIComponent(v.username)}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', width: 56 }}>
  <Avatar src={v.avatar} name={v.username} size={48} />
  <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--txt)', marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 56 }}>
  @{v.username}
@@ -186,12 +186,12 @@ export default function PlaceSocialSection({
  boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
  display: 'flex', gap: 12,
  }}>
- <Link href={`/u/${c.username ?? ''}`} style={{ flexShrink: 0 }}>
+ <Link href={`/u/${encodeURIComponent(c.username ?? '')}`} style={{ flexShrink: 0 }}>
  <Avatar src={c.avatar} name={c.username ?? '?'} size={40} />
  </Link>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
- <Link href={`/u/${c.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
+ <Link href={`/u/${encodeURIComponent(c.username ?? '')}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
  @{c.username ?? 'okänd'}
  </Link>
  <span style={{ fontSize: 11, color: 'var(--txt3)' }}>· {timeAgo(c.created_at)}</span>
@@ -248,12 +248,12 @@ export default function PlaceSocialSection({
  boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
  display: 'flex', gap: 12,
  }}>
- <Link href={`/u/${r.username ?? ''}`} style={{ flexShrink: 0 }}>
+ <Link href={`/u/${encodeURIComponent(r.username ?? '')}`} style={{ flexShrink: 0 }}>
  <Avatar src={r.avatar} name={r.username ?? '?'} size={40} />
  </Link>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
- <Link href={`/u/${r.username ?? ''}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
+ <Link href={`/u/${encodeURIComponent(r.username ?? '')}`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', textDecoration: 'none' }}>
  @{r.username ?? 'okänd'}
  </Link>
  <span style={{ fontSize: 11, color: 'var(--txt3)' }}>· {timeAgo(r.created_at)}</span>

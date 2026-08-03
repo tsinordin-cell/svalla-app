@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
@@ -19,12 +19,12 @@ import TripGearAffiliate from '@/components/TripGearAffiliate'
 import { restaurantsAlongRoute, formatDuration, distanceNM } from '@/lib/gps'
 import { getTripWeather, windDirectionLabel, buildWindArrowSamples } from '@/lib/weather'
 import type { Metadata } from 'next'
+import ViewerGate from '@/components/ViewerGate'
+import TripSignupCta from '@/components/TripSignupCta'
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
  const { id } = await params
- // Även metadata-generatorn behöver server-client för att läsa trip:en
- // (samma RLS-skäl som för själva sidan).
- const supabase = await createServerSupabaseClient()
+ const supabase = createPublicSupabaseClient()
  const { data: trip } = await supabase
  .from('trips')
  .select('user_id, location_name, distance, boat_type, image, deleted_at')
@@ -48,6 +48,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  return {
  title,
  description: desc,
+ // Tredje gången auto-verktyget stryker denna (07-24, 07-29). Se
+ // CLAUDE.md punkt 1 innan den tas bort igen.
+ alternates: { canonical: `https://svalla.se/tur/${id}` },
  openGraph: {
  title: `${title} – Svalla`,
  description: desc,
@@ -64,16 +67,50 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  }
 }
 
+/**
+ * Statisk med ISR — samma mönster som /u/[username], /o/[slug] och
+ * /upptack/[id] (CLAUDE.md p18/p26). revalidate hålls kort (60 s) för att en
+ * ägare som redigerar sin tur ska se ändringen snabbt.
+ *
+ * Nya turer täcks av on-demand-rendering (dynamicParams är på som standard):
+ * direkt efter /spara eller /logga/manuell renderas sidan vid första besöket
+ * och cachas därefter. Datat är läsbart med anon-nyckeln, så det fungerar
+ * även utan besökarens session.
+ */
+export const revalidate = 60
+
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    // Förgenerera de senaste — resten byggs on-demand vid första besöket.
+    const { data } = await supabase
+      .from('trips')
+      .select('id')
+      .is('deleted_at', null)
+      .order('created_at', { ascending: false })
+      .limit(500)
+    return (data ?? []).map((t: { id: string }) => ({ id: t.id }))
+  } catch {
+    // Hellre on-demand-rendering än ett trasigt bygge (t.ex. lokal maskin
+    // utan .env.local — samma skydd som /upptack/[id] och /u/[username]).
+    return []
+  }
+}
+
 export default async function TurPage({ params }: { params: Promise<{ id: string }> }) {
  const { id } = await params
- // Server-client forwardar auth-cookies så RLS tillåter läsning av
- // användarens nysparade turer direkt efter redirect från /spara eller
- // /logga/manuell. Browser-client här orsakar 404 pga session-miss.
- const supabase = await createServerSupabaseClient()
-
- // kolla om användaren är inloggad
- const { data: { user: currentUser } } = await supabase.auth.getUser()
- const isLoggedIn = !!currentUser
+ // Publik klient — ingen cookies(). Kommentaren som stod här sa att
+ // server-clienten behövdes för RLS ("nysparade turer efter redirect ger
+ // 404 med browser-client"). Det gällde browser-clientens session-miss,
+ // inte RLS: trips, gps_points, stops, trip_highlights, tours och
+ // trip_tags är alla verifierade läsbara med enbart anon-nyckeln mot
+ // produktionsdatabasen (2026-08-02). En nysparad tur är därför läsbar
+ // direkt, även vid on-demand-rendering av en helt fräsch sida.
+ //
+ // Ingen auth här: vem som tittar avgör bara vad som SYNS (ägar-prompt,
+ // annonser, signup-banner) och det sköts av ViewerGate/TripSignupCta i
+ // klienten. Se ViewerGate.tsx.
+ const supabase = createPublicSupabaseClient()
 
  // fetch trip (utan users-join — FK pekar på auth.users, ej public.users)
  const { data: trip, error } = await supabase
@@ -116,8 +153,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  : { data: [] }
  const taggedUsers = taggedUsersRaw ?? []
 
- // Existerande höjdpunkt (visas, eller prompt visas om ingen finns och man äger turen)
- const isOwner = !!currentUser && currentUser.id === trip.user_id
+ // Existerande höjdpunkt (prompten för ägaren styrs av ViewerGate)
  const { data: existingHighlight } = await supabase
    .from('trip_highlights')
    .select('id, place_slug, place_name')
@@ -266,8 +302,11 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' })
  : new Date(trip.created_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Stockholm' })
 
+ // Samma padding för alla — utloggades extra utrymme för signup-bannern
+ // bärs av spacern inuti TripSignupCta, så den cachade HTML:en kan vara
+ // identisk oavsett vem som tittar.
  return (
- <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: isLoggedIn ? 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' : '100px' }}>
+ <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 16px)' }}>
 
  {/* ── Hero (photo carousel + minimap fallback) ── */}
  <div style={{ position: 'relative' }}>
@@ -340,7 +379,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
 
  {/* ── User row ── */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
- <Link href={`/u/${username}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
+ <Link href={`/u/${encodeURIComponent(username)}`} style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1 }}>
  <div style={{
  width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
  background: 'var(--grad-sea)',
@@ -415,7 +454,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
  <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>Med:</span>
  {taggedUsers.map((u: { id: string; username: string }) => (
- <Link key={u.id} href={`/u/${u.username}`} style={{ textDecoration: 'none' }}>
+ <Link key={u.id} href={`/u/${encodeURIComponent(u.username)}`} style={{ textDecoration: 'none' }}>
  <span style={{
  fontSize: 12, fontWeight: 700, color: 'var(--sea)',
  background: 'rgba(30,92,130,0.08)', borderRadius: 20,
@@ -576,7 +615,6 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <TripTagger
  tripId={trip.id}
  tripOwnerId={trip.user_id}
- currentUserId={currentUser?.id ?? null}
  />
  </div>
 
@@ -597,14 +635,18 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
        {existingHighlight.place_name}
      </Link>
    </div>
- ) : isOwner && points.length > 0 ? (
-   <div style={{ marginBottom: 18 }}>
-     <TripHighlightPrompt
-       tripId={trip.id}
-       routePoints={points.map(p => ({ lat: p.lat, lng: p.lng }))}
-       onDone={() => { /* lokalt — sidan refreshar inte automatiskt, OK för MVP */ }}
-     />
-   </div>
+ ) : points.length > 0 ? (
+   <ViewerGate
+     ownerId={trip.user_id}
+     agare={
+       <div style={{ marginBottom: 18 }}>
+         <TripHighlightPrompt
+           tripId={trip.id}
+           routePoints={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+         />
+       </div>
+     }
+   />
  ) : null}
 
  {/* Map */}
@@ -683,59 +725,32 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  </div>
 
  {/* ── Affiliate: utrustning för turen — visas ej till ägaren, bara på turer med distans ── */}
- <TripGearAffiliate
-   boatType={trip.boat_type ?? null}
-   distanceNm={typeof trip.distance === 'number' ? trip.distance : null}
-   isOwner={isOwner}
-   tripId={trip.id}
+ <ViewerGate
+   ownerId={trip.user_id}
+   ejAgare={
+     <TripGearAffiliate
+       boatType={trip.boat_type ?? null}
+       distanceNm={typeof trip.distance === 'number' ? trip.distance : null}
+       tripId={trip.id}
+     />
+   }
  />
 
  {/* ── Signup CTA — personifierad för ej inloggade ── */}
- {!isLoggedIn && (() => {
- // Välj en personifierad hook baserat på vad turen berättar.
- // 1. Har pinnar-rating 3: framhäv den magiska turen
- // 2. Har location_name: knyt till platsen
- // 3. Fallback: knyt till seglaren
- const headline = trip.pinnar_rating === 3
- ? `Inspirerad av ${username}s magiska tur?`
- : trip.location_name
- ? `Upptäck ${trip.location_name} i Svalla`
- : `Följ ${username}s turer`
- const sub = trip.location_name
- ? `Sjökort, GPS-spårning och seglare som ${username} i hela skärgården.`
- : `GPS-spårning, sjökort och skärgårdsgemenskap på ett ställe.`
- return (
- <div style={{
- position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200,
- background: 'linear-gradient(135deg, #0d2240, #1a4a5e)',
- borderTop: '1px solid rgba(255,255,255,0.08)',
- padding: '16px 20px',
- paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
- display: 'flex', alignItems: 'center', gap: 16,
- boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
- }}>
- <div style={{ flex: 1, minWidth: 0 }}>
- <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', lineHeight: 1.2, marginBottom: 3 }}>
- {headline}
- </div>
- <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.3 }}>
- {sub}
- </div>
- </div>
- <Link href={`/kom-igang?ref=tur&from=${encodeURIComponent(username)}`} style={{
- flexShrink: 0,
- padding: '12px 20px', borderRadius: 14,
- background: 'var(--grad-acc)',
- color: '#fff', fontWeight: 600, fontSize: 14,
- textDecoration: 'none',
- boxShadow: '0 4px 16px rgba(201,110,42,0.45)',
- whiteSpace: 'nowrap',
- }}>
- Kom igång →
- </Link>
- </div>
- )
- })()}
+ {/* Signup-CTA för utloggade — TripSignupCta avgör själv om den ska synas,
+    så den cachade HTML:en är densamma för alla. Hooken personifieras av
+    det turen berättar: magisk tur > plats > seglaren. */}
+ <TripSignupCta
+   headline={trip.pinnar_rating === 3
+     ? `Inspirerad av ${username}s magiska tur?`
+     : trip.location_name
+     ? `Upptäck ${trip.location_name} i Svalla`
+     : `Följ ${username}s turer`}
+   sub={trip.location_name
+     ? `Sjökort, GPS-spårning och seglare som ${username} i hela skärgården.`
+     : `GPS-spårning, sjökort och skärgårdsgemenskap på ett ställe.`}
+   username={username}
+ />
  </div>
  )
 }

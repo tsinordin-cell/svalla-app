@@ -156,7 +156,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
       <tr>
         <td style="background:#fafcfd;padding:20px 36px;border-top:1px solid #e8eef2">
           <p style="font-size:11px;color:#6a8a96;line-height:1.6;margin:0">
-            Du får detta mejl för att du skapat ett konto på Svalla.
+            Du får detta mejl för att du har ett konto på Svalla eller prenumererar på våra utskick.
             <a href="https://svalla.se/notiser" style="color:#6a8a96;text-decoration:underline">Hantera utskick</a>
             &nbsp;·&nbsp;
             <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
@@ -409,6 +409,15 @@ export async function sendEmail(opts: {
         to: opts.to,
         subject: subjectFinal,
         html,
+        // One-click unsubscribe (RFC 8058). Endpointen har redan haft en
+        // POST-handler, men HEADERNA har aldrig skickats — utan dem finns
+        // ingen avregistreringsknapp i Gmail/Apple Mail och utskicken raknas
+        // som bulk utan opt-out, vilket sanker leveransbarheten rejalt.
+        // Gmail och Yahoo kraver detta av avsandare sedan 2024.
+        headers: {
+          'List-Unsubscribe': `<https://svalla.se/api/email/unsubscribe?email=${encodeURIComponent(opts.to)}>`,
+          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+        },
       }),
     })
     const data = await res.json().catch(() => ({}))

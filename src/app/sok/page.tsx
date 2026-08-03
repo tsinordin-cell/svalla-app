@@ -273,7 +273,7 @@ function SokPageInner() {
  title: u.username,
  subtitle,
  image: u.avatar ?? undefined,
- href: `/u/${u.username}`,
+ href: `/u/${encodeURIComponent(u.username)}`,
  }
  }),
  ...hashtagResults,
@@ -430,7 +430,7 @@ function SokPageInner() {
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
  {activeSailors.map(s => (
- <Link key={s.id} href={`/u/${s.username}`} style={{ textDecoration: 'none' }}>
+ <Link key={s.id} href={`/u/${encodeURIComponent(s.username)}`} style={{ textDecoration: 'none' }}>
  <div style={{
  display: 'flex', alignItems: 'center', gap: 12,
  background: 'var(--white)', borderRadius: 16, padding: '11px 14px',

@@ -4,22 +4,29 @@
  * Visas på annons-sidan för inloggade besökare som inte är ägare. Utloggade
  * får en "Logga in"-version som leder dem till login-flödet.
  */
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useForumViewer } from '@/app/forum/[kategori]/[trad]/ForumViewer'
 
 interface Props {
   threadId: string
-  initialSaved: boolean
-  isLoggedIn: boolean
 }
 
-export default function LoppisSaveButton({ threadId, initialSaved, isLoggedIn }: Props) {
-  const router = useRouter()
-  const [saved, setSaved] = useState(initialSaved)
+/**
+ * Sparad-status och "är jag ägaren?" kommer från ForumViewerProvider i
+ * stället för server-props — servern renderar samma HTML för alla så att
+ * annonssidan kan cachas. Se ForumViewer.tsx. Döljer sig själv för ägaren
+ * (villkoret låg tidigare i page.tsx).
+ */
+export default function LoppisSaveButton({ threadId }: Props) {
+  const { viewerId, isSaved, setIsSaved, isThreadOwner } = useForumViewer()
+  const [saved, setSaved] = useState(false)
   const [busy, setBusy] = useState(false)
+  useEffect(() => { setSaved(isSaved) }, [isSaved])
 
-  if (!isLoggedIn) {
+  // Vänta tills vi vet vem som tittar — och visa aldrig för ägaren.
+  if (viewerId === undefined || isThreadOwner) return null
+  if (viewerId === null) {
     return (
       <Link
         href={`/logga-in?returnTo=${encodeURIComponent(`/forum/loppis/${threadId}`)}`}
@@ -54,7 +61,9 @@ export default function LoppisSaveButton({ threadId, initialSaved, isLoggedIn }:
       if (!res.ok) {
         setSaved(!next) // rollback
       } else {
-        router.refresh()
+        setIsSaved(next)
+        // Ingen router.refresh(): sidan är numera statiskt cachad och
+        // sparad-statusen ägs helt av klienten.
       }
     } catch {
       setSaved(!next)

@@ -35,7 +35,10 @@ export default async function OnboardingPage() {
     .select('id, username, avatar, vessel_model, home_port')
     .neq('id', user.id)
     .not('username', 'is', null)
-    .order('updated_at', { ascending: false, nullsFirst: false })
+    // users har ingen updated_at-kolumn (bara created_at) — se kommentar i
+    // src/app/api/forum/mention-search/route.ts. Felet svalde hela
+    // suggestions-listan, så nya användare fick noll förslag i "följ 3".
+    .order('created_at', { ascending: false, nullsFirst: false })
     .limit(8)
 
   return (

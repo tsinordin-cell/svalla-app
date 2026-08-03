@@ -56,7 +56,7 @@ export default function InviteRedeemClient({ code }: { code: string }) {
         <div style={{ fontSize: 14, fontWeight: 600, color: '#228c38', marginBottom: 4 }}>Länken inlöst!</div>
         {inviterName && (
           <div style={{ fontSize: 13, color: 'var(--txt2)', marginBottom: 12 }}>
-            Du följer nu <Link href={`/u/${inviterName}`} style={{ fontWeight: 600, color: 'var(--sea)' }}>@{inviterName}</Link>
+            Du följer nu <Link href={`/u/${encodeURIComponent(inviterName)}`} style={{ fontWeight: 600, color: 'var(--sea)' }}>@{inviterName}</Link>
           </div>
         )}
         <Link href="/feed" style={{

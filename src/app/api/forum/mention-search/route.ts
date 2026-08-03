@@ -45,7 +45,11 @@ export async function GET(req: NextRequest) {
     .from('users')
     .select('id, username, avatar')
     .not('username', 'is', null)
-    .order('updated_at', { ascending: false, nullsFirst: false })
+    // OBS: users-tabellen har INGEN updated_at-kolumn (se supabase/schema.sql —
+    // bara created_at). Att sortera på updated_at gav
+    // "column users.updated_at does not exist" och 500 på VARJE anrop, dvs
+    // @mention-autocomplete var helt död. Hittat live 2026-08-01.
+    .order('created_at', { ascending: false, nullsFirst: false })
     .limit(8)
 
   if (q.length > 0) {

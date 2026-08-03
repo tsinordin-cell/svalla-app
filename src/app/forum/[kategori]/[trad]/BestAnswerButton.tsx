@@ -3,12 +3,11 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Icon from '@/components/Icon'
+import { useForumViewer } from './ForumViewer'
 
 interface Props {
   threadId: string
   postId: string
-  /** True om användaren är trådägare (OP) */
-  isThreadOwner: boolean
   /** True om denna post redan är markerad som bästa svar */
   isBest: boolean
 }
@@ -16,8 +15,13 @@ interface Props {
 /**
  * Knapp för OP att markera ett svar som "bästa svar".
  * Toggle: klick på markerad post → ta bort markering.
+ *
+ * "Är jag trådägaren?" kommer från ForumViewerProvider i stället för
+ * server-props — servern renderar samma HTML för alla (badgen för icke-ägare
+ * ingår, den är opersonlig) så att tråden kan cachas. Se ForumViewer.tsx.
  */
-export default function BestAnswerButton({ threadId, postId, isThreadOwner, isBest }: Props) {
+export default function BestAnswerButton({ threadId, postId, isBest }: Props) {
+  const { isThreadOwner } = useForumViewer()
   const router = useRouter()
   const [saving, setSaving] = useState(false)
 

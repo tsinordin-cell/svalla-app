@@ -1,23 +1,34 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useForumViewer } from './ForumViewer'
 
 interface Props {
   postId: string
   initialCount: number
-  initialLiked: boolean
-  /** null = ej inloggad — visa räknaren men gör knappen disabled */
-  currentUserId: string | null
 }
 
+/**
+ * Vem som gillat vad kommer numera från ForumViewerProvider (en batchfråga
+ * för hela tråden) i stället för server-props — servern renderar samma HTML
+ * för alla så att tråden kan cachas. Räknaren är opersonlig och förblir
+ * server-renderad. Se ForumViewer.tsx.
+ */
 export default function ForumLikeButton({
   postId,
   initialCount,
-  initialLiked,
-  currentUserId,
 }: Props) {
+  const { viewerId, likedPostIds } = useForumViewer()
+  const currentUserId = viewerId ?? null
   const [count, setCount]   = useState(initialCount)
-  const [liked, setLiked]   = useState(initialLiked)
+  const [liked, setLiked]   = useState(false)
   const [loading, setLoading] = useState(false)
+
+  // Synka in besökarens likes när batchsvaret kommer (och bara då —
+  // därefter äger knappens egen optimistiska state).
+  useEffect(() => {
+    setLiked(likedPostIds.has(postId))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [likedPostIds])
 
   async function toggle() {
     if (!currentUserId || loading) return

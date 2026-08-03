@@ -61,7 +61,13 @@ export default function TripHighlightPrompt({
 }: {
   tripId: string
   routePoints: RoutePoint[]
-  onDone: () => void
+  /**
+   * Valfri: funktioner kan inte skickas från serverkomponenter (de
+   * serialiseras inte över server/klient-gränsen). /tur/[id] är en
+   * serverkomponent och utelämnar den — prompten döljer sig själv via
+   * sitt interna state när användaren valt eller skippat.
+   */
+  onDone?: () => void
 }) {
   const supabase = createClient()
   const [candidates, setCandidates] = useState<Candidate[] | null>(null)
@@ -140,7 +146,7 @@ export default function TripHighlightPrompt({
         setSubmitting(null)
         return
       }
-      onDone()
+      onDone?.()
     } catch {
       setError('Anslutningsfel — försök igen.')
       setSubmitting(null)
@@ -157,7 +163,7 @@ export default function TripHighlightPrompt({
 
   if (candidates.length === 0) {
     // Inga platser nära rutten — skippa direkt utan att besvära användaren
-    onDone()
+    onDone?.()
     return null
   }
 
