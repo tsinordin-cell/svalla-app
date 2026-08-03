@@ -1666,6 +1666,15 @@ function TaskDetail({
   const [showColors, setShowColors] = useState(false)
   const [editingMeta, setEditingMeta] = useState(false)
 
+  // notes lästes bara in när vyn öppnades. Ändrades anteckningen därefter —
+  // av Max via realtid, eller av en tidigare sparning i samma öppna vy — låg
+  // en inaktuell text kvar i fältet och skrev över den nyare vid nästa Spara.
+  // Text hann försvinna på det sättet. Synka om när vi inte står och skriver;
+  // medan man skriver rör vi inte fältet.
+  useEffect(() => {
+    if (!editingNotes) setNotes(task.description ?? '')
+  }, [task.description, editingNotes])
+
   const images = useMemo(() => task.images ?? [], [task.images])
   const idx = STATUS_ORDER.indexOf(task.status)
   const assignee = task.assignee_id ? memberById.get(task.assignee_id) : undefined
