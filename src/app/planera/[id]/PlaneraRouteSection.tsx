@@ -137,13 +137,23 @@ export default function PlaneraRouteSection({
   // Kvalitetsbanner — vad användaren faktiskt får.
   // 2026-05-23: 'straight'-fallback borttagen. Vid 'unavailable' visas
   // tydlig "ingen rutt kunde beräknas"-banner i danger-ton istället.
-  const qualityBanner = (() => {
+  // Returtypen hålls medvetet bred ('success' ingår) fastän ingen gren
+  // returnerar success just nu — jämförelserna i JSX:en nedan använder den,
+  // och success ska tillbaka när rutterna genererats om.
+  const qualityBanner = ((): { tone: 'success' | 'warning'; label: string; desc: string } | null => {
     if (status !== 'ready' || !quality) return null
-    if (quality === 'precomputed') {
-      return { tone: 'success' as const, label: 'Optimal sjöled', desc: 'Verifierad rutt längs riktiga sjöleder.' }
-    }
-    if (quality === 'grid') {
-      return { tone: 'success' as const, label: 'Beräknad sjöled', desc: 'Optimerad runt land med 80 000 vattenpunkter.' }
+    // 2026-08-03: precomputed/grid nedgraderade från success till warning.
+    // Rutterna genererades mot en land-mask som saknade fastlandet (täckte
+    // 0,38 % av Sveriges landyta) — omverifiering mot korrekt mask underkände
+    // 610 av 612. "Verifierad" och "optimerad runt land" var därför inte
+    // sanna påståenden. Återställ till success FÖRST när rutterna
+    // genererats om mot riktig mask och passerat verify-routes-v2.
+    if (quality === 'precomputed' || quality === 'grid') {
+      return {
+        tone: 'warning' as const,
+        label: 'Preliminär sjöled (streckad linje)',
+        desc: 'Rutten är under omverifiering och kan avvika från farbar väg. Verifiera mot sjökort innan avgång.',
+      }
     }
     if (quality === 'waypoint') {
       return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
