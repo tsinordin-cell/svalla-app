@@ -174,6 +174,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['fiskebackskil', 'grundsund', 'kosterhavet'],
     tags: ['badort', 'akvarium', 'vandring', 'familjer'],
     did_you_know: 'Lysekil var huvudort för svensk valfangst under tidigt 1900-tal — Pacific Whaling Company hade anläggning här fram till 1934.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: stränder och klippor är tomma, räkfisketurerna har plats och Stångehuvud är magiskt. September: Västerhavet är fortfarande badvarmt, restaurangerna öppna men billigare.',
+      warning: 'Räkfisketurer är fullbokade i juli — boka minst 2 dagar i förväg. Parkering längs hamnen kan vara krånglig i högsäsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'kosterhavet',
@@ -219,6 +227,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['stromstad', 'grebbestad', 'fjallbacka'],
     tags: ['nationalpark', 'dykning', 'cykel', 'marint liv', 'sälar'],
     did_you_know: 'Kosterhavet rymmer Sveriges enda kallvattenkoraller, "Lophelia pertusa", på 80–200 meters djup utanför Säckens fjäll.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: sälsafariturer har plats och Nordkosters klippstigar är tomma. September: Västerhavet är klarblått, dyksikten maximala och öarna nästan folktomma.',
+      warning: 'Kosterbåtarna från Strömstad fylls snabbt i juli — boka resa i förväg. Ta med vindjacka; Kosterhavet blåser nästan alltid.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'grebbestad',
@@ -264,6 +280,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['fjallbacka', 'kosterhavet', 'hamburgsund'],
     tags: ['ostron', 'fiskeläge', 'klippvandring', 'sommardestination'],
     did_you_know: '90 % av Sveriges produktion av äkta ostron (Ostrea edulis) kommer från vattnen runt Grebbestad — Sveriges enda kommersiellt odlade ostronfarmer ligger här.',
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'September eller Oktober',
+      bestReason: 'Ostron­säsongen är som bäst september–april när vattnet är kallare. En ostron-safari i september med tomt hav och klara klippor är Grebbestad på sitt absolut bästa.',
+      warning: 'Ostron-safarier är fullbokade i juli — boka en vecka i förväg. Tanumstrand spa fylls under högsäsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','open','limited','off'],
+    },
   },
   {
     slug: 'fjallbacka',
@@ -309,6 +333,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['grebbestad', 'kosterhavet', 'hamburgsund'],
     tags: ['kriminalromaner', 'klippvandring', 'pittoreskt', 'ingrid bergman'],
     did_you_know: 'Ingrid Bergman ägde sommarhuset Dannholmen utanför Fjällbacka i över 30 år. Hennes aska skingrades i havet utanför Fjällbacka 1982.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: vandringen upp till Vettebergets topp utan köer, restaurangerna öppna och hela byn i blomning. September: autentisk fiskebystämning, billigare boende och Bohusläns bästa höstljus.',
+      warning: 'Juli–Augusti är Fjällbacka fullpackat — boka hotell och restaurang långt i förväg. Båtturer till Väderöarna ställs in vid kraftig vind.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'grundsund',
@@ -393,6 +425,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['fjallbacka', 'grebbestad', 'kosterhavet'],
     tags: ['gästhamn', 'segling', 'lugnt', 'historia'],
     did_you_know: 'Greby gravfält norr om Grebbestad är Bohusläns största gravfält — runt 200 synliga gravar från järnåldern (400–500 e.Kr.). Det är inte UNESCO-listat (det är däremot Tanums hällristningar 15 km bort), men ett av Sveriges viktigaste järnåldersmonument.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Hamburgsunds hamn är en av Bohusläns lugnaste gästhamnar — lugn men välservicad. Juni och september ger bäst platser och stämning utan sommarsäsongens rusning.',
+      warning: 'Gästhamnen fylls i juli — anländer du sent på kvällen kan det vara svårt att få plats. Hamburgö-färjan har begränsad tidtabell utanför högsäsongen.',
+      months: ['off','off','off','off','limited','open','peak','open','open','limited','off','off'],
+    },
   },
   {
     slug: 'karingon',
@@ -436,6 +476,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['mollosund', 'orust', 'tjorn'],
     tags: ['bilfri', 'pittoresk', 'fotografi', 'romantik'],
     did_you_know: 'Käringön är skyddad som kulturreservat och får inte ändras byggnadsmässigt — varje hus måste behålla sin 1800-talskaraktär.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–mitten av Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: Värdshuset öppnar, byn är i skick och du slipper köer till färjan. September: husen glänser i höstljuset, fiskebygden lever och ön ger det lugn den är skapad för.',
+      warning: 'Värdshuset är fullbokat från midsommar till mitten av augusti — boka 6 månader i förväg. Färjan från Tuvesvik kör mer sällan utanför högsäsongen.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'orust',
@@ -480,6 +528,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['tjorn', 'karingon', 'gullholmen'],
     tags: ['stor ö', 'båtbyggning', 'mångsidig', 'bas'],
     did_you_know: 'Orust är Sveriges tredje största ö (efter Gotland och Öland) och en av norra Europas viktigaste segelbåtsbyggarregioner — Hallberg-Rassy (i Ellös) och Najad (i Henån) byggs här ännu idag.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Orust är stort nog att ha bra upplevelser hela sommarsäsongen. Juni ger Mollösunds klippor utan folkmassorna, September ger lugna vägar och segling i klarblått hav.',
+      warning: 'Stuguthyrning fylls snabbt inför juli — boka minst 3 månader i förväg. Vägarna längs Mollösund kan ha sommartrafik på helger.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
   {
     slug: 'tjorn',
@@ -524,6 +580,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['orust', 'marstrand', 'stenungsund'],
     tags: ['akvarellmuseum', 'sill', 'tjörnbron', 'mångsidig'],
     did_you_know: 'Den ursprungliga Tjörnbron rasade natten till 18 januari 1980 efter att fartyget Star Clipper kolliderat med brovalvet — åtta personer omkom när bilar körde ut i raset. Den nuvarande bron, en snedkabelbro, är 661,5 meter lång och invigdes 1981.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Tjörn är broförbundet och tillgängligt hela året. Nordiska Akvarellmuseet är värt besöket oavsett säsong. Juni och september ger bäst upplevelse av Klädesholmen och fiskelägena utan sommarsäsongens rush.',
+      warning: 'Salt & Sill på Klädesholmen är fullbokat veckor i förväg — boka innan du planerar resan. Tjörnbron kan ha kö fredagar i juli.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
   {
     slug: 'kungshamn',
@@ -566,6 +630,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['smogen', 'lysekil', 'grebbestad'],
     tags: ['räkor', 'fiskeindustri', 'prisvärt', 'arbetshamn'],
     did_you_know: 'Kungshamn är en av Sveriges största fiskelandshamnar med över 5 000 ton räkor som landas årligen — det är 80 % av Sveriges räkfiske.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Kungshamn är det prisvärda alternativet till Smögen. Juni ger tomma gästhamnsplatser och räkfångsten är igång. September: räkorna är som fetast och boendet kostar hälften mot högsäsongen.',
+      warning: 'Räkfisken landas tidiga morgnar — vill du köpa direkt från båten, kom dit före 08:00. Gästhamnen är fullbelagd i juli utan förbokning.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'pater-noster',
@@ -606,6 +678,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['marstrand', 'kungshamn', 'smogen'],
     tags: ['fyr', 'lyx', 'unik', 'boutique-hotell'],
     did_you_know: 'Pater Noster ("Fader Vår" på latin) byggdes 1868 efter Gustaf von Heidenstams banbrytande öppna järntornkonstruktion. Den var i drift som farledsfyr fram till 1977, då Hätteberget tog över. Efter renovering öppnade den 2020 som boutiquehotell.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juni–September',
+      best: 'Maj eller September',
+      bestReason: 'Pater Noster är ett boutique-hotell och öppnar tidigt. Maj och September ger dramatisk höghavsstämning utan sommarsäsongens långa bokningskö.',
+      warning: 'Hotellet är fullbokat månader i förväg — kolla tillgänglighet långt innan du planerar resan. Båtshutteln ställs in vid kraftig vind; flexibla datum krävs.',
+      months: ['off','off','off','limited','open','peak','peak','peak','open','limited','off','off'],
+    },
   },
   {
     slug: 'vinga',
@@ -688,6 +768,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     related: ['styrso', 'donso', 'vrango'],
     tags: ['nära göteborg', 'bilfärja', 'fiskeläge', 'familjer'],
     did_you_know: 'Hönö, Öckerö och Hälsö är sammanbundna med broar och bildar Sveriges minsta kommun räknat i landyta — Öckerö kommun.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Hönö är det lättaste sättet att komma ut i Göteborgs skärgård. Reguljär färja hela året gör att det aldrig är fel säsong, men juni och september ger bästa upplevelsen utan sommarens rusning.',
+      warning: 'Hönö Klåvas gästhamn fylls fort i juli — säkra plats på morgonen. Fiskmarknaden är aktiv tidiga morgnar; kom inte för sent.',
+      months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
+    },
   },
 
   // ─── GULLHOLMEN ──────────────────────────────────────────────────────────
@@ -839,6 +927,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activity_meta: {
       bad: { beaches: ['Klippbad västra sidan', 'Havsbastu vid Salt & Sill'] },
+    },
+    seasonal: {
+      open: 'Maj–Oktober',
+      peak: 'Juli–Augusti',
+      best: 'September eller Oktober',
+      bestReason: 'Salt & Sill är Bohusläns finaste sjömatsrestaurang och är öppen maj–oktober. September: havsbastu med höstmörker och stilla hav, restaurangen med lugn och sans — det bästa Klädesholmen kan bjuda.',
+      warning: 'Salt & Sill är fullbokat veckor i förväg sommartid — boka bord innan du planerar resan. Havsbastu kan också vara fullbokad; ring direkt.',
+      months: ['off','off','off','off','open','open','peak','peak','open','open','limited','off'],
     },
   },
 
