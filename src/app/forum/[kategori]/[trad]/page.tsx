@@ -24,12 +24,38 @@ import type { Metadata } from 'next'
  * 2026-08-02: auth.getUser() (cookies) och searchParams (?sort=) tvingade
  * dynamisk rendering. Nu är båda flyttade till klienten och ISR gäller på
  * riktigt. 30 s är medvetet kort — nya svar ska synas snabbt.
- * generateStaticParams saknas avsiktligt: trådar är många och långsvansade,
- * on-demand-rendering + cache räcker (dynamicParams är på som standard).
  * Kontroll: cache-control ska vara public och andra anropet HIT — mät live,
  * lita inte på byggsymbolen (CLAUDE.md p27).
  */
 export const revalidate = 30
+
+/**
+ * Utan generateStaticParams hamnar en dynamisk route ALDRIG i CDN-cachen,
+ * även med revalidate satt — verifierat empiriskt en gång till här:
+ * första deployen utan den svarade private/no-store trots att all auth och
+ * searchParams var borta. Samma lärdom som /upptack/[id] (CLAUDE.md p18,
+ * "det avgörande steget"). Förgenererar de senast aktiva trådarna; resten
+ * renderas on-demand vid första besöket och cachas därefter
+ * (dynamicParams är på som standard).
+ */
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data } = await supabase
+      .from('forum_threads')
+      .select('id, category_id')
+      .eq('in_spam_queue', false)
+      .order('last_reply_at', { ascending: false })
+      .limit(300)
+    return (data ?? []).map((t: { id: string; category_id: string }) => ({
+      kategori: t.category_id,
+      trad: t.id,
+    }))
+  } catch {
+    // Hellre on-demand-rendering än ett trasigt bygge (lokal maskin utan env).
+    return []
+  }
+}
 
 interface Props {
   params: Promise<{ kategori: string; trad: string }>
