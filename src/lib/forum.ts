@@ -110,9 +110,11 @@ export async function getForumCategories(): Promise<ForumCategory[]> {
   }
 }
 
-export async function getCategoryById(id: string): Promise<ForumCategory | null> {
+export async function getCategoryById(id: string, publik = false): Promise<ForumCategory | null> {
   try {
-    const supabase = await createServerSupabaseClient()
+    // publik: cookie-fri klient så anropande sida kan cachas — se
+    // getThreadsByIsland ovan för hela resonemanget.
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_categories')
       .select('id, name, description, icon, sort_order, thread_count, post_count')
@@ -233,9 +235,9 @@ export async function getThreadsByIsland(
   }
 }
 
-export async function getThreadById(id: string): Promise<ForumThread | null> {
+export async function getThreadById(id: string, publik = false): Promise<ForumThread | null> {
   try {
-    const supabase = await createServerSupabaseClient()
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data: thread } = await supabase
       .from('forum_threads')
       .select('*')
@@ -260,11 +262,12 @@ export async function getPostsByThread(
   threadId: string,
   userId?: string | null,
   opts?: { sort?: ForumSort; bestPostId?: string | null },
+  publik = false,
 ): Promise<ForumPost[]> {
   const sort: ForumSort = opts?.sort ?? 'aldst'
   const bestPostId = opts?.bestPostId ?? null
   try {
-    const supabase = await createServerSupabaseClient()
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_posts')
       .select('id, thread_id, user_id, body, is_deleted, in_spam_queue, created_at')
