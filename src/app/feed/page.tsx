@@ -18,6 +18,7 @@ import { IconSearch } from '@/components/ui/icons'
 import { Home } from '@/components/icons/LucideIcons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
+import { getViewerId } from '@/lib/authClaims'
 
 export const dynamic = 'force-dynamic'
 
@@ -75,44 +76,51 @@ export default async function FeedPage(
  let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
  let user: { id: string } | null = null
 
+ try {
+ supabase = await createServerSupabaseClient()
+ // Lokal JWT-verifiering i stället för auth.getUser() — sparar ~620 ms på
+ // varje inloggad rendering (nätverksanropet mot Auth-servern var kedjans
+ // dyraste led OCH låg först, så allt annat väntade på det). /feed läser
+ // bara — inga behörighetsbeslut — så getClaims-gränsen håller.
+ // Se src/lib/authClaims.ts för hela resonemanget.
+ const viewerId = await getViewerId(supabase)
+ user = viewerId ? { id: viewerId } : null
+ } catch (err) {
+ console.error('[FeedPage] auth/client init error:', err)
+ return <FeedServerError />
+ }
+
+ // Fetch feed trips — 20 rows per tab is enough for initial render.
+ let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+ let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+ // Profil-uppslaget behöver bara user.id och körs därför i SAMMA våg som
+ // flödesfrågorna — tidigare låg det som ett eget sekventiellt led mellan
+ // auth och flödet (192 ms som allt annat väntade på).
  let feedUsername: string | null = null
  let shouldRedirectOnboarding = false
  try {
- supabase = await createServerSupabaseClient()
- const { data } = await supabase.auth.getUser()
- user = data?.user ?? null
- if (user) {
- const { data: profile } = await supabase.from('users').select('username, onboarded_at').eq('id', user.id).single()
+ let profilRes: { data: { username: string | null; onboarded_at?: string | null } | null } = { data: null }
+ ;[allRes, followRes, profilRes] = await Promise.all([
+ fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
+ user
+ ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
+ : Promise.resolve({ trips: [], error: null }),
+ user
+ ? supabase!.from('users').select('username, onboarded_at').eq('id', user.id).single()
+ : Promise.resolve({ data: null }),
+ ])
+ if (user && profilRes.data) {
  // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
- const onboardedAt = (profile as { onboarded_at?: string | null } | null)?.onboarded_at
- if (profile && onboardedAt === null) {
-   shouldRedirectOnboarding = true
- } else {
-   feedUsername = profile?.username ?? null
- }
+ if (profilRes.data.onboarded_at === null) shouldRedirectOnboarding = true
+ else feedUsername = profilRes.data.username ?? null
  }
  } catch (err) {
- console.error('[FeedPage] auth/client init error:', err)
+ console.error('[FeedPage] fetchFeedTrips threw unexpectedly:', err)
  return <FeedServerError />
  }
  // Måste anropas utanför try-catch — redirect() kastar NEXT_REDIRECT internt
  // och fångas annars av catch-blocket ovan vilket renderar FeedServerError.
  if (shouldRedirectOnboarding) redirect('/onboarding')
-
- // Fetch feed trips — 20 rows per tab is enough for initial render.
- let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
- let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
- try {
- ;[allRes, followRes] = await Promise.all([
- fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
- user
- ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
- : Promise.resolve({ trips: [], error: null }),
- ])
- } catch (err) {
- console.error('[FeedPage] fetchFeedTrips threw unexpectedly:', err)
- return <FeedServerError />
- }
 
  if (allRes.error) {
  return (
