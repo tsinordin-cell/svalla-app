@@ -2344,6 +2344,14 @@ export const ISLANDS: Island[] = [
     related: ['singo', 'blido', 'norrora'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
     did_you_know: 'Väddö kanal är 18 km lång och började grävas 1820 av soldater från olika regementen. Sveriges första ångdrivna mudderverk — konstruerat av Samuel Owen — användes vid bygget. Kanalen öppnades för trafik 1835 och invigdes officiellt 1840 av Karl XIV Johan. Idag passerar omkring 22 000 båtar genom kanalen varje år.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli',
+      best: 'Juli (Herrängs Dansbana) eller Juni',
+      bestReason: 'Herrängs lindy hop-festival i juli är öns stora dragplåster och en upplevelse utan like. Juni ger kanal-idyllen utan festivalmassorna för lugnsökare.',
+      warning: 'Herräng-festival i juli ger fullt boende i hela Väddöområdet — boka månader i förväg om du vill vara med. Kanalens sluss är stängd utanför sommarsäsongen.',
+      months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
+    },
   },
 
   // ─── ASKÖ ────────────────────────────────────────────────────
@@ -3400,6 +3408,14 @@ export const ISLANDS: Island[] = [
       'Ulvöhamn har ett fiskelägeskapell från 1622 — ett av de äldsta i Sverige.',
     ],
     did_you_know: 'Ulvön kallas "Surströmmingsön" och är hem till en av Sveriges sista aktiva surströmmingsfabriker. Ön nämns i historiska dokument redan på 1500-talet som en viktig fiskehamn längs norrlandskusten.',
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Augusti',
+      best: 'Mitten av Augusti',
+      bestReason: 'Surströmmingspremiären sker tredje torsdagen i augusti — ön är livlig, färjan går tätare och det är den mest genuina tidpunkten att besöka Ulvön. Julibadare hittar Sälesstranden på bästa sätt.',
+      warning: 'Höga Kusten-mynnet kan ha ojämna väderförhållanden. Kontrollera färjescheman noga — avgångarna är färre utanför högsäsongen och stoppas vid kraftig vind.',
+      months: ['off','off','off','off','off','limited','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -3474,6 +3490,14 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
     },
     did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
+    seasonal: {
+      open: 'April–Oktober',
+      peak: 'Juli–mitten av Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: allt öppet, sommarens kvalitet utan trängseln och de skyhöga priserna. September: badbart vatten, tomma restauranger, lägre hotellpriser och ett lugnare Visby.',
+      warning: 'Boka Destination Gotland-färjan minst 2–3 månader i förväg om du reser i juli med bil. Almedalsveckan (tidig juli) ger fullbokat Visby och höga priser.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -3534,6 +3558,14 @@ export const ISLANDS: Island[] = [
       'Ölandsmarknaden i Borgholm (tidig juli) är en av Sveriges äldsta marknader och ett lokalt evenemang i särklass.',
     ],
     did_you_know: 'Öland har fler soltimmar per år än nästan hela övriga Sverige — och fler än många platser på kontinenten. Klimatet liknar centrala Europa mer än norra Skandinavien.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: alvaret blommar med orkidéer och backsippa, stränder är tomma och priser rimliga. September: badbart vatten fortfarande, fullständig lugn och naturen övergår i höstfärger.',
+      warning: 'Juli fullbokas tidigt — camping och hotell i Borgholm ska bokas månader i förväg. Ölandsbron kan ha kö på fredag eftermiddag i juli.',
+      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ── Göteborgs södra skärgård (Styrsöbolaget) ─────────────────────────────
@@ -3688,6 +3720,14 @@ export const ISLANDS: Island[] = [
     related: ['branno', 'styrso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'naturreservat', 'bilfritt', 'fågelliv', 'ytterst'],
     did_you_know: 'Vrångö naturreservats klippzoner är klassade som riksintresse för naturvård och hyser häckande skarvar, ejdrar och tärnor.',
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Juni: reservatets fågelskyddsperiod börjar avta, havet är tyst och naturupplevelsen är ostörd. September: klart höstljus, inga turistmassorna och den vilda klippkusten på sitt bästa.',
+      warning: 'Fågelskyddsperiod i klippreservatet gäller april–juli — håll dig till markerade stigar. Cafét är bara öppet sommartid; ta med egen mat.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   {
@@ -3733,6 +3773,14 @@ export const ISLANDS: Island[] = [
     related: ['branno', 'styrso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'sjöfart', 'gästhamn', 'bilfritt', 'styrsöbolaget'],
     did_you_know: 'Donsöborna äger rederiflottor värderade till miljarder kronor. Ön producerade per capita fler sjökaptener än något annat samhälle i Sverige under 1900-talets första hälft.',
+    seasonal: {
+      open: 'Hela året',
+      peak: 'Juli',
+      best: 'Juni eller September',
+      bestReason: 'Donsö har service året runt tack vare den fasta befolkningen. Juni och september ger lugnet och gästhamnens platser utan högsäsongens köer.',
+      warning: 'Gästhamnen tar fullt upp i juli — boka i god tid eller kom tidigt på morgonen för att säkra en plats. Bränsle finns hela sommarsäsongen.',
+      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+    },
   },
 
   {
@@ -4216,6 +4264,14 @@ export const ISLANDS: Island[] = [
       kajak: { difficulty: 'lätt–medel', rental: false, notes: 'Kajakhyrning i Karlskrona' },
       bad: { beaches: ['Sydöstra klippstranden', 'Västra viken'] },
     },
+    seasonal: {
+      open: 'Juni–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni: klippbadet och naturreservatet på sitt bästa utan trängseln. September: Östersjön håller fortfarande badtemperatur och ön är nästan tom.',
+      warning: 'Färjan från Karlskrona kör bara sommarsäsong — utanför juni–september krävs privat båt. Ta med all mat och dryck.',
+      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── STURKÖ ──────────────────────────────────────────────────────────────
@@ -4275,6 +4331,14 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Sturkö har en av de äldsta kontinuerligt bebodda fiskebefolkningarna i Blekinges skärgård. Fisket och sjöfarten präglade ön ända fram till 1900-talets mitt.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: true },
     activity_meta: { bad: { beaches: ['Östra klippstranden', 'Sandviken'] } },
+    seasonal: {
+      open: 'Maj–September',
+      peak: 'Juli–Augusti',
+      best: 'Juni eller September',
+      bestReason: 'Juni ger Östersjöns kallare men klara vatten och tomma campingplatser. September: Östersjön är badvarmt, skogens höstfärger är enastående och du har ön för dig själv.',
+      warning: 'Campingen är fullbokad i juli — kom tidigt eller boka i förväg. Butiken har begränsade öppettider utanför högsäsong.',
+      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
+    },
   },
 
   // ─── BLÅ JUNGFRUN ────────────────────────────────────────────────────────
