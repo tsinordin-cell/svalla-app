@@ -7497,6 +7497,340 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bästa säsong:</strong> Bastun är faktiskt bäst på hösten — september och oktober. Lufttemperaturen är lägre (kontrasterna blir mer dramatiska), havet är fortfarande relativt varmt (14–17°C i september) och du delar knappt platsen med någon annan. Sommarbastun funkar fint — men höst&shy;bastun i skärgården är en annan nivå.</p>
 `,
 
+  // ── Batch M: Höst/planering SEO-artiklar ─────────────────────────────────
+
+  'havsbastu-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Havsbastu är en av Skandinaviens djupast rotade traditioner och en av de enklaste upplevelserna att förstå: svett ut i bastun, hopp i havet, upprepa. Kontrasten mellan 80–100°C inne och 10–16°C i salthav är så dramatisk att kroppen reagerar omedelbart. Välbefinnandet som följer varar i timmar.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längs Sveriges kust finns havsbastur av alla slag – från enkla vedeldade klippbastus till lyxiga bastubåtar och spa-anläggningar direkt vid havet. Den här guiden täcker de bästa alternativen från Bohuslän till Stockholms skärgård.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">STOCKHOLMS SKÄRGÅRD</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utö Havsbastu</h4>
+<p>Utö är ett av Stockholms skärgårds mest välkända resmål och har en havsbastu med utsikt söderut mot öppet hav. Bastun är vedeldad och kan bokas separat från övernattning. Kombineras med Utö Värdshus och cykling runt ön. Boka via utovardshus.se – populärt, boka minst 2 veckor i förväg.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smådalarö Gård SPA</h4>
+<p>Söder om Stockholm nära Dalarö – 45 min med bil. En vedeldad privat bastu uthyrs per sällskap direkt vid vattnet. Perfekt för dig som vill ha havsbastu utan lång båtresa. Bokas via smadalarogard.se. Tillgänglig även under vinterhalvåret.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Arholma STF – nordlig ytterskärgård</h4>
+<p>Arholma i yttre norra skärgården är en av Stockholms mest avlägset belägna öar. STF-stugorna på Arholma Nord har vedeldad bastu och klippbad direkt i Östersjön. Ytterskärgårdens karaktär – vind, klippor, inga sommarträngsel – gör Arholma till ett utmärkt val för dig som vill ha bastu i riktig vildmark.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Nynäs Havsbad</h4>
+<p>Anrikt spa-hotell i Nynäshamn med bastuhus på bryggan och utsikt mot havet. Dagspa kan bokas utan övernattning. Nynäshamn nås med pendeltåg (ca 55 min från Stockholm C). Boka via nynashavsbad.se.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOHUSLÄN OCH VÄSTERHAVET</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Lysekil Havsbadet</h4>
+<p>Lysekil vid Västerhavet har ett av landets vackraste havsbad med bastu, pool och direktutsikt mot klippkusten. Kombination av bastu och Västerhavet – salthaltigare och kallare än Östersjön – ger en extra kraftig kontrast. Boka via lysekil.com eller direkt med havsbadet.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Marstrand – bastubåt</h4>
+<p>Marstrand utanför Göteborg erbjuder bastubåtar som tar dig ut på havet. Boka privat bastubåt med sällskapet – kombinera med ett besök på Carlstens fästning. Sommartid är bastubåtarna fullbokade helger – välj vardagar eller höst.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Klädesholmen – Salt & Sill</h4>
+<p>Hotellet Salt & Sill på Klädesholmen (Tjörn) har ett av Bohusläns mest omtalade spa och bastu med havsutsikt. Kombineras med övernattning och restaurangbesök. Boka i god tid – populärt år runt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">GOTLAND</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Snäcks havsbad och camping</h4>
+<p>Snäcks utanför Visby har havsbastu, pool och bad direkt i Östersjön. Tillgänglig under sommarsäsongen och höst. Kombineras med Visbys kulturutbud och restauranger. Enkel dagstur från Visby.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA SÄTTET ATT UPPLEVA HAVSBASTU</h3>
+
+<p><strong>Grundregeln:</strong> Börja i bastun 15–20 minuter, sedan snabbt dopp i havet, sedan tillbaka till bastun. Upprepa 2–3 gånger. Avsluta med avkylning och vila – aldrig med bastun sist.</p>
+
+<p><strong>Timing:</strong> Havsbastu är bäst på hösten (september–november). Luften är kallare (kontrasterna mer dramatiska), havet är fortfarande 13–17°C i september och du delar sällan platsen med en massa folk. Vintern fungerar också utmärkt för den vane – men börja med hösten.</p>
+
+<p><strong>Boka i förväg:</strong> Populära bastuer är fullbokade helger 2–4 veckor i förväg. Vardagar är alltid lättare att boka. Skärgårdsstiftelsens öppna bastus i Stockholms skärgård fungerar utan bokning (Swish, ca 50 kr).</p>
+
+<p><strong>Ta med:</strong> Badlakan, badkläder, flip-flops och vattenflaska. Vatten är viktigt – bastun avfuktar kroppen ordentligt. Ta med en kall dryck till efteråt.</p>
+`,
+
+  'hostlov-vid-havet-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Höstlovet 2026 infaller vecka 44 – måndag 26 oktober till söndag 1 november för de flesta skolor. Det är en av höstens bästa chanser att komma iväg: havet är fortfarande tillgängligt, lövfärgerna är på topp och priserna är lägre än under sommarens högsäsong.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Höstlovet vid havet funkar för alla – barnfamiljer som vill ha aktiviteter och äventyr, par som söker stillhet och havsbastu, och den som helt enkelt vill komma ut i höstluften. Här är de bästa alternativen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH PLANERING</h3>
+
+<p><strong>Höstlovet 2026:</strong> Vecka 44, måndag 26 oktober – söndag 1 november. Datum kan variera med en vecka beroende på kommun – kolla din skolas kalender. Stockholms stad och Göteborg följer vecka 44.</p>
+
+<p>Boka boende i god tid – höstlovet är populärt och utbudet är begränsat utanför säsong. Sikta på bokning 4–6 veckor i förväg för de mest attraktiva platserna.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA RESMÅLEN FÖR HÖSTLOVET</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vaxholm – trygg och öppen</h4>
+<p>Vaxholm fungerar hela hösten som en levande liten stad. Kaféer, restauranger och fästningsmuseet håller öppet under höstlovet. Enkelt att nå med pendelbåt 83/83X från Strömkajen (55 min). Bra bascamp för dagsturer till andra öar. Barnfamiljer: fästningen är en perfekt utflykt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Lysekil – Bohuslän</h4>
+<p>Lysekil på Bohusläns kust är öppen hela hösten och erbjuder havsbad, vandring längs klippkusten och en autentisk fiskehamn. Havets Hus (akvarium) är utmärkt för barn. Hushavsbastu och klättring längs klipporna för de äldre. Nås med bil från Göteborg (ca 2h) eller Västtrafik-buss.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Borgholm – Öland</h4>
+<p>Borgholms slottsruin på Öland är en av landets mest imponerande lämningar och perfekt för utflykt. Slottscaféet håller höstöppet. Öland nås via Ölandsbron från Kalmar – inga restriktioner, gratis. Kalkstenslandskapet på hösten är dramatiskt och nästan turistfritt.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Norrtälje och Roslagen – dagstur</h4>
+<p>Norrtälje är porten till Roslagens skärgård och har ett mysigt centrum öppet hela hösten. Perfekt bascamp för utflykter till Grisslehamn och kustlandskapet norr om Stockholm. Nås med buss 676 från Stockholm City (ca 1h 20 min).</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">AKTIVITETER FÖR HELA FAMILJEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Svampplockning</h4>
+<p>Höstlovet sammanfaller med trattkantarellens högsäsong. Skärgårdsöarnas lövskogar är fyllda av svamp i slutet av oktober. Ta med korg och svampguide-app. Allemansrätten gäller – respektera naturreservat.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu</h4>
+<p>Höstlovet är perfekt timing för havsbastu. Kontrasterna är störst i slutet av oktober – luften kall, havet fortfarande badbart (ca 12–14°C). Boka Utö Havsbastu, Smådalarö Gård eller Lysekil Havsbadet i god tid.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring längs kustleder</h4>
+<p>Höstfärgerna i slutet av oktober är på topp längs kusten – björkar och aspar i guld mot ett grå-blått hav. Skäneleden (Kullaberg), Höga Kustenleden och Ölands kustled är alla tillgängliga och i princip folktomma under höstlovet.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISKT INFÖR HÖSTLOVET</h3>
+<p><strong>Kläder:</strong> I slutet av oktober: vinterjacka, mössa och handskar. Skärgårdsvindar gör att det känns kallare. Vattentäta skor är ett måste.</p>
+<p><strong>Boende:</strong> Utbudet minskar utanför säsong – boka i god tid. Värdshus och stugbyar kan ha begränsad bemanning.</p>
+<p><strong>Transport:</strong> Waxholmsbolaget kör reducerat schema. Kolla tidtabeller på waxholmsbolaget.se. Sista båten hem kan vara 16–17 på vardagar till mer avlägsna öar.</p>
+`,
+
+  'november-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">November är den månad de flesta undviker skärgården. Det är precis därför du ska åka dit. Det är en kompromiss – du ger upp solbad och restaurangstråk och får i utbyte något som är svårt att hitta i resten av Sverige: total stillhet, dramatiska naturupplevelser och en känsla av att ha platsen för dig själv.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Novemberskärgård kräver rätt inställning och rätt utrustning. Men för den som ger det en chans är det en upplevelse som sätter sig djupare än en sommarsemester.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR NOVEMBER I SKÄRGÅRDEN?</h3>
+
+<p>Lövfärgerna är förbi. Träden är kala. Havet är grått och kallt (8–11°C). Mörkret faller vid 15:30–16:00. Vinden är skarpare. Och vackert på ett sätt som är svårt att beskriva – dramatiskt, dystert och levande på samma gång.</p>
+
+<p>Det är en skärgård utan turistmask. Det du ser är det verkliga: fiskare ute på havet, havsörnar som jagar längs kustremsan, ejdrar som betar nära klipporna. Djur och natur utan att behöva dela platsen med hundratals andra besökare.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA UPPLEVELSERNA I NOVEMBER</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu</h4>
+<p>Höjdpunkten. Kontrasten mellan varm bastu och novemberhav (8–10°C) är extremare än på högsommaren – och det är just det som gör upplevelsen oförglömlig. Utö Havsbastu, Smådalarö Gård och Arholma STF håller öppet in i november. Boka i förväg.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fågelskådning längs kusten</h4>
+<p>November är en av årets bästa månader för fågelskådning längs Östersjökusten. Ejdrar, svanar, och framförallt havsörn – nu är populationerna längs kusten som störst sedan sommarens ungar fötts upp och beger sig mot havet. Vaxholm och Ornö är bra startpunkter.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring i vinterljus</h4>
+<p>Novembervandring i skärgården ger ett speciellt ljus – lågt, gyllene när solen är uppe (10:00–15:00) och dramatiskt grått i övrigt. Grinda, Möja och Utös vandringsleder är välmarkerade och trafikeras knappt. Du är ensam med naturen.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Stormpromenad</h4>
+<p>En november-storm mot klipporna i yttre skärgården är en av natursensationerna som folk glömmer att det finns. Klädda ordentligt, stående på en klippa i Bohuslän eller Arholma medan vågorna krossar – det är rå natur. Gör det säkert (stanna undan klippkanter, håll avstånd till vattnet).</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VILKA ÖAR ÄR ÖPPNA I NOVEMBER?</h3>
+
+<p><strong>Vaxholm:</strong> Öppen hela november som en fungerande liten stad. Kaféer och affärer håller öppet.</p>
+<p><strong>Möja:</strong> Waxholmsbolaget kör dagligen. Möja Krog stänger efter oktober – ta med matsäck. Öns vandringsleder är alltid öppna.</p>
+<p><strong>Utö:</strong> Reducerat schema. Utö Värdshus är öppet med begränsad kapacitet – kolla och boka i förväg.</p>
+<p><strong>Arholma:</strong> Waxholmsbolaget kör med reducerat schema. STF-stugan håller öppet – kontrollera med STF direkt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISKT</h3>
+<p><strong>Kläder:</strong> Vinterjacka, mössa, handskar och vattentäta skor. Undervärdera inte vindkylan till sjöss.</p>
+<p><strong>Tider:</strong> Waxholmsbolaget kör kraftigt reducerat i november. Sista båten hem kan vara 16:00 – planera utifrån detta, inte utifrån sommartidtabellen.</p>
+<p><strong>Mat:</strong> Räkna med att de flesta restauranger är stängda. Vaxholm är undantaget. Ta med matsäck till övriga öar.</p>
+`,
+
+  'host-blekinge-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Blekinges skärgård är Sveriges sydligaste och en av dess minst kända. Där Stockholms skärgård räknar tusentals öar och Bohuslän berömmer sig av sin klippkust, ligger Blekinge i sin egen lugna rytm – en skärgård av granit och sandstränder, utan turisttrycket och med ett hav som är klarare än Östersjöns genomsnitt.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På hösten är Blekinges skärgård i princip tom. Det är hemligheten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA ÖARNA</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Aspö – sandstränder och fiskeliv</h4>
+<p>Aspö utanför Karlskrona är Blekinges kanske vackraste ö. Järnavik-stranden på öns södra sida är en av regionens bästa sandstränder – tom på hösten. Aspö har aktiva fiskare och en genuint levande ö-atmosfär utan turistifiering. Nås med passagerarfärja från Karlskrona hamn (ca 40 min).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sturkö – Blekinges bilfria ö</h4>
+<p>Sturkö är den större av Karlskronas skärgårdsöar och delvis nåbar med bil via väg (kontrollera aktuell status). Öns kust erbjuder vandringsleder längs klippor och stränder, fiskelägen och en avslappnad öatmosfär. September och oktober är fantastiska – höstfärger möter havet och turisterna är borta.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Tjurkö och Senoren</h4>
+<p>Mindre öar i Blekinge som ger en mer avlägsen upplevelse. Nås med privat båt eller kajak. Allemansrätten gäller – perfekta för övernattning i tält om du har utrustning.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR MAN TAR SIG DIT</h3>
+
+<p><strong>Till Karlskrona:</strong> Direkttåg från Malmö (ca 1,5h) och Stockholm (ca 4h). Karlskrona är en av landets vackraste städer – UNESCO-världsarv med marinbas och skärgårdskaraktär mitt i stadskärnan.</p>
+<p><strong>Till öarna:</strong> Passagerarfärjor från Karlskrona hamn kör till Aspö och Sturkö under länstrafikens regi. Höststidtabellen är reducerad – kontrollera blekinge.se för aktuella tider.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD GÖR MAN PÅ HÖSTEN?</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring längs kustleden</h4>
+<p>Blekingeleden sträcker sig längs kusten och genom inlandet. Kustdelen söder om Karlskrona bjuder på dramatisk klippkust och höstfärger i lövskogarna. September–oktober är absolut bästa tid.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fågelflyttning vid sydkusten</h4>
+<p>Blekinges sydkust är en av landets bästa platser för att se höstflyttande fåglar. September och oktober är intensivaste perioderna. Havsörn, sträckande kronor av rovfåglar och vadare längs kustremsan.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fiske</h4>
+<p>Havsöring vandrar längs sydkusten på hösten – ett eftertraktat byte för sportfiskare. Saltfiske kräver inget fiskekort. Lokala fiskeguider kan kontaktas via Karlskrona turistbyrå.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Karlskrona stad</h4>
+<p>Baseca dig i Karlskrona och utforska staden – marinmuseet, Stortorget med sina unika barockbyggnader och hamnen som är livlig hela hösten med lokalt fiskare. En undervärderad stad av rang.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOENDE OCH MAT</h3>
+<p>Karlskrona stad har bra hotell och B&B hela hösten. På öarna är utbudet begränsat utanför sommarsäsong – kolla och boka direkt med öns eventuella värdshus. Ta med matsäck till dagsturer ut på öarna.</p>
+`,
+
+  'host-skane-kusten': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skåne är Sveriges mest folkrika turistregion på sommaren. Men de flesta turisterna försvinner i september – och det som finns kvar är en kust som faktiskt är vackrare utan dem. Höstflyttningens fågelskådar-eldorado, Kullbergets dramatiska klippar och Österlens bökskogar mot havet.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skåne har ytterligare en fördel: klimatet. Hösten är mildare längs Öresund och Östersjökusten än i resten av Sverige. Oktober kan ge plusgrader och soliga dagar in i november.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA KUSTNÄRA UPPLEVELSERNA PÅ HÖSTEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Falsterbo – Europas bästa fågelstation</h4>
+<p>Falsterbo på Skånes sydvästspets är en av Europas mest kända platser för höstfågelflyttning. Hundratusentals fåglar passerar varje höst. Falsterbo Fågelstation registrerar och ringmärker – besök är möjliga under september–november. Rovfågelssträcket (framförallt hökar och rovfåglar) är höjdpunkten i oktober. Nås med bil från Malmö (ca 40 min) eller buss/cykel längs kusten.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kullaberg – klippvandring utan turister</h4>
+<p>Kullaberg-halvön i nordvästra Skåne är ett av landets dramatiskaste kustlandskap. Vandringslederna längs klipporna ner mot havet ger utsikter som konkurrerar med vad som helst i Skandinavien. På hösten är Kullaberg praktiskt taget turistfri. Kullabergs naturreservat kan vandras fritt hela hösten. Nås med buss från Höganäs eller Helsingborg, sedan vandring upp längs halvön.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Österlen – bökskog och hav</h4>
+<p>Österlen i sydöstra Skåne ger höstens kanske vackraste kombination: bokskogarna vid havet i guldgult och rött. Kivik (känt för äpplen och äppelmarknad i september), Simrishamn (genuint fiskesamhälle) och Stenshuvud nationalpark. Stenshuvuds bokskog i november är storslagen. Nås med regiontåg Pågatågen till Simrishamn.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hovs Hallar</h4>
+<p>Naturreservat vid Båstad med dramatiska klippformationer längs havet. En av Sveriges vackraste platser på hösten – spöklikt vacker i höststormen. Ingen turisttrafik utanför sommarsäsong. Nås med bil (ca 10 min från Båstad) eller gångväg längs kusten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISK INFO</h3>
+
+<p><strong>Transport:</strong> Skånetrafiken täcker Ystad, Simrishamn, Höganäs och Helsingborg med tåg. Kullaberg och Falsterbo kräver bil eller cykel. Malmö är perfekt bascamp – pendla ut till kusterna under dagen.</p>
+<p><strong>Klimat:</strong> Oktober i Skåne: 10–16°C dag. Mildare än Stockholm och Göteborg. Havet är fortfarande badbart till mitten av oktober (ca 15°C).</p>
+<p><strong>Bästa tid:</strong> September för Falsterbo och fågelflyttning. Oktober för Österlens lövfärger och Kullabergs dramatik. November för ensam kustpromenad i den råaste formen.</p>
+`,
+
+  'weekendresa-host-havet': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En höst-weekendresa vid havet är annorlunda från sommarvarianten på ett sätt som är svårt att förklara förrän du provat det. Priserna är 30–50% lägre. Restaurangerna är tomma. Naturen är skarpare och mer dramatisk. Och du slipper trängas.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är tio av landets bästa kustnära weekenddestinationer för hösten – och vad du faktiskt gör när du är där.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">10 RESMÅL FÖR HÖSTWEEKENDEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm, Stockholms skärgård</h4>
+<p>Närmast och enklast. Pendelbåt 83/83X från Strömkajen (55 min). Vaxholm fungerar hela hösten – kaféer, restauranger och fästningsmuseet är öppna. Övernatta på Waxholms Hotell för klassisk skärgårdsweekend. Utmärkt bascamp för dagstur till Möja eller Sandhamn.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Lysekil, Bohuslän</h4>
+<p>Lysekil har havsbad, Havets Hus och en klippkust som är dramatiskt vacker på hösten. Bra restaurangutbud hela hösten. Nås med bil (ca 2h från Göteborg, ca 5h från Stockholm). September: lägg till hummerpremieren 26 sep för det ultimata skaldjursweekendprogrammet.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Borgholm, Öland</h4>
+<p>Borgholms slottsruin och det gyllene Alvaret på hösten – ett visuellt spektakel. Nås via Ölandsbron från Kalmar (gratis). Borgholms stad har öppna restauranger och kaféer hela hösten. Bra val för familjer.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Norrtälje och Roslagen</h4>
+<p>Norrtälje med omgivande Roslagen är en höstperla norr om Stockholm. Charming stad med öppna caféer, antikaffärer och en skärgård som börjar direkt utanför. Arholma-utflykt möjlig med Waxholmsbolaget om du har tid.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Marstrand, Bohuslän</h4>
+<p>Marstrand utan sommarsäsongens trängsel är en annan plats – lugn, vacker och med Carlstens fästning för dig själv. Bastubåt ett hav är fortfarande möjlig i september–oktober. Nås med färja från Koon (väg 168 från Kungälv).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Visby, Gotland</h4>
+<p>Gotland på hösten är undervärderat. Murarna runt Visby i höstljuset, vinkällare och krogliv utan sommarfestivals-turister. Flyg eller färja (Destination Gotland) tur-retur ger en klassisk höstweekend. Gotlandsbygden och klinterna är vackra i september–oktober.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Grebbestad, Bohuslän</h4>
+<p>Grebbestad är Bohusläns skaldjurshuvudstad och på hösten öppnar ostron- och hummersäsongen. Ostronsafari (ca 500–800 kr/person) ger en upplevelse direkt från havet. Genuint fiskesamhälle utan sommarens turistifiering.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Smögen, Bohuslän</h4>
+<p>Smögen i september är ett annat Smögen. Klipphyllan längs bryggan är tom, fiskauktionen är aktiv och restaurangerna serverar hummer och ostron. Promenaden runt öns klippkust är vacker i höstljus och utan folkvimmel.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">9. Höga Kusten, Skuleskogen</h4>
+<p>UNESCO-världsarvet är absolut vackrast i september–oktober när lövfärgerna exploderar mot havet. Vandring i Skuleskogen med utsikt mot Bottenhavet. Härnösand och Kramfors har boende och service hela hösten. Nås med tåg.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">10. Karlskrona och Blekinge</h4>
+<p>En av landets mest underskattade städer med UNESCO-marinbas, charmig stadskärna och närheten till Blekinges skärgård. Dagsutflykter till Aspö och Sturkö. Mildare höst än Stockholm och Göteborg. Nås med direkttåg från Malmö.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">TIPS FÖR HÖST-WEEKENDRESAN</h3>
+<p><strong>Boka tidigt:</strong> Utbudet minskar kraftigt utanför säsong – de bästa platserna är fullbokade 3–6 veckor i förväg.</p>
+<p><strong>Kolla öppettider:</strong> Ring alltid restauranger och aktiviteter innan du åker – höstöppettiderna varierar och kan skilja sig från vad hemsidan säger.</p>
+<p><strong>Ha Plan B:</strong> Höstvädret är omväxlande. Planera vad du gör om det regnar (museum, havsbastu, god krog) och se det som en del av upplevelsen.</p>
+`,
+
+  'host-roslagen': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Roslagen är Stockholms skärgårds norra gren – och den minst kända. Medan alla åker till Sandhamn och Grinda ligger Arholma, Svartlöga och Blidö i sin egen stillhet norrut, med en skärgård som är kargare och vackrare och mer genuin. På hösten är Roslagen nästan helt tomt. Det är just det som gör det perfekt.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">ROSLAGENS ÖARNA PÅ HÖSTEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Arholma – ytterskärgårdens höjdpunkt</h4>
+<p>Arholma är en av Stockholms yttersta bebodda öar, norra skärgårdens sista fas. På hösten är ön i princip tom – och den är vacker. Klippor, björkskogar och utsikt mot öppet hav. STF Arholma (Arholma Nord) har stugor och vedeldad bastu. Boka havsbastukvällen i förväg. Nås med Waxholmsbolaget linje 5, ca 3 timmar från Tekniska Högskolan.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Svartlöga – den vilda ön</h4>
+<p>Svartlöga är mer avsides än Arholma – enklare att nå med privat båt men möjlig med Waxholmsbolaget. Ön har vandringsleder och ett genuint fiskarsamhälle med några permanentboende. På hösten är det rent av magiskt tyst. Ta med matsäck – ingen service utanför sommarsäsongen.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Blidö – bilfritt och lugnt</h4>
+<p>Blidö är en mellanstor ö med bilfria delar och vandringsleder längs kustremsan. Blidö Värdshus har höstöppet (kolla aktuellt via deras hemsida). Nås med Waxholmsbolaget från Norrtälje (kortare resa än från Stockholm).</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Grisslehamn – fiskeläget</h4>
+<p>Grisslehamn i norra Roslagen är ett pittoreskt fiskeläge med en aktiv hamn. August Strindberg sommarbodde här, och det finns ett litet Strindberg-museum (kolla öppettider). Höst ger autentisk fiskelägesatmosfär utan turistkaos.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR MAN TAR SIG HIT</h3>
+
+<p><strong>Med kollektivtrafik:</strong> Buss 676 från Stockholm City till Norrtälje (ca 1h 20 min), sedan Waxholmsbolagets linjer i Roslagens skärgård. Arholma: linje 5 (ca 3 timmar från Tekniska Högskolan). Svartlöga: linje 6. Blidö: linje 4.</p>
+<p><strong>Med bil:</strong> E18 mot Norrtälje (ca 1h). Parkeringsalternativ vid Svanberga eller Singö för vidare färja ut.</p>
+<p><strong>Observera höststidtabell:</strong> Waxholmsbolaget kör reducerat från september. Avgångarna kan vara en gång per dag – planera noga och kolla waxholmsbolaget.se.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">AKTIVITETER I ROSLAGEN PÅ HÖSTEN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsöringsfiske</h4>
+<p>Havsöring vandrar längs Roslagens kust i september–november. Fiske vid åmynningar och bäckar längs öarna. Inga fiskekort krävs för salt havsfiske. Roslagen har ett antal välkända havsöringslökar.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring och svampplockning</h4>
+<p>Roslagens lövskogar är rika på svamp i september–oktober. Karljohansvamp och trattkantareller längs skogsstigarna. Vandringsleder på Arholma, Svartlöga och Blidö är välmarkerade.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu på Arholma</h4>
+<p>STF Arholma Nords vedeldade bastu med direktutsikt mot Östersjön är en av Roslagens bästa upplevelser. Boka via STF:s hemsida. Kombinera med övernattning för att inte stressa tillbaka till sista båten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">NORRTÄLJE – BASEN FÖR ROSLAGEN</h3>
+<p>Norrtälje är porten till Roslagen och ett charmigt stadskärna med öppna restauranger och kaféer hela hösten. Norrtälje Hamn har restauranger med havsvy. Musikhistoriska Museum och Pythagoras-klaverfabrik ger inslag av kultur. Perfekt bascamp för dagsturer ut i skärgården.</p>
+`,
+
+  'planera-host-resa-havet': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En höstresa vid havet kräver lite mer planering än sommarvarianten. Utbudet är mer begränsat, tidtabellerna reducerade och vädret mer variabelt. Men om du planerar rätt – och de flesta gör det inte – ger du dig tillgång till en kust som är vackrare och mer genuin än den du ser i juli.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är allt du behöver: checklista, kalendarium och de viktigaste datumen för hösten 2026.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HÖSTENS VIKTIGASTE DATUM 2026</h3>
+
+<div style="background:rgba(10,123,140,0.06);border-radius:12px;padding:20px 24px;margin:20px 0">
+<p style="margin:0 0 10px"><strong>20 aug</strong> – Surströmmingspremiär (tredje torsdagen i aug)</p>
+<p style="margin:0 0 10px"><strong>26 sep</strong> – Hummerpremiär i Bohuslän (sista lördagen i sep)</p>
+<p style="margin:0 0 10px"><strong>Sep–okt</strong> – Ostronsäsongens öppning (månader med R i namnet)</p>
+<p style="margin:0 0 10px"><strong>Sep–okt</strong> – Havsöringsfiskets högsäsong</p>
+<p style="margin:0 0 10px"><strong>Sep–nov</strong> – Fågelflyttningens höjdpunkt längs Östersjökusten</p>
+<p style="margin:0 0 10px"><strong>Okt</strong> – Lövfärgernas höjdpunkt i Höga Kusten och norra skärgård</p>
+<p style="margin:0">26 okt–1 nov – <strong>Höstlov vecka 44</strong></p>
+</div>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">CHECKLISTA INFÖR HÖSTRESAN</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Boende</h4>
+<p>✓ Boka 4–8 veckor i förväg för de bästa platserna – utbudet minskar kraftigt utanför säsong</p>
+<p>✓ Ring och bekräfta öppettider – inte alla hemsidor uppdateras i realtid</p>
+<p>✓ Ha en backup-plan om önskat boende är stängt</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Transport</h4>
+<p>✓ Ladda ner Waxholmsbolagets app och kolla höststidtabell INNAN du bokar boende</p>
+<p>✓ Notera sista båttid hem – kan vara så tidigt som 16:00 på vardagar till avlägsnare öar</p>
+<p>✓ Ha Plan B för transport om båten ställs in (stormar händer)</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Mat</h4>
+<p>✓ Ring restauranger och kolla öppettider – höstmenyerna kan skilja sig från sommaren</p>
+<p>✓ Ta alltid med matsäck till öar – restauranger stänger tidigt eller kan vara stängda</p>
+<p>✓ Kolla om ditt boende har kök/självhushåll</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utrustning</h4>
+<p>✓ Vattentäta ytterkläder (regnkappa/skal-jacka)</p>
+<p>✓ Lager-på-lager: underställ, fleece, ytjacka</p>
+<p>✓ Vattentäta skor – inte sneakers</p>
+<p>✓ Mössa och handskar (för oktober)</p>
+<p>✓ Pannlampa – mörkret faller kl 18–19 i oktober</p>
+<p>✓ Reservkläder i vattentät påse</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">MÅNADSVIS GUIDE</h3>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Augusti – sensommar och premiärer</h4>
+<p>Havet fortfarande varmt (20–22°C). Surströmmingspremiär 20 aug. Folkmassan börjar tunnas ut. Perfekt tid för de som vill ha sommarupplevelse men utan trängseln.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">September – höstens bästa månad</h4>
+<p>Havet fortfarande badbart (17–20°C). Hummerpremiär 26 sep. Ostronsäsongen öppnar. Lövfärger börjar längs norra kusten. Det bästa av två säsonger på samma gång.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Oktober – lövfärger och stillhet</h4>
+<p>Lövfärgernas höjdpunkt i Höga Kusten och mellersta skärgården. Havet kallare (13–16°C) men bastubadbart. Inga köer någonstans. Höstlov i slutet av månaden.</p>
+
+<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">November – kustens stillaste säsong</h4>
+<p>Havet 8–11°C. Kraftigt reducerade båttidtabeller. Fågelflyttningens höjdpunkt längs sydkusten. Havsbastu är bäst – kontrasterna är störst. Inte för alla, men oförglömligt för den som ger det en chans.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VÄDER OCH FÖRVÄNTNINGAR</h3>
+<p>Höstväder vid havet är genuint oförutsägbart. Planera alltid med möjlighet för regn och storm – och se det som en del av upplevelsen, inte ett problem. En höststorm mot klipporna är ett skådespel. En regnig dag med god mat och en bra bok i en kustby är fortfarande en bättre dag än de flesta inomhusalternativ.</p>
+`,
+
   }
 
   const content = guides[slug]
