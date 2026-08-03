@@ -4,7 +4,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { Trip } from '@/lib/supabase'
 
-export const revalidate = 3600
+// ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
+// läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
+// revalidate-löftet var verkningslöst och sidan renderades om vid varje
+// besök ändå. Nu säger koden sanningen (ingen beteendeförändring), och
+// cache-guarden (scripts/guard-cache-regler.mjs) vaktar regeln.
+// Vill du göra sidan cachebar: flytta betraktarberoendet till klienten —
+// mallar i ViewerGate.tsx/ProfileTabs.tsx/ForumViewer.tsx, se CLAUDE.md p27.
+export const dynamic = 'force-dynamic'
 
 interface Props {
  params: Promise<{ username: string; year: string }>
