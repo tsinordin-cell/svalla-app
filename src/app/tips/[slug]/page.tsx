@@ -17,6 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${a.title} — Svalla`,
     description: a.excerpt || 'Redaktionellt innehåll från Svalla.',
+    // Tredje gången auto-verktyget stryker denna (07-24, 07-29). Se
+    // CLAUDE.md punkt 1 innan den tas bort igen.
+    alternates: { canonical: `https://svalla.se/tips/${a.slug}` },
     openGraph: {
       title: a.title,
       description: a.excerpt || '',

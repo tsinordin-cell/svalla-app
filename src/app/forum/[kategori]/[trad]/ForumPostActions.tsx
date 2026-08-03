@@ -1,11 +1,11 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useForumViewer } from './ForumViewer'
 
 interface Props {
   postId: string
   authorId: string
-  currentUserId: string | null
   initialBody: string
   /** Om det är en tråd (OP) — skickar till threads-API och omdirigerar vid delete */
   isThread?: boolean
@@ -14,16 +14,18 @@ interface Props {
   initialTitle?: string
 }
 
+/** Vem som tittar kommer från ForumViewerProvider — se ForumViewer.tsx. */
 export default function ForumPostActions({
   postId,
   authorId,
-  currentUserId,
   initialBody,
   isThread = false,
   threadId,
   categoryId,
   initialTitle = '',
 }: Props) {
+  const { viewerId } = useForumViewer()
+  const currentUserId = viewerId ?? null
   const router = useRouter()
   const [mode, setMode] = useState<'idle' | 'edit' | 'deleting'>('idle')
   const [body, setBody]   = useState(initialBody)

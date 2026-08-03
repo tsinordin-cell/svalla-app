@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import HeroAnimation from '@/components/HeroAnimation'
 import Icon from '@/components/Icon'
+import { validateUsername, deriveUsername } from '@/lib/username'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /kom-igang — Premium onboarding flow
@@ -165,8 +166,14 @@ function KomIgangInner() {
  if (!/\S+@\S+\.\S+/.test(email)) return 'Ogiltig e-postadress.'
  if (password.length < 6) return 'Lösenordet måste vara minst 6 tecken.'
  if (password !== confirmPw) return 'Lösenorden matchar inte.'
+ // Username validerades ALDRIG här tidigare — därför kunde en hel
+ // e-postadress bli username och ligga publikt indexerad. Se src/lib/username.ts.
+ if (username.trim()) {
+ const usernameErr = validateUsername(username)
+ if (usernameErr) return usernameErr
+ }
  return null
- }, [email, password, confirmPw])
+ }, [email, password, confirmPw, username])
 
  /* ── Sign up ── */
  async function handleSignup(e: React.FormEvent) {
@@ -175,7 +182,11 @@ function KomIgangInner() {
  if (validationErr) { setErr(validationErr); return }
 
  setLoading(true); setErr('')
- const derivedUsername = username.trim() || name.trim().split(' ')[0]!.toLowerCase() || email.split('@')[0]!
+ // deriveUsername strippar alltid ev. @domän och otillåtna tecken, så varken
+ // ett namn med mellanslag eller en e-postadress kan slinka igenom hel.
+ const derivedUsername = username.trim()
+ ? username.trim().toLowerCase()
+ : deriveUsername(name.trim() || email)
 
  const { data, error } = await supabase.auth.signUp({
  email: email.trim(),
@@ -841,7 +852,7 @@ function KomIgangInner() {
  <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', maxWidth: 320 }}>
  {fromUser ? (
  <button
- onClick={() => router.push(`/u/${fromUser}`)}
+ onClick={() => router.push(`/u/${encodeURIComponent(fromUser)}`)}
  style={{
  padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
  background: 'linear-gradient(135deg, #0f9e64, #0d8554)',

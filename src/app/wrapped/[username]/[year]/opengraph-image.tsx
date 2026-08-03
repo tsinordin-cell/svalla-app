@@ -42,7 +42,10 @@ export default async function Image({
 }: {
  params: Promise<{ username: string; year: string }>
 }) {
- const { username, year } = await params
+ // Se kommentar i src/app/u/[username]/page.tsx: Next.js dekodar inte dynamiska
+ // segment automatiskt, sa params.username kan komma in som t.ex. "namn%40host.se".
+ const { username: rawUsername, year } = await params
+ const username = decodeURIComponent(rawUsername)
  const yr = parseInt(year, 10)
 
  const supabase = createClient()

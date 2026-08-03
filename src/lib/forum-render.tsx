@@ -125,7 +125,7 @@ function renderInline(text: string, keyPrefix: string): ReactNode[] {
       parts.push(
         <Link
           key={`${keyPrefix}-m${n++}`}
-          href={`/u/${m.value}`}
+          href={`/u/${encodeURIComponent(m.value)}`}
           style={{
             color: 'var(--sea)',
             fontWeight: 600,

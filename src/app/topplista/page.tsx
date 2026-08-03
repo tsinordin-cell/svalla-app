@@ -3,7 +3,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
-export const revalidate = 300   // uppdatera var 5:e minut
+// ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
+// läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
+// revalidate-löftet var verkningslöst och sidan renderades om vid varje
+// besök ändå. Nu säger koden sanningen (ingen beteendeförändring), och
+// cache-guarden (scripts/guard-cache-regler.mjs) vaktar regeln.
+// Vill du göra sidan cachebar: flytta betraktarberoendet till klienten —
+// mallar i ViewerGate.tsx/ProfileTabs.tsx/ForumViewer.tsx, se CLAUDE.md p27.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Topplista',
@@ -301,7 +308,7 @@ function LeaderboardSection({
             return (
               <Link
                 key={row.uid}
-                href={`/u/${row.username}`}
+                href={`/u/${encodeURIComponent(row.username)}`}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 10,
                   padding: '10px 12px', borderRadius: 14,

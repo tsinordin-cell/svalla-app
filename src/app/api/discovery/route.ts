@@ -7,7 +7,9 @@ import { NextResponse } from 'next/server'
 
 
 export async function GET(req: Request) {
-  // Auth krävs för alla discovery-endpoints — GPS-heatmap är känslig data
+  const { searchParams } = new URL(req.url)
+  const type = searchParams.get('type') ?? 'poi'
+
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -20,11 +22,18 @@ export async function GET(req: Request) {
       },
     },
   )
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { searchParams } = new URL(req.url)
-  const type = searchParams.get('type') ?? 'poi'
+  // Auth krävs BARA för heatmapen. Den bygger på användarnas GPS-spår och är
+  // känslig data. `poi` och `routes` returnerar samma publika platsdata som
+  // redan visas på /upptack/*-sidorna — där finns inget att skydda, och
+  // auth-kravet hindrade dessutom all delad cachning (se nedan).
+  //
+  // PRESTANDA (2026-08-02): `auth.getUser()` är ett nätverksanrop mot Supabase.
+  // Att hoppa över det för poi/routes tar bort ett helt led från svarstiden.
+  if (type === 'heat') {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
 
   if (type === 'heat') {
     const minLat = parseFloat(searchParams.get('min_lat') ?? '55')
@@ -76,16 +85,27 @@ export async function GET(req: Request) {
       // Skicka inte med tunga google_photo_refs i list-svaret (kan vara ~3KB per plats × 288 = 1MB)
       return {
         id: r.id, name: r.name, latitude: r.latitude, longitude: r.longitude,
-        type: r.type, categories: r.categories, description: r.description,
+        type: r.type, categories: r.categories,
+        // Beskrivningen klipps till två rader med CSS i UpptackExplorer, så
+        // allt över ~300 tecken syns aldrig. Den var den
+        // enskilt tyngsta posten i svaret (699 platser × full text).
+        // Sökningen matchar fortfarande mot den korta texten.
+        description: r.description ? r.description.slice(0, 300) : null,
         image_url: imageUrl, slug: r.slug, island: r.island,
         archipelago_region: r.archipelago_region,
       }
     })
 
     // POI-listan uppdateras bara via /admin → aggressiv cache är säker.
-    // 1 h fresh, 24 h stale-while-revalidate ger nästan-omedelbara karta-laddningar.
+    //
+    // BUGG (hittad 2026-08-02): headern var tidigare
+    // `private, s-maxage=3600, stale-while-revalidate=86400`. `private`
+    // förbjuder delade cachar, vilket gör både s-maxage och SWR verkningslösa —
+    // Vercel svarade `x-vercel-cache: MISS` på VARJE anrop och hela listan
+    // (587 kB) byggdes om från databasen för varje besökare på kartan.
+    // Kommentaren påstod "aggressiv cache är säker" medan koden gjorde tvärtom.
     return NextResponse.json(projected, {
-      headers: { 'Cache-Control': 'private, s-maxage=3600, stale-while-revalidate=86400' },
+      headers: { 'Cache-Control': 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400' },
     })
   }
 
@@ -97,8 +117,9 @@ export async function GET(req: Request) {
       .limit(20)
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    // Samma sak här: `private` gjorde s-maxage verkningslös. Se kommentaren ovan.
     return NextResponse.json(data, {
-      headers: { 'Cache-Control': 'private, s-maxage=300, stale-while-revalidate=60' },
+      headers: { 'Cache-Control': 'public, max-age=0, s-maxage=300, stale-while-revalidate=60' },
     })
   }
 

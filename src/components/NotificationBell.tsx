@@ -249,7 +249,7 @@ export default function NotificationBell() {
  (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
  ? `/forum/t/${n.reference_id}`
  : n.type === 'follow' && n.actor_username
- ? `/u/${n.actor_username}`
+ ? `/u/${encodeURIComponent(n.actor_username)}`
  : n.type === 'friend_visit' && n.related_island_slug
  ? `/o/${n.related_island_slug}`
  : n.trip_id

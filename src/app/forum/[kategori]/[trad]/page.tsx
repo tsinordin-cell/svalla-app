@@ -1,34 +1,69 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { getAdminClient } from '@/lib/supabase-admin'
+import { ForumViewerProvider } from './ForumViewer'
+import ForumPostList, { PostHeader } from './ForumPostList'
+import ViewerGate from '@/components/ViewerGate'
 import { getThreadById, getPostsByThread, getCategoryById, formatForumDate } from '@/lib/forum'
 import ForumReplyForm from './ForumReplyForm'
 import ForumPostActions from './ForumPostActions'
-import ForumLikeButton from './ForumLikeButton'
 import ForumSubscribeButton from './ForumSubscribeButton'
 import ForumShareButton from './ForumShareButton'
 import LoppisSaveButton from '@/components/LoppisSaveButton'
 import ForumQuoteButton from './ForumQuoteButton'
-import BestAnswerButton from './BestAnswerButton'
-import ForumSortTabs from './ForumSortTabs'
 import ForumRealtimeListener from './ForumRealtimeListener'
 import Icon from '@/components/Icon'
 import { renderForumBody } from '@/lib/forum-render'
 import LoppisListingCard from '@/components/LoppisListingCard'
 import LoppisSimilarAds from '@/components/LoppisSimilarAds'
-import type { ForumSort } from '@/lib/forum'
 import type { Metadata } from 'next'
 
+/**
+ * revalidate = 30 deklarerades för länge sedan men var verkningslös tills
+ * 2026-08-02: auth.getUser() (cookies) och searchParams (?sort=) tvingade
+ * dynamisk rendering. Nu är båda flyttade till klienten och ISR gäller på
+ * riktigt. 30 s är medvetet kort — nya svar ska synas snabbt.
+ * Kontroll: cache-control ska vara public och andra anropet HIT — mät live,
+ * lita inte på byggsymbolen (CLAUDE.md p27).
+ */
 export const revalidate = 30
+
+/**
+ * Utan generateStaticParams hamnar en dynamisk route ALDRIG i CDN-cachen,
+ * även med revalidate satt — verifierat empiriskt en gång till här:
+ * första deployen utan den svarade private/no-store trots att all auth och
+ * searchParams var borta. Samma lärdom som /upptack/[id] (CLAUDE.md p18,
+ * "det avgörande steget"). Förgenererar de senast aktiva trådarna; resten
+ * renderas on-demand vid första besöket och cachas därefter
+ * (dynamicParams är på som standard).
+ */
+export async function generateStaticParams() {
+  try {
+    const supabase = createPublicSupabaseClient()
+    const { data } = await supabase
+      .from('forum_threads')
+      .select('id, category_id')
+      .eq('in_spam_queue', false)
+      .order('last_reply_at', { ascending: false })
+      .limit(300)
+    return (data ?? []).map((t: { id: string; category_id: string }) => ({
+      kategori: t.category_id,
+      trad: t.id,
+    }))
+  } catch {
+    // Hellre on-demand-rendering än ett trasigt bygge (lokal maskin utan env).
+    return []
+  }
+}
 
 interface Props {
   params: Promise<{ kategori: string; trad: string }>
-  searchParams?: Promise<{ sort?: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { trad, kategori } = await params
-  const thread = await getThreadById(trad)
+  const thread = await getThreadById(trad, true)
   if (!thread) return { title: { absolute: 'Forum — Svalla' } }
 
   // Loppis-annons → optimerade SEO-tags för Google-indexering.
@@ -107,36 +142,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ForumTradPage({ params, searchParams }: Props) {
+export default async function ForumTradPage({ params }: Props) {
   const { kategori, trad } = await params
-  const sp = (await searchParams) ?? {}
-  const sort: ForumSort = sp.sort === 'nyast' || sp.sort === 'hjalpsamma' ? sp.sort : 'aldst'
-  const supabase = await createServerSupabaseClient()
+  // Ingen auth och inga searchParams på servern (2026-08-02): båda tvingar
+  // dynamisk rendering och satte revalidate = 30 ur spel — varje forumtråd
+  // renderades om för varje besökare (619–683 ms MISS, uppmätt). Vem som
+  // tittar hämtas i klienten av ForumViewerProvider (EN batchfråga för hela
+  // trådens likes/bevakning/sparning), och ?sort= sköts av ForumPostList
+  // som ordnar om lokalt. Se ForumViewer.tsx och ForumPostList.tsx.
+  const supabase = createPublicSupabaseClient()
 
-  const { data: { user } } = await supabase.auth.getUser()
-  const currentUserId = user?.id ?? null
-
-  const thread = await getThreadById(trad)
-  const cat = await getCategoryById(kategori)
+  const thread = await getThreadById(trad, true)
+  const cat = await getCategoryById(kategori, true)
   if (!thread || !cat) notFound()
 
-  const isThreadOwner = currentUserId === thread.user_id
-
-  const [posts, subRow, savedRow, saveCountRow] = await Promise.all([
-    getPostsByThread(trad, currentUserId, { sort, bestPostId: thread.best_post_id ?? null }),
-    currentUserId
-      ? supabase.from('forum_subscriptions').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
-      : Promise.resolve({ data: null }),
-    currentUserId && kategori === 'loppis'
-      ? supabase.from('loppis_saves').select('user_id').eq('user_id', currentUserId).eq('thread_id', trad).maybeSingle()
-      : Promise.resolve({ data: null }),
-    // Stats: antal användare som sparat annonsen (visas bara för ägaren)
-    isThreadOwner && kategori === 'loppis'
-      ? supabase.from('loppis_saves').select('user_id', { count: 'exact', head: true }).eq('thread_id', trad)
+  // Servern renderar alltid äldst-först — samma HTML för alla.
+  const [posts, saveCountRow] = await Promise.all([
+    getPostsByThread(trad, null, { sort: 'aldst', bestPostId: thread.best_post_id ?? null }, true),
+    // Ägarstatistiken (antal som sparat annonsen) är en opersonlig aggregat.
+    // Den hämtas med admin-klienten eftersom loppis_saves-rader inte är
+    // anon-läsbara, och gate:as i klienten (LoppisListingCard visar den bara
+    // för ägaren). Ingen cookie-läsning — sidan förblir cachebar.
+    kategori === 'loppis'
+      ? getAdminClient().from('loppis_saves').select('user_id', { count: 'exact', head: true }).eq('thread_id', trad)
       : Promise.resolve({ count: null }),
   ])
-  const isSubscribed = !!subRow?.data
-  const isSaved = !!savedRow?.data
   const saveCount = (saveCountRow as { count: number | null }).count ?? 0
   const viewCount = thread.view_count ?? 0
 
@@ -252,6 +282,12 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
   }
 
   return (
+    <ForumViewerProvider
+      threadId={trad}
+      threadOwnerId={thread.user_id}
+      postIds={posts.map(p => p.id)}
+      isLoppis={kategori === 'loppis'}
+    >
     <main style={{
       minHeight: '100vh',
       background: 'var(--bg)',
@@ -313,7 +349,7 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           {thread.author?.username ? (
             <Link
-              href={`/u/${thread.author.username}`}
+              href={`/u/${encodeURIComponent(thread.author.username)}`}
               style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 textDecoration: 'none',
@@ -392,18 +428,8 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 ? `${new Intl.NumberFormat('sv-SE').format(thread.listing_data.price)} kr · ${thread.listing_data.location ?? 'Sverige'}`
                 : `${cat.name} på Svalla`}
             />
-            {kategori === 'loppis' && !isThreadOwner && (
-              <LoppisSaveButton
-                threadId={trad}
-                initialSaved={isSaved}
-                isLoggedIn={!!currentUserId}
-              />
-            )}
-            <ForumSubscribeButton
-              threadId={trad}
-              initialSubscribed={isSubscribed}
-              currentUserId={currentUserId}
-            />
+            {kategori === 'loppis' && <LoppisSaveButton threadId={trad} />}
+            <ForumSubscribeButton threadId={trad} />
           </div>
         </div>
       </div>
@@ -424,13 +450,11 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 username: thread.author.username,
                 avatar: thread.author.avatar,
               } : null}
-              isOwner={isThreadOwner}
-              currentUserId={currentUserId}
-              ownerStats={isThreadOwner ? {
+              ownerStats={{
                 viewCount,
                 saveCount,
                 replyCount: posts.length,
-              } : undefined}
+              }}
               sellerTrust={sellerMeta ?? undefined}
             />
             {similarAds.length > 0 && (
@@ -445,7 +469,6 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 postId={thread.id}
                 threadId={thread.id}
                 authorId={thread.user_id}
-                currentUserId={currentUserId}
                 initialBody={thread.body}
                 initialTitle={thread.title}
                 isThread
@@ -484,7 +507,6 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
                 postId={thread.id}
                 threadId={thread.id}
                 authorId={thread.user_id}
-                currentUserId={currentUserId}
                 initialBody={thread.body}
                 initialTitle={thread.title}
                 isThread
@@ -496,91 +518,19 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
 
         <div style={{ padding: '0 16px' }}>
 
-        {/* ── Svar ── */}
-        {posts.length > 0 && (
-          <div style={{ marginBottom: 20 }}>
-            {/* Svar-header med linje + sort-tabbar */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12, flexWrap: 'wrap' }}>
-              <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
-                {posts.length} {posts.length === 1 ? 'svar' : 'svar'}
-              </span>
-              <div style={{ flex: 1, height: 1, background: 'var(--border, rgba(10,123,140,0.1))' }} />
-              {posts.length > 1 && <ForumSortTabs current={sort} />}
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {posts.map((post, i) => {
-                const isBest = thread.best_post_id === post.id
-                return (
-                  <div key={post.id} id={`post-${post.id}`} style={{
-                    padding: '14px 16px',
-                    background: 'var(--card-bg, #fff)',
-                    borderRadius: 14,
-                    border: isBest ? '1.5px solid rgba(34,197,94,0.5)' : '1px solid var(--border, rgba(10,123,140,0.1))',
-                    boxShadow: isBest ? '0 4px 16px rgba(34,197,94,0.18)' : '0 1px 4px rgba(0,0,0,0.04)',
-                    scrollMarginTop: 80,
-                    position: 'relative',
-                  }}>
-                    {isBest && (
-                      <div style={{
-                        position: 'absolute', top: -10, left: 14,
-                        background: '#16a34a', color: '#fff',
-                        fontSize: 10, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase',
-                        padding: '3px 9px', borderRadius: 6,
-                        display: 'inline-flex', alignItems: 'center', gap: 4,
-                        boxShadow: '0 2px 6px rgba(22,163,74,0.35)',
-                      }}>
-                        <svg width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        Bästa svar
-                      </div>
-                    )}
-                    <PostHeader
-                      username={post.author?.username ?? 'Okänd'}
-                      avatar={post.author?.avatar ?? null}
-                      date={post.created_at}
-                      index={i + 1}
-                      postId={post.id}
-                    />
-                    <div style={{
-                      fontSize: 14,
-                      color: 'var(--txt)',
-                      lineHeight: 1.65,
-                      marginTop: 10,
-                      wordBreak: 'break-word',
-                    }}>
-                      {renderForumBody(post.body)}
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, gap: 8, flexWrap: 'wrap' }}>
-                      <ForumLikeButton
-                        postId={post.id}
-                        initialCount={post.like_count ?? 0}
-                        initialLiked={post.liked_by_user ?? false}
-                        currentUserId={currentUserId}
-                      />
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
-                        {(isThreadOwner || isBest) && (
-                          <BestAnswerButton
-                            threadId={trad}
-                            postId={post.id}
-                            isThreadOwner={isThreadOwner}
-                            isBest={isBest}
-                          />
-                        )}
-                        <ForumQuoteButton username={post.author?.username ?? 'Okänd'} body={post.body} />
-                        <ForumPostActions
-                          postId={post.id}
-                          authorId={post.user_id}
-                          currentUserId={currentUserId}
-                          initialBody={post.body}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )}
+        {/* ── Svar — klientlista med lokal sortering, se ForumPostList.tsx ── */}
+        <ForumPostList
+          posts={posts.map(p => ({
+            id: p.id,
+            user_id: p.user_id,
+            body: p.body,
+            created_at: p.created_at,
+            like_count: p.like_count ?? 0,
+            author: p.author ?? null,
+          }))}
+          threadId={trad}
+          bestPostId={thread.best_post_id ?? null}
+        />
 
         {/* ── Empty state — inga svar än ── */}
         {posts.length === 0 && !thread.is_locked && (
@@ -616,7 +566,13 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
             </svg>
             Den här tråden är låst för nya svar.
           </div>
-        ) : !currentUserId ? (
+        ) : (
+          /* Vem som tittar avgörs i klienten (ViewerGate) så att HTML:en är
+             densamma för alla — login-CTA:n respektive svarsformuläret dyker
+             upp när svaret kommit. Formuläret är rent klient-UI ändå. */
+          <ViewerGate
+            utloggad={
+
           <div style={{
             padding: '20px 18px',
             background: 'linear-gradient(180deg, rgba(10,123,140,0.06) 0%, rgba(201,110,42,0.08) 100%)',
@@ -663,8 +619,9 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
               </Link>
             </div>
           </div>
-        ) : (
-          <ForumReplyForm threadId={thread.id} categoryId={kategori} />
+            }
+            inloggad={<ForumReplyForm threadId={thread.id} categoryId={kategori} />}
+          />
         )}
         </div>
       </div>
@@ -672,76 +629,6 @@ export default async function ForumTradPage({ params, searchParams }: Props) {
       {/* Realtime: lyssnar på nya posts och visar pill om någon annan postar */}
       <ForumRealtimeListener threadId={thread.id} initialCount={posts.length} />
     </main>
-  )
-}
-
-function PostHeader({
-  username, avatar, date, isOP, index, postId,
-}: {
-  username: string
-  avatar: string | null
-  date: string
-  isOP?: boolean
-  index?: number
-  postId?: string
-}) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-      {/* Avatar */}
-      {avatar ? (
-        <img
-          src={avatar}
-          alt=""
-          width={40}
-          height={40}
-          style={{
-            width: 40, height: 40,
-            aspectRatio: '1 / 1',
-            borderRadius: '50%',
-            objectFit: 'cover',
-            display: 'block',
-            flexShrink: 0,
-          }}
-        />
-      ) : (
-        <div style={{
-          width: 40, height: 40,
-          aspectRatio: '1 / 1',
-          borderRadius: '50%',
-          background: 'var(--grad-sea)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 15, fontWeight: 700, color: '#fff',
-          flexShrink: 0,
-        }}>
-          {username[0]?.toUpperCase()}
-        </div>
-      )}
-      <div style={{ flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>{username}</span>
-          {isOP && (
-            <span style={{
-              fontSize: 10, fontWeight: 700, color: '#fff',
-              background: 'var(--sea)',
-              padding: '1px 6px', borderRadius: 4,
-              letterSpacing: '0.03em',
-            }}>OP</span>
-          )}
-          {index !== undefined && postId && (
-            <a
-              href={`#post-${postId}`}
-              style={{ fontSize: 11, color: 'var(--txt3)', textDecoration: 'none' }}
-              title="Länk till detta svar"
-            >
-              #{index}
-            </a>
-          )}
-          {index !== undefined && !postId && (
-            <span style={{ fontSize: 11, color: 'var(--txt3)' }}>#{index}</span>
-          )}
-        </div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 1 }}>{formatForumDate(date)}</div>
-      </div>
-    </div>
+    </ForumViewerProvider>
   )
 }

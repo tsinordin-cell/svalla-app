@@ -291,7 +291,7 @@ export default function NotiserPage() {
    const href =
      (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
        ? `/forum/t/${n.reference_id}`
-       : n.type === 'follow' ? `/u/${n.actor_username}`
+       : n.type === 'follow' ? `/u/${encodeURIComponent(n.actor_username)}`
        : n.type === 'message' ? '/meddelanden'
        : n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}`
        : n.trip_id ? `/tur/${n.trip_id}`
@@ -323,7 +323,7 @@ export default function NotiserPage() {
  )}
 
  {/* Actor avatar med typ-badge i hörnet */}
- <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0, position: 'relative' }}>
+ <Link href={`/u/${encodeURIComponent(n.actor_username)}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0, position: 'relative' }}>
  <div style={{
  width: 44, height: 44, aspectRatio: '1 / 1', borderRadius: '50%',
  background: 'var(--grad-sea)',
@@ -351,7 +351,7 @@ export default function NotiserPage() {
  {/* Text */}
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: fontSize.small, color: 'var(--txt)', lineHeight: 1.4 }}>
- <Link href={`/u/${n.actor_username}`} onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: fontWeight.semibold, textDecoration: 'none' }}>
+ <Link href={`/u/${encodeURIComponent(n.actor_username)}`} onClick={e => e.stopPropagation()} style={{ color: 'var(--sea)', fontWeight: fontWeight.semibold, textDecoration: 'none' }}>
  {n.actor_username}
  </Link>
  {' '}{labelText}

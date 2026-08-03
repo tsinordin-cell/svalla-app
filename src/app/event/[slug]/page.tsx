@@ -207,7 +207,7 @@ export default function EventDetailPage() {
             )}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {attendees.filter(a => a.status === 'going').map(a => (
-                <Link key={a.user_id} href={`/u/${a.username}`} style={{ textDecoration: 'none' }}>
+                <Link key={a.user_id} href={`/u/${encodeURIComponent(a.username)}`} style={{ textDecoration: 'none' }}>
                   <div style={{
                     display: 'flex', alignItems: 'center', gap: 6,
                     padding: '4px 10px 4px 4px', borderRadius: 20,
@@ -236,7 +236,7 @@ export default function EventDetailPage() {
                 </h4>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                   {attendees.filter(a => a.status === 'maybe').map(a => (
-                    <Link key={a.user_id} href={`/u/${a.username}`} style={{ textDecoration: 'none' }}>
+                    <Link key={a.user_id} href={`/u/${encodeURIComponent(a.username)}`} style={{ textDecoration: 'none' }}>
                       <span style={{ fontSize: 12, color: 'var(--txt3)', background: 'rgba(10,123,140,0.04)', borderRadius: 12, padding: '3px 10px' }}>
                         @{a.username}
                       </span>

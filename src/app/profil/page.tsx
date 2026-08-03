@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState, useRef } from 'react'
+import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import type { Trip, User } from '@/lib/supabase'
@@ -10,6 +11,7 @@ import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
+import { validateUsername } from '@/lib/username'
 import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
@@ -119,23 +121,49 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
+  // Spara-raden hamnade under mobilens tangentbord: dialogen tog `92dvh` av
+  // FÖNSTRETS höjd, men iOS Safari räknar inte om `dvh` tillförlitligt när
+  // tangentbordet skjuter upp — den synliga ytan (visualViewport) krymper,
+  // dialogens maxHeight gör det inte, så sticky-footern hamnar utanför synligt
+  // område så fort man klickar i ett textfält. Håll dialogen istället bunden
+  // till `visualViewport.height`, som iOS faktiskt uppdaterar live.
+  const [viewportH, setViewportH] = useState<number | null>(null)
+  useEffect(() => {
+    const vv = typeof window !== 'undefined' ? window.visualViewport : null
+    if (!vv) return
+    const update = () => setViewportH(vv.height)
+    update()
+    vv.addEventListener('resize', update)
+    vv.addEventListener('scroll', update)
+    return () => {
+      vv.removeEventListener('resize', update)
+      vv.removeEventListener('scroll', update)
+    }
+  }, [])
+  const dialogMaxHeight = viewportH ? `${Math.round(viewportH * 0.92)}px` : '92dvh'
+
   function togglePublic(key: string) {
     setPublicFields(prev => prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key])
   }
 
   async function handleSave() {
     const trimmed = username.trim().toLowerCase()
-    if (!trimmed || trimmed.length < 3) { setError('Aliaset måste vara minst 3 tecken.'); return }
-    if (trimmed.length > 20) { setError('Aliaset får max vara 20 tecken.'); return }
-    if (trimmed.includes(' ')) { setError('Aliaset får inte innehålla mellanslag.'); return }
-    if (!/^[a-z0-9_.-]+$/.test(trimmed)) { setError('Bara a-z, siffror och _ . - är tillåtna.'); return }
+    // Samma regler som vid registrering — en enda källa i src/lib/username.ts.
+    // Reglerna fanns bara här förut, vilket är exakt varför signup kunde
+    // släppa igenom en hel e-postadress.
+    const usernameErr = validateUsername(trimmed)
+    if (usernameErr) { setError(usernameErr); return }
     setSaving(true); setError(null)
 
     let avatarUrl = user.avatar
     if (avatarFile) {
-      const ext  = avatarFile.name.split('.').pop() ?? 'jpg'
+      // Komprimera först. En avatar visas aldrig större än ~200 px, men
+      // laddades tidigare upp i telefonens fulla upplösning (upp till
+      // 3024x4032 / 2,7 MB uppmätt i produktionen).
+      const avatarKomprimerad = await komprimeraBild(avatarFile, AVATAR_MAX_PX)
+      const ext  = avatarKomprimerad.name.split('.').pop() ?? 'jpg'
       const path = `avatars/${user.id}.${ext}`
-      const { error: upErr } = await supabase.storage.from('images').upload(path, avatarFile, { upsert: true })
+      const { error: upErr } = await supabase.storage.from('images').upload(path, avatarKomprimerad, { upsert: true })
       if (upErr) { setError(`Kunde inte ladda upp bild: ${upErr.message}`); setSaving(false); return }
       avatarUrl = supabase.storage.from('images').getPublicUrl(path).data.publicUrl
     }
@@ -161,7 +189,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
   return (
     <>
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,20,35,0.45)', zIndex: 800, backdropFilter: 'blur(2px)' }} />
-      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: '92dvh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div role="dialog" aria-modal="true" aria-label="Redigera profil" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 900, background: 'var(--white)', borderRadius: '24px 24px 0 0', maxWidth: 520, margin: '0 auto', boxShadow: '0 -4px 40px rgba(0,45,60,0.18)', maxHeight: dialogMaxHeight, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div style={{ padding: '12px 20px 0', flexShrink: 0 }}>
           <div style={{ width: 36, height: 4, background: 'rgba(10,123,140,0.18)', borderRadius: 2, margin: '0 auto 16px' }} />
           <h2 style={{ fontSize: 17, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Redigera profil</h2>
@@ -453,7 +481,7 @@ export default function ProfilPage() {
               </div>
             )}
             {user?.username && (
-              <Link href={`/u/${user.username}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
                 <Eye size={12} /> Min sida
               </Link>
             )}

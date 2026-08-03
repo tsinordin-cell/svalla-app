@@ -12,6 +12,12 @@
  *   7. Extern länk-knapp (om finns)
  *   8. Säljarkort med Kontakta-CTA
  */
+'use client'
+// 'use client' (2026-08-02): kortet innehåller tre betraktarberoende block
+// (ägarpanelen, Kontakta-knappen, Rapportera). De avgjordes tidigare av
+// server-props från auth.getUser(), vilket gjorde hela trådsidan dynamisk.
+// Som klientkomponent SSR:as kortet ändå — innehållet ligger kvar i den
+// statiska HTML:en — men vem-som-tittar kommer från ForumViewerProvider.
 import Link from 'next/link'
 import Image from 'next/image'
 import LoppisListingGallery from './LoppisListingGallery'
@@ -23,6 +29,7 @@ import LoppisBoostButton from './LoppisBoostButton'
 import LoppisSellerTrust from './LoppisSellerTrust'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
+import { useForumViewer } from '@/app/forum/[kategori]/[trad]/ForumViewer'
 
 export type ListingStatus = 'aktiv' | 'reserverad' | 'sald'
 
@@ -47,9 +54,7 @@ interface Props {
   createdAt: string
   listing: ListingData
   author: { id: string; username: string; avatar: string | null } | null
-  isOwner?: boolean
   /** Null när användaren inte är inloggad — vi visar då login-prompt istället för Kontakta. */
-  currentUserId?: string | null
   /** Stats som bara visas för ägaren. */
   ownerStats?: { viewCount: number; saveCount: number; replyCount: number }
   /** Trovärdighets-data om säljaren — visas i säljarkortet. */
@@ -66,9 +71,13 @@ function formatPrice(price?: number, currency = 'SEK'): string {
 
 export default function LoppisListingCard({
   threadId, title, body, createdAt, listing, author,
-  isOwner = false, currentUserId = null, ownerStats, sellerTrust,
+  ownerStats, sellerTrust,
 }: Props) {
-  const isLoggedIn = !!currentUserId
+  const { viewerId, isThreadOwner } = useForumViewer()
+  // undefined = vet inte än; behandla som utloggad tills svaret kommer så
+  // att inget ägar-UI blinkar för fel person.
+  const isOwner = isThreadOwner
+  const isLoggedIn = !!viewerId
   const status: ListingStatus = listing.status ?? 'aktiv'
   const images = Array.isArray(listing.images) ? listing.images : []
   const specs = Array.isArray(listing.specs) ? listing.specs.filter(s => s.label && s.value) : []
@@ -289,7 +298,7 @@ export default function LoppisListingCard({
           boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
         }}>
           <Link
-            href={`/u/${author.username}`}
+            href={`/u/${encodeURIComponent(author.username)}`}
             style={{ flexShrink: 0, lineHeight: 0 }}
           >
             {author.avatar ? (
@@ -324,7 +333,7 @@ export default function LoppisListingCard({
               Säljare
             </div>
             <Link
-              href={`/u/${author.username}`}
+              href={`/u/${encodeURIComponent(author.username)}`}
               style={{
                 fontSize: 16, fontWeight: 700, color: 'var(--txt)',
                 textDecoration: 'none',

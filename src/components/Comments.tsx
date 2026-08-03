@@ -28,7 +28,7 @@ export function renderMentions(text: string) {
  return (
  <Link
  key={i}
- href={`/u/${s.value}`}
+ href={`/u/${encodeURIComponent(s.value)}`}
  onClick={e => e.stopPropagation()}
  style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
  >
@@ -416,7 +416,7 @@ export default function Comments({
  opacity: c.optimistic ? 0.55 : 1,
  transition: 'opacity .2s',
  }}>
- <Link href={`/u/${c.username}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
+ <Link href={`/u/${encodeURIComponent(c.username ?? '')}`} onClick={e => e.stopPropagation()} style={{ textDecoration: 'none', flexShrink: 0 }}>
  <div style={{
  width: 34, height: 34, borderRadius: '50%',
  background: grad,
@@ -446,7 +446,7 @@ export default function Comments({
  }}>
  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
  <Link
- href={`/u/${c.username}`}
+ href={`/u/${encodeURIComponent(c.username ?? '')}`}
  onClick={e => e.stopPropagation()}
  style={{ fontSize: fontSize.small, fontWeight: fontWeight.semibold, color: 'var(--sea)', textDecoration: 'none' }}
  >

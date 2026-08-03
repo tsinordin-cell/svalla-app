@@ -1,11 +1,13 @@
 'use client'
-import { useEffect, useMemo, useState, useCallback } from 'react'
+import { useEffect, useMemo, useState, useCallback, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
 
-type TeamMember = { id: string; username: string; avatar: string | null }
+// initials: valfri override för avatar-bokstäverna (t.ex. "TN", "MB") —
+// annars faller vi tillbaka på de två första bokstäverna i username.
+type TeamMember = { id: string; username: string; avatar: string | null; initials?: string | null }
 
 type Project = {
   id: string
@@ -24,6 +26,19 @@ type Project = {
 type TaskStatus = 'todo' | 'working' | 'review' | 'done'
 type TaskPriority = 'low' | 'normal' | 'high'
 
+type TeamSupabase = ReturnType<typeof createClient>
+
+// Bildbilaga på en uppgift. Vi sparar sökvägen (inte en färdig URL) eftersom
+// bucketen är privat — URL:en måste signeras om varje gång den ska visas.
+type TaskImage = {
+  path: string
+  name?: string | null
+  w?: number | null
+  h?: number | null
+  by?: string | null
+  at?: string | null
+}
+
 type Task = {
   id: string
   project_id: string | null
@@ -36,9 +51,14 @@ type Task = {
   due_date: string | null
   pr_url: string | null
   prompt: string | null
+  images: TaskImage[]
+  color: string | null
   created_at: string
   updated_at: string
 }
+
+// Fält som går att ändra i efterhand från detaljvyn.
+type TaskPatch = Partial<Pick<Task, 'description' | 'color' | 'priority' | 'project_id' | 'due_date'>>
 
 type Prompt = {
   id: string
@@ -88,6 +108,21 @@ const PRIORITY_COLOR: Record<TaskPriority, string> = {
   high: 'var(--red)',
 }
 
+// Egen färg per uppgift — märk upp efter vad arbetet gäller, oberoende av
+// projekt. Fasta hex-värden (som projektfärgerna) eftersom de ska betyda
+// samma sak i ljust och mörkt läge. Valda för att gå att skilja åt även
+// för den som har svårt med rött/grönt.
+const TASK_COLORS: { value: string; label: string }[] = [
+  { value: '#3b82f6', label: 'Blå' },
+  { value: '#14b8a6', label: 'Turkos' },
+  { value: '#22c55e', label: 'Grön' },
+  { value: '#eab308', label: 'Gul' },
+  { value: '#f97316', label: 'Orange' },
+  { value: '#ef4444', label: 'Röd' },
+  { value: '#ec4899', label: 'Rosa' },
+  { value: '#8b5cf6', label: 'Lila' },
+]
+
 const AVATAR_PALETTE = ['#1e5c82', '#c96e2a', '#0a7b8c', '#7c3aed', '#0a7b3c', '#9d174d']
 
 function avatarColor(id: string): string {
@@ -110,6 +145,12 @@ function relativeTime(iso: string): string {
 
 function initials(name: string): string {
   return name.slice(0, 2).toUpperCase()
+}
+
+// Avatar-bokstäver: använd explicit override om den finns (t.ex. "TN" för
+// Tom Nordin, "MB" för Max), annars de två första bokstäverna i namnet.
+function memberInitials(m: { username: string; initials?: string | null }): string {
+  return m.initials || initials(m.username)
 }
 
 function hostFromUrl(url: string): string {
@@ -203,6 +244,72 @@ function IcoLink({ color = 'currentColor' }: { color?: string }) {
       <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.36-1.36" />
     </svg>
   )
+}
+function IcoImage({ color = 'currentColor', size = 12 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2.5" />
+      <circle cx="8.5" cy="8.5" r="1.6" />
+      <path d="m21 15-4.5-4.5L7 21" />
+    </svg>
+  )
+}
+function IcoNote({ color = 'currentColor', size = 12 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 6h16M4 12h16M4 18h9" />
+    </svg>
+  )
+}
+function IcoClose({ color = 'currentColor', size = 16 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.2} strokeLinecap="round">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  )
+}
+
+// ── Bildhjälpare ──────────────────────────────────────────────────────────
+
+/** Krymper och komprimerar i webbläsaren före upload — samma mönster som
+ *  /spara och /logga/manuell. En mobilskärmdump på 3 MB blir ~200 kB. */
+async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<{ file: File; w: number; h: number }> {
+  return new Promise(resolve => {
+    const img = new window.Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      let { width, height } = img
+      if (width > maxPx || height > maxPx) {
+        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx }
+        else                 { width = Math.round(width * maxPx / height);  height = maxPx }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width; canvas.height = height
+      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        blob => resolve({
+          file: blob ? new File([blob], file.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }) : file,
+          w: width, h: height,
+        }),
+        'image/jpeg', quality
+      )
+    }
+    img.onerror = () => resolve({ file, w: 0, h: 0 })
+    img.src = url
+  })
+}
+
+/** Plockar ut bildfiler ur en drop eller inklistring (Cmd+V av skärmdump). */
+function imageFilesFrom(list: FileList | DataTransferItemList | null): File[] {
+  if (!list) return []
+  const out: File[] = []
+  for (let i = 0; i < list.length; i++) {
+    const entry = list[i] as File | DataTransferItem
+    const file = 'getAsFile' in entry ? entry.getAsFile() : entry
+    if (file && file.type.startsWith('image/')) out.push(file)
+  }
+  return out
 }
 
 // ── Delade stilar ─────────────────────────────────────────────────────────
@@ -343,8 +450,129 @@ const GLOBAL_CSS = `
    samma höjd bara för att de är först i sin kolumn. */
 .svt-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 16px; align-items: start; }
 .svt-status-col { min-width: 0; }
-.svt-swim-header { display: flex; align-items: center; gap: 7px; padding-bottom: 8px; border-bottom: 1px solid var(--svt-divider); }
+/* Kolumnrubrikerna följer med vid scroll. Utan sticky försvinner de så fort
+   man scrollat förbi första raden, och då går det inte att se vilken status
+   ett kort har — kolumnen ÄR statusen. Rapporterat av Tom (kortet "Finputs
+   av dashboard", två skärmdumpar: före och efter scroll).
+   Bakgrunden behövs för att korten ska scrolla UNDER rubriken i stället för
+   igenom den; negativ margin-top kompenserar padding-top så radhöjden
+   är oförändrad. */
+.svt-swim-header {
+  display: flex; align-items: center; gap: 7px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--svt-divider);
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg);
+  padding-top: 10px; margin-top: -10px;
+}
+/* Svagt band bakom hela uppgiftsraden — gör raden läsbar som en enhet
+   (en uppgifts väg genom flödet) utan att fylla tomma kolumner med
+   rutor. Ligger bakom kortet, ingen egen kant. */
+.svt-swim-band { align-self: stretch; background: var(--svt-chip-bg); border-radius: 12px; opacity: 0.5; }
 .svt-swimlanes-mobile { display: none; }
+.svt-card-open { cursor: pointer; }
+.svt-card-open:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+
+/* ── Detaljvy ─────────────────────────────────────────────────────────── */
+.svt-modal-backdrop {
+  position: fixed; inset: 0; z-index: 900; background: rgba(3, 22, 32, 0.55);
+  backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center;
+  padding: 24px; animation: svtFade .14s ease both;
+}
+.svt-modal {
+  position: relative;
+  background: var(--white); border: 1px solid var(--svt-border); border-radius: 16px;
+  box-shadow: var(--shadow-md); width: 100%; max-width: 680px; max-height: 88vh;
+  display: flex; flex-direction: column; overflow: hidden; animation: svtPop .16s ease both;
+}
+.svt-modal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px 18px; border-bottom: 1px solid var(--svt-divider); flex-shrink: 0;
+}
+.svt-modal-body { padding: 18px; overflow-y: auto; flex: 1; }
+.svt-modal-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 12px 18px; border-top: 1px solid var(--svt-divider); flex-shrink: 0; background: var(--svt-chip-bg);
+}
+@keyframes svtFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes svtPop { from { opacity: 0; transform: translateY(8px) scale(.99) } to { opacity: 1; transform: none } }
+
+/* Fältetikett — gör formuläret läsbart som ett formulär istället för en
+   hög med rutor med platshållartext. */
+.svt-field-label {
+  display: block; margin: 0 0 5px; font-size: 11.5px; font-weight: 700;
+  color: var(--txt2); text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* Färgrutor */
+.svt-swatch {
+  border-radius: 7px; border: 2px solid transparent; cursor: pointer; padding: 0;
+  box-shadow: 0 0 0 1px var(--svt-border) inset; transition: transform .1s ease;
+}
+.svt-swatch:hover { transform: scale(1.12); }
+.svt-swatch.picked { border-color: var(--txt); transform: scale(1.12); }
+.svt-swatch.none {
+  background: var(--svt-chip-bg);
+  background-image: linear-gradient(45deg, transparent 44%, var(--red) 44%, var(--red) 56%, transparent 56%);
+}
+
+/* Anteckningar i läsläge — ser ut som text, inte som ett ifyllt fält.
+   Hela ytan går att klicka för att börja redigera. */
+.svt-notes {
+  font-size: 13.5px; line-height: 1.6; color: var(--txt); white-space: pre-wrap;
+  word-break: break-word; padding: 9px 11px; margin: 0 -11px; border-radius: 9px;
+  cursor: text; transition: background .12s;
+}
+.svt-notes:hover { background: var(--svt-chip-bg); }
+
+/* Bekräfta radering — röd och tydlig, men bara två klick bort. */
+.svt-confirm-del {
+  border: none; border-radius: 7px; cursor: pointer; padding: 0 9px; height: 26px;
+  background: var(--red); color: #fff; font-size: 11.5px; font-weight: 700; white-space: nowrap;
+}
+.svt-confirm-del:hover { filter: brightness(1.08); }
+
+/* Färgprick i rubrikraden — fäller ut färgväljaren först när man vill. */
+.svt-colordot {
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer; padding: 0;
+  background: transparent; border: 2px dashed var(--svt-border-strong);
+  transition: transform .12s ease, border-color .12s ease;
+}
+.svt-colordot:hover, .svt-colordot.open { transform: scale(1.1); border-style: solid; border-color: var(--sea); }
+
+.svt-drop-overlay {
+  position: absolute; inset: 0; z-index: 5; border-radius: 16px;
+  background: var(--white); border: 2px dashed var(--sea);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  font-size: 13.5px; font-weight: 600; color: var(--sea); pointer-events: none;
+}
+
+.svt-dropzone {
+  border: 1.5px dashed var(--svt-border-strong); border-radius: 12px; padding: 26px 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center;
+  color: var(--txt2); font-size: 12.5px; cursor: pointer; transition: border-color .12s, background .12s;
+}
+.svt-dropzone.slim { padding: 12px; flex-direction: row; justify-content: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--txt3); }
+.svt-dropzone:hover, .svt-dropzone.over { border-color: var(--sea); background: var(--svt-tint-bg); }
+
+.svt-img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.svt-img-cell { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--svt-border); background: var(--svt-chip-bg); }
+.svt-img-cell img { display: block; width: 100%; height: 150px; object-fit: cover; cursor: zoom-in; }
+.svt-img-skeleton { width: 100%; height: 150px; background: var(--svt-chip-bg); }
+.svt-img-remove {
+  position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 7px;
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  background: rgba(3, 22, 32, 0.62); color: #fff; opacity: 0; transition: opacity .12s;
+}
+.svt-img-cell:hover .svt-img-remove { opacity: 1; }
+.svt-img-remove:hover { background: var(--red); }
+
+.svt-lightbox {
+  position: fixed; inset: 0; z-index: 950; background: rgba(3, 22, 32, 0.88);
+  display: flex; align-items: center; justify-content: center; padding: 32px; cursor: zoom-out;
+  animation: svtFade .12s ease both;
+}
+.svt-lightbox img { max-width: 100%; max-height: 100%; border-radius: 10px; cursor: default; }
+.svt-lightbox-close { position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.14); color: #fff; }
 .svt-chip {
   display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
   font-size: 12px; font-weight: 600; color: var(--txt2); background: var(--svt-chip-bg);
@@ -377,6 +605,14 @@ const GLOBAL_CSS = `
   /* Tumme-vänliga tap-ytor — 26px är för litet för finger på en skärm. */
   .svt-avbtn { width: 32px !important; height: 32px !important; font-size: 12px !important; }
   .svt-iconbtn { width: 34px !important; height: 34px !important; }
+  /* Detaljvyn tar hela skärmen på mobil — en centrerad ruta med marginal
+     äter för mycket yta när man ska granska en skärmdump. */
+  .svt-modal-backdrop { padding: 0; }
+  .svt-modal { max-width: none; max-height: none; height: 100%; border-radius: 0; border: none; }
+  .svt-img-cell img, .svt-img-skeleton { height: 190px; }
+  /* Ta bort-knappen syns alltid — det finns ingen hover på touch. */
+  .svt-img-remove { opacity: 1; }
+  .svt-lightbox { padding: 12px; }
 }
 `
 
@@ -390,7 +626,7 @@ export default function TeamDashboardClient({
   initialPrompts,
   initialActivity,
 }: {
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   teamMembers: TeamMember[]
   initialProjects: Project[]
   initialTasks: Task[]
@@ -444,17 +680,27 @@ export default function TeamDashboardClient({
   }, [])
 
   // ── CRUD: tasks ───────────────────────────────────────────────────────────
+  // Returnerar id:t på den skapade uppgiften — formuläret behöver det för att
+  // kunna ladda upp bilder som valdes innan uppgiften fanns.
   const createTask = useCallback(async (input: {
-    title: string; project_id: string | null; assignee_id: string | null
+    title: string; description: string | null; project_id: string | null; assignee_id: string | null
     priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
-  }) => {
+    color: string | null
+  }): Promise<string | null> => {
     const { data, error } = await supabase
       .from('team_tasks')
       .insert({ ...input, created_by: currentUser.id, status: 'todo' as TaskStatus })
       .select()
       .single()
-    if (!error && data) setTasks(prev => [data as Task, ...prev])
+    if (error || !data) return null
+    setTasks(prev => [data as Task, ...prev])
+    return (data as Task).id
   }, [supabase, currentUser.id])
+
+  const updateTask = useCallback(async (id: string, patch: TaskPatch) => {
+    setTasks(prev => prev.map(t => t.id === id ? { ...t, ...patch } : t))
+    await supabase.from('team_tasks').update(patch).eq('id', id)
+  }, [supabase])
 
   const updateTaskStatus = useCallback(async (id: string, status: TaskStatus) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, status } : t))
@@ -467,8 +713,51 @@ export default function TeamDashboardClient({
   }, [supabase])
 
   const deleteTask = useCallback(async (id: string) => {
+    // Läs bilagorna först — annars blir filerna kvar i bucketen för alltid
+    // när raden är borta, utan något som pekar på dem.
+    const { data } = await supabase.from('team_tasks').select('images').eq('id', id).single()
+    const paths = (((data?.images as TaskImage[]) ?? [])).map(im => im.path)
+
     setTasks(prev => prev.filter(t => t.id !== id))
     await supabase.from('team_tasks').delete().eq('id', id)
+    if (paths.length) await supabase.storage.from('team-attachments').remove(paths)
+  }, [supabase])
+
+  // ── Bildbilagor ───────────────────────────────────────────────────────────
+  // Buggbilder låg tidigare i en WhatsApp-tråd; nu hänger de på uppgiften.
+  // Bucketen är privat, så vi sparar sökvägen och signerar URL:en vid visning.
+  const addTaskImages = useCallback(async (taskId: string, files: File[]): Promise<string | null> => {
+    if (!files.length) return null
+    const uploaded: TaskImage[] = []
+
+    for (const raw of files) {
+      const { file, w, h } = await compressImage(raw)
+      const path = `${taskId}/${crypto.randomUUID()}.jpg`
+      const { error } = await supabase.storage
+        .from('team-attachments')
+        .upload(path, file, { contentType: 'image/jpeg', upsert: false })
+      if (error) return `Kunde inte ladda upp ${raw.name}: ${error.message}`
+      uploaded.push({ path, name: raw.name, w, h, by: currentUser.id, at: new Date().toISOString() })
+    }
+
+    // Läs aktuell lista från servern först — Tom och Max kan ladda upp
+    // samtidigt, och en blind överskrivning hade tappat den andres bilder.
+    const { data: fresh } = await supabase.from('team_tasks').select('images').eq('id', taskId).single()
+    const next = [ ...(((fresh?.images as TaskImage[]) ?? [])), ...uploaded ]
+
+    const { error: upErr } = await supabase.from('team_tasks').update({ images: next }).eq('id', taskId)
+    if (upErr) return `Bilden laddades upp men kunde inte kopplas till uppgiften: ${upErr.message}`
+
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, images: next } : t))
+    return null
+  }, [supabase, currentUser.id])
+
+  const removeTaskImage = useCallback(async (taskId: string, path: string) => {
+    const { data: fresh } = await supabase.from('team_tasks').select('images').eq('id', taskId).single()
+    const next = (((fresh?.images as TaskImage[]) ?? [])).filter(im => im.path !== path)
+    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, images: next } : t))
+    await supabase.from('team_tasks').update({ images: next }).eq('id', taskId)
+    await supabase.storage.from('team-attachments').remove([path])
   }, [supabase])
 
   // ── CRUD: prompts ─────────────────────────────────────────────────────────
@@ -617,7 +906,7 @@ export default function TeamDashboardClient({
                   display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10.5, fontWeight: 700,
                   border: m.id === currentUser.id ? '2px solid rgba(255,255,255,0.6)' : '2px solid transparent',
                 }}>
-                  {initials(m.username)}
+                  {memberInitials(m)}
                 </div>
               ))}
               <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Tom &amp; Max</span>
@@ -704,6 +993,10 @@ export default function TeamDashboardClient({
                 onStatusChange={updateTaskStatus}
                 onAssigneeChange={updateTaskAssignee}
                 onDelete={deleteTask}
+                onAddImages={addTaskImages}
+                onRemoveImage={removeTaskImage}
+                onUpdate={updateTask}
+                supabase={supabase}
               />
             )}
 
@@ -775,7 +1068,7 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
             onClick={() => onChange(picked ? null : m.id)}
             style={{ width: size, height: size, background: avatarColor(m.id), fontSize: size * 0.42 }}
           >
-            {initials(m.username)}
+            {memberInitials(m)}
           </button>
         )
       })}
@@ -787,45 +1080,78 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
 
 type AssigneeFilter = 'all' | 'me' | 'unassigned' | string
 
-function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete }: {
+function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete, onAddImages, onRemoveImage, onUpdate, supabase }: {
   tasks: Task[]
   projects: Project[]
   projectById: Map<string, Project>
   memberById: Map<string, TeamMember>
   teamMembers: TeamMember[]
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   onCreate: (input: {
-    title: string; project_id: string | null; assignee_id: string | null
+    title: string; description: string | null; project_id: string | null; assignee_id: string | null
     priority: TaskPriority; due_date: string | null; pr_url: string | null; prompt: string | null
-  }) => void
+    color: string | null
+  }) => Promise<string | null>
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
+  onAddImages: (taskId: string, files: File[]) => Promise<string | null>
+  onRemoveImage: (taskId: string, path: string) => void
+  onUpdate: (id: string, patch: TaskPatch) => void
+  supabase: TeamSupabase
 }) {
   const [showForm, setShowForm] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+  const [openTaskId, setOpenTaskId] = useState<string | null>(null)
   const [title, setTitle] = useState('')
+  const [notes, setNotes] = useState('')
   const [projectId, setProjectId] = useState('')
   const [assigneeId, setAssigneeId] = useState<string | null>(null)
   const [priority, setPriority] = useState<TaskPriority>('normal')
   const [dueDate, setDueDate] = useState('')
   const [prUrl, setPrUrl] = useState('')
   const [prompt, setPrompt] = useState('')
+  const [color, setColor] = useState<string | null>(null)
   const [assigneeFilter, setAssigneeFilter] = useState<AssigneeFilter>('all')
+  // Bilder valda innan uppgiften finns — laddas upp direkt efter att den
+  // skapats, eftersom lagringssökvägen bygger på uppgiftens id.
+  const [pendingFiles, setPendingFiles] = useState<File[]>([])
+  const [saving, setSaving] = useState(false)
+  const newFileInput = useRef<HTMLInputElement>(null)
+  const [dragNew, setDragNew] = useState(false)
 
-  function submit() {
-    if (!title.trim()) return
-    onCreate({
+  function resetForm() {
+    setTitle(''); setNotes(''); setProjectId(''); setAssigneeId(null); setPriority('normal')
+    setDueDate(''); setPrUrl(''); setPrompt(''); setColor(null); setPendingFiles([])
+    setShowDetails(false); setShowForm(false)
+  }
+
+  // Förhandsvisning av ännu ej uppladdade bilder. Skapas en gång per lista
+  // och återkallas när listan byts ut — annars läcker en blob-URL per
+  // omritning och bilden flimrar till varje gång formuläret renderas om.
+  const pendingPreviews = useMemo(
+    () => pendingFiles.map(f => URL.createObjectURL(f)),
+    [pendingFiles]
+  )
+  useEffect(() => () => { pendingPreviews.forEach(URL.revokeObjectURL) }, [pendingPreviews])
+
+  async function submit() {
+    if (!title.trim() || saving) return
+    setSaving(true)
+    const newId = await onCreate({
       title: title.trim(),
+      description: notes.trim() || null,
       project_id: projectId || null,
       assignee_id: assigneeId,
       priority,
       due_date: dueDate || null,
       pr_url: prUrl.trim() || null,
       prompt: prompt.trim() || null,
+      color,
     })
-    setTitle(''); setProjectId(''); setAssigneeId(null); setPriority('normal')
-    setDueDate(''); setPrUrl(''); setPrompt(''); setShowDetails(false); setShowForm(false)
+    if (newId && pendingFiles.length) await onAddImages(newId, pendingFiles)
+    setSaving(false)
+    resetForm()
   }
 
   const visibleTasks = tasks.filter(t => {
@@ -842,6 +1168,10 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
     (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
   )
 
+  // Hämtas ur tasks (inte sparad i state) så detaljvyn uppdateras direkt när
+  // en bild läggs till eller status ändras, även om Max gör det samtidigt.
+  const openTask = openTaskId ? tasks.find(t => t.id === openTaskId) ?? null : null
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
@@ -855,7 +1185,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           <button className={`svt-chip${assigneeFilter === 'me' ? ' active' : ''}`} onClick={() => setAssigneeFilter('me')}>Mina</button>
           {teamMembers.filter(m => m.id !== currentUser.id).map(m => (
             <button key={m.id} className={`svt-chip${assigneeFilter === m.id ? ' active' : ''}`} onClick={() => setAssigneeFilter(m.id)}>
-              {m.username}s
+              {m.username}
             </button>
           ))}
           <button className={`svt-chip${assigneeFilter === 'unassigned' ? ' active' : ''}`} onClick={() => setAssigneeFilter('unassigned')}>Otilldelat</button>
@@ -863,8 +1193,29 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
       </div>
 
       {showForm && (
-        <div style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+        <div
+          data-newtask-form
+          style={{ ...surface, padding: 16, marginBottom: 18, display: 'flex', flexDirection: 'column', gap: 12, borderLeft: color ? `4px solid ${color}` : undefined }}
+          onPaste={e => {
+            const files = imageFilesFrom(e.clipboardData?.items ?? null)
+            if (files.length) { e.preventDefault(); setPendingFiles(prev => [...prev, ...files]) }
+          }}
+        >
+          <div>
+            <label className="svt-field-label">Rubrik</label>
+            <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Vad ska göras?" className="svt-input" style={{ ...inputStyle, fontSize: 14, fontWeight: 500 }} autoFocus />
+          </div>
+
+          <div>
+            <label className="svt-field-label">Anteckningar</label>
+            <textarea
+              value={notes} onChange={e => setNotes(e.target.value)}
+              placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
+              rows={3} className="svt-input"
+              style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }}
+            />
+          </div>
+
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             <select value={projectId} onChange={e => setProjectId(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}>
               <option value="">Inget projekt</option>
@@ -877,12 +1228,73 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
             </select>
             <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '2px 2px' }}>
-            <span style={{ fontSize: 12, color: 'var(--txt3)', fontWeight: 600 }}>Delegera till:</span>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <span className="svt-field-label" style={{ margin: 0 }}>Färg</span>
+            <ColorPicker value={color} onChange={setColor} />
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <span className="svt-field-label" style={{ margin: 0 }}>Delegera till</span>
             <AssigneePicker teamMembers={teamMembers} value={assigneeId} onChange={setAssigneeId} size={28} />
             {assigneeId && (
               <span style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>{memberById.get(assigneeId)?.username}</span>
             )}
+          </div>
+
+          {/* Bilder — synligt direkt, inte gömt bakom en knapp. Det var
+              hela poängen med att flytta hit buggrapporterna. */}
+          <div>
+            <label className="svt-field-label">Bilder</label>
+            {pendingFiles.length > 0 && (
+              <div className="svt-img-grid" style={{ marginBottom: 8 }}>
+                {pendingFiles.map((f, i) => (
+                  <div key={`${f.name}-${i}`} className="svt-img-cell">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={pendingPreviews[i]} alt={f.name} />
+                    <button
+                      className="svt-img-remove" title="Ta bort"
+                      onClick={() => setPendingFiles(prev => prev.filter((_, j) => j !== i))}
+                    >
+                      <IcoClose size={13} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div
+              className={`svt-dropzone${pendingFiles.length ? ' slim' : ''}${dragNew ? ' over' : ''}`}
+              onClick={() => newFileInput.current?.click()}
+              onDragOver={e => { e.preventDefault(); setDragNew(true) }}
+              onDragLeave={() => setDragNew(false)}
+              onDrop={e => {
+                e.preventDefault(); setDragNew(false)
+                // Läs ut filerna direkt. React kör state-uppdateraren senare,
+                // och då är dataTransfer redan tömd av webbläsaren.
+                const files = imageFilesFrom(e.dataTransfer.files)
+                setPendingFiles(prev => [...prev, ...files])
+              }}
+            >
+              {pendingFiles.length ? (
+                <><IcoPlus color="var(--txt3)" /><span>Dra hit fler, eller klistra in med ⌘V</span></>
+              ) : (
+                <>
+                  <IcoImage size={22} color="var(--txt3)" />
+                  <span style={{ fontWeight: 600 }}>Dra hit en bild, klistra in med ⌘V, eller klicka</span>
+                  <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Skärmdump på buggen — laddas upp när uppgiften skapas</span>
+                </>
+              )}
+            </div>
+            <input
+              ref={newFileInput} type="file" accept="image/*" multiple hidden
+              onChange={e => {
+                // Samma sak här: fillistan måste läsas ut innan inputen
+                // nollställs, annars ser den lata uppdateraren en tom lista.
+                const files = imageFilesFrom(e.target.files)
+                setPendingFiles(prev => [...prev, ...files])
+                e.target.value = ''
+              }}
+            />
           </div>
 
           {!showDetails ? (
@@ -905,9 +1317,16 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
             </div>
           )}
 
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={submit} className="svt-btn-primary" style={btnPrimary}>Skapa uppgift</button>
-            <button onClick={() => { setShowForm(false); setShowDetails(false) }} style={btnGhost}>Avbryt</button>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <button onClick={submit} disabled={!title.trim() || saving} className="svt-btn-primary" style={{ ...btnPrimary, opacity: !title.trim() || saving ? 0.5 : 1 }}>
+              {saving ? 'Skapar…' : 'Skapa uppgift'}
+            </button>
+            <button onClick={resetForm} style={btnGhost}>Avbryt</button>
+            {pendingFiles.length > 0 && (
+              <span style={{ fontSize: 11.5, color: 'var(--txt3)' }}>
+                {pendingFiles.length} bild{pendingFiles.length === 1 ? '' : 'er'} bifogas
+              </span>
+            )}
           </div>
         </div>
       )}
@@ -942,18 +1361,28 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           </div>
         )}
 
-        {orderedTasks.map((task, i) => (
-          <div key={task.id} style={{ gridColumn: STATUS_ORDER.indexOf(task.status) + 1, gridRow: i + 2 }}>
-            <TaskCard
-              task={task}
-              project={task.project_id ? projectById.get(task.project_id) : undefined}
-              teamMembers={teamMembers}
-              onStatusChange={onStatusChange}
-              onAssigneeChange={onAssigneeChange}
-              onDelete={onDelete}
-            />
-          </div>
-        ))}
+        {orderedTasks.map((task, i) => {
+          const rowIdx = i + 2
+          return (
+            <Fragment key={task.id}>
+              {/* Ett svagt band över hela raden — knyter ihop uppgiftens rad
+                  visuellt så kortet inte ser ut att sväva ensamt i ett tomt
+                  fält, utan att lägga till tre tomma rutor per rad. */}
+              <div className="svt-swim-band" style={{ gridColumn: '1 / -1', gridRow: rowIdx }} />
+              <div style={{ gridColumn: STATUS_ORDER.indexOf(task.status) + 1, gridRow: rowIdx }}>
+                <TaskCard
+                  task={task}
+                  project={task.project_id ? projectById.get(task.project_id) : undefined}
+                  teamMembers={teamMembers}
+                  onStatusChange={onStatusChange}
+                  onAssigneeChange={onAssigneeChange}
+                  onDelete={onDelete}
+                  onOpen={() => setOpenTaskId(task.id)}
+                />
+              </div>
+            </Fragment>
+          )
+        })}
       </div>
 
       {/* Mobil: 4 fasta kolumner + en rad per uppgift blir för trångt för att
@@ -992,6 +1421,7 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
                     onStatusChange={onStatusChange}
                     onAssigneeChange={onAssigneeChange}
                     onDelete={onDelete}
+                    onOpen={() => setOpenTaskId(task.id)}
                   />
                 ))}
               </div>
@@ -999,22 +1429,83 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
           )
         })}
       </div>
+
+      {openTask && (
+        <TaskDetail
+          task={openTask}
+          project={openTask.project_id ? projectById.get(openTask.project_id) : undefined}
+          projects={projects}
+          memberById={memberById}
+          teamMembers={teamMembers}
+          supabase={supabase}
+          onClose={() => setOpenTaskId(null)}
+          onStatusChange={onStatusChange}
+          onAssigneeChange={onAssigneeChange}
+          onAddImages={onAddImages}
+          onRemoveImage={onRemoveImage}
+          onUpdate={onUpdate}
+        />
+      )}
     </div>
   )
 }
 
-function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange, onDelete }: {
+/** Färgväljare — fasta rutor istället för en råfärgsväljare, så att
+ *  färgerna betyder samma sak mellan uppgifter och ser konsekventa ut. */
+function ColorPicker({ value, onChange, size = 22 }: {
+  value: string | null
+  onChange: (c: string | null) => void
+  size?: number
+}) {
+  return (
+    <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', alignItems: 'center' }}>
+      <button
+        type="button"
+        className={`svt-swatch none${value === null ? ' picked' : ''}`}
+        style={{ width: size, height: size }}
+        onClick={() => onChange(null)}
+        title="Ingen färg"
+      />
+      {TASK_COLORS.map(c => (
+        <button
+          key={c.value}
+          type="button"
+          className={`svt-swatch${value === c.value ? ' picked' : ''}`}
+          style={{ width: size, height: size, background: c.value }}
+          onClick={() => onChange(value === c.value ? null : c.value)}
+          title={c.label}
+        />
+      ))}
+    </div>
+  )
+}
+
+function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange, onDelete, onOpen }: {
   task: Task
   project?: Project
   teamMembers: TeamMember[]
   onStatusChange: (id: string, status: TaskStatus) => void
   onAssigneeChange: (id: string, assignee_id: string | null) => void
   onDelete: (id: string) => void
+  onOpen: () => void
 }) {
   const [showPrompt, setShowPrompt] = useState(false)
   const [copied, setCopied] = useState(false)
+  // Radering är oåterkallelig och tar bilagorna med sig — kräver två klick.
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
   const idx = STATUS_ORDER.indexOf(task.status)
+  const imageCount = task.images?.length ?? 0
+  // Uppgiftens egen färg vinner över projektfärgen — den är mer specifik.
+  const accent = task.color ?? project?.color ?? null
+
+  // Låt inte kortet stå kvar i "redo att radera" — då ligger en röd knapp
+  // och väntar på ett slarvigt klick långt senare.
+  useEffect(() => {
+    if (!confirmDelete) return
+    const t = setTimeout(() => setConfirmDelete(false), 5000)
+    return () => clearTimeout(t)
+  }, [confirmDelete])
 
   async function copyPrompt() {
     if (!task.prompt) return
@@ -1025,13 +1516,44 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
     } catch { /* no-op */ }
   }
 
+  // Kortet i sin helhet öppnar uppgiften. Knappar/länkar inuti stoppar
+  // bubblingen, annars hade ett klick på t.ex. "ta bort" också öppnat vyn.
+  const stop = (e: React.MouseEvent) => e.stopPropagation()
+
   return (
-    <div className="svt-card" style={{ ...surface, padding: 14, borderLeft: project ? `3px solid ${project.color}` : undefined }}>
+    <div
+      className="svt-card svt-card-open"
+      style={{ ...surface, padding: 14, borderLeft: accent ? `3px solid ${accent}` : undefined }}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onOpen() } }}
+    >
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
         <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.4 }}>{task.title}</div>
-        <button className="svt-iconbtn danger" onClick={() => onDelete(task.id)} title="Ta bort" style={{ flexShrink: 0 }}>
-          <IcoTrash />
-        </button>
+        {confirmDelete ? (
+          <div style={{ display: 'flex', gap: 3, flexShrink: 0 }} onClick={stop}>
+            <button
+              className="svt-confirm-del"
+              onClick={e => { stop(e); onDelete(task.id) }}
+              title="Ja, ta bort uppgiften och dess bilder"
+            >
+              Ta bort
+            </button>
+            <button className="svt-iconbtn" onClick={e => { stop(e); setConfirmDelete(false) }} title="Avbryt">
+              <IcoClose size={13} />
+            </button>
+          </div>
+        ) : (
+          <button
+            className="svt-iconbtn danger"
+            onClick={e => { stop(e); setConfirmDelete(true) }}
+            title="Ta bort"
+            style={{ flexShrink: 0 }}
+          >
+            <IcoTrash />
+          </button>
+        )}
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9, flexWrap: 'wrap' }}>
@@ -1052,41 +1574,51 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
           </span>
         )}
         {task.pr_url && (
-          <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip">
+          <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip" onClick={stop}>
             <IcoLink /> {hostFromUrl(task.pr_url)}
           </a>
         )}
         {task.prompt && (
-          <button className="svt-link-chip" onClick={() => setShowPrompt(v => !v)}>
+          <button className="svt-link-chip" onClick={e => { stop(e); setShowPrompt(v => !v) }}>
             <IcoPrompt color="currentColor" /> Prompt
           </button>
+        )}
+        {imageCount > 0 && (
+          <span className="svt-link-chip" title={`${imageCount} bild${imageCount === 1 ? '' : 'er'}`}>
+            <IcoImage /> {imageCount}
+          </span>
+        )}
+        {task.description && (
+          <span className="svt-link-chip" title="Har anteckningar">
+            <IcoNote /> Anteckning
+          </span>
         )}
       </div>
 
       {task.prompt && showPrompt && (
-        <div>
+        <div onClick={stop}>
           <pre className="svt-prompt-box">{task.prompt}</pre>
-          <button onClick={copyPrompt} className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '4px 8px', fontSize: 11, fontWeight: 600 }}>
+          <button onClick={e => { stop(e); copyPrompt() }} className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '4px 8px', fontSize: 11, fontWeight: 600 }}>
             {copied ? <><IcoCheck color="var(--green)" /> Kopierad</> : <><IcoCopy /> Kopiera prompt</>}
           </button>
         </div>
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--svt-divider)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }} onClick={stop}>
           <span style={{ fontSize: 10.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
           <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} />
         </div>
 
         <div style={{ display: 'flex', gap: 4 }}>
           {idx > 0 && (
-            <button className="svt-iconbtn" onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`}>
+            <button className="svt-iconbtn" onClick={e => { stop(e); onStatusChange(task.id, STATUS_ORDER[idx - 1]!) }} title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx - 1]!]}`}>
               <IcoChevron dir="left" />
             </button>
           )}
           {idx < STATUS_ORDER.length - 1 && (
             <button
-              onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}
+              onClick={e => { stop(e); onStatusChange(task.id, STATUS_ORDER[idx + 1]!) }}
               title={`Flytta till ${STATUS_LABEL[STATUS_ORDER[idx + 1]!]}`}
               className="svt-btn-primary"
               style={{ width: 26, height: 26, borderRadius: 7, border: 'none', background: 'var(--sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
@@ -1097,6 +1629,382 @@ function TaskCard({ task, project, teamMembers, onStatusChange, onAssigneeChange
         </div>
       </div>
     </div>
+  )
+}
+
+// ── Detaljvy: uppgiften i stort format, med bildbilagor ─────────────────────
+// Ersätter WhatsApp-flödet: en buggskärmdump hör hemma på uppgiften, inte i
+// en chatt. Tavlans layout är oförändrad — det här ligger ovanpå.
+
+function TaskDetail({
+  task, project, projects, memberById, teamMembers, supabase,
+  onClose, onStatusChange, onAssigneeChange, onAddImages, onRemoveImage, onUpdate,
+}: {
+  task: Task
+  project?: Project
+  projects: Project[]
+  memberById: Map<string, TeamMember>
+  teamMembers: TeamMember[]
+  supabase: TeamSupabase
+  onClose: () => void
+  onStatusChange: (id: string, status: TaskStatus) => void
+  onAssigneeChange: (id: string, assignee_id: string | null) => void
+  onAddImages: (taskId: string, files: File[]) => Promise<string | null>
+  onRemoveImage: (taskId: string, path: string) => void
+  onUpdate: (id: string, patch: TaskPatch) => void
+}) {
+  const [urls, setUrls] = useState<Record<string, string>>({})
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [dragOver, setDragOver] = useState(false)
+  const [lightbox, setLightbox] = useState<string | null>(null)
+  const fileInput = useRef<HTMLInputElement>(null)
+  // Detaljvyn är i första hand en läsvy — att redigera ska vara ett aktivt
+  // val, inte det man landar i så fort man öppnar en uppgift.
+  const [notes, setNotes] = useState(task.description ?? '')
+  const [editingNotes, setEditingNotes] = useState(false)
+  const [showColors, setShowColors] = useState(false)
+  const [editingMeta, setEditingMeta] = useState(false)
+
+  // notes lästes bara in när vyn öppnades. Ändrades anteckningen därefter —
+  // av Max via realtid, eller av en tidigare sparning i samma öppna vy — låg
+  // en inaktuell text kvar i fältet och skrev över den nyare vid nästa Spara.
+  // Text hann försvinna på det sättet. Synka om när vi inte står och skriver;
+  // medan man skriver rör vi inte fältet.
+  useEffect(() => {
+    if (!editingNotes) setNotes(task.description ?? '')
+  }, [task.description, editingNotes])
+
+  const images = useMemo(() => task.images ?? [], [task.images])
+  const idx = STATUS_ORDER.indexOf(task.status)
+  const assignee = task.assignee_id ? memberById.get(task.assignee_id) : undefined
+  const overdue = task.due_date && task.status !== 'done' && new Date(task.due_date) < new Date(new Date().toDateString())
+
+  // Privat bucket → varje bild behöver en signerad URL. `requested` gör att en
+  // sökväg bara signeras en gång; utan den hade en bild som misslyckas att
+  // signeras försökt om i all oändlighet (effekten kör om när urls ändras).
+  const requested = useRef<Set<string>>(new Set())
+  useEffect(() => {
+    const missing = images.map(im => im.path).filter(p => !requested.current.has(p))
+    if (!missing.length) return
+    missing.forEach(p => requested.current.add(p))
+    let alive = true
+    // 8 timmar, inte 1 — en detaljvy som stått öppen över lunchen ska inte
+    // visa trasiga bilder när man kommer tillbaka.
+    supabase.storage.from('team-attachments').createSignedUrls(missing, 28800).then(({ data }) => {
+      if (!alive || !data) return
+      const next: Record<string, string> = {}
+      for (const row of data) if (row.path && row.signedUrl) next[row.path] = row.signedUrl
+      setUrls(prev => ({ ...prev, ...next }))
+    })
+    return () => { alive = false }
+  }, [images, supabase])
+
+  const upload = useCallback(async (files: File[]) => {
+    if (!files.length) return
+    setBusy(true); setError(null)
+    const err = await onAddImages(task.id, files)
+    if (err) setError(err)
+    setBusy(false)
+  }, [onAddImages, task.id])
+
+  // Esc stänger, och Cmd+V klistrar in en skärmdump direkt — det är så här
+  // en bugg faktiskt fångas: skärmdump, växla till tavlan, klistra in.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { if (lightbox) setLightbox(null); else onClose() }
+    }
+    const onPaste = (e: ClipboardEvent) => {
+      // Om markören står i "ny uppgift"-formuläret bakom modalen äger det
+      // inklistringen — annars hade bilden hamnat på båda ställena.
+      const target = e.target as HTMLElement | null
+      if (target?.closest?.('[data-newtask-form]')) return
+      const files = imageFilesFrom(e.clipboardData?.items ?? null)
+      if (files.length) { e.preventDefault(); upload(files) }
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('paste', onPaste)
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('paste', onPaste)
+      document.body.style.overflow = prevOverflow
+    }
+  }, [onClose, upload, lightbox])
+
+  return (
+    <>
+      <div className="svt-modal-backdrop" onClick={onClose}>
+        <div
+          className="svt-modal"
+          onClick={e => e.stopPropagation()}
+          onDragOver={e => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={() => setDragOver(false)}
+          onDrop={e => {
+            e.preventDefault(); setDragOver(false)
+            upload(imageFilesFrom(e.dataTransfer.files))
+          }}
+        >
+          {/* Uppgiftens färg som topplist — samma signal som kortets kant */}
+          {task.color && <div style={{ height: 4, background: task.color, flexShrink: 0 }} />}
+
+          {/* Släppyta syns bara medan man drar — ingen permanent ruta */}
+          {dragOver && (
+            <div className="svt-drop-overlay">
+              <IcoImage size={26} color="var(--sea)" />
+              <span>Släpp för att lägga till bilden</span>
+            </div>
+          )}
+
+          {/* Rubrik */}
+          <div className="svt-modal-head">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: STATUS_ACCENT[task.status], flexShrink: 0 }} />
+              <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                {STATUS_LABEL[task.status]}
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              <button
+                className={`svt-colordot${showColors ? ' open' : ''}`}
+                onClick={() => setShowColors(v => !v)}
+                title="Färg"
+                style={task.color ? { background: task.color, borderColor: task.color } : undefined}
+              />
+              <button className="svt-iconbtn" onClick={onClose} title="Stäng (Esc)">
+                <IcoClose />
+              </button>
+            </div>
+          </div>
+
+          {/* Färgväljaren fälls ut på begäran — annars ligger det en rad
+              redigeringskontroller framme så fort man öppnat en uppgift. */}
+          {showColors && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 18px', borderBottom: '1px solid var(--svt-divider)', flexWrap: 'wrap' }}>
+              <span className="svt-field-label" style={{ margin: 0 }}>Färg</span>
+              <ColorPicker value={task.color} onChange={c => onUpdate(task.id, { color: c })} size={24} />
+            </div>
+          )}
+
+          <div className="svt-modal-body">
+            <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px', lineHeight: 1.3 }}>
+              {task.title}
+            </h2>
+
+            {/* Metadata */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 18 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: PRIORITY_COLOR[task.priority], background: 'var(--svt-chip-bg)', padding: '3px 9px', borderRadius: 6 }}>
+                {PRIORITY_LABEL[task.priority]}
+              </span>
+              {project && (
+                <span style={{ fontSize: 11, fontWeight: 600, color: project.color, background: `${project.color}14`, padding: '3px 9px', borderRadius: 6 }}>
+                  {project.name}
+                </span>
+              )}
+              {task.due_date && (
+                <span style={{
+                  fontSize: 11, fontWeight: overdue ? 700 : 500, color: overdue ? 'var(--red)' : 'var(--txt3)',
+                  background: 'var(--svt-chip-bg)', padding: '3px 9px', borderRadius: 6,
+                }}>
+                  {overdue ? '⚠ ' : ''}{new Date(task.due_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' })}
+                </span>
+              )}
+              {task.pr_url && (
+                <a href={task.pr_url} target="_blank" rel="noopener noreferrer" className="svt-link-chip">
+                  <IcoLink /> {hostFromUrl(task.pr_url)}
+                </a>
+              )}
+              <button className="svt-link-chip" onClick={() => setEditingMeta(v => !v)}>
+                {editingMeta ? 'Klar' : 'Ändra'}
+              </button>
+            </div>
+
+            {/* Prioritet, projekt och deadline går att ändra i efterhand —
+                annars måste en feltajmad eller felprioriterad uppgift skapas
+                om från början. Ändringar slår igenom direkt. */}
+            {editingMeta && (
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
+                <select
+                  value={task.priority}
+                  onChange={e => onUpdate(task.id, { priority: e.target.value as TaskPriority })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}
+                >
+                  <option value="low">Låg prioritet</option>
+                  <option value="normal">Normal prioritet</option>
+                  <option value="high">Hög prioritet</option>
+                </select>
+                <select
+                  value={task.project_id ?? ''}
+                  onChange={e => onUpdate(task.id, { project_id: e.target.value || null })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 130 }}
+                >
+                  <option value="">Inget projekt</option>
+                  {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+                </select>
+                <input
+                  type="date"
+                  value={task.due_date ?? ''}
+                  onChange={e => onUpdate(task.id, { due_date: e.target.value || null })}
+                  style={{ ...inputStyle, width: 'auto', flex: 1, minWidth: 140 }}
+                />
+              </div>
+            )}
+
+            {/* Anteckningar — visas som text. Redigering öppnas medvetet,
+                så att man inte landar i ett formulär när man bara vill läsa. */}
+            <div style={{ marginBottom: 18 }}>
+              <span className="svt-field-label">Anteckningar</span>
+              {editingNotes ? (
+                <>
+                  <textarea
+                    value={notes}
+                    onChange={e => setNotes(e.target.value)}
+                    placeholder="Fler instruktioner — steg för att återskapa buggen, var i appen det gäller, vad som ska hända…"
+                    rows={5} className="svt-input" autoFocus
+                    style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.55 }}
+                  />
+                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                    <button
+                      className="svt-btn-primary"
+                      style={{ ...btnPrimary, padding: '6px 12px', fontSize: 12.5 }}
+                      onClick={() => {
+                        const next = notes.trim() || null
+                        if (next !== (task.description ?? null)) onUpdate(task.id, { description: next })
+                        setEditingNotes(false)
+                      }}
+                    >
+                      Spara
+                    </button>
+                    <button
+                      style={{ ...btnGhost, padding: '6px 12px', fontSize: 12.5 }}
+                      onClick={() => { setNotes(task.description ?? ''); setEditingNotes(false) }}
+                    >
+                      Avbryt
+                    </button>
+                  </div>
+                </>
+              ) : task.description ? (
+                <div
+                  className="svt-notes"
+                  onClick={() => setEditingNotes(true)}
+                  title="Klicka för att redigera"
+                >
+                  {task.description}
+                </div>
+              ) : (
+                <button className="svt-link-chip" onClick={() => setEditingNotes(true)}>
+                  <IcoPlus color="currentColor" /> Lägg till anteckning
+                </button>
+              )}
+            </div>
+
+            {/* Bilder */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
+              <span className="svt-field-label" style={{ margin: 0 }}>
+                Bilder {images.length > 0 && <span style={{ color: 'var(--txt3)' }}>({images.length})</span>}
+              </span>
+              <button
+                className="svt-link-chip"
+                onClick={() => fileInput.current?.click()}
+                disabled={busy}
+                style={{ opacity: busy ? 0.5 : 1 }}
+                title="Du kan också dra hit en bild eller klistra in med ⌘V"
+              >
+                <IcoPlus color="currentColor" /> {busy ? 'Laddar upp…' : 'Lägg till'}
+              </button>
+              <input
+                ref={fileInput} type="file" accept="image/*" multiple hidden
+                onChange={e => { upload(imageFilesFrom(e.target.files)); e.target.value = '' }}
+              />
+            </div>
+
+            {error && (
+              <div style={{ fontSize: 12, color: 'var(--red)', background: 'rgba(239,68,68,0.1)', padding: '8px 10px', borderRadius: 8, marginBottom: 10 }}>
+                {error}
+              </div>
+            )}
+
+            {images.length === 0 ? (
+              <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '0 0 4px' }}>
+                Inga bilder än — dra hit en, klistra in med ⌘V, eller använd Lägg till.
+              </p>
+            ) : (
+              <div className="svt-img-grid">
+                {images.map(im => {
+                  const url = urls[im.path]
+                  return (
+                    <div key={im.path} className="svt-img-cell">
+                      {url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={url} alt={im.name ?? 'Bilaga'}
+                          onClick={() => setLightbox(url)}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="svt-img-skeleton" />
+                      )}
+                      <button
+                        className="svt-img-remove"
+                        title="Ta bort bild"
+                        onClick={() => onRemoveImage(task.id, im.path)}
+                      >
+                        <IcoClose size={13} />
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Prompt */}
+            {task.prompt && (
+              <div style={{ marginTop: 20 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                  Prompt
+                </span>
+                <pre className="svt-prompt-box" style={{ maxHeight: 240 }}>{task.prompt}</pre>
+              </div>
+            )}
+          </div>
+
+          {/* Fot: delegera + flytta i flödet */}
+          <div className="svt-modal-foot">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 11.5, color: 'var(--txt3)', fontWeight: 600 }}>Delegera:</span>
+              <AssigneePicker teamMembers={teamMembers} value={task.assignee_id} onChange={id => onAssigneeChange(task.id, id)} size={26} />
+              {assignee && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--sea)' }}>{assignee.username}</span>}
+            </div>
+            <div style={{ display: 'flex', gap: 6 }}>
+              {idx > 0 && (
+                <button className="svt-iconbtn" style={{ width: 'auto', gap: 5, padding: '6px 10px', fontSize: 12, fontWeight: 600 }}
+                  onClick={() => onStatusChange(task.id, STATUS_ORDER[idx - 1]!)}>
+                  <IcoChevron dir="left" /> {STATUS_LABEL[STATUS_ORDER[idx - 1]!]}
+                </button>
+              )}
+              {idx < STATUS_ORDER.length - 1 && (
+                <button className="svt-btn-primary" style={{ ...btnPrimary, padding: '7px 12px', fontSize: 12.5 }}
+                  onClick={() => onStatusChange(task.id, STATUS_ORDER[idx + 1]!)}>
+                  {STATUS_LABEL[STATUS_ORDER[idx + 1]!]} <IcoChevron dir="right" color="currentColor" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Fullstor visning — en mobilskärmdump måste kunna läsas */}
+      {lightbox && (
+        <div className="svt-lightbox" onClick={() => setLightbox(null)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={lightbox} alt="Bilaga i full storlek" onClick={e => e.stopPropagation()} />
+          <button className="svt-iconbtn svt-lightbox-close" onClick={() => setLightbox(null)} title="Stäng (Esc)">
+            <IcoClose size={20} />
+          </button>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -1235,7 +2143,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
   activity: Activity[]
   projects: Project[]
   memberById: Map<string, TeamMember>
-  currentUser: { id: string; username: string }
+  currentUser: { id: string; username: string; initials?: string | null }
   onPost: (message: string, project_id: string | null) => void
 }) {
   const [message, setMessage] = useState('')
@@ -1286,7 +2194,8 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
         <div style={{ ...surface, padding: '4px 16px' }}>
           {activity.map((a, i) => {
             const author = a.created_by ? memberById.get(a.created_by) : undefined
-            const authorName = author?.username ?? (a.created_by === currentUser.id ? currentUser.username : 'System')
+            const authorObj = author ?? (a.created_by === currentUser.id ? currentUser : undefined)
+            const authorName = authorObj?.username ?? 'System'
             return (
               <div key={a.id} style={{
                 display: 'flex', gap: 12, padding: '12px 0',
@@ -1305,7 +2214,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
                       width: 15, height: 15, borderRadius: '50%', background: author ? avatarColor(author.id) : 'var(--txt3)',
                       color: '#fff', fontSize: 8, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      {initials(authorName)}
+                      {authorObj ? memberInitials(authorObj) : initials(authorName)}
                     </span>
                     {authorName} · {relativeTime(a.created_at)}
                   </div>

@@ -61,7 +61,7 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  targetUserId,
  title: 'Ny följare ',
  body: `${me?.username ?? 'Någon'} börjar följa dig`,
- url: `/u/${me?.username ?? ''}`,
+ url: `/u/${encodeURIComponent(me?.username ?? '')}`,
  }),
  }).catch(() => {/* tyst */})
  }

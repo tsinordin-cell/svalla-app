@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import type { ForumSort } from '@/lib/forum'
 
 const TABS: { id: ForumSort; label: string }[] = [
@@ -11,19 +10,23 @@ const TABS: { id: ForumSort; label: string }[] = [
 
 interface Props {
   current: ForumSort
+  onChange: (s: ForumSort) => void
 }
 
-export default function ForumSortTabs({ current }: Props) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const sp = useSearchParams()
-
+/**
+ * Controlled — föräldern (ForumPostList) äger sorteringen och ordnar om
+ * lokalt. Tidigare navigerade tabbarna till ?sort=, vilket via searchParams
+ * tvingade dynamisk serverrendering av hela tråden (se ForumPostList.tsx).
+ * URL:en hålls i synk med replaceState så sorteringen går att dela.
+ */
+export default function ForumSortTabs({ current, onChange }: Props) {
   function setSort(s: ForumSort) {
-    const params = new URLSearchParams(sp?.toString() ?? '')
+    onChange(s)
+    const params = new URLSearchParams(window.location.search)
     if (s === 'aldst') params.delete('sort')
     else params.set('sort', s)
     const query = params.toString()
-    router.push(query ? `${pathname}?${query}` : pathname)
+    window.history.replaceState(null, '', query ? `${window.location.pathname}?${query}` : window.location.pathname)
   }
 
   return (

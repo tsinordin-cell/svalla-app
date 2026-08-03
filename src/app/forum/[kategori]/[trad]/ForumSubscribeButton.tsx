@@ -1,17 +1,19 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useForumViewer } from './ForumViewer'
 
 interface Props {
-  threadId:          string
-  initialSubscribed: boolean
-  currentUserId:     string | null
+  threadId: string
 }
 
-export default function ForumSubscribeButton({ threadId, initialSubscribed, currentUserId }: Props) {
-  const [subscribed, setSubscribed] = useState(initialSubscribed)
+/** Bevakningsstatus kommer från ForumViewerProvider — se ForumViewer.tsx. */
+export default function ForumSubscribeButton({ threadId }: Props) {
+  const { viewerId, isSubscribed, setIsSubscribed } = useForumViewer()
+  const [subscribed, setSubscribed] = useState(false)
   const [loading,    setLoading]    = useState(false)
+  useEffect(() => { setSubscribed(isSubscribed) }, [isSubscribed])
 
-  if (!currentUserId) return null
+  if (!viewerId) return null
 
   async function toggle() {
     if (loading) return
@@ -19,7 +21,7 @@ export default function ForumSubscribeButton({ threadId, initialSubscribed, curr
     try {
       const res  = await fetch(`/api/forum/subscribe/${threadId}`, { method: 'POST' })
       const data = await res.json()
-      if (res.ok) setSubscribed(data.subscribed)
+      if (res.ok) { setSubscribed(data.subscribed); setIsSubscribed(data.subscribed) }
     } catch {
       // tyst fel — state oförändrat
     } finally {

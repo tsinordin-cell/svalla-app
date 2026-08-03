@@ -290,7 +290,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       {/* ── 1. Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px 14px' }}>
         <Link
-          href={`/u/${username}`}
+          href={`/u/${encodeURIComponent(username)}`}
           onClick={e => e.stopPropagation()}
           style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', flex: 1, minWidth: 0 }}
         >
@@ -601,7 +601,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             <span key={u.username}>
               {i > 0 && <span style={{ marginRight: 4 }}>&</span>}
               <Link
-                href={`/u/${u.username}`}
+                href={`/u/${encodeURIComponent(u.username)}`}
                 style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}
               >
                 @{u.username}

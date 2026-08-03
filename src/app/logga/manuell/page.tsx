@@ -1,9 +1,11 @@
 'use client'
 export const dynamic = 'force-dynamic'
 import { useState, useRef, useEffect, Suspense } from 'react'
+import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
+import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
 
@@ -22,31 +24,6 @@ const PINNAR = [
   { value: 2, label: 'Bra tur!' },
   { value: 3, label: 'Magisk!' },
 ]
-
-// ── Komprimera bild i webbläsaren (canvas) innan upload ─────────────────────
-async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<File> {
-  return new Promise((resolve) => {
-    const img = new Image()
-    const url = URL.createObjectURL(file)
-    img.onload = () => {
-      URL.revokeObjectURL(url)
-      let { width, height } = img
-      if (width > maxPx || height > maxPx) {
-        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx }
-        else                 { width = Math.round(width * maxPx / height);  height = maxPx }
-      }
-      const canvas = document.createElement('canvas')
-      canvas.width = width; canvas.height = height
-      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
-      canvas.toBlob(
-        (blob) => resolve(blob ? new File([blob], file.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' }) : file),
-        'image/jpeg', quality
-      )
-    }
-    img.onerror = () => resolve(file)
-    img.src = url
-  })
-}
 
 function ManuellForm() {
   const router       = useRouter()
@@ -144,7 +121,7 @@ function ManuellForm() {
       setErr('Bilden är för stor (max 20 MB). Välj en annan bild.')
       return
     }
-    const compressed = await compressImage(f)
+    const compressed = await komprimeraBild(f)
     setRawFile(compressed)
     const reader = new FileReader()
     reader.onload = () => {
@@ -205,7 +182,7 @@ function ManuellForm() {
     canvas.toBlob(async blob => {
       if (!blob) return
       const cropped = new File([blob], rawFile.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' })
-      const final = await compressImage(cropped)
+      const final = await komprimeraBild(cropped)
       setFile(final)
       const reader = new FileReader()
       reader.onload = () => setPreview(reader.result as string)
@@ -223,7 +200,7 @@ function ManuellForm() {
     const compressed = await Promise.all(
       toAdd
         .filter(f => f.size <= 20 * 1024 * 1024)
-        .map(f => compressImage(f))
+        .map(f => komprimeraBild(f))
     )
     // Stable base64 previews via FileReader
     const newPreviews = await Promise.all(
@@ -293,7 +270,7 @@ function ManuellForm() {
       // Säkerställ public.users-rad (FK-skydd)
       await supabase.from('users').upsert({
         id:       user.id,
-        username: user.user_metadata?.username || user.email?.split('@')[0] || 'seglare',
+        username: deriveUsername(user.user_metadata?.username || user.email),
         email:    user.email ?? '',
       }, { onConflict: 'id', ignoreDuplicates: true })
 

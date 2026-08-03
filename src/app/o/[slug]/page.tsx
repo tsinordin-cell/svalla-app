@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
@@ -67,10 +67,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  }
 }
 
-// force-dynamic: cookies() kräver request-kontext och kan inte köras i ISR/static.
-// Med revalidate=3600 + generateStaticParams kastade Next.js 15 DynamicServerError
-// som inte fångades av try/catch → 500. force-dynamic renderar vid varje request.
-export const dynamic = 'force-dynamic'
+/**
+ * Tidigare `force-dynamic` — 824 sidor renderades om vid VARJE besök.
+ *
+ * Kommentaren här sa att det berodde på att `cookies()` inte kan köras i
+ * ISR/static, vilket stämde: den gamla koden anropade
+ * `createServerSupabaseClient()`, som internt läser cookies, och Next.js 15
+ * kastade då DynamicServerError. Men slutsatsen var fel — lösningen var inte
+ * att ge upp cachen, utan att sluta läsa cookies. Sidan använder ingen auth
+ * alls: den läser antal besökare (`visited_islands`) och tre forumtrådar,
+ * båda med publik läspolicy (verifierat mot produktionsdatabasen med
+ * anon-nyckeln 2026-08-02).
+ *
+ * Med den cookie-fria klienten fungerar generateStaticParams + revalidate,
+ * och sidorna serveras från CDN. Samma sak som gjorde /upptack/[id] 24x
+ * snabbare, se CLAUDE.md punkt 18.
+ *
+ * Kontroll i byggutdata: `● /o/[slug]` = statisk med ISR (rätt),
+ * `ƒ /o/[slug]` = dynamisk (fel, då är cookies tillbaka någonstans).
+ */
+export const revalidate = 3600
 
 // Öar med egna äventyrssidor
 const ADVENTURE_PAGES: Record<string, { url: string; title: string; desc: string }> = {
@@ -85,23 +101,27 @@ export default async function IslandPage({ params }: Props) {
  if (!island) notFound()
 
  // Hämta antal unika besökare + senaste forumtrådar parallellt.
- // Timeout på 3 s: createServerSupabaseClient() + alla DB-anrop ligger INUTI
- // Promise.race så att hela blocket avbryts om något hänger (inkl. cookies()).
- // Populära öar (sandhamn, vaxholm) har många DB-rader → COUNT-frågan kan
- // hänga → Vercel dödar funktionen och returnerar tom sida utan denna fix.
+ // Timeout på 3 s så att en hängande fråga inte tar ner hela sidan: populära
+ // öar (sandhamn, vaxholm) har många rader och COUNT kan bli långsam.
+ // Behålls trots att sidan numera är statisk — timeouten gäller då bygget och
+ // revalideringen i stället för varje besökare, och en tom besökarräknare är
+ // bättre än en sida som aldrig blir klar.
+ //
+ // Publik klient (ingen cookies()): sidan behöver inte veta vem som är
+ // inloggad, och cookies-läsningen var det enda som gjorde sidan dynamisk.
  let visitorCount: number | null = null
  let recentThreads: Awaited<ReturnType<typeof getThreadsByIsland>> = []
  try {
    const dbTimeout = new Promise<null>(resolve => setTimeout(() => resolve(null), 3_000))
    const dbResult = await Promise.race([
      (async () => {
-       const supabase = await createServerSupabaseClient()
+       const supabase = createPublicSupabaseClient()
        const [visitResult, threadResult] = await Promise.all([
          supabase
            .from('visited_islands')
            .select('*', { count: 'exact', head: true })
            .eq('island_slug', slug),
-         getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
+         getThreadsByIsland(slug, 0, true).then(t => t.slice(0, 3)).catch(() => []),
        ])
        return [visitResult, threadResult] as const
      })().catch(() => null),

@@ -1,9 +1,11 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { createClient, BOAT_TYPES } from '@/lib/supabase'
 import { buildRoutePoints } from '@/lib/routeSmooth'
+import { deriveUsername } from '@/lib/username'
 import {
   type GpsPoint, type StopEvent,
   msToKnots, totalDistanceNM, avgSpeedKnots, maxSpeedKnots,
@@ -36,29 +38,6 @@ function haptic(pattern: number | number[]) {
 }
 
 // ── Compress image before upload ──────────────────────────────────────────────
-async function compressImage(file: File, maxPx = 1920, quality = 0.82): Promise<File> {
-  return new Promise((resolve) => {
-    const img = new window.Image()
-    const url = URL.createObjectURL(file)
-    img.onload = () => {
-      URL.revokeObjectURL(url)
-      let { width, height } = img
-      if (width > maxPx || height > maxPx) {
-        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx }
-        else                 { width = Math.round(width * maxPx / height);  height = maxPx }
-      }
-      const canvas = document.createElement('canvas')
-      canvas.width = width; canvas.height = height
-      canvas.getContext('2d')!.drawImage(img, 0, 0, width, height)
-      canvas.toBlob(
-        blob => resolve(blob ? new File([blob], file.name.replace(/\.\w+$/, '.jpg'), { type: 'image/jpeg' }) : file),
-        'image/jpeg', quality
-      )
-    }
-    img.onerror = () => resolve(file)
-    img.src = url
-  })
-}
 
 // ── Movement state label/color ────────────────────────────────────────────────
 function movementMeta(state: MovementState): { label: string; color: string; bg: string } {
@@ -641,7 +620,7 @@ export default function SparaPage() {
 
     await supabase.from('users').upsert({
       id: user.id,
-      username: user.user_metadata?.username || user.email?.split('@')[0] || 'seglare',
+      username: deriveUsername(user.user_metadata?.username || user.email),
       email: user.email ?? '',
     }, { onConflict: 'id', ignoreDuplicates: true })
 
@@ -1943,7 +1922,7 @@ export default function SparaPage() {
                 return
               }
               // Image: compress → FileReader → stable base64 data-URL (fixes blank preview bug)
-              const compressed = await compressImage(f)
+              const compressed = await komprimeraBild(f)
               const reader = new FileReader()
               reader.onload = () => {
                 setMediaFiles(prev => [...prev, compressed])

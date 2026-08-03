@@ -5,7 +5,7 @@
  *     Använd '@/lib/forum-categories' för statisk data i klient-komponenter.
  */
 
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient, createServerSupabaseClient } from '@/lib/supabase-server'
 
 // Re-exportera typer + statisk data från den client-säkra filen
 export type { ForumCategory } from '@/lib/forum-categories'
@@ -110,9 +110,11 @@ export async function getForumCategories(): Promise<ForumCategory[]> {
   }
 }
 
-export async function getCategoryById(id: string): Promise<ForumCategory | null> {
+export async function getCategoryById(id: string, publik = false): Promise<ForumCategory | null> {
   try {
-    const supabase = await createServerSupabaseClient()
+    // publik: cookie-fri klient så anropande sida kan cachas — se
+    // getThreadsByIsland ovan för hela resonemanget.
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_categories')
       .select('id, name, description, icon, sort_order, thread_count, post_count')
@@ -171,10 +173,31 @@ export async function getThreadsByCategory(categoryId: string, page = 0): Promis
   }
 }
 
-export async function getThreadsByIsland(islandSlug: string, page = 0): Promise<ForumThread[]> {
+/**
+ * @param publik  Läs med den cookie-fria klienten i stället för auth-klienten.
+ *
+ * Varför: `createServerSupabaseClient()` anropar `cookies()`, vilket gör den
+ * anropande sidan dynamisk i Next.js — då kan den aldrig cachas, oavsett vad
+ * `revalidate` säger (samma fälla som beskrivs i CLAUDE.md punkt 18). Öppna
+ * ö-sidan (/o/[slug], 824 sidor) läser bara publik data och behöver alltså
+ * inte veta vem som är inloggad.
+ *
+ * Både `forum_threads` och `users` har publik läspolicy — verifierat mot
+ * produktionsdatabasen med anon-nyckeln 2026-08-02, inte mot
+ * migrationsfilerna (de beskriver inte databasen, se CLAUDE.md punkt 21).
+ * Resultatet blir därför identiskt; det enda som skiljer är att cookies inte
+ * läses. Default är oförändrat beteende för alla befintliga anropare.
+ */
+export async function getThreadsByIsland(
+  islandSlug: string,
+  page = 0,
+  publik = false,
+): Promise<ForumThread[]> {
   const PAGE_SIZE = 30
   try {
-    const supabase = await createServerSupabaseClient()
+    const supabase = publik
+      ? createPublicSupabaseClient()
+      : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_threads')
       .select('id, category_id, user_id, title, body, is_pinned, is_locked, view_count, reply_count, last_reply_at, last_reply_user_id, in_spam_queue, created_at, island_slug')
@@ -212,9 +235,9 @@ export async function getThreadsByIsland(islandSlug: string, page = 0): Promise<
   }
 }
 
-export async function getThreadById(id: string): Promise<ForumThread | null> {
+export async function getThreadById(id: string, publik = false): Promise<ForumThread | null> {
   try {
-    const supabase = await createServerSupabaseClient()
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data: thread } = await supabase
       .from('forum_threads')
       .select('*')
@@ -239,11 +262,12 @@ export async function getPostsByThread(
   threadId: string,
   userId?: string | null,
   opts?: { sort?: ForumSort; bestPostId?: string | null },
+  publik = false,
 ): Promise<ForumPost[]> {
   const sort: ForumSort = opts?.sort ?? 'aldst'
   const bestPostId = opts?.bestPostId ?? null
   try {
-    const supabase = await createServerSupabaseClient()
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data } = await supabase
       .from('forum_posts')
       .select('id, thread_id, user_id, body, is_deleted, in_spam_queue, created_at')

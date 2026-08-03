@@ -107,7 +107,7 @@ export default async function PlaceRecentVisitors({
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>
                   {u?.username ? (
-                    <Link href={`/u/${u.username}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    <Link href={`/u/${encodeURIComponent(u.username)}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       {name}
                     </Link>
                   ) : name}
