@@ -39,6 +39,51 @@ export type IslandRestaurant = {
   bookingUrl?: string
   /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
   websiteUrl?: string
+  /** Prisexempel — t.ex. "Lunch 225–275 kr, middag 345–425 kr" */
+  price_example?: string
+  /** Säsong/period restaurangen är öppen — t.ex. "1 jul–8 aug dagligen, fredagar övrig tid" */
+  open_season?: string
+  /** Öppettider — t.ex. "Lunch 12–15, middag från 17" */
+  open_hours?: string
+  /** Sant om bordsbokning krävs / starkt rekommenderas */
+  book_required?: boolean
+  /** Bokningsnotering — t.ex. "Boka 6 månader i förväg för juli" */
+  book_note?: string
+  /** Telefonnummer */
+  phone?: string
+  /** Barnmeny — t.ex. "Barnmeny 75–95 kr" */
+  child_menu?: string
+}
+
+/**
+ * En specifik badplats på ön — ger guiden lokal känsla.
+ * Används i activity_meta.bad.beaches[].
+ */
+export type IslandBeach = {
+  name: string
+  /** Beskrivning som känns lokal och specifik — skriv som om du har badat där */
+  desc: string
+  type: 'sandstrand' | 'klippbad' | 'grusstrand' | 'brygga' | 'trampolinbad' | 'badvik'
+  /** Sant om platsen är lämplig för barnfamiljer (grund, lugnt vatten etc.) */
+  child_friendly?: boolean
+  /** Vattennivå och bottentyp — t.ex. "grunt sandbotten, bra för barn" */
+  depth?: string
+  /** Hur man hittar dit från hamnen/färjan */
+  directions?: string
+  /** Det som lokalbefolkningen vet men turister missar */
+  insider_tip?: string
+}
+
+/** Uppskattad kostnad för en dagstur */
+export type IslandDayCost = {
+  /** Prisintervall per person — t.ex. "350–900 kr" */
+  budget_per_person: string
+  /** Vad estimatet inkluderar */
+  includes: string
+  /** Specificerad kostnadsfördelning */
+  breakdown: { item: string; price: string }[]
+  /** Spartips för budgetresenären */
+  tips?: string[]
 }
 
 export type Island = {
@@ -97,7 +142,7 @@ export type Island = {
   activity_meta?: {
     kajak?: { difficulty: string, rental: boolean, notes?: string }
     cykel?: { rental: boolean, km_track?: number, notes?: string }
-    bad?: { beaches: string[] }
+    bad?: { beaches: (string | IslandBeach)[] }
     vandring?: { trails: number, max_km?: number }
     fiske?: boolean
   }
@@ -123,6 +168,11 @@ export type Island = {
    * Undvik generaliseringar — varje tips ska gälla just denna ö.
    */
   insiderTips?: string[]
+  /**
+   * Uppskattad kostnad för en dagstur — unikt Svalla-innehåll ingen annan reseguide har.
+   * Byggs av verkliga priser från restauranger, färjor och aktiviteter på ön.
+   */
+  day_cost?: IslandDayCost
   /**
    * Blogginlägg som handlar om eller nämner denna ö.
    * Visas som "Guider om [ö]"-sektion på ö-sidan för intern länkning.
@@ -213,12 +263,50 @@ export const ISLANDS: Island[] = [
       { name: 'Sandhamns Sjöstation', desc: 'Drivmedel och service vid inloppet.', fuel: true, service: ['bränsle', 'olja'] },
     ],
     restaurants: [
-      { name: 'Seglarrestaurangen', type: 'Restaurang', desc: 'Seglarhotellets krog — en av skärgårdens finaste. Boka i förväg.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamn-seglarhotell', websiteUrl: 'https://www.sandhamn.com' },
-      { name: 'Sandhamns Värdshus', type: 'Restaurang', desc: 'Historisk krog vid färjebryggan. Enkel husmanskost och räkor.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamns-vardshus', websiteUrl: 'https://sandhamns-vardshus.se' },
+      {
+        name: 'Sandhamns Värdshus',
+        type: 'Restaurang',
+        desc: 'Historisk krog vid färjebryggan med pub, restaurang och uteservering. Dagens rätt inkl. salladsbuffe och kaffe. À la carte på kvällen med klassiska skärgårdsrätter.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/sandhamns-vardshus',
+        websiteUrl: 'https://sandhamns-vardshus.se',
+        phone: '08-571 530 51',
+        price_example: 'Dagens rätt 155 kr, à la carte 215–350 kr',
+        open_season: 'Mitten av juni–mitten av september dagligen; helger övrig tid. Puben mån–lör 11–22, sön 11–21.',
+        open_hours: 'Pub från 11:00, restaurang från 18:00',
+        child_menu: 'Enklare barnrätter i puben',
+      },
+      {
+        name: 'Seglarrestaurangen',
+        type: 'Restaurang',
+        desc: 'Seglarhotellets flaggskeppskrog — en av Stockholms skärgårds finaste. Säsongsbetonad meny med fokus på hav och lokala råvaror.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/sandhamn-seglarhotell',
+        websiteUrl: 'https://www.sandhamn.com',
+        price_example: 'À la carte middag 300–500 kr',
+        open_season: 'Juni–september',
+        book_required: true,
+        book_note: 'Boka minst 4–6 veckor i förväg för juli',
+      },
       { name: 'Bistro Sands', type: 'Bistro', desc: 'Avslappnad bistro med havsutsikt och säsongsrätter.', slug: 'bistro-sands' },
       { name: 'Dykarbaren', type: 'Bar', desc: 'Bryggbar med hamburgare och öl. Populär för sundowner.', slug: 'dykarbaren' },
       { name: 'Sandhamns Bageriet', type: 'Bageri', desc: 'Nybakat varje morgon. Kö tidigt i juli.', slug: 'sandhamns-bageriet' },
     ],
+    day_cost: {
+      budget_per_person: '400–850 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Waxholmsbåt Stockholm–Sandhamn tur & retur', price: 'ca 250 kr' },
+        { item: 'Dagens rätt på Värdshuset (inkl. sallad & kaffe)', price: '155 kr' },
+        { item: 'Öl eller dryck', price: 'ca 60–90 kr' },
+        { item: 'Glass eller fika vid bryggan', price: 'ca 50–70 kr' },
+        { item: 'Eventuellt glass + souvenirer', price: '0–200 kr' },
+      ],
+      tips: [
+        'Snabbåten via Stavsnäs kostar mer men tar 1 timme — Waxholmsbåten tar 2,5 h men är en upplevelse i sig.',
+        'Dagens rätt på Värdshuset kl 11–14 är det bästa priset på ön (155 kr inkl. salladsbuffe och kaffe).',
+        'Ta med matsäck och spara 150+ kr — Trouville-stranden är gratis och underbar.',
+        'Julibokningar på Seglarrestaurangen bör göras månader i förväg.',
+      ],
+    },
     tips: [
       'Boka restaurang och hotell minst 4–6 veckor i förväg under juli.',
       'Sandstranden Trouville är bäst tidigt på morgonen innan turistbåtarna anländer.',
@@ -240,7 +328,28 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid hamnen. Paddla runt ön eller ut mot omgivande grund.' },
-      bad: { beaches: ['Trouville-stranden (sandstrand, södra sidan)', 'Klippbad vid Västerudd'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Trouville-stranden',
+            type: 'sandstrand',
+            desc: 'Sandhamns enda sandstrand och öns mest älskade badplats. Smal remsa av fin ljus sand på södra sidan, skyddad mot nordliga vindar. Heter "Trouville" efter den franska badorten — ett smeknamn seglarna gav platsen på 1800-talet.',
+            child_friendly: true,
+            depth: 'Grunt och sandbotten nära stranden — bra för barn. Vattnet värms upp snabbt i juli.',
+            directions: 'Gå söderut från hamnen ca 10 min förbi Sandhamns Värdshus, ta sedan stigen ned mot havet.',
+            insider_tip: 'Kom innan 11:00 eller efter 16:00 — bryggan mitt på dagen fylls av dagsturister. Lokalt bad = morgon.',
+          },
+          {
+            name: 'Klippbad vid Västerudd',
+            type: 'klippbad',
+            desc: 'Östra udden av Sandhamn med öppet hav och platta välslipade hällar. Populärt bland seglarna som vinterliggare och de som bor på ön. Bättre sol på eftermiddagen.',
+            child_friendly: false,
+            depth: 'Djupt direkt vid klippkanten — hoppa in, men håll koll på barn.',
+            directions: 'Fortsätt förbi Trouville-stranden och följ klippkanten österut, ca 5 min ytterligare.',
+            insider_tip: 'Bäst solnedgång på Sandhamn härifrån — ta med matsäck och vänta tills solen sjunker mot ytterskärgården.',
+          },
+        ],
+      },
       vandring: { trails: 3, max_km: 8 },
       fiske: true,
     },
@@ -329,11 +438,56 @@ export const ISLANDS: Island[] = [
       { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', spots: 150, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
     ],
     restaurants: [
-      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Öns flaggskepp — vällagad mat med havsutsikt. Boka i förväg.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
-      { name: 'Seglarbaren', type: 'Bar', desc: 'Avslappnad hamn­bar för seglare och besökare.', slug: 'seglarbaren-uto' },
-      { name: 'Hamnboden', type: 'Kiosk', desc: 'Enkel mat och dryck direkt vid hamnen.', slug: 'hamnboden-uto' },
-      { name: 'Bakfickan Utö', type: 'Restaurang', desc: 'Gemytlig lokal restaurang med bra husmanskost.', slug: 'bakfickan-uto' },
+      {
+        name: 'Utö Värdshus',
+        type: 'Restaurang & Hotell',
+        desc: 'Öns flaggskepp med havsutsikt och klassisk skärgårdsmat — sill, lax och säsongsmenyer. En av södra skärgårdens finaste restauranger.',
+        bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/',
+        websiteUrl: 'https://www.utovardshus.se',
+        price_example: 'Lunch ca 195–245 kr, middag 285–425 kr, dessert 95–135 kr',
+        open_season: '30 apr–6 aug dagligen; övrig tid fredag–söndag och helgdagar',
+        open_hours: 'Lunch 12–14:30, middag från 17:00',
+        phone: '08-504 20 300',
+        book_required: true,
+        book_note: 'Bordbokning krävs i praktiken för middag under juli — boka minst 2–3 veckor i förväg',
+        child_menu: 'Barnmeny finns',
+      },
+      {
+        name: 'Seglarbaren',
+        type: 'Bar',
+        desc: 'Avslappnad hamn­bar för seglare och besökare. Öl, drinkar och enklare snacks direkt vid bryggan.',
+        slug: 'seglarbaren-uto',
+        price_example: 'Öl ca 85–95 kr, enklare mat 95–145 kr',
+        open_season: 'Juni–september',
+      },
+      {
+        name: 'Hamnboden',
+        type: 'Kiosk & Café',
+        desc: 'Enkel mat och dryck direkt vid hamnen — glass, kaffe, mackor och glass. Perfekt stopp för cyklister.',
+        slug: 'hamnboden-uto',
+        price_example: 'Glass 30–50 kr, kaffe 35–45 kr, macka 75–95 kr',
+        open_season: 'Maj–september',
+      },
     ],
+    day_cost: {
+      budget_per_person: '500–900 kr',
+      includes: 'Tåg + färja tur & retur, cykel, lunch och bastu',
+      breakdown: [
+        { item: 'Pendeltåg Stockholm C–Nynäshamn tur & retur', price: 'ca 140 kr (SL)' },
+        { item: 'Waxholmsbåt Nynäshamn–Utö tur & retur', price: 'ca 210 kr' },
+        { item: 'Cykeluthyrning (heldagspass)', price: 'ca 150 kr' },
+        { item: 'Lunch på Utö Värdshus', price: '195–245 kr' },
+        { item: 'Öl eller kaffe', price: 'ca 50–95 kr' },
+        { item: 'Glass vid hamnen', price: 'ca 40–50 kr' },
+      ],
+      tips: [
+        'SL-kortet gäller på pendeltåget till Nynäshamn — bara färjan kostar extra.',
+        'Boka havsbastupass online i förväg — kvällsslot med solnedgång är bäst och går snabbt åt.',
+        'Hyr cykel direkt vid hamnen när du stiger av — de tar slut snabbt på högsommardagar.',
+        'Gruvmuseet är gratis och tar ca 45 min — värt ett stopp på vägen tillbaka.',
+        'Lunch på Värdshuset är mer prisvärd än middagen — ca 195–245 kr mot 285–425 kr.',
+      ],
+    },
     tips: [
       'Hyr cykel vid hamnen direkt när du stiger av — de tar slut snabbt sommardagar.',
       'Havsbastubokning krävs online i förväg. Kvällspass med solnedgång är bäst.',
@@ -356,7 +510,28 @@ export const ISLANDS: Island[] = [
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Kajakuthyrning vid hamnen. Lugnt vatten på öns västra sida, mer öppet i söder.' },
       cykel: { rental: true, km_track: 13, notes: 'Ca 350 hyrcyklar. Klassrutt: Gruvbryggan–Ålö ca 13 km enkel väg.' },
-      bad: { beaches: ['Storsand (norra Utö, kontrollera tillgänglighet — inom skjutfält)', 'Ålö Storsand (grannön Ålö, broförbunden)'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Ålö Storsand',
+            type: 'sandstrand',
+            desc: 'En av Stockholms skärgårds verkligt vackra sandstränder — vit sand, turkost vatten och öppet hav mot söder. Ligger på grannön Ålö (broförbunden med Utö). Cykla dit på 20–25 min. Strandkrogen Båtshaket ligger precis intill.',
+            child_friendly: true,
+            depth: 'Grunt vid strandlinjen, sandbotten hela vägen ut — perfekt för barn.',
+            directions: 'Hyr cykel vid Gruvbryggan. Cykla söderut längs grusvägen, passera Ålöbron och följ skyltarna till Storsand. Ca 13 km, ca 45 min i lugnt tempo.',
+            insider_tip: 'Gå bort till stenrevet i norr — där är det färre folk och exakt samma vatten. Kom med morgonbåten och ha stranden för dig själv till 11.',
+          },
+          {
+            name: 'Storsand (norra Utö)',
+            type: 'sandstrand',
+            desc: 'Sandstrand på Utös norra sida inom militärt övningsområde. Öppen för besökare under stora delar av sommaren men stängs vid militärövningar utan förvarning. Kolla skyltningen vid infarterna.',
+            child_friendly: true,
+            depth: 'Sandbotten, grunt — bra för barn när stranden är öppen.',
+            directions: 'Cykla norrut från Gruvbryggan ca 3 km. Skyltar vid infarterna visar om stranden är tillgänglig.',
+            insider_tip: 'Fråga alltid vid bryggan eller kolla utoinfo.se om stranden är öppen denna dag. Stängs utan förvarning.',
+          },
+        ],
+      },
       vandring: { trails: 4, max_km: 12 },
       fiske: true,
     },
@@ -469,7 +644,28 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Perfekt utgångspunkt för kajaktur mot Resarö och Rindö. Uthyrning vid hamnen.' },
-      bad: { beaches: ['Badplats vid Kastellet', 'Rindö badplats (kort båttur)'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Badplats vid Kastellet',
+            type: 'klippbad',
+            desc: 'Klippbad på Kastellholmen precis nedanför Vaxholms Kastell — historisk omgivning och rent vatten. Populärt bland lokala Vaxholmsbor på varma sommardagar.',
+            child_friendly: true,
+            depth: 'Grunt nära land, djupare ut. Bra för barn om de håller sig nära.',
+            directions: 'Ta färjan från Vaxholm centrum till Kastellet (5 min, kör hela sommaren). Badplatsen är skyltat.',
+            insider_tip: 'Badplatsen är öppen för alla men få dagsbåtsturister hittar dit. Besök Kastellet och bada efteråt — perfekt kombination.',
+          },
+          {
+            name: 'Rindö badplats',
+            type: 'sandstrand',
+            desc: 'En av de bättre sandstränderna i norra innerskärgården, på grannön Rindö. Mer undanskymd än Vaxholms hamn och med lugnt vatten i den skyddade viken.',
+            child_friendly: true,
+            depth: 'Grunt och sandbotten — lämplig för barn.',
+            directions: 'Rindö nås med buss från Vaxholm (ca 10 min) eller egen båt. Fråga lokalt om vägbeskrivning till badet.',
+            insider_tip: 'Sommargäster från Vaxholm åker hit för att undvika hamnens folksamling. Ta med matsäck.',
+          },
+        ],
+      },
       vandring: { trails: 2, max_km: 5 },
       fiske: true,
     },
@@ -557,10 +753,55 @@ export const ISLANDS: Island[] = [
       { name: 'Grinda Gästhamn (Hemviken)', desc: 'Välutrustad hamn med plats för 100+ båtar, bränsle och full service.', spots: 100, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt', 'wifi'] },
     ],
     restaurants: [
-      { name: 'Grinda Wärdshus Restaurang', type: 'Restaurang', desc: 'Skärgårdens bästa kök i detta prissegment. Boka.', bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus', websiteUrl: 'https://grinda.se' },
-      { name: 'Framfickan', type: 'Bistro', desc: 'Bryggbistro nedanför wärdshuset. Lunch i solen.', slug: 'framfickan-grinda' },
-      { name: 'Grinda Lanthandel & Café', type: 'Café', desc: 'Frukost, fika och proviant vid nedre hamnen.', slug: 'grinda-lanthandel-cafe' },
+      {
+        name: 'Grinda Wärdshus Restaurang',
+        type: 'Restaurang',
+        desc: 'En av skärgårdens genuinaste restauranger — säsongsbetonad mat med lokal fisk och klassiska svenska smaker. Matsalen ser ut över hamnen och kvällarna är svårslagna.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus',
+        websiteUrl: 'https://grinda.se',
+        phone: '08-542 494 91',
+        price_example: 'Förrätt 125–165 kr, varmrätt 225–345 kr, dessert 95–125 kr',
+        open_season: 'Maj–september dagligen',
+        open_hours: 'Lunch 12–14, middag 17–21',
+        book_required: true,
+        book_note: 'Boka middag i förväg under juli — restaurangen är liten och populär',
+        child_menu: 'Barnmeny finns',
+      },
+      {
+        name: 'Framfickan',
+        type: 'Bistro & Bar',
+        desc: 'Bryggbistro nedanför wärdshuset på klipporna mot vattnet. Räksmörgås, hamburgare och lokalt öl — bäst för lunch i solen.',
+        slug: 'framfickan-grinda',
+        price_example: 'Räksmörgås ca 175–225 kr, hamburgare ca 145–185 kr, öl ca 85–95 kr',
+        open_season: 'Juni–augusti',
+        open_hours: 'Lunch och AW, ca 11–18',
+      },
+      {
+        name: 'Grinda Lanthandel & Café',
+        type: 'Café & Lanthandel',
+        desc: 'Frukost, fika och proviant vid nedre hamnen. Nybakt bröd, kaffe och enklare maträtter — seglares provianthörna.',
+        slug: 'grinda-lanthandel-cafe',
+        price_example: 'Kaffe 35–45 kr, macka 65–95 kr, frukost ca 95–125 kr',
+        open_season: 'Maj–september',
+        open_hours: 'Från 08:00',
+      },
     ],
+    day_cost: {
+      budget_per_person: '450–750 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Waxholmsbåt Strömkajen–Grinda tur & retur', price: 'ca 240 kr' },
+        { item: 'Lunch på Framfickan (räksmörgås + öl)', price: 'ca 260–320 kr' },
+        { item: 'Kaffe + kaka på Lanthandeln', price: 'ca 55–75 kr' },
+        { item: 'Glass vid bryggan', price: 'ca 40–60 kr' },
+      ],
+      tips: [
+        'SL-kortet gäller på Waxholmsbåten till Grinda — ingen extra kostnad.',
+        'Framfickan har fri sittning utomhus — bättre och billigare än inne på Wärdshuset för en enkel lunch.',
+        'Grinda Lanthandel öppnar 08:00 — perfekt för nybakt bröd och kaffe direkt efter ankomst.',
+        'Boka middag på Wärdshuset i förväg om du planerar att stanna — det går snabbt åt.',
+      ],
+    },
     tips: [
       'Framfickan på klipporna är bäst för lunch — boka bord från kl 10.',
       'Grinda Lanthandel är öppet från 8:00 och säljer nybakat bröd.',
@@ -582,7 +823,28 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Uthyrning vid Wärdshuset. Lugna vatten söder om ön.' },
-      bad: { beaches: ['Sandstrand vid gästhamnen', 'Klippbad på öns norra sida'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Sandstrand vid Grinda gästhamn',
+            type: 'sandstrand',
+            desc: 'En av de få sandstränderna i mellersta skärgården — liten men genuint fin. Direkt vid gästhamnen Hemviken med lugnt, skyddat vatten och god sikt. Populär bland barnfamiljer och de som anländer med Waxholmsbåten.',
+            child_friendly: true,
+            depth: 'Grunt och sandbotten, barn kan stå långt ut. Vattnet i Hemviken värms upp snabbt.',
+            directions: 'Direkt vid gästhamnen — gå längs bryggan söderut, 2 min. Omklädning och toaletter vid vandrarhemmet 50 m bort.',
+            insider_tip: 'Bäst tidigt på morgonen när Stockholmsbåtarna ännu inte anlänt. Efter kl 14 är det fullt med dagsbåtsturister.',
+          },
+          {
+            name: 'Klippbad, norra Grinda',
+            type: 'klippbad',
+            desc: 'Öppna klipphällar på norra sidan med vid utsikt mot norra skärgårdskorridoren. Mer exponerat och vindpåverkat än sandstranden — bättre för den som gillar det öppna havet. Ensamt och vackert på kvällen.',
+            child_friendly: false,
+            depth: 'Djupt direkt vid klippkanten — passa yngre barn noga.',
+            directions: 'Vandra norrut från vandrarhemmet längs den markerade stigen, ca 20 min.',
+            insider_tip: 'Solnedgångsbad härifrån är en av mellersta skärgårdens bäst bevarade hemligheter — ta med dryck och sätt dig ner en timme innan solen går ner.',
+          },
+        ],
+      },
       vandring: { trails: 3, max_km: 7 },
       fiske: false,
     },
@@ -689,6 +951,32 @@ export const ISLANDS: Island[] = [
       'Kajakuthyrning finns på Finnhamn under sommarsäsongen. Ön är ett av de bättre utgångspunkterna för kajakpaddling i mellersta skärgården.',
       'Caféet och kiosken på Finnhamn stänger relativt tidigt under kvällen. Ta med proviant om du planerar en sen ankomst.',
     ],
+    activity_meta: {
+      kajak: { difficulty: 'lätt', rental: true, notes: 'Paddla ut till Paradisviken (Djupfladen) och Söder Långholm. Uthyrning via vandrarhemet.' },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad vid Berg',
+            type: 'klippbad',
+            desc: 'Klipphällar norr om hamnen med svalt, klart vatten och utsikt mot norra skärgårdskorridoren. Stillare och mer ostört än hamnfronten — morgondoppet här är en ritual för vandrarhemsgästerna.',
+            child_friendly: true,
+            depth: 'Hopphällar finns, men även grunt parti för barn.',
+            directions: 'Följ stigen norrut från vandrarhemet ca 15 min. Fråga personalen om den exakta leden.',
+            insider_tip: 'Ta med kaffe från kiosken och kom hit vid 07:00 — vattnet är klarare och kallare på morgonen, och du har hela klippan för dig själv.',
+          },
+          {
+            name: 'Klippbad vid Långvik',
+            type: 'klippbad',
+            desc: 'Skyddad vik på södra sidan av Finnhamn med lugnare vatten och mer sol eftermiddagstid. Mer tillgänglig för de med barn än de norra klipporna.',
+            child_friendly: true,
+            depth: 'Litet grunt parti vid vikens inre del — bra för de yngre.',
+            directions: 'Ta stigen söderut från hamnen, ca 20 min. Välmarkerat.',
+            insider_tip: 'Söder Långholm (den lilla ön söder om Finnhamn) har ännu bättre klippbad — paddla dit med kajak om du hyr en.',
+          },
+        ],
+      },
+      vandring: { trails: 4, max_km: 12 },
+    },
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli',
@@ -784,7 +1072,36 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'lätt', rental: true, notes: 'Paddla söderut mot Gällnö och Svartsö. Uthyrning vid Berg.' },
-      bad: { beaches: ['Klippbad vid Berg', 'Klippbad vid Långvik'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad vid Berg',
+            type: 'klippbad',
+            desc: 'Solexponerade klipphällar strax norr om Möja Bergs färjebrygga. Klart, svalt vatten med god sikt — man ser botten på tre meters djup. Populärt bland de fastboende på lugna augustimornar.',
+            child_friendly: true,
+            depth: 'Brant vid hällarna, men ett litet grunt parti i vikens södra hörn passar barn.',
+            directions: 'Gå norrut längs stigen från Bergs brygga, ca 5 min. Skylt "Klippbad" vid grinden.',
+            insider_tip: 'Kajakuthyrningen vid Berg tar dig till bättre klippor söderut — paddla 20 min mot Södra Möja för total avskildhet.',
+          },
+          {
+            name: 'Klippbad vid Långvik',
+            type: 'klippbad',
+            desc: 'En av Möjas mer avsides badplatser, i en smal vik på den mellersta öns västsida. Lugnt vatten, fantastisk sommarkväll-stämning och inga turister — det är dit de fastboende går när de vill ha fred.',
+            child_friendly: true,
+            depth: 'Grunt vid vikens inre del, djupare mot öppet vatten.',
+            directions: 'Cykla eller promenera från Berg norrut mot Möja by, ta av väster mot Långvik, ca 2 km. Ingen skylt — fråga i lanthandeln.',
+            insider_tip: 'Kvällssolen träffar Långviks klippor perfekt mellan 18 och 20 på sommaren. Ta med mat och sätt dig — det är en av skärgårdens mest ostörda platser.',
+          },
+          {
+            name: 'Klippbad södra Möja',
+            type: 'klippbad',
+            desc: 'Södra Möja har öns bästa klippor — långa, sluttande hällar mot öppet hav med bred horisontutsikt. Det är här Möjas karaktär verkligen visar sig: inga bryggor, inga skyltar, bara klippor och hav.',
+            depth: 'Djupt direkt — hopphällar för den vane. Inget grunt parti.',
+            directions: 'Cykla söderut från Berg hela vägen till Södra Möjas spets, ca 5 km. Stigen slutar vid klippkanten.',
+            insider_tip: 'Bäst i lugnt väder — södersidan är öppen och kan vara bra blåsig. En perfekt dag här slår Sandhamn utan konkurrens.',
+          },
+        ],
+      },
       vandring: { trails: 3, max_km: 10 },
       fiske: true,
     },
@@ -869,17 +1186,81 @@ export const ISLANDS: Island[] = [
       { name: 'Fjäderholmarnas Gästbrygga', desc: 'Kortare förtöjningsplatser för passager. Inga längre övernattningar.', fuel: false, service: ['toilet'] },
     ],
     restaurants: [
-      { name: 'Fjäderholmarnas Krog', type: 'Restaurang', desc: 'Stor terrass, vällagad mat, direktbåt från stan. Boka i förväg.' },
-      { name: 'Rökeriet Fjäderholmarna', type: 'Restaurang', desc: 'Klassiskt rökeriet sedan 80-talet. Rökt lax och sill i toppklass.' },
-      { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Hantverksöl med Stockholms siluett. Kväll och solnedgång.', slug: 'fjaderholmarna-bryggeri' },
-      { name: 'The Old Smokehouse', type: 'Restaurang', desc: 'Rökt fisk och skaldjur take-away vid bryggan.', slug: 'old-smokehouse' },
+      {
+        name: 'Fjäderholmarnas Krog',
+        type: 'Restaurang',
+        desc: 'Stor terrass med Stockholmsutsikt och vällagad mat — klassisk skärgårdskrog 25 minuter från stan. Lunch och middag. Kräftmeny i augusti.',
+        websiteUrl: 'https://www.fjaderholmarnaskrog.se',
+        bookingUrl: 'https://app.waiteraid.com/reservation/?hash=c7431b3e1564329365f42b1b62d9f50a',
+        price_example: 'Lunch 245 kr, middag 245–345 kr, kräftmeny (aug) på förfrågan',
+        open_season: 'Maj–september (kräftmeny 1–31 aug)',
+        book_required: true,
+        book_note: 'Bordbokning rekommenderas — populärast i skärgården nära stan',
+        child_menu: 'Barnmeny finns (PDF på hemsidan)',
+      },
+      {
+        name: 'Rökeriet Fjäderholmarna',
+        type: 'Restaurang',
+        desc: 'Klassiskt rökeriet sedan 1985. Rökt lax, sill och skärgårdsmat take-away eller sit-down. En institution.',
+        websiteUrl: 'https://www.rokeriet-fjaderholmarna.se',
+        price_example: 'Räksmörgås ca 175 kr, rökt lax portion ca 145 kr',
+        open_season: 'April–oktober',
+      },
+      {
+        name: 'Fjäderholmarnas Bryggeri',
+        type: 'Bar & Bryggeri',
+        desc: 'Hantverksöl bryggd på ön med Stockholms siluett som fondvägg. Perfekt för sundowner.',
+        slug: 'fjaderholmarna-bryggeri',
+        price_example: 'Fatöl från ca 90 kr, enklare maträtter 120–180 kr',
+        open_season: 'Maj–september',
+      },
     ],
+    day_cost: {
+      budget_per_person: '300–600 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Strömma-båt Slussen–Fjäderholmarna tur & retur', price: 'ca 180 kr' },
+        { item: 'Lunch på Fjäderholmarnas Krog', price: '245 kr' },
+        { item: 'Öl på Bryggeriet', price: 'ca 90 kr' },
+        { item: 'Glass eller rökt lax på Rökeriet', price: 'ca 50–145 kr' },
+      ],
+      tips: [
+        'Ingår inte i SL-kortet — köp båtbiljett separat från Strömma.',
+        'Ta morgonbåten och ät lunch kl 11:30 — köerna till krogen är kortast då.',
+        'Rökeriet är billigare och lika gott — räksmörgås ca 175 kr mot krogens ca 245 kr.',
+        'Kräftmeny i hela augusti — boka bord i god tid.',
+      ],
+    },
     tips: [
       'Ta morgonbåten och ha lunch — köerna till Fjäderholmarnas Krog är kortast 11:30.',
       'Rökeriet är öppet från april till oktober — passa på innan säsongen tar slut.',
       'Bryggeriets uteservering är bäst för sundowner runt 19:00.',
       'Sista båten tillbaka till stan avgår ca 21:00 — kolla tidtabell.',
     ],
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad söder om Rökeriet',
+            type: 'klippbad',
+            desc: 'Platta, söderexponerade klipphällar på öns södra sida — Stockholms siluett i bakgrunden hela vägen. Populärast bland stockholmarna som vet var man badar bra nära stan. Sol från 10 till solnedgång.',
+            child_friendly: true,
+            depth: 'Blandat — grunt vid sidan, djupare vid klippkanten. Hopphäll för den modige.',
+            directions: 'Gå rakt igenom ön från bryggan mot södra stranden, ca 5 min. Stig finns skyltad.',
+            insider_tip: 'Bäst baddag är en varm tisdag i juli — helgerna är fulla av dagsbåtsturister. Ankrade båtar ger lä och vattnet värms upp snabbt i vikarna.',
+          },
+          {
+            name: 'Badbrygga vid Fjäderholmarnas Bryggeri',
+            type: 'brygga',
+            desc: 'Liten badbrygga med stege direkt vid bryggeriet. Perfekt för ett snabbt dopp mellan ölen och krogbesöket — lokal tradition.',
+            child_friendly: true,
+            depth: 'Djupt vid stegen — hoppa ner eller klättra.',
+            directions: 'Direkt vid Bryggeriet på öns norra sida.',
+            insider_tip: 'Ta ett dopp och gå direkt upp för en kall öl — Bryggeriets fatöl smakar 10x bättre då.',
+          },
+        ],
+      },
+    },
     related: ['vaxholm', 'grinda', 'bockholmen'],
     tags: ['nära stan', 'dagstur', 'rökeriet', 'öl', 'mat'],
     did_you_know: 'Fjäderholmarna är Stockholms närmaste skärgårdsöar och nås på bara 25 minuter. 1940 införde militären landstigningsförbud — öarna användes som ammunitionsförråd under andra världskriget. Förbudet upphävdes inte förrän 1985, då restaurangerna och rökeriet kunde öppna.',
@@ -1046,6 +1427,29 @@ export const ISLANDS: Island[] = [
       'Parkera vid hamnen tidigt på sommaren — det tar slut snabbt.',
       'Ta pendelbåten vidare till Utö om du vill kombinera.',
     ],
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbadet vid Skansen',
+            type: 'klippbad',
+            desc: 'Välskyddade klipphällar på södra sidan av Dalarö, strax söder om Dalarö Skans. Lugnt, klart vatten med lätt instegsplats. En av södra skärgårdens mest lättillgängliga klippbadsplatser — man tar bilen hit.',
+            child_friendly: true,
+            depth: 'Grunt vid klippkanten, djupare mot mitten av viken.',
+            directions: 'Kör eller gå längs kajen söderut förbi Dalarö Värdshus, följ stigen mot Skansen ca 10 min. Parkering vid hamnen.',
+            insider_tip: 'Kom dit på en tisdag i juli — på helger konkurrerar stockholmarna med bilarna om varje kvadratmeter.',
+          },
+          {
+            name: 'Klippbad vid Baggensfjärden',
+            type: 'klippbad',
+            desc: 'Skyddade klippor längs Baggensfjärdens kant, norr om samhället. Vattnet är lugnare och varmare än på öppen sida — bra för längre bad. Kajak­entusiasterna startar sina turer härifrån.',
+            depth: 'Varierar, generellt 1–3 m vid hällarna.',
+            directions: 'Kör norrut från Dalarö centrum mot Ingarö. Kolla skyltar "Baggensfjärden bad" längs vägen.',
+            insider_tip: 'Baggensfjärden värms upp snabbt i juli — vattnet kan ligga på 22°C. Kombinera med kajak om du hyr en i hamnen.',
+          },
+        ],
+      },
+    },
     related: ['uto', 'nattaro', 'orno'],
     tags: ['historia', 'hamn', 'utgångspunkt', 'södern', 'fortet'],
     did_you_know: 'Dalarö blev 1636 platsen för "stora sjötullen" — landets viktigaste tullstation under stormaktstiden. Alla handelsfartyg på väg in till Stockholm var tvungna att förtullas här. Tullhuset från 1788 står fortfarande kvar vid hamnen.',
@@ -1575,13 +1979,38 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
     tips: [
-      'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
+      'Utö Express trafikerar Nåttarö juni–aug från Nynäshamns fiskehamn. Utanför säsong krävs egen båt.',
       'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
       'Fågelhäckning pågår april–juni på öns yttre klippor — håll avstånd, ta med kikare och njut av tärna och ejder.',
     ],
     related: ['uto', 'orno', 'landsort'],
     tags: ['naturreservat', 'orört', 'segling', 'södra'],
     did_you_know: 'Nattarö naturreservat skyddar ett av Stockholms läns finaste havsörnsrevir. Det bor fler havsörnar än människor på ön.',
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Sandstranden södra Nåttarö',
+            type: 'sandstrand',
+            desc: 'En av de mest sällsynta sakerna i Stockholms södra skärgård — en riktig sandstrand med vitt sand och grunt badvatten. Stranden vetter sydväst och fångar eftermiddagssolen perfekt. Klart vatten med god sikt. Utan tvekan en av södra skärgårdens bästa badplatser.',
+            child_friendly: true,
+            depth: 'Mycket grunt och långsamt djupare — bra för barn i alla åldrar.',
+            directions: 'Från bryggan, ta stigen söderut genom reservatsskogen ca 20 min. Välmarkerat.',
+            insider_tip: 'Anländ med Utö Express och gå direkt till stranden — om du dröjer i hamnen kan de bästa platserna vara tagna. Kom tidigt på morgonen för total avskildhet.',
+          },
+          {
+            name: 'Klippbad östra sidan',
+            type: 'klippbad',
+            desc: 'Öppna klipphällar på östra sidan av reservatet med klarare vatten och mer äventyrlig stämning än sandstranden. Typisk ytterskärgård — inga bryggor, inga skyltar, bara hällar och havet.',
+            depth: 'Djupt direkt — hopphällar för de vana.',
+            directions: 'Från sandstranden, fortsätt längs reservatsstigen österut ca 15 min. Stig slutar vid klippkanten.',
+            insider_tip: 'Håll utkik efter havsörn härifrån — den häckar på ön och syns ofta glidarens längs klippkanten tidigt på morgonen.',
+          },
+        ],
+      },
+      fiske: true,
+      vandring: { trails: 2, max_km: 6 },
+    },
     insiderTips: [
       'Nåttarö är ett naturreservat utan fastboende. Ön nås med säsongsbetonad båttrafik eller egen båt.',
       'Havsörnen häckar på Nåttarö och ön räknas som ett av Stockholms läns bästa havsörnsrevir.',
@@ -3487,7 +3916,36 @@ export const ISLANDS: Island[] = [
     ],
     activity_meta: {
       cykel: { rental: true, notes: 'Gotland är Sveriges bästa cykelö med välskyltade leder och relativt plant landskap.' },
-      bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Tofta strand',
+            type: 'sandstrand',
+            desc: 'En av Sveriges mest välkända stränder — bred, vit sand som sträcker sig kilometersvis längs Gotlands västkust, ca 15 km söder om Visby. Grunda vatten och mjuk botten gör den till perfekt familjestrand. Östersjöns vattnet når 22–24°C i juli.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt. Långt till djupare vatten — perfekt för barn.',
+            directions: 'Kör södra utfartsvägen från Visby mot Tofta, ca 15 km. Välskyltad parkering.',
+            insider_tip: 'Kom tidigt på morgonen — Tofta är Gotlands mest besökta strand och fylls snabbt på sommarhelger. Gå söderut längs stranden för avskildhet.',
+          },
+          {
+            name: 'Ljugarn',
+            type: 'sandstrand',
+            desc: 'Gotlands östkust har ett mildare mikroklimat och Ljugarn är ett av de finaste badlägena — en liten, lugn badort med vitt sand och klart vatten. Östersjöns ström längs östkusten kan göra vattnet ett par grader varmare än västkusten.',
+            child_friendly: true,
+            depth: 'Grunt och behagligt instegsläge.',
+            directions: 'Kör väg 143 österut från Visby-hållet, ca 45 km. Ljugarn är liten och lätt att hitta.',
+            insider_tip: 'Besök raukarna (kalkstensformationerna) norr om Ljugarn — de är enklare att ta sig till än Langhammars och lika imponerande.',
+          },
+          {
+            name: 'Sudersand (Fårö)',
+            type: 'sandstrand',
+            desc: 'Fårös berömda strand — och en av Sveriges vackraste. Vitt, fint sand, blåsigt och vilt. Ingmar Bergman bodde på Fårö och Sudersand är en av anledningarna till att han stannade. Strand och rauk-landskap i kombination.',
+            depth: 'Grunt vid strandkanten, djupare mot öppet hav.',
+            directions: 'Ta färjan från Fårösund till Fårö, kör norrut mot Sudersand, ca 8 km. Skyltad parkering.',
+            insider_tip: 'Kombinera Sudersand med Langhammars raukar (10 min norr om stranden) och Bergmancenter i Ljugarn för en komplett Fårö-dag.',
+          },
+        ],
+      },
     },
     did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
     seasonal: {
@@ -3884,7 +4342,26 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'medel', rental: false, notes: 'Kajakhyrning i Nynäshamn, ca 3 km från ön' },
-      bad: { beaches: ['Östra sandstranden (stor och grund)', 'Södra klipphällar'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Östra sandstranden',
+            type: 'sandstrand',
+            desc: 'Yttre Gårdens östra strand är ovanligt bred och grund — man kan vada långt ut utan att vattnet når knäna. Lugnt, stilla vatten som värms upp snabbt. En av de bättre sandstränderna i Stockholms norra skärgård.',
+            child_friendly: true,
+            depth: 'Mycket grunt. Bra för de allra yngsta.',
+            directions: 'Från bryggan, gå österut längs stigen ca 20 min.',
+            insider_tip: 'Yttre Gården besöks sällan av turister — stranden är ofta helt tom. Kom hit för avskildhet.',
+          },
+          {
+            name: 'Södra klipphällar',
+            type: 'klippbad',
+            desc: 'Öns södra klippor med vy mot de omgivande skären. Klart vatten och en äkta ytterskärgårdskänsla. Ingenting att göra utom att bada, sola och stirra på horisonten.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Södra spetsen av ön, ca 30 min promenad från bryggan.',
+          },
+        ],
+      },
       fiske: false,
     },
     amenities: {
@@ -3947,7 +4424,30 @@ export const ISLANDS: Island[] = [
     tags: ['bilfritt', 'bad', 'norra skärgård', 'dagsutflykt', 'familjer'],
     did_you_know: 'Tynningö är en av öarna i det historiska Östersjö­archipelaget nära Vaxholm, en stad som sedan 1600-talet tjänat som Stockholm­s yttre försvarslinje.',
     amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: false },
-    activity_meta: { bad: { beaches: ['Södra klippbaden', 'Sandvik östra'] } },
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Södra klippbaden',
+            type: 'klippbad',
+            desc: 'Flacka klipphällar på öns södra spets med utsikt mot Vaxholm och den inre skärgårdens trafikerade led. Lugnt vatten, sol hela eftermiddagen. Det är hit de flesta båtgäster går direkt från bryggan.',
+            child_friendly: true,
+            depth: 'Grunt vid hällarnas kanter, djupare mot mitten. Inga hopphällar — perfekt för lugnare bad.',
+            directions: 'Från Tynningö brygga, ta stigen söderut längs kanten, ca 5 min. Du kan inte missa det.',
+            insider_tip: 'En av Vaxholmsområdets bästa badplatser som folk aldrig hittar — för att de stannar i Vaxholm. Ta morgonbåten och ha hela klippan för dig själv till lunch.',
+          },
+          {
+            name: 'Sandvik östra',
+            type: 'badvik',
+            desc: 'Skyddad vik på öns östra sida med lite mjukare instegsförhållanden. Populärt bland barnfamiljer som föredrar vik framför öppen klippa.',
+            child_friendly: true,
+            depth: 'Lätt ingång och grunt vatten i vikens inre del.',
+            directions: 'Ta stigen österut från bryggan, följ kanten mot Sandvik ca 10 min.',
+            insider_tip: 'Vikens skyddade läge gör att vattnet värms upp snabbt — ofta 2–3 grader varmare än öppna sydklipporna.',
+          },
+        ],
+      },
+    },
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Augusti',
@@ -4013,7 +4513,18 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: true },
     activity_meta: {
       kajak: { difficulty: 'medel', rental: true, notes: 'Kajakhyrning i Stavsnäs Vinterhamn' },
-      bad: { beaches: ['Klippbad längs reservatets öar'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad längs reservatets öar',
+            type: 'klippbad',
+            desc: 'Djurös naturreservat omger sig av klippöar och holmar med klart, rent vatten. Badplatser längs kustlinjen — ingen enskild skyltad strand utan ett helt klipplandskap att utforska. Typisk mellersta skärgård med granitklippor och djupt vatten.',
+            depth: 'Djupt vid klippkanten, lite grundare i de smala vikarna.',
+            directions: 'Utforska kustlinjen söderut från Djurö brygga. Inga skyltar — allemansrätten gäller.',
+            insider_tip: 'Kajak ger tillgång till de bästa klipporna — hyr en från Gustavsbergs sida och paddla dit.',
+          },
+        ],
+      },
     },
     seasonal: {
       open: 'Maj–September',
@@ -4203,7 +4714,19 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Gotska Sandön blev nationalpark 1909 — ett av Sveriges allra första. Ön är ett geologiskt sällsynt sanddynlandskap mitt i Östersjön, med arter som inte förekommer på Gotland trots att de är nära grannar.',
     amenities: { restaurant: false, shop: false, accommodation: true, beach: true, camping: true },
     activity_meta: {
-      bad: { beaches: ['Hela kusten är strand, ca 18 km'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Sandstranden (hela ön)',
+            type: 'sandstrand',
+            desc: 'Gotska Sandön är en sanddynö — bokstavligen. Hela kusten är strand, ca 18 km med fint vitt sand. Ingen badplats i traditionell mening; välj en plats längs kustlinjen och njut. Östersjöns renaste vatten och en strandupplevelse utan motstycke i Sverige.',
+            child_friendly: true,
+            depth: 'Grunt längs sandstränderna, varierar vid klipppartier.',
+            directions: 'Ön nås med charter-/turistbåt. Hela kusten är öppen — promenera längs stranden och välj plats.',
+            insider_tip: 'Gotska Sandön är ett av Sveriges mest avlägsna naturreservat utan permanentboende. Besökstillstånd krävs. Vattnet kan vara svalare än förväntat trots söderläget — Östersjön är inget Medelhavet.',
+          },
+        ],
+      },
       fiske: true,
     },
   },
@@ -4262,7 +4785,26 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
     activity_meta: {
       kajak: { difficulty: 'lätt–medel', rental: false, notes: 'Kajakhyrning i Karlskrona' },
-      bad: { beaches: ['Sydöstra klippstranden', 'Västra viken'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Sydöstra klippstranden',
+            type: 'klippbad',
+            desc: 'Aspös sydöstra sida öppnar sig mot Blekinges öppna vatten med flacka klipphällar och klart, lite varmare Östersjövatten. Blekinges skärgård skiljer sig från Stockholms — klipporna är lägre, vattnet varmare och stämningen lugn.',
+            depth: 'Varierat, generellt 1–3 m.',
+            directions: 'Gå sydöst från Aspös hamn längs klippstigen, ca 15–20 min.',
+            insider_tip: 'Vattnet i Blekinges inre skärgård är några grader varmare än utanför Karlskrona — sommartemperaturer på 22–24°C är vanliga.',
+          },
+          {
+            name: 'Västra viken',
+            type: 'badvik',
+            desc: 'Skyddad vik på öns västra sida med lugnt vatten och mjukare instegsförhållanden. Populärt bland barnfamiljer.',
+            child_friendly: true,
+            depth: 'Grunt vid vikens inre del.',
+            directions: 'Från hamnen, gå västerut längs kustlinjen, ca 10 min.',
+          },
+        ],
+      },
     },
     seasonal: {
       open: 'Juni–September',
@@ -4330,7 +4872,28 @@ export const ISLANDS: Island[] = [
     tags: ['blekinge', 'camping', 'bil', 'familjer', 'skärgård'],
     did_you_know: 'Sturkö har en av de äldsta kontinuerligt bebodda fiskebefolkningarna i Blekinges skärgård. Fisket och sjöfarten präglade ön ända fram till 1900-talets mitt.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: true },
-    activity_meta: { bad: { beaches: ['Östra klippstranden', 'Sandviken'] } },
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Östra klippstranden',
+            type: 'klippbad',
+            desc: 'Sturkös östsida med klippor mot öppet Blekinge-hav. Klart vatten, sällan folkfullt och äkta skärgårds­stämning. En av de mer avsides klippbadsplatserna i Blekinges skärgård.',
+            depth: 'Djupt vid klippkanten.',
+            directions: 'Gå österut från Sturkö hamn längs markerad stig, ca 20 min.',
+          },
+          {
+            name: 'Sandviken',
+            type: 'sandstrand',
+            desc: 'En liten sandvik på Sturkö med grundt badvatten och skyddat läge. En av Blekinges sällsynta sandstränder utanför Karlskrona-skärgården.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt instegsläge.',
+            directions: 'Kör/gå till Sandviken, ca 2 km från centrum. Skyltad.',
+            insider_tip: 'Vattnet i Sandviken värms upp snabbare än vid öppna klippor — bra val tidigt på säsongen.',
+          },
+        ],
+      },
+    },
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Augusti',
@@ -4452,7 +5015,20 @@ export const ISLANDS: Island[] = [
     tags: ['höga kusten', 'historia', 'fästning', 'natur', 'vandring', 'UNESCO'],
     did_you_know: 'Hemsö fästning byggdes in i berget under 1950–60-talen som en del av Sveriges kall­krigsförsvar. Bergrum, tunnel­system och kanon­pjässällningar är bevarade och öppna för besök — ett tidskapsel från en era då Sverige tog sin militärstrategiska neutralitet på extremt allvar.',
     amenities: { restaurant: false, shop: false, accommodation: false, beach: true, camping: true },
-    activity_meta: { bad: { beaches: ['Klippstränder östra sidan'] } },
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Klippstränder östra sidan',
+            type: 'klippbad',
+            desc: 'Hemsöns östra klippor med utsikt mot Höga Kusten och Bottenhavet. Vattnet är svalare än södra Sverige men klart och rent. Dramatiskt skärgårds­landskap med Höga Kustens typiska grönklädda klippor.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Gå österut från Hemsö Gästhamn längs kustlinjen, ca 20 min.',
+            insider_tip: 'Hemsön är ett av Höga Kustens bättre paddelvatten — klipporna ger en upplevelse som skiljer sig markant från Stockholms skärgård.',
+          },
+        ],
+      },
+    },
   },
 
   // ─── FÅRÖ ────────────────────────────────────────────────────────────────
@@ -4534,7 +5110,35 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyrning via Sudersand Resort och i Fårösund.' },
-      bad: { beaches: ['Sudersandstranden', 'Ekeviken', 'Norsta Auren'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Sudersandstranden',
+            type: 'sandstrand',
+            desc: 'Fårös mest kända strand och en av Sveriges vackraste. Vitt, fint sand, raukar (kalkstensformationer) i bakgrunden och ett blåsigt, vilt hav framför. Ingmar Bergman valde att bo på Fårö — och Sudersand förstår man varför.',
+            depth: 'Grunt vid strandkanten, djupare mot öppet hav.',
+            directions: 'Ta Fårö-färjan från Fårösund, kör norrut mot Sudersand, ca 8 km. Skyltad parkering.',
+            insider_tip: 'Gå norrut från stranden mot Langhammars raukar (ca 1 km) — kombinationen av strand och rauklandskap är unik i hela Sverige.',
+          },
+          {
+            name: 'Ekeviken',
+            type: 'badvik',
+            desc: 'Skyddad vik på Fårös södra sida med lugnare vatten och skogig omgivning. Mer avskild än Sudersand — här samlas de som vet.',
+            child_friendly: true,
+            depth: 'Grunt och skyddat. Bra för barn.',
+            directions: 'Kör söderut från Fårö Kyrka mot Ekeviken, ca 5 km. Grusväg sista biten.',
+            insider_tip: 'Vattnet i Ekeviken är ofta 2–3 grader varmare än Sudersand tack vare det skyddade läget.',
+          },
+          {
+            name: 'Norsta Auren',
+            type: 'sandstrand',
+            desc: 'Fårös nordspets — ett av Sveriges mest avlägsna och dramatiska strandlägen. Öppen mot öppet hav, starka strömmar och raukar på norra sidan. Inte för bad i hårt väder men i lugnt väder en upplevelse utan like.',
+            depth: 'Varierat. Respektera strömmar och vind — Norsta Auren kan vara tekniskt svårt att bada vid.',
+            directions: 'Kör nordöst från Fårö Kyrka mot öns nordspets, ca 12 km. Grusväg hela vägen.',
+            insider_tip: 'Kom tidigt morgon i lugnt väder. Soluppgången vid Norsta Auren — med raukar och öppet hav — är en av de mest dramatiska i Sverige.',
+          },
+        ],
+      },
     },
     seasonal: {
       open: 'Maj–Oktober',
@@ -4623,7 +5227,26 @@ export const ISLANDS: Island[] = [
     },
     activity_meta: {
       kajak: { difficulty: 'medel', rental: false, notes: 'Kajakhyrning rekommenderas från fastlandet i Nordingrå' },
-      bad: { beaches: ['Klippbad norra sidan', 'Skyddad vik vid hamnen'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad norra sidan',
+            type: 'klippbad',
+            desc: 'Trysundas norra klippor med öppet hav mot norr. Höga Kustens typiska karga skönhet — granitklippor, klart vatten och inga grannar. Vattnet är svalare här uppe men klart och rent.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Gå norrut från fiskeläget längs strandlinjen, ca 15 min.',
+            insider_tip: 'Trysunda är ett av Höga Kustens bäst bevarade fiskelägen. Badklipporna norr om byn är nästan alltid tomma.',
+          },
+          {
+            name: 'Skyddad vik vid hamnen',
+            type: 'badvik',
+            desc: 'En liten skyddad vik strax vid fiskelägets hamn. Lugnt vatten, enkelt instegsläge och en vacker utsikt mot de gamla sjöbodarna.',
+            child_friendly: true,
+            depth: 'Grunt och lugnt — bra för barn.',
+            directions: 'Direkt vid hamnen, norra sidan.',
+          },
+        ],
+      },
     },
   },
 
@@ -4698,7 +5321,26 @@ export const ISLANDS: Island[] = [
       camping: true,
     },
     activity_meta: {
-      bad: { beaches: ['Engelskabadet', 'Norra klippstranden'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Engelskabadet',
+            type: 'sandstrand',
+            desc: 'Hanös berömda sandstrand — namngiven efter engelska sjöofficerare som badade här under Napoleonkrigen (1800-tal). Vit sand, kristallklart vatten och en dramatisk historia. En av Blekinges finaste stränder.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt. Bra för barn.',
+            directions: 'Från Hanö hamn, gå norrut längs kustlinjen mot Engelskabadet, ca 15 min.',
+            insider_tip: 'Engelska sjöofficerare badat på exakt den här platsen 1810 — det är en av de mer osannolika historiska kopplingarna i svensk badplatshistoria.',
+          },
+          {
+            name: 'Norra klippstranden',
+            type: 'klippbad',
+            desc: 'Hanös norra klippor med öppet Östersjö-hav. Klart vatten och ett dramatiskt läge på den isolerade sydöstliga ön. Riktigt hav, riktiga klippor.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Gå norrut från hamnen längs kustlinjen förbi Engelskabadet, ca 25 min.',
+          },
+        ],
+      },
       fiske: true,
     },
   },
@@ -4762,7 +5404,18 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: false, shop: false, accommodation: false, beach: false, camping: true },
     activity_meta: {
       kajak: { difficulty: 'medel', rental: false, notes: 'Ta med egen kajak — ingen uthyrning på ön' },
-      bad: { beaches: ['Klippbad östra sidan'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad östra sidan',
+            type: 'klippbad',
+            desc: 'Svartlögas östsida öppnar sig mot öppet hav utan en enda ö i sikte. Platta granitklippor i fullt söderläge. Det klaraste vattnet i norra skärgården — siktdjup på 5–8 meter i lugnt väder. Här sitter man tills solnedgången välter ner i havet.',
+            depth: 'Djupt direkt vid klippkanten. Inga grunt partier — inte för nybörjare.',
+            directions: 'Från ankringsplatsen på västra sidan, ta stigen tvärs över ön österut, ca 15 min. Ingen skylt — ön är liten nog att man hittar.',
+            insider_tip: 'Solnedgången sedd österifrån på Svartlöga, med inget land i sikte, är en av skärgårdens mest oslagbara upplevelser. Ta matsäck och en filt och räkna med att stanna.',
+          },
+        ],
+      },
     },
     seasonal: {
       open: 'Juni–September',
@@ -4837,7 +5490,28 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyra vid färjeläget' },
-      bad: { beaches: ['Österstrand', 'Norra sandstranden'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Österstrand',
+            type: 'sandstrand',
+            desc: 'Visingsös östra strand längs Vätterns strand — lång, bred och med ett enastående landskap. Vättern är ett av Sveriges klaraste sjöar med dricksvattenkvalitet. Vattnet är svalt och rent, och utsikten mot Östergötlandskusten är storslagen.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt instegsläge.',
+            directions: 'Cykla söderut från Kumlaby på östra kustvägen. Stranden löper längs hela östsidan.',
+            insider_tip: 'Vätternvattnet är kallt jämfört med Östersjön — 16–18°C i juli är normalt. Kompenseras av kristallklart vatten och dramatisk utsikt.',
+          },
+          {
+            name: 'Norra sandstranden',
+            type: 'sandstrand',
+            desc: 'Visingsös norra sandstrand med fri utsikt norrut längs Vätterns hela längd. Vattnet är det klaraste du hittar i Sverige — Vättern är en av Europas renaste insjöar.',
+            child_friendly: true,
+            depth: 'Grunt och säkert.',
+            directions: 'Cykla norrut från Gränna färjeläge, ca 2 km. Skyltad.',
+            insider_tip: 'Nordsidan blåser mer — välj östersidan i blåsigt väder.',
+          },
+        ],
+      },
     },
   },
 
@@ -4902,7 +5576,18 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyra vid Kyrkbacken färjeläge' },
-      bad: { beaches: ['Klippbad östra sidan'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad östra sidan',
+            type: 'klippbad',
+            desc: 'Vens östra klippor med utsikt mot den svenska Öresundskusten och Malmö. Klart, relativt varmt Öresundsvatten — ett av Sveriges varmaste bad­vatten sommartid. En unik upplevelse med Öresundsbron och danska kusten synlig i horisonten.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Gå österut från Bäckviken längs kustlinjen, ca 20 min.',
+            insider_tip: 'Öresund är ett av Sveriges varmaste bad­vatten — 22–24°C i juli är vanligt. Ta med snorkel, sikten är god.',
+          },
+        ],
+      },
     },
   },
 
@@ -4963,7 +5648,27 @@ export const ISLANDS: Island[] = [
     amenities: { restaurant: true, shop: false, accommodation: true, beach: true, camping: true },
     activity_meta: {
       kajak: { difficulty: 'lätt–medel', rental: true, notes: 'Kajakhyrning via campingen' },
-      bad: { beaches: ['Sydöstra sandstranden', 'Norra klippbad'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Sydöstra sandstranden',
+            type: 'sandstrand',
+            desc: 'Tjärös finaste strand och ett av Blekinges bästa badlägen — bred, vit sand med klart Östersjövatten. Naturreservats­karaktären innebär att inga båtar kör nära, vattnet är rent och stämningen ostörd.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt. Sandstrand hela vägen ut.',
+            directions: 'Från bryggan, gå sydöst längs markerad naturreservatsled, ca 25 min.',
+            insider_tip: 'Tipset i öns folder: kom tidigt på morgonen eller sen eftermiddag. Stranden är liten och fylls snabbt på fina dagar i juli.',
+          },
+          {
+            name: 'Norra klippbad',
+            type: 'klippbad',
+            desc: 'Tjärös nordliga klippor är öns kontrast till sandstranden — råa, grönbevuxna Östersjöklippor med öppet hav. Mer vild och avsides än sandstranden.',
+            depth: 'Djupt direkt vid klippkanten.',
+            directions: 'Från campingen, gå norrut längs nordkusten, ca 20 min.',
+            insider_tip: 'Kombinera ett morgondopp på nordklipporna med lunch på sandstranden — det är två helt olika upplevelser på samma ö.',
+          },
+        ],
+      },
     },
     seasonal: {
       open: 'Maj–September',
@@ -5031,7 +5736,21 @@ export const ISLANDS: Island[] = [
     tags: ['göteborg', 'fiske', 'sjöfart', 'familjer', 'dagsutflykt', 'skaldjur'],
     did_you_know: 'Öckerö kommun har per capita fler sjöfarare och sjökaptener än nästan någon annan svensk kommun. Sjöfartstraditionens rötter sträcker sig till 1700-talets handel och fiske — en tradition som lever kvar i de marinmålade trähusen längs hamnkajerna.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
-    activity_meta: { bad: { beaches: ['Klippbad östra sidan'] } },
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Klippbad östra sidan',
+            type: 'klippbad',
+            desc: 'Östra Öckerö har klipphällar mot öppet Västerhavet. Rent vatten och inga båttrafiken från hamnen — en annan sida av ön. Klipporna är flacka och lättillgängliga, populärt bland de som bor i Öckerö-arkipelagen.',
+            child_friendly: true,
+            depth: 'Varierat — grunt vid klippkanal, djupare mot öppet vatten.',
+            directions: 'Ta cykel eller gå österut från hamnkärnan ca 15 min. Följ kustlinjen norrut från broarna.',
+            insider_tip: 'Öckeröborna badar på östsidan för att slippa turisttrycket vid hamnen. Klart vatten och inga räkor-lukten från kaserna.',
+          },
+        ],
+      },
+    },
   },
 
   // ─── RÖRÖ ────────────────────────────────────────────────────────────────
@@ -5089,7 +5808,29 @@ export const ISLANDS: Island[] = [
     tags: ['göteborg', 'bilfritt', 'fyr', 'klippor', 'dagsutflykt', 'skaldjur'],
     did_you_know: 'Rörö fyr har väglett sjöfarten in mot Göteborg i mer än ett sekel. Ön har trots sin ringa storlek spelat en viktig roll i Västerhavet-sjöfartens historia.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: false, camping: false },
-    activity_meta: { bad: { beaches: ['Norra klippbad', 'Västra klipputsprång'] } },
+    activity_meta: {
+      bad: {
+        beaches: [
+          {
+            name: 'Norra klippbad',
+            type: 'klippbad',
+            desc: 'Rörös norra spets med öppet hav i norr och Göteborg-horisonten i söder. Flacka klipphällar med Västerhavet direkt framför. Det är klippbad med riktig havskänsla — salt, vind och friskt vatten.',
+            depth: 'Djupt direkt vid klippkanten. Inga grunt partier.',
+            directions: 'Gå norrut från färjebryggan längs kustleden, ca 20 min.',
+            insider_tip: 'Solnedgången härifrån är spektakulär — ta med mat och stanna till solen sjunkit bakom Kattegatt.',
+          },
+          {
+            name: 'Västra klipputsprång',
+            type: 'klippbad',
+            desc: 'Klipputsprång på västra sidan med skyddat läge och lite lugnare vatten när det blåser från norr. Favoritplats för de boende på vandrarhemet.',
+            child_friendly: true,
+            depth: 'Lite lugnare och lite grundare på insidan av utsprånget.',
+            directions: 'Från hamnen, ta stigen västerut, ca 10 min.',
+            insider_tip: 'Vattnet vid västra sidan är 2–3 grader varmare i juli — skyddat läge och södra exponering.',
+          },
+        ],
+      },
+    },
   },
 
   // ─── HOLMÖN ──────────────────────────────────────────────────────────────
@@ -5125,7 +5866,7 @@ export const ISLANDS: Island[] = [
       { name: 'Holmöns Camping & Stugor', type: 'Camping', desc: 'Camping och enklare stugor. Kolla Holmöns turistbyrå för aktuellt utbud.' },
     ],
     getting_there: [
-      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Länstrafiken Västernorrland / Region Västerbotten för aktuell tidtabell.', icon: '⛴' },
+      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Region Västerbotten / Länstrafiken i Västerbotten för aktuell tidtabell.', icon: '⛴' },
     ],
     transport_meta: {
       from_city_min: 60,
@@ -5150,11 +5891,23 @@ export const ISLANDS: Island[] = [
     insiderTips: [
       'Fråga lokalborna om de bästa platserna. Holmön är liten nog att alla känner varandra — och stora nog att det finns hemligheter de inte marknadsför.',
     ],
-    did_you_know: 'Holmön är en av de öar längs Norrlandskusten som drabbades hårdast av landhöjningen efter istiden — havet steg relativt sett, men landet höjer sig fortfarande med ca 8 mm per år, vilket gör att strandlinjen förändras mätbart under en mänsklig livstid.',
+    did_you_know: 'Holmön påverkas starkt av landhöjning — landet reser sig fortfarande med ca 8 mm per år efter istiden, vilket innebär att havsytan sjunker relativt land och strandlinjen förskjuts mätbart under en mänsklig livstid. Det är en av de snabbaste landhöjningstakterna längs hela Norrlandskusten.',
     amenities: { restaurant: true, shop: false, accommodation: true, beach: false, camping: true },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyrning vid färjeläget' },
-      bad: { beaches: ['Strandäng nordvästra sidan'] },
+      bad: {
+        beaches: [
+          {
+            name: 'Strandäng nordvästra sidan',
+            type: 'sandstrand',
+            desc: 'Holmöns nordvästra strandäng är ett ovanligt kustnaturlandskap — en bred, flack strand med ängsmark bakom. Bottenhavet är svalt men klart. Sälar observeras ibland i vattnet utanför. En badplats i norr, där allemansrätten och tystnaden dominerar.',
+            child_friendly: true,
+            depth: 'Grunt och jämnt längs strandängen.',
+            directions: 'Ta cykel från Holmöns hamn norrväst, ca 3–4 km. Skyltad mot strandängen.',
+            insider_tip: 'Håll utkik efter säl i vattnet tidigt på morgonen. Holmön är ett av de bästa ställena i Bottenhavet för sälskådning från land.',
+          },
+        ],
+      },
     },
   },
 
