@@ -11,7 +11,7 @@
  */
 
 import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, getAllWaypoints, SeaWaypoint } from './seaWaypoints'
-import { pointOnLand, segmentCrossesLand, validatePathLand, inMaskCoverage } from './landMask'
+import { pointOnLand, segmentCrossesLand, validatePathLand, inMaskCoverage, findRasterPath } from './landMask'
 import { logger } from './logger'
 import precomputedRoutesData from './data/precomputed-routes.json'
 
@@ -305,53 +305,17 @@ function findPathViaGrid(
   endLat: number,
   endLng: number,
 ): Array<[number, number]> | null {
-  // Generera grid
-  const gridNodes = generateWaterGrid(startLat, startLng, endLat, endLng)
-
-  if (gridNodes.length === 0) {
-    return null // Ingen vatten i området
-  }
-
-  // Bygg edges
-  const gridEdges = buildGridEdges(gridNodes)
-
-  // Snapp start/end till närmaste grid-nod
-  const gridCoords = gridNodes.map(n => [n.lat, n.lng])
-  const snapStart = snapToWater(startLat, startLng, gridCoords as [number, number][])
-  const snapEnd = snapToWater(endLat, endLng, gridCoords as [number, number][])
-
-  // Hitta motsvarande noder
-  const startNode = gridNodes.find(n => n.lat === snapStart[0] && n.lng === snapStart[1])
-  const endNode = gridNodes.find(n => n.lat === snapEnd[0] && n.lng === snapEnd[1])
-
-  if (!startNode || !endNode) {
-    return null
-  }
-
-  // Kör A*
-  const nodePath = aStar(startNode.id, endNode.id, gridNodes, gridEdges, endLat, endLng)
-
-  if (nodePath.length === 0) {
-    return null
-  }
-
-  // Konvertera node-IDs till lat/lng
-  const nodeMap = new Map<string, GridNode>()
-  for (const node of gridNodes) {
-    nodeMap.set(node.id, node)
-  }
-
-  const result: Array<[number, number]> = [[startLat, startLng]]
-
-  for (const nodeId of nodePath) {
-    const node = nodeMap.get(nodeId)
-    if (node) {
-      result.push([node.lat, node.lng])
-    }
-  }
-
-  result.push([endLat, endLng])
-
+  // 2026-08-04 (kväll): det gamla 550 m-gridet ersatt av A* direkt på
+  // 50 m-rastret (findRasterPath i landMask.ts). Gamla gridet byggde dels
+  // aldrig en enda kant (parseFloat-nycklar matchade aldrig toFixed-nycklar),
+  // dels var 550 m för grovt för skärgårdens sund (~300 m). Hjälparna
+  // generateWaterGrid/buildGridEdges/aStar nedan är därmed döda — tas bort
+  // i städuppgiften för seaWaypoints-grafen.
+  const raster = findRasterPath(startLat, startLng, endLat, endLng)
+  if (!raster || raster.length < 2) return null
+  // Anroparens exakta punkter som ändpunkter (validering exkluderar ändpunkter;
+  // hamnar/kajer får ligga på kustlinjen).
+  const result: Array<[number, number]> = [[startLat, startLng], ...raster, [endLat, endLng]]
   return result
 }
 
