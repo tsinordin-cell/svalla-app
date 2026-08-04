@@ -156,10 +156,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     accommodation: [
       { name: 'Strand Hotell Lysekil', type: 'Hotell', desc: 'Centralt vid hamnen, spa.' },
       { name: 'Hotel Lysekil', type: 'Hotell', desc: 'Modern, närhet till restauranger.' },
-      { name: 'Lysekil Camping', type: 'Camping', desc: 'Familjefientligt med havsläge.' },
+      { name: 'Lysekil Camping', type: 'Camping', desc: 'Familjevänligt med havsläge.' },
     ],
     getting_there: [
-      { method: 'Bil', from: 'Göteborg', time: '1 h 50 min', desc: 'E6 norrut, avtag mot Lysekil — sista biten via bro över Gullmarsfjorden.', icon: '🚗' },
+      { method: 'Bil', from: 'Göteborg', time: '1 h 50 min', desc: 'E6 norrut, sedan väg 162 via Brastad och Skaftö mot Lysekil längs Stångenäshalvön.', icon: '🚗' },
       { method: 'Buss', from: 'Göteborg', time: '2 h 10 min', desc: 'Västtrafik linje 850.', icon: '🚌' },
     ],
     harbors: [
