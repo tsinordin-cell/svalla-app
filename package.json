@@ -16,8 +16,7 @@
     "db:migrate": "supabase db push",
     "db:lint": "supabase db lint",
     "db:diff": "supabase db diff",
-    "routes:verify": "tsx scripts/verify-routes.ts",
-    "routes:expand": "tsx scripts/expand-precomputed-routes.ts",
+    "routes:verify": "node scripts/verify-routes-v2.mjs",
     "routes:expand:write": "tsx scripts/expand-precomputed-routes.ts --write",
     "email:test": "tsx scripts/test-welcome-email.ts"
   },

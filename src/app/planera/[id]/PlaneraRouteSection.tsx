@@ -151,12 +151,12 @@ export default function PlaneraRouteSection({
     if (quality === 'precomputed') {
       return { tone: 'success' as const, label: 'Verifierad sjöled', desc: 'Rutten är verifierad mot OSM:s kustlinje och korsar inte land. Följ sjökort för djup och farled.' }
     }
+    // 2026-08-04: grid uppgraderad till success — runtime-masken utbytt mot
+    // 50 m-rastret från riktiga kustlinjen (villkoret i kommentaren ovan är
+    // uppfyllt). Grid-sökningen går i verifierat vatten och vägrar helt
+    // utanför maskens täckning.
     if (quality === 'grid') {
-      return {
-        tone: 'warning' as const,
-        label: 'Preliminär sjöled (streckad linje)',
-        desc: 'Rutten är under omverifiering och kan avvika från farbar väg. Verifiera mot sjökort innan avgång.',
-      }
+      return { tone: 'success' as const, label: 'Beräknad sjöled', desc: 'Beräknad i verifierat vatten (50 m-upplösning) och kontrollerad mot kustlinjen. Följ sjökort för djup och farled.' }
     }
     if (quality === 'waypoint') {
       return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
