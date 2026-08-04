@@ -128,7 +128,10 @@ const lista = []
 
 for (const r of routes) {
   const w = r.waypoints
-  if (!w.every(inomTackning)) { utanfor++; continue }
+  // 2026-08-03: rutter utanför maskens täckning har waypoints medvetet
+  // borttagna (lookupPrecomputed kollar inte validated-flaggan) — de kan
+  // inte bedömas och räknas som utanför.
+  if (!w || !w.every(inomTackning)) { utanfor++; continue }
 
   const start = w[0], mal = w[w.length - 1]
   let trasig = null

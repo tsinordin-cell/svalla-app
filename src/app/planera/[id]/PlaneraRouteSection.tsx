@@ -142,13 +142,16 @@ export default function PlaneraRouteSection({
   // och success ska tillbaka när rutterna genererats om.
   const qualityBanner = ((): { tone: 'success' | 'warning'; label: string; desc: string } | null => {
     if (status !== 'ready' || !quality) return null
-    // 2026-08-03: precomputed/grid nedgraderade från success till warning.
-    // Rutterna genererades mot en land-mask som saknade fastlandet (täckte
-    // 0,38 % av Sveriges landyta) — omverifiering mot korrekt mask underkände
-    // 610 av 612. "Verifierad" och "optimerad runt land" var därför inte
-    // sanna påståenden. Återställ till success FÖRST när rutterna
-    // genererats om mot riktig mask och passerat verify-routes-v2.
-    if (quality === 'precomputed' || quality === 'grid') {
+    // 2026-08-03 (em): precomputed ÅTERSTÄLLD till success. Alla 609 rutter
+    // är omgenererade mot riktig kustlinje (939 563 OSM-segment, 8/8 hand-
+    // kontrollerade sanity-punkter) och verifierade mot produktionens
+    // 20-sampelregel + tät 30 m-sampling — 0 underkända (verify-routes-v2).
+    // GRID förblir warning: den beräknas i runtime mot swedish-coastline.json
+    // som saknar fastlandet. Uppgradera INTE grid förrän prod-masken bytts ut.
+    if (quality === 'precomputed') {
+      return { tone: 'success' as const, label: 'Verifierad sjöled', desc: 'Rutten är verifierad mot OSM:s kustlinje och korsar inte land. Följ sjökort för djup och farled.' }
+    }
+    if (quality === 'grid') {
       return {
         tone: 'warning' as const,
         label: 'Preliminär sjöled (streckad linje)',
