@@ -1575,7 +1575,7 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
     tips: [
-      'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
+      'Utö Express trafikerar Nåttarö juni–aug från Nynäshamns fiskehamn. Utanför säsong krävs egen båt.',
       'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
       'Fågelhäckning pågår april–juni på öns yttre klippor — håll avstånd, ta med kikare och njut av tärna och ejder.',
     ],
@@ -5125,7 +5125,7 @@ export const ISLANDS: Island[] = [
       { name: 'Holmöns Camping & Stugor', type: 'Camping', desc: 'Camping och enklare stugor. Kolla Holmöns turistbyrå för aktuellt utbud.' },
     ],
     getting_there: [
-      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Länstrafiken Västernorrland / Region Västerbotten för aktuell tidtabell.', icon: '⛴' },
+      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Region Västerbotten / Länstrafiken i Västerbotten för aktuell tidtabell.', icon: '⛴' },
     ],
     transport_meta: {
       from_city_min: 60,
@@ -5150,7 +5150,7 @@ export const ISLANDS: Island[] = [
     insiderTips: [
       'Fråga lokalborna om de bästa platserna. Holmön är liten nog att alla känner varandra — och stora nog att det finns hemligheter de inte marknadsför.',
     ],
-    did_you_know: 'Holmön är en av de öar längs Norrlandskusten som drabbades hårdast av landhöjningen efter istiden — havet steg relativt sett, men landet höjer sig fortfarande med ca 8 mm per år, vilket gör att strandlinjen förändras mätbart under en mänsklig livstid.',
+    did_you_know: 'Holmön påverkas starkt av landhöjning — landet reser sig fortfarande med ca 8 mm per år efter istiden, vilket innebär att havsytan sjunker relativt land och strandlinjen förskjuts mätbart under en mänsklig livstid. Det är en av de snabbaste landhöjningstakterna längs hela Norrlandskusten.',
     amenities: { restaurant: true, shop: false, accommodation: true, beach: false, camping: true },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyrning vid färjeläget' },
