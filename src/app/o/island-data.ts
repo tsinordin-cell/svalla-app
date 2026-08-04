@@ -39,6 +39,32 @@ export type IslandRestaurant = {
   bookingUrl?: string
   /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
   websiteUrl?: string
+  /** Prisexempel — t.ex. "Lunch 225–275 kr, middag 345–425 kr" */
+  price_example?: string
+  /** Säsong/period restaurangen är öppen — t.ex. "1 jul–8 aug dagligen, fredagar övrig tid" */
+  open_season?: string
+  /** Öppettider — t.ex. "Lunch 12–15, middag från 17" */
+  open_hours?: string
+  /** Sant om bordsbokning krävs / starkt rekommenderas */
+  book_required?: boolean
+  /** Bokningsnotering — t.ex. "Boka 6 månader i förväg för juli" */
+  book_note?: string
+  /** Telefonnummer */
+  phone?: string
+  /** Barnmeny — t.ex. "Barnmeny 75–95 kr" */
+  child_menu?: string
+}
+
+/** Uppskattad kostnad för en dagstur */
+export type IslandDayCost = {
+  /** Prisintervall per person — t.ex. "350–900 kr" */
+  budget_per_person: string
+  /** Vad estimatet inkluderar */
+  includes: string
+  /** Specificerad kostnadsfördelning */
+  breakdown: { item: string; price: string }[]
+  /** Spartips för budgetresenären */
+  tips?: string[]
 }
 
 export type Island = {
@@ -123,6 +149,11 @@ export type Island = {
    * Undvik generaliseringar — varje tips ska gälla just denna ö.
    */
   insiderTips?: string[]
+  /**
+   * Uppskattad kostnad för en dagstur — unikt Svalla-innehåll ingen annan reseguide har.
+   * Byggs av verkliga priser från restauranger, färjor och aktiviteter på ön.
+   */
+  day_cost?: IslandDayCost
   /**
    * Blogginlägg som handlar om eller nämner denna ö.
    * Visas som "Guider om [ö]"-sektion på ö-sidan för intern länkning.
@@ -213,12 +244,50 @@ export const ISLANDS: Island[] = [
       { name: 'Sandhamns Sjöstation', desc: 'Drivmedel och service vid inloppet.', fuel: true, service: ['bränsle', 'olja'] },
     ],
     restaurants: [
-      { name: 'Seglarrestaurangen', type: 'Restaurang', desc: 'Seglarhotellets krog — en av skärgårdens finaste. Boka i förväg.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamn-seglarhotell', websiteUrl: 'https://www.sandhamn.com' },
-      { name: 'Sandhamns Värdshus', type: 'Restaurang', desc: 'Historisk krog vid färjebryggan. Enkel husmanskost och räkor.', bookingUrl: 'https://www.bokabord.se/restaurang/sandhamns-vardshus', websiteUrl: 'https://sandhamns-vardshus.se' },
+      {
+        name: 'Sandhamns Värdshus',
+        type: 'Restaurang',
+        desc: 'Historisk krog vid färjebryggan med pub, restaurang och uteservering. Dagens rätt inkl. salladsbuffe och kaffe. À la carte på kvällen med klassiska skärgårdsrätter.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/sandhamns-vardshus',
+        websiteUrl: 'https://sandhamns-vardshus.se',
+        phone: '08-571 530 51',
+        price_example: 'Dagens rätt 155 kr, à la carte 215–350 kr',
+        open_season: 'Mitten av juni–mitten av september dagligen; helger övrig tid. Puben mån–lör 11–22, sön 11–21.',
+        open_hours: 'Pub från 11:00, restaurang från 18:00',
+        child_menu: 'Enklare barnrätter i puben',
+      },
+      {
+        name: 'Seglarrestaurangen',
+        type: 'Restaurang',
+        desc: 'Seglarhotellets flaggskeppskrog — en av Stockholms skärgårds finaste. Säsongsbetonad meny med fokus på hav och lokala råvaror.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/sandhamn-seglarhotell',
+        websiteUrl: 'https://www.sandhamn.com',
+        price_example: 'À la carte middag 300–500 kr',
+        open_season: 'Juni–september',
+        book_required: true,
+        book_note: 'Boka minst 4–6 veckor i förväg för juli',
+      },
       { name: 'Bistro Sands', type: 'Bistro', desc: 'Avslappnad bistro med havsutsikt och säsongsrätter.', slug: 'bistro-sands' },
       { name: 'Dykarbaren', type: 'Bar', desc: 'Bryggbar med hamburgare och öl. Populär för sundowner.', slug: 'dykarbaren' },
       { name: 'Sandhamns Bageriet', type: 'Bageri', desc: 'Nybakat varje morgon. Kö tidigt i juli.', slug: 'sandhamns-bageriet' },
     ],
+    day_cost: {
+      budget_per_person: '400–850 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Waxholmsbåt Stockholm–Sandhamn tur & retur', price: 'ca 250 kr' },
+        { item: 'Dagens rätt på Värdshuset (inkl. sallad & kaffe)', price: '155 kr' },
+        { item: 'Öl eller dryck', price: 'ca 60–90 kr' },
+        { item: 'Glass eller fika vid bryggan', price: 'ca 50–70 kr' },
+        { item: 'Eventuellt glass + souvenirer', price: '0–200 kr' },
+      ],
+      tips: [
+        'Snabbåten via Stavsnäs kostar mer men tar 1 timme — Waxholmsbåten tar 2,5 h men är en upplevelse i sig.',
+        'Dagens rätt på Värdshuset kl 11–14 är det bästa priset på ön (155 kr inkl. salladsbuffe och kaffe).',
+        'Ta med matsäck och spara 150+ kr — Trouville-stranden är gratis och underbar.',
+        'Julibokningar på Seglarrestaurangen bör göras månader i förväg.',
+      ],
+    },
     tips: [
       'Boka restaurang och hotell minst 4–6 veckor i förväg under juli.',
       'Sandstranden Trouville är bäst tidigt på morgonen innan turistbåtarna anländer.',
@@ -329,11 +398,56 @@ export const ISLANDS: Island[] = [
       { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', spots: 150, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
     ],
     restaurants: [
-      { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Öns flaggskepp — vällagad mat med havsutsikt. Boka i förväg.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
-      { name: 'Seglarbaren', type: 'Bar', desc: 'Avslappnad hamn­bar för seglare och besökare.', slug: 'seglarbaren-uto' },
-      { name: 'Hamnboden', type: 'Kiosk', desc: 'Enkel mat och dryck direkt vid hamnen.', slug: 'hamnboden-uto' },
-      { name: 'Bakfickan Utö', type: 'Restaurang', desc: 'Gemytlig lokal restaurang med bra husmanskost.', slug: 'bakfickan-uto' },
+      {
+        name: 'Utö Värdshus',
+        type: 'Restaurang & Hotell',
+        desc: 'Öns flaggskepp med havsutsikt och klassisk skärgårdsmat — sill, lax och säsongsmenyer. En av södra skärgårdens finaste restauranger.',
+        bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/',
+        websiteUrl: 'https://www.utovardshus.se',
+        price_example: 'Lunch ca 195–245 kr, middag 285–425 kr, dessert 95–135 kr',
+        open_season: '30 apr–6 aug dagligen; övrig tid fredag–söndag och helgdagar',
+        open_hours: 'Lunch 12–14:30, middag från 17:00',
+        phone: '08-504 20 300',
+        book_required: true,
+        book_note: 'Bordbokning krävs i praktiken för middag under juli — boka minst 2–3 veckor i förväg',
+        child_menu: 'Barnmeny finns',
+      },
+      {
+        name: 'Seglarbaren',
+        type: 'Bar',
+        desc: 'Avslappnad hamn­bar för seglare och besökare. Öl, drinkar och enklare snacks direkt vid bryggan.',
+        slug: 'seglarbaren-uto',
+        price_example: 'Öl ca 85–95 kr, enklare mat 95–145 kr',
+        open_season: 'Juni–september',
+      },
+      {
+        name: 'Hamnboden',
+        type: 'Kiosk & Café',
+        desc: 'Enkel mat och dryck direkt vid hamnen — glass, kaffe, mackor och glass. Perfekt stopp för cyklister.',
+        slug: 'hamnboden-uto',
+        price_example: 'Glass 30–50 kr, kaffe 35–45 kr, macka 75–95 kr',
+        open_season: 'Maj–september',
+      },
     ],
+    day_cost: {
+      budget_per_person: '500–900 kr',
+      includes: 'Tåg + färja tur & retur, cykel, lunch och bastu',
+      breakdown: [
+        { item: 'Pendeltåg Stockholm C–Nynäshamn tur & retur', price: 'ca 140 kr (SL)' },
+        { item: 'Waxholmsbåt Nynäshamn–Utö tur & retur', price: 'ca 210 kr' },
+        { item: 'Cykeluthyrning (heldagspass)', price: 'ca 150 kr' },
+        { item: 'Lunch på Utö Värdshus', price: '195–245 kr' },
+        { item: 'Öl eller kaffe', price: 'ca 50–95 kr' },
+        { item: 'Glass vid hamnen', price: 'ca 40–50 kr' },
+      ],
+      tips: [
+        'SL-kortet gäller på pendeltåget till Nynäshamn — bara färjan kostar extra.',
+        'Boka havsbastupass online i förväg — kvällsslot med solnedgång är bäst och går snabbt åt.',
+        'Hyr cykel direkt vid hamnen när du stiger av — de tar slut snabbt på högsommardagar.',
+        'Gruvmuseet är gratis och tar ca 45 min — värt ett stopp på vägen tillbaka.',
+        'Lunch på Värdshuset är mer prisvärd än middagen — ca 195–245 kr mot 285–425 kr.',
+      ],
+    },
     tips: [
       'Hyr cykel vid hamnen direkt när du stiger av — de tar slut snabbt sommardagar.',
       'Havsbastubokning krävs online i förväg. Kvällspass med solnedgång är bäst.',
@@ -557,10 +671,55 @@ export const ISLANDS: Island[] = [
       { name: 'Grinda Gästhamn (Hemviken)', desc: 'Välutrustad hamn med plats för 100+ båtar, bränsle och full service.', spots: 100, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt', 'wifi'] },
     ],
     restaurants: [
-      { name: 'Grinda Wärdshus Restaurang', type: 'Restaurang', desc: 'Skärgårdens bästa kök i detta prissegment. Boka.', bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus', websiteUrl: 'https://grinda.se' },
-      { name: 'Framfickan', type: 'Bistro', desc: 'Bryggbistro nedanför wärdshuset. Lunch i solen.', slug: 'framfickan-grinda' },
-      { name: 'Grinda Lanthandel & Café', type: 'Café', desc: 'Frukost, fika och proviant vid nedre hamnen.', slug: 'grinda-lanthandel-cafe' },
+      {
+        name: 'Grinda Wärdshus Restaurang',
+        type: 'Restaurang',
+        desc: 'En av skärgårdens genuinaste restauranger — säsongsbetonad mat med lokal fisk och klassiska svenska smaker. Matsalen ser ut över hamnen och kvällarna är svårslagna.',
+        bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus',
+        websiteUrl: 'https://grinda.se',
+        phone: '08-542 494 91',
+        price_example: 'Förrätt 125–165 kr, varmrätt 225–345 kr, dessert 95–125 kr',
+        open_season: 'Maj–september dagligen',
+        open_hours: 'Lunch 12–14, middag 17–21',
+        book_required: true,
+        book_note: 'Boka middag i förväg under juli — restaurangen är liten och populär',
+        child_menu: 'Barnmeny finns',
+      },
+      {
+        name: 'Framfickan',
+        type: 'Bistro & Bar',
+        desc: 'Bryggbistro nedanför wärdshuset på klipporna mot vattnet. Räksmörgås, hamburgare och lokalt öl — bäst för lunch i solen.',
+        slug: 'framfickan-grinda',
+        price_example: 'Räksmörgås ca 175–225 kr, hamburgare ca 145–185 kr, öl ca 85–95 kr',
+        open_season: 'Juni–augusti',
+        open_hours: 'Lunch och AW, ca 11–18',
+      },
+      {
+        name: 'Grinda Lanthandel & Café',
+        type: 'Café & Lanthandel',
+        desc: 'Frukost, fika och proviant vid nedre hamnen. Nybakt bröd, kaffe och enklare maträtter — seglares provianthörna.',
+        slug: 'grinda-lanthandel-cafe',
+        price_example: 'Kaffe 35–45 kr, macka 65–95 kr, frukost ca 95–125 kr',
+        open_season: 'Maj–september',
+        open_hours: 'Från 08:00',
+      },
     ],
+    day_cost: {
+      budget_per_person: '450–750 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Waxholmsbåt Strömkajen–Grinda tur & retur', price: 'ca 240 kr' },
+        { item: 'Lunch på Framfickan (räksmörgås + öl)', price: 'ca 260–320 kr' },
+        { item: 'Kaffe + kaka på Lanthandeln', price: 'ca 55–75 kr' },
+        { item: 'Glass vid bryggan', price: 'ca 40–60 kr' },
+      ],
+      tips: [
+        'SL-kortet gäller på Waxholmsbåten till Grinda — ingen extra kostnad.',
+        'Framfickan har fri sittning utomhus — bättre och billigare än inne på Wärdshuset för en enkel lunch.',
+        'Grinda Lanthandel öppnar 08:00 — perfekt för nybakt bröd och kaffe direkt efter ankomst.',
+        'Boka middag på Wärdshuset i förväg om du planerar att stanna — det går snabbt åt.',
+      ],
+    },
     tips: [
       'Framfickan på klipporna är bäst för lunch — boka bord från kl 10.',
       'Grinda Lanthandel är öppet från 8:00 och säljer nybakat bröd.',
@@ -869,11 +1028,51 @@ export const ISLANDS: Island[] = [
       { name: 'Fjäderholmarnas Gästbrygga', desc: 'Kortare förtöjningsplatser för passager. Inga längre övernattningar.', fuel: false, service: ['toilet'] },
     ],
     restaurants: [
-      { name: 'Fjäderholmarnas Krog', type: 'Restaurang', desc: 'Stor terrass, vällagad mat, direktbåt från stan. Boka i förväg.' },
-      { name: 'Rökeriet Fjäderholmarna', type: 'Restaurang', desc: 'Klassiskt rökeriet sedan 80-talet. Rökt lax och sill i toppklass.' },
-      { name: 'Fjäderholmarnas Bryggeri', type: 'Bar', desc: 'Hantverksöl med Stockholms siluett. Kväll och solnedgång.', slug: 'fjaderholmarna-bryggeri' },
-      { name: 'The Old Smokehouse', type: 'Restaurang', desc: 'Rökt fisk och skaldjur take-away vid bryggan.', slug: 'old-smokehouse' },
+      {
+        name: 'Fjäderholmarnas Krog',
+        type: 'Restaurang',
+        desc: 'Stor terrass med Stockholmsutsikt och vällagad mat — klassisk skärgårdskrog 25 minuter från stan. Lunch och middag. Kräftmeny i augusti.',
+        websiteUrl: 'https://www.fjaderholmarnaskrog.se',
+        bookingUrl: 'https://app.waiteraid.com/reservation/?hash=c7431b3e1564329365f42b1b62d9f50a',
+        price_example: 'Lunch 245 kr, middag 245–345 kr, kräftmeny (aug) på förfrågan',
+        open_season: 'Maj–september (kräftmeny 1–31 aug)',
+        book_required: true,
+        book_note: 'Bordbokning rekommenderas — populärast i skärgården nära stan',
+        child_menu: 'Barnmeny finns (PDF på hemsidan)',
+      },
+      {
+        name: 'Rökeriet Fjäderholmarna',
+        type: 'Restaurang',
+        desc: 'Klassiskt rökeriet sedan 1985. Rökt lax, sill och skärgårdsmat take-away eller sit-down. En institution.',
+        websiteUrl: 'https://www.rokeriet-fjaderholmarna.se',
+        price_example: 'Räksmörgås ca 175 kr, rökt lax portion ca 145 kr',
+        open_season: 'April–oktober',
+      },
+      {
+        name: 'Fjäderholmarnas Bryggeri',
+        type: 'Bar & Bryggeri',
+        desc: 'Hantverksöl bryggd på ön med Stockholms siluett som fondvägg. Perfekt för sundowner.',
+        slug: 'fjaderholmarna-bryggeri',
+        price_example: 'Fatöl från ca 90 kr, enklare maträtter 120–180 kr',
+        open_season: 'Maj–september',
+      },
     ],
+    day_cost: {
+      budget_per_person: '300–600 kr',
+      includes: 'Båt tur & retur, lunch och ett glas',
+      breakdown: [
+        { item: 'Strömma-båt Slussen–Fjäderholmarna tur & retur', price: 'ca 180 kr' },
+        { item: 'Lunch på Fjäderholmarnas Krog', price: '245 kr' },
+        { item: 'Öl på Bryggeriet', price: 'ca 90 kr' },
+        { item: 'Glass eller rökt lax på Rökeriet', price: 'ca 50–145 kr' },
+      ],
+      tips: [
+        'Ingår inte i SL-kortet — köp båtbiljett separat från Strömma.',
+        'Ta morgonbåten och ät lunch kl 11:30 — köerna till krogen är kortast då.',
+        'Rökeriet är billigare och lika gott — räksmörgås ca 175 kr mot krogens ca 245 kr.',
+        'Kräftmeny i hela augusti — boka bord i god tid.',
+      ],
+    },
     tips: [
       'Ta morgonbåten och ha lunch — köerna till Fjäderholmarnas Krog är kortast 11:30.',
       'Rökeriet är öppet från april till oktober — passa på innan säsongen tar slut.',
@@ -1575,7 +1774,7 @@ export const ISLANDS: Island[] = [
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
     tips: [
-      'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
+      'Utö Express trafikerar Nåttarö juni–aug från Nynäshamns fiskehamn. Utanför säsong krävs egen båt.',
       'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
       'Fågelhäckning pågår april–juni på öns yttre klippor — håll avstånd, ta med kikare och njut av tärna och ejder.',
     ],
@@ -5125,7 +5324,7 @@ export const ISLANDS: Island[] = [
       { name: 'Holmöns Camping & Stugor', type: 'Camping', desc: 'Camping och enklare stugor. Kolla Holmöns turistbyrå för aktuellt utbud.' },
     ],
     getting_there: [
-      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Länstrafiken Västernorrland / Region Västerbotten för aktuell tidtabell.', icon: '⛴' },
+      { method: 'Färja från Norrfjärden', from: 'Norrfjärden (nära Umeå)', time: 'ca 35 min', desc: 'Holmöfärjan trafikerar Norrfjärden–Holmön dagligen. Norrfjärden nås med bil ca 25 min från Umeå centrum, eller buss från Umeå. Kolla Region Västerbotten / Länstrafiken i Västerbotten för aktuell tidtabell.', icon: '⛴' },
     ],
     transport_meta: {
       from_city_min: 60,
@@ -5150,7 +5349,7 @@ export const ISLANDS: Island[] = [
     insiderTips: [
       'Fråga lokalborna om de bästa platserna. Holmön är liten nog att alla känner varandra — och stora nog att det finns hemligheter de inte marknadsför.',
     ],
-    did_you_know: 'Holmön är en av de öar längs Norrlandskusten som drabbades hårdast av landhöjningen efter istiden — havet steg relativt sett, men landet höjer sig fortfarande med ca 8 mm per år, vilket gör att strandlinjen förändras mätbart under en mänsklig livstid.',
+    did_you_know: 'Holmön påverkas starkt av landhöjning — landet reser sig fortfarande med ca 8 mm per år efter istiden, vilket innebär att havsytan sjunker relativt land och strandlinjen förskjuts mätbart under en mänsklig livstid. Det är en av de snabbaste landhöjningstakterna längs hela Norrlandskusten.',
     amenities: { restaurant: true, shop: false, accommodation: true, beach: false, camping: true },
     activity_meta: {
       cykel: { rental: true, notes: 'Cykelhyrning vid färjeläget' },
