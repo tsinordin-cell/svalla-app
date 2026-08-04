@@ -165,7 +165,9 @@ export async function POST(req: NextRequest) {
     if (path !== null) {
       const v = validatePathLand(path)
       if (v.ok) {
-        validated = true
+        // Verifierad = inga landfel OCH hela vägen inom maskens täckning.
+        // Utanför täckning är ett "ok" vakuöst och får inte kallas verifierat.
+        validated = v.coverage === 'full'
       } else {
         crossesAt = v.crossesAt ?? null
         finalPath = null

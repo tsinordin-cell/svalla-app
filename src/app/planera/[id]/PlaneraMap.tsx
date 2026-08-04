@@ -170,12 +170,12 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
 
       // Routing-safety: linjestil per quality.
       //
-      // 2026-08-03 (em): precomputed får solid linje igen — alla 609 rutter
-      // omgenererade mot riktig kustlinje och verifierade (0 underkända i
-      // verify-routes-v2). GRID förblir streckad: runtime-beräkningen använder
-      // swedish-coastline.json som saknar fastlandet. Uppgradera INTE grid
-      // förrän prod-masken bytts ut.
-      const isValidated = quality === 'precomputed'
+      // 2026-08-03: precomputed solid igen (609 omgenererade, 0 underkända).
+      // 2026-08-04: GRID solid igen — runtime-masken utbytt mot 50 m-rastret
+      // från riktiga kustlinjen; grid-sökningen går i verifierat vatten och
+      // vägrar helt utanför maskens täckning. Villkoret "uppgradera inte grid
+      // förrän prod-masken bytts ut" är därmed uppfyllt.
+      const isValidated = quality === 'precomputed' || quality === 'grid'
 
       // Shadow line — bredare, mörkare backdrop
       const shadow = L.polyline(seaPath, {

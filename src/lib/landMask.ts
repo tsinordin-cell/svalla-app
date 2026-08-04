@@ -1,96 +1,157 @@
 /**
- * landMask.ts — Riktig OSM coastline-baserad land-validering för sjöleds-routing
+ * landMask.ts — raster-baserad land-validering för sjöleds-routing
  *
- * Använder ~500 slutna polygoner från OpenStreetMap coastline-data för Sverige.
- * Garanterar att inga vägar korsar land — INGA APPROXIMATIONER.
+ * 2026-08-04: OMSKRIVEN. Tidigare version läste swedish-coastline.json som
+ * bara innehöll öar (0,38 % av Sveriges landyta — fastlandet saknades) och
+ * godkände Stockholm→Göteborg tvärs över Sverige som "vattenväg", samtidigt
+ * som rubriken lovade "INGA APPROXIMATIONER". Se /team-tavlan,
+ * "Ersätt land-masken", för hela grävningen.
  *
- * Polygon-assemblering från OSM Overpass API (hämtat 2026-04-29).
- * Använder Turf.js för robust punkt-i-polygon och line-intersection testing.
+ * Nu: bitpackat 50 m-raster byggt från OSM:s kustlinje (939 569 segment,
+ * scripts/build-land-mask.mjs → scripts/build-land-raster.mjs), verifierat
+ * mot 8 handkontrollerade sanity-punkter vid bygget. Even-odd-paritet
+ * förankrad i östkanten (öppet hav).
+ *
+ * TVÅ STRÄNGHETSNIVÅER — medvetet olika användning:
+ *
+ *  pointOnLand (cellnivå, KONSERVATIV): en cell räknas som land om dess
+ *  centrum ligger på land. Kustnära "blandceller" klassas ofta som land.
+ *  Rätt nivå för VÄGSÖKNING — hellre en omväg än en genväg över en udde.
+ *
+ *  validatePathLand (djupnivå, defense-in-depth): en sampelpunkt underkänner
+ *  bara om cellen OCH alla 8 grannceller är land, dvs punkten ligger >50 m
+ *  in i land. Fångar varje verklig katastrof (rutnätsmarsch över en ö går
+ *  hundratals meter in i land) utan att falskt underkänna korrekta kustnära
+ *  rutter som redan segment-verifierats vid bygget — cellnivån underkände
+ *  464 av 609 sådana pga kvantisering. Uppmätt 2026-08-04.
+ *
+ * ÄRLIGA BEGRÄNSNINGAR:
+ *  - Täckning: Stockholms skärgård (bbox i land-raster.json). Utanför bboxen
+ *    kan vi inte skilja land från vatten — pointOnLand svarar false
+ *    (vi PÅSTÅR inte land) och validatePathLand rapporterar coverage så att
+ *    ett "ok" utanför täckning aldrig kan tas som verifiering.
+ *  - Upplösning: 50 m. Följ alltid sjökort.
  */
 
-import * as turf from '@turf/turf'
-import coastlineData from './data/swedish-coastline.json'
+import landRaster from './data/land-raster.json'
 
-/**
- * Validera att en punkt ligger på vatten (inte innanför någon land-polygon)
- * Returnerar true om LAND, false om VATTEN
- */
-export function pointOnLand(lat: number, lng: number): boolean {
-  const point = turf.point([lng, lat]) // Turf använder [lng, lat]
+const R = landRaster as {
+  format: string
+  bbox: { s: number; w: number; n: number; e: number }
+  cellLat: number
+  cellLng: number
+  rows: number
+  cols: number
+  bits: string
+}
 
-  for (const feature of coastlineData.features) {
-    if (feature.geometry.type === 'Polygon') {
-      // Turf.js booleanPointInPolygon kräver Feature eller Polygon
-      const polygon = turf.polygon(feature.geometry.coordinates)
-      if (turf.booleanPointInPolygon(point, polygon)) {
-        return true // Punkt ligger på land
-      }
-    }
-  }
+if (R.format !== 'land-raster-v1') {
+  throw new Error(`landMask: oväntat rasterformat "${R.format}" — kör scripts/build-land-raster.mjs`)
+}
 
-  return false // Punkt ligger på vatten
+// Avkoda base64 → bitfält en gång vid modul-load (~1 MB).
+const BITS: Uint8Array = typeof Buffer !== 'undefined'
+  ? new Uint8Array(Buffer.from(R.bits, 'base64'))
+  : Uint8Array.from(atob(R.bits), c => c.charCodeAt(0))
+
+function cellLand(r: number, c: number): boolean {
+  if (r < 0 || r >= R.rows || c < 0 || c >= R.cols) return false // utanför = obekräftat
+  const i = r * R.cols + c
+  return (BITS[i >> 3]! & (1 << (i & 7))) !== 0
+}
+
+/** Ligger punkten inom rastrets täckningsområde? */
+export function inMaskCoverage(lat: number, lng: number): boolean {
+  return lat >= R.bbox.s && lat < R.bbox.n && lng >= R.bbox.w && lng < R.bbox.e
 }
 
 /**
- * Validera att ett linjestycke inte korsar land
- * Returnerar true om det KORSAR LAND, false om SÄKERT PÅ VATTEN
- *
- * 2026-05-27 RIKTIG FIX: sample-based midpoint-check.
- *
- * Tidigare försök:
- * - V1 (endpoint pointOnLand-check): rejekterade ALLA harbor-rutter eftersom
- *   harbors per definition ligger PÅ kustlinjen (innanför land-polygonerna).
- * - V2 ("lineIntersect >= 2 träffar"): rejekterade rutter som NATURLIGT skär
- *   in/ut ur flera ö-polygoner längs en seglrutt i skärgården. Stockholm→
- *   Sandhamn skär 2+ träffar mot varje ö den passerar = fortfarande blockerad.
- *
- * V3 (denna): dela segmentet i N mellanpunkter, kolla pointOnLand för varje.
- * Om någon MELLAN-punkt är på land → segmentet går genom land. Endpoints
- * räknas inte (de är användarens val, kan vara harbors).
- *
- * Tradeoff: O(N × polygons) per segment istället för O(polygons). Med N=20
- * och 500 polygoner = 10K turf-kall per segment. Path med 50 segment = 500K.
- * Det är acceptabelt för server-side routing-pipelinen.
+ * Är punkten på land? (cellnivå — KONSERVATIV, för vägsökning)
+ * false utanför täckning = OKÄNT, inte "vatten" — se inMaskCoverage.
+ */
+export function pointOnLand(lat: number, lng: number): boolean {
+  if (!inMaskCoverage(lat, lng)) return false
+  return cellLand(
+    Math.floor((lat - R.bbox.s) / R.cellLat),
+    Math.floor((lng - R.bbox.w) / R.cellLng),
+  )
+}
+
+/**
+ * Ligger punkten DJUPT i land (>50 m in — cellen och alla 8 grannar land)?
+ * Används av validatePathLand för att skilja verkliga landfel från
+ * kvantiseringsbrus vid kusten.
+ */
+export function pointDeepOnLand(lat: number, lng: number): boolean {
+  if (!inMaskCoverage(lat, lng)) return false
+  const r = Math.floor((lat - R.bbox.s) / R.cellLat)
+  const c = Math.floor((lng - R.bbox.w) / R.cellLng)
+  for (let dr = -1; dr <= 1; dr++)
+    for (let dc = -1; dc <= 1; dc++)
+      if (!cellLand(r + dr, c + dc)) return false
+  return true
+}
+
+/**
+ * Korsar segmentet land? (cellnivå — för kantbygge i vägsökning)
+ * Samplar mellanpunkter; ändpunkter exkluderade (hamnar ligger på kustlinjen).
  */
 const SAMPLES_PER_SEGMENT = 20
 
 export function segmentCrossesLand(lat1: number, lng1: number, lat2: number, lng2: number): boolean {
-  // Sampla N mellanpunkter (exklusive endpoints — de kan vara harbors).
-  // For i in 1..N-1: t = i/N, midpoint = lerp(start, end, t).
   for (let i = 1; i < SAMPLES_PER_SEGMENT; i++) {
     const t = i / SAMPLES_PER_SEGMENT
-    const lat = lat1 + (lat2 - lat1) * t
-    const lng = lng1 + (lng2 - lng1) * t
-    if (pointOnLand(lat, lng)) {
-      return true // någon mittpunkt är på land → linjen går genom land
-    }
+    if (pointOnLand(lat1 + (lat2 - lat1) * t, lng1 + (lng2 - lng1) * t)) return true
   }
   return false
 }
 
+export type PathLandValidation = {
+  ok: boolean
+  crossesAt?: string
+  /**
+   * 'full'    = hela vägen inom rastrets täckning — ok betyder verifierad.
+   * 'partial' = delar utanför täckning — ok betyder bara "inget KÄNT landfel".
+   * 'none'    = helt utanför täckning — ok är vakuöst, INTE en verifiering.
+   */
+  coverage: 'full' | 'partial' | 'none'
+}
+
 /**
- * Validera att en komplett väg inte korsar land
- * Returnerar {ok: true} om vägen är validerad, annars {ok: false, crossesAt}
+ * Defense-in-depth-validering av en komplett väg (djupnivå).
+ * ok=false ⇒ ett VERKLIGT landfel (>50 m in i land) hittades.
+ * ok=true  ⇒ tolka ALLTID tillsammans med coverage (se typen ovan).
  */
-export function validatePathLand(path: Array<[number, number]>): { crossesAt?: string; ok: boolean } {
+export function validatePathLand(path: Array<[number, number]>): PathLandValidation {
+  let inne = 0
+  let totalt = 0
+
   for (let i = 0; i < path.length - 1; i++) {
     const [lat1, lng1] = path[i]!
     const [lat2, lng2] = path[i + 1]!
 
-    if (segmentCrossesLand(lat1, lng1, lat2, lng2)) {
-      return {
-        ok: false,
-        crossesAt: `segment ${i}-${i + 1} [${lat1.toFixed(4)},${lng1.toFixed(4)}→${lat2.toFixed(4)},${lng2.toFixed(4)}]`,
+    for (let k = 1; k < SAMPLES_PER_SEGMENT; k++) {
+      const t = k / SAMPLES_PER_SEGMENT
+      const lat = lat1 + (lat2 - lat1) * t
+      const lng = lng1 + (lng2 - lng1) * t
+      totalt++
+      if (!inMaskCoverage(lat, lng)) continue
+      inne++
+      if (pointDeepOnLand(lat, lng)) {
+        return {
+          ok: false,
+          coverage: 'partial',
+          crossesAt: `segment ${i}-${i + 1} [${lat1.toFixed(4)},${lng1.toFixed(4)}→${lat2.toFixed(4)},${lng2.toFixed(4)}]`,
+        }
       }
     }
   }
 
-  return { ok: true }
+  const coverage = totalt === 0 || inne === 0 ? 'none' : inne === totalt ? 'full' : 'partial'
+  return { ok: true, coverage }
 }
 
-/**
- * Legacy wrapper för backwards-compatibility
- */
+/** Legacy-wrapper för bakåtkompatibilitet */
 export function isLineCrossingLand(p1: [number, number], p2: [number, number]): boolean {
   return segmentCrossesLand(p1[0], p1[1], p2[0], p2[1])
 }

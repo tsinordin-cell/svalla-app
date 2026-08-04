@@ -11,7 +11,7 @@
  */
 
 import { SEA_WAYPOINTS, SEA_EDGES, buildSeaGraph, buildWaypointMap, getAllWaypoints, SeaWaypoint } from './seaWaypoints'
-import { pointOnLand, segmentCrossesLand, validatePathLand } from './landMask'
+import { pointOnLand, segmentCrossesLand, validatePathLand, inMaskCoverage } from './landMask'
 import { logger } from './logger'
 import precomputedRoutesData from './data/precomputed-routes.json'
 
@@ -134,6 +134,15 @@ function generateWaterGrid(
   const maxLat = Math.max(startLat, endLat) + padding
   const minLng = Math.min(startLng, endLng) - padding
   const maxLng = Math.max(startLng, endLng) + padding
+
+  // 2026-08-04: utanför rastrets täckning ser pointOnLand ALLT som vatten.
+  // Ett grid där skulle bli en rak linje över land med kvalitetsstämpel.
+  // Utan täckning: inget grid — flödet faller vidare till waypoint-fallback
+  // som är ärligt märkt som approximation.
+  if (!inMaskCoverage(minLat, minLng) || !inMaskCoverage(maxLat, maxLng) ||
+      !inMaskCoverage(minLat, maxLng) || !inMaskCoverage(maxLat, minLng)) {
+    return []
+  }
 
   const nodes: GridNode[] = []
   let id = 0
