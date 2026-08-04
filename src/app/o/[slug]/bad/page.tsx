@@ -1,8 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ALL_ISLANDS, getIsland } from '../../island-data'
+import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+
+function normalizeBeach(b: string | IslandBeach, islandName: string): IslandBeach {
+  if (typeof b === 'string') {
+    const type = b.toLowerCase().includes('sand') ? 'sandstrand'
+      : b.toLowerCase().includes('brygga') ? 'brygga'
+      : 'klippbad'
+    return { name: b, desc: `Badplats på ${islandName}.`, type }
+  }
+  return b
+}
+
+function beachIcon(type: IslandBeach['type']) {
+  switch (type) {
+    case 'sandstrand': return '🏖️'
+    case 'trampolinbad': return '🤸'
+    case 'brygga': return '⚓'
+    case 'badvik': return '🌊'
+    default: return '🏊'
+  }
+}
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -49,16 +69,18 @@ export default async function IslandBadPage({ params }: Props) {
     )
   )
 
-  const badSchema = beaches.length > 0 ? {
+  const normalizedBeaches = beaches.map(b => normalizeBeach(b, island.name))
+
+  const badSchema = normalizedBeaches.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `Badplatser på ${island.name}`,
     url: `https://svalla.se/o/${slug}/bad`,
-    numberOfItems: beaches.length,
-    itemListElement: beaches.map((b, i) => ({
+    numberOfItems: normalizedBeaches.length,
+    itemListElement: normalizedBeaches.map((b, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: b,
+      name: b.name,
     })),
   } : null
 
@@ -81,24 +103,65 @@ export default async function IslandBadPage({ params }: Props) {
       <main style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
 
         {/* Stränder och badplatser */}
-        {beaches.length > 0 && (
+        {normalizedBeaches.length > 0 && (
           <div style={{ marginBottom: 32 }}>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
               Badplatser på {island.name}
             </h2>
-            <div style={{ display: 'grid', gap: 12 }}>
-              {beaches.map((beach, i) => (
+            <div style={{ display: 'grid', gap: 16 }}>
+              {normalizedBeaches.map((b, i) => (
                 <div key={i} style={{
-                  background: 'var(--white)', borderRadius: 14,
-                  padding: '18px 20px',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-                  border: '1px solid rgba(10,123,140,0.07)',
-                  display: 'flex', alignItems: 'center', gap: 14,
+                  background: 'var(--white)', borderRadius: 16,
+                  border: '1px solid var(--surface-3)',
+                  overflow: 'hidden',
                 }}>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
-                    <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>Badplats på {island.name}</div>
+                  {/* Huvud */}
+                  <div style={{ padding: '18px 20px 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                      <span style={{ fontSize: 24 }}>{beachIcon(b.type)}</span>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 17, color: 'var(--txt)', lineHeight: 1.2 }}>{b.name}</div>
+                        <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' as const }}>
+                          <span style={{
+                            fontSize: 11, padding: '2px 9px', borderRadius: 999,
+                            background: b.type === 'sandstrand' ? '#fef3c7' : b.type === 'trampolinbad' ? '#ede9fe' : 'var(--surface-3)',
+                            color: b.type === 'sandstrand' ? '#92400e' : b.type === 'trampolinbad' ? '#5b21b6' : '#1e5c82',
+                            fontWeight: 700,
+                          }}>
+                            {b.type === 'sandstrand' ? 'Sandstrand' : b.type === 'klippbad' ? 'Klippbad' : b.type === 'trampolinbad' ? 'Trampolinbad' : b.type === 'brygga' ? 'Badbrygga' : b.type === 'badvik' ? 'Badvik' : 'Badplats'}
+                          </span>
+                          {b.child_friendly && (
+                            <span style={{ fontSize: 11, padding: '2px 9px', borderRadius: 999, background: '#dcfce7', color: '#166534', fontWeight: 700 }}>👶 Barnvänlig</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0 }}>{b.desc}</p>
                   </div>
+
+                  {/* Metadata */}
+                  {(b.depth || b.directions || b.insider_tip) && (
+                    <div style={{ borderTop: '1px solid var(--surface-3)', padding: '14px 20px', display: 'grid', gap: 8, background: 'rgba(10,123,140,0.02)' }}>
+                      {b.depth && (
+                        <div style={{ display: 'flex', gap: 8, fontSize: 13 }}>
+                          <span>🌊</span>
+                          <span style={{ color: 'var(--txt2)' }}><strong style={{ color: 'var(--txt)' }}>Vatten:</strong> {b.depth}</span>
+                        </div>
+                      )}
+                      {b.directions && (
+                        <div style={{ display: 'flex', gap: 8, fontSize: 13 }}>
+                          <span>🗺️</span>
+                          <span style={{ color: 'var(--txt2)' }}><strong style={{ color: 'var(--txt)' }}>Hitta dit:</strong> {b.directions}</span>
+                        </div>
+                      )}
+                      {b.insider_tip && (
+                        <div style={{ display: 'flex', gap: 8, fontSize: 13 }}>
+                          <span>💡</span>
+                          <span style={{ color: 'var(--txt2)' }}><strong style={{ color: 'var(--txt)' }}>Lokaltips:</strong> {b.insider_tip}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
