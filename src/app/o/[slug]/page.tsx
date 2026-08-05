@@ -262,7 +262,7 @@ export default async function IslandPage({ params }: Props) {
      background: 'rgba(255,255,255,0.18)', borderRadius: 20,
      padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
    }}>
-     ✉ Nyhetsbrev
+     <Icon name="mail" size={13} stroke={2} /> Nyhetsbrev
    </Link>
  </div>
  </div>
@@ -447,7 +447,7 @@ export default async function IslandPage({ params }: Props) {
  alignItems: 'flex-start',
  boxShadow: '0 4px 20px rgba(10,123,140,0.2)',
  }}>
- <span style={{ fontSize: 26, flexShrink: 0, lineHeight: 1.2 }}>💡</span>
+ <Icon name="star" size={24} stroke={1.8} style={{ flexShrink: 0, marginTop: 2 }} />
  <div>
  <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>Visste du att</div>
  <p style={{ fontSize: 14, color: '#fff', margin: 0, lineHeight: 1.7, fontWeight: 500 }}>{island.did_you_know}</p>
@@ -474,7 +474,7 @@ export default async function IslandPage({ params }: Props) {
    return (
      <div style={{ background: 'var(--white)', borderRadius: 20, padding: '22px 24px', marginBottom: 32, boxShadow: '0 2px 16px rgba(0,0,0,0.06)', border: '1px solid rgba(10,123,140,0.08)' }}>
        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-         <span style={{ fontSize: 20 }}>🗓</span>
+         <Icon name="calendar" size={19} stroke={1.9} />
          <h3 style={{ fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)', fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
            Bäst tid att besöka {island.name}
          </h3>
@@ -521,7 +521,7 @@ export default async function IslandPage({ params }: Props) {
          </p>
          {island.seasonal.warning && (
            <p style={{ fontSize: 12, color: '#9a6b00', margin: '8px 0 0', lineHeight: 1.5, fontStyle: 'italic' }}>
-             ⚠️ {island.seasonal.warning}
+             <Icon name="warning" size={14} stroke={2} /> {island.seasonal.warning}
            </p>
          )}
        </div>
@@ -688,7 +688,7 @@ export default async function IslandPage({ params }: Props) {
  alignItems: 'center',
  justifyContent: 'center',
  fontSize: 16,
- }}>🍴</div>
+ }}><Icon name="utensils" size={17} stroke={1.9} /></div>
  <div style={{ flex: 1 }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
  <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{r.name}</span>
@@ -1230,7 +1230,7 @@ export default async function IslandPage({ params }: Props) {
         fontSize: 13,
        }}
       >
-       <span style={{ opacity: 0.7 }}>💬</span>
+       <Icon name="quote" size={14} stroke={2} style={{ opacity: 0.7 }} />
        <span style={{ flex: 1 }}>{prompt}</span>
        <span style={{ fontSize: 11, color: '#e8924a', fontWeight: 700, flexShrink: 0 }}>Starta →</span>
       </Link>

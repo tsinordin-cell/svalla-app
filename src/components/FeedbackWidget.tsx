@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Icon from './Icon'
 import { usePathname } from 'next/navigation'
 
 type FeedbackType = 'fel-info' | 'saknar-info' | 'tips' | 'annat'
@@ -141,7 +142,7 @@ export default function FeedbackWidget() {
           el.style.boxShadow  = '0 4px 16px rgba(10,123,140,0.38)'
         }}
       >
-        <span style={{ fontSize: 15, lineHeight: 1 }}>💬</span>
+        <Icon name="quote" size={15} stroke={2} />
         Tipsa oss
       </button>
 
@@ -210,7 +211,7 @@ export default function FeedbackWidget() {
               {/* ── Bekräftelse ── */}
               {done ? (
                 <div style={{ textAlign: 'center', padding: '28px 0 12px' }}>
-                  <div style={{ fontSize: 48, marginBottom: 14 }}>🙏</div>
+                  <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'center' }}><Icon name="check" size={44} stroke={1.6} /></div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--ink)', marginBottom: 8 }}>
                     Tack för ditt tips!
                   </div>
@@ -298,7 +299,7 @@ export default function FeedbackWidget() {
                     background: 'var(--surface-2)', borderRadius: 10,
                     display: 'flex', alignItems: 'center', gap: 8,
                   }}>
-                    <span style={{ fontSize: 13, flexShrink: 0 }}>📍</span>
+                    <Icon name="pin" size={13} stroke={2} style={{ flexShrink: 0 }} />
                     <div style={{ fontSize: 12, color: 'var(--ink-muted)', lineHeight: 1.5, minWidth: 0 }}>
                       Gäller sidan:{' '}
                       <strong style={{ color: 'var(--ink)', wordBreak: 'break-all' }}>
