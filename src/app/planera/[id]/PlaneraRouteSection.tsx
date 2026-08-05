@@ -67,6 +67,13 @@ type Props = {
 // istället för att rita en linje.
 type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
 
+/**
+ * Varför ingen rutt kunde ritas. Kommer från API:t och är UPPMÄTT, inte gissat
+ * — se avgorSkal() i /api/route/calculate.
+ */
+type UnavailableReason =
+  | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
+
 export default function PlaneraRouteSection({
   startLat, startLng, startName,
   endLat, endLng, endName,
@@ -78,6 +85,7 @@ export default function PlaneraRouteSection({
   const [routeKm, setRouteKm] = useState(haversineDistKm)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [quality, setQuality] = useState<RouteQuality | null>(null)
+  const [reason, setReason] = useState<UnavailableReason | null>(null)
   const [reportOpen, setReportOpen] = useState(false)
   const [reportReason, setReportReason] = useState('')
   const [reportState, setReportState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -112,13 +120,14 @@ export default function PlaneraRouteSection({
       // routeId skickas så API:n kan läsa/skriva DB-cache (2026-05-23 P2)
       body: JSON.stringify({ startLat, startLng, endLat, endLng, routeId }),
     })
-      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number }> : Promise.reject(r.status))
+      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number; reason?: UnavailableReason | null }> : Promise.reject(r.status))
       .then(data => {
         if (cancelled) return
         // path kan vara null när quality === 'unavailable' — då rendrar vi
         // EmptyState istället för polyline. Tid/bränsle hide:as automatiskt.
         setSeaPath(data.path)
         setQuality(data.quality ?? null)
+        setReason(data.reason ?? null)
         if (data.path && data.path.length > 1) {
           const km = Math.round(pathKm(data.path))
           if (km > 0) setRouteKm(km)
@@ -140,7 +149,7 @@ export default function PlaneraRouteSection({
   // Returtypen hålls medvetet bred ('success' ingår) fastän ingen gren
   // returnerar success just nu — jämförelserna i JSX:en nedan använder den,
   // och success ska tillbaka när rutterna genererats om.
-  const qualityBanner = ((): { tone: 'success' | 'warning'; label: string; desc: string } | null => {
+  const qualityBanner = ((): { tone: 'success' | 'warning' | 'danger' | 'info'; label: string; desc: string } | null => {
     if (status !== 'ready' || !quality) return null
     // 2026-08-03 (em): precomputed ÅTERSTÄLLD till success. Alla 609 rutter
     // är omgenererade mot riktig kustlinje (939 563 OSM-segment, 8/8 hand-
@@ -161,9 +170,38 @@ export default function PlaneraRouteSection({
     if (quality === 'waypoint') {
       return { tone: 'warning' as const, label: 'Approximerad rutt (streckad linje)', desc: 'Grov sjöled via huvudleder. Streckad linje signalerar att rutten är preliminär — verifiera mot sjökort innan avgång.' }
     }
-    // 2026-05-27: 'unavailable' returneras aldrig från API:t längre.
-    // Pipeline:n levererar alltid en path via harbor-skarvning som fallback.
-    // Default — visa som approximerad även om quality skulle vara okänd.
+    // 2026-08-05: kommentaren här sa tidigare att 'unavailable' aldrig
+    // returneras från API:t. Det stämde inte — Stadshuskajen→Sandhamn ger
+    // unavailable, mätt i produktion. Följden var att en rutt UTAN linje på
+    // kartan fick etiketten "Approximerad rutt", alltså ett påstående om att
+    // en ungefärlig sjöled fanns. Det är sämre än tystnad.
+    if (quality === 'unavailable') {
+      const texter: Record<UnavailableReason, { label: string; desc: string }> = {
+        lock_required: {
+          label: 'Mellan hamnarna ligger en sluss',
+          desc: 'Mälaren och Saltsjön är skilda vattenytor med olika nivå. En båt tar sig mellan dem genom Slussen eller Hammarbyslussen, och en slussning är ingen sjöled som går att rita. Sträckan är fullt farbar — vi ritar bara ingen linje för den.',
+        },
+        outside_coverage: {
+          label: 'Utanför vår verifierade kustlinje',
+          desc: 'Vi har kontrollerad kustlinje för ostkusten. Utanför den ritar vi hellre ingen rutt än en vi inte kan stå för.',
+        },
+        harbour_not_in_water: {
+          label: 'Vi hittar inget farbart vatten vid bryggan',
+          desc: 'Någon av positionerna ligger inte i öppet vatten i vår kustlinjedata. Det är troligen ett fel i vår hamnkoordinat — rapportera gärna rutten nedan så rättar vi den.',
+        },
+        no_sea_route: {
+          label: 'Ingen sammanhängande vattenväg hittad',
+          desc: 'Vi hittar ingen väg mellan hamnarna som håller sig i vatten hela sträckan. Hellre ingen linje än en som skär över land.',
+        },
+      }
+      const t = texter[reason ?? 'no_sea_route']
+      // Slussfallet är INTE ett fel. Sträckan är fullt farbar — vi ritar bara
+      // inte slussningar. En röd varningsruta hade sagt något osant om läget.
+      const tone: 'info' | 'danger' = reason === 'lock_required' ? 'info' : 'danger'
+      return { tone, label: t.label, desc: t.desc }
+    }
+
+    // Okänd kvalitet — behandlas som preliminär.
     return {
       tone: 'warning' as const,
       label: 'Approximerad rutt',
@@ -191,24 +229,42 @@ export default function PlaneraRouteSection({
           display: 'flex', alignItems: 'flex-start', gap: 10,
           background: qualityBanner.tone === 'success'
             ? 'rgba(42,157,92,0.08)'
-            : 'rgba(232,146,74,0.10)',
+            : qualityBanner.tone === 'danger'
+              ? 'rgba(198,64,64,0.08)'
+              : qualityBanner.tone === 'info'
+                ? 'rgba(30,92,130,0.08)'
+                : 'rgba(232,146,74,0.10)',
           border: `1px solid ${
             qualityBanner.tone === 'success'
               ? 'rgba(42,157,92,0.22)'
-              : 'rgba(232,146,74,0.32)'
+              : qualityBanner.tone === 'danger'
+                ? 'rgba(198,64,64,0.26)'
+                : qualityBanner.tone === 'info'
+                  ? 'rgba(30,92,130,0.24)'
+                  : 'rgba(232,146,74,0.32)'
           }`,
           borderRadius: 12, padding: '10px 14px',
           marginBottom: 12, marginTop: -8,
           fontSize: 12.5,
           color: qualityBanner.tone === 'success'
             ? '#157a3e'
-            : '#a4561e',
+            : qualityBanner.tone === 'danger'
+              ? '#b3352f'
+              : qualityBanner.tone === 'info'
+                ? '#1e5c82'
+                : '#a4561e',
         }}>
           <svg viewBox="0 0 24 24" width={16} height={16} fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
             {qualityBanner.tone === 'success' ? (
               <>
                 <circle cx="12" cy="12" r="10"/>
                 <polyline points="9 12 11 14 15 10"/>
+              </>
+            ) : qualityBanner.tone === 'info' ? (
+              <>
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="11" x2="12" y2="16"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
               </>
             ) : (
               <>
