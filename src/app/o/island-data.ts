@@ -39,6 +39,20 @@ export type IslandRestaurant = {
   bookingUrl?: string
   /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
   websiteUrl?: string
+  price_example?: string
+  open_season?: string
+  open_hours?: string
+  book_required?: boolean
+  book_note?: string
+  phone?: string
+  child_menu?: boolean
+}
+
+export type IslandDayCost = {
+  budget_per_person: string
+  includes: string
+  breakdown: { item: string; price: string }[]
+  tips: string[]
 }
 
 export type Island = {
@@ -59,6 +73,7 @@ export type Island = {
   getting_there: IslandTransport[]
   harbors: IslandHarbor[]
   restaurants: IslandRestaurant[]
+  day_cost?: IslandDayCost
   tips: string[]
   related: string[]
   tags: string[]
