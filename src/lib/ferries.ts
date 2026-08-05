@@ -168,7 +168,12 @@ type ResRobotDeparture = {
  * Vid null faller anroparen tillbaka till seedDeparturesFor().
  */
 export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise<FerryDeparture[] | null> {
-  const apiKey = process.env.TRAFIKLAB_API_KEY
+  // 2026-08-05: läser BÅDA namnen. Nyckeln ligger i Vercel som
+  // TRAFIKLAB_RESROBOT_KEY (det är den transit-lagret använder och som
+  // bevisligen fungerar), medan den här filen letade efter
+  // TRAFIKLAB_API_KEY och därför alltid föll tillbaka på seed-data —
+  // /farjor visade påhittade tider där alla linjer avgick samtidigt.
+  const apiKey = process.env.TRAFIKLAB_RESROBOT_KEY ?? process.env.TRAFIKLAB_API_KEY
   if (!apiKey) return null
 
   try {
