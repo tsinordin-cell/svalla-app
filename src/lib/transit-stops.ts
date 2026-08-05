@@ -12,6 +12,7 @@
 export const STROMKAJEN_ID = '740020691' // Stockholm Strömkajen
 export const NYNASHAMN_ID = '740000719' // Nynäshamn färjeterminal
 export const STAVSNAS_ID = '740001312' // Stavsnäs vinterhamn
+export const CENTRALEN_ID = '740000001' // Stockholm Centralstation
 
 export interface IslandTransitConfig {
   /** Verified Trafiklab stop-ID för öns brygga. */
@@ -166,8 +167,135 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
     note: 'Naturreservat i ytterskärgården — taxibåt eller charterturer.',
   },
+
+  // ── Tillagda 2026-08-05 ────────────────────────────────────────────────
+  // Varje rad nedan är UPPMÄTT, inte hämtad ur specen. Metoden:
+  //   1. location.nearbystops runt öns koordinat
+  //   2. hållplatsen måste bevisligen tillhöra ön — inuti öns OSM-polygon
+  //      (place=island, ytterringar hopsydda) eller högst 300 m från dess
+  //      strandlinje, eftersom bryggor ligger på pirar utanför land. Saknar
+  //      ön polygon måste hållplatsnamnet bära öns namn.
+  //   3. en verklig resa dit måste finnas via /trip, annars ingen rad
+  //   4. origin = den av Centralen/Nynäshamn/Strömkajen som gav snabbast
+  //      resa — dock aldrig Strömkajen för en resa utan båtben; det är en
+  //      kaj, ingen bussterminal.
+  // Sifferkommentaren är restiden som faktiskt mättes den dagen.
+  namdo: {
+    // 107 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740021549', destStopName: 'Östanvik (Nämdö) brygga',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss från Slussen till Stavsnäs vinterhamn, sedan Waxholmsbåt ut till Nämdö.',
+  },
+  singo: {
+    // 315 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740068074', destStopName: 'Åmyran',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Landvägen hela sträckan, buss via Norrtälje. Singö nås över bro — ingen båt behövs.',
+  },
+  lido: {
+    // 160 min, 3 byten, uppmätt 2026-08-05
+    destStopId: '740034559', destStopName: 'Lidö brygga',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss till Räfsnäs brygga via Norrtälje, sedan kort båttur över till Lidö.',
+  },
+  graddo: {
+    // 117 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740067876', destStopName: 'Gräddö torg',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss via Norrtälje. Gräddö ligger på fastlandet — härifrån går båtarna vidare ut i Rådmansöskärgården.',
+  },
+  vaddo: {
+    // 140 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740068043', destStopName: 'Edeby torg',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss via Norrtälje. Väddö nås över bro.',
+  },
+  toro: {
+    // 42 min, 0 byten, uppmätt 2026-08-05
+    destStopId: '740069724', destStopName: 'Eneby affär',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',
+  },
+  fjardlang: {
+    // 118 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740020696', destStopName: 'Fjärdlång brygga',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Direkt Waxholmsbåt från Nynäshamn, inga byten.',
+  },
+  rindo: {
+    // 88 min, 3 byten, uppmätt 2026-08-05
+    destStopId: '740045830', destStopName: 'Rindö centrum',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss till Vaxholm och vägfärja över till Rindö. Färjan är avgiftsfri och går ofta.',
+  },
+  vindo: {
+    // 82 min, 1 byten, uppmätt 2026-08-05
+    destStopId: '740066446', destStopName: 'Fjällsvik',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss från Slussen ända fram. Vindö nås över broar via Värmdö.',
+  },
+  smaadalaro: {
+    // 88 min, 1 byten, uppmätt 2026-08-05
+    destStopId: '740020173', destStopName: 'Smådalarö',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Pendeltåg till Handen, sedan buss 839.',
+  },
+  musko: {
+    // 46 min, 1 byten, uppmätt 2026-08-05
+    destStopId: '740069684', destStopName: 'Risdalsvägen',
+    originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
+    note: 'Pendeltåg till Ösmo och buss genom Muskötunneln.',
+  },
+  adelsjo: {
+    // 108 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740070750', destStopName: 'Lilla Stenby Norrängsvägen',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss från Brommaplan via Munsö. Vägfärjan över till Adelsö ingår i resan.',
+  },
+  ingaro: {
+    // 54 min, 1 byten, uppmätt 2026-08-05
+    destStopId: '740066377', destStopName: 'Södra Evlinge',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss från Slussen, knappt en timme. Ingarö nås över bro.',
+  },
+  ekno: {
+    // 185 min, 3 byten, uppmätt 2026-08-05
+    destStopId: '740034482', destStopName: 'Eknö brygga',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa — planera dagen efter båten.',
+  },
 }
 
 export function getIslandTransit(slug: string): IslandTransitConfig | null {
   return ISLAND_TRANSIT[slug] ?? null
+}
+
+/**
+ * Öar där vi har MÄTT att ingen kollektivtrafik når fram — inte öar vi bara
+ * saknar data om. Skillnaden är viktig: här kan vi säga något sant till
+ * besökaren i stället för att rendera ett tomrum.
+ *
+ * Mätt 2026-08-05 med /api/transit/stop-lookup. Kontrollera om ny brygga
+ * tillkommer; Waxholmsbolaget lägger till och drar in bryggor mellan säsonger.
+ */
+export const ISLAND_NO_TRANSIT: Record<string, string> = {
+  'asko': 'ingen hållplats inom 5 km',
+  'galo': 'närmaste hållplats (Nor, 533 m) kunde inte knytas till ön',
+  'morko': 'ingen hållplats inom 5 km',
+  'bjorko': 'närmaste hållplats (Lökholmen, 1398 m) kunde inte knytas till ön',
+  'svenska-hogarna': 'ingen hållplats inom 5 km',
+  'huvudskar': 'ingen hållplats inom 5 km',
+  'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
+  'ormsko': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
+  'kanholmen': 'närmaste hållplats (Arbodaö brygga, 1097 m) kunde inte knytas till ön',
+  'norrpada': 'ingen hållplats inom 5 km',
+  'graskar': 'ingen hållplats inom 5 km',
+  'langviksskaret': 'ingen hållplats inom 5 km',
+  'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',
+  'langskar': 'ingen hållplats inom 5 km',
+  'storskar': 'närmaste hållplats (Rödlöga brygga, 4719 m) kunde inte knytas till ön',
+}
+
+export function getIslandNoTransitReason(slug: string): string | null {
+  return ISLAND_NO_TRANSIT[slug.toLowerCase()] ?? null
 }

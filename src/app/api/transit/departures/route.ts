@@ -12,7 +12,7 @@
  *   eller { error: 'unknown_destination' } / { error: 'unavailable' }
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { getIslandTransit } from '@/lib/transit-stops'
+import { getIslandTransit, getIslandNoTransitReason } from '@/lib/transit-stops'
 import { fetchTrips } from '@/lib/trafiklab'
 
 export const runtime = 'nodejs'
@@ -22,6 +22,16 @@ export async function GET(req: NextRequest) {
   const slug = req.nextUrl.searchParams.get('dest')?.trim().toLowerCase() ?? ''
   if (!slug) {
     return NextResponse.json({ error: 'missing_dest' }, { status: 400 })
+  }
+
+  // Uppmätt frånvaro av trafik är ett eget svar. "Vi vet inte" och "det går
+  // ingen båt hit" är två olika sanningar och ska inte se likadana ut.
+  const utanTrafik = getIslandNoTransitReason(slug)
+  if (utanTrafik) {
+    return NextResponse.json(
+      { error: 'no_transit', slug, skal: utanTrafik, trips: [] },
+      { status: 200, headers: { 'Cache-Control': 'public, s-maxage=3600' } },
+    )
   }
 
   const cfg = getIslandTransit(slug)
