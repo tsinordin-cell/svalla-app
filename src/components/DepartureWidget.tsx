@@ -92,6 +92,26 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
   // öar där feature ej ännu är konfigurerad.
   if (data && data.error === 'unknown_destination') return null
 
+  // Uppmätt: ingen kollektivtrafik når ön. Att visa ingenting alls vore tyst
+  // snarare än sant — besökaren står kvar med frågan obesvarad.
+  if (data && data.error === 'no_transit') {
+    return (
+      <div style={{
+        border: '1px solid var(--border)', borderRadius: 14,
+        padding: '16px 18px', background: 'var(--white)',
+      }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+          Hit går ingen kollektivtrafik
+        </div>
+        <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>
+          {islandName} nås med egen båt eller taxibåt. Vi har kontrollerat mot
+          Trafiklab och hittar ingen brygga eller hållplats med reguljär trafik
+          på ön.
+        </div>
+      </div>
+    )
+  }
+
   return (
     <section
       aria-labelledby="dep-widget-title"
