@@ -12,49 +12,49 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm – skärgårdens klassiker</h4>
 <p><strong>Hur du tar dig dit:</strong> Pendelbåt 83/83X från Strömkajen, ca 55 min. Buss 670 från Tekniska Högskolan T, ca 50 min. Med bil via E18 och Vaxholmsvägen, ca 40 min från Stockholm.</p>
-<p><strong>Vad du gör:</strong> Vaxholm arrangerar en av skärgårdens finaste midsommarfiranden med majstång på Rådhustrappan. Stadens gator fylls av folk i folkdräkt, lokalt hantverk säljs och stämningen är genuint gammalsvensk utan att kännas kitschig. Klättra upp på Vaxholms fästning för en fantastisk utsikt över Mysingen.</p>
+<p><strong>Upplev:</strong> Vaxholm arrangerar en av skärgårdens finaste midsommarfiranden med majstång på Rådhustrappan. Stadens gator fylls av folk i folkdräkt, lokalt hantverk säljs och stämningen är genuint gammalsvensk utan att kännas kitschig. Klättra upp på Vaxholms fästning för en fantastisk utsikt över Mysingen.</p>
 <p><strong>Var du äter:</strong> Vaxholms Hembygdsgård serverar traditionell midsommarbuffé med sill, potatis och jordgubbar. Boka minst två veckor i förväg. Hemma hos Josephine på Fiskaregatan är ett intimt alternativ med husmanskost. Waxholms Hotell erbjuder en fullmatad midsommarbuffé med havsvy direkt mot fästningen.</p>
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Sandhamn – seglarnas midsommar</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets linje 444 från Stavsnäs (nås med SL-buss från Slussen eller Gullmarsplan), ca 1 h 30 min. Alternativt Cinderellabåten från Strömkajen på midsommaraftonen – bokningsbiljett krävs.</p>
-<p><strong>Vad du gör:</strong> Sandhamn är seglarklubbars huvudkvarter. Under midsommar fylls Sandhamns naturhamn av hundratals segelbåtar, och festligheterna pågår nonstop. Sandhamns segelsällskap arrangerar dans och musik vid bryggan. Badplatsen Trouville är lysande midsommardag.</p>
+<p><strong>Upplev:</strong> Sandhamn är seglarklubbars huvudkvarter. Under midsommar fylls Sandhamns naturhamn av hundratals segelbåtar, och festligheterna pågår nonstop. Sandhamns segelsällskap arrangerar dans och musik vid bryggan. Badplatsen Trouville är lysande midsommardag.</p>
 <p><strong>Var du äter:</strong> Sandhamns Värdshus är det självklara valet – välkänt för sin midsommarbuffé med lokalt rökta räkor. Boka bord minst en månad i förväg för midsommaraftonen. Seglarhotellet erbjuder också fullspäckad midsommarlunch.</p>
 <p><strong>Insider-tips:</strong> Kom gärna kvällen innan (midsommarafton minus ett) och inta de bästa bryggplatserna. Ta med tält om du planerar övernattning – alla boenden är fullbokade månader i förväg.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Grinda – den barnvänliga ön</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget linje 11 från Strömkajen, ca 1 h 45 min. Cinderellabåten går också midsommaraftonen med direktavgång.</p>
-<p><strong>Vad du gör:</strong> Grinda är perfekt för barnfamiljer och de som vill ha midsommar utan folkmassor. Majstången reses på Grindas gamla gård med utsikt mot Furusundet. Ön är liten nog att gå runt på ett par timmar och stor nog att ha egna stränder.</p>
+<p><strong>Upplev:</strong> Grinda är perfekt för barnfamiljer och de som vill ha midsommar utan folkmassor. Majstången reses på Grindas gamla gård med utsikt mot Furusundet. Ön är liten nog att gå runt på ett par timmar och stor nog att ha egna stränder.</p>
 <p><strong>Var du äter:</strong> Grinda Wärdshus serverar buffé i en klassisk skärgårdsmiljö. Maten är gedigen husmanskost med lokala råvaror – räkor, sill, nykokt färskpotatis och jordgubbar från fastlandet.</p>
 <p><strong>Insider-tips:</strong> Sov i en av Grinda Wärdshus stugor för en komplett skärgårdsmidsommar. Ön har också gratis tältplatser vid södra stranden.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Utö – söderut med historia</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget från Nynäshamn (nås med Pendeltåg från Stockholm Central, ca 55 min), sedan färja ca 1 h 15 min. Alternativt direktbåt från Strömkajen på midsommaraftonen.</p>
-<p><strong>Vad du gör:</strong> Utö är en av skärgårdens vackraste öar med gruvruin och unika naturlandskap. Midsommarfirandet sker traditionsenligt vid gruvorna med dans och musik. Hyra cykel och utforska ön är ett självklart midsommarprogram.</p>
+<p><strong>Upplev:</strong> Utö är en av skärgårdens vackraste öar med gruvruin och unika naturlandskap. Midsommarfirandet sker traditionsenligt vid gruvorna med dans och musik. Hyra cykel och utforska ön är ett självklart midsommarprogram.</p>
 <p><strong>Var du äter:</strong> Utö Värdshus är öns kronjuvel – reservera månader i förväg. Bakfickan serverar enklare rätter för spontanbesökare. Vandrarhemsköket är tillgängligt för de som självhushållar.</p>
 <p><strong>Insider-tips:</strong> Utö Havsbastu på midsommarnatten är en oförglömlig upplevelse om du lyckas få en plats.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Fjäderholmarna – för den tidspressade</h4>
 <p><strong>Hur du tar dig dit:</strong> Direktbåt från Strandvägen eller Nybrokajen, 25 minuter. Avgångarna är täta under midsommarafton.</p>
-<p><strong>Vad du gör:</strong> Fjäderholmarna är perfekta för dig som har ont om tid eller pengar. Ögruppen har ett klassiskt midsommarfirande med majstång, folkdans och levande musik. Hantverksgallerierna är öppna och det finns gott om utrymme för picknick på klipporna.</p>
+<p><strong>Upplev:</strong> Fjäderholmarna är perfekta för dig som har ont om tid eller pengar. Ögruppen har ett klassiskt midsommarfirande med majstång, folkdans och levande musik. Hantverksgallerierna är öppna och det finns gott om utrymme för picknick på klipporna.</p>
 <p><strong>Var du äter:</strong> Fjäderholmarnas Krog är en av Stockholms bästa skärgårdsrestauranger, men är fullbokad under midsommar. Ta istället med picknickkorgen – möjligheten att sitta vid vattnet kompenserar mer än väl.</p>
 <p><strong>Insider-tips:</strong> Ta morgonbåten och undvik de värsta trängseln på eftermiddagen. Hamnen blir fullproppad med båtar vid lunchtid.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Möja – bilfri midsommarstämning</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget via Stavsnäs, ca 2 h 30 min. SL-buss 433 till Stavsnäs från Slussen.</p>
-<p><strong>Vad du gör:</strong> Möja är en av skärgårdens bäst bevarade hemligheter – bilfri, lugn och autentisk. Midsommarfirandet samlar hela ön vid majstången på Möja Handelsträdgård. Det är folkfest i ordets rätta bemärkelse: grannar, turister och sommargäster sida vid sida.</p>
+<p><strong>Upplev:</strong> Möja är en av skärgårdens bäst bevarade hemligheter – bilfri, lugn och autentisk. Midsommarfirandet samlar hela ön vid majstången på Möja Handelsträdgård. Det är folkfest i ordets rätta bemärkelse: grannar, turister och sommargäster sida vid sida.</p>
 <p><strong>Var du äter:</strong> Möja Krog vid södra Möja serverar säsongsbetonad mat. Söndagsbrunch med räkor och jordgubbar är deras midsommarspecialitet.</p>
 <p><strong>Insider-tips:</strong> Ta med cykeln på båten – ön är perfekt att utforska under midsommardagen. Ingen bil på ön, vilket gör det lugnt och barnvänligt.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Svenska Högarna – för den äventyrlige</h4>
 <p><strong>Hur du tar dig dit:</strong> Waxholmsbolaget, lång och knagglig resa, ca 4 h från Strömkajen. Avgångarna är sällsynta – kontrollera tidtabellen.</p>
-<p><strong>Vad du gör:</strong> Inga restauranger, inga butiker, nästan inga turister. Svenska Högarna är ytterskärgårdens ultimata midsommar för den som vill ha äkta stillhet. Ta med all mat, sov i tält och låt midnattssolen lysa ner på det öppna havet.</p>
+<p><strong>Upplev:</strong> Inga restauranger, inga butiker, nästan inga turister. Svenska Högarna är ytterskärgårdens ultimata midsommar för den som vill ha äkta stillhet. Ta med all mat, sov i tält och låt midnattssolen lysa ner på det öppna havet.</p>
 <p><strong>Var du äter:</strong> Du lagar all mat själv. Ta med butikgas, kokplatta och alla förråd. Färskt vatten finns men ingen service av något slag.</p>
 <p><strong>Insider-tips:</strong> Kontrollera väderleksprognosen noga – det är en utsatt plats. Ha backup-plan om båten ställs in på grund av väder.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Ornö – söder om Stockholm, norr om alla</h4>
 <p><strong>Hur du tar dig dit:</strong> Bilfärja från Dalarö (nås med SL-buss 839 från Handen), ca 20 min. Alternativt Waxholmsbolaget.</p>
-<p><strong>Vad du gör:</strong> Ornö är en stor ö med unik karaktär – mestadels skog och naturreservat. Midsommarfirandet är genuint lokalt och lockar inga turister i märkbar mängd. Bra för dig som vill vara "inne i Sverige" utan att åka till Dalarna.</p>
+<p><strong>Upplev:</strong> Ornö är en stor ö med unik karaktär – mestadels skog och naturreservat. Midsommarfirandet är genuint lokalt och lockar inga turister i märkbar mängd. Bra för dig som vill vara "inne i Sverige" utan att åka till Dalarna.</p>
 <p><strong>Var du äter:</strong> Ornö Krog, öns enda restaurang, serverar husmanskost och arrangerar midsommarbuffé för bokade sällskap.</p>
 <p><strong>Insider-tips:</strong> Ta med bilen på färjan och utforska öns vindlande vägar – det är en annorlunda skärgårdsupplevelse.</p>
 
@@ -62,43 +62,43 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">9. Marstrand – fästningen firar</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg till Kungsbacka/Göteborg, sedan buss och bilbåt till Marstrand. Totalt ca 1,5 h från Göteborg. Med bil via E6 och sedan väg 168, ca 50 min från Göteborg.</p>
-<p><strong>Vad du gör:</strong> Marstrand är Bohusläns finaste sommarstad, och midsommar är högsäsong. Carlstens fästning är bakgrunden för dans och musik. Smala gator fyllda av folk i sommarkläder, segelgalor i hamnen och räksmörgåsar vid varje krog.</p>
+<p><strong>Upplev:</strong> Marstrand är Bohusläns finaste sommarstad, och midsommar är högsäsong. Carlstens fästning är bakgrunden för dans och musik. Smala gator fyllda av folk i sommarkläder, segelgalor i hamnen och räksmörgåsar vid varje krog.</p>
 <p><strong>Var du äter:</strong> Societetshusets restaurang med utsikt mot fästningen. Mossby Strandkrog för räksmörgåsen du aldrig glömmer. Villa Maritim för en fin midsommarmiddag med havsvy.</p>
 <p><strong>Insider-tips:</strong> Parkera på fastlandet och ta bilbåten (5 min, extremt billig). Marstrands gator är smala och parkeringssituationen är kaotisk under midsommarhelgen.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">10. Smögen – klipporna firas</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg från Göteborg till Munkedal, sedan buss till Smögen. Ca 2 h totalt. Med bil via E6 och väg 174, ca 1 h 30 min från Göteborg.</p>
-<p><strong>Vad du gör:</strong> Smögenbryggan under midsommar är ett spektakel – tusentals människor på Bohusläns längsta träbrygga. Majstången reses traditionsenligt med folkmusik och dans. Badklipporna söder om Smögen är perfekta för spontana dopp.</p>
+<p><strong>Upplev:</strong> Smögenbryggan under midsommar är ett spektakel – tusentals människor på Bohusläns längsta träbrygga. Majstången reses traditionsenligt med folkmusik och dans. Badklipporna söder om Smögen är perfekta för spontana dopp.</p>
 <p><strong>Var du äter:</strong> Smögen Fisk & Skaldjur vid bryggan – räkorna här är oslagbara. Fångad samma morgon, serverad med bröd och aioli direkt vid kajen.</p>
 <p><strong>Insider-tips:</strong> Kom tidigt – Smögenbryggan är redan full vid 13:00 på midsommaraftonen. Övernatta på Smögens Hafvsbad för full skärgårdsupplevelse.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">11. Kosteröarna – Sveriges västerligaste</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg till Strömstad, sedan färja till Sydkoster eller Nordkoster. Ca 3 h från Göteborg. Boka båtbiljett i förväg under midsommarhelgen.</p>
-<p><strong>Vad du gör:</strong> Kosteröarna är bilfria och ingår i Kosterhavets nationalpark – en av Europas finaste. Midsommarfirandet är enkelt och genuint: majstång, dans och natur. Snorkling och paddling i nationalparken under midsommarnatten är en upplevelse för sig.</p>
+<p><strong>Upplev:</strong> Kosteröarna är bilfria och ingår i Kosterhavets nationalpark – en av Europas finaste. Midsommarfirandet är enkelt och genuint: majstång, dans och natur. Snorkling och paddling i nationalparken under midsommarnatten är en upplevelse för sig.</p>
 <p><strong>Var du äter:</strong> Kosterfjordens Fisk & Skaldjur på Sydkoster. Nordkoster Värdshus för en fullständig midsommarmiddag med nordkosters egna räkor.</p>
 <p><strong>Insider-tips:</strong> Boka boende minst 3 månader i förväg. Kosteröarna är extremt populära under midsommar.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">12. Tjörn – broförbunden men genuint</h4>
 <p><strong>Hur du tar dig dit:</strong> Tåg till Stenungsund, sedan buss via Tjörnbron. Eller med bil, ca 50 min från Göteborg. Tjörn nås med bil över Tjörnbron (gratis).</p>
-<p><strong>Vad du gör:</strong> Tjörn är Bohusläns folkrikaste ö och har ett rikt utbud av midsommarfiranden. Skärhamns folkpark arrangerar stor midsommarfest med artistuppträdanden. Nordiska Akvarellmuseet vid Skärhamn håller öppet med specialutställning.</p>
+<p><strong>Upplev:</strong> Tjörn är Bohusläns folkrikaste ö och har ett rikt utbud av midsommarfiranden. Skärhamns folkpark arrangerar stor midsommarfest med artistuppträdanden. Nordiska Akvarellmuseet vid Skärhamn håller öppet med specialutställning.</p>
 <p><strong>Var du äter:</strong> Restaurang Bryggan i Skärhamn med utsikt mot Tjörns norra skärgård. Krogen vid Rönnäng hamn för klassisk husmanskost.</p>
 <p><strong>Insider-tips:</strong> Tjörn är perfekt om du vill kombinera skärgård med bil – du kan utforska hela ön under midsommardagen utan att binda dig till tidtabeller.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">13. Gullholmen – den pittoreska fiskebyn</h4>
 <p><strong>Hur du tar dig dit:</strong> Bil till Ellös på Orust, sedan bilbåt till Gullholmen, ca 5 min. Ca 1 h 30 min från Göteborg med bil.</p>
-<p><strong>Vad du gör:</strong> Gullholmen är en av Bohusläns vackraste byar – tätt packade hus i rött och vitt längs klipporna. Midsommarfirandet är genuint lokalt med majstång vid hamnen. Ön är liten och lätt att promenera runt på en timme.</p>
+<p><strong>Upplev:</strong> Gullholmen är en av Bohusläns vackraste byar – tätt packade hus i rött och vitt längs klipporna. Midsommarfirandet är genuint lokalt med majstång vid hamnen. Ön är liten och lätt att promenera runt på en timme.</p>
 <p><strong>Var du äter:</strong> Gullholmen Krog är öns enda restaurang och fulltecknad under midsommar. Alternativt: ta med picknick och ät på klipporna.</p>
 <p><strong>Insider-tips:</strong> Ta bilbåten på kvällen och ha bilen på fastlandet. Ön är liten och ingen bil behövs.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">14. Orust – Bohusläns största ö</h4>
 <p><strong>Hur du tar dig dit:</strong> Bil via broar från Stenungsund, ca 1 h från Göteborg. Buss 302 från Göteborg Centralstationen, ca 1 h 30 min.</p>
-<p><strong>Vad du gör:</strong> Orust är Bohusläns mest mångsidiga ö. Ellös, Mollösund och Höviksnäs har var sina karaktärer och midsommarfiranden. Mollösunds fiskeby är en av kustens vackraste med husen pressade mot klippan.</p>
+<p><strong>Upplev:</strong> Orust är Bohusläns mest mångsidiga ö. Ellös, Mollösund och Höviksnäs har var sina karaktärer och midsommarfiranden. Mollösunds fiskeby är en av kustens vackraste med husen pressade mot klippan.</p>
 <p><strong>Var du äter:</strong> Mollösunds Krog med havsvy. Höviksnäs Stenugnsbageri för bröd och fika längs havet.</p>
 <p><strong>Insider-tips:</strong> Hyr cykel och ta dig från Ellös till Mollösund längs kustvägarna – det är en av Bohusläns finaste cykelleder.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">15. Donsö – Göteborgsskärgårdens pärla</h4>
 <p><strong>Hur du tar dig dit:</strong> Saltholmen T-bana (Göteborgs spårvagn) sedan Styrsöbolagets båt till Donsö, ca 30 min. Avgångarna är täta.</p>
-<p><strong>Vad du gör:</strong> Donsö är Göteborgs sydskärgårds mysigaste ö. Midsommarfirandet vid hamnplanen är genuint och välskött. Öns fiskeindustri är fortfarande aktiv och ger ett annorlunda skärgårdsintryck.</p>
+<p><strong>Upplev:</strong> Donsö är Göteborgs sydskärgårds mysigaste ö. Midsommarfirandet vid hamnplanen är genuint och välskött. Öns fiskeindustri är fortfarande aktiv och ger ett annorlunda skärgårdsintryck.</p>
 <p><strong>Var du äter:</strong> Donsö Krog med färsk fisk direkt från hamnen. Sommarcaféet vid bryggan för kaffe och räksmörgås.</p>
 <p><strong>Insider-tips:</strong> Styrsöbolaget ingår i Göteborgs kollektivtrafik – SL-kortet gäller INTE, men Västtrafik-kortet gäller. Biljett köps ombord eller i Västtrafik-appen.</p>
 `,
@@ -356,70 +356,70 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
 <p><strong>Transport:</strong> Direktbåt från Strandvägen eller Nybrokajen, 25 minuter. Avgångarna är täta under sommarperioden (var 20–30 min).</p>
 <p><strong>Pris:</strong> Ca 140 kr enkel resa, 220 kr retur.</p>
-<p><strong>Vad du gör:</strong> Fjäderholmarna är perfekta för den som aldrig provat skärgårdslivet och vill ha en lättillgänglig introduktion. Restauranger, hantverk, konstgallerier och klippor – allt på en liten ögrupp 25 minuter från Strandvägen.</p>
+<p><strong>Upplev:</strong> Fjäderholmarna är perfekta för den som aldrig provat skärgårdslivet och vill ha en lättillgänglig introduktion. Restauranger, hantverk, konstgallerier och klippor – allt på en liten ögrupp 25 minuter från Strandvägen.</p>
 <p><strong>Praktisk info:</strong> Ingen övernattning möjlig (ingen camping), men perfekt dagstur. Öppet maj–september.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Vaxholm – pendla som en lokalbo</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★★</p>
 <p><strong>Transport:</strong> SL-buss 670 från Tekniska Högskolan T, ca 50 min. Alternativt Waxholmsbolaget/pendelbåt från Strömkajen, ca 55 min. Buss ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> SL-buss gratis med månadskort. Waxholmsbåt ca 140 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Vaxholm är en riktig stad – historia, handel, restauranger och fästning. Perfekt dagstur med familj eller vänner. Vaxholms fästning är ett museum man inte bör missa.</p>
+<p><strong>Upplev:</strong> Vaxholm är en riktig stad – historia, handel, restauranger och fästning. Perfekt dagstur med familj eller vänner. Vaxholms fästning är ett museum man inte bör missa.</p>
 <p><strong>Praktisk info:</strong> Buss och båt kör hela året. Sommarens avgångstätheter är bäst, men Vaxholm fungerar som utflyktsmål nästan hela året.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Grinda – dagstur eller weekendvistelse</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
 <p><strong>Transport:</strong> Waxholmsbolaget linje 11 från Strömkajen, ca 1 h 45 min. Eller Cinderellabåten (direktavgång, dyrare).</p>
 <p><strong>Pris:</strong> Ca 200 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Grinda är en av skärgårdens vackraste öar med klippor, skog och Grinda Wärdshus – en av skärgårdens bästa restauranger. Perfekt för en barnfamiljshelg utan bil.</p>
+<p><strong>Upplev:</strong> Grinda är en av skärgårdens vackraste öar med klippor, skog och Grinda Wärdshus – en av skärgårdens bästa restauranger. Perfekt för en barnfamiljshelg utan bil.</p>
 <p><strong>Praktisk info:</strong> Grinda Wärdshus har stugor och vandrarhem. Tältning möjligt på södra sidan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Möja – bilfri skärgårdsidyll</h4>
 <p><strong>Tillgänglighet:</strong> ★★★★☆</p>
 <p><strong>Transport:</strong> SL-buss 433 till Stavsnäs Vinterhamn, sedan Waxholmsbolaget till Möja. Totalt ca 2 h 30 min. SL-bussen ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 190 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Krog och Möja Handelsträdgård är must-visits.</p>
+<p><strong>Upplev:</strong> Möja är bilfri och den klassiska "autentiska" skärgårdsön. Hyr cykel vid bryggan och utforska hela ön på en förmiddag. Möja Krog och Möja Handelsträdgård är must-visits.</p>
 <p><strong>Praktisk info:</strong> Boende finns på Möja Vandrarhem och i privata stugor. Tältning möjligt i anvisade områden.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Utö – södra skärgårdens höjdpunkt</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
 <p><strong>Transport:</strong> Pendeltåg från Stockholm Central till Nynäshamn (55 min), sedan Waxholmsbolaget till Utö (ca 1 h 15 min). Totalt ca 2 h 15 min. Pendeltåg ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Pendeltåg gratis med SL-kort, Waxholmsbåt ca 210 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Utö har det mesta: gruvruin, cykelleder, havsbastu och en av skärgårdens bästa restauranger (Utö Värdshus). Ön kräver minst ett dygn för att göra den rättvisa.</p>
+<p><strong>Upplev:</strong> Utö har det mesta: gruvruin, cykelleder, havsbastu och en av skärgårdens bästa restauranger (Utö Värdshus). Ön kräver minst ett dygn för att göra den rättvisa.</p>
 <p><strong>Praktisk info:</strong> Utö Värdshus har rum, stugor och vandrarhem. Boka i förväg under högsäsong.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Ornö – söder om Stockholm, bortom turisterna</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
 <p><strong>Transport:</strong> SL-buss 839 från Handen T (40 min), sedan bilfärja till Ornö från Dalarö (20 min). Totalt ca 1 h 15 min. Bussen ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, bilfärja ca 60 kr per person, ca 120 kr med cykel.</p>
-<p><strong>Vad du gör:</strong> Ornö är stor, skogsrik och har knappt några turister. Perfekt för vandring och att hyra cykel för att utforska öns skogar och klippor.</p>
+<p><strong>Upplev:</strong> Ornö är stor, skogsrik och har knappt några turister. Perfekt för vandring och att hyra cykel för att utforska öns skogar och klippor.</p>
 <p><strong>Praktisk info:</strong> Ornö har begränsat med restauranger – ta med matsäck. Tältning möjlig i naturreservatet.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Ljusterö – norra skärgårdens hemlighet</h4>
 <p><strong>Tillgänglighet:</strong> ★★★☆☆</p>
 <p><strong>Transport:</strong> SL-buss 676 från Tekniska Högskolan T till Ljusterö-bryggan, ca 1 h 20 min. Bussen inkluderar bilfärja och ingår i SL-abonnemanget.</p>
 <p><strong>Pris:</strong> Gratis med SL-kort.</p>
-<p><strong>Vad du gör:</strong> Ljusterö är en av de få öarna i skärgården som är bilburen (buss med bil) och ändå har en äkta öatmosfär. Vandringsleder, stränder och sommarcaféer.</p>
+<p><strong>Upplev:</strong> Ljusterö är en av de få öarna i skärgården som är bilburen (buss med bil) och ändå har en äkta öatmosfär. Vandringsleder, stränder och sommarcaféer.</p>
 <p><strong>Praktisk info:</strong> Sommartid finns fler avgångar. Kolla SL:s tidtabell på sl.se.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Sandhamn – seglarklassikern</h4>
 <p><strong>Tillgänglighet:</strong> ★★☆☆☆</p>
 <p><strong>Transport:</strong> SL-buss 433 till Stavsnäs, sedan Waxholmsbolaget linje 444 till Sandhamn. Totalt ca 2 h 30 min.</p>
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 220 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Sandhamn är skärgårdslivet i koncentrat – seglarbåtar, klassiska restauranger och klippbad vid Trouville. Under sommarveckan (Juni KSSS) är det ett evenemang av rang.</p>
+<p><strong>Upplev:</strong> Sandhamn är skärgårdslivet i koncentrat – seglarbåtar, klassiska restauranger och klippbad vid Trouville. Under sommarveckan (Juni KSSS) är det ett evenemang av rang.</p>
 <p><strong>Praktisk info:</strong> Boende bör bokas månader i förväg. Sandhamns Seglarhotell och Sandhamns Värdshus är de bästa alternativen.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">9. Blidö – norra skärgårdens fridfullhet</h4>
 <p><strong>Tillgänglighet:</strong> ★★☆☆☆</p>
 <p><strong>Transport:</strong> Waxholmsbolaget från Strömkajen via Norrtälje, eller SL-buss till Norrtälje och bilfärja till Blidö. Ca 2 h 30–3 h totalt.</p>
 <p><strong>Pris:</strong> Ca 200–250 kr enkel resa med Waxholmsbolaget.</p>
-<p><strong>Vad du gör:</strong> Blidö är norra skärgårdens mest fridfulla ö med riklig natur, vandringsleder och bra fiskevatten. Lämplig för den som vill vara helt borta från stadspulsen.</p>
+<p><strong>Upplev:</strong> Blidö är norra skärgårdens mest fridfulla ö med riklig natur, vandringsleder och bra fiskevatten. Lämplig för den som vill vara helt borta från stadspulsen.</p>
 <p><strong>Praktisk info:</strong> Begränsat med service – ta med allt du behöver.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">10. Arholma – ytterskärgårdens yttersta</h4>
 <p><strong>Tillgänglighet:</strong> ★☆☆☆☆</p>
 <p><strong>Transport:</strong> Waxholmsbolaget linje 670/671 från Strömkajen, ca 4 h. Avgångarna är begränsade.</p>
 <p><strong>Pris:</strong> Ca 300 kr enkel resa.</p>
-<p><strong>Vad du gör:</strong> Arholma är ytterskärgård i ordets rätta bemärkelse – öppet hav, urbergsklippor och knappt några turister. För den riktiga äventyrsresenären utan båt.</p>
+<p><strong>Upplev:</strong> Arholma är ytterskärgård i ordets rätta bemärkelse – öppet hav, urbergsklippor och knappt några turister. För den riktiga äventyrsresenären utan båt.</p>
 <p><strong>Praktisk info:</strong> Arholma har ett vandrarhem. Planera resan noga – det är en hel dag att ta sig dit och tillbaka.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
@@ -762,32 +762,32 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Marstrand – fästningens midsommar</h4>
 <p><strong>Transport:</strong> Bil till Koön + bilbåt till Marstrand (5 min), ca 50 min från Göteborg. Alternativt buss från Göteborg Centralstation.</p>
-<p><strong>Vad du gör:</strong> Carlstens fästning som kuliss, segelgalor i hamnen och de smalaste gränderna i Sverige fyllda av folk i folkdräkt. Midsommaraftonen är en folkfest av rang.</p>
+<p><strong>Upplev:</strong> Carlstens fästning som kuliss, segelgalor i hamnen och de smalaste gränderna i Sverige fyllda av folk i folkdräkt. Midsommaraftonen är en folkfest av rang.</p>
 <p><strong>Boka:</strong> Societetshuset, Villa Maritim eller Mossby Strandkrog – alla kräver bokning månader i förväg.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Smögen – bryggornas midsommar</h4>
 <p><strong>Transport:</strong> Bil via E6 och väg 174, ca 1 h 30 min från Göteborg. Buss möjlig men lång.</p>
-<p><strong>Vad du gör:</strong> Smögenbryggan fylls till bristningsgränsen. Räksmörgåsar, majstång vid kajen och folkfest längs den långa träbryggan. Badklipporna söder om byn är perfekta för ett dopp.</p>
+<p><strong>Upplev:</strong> Smögenbryggan fylls till bristningsgränsen. Räksmörgåsar, majstång vid kajen och folkfest längs den långa träbryggan. Badklipporna söder om byn är perfekta för ett dopp.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Kosteröarna – nationalpark och midsommar</h4>
 <p><strong>Transport:</strong> Tåg till Strömstad, färja till Sydkoster eller Nordkoster. Boka båtbiljett i förväg.</p>
-<p><strong>Vad du gör:</strong> Bilfria öar i Kosterhavets nationalpark. Enkel och genuint stämningsfull midsommar – majstång, dans och öppet hav.</p>
+<p><strong>Upplev:</strong> Bilfria öar i Kosterhavets nationalpark. Enkel och genuint stämningsfull midsommar – majstång, dans och öppet hav.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Tjörn – folkpark och havsvy</h4>
 <p><strong>Transport:</strong> Bil via Tjörnbron, ca 50 min från Göteborg.</p>
-<p><strong>Vad du gör:</strong> Skärhamns folkpark arrangerar stor midsommarfest. Nordiska Akvarellmuseet håller öppet med special. Perfekt om du vill ha bil och ändå ha havet nära.</p>
+<p><strong>Upplev:</strong> Skärhamns folkpark arrangerar stor midsommarfest. Nordiska Akvarellmuseet håller öppet med special. Perfekt om du vill ha bil och ändå ha havet nära.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Gullholmen – den pittoreska fiskebyn</h4>
 <p><strong>Transport:</strong> Bil till Ellös på Orust, bilbåt till Gullholmen (5 min). Ca 1 h 30 min från Göteborg.</p>
-<p><strong>Vad du gör:</strong> En av Bohusläns vackraste byar med tätt packade hus i rött och vitt. Liten och intim midsommarfest vid hamnen.</p>
+<p><strong>Upplev:</strong> En av Bohusläns vackraste byar med tätt packade hus i rött och vitt. Liten och intim midsommarfest vid hamnen.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Orust – Bohusläns mångsidiga ö</h4>
 <p><strong>Transport:</strong> Bil via brotype, ca 1 h från Göteborg. Buss 302 möjlig.</p>
-<p><strong>Vad du gör:</strong> Mollösund, Ellös och Höviksnäs har var sina traditioner. Mollösunds fiskeby med husen mot klippan är en av kustens vackraste midsommarplatser.</p>
+<p><strong>Upplev:</strong> Mollösund, Ellös och Höviksnäs har var sina traditioner. Mollösunds fiskeby med husen mot klippan är en av kustens vackraste midsommarplatser.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Donsö – Göteborgs närmaste skärgård</h4>
 <p><strong>Transport:</strong> Spårvagn till Saltholmen + Styrsöbolagets båt, ca 30 min. Ingår i Västtrafik (ej SL).</p>
-<p><strong>Vad du gör:</strong> Göteborgs sydskärgårds mysigaste ö. Genuint midsommarfirande vid hamnplanen med aktiv fiskehamn som kuliss.</p>
+<p><strong>Upplev:</strong> Göteborgs sydskärgårds mysigaste ö. Genuint midsommarfirande vid hamnplanen med aktiv fiskehamn som kuliss.</p>
 `,
 
     'sandhamn-vs-grinda': `
@@ -7495,340 +7495,6 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Ta med:</strong> Badlakan, badkläder (för bastubåtar och värdshus), flip-flops, vattenflaska. En kall öl eller saft efter bastun är praxis — men ta med din egen till de anläggningar som saknar servering.</p>
 
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bästa säsong:</strong> Bastun är faktiskt bäst på hösten — september och oktober. Lufttemperaturen är lägre (kontrasterna blir mer dramatiska), havet är fortfarande relativt varmt (14–17°C i september) och du delar knappt platsen med någon annan. Sommarbastun funkar fint — men höst&shy;bastun i skärgården är en annan nivå.</p>
-`,
-
-  // ── Batch M: Höst/planering SEO-artiklar ─────────────────────────────────
-
-  'havsbastu-guide': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Havsbastu är en av Skandinaviens djupast rotade traditioner och en av de enklaste upplevelserna att förstå: svett ut i bastun, hopp i havet, upprepa. Kontrasten mellan 80–100°C inne och 10–16°C i salthav är så dramatisk att kroppen reagerar omedelbart. Välbefinnandet som följer varar i timmar.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Längs Sveriges kust finns havsbastur av alla slag – från enkla vedeldade klippbastus till lyxiga bastubåtar och spa-anläggningar direkt vid havet. Den här guiden täcker de bästa alternativen från Bohuslän till Stockholms skärgård.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">STOCKHOLMS SKÄRGÅRD</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utö Havsbastu</h4>
-<p>Utö är ett av Stockholms skärgårds mest välkända resmål och har en havsbastu med utsikt söderut mot öppet hav. Bastun är vedeldad och kan bokas separat från övernattning. Kombineras med Utö Värdshus och cykling runt ön. Boka via utovardshus.se – populärt, boka minst 2 veckor i förväg.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smådalarö Gård SPA</h4>
-<p>Söder om Stockholm nära Dalarö – 45 min med bil. En vedeldad privat bastu uthyrs per sällskap direkt vid vattnet. Perfekt för dig som vill ha havsbastu utan lång båtresa. Bokas via smadalarogard.se. Tillgänglig även under vinterhalvåret.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Arholma STF – nordlig ytterskärgård</h4>
-<p>Arholma i yttre norra skärgården är en av Stockholms mest avlägset belägna öar. STF-stugorna på Arholma Nord har vedeldad bastu och klippbad direkt i Östersjön. Ytterskärgårdens karaktär – vind, klippor, inga sommarträngsel – gör Arholma till ett utmärkt val för dig som vill ha bastu i riktig vildmark.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Nynäs Havsbad</h4>
-<p>Anrikt spa-hotell i Nynäshamn med bastuhus på bryggan och utsikt mot havet. Dagspa kan bokas utan övernattning. Nynäshamn nås med pendeltåg (ca 55 min från Stockholm C). Boka via nynashavsbad.se.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOHUSLÄN OCH VÄSTERHAVET</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Lysekil Havsbadet</h4>
-<p>Lysekil vid Västerhavet har ett av landets vackraste havsbad med bastu, pool och direktutsikt mot klippkusten. Kombination av bastu och Västerhavet – salthaltigare och kallare än Östersjön – ger en extra kraftig kontrast. Boka via lysekil.com eller direkt med havsbadet.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Marstrand – bastubåt</h4>
-<p>Marstrand utanför Göteborg erbjuder bastubåtar som tar dig ut på havet. Boka privat bastubåt med sällskapet – kombinera med ett besök på Carlstens fästning. Sommartid är bastubåtarna fullbokade helger – välj vardagar eller höst.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Klädesholmen – Salt & Sill</h4>
-<p>Hotellet Salt & Sill på Klädesholmen (Tjörn) har ett av Bohusläns mest omtalade spa och bastu med havsutsikt. Kombineras med övernattning och restaurangbesök. Boka i god tid – populärt år runt.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">GOTLAND</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Snäcks havsbad och camping</h4>
-<p>Snäcks utanför Visby har havsbastu, pool och bad direkt i Östersjön. Tillgänglig under sommarsäsongen och höst. Kombineras med Visbys kulturutbud och restauranger. Enkel dagstur från Visby.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA SÄTTET ATT UPPLEVA HAVSBASTU</h3>
-
-<p><strong>Grundregeln:</strong> Börja i bastun 15–20 minuter, sedan snabbt dopp i havet, sedan tillbaka till bastun. Upprepa 2–3 gånger. Avsluta med avkylning och vila – aldrig med bastun sist.</p>
-
-<p><strong>Timing:</strong> Havsbastu är bäst på hösten (september–november). Luften är kallare (kontrasterna mer dramatiska), havet är fortfarande 13–17°C i september och du delar sällan platsen med en massa folk. Vintern fungerar också utmärkt för den vane – men börja med hösten.</p>
-
-<p><strong>Boka i förväg:</strong> Populära bastuer är fullbokade helger 2–4 veckor i förväg. Vardagar är alltid lättare att boka. Skärgårdsstiftelsens öppna bastus i Stockholms skärgård fungerar utan bokning (Swish, ca 50 kr).</p>
-
-<p><strong>Ta med:</strong> Badlakan, badkläder, flip-flops och vattenflaska. Vatten är viktigt – bastun avfuktar kroppen ordentligt. Ta med en kall dryck till efteråt.</p>
-`,
-
-  'hostlov-vid-havet-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Höstlovet 2026 infaller vecka 44 – måndag 26 oktober till söndag 1 november för de flesta skolor. Det är en av höstens bästa chanser att komma iväg: havet är fortfarande tillgängligt, lövfärgerna är på topp och priserna är lägre än under sommarens högsäsong.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Höstlovet vid havet funkar för alla – barnfamiljer som vill ha aktiviteter och äventyr, par som söker stillhet och havsbastu, och den som helt enkelt vill komma ut i höstluften. Här är de bästa alternativen.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DATUM OCH PLANERING</h3>
-
-<p><strong>Höstlovet 2026:</strong> Vecka 44, måndag 26 oktober – söndag 1 november. Datum kan variera med en vecka beroende på kommun – kolla din skolas kalender. Stockholms stad och Göteborg följer vecka 44.</p>
-
-<p>Boka boende i god tid – höstlovet är populärt och utbudet är begränsat utanför säsong. Sikta på bokning 4–6 veckor i förväg för de mest attraktiva platserna.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BÄSTA RESMÅLEN FÖR HÖSTLOVET</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vaxholm – trygg och öppen</h4>
-<p>Vaxholm fungerar hela hösten som en levande liten stad. Kaféer, restauranger och fästningsmuseet håller öppet under höstlovet. Enkelt att nå med pendelbåt 83/83X från Strömkajen (55 min). Bra bascamp för dagsturer till andra öar. Barnfamiljer: fästningen är en perfekt utflykt.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Lysekil – Bohuslän</h4>
-<p>Lysekil på Bohusläns kust är öppen hela hösten och erbjuder havsbad, vandring längs klippkusten och en autentisk fiskehamn. Havets Hus (akvarium) är utmärkt för barn. Hushavsbastu och klättring längs klipporna för de äldre. Nås med bil från Göteborg (ca 2h) eller Västtrafik-buss.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Borgholm – Öland</h4>
-<p>Borgholms slottsruin på Öland är en av landets mest imponerande lämningar och perfekt för utflykt. Slottscaféet håller höstöppet. Öland nås via Ölandsbron från Kalmar – inga restriktioner, gratis. Kalkstenslandskapet på hösten är dramatiskt och nästan turistfritt.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Norrtälje och Roslagen – dagstur</h4>
-<p>Norrtälje är porten till Roslagens skärgård och har ett mysigt centrum öppet hela hösten. Perfekt bascamp för utflykter till Grisslehamn och kustlandskapet norr om Stockholm. Nås med buss 676 från Stockholm City (ca 1h 20 min).</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">AKTIVITETER FÖR HELA FAMILJEN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Svampplockning</h4>
-<p>Höstlovet sammanfaller med trattkantarellens högsäsong. Skärgårdsöarnas lövskogar är fyllda av svamp i slutet av oktober. Ta med korg och svampguide-app. Allemansrätten gäller – respektera naturreservat.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu</h4>
-<p>Höstlovet är perfekt timing för havsbastu. Kontrasterna är störst i slutet av oktober – luften kall, havet fortfarande badbart (ca 12–14°C). Boka Utö Havsbastu, Smådalarö Gård eller Lysekil Havsbadet i god tid.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring längs kustleder</h4>
-<p>Höstfärgerna i slutet av oktober är på topp längs kusten – björkar och aspar i guld mot ett grå-blått hav. Skäneleden (Kullaberg), Höga Kustenleden och Ölands kustled är alla tillgängliga och i princip folktomma under höstlovet.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISKT INFÖR HÖSTLOVET</h3>
-<p><strong>Kläder:</strong> I slutet av oktober: vinterjacka, mössa och handskar. Skärgårdsvindar gör att det känns kallare. Vattentäta skor är ett måste.</p>
-<p><strong>Boende:</strong> Utbudet minskar utanför säsong – boka i god tid. Värdshus och stugbyar kan ha begränsad bemanning.</p>
-<p><strong>Transport:</strong> Waxholmsbolaget kör reducerat schema. Kolla tidtabeller på waxholmsbolaget.se. Sista båten hem kan vara 16–17 på vardagar till mer avlägsna öar.</p>
-`,
-
-  'november-skargard': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">November är den månad de flesta undviker skärgården. Det är precis därför du ska åka dit. Det är en kompromiss – du ger upp solbad och restaurangstråk och får i utbyte något som är svårt att hitta i resten av Sverige: total stillhet, dramatiska naturupplevelser och en känsla av att ha platsen för dig själv.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Novemberskärgård kräver rätt inställning och rätt utrustning. Men för den som ger det en chans är det en upplevelse som sätter sig djupare än en sommarsemester.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD ÄR NOVEMBER I SKÄRGÅRDEN?</h3>
-
-<p>Lövfärgerna är förbi. Träden är kala. Havet är grått och kallt (8–11°C). Mörkret faller vid 15:30–16:00. Vinden är skarpare. Och vackert på ett sätt som är svårt att beskriva – dramatiskt, dystert och levande på samma gång.</p>
-
-<p>Det är en skärgård utan turistmask. Det du ser är det verkliga: fiskare ute på havet, havsörnar som jagar längs kustremsan, ejdrar som betar nära klipporna. Djur och natur utan att behöva dela platsen med hundratals andra besökare.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA UPPLEVELSERNA I NOVEMBER</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu</h4>
-<p>Höjdpunkten. Kontrasten mellan varm bastu och novemberhav (8–10°C) är extremare än på högsommaren – och det är just det som gör upplevelsen oförglömlig. Utö Havsbastu, Smådalarö Gård och Arholma STF håller öppet in i november. Boka i förväg.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fågelskådning längs kusten</h4>
-<p>November är en av årets bästa månader för fågelskådning längs Östersjökusten. Ejdrar, svanar, och framförallt havsörn – nu är populationerna längs kusten som störst sedan sommarens ungar fötts upp och beger sig mot havet. Vaxholm och Ornö är bra startpunkter.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring i vinterljus</h4>
-<p>Novembervandring i skärgården ger ett speciellt ljus – lågt, gyllene när solen är uppe (10:00–15:00) och dramatiskt grått i övrigt. Grinda, Möja och Utös vandringsleder är välmarkerade och trafikeras knappt. Du är ensam med naturen.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Stormpromenad</h4>
-<p>En november-storm mot klipporna i yttre skärgården är en av natursensationerna som folk glömmer att det finns. Klädda ordentligt, stående på en klippa i Bohuslän eller Arholma medan vågorna krossar – det är rå natur. Gör det säkert (stanna undan klippkanter, håll avstånd till vattnet).</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VILKA ÖAR ÄR ÖPPNA I NOVEMBER?</h3>
-
-<p><strong>Vaxholm:</strong> Öppen hela november som en fungerande liten stad. Kaféer och affärer håller öppet.</p>
-<p><strong>Möja:</strong> Waxholmsbolaget kör dagligen. Möja Krog stänger efter oktober – ta med matsäck. Öns vandringsleder är alltid öppna.</p>
-<p><strong>Utö:</strong> Reducerat schema. Utö Värdshus är öppet med begränsad kapacitet – kolla och boka i förväg.</p>
-<p><strong>Arholma:</strong> Waxholmsbolaget kör med reducerat schema. STF-stugan håller öppet – kontrollera med STF direkt.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISKT</h3>
-<p><strong>Kläder:</strong> Vinterjacka, mössa, handskar och vattentäta skor. Undervärdera inte vindkylan till sjöss.</p>
-<p><strong>Tider:</strong> Waxholmsbolaget kör kraftigt reducerat i november. Sista båten hem kan vara 16:00 – planera utifrån detta, inte utifrån sommartidtabellen.</p>
-<p><strong>Mat:</strong> Räkna med att de flesta restauranger är stängda. Vaxholm är undantaget. Ta med matsäck till övriga öar.</p>
-`,
-
-  'host-blekinge-skargard': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Blekinges skärgård är Sveriges sydligaste och en av dess minst kända. Där Stockholms skärgård räknar tusentals öar och Bohuslän berömmer sig av sin klippkust, ligger Blekinge i sin egen lugna rytm – en skärgård av granit och sandstränder, utan turisttrycket och med ett hav som är klarare än Östersjöns genomsnitt.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På hösten är Blekinges skärgård i princip tom. Det är hemligheten.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA ÖARNA</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Aspö – sandstränder och fiskeliv</h4>
-<p>Aspö utanför Karlskrona är Blekinges kanske vackraste ö. Järnavik-stranden på öns södra sida är en av regionens bästa sandstränder – tom på hösten. Aspö har aktiva fiskare och en genuint levande ö-atmosfär utan turistifiering. Nås med passagerarfärja från Karlskrona hamn (ca 40 min).</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Sturkö – Blekinges bilfria ö</h4>
-<p>Sturkö är den större av Karlskronas skärgårdsöar och delvis nåbar med bil via väg (kontrollera aktuell status). Öns kust erbjuder vandringsleder längs klippor och stränder, fiskelägen och en avslappnad öatmosfär. September och oktober är fantastiska – höstfärger möter havet och turisterna är borta.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Tjurkö och Senoren</h4>
-<p>Mindre öar i Blekinge som ger en mer avlägsen upplevelse. Nås med privat båt eller kajak. Allemansrätten gäller – perfekta för övernattning i tält om du har utrustning.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR MAN TAR SIG DIT</h3>
-
-<p><strong>Till Karlskrona:</strong> Direkttåg från Malmö (ca 1,5h) och Stockholm (ca 4h). Karlskrona är en av landets vackraste städer – UNESCO-världsarv med marinbas och skärgårdskaraktär mitt i stadskärnan.</p>
-<p><strong>Till öarna:</strong> Passagerarfärjor från Karlskrona hamn kör till Aspö och Sturkö under länstrafikens regi. Höststidtabellen är reducerad – kontrollera blekinge.se för aktuella tider.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD GÖR MAN PÅ HÖSTEN?</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring längs kustleden</h4>
-<p>Blekingeleden sträcker sig längs kusten och genom inlandet. Kustdelen söder om Karlskrona bjuder på dramatisk klippkust och höstfärger i lövskogarna. September–oktober är absolut bästa tid.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fågelflyttning vid sydkusten</h4>
-<p>Blekinges sydkust är en av landets bästa platser för att se höstflyttande fåglar. September och oktober är intensivaste perioderna. Havsörn, sträckande kronor av rovfåglar och vadare längs kustremsan.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Fiske</h4>
-<p>Havsöring vandrar längs sydkusten på hösten – ett eftertraktat byte för sportfiskare. Saltfiske kräver inget fiskekort. Lokala fiskeguider kan kontaktas via Karlskrona turistbyrå.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Karlskrona stad</h4>
-<p>Baseca dig i Karlskrona och utforska staden – marinmuseet, Stortorget med sina unika barockbyggnader och hamnen som är livlig hela hösten med lokalt fiskare. En undervärderad stad av rang.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOENDE OCH MAT</h3>
-<p>Karlskrona stad har bra hotell och B&B hela hösten. På öarna är utbudet begränsat utanför sommarsäsong – kolla och boka direkt med öns eventuella värdshus. Ta med matsäck till dagsturer ut på öarna.</p>
-`,
-
-  'host-skane-kusten': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skåne är Sveriges mest folkrika turistregion på sommaren. Men de flesta turisterna försvinner i september – och det som finns kvar är en kust som faktiskt är vackrare utan dem. Höstflyttningens fågelskådar-eldorado, Kullbergets dramatiska klippar och Österlens bökskogar mot havet.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skåne har ytterligare en fördel: klimatet. Hösten är mildare längs Öresund och Östersjökusten än i resten av Sverige. Oktober kan ge plusgrader och soliga dagar in i november.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA KUSTNÄRA UPPLEVELSERNA PÅ HÖSTEN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Falsterbo – Europas bästa fågelstation</h4>
-<p>Falsterbo på Skånes sydvästspets är en av Europas mest kända platser för höstfågelflyttning. Hundratusentals fåglar passerar varje höst. Falsterbo Fågelstation registrerar och ringmärker – besök är möjliga under september–november. Rovfågelssträcket (framförallt hökar och rovfåglar) är höjdpunkten i oktober. Nås med bil från Malmö (ca 40 min) eller buss/cykel längs kusten.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kullaberg – klippvandring utan turister</h4>
-<p>Kullaberg-halvön i nordvästra Skåne är ett av landets dramatiskaste kustlandskap. Vandringslederna längs klipporna ner mot havet ger utsikter som konkurrerar med vad som helst i Skandinavien. På hösten är Kullaberg praktiskt taget turistfri. Kullabergs naturreservat kan vandras fritt hela hösten. Nås med buss från Höganäs eller Helsingborg, sedan vandring upp längs halvön.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Österlen – bökskog och hav</h4>
-<p>Österlen i sydöstra Skåne ger höstens kanske vackraste kombination: bokskogarna vid havet i guldgult och rött. Kivik (känt för äpplen och äppelmarknad i september), Simrishamn (genuint fiskesamhälle) och Stenshuvud nationalpark. Stenshuvuds bokskog i november är storslagen. Nås med regiontåg Pågatågen till Simrishamn.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Hovs Hallar</h4>
-<p>Naturreservat vid Båstad med dramatiska klippformationer längs havet. En av Sveriges vackraste platser på hösten – spöklikt vacker i höststormen. Ingen turisttrafik utanför sommarsäsong. Nås med bil (ca 10 min från Båstad) eller gångväg längs kusten.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">PRAKTISK INFO</h3>
-
-<p><strong>Transport:</strong> Skånetrafiken täcker Ystad, Simrishamn, Höganäs och Helsingborg med tåg. Kullaberg och Falsterbo kräver bil eller cykel. Malmö är perfekt bascamp – pendla ut till kusterna under dagen.</p>
-<p><strong>Klimat:</strong> Oktober i Skåne: 10–16°C dag. Mildare än Stockholm och Göteborg. Havet är fortfarande badbart till mitten av oktober (ca 15°C).</p>
-<p><strong>Bästa tid:</strong> September för Falsterbo och fågelflyttning. Oktober för Österlens lövfärger och Kullabergs dramatik. November för ensam kustpromenad i den råaste formen.</p>
-`,
-
-  'weekendresa-host-havet': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En höst-weekendresa vid havet är annorlunda från sommarvarianten på ett sätt som är svårt att förklara förrän du provat det. Priserna är 30–50% lägre. Restaurangerna är tomma. Naturen är skarpare och mer dramatisk. Och du slipper trängas.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är tio av landets bästa kustnära weekenddestinationer för hösten – och vad du faktiskt gör när du är där.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">10 RESMÅL FÖR HÖSTWEEKENDEN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">1. Vaxholm, Stockholms skärgård</h4>
-<p>Närmast och enklast. Pendelbåt 83/83X från Strömkajen (55 min). Vaxholm fungerar hela hösten – kaféer, restauranger och fästningsmuseet är öppna. Övernatta på Waxholms Hotell för klassisk skärgårdsweekend. Utmärkt bascamp för dagstur till Möja eller Sandhamn.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Lysekil, Bohuslän</h4>
-<p>Lysekil har havsbad, Havets Hus och en klippkust som är dramatiskt vacker på hösten. Bra restaurangutbud hela hösten. Nås med bil (ca 2h från Göteborg, ca 5h från Stockholm). September: lägg till hummerpremieren 26 sep för det ultimata skaldjursweekendprogrammet.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">3. Borgholm, Öland</h4>
-<p>Borgholms slottsruin och det gyllene Alvaret på hösten – ett visuellt spektakel. Nås via Ölandsbron från Kalmar (gratis). Borgholms stad har öppna restauranger och kaféer hela hösten. Bra val för familjer.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">4. Norrtälje och Roslagen</h4>
-<p>Norrtälje med omgivande Roslagen är en höstperla norr om Stockholm. Charming stad med öppna caféer, antikaffärer och en skärgård som börjar direkt utanför. Arholma-utflykt möjlig med Waxholmsbolaget om du har tid.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">5. Marstrand, Bohuslän</h4>
-<p>Marstrand utan sommarsäsongens trängsel är en annan plats – lugn, vacker och med Carlstens fästning för dig själv. Bastubåt ett hav är fortfarande möjlig i september–oktober. Nås med färja från Koon (väg 168 från Kungälv).</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">6. Visby, Gotland</h4>
-<p>Gotland på hösten är undervärderat. Murarna runt Visby i höstljuset, vinkällare och krogliv utan sommarfestivals-turister. Flyg eller färja (Destination Gotland) tur-retur ger en klassisk höstweekend. Gotlandsbygden och klinterna är vackra i september–oktober.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Grebbestad, Bohuslän</h4>
-<p>Grebbestad är Bohusläns skaldjurshuvudstad och på hösten öppnar ostron- och hummersäsongen. Ostronsafari (ca 500–800 kr/person) ger en upplevelse direkt från havet. Genuint fiskesamhälle utan sommarens turistifiering.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Smögen, Bohuslän</h4>
-<p>Smögen i september är ett annat Smögen. Klipphyllan längs bryggan är tom, fiskauktionen är aktiv och restaurangerna serverar hummer och ostron. Promenaden runt öns klippkust är vacker i höstljus och utan folkvimmel.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">9. Höga Kusten, Skuleskogen</h4>
-<p>UNESCO-världsarvet är absolut vackrast i september–oktober när lövfärgerna exploderar mot havet. Vandring i Skuleskogen med utsikt mot Bottenhavet. Härnösand och Kramfors har boende och service hela hösten. Nås med tåg.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">10. Karlskrona och Blekinge</h4>
-<p>En av landets mest underskattade städer med UNESCO-marinbas, charmig stadskärna och närheten till Blekinges skärgård. Dagsutflykter till Aspö och Sturkö. Mildare höst än Stockholm och Göteborg. Nås med direkttåg från Malmö.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">TIPS FÖR HÖST-WEEKENDRESAN</h3>
-<p><strong>Boka tidigt:</strong> Utbudet minskar kraftigt utanför säsong – de bästa platserna är fullbokade 3–6 veckor i förväg.</p>
-<p><strong>Kolla öppettider:</strong> Ring alltid restauranger och aktiviteter innan du åker – höstöppettiderna varierar och kan skilja sig från vad hemsidan säger.</p>
-<p><strong>Ha Plan B:</strong> Höstvädret är omväxlande. Planera vad du gör om det regnar (museum, havsbastu, god krog) och se det som en del av upplevelsen.</p>
-`,
-
-  'host-roslagen': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Roslagen är Stockholms skärgårds norra gren – och den minst kända. Medan alla åker till Sandhamn och Grinda ligger Arholma, Svartlöga och Blidö i sin egen stillhet norrut, med en skärgård som är kargare och vackrare och mer genuin. På hösten är Roslagen nästan helt tomt. Det är just det som gör det perfekt.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">ROSLAGENS ÖARNA PÅ HÖSTEN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Arholma – ytterskärgårdens höjdpunkt</h4>
-<p>Arholma är en av Stockholms yttersta bebodda öar, norra skärgårdens sista fas. På hösten är ön i princip tom – och den är vacker. Klippor, björkskogar och utsikt mot öppet hav. STF Arholma (Arholma Nord) har stugor och vedeldad bastu. Boka havsbastukvällen i förväg. Nås med Waxholmsbolaget linje 5, ca 3 timmar från Tekniska Högskolan.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Svartlöga – den vilda ön</h4>
-<p>Svartlöga är mer avsides än Arholma – enklare att nå med privat båt men möjlig med Waxholmsbolaget. Ön har vandringsleder och ett genuint fiskarsamhälle med några permanentboende. På hösten är det rent av magiskt tyst. Ta med matsäck – ingen service utanför sommarsäsongen.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Blidö – bilfritt och lugnt</h4>
-<p>Blidö är en mellanstor ö med bilfria delar och vandringsleder längs kustremsan. Blidö Värdshus har höstöppet (kolla aktuellt via deras hemsida). Nås med Waxholmsbolaget från Norrtälje (kortare resa än från Stockholm).</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Grisslehamn – fiskeläget</h4>
-<p>Grisslehamn i norra Roslagen är ett pittoreskt fiskeläge med en aktiv hamn. August Strindberg sommarbodde här, och det finns ett litet Strindberg-museum (kolla öppettider). Höst ger autentisk fiskelägesatmosfär utan turistkaos.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HUR MAN TAR SIG HIT</h3>
-
-<p><strong>Med kollektivtrafik:</strong> Buss 676 från Stockholm City till Norrtälje (ca 1h 20 min), sedan Waxholmsbolagets linjer i Roslagens skärgård. Arholma: linje 5 (ca 3 timmar från Tekniska Högskolan). Svartlöga: linje 6. Blidö: linje 4.</p>
-<p><strong>Med bil:</strong> E18 mot Norrtälje (ca 1h). Parkeringsalternativ vid Svanberga eller Singö för vidare färja ut.</p>
-<p><strong>Observera höststidtabell:</strong> Waxholmsbolaget kör reducerat från september. Avgångarna kan vara en gång per dag – planera noga och kolla waxholmsbolaget.se.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">AKTIVITETER I ROSLAGEN PÅ HÖSTEN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsöringsfiske</h4>
-<p>Havsöring vandrar längs Roslagens kust i september–november. Fiske vid åmynningar och bäckar längs öarna. Inga fiskekort krävs för salt havsfiske. Roslagen har ett antal välkända havsöringslökar.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Vandring och svampplockning</h4>
-<p>Roslagens lövskogar är rika på svamp i september–oktober. Karljohansvamp och trattkantareller längs skogsstigarna. Vandringsleder på Arholma, Svartlöga och Blidö är välmarkerade.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Havsbastu på Arholma</h4>
-<p>STF Arholma Nords vedeldade bastu med direktutsikt mot Östersjön är en av Roslagens bästa upplevelser. Boka via STF:s hemsida. Kombinera med övernattning för att inte stressa tillbaka till sista båten.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">NORRTÄLJE – BASEN FÖR ROSLAGEN</h3>
-<p>Norrtälje är porten till Roslagen och ett charmigt stadskärna med öppna restauranger och kaféer hela hösten. Norrtälje Hamn har restauranger med havsvy. Musikhistoriska Museum och Pythagoras-klaverfabrik ger inslag av kultur. Perfekt bascamp för dagsturer ut i skärgården.</p>
-`,
-
-  'planera-host-resa-havet': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">En höstresa vid havet kräver lite mer planering än sommarvarianten. Utbudet är mer begränsat, tidtabellerna reducerade och vädret mer variabelt. Men om du planerar rätt – och de flesta gör det inte – ger du dig tillgång till en kust som är vackrare och mer genuin än den du ser i juli.</p>
-
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är allt du behöver: checklista, kalendarium och de viktigaste datumen för hösten 2026.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HÖSTENS VIKTIGASTE DATUM 2026</h3>
-
-<div style="background:rgba(10,123,140,0.06);border-radius:12px;padding:20px 24px;margin:20px 0">
-<p style="margin:0 0 10px"><strong>20 aug</strong> – Surströmmingspremiär (tredje torsdagen i aug)</p>
-<p style="margin:0 0 10px"><strong>26 sep</strong> – Hummerpremiär i Bohuslän (sista lördagen i sep)</p>
-<p style="margin:0 0 10px"><strong>Sep–okt</strong> – Ostronsäsongens öppning (månader med R i namnet)</p>
-<p style="margin:0 0 10px"><strong>Sep–okt</strong> – Havsöringsfiskets högsäsong</p>
-<p style="margin:0 0 10px"><strong>Sep–nov</strong> – Fågelflyttningens höjdpunkt längs Östersjökusten</p>
-<p style="margin:0 0 10px"><strong>Okt</strong> – Lövfärgernas höjdpunkt i Höga Kusten och norra skärgård</p>
-<p style="margin:0">26 okt–1 nov – <strong>Höstlov vecka 44</strong></p>
-</div>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">CHECKLISTA INFÖR HÖSTRESAN</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Boende</h4>
-<p>✓ Boka 4–8 veckor i förväg för de bästa platserna – utbudet minskar kraftigt utanför säsong</p>
-<p>✓ Ring och bekräfta öppettider – inte alla hemsidor uppdateras i realtid</p>
-<p>✓ Ha en backup-plan om önskat boende är stängt</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Transport</h4>
-<p>✓ Ladda ner Waxholmsbolagets app och kolla höststidtabell INNAN du bokar boende</p>
-<p>✓ Notera sista båttid hem – kan vara så tidigt som 16:00 på vardagar till avlägsnare öar</p>
-<p>✓ Ha Plan B för transport om båten ställs in (stormar händer)</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Mat</h4>
-<p>✓ Ring restauranger och kolla öppettider – höstmenyerna kan skilja sig från sommaren</p>
-<p>✓ Ta alltid med matsäck till öar – restauranger stänger tidigt eller kan vara stängda</p>
-<p>✓ Kolla om ditt boende har kök/självhushåll</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Utrustning</h4>
-<p>✓ Vattentäta ytterkläder (regnkappa/skal-jacka)</p>
-<p>✓ Lager-på-lager: underställ, fleece, ytjacka</p>
-<p>✓ Vattentäta skor – inte sneakers</p>
-<p>✓ Mössa och handskar (för oktober)</p>
-<p>✓ Pannlampa – mörkret faller kl 18–19 i oktober</p>
-<p>✓ Reservkläder i vattentät påse</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">MÅNADSVIS GUIDE</h3>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Augusti – sensommar och premiärer</h4>
-<p>Havet fortfarande varmt (20–22°C). Surströmmingspremiär 20 aug. Folkmassan börjar tunnas ut. Perfekt tid för de som vill ha sommarupplevelse men utan trängseln.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">September – höstens bästa månad</h4>
-<p>Havet fortfarande badbart (17–20°C). Hummerpremiär 26 sep. Ostronsäsongen öppnar. Lövfärger börjar längs norra kusten. Det bästa av två säsonger på samma gång.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Oktober – lövfärger och stillhet</h4>
-<p>Lövfärgernas höjdpunkt i Höga Kusten och mellersta skärgården. Havet kallare (13–16°C) men bastubadbart. Inga köer någonstans. Höstlov i slutet av månaden.</p>
-
-<h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">November – kustens stillaste säsong</h4>
-<p>Havet 8–11°C. Kraftigt reducerade båttidtabeller. Fågelflyttningens höjdpunkt längs sydkusten. Havsbastu är bäst – kontrasterna är störst. Inte för alla, men oförglömligt för den som ger det en chans.</p>
-
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VÄDER OCH FÖRVÄNTNINGAR</h3>
-<p>Höstväder vid havet är genuint oförutsägbart. Planera alltid med möjlighet för regn och storm – och se det som en del av upplevelsen, inte ett problem. En höststorm mot klipporna är ett skådespel. En regnig dag med god mat och en bra bok i en kustby är fortfarande en bättre dag än de flesta inomhusalternativ.</p>
 `,
 
   }
