@@ -370,7 +370,7 @@ async function FerriesView() {
       deps: await fetchDepartures(r, 3) as FerryDeparture[],
     })),
   )
-  const anyLive = routesWithDeps.some(r => r.deps.some(d => d.source === 'live'))
+  const anyLive = routesWithDeps.some(r => r.deps.length > 0)
 
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '16px 16px 100px' }}>
@@ -398,13 +398,13 @@ async function FerriesView() {
           lineHeight: 1.5,
           marginBottom: 14,
         }}>
-          <strong style={{ color: 'var(--txt)' }}>Förhandsvisning.</strong> Live-tidtabell är under konfiguration — följ länken till operatören för aktuella tider.
+          <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar just nu.</strong> Vi visar bara tider vi kan hämta från Trafiklab — följ länken till operatören för tidtabell.
         </div>
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 14 }}>
         {routesWithDeps.map(({ route: r, deps }) => {
-          const isLive = deps.some(d => d.source === 'live')
+          const isLive = deps.length > 0
           const opColor = r.operator === 'Waxholmsbolaget' ? '#1e5c82' : r.operator === 'Cinderella' ? '#c96e2a' : '#2e7d32'
           const opBg = r.operator === 'Waxholmsbolaget' ? 'rgba(30,92,130,0.08)' : r.operator === 'Cinderella' ? 'rgba(201,110,42,0.1)' : 'rgba(46,125,50,0.08)'
           return (
@@ -441,17 +441,23 @@ async function FerriesView() {
                 <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 6 }}>
                   Kommande avgångar
                 </div>
-                {deps.map((d, i) => (
+                {deps.length === 0 ? (
+                  <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.5, padding: '2px 0' }}>
+                    Ingen båtavgång hittad just nu — se operatörens tidtabell.
+                  </div>
+                ) : deps.map((d, i) => (
                   <div key={i} style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8,
                     padding: '6px 0',
                     borderBottom: i === deps.length - 1 ? 'none' : '1px solid rgba(10,123,140,0.08)',
                   }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
                       {new Date(d.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
+                      {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
                     </div>
-                    <div style={{ fontSize: 11, color: 'var(--txt2)' }}>
-                      {d.from} → {d.to}
+                    <div style={{ fontSize: 11, color: 'var(--txt2)', textAlign: 'right' }}>
+                      {d.to}
+                      {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                     </div>
                   </div>
                 ))}

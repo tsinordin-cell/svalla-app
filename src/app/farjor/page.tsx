@@ -91,15 +91,16 @@ const faqJsonLd = {
 }
 
 export default async function FarjorPage() {
-  // Hämta avgångar parallellt för alla rutter. fetchDepartures faller
-  // tillbaka till seed om TRAFIKLAB_API_KEY saknas eller API:t felar.
+  // Hämta avgångar parallellt för alla rutter. fetchDepartures returnerar
+  // tom lista om ResRobot inte har någon båtresa på sträckan — då visas inga
+  // tider. Seed-generatorn är borttagen; vi hittar inte på tidtabeller.
   const routesWithDeps = await Promise.all(
     SEED_FERRY_ROUTES.map(async r => ({
       route: r,
       deps: await fetchDepartures(r, 3) as FerryDeparture[],
     })),
   )
-  const anyLive = routesWithDeps.some(r => r.deps.some(d => d.source === 'live'))
+  const anyLive = routesWithDeps.some(r => r.deps.length > 0)
 
   const speakableJsonLd = {
     '@context': 'https://schema.org',
@@ -162,8 +163,8 @@ export default async function FarjorPage() {
             color: 'var(--txt2)',
             lineHeight: 1.5,
           }}>
-            <strong style={{ color: 'var(--txt)' }}>Förhandsvisning.</strong> Live-tidtabell är under konfiguration.
-            Avgångar nedan är exempeldata — följ länken till operatören för bokning och aktuella tider.
+            <strong style={{ color: 'var(--txt)' }}>Inga live-avgångar just nu.</strong> Vi visar bara tider vi kan hämta
+            från Trafiklab — aldrig uppskattningar. Följ länken till operatören för tidtabell och bokning.
           </div>
         )}
       </div>
@@ -172,7 +173,7 @@ export default async function FarjorPage() {
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '28px 20px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
           {routesWithDeps.map(({ route: r, deps }) => {
-            const isLive = deps.some(d => d.source === 'live')
+            const isLive = deps.length > 0
             return (
               <article key={r.id} style={{
                 background: 'var(--white)',
@@ -225,19 +226,28 @@ export default async function FarjorPage() {
                   <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 8 }}>
                     Kommande avgångar
                   </div>
-                  {deps.map((d, i) => (
+                  {deps.length === 0 ? (
+                    <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5, padding: '4px 0 2px' }}>
+                      Ingen båtavgång hittad på den här sträckan just nu. Det kan bero på säsong,
+                      tid på dygnet eller att linjen inte finns i Trafiklab. Tidtabellen hos
+                      operatören gäller.
+                    </div>
+                  ) : deps.map((d, i) => (
                     <div key={i} style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
+                      gap: 10,
                       padding: '7px 0',
                       borderBottom: i === deps.length - 1 ? 'none' : '1px solid var(--border)',
                     }}>
-                      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
                         {new Date(d.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
+                        {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
                       </div>
-                      <div style={{ fontSize: 12, color: 'var(--txt2)' }}>
-                        {d.from} → {d.to}
+                      <div style={{ fontSize: 12, color: 'var(--txt2)', textAlign: 'right' }}>
+                        {d.to}
+                        {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                       </div>
                     </div>
                   ))}
