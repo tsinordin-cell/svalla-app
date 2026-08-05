@@ -11,6 +11,7 @@
  */
 
 import { logger } from './logger'
+import { fetchTrips, type TripSummary } from '@/lib/trafiklab'
 
 export type FerrySource = 'live' | 'seed'
 
@@ -24,6 +25,10 @@ export type FerryDeparture = {
   operator: 'Waxholmsbolaget' | 'Cinderella' | 'SL'
   bookingUrl?: string
   source: FerrySource
+  /** Ankomsttid HH:MM på destinationsbryggan. */
+  arrival?: string
+  /** Antal båtbyten på vägen. 0 = direktlinje. */
+  changes?: number
 }
 
 export type FerryRoute = {
@@ -106,15 +111,6 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
 
 const TRAFIKLAB_BASE = 'https://api.resrobot.se/v2.1'
 
-// Hafas-kategori för båt — catOutS === 'BÅT' eller product class 256 (ferry)
-function isFerry(productOrCat: unknown): boolean {
-  if (!productOrCat || typeof productOrCat !== 'object') return false
-  const o = productOrCat as { catOutS?: string; catOut?: string; cls?: string | number }
-  const cat = (o.catOutS || o.catOut || '').toString().toUpperCase()
-  if (cat.includes('BÅT') || cat.includes('BAT') || cat.includes('FERRY') || cat.includes('SHIP')) return true
-  const cls = typeof o.cls === 'number' ? o.cls : parseInt(String(o.cls ?? ''), 10)
-  return cls === 256 // HAFAS class bit for ferries/ships
-}
 
 // In-memory-cache för stop-ID-lookups (återanvänds inom samma serverinstans)
 const stopIdCache = new Map<string, string>()
@@ -146,113 +142,85 @@ async function resolveStopId(name: string, apiKey: string): Promise<string | nul
   }
 }
 
-type ResRobotDeparture = {
-  name?: string
-  type?: string
-  stop?: string
-  time?: string
-  date?: string
-  direction?: string
-  transportNumber?: string
-  ProductAtStop?: { operatorCode?: string; operator?: string; catOutS?: string; catOut?: string; cls?: string | number; line?: string }
-  Product?: Array<{ operatorCode?: string; operator?: string; catOutS?: string; catOut?: string; cls?: string | number; line?: string }>
-}
 
 /**
- * Hämta live-avgångar för en rutt. Returnerar null om:
- *   - TRAFIKLAB_API_KEY saknas
- *   - Stopp-ID inte kan resolvas
- *   - API:t felar
- *   - Inga båttransport-matchningar hittas
+ * Hämta live-avgångar för en rutt: RIKTIGA resor från route.from till route.to.
  *
- * Vid null faller anroparen tillbaka till seedDeparturesFor().
+ * 2026-08-05 — skriven om. Den gamla versionen anropade `departureBoard` på
+ * avgångsbryggan och visade allt som lämnade den bryggan. Följden var att
+ * kortet "Strömkajen – Vaxholm" och kortet "Strömkajen – Grinda" listade exakt
+ * samma avgångar, med destinationer som "Finnhamn" och "Ålstäket" under en
+ * rubrik som lovade något annat. Datan var äkta men rubriken var fel — vilket
+ * är sämre än ingen data, eftersom en grön LIVE-flagga får det att se
+ * kontrollerat ut.
+ *
+ * Nu används `/trip` (origin → destination), samma primitiv som transit-lagret.
+ * Bara resor där ALLA transportben är båt räknas som färjeavgångar; en resa
+ * Strömkajen–Vaxholm med buss 670 är en riktig resa men inte en färjelinje.
+ *
+ * Returnerar tom lista om något saknas. Anroparen visar då inga tider alls.
+ * Vi hittar aldrig på en avgång.
  */
-export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise<FerryDeparture[] | null> {
-  // 2026-08-05: läser BÅDA namnen. Nyckeln ligger i Vercel som
-  // TRAFIKLAB_RESROBOT_KEY (det är den transit-lagret använder och som
-  // bevisligen fungerar), medan den här filen letade efter
-  // TRAFIKLAB_API_KEY och därför alltid föll tillbaka på seed-data —
-  // /farjor visade påhittade tider där alla linjer avgick samtidigt.
+export async function fetchLiveDepartures(route: FerryRoute, count = 6): Promise<FerryDeparture[]> {
   const apiKey = process.env.TRAFIKLAB_RESROBOT_KEY ?? process.env.TRAFIKLAB_API_KEY
-  if (!apiKey) return null
+  if (!apiKey) return []
 
   try {
-    const stopId = await resolveStopId(route.from, apiKey)
-    if (!stopId) return null
+    const [fromId, toId] = await Promise.all([
+      resolveStopId(route.from, apiKey),
+      resolveStopId(route.to, apiKey),
+    ])
+    if (!fromId || !toId || fromId === toId) return []
 
-    // products=256 → HAFAS bitmask för "ferry/ship". Stora stopp som Strömkajen
-    // returnerar annars 30 SL-bussar/T-banor innan första båten, och båten filtreras bort.
-    const url = `${TRAFIKLAB_BASE}/departureBoard?id=${stopId}&maxJourneys=30&products=256&format=json&accessId=${apiKey}`
-    const res = await fetch(url, { next: { revalidate: 60 } })
-    if (!res.ok) return null
-    const json = await res.json() as { Departure?: ResRobotDeparture[] }
+    // Hämtar med marginal: allt som inte är rena båtresor filtreras bort nedan.
+    const trips = await fetchTrips(fromId, toId, Math.min(6, count * 3))
 
     const out: FerryDeparture[] = []
-    for (const d of json.Departure ?? []) {
+    for (const t of trips) {
       if (out.length >= count) break
-      const product = Array.isArray(d.Product) ? d.Product[0] : undefined
-      const productOrStop = product ?? d.ProductAtStop
-      if (!isFerry(productOrStop)) continue
-      // Operatörsfiltret är medvetet slappt: products=256 garanterar redan att det
-      // är en båtavgång från rätt brygga. Många Strömkajen-linjer körs formellt
-      // under "SL Pendelbåt" men är Waxholms-båtar fysiskt. Vi släpper igenom alla
-      // båtar från stoppet hellre än att visa seed-data.
-      if (!d.date || !d.time) continue
+      if (!isBoatOnly(t)) continue
+      if (t.cancelled) continue
+      if (!t.startDate || !t.startTime) continue
 
+      const first = t.legs[0]
       out.push({
-        time: `${d.date}T${d.time}`,
-        from: route.from,
-        to: d.direction?.trim() || route.to,
-        line: d.transportNumber || productOrStop?.line || route.id,
+        time: `${t.startDate}T${t.startTime}`,
+        arrival: t.endTime || undefined,
+        from: first?.fromName || route.from,
+        to: t.legs[t.legs.length - 1]?.toName || route.to,
+        line: first?.line || route.id,
         via: route.stops.slice(1, -1),
         operator: route.operator,
         bookingUrl: route.infoUrl,
+        changes: t.changes,
         source: 'live',
       })
     }
-
-    return out.length > 0 ? out : null
+    return out
   } catch (err) {
     logger.warn('ferries', 'live departures failed', { routeId: route.id, error: err })
-    return null
+    return []
   }
 }
 
-// ── SEED: Deterministisk fallback ─────────────────────────────────────────
-
-/**
- * Genererar exempelavgångar när live-API inte är tillgängligt.
- * Tydligt markerade med source:'seed' så UI kan visa "förhandsvisning"-flagga.
- */
-export function seedDeparturesFor(route: FerryRoute, count = 4): FerryDeparture[] {
-  const now = new Date()
-  const baseHour = Math.max(7, now.getHours())
-  return Array.from({ length: count }, (_, i) => {
-    const d = new Date(now)
-    d.setHours(baseHour + i * 2, i % 2 === 0 ? 15 : 45, 0, 0)
-    return {
-      time: d.toISOString(),
-      from: route.from,
-      to: route.to,
-      line: `${route.id.split('-')[1]?.toUpperCase() ?? 'LIN'}-${10 + i}`,
-      vessel: undefined,
-      via: route.stops.slice(1, -1),
-      operator: route.operator,
-      bookingUrl: route.infoUrl,
-      source: 'seed' as const,
-    }
+/** Sant bara om varje transportben i resan är en båt (promenader räknas inte). */
+function isBoatOnly(t: TripSummary): boolean {
+  if (t.legs.length === 0) return false
+  return t.legs.every(l => {
+    const c = (l.category || '').toUpperCase()
+    return c.includes('FÄRJA') || c.includes('FARJA') || c.includes('BÅT')
+      || c.includes('BAT') || c.includes('FERRY') || c.includes('SHIP')
   })
 }
 
-/** Bakåtkompatibelt alias — tidigare kod importerade mockDeparturesFor. */
-export const mockDeparturesFor = seedDeparturesFor
-
 /**
- * Publik entry-point: live om möjligt, annars seed.
- * Anropas från /api/ferries och /farjor-sidan.
+ * Publik entry-point. Anropas från /api/ferries, /farjor och /rutter.
+ *
+ * Returnerar tom lista när ingen verklig avgång kan hämtas. Den tidigare
+ * seed-generatorn är borttagen: den producerade klockslag som såg ut som en
+ * tidtabell (07:15, 09:45, 11:15 på varenda linje) under en text om
+ * "exempeldata". Folk läser tiden, inte disclaimern. Hellre tom ruta.
  */
 export async function fetchDepartures(route: FerryRoute, count = 4): Promise<FerryDeparture[]> {
-  const live = await fetchLiveDepartures(route, count)
-  if (live && live.length > 0) return live
-  return seedDeparturesFor(route, count)
+  return fetchLiveDepartures(route, count)
 }
