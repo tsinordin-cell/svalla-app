@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { DEPARTURES, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
+import { DEPARTURES, sortRegions, requiresLock, isLandlocked, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
 import Icon, { type IconName } from '@/components/Icon'
 
 const INTERESTS: { value: Interest; label: string; iconName: IconName }[] = [
@@ -87,7 +87,10 @@ export default function PlaneraNyClient() {
  }
 
  // Region-gruppering
- const regions = Array.from(new Set(DEPARTURES.map(d => d.region)))
+ // Regionerna visas från staden och utåt. Mälaren låg tidigare först, vilket
+ // gav användaren tolv närmaste alternativ som alla kräver slussning och
+ // därför aldrig kan visa en linje. Se sortRegions() i planner-client.
+ const regions = sortRegions(Array.from(new Set(DEPARTURES.map(d => d.region))))
 
  function DepartureGrid({ onSelect, selected, disabledId, fromDep }: {
  onSelect: (d: Departure) => void
@@ -105,6 +108,15 @@ export default function PlaneraNyClient() {
    const km = fromDep && !isDisabled
      ? Math.round(haversineKm(fromDep.lat, fromDep.lng, d.lat, d.lng))
      : null
+
+   // Säg det HÄR, inte efter tre steg och en tom karta.
+   //   sluss  — sträckan är farbar, men slussning går inte att rita som sjöled
+   //   insjö  — ingen farbar förbindelse till skärgården alls
+   const märke: { text: string; ikon: 'info' | 'warning' } | null =
+     isLandlocked(d) ? { text: 'Ingen sjöförbindelse', ikon: 'warning' }
+     : fromDep && !isDisabled && requiresLock(fromDep, d) ? { text: 'Slussning krävs', ikon: 'info' }
+     : null
+
    return (
      <button
        key={d.id}
@@ -125,8 +137,22 @@ export default function PlaneraNyClient() {
        </span>
        <div style={{ flex: 1, minWidth: 0 }}>
          <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : 'var(--txt)', lineHeight: 1.2 }}>{d.name}</div>
-         {km !== null && (
+         {km !== null && !märke && (
            <div style={{ fontSize: 10, color: isSelected ? 'rgba(255,255,255,0.75)' : 'var(--txt3)', marginTop: 1 }}>~{km} km</div>
+         )}
+         {märke && (
+           <div style={{
+             display: 'inline-flex', alignItems: 'center', gap: 4, marginTop: 3,
+             fontSize: 9.5, fontWeight: 700, letterSpacing: '0.02em',
+             padding: '2px 6px', borderRadius: 20,
+             color: isSelected ? '#fff'
+               : märke.ikon === 'warning' ? '#a4561e' : '#1e5c82',
+             background: isSelected ? 'rgba(255,255,255,0.18)'
+               : märke.ikon === 'warning' ? 'rgba(232,146,74,0.14)' : 'rgba(30,92,130,0.10)',
+           }}>
+             <Icon name={märke.ikon} size={10} stroke={2.4} />
+             {märke.text}
+           </div>
          )}
        </div>
      </button>
@@ -171,45 +197,12 @@ export default function PlaneraNyClient() {
  {region}
  </div>
  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
- {DEPARTURES.filter(d => d.region === region).map(d => {
- const isSelected = selected?.id === d.id
- const isDisabled = d.id === disabledId
- const km = fromDep && !isDisabled
- ? Math.round(haversineKm(fromDep.lat, fromDep.lng, d.lat, d.lng))
- : null
- return (
- <button
- key={d.id}
- onClick={() => !isDisabled && onSelect(d)}
- disabled={isDisabled}
- style={{
- padding: '12px 14px', borderRadius: 14,
- border: isSelected ? 'none' : '1px solid rgba(10,123,140,0.12)',
- background: isDisabled
- ? 'rgba(0,0,0,0.04)'
- : isSelected ? 'var(--grad-sea)' : 'var(--white)',
- boxShadow: isSelected ? '0 4px 16px rgba(10,123,140,0.3)' : '0 1px 6px rgba(0,45,60,0.06)',
- cursor: isDisabled ? 'not-allowed' : 'pointer',
- textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8,
- opacity: isDisabled ? 0.4 : 1,
- } as React.CSSProperties}
- >
- <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 8, background: isSelected ? 'rgba(255,255,255,0.18)' : 'rgba(10,123,140,0.10)', color: isSelected ? '#fff' : 'var(--sea)', flexShrink: 0 }}>
- <Icon name="pin" size={14} stroke={2} />
- </span>
- <div style={{ flex: 1, minWidth: 0 }}>
- <div style={{ fontSize: 13, fontWeight: 700, color: isSelected ? '#fff' : 'var(--txt)', lineHeight: 1.2 }}>
- {d.name}
- </div>
- {km !== null && (
- <div style={{ fontSize: 10, color: isSelected ? 'rgba(255,255,255,0.75)' : 'var(--txt3)', marginTop: 1 }}>
- ~{km} km
- </div>
- )}
- </div>
- </button>
- )
- })}
+ {/* Samma HarborButton som sökresultaten. Den här listan hade tidigare en
+     egen kopia av knappen, vilket gjorde att en ändring i den ena inte syntes
+     i den andra — badgen om slussning hade bara dykt upp vid sökning. */}
+ {DEPARTURES.filter(d => d.region === region).map(d => (
+ <HarborButton key={d.id} d={d} />
+ ))}
  </div>
  </div>
  ))}
