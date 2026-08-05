@@ -85,7 +85,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'När börjar och slutar Cinderellabåtarnas säsong?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna trafikerar vanligtvis skärgården från slutet av maj (runt Kristi Himmelsfärd) till mitten av september.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma.' },
     },
   ],
 }
@@ -300,7 +300,24 @@ export default async function FarjorPage() {
         </div>
       </div>
 
-      {/* CINDERELLA TIDTABELL — statisk SEO-sektion */}
+      {/* CINDERELLA — faktasektion.
+          2026-08-05: den här sektionen innehöll en påhittad tidtabell
+          ("Strömkajen 10:00, Djurgårdsbryggan ~10:20, Vaxholm ~11:10,
+          Sandhamn ~13:00") plus flera sakfel. Kontrollerat mot Strömmas egen
+          sida stromma.com/sv-se/stockholm/cinderellabatarna/ samma dag:
+
+            påstod                          verkligt
+            ─────────────────────────────── ────────────────────────────
+            avgår Strömkajen                avgår Strandvägen
+            slutet av maj–mitten av sept    slutet av april–slutet av sept
+            stopp vid Möja                  Möja trafikeras inte
+            (Gällnö saknades)               Gällnö trafikeras
+            ca 3 timmar till Sandhamn       2 tim 30 min
+            t/r 400–500 kr, barn <7 gratis  okontrollerat — borttaget
+
+          Allt nedan är hämtat från operatörens egen sida. Inga klockslag
+          publiceras: Strömmas tidtabell varierar per datum och vi kan inte
+          hålla en kopia sann. Länken går dit i stället. */}
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 20px 48px' }}>
         <div style={{
           background: 'var(--white)',
@@ -309,101 +326,73 @@ export default async function FarjorPage() {
           boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
         }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', letterSpacing: -0.2 }}>
-            Vad är Cinderella tidtabell 2026 och när avgår båtarna?
+            Cinderellabåtarna 2026 — vart går de och när?
           </h2>
-          <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 28px', lineHeight: 1.6 }}>
-            Cinderellabåtarna trafikerar Stockholms skärgård från slutet av maj till mitten av september. Linjerna avgår från <strong>Strömkajen</strong> (Strandvägen) i centrala Stockholm ut till Sandhamn och tillbaka, med stopp vid Vaxholm, Grinda och Möja. Nedan finns ett urval av hållplatser och typiska avgångstider — kontrollera alltid aktuella tider på <a href="https://www.cinderellabatarna.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>cinderellabatarna.com</a> eller via deras app inför resan.
+          <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', lineHeight: 1.6 }}>
+            Cinderellabåtarna avgår från <strong>Strandvägen</strong> i centrala Stockholm — inte
+            från Strömkajen, som är Waxholmsbolagets kaj. Linjen går till Vaxholm, Grinda,
+            Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.
           </p>
 
-          {/* Sandhamnslinjen */}
-          <div style={{ marginBottom: 32 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-              <span style={{
-                fontSize: 10, fontWeight: 700, color: '#c96e2a',
-                background: 'rgba(201,110,42,0.1)', padding: '3px 10px',
-                borderRadius: 20, textTransform: 'uppercase', letterSpacing: 0.4,
-              }}>Cinderella</span>
-              <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Sandhamnslinjen</span>
-            </div>
-            <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '0 0 14px', lineHeight: 1.5 }}>
-              Direktlinje från Stockholm ut till Sandhamn med stopp vid Djurgårdsbryggan och Vaxholm. Resa enkel väg tar ca 3 timmar. Populär dagstur och helgresa — boka i förväg under högsäsong (juli–aug).
-            </p>
-            <div style={{ background: 'var(--bg)', borderRadius: 12, overflow: 'hidden' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', background: 'rgba(30,92,130,0.06)', padding: '8px 16px' }}>
-                {['Hållplats', 'Avgång (typisk)', 'Ankomst', 'Anmärkning'].map(h => (
-                  <div key={h} style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.4 }}>{h}</div>
-                ))}
-              </div>
-              {[
-                ['Strömkajen, Stockholm', '10:00', '—', 'Avgång'],
-                ['Djurgårdsbryggan', '~10:20', '—', 'Mellanstop'],
-                ['Vaxholm', '~11:10', '—', 'Mellanstop'],
-                ['Sandhamn', '—', '~13:00', 'Slutdestination'],
-              ].map(([stop, dep, arr, note], i) => (
-                <div key={i} style={{
-                  display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr',
-                  padding: '10px 16px',
-                  borderTop: '1px solid var(--border)',
-                  background: i % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.015)',
-                }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>{stop}</div>
-                  <div style={{ fontSize: 13, color: 'var(--txt2)' }}>{dep}</div>
-                  <div style={{ fontSize: 13, color: 'var(--txt2)' }}>{arr}</div>
-                  <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{note}</div>
-                </div>
-              ))}
-            </div>
-            <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '8px 0 0', fontStyle: 'italic' }}>
-              Avgångstider varierar per dag och vecka. Kvällsavgångar från Sandhamn tillbaka till Stockholm avgår vanligen runt 16:30–17:00. Se aktuell tidtabell hos operatören.
-            </p>
-          </div>
-
-          {/* Säsong & priser */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16, marginBottom: 28 }}>
+          {/* Sträckor — restid och pris från operatörens egen sida */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>
             {[
-              {
-                label: 'Säsong',
-                icon: '📅',
-                text: 'Cinderellabåtarna trafikerar skärgården från slutet av maj till mitten av september. Högsäsongen är juli–augusti med flest avgångar per dag.',
-              },
-              {
-                label: 'Biljetter & priser',
-                icon: '🎫',
-                text: 'Biljetter köps online via cinderellabatarna.com eller i appen. Dagsbiljett tur/retur Sandhamn kostar ca 400–500 kr för vuxna. Barn under 7 år åker gratis.',
-              },
-              {
-                label: 'Ta med båten',
-                icon: '⛵',
-                text: 'Cinderella trafikerar många av samma bryggor som Waxholmsbolaget. Många seglare tar färjan hem och hämtar båten nästa dag — ett bekvämt sätt att avsluta en segeltur.',
-              },
-            ].map(item => (
-              <div key={item.label} style={{
-                background: 'rgba(30,92,130,0.04)',
-                border: '1px solid rgba(30,92,130,0.12)',
-                borderRadius: 12,
-                padding: '16px 18px',
+              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 255 kr' },
+              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 235 kr' },
+              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 235 kr' },
+            ].map(r => (
+              <div key={r.mal} style={{
+                background: 'rgba(201,110,42,0.06)',
+                border: '1px solid rgba(201,110,42,0.18)',
+                borderRadius: 12, padding: '14px 16px',
               }}>
-                <div style={{ fontSize: 20, marginBottom: 6 }}>{item.icon}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>{item.label}</div>
-                <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55 }}>{item.text}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>{r.mal}</div>
+                <div style={{ fontSize: 13, color: 'var(--txt2)' }}>{r.tid}</div>
+                <div style={{ fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>{r.pris}</div>
               </div>
             ))}
           </div>
 
-          {/* Waxholmsbolaget kort-intro */}
+          <div style={{
+            background: 'rgba(30,92,130,0.05)',
+            border: '1px solid rgba(30,92,130,0.14)',
+            borderRadius: 12, padding: '16px 18px', marginBottom: 28,
+          }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+              Varför vi inte listar avgångstiderna här
+            </div>
+            <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: 0 }}>
+              Cinderella rapporterar inte till Trafiklab, och tidtabellen varierar per datum.
+              En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos
+              operatören:{' '}
+              <a
+                href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/"
+                target="_blank" rel="noopener noreferrer"
+                style={{ color: 'var(--sea)', fontWeight: 600 }}
+              >
+                Strömmas tidtabell för Cinderellabåtarna
+              </a>.
+            </p>
+          </div>
+
+          {/* Waxholmsbolaget — linjenummer uppmätta mot ResRobot 2026-08-05 */}
           <div style={{ borderTop: '1px solid var(--border)', paddingTop: 24, marginTop: 4 }}>
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
-              Waxholmsbolaget — pendlarbåtar i skärgården
+              Waxholmsbolaget — pendlarbåtarna
             </h3>
             <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 12px' }}>
-              Waxholmsbolaget är SL:s skärgårdstrafik och täcker hundratals bryggor i Stockholms skärgård. Till skillnad från Cinderella som är mer turistinriktad, är Waxholmsbolaget pendlarnas linje — med avgångar från tidig morgon till sen kväll. SL-kort och resekort gäller ombord.
+              Waxholmsbolaget är skärgårdens kollektivtrafik och täcker hundratals bryggor.
+              Till skillnad från Cinderella, som är turistinriktad, går Waxholmsbolaget från
+              tidig morgon till sen kväll. Linjerna nedan är hämtade ur faktiska reseförslag
+              i Trafiklab — inte ur en broschyr.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 10 }}>
               {[
-                { name: 'Linje 80 — Vaxholm', desc: 'Stockholm → Rindö → Vaxholm, ca 75 min' },
-                { name: 'Linje 89 — Ljusterö', desc: 'Stockholm → Österskär → Ljusterö' },
-                { name: 'Linje 95 — Ornö', desc: 'Dalarö → Ornö, södra skärgården' },
-                { name: 'Linje 96 — Utö', desc: 'Nynäshamn → Utö, ca 90 min' },
+                { name: 'Färja 16', desc: 'Stavsnäs vinterhamn → Sandhamn, ca 50 min' },
+                { name: 'Färja 17-1', desc: 'Stavsnäs vinterhamn → Nämdö' },
+                { name: 'Färja 40', desc: 'Nynäshamn → Fjärdlång, ca 1 tim 50 min utan byten' },
+                { name: 'Färja 941', desc: 'Vaxholm → Rindö, vägfärja, avgiftsfri' },
+                { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, ca 15 min' },
               ].map(l => (
                 <div key={l.name} style={{
                   background: 'rgba(30,92,130,0.04)',
@@ -417,7 +406,8 @@ export default async function FarjorPage() {
               ))}
             </div>
             <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '12px 0 0', fontStyle: 'italic' }}>
-              Fullständig tidtabell med alla linjer och bryggor hittar du på <a href="https://www.waxholmsbolaget.se" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>waxholmsbolaget.se</a>.
+              Fullständig tidtabell med alla linjer och bryggor finns på{' '}
+              <a href="https://waxholmsbolaget.se/reseplanering/tidtabeller" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)' }}>waxholmsbolaget.se</a>.
             </p>
           </div>
 
@@ -441,7 +431,7 @@ export default async function FarjorPage() {
               },
               {
                 q: 'När börjar och slutar Cinderellabåtarnas säsong?',
-                a: 'Cinderellabåtarna trafikerar vanligtvis skärgården från slutet av maj (runt Kristi Himmelsfärd) till mitten av september. Exakta datum varierar år till år — kolla på cinderellabatarna.com för aktuell säsongsinfo.',
+                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Exakta datum varierar år till år — se stromma.com för aktuell säsongsinfo.',
               },
             ].map((faq, i) => (
               <div key={i} style={{ marginBottom: 16 }}>
