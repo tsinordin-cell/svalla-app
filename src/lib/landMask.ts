@@ -80,16 +80,32 @@ export function pointOnLand(lat: number, lng: number): boolean {
 }
 
 /**
- * Ligger punkten DJUPT i land (>50 m in — cellen och alla 8 grannar land)?
- * Används av validatePathLand för att skilja verkliga landfel från
- * kvantiseringsbrus vid kusten.
+ * Ligger punkten DJUPT i land — allt inom ~87 m åt alla håll är land?
+ *
+ * Radien är mätt fram, inte gissad. Rastret är KONSERVATIVT rastrerat (en
+ * cell är land om någon del av den är land), vilket är rätt för vägsökning
+ * men gör att smala farleder ser ut som land på cellnivå. Med radie 1
+ * underkände den här funktionen 245 av 609 verifierade rutter — 188 av dem
+ * med fel mer än en kilometer från närmaste hamn, dvs mitt i farbara sund.
+ *
+ * Uppmätt 2026-08-04 mot alla 609 rutter och fem kända lögner (rak linje
+ * över Södermalm, Sthlm–Göteborg, Värmdö-hoppet, Djurgården, Lidingö):
+ *   radie 1 → 245 falska underkännanden, 5/5 lögner fångade
+ *   radie 2 →  11 falska underkännanden, 5/5
+ *   radie 3 →   0 falska underkännanden, 5/5   ← vald: strängast utan falsklarm
+ *
+ * Små skär fångas alltså inte här — de hanteras av A*-sökningen, som går på
+ * cellnivå i den konservativa masken. Den här funktionen är defense-in-depth
+ * mot GROVA fel: rutnätsmarscher över öar och raka linjer över fastlandet.
  */
+const DEEP_LAND_RADIUS = 3
+
 export function pointDeepOnLand(lat: number, lng: number): boolean {
   if (!inMaskCoverage(lat, lng)) return false
   const r = Math.floor((lat - R.bbox.s) / R.cellLat)
   const c = Math.floor((lng - R.bbox.w) / R.cellLng)
-  for (let dr = -1; dr <= 1; dr++)
-    for (let dc = -1; dc <= 1; dc++)
+  for (let dr = -DEEP_LAND_RADIUS; dr <= DEEP_LAND_RADIUS; dr++)
+    for (let dc = -DEEP_LAND_RADIUS; dc <= DEEP_LAND_RADIUS; dc++)
       if (!cellLand(r + dr, c + dc)) return false
   return true
 }

@@ -313,10 +313,18 @@ function findPathViaGrid(
   // i städuppgiften för seaWaypoints-grafen.
   const raster = findRasterPath(startLat, startLng, endLat, endLng)
   if (!raster || raster.length < 2) return null
-  // Anroparens exakta punkter som ändpunkter (validering exkluderar ändpunkter;
-  // hamnar/kajer får ligga på kustlinjen).
-  const result: Array<[number, number]> = [[startLat, startLng], ...raster, [endLat, endLng]]
-  return result
+
+  // Anroparens punkter läggs till som ändpunkter BARA om de ligger i vatten.
+  // Med den konservativa masken hamnar många kajer och hamnlägen innanför
+  // landkanten (Möja i planner-client ligger 1 050 m in på ön). Att då dra
+  // linjen ända in till koordinaten ger ett landsegment som valideringen
+  // underkänner — hela rutten blir "unavailable" fast en farbar väg finns.
+  // Ligger punkten på land är den snappade vattenpunkten den ärliga starten.
+  const result: Array<[number, number]> = []
+  if (!pointOnLand(startLat, startLng)) result.push([startLat, startLng])
+  result.push(...raster)
+  if (!pointOnLand(endLat, endLng)) result.push([endLat, endLng])
+  return result.length >= 2 ? result : null
 }
 
 /**
