@@ -70,7 +70,7 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Hur länge tar resan med Cinderella till Sandhamn?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Från Strömkajen till Sandhamn tar det cirka 3 timmar med Cinderella. Båten stannar på vägen vid Djurgårdsbryggan och Vaxholm.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. Båten stannar på vägen vid Vaxholm, Grinda och Gällnö.' },
     },
     {
       '@type': 'Question',
@@ -154,7 +154,7 @@ export default async function FarjorPage() {
             Färjetider
           </h1>
           <p id="farjor-intro" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
-            Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård. Cinderella avgår från Strömkajen till Sandhamn på ca 3 timmar. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
+            Waxholmsbolaget och Cinderellabåtarna — linjer, bryggor och kommande avgångar för Stockholms skärgård. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
           </p>
         </div>
       </div>
@@ -419,7 +419,7 @@ export default async function FarjorPage() {
             {[
               {
                 q: 'Hur länge tar resan med Cinderella till Sandhamn?',
-                a: 'Från Strömkajen till Sandhamn tar det cirka 3 timmar med Cinderella. Båten stannar på vägen vid Djurgårdsbryggan och Vaxholm. Om du vill ta ett kvällsbad och äta middag i Sandhamn hinner du med dagstur — avgång runt 10:00, tillbaka till Stockholm runt 20:00.',
+                a: 'Cinderellabåtarna går från Strandvägen i Stockholm — inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Vaxholm, Grinda och Gällnö. Dagstur är fullt möjlig, men avgångstiderna varierar per datum, så vi hänvisar till Strömmas tidtabell i stället för att gissa.',
               },
               {
                 q: 'Kan man ta SL-kortet med Waxholmsbolaget?',
