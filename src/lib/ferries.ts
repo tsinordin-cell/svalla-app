@@ -66,13 +66,20 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'cinderella-sandhamn',
-    name: 'Strömkajen – Sandhamn',
-    from: 'Strömkajen',
+    name: 'Strandvägen – Sandhamn',
+    from: 'Strandvägen',
     to: 'Sandhamn',
-    // Strömkajen och Strandvägen är samma plats — Strömkajen är det vedertagna bryggonamnet
-    stops: ['Strömkajen', 'Vaxholm', 'Grinda', 'Möja', 'Sandhamn'],
+    // RÄTTAD 2026-08-05. Kommentaren här sa "Strömkajen och Strandvägen är
+    // samma plats — Strömkajen är det vedertagna bryggnamnet". Det stämmer
+    // inte. Strömkajen ligger vid Grand Hôtel och är Waxholmsbolagets kaj;
+    // Cinderellabåtarna avgår från Strandvägen, ett par hundra meter österut.
+    // Strömma skriver själva "Kliv ombord vid Strandvägen".
+    //
+    // Stoppen är också rättade: Möja trafikeras INTE av Cinderella, och Gällnö
+    // saknades. Strömma listar Vaxholm, Grinda, Gällnö och Sandhamn.
+    stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Gällnö', 'Sandhamn'],
     operator: 'Cinderella',
-    season: 'Sommar (maj–sep)',
+    season: 'Sommar (slutet av april–slutet av september)',
     infoUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
   },
   {
