@@ -33,15 +33,30 @@ export async function fetchCurrentWeather(
     + `?latitude=${lat}&longitude=${lng}`
     + '&current=temperature_2m,wind_speed_10m,wind_direction_10m,weather_code,is_day'
     + '&wind_speed_unit=ms&timezone=Europe/Stockholm'
+  // 2026-08-05, andra försöket. Första versionen skickade med
+  // signal: AbortSignal.timeout(6000) tillsammans med next.revalidate.
+  // Resultatet i produktion blev att pillen försvann helt: "Laddar väder…"
+  // var borta, men ingen temperatur kom fram heller — alltså returnerade
+  // hämtningen null. Ett eget signal-objekt tar Next-fetchen ur sin cache och
+  // beter sig inte som en vanlig fetch; de två går inte ihop.
+  //
+  // Nu används bara next.revalidate. Serverless-funktionen har sin egen
+  // tidsgräns, så vi behöver ingen egen.
+  //
+  // Loggar orsaken när det misslyckas. Ett tyst null gav mig ingen ledtråd
+  // förra gången och kostade en hel deploy-cykel att felsöka.
   try {
-    const res = await fetch(url, {
-      next: { revalidate: 900 },
-      signal: AbortSignal.timeout(6000),
-    })
-    if (!res.ok) return null
+    const res = await fetch(url, { next: { revalidate: 900 } })
+    if (!res.ok) {
+      console.warn('[weather] open-meteo svarade', res.status, 'för', lat, lng)
+      return null
+    }
     const data = await res.json() as { current?: Record<string, number> }
     const c = data.current
-    if (!c || typeof c.temperature_2m !== 'number') return null
+    if (!c || typeof c.temperature_2m !== 'number') {
+      console.warn('[weather] oväntat svarsformat från open-meteo')
+      return null
+    }
     return {
       tempC: Math.round(c.temperature_2m),
       windMs: Math.round((c.wind_speed_10m ?? 0) * 10) / 10,
@@ -49,8 +64,9 @@ export async function fetchCurrentWeather(
       weatherCode: c.weather_code ?? 3,
       isDay: c.is_day === 1,
     }
-  } catch {
-    // Nätverksfel eller timeout: ingen pill alls. Bättre än en som ljuger.
+  } catch (e) {
+    // Nätverksfel: ingen pill alls. Bättre än en som ljuger.
+    console.warn('[weather] hämtning kastade:', String(e).slice(0, 120))
     return null
   }
 }
