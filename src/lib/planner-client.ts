@@ -7,6 +7,22 @@
 
 export type Interest = 'krog' | 'bastu' | 'bad' | 'brygga' | 'natur' | 'bensin'
 
+/**
+ * Vattensystem. Avgör vad som går att rutta MELLAN hamnar, och kan inte
+ * härledas ur region-strängen — den är en visningsetikett.
+ *
+ *   saltsjon  Saltsjön och skärgården. Sammanhängande vatten.
+ *   malaren   Mälaren. Når saltsjön bara genom Slussen eller Hammarbyslussen,
+ *             och en slussning är ingen sjöled som kan ritas.
+ *   insjo     Insjö utan farbar förbindelse till något av ovanstående.
+ *
+ * Tillagt 2026-08-05 efter att ett svep över 53 hamnpar visade att Tullinge
+ * Segelsällskap och Tullinge Båtsällskap var taggade region:'Mälaren' fastän
+ * de ligger vid Tullingesjön. De gav fel mot varenda hamn — även mot varandra,
+ * 700 m isär.
+ */
+export type WaterSystem = 'saltsjon' | 'malaren' | 'insjo'
+
 export type Departure = {
   id: string
   name: string
@@ -14,6 +30,41 @@ export type Departure = {
   lng: number
   region: string
   emoji: string
+  /** Utelämnad = saltsjon. Bara avvikelser skrivs ut. */
+  water?: WaterSystem
+}
+
+/** Ordningen regionerna visas i planeraren: från staden och utåt. */
+export const REGION_ORDER = [
+  'Stockholm', 'Innerskärgård', 'Mellanskärgård', 'Norra', 'Södra',
+  'Lidingö', 'Mälaren', 'Insjöar',
+] as const
+
+export function sortRegions(regions: string[]): string[] {
+  const rang = (r: string) => {
+    const i = (REGION_ORDER as readonly string[]).indexOf(r)
+    return i === -1 ? REGION_ORDER.length : i
+  }
+  return [...regions].sort((a, b) => rang(a) - rang(b) || a.localeCompare(b, 'sv'))
+}
+
+export function waterOf(d: Departure): WaterSystem {
+  return d.water ?? 'saltsjon'
+}
+
+/**
+ * Sant när sträckan mellan hamnarna kräver slussning. Sträckan är farbar —
+ * men en slussning går inte att rita som sjöled, så ingen linje visas.
+ */
+export function requiresLock(a: Departure, b: Departure): boolean {
+  const x = waterOf(a), y = waterOf(b)
+  if (x === 'insjo' || y === 'insjo') return false
+  return x !== y
+}
+
+/** Sant när hamnen saknar farbar förbindelse till skärgården över huvud taget. */
+export function isLandlocked(d: Departure): boolean {
+  return waterOf(d) === 'insjo'
 }
 
 const DEG_TO_RAD = Math.PI / 180
@@ -53,19 +104,26 @@ export function haversineKm(
  */
 export const DEPARTURES: Departure[] = [
   // ── Mälaren (helt nytt — saknades innan) ──────────────────────────────────
-  { id: 'stadshuskajen',  name: 'Stadshuskajen',     lat: 59.3275, lng: 18.0537, region: 'Mälaren', emoji: '' },
-  { id: 'riddarholmen',   name: 'Riddarholmen',      lat: 59.3238, lng: 18.0666, region: 'Mälaren', emoji: '' },
-  { id: 'malarhojden',    name: 'Mälarhöjden',       lat: 59.3, lng: 17.95, region: 'Mälaren', emoji: '' },
-  { id: 'grondal',        name: 'Gröndal',           lat: 59.3128, lng: 18.0010, region: 'Mälaren', emoji: '' },
-  { id: 'lambaro',        name: 'Lambarö',           lat: 59.3645, lng: 17.8056, region: 'Mälaren', emoji: '' },
-  { id: 'lovo',           name: 'Lovö',              lat: 59.3308, lng: 17.8500, region: 'Mälaren', emoji: '' },
-  { id: 'tappstrom',      name: 'Tappström',         lat: 59.2925, lng: 17.8115, region: 'Mälaren', emoji: '' },
-  { id: 'ekero',          name: 'Ekerö',             lat: 59.2798, lng: 17.7902, region: 'Mälaren', emoji: '' },
-  { id: 'slagsta',        name: 'Slagsta',           lat: 59.2597, lng: 17.848, region: 'Mälaren', emoji: '' },
-  { id: 'maelaren-skarven', name: 'Färentuna (Skarven)', lat: 59.3933, lng: 17.6624, region: 'Mälaren', emoji: '' },
-  // Tullingesjön — ihopkopplad med Mälaren via Albysjön/Tumba
-  { id: 'tullinge-segelsallskap', name: 'Tullinge Segelsällskap', lat: 59.2050, lng: 17.8835, region: 'Mälaren', emoji: '' },
-  { id: 'tullinge-batsallskap', name: 'Tullinge Båtsällskap', lat: 59.2030, lng: 17.8762, region: 'Mälaren', emoji: '' },
+  { id: 'stadshuskajen',  name: 'Stadshuskajen',     lat: 59.3275, lng: 18.0537, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'riddarholmen',   name: 'Riddarholmen',      lat: 59.3238, lng: 18.0666, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'malarhojden',    name: 'Mälarhöjden',       lat: 59.3, lng: 17.95, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'grondal',        name: 'Gröndal',           lat: 59.3128, lng: 18.0010, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'lambaro',        name: 'Lambarö',           lat: 59.3645, lng: 17.8056, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'lovo',           name: 'Lovö',              lat: 59.3308, lng: 17.8500, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'tappstrom',      name: 'Tappström',         lat: 59.2925, lng: 17.8115, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'ekero',          name: 'Ekerö',             lat: 59.2798, lng: 17.7902, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'slagsta',        name: 'Slagsta',           lat: 59.2597, lng: 17.848, region: 'Mälaren', emoji: '', water: 'malaren' },
+  { id: 'maelaren-skarven', name: 'Färentuna (Skarven)', lat: 59.3933, lng: 17.6624, region: 'Mälaren', emoji: '', water: 'malaren' },
+  // Tullingesjön. Kommentaren här sa tidigare "ihopkopplad med Mälaren via
+  // Albysjön/Tumba". Det kan stämma som vattendrag, men UPPMÄTT 2026-08-05
+  // finns ingen farbar förbindelse: /api/route/calculate svarar
+  // harbour_not_in_water för båda hamnarna mot varenda annan hamn — och mot
+  // varandra, trots att de ligger 700 m isär. Vår verifierade kustlinje har
+  // inget farbart vatten på platsen. De är därför märkta water:'insjo' och
+  // ligger i en egen region i stället för att stå kvar under Mälaren, där de
+  // såg ut att vara ett vanligt alternativ.
+  { id: 'tullinge-segelsallskap', name: 'Tullinge Segelsällskap', lat: 59.2050, lng: 17.8835, region: 'Insjöar', emoji: '', water: 'insjo' },
+  { id: 'tullinge-batsallskap', name: 'Tullinge Båtsällskap', lat: 59.2030, lng: 17.8762, region: 'Insjöar', emoji: '', water: 'insjo' },
 
   // ── Stockholm (central + Saltsjön) ────────────────────────────────────────
   { id: 'stromkajen',     name: 'Strömkajen',        lat: 59.3289, lng: 18.0761, region: 'Stockholm', emoji: '' },

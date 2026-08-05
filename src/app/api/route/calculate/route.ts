@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 300 // sekunder — Vercel Pro
 
 import { NextRequest, NextResponse } from 'next/server'
-import { DEPARTURES } from '@/lib/planner-client'
+import { DEPARTURES, requiresLock, isLandlocked } from '@/lib/planner-client'
 import { findSeaPathWithQuality, qualityToConfidence, type RouteQuality } from '@/lib/seaPathfinder'
 import { validatePathLand, inMaskCoverage, hasNavigableWaterNear } from '@/lib/landMask'
 import { checkRateLimit } from '@/lib/rateLimit'
@@ -107,7 +107,12 @@ function harbourLockConflict(
   const a = hamnVid(startLat, startLng)
   const b = hamnVid(endLat, endLng)
   if (!a || !b) return false
-  return (a.region === 'Mälaren') !== (b.region === 'Mälaren')
+  // 2026-08-05: jämför vattensystem, inte region-strängen. Tullinge-hamnarna
+  // stod som region 'Mälaren' men ligger i Tullingesjön — med den gamla
+  // jämförelsen hade de räknats som slussfall i stället för som det de är:
+  // hamnar utan farbar förbindelse alls.
+  if (isLandlocked(a) || isLandlocked(b)) return false
+  return requiresLock(a, b)
 }
 
 function avgorSkal(
