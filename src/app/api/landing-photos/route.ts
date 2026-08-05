@@ -59,10 +59,20 @@ async function fetchPhotoRef(query: string, lat: number, lng: number, r: number)
         maxResultCount: 1,
       }),
     })
-    if (!res.ok) return null
+    if (!res.ok) {
+      // 2026-08-05: den här grenen returnerade tyst null. Följden blev att
+      // startsidans 39 kort stod tomma i okänd tid utan ett enda spår i
+      // loggarna — de visade bara "200 cache=HIT". Nu syns orsaken.
+      const kropp = await res.text().catch(() => '')
+      console.error('[landing-photos] Google svarade', res.status, 'för', query, '·', kropp.slice(0, 300))
+      return null
+    }
     const data = await res.json() as { places?: Array<{ photos?: Array<{ name: string }> }> }
-    return data.places?.[0]?.photos?.[0]?.name ?? null
-  } catch {
+    const namn = data.places?.[0]?.photos?.[0]?.name ?? null
+    if (!namn) console.warn('[landing-photos] inget foto i svaret för', query)
+    return namn
+  } catch (e) {
+    console.error('[landing-photos] anrop kastade för', query, '·', String(e).slice(0, 200))
     return null
   }
 }
@@ -75,7 +85,8 @@ export async function GET(_req: NextRequest) {
   }
 
   if (!KEY) {
-    return NextResponse.json({}, { headers: { 'Cache-Control': 'public, s-maxage=3600' } })
+    console.error('[landing-photos] GOOGLE_PLACES_API_KEY saknas i miljön')
+    return NextResponse.json({}, { headers: { 'Cache-Control': 'public, s-maxage=60' } })
   }
 
   const results = await Promise.allSettled(
@@ -90,6 +101,24 @@ export async function GET(_req: NextRequest) {
       photoMap[key] = `/api/places/photo/${encoded}?w=800`
     }
   })
+
+  const antal = Object.keys(photoMap).length
+
+  // 2026-08-05: ett TOMT resultat är ett misslyckande, inte ett svar.
+  //
+  // Tidigare cachades {} i 24 timmar i CDN och 5 minuter i minnet, precis som
+  // ett lyckat svar. När Google slutade svara betydde det att startsidans kort
+  // stod tomma i upp till ett dygn EFTER att felet var åtgärdat — cachen höll
+  // kvar tomheten. Det var så det här felet överlevde.
+  //
+  // Nu: lyckat svar cachas länge, tomt svar cachas en minut och sparas inte i
+  // minnescachen alls. Då läker sidan av sig själv så fort Google svarar igen.
+  if (antal === 0) {
+    console.error('[landing-photos] TOMT resultat —', PLACES_TO_FETCH.length, 'förfrågningar gav noll foton')
+    return NextResponse.json(photoMap, {
+      headers: { 'Cache-Control': 'public, s-maxage=60' },
+    })
+  }
 
   memCache = { ts: Date.now(), data: photoMap }
 
