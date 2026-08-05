@@ -1,6 +1,17 @@
 // ── Ö-koordinater för Stockholms skärgård ────────────────────────────────────
-// Verifierade mot Nominatim/Wikipedia (2026-04-25). Centrumkoord per ö —
-// detektionsradien (3km default) gör finjustering onödig.
+// Centrumkoordinat per ö. Används på fyra ställen som alla syns för användaren:
+// ö-taggning av loggade resor (detectVisitedIslands), vädret på ö-sidan,
+// kartmarkören, och "närmaste obesökta ö" på /min-skargard. En felaktig rad
+// märks alltså inte bara i en widget — den taggar fel ö på någons resa.
+//
+// Omkontrollerade 2026-08-05 mot TVÅ oberoende källor: OSM place=island via
+// Overpass (punkt-i-polygon, ytterringar hopsydda) och Nominatim
+// (namnuppslag + omvänd geokodning). En rad godkänns bara om båda pekar åt
+// samma håll. 53 av 56 rader stod sig. Se noterna vid de rättade raderna.
+//
+// Den tidigare rubriken sa "Verifierade mot Nominatim/Wikipedia (2026-04-25)".
+// Björkö låg då 79 km fel, mitt i Sandhamnsområdet. Rubriken var alltså inte
+// sann, vilket är värre än ingen rubrik alls — den gjorde att ingen tittade.
 
 export interface IslandCoord {
   slug: string
@@ -30,6 +41,10 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'runmaro',           name: 'Runmarö',           lat: 59.2833, lng: 18.7667, radiusKm: 3.0 },
   { slug: 'husaro',            name: 'Husarö',            lat: 59.5064, lng: 18.8475, radiusKm: 2.0 },
   { slug: 'kymmendo',          name: 'Kymmendö',          lat: 59.1112, lng: 18.4992, radiusKm: 2.0 },
+  // OAVGJORD 2026-08-05. Nominatim känner bara till "Bullerö naturreservat",
+  // vars centroid ligger 3,9 km bort — men ett reservat täcker många öar, så
+  // avståndet säger inget om ön. Overpass hann inte svara innan den strypte
+  // (504/timeout på alla tre speglar). Raden är ORÖRD tills den kan mätas.
   { slug: 'bullero',           name: 'Bullerö',           lat: 59.2005, lng: 18.8492, radiusKm: 2.0 },
   { slug: 'vindo',             name: 'Vindö',             lat: 59.3462, lng: 18.6990, radiusKm: 2.0 },
   { slug: 'ingaro',            name: 'Ingarö',            lat: 59.2500, lng: 18.4833, radiusKm: 4.0 },
@@ -41,7 +56,12 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'norrpada',          name: 'Norrpada',          lat: 59.6544, lng: 19.2748, radiusKm: 1.5 },
   { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },
   { slug: 'storskar',          name: 'Storskär',          lat: 59.6075, lng: 19.2519, radiusKm: 1.5 },
-  { slug: 'bjorko',            name: 'Björkö',            lat: 59.2939, lng: 18.9513, radiusKm: 2.0 },
+  // RÄTTAD 2026-08-05. Låg på 59.2939, 18.9513 — en punkt som ligger inuti ön
+  // Kroksö vid Sandhamn (OSM way/245761619), 79 km från Björkö. Ön vi menar är
+  // Björkö i Mälaren, där Birka ligger: OSM way/34546894, centroid
+  // 59.3254, 17.5615. Nominatim ger 59.3256, 17.5664 för samma ö — källorna
+  // skiljer 280 m, vilket ryms i radien.
+  { slug: 'bjorko',            name: 'Björkö',            lat: 59.3254, lng: 17.5615, radiusKm: 2.0 },
   { slug: 'adelsjo',           name: 'Adelsö',            lat: 59.3768, lng: 17.5006, radiusKm: 2.0 },
 
   // ── Södra skärgården ─────────────────────────────────────────────────────
@@ -57,7 +77,11 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'smaadalaro',        name: 'Smådalarö',         lat: 59.1662, lng: 18.4525, radiusKm: 2.0 },
   { slug: 'morko',             name: 'Mörkö',             lat: 58.9847, lng: 17.6597, radiusKm: 3.5 },
   { slug: 'musko',             name: 'Muskö',             lat: 58.9958, lng: 18.1149, radiusKm: 3.5 },
-  { slug: 'hasselo',           name: 'Hasselö',           lat: 59.3200, lng: 18.9900, radiusKm: 1.0 },
+  // RÄTTAD 2026-08-05. Låg på 59.3200, 18.9900. Overpass hittar 127 öar inom
+  // 6 km av den punkten och ingen av dem innehåller den — den låg i vatten,
+  // närmaste ö Lökholmen 4,9 km bort. Nominatim placerar Hasselö på
+  // 59.3213, 18.8494, alltså 8 km västerut.
+  { slug: 'hasselo',           name: 'Hasselö',           lat: 59.3213, lng: 18.8494, radiusKm: 1.0 },
   { slug: 'langviksskaret',    name: 'Långviksskär',      lat: 59.1509, lng: 18.7981, radiusKm: 2.0 },
 
   // ── Norra skärgården ─────────────────────────────────────────────────────
