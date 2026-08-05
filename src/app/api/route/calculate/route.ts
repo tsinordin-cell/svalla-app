@@ -95,6 +95,21 @@ function hamnVid(lat: number, lng: number) {
     Math.abs(d.lat - lat) < HAMN_TOL && Math.abs(d.lng - lng) < HAMN_TOL) ?? null
 }
 
+/**
+ * Sant när de två hamnarna ligger i skilda vattensystem — Mälaren respektive
+ * Saltsjön. Mellan dem finns bara Slussen och Hammarbyslussen, och en
+ * slussning är ingen sjöled. Avgörs mot region-fältet i den verifierade
+ * hamnlistan, inte mot en gissad bounding box.
+ */
+function harbourLockConflict(
+  startLat: number, startLng: number, endLat: number, endLng: number,
+): boolean {
+  const a = hamnVid(startLat, startLng)
+  const b = hamnVid(endLat, endLng)
+  if (!a || !b) return false
+  return (a.region === 'Mälaren') !== (b.region === 'Mälaren')
+}
+
 function avgorSkal(
   startLat: number, startLng: number, endLat: number, endLng: number,
 ): UnavailableReason {
@@ -104,9 +119,7 @@ function avgorSkal(
   if (!hasNavigableWaterNear(startLat, startLng) || !hasNavigableWaterNear(endLat, endLng)) {
     return 'harbour_not_in_water'
   }
-  const a = hamnVid(startLat, startLng)
-  const b = hamnVid(endLat, endLng)
-  if (a && b && (a.region === 'Mälaren') !== (b.region === 'Mälaren')) {
+  if (harbourLockConflict(startLat, startLng, endLat, endLng)) {
     return 'lock_required'
   }
   return 'no_sea_route'
@@ -219,6 +232,27 @@ export async function POST(req: NextRequest) {
           quality, crossesAt: v.crossesAt,
         })
       }
+    }
+
+    // 2026-08-05: sluss-spärren måste gälla ÄVEN när en path producerats.
+    //
+    // Riddarholmen -> Saltsjöqvarn gav quality='waypoint' med fyra punkter rakt
+    // genom Slussen, och validated=true. Valideringen har rätt på sitt eget
+    // villkor — segmenten går över vatten — men den känner inte till att
+    // Mälaren och Saltsjön ligger på olika nivå och bara möts genom en sluss.
+    // En rutt som ser ut som öppet vatten men kräver slussning är en osann
+    // rutt, och den är farligare än ingen rutt eftersom den ser verifierad ut.
+    //
+    // Waypoint-grenen bygger vägen av huvudleder och kringgår därmed rastrets
+    // vattenkomponenter, som är det enda som annars stoppar passagen.
+    const kraverSluss = harbourLockConflict(startLat, startLng, endLat, endLng)
+    if (kraverSluss && finalPath !== null) {
+      logger.info('route-calculate', `sluss-spärr: ${key} underkänd trots quality=${finalQuality}`, {
+        key, quality: finalQuality, points: finalPath.length,
+      })
+      finalPath = null
+      finalQuality = 'unavailable'
+      validated = false
     }
 
     logger.info('route-calculate', `computed in ${ms} ms — ${finalPath?.length ?? 0} waypoints, quality=${finalQuality}`, {
