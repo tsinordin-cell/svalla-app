@@ -39,20 +39,6 @@ export type IslandRestaurant = {
   bookingUrl?: string
   /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
   websiteUrl?: string
-  price_example?: string
-  open_season?: string
-  open_hours?: string
-  book_required?: boolean
-  book_note?: string
-  phone?: string
-  child_menu?: boolean
-}
-
-export type IslandDayCost = {
-  budget_per_person: string
-  includes: string
-  breakdown: { item: string; price: string }[]
-  tips: string[]
 }
 
 export type Island = {
@@ -73,7 +59,6 @@ export type Island = {
   getting_there: IslandTransport[]
   harbors: IslandHarbor[]
   restaurants: IslandRestaurant[]
-  day_cost?: IslandDayCost
   tips: string[]
   related: string[]
   tags: string[]
@@ -173,12 +158,12 @@ export const ISLANDS: Island[] = [
     name: 'Sandhamn',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '⛵',
+    emoji: 'sailboat',
     tagline: 'Seglarnas huvudstad och skärgårdens mest levande destination.',
     seoTitle: 'Sandhamn 2026 – restauranger, boende & seglarkultur',
     seoDescription: 'Guide till Sandhamn: bästa restaurangerna, Trouville-stranden, Seglarhotellet och båt från Stockholm. Bilfri ö i Stockholms skärgård.',
     description: [
-      'Sandhamn är ett av Stockholms skärgårds mest välkända namn, och med rätta. Ön är hem för KSSS (Kungliga Svenska Segel Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnliv som sträcker sig långt in på nätterna.',
+      'Sandhamn är ett av Stockholms skärgårds mest välkända namn, och med rätta. Ön är hem för KSSS (Kungliga Svenska Segel Sällskapet) och samlar tusentals seglare varje sommar i en av Östersjöns mest besökta gästhamnar. Här finns allt: restauranger i toppklass, bagerier, barer och ett hamnnäsliv som sträcker sig långt in på nätterna.',
       'Trots att Sandhamn är populärt har det bevarat sin karaktär. Ön är bilfri och smalare stigar leder mellan trävillorna. Det vita sandstranden Trouville på öns södra sida är en av skärgårdens finaste. Klipporna österut erbjuder solbad med utsikt mot öppet hav.',
       'Sandhamn besöks bäst juni–september men ön har verksamhet nästan hela året tack vare Seglarhotellet. Högsäsong är juli. Boka allt i förväg.',
       'Det är lätt att glömma att Sandhamn faktiskt är ett gammalt fiskesamhälle. Gränd efter gränd kantas av röda och gula trähus, odlingsland och gamla sjöbodar. Bort från hamnen, bara hundra meter in i byn, är det tyst nog att höra fåglarna. Den kontrasten är en av Sandhamns bästa hemligheter: feststämning i hamnen och stillhet trettio sekunder bort.',
@@ -300,13 +285,13 @@ export const ISLANDS: Island[] = [
       'Utö nås med färja från Nynäshamn eller med snabbåt. Ön är populär att kombinera med Nåttarö och Ålö-Rånö på en längre seglingstur söderut.',
       'Cykelrutten från Gruvbryggan ner till Ålö Storsand är en av skärgårdens verkliga pärlor. Tretton kilometer på smala grusvägar genom björkskog och öppna ljunghedar, förbi den gamla gruvgången och ut mot havets horisont. Det går ungefär en timme i lugnt tempo, och när man väl ser Ålö Storsands vita sand och turkosvattnet framför sig förstår man varför folk åker hit om och om igen.',
       'Gruvhistorien är mer fascinerande än man kan tro. På 1840-talet bodde nästan 500 människor på Utö: smeder, gruvarbetare och deras familjer. Samhället hade skola, kyrka och handelshus. När gruvan stängde 1879 var det en hel värld som upphörde. Museet bredvid schaktet är litet men välgjort, och det tar ungefär 45 minuter. Bättre än man förväntar sig.',
-      'Havsbastun på Utö är en upplevelse som är svår att sätta ord på. Bastun ligger direkt mot havet. Dörren öppnas mot vattnet och det är bara några steg dit. Kontrasten mellan det heta bastuutrymmet och det kalla havsvattnet, kombinerat med den öppna horisonten, gör det till något helt annat än en vanlig bastu. Kvällspass med solnedgång är svårt att överträffa. Boka online i god tid.',
+      'Havsbastun på Utö är en upplevelse som är svår att sätta ord på. Bastun ligger direkt mot havet. Dörren öppnas mot vattnet och det är bara några steg dit. Kontrasten mellan det heta bastuurymmet och det kalla havsvattnet, kombinerat med den öppna horisonten, gör det till något helt annat än en vanlig bastu. Kvällspass med solnedgång är svårt att överträffa. Boka online i god tid.',
       'Utö belönar verkligen den som stannar mer än en dag. Dag ett är lätt att fylla med cykeltur och bastu. Dag två är för de lugnare upptäckterna: en kajakrunda runt öns norra spets, en fisketur eller bara en lång lunch på värdshuset utan att ha något mer planerat. Det är en annan Utö.',
-      'Kombinationen Utö–Nåttarö är ett klassiskt tvådagarsprogram för seglare. Ankra vid Nåttarös naturreservat för natten, kliv upp med fåglarna på morgonen och ha hela klippmarken för dig själv. Det är ungefär vad södra skärgården erbjuder på sin allra bästa.',
+      'Kombinationen Utö–Nåttarö är ett klassiskt tvådagarsprogram för seglare. Ankra vid Nåttarös naturreservat för natten, kliv upp med fåglarna på morgonen och ha hela klippmarken för dig själv. Det är ungefär vad sodra skärgården erbjuder på sin allra bästa.',
       'Utös historia kretsar kring järnet. Öns gruva bearbetades från åtminstone medeltiden och bröt järnmalm ur de karakteristiska rödbrunfärgade bergformationerna som fortfarande präglar landskapet. Gruvdriften pågick under flera sekler och gjorde Utö till en av Sveriges äldsta kontinuerligt drivna gruvor innan verksamheten slutligen upphörde 1879. Schaktet och anläggningarna är nu museum och förblir en av de mer ovanliga historiska sevärdheterna i skärgården.',
       'Gruvan är värd minst en timme. Utställningen täcker både den tekniska gruvhistorien och den sociala historien bakom det gruvsamhälle som levde här. Det erbjuder ett genuint annorlunda perspektiv på skärgårdslivet: inte fiskebyar och seglarhamnar, utan industriellt arbete i en öomgivning. Att kombinera detta besök med en cykeltur runt ön ger en fullständigare bild av vad Utö faktiskt är.',
       'Cykling är hur de flesta väljer att utforska Utö. Ön har ett nätverk av stigar och mindre vägar, de flesta plana eller svagt sluttande, vilket gör det tillgängligt för alla konditionsnivåer. Cykeluthyrning finns vid hamnen från tidig sommar. En full runda av ön tar ungefär två till tre timmar i lugnt tempo, med naturliga stopp vid utsiktspunkter, stränder och gruvan.',
-      'Utö ligger i den sydligaste delen av Stockholms skärgård, och läget formar karaktären. Ytterlandskapet är mer exponerat än på centrala skärgårdsöar: lägre klippor, bredare himmel, starkare vindar. Öns sydspets ser mot öppet vatten utan synliga landmarkeringar i riktning mot nästa kust. Den öppenheten är en specifik sorts vacker som skiljer sig från den slutna, skogsklädda känslan av innerskärgårdsöar.',
+      'Utö ligger i den sydligaste delen av Stockholms skärgård, och läget formar karaktären. Ytterlandskapet är mer exponerat än på centrala skärgårdsöar: lägre klippor, bredare himmel, starkare vindar. Öns sydspets ser mot öppet vatten utan synliga landmarkeringar i riktning mot nästa kust. Den öppenheten är en specifik sorts vacker som skiljer sig från den inneslutet skogsklädda känslan av innerskärgårdsöar.',
       'Havsbastun på Utö är en av de mest besökta i skärgården. Belägen utomhus direkt vid vattnet möjliggör den den skandinaviska ritualen av att växla mellan intensiv värme och kallt havsvatten. Temperaturkontrasten är störst på höst och vinter när upplevelsen är tillgänglig och vattnet som kallast. Förbokning är lämpligt, särskilt under högsäsong.',
       'Utö har en av de få ordentliga sandstränderna i Stockholms skärgård. För de flesta skärgårdsplatser innebär bad jämna klipphällar och öppet hav. Den strand som finns här är ett undantag som barnfamiljer i synnerhet tenderar att uppskatta, med grund instegszon och mjukare underlag än klippbadets alternativ.',
       'Utö Värdshus har drivits som restaurang och gästgiveri under lång tid. Nuvarande verksamhet upprätthåller traditionen att servera klassisk skärgårdsmat: sill, lax, säsongsbetonade svenska rätter i en miljö som ser ut över hamnen. Kvaliteten har gjort det till en av de mer besökta restaurangerna i den yttre södra skärgården. Under högsommaren krävs bordsbokning.',
@@ -323,8 +308,8 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🚲', name: 'Cykling', desc: '350 hyrcyklar (Skeppshult) vid Cykelboden. Klassiska rutten Gruvbyn–Ålö är ca 13 km enkel väg längs grusvägar genom skog och ängar till Ålö storsand med klappstrandsbad och krogen Båtshaket.' },
-      { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörren går ut mot havet — basta, hoppa i, basta igen.' },
-      { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö i mer än 700 år, från 1100-talet till 1879. Gruvdriften var som störst på 1840-talet med 16 000 ton/år och cirka 500 invånare på ön. Gruvmuseet berättar historien — fascinerande för både barn och vuxna.' },
+      { icon: '🧖', name: 'Havsbastu', desc: 'En av skärgårdens mest omtalade havsbastur. Dörrn går ut mot havet — basta, hoppa i, basta igen.' },
+      { icon: '⛏', name: 'Gruvan & museet', desc: 'Järnmalm bröts på Utö i mer än 700 år, från 1100-talet till 1879. Gruvdriften peakade på 1840-talet med 16 000 ton/år och cirka 500 invånare på ön. Gruvmuseet berättar historien — fascinerande för både barn och vuxna.' },
       { icon: '🏊', name: 'Bad & stränder', desc: 'Stora Sand på Utö (cirka 10 km från Gruvbryggan, ligger inom skjutfältet — kontrollera tillgänglighet) och Ålö Storsand på grannön Ålö (broförbunden) hör till Sveriges finaste sandstränder.' },
       { icon: '🚶', name: 'Vandring', desc: 'Naturreservat i öns södra del med välmarkerade leder och vacker urbergslandskap.' },
       { icon: '🎣', name: 'Fiske', desc: 'Ytterskärgården runt Utö är utmärkt för havsöring och abborre.' },
@@ -405,7 +390,7 @@ export const ISLANDS: Island[] = [
     name: 'Vaxholm',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏛️',
+    emoji: 'building',
     tagline: 'Porten till skärgården — stad, fästning och direktbåt från Strömkajen.',
     seoTitle: 'Vaxholm 2026 – fästning, historisk stad & dagstur',
     seoDescription: 'Guide till Vaxholm: Vaxholms fästning, restauranger och direktbåt från Strömkajen. Perfekt dagstur eller weekendresa i Stockholms skärgård.',
@@ -443,7 +428,7 @@ export const ISLANDS: Island[] = [
       { icon: '🛶', name: 'Kajakpaddling', desc: 'Perfekt utgångspunkt för kajakpaddling mot Resarö, Rindö och Tenö.' },
       { icon: '🚢', name: 'Båtutflykter', desc: 'Ta Waxholmsbåten vidare ut i skärgården — Grinda, Finnhamn och Sandhamn är alla tillgängliga.' },
     ],
-    accommodationIntro: 'Vaxholm har skärgårdens mest tillgängliga boendeutbud — det historiska Waxholms Hotell vid hamnen nås med bil, buss och direktbåt från Stockholm. Till skillnad från de yttre öarna kan man boka med relativt kort varsel och checka in utan att logistiken behöver planeras i förväg.',
+    accommodationIntro: 'Vaxholm har skärgårdens mest tillgängliga boendeutbud — det historiska Waxholms Hotell vid hamnen nås med bil, buss och direktbåt från Stockholm. Till skillnad från de yttre öarna kan man boka med relativt kort varsel och anlända utan att logistiken behöver planeras i förväg.',
     accommodation: [
       { name: 'Waxholms Hotell', type: 'Hotell', desc: 'Historiskt hotell precis vid hamnen med matsal och havsutsikt. Öppet hela året.', websiteUrl: 'https://www.waxholmshotell.se' },
       { name: 'B&B i Vaxholm', type: 'B&B', desc: 'Mindre B&B och pensionat i stadskärnan. Sök på Booking.com eller Airbnb för aktuella alternativ och lediga rum.' },
@@ -530,15 +515,15 @@ export const ISLANDS: Island[] = [
       'Grinda passar nästan alla: par som vill ha en lugn helg, barnfamiljer med kajak och badkläder, seglare som behöver en natts vila mitt i skärgården. Det är svårt att göra fel här. Och det är nog just det som gör att folk återvänder år efter år.',
       'Grinda förvaltas av STF, Svenska Turistföreningen, vilket formar allt på ön. STF tog över förvaltningen för decennier sedan och har upprätthållit den som en natururienterad destination med vandrarhem, begränsad kommersiell utveckling och starkt fokus på friluftsliv. Det förvaltningsfilosofin syns överallt: stigarna är välunderhållna, skyltningen tydlig och ön kommunicerar en specifik sorts organiserad utomhushospitalitet.',
       'Vandrarhemmet på Grinda, STF Vandrarhem Grinda, är en av de mer populära STF-anläggningarna i Stockholmsregionen. Det erbjuder sovsal, privata rum och stugboende, vilket gör ön tillgänglig för olika typer av resenärer utan att kräva hotellbudgetar. Frukost serveras i huvudbyggnaden och de gemensamma utrymmena skapar en social atmosfär ovanlig för en liten skärgårdsö.',
-      'Bad på Grinda är bra på flera ställen runt ön. Klipporna är jämna och vattnet i de skyddade vikarna värms upp tidigare under sommaren än mer exponerade lägen. Flera naturliga badplatser är markerade på den karta som finns tillgänglig vid vandrarhemmet. Vattenklarheten här är generellt god, ön sitter tillräckligt långt från de stora farleder för att undvika grumligheten hos innerskärgårdsvikar.',
+      'Bad på Grinda är bra på flera ställen runt ön. Klipporna är jämna och vattnet i de inneslutet bukterna värms upp tidigare under sommaren än mer exponerade lägen. Flera naturliga badplatser är markerade på den karta som finns tillgänglig vid vandrarhemmet. Vattenklarheten här är generellt god, ön sitter tillräckligt långt från de stora farleder för att undvika grumligheten hos innerskärgårdsvikar.',
       'Grindas attraktionskraft är specifikt naturlig. Det finns inga bilar, inget nattliv och inga souvenirbutiker. Restaurangerna serverar säsongsbetonad svensk mat i en miljö som ser ut över vattnet. Denna frånvaro av kommersiellt brus är vad många besökare specifikt söker: en plats där aktiviteten är promenader, bad, god mat och att göra relativt lite annat.',
-      'Ön har flera kilometers markerade leder som tar besökare genom en blandning av klippor, skog och öppna ängar. Lederna är tillräckligt kompakta för att man ska kunna gå de flesta av dem på en dag. Kustleden längs östra sidan erbjuder ohindrad utsikt över skärgården och är särskilt vacker i tidigt morgonljus.',
-      'Barn trivs på Grinda. De lugna, skyddade vikarna är säkra för bad, lederna är tillräckligt korta för yngre vandrare och den allmänna atmosfären är familjeinriktad utan att vara kommersiell. Skolklasser är vanliga, vilket ibland innebär att vandrarhemmet är belagt av grupper. Värt att kontrollera om lugnare förhållanden är viktigt.',
+      'Ön har flera kilometers markerade leder som tar besökare genom en blandning av kustkliffor, skog och öppna ängar. Lederna är tillräckligt kompakta för att man ska kunna gå de flesta av dem på en dag. Kustleden längs östra sidan erbjuder ohindrad utsikt över skärgården och är särskilt vacker i tidigt morgonljus.',
+      'Barn trivs på Grinda. De lugna, inneslutet bukterna är säkra för bad, lederna är tillräckligt korta för yngre vandrare och den allmänna atmosfären är familjeinriktad utan att vara kommersiell. Skolklasser är vanliga, vilket ibland innebär att vandrarhemmet är belagt av grupper. Värt att kontrollera om lugnare förhållanden är viktigt.',
       'Matverksamheten på Grinda drivs av STF och fokuserar på kvalitet inom ett begränsat sortiment. Lokal fisk, nybakat bröd och säsongsbetonade svenska rätter är grunden för det som serveras. Restaurangen ser ut över hamnen och borden utomhus är bland de trevligaste platserna att äta på i innerskärgården under en lugn sommarkväll.',
-      'Grinda sitter i ett idealiskt läge för att utforska omgivande öar. Båtförbindelser når andra STF-förvaltade destinationer och farvattnet härifrån täcker stora delar av mellersta skärgården. Besökare som anländer med kajak kan använda Grinda som utgångspunkt för längre paddelturer.',
+      'Grinda sitter i ett idealiskt läge för att utforska omgivande öar. Båtförbindelser når andra STF-förvaltade destinationer och farvattnet härifrån täcker stora delar av mellans skärgård. Besökare som anländer med kajak kan använda Grinda som utgångspunkt för längre paddelturer.',
       'Ön känns bäst i juni och augusti. Juli drar större folkmassor och de gemensamma vandrarhemsutrymmen är mer trängda. Axelmånaderna, i synnerhet tidigt juni när vegetationen är som grönast och sent augusti när skaran glesas ut, visar Grinda på sitt bästa: frodig, lugn och med en atmosfär som rättfärdigar de två timmarnas båtresa från Stockholm.',
-      'Att boka boende på Grinda i förväg är nödvändigt under hela juli och lämpligt från mitten av juni till slutet av augusti. Dagsbesökare är välkomna utan reservation, men de som planerar att övernatta bör boka via STF med god framförhållning.',
-      'Grinda passar inte alla. Besökare som förväntar sig en livlig hamnmiljö, flera restaurangalternativ eller kommersiell underhållning finner det tyst till gränsen för tristess. De som specifikt vill ha natur, lugn, bra bad och en välorganiserad, lågmäld friluftsupplevelse finner det nära nog perfekt.',
+      'Att boka boende på Grinda i förväg är nödvändigt under hela juli och lämpligt från mitten av juni till slutet av augusti. Dagsbesökare är välkomna utan reservation, men de som planerar att stanna overnight bör boka via STF med god framförhållning.',
+      'Grinda passar inte alla. Besökare som förväntar sig en livlig hamnmiljö, flera restaurangalternativ eller kommersiell underhållning finner det tyst till gränsen för tristess. De som specifikt vill ha natur, lugn, bra bad och en välorganiserad, lågmäld friluftupplevelse finner det nära nog perfekt.',
       'Grindas karaktär hänger tätt samman med STF:s förvaltningsprinciper. Det innebär inga motorbåtstaxitjänster, ingen disco, inga casinobåtar ankrade i sundet. Det innebär också att de gäster som väljer Grinda i allmänhet gör det av medvetna skäl, vilket bidrar till en specifik typ av trevlig social atmosfär på kaféterassen och vid bryggan.',
       'Att bo på Grinda under ett par dagar ger tillgång till de timmar som dagsbesökare missar: tidiga morgnar när dimman hänger kvar i sunden, sena kvällar när solen går ner bakom västra klipporna och den stund på eftermiddagen när de flesta Stockholmsbåtarna har avgått och ön är som stillsammast. Det är i de tiderna som Grinda visar sin bästa version.',
       'Den historiska gårdsanläggningen på Grinda (Grinda Gård) driver jordbruk och producerar råvaror som delvis används i kök- och matverksamheten på ön. Den kopplingen, jord till bord inom öns gränser, är ovanlig för en skärgårdsö och adderar till den autenticitet som STF-förvaltningen strävar mot.',
@@ -642,14 +627,14 @@ export const ISLANDS: Island[] = [
       'Finnhamn lämpar sig utmärkt för den som vill kombinera skärgård med lite äventyr. Kajak ut till de omgivande holmarna, båtluffning norrut mot Arholma eller en flerdag längs kusten med vandrarhemsövernattningar. Det är en av skärgårdens bästa basplatser för den typen av tur.',
       'Finnhamn är uppbyggt kring STF-vandrarhemmet, STF Vandrarhem Finnhamn, som är en av de mest besökta STF-anläggningarna i Sverige. Vandrarhemmet drivs i ett kluster av röda trähus på huvudön och erbjuder boende i allt från sovsal till privata stugor. Populariteten grundar sig i en kombination av verklig naturkvalitet, bra vandringsterräng och ett tillgängligt läge i norra skärgården.',
       'Resan till Finnhamn med Waxholmsbåt tar ungefär två timmar från Stockholm, vilket placerar det i ett mellanläge, inte lika direkt tillgängligt som Fjäderholmarna men märkbart kortare resväg än ytterskärgårdsdestinationerna. Båten passerar genom progressivt öppnare och mer dramatiska delar av den norra skärgården på vägen in.',
-      'Vandring är Finnhamns primära friluftsaktivitet. Ön sitter inom ett naturreservat och flera markerade leder korsar både Finnhamn och de angränsande öarna i gruppen. Terrängen är klippig och skogbevuxen, typisk norr-skärgårdslandskap där berggrunden är äldre och skogsklädnaden tätare än i söder. Lederna varierar från lugna kustnära promenader till mer krävande stigar genom det inre.',
+      'Vandring är Finnhamns primära friluftaktivitet. Ön sitter inom ett naturreservat och flera markerade leder korsar både Finnhamn och de angränsande öarna i gruppen. Terrängen är klippig och skogbevuxen, typisk norr-skärgårdslandskap där berggrunden är äldre och skogsklädnaden tätare än i söder. Lederna varierar från lugna kustnära promenader till mer krävande stigar genom det inre.',
       'Kajakpaddling är ett naturligt komplement till vandringen på Finnhamn. Klustret av små öar runt Finnhamn skapar skyddade vattenrutter lämpliga för paddling. STF-vandrarhemmet har historiskt tillhandahållit eller organiserat kajakhyra under sommaren. Det omgivande vattnet är mindre exponerat än ytterskärgården, vilket gör Finnhamn lämpligt också för mindre erfarna paddlare.',
       'Kaféet och restaurangen vid vandrarhemmet serverar enkel mat under sommaren: smörgåsar, soppa, fiskrätter och fika. Verksamheten är primärt inriktad på vandrarhemsägterna men välkomnar dagsbesökare. Vänta inte ett elaborerat matutbud, maten är ärlig och passande för miljön.',
       'Fågelskådning på Finnhamn belönar besökare under vår och höst. Det norra skärgårdsläget och blandningen av biotoper lockar ett brett arturval. Ejdrar syns vanligen i de omgivande vattnen och skogarna rymmer de skogslevande arter som är typiska för den svenska boreofringe.',
       'Skolgrupper och ungdomsorganisationer nyttjar Finnhamn flitigt. Under sommaren, framför allt i juni och tidigt juli, kan vandrarhemmet hysa stora sällskap, vilket förändrar stämningen i de gemensamma utrymmena. Att besöka i augusti eller september ger vanligtvis en lugnare, mer vuxeninriktad atmosfär.',
       'De omgivande öarna, Ängsö, Yxlan och de mindre öarna i området, är nåbara från Finnhamn med båt och lägger till alternativ för dem som stannar flera nätter. Ängsö är känt som ett ovanligt vackert naturreservat med ett rikt växtliv.',
       'Vintern på Finnhamn är mycket annorlunda. Vandrarhemmet stänger typiskt eller reducerar öppettiderna markant från oktober till april. Öarna i djupvinter har ett kargare, kallt intryck, de bara klipporna, det grå vattnet och frånvaron av sommarbesökare skapar en stämning som en del finner tvingande och andra finner enkelt kall.',
-      'Finnhamn är ärlig i vad det erbjuder: bra natur, bra vandring, enkelt men bekvämt boende och den sociala atmosfären hos ett vandrarhem. Det erbjuder inte kulinarisk ambition, spa-faciliteter eller något som liknar lyx. Besökare som vill ha det bör söka sig annorstädes. De som vill ha en genuin friluftsupplevelse i den norra skärgården, inom praktiskt reseavstånd från Stockholm, finner Finnhamn svårt att förbättra.',
+      'Finnhamn är ärlig i vad det erbjuder: bra natur, bra vandring, enkelt men bekvämt boende och den sociala atmosfären hos ett vandrarhem. Det erbjuder inte kulinarisk ambition, spa-faciliteter eller något som liknar lyx. Besökare som vill ha det bör söka sig annorstans. De som vill ha en genuin friluftupplevelse i den norra skärgården, inom praktiskt reseavstånd från Stockholm, finner Finnhamn svårt att förbättra.',
       'Ängsö nationalpark, belägen relativt nära Finnhamn, är ett av de mer biologiskt värdefulla naturområdena i Stockholm-närheten. Nationalparken skyddar en rik blomsteräng och ett gammalt kulturlandskap. Dagsutflykter dit från Finnhamn är möjliga för dem som planerar i förväg och sätter samman en rutt med de lokala båtförbindelserna.',
       'Finnhamns sociala atmosfär, van-drarhemmet, de gemensamma matborden, mötet med andra friluftsmänniskor, är en del av vad som gör platsen speciell. Det är en av få ställen i Stockholmsskärgården där det är naturligt att slå sig ner vid ett bord med folk man inte känner och börja prata om vart man ska härnäst.',
       'Finnhamn är en av de öar som tydligast visar vad Waxholmsbåtssystemet faktiskt möjliggör: ett genuint friluftsmål, välbeläget i norr, nåbart utan bil och utan flyg, inom ett par timmars resa från en av Nordens störst städer. Det är ett systemverk som få länder i världen kan matcha.',
@@ -732,17 +717,17 @@ export const ISLANDS: Island[] = [
       'Roland Svensson-museet är litet men oväntat gripande. Svensson var konstnär och levde hela sitt liv på Möja, och hans akvareller av skärgårdslandskapet har en precision och ett ljus som säger mer om platsen än de flesta vykort. Museet är öppet sommartid och tar ungefär en timme.',
       'Matstoppet på Möja är inte spektakulärt och det är en del av charmen. Lanthandeln säljer det man behöver, krogen lagar husmanskost med råvaror från öns egna odlingar och fiskebacken. Man äter gott, men det är inte hit man åker för gastronomin. Det är hit man åker för att äta räkor på en klippa med utsikt mot ingenting alls.',
       'Möja är för den som vill ha skärgård på allvar. Inte den paketerade, handlade varianten utan den äkta. Ön har en egen rytm, egna invånare med egna åsikter om vad som är bra och inte, och en historia som inte börjar med turistbroschyrer. Kommer man dit med den respekten och tar sig tid att lyssna, ger ön tillbaka med råge.',
-      'Möja är en av de mer folkrika ytterskärgårdsöarna i Stockholms skärgård, med flera hundra permanent boende. Den befolkningsbasen ger ön en annan karaktär än rent sommardestinationer. Ön har egna butiker, skola och social infrastruktur som fungerar under hela året. Det är den basen som håller Möja vid liv som en äkta gemenskap snarare än en turistprodukt.',
+      'Möja är en av de mer folkrika ytternskärgårdsöarna i Stockholms skärgård, med flera hundra permanent boende. Den befolkningsbasen ger ön en annan karaktär än rent sommardestinationer. Ön har egna butiker, skola och social infrastruktur som fungerar under hela året. Det är den basen som håller Möja vid liv som en äkta gemenskap snarare än en turistprodukt.',
       'Ön sträcker sig ungefär 12 kilometer i nord-sydlig riktning, lång för skärgårdsstandard. Flera byar är fördelade längs den längden: Möja by vid norra änden, Langvik i mitten och mindre bebyggelse längre söderut. Varje del har sin egen karaktär. Möja by, runt huvudhamnen, är den mest aktiva. Längre söderut blir ön tystare och mer lantlig.',
       'Att ta sig till Möja kräver tid. Waxholmsbåtsförbindelsen från Stockholm tar ungefär tre timmar genom en lång del av östra skärgården. Den restiden fungerar som ett filter. De som anländer till Möja har i allmänhet tagit ett medvetet beslut att vara där, vilket ger ön en lugnare atmosfär än lättillgängliga dagsutflykts-destinationer.',
-      'Möjas landskap är mer varierat än många ytterskärgårdsöar. Skog, jordbruksmark, klippor och små sandiga vikar växlar längs öns längd. Kombinationen innebär olika typer av naturkontakt inom relativt korta avstånd. Ett morgonbad från klippor, en skogsrunda, en lantbruksfrukost och en eftermiddag på en häll med utsikt kan alla rymmas på samma dag.',
+      'Möjas landskap är mer varierat än många ytternskärgårdsöar. Skog, jordbruksmark, kustkliffor och små sandiga vikar växlar längs öns längd. Kombinationen innebär olika typer av naturkontakt inom relativt korta avstånd. Ett morgonbad från klippor, en skogsrunda, en lantbruksfrukost och en eftermiddag på en häll med utsikt kan alla rymmas på samma dag.',
       'Möja Handel, öns lanthandel, är något av en kulturell institution i skärgården. Den fungerar som affär, mötesplats och utlämningsställe för den permanenta gemenskapen och som proviantshop för besökande seglare. Butiken säljer det lokalborna behöver, inte kurerade turistvaror, och den distinktionen är synlig och tillfredsställande.',
       'Cykling är ett förnuftigt sätt att utforska Möjas längd. Stigarna mellan byar är tillräckligt flata för de flesta cyklister och resan från ena änden av ön till den andra kan göras på två till tre timmar med stopp. Cykeluthyrning finns vid hamnen under sommarsäsongen.',
       'Restaurangerna och kaféerna på Möja är av blygsam skala. Det finns ingen fin-dining-anläggning, men kaféer med smörgåsar, kaffe och enkel varm mat är öppna under sommaren. För de som vill ha en ordentligare måltid kräver alternativen lite research om aktuella aktörer. Öns matscen är liten och föremål för säsongsvariation.',
       'Fågelskådning är produktivt på Möja. Öns varierade biotoper, kust, skog och jordbruksmark, skapar förhållanden för ett bredare arturval än mer enhetliga klippöar. Tidiga morgonvandrare i maj och september möter aktiv flytt, framför allt längs den östra strandlinjen.',
       'Den permanenta gemenskapen är en av anledningarna till att Möja har bevarat sin karaktär. Det finns en aktiv lokalförening, en kyrka med gudstjänster under hela året och ett etablerat socialt liv som inte försvinner i slutet av augusti. Det ger ön en motståndskraft som rent säsongsbetonade gemenskaper ofta saknar.',
-      'Möja passar besökare som vill ha något nära äkta ytterskärgårdsliv som det var innan massturismen, med fungerande hamn, lokal butik och verklig gemenskap, kombinerat med det naturliga landskapet på ytterskärgårdsöar. Det passar inte besökare som förväntar sig polerad turistinfrastruktur.',
-      'För rätt besökare är Möja en av de mest givande öarna i hela Stockholms skärgård. Restiden är hindret. Väl framme skapar kombinationen av naturlig skönhet, gemenskapets karaktär och relativa stillhet en upplevelsekvalitet som de lättillgängliga öarna inte kan matcha.',
+      'Möja passar besökare som vill ha något nära äkta ytterskärgårdsliv som det var innan massturismen, med fungerande hamn, lokal butik och verklig gemenskap, kombinerat med det naturliga landskapet på ytternskärgårdsöar. Det passar inte besökare som förväntar sig polerad turistinfrastruktur.',
+      'För rätt besökare är Möja en av de mest givande öarna i hela Stockholms skärgård. Restiden är hindret. Väl framme skapar kombinationen av naturlig skönhet, gemenskapets karaktär och relativa stillhet en upplevelsekvalitet som de lättillgängliga öarna inte kan replikera.',
       'Möja Café är en av de mer välkända mötesplatserna på ön, med en sommarverksamhet som betjänar både bofasta och besökare. Kaféets historia på ön sträcker sig tillbaka ett antal decennier och det har den typ av kontinuitet som gör det till en institution snarare än en säsongsattraktion.',
       'Ön erbjuder ett av de mer äkta alternativen till de kommersiellt drivna skärgårdsöarna. Det finns ingen stor marknadsföringsapparat bakom Möja. Ryktet sprids via dem som besökt ön och rekommenderat den till vänner, vilket skapar ett besöksflöde med ett annorlunda kvalitetssnitt än destinationer som marknadsförs aggressivt.',
       'Sjöfartskulturen är alltjämt levande på Möja. Ön har en historia som fiskesamhälle som sträcker sig tillbaka till tider när strömming och sill var de primära ekonomiska aktiviteterna. Den historien syns i bebyggelsen och i de gamla sjöbodarna längs vattnet. Att promenera runt hamnen tidigt på morgonen ger en glimt av den rytm som formade livet här i generationer.',
@@ -853,7 +838,7 @@ export const ISLANDS: Island[] = [
       'Bad är möjligt från klippor och små stegar runt öns kanter. Vattnet är rent och tillgångsplatserna välbesökta på varma dagar. Vattentemperaturen följer innerskärgårdens mönster: uppvärmning till bekväma temperaturer till mitten av juli och god badning under hela augusti.',
       'Båtförbindelsen förtjänar ett eget omnämnande. Fjäderholmarna-båten avgår från Nybrokajen under hela sommaren och kör efter ett regelbundet schema. Resan på 25 minuter följer Stockholms strandlinje, passerar under broar och rör sig genom de inre kanalerna innan öarna nås. Till och med resan i sig har en kvalitet som är svår att förklara för dem som inte har gjort den, en snabb övergång från stad till ö som få platser i världen kan matcha.',
       'Fjäderholmarna drivs inte i full kapacitet året runt. Huvudbåtservicen går från sent april till tidigt oktober. Utanför denna period är tillgången begränsad och de flesta mat- och butiksverksamheter stänger. Öarna är som bäst en fin vardag i juni eller tidigt september, när folksamlingarna glesas ut men allting fortfarande är öppet.',
-      'Fjäderholmarnas skala spelar roll. Att vara liten innebär att den inte kan erbjuda flerdagarsupplevelsen hos större ytterskärgårdsöar. Men dess syfte är ett annat: det är ett andningshål för en stad med en miljon invånare som alla bor inom 25 minuter från äkta skärgård. Den specifika funktionen utför den bättre än någon annan ö i Stockholms system.',
+      'Fjäderholmarnas skala spelar roll. Att vara liten innebär att den inte kan replikera flerdubbla-dagars, mångaktivitets-upplevelsen hos större ytternskärgårdsöar. Men dess syfte är ett annat: det är ett tryckreliefventil för en stad med en miljon invånare som alla bor inom 25 minuter från äkta skärgård. Den specifika funktionen utför den bättre än någon annan ö i Stockholms system.',
       'Fjäderholmarna är på ett sätt ett urbant fenomen: en plats som Stockholm har behållit inom räckhåll för hela sin befolkning, inte som en lyx för få utan som en tillgång för många. Den demokratiska aspekten av en stockholmsbåt som kostar detsamma som en tunnelbaneresa och ger dig ut i riktig skärgård är en av de mer underbara egenskaperna hos den här platsen.',
       'Sommarkvällarna på Fjäderholmarna har ett eget ljus. Solen i väster träffar vattenytan runt Stockholms siluett på ett sätt som inte syns från någon annan punkt i innerskärgården. Det är dels anledningen till att restaurangens uteplatser fylls tidigt. En sen kväll i juni eller juli, med den lågt hängande solen över Stockholms torn, är en av de upplevelser som är svåra att sätta ord på utan att låta som en turistbroschyr.',
       'Historiskt var Fjäderholmarna en plats för fiske och förvaring. Fiskarna som brukade dessa vatten använde öarna som driftsbase. Den historien är nästan osynlig i dag men ger ön en djupare förankring i det maritima Stockholm än vad dagens turistprofil antyder.',
@@ -931,8 +916,8 @@ export const ISLANDS: Island[] = [
       'Klintan i sydöst är öns naturliga samlingsplats för seglare. En välskyddad hamn med bränsle och service, och ett café som håller öppet under sommarsäsongen. Ångbåtsbryggorna längs kusten berättar om en tid då ångbåtstrafiken var öns enda förbindelse med Stockholm.',
       'Ljusterö är inte en ö man åker till för ett enskilt monument eller en specifik upplevelse. Det är en ö man åker till för att spendera tid i skärgårdsmiljö med frihet att röra sig som man vill. Den friheten, kombinerat med den korta restiden från staden, gör Ljusterö till en av Stockholms mest omtyckta vardagsflyktplatser.',
       'Ljusterö är en av de mer tillgängliga stora öarna i den norra Stockholmsskärgården. Till skillnad från många ytterskärgårdsöar som kräver Waxholmsbåtsförbindelser har Ljusterö en bilfärjeförbindelse från fastlandet, vilket väsentligt utökar de praktiska alternativen för att nå dit. Den tillgängligheten, kombinerat med öns storlek och variationen i dess landskap, gör Ljusterö till ett fungerande mål på sätt som mer isolerade öar inte kan.',
-      'Öns storlek är betydelsefull. Ljusterö är en av de större bebodda öarna i Stockholms skärgård. Det innebär att det inre rymmer ett varierat landskap: jordbruksmark, skog, sjöar och klippor existerar inom relativt korta avstånd från varandra. Att gå eller cykla från en terrängtyp till en annan är möjligt under en enda dag.',
-      'Den permanenta befolkningen på Ljusterö uppgår till ungefär ett tusental, stor för skärgårdsstandard. Den befolkningen upprätthåller en nivå av helårstjänster inklusive skola, lokal mataffär och kyrkor. Gemenskapen har infrastrukturen hos en liten landsortsby snarare än en ren sommarbygd.',
+      'Öns storlek är betydelsefull. Ljusterö är en av de större bebodda öarna i Stockholms skärgård. Det innebär att det inre rymmer ett varierat landskap: jordbruksmark, skog, sjöar och kustkliffor existerar inom relativt korta avstånd från varandra. Att gå eller cykla från en terrängtyp till en annan är möjligt under en enda dag.',
+      'Den permanenta befolkningen på Ljusterö uppgår till ungefär ett tusental, stor för skärgårdsstandard. Den befolkningen upprätthåller en nivå av helårstjänster inklusive skola, lokal mataffär och kyrkor. Gemenskapen har infrastrukturen hos en liten landsortsby snarare än ett säsongsbaserat öutpost.',
       'Ljusterö kyrka, öns kyrka, härstammar från medeltiden i sin ursprungliga struktur, om än modifierad och utvidgad under seklerna. Kyrkan håller fortfarande regelbundna gudstjänster och kyrkogården innehåller historiska gravmarkeringar. För besökare intresserade av svensk kyrkoarkitektur och landsbygdshistoria är kyrkan värd ett besök.',
       'Cykling passar Ljusterös relativt plana terräng och nätverket av mindre vägar och stigar. Ön kan utforskas med cykel utan betydande klattrande, och kombinationen av jordbrukslandvyer, skogsavsnitt och kustnärma delar skapar varierande sceneri. Cykeluthyrning finns under sommarsäsongen.',
       'Fiske från Ljusterös strandlinjer och de omgivande vattnen är produktivt för abborre, gädda och havsöring beroende på säsong. Ön har ett antal bra fiskeplatser tillgängliga från kusten och eventuella insjöar i det inre adderar sötvattenalternativ. Fiske utan båt är praktiskt här på ett sätt som det inte är på mindre eller mer klippkantade öar.',
@@ -970,27 +955,10 @@ export const ISLANDS: Island[] = [
       { name: 'Linanäsbryggan', desc: 'Naturskönt läge, populärt ankare.', fuel: false },
     ],
     restaurants: [
-      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Lunch 195–265 kr, räkor och skaldjur 245–345 kr', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      { name: 'Klintan Sjöstation', type: 'Service/Café', desc: 'Bränsle, kaffe och enkla tilltugg.', slug: 'klintan-sjostation', price_example: 'Kaffe 45–55 kr, smörgås 75–95 kr', open_season: 'Maj–September', open_hours: '08–19' },
-      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra.', slug: 'pizzeria-ljustero', price_example: 'Pizza 105–155 kr, pasta 115–145 kr', open_season: 'Helår', open_hours: 'Mån–Sön 11–21' },
+      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.' },
+      { name: 'Klintan Sjöstation', type: 'Service/Café', desc: 'Bränsle, kaffe och enkla tilltugg.', slug: 'klintan-sjostation' },
+      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra.', slug: 'pizzeria-ljustero' },
     ],
-    day_cost: {
-      budget_per_person: '250–550 kr',
-      includes: 'Avgiftsfri bilfärja, cykeltur, lunch eller pizza, kaffe vid Klintan',
-      breakdown: [
-        { item: 'Buss 621 från Danderyds sjukhus (SL-kort)', price: '0 kr' },
-        { item: 'Bilfärja Östanå–Ljusterö (avgiftsfri)', price: '0 kr' },
-        { item: 'Lunch Linanäsbryggan', price: '195–265 kr' },
-        { item: 'Alternativ: Pizza Ljusterö', price: '105–155 kr' },
-        { item: 'Kaffe + bulle Klintan', price: '55–70 kr' },
-        { item: 'Cykeluthyrning', price: '80–120 kr' },
-      ],
-      tips: [
-        'Ljusterö är en av de billigaste öarna att nå — avgiftsfri bilfärja och SL-buss.',
-        'Hyr cykel direkt vid färjeläget och kör norrut mot Linanäs (ca 15 km).',
-        'Pizzerian är öppen helår — bra val för besök utanför turistsäsongen.',
-      ],
-    },
     tips: [
       'Hyr cykel vid färjeläget och kör norrut längs kusten mot Linanäs.',
       'Klintan är ett utmärkt bränslestopp på väg mot norra skärgården.',
@@ -1020,7 +988,7 @@ export const ISLANDS: Island[] = [
     name: 'Dalarö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
-    emoji: '⚓',
+    emoji: 'anchor',
     tagline: 'Södra skärgårdens klassiska utgångspunkt — historia, hamn och direktbuss från Stockholm.',
     description: [
       'Dalarö är södra skärgårdens naturliga utgångspunkt och en av de mest betydelsefulla platserna i svensk sjöfartshistoria. 1636 blev Dalarö "stora sjötullen", det vill säga landets viktigaste tullstation, där all sjöburen handel in till Stockholm skulle deklareras och förtullas. Den rollen behöll orten i drygt 200 år.',
@@ -1091,7 +1059,7 @@ export const ISLANDS: Island[] = [
       open: 'April–Oktober',
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
-      bestReason: 'Dalarö är tillgängligt med bil hela året men turistlivet blommar juni–september. September ger historisk stämning utan folkmassor och gästhamnen är på topp utan köer.',
+      bestReason: 'Dalarö är tillgängligt med bil hela året men touristlivet blommar juni–september. September ger historisk stämning utan folkmassor och gästhamnen är på topp utan köer.',
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
   },
@@ -1139,6 +1107,7 @@ export const ISLANDS: Island[] = [
       { icon: '⛵', name: 'Segling', desc: 'Arholma är ett klassiskt mål och genomfart på längre seglingsresor norrut.' },
       { icon: '🌅', name: 'Naturupplevelse', desc: 'Klippor mot öppet hav, lång horisont och inga grannar. Sällan uppnådd natur.' },
       { icon: '🚲', name: 'Cykling', desc: 'Arholma Handel hyr ut cyklar, 150 kr/dag med korg, 3 växlar och fotbroms. Kort, avkopplande tur till Arholma Båk och fyren längs öns grusvägar. Perfekt halvdagstur i norra skärgården.' },
+      { icon: '🧒', name: 'Lekplats', desc: 'Arholma har en lekplats — ett uppskattat inslag för barnfamiljer som besöker ön.' },
     ],
     accommodation: [
       { name: 'Arholma Handel Stugor', type: 'Stugor', desc: 'Enkla stugor uthyrda av handelsboden.' },
@@ -1234,25 +1203,9 @@ export const ISLANDS: Island[] = [
       { name: 'Kyrkviken', desc: 'Öns huvudhamn med krog och enkla tjänster.', spots: 30, fuel: false },
     ],
     restaurants: [
-      { name: 'Kyrkviken Bar & Bistro', type: 'Restaurang', desc: 'Öns samlingsplats. Husmanskost och sommarstämning.', slug: 'kyrkviken-bar-bistro', price_example: 'Lunch 165–225 kr, öl/vin 85–115 kr', open_season: 'Juni–Augusti', open_hours: '11–22', book_required: false },
-      { name: 'Ornö Brödbod o Deli', type: 'Deli', desc: 'Bröd, lokalproducerat och enkel mat.', price_example: 'Bröd 45–75 kr, smörgås 85–115 kr, kaffe 45 kr', open_season: 'Juni–Augusti', open_hours: '08–14' },
+      { name: 'Kyrkviken Bar & Bistro', type: 'Restaurang', desc: 'Öns samlingsplats. Husmanskost och sommarstämning.', slug: 'kyrkviken-bar-bistro' },
+      { name: 'Ornö Brödbod o Deli', type: 'Deli', desc: 'Bröd, lokalproducerat och enkel mat.' },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Bilfärja från Dalarö, lunch på Kyrkviken, frukost från Brödboden',
-      breakdown: [
-        { item: 'Pendeltåg + buss till Dalarö', price: '~50 kr (SL)' },
-        { item: 'Ornö Sjötrafik bilfärja t/r (passagerare)', price: '~120 kr' },
-        { item: 'Lunch Kyrkviken Bar & Bistro', price: '165–225 kr' },
-        { item: 'Frukost Brödboden (bröd + kaffe)', price: '65–85 kr' },
-        { item: 'Proviant medhavt', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ornö Sjötrafik tar bil — kom med cykel och utforska öns vägar.',
-        'Brödboden öppnar tidigt — perfekt frukost före vandringen i naturreservatet.',
-        'Kombinera Ornö med Utö (tar båt mellan öarna) för ett naturupplevelse-fokuserat veckoslut.',
-      ],
-    },
     tips: [
       'Vandringen i naturreservatet i öns centrala del är bättre än man förväntar sig.',
       'Ta med matkasse — utbudet av restauranger är begränsat.',
@@ -1332,25 +1285,9 @@ export const ISLANDS: Island[] = [
       { name: 'Landsort Hamn', desc: 'Liten hamn på öns norra sida. Begränsat antal platser.', spots: 20, fuel: false },
     ],
     restaurants: [
-      { name: 'Saltboden Kök & Proviant', type: 'Handel/Restaurang', desc: 'Öns enda matplats. Enkel mat och proviant.', slug: 'saltboden-kok-proviant', price_example: 'Lunch 145–185 kr, smörgås 85–115 kr', open_season: 'Juni–Augusti', open_hours: '10–16' },
-      { name: 'Landsort Hamncafé', type: 'Café', desc: 'Kaffe och smörgåsar vid hamnen.', price_example: 'Kaffe 45–55 kr, smörgås 75–95 kr', open_season: 'Juni–Augusti', open_hours: '09–15' },
+      { name: 'Saltboden Kök & Proviant', type: 'Handel/Restaurang', desc: 'Öns enda matplats. Enkel mat och proviant.', slug: 'saltboden-kok-proviant' },
+      { name: 'Landsort Hamncafé', type: 'Café', desc: 'Kaffe och smörgåsar vid hamnen.' },
     ],
-    day_cost: {
-      budget_per_person: '400–750 kr',
-      includes: 'Buss + båt från Nynäshamn, lunch på Saltboden, ev. fyrtursguide',
-      breakdown: [
-        { item: 'SL-pendeltåg till Nynäshamn + buss 852', price: '~50–80 kr' },
-        { item: 'Skärgårdsbåt Ankarudden–Landsort t/r', price: '~160 kr' },
-        { item: 'Lunch Saltboden', price: '145–185 kr' },
-        { item: 'Kaffe + smörgås Hamncafé', price: '85–115 kr' },
-        { item: 'Guidad fyrturstur (om tillgänglig)', price: '0–100 kr' },
-      ],
-      tips: [
-        'Landsort är en av de dyrare dagstursöarna p.g.a. lång restid — planera en heldag.',
-        'Ta med matsäck som backup — Saltboden stänger tidigt (kl 16).',
-        'Fågelstationen är gratis och ger en unik upplevelse under sträcktider.',
-      ],
-    },
     tips: [
       'Kolla väderprognosen NOGGRANT — Landsort är exponerat för öppet hav.',
       'Fågelstationen vid fyren är en unik upplevelse under sträcktider (april-maj och aug-okt).',
@@ -1414,24 +1351,8 @@ export const ISLANDS: Island[] = [
       { name: 'Furusund Hamn', desc: 'Välplacerad hamn vid sundet. Bränsle och service.', spots: 40, fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.', slug: 'furusund-vardshus', price_example: 'Lunch 145–195 kr, middag 225–345 kr', open_season: 'Maj–Oktober', open_hours: 'Lunch 12–15, middag 17–22', book_required: true, phone: '0176-208 90', child_menu: true },
+      { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.', slug: 'furusund-vardshus' },
     ],
-    day_cost: {
-      budget_per_person: '450–800 kr',
-      includes: 'Bil/buss till Furusund, lunch + middag på Värdshuset, parkering',
-      breakdown: [
-        { item: 'Bil från Stockholm (bensin/parkeringsbidrag)', price: '~150–200 kr' },
-        { item: 'Alternativ: Waxholmsbåt t/r', price: '~280 kr' },
-        { item: 'Lunch Furusund Värdshus', price: '145–195 kr' },
-        { item: 'Middag Furusund Värdshus', price: '225–345 kr' },
-        { item: 'Kaffe + dryck', price: '60–100 kr' },
-      ],
-      tips: [
-        'Boka bord på Värdshuset i förväg — högsäsong är ofta fullbokat.',
-        'Kom med bil (2 h från Stockholm) och spara ner restiden jämfört med Waxholmsbåt (4 h).',
-        'Strömmen i sundet gör att seglare ofta stannar kvällen — Värdshuset är bäst som middagsplats.',
-      ],
-    },
     tips: [
       'Strömmen i Furusund kan vara stark — gå igenom med god marginal och håll noggrann uppsikt på trafik (smal led).',
       'Värdshuset är bäst för middag — boka i förväg under högsäsong.',
@@ -1482,24 +1403,9 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Blidö Brygga', desc: 'Enkel gästbrygga vid bistron.', fuel: false }],
     restaurants: [
-      { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Öns samlingspunkt vid bryggan.', slug: 'blido-brygga-bistro', price_example: 'Lunch 145–215 kr, räkor och skaldjur 225–295 kr', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      { name: 'Blidö Värdshus', type: 'Restaurang', desc: 'Klassiskt värdshus på ön.', price_example: 'Lunch 145–185 kr, middag 195–285 kr', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true },
+      { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Öns samlingspunkt vid bryggan.', slug: 'blido-brygga-bistro' },
+      { name: 'Blidö Värdshus', type: 'Restaurang', desc: 'Klassiskt värdshus på ön.' },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Waxholmsbåt t/r (norra linjen), lunch på Brygga & Bistro, cykeltur',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen', price: '~260 kr' },
-        { item: 'Lunch Blidö Brygga & Bistro', price: '145–215 kr' },
-        { item: 'Kaffe + fika', price: '55–70 kr' },
-        { item: 'Cykeluthyrning', price: '80–120 kr' },
-      ],
-      tips: [
-        'Blidö är ett bra alternativ till de mer besökta norraskärgårdsöarna — färre turister, samma natur.',
-        'Värdshuset kräver förbokning i högsäsong — ring i förväg.',
-        'Hyr cykel och kombinera Blidö med Furusund eller Arholma på samma dag.',
-      ],
-    },
     tips: [
       'Blidö passar bäst som del av en längre norra skärgårdstur — kombinera gärna med Arholma eller Räfsnäs.',
       'Hyr cykel vid Blidö brygga för att utforska hela ön — vägarna är nästan bilfria och landskapet varierar från skog till kust.',
@@ -1550,24 +1456,9 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Waxholmsbåt', from: 'Stavsnäs', time: '2 h', desc: 'Linje via Möja och Nämdö.', icon: '⛴' }],
     harbors: [{ name: 'Gällnö Hamn', desc: 'Liten naturhamn.', fuel: false }],
     restaurants: [
-      { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar', price_example: 'Öl 65–85 kr, vin 85–115 kr, enkel mat 95–135 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–22' },
-      { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Proviant och enkla drycker.', open_season: 'Juni–Augusti', open_hours: '09–17' },
+      { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar' },
+      { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Proviant och enkla drycker.' },
     ],
-    day_cost: {
-      budget_per_person: '350–600 kr',
-      includes: 'Waxholmsbåt t/r från Stavsnäs, dryck på baren, medhavd matsäck',
-      breakdown: [
-        { item: 'Pendeltåg + buss till Stavsnäs (SL)', price: '~50 kr' },
-        { item: 'Waxholmsbåt t/r Stavsnäs–Gällnö', price: '~160 kr' },
-        { item: 'Dryck på Gällnö Bar (2 öl)', price: '130–170 kr' },
-        { item: 'Medhavd matsäck (lunch + snacks)', price: '100–150 kr' },
-      ],
-      tips: [
-        'Gällnö är en av de öar där du MÅSTE ta med mat — baren serverar enkel mat men begränsat.',
-        'Havsörnen häckar i reservatets yttre delar — ta med kikare och gå ut tidigt på morgonen.',
-        'Utmärkt ankringsö på väg mot Möja — bra alternativ till mer trånga hamnar.',
-      ],
-    },
     tips: [
       'Ta med mat — restaurangutbudet är mycket begränsat. En enkel handelsbod finns vid hamnen men räkna inte med varm mat.',
       'Ljunghedarna blommar lila i sensommaren (slutet av juli–aug) — ett av de vackraste naturskådestunden på ön.',
@@ -1613,24 +1504,7 @@ export const ISLANDS: Island[] = [
     accommodation: [],
     getting_there: [{ method: 'Waxholmsbåt', from: 'Norrtälje', time: '3 h', desc: 'Norra linjen.', icon: '⛴' }],
     harbors: [{ name: 'Norröra Hamn', desc: 'Liten hamn.', fuel: false }],
-    restaurants: [
-      { name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.', price_example: 'Lunch 125–165 kr, enkel middag 155–215 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–19', book_required: false },
-    ],
-    day_cost: {
-      budget_per_person: '450–750 kr',
-      includes: 'Waxholmsbåt t/r från Norrtälje (3 h enkel), lunch på krogen',
-      breakdown: [
-        { item: 'Buss från Stockholm till Norrtälje', price: '~50–80 kr (SL)' },
-        { item: 'Waxholmsbåt t/r Norrtälje–Norröra', price: '~180 kr' },
-        { item: 'Lunch Norröra Krog', price: '125–165 kr' },
-        { item: 'Medhavd matsäck (snacks + dryck)', price: '100–150 kr' },
-      ],
-      tips: [
-        'Norröra är ett Astrid Lindgren-pilgrimsmål — inspelningsplatserna för Saltkråkan är välbevarade.',
-        'Restiden är lång (3 h enkel) — planera en heldag eller övernattning.',
-        'Kombinera gärna med grannöarna Söderöra eller Fejan för ett längre norrskärgårdsäventyr.',
-      ],
-    },
+    restaurants: [{ name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.' }],
     tips: [
       'Norröra är bäst kombinerat med en tur till Fejan eller Arholma för en längre norrskärgårdsdag.',
       'Inspelningsplatserna från "Vi på Saltkråkan" är utmärkta på ön — Saltkråkans hus och bryggan känns igen direkt om du vuxit upp med TV-serien.',
@@ -1667,14 +1541,14 @@ export const ISLANDS: Island[] = [
       'Vandringsstigarna på Nåttarö är välmarkerade och tar en timme att gå runt i lugnt tempo. Reservatets fågellivet är rikt under vår och höst, häckande alfågel, ejder och sjöorre är vanliga syn. Ta med kikare om möjligheten finns.',
       'Nåttarö intar en viktig position i den södra Stockholmsskärgården som en av de mer betydande naturreservatsöarna. Ön är skyddad som naturreservat, vilket formar både vad som finns där och vad som inte finns. Utvecklingen är minimal, den kommersiella infrastrukturen begränsad och den naturliga miljön är den primära anledningen att besöka. Den skyddsstatus har bevarat en karaktär som många mer tillgängliga öar har förlorat.',
       'Ön är känd för att ha en av de bättre sandstränderna i den södra skärgården. Sandstränder är genuint sällsynta i Stockholms klippdominerande skärgårdslandskap, och Nåttarös strand är tillräckligt stor för att vara värd att specifikt resa till. I juli lockar stranden besökare som söker en strandupplevelse i skärgårdskontext, något svårt att hitta på andra ställen i systemet.',
-      'Badkvaliteten vid Nåttarö är god. Stranden möjliggör gradvis instegsväg i vattnet, framför allt nyttigt för barn och de som föredrar att inte hoppa från klippor, och den omgivande havs-temperaturen under högsommaren når det område där ett utdraget bad är bekvämt för de flesta. Vattenklarheten i den här delen av ytterskärgården är också generellt bättre än i mer slutna, inre skärgårdsvikar.',
-      'Skogen på Nåttarö har gammelskogs-egenskaper i vissa avsnitt. Naturreservatsstatus har tillåtit träd att mogna bortom vad som är typiskt i skött skog. Att promenera in i öns inre rör sig från strandmiljön in i tät, tyst skogsmark där fågellivet är annorlunda från kustpartierna. Kontrasten mellan den öppna stranden och den slutna skogen är ett av de mer intressanta aspekterna av öns landskap.',
+      'Badkvaliteten vid Nåttarö är god. Stranden möjliggör gradvis instegsväg i vattnet, framför allt nyttigt för barn och de som föredrar att inte hoppa från klippor, och den omgivande havs-temperaturen under högsommaren når det område där ett utdraget bad är bekvämt för de flesta. Vattenklarheten i den här delen av ytterskärgården är också generellt bättre än i mer inneslutet, inre skärgårdsvikar.',
+      'Skogen på Nåttarö har gammelskogs-egenskaper i vissa avsnitt. Naturreservatsstatus har tillåtit träd att mogna bortom vad som är typiskt i skött skog. Att promenera in i öns inre rör sig från strandmiljön in i tät, tyst skogsmark där fågellivet är annorlunda från kustsektionerna. Kontrasten mellan den öppna stranden och den inneslutet skogen är ett av de mer intressanta aspekterna av öns landskap.',
       'Nåttarö är nåbar med Waxholmsbåt från Stockholm, med resan tagande ungefär två och en halv till tre timmar beroende på rutt och säsong. Dagsutflykter är möjliga men restiden innebär att dagen kräver en tidig start och en acceptans av begränsad tid på ön. En övernattning, om boende finns tillgängligt, skapar en mer bekväm relation till öns avstånd.',
       'Det begränsade kommersiella utbudet på Nåttarö är del av dess attraktion och del av dess praktiska utmaning. Det finns ingen etablerad restaurang i konventionell mening. Besökare bör ta med mat och vatten, framför allt om de stannar för en hel dag. Öns naturreservatsstatus gör detta lämpligt: upplevelsen här handlar specifikt om den naturliga miljön snarare än en kurerad besöksupplevelse.',
-      'Fågelskådning på Nåttarö är framför allt bra på våren. Öns läge i den yttre södra skärgården gör den till en naturlig hållplats för migrerande fåglar och kombinationen av strand, skogsbryn och omgivande vatten skapar varierade biotoper som lockar flera arter. Tidigt maj är typiskt den mest aktiva perioden.',
+      'Fågelskådning på Nåttarö är framför allt bra på våren. Öns läge i den yttre södra skärgården gör den till en naturlig hållplats för migrerande fåglar och kombinationen av strand, skogsbryn och omgivande vatten skapar biotopsdiversitet som lockar flera arter. Tidigt maj är typiskt den mest aktiva perioden.',
       'Stranden på Nåttarö vetter mot sydväst, vilket innebär att den fångar eftermiddags- och kvällssol. Den orienteringen gör sena eftermiddagsbesök framför allt behagliga under de långa sommardagarna. Det lågt vinklade ljuset på vattnet och sanden i den riktningen har en kvalitet som norrvettande stränder inte kan producera.',
       'Nåttarö är ärlig om vad det är: ett naturreservat med en bra strand, bra skog, begränsade tjänster och en två-till-tre-timmars båtresa från Stockholm. Inom de parametrarna är det utmärkt. Utanför dem, om någon söker restauranger, aktiviteter, flera boendealternativ eller enkel access, passar andra öar bättre. Ön är värd att känna till eftersom den fyller ett specifikt gap: kvalitets-strandupplevelse i skärgårdskontext, utan de folkskaror som dyker upp på de få andra sandstrandsöarna.',
-      'För familjer med barn som gillar strandtid och enkla friluftsaktiviteter är Nåttarö ett av de mer lämpade ytterskärgårdsmålen. Stranden är trygg, naturreservats-miljön är pedagogisk i sig och kombinationen av bad, promenader och picknick ger en full och relativt lågbudget-dag.',
+      'För familjer med barn som gillar strandtid och enkla friluftaktiviteter är Nåttarö ett av de mer lämpade ytterskärgårdsmålen. Stranden är trygg, naturreservats-miljön är pedagogisk i sig och kombinationen av bad, promenader och picknick ger en full och relativt lågbudget-dag.',
       'En dag på Nåttarö passar som avslutning på en längre skärgårdsresa lika väl som ett isolerat utflyktssmål. Den specifika kombinationen av strand och skog, stillhet och naturkvalitet, gör den till en bra avkopplingsdag i kontrast till mer aktivitetsfyllda öar som Sandhamn eller Vaxholm.',
       'Nåttarös naturreservatsstatus innebär att det finns regler att känna till. Tältning är tillåten på utpekade platser men inte godtyckligt. Hundar ska hållas kopplade under fågelns häckningstid. Det är rimliga regler för att bevara vad som gör ön värd att besöka, och att respektera dem är del av kontraktet med en plats av den här typen.',
       'Nåttarö illustrerar ett mönster som återkommer i skärgårdssystemet: de öar som är svårast att nå och minst kommersiellt drivna tenderar att erbjuda de renaste naturupplevelserna. Det är inte en slump. Tillgängligheten filtrerar bort en viss typ av besökare och skapar utrymme för en annan. För dem som söker den typen av upplevelse är Nåttarö ett kärnexempel.',
@@ -1700,24 +1574,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Utö/Dalarö', time: 'Varierar', desc: 'Ankringsmöjligheter i flera skyddade vikar.', icon: '⛵' },
     ],
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
-    restaurants: [
-      { name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.', price_example: 'Lunch 115–165 kr, kvällsmeny 155–225 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–20', book_required: false },
-    ],
-    day_cost: {
-      budget_per_person: '350–650 kr',
-      includes: 'Utö Express + buss från Nynäshamn, lunch på krogen, medhavd picknick',
-      breakdown: [
-        { item: 'Pendeltåg till Nynäshamn + buss', price: '~50–80 kr (SL)' },
-        { item: 'Utö Express (säsongsbar) t/r', price: '~160 kr' },
-        { item: 'Lunch Nåttarö Krog', price: '115–165 kr' },
-        { item: 'Medhavd picknick vid sandstranden', price: '50–100 kr' },
-      ],
-      tips: [
-        'Nåttarö är ett naturreservat — ta med allt du behöver, krogen är enda matplatsen.',
-        'Sandstranden vetter mot sydväst — bäst ljus och sol på eftermiddagen.',
-        'Utö Express kör bara juni–aug, kontrollera tidtabell i förväg.',
-      ],
-    },
+    restaurants: [{ name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.' }],
     tips: [
       'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
       'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
@@ -1782,25 +1639,10 @@ export const ISLANDS: Island[] = [
       { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn vid södra bryggan.', spots: 25, fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.', slug: 'ingmarso-krog', price_example: 'Dagens rätt 145–175 kr, kvällsmeny 195–265 kr', open_season: 'Juni–Augusti', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, child_menu: true },
-      { name: 'Ingmarsö Bageri', type: 'Bageri', desc: 'Nybakat bröd, fika och enkla bryggluncher.', price_example: 'Kaffe + bulle 65–75 kr, smörgås 85–115 kr', open_season: 'Maj–September', open_hours: '08–14' },
-      { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror — öppen året om.', open_season: 'Helår', open_hours: 'Vardagar 09–17, helg 10–15' },
+      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.', slug: 'ingmarso-krog' },
+      { name: 'Ingmarsö Bageri', type: 'Bageri', desc: 'Nybakat bröd, fika och enkla bryggluncher.' },
+      { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror — öppen året om.' },
     ],
-    day_cost: {
-      budget_per_person: '350–700 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, kaffe på bageriet, ev. proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen', price: '240 kr' },
-        { item: 'Lunch Ingmarsö Krog (dagens rätt)', price: '145–175 kr' },
-        { item: 'Kaffe + bulle Bageriet', price: '65–75 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Hyr cykel vid södra bryggan — spara tid och se mer av ön.',
-        'Lunch på krogen och frukost på bageriet är den naturliga kombinationen.',
-        'Kombination med Finnhamn (övernattning) gör att du får ut mer av resan.',
-      ],
-    },
     tips: [
       'Båtluffarleden mellan Ingmarsö och Finnhamn med roddbåt över sundet är ett klassiskt skärgårdsäventyr — ta hela dagen.',
       'Två bryggor — norra och södra — kontrollera tidtabellen för rätt brygga.',
@@ -1835,10 +1677,10 @@ export const ISLANDS: Island[] = [
       'Öns grusvägar lämpar sig väl för cykel. Det tar en halv dag att cykla runt och se de viktigaste delarna, kyrkan, de gamla gårdarna i byn, klipporna söderut och de naturhamnar som länge varit seglares hemliga viloplatser. Cyklar kan hyras på ön under sommarsäsongen.',
       'Nämdö har haft fast befolkning sedan medeltiden och det märks i bebyggelsens täthet och variation. Det är inte en öde ö med en sommarkiosk, det är ett fungerande samhälle med egna traditioner, egna invånare och en historia som inte började med turismen. Det gör det till en annan typ av skärgårdsupplevelse.',
       'Nämdö är en avsevärd ö i den södra Stockholmsskärgården som förblir märkbart mindre besökt än jämförbara öar i liknande läge. Det beror delvis på båtlogistiken, förbindelserna är färre och kräver mer planering, och delvis på öns egen karaktär, som erbjuder natur och stillhet framför kommersiell attraktion. Resultatet är en genuint avlägsen känsla kombinerad med rimlig tillgänglighet från Stockholm.',
-      'Öns landskap är varierat och storskaligt. Skogar, jordbruksavsnitt, klippor och skyddade vikar existerar inom öns väsentliga yta. Att promenera hela omkretsen tar flera timmar och avslöjar olika aspekter av ön vid olika punkter. De inre skogspartierna har en autentisk svensk skogskvalitet, inte skött natur utan produktionsskog med all dess tillhörande karaktär.',
+      'Öns landskap är varierat och storskaligt. Skogar, jordbruksavsnitt, kustkliffor och skyddade vikar existerar inom öns väsentliga yta. Att promenera hela omkretsen tar flera timmar och avslöjar olika aspekter av ön vid olika punkter. Skogsinteriorssektionerna har en autentisk svensk skogskvalitet, inte skött natur utan produktionsskog med all dess tillhörande karaktär.',
       'Nämdö kyrka är en av de äldre historiska strukturerna i den södra skärgården. Öarnas kyrkor i Stockholmsskärgården var historiskt viktiga sociala och administrativa centrum för samhällen som annars var isolerade av vatten. Kyrkan på Nämdö bar den funktionen för generationer av öbor och byggnaden bevarar sin historiska karaktär.',
-      'Fisket har varit centralt för ölivet här i sekler. De omgivande vattnen är bra för havsöring och de djupare partierna rymmer abborre och andra salttoleranta sötvattensarter. Fisketraditionen här är praktisk snarare än fritidspräglad i sin ursprung, och lokalt fiske pågår fortfarande parallellt med den allt mer besökarinriktade ekonomin.',
-      'Badmöjligheterna runt Nämdö är produktiva. De klipphällsrika kustpartierna ger tillgång till rent skärgårdsvatten på flera ställen och de skyddade vikarna värms upp tillräckligt till midsommaren. Bristen på trängsel innebär att hitta en privat badplats, en sällsynthet på de mest populära öarna i juli, är fullt möjligt på Nämdö även under högsäsongen.',
+      'Fisket har varit centralt för ölivet här i sekler. De omgivande vattnen är bra för havsöring och de djupare sektionerna rymmer abborre och andra salttoleranta sötvattensarter. Fisketraditionen här är funktionell snarare än rekreationell i sin ursprung, och lokalt fiske pågår fortfarande parallellt med den allt mer besökarinriktade ekonomin.',
+      'Badmöjligheterna runt Nämdö är produktiva. De klipphälliga kustsektionerna ger tillgång till rent skärgårdsvatten på flera ställen och de skyddade vikarna värms upp tillräckligt till midsommaren. Bristen på trängsel innebär att hitta en privat badplats, en sällsynthet på de mest populära öarna i juli, är fullt möjligt på Nämdö även under högsäsongen.',
       'Den permanenta gemenskapen på Nämdö är liten men aktiv. Helårsbor upprätthåller öns grundläggande funktioner och vissa begränsade tjänster är i drift under vinterhalvåret. Förhållandet säsongsbesökare till permanenta invånare är mer balanserat här än på rent turistöar, vilket bevarar en mer autentisk gemenskapens karaktär.',
       'Nämdö passar besökare villiga att planera transporten noggrant och acceptera begränsade kommersiella tjänster i utbyte mot en genuint lugnare och mer naturlig upplevelse än de huvudsakliga skärgårdsmålen erbjuder. Det är specifikt bra för dem som vill ha ett flerdagsvistelse i ytterskärgården utan aktivitetsnivåerna hos Sandhamn eller den organiserade infrastrukturen hos Utö.',
       'Naturkvaliteten på Nämdö är hög. Kombinationen av kust-, skogs- och jordbrukslandskap, det renare ytterskärgårdsvattnet och frånvaron av intensiv turistutveckling innebär att ön levererar vad de flesta föreställer sig när de tänker på Sveriges ö-kust, utan de massor som de mest kända versionerna av den bilden lockar.',
@@ -1875,24 +1717,9 @@ export const ISLANDS: Island[] = [
       { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', spots: 20, fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.', price_example: 'Lunch 135–165 kr, enkel middag 175–225 kr', open_season: 'Juni–Augusti', open_hours: '12–20', book_required: false },
-      { name: 'Nämdö Lanthandel', type: 'Handel', desc: 'Dagligvaror och proviant.', open_season: 'Maj–September', open_hours: '09–17' },
+      { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.' },
+      { name: 'Nämdö Lanthandel', type: 'Handel', desc: 'Dagligvaror och proviant.' },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Båtbiljett t/r från Stavsnäs (ingår i SL), lunch på krogen, proviant',
-      breakdown: [
-        { item: 'SL-pendeltåg + buss till Stavsnäs', price: '~50 kr' },
-        { item: 'Waxholmsbåt t/r (med SL-kort)', price: '0 kr' },
-        { item: 'Lunch Nämdö Krog', price: '135–165 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Nämdö ingår i SL-zonen — ta med SL-kort och sänk transportkostnaden markant.',
-        'Ta med matsäck som backup — krogen har begränsade öppettider.',
-        'Bra halvdagsstopp kombinerat med Gällnö eller Möja.',
-      ],
-    },
     tips: [
       'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
       'Kyrkan från 1798 är öppen sommartid — den åttakantiga gustavianska träkyrkan är ovanlig i sitt slag.',
@@ -1922,7 +1749,7 @@ export const ISLANDS: Island[] = [
     name: 'Svartsö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '🏝️',
+    emoji: 'island',
     tagline: 'Bilfri ö i Värmdö — skärgårdens bästa lanthandel och en levande helårsby.',
     description: [
       'Svartsö ligger i Stockholms mellersta skärgård öster om Ljusterö och väster om Ingmarsö, och tillhör Värmdö kommun. Med cirka 65 åretruntinvånare är ön ett av få mellanstora skärgårdssamhällen som behållit en levande helårsbefolkning, komplett med skola, restauranger, lanthandel, apotek- och Systembolags-ombud.',
@@ -1934,10 +1761,10 @@ export const ISLANDS: Island[] = [
       'Svartsö är en mellanstor ö i Stockholms centrala skärgård, tillgänglig med bilfärja utöver den reguljära Waxholmsbåtrutten. Bilfärjeförbindelsen gör Svartsö mer praktisk för familjer som reser med utrustning, cyklister som anländer med egna cyklar eller besökare som föredrar att slippa navigera båttidtabeller. Den tillgängligheten är en av öns definierande praktiska egenskaper.',
       'Öns relativt plana interior gör cykling okomplicerat. Stignätverket täcker tillräckligt av ön för ett bra halvdags cykelprogram utan krävande rutter eller markanta uppförsbackar. Cykling är troligen det bästa sättet att se hela spannet av öns landskap: klipphälliga östra kust, skyddade västra vikar, jordbruksavsnitt och skogbevuxna centraldelar.',
       'Den permanenta befolkningen på Svartsö är blygsam men ger ön helårskaraktär. En lokal mataffär och grundläggande tjänster är i drift under hela året för invånarna. Under sommaren expanderar dessa tjänster för att tillgodose säsongsbesökarna som använder ön som ett lugnare alternativ till mer välbesökta centrala skärgårdsdestinationer.',
-      'Bad är tillgängligt från flera punkter längs öns strandlinje. De klipphällar som är typiska för den centrala skärgården ger naturlig tillgång till havet och vattentemperaturen i de skyddade västra vikarna värms till bekväma badtemperaturer till mitten av juli. Kombinationen att cykla till ett avlägset hörn av ön och bada från klipporna därifrån är den karakteristiska Svartsö-aktiviteten.',
-      'Landskapet varierar mellan den mer exponerade östra kusten och de skyddade västra vattnen. Östsidan, mot mer öppet skärgårdsvatten, tenderar att ha starkare vindar och mer dramatiska klippformationer. Den västra och norra delen är mer skyddat och lugnare, bättre för bad och mer skyddade från vind.',
+      'Bad är tillgängligt från flera punkter längs öns strandlinje. De klipphällar som är typiska för den centrala skärgården ger naturlig tillgång till havet och vattentemperaturen i de inneslutet västra vikarna värms till bekväma badtemperaturer till mitten av juli. Kombinationen att cykla till ett avlägset hörn av ön och bada från klipporna därifrån är den karakteristiska Svartsö-aktiviteten.',
+      'Landskapet varierar mellan den mer exponerade östra kusten och de skyddade västra vattnen. Östsidan, mot mer öppet skärgårdsvatten, tenderar att ha starkare vindar och mer dramatiska klippformationer. De västra och norra sektionerna är mer inneslutet och lugnare, bättre för bad och mer skyddade från vind.',
       'Fågelskådning på Svartsö belönar tålamod. Blandningen av biotoper, kust, jordbruksmark och skog, lockar ett bredare arturval än enhetliga öar. Jordbruksmarkerna är framför allt bra på våren när migrerande fåglar behöver öppen mark för att äta.',
-      'Matalternativen på Svartsö är blygsamma. Ett kafé eller enkel restaurang är öppen under sommarmånaderna men utbudet är begränsat. Besökare som planerar hela dagar på ön bör ta med proviant eller komplettera med det som finns tillgängligt lokalt. Betoningen här är friluftsaktivitet snarare än matdestination.',
+      'Matalternativen på Svartsö är blygsamma. Ett kafé eller enkel restaurang är öppen under sommarmånaderna men utbudet är begränsat. Besökare som planerar hela dagar på ön bör ta med proviant eller komplettera med det som finns tillgängligt lokalt. Betoningen här är friluftaktivitet snarare än matdestination.',
       'Svartsö fungerar framför allt bra som bas för att utforska den omgivande gruppen av centrala skärgårdsöar. Bilfärjeförbindelsen innebär att anlända med cykel och använda ön som central punkt, med dagsutflykter med båt till grannöar, är ett praktiskt och trivsamt sätt att strukturera ett flerdagars skärgårdsbesök.',
       'Öns närhet till Stockholm, märkbart kortare än de sydligaste ytterskärgårdsöarna, kombinerat med bilfärjeaccess innebär att den kan nås utan omständlig planering. Ett beslut en fredagsmorgon att tillbringa helgen på Svartsö är mer genomförbart än ett jämförbart beslut om Utö eller Arholma. Denna spontanitets-vänlighet är underskattat som en kvalitet.',
       'I september och oktober antar Svartsö en annan karaktär. Sommarbesökarna avreser och ön återgår till sin helårs-gemenskapsrytm. Båtförbindelserna glesnar och matverksamheterna stänger. Men landskapet, nu i tidig höstfärg, och kvaliteten hos tom skärgårds-stillhet gör ett senssäsongsbesök genuint tilltalande för dem som söker det.',
@@ -1972,24 +1799,9 @@ export const ISLANDS: Island[] = [
       { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', spots: 20, fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', price_example: 'Lunch 155–195 kr, middag 225–325 kr', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, phone: '08-542 480 40', child_menu: true },
-      { name: 'Svartsö Lanthandel', type: 'Handel', desc: 'Skärgårdens kanske bäst sorterade lanthandel — apotek- och Systembolagsombud.', open_season: 'Helår', open_hours: 'Mån–Fre 09–18, Lör–Sön 10–15' },
+      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog' },
+      { name: 'Svartsö Lanthandel', type: 'Handel', desc: 'Skärgårdens kanske bäst sorterade lanthandel — apotek- och Systembolagsombud.' },
     ],
-    day_cost: {
-      budget_per_person: '350–700 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeluthyrning, ev. proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen/Stavsnäs', price: '240 kr' },
-        { item: 'Lunch Svartsö Krog', price: '155–195 kr' },
-        { item: 'Cykeluthyrning (heldagspass)', price: '100–150 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Boka bord på krogen i förväg — högsäsong kan vara fullbokat.',
-        'Hyr cykel vid lanthandeln och cykla hela ön runt (14 km bilfria vägar).',
-        'Lanthandeln med apoteksombud och Systembolaget är ett skäl i sig att besöka.',
-      ],
-    },
     tips: [
       'Lanthandeln är en sevärdhet i sig — överraskande välsorterad för en bilfri ö.',
       'Skola och året-runt-befolkning gör att ön är levande även utanför sommarsäsongen.',
@@ -2019,7 +1831,7 @@ export const ISLANDS: Island[] = [
     name: 'Runmarö',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
-    emoji: '⛵',
+    emoji: 'sailboat',
     tagline: 'Författarnas ö — Strindberg, Söderberg och Tomas Tranströmer hämtade alla inspiration här.',
     description: [
       'Runmarö är kanske Sveriges mest litterära ö. August Strindberg gjorde den känd genom sina somrar på 1880-talet, hans roman "I havsbandet" (1890) skildrar visserligen Huvudskär men är skriven utifrån miljöerna på Runmarö. Hjalmar Söderberg följde i Strindbergs spår, och Tomas Tranströmer (1931–2015), Nobelpristagare i litteratur 2011, tillbringade somrarna på sin morfars lotsplats vid "Gatan" på Runmarö hela sitt liv. Diktcykeln "Östersjöar" (1974) är direkt inspirerad av öns vatten och människor.',
@@ -2030,16 +1842,16 @@ export const ISLANDS: Island[] = [
       'Gästhamnen på Runmarö är ett lugnt alternativ till Sandhamns fullpackade KSSS-hamn. Avståndet mellan de två öarna är bara ett par timmar med normal seglartakt, och kontrasten är enorm. Väljer man Runmarö vaknar man med fågelsång istället för grannbåtens generator.',
       'Runmarö lyfts konsekvent fram som en av Stockholms skärgårds bästa cykelöar, och beskrivningen är träffande. Terrängen är mestadels plan, stigarna och vägarna välskötta och öns storlek ger tillräckligt med sträcka för en meningsfull tur utan att kräva hög konditionsnivå. Cykeluthyrning finns vid hamnen från tidig sommar och en runda av ön tar ungefär två till tre timmar med stopp.',
       'Ön sitter i den centrala-södra delen av Stockholms skärgård och är nåbar med Waxholmsbåt från Stockholm. Resan tar ungefär två timmar. Det läget placerar den inom praktiskt räckhåll för en dagstur från staden, men öns cykelkaraktär belönar ett mer lugnt besök.',
-      'Landskapet omväxlar mellan mer exponerade kustnära avsnitt, skogslandet i det inre och öppna jordbruksfläckar. Den variationen innebär att cykelupplevelsen inte är monoton: terrängen förändras frekvent och vyerna skiftar mellan öppet hav, skyddade vikar och skogsspår. Kustpartierna bjuder regelbundet in till stopp, att blicka ut över vattnet och vila på en klipphäll.',
+      'Landskapet omväxlar mellan mer exponerade kustnära avsnitt, skogsinterior och öppna jordbruksfläckar. Den variationen innebär att cykelupplevelsen inte är monoton: terrängen förändras frekvent och vyerna skiftar mellan öppet hav, skyddade vikar och skogsspår. Kustsektionerna bjuder regelbundet in till stopp, att blicka ut över vattnet och vila på en klipphäll.',
       'Runmarö har en permanent befolkning av boende som lever på ön under hela året, vilket ger den en grad av gemenskapens infrastruktur bortom vad säsongsöar kan erbjuda. En lokal mataffär, tillgänglig under öppettiderna, betjänar både invånare och sommarbesökare. Den typen av fungerande affär tillför praktiskt värde för flerdagsboende.',
       'Badmöjligheter är goda runt Runmarö. Det omgivande vattnet är rent och de klippiga plattformarna runt ön ger naturlig tillgång till havet. Kombinationen av cykling och bad, en förmiddag på cykeln och eftermiddagar i vattnet, gör ön väl lämpad för aktiva dagsbesökare eller dem som stannar en eller två nätter.',
-      'Ön har inga exklusiva restaurangalternativ. Det tillgängliga matutbudet är blygsamt, kaféstil snarare än restaurangnivå. Besökare som planerar en mer ambitiös matupplevelse bör antingen ta med proviant eller hantera förväntningarna. Öns styrka är friluftsaktivitet, inte matkulturell ambition.',
+      'Ön har inga exklusiva restaurangalternativ. Det tillgängliga matutbudet är blygsamt, kaféstil snarare än restaurangnivå. Besökare som planerar en mer elaborate matupplevelse bör antingen ta med proviant eller hantera förväntningarna. Öns styrka är friluftaktivitet, inte matkulturell ambition.',
       'Runmarö hänger ihop väl med grannöarna i området. Det omgivande båtnätet kopplar det till andra cykel- och vandringsdestinationer, vilket gör det till ett möjligt stopp på ett längre skärgårdsitinerarium snarare än nödvändigtvis en slutdestination.',
       'Den bästa perioden att besöka Runmarö är från sent maj till och med september. Cykelsäsongen öppnar när stigarna torkat efter vintern och öns vegetation är på sin bästa från juni och framåt. September ser lättare folkmassor med bibehållen full cykelsäsong och acceptabla vattentemperaturer för bad.',
       'Familjer med äldre barn finner Runmarö väl lämpat: den plana cykling, badet och den allmänna tryggheten i öinneslutna aktiviteter fungerar bra för barn som klarar ett par timmar på cykel. Yngre barn i cykelsits syns också vanligen. Frånvaron av bilar på huvudöns stigar adderar till attraktionen för familjer.',
       'Runmarö är ett specifikt slags ö, bra på en specifik uppsättning aktiviteter och utan anspråk på att vara något den inte är. För dem som vill ha cykling, bad och en genuin skärgårdsmiljö utan kommersiellt brus levererar den pålitligt och utan besvikelse.',
       'Runmarö har en funktion som vältrafikerat transitläge i det centrala skärgårdslopp som Waxholmsbåtarna trafikerar. Det innebär att det faktiskt är ganska enkelt att kombinera ett Runmarö-besök med en annan ö på samma dag, resa ut på morgonen, cykla och bada, och ta kvällsbåten tillbaka med ett stopp vid en annan ö på vägen. Det är just den typ av spontan skärgårds-logistik som Waxholmsbåtssystemet möjliggör.',
-      'Klippbadets tradition är stark på Runmarö. Det finns inga badvakter, inga avgränsade badplatser och inga anläggningar. Man hittar en klipphäll, lägger sin handduk och hoppar i. Det är det renaste formatet av skärgårdsupplevelse och Runmarö levererar det utan onödig omständlighet.',
+      'Klippbadets tradition är stark på Runmarö. Det finns inga lifeguards, inga avgränsade badsektioner och inga anläggningskomplexitet. Man hittar en klipphäll, lägger sin handduk och hoppar i. Det är det renaste formatet av skärgårdsupplevelse och Runmarö levererar det utan onödig omständlighet.',
       'Det finns en enkelhet i Runmarö-konceptet som är svår att argumentera emot: en ö med bra cykling, bra bad, inga bilar och Waxholmsbåt fram och tillbaka. Det täcker de grundläggande behoven för en bra dag i skärgården utan onödig komplexitet. Det är inte det mest dramatiska erbjudandet i systemet, men det är ett av de mest pålitliga.',
       'Runmarö lämpar sig ovanligt väl för första gångsbesök i skärgården. Enkelheten i logistiken, det plana cyklandet och den inbjudande strukturen med hamn, affär och klar badplats gör det till ett bra introduktionsscenario för skärgårdsnaiva besökare som sen kan ta sig vidare till mer avancerade mål.',
     
@@ -2070,24 +1882,9 @@ export const ISLANDS: Island[] = [
       { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', spots: 50, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', price_example: 'Lunch 135–175 kr, kvällsmeny 185–255 kr', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
-      { name: 'Runmarö Lanthandel', type: 'Handel', desc: 'Proviant och dagligvaror.', open_season: 'Juli–Mitten av Augusti', open_hours: '09–18' },
+      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.' },
+      { name: 'Runmarö Lanthandel', type: 'Handel', desc: 'Proviant och dagligvaror.' },
     ],
-    day_cost: {
-      budget_per_person: '350–650 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeltur och proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen/Stavsnäs', price: '240 kr' },
-        { item: 'Lunch Runmarö Krog', price: '135–175 kr' },
-        { item: 'Kaffe + bulle', price: '65–80 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ta cykel med på båten och cykla till Tranströmer-platsen vid "Gatan".',
-        'Krogen och lanthandeln håller kort säsong — ring i förväg utanför juli.',
-        'Lugnare och billigare alternativ till Sandhamn för övernattning med direktbåt hem.',
-      ],
-    },
     tips: [
       'Runmarösund är en av mellersta skärgårdens finaste naturhamnar — anlöp tidigt.',
       'Runmarö är ett lugnare alternativ till Sandhamn för övernattning med direktbåt till stan nästa dag.',
@@ -2548,14 +2345,6 @@ export const ISLANDS: Island[] = [
     related: ['singo', 'blido', 'norrora'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
     did_you_know: 'Väddö kanal är 18 km lång och började grävas 1820 av soldater från olika regementen. Sveriges första ångdrivna mudderverk — konstruerat av Samuel Owen — användes vid bygget. Kanalen öppnades för trafik 1835 och invigdes officiellt 1840 av Karl XIV Johan. Idag passerar omkring 22 000 båtar genom kanalen varje år.',
-    seasonal: {
-      open: 'Hela året',
-      peak: 'Juli',
-      best: 'Juli (Herrängs Dansbana) eller Juni',
-      bestReason: 'Herrängs lindy hop-festival i juli är öns stora dragplåster och en upplevelse utan like. Juni ger kanal-idyllen utan festivalmassorna för lugnsökare.',
-      warning: 'Herräng-festival i juli ger fullt boende i hela Väddöområdet — boka månader i förväg om du vill vara med. Kanalens sluss är stängd utanför sommarsäsongen.',
-      months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
-    },
   },
 
   // ─── ASKÖ ────────────────────────────────────────────────────
@@ -3052,7 +2841,7 @@ export const ISLANDS: Island[] = [
     name: 'Muskö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
-    emoji: '⚓',
+    emoji: 'anchor',
     tagline: 'Gamla marinbasen — berghällshamnar och industrihistoria',
     description: [
       'Muskö är en större ö i södra skärgården som erbjuder varierad natur och en blandning av fast befolkning och sommargäster. Ön är bilfärjebetjänad och erbjuder goda möjligheter för längre vistelse.',
@@ -3428,7 +3217,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Färja', from: 'Räfsnäs / Furusund', desc: 'Färjetrafik året runt; vintertid beställningstrafik via M/S Riddarfjärden på Rödlöga-traden via Gräskö.', icon: '⛴' }],
-    harbors: [{ name: 'Gräskös brygga', desc: 'Den bebodda öns anlöpsbrygga.', spots: 10 }],
+    harbors: [{ name: 'Gräskös brygga', desc: 'Bebodd öns brygga.', spots: 10 }],
     restaurants: [],
     tips: ['Respektera privata tomter — många sommarstugor och permanentbo.', 'Kombinera med en tur till närliggande Rödlöga.'],
     related: ['rodloga', 'fejan', 'arholma'],
@@ -3444,8 +3233,8 @@ export const ISLANDS: Island[] = [
     emoji: '🌅',
     tagline: 'Övernattningsö med solnedgångsvyer mot Östersjön',
     description: [
-      'Långviksskäret i södra skärgården är ett populärt övernattningsalternativ för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
-      'Långviksskäret kombinerar naturvärdena på ett exponerat läge med möjligheter för enkel ankring. Badplatser och möjligheter för naturupplevelse erbjuds.',
+      'Långviksskäret i södra skärgården är ett populärt övernattningsscenario för seglare. Utsikten mot öppet hav och solnedgångarna är svåra att slå.',
+      'Långviksskäret kombinerar naturvärdena på ett exponerat läge med möjligheter för enkelt ankörning. Badplatser och möjligheter för naturupplevelse erbjuds.',
       'Långviksskäret passar för erfarna seglare som letar efter dramatisk natur och spektakulära solnedgångar på väg söderut.'
     ],
 
@@ -3612,14 +3401,6 @@ export const ISLANDS: Island[] = [
       'Ulvöhamn har ett fiskelägeskapell från 1622 — ett av de äldsta i Sverige.',
     ],
     did_you_know: 'Ulvön kallas "Surströmmingsön" och är hem till en av Sveriges sista aktiva surströmmingsfabriker. Ön nämns i historiska dokument redan på 1500-talet som en viktig fiskehamn längs norrlandskusten.',
-    seasonal: {
-      open: 'Juni–September',
-      peak: 'Juli–Augusti',
-      best: 'Mitten av Augusti',
-      bestReason: 'Surströmmingspremiären sker tredje torsdagen i augusti — ön är livlig, färjan går tätare och det är den mest genuina tidpunkten att besöka Ulvön. Julibadare hittar Sälesstranden på bästa sätt.',
-      warning: 'Höga Kusten-mynnet kan ha ojämna väderförhållanden. Kontrollera färjescheman noga — avgångarna är färre utanför högsäsongen och stoppas vid kraftig vind.',
-      months: ['off','off','off','off','off','limited','peak','peak','open','limited','off','off'],
-    },
   },
 
   {
@@ -3673,7 +3454,7 @@ export const ISLANDS: Island[] = [
     restaurants: [
       { name: 'Gutekällaren', type: 'Restaurang', desc: 'Inne i Visby ringmur. Gotlandslamm, rödspätta och lokalt hantverk­söl i medeltida valvmiljö.', slug: 'gutekallaren-gotland' },
       { name: 'Bakfickan', type: 'Bistro', desc: 'Enkel bistro i Visby med lokala råvaror och sommarvibb. Populär för lunch.', slug: 'bakfickan-gotland' },
-      { name: 'Krakas Krog', type: 'Restaurang', desc: 'Landsbygdskrog utanför Visby. Starka lokala råvaror — bokningsbar sommarupplevelse.', slug: 'krakas-krog-gotland' },
+      { name: 'Krakas Krog', type: 'Restaurang', desc: 'Landsbygdskrog utanför Visby. Starka lokala råvaror — bokningsbar sommaroplevelse.', slug: 'krakas-krog-gotland' },
     ],
     tips: [
       'Boka Destination Gotland-färjan minst 2–3 månader i förväg om du reser i juli med bil.',
@@ -3694,14 +3475,6 @@ export const ISLANDS: Island[] = [
       bad: { beaches: ['Tofta strand', 'Ljugarn', 'Sudersand (Fårö)'] },
     },
     did_you_know: 'Gotlands ringmur runt Visby är en av världens bäst bevarade medeltida stadsmurar. Den är nästan 3,4 km lång, har 44 torn och är i det närmaste komplett sedan 1100-talet.',
-    seasonal: {
-      open: 'April–Oktober',
-      peak: 'Juli–mitten av Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: allt öppet, sommarens kvalitet utan trängseln och de skyhöga priserna. September: badbart vatten, tomma restauranger, lägre hotellpriser och ett lugnare Visby.',
-      warning: 'Boka Destination Gotland-färjan minst 2–3 månader i förväg om du reser i juli med bil. Almedalsveckan (tidig juli) ger fullbokat Visby och höga priser.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
-    },
   },
 
   {
@@ -3712,7 +3485,7 @@ export const ISLANDS: Island[] = [
     emoji: '🌾',
     tagline: 'Solens och vindarnas ö — UNESCO-alvaret, 400 väderkvarnar och Östersjöns längsta sandstrand.',
     description: [
-      'Öland är Sveriges näst längsta ö och ett av landets mest omtyckta sommarmål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
+      'Öland är Sveriges näst längsta ö och ett av landets mest omtyckta sommermål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
       'Södra Ölands odlingslandskap är UNESCO-världsarv sedan 2000. Det så kallade Alvaret — en unik, kalkstensbaserad stäpp — är en av Europas mest sällsynta naturmiljöer och hem till hundratals växt- och fågelarter. Mer än 400 väderkvarnar ger Öland sin karaktäristiska siluett.',
       'I norr väntar Böda Sand, en av Skandinaviens längsta sandstränder, omgiven av Trollskogen — en vresig bokskog som ger en närmast magisk atmosfär. Eketorps ringborg från järnåldern och Borgholms slottsruin är välbevarade pärlor längs landsvägen.',
     ],
@@ -3762,14 +3535,6 @@ export const ISLANDS: Island[] = [
       'Ölandsmarknaden i Borgholm (tidig juli) är en av Sveriges äldsta marknader och ett lokalt evenemang i särklass.',
     ],
     did_you_know: 'Öland har fler soltimmar per år än nästan hela övriga Sverige — och fler än många platser på kontinenten. Klimatet liknar centrala Europa mer än norra Skandinavien.',
-    seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: alvaret blommar med orkidéer och backsippa, stränder är tomma och priser rimliga. September: badbart vatten fortfarande, fullständig lugn och naturen övergår i höstfärger.',
-      warning: 'Juli fullbokas tidigt — camping och hotell i Borgholm ska bokas månader i förväg. Ölandsbron kan ha kö på fredag eftermiddag i juli.',
-      months: ['off','off','off','limited','open','open','peak','peak','open','limited','off','off'],
-    },
   },
 
   // ── Göteborgs södra skärgård (Styrsöbolaget) ─────────────────────────────
@@ -3924,14 +3689,6 @@ export const ISLANDS: Island[] = [
     related: ['branno', 'styrso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'naturreservat', 'bilfritt', 'fågelliv', 'ytterst'],
     did_you_know: 'Vrångö naturreservats klippzoner är klassade som riksintresse för naturvård och hyser häckande skarvar, ejdrar och tärnor.',
-    seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli',
-      best: 'Juni eller September',
-      bestReason: 'Juni: reservatets fågelskyddsperiod börjar avta, havet är tyst och naturupplevelsen är ostörd. September: klart höstljus, inga turistmassorna och den vilda klippkusten på sitt bästa.',
-      warning: 'Fågelskyddsperiod i klippreservatet gäller april–juli — håll dig till markerade stigar. Cafét är bara öppet sommartid; ta med egen mat.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
-    },
   },
 
   {
@@ -3977,14 +3734,6 @@ export const ISLANDS: Island[] = [
     related: ['branno', 'styrso', 'asperon'],
     tags: ['göteborg', 'södra skärgård', 'sjöfart', 'gästhamn', 'bilfritt', 'styrsöbolaget'],
     did_you_know: 'Donsöborna äger rederiflottor värderade till miljarder kronor. Ön producerade per capita fler sjökaptener än något annat samhälle i Sverige under 1900-talets första hälft.',
-    seasonal: {
-      open: 'Hela året',
-      peak: 'Juli',
-      best: 'Juni eller September',
-      bestReason: 'Donsö har service året runt tack vare den fasta befolkningen. Juni och september ger lugnet och gästhamnens platser utan högsäsongens köer.',
-      warning: 'Gästhamnen tar fullt upp i juli — boka i god tid eller kom tidigt på morgonen för att säkra en plats. Bränsle finns hela sommarsäsongen.',
-      months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
-    },
   },
 
   {
@@ -4314,7 +4063,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Fågelskådare, fotografer, naturguider',
     },
     activities: [
-      { icon: '🦅', name: 'Fågelskådning', desc: 'Sillgrisslor och tordmular på klippavsatserna. Möjlighet att se alkor, havsörn och en rik kärlväxtflora. Guide medverkar på alla turer.' },
+      { icon: '🦅', name: 'Fågelskådning', desc: 'Sillgrisslor och tordmular på klippavsatserna. Möjlighet att se alkor, havsörn och ett rikt kärlväxtflora. Guide medverkar på alla turer.' },
       { icon: '🌿', name: 'Naturguidad tur', desc: 'Alla besök är guidade. Turerna tar ca 2 timmar och inkluderar promenad på öns leder med information om flora och fauna.' },
       { icon: '📸', name: 'Fotografera fåglar', desc: 'Möjlighet att komma mycket nära sillgrisslorna. En av de bästa möjligheterna för fågelfoto i norra Europa under häckningssäsongen.' },
     ],
@@ -4369,7 +4118,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '🏖', name: 'Sandstränder', desc: 'Öns hela kust är strand — vita sanddyner och relativt varmt Östersjövatten. Nästan alltid öde.' },
-      { icon: '🥾', name: 'Vandring', desc: 'Markerade leder runt ön och genom nationalparken. Fullrunda ca 18 km. Sandigt underlag — gott om insekter i juli.' },
+      { icon: '🥾', name: 'Vandring', desc: 'Markerade leder runt ön och genom nationalparken. Fullrunda ca 18 km. Sandig underlag — gott om insekter i Juli.' },
       { icon: '🔭', name: 'Mörkertidsstjärnor', desc: 'Gotska Sandön har en av Sveriges lägsta ljusföroreningar. Vintergatan syns med blotta ögat på en klar natt.' },
       { icon: '🌿', name: 'Naturstudier', desc: 'Unika sand­växter, havsörn, sälkoloni på norra stranden och ett ekosystem som saknar direkt jämförelse.' },
     ],
@@ -4468,14 +4217,6 @@ export const ISLANDS: Island[] = [
       kajak: { difficulty: 'lätt–medel', rental: false, notes: 'Kajakhyrning i Karlskrona' },
       bad: { beaches: ['Sydöstra klippstranden', 'Västra viken'] },
     },
-    seasonal: {
-      open: 'Juni–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni: klippbadet och naturreservatet på sitt bästa utan trängseln. September: Östersjön håller fortfarande badtemperatur och ön är nästan tom.',
-      warning: 'Färjan från Karlskrona kör bara sommarsäsong — utanför juni–september krävs privat båt. Ta med all mat och dryck.',
-      months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
-    },
   },
 
   // ─── STURKÖ ──────────────────────────────────────────────────────────────
@@ -4535,14 +4276,6 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Sturkö har en av de äldsta kontinuerligt bebodda fiskebefolkningarna i Blekinges skärgård. Fisket och sjöfarten präglade ön ända fram till 1900-talets mitt.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: true },
     activity_meta: { bad: { beaches: ['Östra klippstranden', 'Sandviken'] } },
-    seasonal: {
-      open: 'Maj–September',
-      peak: 'Juli–Augusti',
-      best: 'Juni eller September',
-      bestReason: 'Juni ger Östersjöns kallare men klara vatten och tomma campingplatser. September: Östersjön är badvarmt, skogens höstfärger är enastående och du har ön för dig själv.',
-      warning: 'Campingen är fullbokad i juli — kom tidigt eller boka i förväg. Butiken har begränsade öppettider utanför högsäsong.',
-      months: ['off','off','off','off','limited','open','peak','peak','open','limited','off','off'],
-    },
   },
 
   // ─── BLÅ JUNGFRUN ────────────────────────────────────────────────────────
@@ -4555,7 +4288,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Förtrollad nationalpark i Kalmarsund — häxor, labyrinter och urberg.',
     description: [
       'Blå Jungfrun är en av Sveriges märkligaste platser — en rund granitö mitt i Kalmarsund som i folklig tradition ansågs vara samlings­platsen för svenska häxor varje Skärtorsdag (Blåkulla-legenden). I verkligheten är ön ett geologiskt unikum: en rundad granitklump formad av inlandsisen med stenlabyrinten Trollebo som dess mest kända inslag.',
-      'Ön är nationalpark sedan 1926 och kan endast besökas med dagstur­båt från Oskarshamn eller Byxelkrok på Öland. Övernattning är inte tillåten. Varje besök är ett kortare men djupt minnesvärt möte med urbergets Sverige.',
+      'Ön är nationalpark sedan 1926 och kan endast besökas med dagstur­båt från Oskarshamn eller Byxelkrok på Öland. Övernattning är inte tillåten. Varje besök är ett kortare men djupt minneslöst möte med urbergets Sverige.',
     ],
     facts: {
       area: 'ca 0,66 km²',
