@@ -7,7 +7,7 @@
  * som rubriken lovade "INGA APPROXIMATIONER". Se /team-tavlan,
  * "Ersätt land-masken", för hela grävningen.
  *
- * Nu: bitpackat 50 m-raster byggt från OSM:s kustlinje (939 569 segment,
+ * Nu: bitpackat 25 m-raster byggt från OSM:s kustlinje (939 569 segment,
  * scripts/build-land-mask.mjs → scripts/build-land-raster.mjs), verifierat
  * mot 8 handkontrollerade sanity-punkter vid bygget. Even-odd-paritet
  * förankrad i östkanten (öppet hav).
@@ -30,7 +30,9 @@
  *    kan vi inte skilja land från vatten — pointOnLand svarar false
  *    (vi PÅSTÅR inte land) och validatePathLand rapporterar coverage så att
  *    ett "ok" utanför täckning aldrig kan tas som verifiering.
- *  - Upplösning: 50 m. Följ alltid sjökort.
+ *  - Upplösning: 25 m, KONSERVATIVT rastrerad (en cell är land om någon del
+ *    av den är land). Kobbar och uddar mindre än en cell finns därmed med,
+ *    men deras form är avrundad uppåt. Följ alltid sjökort.
  */
 
 import landRaster from './data/land-raster.json'
@@ -156,38 +158,44 @@ export function isLineCrossingLand(p1: [number, number], p2: [number, number]): 
   return segmentCrossesLand(p1[0], p1[1], p2[0], p2[1])
 }
 
-// ── Raster-A*: vägsökning direkt på 50 m-rastret ──────────────────────────
+
+// ── Raster-A*: vägsökning direkt på 25 m-rastret ──────────────────────────
 //
-// 2026-08-04 (kväll): ersätter det gamla 550 m-gridet i seaPathfinder, som
+// 2026-08-04 (kväll): ersatte det gamla 550 m-gridet i seaPathfinder, som
 // dels aldrig byggde en enda kant (nodnycklar "59.39000" jämfördes mot
 // söknycklar "59.395" — parseFloat åt upp nollorna), dels var för grovt för
-// skärgårdens sund (~300 m) även efter nyckelfix. Uppmätt 2026-08-04.
+// skärgårdens sund (~300 m).
 //
-// Algoritmen är samma som genererade de 609 verifierade rutterna:
-// 8-riktningars A* med hörnregel (diagonal kräver båda ortogonala cellerna
-// fria), kustnärhetsstraff (hellre marginal än kustkramning) och girig
-// genvägs-förenkling där varje genväg valideras mot rastret var ~30 m OCH
-// på produktionens exakta 20-sampelpositioner — resultatet klarar
-// validatePathLand per konstruktion.
+// 2026-08-04 (sent): rastret gick från 50 m centrumtestat till 25 m
+// konservativt. Med 50 m-centrumtest gav A* vägar upp till 90 m rakt över
+// skär — kobbar som täckte mindre än halva cellen fanns helt enkelt inte i
+// masken (12 landträffar över 5 grid-rutter, uppmätt mot exakta segment-
+// masken). Med 25 m konservativt: 0 landträffar över 7 testrutter.
+//
+// MINNE: 25 m ger 31 Mceller för hela bboxen. Att allokera A*-arrayer för
+// hela rutnätet vore ~500 MB per lambda. I stället allokeras ett SUB-GRID
+// runt start/mål (+30 % marginal), typiskt 3–60 MB, och återanvänds mellan
+// anrop när det räcker. Marginalen behövs för att A* ska kunna gå runt öar
+// som sticker ut utanför den raka linjen.
 
-const RASTER_DIRS_R = [-1, 1, 0, 0, -1, -1, 1, 1]
-const RASTER_DIRS_C = [0, 0, -1, 1, -1, 1, -1, 1]
-const RASTER_DIRS_W = [1, 1, 1, 1, Math.SQRT2, Math.SQRT2, Math.SQRT2, Math.SQRT2]
+const RASTER_DR = [-1, 1, 0, 0, -1, -1, 1, 1]
+const RASTER_DC = [0, 0, -1, 1, -1, 1, -1, 1]
+const RASTER_DW = [1, 1, 1, 1, Math.SQRT2, Math.SQRT2, Math.SQRT2, Math.SQRT2]
 const HEURISTIC_WEIGHT = 1.3
-const MAX_EXPANSIONS = 6_000_000
+const NEAR_LAND_PENALTY = 2.0
+const MAX_EXPANSIONS = 20_000_000
+const SUBGRID_MARGIN = 0.3
 
-// Lata singletons — allokeras först när raster-A* faktiskt används
-// (~46 MB i en varm lambda; återanvänds mellan anrop via stamp-versionering).
-let _gScore: Float32Array | null = null
-let _cameFrom: Int32Array | null = null
-let _stamp: Int32Array | null = null
-let _closed: Int32Array | null = null
-let _runId = 0
+// Återanvändbara buffertar (växer vid behov, krymper aldrig)
+let _bufCells = 0
+let _g: Float32Array | null = null
+let _from: Int32Array | null = null
+let _closed: Uint8Array | null = null
 let _heapId = new Int32Array(1 << 20)
 let _heapF = new Float32Array(1 << 20)
 let _heapN = 0
 
-function hpush(id: number, f: number): void {
+function heapPush(id: number, f: number): void {
   if (_heapN === _heapId.length) {
     const ni = new Int32Array(_heapN * 2)
     const nf = new Float32Array(_heapN * 2)
@@ -206,7 +214,7 @@ function hpush(id: number, f: number): void {
   }
 }
 
-function hpop(): number {
+function heapPop(): number {
   const id = _heapId[0]!
   _heapN--
   _heapId[0] = _heapId[_heapN]!; _heapF[0] = _heapF[_heapN]!
@@ -225,43 +233,80 @@ function hpop(): number {
   return id
 }
 
-const cellLat = (r: number): number => R.bbox.s + (r + 0.5) * R.cellLat
-const cellLng = (c: number): number => R.bbox.w + (c + 0.5) * R.cellLng
+const cellCenterLat = (r: number): number => R.bbox.s + (r + 0.5) * R.cellLat
+const cellCenterLng = (c: number): number => R.bbox.w + (c + 0.5) * R.cellLng
 
 /** Kustnära cell (någon av 8 grannar är land)? Straffas i A* — inte spärrad. */
-function nearLand(r: number, c: number): boolean {
+function cellNearLand(r: number, c: number): boolean {
   for (let dr = -1; dr <= 1; dr++)
     for (let dc = -1; dc <= 1; dc++)
       if ((dr !== 0 || dc !== 0) && cellLand(r + dr, c + dc)) return true
   return false
 }
 
-/** Spiralsök närmsta vattencell (max ~3 km). null om ingen hittas. */
+// En hamnkoordinat kan ligga inne på land (Möja i planner-client ligger
+// 1 050 m in på ön). Då snappar vi till närmaste vatten — men det får inte
+// vara en damm eller insjö. Kravet: cellen ska höra till en sammanhängande
+// vattenyta på minst 1,25 km². Verkliga vikar når havet genom sundet och
+// passerar; isolerade fickor (Möjas damm: 6 celler) gör det inte.
+const MIN_NAVIGABLE_CELLS = 2000
+const _floodQueue = new Int32Array(MIN_NAVIGABLE_CELLS + 8)
+const _floodSeen = new Set<number>()
+
+function isNavigableWater(r: number, c: number): boolean {
+  _floodSeen.clear()
+  let qh = 0, qt = 0
+  const start = r * R.cols + c
+  _floodQueue[qt++] = start
+  _floodSeen.add(start)
+  while (qh < qt && qt < MIN_NAVIGABLE_CELLS) {
+    const id = _floodQueue[qh++]!
+    const rr = (id / R.cols) | 0, cc = id % R.cols
+    for (let k = 0; k < 4; k++) {
+      const nr = rr + RASTER_DR[k]!, nc = cc + RASTER_DC[k]!
+      if (nr < 0 || nr >= R.rows || nc < 0 || nc >= R.cols) continue
+      const nid = nr * R.cols + nc
+      if (_floodSeen.has(nid) || cellLand(nr, nc)) continue
+      _floodSeen.add(nid)
+      if (qt < _floodQueue.length) _floodQueue[qt++] = nid
+    }
+  }
+  return qt >= MIN_NAVIGABLE_CELLS
+}
+
+/** Spiralsök närmsta FARBARA vattencell (max ~3 km). null om ingen hittas. */
 function snapToWaterCell(lat: number, lng: number): [number, number] | null {
   let r = Math.floor((lat - R.bbox.s) / R.cellLat)
   let c = Math.floor((lng - R.bbox.w) / R.cellLng)
   r = Math.max(0, Math.min(R.rows - 1, r))
   c = Math.max(0, Math.min(R.cols - 1, c))
-  if (!cellLand(r, c)) return [r, c]
-  for (let rad = 1; rad <= 60; rad++)
+  if (!cellLand(r, c) && isNavigableWater(r, c)) return [r, c]
+  const maxRad = Math.ceil(3000 / 25)
+  for (let rad = 1; rad <= maxRad; rad++)
     for (let dr = -rad; dr <= rad; dr++)
       for (let dc = -rad; dc <= rad; dc++) {
         if (Math.max(Math.abs(dr), Math.abs(dc)) !== rad) continue
         const nr = r + dr, nc = c + dc
         if (nr < 0 || nr >= R.rows || nc < 0 || nc >= R.cols) continue
-        if (!cellLand(nr, nc)) return [nr, nc]
+        if (cellLand(nr, nc)) continue
+        if (isNavigableWater(nr, nc)) return [nr, nc]
       }
   return null
 }
 
-/** Genvägskontroll: rastervatten var ~30 m OCH på prod-positionerna k/20. */
+/**
+ * Genvägskontroll: hela linjen mellan två punkter måste vara rastervatten.
+ * Samplas var ~15 m (under en halv cell) plus på produktionens exakta
+ * 20-sampelpositioner, så validatePathLand aldrig kan underkänna något vi
+ * har godkänt.
+ */
 function rasterSegmentClear(la1: number, ln1: number, la2: number, ln2: number): boolean {
   for (let k = 1; k < SAMPLES_PER_SEGMENT; k++) {
     const t = k / SAMPLES_PER_SEGMENT
     if (pointOnLand(la1 + (la2 - la1) * t, ln1 + (ln2 - ln1) * t)) return false
   }
-  const meters = Math.hypot((la2 - la1) / R.cellLat, (ln2 - ln1) / R.cellLng) * 50
-  const n = Math.max(SAMPLES_PER_SEGMENT, Math.ceil(meters / 30))
+  const cellsAway = Math.hypot((la2 - la1) / R.cellLat, (ln2 - ln1) / R.cellLng)
+  const n = Math.max(SAMPLES_PER_SEGMENT, Math.ceil(cellsAway * 2))
   for (let i = 1; i < n; i++) {
     const t = i / n
     if (pointOnLand(la1 + (la2 - la1) * t, ln1 + (ln2 - ln1) * t)) return false
@@ -270,14 +315,15 @@ function rasterSegmentClear(la1: number, ln1: number, la2: number, ln2: number):
 }
 
 /**
- * A* över 50 m-rastret mellan två punkter inom maskens täckning.
+ * A* över 25 m-rastret mellan två punkter inom maskens täckning.
  * Returnerar förenklad väg av [lat, lng] (start/mål är snappade vattenceller,
- * INTE anroparens exakta punkter) — eller null om täckning saknas eller
- * ingen vattenväg finns.
+ * INTE anroparens exakta punkter) — eller null om täckning saknas, om
+ * punkterna inte har farbart vatten inom 3 km, eller om ingen väg finns.
  */
 export function findRasterPath(
   startLat: number, startLng: number,
   endLat: number, endLng: number,
+  marginMultiplier: number = SUBGRID_MARGIN,
 ): Array<[number, number]> | null {
   if (!inMaskCoverage(startLat, startLng) || !inMaskCoverage(endLat, endLng)) return null
 
@@ -285,69 +331,84 @@ export function findRasterPath(
   const b = snapToWaterCell(endLat, endLng)
   if (!a || !b) return null
 
-  const N = R.rows * R.cols
-  if (!_gScore) {
-    _gScore = new Float32Array(N)
-    _cameFrom = new Int32Array(N)
-    _stamp = new Int32Array(N)
-    _closed = new Int32Array(N)
-  }
-  const gScore = _gScore, cameFrom = _cameFrom!, stamp = _stamp!, closed = _closed!
+  // ── Sub-grid: bara området runt start/mål, med marginal för omvägar ──
+  // Marginalen utgår från det STÖRSTA avståndet i någon axel. Med marginal
+  // per axel blir en långsmal rutt (Möja→Sandhamn: 618 celler i lat, 56 i lng)
+  // ett smalt band där A* inte kan gå runt öar — uppmätt: ingen väg.
+  const [ar, ac] = a, [br, bc] = b
+  const span = Math.max(Math.abs(ar - br), Math.abs(ac - bc))
+  const padR = Math.max(40, Math.ceil(span * marginMultiplier))
+  const padC = Math.max(40, Math.ceil(span * marginMultiplier))
+  const r0 = Math.max(0, Math.min(ar, br) - padR)
+  const r1 = Math.min(R.rows - 1, Math.max(ar, br) + padR)
+  const c0 = Math.max(0, Math.min(ac, bc) - padC)
+  const c1 = Math.min(R.cols - 1, Math.max(ac, bc) + padC)
+  const H = r1 - r0 + 1, Wd = c1 - c0 + 1
+  const cells = H * Wd
 
-  _runId++
-  _heapN = 0
-  const runId = _runId
-  const [r0, c0] = a
-  const [r1, c1] = b
-  const startId = r0 * R.cols + c0
-  const targetId = r1 * R.cols + c1
-  const h = (r: number, c: number): number => {
-    const dr = Math.abs(r - r1), dc = Math.abs(c - c1)
-    return (dr + dc + (Math.SQRT2 - 2) * Math.min(dr, dc)) * HEURISTIC_WEIGHT
+  if (cells > _bufCells) {
+    _g = new Float32Array(cells)
+    _from = new Int32Array(cells)
+    _closed = new Uint8Array(cells)
+    _bufCells = cells
   }
-  stamp[startId] = runId
-  gScore[startId] = 0
-  cameFrom[startId] = -1
-  hpush(startId, h(r0, c0))
+  const g = _g!, from = _from!, closed = _closed!
+  closed.fill(0, 0, cells)
+  g.fill(Infinity, 0, cells)
+  _heapN = 0
+
+  const idx = (r: number, c: number): number => (r - r0) * Wd + (c - c0)
+  const startId = idx(ar, ac), targetId = idx(br, bc)
+  const h = (r: number, c: number): number => {
+    const dr2 = Math.abs(r - br), dc2 = Math.abs(c - bc)
+    return (dr2 + dc2 + (Math.SQRT2 - 2) * Math.min(dr2, dc2)) * HEURISTIC_WEIGHT
+  }
+  g[startId] = 0
+  from[startId] = -1
+  heapPush(startId, h(ar, ac))
 
   let expanded = 0
   let found = false
   while (_heapN > 0) {
-    const id = hpop()
+    const id = heapPop()
     if (id === targetId) { found = true; break }
-    if (closed[id] === runId) continue
-    closed[id] = runId
+    if (closed[id] === 1) continue
+    closed[id] = 1
     if (++expanded > MAX_EXPANSIONS) return null
-    const r = (id / R.cols) | 0, c = id % R.cols
-    const g0 = gScore[id]!
+    const r = r0 + ((id / Wd) | 0), c = c0 + (id % Wd)
+    const g0 = g[id]!
     for (let k = 0; k < 8; k++) {
-      const nr = r + RASTER_DIRS_R[k]!, nc = c + RASTER_DIRS_C[k]!
-      if (nr < 0 || nr >= R.rows || nc < 0 || nc >= R.cols) continue
+      const nr = r + RASTER_DR[k]!, nc = c + RASTER_DC[k]!
+      if (nr < r0 || nr > r1 || nc < c0 || nc > c1) continue
       if (cellLand(nr, nc)) continue
       if (k >= 4 && (cellLand(nr, c) || cellLand(r, nc))) continue // hörnregel
-      const nid = nr * R.cols + nc
-      if (closed[nid] === runId) continue
-      const ng = g0 + RASTER_DIRS_W[k]! + (nearLand(nr, nc) ? 2.0 : 0)
-      if (stamp[nid] !== runId || ng < gScore[nid]!) {
-        stamp[nid] = runId
-        gScore[nid] = ng
-        cameFrom[nid] = id
-        hpush(nid, ng + h(nr, nc))
+      const nid = idx(nr, nc)
+      if (closed[nid] === 1) continue
+      const ng = g0 + RASTER_DW[k]! + (cellNearLand(nr, nc) ? NEAR_LAND_PENALTY : 0)
+      if (ng < g[nid]!) {
+        g[nid] = ng
+        from[nid] = id
+        heapPush(nid, ng + h(nr, nc))
       }
     }
   }
-  if (!found) return null
+  // Ingen väg inom sub-gridet? Prova med tre gånger marginalen innan vi ger
+  // upp — omvägen kan ligga utanför den första rutan.
+  if (!found) {
+    return marginMultiplier < 1.2
+      ? findRasterPath(startLat, startLng, endLat, endLng, marginMultiplier * 3)
+      : null
+  }
 
-  // återskapa cellväg
-  const cells: number[] = []
-  for (let cur = targetId; cur !== -1; cur = cameFrom[cur]!) cells.push(cur)
-  cells.reverse()
-  const pts: Array<[lat: number, lng: number]> = cells.map(id => [
-    Number(cellLat((id / R.cols) | 0).toFixed(5)),
-    Number(cellLng(id % R.cols).toFixed(5)),
+  const path: number[] = []
+  for (let cur = targetId; cur !== -1; cur = from[cur]!) path.push(cur)
+  path.reverse()
+  const pts: Array<[number, number]> = path.map(id => [
+    Number(cellCenterLat(r0 + ((id / Wd) | 0)).toFixed(5)),
+    Number(cellCenterLng(c0 + (id % Wd)).toFixed(5)),
   ])
 
-  // girig genvägs-förenkling (varje genväg validerad mot rastret)
+  // Girig genvägs-förenkling — varje genväg valideras mot rastret
   const ut: Array<[number, number]> = [pts[0]!]
   let i = 0
   while (i < pts.length - 1) {
