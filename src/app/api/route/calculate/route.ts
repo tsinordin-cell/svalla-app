@@ -17,8 +17,9 @@ export const dynamic = 'force-dynamic'
 export const maxDuration = 300 // sekunder — Vercel Pro
 
 import { NextRequest, NextResponse } from 'next/server'
+import { DEPARTURES } from '@/lib/planner-client'
 import { findSeaPathWithQuality, qualityToConfidence, type RouteQuality } from '@/lib/seaPathfinder'
-import { validatePathLand } from '@/lib/landMask'
+import { validatePathLand, inMaskCoverage, hasNavigableWaterNear } from '@/lib/landMask'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
 import { getAdminClient } from '@/lib/supabase-admin'
@@ -68,6 +69,48 @@ function cacheKey(slat: number, slng: number, elat: number, elng: number): strin
 }
 
 // ── Handler ────────────────────────────────────────────────────────────────
+
+
+/**
+ * Varför gick det inte att rita en rutt? Svaret måste vara exakt — en gissning
+ * här är värre än tystnad, eftersom användaren tror på det som står.
+ *
+ *   outside_coverage      punkten ligger utanför den verifierade kustlinjen
+ *   harbour_not_in_water  ingen farbar vattenyta vid bryggan (koordinatfel)
+ *   lock_required         hamnarna ligger i skilda vattensystem — Mälaren och
+ *                         Saltsjön möts bara genom en sluss, och en slussning
+ *                         är ingen sjöled som kan ritas
+ *   no_sea_route          allt annat: ingen sammanhängande vattenväg hittad
+ *
+ * lock_required avgörs mot den verifierade hamnlistan i planner-client.ts
+ * (region-fältet), inte mot en gissad bounding box.
+ */
+export type UnavailableReason =
+  | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
+
+/** Samma tolerans som lookupPrecomputed använder: 0,0008° ≈ 80 m. */
+const HAMN_TOL = 0.0008
+function hamnVid(lat: number, lng: number) {
+  return DEPARTURES.find(d =>
+    Math.abs(d.lat - lat) < HAMN_TOL && Math.abs(d.lng - lng) < HAMN_TOL) ?? null
+}
+
+function avgorSkal(
+  startLat: number, startLng: number, endLat: number, endLng: number,
+): UnavailableReason {
+  if (!inMaskCoverage(startLat, startLng) || !inMaskCoverage(endLat, endLng)) {
+    return 'outside_coverage'
+  }
+  if (!hasNavigableWaterNear(startLat, startLng) || !hasNavigableWaterNear(endLat, endLng)) {
+    return 'harbour_not_in_water'
+  }
+  const a = hamnVid(startLat, startLng)
+  const b = hamnVid(endLat, endLng)
+  if (a && b && (a.region === 'Mälaren') !== (b.region === 'Mälaren')) {
+    return 'lock_required'
+  }
+  return 'no_sea_route'
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -216,9 +259,14 @@ export async function POST(req: NextRequest) {
       quality: finalQuality, ms, waypointsCount: finalPath?.length ?? 0,
     })
 
+    const reason = finalQuality === 'unavailable'
+      ? avgorSkal(startLat, startLng, endLat, endLng)
+      : null
+
     return NextResponse.json({
       path: finalPath,
       quality: finalQuality,
+      reason,
       confidence: qualityToConfidence(finalQuality),
       validated,
       crossesAt,

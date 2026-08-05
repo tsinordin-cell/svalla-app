@@ -291,6 +291,16 @@ function isNavigableWater(r: number, c: number): boolean {
 }
 
 /** Spiralsök närmsta FARBARA vattencell (max ~3 km). null om ingen hittas. */
+/**
+ * Sant om punkten kan snappas till farbart vatten (≥ MIN_NAVIGABLE_CELLS
+ * sammanhängande vattenceller). Används för att skilja "hamnkoordinaten
+ * ligger fel" från "det finns ingen väg mellan hamnarna" när en rutt
+ * misslyckas — två helt olika besked till användaren.
+ */
+export function hasNavigableWaterNear(lat: number, lng: number): boolean {
+  return snapToWaterCell(lat, lng) !== null
+}
+
 function snapToWaterCell(lat: number, lng: number): [number, number] | null {
   let r = Math.floor((lat - R.bbox.s) / R.cellLat)
   let c = Math.floor((lng - R.bbox.w) / R.cellLng)
