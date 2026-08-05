@@ -90,6 +90,27 @@ const faqJsonLd = {
   ],
 }
 
+/**
+ * Visar tid som "17:00" om avgången är idag, annars "i morgon 07:45" eller
+ * "tors 07:45". Utan detta listades en avgång 07:45 dagen efter rakt under
+ * en 17:00 idag, som om båten gick om tio timmar bakåt i tiden.
+ *
+ * Jämför på datumsträng i Europe/Stockholm i stället för att konvertera
+ * Date-objekt: tiderna från ResRobot är redan lokala klockslag utan zon, och
+ * en konvertering på en UTC-server hade flyttat dem.
+ */
+function departureLabel(iso: string): string {
+  const [datum, klocka = ''] = iso.split('T')
+  const hhmm = klocka.slice(0, 5)
+  const nu = new Date()
+  const idag = nu.toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
+  if (datum === idag) return hhmm
+  const imorgon = new Date(nu.getTime() + 86400000).toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' })
+  if (datum === imorgon) return `i morgon ${hhmm}`
+  const dag = new Date(`${datum}T12:00:00`).toLocaleDateString('sv-SE', { weekday: 'short' })
+  return `${dag} ${hhmm}`
+}
+
 export default async function FarjorPage() {
   // Hämta avgångar parallellt för alla rutter. fetchDepartures returnerar
   // tom lista om ResRobot inte har någon båtresa på sträckan — då visas inga
@@ -242,7 +263,7 @@ export default async function FarjorPage() {
                       borderBottom: i === deps.length - 1 ? 'none' : '1px solid var(--border)',
                     }}>
                       <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', whiteSpace: 'nowrap' }}>
-                        {new Date(d.time).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })}
+                        {departureLabel(d.time)}
                         {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{'\u2013'}{d.arrival}</span>}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt2)', textAlign: 'right' }}>
