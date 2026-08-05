@@ -13,6 +13,9 @@ export const STROMKAJEN_ID = '740020691' // Stockholm Strömkajen
 export const NYNASHAMN_ID = '740000719' // Nynäshamn färjeterminal
 export const STAVSNAS_ID = '740001312' // Stavsnäs vinterhamn
 export const CENTRALEN_ID = '740000001' // Stockholm Centralstation
+export const SALTHOLMEN_ID = '740001206' // Göteborg Saltholmen — södra skärgårdens färjeläge
+export const GOTEBORG_C_ID = '740000002' // Göteborg Centralstation
+export const KARLSKRONA_C_ID = '740000230' // Karlskrona Centralstation
 
 export interface IslandTransitConfig {
   /** Verified Trafiklab stop-ID för öns brygga. */
@@ -264,6 +267,60 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa — planera dagen efter båten.',
   },
+
+  // ── Utanför Stockholm, tillagda 2026-08-05 ────────────────────────────
+  // Samma beviskrav som ovan. Koordinaterna kom från OSM (place=island,
+  // namnmatchning mot ankarpunkt) eftersom islandCoords.ts saknade dem helt.
+  // Göteborgs södra skärgård ligger i ResRobot och ger rena båtresor från
+  // Saltholmen — Styrsöbåtarna, 14-35 min utan byten.
+  branno: {
+    // 23 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740024949', destStopName: 'Brännö Rödsten',
+    originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+    note: 'Direkt Styrsöbåt från Saltholmen — spårvagn 11 dit från Göteborg C. Brännö är bilfri.',
+  },
+  styrso: {
+    // 14 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740001213', destStopName: 'Styrsö Bratten',
+    originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+    note: 'Direkt Styrsöbåt från Saltholmen, kortast överfarten i södra skärgården.',
+  },
+  donso: {
+    // 26 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740001109', destStopName: 'Donsö',
+    originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+    note: 'Direkt Styrsöbåt från Saltholmen. Donsö och Styrsö binds ihop av en gångbro.',
+  },
+  vrango: {
+    // 35 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740001382', destStopName: 'Vrångö',
+    originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården — sista anhalten.',
+  },
+  asperon: {
+    // 19 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740024950', destStopName: 'Asperö norra',
+    originStopId: SALTHOLMEN_ID, originStopName: 'Göteborg Saltholmen',
+    note: 'Direkt Styrsöbåt från Saltholmen, knappt 20 minuter.',
+  },
+  tynningo: {
+    // 128 min, 2 byten, uppmätt 2026-08-05
+    destStopId: '740034529', destStopName: 'Orrlunda (Tynningö) brygga',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss till Vaxholm och båt över. Tynningö har också vägfärja från Bogesund.',
+  },
+  djuro: {
+    // 80 min, 1 byten, uppmätt 2026-08-05
+    destStopId: '740066438', destStopName: 'Djurö skola',
+    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
+    note: 'Buss från Slussen ända fram. Djurö nås över broar via Värmdö.',
+  },
+  'aspo-blekinge': {
+    // 37 min, 0 byten, uppmätt 2026-08-05 · ren båtresa
+    destStopId: '740071726', destStopName: 'Aspö Djupvik',
+    originStopId: KARLSKRONA_C_ID, originStopName: 'Karlskrona Centralstation',
+    note: 'Skärgårdsbåt från Karlskrona. Aspö hör till världsarvet Örlogsstaden Karlskrona.',
+  },
 }
 
 export function getIslandTransit(slug: string): IslandTransitConfig | null {
@@ -279,6 +336,8 @@ export function getIslandTransit(slug: string): IslandTransitConfig | null {
  * tillkommer; Waxholmsbolaget lägger till och drar in bryggor mellan säsonger.
  */
 export const ISLAND_NO_TRANSIT: Record<string, string> = {
+  'lilla-karlso': 'ingen hållplats inom 5 km — ön nås bara med Naturskyddsföreningens turbåt från Klintehamn',
+
   'asko': 'ingen hållplats inom 5 km',
   'galo': 'närmaste hållplats (Nor, 533 m) kunde inte knytas till ön',
   'morko': 'ingen hållplats inom 5 km',
