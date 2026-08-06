@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Prisuppskattning from '@/components/Prisuppskattning'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { TEAMBUILDING_SUBS } from '../teambuilding-data'
@@ -96,6 +97,7 @@ export default async function TeambuildingSlugPage({ params }: Props) {
             <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 20 }}>
               Aktiviteter och format
             </h2>
+            <Prisuppskattning uppdaterad="augusti 2026" vad="arrangörer" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {page.activities.map((a, i) => (
                 <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: '1px solid var(--surface-3)' }}>

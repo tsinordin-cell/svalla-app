@@ -49,6 +49,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Hur mycket kostar teambuilding i skärgården?',
+    // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
     a: 'Halvdagsevent med en aktivitet: 800–1 500 kr/person. Heldagsevent med mat och aktiviteter: 1 500–3 500 kr/person. Konferenspaket med övernattning: 2 500–5 000 kr/person/natt. AW-format (4 h, enbart middag): 400–900 kr/person.',
   },
   {

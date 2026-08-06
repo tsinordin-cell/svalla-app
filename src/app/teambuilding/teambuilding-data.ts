@@ -37,24 +37,28 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         icon: '⛵',
         name: 'Segelregatta',
         text: 'Tävla i lag på Stockholms skärgårds vatten med erfaret besättning och instruktörer. Inga förkunskaper krävs – allt handlar om teamwork, strategi och kommunikation ombord. Avslutas med prisudelning och middag.',
+        // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '600–1 200 kr/person',
       },
       {
         icon: '🛶',
         name: 'Kajakpaddling',
         text: 'Paddla i lag genom naturhamnar och sund. Tillgängligt för alla oavsett erfarenhet. Halvdagsturer (4 h) passar bäst som del av ett heldagsprogram. Guiden berättar om öarnas historia längs vägen.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '400–800 kr/person',
       },
       {
         icon: '🧭',
         name: 'Skärgårdsorienteringen',
         text: 'Lag-utmaning med karta, kompass och utmaningar vid checkpoints utspridda på ön. Kombinerar rörelse med strategi – perfekt att väva in som uppvärmning eller tävlingsmoment i ett konferensprogram.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '300–600 kr/person',
       },
       {
         icon: '🍳',
         name: 'Vildmarkskök ombord',
         text: 'Laga mat tillsammans på en öppen eld eller över Primus på klipphällen. Konceptet skapar naturlig samvaro och belönar grupper som samarbetar. Leverantörer tillhandahåller råvaror, redskap och recept.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '400–700 kr/person',
       },
     ],
@@ -84,6 +88,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
     faqs: [
       {
         q: 'Vad kostar ett teambuildingevent i Stockholms skärgård?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Räkna med 1 500–4 000 kr per person för ett heldagsprogram med aktiviteter, mat och transport. Aktiviteter kostar 400–1 200 kr/person beroende på typ. Konferenspaket med övernattning och helpension tillkommer med 1 500–3 000 kr/natt/person.',
       },
       {
@@ -125,18 +130,21 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         icon: '⛵',
         name: 'Segling i Bohusläns skärgård',
         text: 'Svårighetsnivån är något högre än Stockholms innerskärgård – Västerhavet ger verkliga utmaningar för lagen. Extra minnesvärt och lämpligt för grupper som söker äventyr och "off-the-path"-upplevelse.',
+        // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '700–1 400 kr/person',
       },
       {
         icon: '🦐',
         name: 'Skaldjurssafari och AW',
         text: 'Chartra en fiskebåt, fiskar räkor i Bohuslän och äter dem direkt på däck med majonnäs och knäckebröd. Enkel, billig och oförglömlig aktivitet. Passar utmärkt som AW-format (3–4 h).',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '500–900 kr/person',
       },
       {
         icon: '🧗',
         name: 'Klättring och klippäventyr',
         text: 'Bohuslänska klippmiljöer är perfekta för friluftsliv med låg tröskel. Klättring, utomhusyoga på hällen och "challenge course" – arrangerade av lokala friluftsleverantörer med utrustning och säkerhetsguider.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '400–800 kr/person',
       },
     ],
@@ -167,6 +175,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vad kostar teambuilding i Göteborg?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Liknande Stockholm: 1 500–4 000 kr per person för heldagsevent med aktiviteter och mat. Skaldjursmiddag i Smögen eller Grebbestad kan tillkomma med 400–800 kr/person beroende på meny.',
       },
     ],
@@ -192,18 +201,21 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         icon: '🏁',
         name: 'Klassisk regatta (halvdag)',
         text: 'Kurs 3–5 sjömil i skyddade vatten. 2–3 lopp med tidtagning och taktisk briefing inför varje. Avslutas med prisudelning. Passar 8–40 deltagare på 2–5 båtar.',
+        // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '600–1 200 kr/person',
       },
       {
         icon: '🌊',
         name: 'Offshore-regatta (2 dagar)',
         text: 'Segla från Sandhamn via naturhamnar till en slutdestination och tillbaka. Övernattning i gästhamn med middag och briefing. Kräver mer engagemang men ger djupare lagupplevelse.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '3 000–5 500 kr/person (inkl. mat och hamnavgifter)',
       },
       {
         icon: '📚',
         name: 'Segling med träningsmoment',
         text: 'Kombination av segling och workshop om kommunikation, ledarskap eller beslutsfattande under stress. Facilitatorn knyter ihop beteenden på däck med situationer på jobbet. Populärt för ledningsgrupper.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '1 200–2 500 kr/person',
       },
     ],
@@ -223,6 +235,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vad kostar en segelregatta för ett team?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Räkna med 600–1 200 kr per person för ett halvdagsformat. Heldagsregatta med mat ombord kostar 1 200–2 500 kr/person. Offshore-paket med övernattning: 3 000–5 500 kr/person.',
       },
     ],
@@ -248,18 +261,21 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         icon: '🛶',
         name: 'Guidad kajaktur (halvdag)',
         text: 'Gruppen paddlar 6–10 km med guide längs kusten eller i skyddade sund. Pausar vid naturhamn med fika. Inga förkunskaper krävs. Instruktör anpassar tempot till gruppen.',
+        // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '400–700 kr/person',
       },
       {
         icon: '🏁',
         name: 'Kajak-challenge (tävling)',
         text: 'Lag tävlar i slalom, snabbpaddling och samordningsövningar. Poängsystem och prisudelning. Populärt som uppvärmnings- eller tävlingsmoment. Kräver lite mer av deltagarna men ger högt engagemang.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '500–900 kr/person',
       },
       {
         icon: '🔥',
         name: 'Paddling + mat på eld',
         text: 'Paddla till naturhamn, laga mat på Primus eller öppen eld och ät lunch ute i skärgården. Kombinationen av rörelse och gemensam matlagning ger en av de mest minnesvärda teambuilding-dagarna.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '600–1 000 kr/person',
       },
     ],
@@ -275,6 +291,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vad kostar kajakteambuilding?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: '400–1 000 kr per person beroende på format (halvdag, heldag, med mat). Lägg till eventuell transport till och från ön.',
       },
       {
@@ -304,18 +321,21 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
         icon: '📋',
         name: 'Heldagskonferens med aktiviteter',
         text: 'Workshops och presentationer på förmiddagen, aktiviteter (segling, kajak, orientering) på eftermiddagen, middag och avslutning på kvällen. Det klassiska skärgårds-konferensprogrammet.',
+        // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '2 000–4 500 kr/person (inkl. mat, aktiviteter, transport)',
       },
       {
         icon: '🥂',
         name: 'AW och after work på ö',
         text: 'Tar man Waxholmsbolaget/Strömma direkt efter jobbet ut till Fjäderholmarna eller Grinda – middag eller havsluft i 3 timmar, sedan hem med kvällsbåten. Inget boende krävs. Enkelt och minnesvärt.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '400–900 kr/person (middag exkl. transport)',
       },
       {
         icon: '🌙',
         name: 'Flerdagarskonferens med övernattning',
         text: 'Gruppen stannar 1–3 nätter på ön. Separeras effektivt från jobb och vardagsdistraktion. Djupare lagdiskussioner och relationsbyggande. Helpension med frukost, lunch, middag och aktiviteter ingår.',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         priceRange: '2 500–5 000 kr/person/natt',
       },
     ],
@@ -349,6 +369,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         q: 'Vad kostar konferens i skärgården?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Dagsevent utan övernattning: 1 500–3 000 kr/person inkl. mat, lokal och aktiviteter. Med övernattning (helpension): 2 500–5 000 kr/person/natt. AW-format (4–5 h, enbart middag): 500–900 kr/person exkl. transport.',
       },
       {
