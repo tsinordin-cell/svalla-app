@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Prisuppskattning from '@/components/Prisuppskattning'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { HYRBAT_SUBS } from '../hyrbat-data'
@@ -96,6 +97,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
             <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
               Priser – hyra båt {page.location.includes('Stockholm') ? 'i ' : page.location.startsWith('G') || page.location.startsWith('H') || page.location.startsWith('B') ? 'i ' : 'på '}{page.location}
             </h2>
+            <Prisuppskattning uppdaterad="augusti 2026" vad="uthyrare" />
             <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
               {page.priceTable.map((row, i) => (
                 <div key={i} style={{

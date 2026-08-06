@@ -33,6 +33,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Räkna alltid med bränsle utöver hyran – de flesta bolag hyr ut tomma tankar och du betalar för det du förbrukar. Boka tidigt: juli är fullbokat hos de flesta aktörer redan i april.',
     ],
     priceTable: [
+      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
       { type: 'Liten motorbåt (4–5 m)', price: '900–1 500 kr/dag', note: 'Passar 2–4 personer. Ingen erfarenhet krävs.' },
       { type: 'Mellanbåt (6–7 m, 10–20 hk)', price: '1 200–2 200 kr/dag', note: 'Bekvämt för 4–6 pers, bra fart.' },
       { type: 'Stor motorbåt (7–9 m)', price: '2 000–4 000 kr/dag', note: 'Kajut och sovplatser.' },
@@ -41,6 +42,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     ],
     tips: [
       { icon: '📋', heading: 'Kolla licenskrav i förväg', text: 'Fråga bolaget exakt vad de kräver. Vissa nöjer sig med en 30-min introduktion; andra vill se förarintyg för kraftigare båtar.' },
+      // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
       { icon: '⛽', heading: 'Bränsle är separat', text: 'Tankas upp vid start och återlämnas med samma mängd. Räkna med 50–150 kr/timme för en normal motorbåt.' },
       { icon: '📱', heading: 'Ladda ned sjökortsapp', text: 'Navionics och C-MAP är de vanligaste apparna. Farleder och grund syns tydligt – nödvändigt för att navigera säkert i skärgården.' },
       { icon: '🌤', heading: 'Kolla vädret på S YR', text: 'yr.no ger tillförlitliga marinaspecifika prognoser. Undvik dagar med vind över 8–10 m/s om du är ovan.' },
@@ -64,6 +66,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       },
       {
         q: 'Kan man hyra båt och övernatta ombord i Stockholms skärgård?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Ja. De flesta bolag erbjuder flerdagshyra. Kajutbåtar med 4–6 sovplatser är bekvämare för övernattning. Räkna med bryggavgifter i gästhamnar (ca 100–350 kr/natt beroende på ö och säsong). Ankring i naturhamnar är gratis via allemansrätten.',
       },
     ],
@@ -85,6 +88,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Från Göteborg kan du välja söderskärgården (Styrsö, Vrångö) för lugnare vatten, eller köra norrut mot Marstrand och Bohuslänska klippmiljöer. Heldagstur norrut längs kusten är en av Sveriges vackraste upplevelser på vattnet.',
     ],
     priceTable: [
+      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
       { type: 'Liten motorbåt (4–5 m)', price: '800–1 400 kr/dag', note: 'Sydskärgård och skyddade sund.' },
       { type: 'Mellanbåt (6–7 m)', price: '1 200–2 000 kr/dag', note: 'Mellanklass, passar Bohuslänsk kust.' },
       { type: 'Stor motorbåt / kabinbåt', price: '2 000–4 500 kr/dag', note: 'För Västerhavet och öppet hav.' },
@@ -102,6 +106,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       },
       {
         q: 'Vad kostar hyrbåt i Göteborg?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Liknande Stockholm: 800–4 500 kr per dag beroende på båtstorlek. Bränsle tillkommer. Säsongsvariation finns – juni och juli är 20–30% dyrare än maj och september.',
       },
       {
@@ -127,6 +132,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Segelbåt rekommenderas starkt för Gotland – motorns bränsleförbrukning gör långa etapper kostsamma. De flesta hyrbåtsbolag på Gotland erbjuder segelbåtar med 4–8 sovplatser perfekta för familj eller grupp.',
     ],
     priceTable: [
+      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
       { type: 'Segelbåt 28–32 fot', price: '3 000–5 000 kr/dag', note: '4–5 bäddar. Passar familj eller litet sällskap.' },
       { type: 'Segelbåt 33–38 fot', price: '4 500–7 500 kr/dag', note: '6–8 bäddar. Bekvämt för längre resor.' },
       { type: 'Motorbåt / kabinbåt', price: '2 500–4 500 kr/dag', note: 'Kortare turer, dyrare bränsle per sjömil.' },
@@ -143,6 +149,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       },
       {
         q: 'Vilka hamnar och gästbryggor finns runt Gotland?',
+        // UPPSKATTNING: erfarenhetsbaserat riktvärde, ej hämtat från enskild aktör (2026-08)
         a: 'Visby är den naturliga basen. Runt Gotland finns gästhamnar i Klintehamn, Burgsvik, Ronehamn (öst), Slite och Kappelshamnhamn. Fårösund nås via kanal. Räkna med ca 150–350 kr/natt i bryggavgifter.',
       },
       {
@@ -168,6 +175,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Bohuslän är ett vatten för mer erfarna båtförare. Täta sjötrafikkorridorer nära Göteborg, exponerade passager och plötsliga vindförändringar kräver god situationsmedvetenhet. Välj rutter i lä vid osäkert väder.',
     ],
     priceTable: [
+      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
       { type: 'Motorbåt / kabinbåt (6–8 m)', price: '1 500–3 500 kr/dag', note: 'Lämplig för kustnavigering.' },
       { type: 'Segelbåt (28–35 fot)', price: '3 000–6 500 kr/dag', note: 'Perfekt för längre Bohuslänsturer.' },
     ],
@@ -203,6 +211,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Startpunkten är Härnösand, Kramfors eller Örnsköldsvik. Härifrån når du inom en dag Skuleskogen, naturbadplatserna i Skuleberget och de pittoreska fiskelägena i Bönhamn och Barsta.',
     ],
     priceTable: [
+      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
       { type: 'Motorbåt (4–6 m)', price: '700–1 400 kr/dag', note: 'Lugna fjärdar – perfekt för nybörjare.' },
       { type: 'Kabinbåt (7–9 m)', price: '1 500–3 000 kr/dag', note: 'Övernattning ombord, komfort.' },
     ],

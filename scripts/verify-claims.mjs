@@ -81,6 +81,22 @@ const iOmfang = (f) =>
 /** Är raden en kommentar? Då är siffran dokumentation, inte ett påstående. */
 const ärKommentar = (rad) => /^\s*(\/\/|\*|\/\*)/.test(rad.trim())
 
+/**
+ * En marknadsuppskattning är INTE en källa — men den är heller inte en osanning,
+ * så länge den är utmärkt som uppskattning OCH datummärkt. Kravet är strikt:
+ *   UPPSKATTNING: <vad den bygger på> (åååå-mm)
+ * Utan datum gäller den inte. Uppskattningar räknas separat och skrivs ut, så
+ * att de förblir synliga i stället för att försvinna in i "godkänt".
+ */
+const UPPSKATTNING = /uppskattning:.*\(\d{4}-\d{2}\)/i
+
+function harUppskattningNara(rader, i) {
+  for (let k = Math.max(0, i - 5); k <= i; k++) {
+    if (UPPSKATTNING.test(rader[k] || '')) return true
+  }
+  return false
+}
+
 function harKallaNara(rader, i) {
   for (let k = Math.max(0, i - 5); k <= i; k++) {
     const l = (rader[k] || '').toLowerCase()
@@ -90,6 +106,7 @@ function harKallaNara(rader, i) {
 }
 
 const fynd = []
+let uppskattningar = 0
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
   const rader = fs.readFileSync(f, 'utf8').split('\n')
@@ -103,6 +120,7 @@ for (const f of filer(ROT)) {
       const träffPris = PRIS.test(s)
       if (!träffKlocka && !träffPris) continue
       if (harKallaNara(rader, i)) continue
+      if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
       fynd.push({
         fil: f, rad: i + 1,
         typ: träffKlocka ? 'klockslag' : 'pris',
@@ -150,6 +168,9 @@ if (nya.length === 0) {
   if (kvarAvBaslinjen > 0) {
     console.log(`  (${kvarAvBaslinjen} kända kvar i baslinjen — skuld att beta av)`)
   }
+  if (uppskattningar > 0) {
+    console.log(`  (${uppskattningar} märkta marknadsuppskattningar — inte källor, ska omprövas varje säsong)`)
+  }
   process.exit(0)
 }
 const fyndAttVisa = nya
@@ -165,6 +186,12 @@ Lägg en kommentar inom fem rader ovanför, t.ex.:
 
     // KÄLLA: stromma.com/.../cinderellabatarna (hämtad 2026-08-05)
     // eller: uppmätt mot ResRobot 2026-08-05
+
+Saknas källa för att ingen operatör publicerar priset — t.ex. ett marknadsspann
+över många uthyrare — ska det märkas som uppskattning MED datum, och sägas rakt
+ut för besökaren i gränssnittet:
+
+    // UPPSKATTNING: spann över flera uthyrare, ej hämtat per aktör (2026-08)
 
 Går siffran inte att belägga ska den INTE publiceras. Skriv hellre
 "se operatörens tidtabell" med en länk än en siffra vi inte kan stå för.
