@@ -1,13 +1,12 @@
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { getAdminClient } from '@/lib/supabase-admin'
 import type { Trip } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import EmptyState from '@/components/EmptyState'
-import ProfileTabs from '@/components/ProfileTabs'
 import type { Metadata } from 'next'
 import FollowButton from '@/components/FollowButton'
-import DmButton from '@/components/DmButton'
 import FollowPrefsButton from '@/components/FollowPrefsButton'
 import FollowListButton from '@/components/FollowListSheet'
 import BackButtonInline from '@/components/BackButtonInline'
@@ -21,31 +20,6 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const revalidate = 60
-
-/**
- * Utan generateStaticParams behandlas en dynamisk route som on-demand och
- * hamnar aldrig i CDN-cachen, aven om revalidate ar satt (CLAUDE.md punkt 18
- * och 26 - det var det avgorande steget bade for /upptack/[id] och /o/[slug]).
- *
- * Profiler ar fa (~100) sa det kostar nastan ingenting att forgenerera dem.
- * Nya anvandare renderas on-demand och cachas darefter, eftersom
- * dynamicParams ar pa som standard.
- */
-export async function generateStaticParams() {
-  try {
-    const supabase = createPublicSupabaseClient()
-    const { data } = await supabase.from('users').select('username').limit(1000)
-    return (data ?? [])
-      .map((u: { username: string | null }) => u.username)
-      .filter((u): u is string => !!u)
-      .map(username => ({ username }))
-  } catch {
-    // Hellre on-demand-rendering an ett trasigt bygge. Samma skydd som
-    // /upptack/[id] redan har: utan Supabase-env (t.ex. en lokal maskin utan
-    // .env.local) kastar klienten, och da ska bygget anda ga igenom.
-    return []
-  }
-}
 
 const COUNTRIES = [
  { flag: '🇸🇪', name: 'Sverige' }, { flag: '🇳🇴', name: 'Norge' },
@@ -68,62 +42,48 @@ function formatNationality(raw: string): string {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
- // Next.js dekodar INTE dynamiska segment automatiskt (verifierat live 2026-08-01:
- // params.username kom in som t.ex. "ingriidleek%40yahoo.se" med kvarvarande %40
- // istallet for "@", vilket gjorde att Supabase-uppslaget aldrig matchade och alla
- // profiler med specialtecken i username (fran e-postadress i signup-flodet) 404:ade
- // aven efter att encodeURIComponent lades pa lankarna. decodeURIComponent ar en
- // no-op for redan avkodade strangar, sa detta ar sakert aven for vanliga username.
- const { username: rawUsername } = await params
- const username = decodeURIComponent(rawUsername)
-
+ const { username } = await params
  return {
- title: `${username}`,
+ title: `${username} – Svalla`,
  description: `Se ${username}s seglarturer på Svalla.`,
- openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${encodeURIComponent(username)}` },
- alternates: { canonical: `https://svalla.se/u/${encodeURIComponent(username)}` },
- // MEDVETET noindex (2026-08-01). Sidan hade index:true samtidigt som
- // robots.txt hade 'Disallow: /u/' — en motsägelse som gav det sämsta
- // utfallet: sidorna kunde indexeras via inlänkar men noindexen gick inte
- // att läsa, så de kunde aldrig plockas bort. Utlösande fall: sju konton
- // hade fått hela sin e-postadress som username via det ovaliderade
- // signup-formuläret, så en privatpersons mejladress låg publikt sökbar –
- // både i rubriken och i själva URL:en.
- // Profilsidor ligger inte i sitemapen och gav ingen SEO-nytta, medan
- // medlemmars namn, hemmahamn och båt inte bör vara googlingsbara.
- // Vill vi ha profil-SEO senare: gör det till ett opt-in per användare
- // (kolumnen public_fields finns redan) i stället för på som standard.
- robots: { index: false, follow: true },
+ openGraph: { title: `${username} på Svalla`, url: `https://svalla.se/u/${username}` },
+ alternates: { canonical: `https://svalla.se/u/${username}` },
+ robots: { index: true, follow: true },
  }
 }
 
 export default async function PublicProfilePage({
  params,
- }: {
+ searchParams,
+}: {
  params: Promise<{ username: string }>
+ searchParams: Promise<{ tab?: string }>
 }) {
- // Se kommentar i generateMetadata ovan: dekoda alltid params.username.
- const { username: rawUsername } = await params
- const username = decodeURIComponent(rawUsername)
+ const { username } = await params
+ const { tab } = await searchParams
+ const activeTab = tab === 'taggad' ? 'taggad' : tab === 'forum' ? 'forum' : 'turer'
  // Server component → server-klient som forwardar auth-cookies.
  // Browser-client (createClient från '@/lib/supabase') saknar session i server-context
  // och RLS blockerar då trips-läsningen → 0 turer trots att data finns.
- const supabase = createPublicSupabaseClient()
+ const supabase = await createServerSupabaseClient()
+ // Admin-klient kringgår RLS för profiluppslaget — krävs eftersom RLS på users-tabellen
+ // annars blockerar läsning av andras rader, vilket ger felaktig 404.
+ const admin = getAdminClient()
 
- const { data: userRow, error: userErr } = await supabase
+ const { data: userRow, error: userErr } = await admin
  .from('users')
  .select('id, username, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields')
  .eq('username', username)
  .single()
  if (userErr || !userRow) notFound()
 
- // Ingen auth här. Villkoret "visa DM-knappen" räknas ut i DmButton på
- // klienten i stället. auth.getUser() läser cookies, vilket gjorde hela
- // sidan dynamisk och satte revalidate = 60 ur spel: sidan svarade MISS på
- // varje anrop och tog 1042-2219 ms. Se DmButton.tsx.
+ // Vem tittar — för att avgöra om DM-knappen ska visas och inte på egen profil.
+ const { data: { user: viewer } } = await supabase.auth.getUser()
+ const isOwnProfile = !!viewer && viewer.id === userRow.id
+ const showDmButton = !!viewer && !isOwnProfile
 
  // Användarens aktiva Loppis-annonser (max 3) för cross-link på publika profilen
- const { data: rawActiveListings } = await supabase
+ const { data: rawActiveListings } = await admin
  .from('forum_threads')
  .select('id, title, listing_data')
  .eq('user_id', userRow.id)
@@ -154,34 +114,29 @@ export default async function PublicProfilePage({
  { data: forumThreadsRaw },
  { data: forumPostsRaw },
  ] = await Promise.all([
- supabase
+ // admin-klient för data som RLS annars blockerar för utomstående besökare
+ admin
  .from('trips')
  .select('id, user_id, boat_type, distance, duration, average_speed_knots, image, location_name, caption, pinnar_rating, started_at, created_at, route_points')
  .eq('user_id', userRow.id)
  .is('deleted_at', null)
  .order('created_at', { ascending: false }),
- supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
- supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),
- supabase.from('visited_islands').select('island_slug').eq('user_id', userRow.id),
+ admin.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
+ admin.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),
+ admin.from('visited_islands').select('island_slug').eq('user_id', userRow.id),
  isProEnabled()
  ? supabase.from('subscriptions').select('status,current_period_end').eq('user_id', userRow.id).in('status', ['active','trialing']).maybeSingle()
  : Promise.resolve({ data: null }),
- supabase.from('trip_tags').select('trip_id').eq('tagged_user_id', userRow.id),
- supabase
+ admin.from('trip_tags').select('trip_id').eq('tagged_user_id', userRow.id),
+ admin
  .from('forum_threads')
  .select('id, title, category_id, created_at, reply_count')
  .eq('user_id', userRow.id)
  .eq('in_spam_queue', false)
- // INGET is_deleted-filter: den kolumnen finns bara pa forum_posts, aldrig
- // pa forum_threads. Fragan gav darfor 400 "column forum_threads.is_deleted
- // does not exist", resultatet blev null, och `?? []` svalde felet tyst —
- // sa Forum-fliken har ALDRIG visats pa nagon profil. tsinordin har 14
- // tradar som varit dolda. Samma monster som users.updated_at, CLAUDE.md
- // punkt 14: en fraga mot en kolumn som inte finns, dold av en fallback.
- // Ovriga stallen som listar tradar filtrerar ocksa bara pa in_spam_queue.
+ .eq('is_deleted', false)
  .order('created_at', { ascending: false })
  .limit(20),
- supabase
+ admin
  .from('forum_posts')
  .select('id, body, created_at, thread_id, forum_threads(id, title, category_id)')
  .eq('user_id', userRow.id)
@@ -193,7 +148,7 @@ export default async function PublicProfilePage({
  // Fetch the actual trip data for tagged trips
  const taggedIds = (taggedTripIds ?? []).map((r: { trip_id: string }) => r.trip_id)
  const { data: rawTaggedTrips } = taggedIds.length
- ? await supabase
+ ? await admin
  .from('trips')
  .select('id, user_id, boat_type, distance, duration, average_speed_knots, image, location_name, caption, pinnar_rating, started_at, created_at, route_points')
  .in('id', taggedIds)
@@ -260,7 +215,27 @@ export default async function PublicProfilePage({
  <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)' }}>{userRow.username}</span>
  <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
  <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
- <DmButton targetUserId={userRow.id} targetUsername={userRow.username} />
+ {showDmButton && (
+ <Link
+ href={`/meddelanden/ny?to=${userRow.id}`}
+ aria-label={`Skicka meddelande till ${userRow.username}`}
+ title="Skicka meddelande"
+ style={{
+ width: 38, height: 38, borderRadius: '50%',
+ background: 'rgba(10,123,140,0.10)',
+ color: 'var(--sea)',
+ border: '1px solid rgba(10,123,140,0.18)',
+ display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+ textDecoration: 'none',
+ transition: 'background 0.12s, border-color 0.12s',
+ flexShrink: 0,
+ }}
+ >
+ <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+ <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+ </svg>
+ </Link>
+ )}
  <FollowButton targetUserId={userRow.id} hideCount />
  <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
  </div>
@@ -522,7 +497,7 @@ export default async function PublicProfilePage({
 
  {/* ── Wrapped teaser ── */}
  {wrappedYear && wrappedTrips.length >= 3 && (
- <Link href={`/wrapped/${encodeURIComponent(username)}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
+ <Link href={`/wrapped/${username}/${wrappedYear}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 16 }}>
  <div style={{
  background: 'linear-gradient(135deg, #0d2240 0%, #1a4a5e 55%, #0a7b8c 100%)',
  borderRadius: 18, padding: '18px 20px',
@@ -555,19 +530,89 @@ export default async function PublicProfilePage({
  </Link>
  )}
 
- {/* ── Flikar ──
-     Flikvalet ligger i ProfileTabs (klient). Servern läser INTE searchParams:
-     det tvingar dynamisk rendering och var det som gjorde att revalidate = 60
-     aldrig fick effekt. Panelerna renderas fortfarande här på servern och
-     skickas in som slots — inklusive den som är aktiv från start, så
-     turrutnätet finns i HTML:en direkt och inte först efter hydrering. */}
- <ProfileTabs
+ {/* ── Trip grid with tabs ── */}
+ <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
+
+ {/* Tab bar */}
+ <div style={{ display: 'flex', borderBottom: '1px solid rgba(10,123,140,0.08)' }}>
+ {[
+ { key: 'turer', label: 'Turer', count: trips.length },
+ ...(taggedTrips.length > 0 ? [{ key: 'taggad', label: 'Taggad i', count: taggedTrips.length }] : []),
+ ...(forumCount > 0 ? [{ key: 'forum', label: 'Forum', count: forumCount }] : []),
+ ].map(({ key, label, count }) => {
+ const active = activeTab === key
+ return (
+ <Link
+ key={key}
+ href={key === 'turer' ? `/u/${username}` : `/u/${username}?tab=${key}`}
+ style={{
+ flex: 1, textAlign: 'center', textDecoration: 'none',
+ padding: '13px 8px 11px',
+ fontSize: 12, fontWeight: 700,
+ color: active ? 'var(--sea)' : 'var(--txt3)',
+ borderBottom: active ? '2px solid var(--sea)' : '2px solid transparent',
+ transition: 'color .15s',
+ }}
+ >
+ {label}
+ <span style={{ marginLeft: 5, fontSize: 11, fontWeight: 400, opacity: 0.75 }}>
+ {count}
+ </span>
+ </Link>
+ )
+ })}
+ </div>
+
+ {/* Tab content */}
+ {activeTab === 'forum' ? (
+ <ForumActivityTab
+ threads={forumThreads}
+ posts={forumPosts}
  username={userRow.username}
- antal={{ turer: trips.length, taggad: taggedTrips.length, forum: forumCount }}
- turer={<TripRutnat trips={trips} tomTitel="Inga turer ännu" tomText={`${userRow.username} har inte loggat någon tur på Svalla än.`} />}
- taggad={<TripRutnat trips={taggedTrips} tomTitel="Inte taggad i några turer" tomText={`${userRow.username} har inte blivit taggad i någon tur ännu.`} />}
- forum={<ForumActivityTab threads={forumThreads} posts={forumPosts} username={userRow.username} />}
  />
+ ) : (() => {
+ const displayTrips = activeTab === 'taggad' ? taggedTrips : trips
+ if (displayTrips.length === 0) {
+ return (
+ <EmptyState
+ icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+ title={activeTab === 'taggad' ? 'Inte taggad i några turer' : 'Inga turer ännu'}
+ body={activeTab === 'taggad'
+ ? `${userRow.username} har inte blivit taggad i någon tur ännu.`
+ : `${userRow.username} har inte loggat någon tur på Svalla än.`}
+ marginTop={0}
+ />
+ )
+ }
+ return (
+ <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '2px 2px 2px' }}>
+ {displayTrips.map(t => (
+ <Link key={t.id} href={`/tur/${t.id}`} style={{
+ position: 'relative', aspectRatio: '1/1',
+ overflow: 'hidden', background: 'var(--grad-sea)',
+ display: 'block', borderRadius: 4,
+ }}>
+ {t.image ? (
+ <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
+ ) : (
+ <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }}> </div>
+ )}
+ {t.pinnar_rating === 3 && (
+ <div style={{ position: 'absolute', top: 4, right: 4, background: 'rgba(0,0,0,0.5)', borderRadius: 6, padding: '2px 5px', fontSize: 8, fontWeight: 700, color: '#fff' }}> </div>
+ )}
+ <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
+ {t.location_name && (
+ <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+ {t.location_name}
+ </p>
+ )}
+ </div>
+ </Link>
+ ))}
+ </div>
+ )
+ })()}
+ </div>
  </div>
  </div>
  )
@@ -715,45 +760,4 @@ function ForumActivityTab({
  )}
  </div>
  )
-}
-
-
-// ── Rutnät av turer ─────────────────────────────────────────────────────────
-// Bruten ur fliksektionen så att alla tre panelerna kan renderas på servern
-// och skickas som slots till ProfileTabs. Se ProfileTabs.tsx för varför.
-function TripRutnat({ trips, tomTitel, tomText }: { trips: Trip[]; tomTitel: string; tomText: string }) {
-  if (trips.length === 0) {
-    return (
-      <EmptyState
-        icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
-        title={tomTitel}
-        body={tomText}
-        marginTop={0}
-      />
-    )
-  }
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2, padding: '2px 2px 2px' }}>
-      {trips.map(t => (
-        <Link key={t.id} href={`/tur/${t.id}`} style={{
-          position: 'relative', aspectRatio: '1/1',
-          overflow: 'hidden', background: 'var(--grad-sea)',
-          display: 'block', borderRadius: 4,
-        }}>
-          {t.image ? (
-            <Image src={t.image} alt={t.location_name ?? 'Tur'} fill style={{ objectFit: 'cover' }} sizes="(max-width:520px) 33vw, 160px" />
-          ) : (
-            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, opacity: 0.4 }} />
-          )}
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(to top,rgba(0,20,35,0.6) 0%,transparent 100%)', padding: '12px 5px 5px' }}>
-            {t.location_name && (
-              <p style={{ fontSize: 9, fontWeight: 700, color: '#fff', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {t.location_name}
-              </p>
-            )}
-          </div>
-        </Link>
-      ))}
-    </div>
-  )
 }
