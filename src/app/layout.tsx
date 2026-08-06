@@ -29,7 +29,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Svalla – Skärgårdslivet, loggat',
+    default: 'Svalla – Sveriges samlade skärgårdssida',
     template: '%s – Svalla',
   },
   description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.',
@@ -42,20 +42,20 @@ export const metadata: Metadata = {
     locale: 'sv_SE',
     url: 'https://svalla.se',
     siteName: 'Svalla',
-    title: 'Svalla – Skärgårdslivet, loggat',
+    title: 'Svalla – Sveriges samlade skärgårdssida',
     description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare i den svenska skärgården.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Svalla – Skärgårdslivet, loggat',
+        alt: 'Svalla – Sveriges samlade skärgårdssida',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Svalla – Skärgårdslivet, loggat',
+    title: 'Svalla – Sveriges samlade skärgårdssida',
     description: 'Logga dina båtturer, hitta restauranger längs kusten och följ andra seglare.',
     images: ['/opengraph-image'],
   },
@@ -140,7 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@id': 'https://svalla.se/#website',
               url: 'https://svalla.se',
               name: 'Svalla',
-              description: 'Skärgårdslivet, loggat',
+              description: 'Sveriges samlade skärgårdssida',
               publisher: { '@id': 'https://svalla.se/#organization' },
               potentialAction: {
                 '@type': 'SearchAction',
