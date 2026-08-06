@@ -674,7 +674,7 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta, relevanta följdfrågor som du tror användaren kan vilja veta mer om. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort fråga ett? | Kort fråga två? | Kort fråga tre?\nMax 8 ord per fråga. Frågorna ska följa naturligt från samtalet.`
+  const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta förslag på vad användaren kan svara eller fråga härnäst. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort alternativ ett | Kort alternativ två | Kort alternativ tre\nMax 8 ord per alternativ. VIKTIGT: Om du ställer en fråga till användaren ska alternativen vara möjliga SVAR på din fråga (t.ex. "Vi är 2 vuxna och 2 barn" eller "Barnen har aldrig seglat"), inte nya frågor. Om du ger information ska alternativen vara naturliga följdfrågor användaren kan vilja ställa.`
 
   const dynamicSystem = (placeLinks
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`
