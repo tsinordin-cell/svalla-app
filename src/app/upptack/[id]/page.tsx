@@ -310,7 +310,26 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // Mixa: admin place_photos först (de är hand-kurerade), sen Google, sen fallback images.
  // is_hero-ordningen från SELECT säkerställer hero-bilden hamnar först.
  const adminPhotoUrls = placePhotoRows.map(p => p.url).filter(isValidPhotoUrl)
- const fallbackImages = Array.isArray(r.images) ? r.images.filter(isValidPhotoUrl) : []
+ /**
+  * Stockbilder får INTE bli hero på en platssida.
+  *
+  * 2026-08-05: Möja Lanthandel visade en dramatisk havsvåg från Unsplash som
+  * hero. Bilden är inte tagen på platsen, men placerad överst på sidan
+  * påstår den i praktiken att den är det — samma sorts osanning som de
+  * påhittade färjetiderna, fast visuell.
+  *
+  * 56 platser saknar både eget foto och Google-foto. De faller nu igenom till
+  * PlaceHeroGallerys tom-state: tonad yta med pin-ikon och en rad text. Det
+  * ser avsiktligt ut i stället för falskt, och signalerar ärligt att vi inte
+  * har någon bild ännu.
+  *
+  * Supabase-lagrade och Google-proxade bilder är oförändrade — de föreställer
+  * faktiskt platsen.
+  */
+ const ärStockbild = (u: string) => u.includes('images.unsplash.com')
+ const fallbackImages = Array.isArray(r.images)
+   ? r.images.filter(isValidPhotoUrl).filter(u => !ärStockbild(u))
+   : []
  const placePhotos: string[] = [
    ...adminPhotoUrls,
    ...googlePhotoUrls,
