@@ -205,6 +205,20 @@ export default function UpplevelserPage() {
                   </svg>
                   {exp.price}
                 </span>
+                {exp.rating != null && (
+                  <span
+                    title={exp.reviews != null ? `${exp.rating} av 5 baserat på ${exp.reviews.toLocaleString('sv-SE')} omdömen hos operatören` : `${exp.rating} av 5 hos operatören`}
+                    style={{ fontSize: 13, color: 'var(--txt2, #555)', display: 'flex', alignItems: 'center', gap: 4 }}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{ color: '#e8a13a' }} aria-hidden>
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    <strong style={{ fontWeight: 600 }}>{exp.rating.toLocaleString('sv-SE')}</strong>
+                    {exp.reviews != null && (
+                      <span style={{ color: 'var(--txt3, #888)' }}>({exp.reviews.toLocaleString('sv-SE')})</span>
+                    )}
+                  </span>
+                )}
               </div>
 
               {/* Description */}
@@ -229,6 +243,14 @@ export default function UpplevelserPage() {
             }}>
               <span style={{ fontSize: 12, color: 'var(--txt3, #888)' }}>
                 {exp.season}
+                {exp.priceCheckedAt && (
+                  <>
+                    {' · '}
+                    <span title={`Priset avläst hos operatören ${exp.priceCheckedAt}. Aktuellt pris kan skilja sig.`}>
+                      pris avläst {new Date(exp.priceCheckedAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })}
+                    </span>
+                  </>
+                )}
               </span>
               <a
                 href={exp.bookingUrl}
