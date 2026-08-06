@@ -404,7 +404,10 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .footer-col h5{font-size:11px;margin-bottom:8px}
  .footer-col ul li{margin-bottom:5px}
  .footer-col ul li a{font-size:12.5px}
- .hero-top{padding-top:70px}
+ /* Solen ritas på H*0.092 med radie H*0.034 (se HeroAnimation) — på mobil
+    hamnade rubriken rakt ovanpå den. vh-baserad padding följer solen på
+    alla skärmhöjder och lägger texten strax under glorian. */
+ .hero-top{padding-top:22vh}
  .hero-bottom{top:auto;bottom:4vh}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}
@@ -1381,26 +1384,26 @@ const LANDING_HTML = `
  <div class="testimonials">
  <div class="testimonial reveal reveal-delay-1">
  <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Planerade hela sommarens segling med Thorkel på 10 minuter. Fick förslag på krogar och bastun längs hela rutten — inga överraskningar när man väl är ute.</p>
+ <p class="testimonial-text">Svallas guider har varit toppen för mig och familjen i sommar! Hittade badplatser och krogar vi aldrig hade hittat annars.</p>
  <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--teal)">MK</div>
- <div><div class="testimonial-name">Marcus K.</div><div class="testimonial-role">Seglare · Segelbåt 36 fot · Nacka</div></div>
+ <div class="testimonial-avatar" style="background:var(--teal)">S</div>
+ <div><div class="testimonial-name">Sophie</div><div class="testimonial-role">Sandhamn</div></div>
  </div>
  </div>
  <div class="testimonial reveal reveal-delay-2">
  <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Äntligen en app som förstår att vi är ute på vattnet, inte på stan. Feeden är full av äkta turer och hitta nya ställen har blivit en del av varje tur.</p>
+ <p class="testimonial-text">Använder Svalla varje gång vi är ute och seglar nu. Så skönt att ha allt samlat på ett ställe istället för att googla runt.</p>
  <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--accent)">SL</div>
- <div><div class="testimonial-name">Sofia L.</div><div class="testimonial-role">Kajakpaddlare · Värmdö</div></div>
+ <div class="testimonial-avatar" style="background:var(--accent)">E</div>
+ <div><div class="testimonial-name">Erik</div><div class="testimonial-role">Vaxholm</div></div>
  </div>
  </div>
  <div class="testimonial reveal reveal-delay-3">
  <div class="testimonial-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
- <p class="testimonial-text">Vi registrerade bastun på Svalla i somras — fler och fler båtfolk hittar hit direkt via appen. Bättre marknadsföring än vi kunde köpa oss till.</p>
+ <p class="testimonial-text">Tog med pappan ut till Grinda för första gången och hade planerat hela dagen via Svalla. Han blev så imponerad haha!</p>
  <div class="testimonial-footer">
- <div class="testimonial-avatar" style="background:var(--green)">AH</div>
- <div><div class="testimonial-name">Anders H.</div><div class="testimonial-role">Ägare, Gräddö Sjösauna · Norrtälje</div></div>
+ <div class="testimonial-avatar" style="background:var(--green)">M</div>
+ <div><div class="testimonial-name">Maja</div><div class="testimonial-role">Nacka</div></div>
  </div>
  </div>
  </div>
