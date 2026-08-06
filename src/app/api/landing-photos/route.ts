@@ -1,128 +1,27 @@
 /**
- * /api/landing-photos
+ * /api/landing-photos — tunt skal runt getLandingPhotos().
  *
- * Hämtar Google Places-foton för landningssidans kortavsnitt.
- * Returnerar en karta  {key → proxied-foto-URL}.
+ * Logiken bor i lib/landingPhotos.ts sedan 2026-08-05 så att startsidan kan
+ * anropa den direkt i stället för att hämta sitt eget API över HTTP.
  *
- * Cachas 24h i CDN + 5 min i minne → minimala Google API-kostnader.
+ * Cache: lyckat svar 24 h, TOMT svar 60 sekunder. Ett tomt resultat är ett
+ * misslyckande, inte ett svar — cachas det länge står sidan tom långt efter
+ * att felet är åtgärdat. Det var precis vad som hände.
  */
-
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+import { getLandingPhotos } from '@/lib/landingPhotos'
 
 export const runtime = 'nodejs'
-export const revalidate = 3600 // cachas 1h i Vercel edge CDN
+export const dynamic = 'force-dynamic'
 
-const PLACES_BASE = 'https://places.googleapis.com/v1'
-const KEY = process.env.GOOGLE_PLACES_API_KEY
-
-const PLACES_TO_FETCH = [
-  { key: 'grinda',              query: 'Grinda ö Stockholms skärgård',        lat: 59.474, lng: 18.782, r: 3000  },
-  { key: 'sandhamn',            query: 'Sandhamn ö Stockholms skärgård',      lat: 59.289, lng: 18.912, r: 3000  },
-  { key: 'uto',                 query: 'Utö ö Stockholms södra skärgård',     lat: 58.959, lng: 17.927, r: 4000  },
-  { key: 'fjaderholmarna',      query: 'Fjäderholmarna Stockholm',            lat: 59.323, lng: 18.113, r: 2000  },
-  { key: 'kajak',               query: 'Kayaking Stockholm archipelago sea',  lat: 59.35,  lng: 18.5,   r: 20000 },
-  { key: 'innerskargard',       query: 'Vaxholm stad skärgård',               lat: 59.402, lng: 18.352, r: 2000  },
-  { key: 'mellersta',           query: 'Möja ö Stockholms skärgård',          lat: 59.48,  lng: 18.72,  r: 3000  },
-  { key: 'sodra',               query: 'Utö södra skärgården naturreservat',  lat: 58.959, lng: 17.927, r: 4000  },
-  { key: 'norra',               query: 'Arholma norra skärgård Stockholm',    lat: 59.848, lng: 19.147, r: 3000  },
-  { key: 'stockholms-skargard', query: 'Stockholms skärgård sommar',          lat: 59.35,  lng: 18.7,   r: 40000 },
-  { key: 'badplatser',          query: 'Badplats klippor Stockholms skärgård',lat: 59.4,   lng: 18.6,   r: 30000 },
-  // Nya regioner
-  { key: 'bohuslan',            query: 'Smögen Bohuslän klippor hav sommar',  lat: 58.35,  lng: 11.22,  r: 20000 },
-  { key: 'gotland',             query: 'Visby Gotland medeltidsmur hamn',     lat: 57.634, lng: 18.296, r: 15000 },
-  { key: 'aland',               query: 'Mariehamn Åland skärgård sommar',    lat: 60.097, lng: 19.934, r: 20000 },
-  { key: 'oland',               query: 'Borgholm Öland slott kust sommar',   lat: 56.879, lng: 16.656, r: 20000 },
-  { key: 'blekinge',            query: 'Karlskrona skärgård Hanö sommar hav',lat: 56.161, lng: 15.586, r: 25000 },
-  { key: 'vasterhav',           query: 'Kosteröarna Västerhavet klippor hav', lat: 58.883, lng: 11.017, r: 25000 },
-  { key: 'hogakusten',          query: 'Höga Kusten Ångermanland klippor fjord sommar', lat: 62.9,  lng: 18.2,  r: 30000 },
-  { key: 'halland',             query: 'Varberg Halland kust strand sommar hav',        lat: 56.9,  lng: 12.5,  r: 40000 },
-]
-
-let memCache: { ts: number; data: Record<string, string> } | null = null
-const MEM_TTL = 5 * 60 * 1000
-
-async function fetchPhotoRef(query: string, lat: number, lng: number, r: number): Promise<string | null> {
-  if (!KEY) return null
-  try {
-    const res = await fetch(`${PLACES_BASE}/places:searchText`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Goog-Api-Key': KEY,
-        'X-Goog-FieldMask': 'places.photos',
-      },
-      body: JSON.stringify({
-        textQuery: query,
-        languageCode: 'sv',
-        regionCode: 'se',
-        locationBias: { circle: { center: { latitude: lat, longitude: lng }, radius: r } },
-        maxResultCount: 1,
-      }),
-    })
-    if (!res.ok) {
-      // 2026-08-05: den här grenen returnerade tyst null. Följden blev att
-      // startsidans 39 kort stod tomma i okänd tid utan ett enda spår i
-      // loggarna — de visade bara "200 cache=HIT". Nu syns orsaken.
-      const kropp = await res.text().catch(() => '')
-      console.error('[landing-photos] Google svarade', res.status, 'för', query, '·', kropp.slice(0, 300))
-      return null
-    }
-    const data = await res.json() as { places?: Array<{ photos?: Array<{ name: string }> }> }
-    const namn = data.places?.[0]?.photos?.[0]?.name ?? null
-    if (!namn) console.warn('[landing-photos] inget foto i svaret för', query)
-    return namn
-  } catch (e) {
-    console.error('[landing-photos] anrop kastade för', query, '·', String(e).slice(0, 200))
-    return null
-  }
-}
-
-export async function GET(_req: NextRequest) {
-  if (memCache && Date.now() - memCache.ts < MEM_TTL) {
-    return NextResponse.json(memCache.data, {
-      headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600' },
-    })
-  }
-
-  if (!KEY) {
-    console.error('[landing-photos] GOOGLE_PLACES_API_KEY saknas i miljön')
-    return NextResponse.json({}, { headers: { 'Cache-Control': 'public, s-maxage=60' } })
-  }
-
-  const results = await Promise.allSettled(
-    PLACES_TO_FETCH.map(({ query, lat, lng, r }) => fetchPhotoRef(query, lat, lng, r))
-  )
-
-  const photoMap: Record<string, string> = {}
-  PLACES_TO_FETCH.forEach(({ key }, i) => {
-    const r = results[i]
-    if (r && r.status === 'fulfilled' && r.value) {
-      const encoded = Buffer.from(r.value, 'utf-8').toString('base64url')
-      photoMap[key] = `/api/places/photo/${encoded}?w=800`
-    }
-  })
-
-  const antal = Object.keys(photoMap).length
-
-  // 2026-08-05: ett TOMT resultat är ett misslyckande, inte ett svar.
-  //
-  // Tidigare cachades {} i 24 timmar i CDN och 5 minuter i minnet, precis som
-  // ett lyckat svar. När Google slutade svara betydde det att startsidans kort
-  // stod tomma i upp till ett dygn EFTER att felet var åtgärdat — cachen höll
-  // kvar tomheten. Det var så det här felet överlevde.
-  //
-  // Nu: lyckat svar cachas länge, tomt svar cachas en minut och sparas inte i
-  // minnescachen alls. Då läker sidan av sig själv så fort Google svarar igen.
-  if (antal === 0) {
-    console.error('[landing-photos] TOMT resultat —', PLACES_TO_FETCH.length, 'förfrågningar gav noll foton')
-    return NextResponse.json(photoMap, {
-      headers: { 'Cache-Control': 'public, s-maxage=60' },
-    })
-  }
-
-  memCache = { ts: Date.now(), data: photoMap }
-
+export async function GET() {
+  const photoMap = await getLandingPhotos()
+  const tomt = Object.keys(photoMap).length === 0
   return NextResponse.json(photoMap, {
-    headers: { 'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=3600' },
+    headers: {
+      'Cache-Control': tomt
+        ? 'public, s-maxage=60'
+        : 'public, s-maxage=86400, stale-while-revalidate=3600',
+    },
   })
 }
