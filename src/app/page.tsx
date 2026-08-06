@@ -6,6 +6,7 @@
  * Resultatet cachas i Vercel edge CDN (revalidate 1h).
  */
 import type { Metadata } from 'next'
+import { getLandingPhotos } from '@/lib/landingPhotos'
 import LandingPageClient from './LandingPageClient'
 
 export const revalidate = 3600
@@ -14,22 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se' },
 }
 
-async function getPhotoMap(): Promise<Record<string, string>> {
-  try {
-    const base =
-      process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
-    const res = await fetch(`${base}/api/landing-photos`, {
-      next: { revalidate: 3600 },
-    })
-    return res.ok ? (await res.json() as Record<string, string>) : {}
-  } catch {
-    return {}
-  }
-}
-
 export default async function Page() {
-  const photoMap = await getPhotoMap()
+  const photoMap = await getLandingPhotos()
   return <LandingPageClient photoMap={photoMap} />
 }
