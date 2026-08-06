@@ -862,7 +862,12 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '25 min med Cinderellabåtarna från Strandvägen',
+      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 13-1 Stockholm Strömkajen
+      // 08:45 → Fjäderholmarna 09:04, alltså 19 min. Stod tidigare "25 min med
+      // Cinderellabåtarna från Strandvägen". Restiden var ungefär rätt, men
+      // operatören och kajen var fel: Strömmas Cinderella-linje går till
+      // Sandhamn, Grinda, Gällnö och Vaxholm — inte till Fjäderholmarna.
+      travel_time: '19 min med skärgårdsbåt från Strömkajen',
       character: 'Nära stad, lättillgänglig, hög kvalitet',
       season: 'Maj–September',
       best_for: 'Dagstur, lunch, barnfamiljer, seglare på väg in mot stan',
@@ -1130,7 +1135,12 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: '3,5–4 h med Waxholmsbåt från Norrtälje / 5 h från Stockholm',
+      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — buss 636 Norrtälje busstation
+      // 10:19 → Simpnäs brygga 11:32, sedan färja 30 till Arholma 11:55. Totalt
+      // 1 tim 36 min. Stod tidigare "3,5–4 h med Waxholmsbåt från Norrtälje",
+      // vilket var fel om BÅDE tiden och färdsättet: det går ingen båt från
+      // Norrtälje, man tar buss till Simpnäs och en kort färja därifrån.
+      travel_time: '1 tim 36 min: buss till Simpnäs från Norrtälje, sedan färja',
       character: 'Vilt, orört, ytterst, äventyrligt',
       season: 'Maj–September',
       best_for: 'Äventyrliga seglare, naturälskare, de som söker ensamt',
@@ -1311,7 +1321,9 @@ export const ISLANDS: Island[] = [
     
     ],
     facts: {
-      travel_time: 'SL-buss 852 från Nynäshamn till Ankarudden + skärgårdsbåt ~1 h till Landsort',
+      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 29-1 Ankarudden 07:20 →
+      // Landsort 07:50. Båtbenet är 30 min, inte "~1 h" som stod här.
+      travel_time: 'Buss 852 från Nynäshamn till Ankarudden, sedan 30 min båt',
       character: 'Ytterst, dramatiskt, havsexponerat, genuint',
       season: 'Juni–Augusti (begränsad service)',
       best_for: 'Erfarna seglare, äventyrare, fyr-entusiaster',
@@ -1854,7 +1866,10 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      travel_time: '90 min med Waxholmsbåt från Stavsnäs',
+      // KÄLLA: uppmätt mot ResRobot 2026-08-05 — färja 17-1 Stavsnäs vinterhamn
+      // 07:37 → Östanvik (Nämdö) 08:10, utan byten. Stod tidigare "90 min",
+      // nästan tre gånger för långt.
+      travel_time: '33 min med Waxholmsbåt från Stavsnäs vinterhamn',
       character: 'Bilfri, genuint, litet samhälle, välskyddat',
       season: 'Maj–September',
       best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
