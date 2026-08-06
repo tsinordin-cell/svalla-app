@@ -16,9 +16,9 @@ import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
 import { IconSearch } from '@/components/ui/icons'
 import { Home } from '@/components/icons/LucideIcons'
+import Icon from '@/components/Icon'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
-import { getViewerId } from '@/lib/authClaims'
 
 export const dynamic = 'force-dynamic'
 
@@ -76,58 +76,49 @@ export default async function FeedPage(
  let supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>
  let user: { id: string } | null = null
 
- try {
- supabase = await createServerSupabaseClient()
- // Lokal JWT-verifiering i stället för auth.getUser() — sparar ~620 ms på
- // varje inloggad rendering (nätverksanropet mot Auth-servern var kedjans
- // dyraste led OCH låg först, så allt annat väntade på det). /feed läser
- // bara — inga behörighetsbeslut — så getClaims-gränsen håller.
- // Se src/lib/authClaims.ts för hela resonemanget.
- const viewerId = await getViewerId(supabase)
- user = viewerId ? { id: viewerId } : null
- } catch (err) {
- console.error('[FeedPage] auth/client init error:', err)
- return <FeedServerError />
- }
-
- // Fetch feed trips — 20 rows per tab is enough for initial render.
- let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
- let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
- // Profil-uppslaget behöver bara user.id och körs därför i SAMMA våg som
- // flödesfrågorna — tidigare låg det som ett eget sekventiellt led mellan
- // auth och flödet (192 ms som allt annat väntade på).
  let feedUsername: string | null = null
  let shouldRedirectOnboarding = false
- let followsResult: { following_id: string }[] = []
  try {
- let profilRes: { data: { username: string | null; onboarded_at?: string | null } | null } = { data: null }
- // follows behöver också bara user.id — den låg tidigare i nästa våg och
- // gjorde att achievements (som behöver följlistan) startade ett helt led
- // senare. Nu: allt som bara kräver user.id går i EN våg.
- ;[allRes, followRes, profilRes, followsResult] = await Promise.all([
- fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
- user
- ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
- : Promise.resolve({ trips: [], error: null }),
- user
- ? supabase!.from('users').select('username, onboarded_at').eq('id', user.id).single()
- : Promise.resolve({ data: null }),
- user
- ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
- : Promise.resolve([] as { following_id: string }[]),
- ])
- if (user && profilRes.data) {
+ supabase = await createServerSupabaseClient()
+ const { data } = await supabase.auth.getUser()
+ user = data?.user ?? null
+ if (user) {
+ const { data: profile } = await supabase.from('users').select('username, onboarded_at').eq('id', user.id).single()
  // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
- if (profilRes.data.onboarded_at === null) shouldRedirectOnboarding = true
- else feedUsername = profilRes.data.username ?? null
+ const onboardedAt = (profile as { onboarded_at?: string | null } | null)?.onboarded_at
+ if (profile && onboardedAt === null) {
+   shouldRedirectOnboarding = true
+ } else {
+   feedUsername = profile?.username ?? null
+ }
  }
  } catch (err) {
- console.error('[FeedPage] fetchFeedTrips threw unexpectedly:', err)
+ console.error('[FeedPage] auth/client init error:', err)
  return <FeedServerError />
  }
  // Måste anropas utanför try-catch — redirect() kastar NEXT_REDIRECT internt
  // och fångas annars av catch-blocket ovan vilket renderar FeedServerError.
  if (shouldRedirectOnboarding) redirect('/onboarding')
+
+ // Fetch feed trips + follows in parallel — follows behövs senare för achievements
+ // men är oberoende av trip-datan, så vi kör dem samtidigt i steg 1.
+ let allRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+ let followRes: { trips: Awaited<ReturnType<typeof fetchFeedTrips>>['trips']; error: string | null }
+ let followsResult: { following_id: string }[] = []
+ try {
+ ;[allRes, followRes, followsResult] = await Promise.all([
+ fetchFeedTrips(supabase!, { viewerId: user?.id ?? null, limit: 20, followOnly: false }),
+ user
+ ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
+ : Promise.resolve({ trips: [], error: null }),
+ user
+ ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
+ : Promise.resolve([] as { following_id: string }[]),
+ ])
+ } catch (err) {
+ console.error('[FeedPage] fetchFeedTrips threw unexpectedly:', err)
+ return <FeedServerError />
+ }
 
  if (allRes.error) {
  return (
@@ -152,24 +143,20 @@ export default async function FeedPage(
  )
  }
 
- // Sista vågen: tag-berikningen och achievements är oberoende av varandra
- // (achievements behöver bara följlistan, som redan hämtades i våg ett) och
- // körs därför parallellt. Kedjan är nu tre vågor totalt: claims (~0 ms
- // lokal JWT) → [flöden + profil + follows] → [tags + achievements].
+ // Kör enrichWithTags × 2 + listRecentAchievementEvents parallellt —
+ // follows är nu klart från steget ovan, så inga sekventiella beroenden kvar.
+ const networkIds = user ? [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)] : []
+ const since14d = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+
  const [tripsWithUsers, followingTrips, recentAchievements] = await Promise.all([
  enrichWithTags(supabase!, allRes.trips),
  enrichWithTags(supabase!, followRes.error ? [] : followRes.trips),
- (async () => {
- if (!user) return [] as Awaited<ReturnType<typeof listRecentAchievementEvents>>
- try {
- const networkIds = [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)]
- const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
- return await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
- } catch (err) {
+ user && networkIds.length > 0
+ ? listRecentAchievementEvents(supabase, networkIds, { since: since14d, limit: 6 }).catch(err => {
  console.error('[FeedPage] achievements failed (non-blocking):', err)
  return [] as Awaited<ReturnType<typeof listRecentAchievementEvents>>
- }
- })(),
+ })
+ : Promise.resolve([] as Awaited<ReturnType<typeof listRecentAchievementEvents>>),
  ])
 
  // Social proof — senaste 7 dagarna
@@ -177,7 +164,6 @@ export default async function FeedPage(
  const thisWeek = tripsWithUsers.filter(t => t.created_at > weekAgo)
  const uniqueUsers = new Set(thisWeek.map((t: { user_id: string }) => t.user_id)).size
  const uniquePlaces = new Set(thisWeek.map((t: { location_name: string | null }) => t.location_name).filter(Boolean)).size
-
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
@@ -291,7 +277,7 @@ export default async function FeedPage(
  {recentAchievements.length > 0 && (
  <div style={{ marginBottom: 16 }}>
  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- 🏆 Nya märken i nätverket
+ <Icon name="trophy" size={11} style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 4 }} /> Nya märken i nätverket
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {recentAchievements.map(ev => (
