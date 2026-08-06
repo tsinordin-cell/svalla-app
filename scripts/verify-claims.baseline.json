@@ -1,7 +1,7 @@
 {
   "beskrivning": "Kända påståenden utan källa. SKULD — ska krympa, aldrig växa.",
   "skapad": "2026-08-06",
-  "antal": 142,
+  "antal": 124,
   "poster": [
     "src/app/ai-guide/page.tsx::klockslag::'\"Snabbaste vägen till Utö från Södermalm med SL, med hemfärd senast 18:00.\"'",
     "src/app/blogg/[slug]/page.tsx::pris::'En övernattning på Grinda Wärdshus kostar från ~1 500 kr/natt. Budget-alternativet är att",
@@ -126,24 +126,6 @@
     "src/app/teambuilding/teambuilding-data.ts::pris::'Liknande Stockholm: 1 500–4 000 kr per person för heldagsevent med aktiviteter och mat. S",
     "src/app/teambuilding/teambuilding-data.ts::pris::'Optimalt för 10–60 deltagare. Under 10 är det svårt att dela i mer än 2 lag; över 60 kräv",
     "src/app/teambuilding/teambuilding-data.ts::pris::'Räkna med 600–1 200 kr per person för ett halvdagsformat. Heldagsregatta med mat ombord k",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 1 095 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 1 290 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 1 490 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 395 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 450 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 450 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 490 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 495 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 550 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 595 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 650 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 695 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 695 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 750 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 850 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 890 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 895 kr/person'",
-    "src/app/upplevelser/experiences-data.ts::pris::'från 990 kr/person'",
     "src/app/utflykt/utflykt-data.ts::klockslag::'Stark ficklampa — det blir mörkt 15:30'"
   ]
 }
