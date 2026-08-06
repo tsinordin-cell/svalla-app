@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Cinderellabåten — Tidtabell, hållplatser & biljetter 2026',
-  description: 'Cinderellabåten går från Strömkajen till Sandhamn via Vaxholm. Komplett tidtabell 2026, alla hållplatser, priser och tips för resan. Säsong maj–september.',
+  description: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn via Vaxholm, Grinda och Gällnö. Restider, hållplatser och säsong 2026 — enligt operatören Strömma.',
   keywords: [
     'cinderella båten',
     'cinderellabåten',
@@ -33,30 +33,23 @@ export const revalidate = 600
 const ITEMS: LandingItem[] = [
   {
     icon: '⚓',
-    title: 'Strömkajen',
-    description: 'Avgång kl 10:00. Centralt läge vid Gamla Stan — enkel att nå med tunnelbana (Gamla Stan) eller spårvagn. Biljetter köps i Waxholmsbolagets app eller ombord.',
-    meta: 'Avgång 10:00',
-    href: '#',
-  },
-  {
-    icon: '🌊',
-    title: 'Djurgårdsbryggan',
-    description: 'Andrasytopp ca 10:20. Passar perfekt om du bor i Östermalm eller nära Djurgården. Gratis med SL-kort till Djurgårdslinjen dit.',
-    meta: 'Ca 10:20',
+    title: 'Strandvägen',
+    description: 'Avgångskaj i centrala Stockholm, nära Nybroplan och Östermalm. Biljetter köps hos Strömma, som driver linjen.',
+    meta: 'Avgångskaj',
     href: '#',
   },
   {
     icon: '🏰',
     title: 'Vaxholm',
-    description: 'Mellanstopp ca 11:10. Historisk stad med Vaxholms fästning. Möjlighet att kliva av, besöka stan och ta nästa avgång.',
-    meta: 'Ca 11:10',
+    description: 'Mellanstopp. Historisk stad med Vaxholms fästning. Möjlighet att kliva av, besöka stan och ta en senare avgång.',
+    meta: 'Mellanstopp',
     href: '/o/vaxholm',
   },
   {
     icon: '⛵',
     title: 'Sandhamn',
-    description: 'Slutdestination ca 13:00. Skärgårdens mest kända seglarort. Sandhamns Värdshus, BSSC-marina och pittoreska trägränder. Hemfärja ca 15:30 eller 17:00.',
-    meta: 'Ankomst ca 13:00',
+    description: 'Slutdestination, 2 tim 30 min från Strandvägen enligt Strömma. Skärgårdens mest kända seglarort, med Sandhamns Värdshus och pittoreska trägränder.',
+    meta: '2 tim 30 min',
     href: '/o/sandhamn',
   },
 ]
@@ -71,7 +64,7 @@ export default function CinderellaBaatenPage() {
         name: 'Vad kostar biljett med Cinderellabåten till Sandhamn?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'En tur med Waxholmsbolagets linje (inkl. Cinderella) till Sandhamn kostar ca 120–150 kr per person enkel väg. Köp biljett i appen eller betala ombord. SL-månadskortet gäller inte på Cinderella — Waxholmsbolagets egna kort och pendlarkort gäller däremot.',
+          text: 'Cinderellabåtarna drivs av Strömma, inte av Waxholmsbolaget. Enligt Strömma kostar en resa till Sandhamn från 255 kr och till Grinda eller Gällnö från 235 kr. Biljetter köps hos Strömma. SL-kort och Waxholmsbolagets kort gäller inte.',
         },
       },
       {
@@ -79,7 +72,7 @@ export default function CinderellaBaatenPage() {
         name: 'Hur lång tid tar Cinderellabåten till Sandhamn?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Från Strömkajen tar det ca 3 timmar till Sandhamn med Cinderella (avgång ca 10:00, ankomst ca 13:00). Hållplatser längs vägen: Djurgårdsbryggan (~10:20) och Vaxholm (~11:10). Snabbaste alternativet är buss till Stavsnäs + snabbåt (ca 40 min från Stavsnäs).',
+          text: 'Från Strandvägen tar det 2 timmar och 30 minuter till Sandhamn enligt Strömma. Hållplatser längs vägen är Vaxholm, Grinda och Gällnö. Ett snabbare alternativ är buss från Slussen till Stavsnäs vinterhamn och Waxholmsbolagets färja 16 därifrån.',
         },
       },
       {
@@ -87,7 +80,7 @@ export default function CinderellaBaatenPage() {
         name: 'Kör Cinderellabåten hela året?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Cinderella är en säsongsbåt och kör primärt maj–september. Exakta datum varierar år från år. Under vintern trafikeras sträckan med andra Waxholmsbåtar men med färre avgångar. Kolla aktuell tidtabell på waxholmsbolaget.se.',
+          text: 'Strömma anger säsongen till slutet av april till slutet av september. Exakta datum varierar år från år — se Strömmas tidtabell. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.',
         },
       },
       {
@@ -95,7 +88,7 @@ export default function CinderellaBaatenPage() {
         name: 'Kan man ta med cykel på Cinderellabåten?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Ja, cyklar tas med ombord mot en liten avgift — platserna är begränsade. Boka cykelbiljett i förväg i Waxholmsbolagets app för att säkra plats, särskilt under högsäsong (juli–augusti).',
+          text: 'Villkoren för cykel ombord anges av Strömma och kan variera mellan säsonger. Vi återger dem inte här utan hänvisar till operatörens egna villkor inför bokning.',
         },
       },
     ],
@@ -118,8 +111,8 @@ export default function CinderellaBaatenPage() {
       <CategoryLanding
         heroGradient={['#0a2240', '#1a4a7a']}
         eyebrow="Cinderellabåten"
-        title="Strömkajen → Sandhamn"
-        tagline="Waxholmsbolagets flaggskepp — tidtabell 2026, hållplatser, priser och tips för resan."
+        title="Strandvägen → Sandhamn"
+        tagline="Strömmas skärgårdslinje — hållplatser, restider och säsong 2026."
         heroIcon={
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M2 20h20M5 20V9l7-6 7 6v11M9 20v-5h6v5" />
@@ -128,18 +121,18 @@ export default function CinderellaBaatenPage() {
         intro={
           <>
             <p>
-              <strong>Cinderellabåten</strong> är Waxholmsbolagets stolthet och ett av Stockholms mest ikoniska transportmedel — en klassisk ångbåt (numera diesel) som går från Strömkajen i centrala Stockholm ut till Sandhamn i ytterskärgården. Resan tar ca 3 timmar och passerar Djurgårdsbryggan och Vaxholm längs vägen.
+              <strong>Cinderellabåtarna</strong> drivs av <strong>Strömma</strong> — inte av Waxholmsbolaget, som många tror. De avgår från Strandvägen i centrala Stockholm och går ut till Sandhamn via Vaxholm, Grinda och Gällnö. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören.
             </p>
             <p>
-              Säsongen är <strong>maj–september</strong> med dagliga avgångar under högsäsong. Avgångstid från Strömkajen är vanligtvis kl 10:00, ankomst Sandhamn ca 13:00. Hemfärjan avgår ca 15:30 eller 17:00 beroende på tidtabell — kontrollera alltid aktuella tider på <a href="https://waxholmsbolaget.se" target="_blank" rel="noopener noreferrer">waxholmsbolaget.se</a> eftersom de kan variera.
+              Säsongen löper från <strong>slutet av april till slutet av september</strong>. Avgångstiderna varierar per datum, och vi publicerar dem inte här — en kopia skulle bli inaktuell utan att vi märkte det. Aktuella tider finns hos <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömma</a>.
             </p>
             <p>
-              Cinderella trafikerar <strong>linje 89</strong> i Waxholmsbolagets nät. Biljetter köps i appen, på waxholmsbolaget.se eller ombord. Waxholmsbolagets pendlarkort gäller, men inte SL-månadskortet. Ta gärna med matsäck — det är en lång resa, och ombordservicen är begränsad.
+              Biljetter köps hos Strömma. SL-kort och Waxholmsbolagets pendlarkort gäller inte, eftersom linjen inte ingår i den upphandlade skärgårdstrafiken. Ombord finns café och bar öppna under hela resan.
             </p>
           </>
         }
         itemsTitle="Cinderellabåtens hållplatser"
-        itemsDescription="Strömkajen → Djurgårdsbryggan → Vaxholm → Sandhamn — typisk tidtabell 2026"
+        itemsDescription="Strandvägen → Vaxholm → Grinda → Gällnö → Sandhamn"
         items={ITEMS}
         deeperContent={
           <>
@@ -155,16 +148,21 @@ export default function CinderellaBaatenPage() {
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--border)' }}>
                     <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--txt)', fontWeight: 700 }}>Hållplats</th>
-                    <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--txt)', fontWeight: 700 }}>Avgång (ut)</th>
-                    <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--txt)', fontWeight: 700 }}>Hemresa (retur)</th>
+                    <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--txt)', fontWeight: 700 }}>Restid från Strandvägen</th>
+                    <th style={{ textAlign: 'left', padding: '8px 12px', color: 'var(--txt)', fontWeight: 700 }}>Hemresa</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {/* KÄLLA: stromma.com/sv-se/stockholm/cinderellabatarna/ (hämtad 2026-08-05).
+                      Restider, inte klockslag. Tidtabellen varierar per datum och vi kan inte
+                      hålla en kopia sann — tidigare stod här "Strömkajen 10:00, Djurgårdsbryggan
+                      ~10:20, Vaxholm ~11:10, Sandhamn ~13:00", vilket var påhittat rakt av. */}
                   {[
-                    ['Strömkajen', '10:00', '—'],
-                    ['Djurgårdsbryggan', '~10:20', '~17:40'],
-                    ['Vaxholm', '~11:10', '~17:00'],
-                    ['Sandhamn', '~13:00', '15:30 / 17:00'],
+                    ['Strandvägen', 'Avgångskaj', '—'],
+                    ['Vaxholm', 'Mellanstopp', 'Mellanstopp'],
+                    ['Grinda', '1 tim 30 min', 'Mellanstopp'],
+                    ['Gällnö', '1 tim 45 min', 'Mellanstopp'],
+                    ['Sandhamn', '2 tim 30 min', 'Vändpunkt'],
                   ].map(([stop, dep, ret]) => (
                     <tr key={stop} style={{ borderBottom: '1px solid var(--border)' }}>
                       <td style={{ padding: '10px 12px', color: 'var(--txt)', fontWeight: 600 }}>{stop}</td>
@@ -176,21 +174,21 @@ export default function CinderellaBaatenPage() {
               </table>
             </div>
             <p style={{ fontSize: 12, color: 'var(--txt-secondary)', marginTop: 8 }}>
-              * Tider är ungefärliga och kan variera. Kontrollera alltid aktuell tidtabell på waxholmsbolaget.se.
+              * Restider enligt Strömma. Avgångstiderna varierar per datum — se <a href="https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/" target="_blank" rel="noopener noreferrer">Strömmas tidtabell</a>. Vi publicerar inga klockslag vi inte kan hålla aktuella.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 8px' }}>
               Priser 2026
             </h3>
             <p>
-              Biljett Strömkajen–Sandhamn kostar ca <strong>120–150 kr</strong> enkel väg. Waxholmsbolagets 30-dagarskort (ca 730 kr/mån) ger obegränsat resande och betalar sig snabbt om du reser ofta. Barn under 7 år reser gratis, barn 7–19 år betalar halv taxa. Cykelbiljett tillkommer med ca 40 kr.
+              Enligt Strömma kostar resan <strong>från 255 kr</strong> till Sandhamn och <strong>från 235 kr</strong> till Grinda eller Gällnö. Rabatter och barnpriser anges av operatören och varierar mellan säsonger — vi återger dem inte här.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 8px' }}>
               Alternativa sätt att ta sig till Sandhamn
             </h3>
             <p>
-              Vill du komma snabbare? <strong>Buss 428 + Sandhamnsleden</strong> från Slussen via Stavsnäs är det snabbaste alternativet — buss ca 45 min, sedan snabbåt ca 35–40 min. Totalt ca 1,5 timmar mot 3 timmar med Cinderella. Pendelbåt 89 (Waxholmsbåten) går också men är långsammare och har färre avgångar.
+              Vill du komma snabbare går <strong>buss från Slussen till Stavsnäs vinterhamn</strong> och därifrån Waxholmsbolagets <strong>färja 16</strong> till Sandhamn. Uppmätt mot ResRobot 2026-08-05 tar hela resan från Stockholm ungefär 2 timmar 15 minuter med ett byte.
             </p>
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '28px 0 12px' }}>
@@ -201,21 +199,21 @@ export default function CinderellaBaatenPage() {
               Vad kostar biljett till Sandhamn?
             </h3>
             <p>
-              En enkel biljett Strömkajen–Sandhamn kostar ca 120–150 kr. Köp i Waxholmsbolagets app eller betala ombord. SL-kortet gäller <em>inte</em>, men Waxholmsbolagets pendlarkort och 30-dagarskort gäller fullt ut.
+              Enligt Strömma kostar resan från 255 kr enkel väg. Biljetter köps hos Strömma. Varken SL-kort eller Waxholmsbolagets kort gäller ombord.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               Hur lång tid tar resan?
             </h3>
             <p>
-              Från Strömkajen till Sandhamn tar det ca <strong>3 timmar</strong> med Cinderella. Vill du ta det lugnt och njuta av skärgårdspassagen är Cinderella perfekt. Stressar du — välj buss till Stavsnäs + snabbåt (ca 1,5 timmar totalt).
+              Från Strandvägen till Sandhamn tar det <strong>2 timmar och 30 minuter</strong> enligt Strömma. Vill du njuta av skärgårdspassagen är Cinderella perfekt. Har du bråttom går det snabbare via Stavsnäs.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
               Kör Cinderella hela året?
             </h3>
             <p>
-              Nej — Cinderella är en <strong>säsongsbåt maj–september</strong>. Under vintern trafikeras sträckan med reguljära Waxholmsbåtar med glesare tidtabell. Exakta sommardatum publiceras vanligtvis i mars/april på waxholmsbolaget.se.
+              Nej — säsongen är <strong>slutet av april till slutet av september</strong> enligt Strömma. Utanför säsong nås Sandhamn via Stavsnäs med Waxholmsbolaget.
             </p>
 
             <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

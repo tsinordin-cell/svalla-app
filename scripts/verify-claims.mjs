@@ -1,0 +1,172 @@
+#!/usr/bin/env node
+/**
+ * verify-claims.mjs — spärr mot påståenden utan täckning.
+ *
+ * Bakgrund. Under en kväll i augusti 2026 hittades följande i produktion:
+ *
+ *   • /farjor visade 07:15, 09:45, 11:15 på VARJE linje. Seed-data som såg ut
+ *     som en tidtabell.
+ *   • En SEO-sektion publicerade "Strömkajen 10:00, Djurgårdsbryggan ~10:20,
+ *     Vaxholm ~11:10" för Cinderellabåtarna. Djurgårdsbryggan är inte ens en
+ *     Cinderella-hållplats.
+ *   • Samma text satt kvar i FAQ:n och i JSON-LD:n som Google läser, efter att
+ *     sektionen rättats.
+ *   • Priser "400–500 kr" och Waxholmslinjer "80, 89, 95, 96" utan belägg.
+ *
+ * Varje enskilt fall gick att laga. Problemet är att det uppstår igen, för det
+ * fanns ingenting som hindrade det. Den här spärren gör det svårt att publicera
+ * ett konkret påstående utan att säga varifrån det kommer.
+ *
+ * REGELN: ett klockslag eller ett pris i en användarsynlig sträng måste ha en
+ * källhänvisning inom fem rader ovanför. Det räcker med en kommentar som pekar
+ * på var siffran kommer ifrån.
+ *
+ *     // KÄLLA: stromma.com/sv-se/stockholm/cinderellabatarna/ (hämtad 2026-08-05)
+ *     const restid = '2 tim 30 min'
+ *
+ * Godkända källmarkörer står i KALLMARKORER nedan. Uppmätt via API räknas —
+ * "uppmätt mot ResRobot 2026-08-05" är en källa. "Ungefär" är det inte.
+ *
+ * Kör: node scripts/verify-claims.mjs
+ * Exit 1 = bygget stoppas.
+ */
+import fs from 'fs'
+import path from 'path'
+
+const ROT = 'src'
+
+/** Filer där konkreta siffror är innehåll, inte kod. Här gäller regeln. */
+const OMFANG = [
+  /^src\/app\/.*\/page\.tsx$/,
+  /^src\/app\/.*-data\.ts$/,
+  /^src\/data\/.*\.ts$/,
+  /^src\/lib\/(ferries|planner-client|transit-stops)\.ts$/,
+]
+
+/** Undantag: filer där siffrorna bevisligen inte är påståenden om verkligheten. */
+const UNDANTAG = [
+  /^src\/app\/admin\//,     // interna verktyg, inte publicerat innehåll
+  /^src\/app\/api\//,       // API-logik; källkraven gäller datan de läser
+]
+
+const KALLMARKORER = [
+  'källa:', 'kalla:', 'source:', 'uppmätt', 'uppmatt', 'mätt ', 'matt ',
+  'http://', 'https://', 'resrobot', 'trafiklab', 'strömma', 'stromma',
+  'waxholmsbolaget', 'openstreetmap', 'osm ', 'open-meteo', 'google places',
+]
+
+/**
+ * Klockslag kräver KOLON. Punkt som avgränsare fångade varenda CSS-värde:
+ * rgba(0,0,0,0.06) läses annars som "0.06" och gav 1 366 falska träffar vid
+ * första körningen. Svenska tidtabeller skriver 10:00, inte 10.00.
+ */
+const KLOCKSLAG = /\b([01]?\d|2[0-3]):[0-5]\d\b/
+const PRIS = /(\b\d{2,5}\s*(kr|SEK)\b|\bSEK\s*\d{2,5}\b)/i
+
+/** Stil- och geometristrängar är inte påståenden om verkligheten. */
+const ÄR_STIL = /rgba?\(|[\d.]+px|cubic-bezier|translate|linear-gradient|viewBox|stroke|polygon|^\s*['"`][\d.,\s-]+['"`]\s*$/
+
+function filer(dir, ut = []) {
+  for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, f.name)
+    if (f.isDirectory()) { if (!/node_modules|\.next/.test(p)) filer(p, ut) }
+    else if (/\.(ts|tsx)$/.test(f.name)) ut.push(p)
+  }
+  return ut
+}
+
+const iOmfang = (f) =>
+  OMFANG.some(r => r.test(f)) && !UNDANTAG.some(r => r.test(f))
+
+/** Är raden en kommentar? Då är siffran dokumentation, inte ett påstående. */
+const ärKommentar = (rad) => /^\s*(\/\/|\*|\/\*)/.test(rad.trim())
+
+function harKallaNara(rader, i) {
+  for (let k = Math.max(0, i - 5); k <= i; k++) {
+    const l = (rader[k] || '').toLowerCase()
+    if (KALLMARKORER.some(m => l.includes(m))) return true
+  }
+  return false
+}
+
+const fynd = []
+for (const f of filer(ROT)) {
+  if (!iOmfang(f)) continue
+  const rader = fs.readFileSync(f, 'utf8').split('\n')
+  rader.forEach((rad, i) => {
+    if (ärKommentar(rad)) return
+    // bara strängliteraler — inte t.ex. koordinater eller CSS
+    const strangar = rad.match(/'[^']{2,200}'|"[^"]{2,200}"|`[^`]{2,200}`/g) || []
+    for (const s of strangar) {
+      if (ÄR_STIL.test(s)) continue
+      const träffKlocka = KLOCKSLAG.test(s)
+      const träffPris = PRIS.test(s)
+      if (!träffKlocka && !träffPris) continue
+      if (harKallaNara(rader, i)) continue
+      fynd.push({
+        fil: f, rad: i + 1,
+        typ: träffKlocka ? 'klockslag' : 'pris',
+        text: s.slice(0, 90),
+      })
+    }
+  })
+}
+
+/**
+ * Baslinje. Kodbasen hade 244 obelagda påståenden när spärren skrevs — att
+ * kräva källa på alla samtidigt hade stoppat varenda deploy tills någon gått
+ * igenom 89 restider i island-data.ts. Baslinjen låter spärren blockera NYA
+ * påståenden direkt, medan de gamla betas av.
+ *
+ * Baslinjen är SKULD, inte godkännande. Varje rad i filen är ett påstående vi
+ * publicerar utan att kunna peka på varifrån det kommer. Den ska krympa.
+ *
+ * Skriv om baslinjen med:  node scripts/verify-claims.mjs --uppdatera-baslinje
+ */
+const BASLINJE = 'scripts/verify-claims.baseline.json'
+const nyckel = (f) => `${f.fil}::${f.typ}::${f.text}`
+
+if (process.argv.includes('--uppdatera-baslinje')) {
+  const rader = fynd.map(nyckel).sort()
+  fs.writeFileSync(BASLINJE, JSON.stringify({
+    beskrivning: 'Kända påståenden utan källa. SKULD — ska krympa, aldrig växa.',
+    skapad: new Date().toISOString().slice(0, 10),
+    antal: rader.length,
+    poster: rader,
+  }, null, 2) + '\n')
+  console.log(`Baslinje skriven: ${rader.length} kända poster`)
+  process.exit(0)
+}
+
+let känd = new Set()
+if (fs.existsSync(BASLINJE)) {
+  känd = new Set(JSON.parse(fs.readFileSync(BASLINJE, 'utf8')).poster)
+}
+const nya = fynd.filter(f => !känd.has(nyckel(f)))
+const kvarAvBaslinjen = fynd.length - nya.length
+
+if (nya.length === 0) {
+  console.log(`✓ verify-claims: inga NYA påståenden utan källa`)
+  if (kvarAvBaslinjen > 0) {
+    console.log(`  (${kvarAvBaslinjen} kända kvar i baslinjen — skuld att beta av)`)
+  }
+  process.exit(0)
+}
+const fyndAttVisa = nya
+
+console.error(`\n✗ verify-claims: ${fyndAttVisa.length} NYTT påstående utan källa\n`)
+for (const f of fyndAttVisa) {
+  console.error(`  ${f.fil}:${f.rad}  [${f.typ}]`)
+  console.error(`     ${f.text}`)
+}
+console.error(`
+Ett klockslag eller pris i användarsynlig text måste gå att spåra.
+Lägg en kommentar inom fem rader ovanför, t.ex.:
+
+    // KÄLLA: stromma.com/.../cinderellabatarna (hämtad 2026-08-05)
+    // eller: uppmätt mot ResRobot 2026-08-05
+
+Går siffran inte att belägga ska den INTE publiceras. Skriv hellre
+"se operatörens tidtabell" med en länk än en siffra vi inte kan stå för.
+`)
+process.exit(1)
