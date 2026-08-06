@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/guard-cache-regler.mjs",
+    "prebuild": "node scripts/guard-cache-regler.mjs && node scripts/verify-claims.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -18,7 +18,9 @@
     "db:diff": "supabase db diff",
     "routes:verify": "node scripts/verify-routes-v2.mjs",
     "routes:expand:write": "tsx scripts/expand-precomputed-routes.ts --write",
-    "email:test": "tsx scripts/test-welcome-email.ts"
+    "email:test": "tsx scripts/test-welcome-email.ts",
+    "verify-claims": "node scripts/verify-claims.mjs",
+    "verify-claims:baslinje": "node scripts/verify-claims.mjs --uppdatera-baslinje"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.1",
