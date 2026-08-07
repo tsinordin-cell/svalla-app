@@ -715,7 +715,7 @@ export function getGuideContent(slug: string): string {
 
     'skargard-host': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgården på hösten – varför höst är bäst</h2>
-<p>Hösten är skärgårdens bäst bevarade hemlighet. Turisterna är borta, restaurangerna är lättare att boka, naturen är vacker och havet är fortfarande badbart in i september. Här är allt du vinner på att åka i september och oktober.</p>
+<p>Folk tror att skärgården slutar med semestern. Det gör den inte. September är den månad som de som verkligen älskar skärgården väljer – havet är som varmast, öarna är tomma och du slipper stå i kö till färjan. Oktober ger löv, dramatiskt ljus och havsbastur i oktoberstormar. Det är en annan sorts skärgård än juli – men för många den bättre.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">September – den dolda högsäsongen</h3>
 <p>September kombinerar sommarens varmaste havstemperatur (17–20°C) med höstens lugn. Det är den månad skärgårdserfarna väljer framför allt annat.</p>
@@ -753,6 +753,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Klä dig rätt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Höstväder i skärgården är oberäkneligt. Ta alltid med vindtät jacka, vattentäta byxor och ullunderlägg. Temperaturen kan sjunka 10 grader på en timme när havsvindar drar in. Lager-på-lager är alltid rätt strategi.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha koll på hösten i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut tips varannan tisdag — om vilka öar som håller öppet, vad som är bäst den kommande månaden och guider till eftersäsongens skärgård. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3140,7 +3146,11 @@ export function getGuideContent(slug: string): string {
 
   // ── Batch D: Kräftskiva-serien 2026 ──────────────────────────────────────────
   'kraftskiva-skargarden-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns ett datum varje sommar som folk bokar sina stugor, sina bryggor och sina vänner runt. Kräftpremiären – första onsdagen i augusti – är egentligen inte starten på kräftsäsongen. Det är starten på sensommaren.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar den traditionen en extra dimension. Lyktorna hänger i björkarna, dillångorna blandas med havsluft och det finns ett speciellt lugn i sensommarkvällen ute på öarna – ett lugn som inte finns där i juli. Kräftskivan på klipphällarna, med vatten på tre sidor och en snaps i handen, är svårt att slå.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">2026 är kräftpremiären <strong>onsdag 5 augusti</strong>. Mest firas den helgen efter – 8–9 augusti. Här är allt du behöver veta för att planera en riktigt bra kräftskiva ute i skärgården.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan är en svensk tradition med rötter från 1930-talet då kräftorna fridlystes och man bara fick fiska under kräftpremiären. I dag är restriktionerna borta men traditionen lever starkare än någonsin. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
@@ -3194,6 +3204,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Insider-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Köp kräftorna kvällen innan och låt dem ligga i lagen i kylen över natten – de smakar mycket bättre om de får dra. Koka dem med rikligt med salt (3 msk per liter), dill och gärna lite öl i kokvattnet. Låt dem svalna i lagen i minst fyra timmar. Servera inte kalla kräftor rakt ur kylen – ta ut dem 30 minuter innan.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler tips inför sensommaren?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer den kommande veckan, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4402,6 +4418,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Sensommar-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka ett sensommarbesök på Utö eller Grinda i september. Priserna sjunker 20–30% jämfört med juli, öarna är nästan tomma och badtemperaturen är fortfarande 18–20°C. Det är skärgårdens bäst bevarade hemlighet och nu vet du den.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha fler tips inför hösten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vilka öar som håller öppet, höstens bästa upplevelser och allt du missar annars. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'september-skargarden-2026': `
@@ -4433,6 +4455,12 @@ export function getGuideContent(slug: string): string {
 <li>Kontrollera sista båttiderna – hösttidtabell gäller</li>
 <li>Kamera – septemberljuset är oöverträffat</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha koll på hösten i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vilka öar som håller öppet, vad du inte vill missa i september och oktober, och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
