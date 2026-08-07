@@ -106,10 +106,12 @@ Nynäshamn → Utö: ca 15 NM, segling 2-4h.
 Stavsnäs → Sandhamn: ca 15 NM, segling 2-3h.
 
 === SÄSONG & VÄDER ===
-Bästa säsong: Juni-Augusti. Maj och september bra för de som vill ha lugn.
 Vindförhållanden: Sydvästliga vindar vanligast, bäst för norrut-segling på morgonen.
-Sommar (jun-aug): Trångt vid Sandhamn och Grinda, boka alltid brygga i förväg.
-Höst: Vackra färger, lite folk, men kallare, dubbelkolla öppettider.
+Högsommar (jun-aug): Trångt vid Sandhamn och Grinda — boka brygga ALLTID i förväg. Vaxholm och Fjäderholmarna hanterar trycket bättre. Sandhamn i juli är som Stureplan på vattnet — undvik om du inte gillar det.
+Sensommar (aug-sep): Bästa perioden för erfarna. Vattnet fortfarande varmt (17-21°C), folk börjar dra hem efter midsommar-trycket. Kräftpremiären (alltid första onsdagen i augusti) markerar övergången — folk byter från badliv till sensommarliv.
+September: Bästa månaden för de som vet vad de håller på med. Lugnt, vackert, havsluften skarpare. Fortfarande badbart om du är lite härdad. Kolla öppettider noga — de flesta restauranger håller dock öppet september ut. Grinda Wärdshus och Sandhamns Värdshus: öppna in i oktober. Utö Värdshus: öppet till mitten av september. Finnhamns Krog och Nåttarö Krog: stänger vanligtvis kring mitten/slutet av september.
+Oktober och framåt: Glesbygd. Vaxholm och Utö har mest kvar öppet. Ring alltid innan.
+Badvatten: Juli-aug 18-22°C. September 14-17°C. Oktober under 13°C — bara för de härdiga.
 
 === BOHUSLÄN ===
 Göteborg→Marstrand: Familj/par/turist, halvdag-heldag, Carlstens fästning, hamnliv, Marstrand Hotel & Restaurang, klassisk semesterö. ~15 NM. Regelbunden färja från Koön.
@@ -137,6 +139,33 @@ Karlskrona→Sturkö: Familj/nybörjare, halvdag, bron gör biltur möjlig men f
 Karlskrona→Utklippan: Äventyrare/seglare, heldag, yttersta Blekinge, fyr och fyrvaktarbostad, havsörnar. ~18 NM.
 Karlskrona→Hanö: Seglare/äventyrare, heldag/övernattning, pittoreskt med engelsk historia, sälskådning. ~22 NM.
 Ronneby hamn→Hästholmen: Familj, halvdag, naturhamnar i inre Blekinges skärgård. ~10 NM.
+
+=== KRÄFTSKIVA I SKÄRGÅRDEN ===
+Kräftpremiären: alltid FÖRSTA ONSDAGEN I AUGUSTI. 2026: 5 augusti. Det är inte lagkrav på att äta just då — men traditionen styr. Kräftorna ska vara dagsfärska, kokta i saltlag med rikligt dill.
+
+Hur man gör det i skärgården:
+- Naturhamn/brygga: Ta med allt. Kräftor förbeställda från fiskhandlare (beställ 1-2 veckor innan, de tar slut). Papperslyktor i björkarna. Snaps och snapsglas. Extra dill. Grilla efteråt.
+- Gästhamn: Sandhamn, Grinda och Vaxholm brukar anordna kräftfiranden i premiärveckan — ring och fråga. Boka brygga tidigt.
+
+Recept (Thorkel vet detta utantill):
+- Saltlag: 4 liter vatten, 100-120 g salt, 2 knippen färsk dill per liter vatten. Koka upp. Lägg i kräftorna levande. Koka 8-10 min (stora kräftor 12 min). Låt kallna i spadet — de suger åt sig smaken.
+- Mängd: 500 g-1 kg kräftor per person som förrätt, 1,5-2 kg som huvudrätt.
+
+Kräftor köper du: fiskhandlaren (bäst — förbeställ). ICA/Coop i premiärsveckan. Levande är bäst. Frysta svenska går. Importerade (spanska, kinesiska) är billigare men sämre sak.
+
+Snapstips: En liten bitter till kräftor. Brännvin om du är gammal nog. Öl i pausen. Ostkaka med jordgubbssylt på slutet om det är ett riktigt kalas.
+
+=== NATURHAMNAR VS GÄSTHAMNAR ===
+Naturhamn = gratis. Du ankrar eller förtöjer vid klippa, pir eller boj utan service. Vatten och toalett saknas. Ta med allt själv. Allemansrätten gäller på sjön.
+Gästhamn = betalt (200-450 kr/natt ~30 fot). El, dusch, toalett, ibland servicebyggnad. Boka i förväg vid Sandhamn och Grinda på sommaren.
+
+Bästa naturhamnarna runt Stockholm:
+- Bullerö (Värmdö-hållet): Naturreservat, skyddat läge, fantastisk klippnatur. Inga bekvämligheter men en av de vackraste i mellanskärgården.
+- Huvudskär (södra ytterskärgården): Riktig havskänsla. Fyr. Tar emot en del men aldrig trångt.
+- Ramsö (nära Möja): Lugnt, skyddat. Bra om Möja är fullsatt.
+- Arholma (norra skärgården): Pittoreskt, ytterläge, fyr. 2-3 dagar.
+
+OBS: Kontrollera alltid om ön är naturreservat och om det finns landnings- eller eldningsförbud. Kolla sjökortet och Länsstyrelsens sajt. Bryggor i naturhamnar ägs ofta av kommunen eller stiftelsen — respektera om de är privata.
 `
 
 const SYSTEM_PROMPT = `Du är Thorkel, en 70-årig skeppare och skärgårdsguide från Möja i Stockholms skärgård. Du var lots utanför Sandhamn i tio år och har seglat längs hela Sveriges kust — från Kosterfjorden i Bohuslän till Karlsöarna utanför Gotland och Utklippan i Blekinge. Du driver nu egna charterturer plus ett litet vandrarhem tillsammans med din fru. Du bär vit kaptens-keps och mörkblå uniform, och luktar lite salt och tjära.
@@ -674,7 +703,7 @@ export async function POST(req: NextRequest) {
     })
   }
 
-  const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta, relevanta följdfrågor som du tror användaren kan vilja veta mer om. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort fråga ett? | Kort fråga två? | Kort fråga tre?\nMax 8 ord per fråga. Frågorna ska följa naturligt från samtalet.`
+  const followUpProtocol = `\n\nFÖLJDFRÅGOR-PROTOKOLL: Avsluta varje svar med tre korta förslag på vad användaren kan svara eller fråga härnäst. Skriv dem på en ny rad SIST i svaret, exakt på detta format:\nFÖLJDFRÅGOR: Kort alternativ ett | Kort alternativ två | Kort alternativ tre\nMax 8 ord per alternativ. VIKTIGT: Om du ställer en fråga till användaren ska alternativen vara möjliga SVAR på din fråga (t.ex. "Vi är 2 vuxna och 2 barn" eller "Barnen har aldrig seglat"), inte nya frågor. Om du ger information ska alternativen vara naturliga följdfrågor användaren kan vilja ställa.`
 
   const dynamicSystem = (placeLinks
     ? `${SYSTEM_PROMPT}\n\n=== PLATSER I SVALLA (använd dessa länkar) ===\n${placeLinks}\n\nNär du nämner en plats, länka alltid till platssidan på Svalla. Om bokning finns, visa bokningslänken tydligt.`

@@ -97,7 +97,7 @@ export default function ErbjudandenPage() {
  Om du driver ett hotell, en krog, en seglingsskola eller annan skärgårdsverksamhet kan du <strong>skicka in ditt erbjudande</strong> till redaktionen. Vi är selektiva men gratis — vi prioriterar erbjudanden som faktiskt gör skärgården mer tillgänglig, inte bara dyrare.
  </p>
  <p>
- Mejla <a href="mailto:partners@svalla.se" style={{ color: 'var(--sea)' }}>partners@svalla.se</a> med kort beskrivning, priser och bokningslänk. Vi återkommer inom en vecka.
+ Mejla <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a> med kort beskrivning och bokningslänk. Vi återkommer inom en vecka.
  </p>
  </>
  }
