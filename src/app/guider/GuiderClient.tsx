@@ -69,13 +69,26 @@ function GuideCard({ guide }: { guide: typeof GUIDES[0] }) {
 
 export default function GuiderClient() {
   const [activeCategory, setActiveCategory] = useState<GuideCategory | 'Alla'>('Alla')
+  const [searchQuery, setSearchQuery] = useState('')
 
   const featured = GUIDES.find(g => g.featured)
+
+  const q = searchQuery.trim().toLowerCase()
+  const isSearching = q.length > 0
+
+  // Search across all guides when query is active
+  const searchResults = isSearching
+    ? GUIDES.filter(g =>
+        g.title.toLowerCase().includes(q) ||
+        g.excerpt.toLowerCase().includes(q) ||
+        g.category.toLowerCase().includes(q)
+      )
+    : []
 
   // Filtered flat view (when a specific category is selected)
   const filteredGuides = GUIDES.filter(g => g.category === activeCategory && !g.featured)
 
-  const showGeo = activeCategory === 'Alla'
+  const showGeo = activeCategory === 'Alla' && !isSearching
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
@@ -110,16 +123,47 @@ export default function GuiderClient() {
             {GUIDES.length} guider – från Stockholms skärgård till Bohuslän, Gotland och Höga Kusten
           </p>
 
+          {/* Sökfält */}
+          <div style={{ position: 'relative', marginBottom: 12 }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth={2} style={{
+              position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
+              width: 15, height: 15, pointerEvents: 'none',
+            }}>
+              <circle cx="11" cy="11" r="8" /><path strokeLinecap="round" d="M21 21l-4.35-4.35" />
+            </svg>
+            <input
+              type="search"
+              placeholder="Sök bland guider…"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%', padding: '9px 14px 9px 36px',
+                borderRadius: 22, border: 'none', outline: 'none',
+                background: 'rgba(255,255,255,0.14)', color: '#fff',
+                fontSize: 14, backdropFilter: 'blur(6px)',
+                boxSizing: 'border-box',
+              }}
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} style={{
+                position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
+                background: 'rgba(255,255,255,0.25)', border: 'none', borderRadius: '50%',
+                width: 20, height: 20, cursor: 'pointer', color: '#fff', fontSize: 12,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}>✕</button>
+            )}
+          </div>
+
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {(['Alla', ...ALL_CATEGORIES] as const).map(cat => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat as GuideCategory | 'Alla')}
+                onClick={() => { setActiveCategory(cat as GuideCategory | 'Alla'); setSearchQuery('') }}
                 style={{
                   fontSize: 12, fontWeight: 700, padding: '5px 14px', borderRadius: 20,
                   border: 'none', cursor: 'pointer',
-                  background: activeCategory === cat ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.12)',
-                  color: activeCategory === cat ? 'var(--sea, #0a7b8c)' : '#fff',
+                  background: activeCategory === cat && !isSearching ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.12)',
+                  color: activeCategory === cat && !isSearching ? 'var(--sea, #0a7b8c)' : '#fff',
                   transition: 'all .18s',
                 }}
               >{cat}</button>
@@ -139,7 +183,26 @@ export default function GuiderClient() {
 
       <div style={{ maxWidth: 960, margin: '0 auto', padding: '24px 20px' }}>
 
-        {showGeo ? (
+        {/* Sökresultat */}
+        {isSearching && (
+          <>
+            <p style={{ fontSize: 13, color: 'var(--ink-muted)', marginBottom: 16 }}>
+              {searchResults.length} {searchResults.length === 1 ? 'guide' : 'guider'} matchar &ldquo;{searchQuery}&rdquo;
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16, marginBottom: 40 }}>
+              {searchResults.map(guide => (
+                <GuideCard key={guide.slug} guide={guide} />
+              ))}
+              {searchResults.length === 0 && (
+                <p style={{ color: 'var(--ink-muted)', fontSize: 14, gridColumn: '1 / -1' }}>
+                  Ingen guide matchar &ldquo;{searchQuery}&rdquo;. Prova ett annat sökord.
+                </p>
+              )}
+            </div>
+          </>
+        )}
+
+        {!isSearching && showGeo ? (
           <>
             {/* Featured card */}
             {featured && (
@@ -247,7 +310,7 @@ export default function GuiderClient() {
               )
             })}
           </>
-        ) : (
+        ) : !isSearching ? (
           /* Kategori-filtrerad flat vy */
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
             {filteredGuides.map(guide => (
@@ -259,7 +322,7 @@ export default function GuiderClient() {
               </p>
             )}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   )

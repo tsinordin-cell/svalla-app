@@ -78,27 +78,33 @@ function getContextualSuggestions(): string[] {
 
   if (isWeekend && isSummer) return [
     'Perfekt dagstur för hela familjen i sommar?',
-    'Var äter man bäst i ytterskärgården?',
+    'Var äter man bäst i ytterskärgården just nu?',
     'Vilka öar ska man undvika i högsäsong?',
-    'Bästa badstränder med bra brygga?',
+    'Bästa naturhamnar att ankra i utan folk?',
     'Övernattning på en ö — vad rekommenderar du?',
-    'Bra seglingsrutt för en hel sommardag?',
+    'Bra seglingsrutt för en hel sommardag från Stockholm?',
+    'Hur hyr man kajak nära Stockholm?',
+    'Brygga med el och dusch nära Sandhamn?',
   ]
   if (isWeekend && isSpring) return [
     'Bra vårtur när öarna precis vaknat?',
     'Var är det lugnt och vackert i maj?',
     'Familjeutflykt till en nära ö i vår?',
     'Var kan man äta bra utan att boka i förväg?',
-    'Bästa dagstur med Waxholmsbåten?',
+    'Bästa dagstur med Waxholmsbåten i vår?',
     'Romantisk helgtur för oss två i vår?',
+    'Bra öar att segla till i maj?',
+    'Är det badbart i skärgården i maj?',
   ]
   if (isWeekend && isAutumn) return [
     'Lugna höstöar utan turister?',
     'Bästa skärgårdstur i september eller oktober?',
-    'Var är det fortfarande öppet på hösten?',
+    'Var är det fortfarande öppet efter midsommar?',
+    'Kräftskiva i skärgården — var och hur?',
     'Höstvandring i skärgården — var börjar jag?',
     'Övernattning när det är lugnt och lite billigare?',
     'Fiskeäventyr på hösten — vad rekommenderar du?',
+    'Hummerpremären i Bohuslän — när och var?',
   ]
   if (isWeekend) return [
     'Vintervandring eller skidtur i skärgården?',
@@ -107,17 +113,23 @@ function getContextualSuggestions(): string[] {
     'Lugn helgtur för oss två i vinter?',
     'Öppen restaurang i ytterskärgården på vintern?',
     'Bästa vinterfiske — var börjar jag?',
+    'Kan man segla på vintern i skärgården?',
+    'Bästa ön att besöka i januari eller februari?',
   ]
   // Veckodagar — mer praktiska, kortare turer
   return [
-    'Vad passar för en familj med barn?',
-    'Romantisk helgtur för oss två?',
-    'Var kan man boka bord i skärgården?',
+    'Vad passar för en familj med barn under 10 år?',
+    'Romantisk helgtur för oss två — budget?',
+    'Var kan man boka bord i skärgården nu?',
     'Bra seglingsrutt en hel dag från Stockholm?',
-    'Var kan man äta bra i skärgården?',
+    'Var kan man äta bra utan att ha båt?',
     'Nybörjare — vilken tur börjar jag med?',
     'Bästa stället att bada i ytterskärgården?',
     'Äventyrlig tur med flera stopp och matrestopp?',
+    'Hur planerar man sin första skärgårdsresa?',
+    'Vad kostar det att hyra båt för en dag?',
+    'Hur anmäler man man överbord?',
+    'Vad behöver man ha ombord för säkerhets skull?',
   ]
 }
 
