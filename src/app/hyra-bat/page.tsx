@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Prisuppskattning from '@/components/Prisuppskattning'
 import Link from 'next/link'
 import { GUIDES } from '@/app/guider/guides-data'
 import { HYRBAT_SUBS } from './hyrbat-data'
@@ -36,6 +37,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vad kostar det att hyra båt i Sverige?',
+    // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
     a: 'En liten motorbåt kostar 900–1 500 kr/dag. Mellanbåt 1 200–2 500 kr/dag. Segelbåt 28–35 fot: 3 500–7 500 kr/dag. Bränsle tillkommer alltid. Högsäsong (juli) är 20–30% dyrare än maj och september.',
   },
   {
@@ -135,8 +137,10 @@ export default function HyraBatPage() {
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
             Vad kostar det att hyra båt? (Stockholm som referens)
           </h2>
+          <Prisuppskattning uppdaterad="augusti 2026" vad="uthyrare" />
           <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
             {[
+              // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
               { type: 'Liten motorbåt (4–5 m)', price: '900–1 500 kr/dag', note: 'Passar 2–4 personer, inget körkort' },
               { type: 'Mellanbåt (6–7 m)', price: '1 200–2 200 kr/dag', note: 'Bra fart, plats för 4–6' },
               { type: 'Stor motorbåt / kabinbåt', price: '2 000–4 000 kr/dag', note: 'Sovplatser, kajut' },
