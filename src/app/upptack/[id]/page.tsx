@@ -1,4 +1,4 @@
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,45 +16,8 @@ import PlaceMiniMap from '@/components/PlaceMiniMap'
 import TrackPlaceView from '@/components/TrackPlaceView'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import type { Metadata } from 'next'
-import { fixMojibake, fixMojibakeLista } from '@/lib/mojibake'
 
-// PRESTANDA (2026-08-02): stod tidigare på 60 s "för att uppdatera recensioner
-// ofta". Med 699 platssidor hann cachen nästan alltid gå ut mellan två besök på
-// samma sida, så i praktiken byggdes varje sida om vid varje besök —
-// x-vercel-cache: MISS genomgående och ~3-4 s svarstid.
-// Platsdata (namn, bilder, öppettider) ändras via /admin och recensioner är
-// sällsynta; en timme är gott om färskhet och gör att de allra flesta besök
-// serveras direkt från CDN:en i stället.
-export const revalidate = 3600
-
-/**
- * Förgenerera alla platssidor.
- *
- * Utan generateStaticParams behandlar Next.js en dynamisk route som
- * on-demand-renderad (`ƒ` i byggutdata) och sidorna hamnar aldrig i CDN-cachen
- * — verifierat live 2026-08-02: `x-vercel-cache: MISS` på varje besök, även
- * efter att cookie-beroendet tagits bort och revalidate satts till en timme.
- * Samma sak drabbade /ta-dig-till tidigare, se CLAUDE.md punkt 7.
- *
- * Med förgenerering byggs sidorna en gång och serveras därefter från cache,
- * med ISR-uppdatering en gång i timmen.
- */
-export async function generateStaticParams() {
-  try {
-    const supabase = createPublicSupabaseClient()
-    const { data } = await supabase
-      .from('restaurants')
-      .select('id, slug')
-      .order('id')
-    // Föredra slug (snyggare URL och det sitemapen pekar på), fallback till id.
-    return (data ?? []).map((r: { id: string; slug: string | null }) => ({
-      id: r.slug || r.id,
-    }))
-  } catch {
-    // Hellre on-demand-rendering än ett trasigt bygge.
-    return []
-  }
-}
+export const revalidate = 60 // refresh reviews regularly
 
 /**
  * Hämta restaurang via slug ELLER UUID. UUIDv4 har 36 tecken med bindestreck.
@@ -63,7 +26,7 @@ export async function generateStaticParams() {
  */
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 async function fetchRestaurant(idOrSlug: string, columns: string) {
-  const supabase = createPublicSupabaseClient()
+  const supabase = await createServerSupabaseClient()
   const isUuid = UUID_RE.test(idOrSlug)
   const col = isUuid ? 'id' : 'slug'
   const { data } = await supabase.from('restaurants').select(columns).eq(col, idOrSlug).maybeSingle()
@@ -80,7 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
    image_url?: string; tags?: string[]; slug?: string;
    google_photo_refs?: { reference: string }[] | null;
  } | null
- if (!data) return { title: { absolute: 'Restaurang – Svalla' } }
+ if (!data) return { title: 'Restaurang – Svalla' }
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
  const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`
@@ -128,27 +91,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function RestaurantPage({ params }: { params: Promise<{ id: string }> }) {
  const { id: idOrSlug } = await params
- const supabase = createPublicSupabaseClient()
+ const supabase = await createServerSupabaseClient()
 
  const data = await fetchRestaurant(
    idOrSlug,
    'id, slug, name, latitude, longitude, images, menu, menu_url, opening_hours, opening_hours_json, description, tags, core_experience, type, categories, best_for, facilities, seasonality, archipelago_region, island, contact_phone, phone, email, website, booking_url, instagram, facebook, formatted_address, postal_code, city, google_rating, google_ratings_total, google_place_id, google_photo_refs, google_rating_updated'
  )
  if (!data) notFound()
- // Sanera dubbelkodad UTF-8 innan raden anvands. En del platsdata har
- // importerats med fel teckenkodning, sa taggar visades som "mÃ¶lle" och
- // "Ã¶resund" i stallet for "molle"/"oresund" (upptackt 2026-08-01).
- // Datan bor stadas i databasen ocksa, men detta gor att inget nagonsin
- // visas trasigt for besokaren. fixMojibake ar idempotent — korrekt text
- // passerar orord. Se src/lib/mojibake.ts.
- const raden = data as unknown as Record<string, unknown>
- for (const nyckel of ['name', 'description', 'core_experience', 'island', 'formatted_address', 'city'] as const) {
-   const v = raden[nyckel]
-   if (typeof v === 'string') raden[nyckel] = fixMojibake(v)
- }
- for (const nyckel of ['tags', 'best_for', 'categories', 'facilities'] as const) {
-   if (Array.isArray(raden[nyckel])) raden[nyckel] = fixMojibakeLista(raden[nyckel] as string[])
- }
  const r = data as unknown as Restaurant & { slug?: string; postal_code?: string | null; city?: string | null }
  // Verklig UUID — används för reviews/place-relations som har FK till restaurants.id
  const id = r.id
@@ -159,53 +108,23 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // Migration 20260505000002 byggde tabellen men den lästes aldrig. Nu mixar vi
  // in den efter Google-foton men före r.images-arrayen. Felar tyst om tabell
  // är tom eller saknar rader för denna plats.
- // PRESTANDA (2026-08-02): de här fyra frågorna är oberoende av varandra och
- // kördes tidigare i serie, en efter en. Varje led lade på full nätverkslatens
- // mot Supabase — platssidan låg på ~4 s TTFB, och det är sajtens tyngsta
- // sidtyp (699 sidor). Nu körs de parallellt. Bara users-uppslaget nedan är
- // äkta beroende (det behöver user_id från trips).
- //
- // place_photos: admin-uppladdade foton (separat tabell). Migration
- // 20260505000002 byggde tabellen men den lästes aldrig. Mixas in efter
- // Google-foton men före r.images-arrayen. Felar tyst om tabellen är tom.
- //
- // tours: hoppas över helt när platsen saknar koordinater — nearbyTours blir
- // ändå tom då, så anropet var rent slöseri. Frågan är dessutom begränsad nu;
- // förut hämtades HELA tours-tabellen för att sedan filtreras i JavaScript.
- const [
-   { data: placePhotoRowsRaw },
-   { data: recentTripsRaw },
-   { data: allTours },
-   { data: reviewStats },
- ] = await Promise.all([
-   supabase
-     .from('place_photos')
-     .select('url, credit, sort_order, is_hero')
-     .eq('place_id', id)
-     .order('is_hero', { ascending: false })
-     .order('sort_order', { ascending: true })
-     .limit(12),
-   supabase
-     .from('trips')
-     .select('id, image, location_name, created_at, user_id')
-     .not('image', 'is', null)
-     .order('created_at', { ascending: false })
-     .limit(6),
-   r.latitude && r.longitude
-     ? supabase
-         .from('tours')
-         .select('id, title, usp, duration_label, start_location, destination, waypoints, best_for, cover_image')
-         .order('title', { ascending: true })
-         .limit(200)
-     : Promise.resolve({ data: null }),
-   supabase
-     .from('reviews')
-     .select('rating')
-     .eq('place_id', id),
- ])
-
+ const { data: placePhotoRowsRaw } = await supabase
+   .from('place_photos')
+   .select('url, credit, sort_order, is_hero')
+   .eq('place_id', id)
+   .order('is_hero', { ascending: false })
+   .order('sort_order', { ascending: true })
+   .limit(12)
  const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
 
+ // Fetch recent trips nearby this restaurant (trips linking to this place)
+ // Visa senaste turer med bild — matchas mot restaurangens namn om möjligt, annars senaste globalt
+ const { data: recentTripsRaw } = await supabase
+ .from('trips')
+ .select('id, image, location_name, created_at, user_id')
+ .not('image', 'is', null)
+ .order('created_at', { ascending: false })
+ .limit(6)
  const tripUids = [...new Set((recentTripsRaw ?? []).map((t: { user_id: string }) => t.user_id).filter(Boolean))]
  const { data: tripUserRows } = tripUids.length
  ? await supabase.from('users').select('id, username').in('id', tripUids)
@@ -217,7 +136,12 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  const recentTrips = (recentTripsRaw ?? []).map((t: any) => ({ ...t, users: { username: tripUmap[t.user_id] ?? 'Seglare' } }))
 
- // Rutter som passerar nära platsen (allTours hämtas parallellt ovan)
+ // Rutter som passerar nära platsen
+ const { data: allTours } = await supabase
+ .from('tours')
+ .select('id, title, usp, duration_label, start_location, destination, waypoints, best_for, cover_image')
+ .order('title', { ascending: true })
+
  function haversineNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
  const R = 3440.065
  const dLat = (lat2 - lat1) * Math.PI / 180
@@ -226,9 +150,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
  }
 
- type TourRad = { waypoints: { lat: number; lng: number }[] }
  const nearbyTours = r.latitude && r.longitude
- ? ((allTours ?? []) as TourRad[]).filter((t: TourRad) =>
+ ? (allTours ?? []).filter((t: { waypoints: { lat: number; lng: number }[] }) =>
  Array.isArray(t.waypoints) &&
  t.waypoints.some((wp: { lat: number; lng: number }) =>
  haversineNM(r.latitude!, r.longitude!, wp.lat, wp.lng) <= 25
@@ -236,19 +159,42 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  ).slice(0, 3)
  : []
 
- // Aggregate review stats for header (reviewStats hämtas parallellt ovan)
+ // Aggregate review stats for header
+ const { data: reviewStats } = await supabase
+ .from('reviews')
+ .select('rating')
+ .eq('place_id', id)
+
  const avgRating = reviewStats && reviewStats.length > 0
  ? (reviewStats.reduce((a: number, r: { rating?: number }) => a + (r?.rating ?? 0), 0) / reviewStats.length)
  : null
  const reviewCount = reviewStats?.length ?? 0
 
  // JSON-LD structured data
+ // Map internal type to schema.org type
+ const schemaTypeMap: Record<string, string> = {
+   restaurant: 'Restaurant',
+   cafe: 'CafeOrCoffeeShop',
+   bar: 'BarOrPub',
+   marina: 'Marina',
+   hotel: 'LodgingBusiness',
+   hostel: 'Hostel',
+   camping: 'Campground',
+   beach: 'Beach',
+   activity: 'TouristAttraction',
+   shop: 'Store',
+   fuel_station: 'GasStation',
+ }
+ const schemaType = (r.type && schemaTypeMap[r.type]) ?? 'LocalBusiness'
+ const isFood = ['Restaurant', 'CafeOrCoffeeShop', 'BarOrPub'].includes(schemaType)
+
  const jsonLd = {
  '@context': 'https://schema.org',
- '@type': 'Restaurant',
+ '@type': schemaType,
  name: r.name,
  description: r.description ?? undefined,
  url: `https://svalla.se/upptack/${canonicalPath}`,
+ ...(r.website ? { sameAs: r.website } : {}),
  ...(r.latitude && r.longitude ? {
  geo: {
  '@type': 'GeoCoordinates',
@@ -267,16 +213,21 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  worstRating: 1,
  },
  } : {}),
- servesCuisine: Array.isArray(r.tags) ? r.tags.slice(0, 3) : undefined,
- priceRange: '$$',
+ ...(isFood ? {
+   servesCuisine: Array.isArray(r.tags) ? r.tags.slice(0, 3) : undefined,
+   priceRange: '$$',
+   ...(r.menu_url ? { hasMenu: r.menu_url } : {}),
+ } : {}),
  ...(r.island ? {
  address: {
  '@type': 'PostalAddress',
  addressLocality: r.island,
  addressCountry: 'SE',
+ ...(r.postal_code ? { postalCode: r.postal_code } : {}),
  },
  } : {}),
- ...(r.contact_phone ? { telephone: r.contact_phone } : {}),
+ ...(r.contact_phone ?? r.phone ? { telephone: r.contact_phone ?? r.phone } : {}),
+ ...(r.email ? { email: r.email } : {}),
  }
 
  /**
@@ -310,26 +261,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  // Mixa: admin place_photos först (de är hand-kurerade), sen Google, sen fallback images.
  // is_hero-ordningen från SELECT säkerställer hero-bilden hamnar först.
  const adminPhotoUrls = placePhotoRows.map(p => p.url).filter(isValidPhotoUrl)
- /**
-  * Stockbilder får INTE bli hero på en platssida.
-  *
-  * 2026-08-05: Möja Lanthandel visade en dramatisk havsvåg från Unsplash som
-  * hero. Bilden är inte tagen på platsen, men placerad överst på sidan
-  * påstår den i praktiken att den är det — samma sorts osanning som de
-  * påhittade färjetiderna, fast visuell.
-  *
-  * 56 platser saknar både eget foto och Google-foto. De faller nu igenom till
-  * PlaceHeroGallerys tom-state: tonad yta med pin-ikon och en rad text. Det
-  * ser avsiktligt ut i stället för falskt, och signalerar ärligt att vi inte
-  * har någon bild ännu.
-  *
-  * Supabase-lagrade och Google-proxade bilder är oförändrade — de föreställer
-  * faktiskt platsen.
-  */
- const ärStockbild = (u: string) => u.includes('images.unsplash.com')
- const fallbackImages = Array.isArray(r.images)
-   ? r.images.filter(isValidPhotoUrl).filter(u => !ärStockbild(u))
-   : []
+ const fallbackImages = Array.isArray(r.images) ? r.images.filter(isValidPhotoUrl) : []
  const placePhotos: string[] = [
    ...adminPhotoUrls,
    ...googlePhotoUrls,
@@ -750,6 +682,31 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      Information uppdaterad {new Date((r as Restaurant & { google_rating_updated?: string | null }).google_rating_updated!).toLocaleDateString('sv-SE', { year: 'numeric', month: 'long', day: 'numeric' })}
    </div>
  )}
+
+ {/* ── Claim listing — passiv partner-acquisition ── */}
+ <div style={{
+   marginTop: 32,
+   padding: '18px 20px',
+   borderRadius: 14,
+   border: '1px dashed rgba(10,123,140,0.25)',
+   background: 'rgba(10,123,140,0.03)',
+   textAlign: 'center',
+ }}>
+   <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 10px', lineHeight: 1.5 }}>
+     Driver du den här verksamheten?
+   </p>
+   <Link
+     href="/partner"
+     style={{
+       fontSize: 13, fontWeight: 700,
+       color: 'var(--sea)', textDecoration: 'none',
+       display: 'inline-flex', alignItems: 'center', gap: 5,
+     }}
+   >
+     Uppdatera info och nå fler gäster — gratis →
+   </Link>
+ </div>
+
  </div>
  </div>
  )

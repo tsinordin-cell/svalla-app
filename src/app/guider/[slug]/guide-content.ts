@@ -101,6 +101,12 @@ export function getGuideContent(slug: string): string {
 <p><strong>Upplev:</strong> Donsö är Göteborgs sydskärgårds mysigaste ö. Midsommarfirandet vid hamnplanen är genuint och välskött. Öns fiskeindustri är fortfarande aktiv och ger ett annorlunda skärgårdsintryck.</p>
 <p><strong>Var du äter:</strong> Donsö Krog med färsk fisk direkt från hamnen. Sommarcaféet vid bryggan för kaffe och räksmörgås.</p>
 <p><strong>Insider-tips:</strong> Styrsöbolaget ingår i Göteborgs kollektivtrafik – SL-kortet gäller INTE, men Västtrafik-kortet gäller. Biljett köps ombord eller i Västtrafik-appen.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'packlista-skargarden': `
@@ -211,6 +217,12 @@ export function getGuideContent(slug: string): string {
 <li>Ha alltid kontanter – kortterminalerna i yttre skärgård fungerar inte alltid</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'allemansratten-pa-sjon': `
@@ -282,6 +294,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:#2a9d5c">Kom ihåg: allemansrätten är en rättighet OCH ett ansvar</strong>
 <p style="margin:8px 0 0;font-size:14px">Rätten att röra sig fritt i naturen förutsätter att du lämnar platser i bättre skick än du fann dem. Ta alltid med hem ditt skräp, respektera djurlivet och visa hänsyn till markägare och andra besökare.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'waxholmsbolaget-guide': `
@@ -346,6 +364,12 @@ export function getGuideContent(slug: string): string {
 <li><strong>Linje 670/671</strong>: Strömkajen → Arholma (norra skärgård). Ca 4 h.</li>
 <li><strong>Utö-linjen</strong>: Nynäshamn → Utö. Ca 1 h 15 min.</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'skargard-utan-bat': `
@@ -431,6 +455,12 @@ export function getGuideContent(slug: string): string {
 <li>SL-appen visar SL-bussar till hamnarna men INTE Waxholmsbolagets båtar</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'badtemperatur-skargard': `
@@ -461,6 +491,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Håll koll på temperaturen:</strong>
 <p style="margin:8px 0 0;font-size:14px">SMHI publicerar aktuella havstemperaturer på smhi.se. Appen "Havstemperatur" visar realtidsmätningar från mätstationer i skärgården. Temperaturerna i vikar och grunda områden kan vara 3–5°C varmare än öppet hav.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -502,6 +538,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Planera resan smart:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kombinera SL-buss (gratis med abonnemang) till hamnterminalen med Waxholmsbolaget-biljett för båtturen. Den kombinationen ger ofta den snabbaste och billigaste resan till de flesta öar. Använd Waxholmsbolagets app för tidtabeller och biljetter.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'dykning-snorkling-skargard': `
@@ -541,6 +583,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Viktigt om vrak:</strong>
 <p style="margin:8px 0 0;font-size:14px">Svenska sjövrak är skyddade av Kulturminneslagens fornminnesbestämmelser om de är äldre än 100 år. Det är förbjudet att ta upp eller flytta föremål från vrak. Respektera wraken som de gravplatser de ibland är.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -586,6 +634,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Räkproffs tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Köp räkorna kvällen innan och förvara dem kylda i en låda med lock. Skala inte i förväg – räkorna tappar saftighet. Ha gott om hushållspapper på bordet och en skålskål för skalen. Och kom ihåg: en riktig räkfrukost ska ta minst en timme.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om skärgårdens matkultur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om allt från kräftpremier och hummerpremiär till bästa fiskrestaurangerna längs kusten. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'sjomatkrogar-guide': `
@@ -628,6 +682,12 @@ export function getGuideContent(slug: string): string {
 <li>Räkna med att betala kontant eller Swish på de allra minsta ställena</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om skärgårdens matkultur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om allt från kräftpremier och hummerpremiär till bästa fiskrestaurangerna längs kusten. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'hummersafari-bohuslan': `
@@ -668,6 +728,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Hummerpremiären 2025:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontrollera exakt datum på Havs- och vattenmyndighetens webbplats (hav.se) eller Visit Bohusläns evenemangssida. Premiären samlar tusentals besökare längs kusten och boenden i Grebbestad och Smögen tar slut månader i förväg.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -711,11 +777,17 @@ export function getGuideContent(slug: string): string {
 <li>Börja med lite och öka mängden – smaken är kraftig</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'skargard-host': `
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:0 0 16px">Skärgården på hösten – varför höst är bäst</h2>
-<p>Hösten är skärgårdens bäst bevarade hemlighet. Turisterna är borta, restaurangerna är lättare att boka, naturen är vacker och havet är fortfarande badbart in i september. Här är allt du vinner på att åka i september och oktober.</p>
+<p>Folk tror att skärgården slutar med semestern. Det gör den inte. September är den månad som de som verkligen älskar skärgården väljer – havet är som varmast, öarna är tomma och du slipper stå i kö till färjan. Oktober ger löv, dramatiskt ljus och havsbastur i oktoberstormar. Det är en annan sorts skärgård än juli – men för många den bättre.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">September – den dolda högsäsongen</h3>
 <p>September kombinerar sommarens varmaste havstemperatur (17–20°C) med höstens lugn. Det är den månad skärgårdserfarna väljer framför allt annat.</p>
@@ -754,6 +826,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Klä dig rätt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Höstväder i skärgården är oberäkneligt. Ta alltid med vindtät jacka, vattentäta byxor och ullunderlägg. Temperaturen kan sjunka 10 grader på en timme när havsvindar drar in. Lager-på-lager är alltid rätt strategi.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha koll på hösten i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut tips varannan tisdag — om vilka öar som håller öppet, vad som är bäst den kommande månaden och guider till eftersäsongens skärgård. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'midsommar-bohuslan': `
@@ -788,6 +866,12 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">7. Donsö – Göteborgs närmaste skärgård</h4>
 <p><strong>Transport:</strong> Spårvagn till Saltholmen + Styrsöbolagets båt, ca 30 min. Ingår i Västtrafik (ej SL).</p>
 <p><strong>Upplev:</strong> Göteborgs sydskärgårds mysigaste ö. Genuint midsommarfirande vid hamnplanen med aktiv fiskehamn som kuliss.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'sandhamn-vs-grinda': `
@@ -830,6 +914,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Vår rekommendation:</strong>
 <p style="margin:8px 0 0;font-size:14px">Välj Sandhamn om du vill ha stämning, social energi och skärgårdens bästa restaurang. Välj Grinda om du vill vila, bada och naturuppleva utan stress och folksamlingar.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'gotland-vs-oland': `
@@ -866,6 +956,12 @@ export function getGuideContent(slug: string): string {
 <tr><td style="padding:9px 10px;border-bottom:1px solid rgba(0,0,0,0.05)">Cykling</td><td style="padding:9px 10px;border-bottom:1px solid rgba(0,0,0,0.05)">Bra</td><td style="padding:9px 10px;border-bottom:1px solid rgba(0,0,0,0.05)">Utmärkt (plant)</td></tr>
 <tr style="background:rgba(0,0,0,0.02)"><td style="padding:9px 10px">Natur</td><td style="padding:9px 10px">Raukar, skogar, havsvikar</td><td style="padding:9px 10px">Alvar, stränder, väderkvarnar</td></tr>
 </table>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'marstrand-guide': `
@@ -906,6 +1002,12 @@ export function getGuideContent(slug: string): string {
 <li>Marstrand är barnvänligt – bilfritt gör det tryggt för barn</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'smogen-guide': `
@@ -939,6 +1041,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
 <p>Smögens Hafvsbad är det klassiska valet – hotell med havspool och utsikt. För ett billigare alternativ: campingplatser runt Kungshamn, stugor i Hunnebostrand (10 min med bil).</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'naturhamnar-guide': `
@@ -991,6 +1099,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Ankringsregler:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontrollera alltid reservatsgränser och eventuella ankringsförbud på Länsstyrelsens webbplats. Naturreservat har egna regler – dessa gäller alltid. Visa hänsyn till andra ankrande och håll avstånd.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'bohuslan-skargard-guide': `
@@ -1031,6 +1145,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa säsongen:</strong>
 <p style="margin:8px 0 0;font-size:14px">Juni–september för bad och folkliv. September–oktober för hummer, ostron och höststämning. Undvik midsommarhelgen om du vill undvika köer – de populäraste destinationerna är fullbelagda.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'norrtelje-guide': `
@@ -1062,6 +1182,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende</h3>
 <p>Norrtälje Vandrarhem, Norrtälje Hotell och ett antal B&B i omgivningarna. Campingplatser längs Norrtelje ån och vid kusten norr om staden.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'fjaderholmarna-guide': `
@@ -1092,6 +1218,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta morgonbåten (08:00–09:00) om du vill ha lugn och de bästa klipplplatserna. Kom tillbaka med kvällsbåten och njut av solnedgången på däck under återfärden.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1124,6 +1256,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Packlista för en skärgårdshelg</h3>
 <p>Se vår kompletta packlista i <a href="/guider/packlista-skargarden" style="color:var(--sea);font-weight:600">Packlista för skärgården</a>. Grunderna för en helg: vindtät jacka, badkläder, lämpliga skor och mer vatten än du tror.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'basta-oar-stockholms-skargard': `
@@ -1174,6 +1312,12 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">15. Korsö ★★☆☆☆</h4>
 <p><strong>Tillgänglighet:</strong> 4+ h. <strong>Bäst för:</strong> Ytterskärgård i ordets sanna bemärkelse. Kräver stark planering.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'vaxholm-guide-komplett': `
@@ -1203,6 +1347,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vaxholm som basläger</h3>
 <p>Vaxholm fungerar som utmärkt utgångspunkt för vidare färd i skärgården. Waxholmsbolagets linjer fortsätter från Vaxholm till Grinda och Sandhamn. Du kan hämta matsäcken och fortsätta resan utan att gå tillbaka till Stockholm.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'landsort-guide': `
@@ -1223,6 +1373,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Boende och mat</h3>
 <p>Landsort Wärdshus erbjuder enkelt boende och mat under sommaren. Boka i god tid – kapaciteten är liten. Tältning möjlig i anvisade områden – ta med allt du behöver, ingen affär finns på ön.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'hyrbat-guide': `
@@ -1269,6 +1425,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Viktigaste säkerhetstipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontrollera alltid att flytvästar finns och sitter – en per person ombord. Meddela alltid någon på land om din plan: destination, antal personer och beräknad hemkomsttid. Ladda sjökartsapp (Navionics eller liknande) med offline-funktion.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'pendelbat-guide': `
@@ -1305,6 +1467,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Viktigt att veta:</strong>
 <p style="margin:8px 0 0;font-size:14px">SL-abonnemanget gäller INTE på Waxholmsbolagets båtar. Köp biljett i Waxholmsbolagets app, vid automaterna på Strömkajen eller ombord (något dyrare). Kontrollera tidtabellen i förväg – avgångarna kan vara glesa och varierar kraftigt mellan vardag och helg.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'seglingsklubbar-guide': `
@@ -1340,6 +1508,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips för nybörjare:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontakta din närmaste segelsällskap och fråga om "öppet hus" eller provsegling. De flesta klubbar välkomnar intresserade och ger dig möjlighet att prova innan du bestämmer dig. Segla alltid med erfaren besättning de första gångerna.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1395,6 +1569,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Sparatips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Köp Waxholmsbolaget-biljetter i appen (billigare). Ta med all mat och dryck hemifrån – priserna i öarnas kiosker är höga. Välj vardagsutflykter om möjligt – färre folk och ibland lägre priser. Tältturer med övernattning slår hotell ekonomiskt om du har utrustning.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på prisnivåerna i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kostnader, budgettips och hur du får ut mest av en skärgårdsresa utan att spräcka plånboken.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'stockholm-archipelago-trail': `
@@ -1448,6 +1628,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bra att veta:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kolla alltid aktuell tidtabell för din valda ö på waxholmsbolaget.se innan du åker. Avgångarna kan vara glesa, särskilt till de yttre öarna. Missa du sista båten hem kan det innebära en oplanerad övernattning – se till att ha en backup-plan.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'sup-paddleboard-skargarden': `
@@ -1491,6 +1677,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Nybörjartips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Börja på knä och paddla tills du är bekväm med brädan innan du reser dig. Titta mot horisonten snarare än ner i vattnet – det hjälper balansen. Välj morgontimmarna för din första tur – vinden är oftast svagast då och trafiken är liten.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1549,6 +1741,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Insider-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ladda alltid ned Waxholmsbolagets app och kolla tidtabeller offline – mobilnätet kan vara dåligt ute i ytterskärgården. Ha alltid en backup-natt planerad (tält eller sovplats) ifall vädret ändras och du missar sista båten. Avgångarna är exakta – båtarna väntar inte.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1609,6 +1807,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Boka i förväg:</strong>
 <p style="margin:8px 0 0;font-size:14px">Skärgårdsstiftelsens anvisade tältplatser på Nåttarö, Gällnö, Huvudskär och andra öar fylls snabbt under sommarmånaderna. Boka via skargardsstiftelsen.se. Det är gratis eller mycket billigt – men populärt.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'havsbastu-skargarden': `
@@ -1649,6 +1853,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka havsbastu i god tid under sommarsäsongen – populära anläggningar som Utö och Dalarö fylls snabbt. Ta med egna handdukar (medbornas en stor handduk), tofflor och en flaska vatten – bastun torkar ut. Ät lätt innan bastun och undvik alkohol i bastun – kroppens värmereglering påverkas.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1703,6 +1913,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Insider-tips för familjer:</strong>
 <p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget har barnbiljetter (barn under 7 år åker gratis med betalande vuxen). Kolla appen för aktuella regler. Midvecka-turer undviker helgträngseln och gör upplevelsen mer avslappnad för barnen.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1762,6 +1978,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa dagsplanen:</strong>
 <p style="margin:8px 0 0;font-size:14px">Morgonbåt från Nynäshamn → hyr cykel vid hamnen → Gruvorna (1 h) → cykel till Stora Sand (bad + lunch-picknick) → havsbastu (boka i förväg) → kvällsbåt hem. En fullspäckad Utö-dag på 8–10 timmar som täcker det bästa.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'sandhamn-komplett-guide': `
@@ -1813,6 +2035,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Viktigt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Sandhamn är en liten ö och kapaciteten är begränsad. Under högsäsongen (midsommar–tidig augustihelg) kan bryggor, restauranger och stranden bli trångt. Kom tidigt på morgonen – helst med Cinderellabåtens tidiga avgång – för att undvika trängseln och ha mesta möjliga tid på ön.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'vinter-i-skargarden': `
@@ -1859,6 +2087,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa vinterturen:</strong>
 <p style="margin:8px 0 0;font-size:14px">Vaxholm en januaridag är en av skärgårdsregionens mest stämningsfulla upplevelser. Ta Waxholmsbolaget dit, promenera till fästningen (öppen till viss del vintertid), ät lunch på Waxholms Hotell med utsikt mot den iskalla fjärden, och ta kvällsbåten hem i det blå vintermörkret. Omedelbart minnesvärdt.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'fiske-i-skargarden': `
@@ -1902,6 +2136,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktisk info:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontrollera alltid Havs- och vattenmyndighetens (HaV) aktuella regler på havochvatten.se innan du fiskar. Regler för fredningsperioder, minimimått och fångstbegränsningar uppdateras regelbundet. Respektera alltid fångstbegränsningar och sätt tillbaka fiskar som är för små.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om skärgårdens matkultur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om allt från kräftpremier och hummerpremiär till bästa fiskrestaurangerna längs kusten. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -1955,6 +2195,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa endagskombon:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja med din cykel, cykla runt hela ön (ca 3 h med stopp), lunch på Möja Krog, glass vid hamnen och kvällsbåten hem. Perfekt skärgårdsdag utan att stressa. Möja är litet nog att hinna allt – stort nog att det alltid finns något nytt att hitta.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'moja-guide': `
@@ -1995,6 +2241,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Insider-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta morgonbåten, hyr cykel direkt vid bryggan och cykla till norra reservatet innan turisterna anländer. Luncha på krogen (kom tidigt – den fylls snabbt) och ta kvällsbåten hem. En perfekt dag utan att stressa.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'grinda-guide': `
@@ -2032,6 +2284,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka en stuga på Grinda Wärdshus för en övernattning. Att vakna på Grinda en tidig sommarmorgon innan dagsbesökarna anländer är en upplevelse utöver det vanliga. Baden, promenaden och frukosten med havsutsikt är svåra att slå.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'finnhamn-guide': `
@@ -2066,6 +2324,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktisk info:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kolla sista båten hem innan du åker. Finnhamn har relativt begränsad trafik och att missa sista båten är ett verkligt problem. Övernattning på vandrarhemmet är det säkraste valet. Ta med kontanter – kortterminalen på ön kan vara opålitlig.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2108,6 +2372,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bäst för:</strong>
 <p style="margin:8px 0 0;font-size:14px">Nåttarö passar dig som vill ha äkta naturupplevelse utan turism. Det är en ö för den som klarar sig utan restaurang och affär – och som belönas med en av skärgårdens vackraste nätter under stjärnorna. Ta med allt du behöver hemifrån.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'orno-guide': `
@@ -2140,6 +2410,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Varför Ornö?</strong>
 <p style="margin:8px 0 0;font-size:14px">Ornö är rätt ö om du vill ha skärgårdsupplevelse utan turistmassor, gärna kombinerar natur med lite rörelse, och inte bryr dig om att det saknas spa och lyxrestaurang. Öns storlek gör att du kan vara hela dagen utan att träffa en enda annan turist.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2187,6 +2463,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Fästingvarning:</strong>
 <p style="margin:8px 0 0;font-size:14px">Skärgårdens öar har rikligt med fästingar under maj–september. Kontrollera hunden noggrant efter varje utflykt. Fästingmedel för hund finns på de flesta veterinärers hemsidor och apotek. Tidig borrelia-behandling är viktigt om hunden blivit biten.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'romantisk-weekend-skargarden': `
@@ -2227,6 +2509,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Det hemliga tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Välj en helg i slutet av maj eller början av juni. Öarna är öppna, naturen är grön, hafsbastun är uppvärmd – och det finns inga köer. Priserna är lägre och upplevelsen är bättre än under högsäsong. Skärgårdens bästa romantik hittas utanför turistsäsongen.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för en perfekt skärgårdstur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa insidertipsen om öarna, restaurangerna och de dolda pärlon. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2273,6 +2561,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Osäker på svampen?</strong>
 <p style="margin:8px 0 0;font-size:14px">Plocka aldrig svamp du inte kan identifiera med 100% säkerhet. Sveriges mykologiska sällskap erbjuder svampkurser och identifieringshjälp. Appen iNaturalist kan ge viss ledning men ersätter inte kunskap. Plockad svamp kan visas på apoteket för kostnadsfri identifiering.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'pingst-skargarden': `
@@ -2313,6 +2607,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa pingstupplevelsen:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta fredagskvällsbåten ut till Grinda eller Finnhamn. Övernatta. Ha hela lördagen på en lugn ö medan alla dagsturister är på Sandhamn och Vaxholm. Åk hem på söndagseftermiddagen med solbränd och nöjd. Det slår folkvimlet på de populäraste öarna varje gång.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2357,6 +2657,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Proffstips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka hela ön eller hela värdshuset om ni är tillräckligt många (20+). Känslan av att ha Grinda eller Finnhamn för er själva är ovärderlig och gör eventet minnesvärdt. Kräver tidig bokning men är möjligt.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'digital-detox-skargarden': `
@@ -2400,6 +2706,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Realistisk förväntan:</strong>
 <p style="margin:8px 0 0;font-size:14px">De första timmarna utan telefon är ofta obehagliga – din hjärna letar efter dopaminpulsen. Det är helt normalt. Håll ut förbi de första 4–6 timmarna och känslan vänder. Dag två är nästan alltid bättre än dag ett. Det är därför en helg ger mer än en dag.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för en perfekt skärgårdstur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa insidertipsen om öarna, restaurangerna och de dolda pärlon. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2455,6 +2767,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Taxfree-tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Färjorna Stockholm–Åland är en av Europas sista rutter med riktig taxfree-försäljning ombord. Alkohol, parfym och choklad säljs till priser som är 30–50% lägre än i svenska butiker. Notera att du måste sätta fot i Mariehamn (passera gränsen) för att köpen ska vara skattefria.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2512,6 +2830,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa sättet att se Gotland:</strong>
 <p style="margin:8px 0 0;font-size:14px">Hyra bil och bo utanför Visby är det smartaste valet. Visby är fullt och dyrt i juli. Välj en gård eller stuga i Fårösund, Ljugarn eller Burgsvik och kör in till Visby för ett besök. Du får bättre Gotland-upplevelse och halva priset på boende.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'oland-guide': `
@@ -2560,6 +2884,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Besök Öland i maj eller september. Klimatet är bra, Alvaret blommar (maj) eller är guldgult (september), och turistmassorna är borta. Juli är fullt av barnfamiljer och priserna är höga. Ölandsbron under solnedgång är en upplevelse oavsett årstid.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'kosterarna-guide': `
@@ -2605,6 +2935,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Nationalparkstipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka en guidar snorkel- eller dyktur via Kosterhavets nationalpark. Det är en av de billigare upplevelserna på öarna (ca 200–400 kr) och ger ett exklusivt fönster mot det marina livet som du inte hittar någon annanstans i Sverige. Guiden visar dig vad du annars inte ser.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2654,6 +2990,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Nödnummer:</strong>
 <p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kundservice: <strong>08-600 10 00</strong> (öppet sommartid till ca 22.00). SOS Alarm (sjönöd): <strong>112</strong> (bara vid livsfara). Sjöräddningssällskapet: <strong>0771-57 05 70</strong> (haveri och olycka, inte för missade båtar).</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'batkorkort-guide': `
@@ -2701,6 +3043,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Sammanfattning:</strong>
 <p style="margin:8px 0 0;font-size:14px">Grinda vinner på komfort, mat och tillgänglighet. Finnhamn vinner på äkthet, naturupplevelse och pris. De flesta som åkt till båda säger att Finnhamn gav den starkare känslan – men att Grinda var enklare att njuta av. Rätt val beror helt på vad du söker.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'ingmarso-guide': `
@@ -2730,6 +3078,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Perfekt för:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ingmarsö passar den som vill ha äkta skärgård utan att spendera pengar på restauranger. Ta matsäck, bad och bok. Ön belönar den som tar sig hit och orkar gå bort från bryggan.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2767,6 +3121,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Reseplaneringstips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Planera Arholma-resan som ett projekt, inte en spontan utflykt. Kontrollera båt- och busstider en vecka i förväg, boka vandrarhem och ta med mer mat än du tror. Belöningen – att stå på Arholmas klippor med ytterskärgård i alla riktningar – är helt värd ansträngningen.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'hoga-kusten-guide': `
@@ -2798,6 +3158,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bäst med bil:</strong>
 <p style="margin:8px 0 0;font-size:14px">Höga Kusten är svårt att utforska utan bil – sevärdheterna är utspridda längs en lång kuststräcka. Planera minst 3 dagar. En dag räcker inte för att förstå varför UNESCO utsåg platsen till världsarv.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Höga Kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar Höga Kusten — vandringsleder, öppna restauranger och säsongsguider. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'fjallbacka-guide': `
@@ -2826,6 +3192,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa tid att besöka:</strong>
 <p style="margin:8px 0 0;font-size:14px">Fjällbacka är superfolkfyllt i juli. Maj, juni och september är bättre – restaurangerna är öppna och du slipper trängsel i Kungsklyftan. Hummerpremiären i september är ett skäl i sig att besöka höst.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2858,6 +3230,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Kombinera med:</strong>
 <p style="margin:8px 0 0;font-size:14px">Lysekil och Smögen är ca 30 min bort med bil. Kombinera ett Lysekil-besök (Havets Hus + klippbad) med Smögens brygga och räksmörgås samma dag. Eller lägg till Fjällbacka (1 h norr) för en riktig bohuslänsrunda.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'bornholm-guide': `
@@ -2888,6 +3266,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Bästa tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta nattfärjan från Ystad och vakna i Rønne på morgonen. Hyr cykel vid hamnen, cykla söderut mot Dueodde (landets finaste sandstrand), middag i Svaneke. En perfekt Bornholm-weekend på två dagar.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'dalaro-guide': `
@@ -2913,6 +3297,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Kombinera rätt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Dalarö är bäst som kombination med Ornö eller Utö. Ta bussen, fika på Dalarö Skärgårdshotell, ta sedan bilfärjan till Ornö eller pendelbåt mot Utö. Mer effektivt än att starta från Nynäshamn om du åker kollektivt.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2948,6 +3338,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Kombination att prova:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta morgonbåten till Möja, hyr cykel, cykla till norra skogen och plocka blåbär, lunch på krogen, kvällsbåten hem med en full korg. En sommardag som inte kostar mer än båtbiljetten.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -2986,6 +3382,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Viktigt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kolla sista båten hem INNAN du hittar din klippa. Det är omöjligt att rycka sig loss under en bra solnedgång. Ha returbiljett och ett alarm satt 30 min före sista avgång.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3028,6 +3430,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Bästa rådet:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ankra tidigt – senast 17.00 – för att hinna testa ankaret och eventuellt flytta om det sitter dåligt. De som ankrar i mörker tar fel platser. En tidig ankomst ger tid att bada, laga mat och uppleva solnedgången lugnt.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
   'grinda-vs-finnhamn': `
@@ -3136,11 +3544,21 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Kan man göra båda?</strong>
 <p style="margin:8px 0 0;font-size:14px">Absolut. Med Waxholmsbolagets båtluffarkort kan du besöka båda öarna under samma resa. Många väljer att stanna en natt på Grinda och sedan ta båten vidare norrut till Finnhamn. Det ger den perfekta balansen mellan komfort och vildmark.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch D: Kräftskiva-serien 2026 ──────────────────────────────────────────
   'kraftskiva-skargarden-2026': `
-<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 infaller onsdagen den 5 augusti. Det är startskottet för Sveriges mest älskade sensommartradition – och i skärgården firas den med extra stil. Här är allt du behöver veta för att planera en oförglömlig kräftskiva ute på öarna.</p>
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns ett datum varje sommar som folk bokar sina stugor, sina bryggor och sina vänner runt. Kräftpremiären – första onsdagen i augusti – är egentligen inte starten på kräftsäsongen. Det är starten på sensommaren.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I skärgården tar den traditionen en extra dimension. Lyktorna hänger i björkarna, dillångorna blandas med havsluft och det finns ett speciellt lugn i sensommarkvällen ute på öarna – ett lugn som inte finns där i juli. Kräftskivan på klipphällarna, med vatten på tre sidor och en snaps i handen, är svårt att slå.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">2026 är kräftpremiären <strong>onsdag 5 augusti</strong>. Mest firas den helgen efter – 8–9 augusti. Här är allt du behöver veta för att planera en riktigt bra kräftskiva ute i skärgården.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är kräftskiva egentligen?</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivan är en svensk tradition med rötter från 1930-talet då kräftorna fridlystes och man bara fick fiska under kräftpremiären. I dag är restriktionerna borta men traditionen lever starkare än någonsin. Lyktor i papper, snapsvisor, kräfthattar och högar av kokta kräftor på ett stort fat mitt på bordet – det är kärnan i festen.</p>
@@ -3195,6 +3613,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Insider-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Köp kräftorna kvällen innan och låt dem ligga i lagen i kylen över natten – de smakar mycket bättre om de får dra. Koka dem med rikligt med salt (3 msk per liter), dill och gärna lite öl i kokvattnet. Låt dem svalna i lagen i minst fyra timmar. Servera inte kalla kräftor rakt ur kylen – ta ut dem 30 minuter innan.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler tips inför sensommaren?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer den kommande veckan, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'kraftskiva-bohuslan-2026': `
@@ -3232,6 +3656,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Boka tidigt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Restauranger längs Bohusläns kust är fullbokade under kräftpremiärhelgen. Ring eller boka online nu – inte i juli. De populäraste platserna är ofta slut redan i maj–juni. Alternativet: kräftor hemifrån och en klippa med utsikt. Det är ärligt talat lika bra.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler tips från Bohuslän?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om kräftor, ostron, hummer och allt som händer längs kusten inför hösten. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'kraftskiva-gotland-2026': `
@@ -3267,6 +3697,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och boende</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland nås med Destination Gotlands färja från Nynäshamn (ca 3 h) eller Oskarshamn (ca 3,5 h). Flyg från Arlanda tar 45 minuter. Under kräftpremiären i tidigt augusti är Gotland fortfarande högsäsong – boka boende och båt nu. Prisnivåerna är som högst kring midsommar och sjunker något under kräftpremiären.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'kraftskiva-oland-2026': `
@@ -3293,6 +3729,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Praktiskt om Öland:</strong>
 <p style="margin:8px 0 0;font-size:14px">Öland nås med bil över Ölandsbron från Kalmar (gratis). Buss går från Kalmar station. Kräftor köps i Borgholm eller beställs i förväg från lokala fiskare. Under kräftpremiärhelgen ökar trafiken – planera resa och parkering i förväg.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om skärgårdens matkultur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om allt från kräftpremier och hummerpremiär till bästa fiskrestaurangerna längs kusten. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'grebbestad-kraftskiva-2026': `
@@ -3317,6 +3759,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad utöver kräftorna</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är faktiskt lika känt för ostron som för kräftor – ostronpremiären är i september och orten arrangerar Oysterfestival. Området runt Grebbestad med Kosteröarna, Fjällbacka och Hamburgsund ger en hel veckas utflykter. Tanum med hällristningarna är 10 minuter bort med bil.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'kraftskiva-recept-meny': `
@@ -3382,6 +3830,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Insider-tip:</strong>
 <p style="margin:8px 0 0;font-size:14px">Köp kräftorna 1–2 dagar innan och koka dem kvällen innan. Nattens marinering i lagen gör underverk för smaken. Förvara i kokvattnet i kylen. Inget slår kräftor som fått dra ordentligt.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du kräftskiva eller höst i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut tips varannan tisdag — om säsongens bästa upplevelser, vad som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch D: Juli-serien 2026 ──────────────────────────────────────────────
@@ -3418,6 +3872,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk juliguide – transport</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör med högsommartidtabell hela juli. Cinderellabåtarna kör kvällsturer tillbaka från yttre skärgården. Köp Waxholmsbolagets sommarkort eller båtluffarkort om du planerar flera utflykter – det lönar sig redan vid tredje turen. Boka båtturerna inte – de är inte bokningsbara utan säljer biljetter ombord.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'juli-skargarden-2026-aktiviteter': `
@@ -3451,6 +3911,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Aktivitetstips för julimorgonen:</strong>
 <p style="margin:8px 0 0;font-size:14px">De bästa upplevelserna i skärgården sker tidigt på morgonen. Paddla kajak klockan 06–08 när havet är spegelblank, klättra upp för ett berg för soluppgången eller ta ett tidigt morgondopp i ännu lugnt vatten. Middag på restaurang är trevlig, men det är morgnarna som är oöverträffade.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3495,6 +3961,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Mat-tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">De bästa matupplevelserna i skärgården behöver inte kosta skjortan. En påse räkor vid bryggan (150–200 kr), egen medhavd dricka och utsikten på det – det slår de flesta restauranger. Spara restaurangbesöket till kvällsmaten och gör frukost och lunch enkel och lokal.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'semestervecka-skargarden': `
@@ -3533,6 +4005,12 @@ export function getGuideContent(slug: string): string {
 <li>Aktiviteter (kajak, bastu m.m.): 500–1 000 kr</li>
 <li><strong>Totalt: 6 500–12 000 kr per person</strong></li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3574,6 +4052,12 @@ export function getGuideContent(slug: string): string {
 <li>Ta med simbälte – öppet hav har inga flytare</li>
 <li>Öarna stänger tidigt – kolla sista båten hem noga</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3622,6 +4106,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Rätt kläder gör hela skillnaden:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta alltid med regnkläder till skärgården, oavsett väderprognosprognos. Seglarbyxor och en vattentät jacka (Helly Hansen, Didriksons eller Haglöfs) håller dig torr och varm. Med rätt kläder spelar regnet ingen roll alls – du kan vara ute hela dagen och faktiskt trivas med det.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'juli-bohuslan-2026': `
@@ -3656,6 +4146,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Transport till Bohuslän:</strong>
 <p style="margin:8px 0 0;font-size:14px">Tåg från Stockholm till Göteborg (3 h) och sedan Västtrafiks lokaltåg norrut längs kusten till Ljungskile, Stenungsund och vidare. Bil är enklare för att nå de mindre orterna. Från Göteborg tar det 1,5–2,5 timme med bil till Smögen eller Grebbestad beroende på trafikläge.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3696,6 +4192,12 @@ export function getGuideContent(slug: string): string {
 <li>Boka boende tidigt – Bohuslän är fullbokat i juli</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'barnfamilj-gotland': `
@@ -3729,6 +4231,12 @@ export function getGuideContent(slug: string): string {
 <li>Ta med lekhinkar och spadar till Tofta – sanden är perfekt för slott</li>
 <li>Lummelundagrottan är svalare – ta med tröja trots värmen ute</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3765,6 +4273,12 @@ export function getGuideContent(slug: string): string {
 <li>Aldrig bada ensam – skärgårdens strömmar varierar</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'barnvanliga-batresor-skargarden': `
@@ -3797,6 +4311,12 @@ export function getGuideContent(slug: string): string {
 <li>Åk tur och retur samma dag för yngre barn – övernattning är krävande</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'barnvanliga-restauranger-skargarden': `
@@ -3825,6 +4345,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka bord i förväg under högsäsong – skärgårdsrestaurangerna är små och fulltecknade snabbt. Ring direkt till restaurangen, de flesta tar inte online-bokningar. Kom tidigt (11.30–12.00) för lunchen – kön till de populäraste ställena är lång på helgmiddagarna.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -3870,6 +4396,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Packlistan för barn i skärgården:</strong>
 <p style="margin:8px 0 0;font-size:14px">Simväst, solkräm, halkfria skor för klipphällar, myggolja (myggen kan vara intensiva efter solnedgången), snöre och brödbitar för krabbfångst, termos med varm dricka för kvällarna och ett litet nät för djurjakten vid vattenlinjen.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch E: Bad-serien ────────────────────────────────────────────────────────
@@ -3914,6 +4446,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Badtips för Bohuslän:</strong>
 <p style="margin:8px 0 0;font-size:14px">Halkfria skor är ett måste på Bohusläns klipphällar – alger gör dem extremt hala. Vattentemperaturen är ca 18–20°C i juli och sjunker till 15–16°C i september. Ta med neoprenskor för sensommar. De bästa dagarna är klara dagar med måttlig nordlig vind – vattnet är som klarast.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'basta-badplatser-gotland': `
@@ -3954,6 +4492,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Gotland bad-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Gotlands vattentemperatur toppar i slutet av juli och tidigt i augusti (22–24°C). September är faktiskt en utmärkt badmånad – vattnet fortfarande varmt, stränderna tomma. Ta med snorkelutrustning till Gnisvärd – det är en av Östersjöns tydligaste badplatser med raukar under vatten.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'klippbad-skargarden': `
@@ -3989,6 +4533,12 @@ export function getGuideContent(slug: string): string {
 <li>Kontrollera väder – klippbad i hög sjögång är farligt</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'sandstrand-skargarden': `
@@ -4018,6 +4568,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Sandstränderna i skärgården är populära och kan bli överfulla under högsäsongshelger. Prova att besöka en tisdag eller onsdag – stränderna är nästan tomma och upplevelsen är mycket bättre. Alternativet är att ta morgonbåten och vara på plats innan 10.00.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hemliga-badplatser-skargarden': `
@@ -4046,6 +4602,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Allemansrätten på sjön:</strong>
 <p style="margin:8px 0 0;font-size:14px">Du får tillfälligt vistas och bada på i princip alla öar och kobbar som inte är privata tomter (normalt 50–70 meter från bebyggelse). Naturreservat kan ha begränsningar – kolla Länsstyrelsens karta. Fågelskyddsområden är förbjudna att beträda under häckningstiden (april–juli).</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4081,6 +4643,12 @@ export function getGuideContent(slug: string): string {
 <li>Gå ner i havet försiktigt första gången – kall chock kan vara kraftfull</li>
 <li>Håll upp bastun varm – lägg på ved var 20:e minut</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4122,6 +4690,12 @@ export function getGuideContent(slug: string): string {
 <li>Besök Lummelundagrottan en regnig dag – kul för alla åldrar</li>
 <li>Gå upp tidigt – Visby ringmur i soluppgång utan turister är magisk</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch F: Beslutsguider ────────────────────────────────────────────────────
@@ -4190,6 +4764,12 @@ export function getGuideContent(slug: string): string {
 <li>Söker ett aktivt socialt liv på ön</li>
 <li>Vill bada på Trouville-stranden en sommarkväll</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'marstrand-vs-smogen': `
@@ -4239,6 +4819,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Kan man göra båda?</strong>
 <p style="margin:8px 0 0;font-size:14px">Absolut – och det är faktiskt det bästa alternativet om du har tid. Marstrand en dag, kör sedan norrut längs kusten via Lysekil och Fjällbacka och avsluta med Smögen. Det ger hela spektret av Bohuslän på en weekend.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'gotland-vs-bohuslan': `
@@ -4284,6 +4870,12 @@ export function getGuideContent(slug: string): string {
 <li>Föredrar att resa med bil och utforska längs en kust</li>
 <li>Åker från Stockholm och vill undvika flygbyte eller lång färja</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'inre-vs-yttre-skargard': `
@@ -4307,6 +4899,12 @@ export function getGuideContent(slug: string): string {
 <li><strong>Barnfamilj:</strong> Mellanskärgården med sandstrand (Grinda, Nåttarö)</li>
 <li><strong>Kajak och vandring:</strong> Yttre skärgården med Stockholm Archipelago Trail</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4338,6 +4936,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Kompromissen – kvällsbåten:</strong>
 <p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kör kvällsbåtar tillbaka till Stockholm från de flesta populära öar. Det innebär att du kan stanna kvar till solnedgången och ta en sen båt hem. Kontrollera sista avgångstiden innan du åker ut – den varierar per ö och dag.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4372,6 +4976,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Svaret:</strong>
 <p style="margin:8px 0 0;font-size:14px">Om du bor i Stockholm och vill ha en enkel utflykt – välj Stockholms skärgård. Om du planerar en veckas semester med bil och vill ha klart vatten och bättre sjömat – välj Bohuslän. Perfekt semesterplan: en vecka i vardera.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch F: Säsongsmotorer ───────────────────────────────────────────────────
@@ -4401,6 +5011,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Sensommar-tips:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka ett sensommarbesök på Utö eller Grinda i september. Priserna sjunker 20–30% jämfört med juli, öarna är nästan tomma och badtemperaturen är fortfarande 18–20°C. Det är skärgårdens bäst bevarade hemlighet och nu vet du den.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha fler tips inför hösten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vilka öar som håller öppet, höstens bästa upplevelser och allt du missar annars. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4434,6 +5050,12 @@ export function getGuideContent(slug: string): string {
 <li>Kamera – septemberljuset är oöverträffat</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Vill du ha koll på hösten i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vilka öar som håller öppet, vad du inte vill missa i september och oktober, och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'host-bohuslan-2026': `
@@ -4461,6 +5083,12 @@ export function getGuideContent(slug: string): string {
 <li>Boende: bokas enkelt, priserna sjunker 30–40% från sommaren</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'host-gotland-2026': `
@@ -4487,6 +5115,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Praktiskt om höst på Gotland:</strong>
 <p style="margin:8px 0 0;font-size:14px">Destination Gotland kör färja till och med oktober. Priserna är 40–60% lägre än i juli. Visby restauranger håller öppet till och med oktober – boka bord en dag innan snarare än månader i förväg. Cykelhyrning finns i Visby hela säsongen.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch F: Regionala djupguider ────────────────────────────────────────────
@@ -4512,6 +5146,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Karlskrona</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Stockholm tar ca 3,5 timme (Kalmarbanan via Alvesta). Med bil från Stockholm tar det ca 4,5 timme via E22. Från Malmö/Köpenhamn är det ca 2 timme med bil längs E22. Bla Line kör färja från Gdynia i Polen till Karlskrona – ett alternativ för de som vill kombinera med Polen-besök.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'varberg-guide': `
@@ -4531,6 +5171,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Varberg</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Tåg från Göteborg tar ca 45 minuter (Västkustbanan). Från Stockholm tar det ca 3,5 timme med tåg (byt i Göteborg eller Halmstad). Med bil längs E6 från Göteborg tar det 45 minuter. Stena Lines färja till Grenå i Danmark avgår från Varberg – en unik möjlighet att kombinera med ett dansk-besök. Överfarten tar ca 4 timmar.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'borgholm-guide': `
@@ -4552,6 +5198,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Ta dig till Borgholm:</strong>
 <p style="margin:8px 0 0;font-size:14px">Borgholm nås bäst med bil via Ölandsbron från Kalmar (gratis bro, 6 km). Buss från Kalmar station kör regelbundet till Borgholm. Från Stockholm tar det ca 3,5 timme med bil eller 4 timme med tåg till Kalmar och sedan buss. Boka boende tidigt – Borgholm är fullbokat under Ölands högsäsong i juli.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'tjorn-guide': `
@@ -4572,6 +5224,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tjörn-kombinationen:</strong>
 <p style="margin:8px 0 0;font-size:14px">Tjörn kombineras naturligt med grannöarna. Ta bron till Orust för Hälleviksstrand eller till Skåpesundsbron mot Stenungsund. Färjan från Skärhamn till Marstrand ger ett bra dagsprogram: Tjörn på morgonen, Marstrand på eftermiddagen.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4603,6 +5261,12 @@ export function getGuideContent(slug: string): string {
 <li>Boka restauranger minst 2 veckor i förväg i juli</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch G: Alla återstående guider ─────────────────────────────────────────
@@ -4618,6 +5282,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Vinterskärgård i praktiken:</strong>
 <p style="margin:8px 0 0;font-size:14px">Waxholmsbolaget kör vintertidig turtäthet – max 1–2 avgångar per dag till yttre öarna. Kolla alltid sista båttiden innan du åker. Ta med handvärmare, yllelager och stövlar. Havsisen kan blockera vissa linjer under kalla vintrar.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'nyar-skargarden-2026': `
@@ -4630,6 +5300,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Boka tidigt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Nyårspaket på Utö och Sandhamn är fullbokade i september–oktober. Vill du ha ett värdshus-nyår i skärgården måste du boka nu. Stugor via privata uthyrare är mer tillgängliga men boka även det i god tid.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'pask-skargarden-2027': `
@@ -4640,6 +5316,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är alltid öppet. Utö Värdshus öppnar i påsk och erbjuder påskpaketet med övernattning och påskbuffé. Sandhamns Värdshus öppnar säsongen i påsk. Waxholmsbolaget kör mer begränsad trafik – kolla aktuell tidtabell för påskhelgen.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför påsk är speciellt</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Påskskärgården är tyst. Sommarens folkmassor är månader borta. Fåglarna återvänder – ejdern, skärpiplärkan och havsörnens skrik hör man tydligt i den stilla luften. Det är en av årets bästa upplevelser för fågelskådare och naturälskare.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'valborg-skargarden-2027': `
@@ -4651,6 +5333,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Valborg-tipset:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kolla alltid sista båten hem – valborg infaller en vardag och Waxholmsbolaget kör normal veckotidtabell. Det är lätt att missa sista avgången om festen drar ut på tiden.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4675,6 +5363,12 @@ export function getGuideContent(slug: string): string {
 <li>Guidade turer rekommenderas för nybörjare</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vandring-gotland': `
@@ -4691,6 +5385,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiskt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Gotlandsleden är välmärkt med orange markeringar. Kartor finns på gotlandsleden.se. Vattenkällor är begränsade längs leden – ta med tillräckligt med vatten. De bästa månaderna för vandring är maj–juni och september–oktober.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4714,6 +5414,12 @@ export function getGuideContent(slug: string): string {
 <li>Vindkarta rekommenderas – Gotland kan ha starka vindar</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'cykling-oland': `
@@ -4730,6 +5436,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiskt:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ta med cykeln via Ölandsbron från Kalmar (cyklar tillåtna på bron). Cykelhyrning finns i Borgholm och Mörbylånga. Vinden på Öland kan vara kraftig – planera rutter i medvindsvarianter. Vandrarhem längs ölandsleden finns i de flesta samhällen.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4750,6 +5462,12 @@ export function getGuideContent(slug: string): string {
 <li>Bästa snorkeltid: lugna dagar med svag vind, god sikt</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'ostronstangning-bohuslan': `
@@ -4763,6 +5481,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Säsong och bokning:</strong>
 <p style="margin:8px 0 0;font-size:14px">Ostron äts i månader med R – september till april. Säsongstoppen är oktober–december. Boka ostronsafari direkt med lokala aktörer i Grebbestad. Grebbestads Fiskekrog serverar ostron hela ostronssäsongen.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4784,6 +5508,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Boka tidigt:</strong>
 <p style="margin:8px 0 0;font-size:14px">De bästa skärgårdsstugorna för juli är bokade i december–januari. Populära öar som Grinda, Sandhamn och Utö har de snabbast utgångna stugorna. Vill du ha specifik ö och specifik vecka i juli – boka nu, inte i mars.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-stuga-gotland': `
@@ -4797,6 +5527,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Praktisk om du vill ha nära till Visbys restauranger men ändå ha en stuga. Cykelvikstång till Visby är möjlig från de flesta stugor i 10 km-radie.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sajter och bokning</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotlands Stugservice</strong> – den mest etablerade gotländska uthyrningssajten med hundratals stugor. <strong>Airbnb</strong> – bra urval och recensioner. <strong>Blocket</strong> – direktkontakt med ägare, bäst pris. Priserna i juli är höga – räkna 8 000–20 000 kr per vecka för ett bra läge. Boka i november–december för bästa urval.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'faro-guide': `
@@ -4846,6 +5582,12 @@ export function getGuideContent(slug: string): string {
 <li>Langhammars raukar: ca 15 min bilfärd från hamnen, sedan 10 min promenad</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-gotland': `
@@ -4880,6 +5622,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Ta sig till Gotland med husvagn eller tält:</strong>
 <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Destination Gotland kör bilfärja från Nynäshamn (3 tim) och Oskarshamn (3,5 tim) — husvagn och bil bokas separat. Priser för husvagn: ca 2 000–4 000 kr tur/retur beroende på storlek och säsong. Boka färja och camping samtidigt för bästa tillgänglighet i juli.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-bohuslan': `
@@ -4913,6 +5661,12 @@ export function getGuideContent(slug: string): string {
 <li>Trafikverkets vägfärjor till öar (Orust, Käringön) är gratis</li>
 <li>Mygg är inget problem på klippkusten — en fördel mot inlandet</li>
 </ul>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -4959,6 +5713,12 @@ export function getGuideContent(slug: string): string {
 <li>Ta med cykelsäten om ni har — det sparar hyrkostnad</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-stockholm-skargard': `
@@ -4993,6 +5753,12 @@ export function getGuideContent(slug: string): string {
 <li>Boka STF-platser (Finnhamn, Arholma, Kymmendö) via stfturist.se</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'fiskelage-bohuslan': `
@@ -5026,6 +5792,12 @@ export function getGuideContent(slug: string): string {
 <li>Säsongen är kort: fiskelägena är som bäst juni–aug, sedan stänger det mesta</li>
 </ul>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'ulvon-guide': `
@@ -5039,6 +5811,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Transport till Ulvön:</strong>
 <p style="margin:8px 0 0;font-size:14px">Färja från Ullånger och Docksta på fastlandet. Närmaste stad är Kramfors. Bäst nådd med bil till färjeläget och sedan båt ut till ön. Från Stockholm tar det ca 5 timme med bil. Alternativt tåg till Kramfors och taxi till färjeläget.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5054,6 +5832,12 @@ export function getGuideContent(slug: string): string {
 <strong style="color:var(--sea)">Ta dig till Grebbestad:</strong>
 <p style="margin:8px 0 0;font-size:14px">Grebbestad ligger på väg 163 norr om Fjällbacka och 30 km söder om Strömstad. Ca 2,5 timme med bil från Göteborg. Buss från Göteborg via Stenungsund och Tanumshede. Begränsad parkering i hamnen – kom tidigt.</p>
 </div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'stromstad-guide': `
@@ -5064,6 +5848,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Från Strömstad tar färjan ut till Sydkoster (ca 45 min) och Nordkoster (ca 1 h). Kosteröarna är bilfria och del av Kosterhavets nationalpark. Kajakpaddling, snorkling och vandring på bilfria öar är Strömstads stora utflyktsmål.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och läge</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Strömstad nås med tåg från Göteborg (1,5 timme, Bohusbanan) eller bil längs E6. Norska gränsen är bara 8 km norrut. Möjlighet att kombinera med ett besök i norska Halden eller Oslofjorden.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hano-guide': `
@@ -5074,6 +5864,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hanö är ett utmärkt fågelskådningsmål. Under vår- och höstflyttningen passerar tusentals fåglar och ön har bra möjligheter att observera sångare och rovfåglar. Havsörnen syns ofta. Naturreservatet skyddar öns natur och stränder.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport till Hanö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hanö nås med sommarbåt från Sölvesborg och Nogersund. Säsongen är juni–september. Det tar ca 40 minuter från fastlandet. Ön saknar service utöver ett enkelt café – ta med mat och vatten. Övernattning i tält är möjlig i reservatets anvisade tältplats.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'bastad-guide': `
@@ -5087,6 +5883,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Transport:</strong>
 <p style="margin:8px 0 0;font-size:14px">Tåg från Malmö (45 min) eller Göteborg (1,5 h) längs Västkustbanan. Bil längs E6 från Malmö 1 timme, från Göteborg 1,5 timme. Parkering i Båstad centrum är begränsad och dyr under Swedish Open.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5109,6 +5911,12 @@ export function getGuideContent(slug: string): string {
 <li>Ta med stativ för lång slutartid i svagt ljus</li>
 <li>September–oktober ger varmast höstljus</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'wellness-retreat-skargarden': `
@@ -5125,6 +5933,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Enklaste wellness-paketet:</strong>
 <p style="margin:8px 0 0;font-size:14px">Boka en natt på Utö eller Finnhamn. Ta en lång promenad, bada, bastua och ät god mat. Inga appar, inga möten, inga pushnotiser. Det är wellness på riktigt och kräver ingen speciell bokning eller dyrt paket.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för en perfekt skärgårdstur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa insidertipsen om öarna, restaurangerna och de dolda pärlon. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5147,6 +5961,12 @@ export function getGuideContent(slug: string): string {
 <li>Informera gäster om sista båttider hem</li>
 <li>Beräkna extra för catering och transport till ön</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'orust-guide': `
@@ -5160,6 +5980,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Ta dig till Orust:</strong>
 <p style="margin:8px 0 0;font-size:14px">Orust nås via broar från fastlandet (gratis). Från E6 ta avfart mot Tjörn/Orust. Från Göteborg tar det ca 1 timme. Buss från Stenungsund kör till Henån (Orusts centralort). Cykla gärna runt ön – det tar 1–2 dagar och är en av Bohusläns bästa cykelupplevelser.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5176,6 +6002,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Boende i sensommar:</strong>
 <p style="margin:8px 0 0;font-size:14px">Priserna på boende i Bohuslän sjunker 30–40% från juli till september. Boka nu för en September-resa utan stress och till ett rimligare pris. Smögen, Lysekil och Grebbestad har alla boende tillgängligt i september utan förhandsbokning.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5216,6 +6048,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhetsregler utan körkort</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan formell utbildning är det extra viktigt att känna till grundreglerna: farlederna är markerade med röda och gröna prickar (röd till höger vid inkommande), hastighetsgränsen är 5 knop inom 300 m från land, och flytväst ska finnas för varje person ombord. Alla seriösa uthyrare går igenom dessa regler vid uthyrningen.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'aw-pa-bat-stockholm': `
@@ -5246,6 +6084,12 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering – så gör du det bra</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka minst 4–6 veckor i förväg för privatbåt under juni–aug. Fråga operatören om de kan stanna vid en ö (Fjäderholmarna, Nacka Strand) för mingel på land – det höjer upplevelsen markant. Tänk på att catering ombord kostar mer per person än restaurang; matcha mat-ambitionsnivå med budgeten.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solnedgångsturer (avg ca 19:00, hemkomst 21:30) är det populäraste AW-formatet. Boka med option på väderskyddat däck – sommarvädret i Stockholm är opålitligt.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'konferens-skargard-stockholm': `
@@ -5275,6 +6119,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Transport och praktik</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">De flesta konferensanläggningar i skärgården kan ordna privat båttransport eller ge detaljerade instruktioner för Waxholmsbolagets reguljära linjer. Räkna med 1–2 timmar till de populäraste anläggningarna. Ön-känslan av att ta sig dit med båt är del av upplevelsen – välkomna det i agendan.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'kajak-vaxholm': `
@@ -5297,6 +6147,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig till Vaxholm</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Buss 670 från Tekniska Högskolan T-bana, ca 45–55 min. Waxholmsbåten (linje 1) från Strömkajen ca 55 min. Med bil via E18 och Vaxholmsleden, ca 35–40 min från Stockholm City (parkering vid hamnen).</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'hyra-kajak-stockholm': `
@@ -5330,6 +6186,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhet och vad du behöver veta</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Alla seriösa uthyrare tillhandahåller flytväst och paddeljakka ingår i priset. Du behöver vara simkunnig. Kontrollera vädret – paddling i Stockholms skärgård är säkert i normalt väder men vindvarning 10+ m/s bör respekteras av nybörjare. De flesta uthyrare har rätt att neka uthyrning vid dåliga väderförhållanden.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'hyra-elektrisk-bat-stockholm': `
@@ -5359,6 +6221,12 @@ export function getGuideContent(slug: string): string {
   <li>Mälarpiraten – Riddarfjärden och Ekerön</li>
   <li>Baggensfjärden (från Nacka) – lugn och vacker inre skärgård</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'glamping-skargard': `
@@ -5388,6 +6256,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boka i tid – glamping är eftertraktat</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">De bästa glamping-platserna i skärgården är fullbokade månader i förväg för juli och midsommarhelgen. Bästa tillgängligheten finns i maj–juni och aug–sept – dessutom är priserna 20–30% lägre utanför högsäsongen.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'segeldag-foretag-stockholm': `
@@ -5416,6 +6290,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och att tänka på</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med 1 000–2 500 kr/pers för en heldags segeldag inkl. skipper, mat ombord och priset för instruktion. Halvdagspaket finns från 700 kr/pers. Boka 4–8 veckor i förväg för sommarhalvåret. Eventförsäkring rekommenderas.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'teambuilding-kajak-stockholm': `
@@ -5446,6 +6326,12 @@ export function getGuideContent(slug: string): string {
   <li>Lunch eller fika på vattnet</li>
   <li>Transport till startpunkt (ibland inkluderat)</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'cykeluthyrning-gotland': `
@@ -5472,6 +6358,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vanlig cykel 100–160 kr/dag, elcykel 250–350 kr/dag. Boka elcykel i förväg under juli – de tar slut fort. Ta med pannkakelkorg och äta picknick vid raukarna på Fårö.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'kursgard-skargard-stockholm': `
@@ -5496,6 +6388,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering och bokning</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kursgårdar i skärgården är ofta mer tillgängliga för bokning med kortare framförhållning än hotell i stan – men de bästa datumen på sommaren fylls fort. Boka 2–3 månader i förväg för juni–aug. Vår och höst (april–maj, sept–okt) är ofta lediga och kan ge ett lugnt och prisvänligt alternativ.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'kickoff-ideer-skargard': `
@@ -5525,6 +6423,12 @@ export function getGuideContent(slug: string): string {
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Teambuilding.se (skärgårdsfilter)</strong>
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Jämförelsesajt för teambuilding-leverantörer i Sverige. Filtrera på skärgård och antal deltagare för att se vad som passar ert lag.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `,
 
@@ -5556,6 +6460,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser 2026</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Veckovecka i juli: 8 000–20 000 kr för en stuga för 4–6 pers i attraktivt läge. Maj–juni och aug–sept är 30–40% billigare och ofta lika vackert väder. Korttidsuthyrning (3–4 nätter) möjlig utanför juli men ovanlig i högsäsong.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'workshop-skargard-stockholm': `
@@ -5586,6 +6496,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Halvdag vs heldag vs flerdags</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsworkshop (9:00–13:00) är populärast för kreativa sprint. Heldagsformat (9:00–17:00) med lunch ute i naturen ger mer djup. Flerdagars (2 nätter) ger tid för reflektion och är optimalt för strategiplaneringen – men kräver mer planering och budget.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'teambuilding-skargard-stockholm': `
@@ -5616,6 +6532,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget och planering</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsevent: 800–1 500 kr/pers. Heldagsevent utan boende: 1 200–2 500 kr/pers. Övernattande event (2 dagar): 2 500–4 500 kr/pers. Boka 6–8 veckor i förväg för sommarhalvåret, 2–4 veckor för höst och vår.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett företagsevent i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi täcker allt från segelcharter och kajakteambuilding till konferensanläggningar och AW-upplevelser. Gratis, varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'segelkurs-stockholm': `
@@ -5646,6 +6568,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kustskepparexamen – vad gäller?</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustskepparexamen (tidigare "kustskepparexamen D") är inget lagkrav i Sverige men ett internationellt erkänt kompetensbevis som krävs av de flesta kommersiella uthyrare i Europa. Teoridelen klaras av de flesta på 2–3 veckors självstudier. Praktikdelen tar 3–5 dagar på vattnet. Total kostnad inkl. teorikurs och examen: 6 000–12 000 kr.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'yttre-garden-guide': `
@@ -5693,6 +6621,12 @@ export function getGuideContent(slug: string): string {
   <li>Bäst att besöka maj–september</li>
   <li>ADF-förbud gäller strikt – ankring, dykning och fiske är förbjudet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
     'dagstur-marstrand': `
@@ -5718,6 +6652,12 @@ export function getGuideContent(slug: string): string {
   <li>Bästa säsong: juni–aug. Marstrand är halvdött sept–maj</li>
   <li>Boka restaurang i förväg under juli och midsommarhelgen</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om Bohuslän?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar varannan tisdag: sensommartips, vad som öppnar längs kusten och lokala insidertips om Bohusläns öar och fiskelägen du inte hittar i turistbroschyrerna. Gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch J: SEO-gap-guider ────────────────────────────────────────────────
@@ -5748,6 +6688,12 @@ export function getGuideContent(slug: string): string {
   <li>Kolla att restaurangen du planerar besöka faktiskt är öppen i just din vecka</li>
   <li>Tidtabeller för Waxholmsbolaget skiftar – sommartidtabellen gäller från mitten av juni</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'folkfria-oar-juli': `
@@ -5772,6 +6718,12 @@ export function getGuideContent(slug: string): string {
   <li>Välj öar med övernattning – dagsturister dominerar populärplatserna</li>
   <li>Undvik midsommarhelgen och de sista veckorna i juli – välj i stället tidig eller sen juli</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'oktober-skargarden': `
@@ -5793,6 +6745,12 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Paketera en höstweekend rätt</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka övernattning i förväg – alternativen är färre och de som finns kan vara fullbokade av naturälskare. Ta med rätt kläder: vattentäta skor, vindtät jacka och lager-på-lager under. Havet ger vindkylan lite extra bett i oktober.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svampkorgen är ett givet tillägg – skärgårdsöar med blandskog ger kantareller, trattkantareller och i tur och retur-avstånd från Stockholm.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'host-oland-2026': `
@@ -5811,6 +6769,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende och öppethållande</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många campingplatser stänger i september. Stugor och B&B har öppet länge – boka i förväg eftersom höstfågelskådarna fyller ut platserna under transäsongen. Borgholm och Mörbylånga har hotell som håller öppet hela hösten.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'host-hoga-kusten-2026': `
@@ -5829,6 +6793,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende och tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">High Coast Hotel i Härnösand håller öppet hela hösten. Vandrarhem och stugor längs kusten – boka via höstens webbplats. Svamp är riklig i skogsmarkerna runt Skuleskogen – ta med korg.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vinter-gotland-2026': `
@@ -5852,6 +6822,12 @@ export function getGuideContent(slug: string): string {
   <li>Januari brukar ge chansen till snö på Gotland – sällsynt men magiskt</li>
   <li>Packa lager-på-lager – havsvind ger extra vindkyla även vid milda temperaturer</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vinter-bohuslan-2026': `
@@ -5874,6 +6850,12 @@ export function getGuideContent(slug: string): string {
   <li>Många restauranger stänger november–mars – kolla innan du åker till en specifik plats</li>
   <li>Hala klippor i is och snö – ordentliga skor med grepp är ett måste</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'isbad-vinterbad-sverige': `
@@ -5899,6 +6881,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bassänger och organiserade bad</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera anläggningar längs kusten erbjuder havsbastu + kallbad-kombinationer med ombytesrum och professionella faciliteter. Söka på "havsbastu" + din närmaste kuststad för aktuella alternativ.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'badplatser-oland': `
@@ -5922,6 +6910,12 @@ export function getGuideContent(slug: string): string {
   <li>Parkering kan vara full vid Böda Sand på lördagar i juli – kom tidigt</li>
   <li>Havsalger kan förekomma under varma perioder – kolla lokala badrapporter</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'barnfamilj-oland': `
@@ -5940,6 +6934,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende för familjer</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Camping vid Böda Sand är den klassiska Ölandssemestern. Flera campingplatser med stuga-alternativ, lekplatser och service. Stugor runt om ön finns via Ölands Turistbyrå och Airbnb. Boka tidigt – juli är fullbokat månader i förväg.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vandring-oland': `
@@ -5963,6 +6963,12 @@ export function getGuideContent(slug: string): string {
   <li>Bästa vandringssäsong: maj–juni och september–oktober (undvik juli-hettan)</li>
   <li>Karta rekommenderas – Ölands kartan finns via Ölands Turistbyrå</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-stuga-oland': `
@@ -5986,6 +6992,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bokningstips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka vecka 28–31 (mitten av juli) minst 6 månader i förväg. Tidigare veckor i juni och augustiveckor har bättre tillgänglighet. Helgstuga (fredag–fredag) kostar 30–50% mer per dag än veckovistelse. Fråga alltid om linne och handdukar ingår – det gör det sällan.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-bil-oland': `
@@ -6007,6 +7019,12 @@ export function getGuideContent(slug: string): string {
   <li>Hastighetsgränsen är 70 km/h på de flesta delar av ön</li>
   <li>Kör inte på alvaret med vanlig bil – underredet skadas av kalkstenen</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-oland': `
@@ -6031,6 +7049,12 @@ export function getGuideContent(slug: string): string {
   <li>Priserna varierar 150–350 kr/natt beroende på plats och säsong</li>
   <li>Myggor kan vara besvärliga i inre delar av ön – ta med myggmedel</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'mat-oland': `
@@ -6046,6 +7070,12 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lokala råvaror och marknader</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ölands Skördefest:</strong> Hålls varje år i andra helgen av oktober. Öns storsta matevent med lokala producenter, degustationer och gatumat. Mycket populärt – kom tidigt.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gårdsbutiker längs väg 136 säljer direktförsäljning av ost, honung, lamm och öl hela sommaren. Leta efter skyltar längs vägen – de bästa är inte på Google Maps.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'kajak-hoga-kusten': `
@@ -6070,6 +7100,12 @@ export function getGuideContent(slug: string): string {
   <li>Karta, kompass och VHF-radio rekommenderas för flerdagarsturer</li>
   <li>Anmäl alltid din rutt till någon i land</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vandring-skuleskogen': `
@@ -6095,6 +7131,12 @@ export function getGuideContent(slug: string): string {
   <li>Bästa säsong: juni–september. Höst ger fantastiska lövfärger</li>
   <li>Övernattning i raststugor längs Höga Kustenleden – boka via naturvårdsverket.se</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'barnfamilj-hoga-kusten': `
@@ -6112,6 +7154,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende för familjer</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">High Coast Hotel i Härnösand och stugor runt om kusten. Camping finns vid Norrfällsviken och Hafsmon. Boka i förväg under juli – Höga Kusten är eftersökt av barnfamiljer.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-hoga-kusten': `
@@ -6134,6 +7182,12 @@ export function getGuideContent(slug: string): string {
   <li>Havet är svalare än i söder, 14–18°C i juli – simning finns men ta med badvante</li>
   <li>Vind kan ta längs kusten – välj vindskyddat läge för tältet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-bat-goteborg': `
@@ -6157,6 +7211,12 @@ export function getGuideContent(slug: string): string {
   <li>Hyra med förare (charter) är möjligt om du saknar körkort</li>
   <li>Väder och vind – kolla SMHI:s marin-prognos dagen innan</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om att ta sig ut på vattnet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om båtuthyrning, brev för nybörjare och hur man planerar sin första skärgårdstur. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-bat-marstrand': `
@@ -6179,6 +7239,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka i förväg under Marstrands Race-helger (vanligen Midsommar och kring SSRS-tävlingar) – hamnen är fullbokad och uthyrningen utsålt. Annars är tillgängligheten god.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-kajak-bohuslan': `
@@ -6201,6 +7267,12 @@ export function getGuideContent(slug: string): string {
   <li>Kolla väderprognosen – vindvarning 10 m/s eller mer bör avbryta planerna</li>
   <li>Flytväst alltid – kravet är lagstadgat</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'segelkurs-goteborg': `
@@ -6225,6 +7297,12 @@ export function getGuideContent(slug: string): string {
   <li>Bästa kurstid: maj–september. Juni och september ger bra vind men inte högsommarvärme</li>
   <li>Ta med solkräm och lager-på-lager – det blåser alltid lite mer på havet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'teambuilding-goteborg-skargard': `
@@ -6244,6 +7322,12 @@ export function getGuideContent(slug: string): string {
   <li>Grupper upp till 100 pers – konferenslokaler i Göteborg plus dag på havet fungerar bra</li>
   <li>Svalla.se/teambuilding har fler idéer för konferens och teambuilding i skärgård</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'aw-pa-bat-goteborg': `
@@ -6264,6 +7348,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bra destinationer under resan</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Styrsöarkipelagen (Styrsö, Donsö, Brännö) är perfekta AW-destinationer med bilfria öar och charmiga hamnar. Vinga ytterst är dramatisk men tidskrävande. Inneröarna är bäst för 3–4 h turer.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'konferens-bohuslan': `
@@ -6285,6 +7375,12 @@ export function getGuideContent(slug: string): string {
   <li>Fisketur och havsmatlagning – räkor, ostron och krabba</li>
   <li>Klippvandring med naturguide</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'flyga-till-gotland': `
@@ -6309,6 +7405,12 @@ export function getGuideContent(slug: string): string {
   <li>Färja (med bil): 1500–3500 kr för bil + passagerare tur-retur</li>
   <li>Flyg + hyrbil på Gotland: kan bli totalt 1500–2500 kr men ger max frihet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-bil-gotland': `
@@ -6331,6 +7433,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka bil minst 4–6 veckor i förväg för juli – utbudet tar slut. Gotland är platt och bensinkostnaderna låga. Mopeder och cyklar erbjuds som alternativ men räcker bara till dag-turer kring Visby.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'blekinge-skargard-guide': `
@@ -6349,6 +7457,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Karlskrona – världsarvsbasen</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Karlskrona är en av Sveriges vackraste städer med barockstadsplan och marinhistoria. Marinmuseum och Stumholmen är obligatoriska besök. Bas för skärgårdsutflykter och fin stad i sig.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'nacka-skargard-guide': `
@@ -6365,6 +7479,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Älgö naturreservat:</strong> Vandringsleder, badvikar och utsiktspunkter. Nås med buss och sen en kort promenad.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Nackareservatet:</strong> Stockholms femte nationalpark (invigd 2024). Vandringsleder och djurliv direkt i stadsnära natur.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kajakuthyrning, Baggensudde:</strong> Paddla på Baggensfjärden och ut mot Djuröfjärden. Uthyrare lokalt – kolla öppethållande på plats eller via sökning.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'svartloga-guide': `
@@ -6386,6 +7506,12 @@ export function getGuideContent(slug: string): string {
   <li>Mobilnätet är opålitligt – ladda ner kartor offline i förväg</li>
   <li>Kajak är ett fantastiskt sätt att ta sig dit om du har erfarenhet – men havet är öppet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'ljustero-guide': `
@@ -6401,6 +7527,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Badplatser:</strong> Sandviksbadet och Österskär är populära badplatser med klippor och grunt vatten.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fågelskådning:</strong> Rika fågelmarker längs strandängarna, framför allt under vår och höst.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kajak och paddling:</strong> Lugna inre vattenvägar gör Ljusterö perfekt för nybörjarkajak.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'runmaro-guide': `
@@ -6421,6 +7553,12 @@ export function getGuideContent(slug: string): string {
   <li>Övernattning i egna stugor eller via sommarboendeuthyrning</li>
   <li>Kolla sista båten tillbaka – Waxholmsbåtarna slutar tidigt på kvällen</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'blido-guide': `
@@ -6436,6 +7574,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Badplatser:</strong> Spridda längs ön – oftast utan folk. Kristallklart vatten och sten/sandstränder.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vandring:</strong> Skogsleder och kuststigar med naturupplevelse utan guide och utan skylt var femte meter.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fiske:</strong> Abborrefiske och gäddfiske i havsvikar och inre vattenvägar. Ta med spö.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'karingon-guide': `
@@ -6453,6 +7597,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boende</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Stugor och ett litet gästhus finns för övernattning. Boka tidigt för juli. Dag- och helgbesök fungerar utmärkt – en eftermiddag räcker för att se det bästa.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'gullholmen-guide': `
@@ -6471,6 +7621,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagstur eller övernattning?</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gullholmen klaras av på en halv dag. Kombinera gärna med Käringön (nära) för en fullständig Bohuslänsk ö-dag. Övernattning finns men utbudet är litet – boka tidigt.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-pa-budget': `
@@ -6494,6 +7650,12 @@ export function getGuideContent(slug: string): string {
   <li>Fiske med spö: abborre och gädda är gratis mat för den som har tålamod</li>
   <li>Bärplockning i skärgårdens skogar: blåbär, hallon och lingon i säsong</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på prisnivåerna i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kostnader, budgettips och hur du får ut mest av en skärgårdsresa utan att spräcka plånboken.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-kust-sverige': `
@@ -6516,6 +7678,12 @@ export function getGuideContent(slug: string): string {
   <li>Första Camp är den ledande kedjan med app och online-bokning</li>
   <li>Juni och augusti ger 40–50% lägre priser med mer tillgänglighet</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vattensport-guide': `
@@ -6540,6 +7708,12 @@ export function getGuideContent(slug: string): string {
   <li>Kolla SMHI marin-prognos – vind och våghöjd avgör om det är en bra dag</li>
   <li>Neoprene ger komfort vid 16–18°C vatten – utan det är sessionen kort</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-solo': `
@@ -6562,6 +7736,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Nätverk och community</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solo behöver inte vara ensamt. Svallas forum är ett bra ställe att höra av sig i förväg och kanske hitta andra som planerar liknande turer. Vandrarhem och STF härbärgen skapar naturliga mötesplatser för ensamresenärer.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för en perfekt skärgårdstur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa insidertipsen om öarna, restaurangerna och de dolda pärlon. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-seniorer': `
@@ -6582,6 +7762,12 @@ export function getGuideContent(slug: string): string {
   <li>Kolla om restaurangen har rullstolstillgång om det är aktuellt</li>
   <li>Ta inte sista båten hem – stress och trötthet en kväll är inte värt det</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'nationalparkerna-havet': `
@@ -6602,6 +7788,12 @@ export function getGuideContent(slug: string): string {
   <li>Eldning endast på anvisade platser</li>
   <li>Fri tältning i enlighet med parkens specifika regler – kolla Naturvårdsverket</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-tillganglighet': `
@@ -6621,6 +7813,12 @@ export function getGuideContent(slug: string): string {
   <li>Sommartid ger generellt sett bättre tillgänglighet när fler båtar är i drift</li>
   <li>Naturvårdsverkets Naturkartan-app visar tillgänglighetsinfo för naturreservat</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'batsaerhet-guide': `
@@ -6644,6 +7842,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kurser och certifikat</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Svenska Segelsällskapet och SSRS erbjuder kurser i båtsäkerhet, VHF och navigering för alla nivåer. Förarintyg ger grundläggande behörighet och lär dig det mest kritiska. Det är värt varje timme.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'fiske-host': `
@@ -6666,6 +7870,12 @@ export function getGuideContent(slug: string): string {
   <li>Minimimått för havsöring: 40 cm (Östersjön), kolla lokala regler</li>
   <li>Fångst- och släpp är standard för reproduktiva havsöringar</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vandring-host-skargard': `
@@ -6687,6 +7897,12 @@ export function getGuideContent(slug: string): string {
   <li>Pannlampa – dagarna är kortare och du kan vara ute vid mörkret</li>
   <li>Svamppåse – höst och kustskog ger riklig svamp längs de flesta leder</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-vs-fjall': `
@@ -6705,6 +7921,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vår rekommendation</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Välj skärgård om du vill ha havet, mat och möjligheten att ta det lugnt utan att missa upplevelsen. Välj fjäll om du söker äventyr, vildmark och inte bryr dig om service längs vägen. De två är inte konkurrenter – de är helt olika resor.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'bohuslan-vs-hoga-kusten': `
@@ -6724,6 +7946,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Slutsats</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän om du vill ha havsmat, lite folk runt dig och varmt bad. Höga Kusten om du söker dramatisk natur och är beredd att ta dig an mer krävande terräng. Båda är världsklass – de är bara inte samma resa.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch K ────────────────────────────────────────────────────────────────
@@ -6744,6 +7972,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingaröleden och Svartsöleden ger vandring med havsutsikt. Vindö naturreservat erbjuder kortare slingor med klippkust och gammal skog. Cykling längs Värmdöleden är ett populärt alternativ.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vinterbastu-isbastu': `
@@ -6764,6 +7998,12 @@ export function getGuideContent(slug: string): string {
   <li>Klä på dig snabbt efteråt och ha termos med varmt</li>
   <li>Bada aldrig ensam på okänd plats utan sällskap</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'fagelskadning-skargarden': `
@@ -6785,6 +8025,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utrustning och tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kikare 8x42 är standardvalet. Ta med fälthandbok – Lars Svensson och Peter Grandi är standardverken på svenska. Appen Artportalen låter dig rapportera fynd och se vad andra observerat i närheten.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'snorkling-stockholm': `
@@ -6804,6 +8050,12 @@ export function getGuideContent(slug: string): string {
   <li>Våtdräkt 3 mm – nödvändig i maj–juni och september. Valfri i varm juli</li>
   <li>Flytväst eller snorkeljacka för barn och osäkra simmare</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vinter-oland-2026': `
@@ -6825,6 +8077,12 @@ export function getGuideContent(slug: string): string {
   <li>Vind från Östersjön ger kraftig vindkyla – klä dig varmare än du tror</li>
   <li>Stugor och hotell tillgängliga men boka i förväg – utbudet är lägre</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skridskor-havet': `
@@ -6848,6 +8106,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Utrustning</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Landsskridskor (långa och smala) ger längst räckvidd. Hockeyskridskor funkar men är tyngre och mindre effektiva på lång is. Skyddsutrustning: hjälm och ispigg är absoluta krav.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'julmarknad-havet': `
@@ -6866,6 +8130,12 @@ export function getGuideContent(slug: string): string {
   <li>Klä dig för havsvind – det är kall december-luft längs kustmarknaderna</li>
   <li>Kombinera med middag på lokalt krog för den fullständiga upplevelsen</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips inför nästa helg i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut vad som händer i skärgården varje helg — konserter, marknader, öppna öar. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'fjallalternativet-kust': `
@@ -6887,6 +8157,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad du offrar</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skidåkning. Det finns inga alternativa aktiviteter som ersätter det om det är anledningen du åker till fjälls. Men om du åker fjäll för naturen, maten och känslan av att komma ifrån – kusten ger dig allt det.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'ekologisk-semester-skargard': `
@@ -6908,6 +8184,12 @@ export function getGuideContent(slug: string): string {
   <li>Välj miljömärkt solkräm – korallsäker kräm skonar det marina livet</li>
   <li>Stöd Håll Sverige Rent och Skärgårdsstiftelsen ekonomiskt om du kan</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skargard-med-husbil': `
@@ -6927,6 +8209,12 @@ export function getGuideContent(slug: string): string {
   <li>Tömningsstationer för gråvatten och toalett finns vid de flesta campingplatser</li>
   <li>Solpaneler rekommenderas för att minska behovet av elanslutning</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hundstrand-sverige': `
@@ -6946,6 +8234,12 @@ export function getGuideContent(slug: string): string {
   <li>Plocka upp – hundbajspåsar är din ansvar längs hela kusten</li>
   <li>Saltvatten är generellt säkert för hundar att dricka i mängder – ha med eget vatten</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips för familjer i skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om barnvänliga öar, säkra bad och hur man planerar en skärgårdsresa med hela familjen. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hyra-husbil-gotland': `
@@ -6966,6 +8260,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka campingplatser i Gotlands juli minst 3–4 månader i förväg. Park4Night-appen visar gratis uppställningsplatser utanför campingplatser. Gotland har goda asfaltvägar men många grusvägar till raukfält – kolla om din husbil klarar dem.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'aspo-sturko-guide': `
@@ -6982,6 +8282,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Sturkö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Större ö med bilfärja – du kan utforska med bil. Naturreservat med rik fågelmark, klippkust mot Östersjön och några gårdar med direktförsäljning av fisk. Mer lantlig karaktär än Aspö.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'trysunda-guide': `
@@ -6995,6 +8301,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På Trysunda</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Promenad längs fiskelägets bryggor och stugor ger en autentisk bild av kustliv. Klippbad i klart Bottenhavsvatten. Fågelskådning i naturreservat – öns natur är skyddad. Begränsad service – ta med mat och vatten.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Höga Kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar Höga Kusten — vandringsleder, öppna restauranger och säsongsguider. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'skafto-guide': `
@@ -7010,6 +8322,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grundsund</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lugnar fiskeby med ett genuint sammanhang. Sommarrestaurang, klippbad och en känsla av att se äkta Bohuslän utan turisttrampet. Perfekt för en halv dag med picknick och klippbad.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'holmon-guide': `
@@ -7024,6 +8342,12 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Cykeltur:</strong> Ön är bilfri (utom för fastboende) och perfekt för cykeln. Hyr cykel vid ankomst. 20 km runt ön ger en komplett bild.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fågelskådning:</strong> Holmön är en av Nordsveriges bästa fågelstationer för migration. Vår och höst med havsörn, alfågel och svarttärnor.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandstrand:</strong> Holmöns sandstränder är unika för Norrlands kust – mer ovanlig och ödsligare än Bohusläns.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Höga Kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar Höga Kusten — vandringsleder, öppna restauranger och säsongsguider. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'klattring-bohuslan': `
@@ -7044,6 +8368,12 @@ export function getGuideContent(slug: string): string {
   <li>Undvik klättring efter regn – graniten är halt i 12–24 h efter</li>
   <li>Bästa säsong: maj–juni och september–oktober (sommarvärmen gör greppet sämre)</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar västerhavet — kräftpremiär, hummerpremiär, öppettider längs kusten och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'strandridning-kust': `
@@ -7062,6 +8392,12 @@ export function getGuideContent(slug: string): string {
   <li>Nybörjare välkomna hos de flesta stall med ledda turer</li>
   <li>Bästa säsong: maj–juni och september för behagligt väder utan sommarhettan</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vegansk-mat-skargarden': `
@@ -7075,6 +8411,12 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Laga din egen mat</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skärgårdsöarnas natur ger rikliga möjligheter att komplettera med insamlad mat: kantareller, blåbär, hallon och strandkrabbans kiselalger är allemansrättens gåvor. Ta med ett veganskt grundpaket och komplettera med det du hittar.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'restauranger-havsvy-stockholm': `
@@ -7093,6 +8435,12 @@ export function getGuideContent(slug: string): string {
   <li>Utomhussittning kräver soliga dagar – kolla väder och ha backup-plan</li>
   <li>Lunch är ofta bättre pris-per-bit än middag på öarnas restauranger</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'vandring-var-kust': `
@@ -7112,6 +8460,12 @@ export function getGuideContent(slug: string): string {
   <li>Havsvattnet är 8–12°C i maj – paddling och simning kräver våtdräkt</li>
   <li>Restauranger öppnar gradvis – kolla i förväg om du planerar lunch på ön</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på aktiviteter längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kajakrutter, vandringsleder, dykning och säsongsaktiviteter i skärgård och kust. Varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'gotland-vs-bornholm': `
@@ -7135,6 +8489,12 @@ export function getGuideContent(slug: string): string {
   <li><strong>Pris:</strong> Bornholm dyrare (dansk prisnivå), Gotland ger mer för pengarna</li>
   <li><strong>Transport:</strong> Gotland enklare att nå från Stockholm, Bornholm enklare via Köpenhamn</li>
 </ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du en resa till Gotland eller Öland?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar de bästa tipsen om öarna utanför — säsong, transport, mat och boende. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   // ── Batch L ───────────────────────────────────────────────────────────────
@@ -7179,6 +8539,12 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tidtabell:</strong> Waxholmsbolaget kör höstschema från september. Avgångarna är färre – kolla waxholmsbolaget.se. Mest kritiskt: sista båten hem kan vara 17–18 på vardagar till mer avlägsna öar.</p>
 <p><strong>Boende:</strong> Stugbyar och värdshus har höstpriser, ofta 30–50% lägre än juli. Utö Värdshus, Grinda Wärdshus och Sandhamns Värdshus har rumsbokning hela hösten.</p>
 <p><strong>Kläder:</strong> September: fleece + vindjakka. Oktober: vinterjacka + mössa. Skärgårdsvindar gör att det känns kallare än temperaturen.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll koll på höstens öppna öar?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Varannan tisdag skickar vi ut vilka öar och restauranger som faktiskt håller öppet — plus hösttidtabeller, svamptips och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'hummerpremiar-bohuslan-2026': `
@@ -7223,6 +8589,12 @@ export function getGuideContent(slug: string): string {
 <p><strong>Till Smögen:</strong> Tåg från Göteborg till Munkedal (ca 1h), sedan buss 840 till Smögen (ca 45 min). Med bil: E6 norrut mot Munkedal, sedan väg 174 till Smögen.</p>
 <p><strong>Till Strömstad:</strong> Tåg från Göteborg, ca 2h. Med bil: E6 norrut ca 1h45 min.</p>
 <p><strong>Till Lysekil:</strong> Tåg till Uddevalla + buss, ca 1h45 min totalt. Med bil via E6 + väg 161.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Varannan tisdag: vad som händer längs Bohuslänskusten, vilka öar och restauranger som är öppna och tips om premiärer och events du inte vill missa. Hummerpremiären är en av dem. Gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'surstrommingspremiar-2026': `
@@ -7266,6 +8638,12 @@ export function getGuideContent(slug: string): string {
 <p><strong>Tåg:</strong> SJ från Stockholm C mot Härnösand, ca 3,5–4 timmar beroende på tåg. Kräver ibland byte i Sundsvall. Från Härnösand buss till Kramfors och vidare.</p>
 <p><strong>Flyg:</strong> Sundsvall/Timrå flygplats (SDL) med SAS eller BRA – ca 1h från Stockholm. Hyr bil på plats.</p>
 <p><strong>Bil:</strong> E4 norrut från Stockholm, ca 4h till Härnösand.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'michelin-havet-guide': `
@@ -7308,6 +8686,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">BOKNINGSRÅD</h3>
 <p>Sommar (juni–aug): boka 3–6 veckor i förväg för Michelin-restaurangerna. Höst och vinter: 1–2 veckor räcker till de flesta. Uddevalla-, Strömstad- och Lysekil-krogen är mer spontanvänliga än Göteborgskrogarna.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdslivet?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om vad som händer, vilka öar som håller öppet och insidertips du inte hittar på Google. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'sandhamn-vaxholm-grinda-host': `
@@ -7355,6 +8739,12 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">HÖSTKALENDER</h3>
 <p><strong>September</strong> – Varmast av höstmånaderna (10–15°C). Sandhamn och Grinda har restauranger öppna. Perfekt kombination av sommarens känsla och höstens lugn.</p>
 <p><strong>Oktober</strong> – Lövfärgerna är på topp i mitten av månaden. Kallare (5–10°C) men klarare luft. Vaxholm är säkraste valet om du vill garanterat hitta öppna kaféer.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Planerar du ett höstbesök?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar varannan tisdag: vilka bryggor som håller öppet, aktuella hösttidtabeller och lokala tips om skärgården när turisterna åkt hem. Gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   'camping-host-skargard': `
@@ -7400,6 +8790,12 @@ export function getGuideContent(slug: string): string {
 <p><strong>September:</strong> 12–17°C dag, 5–10°C natt. Varmt i solen, kallt i skugga och vind.</p>
 <p><strong>Oktober:</strong> 6–12°C dag, 1–6°C natt. Kan frysa tidigt. Extra isolering kritiskt.</p>
 <p><strong>November:</strong> Möjligt med rätt utrustning men kräver vintercampingutrustning.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Fler höstips från skärgården?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar varannan tisdag — om vilka öar som håller öppet, vad som händer i höst och insider-tips du inte hittar på Google.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
 `,
 
   '20-bastustallen-skargarden-boka': `
@@ -7514,6 +8910,273 @@ export function getGuideContent(slug: string): string {
   <a href="/guider" style="display:inline-flex;align-items:center;gap:8px;background:var(--sea);color:#fff;font-size:14px;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:24px">
     ← Se alla guider
   </a>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Friluftsäventyr längs kusten?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om naturhavnen, friluftsliv och hur du tar dig till öarna billigt och enkelt. Gratis nyhetsbrev varannan tisdag.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'gasthamnar-guide-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gästhamnen är skärgårdens nav. Här fyller du vatten, laddar elbåten, duschar efter ett hårt segelpass och äter middag på bryggan. En bra gästhamn kan lyfta hela turen — en dålig kan förstöra kvällen. Här är de viktigaste gästhamnarna i Stockholms skärgård 2026, med priser, faciliteter och insidertips om var du faktiskt vill ligga.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kostar gästhamn 2026?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Priserna har stigit de senaste åren. Räkna med 150–500 kr per natt beroende på hamn och säsong. El kostar vanligen 50–100 kr extra. Bastu 50–100 kr per tillfälle. Kärl för toalettavfall är numera gratis i de flesta hamnar — Stockholms skärgård är känslig och pumpstationer är obligatoriska.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Prisjämförelse 2026 (natt, 10m båt):</strong>
+<ul style="margin:8px 0 0;padding-left:20px;font-size:14px;line-height:2">
+<li>Sandhamn: 350–500 kr</li>
+<li>Grinda: 280–380 kr</li>
+<li>Utö: 300–420 kr</li>
+<li>Möja (Norra Möja): 200–300 kr</li>
+<li>Finnhamn: 220–320 kr</li>
+<li>Vaxholm: 250–350 kr</li>
+<li>Fjäderholmarna: 280–380 kr (dagsligs vanligast)</li>
+</ul>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa gästhamnarna – hamn för hamn</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Sandhamn — seglarnas hemvist</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">KSSS (Kungliga Svenska Segel Sällskapet) driver en av landets bäst organiserade gästhamnar. Välfungerande, alltid folk på bryggorna, bra toaletter och duschar. Nackdelen: trång under högsäsong och ljudnivån kan vara hög. Boka online via KSSS om du åker helg i juli. Djup: 2–4 m. El finns vid alla bryggor.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Grinda — det lugna alternativet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Gästhamn drivs av Grinda Wärdshus och är välskött och lugn. Bastu och restaurang i direkt anslutning. Djup: 2–5 m. Bra för barnfamiljer — lugnt vatten och bra faciliteter. Bokas via grinda.se. Bra wifi. Norrbryggan är öppnare mot väder — välj söderbryggan vid nordvästlig vind.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Utö — söder om allt</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Marina ligger i en skyddad vik på öns norra sida. Bra faciliteter, elcykeluthyrning, bastu och Utö Värdshus i närheten. Djup vid brygga: 2–3,5 m. Boka via uto.se — fullt i juli. Nås via Waxholmsbolaget från Nynäshamn eller Huvudskär.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Finnhamn — STF och naturnära</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">STF driver gästhamnen på Finnhamn. Vindskyddat läge i ett sund med ca 2–3 m djup. Enkel men trevlig service. Restaurang och vandrarhem på ön. Bra för lugnare tur — inte lika festlig som Sandhamn. Tillgänglig med Waxholmsbåt från Strömkajen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Möja — autentisk innerskärgård</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Norra Möja Gästhamn är en av de mysigaste i skärgården — liten, välskött och med krog i direkt anslutning. Djup: 1,5–3 m. Inga överdådiga faciliteter men hög stämning. Södra Möja (Möja Hamn) är något enklare. Bilfri ö — folk åker hit just för lugnet.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Vaxholm — bekväm bashamn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholms Gästhamn ligger centralt med affär, restauranger och färja till Stockholm precis utanför. Bra om du behöver handla eller vill ha stadsservicen. Djup: 2–4 m. Kan vara bullrigt av trafiken i sundet — välj innerbryggan om det blåser.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Smarta appar för gästhamnssökning</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>Marinas.com</strong> — bästa appen för bokningar och lediga platser i realtid</li>
+<li><strong>Navily</strong> — Europas ledande app för ankringsplatser och naturhamnar</li>
+<li><strong>Gästhamnar.se</strong> — svensk sajt med hamnbeskrivningar och reviews</li>
+<li><strong>iSailor / Navionics</strong> — sjökort med hamninfo och djupangivelser</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Koll på gästhamnar och öppettider hela säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut uppdateringar om vad som händer i skärgården varannan tisdag — priser, öppettider och insidertips. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'kraftskiva-hemma-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Kräftpremiären 2026 var onsdagen den 5 augusti — men kräftskivan hemma kan du hålla hela sensommaren. Allt du behöver: rätt kräftor, rätt kok, rätt dekorationer och några snapsvisor som du faktiskt kan. Här är hela upplägget.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Inköpslista för kräftskiva hemma</h2>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 8px">Kräftor</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med 1,5–2 kg råkräftor per person (ca 20–30 kräftor). Bäst att köpa levande och koka själv — smaken är överlägsen. Frysta fungerar om du inte hittar levande. Beställ från fiskhandlare 1–2 veckor i förväg eller kolla ICA Maxi och Coop kring premiären.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 8px">Saltlag att koka i</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li>4 liter vatten per kg kräftor</li>
+<li>120 g salt per 4 liter (ca 3 msk)</li>
+<li>2 rejäla dillkronor per liter vatten (helst mogen dill med blomma)</li>
+<li>Lite socker (1 msk per liter) — klassiskt knep för djupare smak</li>
+</ul>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Koktid och avkylning:</strong>
+<p style="margin:8px 0 0;font-size:14px">Koka upp lagen. Lägg i kräftorna (de ska vara levande eller nyligen avlivade). Låt koka 8–10 minuter. Stäng av och låt svalna i lagen i minst 4 timmar — helst över natten i kylen. Kräftor som fått dra länge i lagen är dramatiskt godare.</p>
+</div>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 8px">Till bordet</h3>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li>Rostat bröd och smör</li>
+<li>Västerbottensostpaj (klassikern)</li>
+<li>Gräddfil och gräslök</li>
+<li>Lagrad ost och knäcke</li>
+<li>Snaps — O.P. Anderson, Skåne Akvavit eller Herrgårds</li>
+<li>Öl — ett lättare lager fungerar bra</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dekorationer</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kräftskivans färgschema är rött, vitt och gult. Du behöver: papperslyktor att hänga upp, kräfthattar och haklappar (köps på Åhlens, Clas Ohlson), vita dukar och gärna girlanger. Tänk lyktor i trädet och stearinljus på bordet — det är den miljö kräftorna förtjänar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Snapsvisor du måste kunna</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Helan går</strong> — alltid den första. Aldrig förhandlingsbart.<br>
+<strong>Gubben i lådan</strong> — klassiker nummer två.<br>
+<strong>Hej tomtegubbar</strong> — funkar på alla åldrar.<br>
+Ta med en bok med snapsvisor eller ladda ner appen "Snapsvisor" — gratis och täcker allt du behöver.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tidplan för kvällen</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>Dagen innan:</strong> koka kräftorna och ställ i kylen</li>
+<li><strong>2 timmar innan:</strong> dekorera, baka paj, ta fram öl och snaps</li>
+<li><strong>30 min innan:</strong> ta ut kräftorna ur kylen (serveras nästan rumstempererade)</li>
+<li><strong>Fest:</strong> Helan går, Helan går, kräftor och kaos</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer om skärgårdens mattraditioner?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skriver om kräftpremier, hummerpremiär, ostronöppning och allt annat gott som händer längs kusten. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'algblomning-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Varje sommar dyker frågan upp: är det farligt att bada? Vad är det för grönt skum i viken? Svaret handlar om cyanobakterier — mer kända som blågrönalger. Här är vad du faktiskt behöver veta inför badet 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad är algblomning?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Algblomning uppstår när cyanobakterier (blågrönalger) snabbt förökar sig i varmt, stillastående och närsaltsrikt vatten. I Östersjön sker det vanligen juli–september, när vattentemperaturen överstiger 16–18°C och det blåser lite. Typisk syn: gröngult skum längs stränder och i vikar, ibland som oljiga fläckar på ytan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Är algblomning farligt?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det beror på arten och mängden. Vissa cyanobakterier producerar gifter (cyanotoxiner) som kan ge hudirritationer, konjunktivit, magbesvär, illamående och i sällsynta fall allvarligare symptom. Hundar och barn är extra känsliga — de är mindre och sväljer lättare vatten.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Tumregel:</strong>
+<p style="margin:8px 0 0;font-size:14px">Om vattnet är klart och blått — bada. Om det är grumligt, grönaktigt eller du ser skum längs stranden — vänta och kolla lägesrapporten. Alger samlas oftast i vikar och längs lä-stränder. Öppet hav och blåsigare lägen är vanligtvis okej.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var kollar du aktuellt läge 2026?</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>SMHI Algportalen</strong> (smhi.se/algportalen) — dagliga rapporter längs hela kusten med karta. Bästa källan.</li>
+<li><strong>Kommunens miljöförvaltning</strong> — stänger badplatser vid farliga nivåer. Kolla kommunens hemsida.</li>
+<li><strong>Badplatsen-appen</strong> — användares egna rapporter från specifika badplatser.</li>
+<li><strong>Havs- och vattenmyndigheten</strong> (hav.se) — information om alger och hälsa.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Riskområden i Stockholms skärgård</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Inre skärgården och halvöppna vikar är mer utsatta än yttre skärgård med bra vattenomsättning. Mälaren påverkar inre delarna — Baggensfjärden, Kanholmsfjärden och Mysingen är historiskt mer drabbade än öppna Sandhamnsfjärden och Söderfjärden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Om du badar och får symptom</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Skölj med rent vatten direkt. Hudirritationer, rödhet och klåda är vanligast. Magbesvär efter förtäring — sök vård om de inte ger med sig inom ett par timmar. Hund som vimlar eller kräks efter bad i alghalt vatten — till veterinär omedelbart.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Koll på badväder och skärgårdsnytt hela sommaren?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut aktuella tips om bad, öar och vad som händer i skärgården varannan tisdag. Gratis, ingen spam.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'eldningsforbud-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Ingenting förstör en annars perfekt skärgårdsdag som en skogsbrand. Eldningsförbud utfärdas snabbt vid torrperioder och gäller omedelbart — ofta utan att folk ute i öarna hunnit höra talas om det. Här är vad som gäller och hur du håller dig uppdaterad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad innebär eldningsförbud?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vid eldningsförbud är all öppen eld förbjuden utomhus. Det gäller: lägereld, grillning med kol och ved, engångsgrillar, rökande i naturen och pyroteknik. Gasolgrill på upphöjd yta (t.ex. en stenlagd grillplats eller båtens akterdäck) kan vara undantagen — läs det specifika förbudets text.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Kom ihåg:</strong>
+<p style="margin:8px 0 0;font-size:14px">Engångsgrillar är ofta det första som förbjuds — de är svåra att kontrollera och läggs ofta på torra markytor. Gör dig av med dem i hamn om du har ett eldningsförbud, även om du "bara" tänkte grilla på klippan.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Var kollar du aktuellt eldningsförbud?</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>Länsstyrelsen Stockholm</strong> — lansstyrelsen.se/stockholm — utfärdar förbud för Stockholms skärgård</li>
+<li><strong>Länsstyrelsen Västra Götaland</strong> — för Bohuslän</li>
+<li><strong>MSB Brandriskkarta</strong> — msb.se/brandriskkarta — daglig karta med brandrisk per region</li>
+<li><strong>SMHI</strong> — smhi.se — torka- och brandriskprognoser</li>
+<li><strong>112 Sverige-appen</strong> — push-notiser om lokala eldningsförbud</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gäller i naturreservat?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Naturreservaten i skärgården har ofta egna regler som är strängare än länsstyrelsens generella förbud. Eldning är i många reservat begränsad till anvisade eldplatser <em>oavsett</em> om det är eldningsförbud eller inte. Läs alltid reservatets föreskrifter som sitter anslagade vid entré och bryggorna.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Konsekvenser vid överträdelse</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Böter, och vid allvarligare fall åtal för allmänfarlig vårdslöshet. Om din eld orsakar en brand kan du bli skadeståndsskyldig för hela räddningsinsatsen — som kan uppgå till miljoner kronor. Rapportera olaglig eldning till 112. Det är inte angiveri — det är ansvarstagande.</p>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Håll dig uppdaterad om skärgårdsnytt?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi samlar praktisk info om skärgårdslivet varannan tisdag — eldningsförbud, öppettider, väder och säsongstips. Gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'bat-nybörjare-guide': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Alla som äger en båt idag var en gång nybörjare. Det svåra är inte att köra båt — det är att inte veta vad du inte vet. Den här guiden täcker det du verkligen behöver ha koll på innan du kastar loss för första gången.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Behöver du körkort?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Inget lagkrav i Sverige för fritidsbåt. Men kunskap om sjötrafikregler, pricksystemet och vädertolkning är nödvändigt för säkerheten. Fritidsskepparexamen (SSRS, Sjöbefälsskolan eller privata kurser) är bra investering. Kostnader: kurs 2 000–5 000 kr. Hyrbåtsbolag kräver ofta intyg för båtar över 10 meter eller med hög effekt.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad packar du?</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>Flytväst</strong> — en per person. Bär den. Den hjälper inte i väskan.</li>
+<li><strong>Sjökort eller navigationsapp</strong> — Navionics, iSailor eller C-MAP. Ladda ned offline-kartor.</li>
+<li><strong>VHF-radio</strong> — kanal 16 är nödkanalen. Lyssna alltid.</li>
+<li><strong>Mat och vatten</strong> — för en dag extra. Motorn stannar ibland.</li>
+<li><strong>Regnkläder</strong> — vädret ändras snabbt till havs.</li>
+<li><strong>Laddad telefon</strong> — i vattentätt fodral.</li>
+<li><strong>Nödraketer</strong> — vid längre tur i yttre skärgård.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Pricksystemet — det viktigaste du lär dig</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Röda prickar (konor) till styrbord (höger), gröna till babord (vänster) när du går in mot hamn. Laterala märken markerar farledens sidor. Utanför farleden är det grunt — håll dig inom prickarna om du inte är säker på djupet. Sjökortsappen visar färgmarkeringar för djup i realtid.</p>
+
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<strong style="color:var(--sea)">Tumregel för nybörjare:</strong>
+<p style="margin:8px 0 0;font-size:14px">Planera alltid mer tid än du tror. Räkna med 10 knop (18 km/h) som snittfart för en normalbåt. Lägg till tid för att hitta hamnen, förtöja och fylla diesel. Det är nästan alltid mer jobb och längre tid än du förväntat dig.</p>
+</div>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kostar hyrbåt för nybörjare?</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li>Elbåt (4–6 pers): 500–900 kr/dag — perfekt nybörjarbåt, tyst, enkel</li>
+<li>Liten motorbåt (4 pers): 800–1 500 kr/dag + drivmedel</li>
+<li>Segelbåt (4–6 pers): 1 500–4 000 kr/dag — kräver seglingskunskaper</li>
+<li>RIB/gummibåt: 600–1 200 kr/dag — snabb och smidig i skärgård</li>
+</ul>
+<p style="font-size:14px;color:var(--txt2)">Populära uthyrare i Stockholm: Sjösportens Hus (Djurgårdsbrunnsviken), FriluftsBåten (Ekensberg), och ett dussintal aktörer runt Strömma och Waxholmsleden.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tre nybörjarturer i Stockholms skärgård</h2>
+<ul style="margin:8px 0 16px;padding-left:20px;line-height:2">
+<li><strong>Fjäderholmarna dagstur</strong> — 25 min från Strandvägen. Enkel inlopp, restaurang, perfekt för allra första gången.</li>
+<li><strong>Vaxholm tur/retur</strong> — ca 1,5 h. Tydlig farled längs Baggensfjärden, gästhamn med service.</li>
+<li><strong>Grinda via Furusundet</strong> — halvdagstur. Lite mer navigation men fin skärgård. Bra gästhamn.</li>
+</ul>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Tips och guider för din nästa tur?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi skickar ut skärgårdstips varannan tisdag — om nybörjarfriluftsliv, bra rutter och insider-info. Gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
+</div>
+`,
+
+  'gasthamnar-bohuslan-2026': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Bohuslän har något Stockholms skärgård saknar: klippor som droppar rakt ner i havet, dramatiska solnedgångar i väster och kräftrestauranger som vet vad de håller på med. Gästhamnarna är en del av det — här är de bästa längs kusten 2026.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Smögen — den ikoniska trähamnsbyn</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smögen Gästhamn ligger precis vid den berömda Smögenbryggan — 600 meter av butiker, fiskrestauranger och sjöbodar. Hamnen tar ca 200 båtar och är välskött med bra faciliteter. Djup: 2–4 m. Pris 2026: ca 300–450 kr/natt. Boka online — juli är fullbokat dagar i förväg. Tips: anlöp tidigt på morgonen när folk lämnar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Marstrand — Västkustens elegantaste hamn</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrands Gästhamn är en av Sveriges finast belägna — med Carlstens fästning som kuliss och Kattegatt precis utanför. Hamnen är välskyddad och har bra service. Djup: 2–5 m. Pris: 300–500 kr/natt. Restaurangerna Marstrands Havshotell och Grand är gräddan. Bokas via marstrands-gasthamn.se.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Grebbestad — kräftornas centrum</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grebbestad är kräftornas mecka. Hamnen är stor, välordnad och har bra angöring. Pris: 200–350 kr/natt. Kring kräftpremiären (sen september) är det folkfest i hamnen — beräkna att det är stimmigt och planera i förväg. Fiskrestaurangerna längs hamnen serverar nyfångat.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Lysekil — storhamn med havsluft</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Lysekil Gästhamn är en av Bohusläns mest praktiska — stor, välskyddad och med bra serviceutbud. Djup: 2–6 m. Pris: 220–380 kr/natt. Havets Hus (akvarium) och klippvandringarna mot Stångehuvud är must-dos. Bra läge för den som seglar från Göteborg norrut.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kosteröarna — nationalpark och klarvatten</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosteröarnas hamnar (Nord-Koster och Syd-Koster) är omgivna av Kosterhavets nationalpark — Sveriges enda marina nationalpark. Vattnet är remarkabelt klart. Enklare faciliteter än stadshamnarna men unik miljö. Djup: 2–4 m. Ta med snorkelutrustning.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och bokning 2026</h2>
+<div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin:20px 0">
+<ul style="margin:0;padding-left:20px;font-size:14px;line-height:2">
+<li>Smögen: 300–450 kr/natt (10m båt)</li>
+<li>Marstrand: 300–500 kr/natt</li>
+<li>Grebbestad: 200–350 kr/natt</li>
+<li>Lysekil: 220–380 kr/natt</li>
+<li>Kosteröarna: 150–280 kr/natt</li>
+</ul>
+<p style="margin:8px 0 0;font-size:13px;color:var(--txt3)">El tillkommer vanligtvis 50–80 kr/natt. Boka via Marinas.com, Gästhamnar.se eller respektive hamns hemsida.</p>
+</div>
+
+<div style="background:linear-gradient(135deg,rgba(10,123,140,0.08),rgba(10,123,140,0.03));border:1.5px solid rgba(10,123,140,0.18);border-radius:14px;padding:24px 28px;margin:32px 0">
+<p style="font-size:15px;font-weight:700;color:var(--sea);margin:0 0 6px">Mer från Bohuslän den kommande säsongen?</p>
+<p style="font-size:14px;color:var(--txt2);margin:0 0 16px;line-height:1.7">Vi bevakar Bohusläns kust — hummerpremiär, ostronöppning, öppna gästhamnar och aktuella tips. Varannan tisdag, gratis.</p>
+<a href="/nyhetsbrev" style="display:inline-block;background:var(--sea);color:#fff;padding:10px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px">Prenumerera på Svallanyheter →</a>
 </div>
 `
 }
