@@ -10,7 +10,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome'
+export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome' | 'day3_newsletter'
 
 const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   welcome: '01_welcome.md',
@@ -19,6 +19,7 @@ const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   season_close: '04_season_close.md',
   weather_tip: '05_weather_tip.md',
   newsletter_welcome: '06_newsletter_welcome.md',
+  day3_newsletter: '07_day3_newsletter.md',
 }
 
 type Frontmatter = {
@@ -156,7 +157,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
       <tr>
         <td style="background:#fafcfd;padding:20px 36px;border-top:1px solid #e8eef2">
           <p style="font-size:11px;color:#6a8a96;line-height:1.6;margin:0">
-            Du får detta mejl för att du har ett konto på Svalla eller prenumererar på våra utskick.
+            Du får detta mejl för att du skapat ett konto på Svalla.
             <a href="https://svalla.se/notiser" style="color:#6a8a96;text-decoration:underline">Hantera utskick</a>
             &nbsp;·&nbsp;
             <a href="https://svalla.se/api/email/unsubscribe?email={{email}}" style="color:#6a8a96;text-decoration:underline">Avregistrera</a>
@@ -333,6 +334,62 @@ function renderNewsletterWelcomeBody(): string {
 </table>`
 }
 
+/**
+ * Dag-3-mail för nyhetsbrevsprenumeranter — introducerar Thorkel AI-guiden.
+ * Skickas automatiskt 3 dagar efter prenumeration via cron-jobbet.
+ * Tonen: redaktionell, inte produktdemo. Fokus på värdet, inte funktionen.
+ */
+function renderDay3NewsletterBody(): string {
+  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">Har du träffat Thorkel?</h1>
+
+<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">För tre dagar sedan prenumererade du på Svallanyheter. Det här mailet finns för att tipsa om det vi faktiskt är mest stolta över.</p>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:linear-gradient(135deg,#0d3a5c 0%,#0a7b8c 100%);border-radius:16px;overflow:hidden">
+  <tr>
+    <td style="padding:24px 24px 20px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px">Möt Thorkel</div>
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3">Din personliga skärgårdsguide — som kan svara på allt</div>
+      <p style="font-size:14px;color:rgba(255,255,255,0.82);margin:0 0 18px;line-height:1.6">Thorkel är vår AI-guide. Ställ en fråga — var kräftskivan är bäst, hur man tar sig till Utö utan bil, vad man bör ha ombord för en nattsejlats — och du får ett konkret svar på sekunder.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;margin-bottom:6px;display:block">
+            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Vilken ö är bäst för en nybörjare med barn?"</em></span>
+          </td>
+        </tr>
+        <tr><td style="height:6px"></td></tr>
+        <tr>
+          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;display:block">
+            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Hur anmäler man man överbord?"</em></span>
+          </td>
+        </tr>
+        <tr><td style="height:6px"></td></tr>
+        <tr>
+          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;display:block">
+            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Hummerpremären i Bohuslän — när och var?"</em></span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 14px">Varför det funkar</h2>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Google ger dig listor. Thorkel ger dig svar. Han känner till alla öar i Stockholms skärgård, Bohuslän, Gotland och Höga Kusten — inklusive färjelägen, säsongsöppet och praktiska tips som inte finns på någon officiell sida.</p>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#3d5865">Det är ingen chatbot som ber dig klicka vidare. Det är en guide som faktiskt svarar.</p>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
+  <tr>
+    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
+      <a href="https://svalla.se/guide" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Prata med Thorkel →</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:13px;line-height:1.65;margin:0;color:#6a8a96;text-align:center">Nästa Svallanyheter kommer varannan tisdag.<br>Svara på det här mailet om du har frågor.</p>`
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate
@@ -389,6 +446,8 @@ export async function sendEmail(opts: {
     htmlBody = renderWelcomeBody(firstName)
   } else if (opts.template === 'newsletter_welcome') {
     htmlBody = renderNewsletterWelcomeBody()
+  } else if (opts.template === 'day3_newsletter') {
+    htmlBody = renderDay3NewsletterBody()
   } else {
     const bodyFinal = substitute(body, vars)
     htmlBody = markdownToHtml(bodyFinal)
@@ -409,15 +468,6 @@ export async function sendEmail(opts: {
         to: opts.to,
         subject: subjectFinal,
         html,
-        // One-click unsubscribe (RFC 8058). Endpointen har redan haft en
-        // POST-handler, men HEADERNA har aldrig skickats — utan dem finns
-        // ingen avregistreringsknapp i Gmail/Apple Mail och utskicken raknas
-        // som bulk utan opt-out, vilket sanker leveransbarheten rejalt.
-        // Gmail och Yahoo kraver detta av avsandare sedan 2024.
-        headers: {
-          'List-Unsubscribe': `<https://svalla.se/api/email/unsubscribe?email=${encodeURIComponent(opts.to)}>`,
-          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-        },
       }),
     })
     const data = await res.json().catch(() => ({}))
@@ -505,6 +555,14 @@ subject_options:
 preheader: Varannan tisdag i inkorgen. Öppna öar, tips och skärgårdsinsider.
 ---
 Välkommen till Svallanyheter!
+`,
+
+  day3_newsletter: `---
+subject_options:
+  - "Har du träffat Thorkel? Din personliga skärgårdsguide"
+preheader: Han kan svara på allt — från kräftskiva till hur man anmäler man överbord.
+---
+Dag-3-mail för nyhetsbrevsprenumeranter.
 `,
 
   weather_tip: `---

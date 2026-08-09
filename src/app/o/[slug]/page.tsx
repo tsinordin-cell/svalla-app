@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../island-data'
 import SvallaLogo from '@/components/SvallaLogo'
-import { createPublicSupabaseClient } from '@/lib/supabase-server'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
@@ -21,6 +21,7 @@ import LastBoatPanel from '@/components/LastBoatPanel'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
+import IslandB2BCTA from '@/components/IslandB2BCTA'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -67,26 +68,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  }
 }
 
-/**
- * Tidigare `force-dynamic` — 824 sidor renderades om vid VARJE besök.
- *
- * Kommentaren här sa att det berodde på att `cookies()` inte kan köras i
- * ISR/static, vilket stämde: den gamla koden anropade
- * `createServerSupabaseClient()`, som internt läser cookies, och Next.js 15
- * kastade då DynamicServerError. Men slutsatsen var fel — lösningen var inte
- * att ge upp cachen, utan att sluta läsa cookies. Sidan använder ingen auth
- * alls: den läser antal besökare (`visited_islands`) och tre forumtrådar,
- * båda med publik läspolicy (verifierat mot produktionsdatabasen med
- * anon-nyckeln 2026-08-02).
- *
- * Med den cookie-fria klienten fungerar generateStaticParams + revalidate,
- * och sidorna serveras från CDN. Samma sak som gjorde /upptack/[id] 24x
- * snabbare, se CLAUDE.md punkt 18.
- *
- * Kontroll i byggutdata: `● /o/[slug]` = statisk med ISR (rätt),
- * `ƒ /o/[slug]` = dynamisk (fel, då är cookies tillbaka någonstans).
- */
-export const revalidate = 3600
+// force-dynamic: cookies() kräver request-kontext och kan inte köras i ISR/static.
+// Med revalidate=3600 + generateStaticParams kastade Next.js 15 DynamicServerError
+// som inte fångades av try/catch → 500. force-dynamic renderar vid varje request.
+export const dynamic = 'force-dynamic'
 
 // Öar med egna äventyrssidor
 const ADVENTURE_PAGES: Record<string, { url: string; title: string; desc: string }> = {
@@ -101,27 +86,23 @@ export default async function IslandPage({ params }: Props) {
  if (!island) notFound()
 
  // Hämta antal unika besökare + senaste forumtrådar parallellt.
- // Timeout på 3 s så att en hängande fråga inte tar ner hela sidan: populära
- // öar (sandhamn, vaxholm) har många rader och COUNT kan bli långsam.
- // Behålls trots att sidan numera är statisk — timeouten gäller då bygget och
- // revalideringen i stället för varje besökare, och en tom besökarräknare är
- // bättre än en sida som aldrig blir klar.
- //
- // Publik klient (ingen cookies()): sidan behöver inte veta vem som är
- // inloggad, och cookies-läsningen var det enda som gjorde sidan dynamisk.
+ // Timeout på 3 s: createServerSupabaseClient() + alla DB-anrop ligger INUTI
+ // Promise.race så att hela blocket avbryts om något hänger (inkl. cookies()).
+ // Populära öar (sandhamn, vaxholm) har många DB-rader → COUNT-frågan kan
+ // hänga → Vercel dödar funktionen och returnerar tom sida utan denna fix.
  let visitorCount: number | null = null
  let recentThreads: Awaited<ReturnType<typeof getThreadsByIsland>> = []
  try {
    const dbTimeout = new Promise<null>(resolve => setTimeout(() => resolve(null), 3_000))
    const dbResult = await Promise.race([
      (async () => {
-       const supabase = createPublicSupabaseClient()
+       const supabase = await createServerSupabaseClient()
        const [visitResult, threadResult] = await Promise.all([
          supabase
            .from('visited_islands')
            .select('*', { count: 'exact', head: true })
            .eq('island_slug', slug),
-         getThreadsByIsland(slug, 0, true).then(t => t.slice(0, 3)).catch(() => []),
+         getThreadsByIsland(slug).then(t => t.slice(0, 3)).catch(() => []),
        ])
        return [visitResult, threadResult] as const
      })().catch(() => null),
@@ -262,7 +243,7 @@ export default async function IslandPage({ params }: Props) {
      background: 'rgba(255,255,255,0.18)', borderRadius: 20,
      padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
    }}>
-     <Icon name="mail" size={13} stroke={2} /> Nyhetsbrev
+     ✉ Nyhetsbrev
    </Link>
  </div>
  </div>
@@ -447,7 +428,7 @@ export default async function IslandPage({ params }: Props) {
  alignItems: 'flex-start',
  boxShadow: '0 4px 20px rgba(10,123,140,0.2)',
  }}>
- <Icon name="star" size={24} stroke={1.8} style={{ flexShrink: 0, marginTop: 2 }} />
+ <span style={{ fontSize: 26, flexShrink: 0, lineHeight: 1.2 }}>💡</span>
  <div>
  <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: 1.4, textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>Visste du att</div>
  <p style={{ fontSize: 14, color: '#fff', margin: 0, lineHeight: 1.7, fontWeight: 500 }}>{island.did_you_know}</p>
@@ -474,7 +455,7 @@ export default async function IslandPage({ params }: Props) {
    return (
      <div style={{ background: 'var(--white)', borderRadius: 20, padding: '22px 24px', marginBottom: 32, boxShadow: '0 2px 16px rgba(0,0,0,0.06)', border: '1px solid rgba(10,123,140,0.08)' }}>
        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-         <Icon name="calendar" size={19} stroke={1.9} />
+         <span style={{ fontSize: 20 }}>🗓</span>
          <h3 style={{ fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)', fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>
            Bäst tid att besöka {island.name}
          </h3>
@@ -521,7 +502,7 @@ export default async function IslandPage({ params }: Props) {
          </p>
          {island.seasonal.warning && (
            <p style={{ fontSize: 12, color: '#9a6b00', margin: '8px 0 0', lineHeight: 1.5, fontStyle: 'italic' }}>
-             <Icon name="warning" size={14} stroke={2} /> {island.seasonal.warning}
+             ⚠️ {island.seasonal.warning}
            </p>
          )}
        </div>
@@ -688,7 +669,7 @@ export default async function IslandPage({ params }: Props) {
  alignItems: 'center',
  justifyContent: 'center',
  fontSize: 16,
- }}><Icon name="utensils" size={17} stroke={1.9} /></div>
+ }}>🍴</div>
  <div style={{ flex: 1 }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
  <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{r.name}</span>
@@ -1230,7 +1211,7 @@ export default async function IslandPage({ params }: Props) {
         fontSize: 13,
        }}
       >
-       <Icon name="quote" size={14} stroke={2} style={{ opacity: 0.7 }} />
+       <Icon name="messageCircle" size={14} style={{ opacity: 0.7, flexShrink: 0 }} />
        <span style={{ flex: 1 }}>{prompt}</span>
        <span style={{ fontSize: 11, color: '#e8924a', fontWeight: 700, flexShrink: 0 }}>Starta →</span>
       </Link>
@@ -1285,6 +1266,9 @@ export default async function IslandPage({ params }: Props) {
   </div>
  </div>
  </section>
+
+ {/* B2B CTA — passiv lead-insamling för aktörer på ön */}
+ <IslandB2BCTA islandName={island.name} islandSlug={island.slug} />
 
  {/* E-postsignup för ön */}
  <div style={{ marginTop: 28 }}>
