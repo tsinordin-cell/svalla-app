@@ -7,7 +7,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 import { logger } from '@/lib/logger'
-import { fetchTrips, type TripSummary } from '@/lib/trafiklab'
+import { fetchTripsResult, type TripSummary } from '@/lib/trafiklab'
 import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
 
 /**
@@ -567,7 +567,7 @@ async function executeTool(
         transitData: null,
       }
     }
-    const trips = await fetchTrips(cfg.originStopId, cfg.destStopId, 4)
+    const { trips, fel } = await fetchTripsResult(cfg.originStopId, cfg.destStopId, 4)
     /**
      * Kortet visade "Från Stockholm Strömkajen" även när resan faktiskt
      * startade vid Karl XII:s torg — konfigens originStopName är den avsedda
@@ -607,8 +607,23 @@ async function executeTool(
         )]
       : []
 
+    /**
+     * Tom lista betyder två helt olika saker, och användaren förtjänar rätt
+     * besked: "inga båtar kvar ikväll" är information, "vi når inte
+     * tidtabellen" är ett fel hos oss. Före 2026-08-11 gick de inte att
+     * skilja åt — se TripResult i trafiklab.ts.
+     */
     const claudeView = trips.length === 0
-      ? {
+      ? fel
+        ? {
+            error: `KUNDE INTE HÄMTA avgångarna (${fel}).`,
+            instruktion:
+              'Säg att tidtabellen inte svarar just nu och hänvisa till sl.se ' +
+              'eller waxholmsbolaget.se. BESKRIV INTE vägen dit, nämn INGEN ' +
+              'hamn, brygga eller busslinje ur minnet — du vet inte vilken ' +
+              'hamn som gäller utan data, och fel hamn får någon att missa båten.',
+          }
+        : {
           /**
            * TOM DATA FÅR ALDRIG BLI PÅHITTAD DATA.
            *
@@ -621,10 +636,10 @@ async function executeTool(
            * Instruktionen ligger i tool-resultatet, inte bara i systemprompten,
            * för att den ska stå närmast felet när modellen frestas som mest.
            */
-          error: 'INGA AVGÅNGAR KUNDE HÄMTAS för denna ö just nu.',
+          error: 'INGA AVGÅNGAR ÅTERSTÅR i dag för denna ö (uppslaget lyckades).',
           instruktion:
-            'Säg rakt ut att du inte kan hämta avgångarna just nu och hänvisa ' +
-            'till sl.se eller waxholmsbolaget.se. BESKRIV INTE vägen dit, ' +
+            'Säg att dagens sista avgång redan gått och föreslå att de reser ' +
+            'i morgon. BESKRIV INTE vägen dit, ' +
             'nämn INGEN hamn, brygga eller busslinje ur minnet — du vet inte ' +
             'vilken hamn som gäller utan data, och fel hamn får någon att missa ' +
             'båten. Att svara "jag vet inte just nu" är alltid rätt här.',
