@@ -375,6 +375,14 @@ Verktyget visar dessutom en strukturerad rutt-card till användaren automatiskt
 Kommentera t.ex. säsong, vilken avgång du själv hade tagit, eller hänvisa till
 att kortet visar tiderna. Spotta inte ut tiderna i texten — kortet visar dem.
 
+NÄR DU NÄMNER VÄGEN DIT — hamn, brygga eller bytespunkt — använd fältet
+"bytespunkter". Det är härlett ur resans faktiska ben och är alltid sant.
+Fältet "note" är en redaktionell kommentar som kan vara föråldrad: går den
+emot bytespunkter, LITA PÅ BYTESPUNKTER och strunta i noten.
+
+Hitta ALDRIG på en hamn eller brygga. Att skicka någon till fel hamn är
+värre än att inte svara — de missar båten och kanske hela dagen.
+
 Tillgängliga öar med transit-data: ${Object.keys(ISLAND_TRANSIT).sort().join(', ')}.
 
 OBS — om användaren frågar om transit till en ö som INTE finns i listan: säg
@@ -545,12 +553,35 @@ async function executeTool(
     // Tool-resultatet som skickas tillbaka TILL Claude — kompakt så hen
     // kan referera till tider/operatörer i sitt textsvar utan att spotta
     // ut hela JSON.
+    /**
+     * Bytespunkterna härleds ur FAKTISKA ben — aldrig ur en handskriven note.
+     *
+     * 2026-08-11: noten för Möja sa "snabbast via Stavsnäs vinterhamn". Båtarna
+     * går från Sollenkroka, tre mil därifrån. Thorkel upprepade lydigt noten
+     * trots att ruttkortet bredvid visade rätt data. En besökare som följt rådet
+     * hade åkt till fel hamn och missat båten.
+     *
+     * Prosa bredvid data driver isär. Härledda bytespunkter kan inte bli fel:
+     * ändras trafiken ändras de automatiskt.
+     */
+    const bytespunkter = trips.length > 0
+      ? [...new Set(
+          trips[0]!.legs
+            .slice(0, -1)                       // sista benets slut = destinationen
+            .map(l => (l.toName || '').replace(/\s*\(.*?\)/g, '').trim())
+            .filter(Boolean)
+        )]
+      : []
+
     const claudeView = trips.length === 0
       ? { error: 'Inga avgångar hittades just nu (kan vara nattetid eller pågående störning).' }
       : {
           islandSlug: slug,
           originName: cfg.originStopName,
           destName: cfg.destStopName,
+          /** Härledd ur benen — detta är sanningen om vägen dit. */
+          bytespunkter,
+          /** Redaktionell kommentar. Går den emot bytespunkter: LITA PÅ BYTESPUNKTER. */
           note: cfg.note ?? null,
           tripCount: trips.length,
           firstTrip: {

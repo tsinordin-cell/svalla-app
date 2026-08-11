@@ -66,7 +66,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   moja: {
     destStopId: '740024936', destStopName: 'Möjaström brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Snabbast via Stavsnäs vinterhamn.',
+    // KÄLLA: Värmdö kommun (varmdo.se — Sollenkroka brygga trafikerar Möja) +
+    // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
+    // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
+    note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
   },
   husaro: {
     destStopId: '740020692', destStopName: 'Husarö brygga',
