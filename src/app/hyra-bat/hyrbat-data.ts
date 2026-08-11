@@ -12,6 +12,13 @@ export type HyrBatSub = {
   tags: string[]
   intro: string[]
   priceTable: { type: string; price: string; note: string }[]
+  /**
+   * Satt = spannen i priceTable är OBSERVERADE i öppna annonser, inte uppskattade.
+   * Varje siffra ska då gå att peka på i en annons hos angivna källor.
+   */
+  priceObserved?: { antal: number; kallor: string; hamtad: string }
+  /** Namngivna exempelbåtar med avläst pris — alltid med källa. */
+  exampleBoats?: { name: string; size: string; price: string; provider: string; url: string }[]
   tips: { icon: string; heading: string; text: string }[]
   faqs: HyrBatFAQ[]
 }
@@ -33,12 +40,25 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       'Räkna alltid med bränsle utöver hyran – de flesta bolag hyr ut tomma tankar och du betalar för det du förbrukar. Boka tidigt: juli är fullbokat hos de flesta aktörer redan i april.',
     ],
     priceTable: [
-      // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
-      { type: 'Liten motorbåt (4–5 m)', price: '900–1 500 kr/dag', note: 'Passar 2–4 personer. Ingen erfarenhet krävs.' },
-      { type: 'Mellanbåt (6–7 m, 10–20 hk)', price: '1 200–2 200 kr/dag', note: 'Bekvämt för 4–6 pers, bra fart.' },
-      { type: 'Stor motorbåt (7–9 m)', price: '2 000–4 000 kr/dag', note: 'Kajut och sovplatser.' },
-      { type: 'Segelbåt (28–35 fot)', price: '3 500–7 000 kr/dag', note: 'Kräver segling i bakgrunden.' },
-      { type: 'Husbåt / övernattningsbåt', price: '3 000–5 500 kr/dag', note: 'Komfort på vattnet utan seglingskunskaper.' },
+      // KÄLLA: observerat i 18 öppna annonser hos Ship O'Hoi (ship-ohoi.com/sv/hyra/baat/plats/stockholm)
+      // och Click&Boat (clickandboat.com, dygnshyror Stockholm), avlästa 2026-08-10.
+      // Spannen är min–max över annonserna, inte en uppskattning. Husbåtsraden är borttagen —
+      // inga öppna annonser fanns att observera.
+      { type: 'Liten motorbåt (4–6 m)', price: '995–5 869 kr/dag', note: '4 annonser. Lägst hos Ship O\'Hoi, högst hos Click&Boat — samma storlek kan kosta flera gånger mer beroende på förmedlare.' },
+      { type: 'Mellanstor motorbåt (6–8 m)', price: '2 250–7 337 kr/dag', note: '9 annonser. Kajut och sovplatser i den övre delen av spannet.' },
+      // KÄLLA: samma avläsning — Ship O'Hoi och Click&Boat 2026-08-10
+      { type: 'Stor motorbåt (8+ m)', price: 'från 6 000 kr/dag', note: 'Endast en öppen annons vid avläsningen — tunt underlag.' },
+      { type: 'Segelbåt (31–36 fot)', price: '5 000–5 890 kr/dag', note: '3 annonser. Kräver seglingsvana.' },
+      { type: 'Segelbåt (45–46 fot)', price: '9 000–14 000 kr/dag', note: '4 annonser. Stora havskryssare med plats för 10–11.' },
+    ],
+    priceObserved: { antal: 18, kallor: "Ship O'Hoi och Click&Boat", hamtad: '10 augusti 2026' },
+    exampleBoats: [
+      // KÄLLA: samma avläsning 2026-08-10. Priser per båt, avlästa i annonsen.
+      { name: 'Linder Fishing 440', size: '4,3 m', price: '995 kr/dag', provider: "Ship O'Hoi", url: 'https://www.ship-ohoi.com/sv/hyra/baat/plats/stockholm' },
+      { name: 'Uttern D55 Exclusive', size: '5,5 m · 135 hk', price: '1 600 kr/dag', provider: "Ship O'Hoi", url: 'https://www.ship-ohoi.com/sv/hyra/baat/plats/stockholm' },
+      { name: 'Askeladden 585', size: '5,9 m · 125 hk', price: '5 644 kr/dag', provider: 'Click&Boat', url: 'https://www.clickandboat.com/se/hyra/typ-motorbatar/land-sverige/region-stockholms-lan/stad-stockholm' },
+      { name: 'Nimbus 26 Epoca', size: '7,9 m · 270 hk', price: '3 500 kr/dag', provider: "Ship O'Hoi", url: 'https://www.ship-ohoi.com/sv/hyra/baat/plats/stockholm' },
+      { name: 'Bavaria 46 Cruiser', size: '46 fot segel · 11 kojer', price: '14 000 kr/dag', provider: "Ship O'Hoi", url: 'https://www.ship-ohoi.com/sv/hyra/baat/plats/stockholm' },
     ],
     tips: [
       { icon: '📋', heading: 'Kolla licenskrav i förväg', text: 'Fråga bolaget exakt vad de kräver. Vissa nöjer sig med en 30-min introduktion; andra vill se förarintyg för kraftigare båtar.' },
