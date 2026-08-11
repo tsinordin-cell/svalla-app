@@ -444,12 +444,58 @@ const GLOBAL_CSS = `
 @keyframes svtFadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 .svt-main { flex: 1; min-width: 0; padding: 28px 32px 100px; }
 .svt-mobile-projectbar { display: none; }
-/* Varje uppgift är sin egen rad (svit-lane) — kolumnen visar bara var i
-   arbetsflödet (Att göra/Claude jobbar/Redo att granska/Klart) den befinner
-   sig just nu, istället för att uppgifter i olika status råkar hamna på
-   samma höjd bara för att de är först i sin kolumn. */
-.svt-status-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 16px; align-items: start; }
-.svt-status-col { min-width: 0; }
+/* Tavlan. EN render-väg för både desktop och mobil — bara rutnätet skiljer.
+   Tidigare fanns två separata block med varsin kopia av kortlistan, vilket
+   innebar att varje ändring behövde göras på två ställen för att de inte
+   skulle glida isär.
+
+   VARFÖR INTE LÄNGRE EN RAD PER UPPGIFT (2026-08-04, rapporterat av Tom som
+   "tjock och stökig"): varje uppgift låg på sin egen rutnätsrad så att dess
+   väg genom flödet skulle kunna läsas vänster till höger. Men en uppgift har
+   bara EN status åt gången, så raden innehöll alltid exakt ett kort och tre
+   tomma fält — bandet bakom raden knöt aldrig ihop något. Vid 29 uppgifter
+   blev tavlan 29 rader hög med runt 75 % tom yta. Korten staplas nu i sin
+   kolumn som på en vanlig tavla; höjden styrs av den längsta kolumnen. */
+.svt-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px; align-items: start; }
+.svt-col { min-width: 0; display: flex; flex-direction: column; }
+.svt-col-body { display: flex; flex-direction: column; gap: 10px; padding-top: 10px; }
+/* Projektrubrik inuti en kolumn. Visas bara när kolumnen faktiskt innehåller
+   mer än ett projekt — annars är rubriken bara brus (t.ex. när man redan
+   filtrerat på ett projekt i sidomenyn). */
+.svt-group-head {
+  display: flex; align-items: center; gap: 6px; margin: 4px 0 0;
+  font-size: 10.5px; font-weight: 700; color: var(--txt3);
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+.svt-col-body > .svt-group-head:first-child { margin-top: 0; }
+/* Klart fälls ihop som standard — en tredjedel av korten hamnar där och
+   ingen agerar på dem. Samma beteende på mobil och dator, och valet sparas. */
+.svt-done-toggle {
+  border: 1.5px dashed var(--svt-border-strong); border-radius: 12px;
+  background: none; cursor: pointer; padding: 12px; margin-top: 10px;
+  font-size: 12px; font-weight: 600; color: var(--txt3); width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.svt-done-toggle:hover { border-color: var(--sea); color: var(--sea); }
+/* Läget överst: vad du har, vad den andra har, och vad som väntar på dig.
+   Räknas alltid på hela tavlan (respekterar projektvalet men INTE
+   personfiltret) — annars försvinner "Max: 2" så fort man klickar Mina. */
+.svt-pulse {
+  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  padding: 7px 9px; margin-bottom: 16px;
+  background: var(--svt-chip-bg); border-radius: 12px;
+}
+.svt-pulse-item {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px;
+  border: none; background: none; border-radius: 8px; font: inherit;
+  font-size: 12.5px; color: var(--txt2); white-space: nowrap;
+}
+.svt-pulse-item b { color: var(--txt); font-weight: 700; }
+.svt-pulse-item.click { cursor: pointer; }
+.svt-pulse-item.click:hover { background: var(--white); }
+.svt-pulse-item.click.on { background: var(--sea); color: #fff; }
+.svt-pulse-item.click.on b { color: #fff; }
+.svt-pulse-sep { width: 1px; height: 16px; background: var(--svt-border); margin: 0 4px; }
 /* Kolumnrubrikerna följer med vid scroll. Utan sticky försvinner de så fort
    man scrollat förbi första raden, och då går det inte att se vilken status
    ett kort har — kolumnen ÄR statusen. Rapporterat av Tom (kortet "Finputs
@@ -464,11 +510,6 @@ const GLOBAL_CSS = `
   background: var(--bg);
   padding-top: 10px; margin-top: -10px;
 }
-/* Svagt band bakom hela uppgiftsraden — gör raden läsbar som en enhet
-   (en uppgifts väg genom flödet) utan att fylla tomma kolumner med
-   rutor. Ligger bakom kortet, ingen egen kant. */
-.svt-swim-band { align-self: stretch; background: var(--svt-chip-bg); border-radius: 12px; opacity: 0.5; }
-.svt-swimlanes-mobile { display: none; }
 .svt-card-open { cursor: pointer; }
 .svt-card-open:focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
 
@@ -595,11 +636,11 @@ const GLOBAL_CSS = `
   .svt-mobile-nav { display: flex; }
   .svt-main { padding: 16px 14px 88px; }
   .svt-mobile-projectbar { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 16px; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
-  /* På smal skärm blir 4 fasta kolumner + en rad per uppgift för trångt för
-     att vara läsbart — svit-lane-rutnätet (desktop) döljs och ersätts med
-     status grupperat i staplade sektioner istället. */
-  .svt-status-grid { display: none; }
-  .svt-swimlanes-mobile { display: flex; flex-direction: column; gap: 22px; }
+  /* Fyra kolumner blir för smalt för att läsa på telefon — samma tavla,
+     staplad. Rubrikerna är kvar sticky: med en kolumn i taget betyder det
+     att man alltid ser vilken status man scrollar i. */
+  .svt-board { grid-template-columns: 1fr; gap: 20px 0; }
+  .svt-done-toggle { padding: 14px; }
   /* Text-inputs under 16px triggar auto-zoom på iOS — tvinga 16px på mobil oavsett desktop-storlek. */
   .svt-input { font-size: 16px !important; }
   /* Tumme-vänliga tap-ytor — 26px är för litet för finger på en skärm. */
@@ -1080,6 +1121,92 @@ function AssigneePicker({ teamMembers, value, onChange, size = 22 }: {
 
 type AssigneeFilter = 'all' | 'me' | 'unassigned' | string
 
+/** Delar upp en kolumns kort per projekt. Projekt i bokstavsordning,
+ *  uppgifter utan projekt sist. */
+function groupByProject(tasks: Task[], projectById: Map<string, Project>) {
+  const grupper = new Map<string, { project?: Project; tasks: Task[] }>()
+  for (const t of tasks) {
+    const nyckel = t.project_id ?? '__inget'
+    let g = grupper.get(nyckel)
+    if (!g) {
+      g = { project: t.project_id ? projectById.get(t.project_id) : undefined, tasks: [] }
+      grupper.set(nyckel, g)
+    }
+    g.tasks.push(t)
+  }
+  return [...grupper.values()].sort((a, b) => {
+    if (!a.project) return 1
+    if (!b.project) return -1
+    return a.project.name.localeCompare(b.project.name, 'sv')
+  })
+}
+
+/** Rubriker per projekt är bara till nytta när kolumnen faktiskt innehåller
+ *  flera. Har man redan filtrerat på ett projekt i sidomenyn upprepar de
+ *  bara det man valt. */
+function visaProjektrubriker(tasks: Task[]) {
+  const sedda = new Set(tasks.map(t => t.project_id ?? '__inget'))
+  return sedda.size > 1
+}
+
+/** Läget överst: vad du har, vad den andra har, vad som väntar på granskning
+ *  och vad som är försenat. Räknas på hela tavlan oavsett personfilter —
+ *  annars försvinner den andres siffra så fort man klickar "Mina". */
+function Pulse({
+  tasks, currentUser, teamMembers, assigneeFilter, onFilter,
+}: {
+  tasks: Task[]
+  currentUser: { id: string; username: string }
+  teamMembers: TeamMember[]
+  assigneeFilter: AssigneeFilter
+  onFilter: (f: AssigneeFilter) => void
+}) {
+  const idag = new Date(new Date().toDateString()).getTime()
+  const aktiva = tasks.filter(t => t.status !== 'done')
+  const mina = aktiva.filter(t => t.assignee_id === currentUser.id).length
+  const granska = tasks.filter(t => t.status === 'review').length
+  const forsenade = aktiva.filter(t => t.due_date && new Date(t.due_date).getTime() < idag).length
+  const andra = teamMembers
+    .filter(m => m.id !== currentUser.id)
+    .map(m => ({ m, antal: aktiva.filter(t => t.assignee_id === m.id).length }))
+    .filter(x => x.antal > 0)
+
+  if (!aktiva.length && !granska) return null
+
+  return (
+    <div className="svt-pulse">
+      <button
+        className={`svt-pulse-item click${assigneeFilter === 'me' ? ' on' : ''}`}
+        onClick={() => onFilter(assigneeFilter === 'me' ? 'all' : 'me')}
+      >
+        Du <b>{mina}</b>
+      </button>
+      {andra.map(({ m, antal }) => (
+        <button
+          key={m.id}
+          className={`svt-pulse-item click${assigneeFilter === m.id ? ' on' : ''}`}
+          onClick={() => onFilter(assigneeFilter === m.id ? 'all' : m.id)}
+        >
+          {m.username} <b>{antal}</b>
+        </button>
+      ))}
+      {(granska > 0 || forsenade > 0) && <span className="svt-pulse-sep" />}
+      {granska > 0 && (
+        <span className="svt-pulse-item">
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: REVIEW_COLOR }} />
+          väntar på granskning <b>{granska}</b>
+        </span>
+      )}
+      {forsenade > 0 && (
+        <span className="svt-pulse-item" style={{ color: 'var(--red)' }}>
+          <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--red)' }} />
+          försenade <b style={{ color: 'var(--red)' }}>{forsenade}</b>
+        </span>
+      )}
+    </div>
+  )
+}
+
 function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, currentUser, onCreate, onStatusChange, onAssigneeChange, onDelete, onAddImages, onRemoveImage, onUpdate, supabase }: {
   tasks: Task[]
   projects: Project[]
@@ -1113,6 +1240,17 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   const [prompt, setPrompt] = useState('')
   const [color, setColor] = useState<string | null>(null)
   const [assigneeFilter, setAssigneeFilter] = useState<AssigneeFilter>('all')
+  // Klart är ihopfälld som standard. Läses ur localStorage EFTER montering —
+  // läser man den direkt i useState blir serverns HTML och klientens första
+  // rendering olika och React kastar ett hydreringsfel.
+  const [doneOpen, setDoneOpen] = useState(false)
+  useEffect(() => { setDoneOpen(localStorage.getItem('svt-klart-oppen') === '1') }, [])
+  const toggleDone = useCallback(() => {
+    setDoneOpen(v => {
+      try { localStorage.setItem('svt-klart-oppen', v ? '0' : '1') } catch { /* privat läge */ }
+      return !v
+    })
+  }, [])
   // Bilder valda innan uppgiften finns — laddas upp direkt efter att den
   // skapats, eftersom lagringssökvägen bygger på uppgiftens id.
   const [pendingFiles, setPendingFiles] = useState<File[]>([])
@@ -1161,12 +1299,28 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
     return t.assignee_id === assigneeFilter
   })
 
-  // Varje uppgift får sin egen rad i svit-lane-rutnätet (desktop), äldst
-  // överst — så en ny uppgift alltid hamnar ett steg ner, aldrig på samma
-  // rad som en annan, orelaterad uppgift i en annan status.
-  const orderedTasks = [...visibleTasks].sort(
-    (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-  )
+  // Korten per kolumn. Äldst överst i de aktiva kolumnerna — det som legat
+  // längst ska inte hamna underst och glömmas bort. Klart vänder ordningen:
+  // där är det senast avklarade det enda intressanta.
+  // Ingen memoisering: listan är ett trettiotal kort, och en useMemo här
+  // skulle behöva en nyckel som fångar status, projekt OCH tidsstämplar —
+  // billigare att räkna om än att riskera en inaktuell tavla.
+  const tasksPerStatus: Record<TaskStatus, Task[]> = { todo: [], working: [], review: [], done: [] }
+  for (const t of visibleTasks) tasksPerStatus[t.status].push(t)
+  for (const s of STATUS_ORDER) {
+    tasksPerStatus[s].sort((a, b) => {
+      const d = new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      return s === 'done' ? -d : d
+    })
+  }
+
+  // Hur många blev klara den senaste veckan — visas på den ihopfällda
+  // Klart-kolumnen så framstegen syns även när korten är dolda.
+  const enVeckaSedan = Date.now() - 7 * 24 * 3600 * 1000
+  const sedanNyligen: Record<TaskStatus, number> = {
+    todo: 0, working: 0, review: 0,
+    done: tasksPerStatus.done.filter(t => new Date(t.updated_at).getTime() > enVeckaSedan).length,
+  }
 
   // Hämtas ur tasks (inte sparad i state) så detaljvyn uppdateras direkt när
   // en bild läggs till eller status ändras, även om Max gör det samtidigt.
@@ -1174,6 +1328,14 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
 
   return (
     <div>
+      <Pulse
+        tasks={tasks}
+        currentUser={currentUser}
+        teamMembers={teamMembers}
+        assigneeFilter={assigneeFilter}
+        onFilter={setAssigneeFilter}
+      />
+
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
         {!showForm ? (
           <button onClick={() => setShowForm(true)} className="svt-btn-primary" style={btnPrimary}><IcoPlus color="currentColor" /> Ny uppgift</button>
@@ -1331,101 +1493,85 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
         </div>
       )}
 
-      {/* Desktop: svit-lane-rutnät — varje uppgift är sin egen rad, kolumnen
-          visar bara var i flödet den befinner sig just nu. Ny uppgift hamnar
-          alltid ett steg ner (se orderedTasks), aldrig på samma rad som en
-          orelaterad uppgift i en annan status. */}
-      <div className="svt-status-grid">
-        {STATUS_ORDER.map(status => (
-          <div key={status} className="svt-swim-header">
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status], flexShrink: 0 }} />
-            <span style={{
-              fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5,
-              overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            }}>
-              {STATUS_LABEL[status]}
-            </span>
-            <span style={{
-              fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'var(--svt-chip-bg)',
-              padding: '1px 7px', borderRadius: 999, flexShrink: 0,
-            }}>
-              {visibleTasks.filter(t => t.status === status).length}
-            </span>
-          </div>
-        ))}
-
-        {orderedTasks.length === 0 && (
-          <div className="svt-empty-col" style={{ gridColumn: '1 / -1' }}>
-            <IcoTasks color="var(--txt3)" />
-            Inga uppgifter här
-          </div>
-        )}
-
-        {orderedTasks.map((task, i) => {
-          const rowIdx = i + 2
-          return (
-            <Fragment key={task.id}>
-              {/* Ett svagt band över hela raden — knyter ihop uppgiftens rad
-                  visuellt så kortet inte ser ut att sväva ensamt i ett tomt
-                  fält, utan att lägga till tre tomma rutor per rad. */}
-              <div className="svt-swim-band" style={{ gridColumn: '1 / -1', gridRow: rowIdx }} />
-              <div style={{ gridColumn: STATUS_ORDER.indexOf(task.status) + 1, gridRow: rowIdx }}>
-                <TaskCard
-                  task={task}
-                  project={task.project_id ? projectById.get(task.project_id) : undefined}
-                  teamMembers={teamMembers}
-                  onStatusChange={onStatusChange}
-                  onAssigneeChange={onAssigneeChange}
-                  onDelete={onDelete}
-                  onOpen={() => setOpenTaskId(task.id)}
-                />
-              </div>
-            </Fragment>
-          )
-        })}
-      </div>
-
-      {/* Mobil: 4 fasta kolumner + en rad per uppgift blir för trångt för att
-          vara läsbart på en smal skärm — status grupperat i staplade
-          sektioner istället, samma data och samma TaskCard. */}
-      <div className="svt-swimlanes-mobile">
+      {/* Tavlan — samma markup på desktop och mobil, se .svt-board i CSS:en. */}
+      <div className="svt-board">
         {STATUS_ORDER.map(status => {
-          const colTasks = visibleTasks.filter(t => t.status === status)
+          const colTasks = tasksPerStatus[status]
+          const dolt = status === 'done' && !doneOpen && colTasks.length > 0
           return (
-            <div key={status}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 10 }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status] }} />
-                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <section key={status} className="svt-col">
+              <div className="svt-swim-header">
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status], flexShrink: 0 }} />
+                <span style={{
+                  fontSize: 12, fontWeight: 700, color: 'var(--txt2)', textTransform: 'uppercase', letterSpacing: 0.5,
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                }}>
                   {STATUS_LABEL[status]}
                 </span>
                 <span style={{
                   fontSize: 11, fontWeight: 700, color: 'var(--txt3)', background: 'var(--svt-chip-bg)',
-                  padding: '1px 7px', borderRadius: 999,
+                  padding: '1px 7px', borderRadius: 999, flexShrink: 0,
                 }}>
                   {colTasks.length}
                 </span>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 60 }}>
-                {colTasks.length === 0 && (
-                  <div className="svt-empty-col">
-                    <IcoTasks color="var(--txt3)" />
-                    Inga uppgifter här
-                  </div>
+                {status === 'done' && colTasks.length > 0 && (
+                  <button
+                    onClick={toggleDone}
+                    title={doneOpen ? 'Fäll ihop' : 'Visa'}
+                    style={{
+                      marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer',
+                      color: 'var(--txt3)', fontSize: 11, fontWeight: 700, padding: '2px 4px',
+                    }}
+                  >
+                    {doneOpen ? 'Dölj' : 'Visa'}
+                  </button>
                 )}
-                {colTasks.map(task => (
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    project={task.project_id ? projectById.get(task.project_id) : undefined}
-                    teamMembers={teamMembers}
-                    onStatusChange={onStatusChange}
-                    onAssigneeChange={onAssigneeChange}
-                    onDelete={onDelete}
-                    onOpen={() => setOpenTaskId(task.id)}
-                  />
-                ))}
               </div>
-            </div>
+
+              {dolt ? (
+                <button className="svt-done-toggle" onClick={toggleDone}>
+                  {colTasks.length} klara{sedanNyligen[status] ? ` · ${sedanNyligen[status]} den här veckan` : ''}
+                </button>
+              ) : (
+                <div className="svt-col-body">
+                  {colTasks.length === 0 ? (
+                    <div className="svt-empty-col">
+                      <IcoTasks color="var(--txt3)" />
+                      Inga uppgifter här
+                    </div>
+                  ) : (
+                    groupByProject(colTasks, projectById).map(grupp => (
+                      <Fragment key={grupp.project?.id ?? '__inget'}>
+                        {/* Rubriken visas bara när kolumnen har mer än ett
+                            projekt — annars säger den inget nytt. */}
+                        {visaProjektrubriker(colTasks) && (
+                          <div className="svt-group-head">
+                            <span style={{
+                              width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
+                              background: grupp.project?.color ?? 'var(--svt-border-strong)',
+                            }} />
+                            {grupp.project?.name ?? 'Inget projekt'}
+                            <span style={{ opacity: 0.7 }}>{grupp.tasks.length}</span>
+                          </div>
+                        )}
+                        {grupp.tasks.map(task => (
+                          <TaskCard
+                            key={task.id}
+                            task={task}
+                            project={task.project_id ? projectById.get(task.project_id) : undefined}
+                            teamMembers={teamMembers}
+                            onStatusChange={onStatusChange}
+                            onAssigneeChange={onAssigneeChange}
+                            onDelete={onDelete}
+                            onOpen={() => setOpenTaskId(task.id)}
+                          />
+                        ))}
+                      </Fragment>
+                    ))
+                  )}
+                </div>
+              )}
+            </section>
           )
         })}
       </div>
