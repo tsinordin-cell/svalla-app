@@ -185,28 +185,41 @@ function normalizeLeg(raw: ResRobotLeg): TripLeg {
 /**
  * Hämtar nästa N resor från `originId` till `destId`.
  *
- * Returnerar [] om nyckel saknas, om API:et är nere, eller om inga resor
- * hittades. Aldrig kasta error — vi vill att widgeten degraderar tyst.
+ * Skiljer FEL från TOMT. Den gamla varianten returnerade [] i fem olika
+ * lägen — saknad nyckel, HTTP-fel, 429 kvot, timeout och äkta noll resor —
+ * vilket gjorde ett API-fel omöjligt att skilja från "inga båtar ikväll".
+ *
+ * 2026-08-11 kostade det oss ett felaktigt svar till användare: uppslaget för
+ * Möja gav [] och Thorkel beskrev då en rutt ur minnet, via fel hamn. Utan
+ * felorsaken kunde varken han eller UI:t säga vad som egentligen hänt.
  *
  * Med `departAfter` kan man fråga efter resor som startar EFTER ett specifikt
  * datum/tid — används för "sista båten"-feature: vi pingar sent på dagen.
  */
-export async function fetchTrips(
+export type TripFel = 'ingen_nyckel' | 'api_fel' | 'kvot' | 'timeout'
+
+export type TripResult = {
+  trips: TripSummary[]
+  /** null = uppslaget lyckades. Tom trips + fel: null betyder ÄKTA inga avgångar. */
+  fel: TripFel | null
+}
+
+export async function fetchTripsResult(
   originId: string,
   destId: string,
   numTrips = 4,
   departAfter?: { date: string; time: string }, // YYYY-MM-DD + HH:MM
-): Promise<TripSummary[]> {
+): Promise<TripResult> {
   if (!KEY) {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn('[trafiklab] TRAFIKLAB_RESROBOT_KEY saknas — returnerar []')
+      console.warn('[trafiklab] TRAFIKLAB_RESROBOT_KEY saknas')
     }
-    return []
+    return { trips: [], fel: 'ingen_nyckel' }
   }
 
   const cacheKey = `trip:${originId}:${destId}:${numTrips}:${departAfter?.date ?? ''}:${departAfter?.time ?? ''}`
   const hit = cacheGet<TripSummary[]>(cacheKey)
-  if (hit) return hit
+  if (hit) return { trips: hit, fel: null }
 
   const url = new URL(`${RESROBOT_BASE}/trip`)
   url.searchParams.set('originId', originId)
@@ -226,7 +239,10 @@ export async function fetchTrips(
       // Server-side fetch — Next.js cachar inte automatiskt utöver vår egen.
       cache: 'no-store',
     })
-    if (!res.ok) return []
+    if (!res.ok) {
+      // 429 = kvot slut. Skiljs ut eftersom det är åtgärdbart och tillfälligt.
+      return { trips: [], fel: res.status === 429 ? 'kvot' : 'api_fel' }
+    }
     const data = (await res.json()) as ResRobotTripResponse
     const trips = (data.Trip ?? []).map<TripSummary>((t) => {
       const allLegs = (t.LegList?.Leg ?? []).map(normalizeLeg)
@@ -254,10 +270,25 @@ export async function fetchTrips(
       }
     }).filter((t) => t.legs.length > 0)
     cacheSet(cacheKey, trips)
-    return trips
+    return { trips, fel: null }
   } catch {
-    return []
+    // AbortError (8 s timeout) eller nätverksfel.
+    return { trips: [], fel: 'timeout' }
   }
+}
+
+/**
+ * Bakåtkompatibel wrapper. Nya anropare bör använda fetchTripsResult och
+ * skilja fel från tomt — se kommentaren vid TripResult.
+ */
+export async function fetchTrips(
+  originId: string,
+  destId: string,
+  numTrips = 4,
+  departAfter?: { date: string; time: string },
+): Promise<TripSummary[]> {
+  const { trips } = await fetchTripsResult(originId, destId, numTrips, departAfter)
+  return trips
 }
 
 /**
