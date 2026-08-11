@@ -456,7 +456,18 @@ const GLOBAL_CSS = `
    tomma fält — bandet bakom raden knöt aldrig ihop något. Vid 29 uppgifter
    blev tavlan 29 rader hög med runt 75 % tom yta. Korten staplas nu i sin
    kolumn som på en vanlig tavla; höjden styrs av den längsta kolumnen. */
-.svt-board { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 16px; align-items: start; }
+/* TRE kolumner, inte fyra. Mätt live 2026-08-11 på 1122 px fönster:
+   fyra kolumner gav 188 px per kolumn, vilket bröt varje korttitel på 5–6
+   rader och gjorde tavlan 5 494 px hög. Med Klart utanför rutnätet blir
+   kolumnerna 255 px och tavlan 4 325 px — 21 % kortare och läsbar.
+   Klart hör ändå inte hemma som en likvärdig kolumn: den är ihopfälld som
+   standard och tar då bara en rad längst ner (se .svt-col-klart). */
+.svt-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; align-items: start; }
+/* Fälls Klart ut vill man se den bredvid de andra — då fyra kolumner igen. */
+.svt-board.oppen-klart { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Ihopfälld Klart lägger sig som en egen rad över hela bredden längst ner. */
+.svt-col-klart { grid-column: 1 / -1; }
+.svt-col-klart .svt-swim-header { border-bottom: none; padding-bottom: 2px; }
 .svt-col { min-width: 0; display: flex; flex-direction: column; }
 .svt-col-body { display: flex; flex-direction: column; gap: 10px; padding-top: 10px; }
 /* Projektrubrik inuti en kolumn. Visas bara när kolumnen faktiskt innehåller
@@ -472,7 +483,7 @@ const GLOBAL_CSS = `
    ingen agerar på dem. Samma beteende på mobil och dator, och valet sparas. */
 .svt-done-toggle {
   border: 1.5px dashed var(--svt-border-strong); border-radius: 12px;
-  background: none; cursor: pointer; padding: 12px; margin-top: 10px;
+  background: none; cursor: pointer; padding: 9px; margin-top: 4px;
   font-size: 12px; font-weight: 600; color: var(--txt3); width: 100%;
   display: flex; align-items: center; justify-content: center; gap: 7px;
 }
@@ -480,9 +491,11 @@ const GLOBAL_CSS = `
 /* Läget överst: vad du har, vad den andra har, och vad som väntar på dig.
    Räknas alltid på hela tavlan (respekterar projektvalet men INTE
    personfiltret) — annars försvinner "Max: 2" så fort man klickar Mina. */
+/* Hugger sitt innehåll i stället för att spänna hela bredden — som ett
+   fullbrett band blev det mest tom yta med några små siffror i vänsterkanten. */
 .svt-pulse {
-  display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
-  padding: 7px 9px; margin-bottom: 16px;
+  display: inline-flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  max-width: 100%; padding: 7px 9px; margin-bottom: 14px;
   background: var(--svt-chip-bg); border-radius: 12px;
 }
 .svt-pulse-item {
@@ -631,15 +644,21 @@ const GLOBAL_CSS = `
   font-family: ui-monospace, monospace; font-size: 11.5px; line-height: 1.5; color: var(--txt2);
   white-space: pre-wrap; word-break: break-word; max-height: 160px; overflow-y: auto;
 }
+/* Smalt fönster på dator (t.ex. halv skärm). Tre kolumner blir under
+   200 px vardera och korten kläms ihop — två är läsbart. Måste ligga FÖRE
+   860 px-blocket: båda matchar under 860, och den sista vinner. */
+@media (max-width: 1040px) {
+  .svt-board, .svt-board.oppen-klart { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 860px) {
   .svt-sidebar { display: none; }
   .svt-mobile-nav { display: flex; }
   .svt-main { padding: 16px 14px 88px; }
   .svt-mobile-projectbar { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 16px; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
-  /* Fyra kolumner blir för smalt för att läsa på telefon — samma tavla,
+  /* Flera kolumner blir för smalt för att läsa på telefon — samma tavla,
      staplad. Rubrikerna är kvar sticky: med en kolumn i taget betyder det
      att man alltid ser vilken status man scrollar i. */
-  .svt-board { grid-template-columns: 1fr; gap: 20px 0; }
+  .svt-board, .svt-board.oppen-klart { grid-template-columns: 1fr; gap: 20px 0; }
   .svt-done-toggle { padding: 14px; }
   /* Text-inputs under 16px triggar auto-zoom på iOS — tvinga 16px på mobil oavsett desktop-storlek. */
   .svt-input { font-size: 16px !important; }
@@ -1161,11 +1180,20 @@ function Pulse({
   assigneeFilter: AssigneeFilter
   onFilter: (f: AssigneeFilter) => void
 }) {
-  const idag = new Date(new Date().toDateString()).getTime()
+  // "Försenad" beror på vad klockan är NU, och servern kör i UTC medan
+  // webbläsaren kör svensk tid. Räknas den under serverrenderingen kan
+  // siffran bli en annan än den klienten räknar fram, och React klagar på
+  // hydreringsfel. Därför räknas den först efter montering.
+  const [monterad, setMonterad] = useState(false)
+  useEffect(() => setMonterad(true), [])
+
   const aktiva = tasks.filter(t => t.status !== 'done')
   const mina = aktiva.filter(t => t.assignee_id === currentUser.id).length
   const granska = tasks.filter(t => t.status === 'review').length
-  const forsenade = aktiva.filter(t => t.due_date && new Date(t.due_date).getTime() < idag).length
+  const idag = new Date(new Date().toDateString()).getTime()
+  const forsenade = monterad
+    ? aktiva.filter(t => t.due_date && new Date(t.due_date).getTime() < idag).length
+    : 0
   const andra = teamMembers
     .filter(m => m.id !== currentUser.id)
     .map(m => ({ m, antal: aktiva.filter(t => t.assignee_id === m.id).length }))
@@ -1494,12 +1522,15 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
       )}
 
       {/* Tavlan — samma markup på desktop och mobil, se .svt-board i CSS:en. */}
-      <div className="svt-board">
+      <div className={`svt-board${doneOpen ? ' oppen-klart' : ''}`}>
         {STATUS_ORDER.map(status => {
           const colTasks = tasksPerStatus[status]
-          const dolt = status === 'done' && !doneOpen && colTasks.length > 0
+          // Klart ligger utanför kolumnrutnätet så länge den är ihopfälld —
+          // även när den är tom, annars hamnar en ensam ruta på egen rad.
+          const klartRad = status === 'done' && !doneOpen
+          const dolt = klartRad && colTasks.length > 0
           return (
-            <section key={status} className="svt-col">
+            <section key={status} className={`svt-col${klartRad ? ' svt-col-klart' : ''}`}>
               <div className="svt-swim-header">
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: STATUS_ACCENT[status], flexShrink: 0 }} />
                 <span style={{
