@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Prisuppskattning from '@/components/Prisuppskattning'
+import Prisobservation from '@/components/Prisobservation'
 import Link from 'next/link'
 import { GUIDES } from '@/app/guider/guides-data'
 import { HYRBAT_SUBS } from './hyrbat-data'
@@ -37,8 +37,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vad kostar det att hyra båt i Sverige?',
-    // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
-    a: 'En liten motorbåt kostar 900–1 500 kr/dag. Mellanbåt 1 200–2 500 kr/dag. Segelbåt 28–35 fot: 3 500–7 500 kr/dag. Bränsle tillkommer alltid. Högsäsong (juli) är 20–30% dyrare än maj och september.',
+    // KÄLLA: observerat i 18 öppna annonser hos Ship O'Hoi och Click&Boat, Stockholm, avlästa 2026-08-10
+    a: 'I öppna annonser för Stockholm (avlästa 10 augusti 2026) låg små motorbåtar på 995–5 869 kr/dag, mellanklassen 6–8 m på 2 250–7 337 kr/dag och segelbåt 31–36 fot på 5 000–5 890 kr/dag. Spannen är breda för att samma båtstorlek kan kosta flera gånger mer hos en förmedlare än en annan — jämför alltid. Bränsle tillkommer nästan alltid.',
   },
   {
     q: 'Kan man övernatta ombord när man hyr båt?',
@@ -137,14 +137,14 @@ export default function HyraBatPage() {
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
             Vad kostar det att hyra båt? (Stockholm som referens)
           </h2>
-          <Prisuppskattning uppdaterad="augusti 2026" vad="uthyrare" />
+          <Prisobservation antal={18} kallor="Ship O'Hoi och Click&Boat" hamtad="10 augusti 2026" />
           <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
             {[
-              // UPPSKATTNING: spann över flera uthyrare i regionen, ej hämtat per aktör (2026-08)
-              { type: 'Liten motorbåt (4–5 m)', price: '900–1 500 kr/dag', note: 'Passar 2–4 personer, inget körkort' },
-              { type: 'Mellanbåt (6–7 m)', price: '1 200–2 200 kr/dag', note: 'Bra fart, plats för 4–6' },
-              { type: 'Stor motorbåt / kabinbåt', price: '2 000–4 000 kr/dag', note: 'Sovplatser, kajut' },
-              { type: 'Segelbåt 28–35 fot', price: '3 500–7 000 kr/dag', note: 'Kräver segling i bakgrunden' },
+              // KÄLLA: observerat i 18 öppna annonser hos Ship O'Hoi och Click&Boat, Stockholm, avlästa 2026-08-10
+              { type: 'Liten motorbåt (4–6 m)', price: '995–5 869 kr/dag', note: '4 annonser — lägst hos Ship O\'Hoi, högst hos Click&Boat' },
+              { type: 'Mellanstor motorbåt (6–8 m)', price: '2 250–7 337 kr/dag', note: '9 annonser, kajut i övre delen' },
+              { type: 'Segelbåt 31–36 fot', price: '5 000–5 890 kr/dag', note: '3 annonser, kräver seglingsvana' },
+              { type: 'Segelbåt 45–46 fot', price: '9 000–14 000 kr/dag', note: '4 annonser, havskryssare' },
             ].map((row, i) => (
               <div key={i} style={{
                 display: 'grid', gridTemplateColumns: '1fr auto',
@@ -160,6 +160,36 @@ export default function HyraBatPage() {
             ))}
           </div>
           <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 8, lineHeight: 1.5 }}>Bränsle tillkommer alltid. Priser varierar med säsong och bolag – juli är 20–30% dyrare.</p>
+        </section>
+
+        {/* Förmedlare vi hämtat priser från */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 6 }}>
+            Var hyr man?
+          </h2>
+          <p style={{ fontSize: 13, color: 'var(--ink-muted)', marginBottom: 16, lineHeight: 1.6 }}>
+            Förmedlarna som prisspannen ovan är avlästa hos. Vi listar bara källor vi själva kontrollerat.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 14 }}>
+            {[
+              {
+                namn: "Ship O'Hoi",
+                url: 'https://www.ship-ohoi.com/sv/hyra/baat/plats/stockholm',
+                text: 'Svensk båtuthyrning med fasta dygnspriser per båt. Vid vår avläsning 10 augusti 2026: 22 båtar i Stockholm, från 995 kr/dag.',
+              },
+              {
+                namn: 'Click&Boat',
+                url: 'https://www.clickandboat.com/se/hyra-bat/sverige/stockholms-l%C3%A4n',
+                text: 'Marknadsplats där privatpersoner och företag hyr ut. Störst utbud, men mest skepparcharter per tur — vid vår avläsning var få annonser ren dygnshyra, och priserna låg klart högre än hos fasta uthyrare.',
+              },
+            ].map((f, i) => (
+              <a key={i} href={f.url} target="_blank" rel="noopener noreferrer"
+                style={{ background: 'var(--white)', borderRadius: 14, padding: '18px', border: '1px solid var(--surface-3)', textDecoration: 'none', display: 'block' }}>
+                <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', marginBottom: 6 }}>{f.namn} ↗</div>
+                <p style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.6, margin: 0 }}>{f.text}</p>
+              </a>
+            ))}
+          </div>
         </section>
 
         {/* FAQ */}

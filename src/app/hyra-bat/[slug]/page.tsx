@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Prisuppskattning from '@/components/Prisuppskattning'
+import Prisobservation from '@/components/Prisobservation'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { HYRBAT_SUBS } from '../hyrbat-data'
@@ -97,7 +98,11 @@ export default async function HyraBatSlugPage({ params }: Props) {
             <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 16 }}>
               Priser – hyra båt {page.location.includes('Stockholm') ? 'i ' : page.location.startsWith('G') || page.location.startsWith('H') || page.location.startsWith('B') ? 'i ' : 'på '}{page.location}
             </h2>
-            <Prisuppskattning uppdaterad="augusti 2026" vad="uthyrare" />
+            {page.priceObserved ? (
+              <Prisobservation antal={page.priceObserved.antal} kallor={page.priceObserved.kallor} hamtad={page.priceObserved.hamtad} />
+            ) : (
+              <Prisuppskattning uppdaterad="augusti 2026" vad="uthyrare" />
+            )}
             <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
               {page.priceTable.map((row, i) => (
                 <div key={i} style={{
@@ -114,6 +119,34 @@ export default async function HyraBatSlugPage({ params }: Props) {
               ))}
             </div>
             <p style={{ fontSize: 12, color: 'var(--ink-muted)', marginTop: 8, lineHeight: 1.5 }}>Bränsle tillkommer alltid. Priser varierar per säsong och bolag.</p>
+          </section>
+        )}
+
+        {/* Exempelbåtar — riktiga annonser med avläst pris */}
+        {page.exampleBoats && page.exampleBoats.length > 0 && (
+          <section style={{ marginBottom: 48 }}>
+            <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--ink)', marginBottom: 6 }}>
+              Exempel på båtar att hyra just nu
+            </h2>
+            <p style={{ fontSize: 13, color: 'var(--ink-muted)', marginBottom: 16, lineHeight: 1.6 }}>
+              Verkliga annonser med avläst pris — inte typexempel. Aktuellt pris och tillgänglighet ser du hos förmedlaren.
+            </p>
+            <div style={{ background: 'var(--white)', borderRadius: 14, border: '1px solid var(--surface-3)', overflow: 'hidden' }}>
+              {page.exampleBoats.map((b, i) => (
+                <a key={i} href={b.url} target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: 'grid', gridTemplateColumns: '1fr auto',
+                    padding: '14px 18px', borderBottom: i < page.exampleBoats!.length - 1 ? '1px solid var(--surface-3)' : 'none',
+                    gap: 12, alignItems: 'center', textDecoration: 'none',
+                  }}>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>{b.name}</div>
+                    <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{b.size} · hos {b.provider} ↗</div>
+                  </div>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--sea)', whiteSpace: 'nowrap' }}>{b.price}</div>
+                </a>
+              ))}
+            </div>
           </section>
         )}
 
