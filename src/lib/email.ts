@@ -10,7 +10,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome' | 'day3_newsletter'
+export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome' | 'day3_newsletter' | 'day14_newsletter' | 'day30_newsletter'
 
 const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   welcome: '01_welcome.md',
@@ -20,6 +20,8 @@ const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   weather_tip: '05_weather_tip.md',
   newsletter_welcome: '06_newsletter_welcome.md',
   day3_newsletter: '07_day3_newsletter.md',
+  day14_newsletter: '08_day14_newsletter.md',
+  day30_newsletter: '09_day30_newsletter.md',
 }
 
 type Frontmatter = {
@@ -390,6 +392,125 @@ function renderDay3NewsletterBody(): string {
 <p style="font-size:13px;line-height:1.65;margin:0;color:#6a8a96;text-align:center">Nästa Svallanyheter kommer varannan tisdag.<br>Svara på det här mailet om du har frågor.</p>`
 }
 
+/**
+ * Dag-14-mail för nyhetsbrevsprenumeranter.
+ * Fokus: Min Skärgård (spara öar + dela med crewet) + tre konkreta öar att börja med.
+ * Tonen: praktisk, värdeskapande — visa att Svalla räddar planering.
+ */
+function renderDay14NewsletterBody(): string {
+  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">Har du sparat dina öar?</h1>
+
+<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö — det är att missa att man egentligen hade en idé om vart man ville, men aldrig samlade ihop den.</p>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px;background:#f4f9fb;border-radius:14px;border-left:3px solid #0a7b8c">
+  <tr>
+    <td style="padding:20px 22px">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:10px">Min Skärgård — din privata ölist</div>
+      <p style="font-size:14.5px;line-height:1.6;margin:0 0 12px;color:#3d5865">Tryck hjärtat på en ö så sparas den till <em>Min Skärgård</em>. En lista som är din. Dela den med crewet inför helgen med en länk — inga appar att installera, inga konton att skapa.</p>
+      <a href="https://svalla.se/min-skargard" style="font-size:14px;font-weight:700;color:#0a7b8c;text-decoration:none">Öppna Min Skärgård →</a>
+    </td>
+  </tr>
+</table>
+
+<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Tre öar att spara nu</h2>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px">
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">🏖 Sandhamn</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Ytterskärgårdens seglarhamn. Trouville-stranden, Sandhamns Värdshus och klippor mot öppet hav. Boka bord i förväg under juli.</p>
+      <a href="https://svalla.se/o/sandhamn" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
+    </td>
+  </tr>
+  <tr><td style="height:10px"></td></tr>
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">🌿 Grinda</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Naturreservat med sandstrand vid gästhamnen och klippbad på norra sidan. Värdshuset lagar mat som matchar Stockholms bästa krogar. 2,5 h från Strömkajen.</p>
+      <a href="https://svalla.se/o/grinda" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
+    </td>
+  </tr>
+  <tr><td style="height:10px"></td></tr>
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">⚒ Utö</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Söder om det mesta — gammal gruvö med Ålö Storsand och en av skärgårdens bästa cykelleder. Hyr cykel vid Gruvbryggan och cykla ner till sandstranden.</p>
+      <a href="https://svalla.se/o/uto" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#3d5865">Om du letar efter något specifikt — barnvänligt, romantiskt, bilfritt, segling — filtrera på <a href="https://svalla.se/oar" style="color:#1e5c82">svalla.se/oar</a> och spara ett par kandidater. Beslut fattas lättare när man sett alternativen.</p>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
+  <tr>
+    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
+      <a href="https://svalla.se/oar" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Utforska alla öar →</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:13px;line-height:1.65;margin:0;color:#6a8a96;text-align:center">Nästa Svallanyheter varannan tisdag.<br>Svara om du har frågor om en specifik ö.</p>`
+}
+
+/**
+ * Dag-30-mail för nyhetsbrevsprenumeranter.
+ * Fokus: Återengagemang + "inget ännu?" — låg tröskel, mjuk nudge.
+ * Tonen: varm, ingen stress, ett konkret erbjudande (tur-planering).
+ */
+function renderDay30NewsletterBody(): string {
+  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">En månad sedan du prenumererade.</h1>
+
+<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">Har du hunnit ut på vattnet? Oavsett svar skickar vi det här för att dela en sak vi brukar höra från dem som väl kommit igång.</p>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px">
+  <tr>
+    <td style="padding:24px 24px">
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin-bottom:12px;line-height:1.3">"Det var enklare än jag trodde."</div>
+      <p style="font-size:14.5px;line-height:1.6;margin:0 0 14px;color:#3d5865">Det vanligaste vi hör från folk som gjort sin första dagstur är att hindret var inbillat. Färjan tar sig dit. Värdshuset är öppet. Det finns var man badar.</p>
+      <p style="font-size:14.5px;line-height:1.6;margin:0;color:#3d5865">Den svåra biten är att bestämma sig. Resten löser Svalla.</p>
+    </td>
+  </tr>
+</table>
+
+<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Planera en dagstur — 10 minuter</h2>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px">
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">1. Välj en ö</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Nybörjare: <a href="https://svalla.se/o/fjaderholmarna" style="color:#1e5c82">Fjäderholmarna</a> (25 min, ingen planering). Vill ha mer: <a href="https://svalla.se/o/grinda" style="color:#1e5c82">Grinda</a> eller <a href="https://svalla.se/o/finnhamn" style="color:#1e5c82">Finnhamn</a>.</p>
+    </td>
+  </tr>
+  <tr><td style="height:8px"></td></tr>
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">2. Kolla färjetiden</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Alla Waxholmsbolagets linjer finns på <a href="https://svalla.se/farjor" style="color:#1e5c82">svalla.se/farjor</a>. Kolla sista båten hem innan du åker.</p>
+    </td>
+  </tr>
+  <tr><td style="height:8px"></td></tr>
+  <tr>
+    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
+      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">3. Fråga Thorkel om du fastnar</div>
+      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Vad tar det, vad kostar det, hur är vädret? <a href="https://svalla.se/guide" style="color:#1e5c82">Skriv din fråga →</a></p>
+    </td>
+  </tr>
+</table>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
+  <tr>
+    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
+      <a href="https://svalla.se/planera" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Planera din första tur →</a>
+    </td>
+  </tr>
+</table>
+
+<p style="font-size:15px;line-height:1.65;margin:0 0 8px;color:#3d5865">Nästa Svallanyheter kommer varannan tisdag. Vi skickar inte fler påminnelsemail efter det här — men du finns kvar i listan och får nyhetsbrevet.</p>
+
+<p style="font-size:15px;line-height:1.65;margin:0;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">/ Svalla</span></p>`
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate
@@ -448,6 +569,10 @@ export async function sendEmail(opts: {
     htmlBody = renderNewsletterWelcomeBody()
   } else if (opts.template === 'day3_newsletter') {
     htmlBody = renderDay3NewsletterBody()
+  } else if (opts.template === 'day14_newsletter') {
+    htmlBody = renderDay14NewsletterBody()
+  } else if (opts.template === 'day30_newsletter') {
+    htmlBody = renderDay30NewsletterBody()
   } else {
     const bodyFinal = substitute(body, vars)
     htmlBody = markdownToHtml(bodyFinal)
@@ -572,6 +697,22 @@ subject_options:
 preheader: Han kan svara på allt — från kräftskiva till hur man anmäler man överbord.
 ---
 Dag-3-mail för nyhetsbrevsprenumeranter.
+`,
+
+  day14_newsletter: `---
+subject_options:
+  - "Tre öar att spara — och en funktion du kanske missat"
+preheader: Min Skärgård: din privata ölist att dela med crewet.
+---
+Dag-14-mail för nyhetsbrevsprenumeranter.
+`,
+
+  day30_newsletter: `---
+subject_options:
+  - "En månad sedan du prenumererade — har du hunnit ut?"
+preheader: Planera din första dagstur på 10 minuter.
+---
+Dag-30-mail för nyhetsbrevsprenumeranter.
 `,
 
   weather_tip: `---
