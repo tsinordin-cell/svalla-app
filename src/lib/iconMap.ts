@@ -10,6 +10,18 @@ import type { IconName } from '@/components/Icon'
 const MAP: Record<string, IconName> = {
   // Båtar / transport-på-vatten
   '⛵': 'sailboat',
+  // hyrbat-datans regionemojis (2026-08-11, uppgiftskortet "Ta bort emojis"):
+  // utan dessa foll fjall/klippor/oar tillbaka pa kompassen.
+  '🏔': 'mountain',
+  '🪨': 'mountain',
+  '🏝': 'palmtree',
+  // tipsrutorna i hyrbat-datan (samma uppgiftskort):
+  '📋': 'check',
+  '📜': 'quote',
+  '📱': 'phone',
+  '🗺': 'map',
+  '🌤': 'sun',
+  '🌲': 'leaf',
   '⛴': 'sailboat',
   '🚢': 'sailboat',
   '🚤': 'sailboat',

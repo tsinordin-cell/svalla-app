@@ -796,9 +796,9 @@ const LANDING_HTML = `
      <div class="resetips-card-title">Bil, glass och båt — Djurö till Grinda</div>
      <div class="resetips-card-tagline">En av skärgårdens bästa dagsrutter med bil, brygga och lunchstopp på Grinda Wärdshus.</div>
      <div class="resetips-card-meta">
-      <span>⏱ Heldag</span>
-      <span>🚗 Bil + båt</span>
-      <span>⭐ Lätt</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>Bil + båt</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
     </div>
@@ -812,9 +812,9 @@ const LANDING_HTML = `
      <div class="resetips-card-title">Sandhamn — ytterskärgårdens pärla</div>
      <div class="resetips-card-tagline">Lång båtresa med Cinderellabåten, fantastisk strand och KSSS-hamnen full av segelbåtar.</div>
      <div class="resetips-card-meta">
-      <span>⏱ Heldag</span>
-      <span>⛴ Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
-      <span>⭐ Lätt</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/><path d="M12 3v15"/><path d="M12 5l6 10H6z"/></svg>Cinderellabåten (linjebåt — ingen egen båt krävs)</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Lätt</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
     </div>
@@ -828,9 +828,9 @@ const LANDING_HTML = `
      <div class="resetips-card-title">Utö på cykel — gruvan, bastun och havet</div>
      <div class="resetips-card-tagline">Cykla runt en av skärgårdens vackraste öar med stopp vid gruvmuseum och havsbastu.</div>
      <div class="resetips-card-meta">
-      <span>⏱ Heldag</span>
-      <span>🚂 Tåg + färja</span>
-      <span>⭐ Medel</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Heldag</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/></svg>Tåg + färja</span>
+      <span><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Medel</span>
      </div>
      <div class="resetips-card-cta">Läs dagsplanen →</div>
     </div>

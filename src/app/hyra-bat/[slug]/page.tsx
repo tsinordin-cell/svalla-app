@@ -4,6 +4,8 @@ import Prisobservation from '@/components/Prisobservation'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { HYRBAT_SUBS } from '../hyrbat-data'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -66,7 +68,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
           <Link href="/hyra-bat" style={{ color: 'var(--white)', opacity: 0.8, fontSize: 14, textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             ← Hyra båt i Sverige
           </Link>
-          <div style={{ fontSize: 40, marginBottom: 12 }}>{page.emoji}</div>
+          <div style={{ marginBottom: 12, color: 'var(--white)' }}><Icon name={emojiToIcon(page.emoji)} size={40} stroke={1.5} /></div>
           <h1 style={{ fontSize: 'clamp(24px, 5vw, 38px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             {page.h1}
           </h1>
@@ -159,7 +161,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
               {page.tips.map((t, i) => (
                 <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '18px', border: '1px solid var(--surface-3)' }}>
-                  <div style={{ fontSize: 24, marginBottom: 8 }}>{t.icon}</div>
+                  <div style={{ marginBottom: 8, color: 'var(--sea)' }}><Icon name={emojiToIcon(t.icon)} size={24} stroke={1.7} /></div>
                   <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--ink)', marginBottom: 6 }}>{t.heading}</div>
                   <p style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.65, margin: 0 }}>{t.text}</p>
                 </div>
@@ -197,7 +199,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
                 border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit',
                 display: 'flex', alignItems: 'center', gap: 14,
               }}>
-                <span style={{ fontSize: 22 }}>{s.emoji}</span>
+                <span style={{ color: 'var(--sea)', display: 'inline-flex', flexShrink: 0 }}><Icon name={emojiToIcon(s.emoji)} size={22} stroke={1.7} /></span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>{s.h1}</div>
                   <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{s.readTime} · {s.location}</div>
@@ -215,7 +217,7 @@ export default async function HyraBatSlugPage({ params }: Props) {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>{page.emoji}</div>
+          <div style={{ marginBottom: 12, color: 'var(--sea)', display: 'flex', justifyContent: 'center' }}><Icon name={emojiToIcon(page.emoji)} size={32} stroke={1.7} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Planera din båttur på Svalla</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Läs om öar, spara rutter och logga dina turer. Allt på ett ställe.

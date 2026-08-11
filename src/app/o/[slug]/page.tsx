@@ -21,6 +21,7 @@ import LastBoatPanel from '@/components/LastBoatPanel'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { GUIDES } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
+import IslandB2BCTA from '@/components/IslandB2BCTA'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -1285,6 +1286,9 @@ export default async function IslandPage({ params }: Props) {
   </div>
  </div>
  </section>
+
+ {/* B2B CTA — passiv lead-insamling för aktörer på ön */}
+ <IslandB2BCTA islandName={island.name} islandSlug={island.slug} />
 
  {/* E-postsignup för ön */}
  <div style={{ marginTop: 28 }}>
