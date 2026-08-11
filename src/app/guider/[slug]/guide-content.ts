@@ -877,7 +877,8 @@ export function getGuideContent(slug: string): string {
 <p><strong>Med kollektivtrafik:</strong> Buss 301 eller 302 från Göteborg Centralstation till Marstrand via Kungälv, ca 1 h 15 min. Ingår i Västtrafik-abonnemanget.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Carlstens fästning</h3>
-<p>Fästningen byggdes på 1600-talet och är en av Bohusläns viktigaste historiska platser. Öppen för besök maj–september. Guidningar på svenska och engelska avgår regelbundet. Utsikten från fästningens torn är en av Bohusläns bästa – hela kustlinjen synlig vid klart väder. Biljett: ca 100 kr vuxen, barn under 12 gratis.</p>
+<!-- KÄLLA: carlsten.se/oppettider-och-priser (avläst 2026-08-11) -->
+<p>Fästningen byggdes på 1600-talet och är en av Bohusläns viktigaste historiska platser. Öppen för besök maj–september. Guidningar på svenska och engelska avgår regelbundet. Utsikten från fästningens torn är en av Bohusläns bästa – hela kustlinjen synlig vid klart väder. Biljett: 120 kr för vuxna, 60 kr för barn 5–15 år.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Restauranger</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">

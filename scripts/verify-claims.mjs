@@ -37,16 +37,18 @@ const ROT = 'src'
 
 /** Filer där konkreta siffror är innehåll, inte kod. Här gäller regeln. */
 const OMFANG = [
-  /^src\/app\/.*\/page\.tsx$/,
-  /^src\/app\/.*-data\.ts$/,
-  /^src\/data\/.*\.ts$/,
-  /^src\/lib\/(ferries|planner-client|transit-stops)\.ts$/,
+  // 2026-08-11: utökat från page.tsx + *-data.ts till HELA src efter att
+  // guide-content.ts visade sig innehålla 120 osynliga påståenden — inklusive
+  // en tredje kopia av Carlstens felaktiga entrépris. En spärr med blindfläck
+  // ger falsk trygghet. Tester undantas — de är inte användarsynliga.
+  /^src\/.*\.(ts|tsx)$/,
 ]
-
 /** Undantag: filer där siffrorna bevisligen inte är påståenden om verkligheten. */
 const UNDANTAG = [
   /^src\/app\/admin\//,     // interna verktyg, inte publicerat innehåll
   /^src\/app\/api\//,       // API-logik; källkraven gäller datan de läser
+  /\.test\.(ts|tsx)$/,      // tester är inte användarsynliga
+  /\.spec\.(ts|tsx)$/,
 ]
 
 const KALLMARKORER = [
@@ -110,10 +112,22 @@ let uppskattningar = 0
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
   const rader = fs.readFileSync(f, 'utf8').split('\n')
+  /**
+   * Flerradiga template-literals (guide-content.ts är en enda jättesträng)
+   * har inga citattecken per rad — utan spårningen nedan var 120 påståenden
+   * i guiderna OSYNLIGA för spärren, inklusive en tredje kopia av Carlstens
+   * felaktiga entrépris. Backtick-paritet räcker: udda antal på en rad
+   * växlar läget. HTML-kommentarer <!-- KÄLLA: ... --> räknas som källa
+   * eftersom harKallaNara matchar på 'källa:' oavsett kommentarsyntax.
+   */
+  let iMallstrang = false
   rader.forEach((rad, i) => {
+    const borjadeIMallstrang = iMallstrang
+    if (((rad.match(/`/g) || []).length) % 2 === 1) iMallstrang = !iMallstrang
     if (ärKommentar(rad)) return
-    // bara strängliteraler — inte t.ex. koordinater eller CSS
+    // strängliteraler på raden — plus hela raden om vi är inne i en mallsträng
     const strangar = rad.match(/'[^']{2,200}'|"[^"]{2,200}"|`[^`]{2,200}`/g) || []
+    if (borjadeIMallstrang && rad.trim().length > 0) strangar.push(rad)
     for (const s of strangar) {
       if (ÄR_STIL.test(s)) continue
       const träffKlocka = KLOCKSLAG.test(s)
@@ -147,7 +161,7 @@ const nyckel = (f) => `${f.fil}::${f.typ}::${f.text}`
 if (process.argv.includes('--uppdatera-baslinje')) {
   const rader = fynd.map(nyckel).sort()
   fs.writeFileSync(BASLINJE, JSON.stringify({
-    beskrivning: 'Kända påståenden utan källa. SKULD — ska krympa, aldrig växa.',
+    beskrivning: 'Kända påståenden utan källa. SKULD — ska krympa. Får bara växa vid dokumenterad omfångsutökning av spärren (senast 2026-08-11: hela src + mallsträngar).',
     skapad: new Date().toISOString().slice(0, 10),
     antal: rader.length,
     poster: rader,
