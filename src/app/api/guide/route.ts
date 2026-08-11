@@ -401,6 +401,10 @@ Hämta verktygets data och svara utifrån den, ingenting annat.
 
 NÄR DU NÄMNER VÄGEN DIT — hamn, brygga eller bytespunkt — använd fältet
 "bytespunkter". Det är härlett ur resans faktiska ben och är alltid sant.
+
+NÄMNER DU FÄRDSÄTT — buss, tåg, T-bana, båt — läs det ur fältet "resvag",
+som innehåller färdsätt och linjenummer per etapp. Gissa aldrig utifrån ett
+hållplatsnamn: "Slussen T-bana" är en hållplats, inte ett tunnelbanetåg.
 Fältet "note" är en redaktionell kommentar som kan vara föråldrad: går den
 emot bytespunkter, LITA PÅ BYTESPUNKTER och strunta i noten.
 
@@ -608,6 +612,22 @@ async function executeTool(
       : []
 
     /**
+     * Hela resvägen med FÄRDSÄTT och linjenummer.
+     *
+     * 2026-08-11: med bara bytespunkter sa Thorkel "T-bana från Slussen till
+     * Sollenkroka" — det är buss 434. Han härledde färdsättet ur hållplats-
+     * namnet "Slussen T-bana", vilket är en hållplats, inte ett färdmedel.
+     * Får han inte färdsättet gissar han det. Alltså ger vi honom det.
+     */
+    const resvag = trips.length > 0
+      ? trips[0]!.legs.map(l => {
+          const rent = (n: string | undefined) => (n || '').replace(/\s*\(.*?\)/g, '').trim()
+          const slag = (l.category || '').split('-').pop()?.trim() || 'Resa'
+          return `${slag}${l.line ? ' ' + l.line : ''}: ${rent(l.fromName)} → ${rent(l.toName)}`
+        })
+      : []
+
+    /**
      * Tom lista betyder två helt olika saker, och användaren förtjänar rätt
      * besked: "inga båtar kvar ikväll" är information, "vi når inte
      * tidtabellen" är ett fel hos oss. Före 2026-08-11 gick de inte att
@@ -650,6 +670,8 @@ async function executeTool(
           destName: cfg.destStopName,
           /** Härledd ur benen — detta är sanningen om vägen dit. */
           bytespunkter,
+          /** Färdsätt + linjenummer per etapp. Gissa ALDRIG buss/tåg/båt själv. */
+          resvag,
           /** Redaktionell kommentar. Går den emot bytespunkter: LITA PÅ BYTESPUNKTER. */
           note: cfg.note ?? null,
           tripCount: trips.length,
