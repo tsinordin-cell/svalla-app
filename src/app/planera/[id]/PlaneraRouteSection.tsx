@@ -73,6 +73,7 @@ type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
  */
 type UnavailableReason =
   | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
+  | 'landlocked'
 
 export default function PlaneraRouteSection({
   startLat, startLng, startName,
@@ -193,11 +194,18 @@ export default function PlaneraRouteSection({
           label: 'Ingen sammanhängande vattenväg hittad',
           desc: 'Vi hittar ingen väg mellan hamnarna som håller sig i vatten hela sträckan. Hellre ingen linje än en som skär över land.',
         },
+        landlocked: {
+          label: 'Insjöhamn utan förbindelse med havet',
+          desc: 'Någon av hamnarna ligger i en insjö som saknar farbar förbindelse med skärgården. Det är inget fel — det finns helt enkelt ingen sjöväg att rita. Båten behöver trailas mellan vattnen.',
+        },
       }
       const t = texter[reason ?? 'no_sea_route']
       // Slussfallet är INTE ett fel. Sträckan är fullt farbar — vi ritar bara
       // inte slussningar. En röd varningsruta hade sagt något osant om läget.
-      const tone: 'info' | 'danger' = reason === 'lock_required' ? 'info' : 'danger'
+      // Insjöfallet är, precis som slussfallet, inte ett fel — rutten är
+      // omöjlig av geografi, inte av databrist. Ingen röd ruta för det.
+      const tone: 'info' | 'danger' =
+        reason === 'lock_required' || reason === 'landlocked' ? 'info' : 'danger'
       return { tone, label: t.label, desc: t.desc }
     }
 
