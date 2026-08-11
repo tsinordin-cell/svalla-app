@@ -15,6 +15,13 @@ const MAP: Record<string, IconName> = {
   '🏔': 'mountain',
   '🪨': 'mountain',
   '🏝': 'palmtree',
+  // tipsrutorna i hyrbat-datan (samma uppgiftskort):
+  '📋': 'check',
+  '📜': 'quote',
+  '📱': 'phone',
+  '🗺': 'map',
+  '🌤': 'sun',
+  '🌲': 'leaf',
   '⛴': 'sailboat',
   '🚢': 'sailboat',
   '🚤': 'sailboat',
