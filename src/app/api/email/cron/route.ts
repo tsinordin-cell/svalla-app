@@ -1,5 +1,6 @@
 /**
  * Daglig cron — skickar:
+ *   - Dag-3-mail (day3_newsletter) till email_subscribers som prenumererade för 2–4 dagar sen — Thorkel-introduktion
  *   - Dag-7-mail till users som signades upp för 6–8 dagar sen
  *                 + email_subscribers bekräftade för 6–8 dagar sen
  *   - Säsongsmail (1 april) till alla bekräftade prenumeranter + members
@@ -62,7 +63,53 @@ async function handle(req: Request) {
     return Array.from(map.entries()).map(([email, firstName]) => ({ email, firstName }))
   }
 
-  // ── 1. Dag-7-mail ───────────────────────────────────────────────────────
+  // ── 1. Dag-3-mail (nyhetsbrevsprenumeranter) — Thorkel-introduktion ─────
+  // Bara email_subscribers (inte app-users) — prenumererade 2–4 dagar sen
+  const fourDaysAgo = new Date(today.getTime() - 4 * 24 * 60 * 60 * 1000).toISOString()
+  const twoDaysAgo  = new Date(today.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString()
+
+  const { data: day3Raw } = await service
+    .from('email_subscribers')
+    .select('email, created_at')
+    .eq('confirmed', true)
+    .eq('unsubscribed', false)
+    .gte('created_at', fourDaysAgo)
+    .lte('created_at', twoDaysAgo)
+    .limit(500)
+
+  const day3Candidates = (day3Raw ?? []).filter(
+    (c): c is { email: string; created_at: string } => typeof c.email === 'string' && c.email.length > 0
+  )
+
+  let day3Sent = 0
+  let day3Errors = 0
+  if (day3Candidates.length > 0) {
+    const { data: alreadySentDay3 } = await service
+      .from('email_log')
+      .select('email')
+      .eq('template', 'day3_newsletter')
+      .in('email', day3Candidates.map(c => c.email))
+    const sentDay3 = new Set((alreadySentDay3 ?? []).map(r => r.email as string))
+
+    for (const candidate of day3Candidates) {
+      if (sentDay3.has(candidate.email)) continue
+      const result = await sendEmail({ template: 'day3_newsletter', to: candidate.email })
+      if (result.ok) {
+        day3Sent++
+        await service.from('email_log').insert({
+          email: candidate.email,
+          template: 'day3_newsletter',
+          sent_at: new Date().toISOString(),
+          resend_id: result.id,
+        }).then(() => {}, () => {})
+      } else {
+        day3Errors++
+      }
+    }
+  }
+  results.day3_newsletter = { sent: day3Sent, errors: day3Errors }
+
+  // ── 2. Dag-7-mail ───────────────────────────────────────────────────────
   // users skapade 6–8 dagar sen + email_subscribers bekräftade 6–8 dagar sen
   const eightDaysAgo = new Date(today.getTime() - 8 * 24 * 60 * 60 * 1000).toISOString()
   const sixDaysAgo   = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000).toISOString()
