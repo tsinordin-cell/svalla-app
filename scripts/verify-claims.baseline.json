@@ -1,7 +1,7 @@
 {
   "beskrivning": "Kända påståenden utan källa. SKULD — ska krympa, aldrig växa.",
-  "skapad": "2026-08-06",
-  "antal": 83,
+  "skapad": "2026-08-11",
+  "antal": 69,
   "poster": [
     "src/app/ai-guide/page.tsx::klockslag::'\"Snabbaste vägen till Utö från Södermalm med SL, med hemfärd senast 18:00.\"'",
     "src/app/blogg/[slug]/page.tsx::pris::'En övernattning på Grinda Wärdshus kostar från ~1 500 kr/natt. Budget-alternativet är att",
@@ -70,20 +70,6 @@
     "src/app/rutter/page.tsx::klockslag::`${datum}T12:00:00`",
     "src/app/sasong/sasong-data.ts::klockslag::'Solen går ner före 18:00 i oktober — planera dagen så du är hemma innan det blir mörkt.'",
     "src/app/sasong/sasong-data.ts::klockslag::'Vattentemperaturen kryper upp över 18 °C i juli — bra för bad i klippvik eller på sandstr",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'1 000–2 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'1 500–3 500 kr per vecka för de flesta seglarskolor. Lunch ingår ibland. Utrustning (flyt",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'1 500–3 500 kr/vecka'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'15 000–30 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'2 000–4 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'2 000–4 500 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'4 000–7 500 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'4 000–7 500 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'4 000–8 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'500–1 200 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'800–1 500 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'9 000–15 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'9 000–16 000 kr'",
-    "src/app/segelkurs/segelkurs-data.ts::pris::'Introduktionskurs: 800–1 500 kr. Förarintyg: 4 000–7 500 kr. Kustskepparintyget: 9 000–16",
     "src/app/teambuilding/teambuilding-data.ts::pris::'Optimalt för 10–60 deltagare. Under 10 är det svårt att dela i mer än 2 lag; över 60 kräv",
     "src/app/utflykt/utflykt-data.ts::klockslag::'Stark ficklampa — det blir mörkt 15:30'"
   ]
