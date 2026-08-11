@@ -462,7 +462,13 @@ const GLOBAL_CSS = `
    kolumnerna 255 px och tavlan 4 325 px — 21 % kortare och läsbar.
    Klart hör ändå inte hemma som en likvärdig kolumn: den är ihopfälld som
    standard och tar då bara en rad längst ner (se .svt-col-klart). */
-.svt-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; align-items: start; }
+/* INTE align-items: start — kolumnerna måste sträcka sig till radens fulla
+   höjd. En sticky rubrik lever bara inom sin kolumns box: med start-align
+   slutar en kort kolumn ("Claude jobbar", 2 kort) efter en halv skärm och
+   rubriken scrollar bort, medan "Att göra" (21 kort) behåller sin.
+   Rapporterat av Tom 2026-08-11 med skärmdump. Med stretch är alla
+   kolumner lika höga som den längsta och rubrikerna följer med hela vägen. */
+.svt-board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; }
 /* Fälls Klart ut vill man se den bredvid de andra — då fyra kolumner igen. */
 .svt-board.oppen-klart { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 /* Ihopfälld Klart lägger sig som en egen rad över hela bredden längst ner. */
