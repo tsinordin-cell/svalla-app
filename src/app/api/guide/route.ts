@@ -10,8 +10,23 @@ import { logger } from '@/lib/logger'
 import { fetchTrips, type TripSummary } from '@/lib/trafiklab'
 import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
 
-// Condensed tour list for context (titles + key data)
+/**
+ * Turlista för kontext — sträckor med EGEN BÅT eller charter, mätta i distansminuter (NM).
+ *
+ * 2026-08-11: den här tabellen läckte in i kollektivtrafiksvar. På frågan
+ * "hur tar jag mig till Möja utan båt?" svarade Thorkel "via Stavsnäs" —
+ * hämtat från raden "Stavsnäs→Möja ~18 NM", som handlar om att SEGLA dit.
+ * Med kollektivtrafik går båtarna från Sollenkroka; åker du till Stavsnäs
+ * måste du ta buss tillbaka. En besökare hade missat båten.
+ *
+ * Raderna är korrekta som seglingssträckor. Felet var att de saknade etikett.
+ */
 const TOUR_CONTEXT = `
+VIKTIGT OM DEN HÄR LISTAN: varje rad är en sträcka för EGEN BÅT eller charter,
+mätt i distansminuter (NM). Det är INTE kollektivtrafik och säger ingenting om
+vilken hamn bussen går till. Använd aldrig en rad härifrån för att svara på
+frågor om att ta sig någonstans utan egen båt.
+
 === STOCKHOLMS INNERSKÄRGÅRD ===
 Stockholm→Fjäderholmarna: Turist/familj, 2-4h, snabb dagstur, bryggliv, Rökeriet & Fjäderholmarnas Krog, inga övernattningar, perfekt för nybörjare. Avstånd ~8 NM t/r.
 Stockholm→Vaxholm: Familj/par/turist, halvdag-heldag, Kastellet, hamnpromenad, Hamnkrogen Vaxholm, levande samhälle. ~15 NM t/r. Regelbunden färjetrafik.
@@ -375,6 +390,11 @@ Verktyget visar dessutom en strukturerad rutt-card till användaren automatiskt
 Kommentera t.ex. säsong, vilken avgång du själv hade tagit, eller hänvisa till
 att kortet visar tiderna. Spotta inte ut tiderna i texten — kortet visar dem.
 
+UTAN EGEN BÅT = ENDAST get_transit_to_island. Frågar någon hur de tar sig
+någonstans med buss, båt eller kollektivtrafik — "utan båt", "hur kommer jag
+dit", "med SL" — är turlistan ovan IRRELEVANT. Den beskriver seglingssträckor.
+Hämta verktygets data och svara utifrån den, ingenting annat.
+
 NÄR DU NÄMNER VÄGEN DIT — hamn, brygga eller bytespunkt — använd fältet
 "bytespunkter". Det är härlett ur resans faktiska ben och är alltid sant.
 Fältet "note" är en redaktionell kommentar som kan vara föråldrad: går den
@@ -544,9 +564,19 @@ async function executeTool(
       }
     }
     const trips = await fetchTrips(cfg.originStopId, cfg.destStopId, 4)
+    /**
+     * Kortet visade "Från Stockholm Strömkajen" även när resan faktiskt
+     * startade vid Karl XII:s torg — konfigens originStopName är den avsedda
+     * knutpunkten, inte nödvändigtvis den hållplats ResRobot valde. Visa den
+     * verkliga starthållplatsen när vi har en; annars konfigens namn.
+     */
+    const verkligStart = trips[0]?.legs[0]?.fromName
+      ? trips[0]!.legs[0]!.fromName.replace(/\s*\(.*?\)/g, '').trim()
+      : cfg.originStopName
+
     const transitData: TransitData = {
       islandSlug: slug,
-      originName: cfg.originStopName,
+      originName: verkligStart,
       destName: cfg.destStopName,
       trips,
     }
