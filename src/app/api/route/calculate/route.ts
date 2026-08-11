@@ -87,12 +87,41 @@ function cacheKey(slat: number, slng: number, elat: number, elng: number): strin
  */
 export type UnavailableReason =
   | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
+  | 'landlocked'
 
 /** Samma tolerans som lookupPrecomputed använder: 0,0008° ≈ 80 m. */
 const HAMN_TOL = 0.0008
 function hamnVid(lat: number, lng: number) {
   return DEPARTURES.find(d =>
     Math.abs(d.lat - lat) < HAMN_TOL && Math.abs(d.lng - lng) < HAMN_TOL) ?? null
+}
+
+/**
+ * Närmaste hamn inom ~600 m — används BARA för att klassificera VARFÖR en
+ * rutt är unavailable, aldrig för själva ruttberäkningen.
+ *
+ * Varför inte hamnVid (80 m): sparade rutter fryser sina koordinater vid
+ * skapandet, och hamnlistan har korrigerats efteråt (bc1103e4 flyttade 52
+ * hamnar). En rutt sparad före korrigeringen missar då 80 m-matchningen och
+ * ett slussfall klassas som no_sea_route — den röda rutan "ingen vattenväg
+ * hittad" i stället för den lugna slussförklaringen. Uppmätt 2026-08-11:
+ * medvetet skeva koordinater (~1 km) gav no_sea_route där exakta gav
+ * lock_required. 600 m fångar driften utan att para ihop grannhamnar.
+ */
+function hamnNara(lat: number, lng: number) {
+  let bast: (typeof DEPARTURES)[number] | null = null
+  let bastKm = 0.6
+  for (const d of DEPARTURES) {
+    const km = haversineKmLokal(lat, lng, d.lat, d.lng)
+    if (km < bastKm) { bast = d; bastKm = km }
+  }
+  return bast
+}
+function haversineKmLokal(aLat: number, aLng: number, bLat: number, bLng: number) {
+  const R = 6371, rad = Math.PI / 180
+  const dLat = (bLat - aLat) * rad, dLng = (bLng - aLng) * rad
+  const s = Math.sin(dLat/2)**2 + Math.cos(aLat*rad) * Math.cos(bLat*rad) * Math.sin(dLng/2)**2
+  return 2 * R * Math.asin(Math.sqrt(s))
 }
 
 /**
@@ -104,8 +133,8 @@ function hamnVid(lat: number, lng: number) {
 function harbourLockConflict(
   startLat: number, startLng: number, endLat: number, endLng: number,
 ): boolean {
-  const a = hamnVid(startLat, startLng)
-  const b = hamnVid(endLat, endLng)
+  const a = hamnNara(startLat, startLng)
+  const b = hamnNara(endLat, endLng)
   if (!a || !b) return false
   // 2026-08-05: jämför vattensystem, inte region-strängen. Tullinge-hamnarna
   // stod som region 'Mälaren' men ligger i Tullingesjön — med den gamla
@@ -120,6 +149,18 @@ function avgorSkal(
 ): UnavailableReason {
   if (!inMaskCoverage(startLat, startLng) || !inMaskCoverage(endLat, endLng)) {
     return 'outside_coverage'
+  }
+  // Insjöhamn FÖRE vatten-nära-kollen: en hamn i t.ex. Tullingesjön ligger
+  // helt riktigt utanför den farbara masken, men det är inget koordinatfel —
+  // sjön saknar förbindelse med havet. Utan den här ordningen fick riktiga
+  // insjörutter etiketten "troligen ett fel i vår hamnkoordinat, rapportera
+  // gärna", vilket ber användaren felanmäla något som är avsiktligt.
+  {
+    const a = hamnNara(startLat, startLng)
+    const b = hamnNara(endLat, endLng)
+    if ((a && isLandlocked(a)) || (b && isLandlocked(b))) {
+      return 'landlocked'
+    }
   }
   if (!hasNavigableWaterNear(startLat, startLng) || !hasNavigableWaterNear(endLat, endLng)) {
     return 'harbour_not_in_water'
@@ -166,6 +207,11 @@ export async function POST(req: NextRequest) {
         validated: cached.validated,
         crossesAt: cached.crossesAt,
         source: 'cache',
+        // Cachen bär inte skälet, men skälet är deterministiskt och billigt.
+        // Utan detta visade ett cachat slussfall den röda "ingen vattenväg"-
+        // rutan medan samma rutt på kall lambda fick den lugna sluss-texten.
+        reason: cached.quality === 'unavailable'
+          ? avgorSkal(startLat, startLng, endLat, endLng) : null,
       })
     }
 
@@ -202,6 +248,9 @@ export async function POST(req: NextRequest) {
               validated: !!dbCached.cached_validated,
               crossesAt: null,
               source: 'db-cache',
+              // Samma sak som mem-cachen: skälet räknas om, annars tappas det.
+              reason: dbQuality === 'unavailable'
+                ? avgorSkal(startLat, startLng, endLat, endLng) : null,
             })
           }
         }
