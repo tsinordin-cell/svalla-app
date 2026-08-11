@@ -390,6 +390,10 @@ Verktyget visar dessutom en strukturerad rutt-card till användaren automatiskt
 Kommentera t.ex. säsong, vilken avgång du själv hade tagit, eller hänvisa till
 att kortet visar tiderna. Spotta inte ut tiderna i texten — kortet visar dem.
 
+GER VERKTYGET INGA AVGÅNGAR: säg att du inte kan hämta dem just nu och
+hänvisa till sl.se eller waxholmsbolaget.se. Beskriv INTE vägen dit ur minnet
+— ingen hamn, ingen brygga, ingen busslinje. Fel hamn är värre än inget svar.
+
 UTAN EGEN BÅT = ENDAST get_transit_to_island. Frågar någon hur de tar sig
 någonstans med buss, båt eller kollektivtrafik — "utan båt", "hur kommer jag
 dit", "med SL" — är turlistan ovan IRRELEVANT. Den beskriver seglingssträckor.
@@ -604,7 +608,27 @@ async function executeTool(
       : []
 
     const claudeView = trips.length === 0
-      ? { error: 'Inga avgångar hittades just nu (kan vara nattetid eller pågående störning).' }
+      ? {
+          /**
+           * TOM DATA FÅR ALDRIG BLI PÅHITTAD DATA.
+           *
+           * 2026-08-11: när uppslaget för Möja gav noll turer beskrev Thorkel
+           * en rutt ur minnet — "buss ut till Stavsnäs hamn, sen båt direkt
+           * till Möja". Fel hamn. Båtarna går från Sollenkroka. Samma fråga
+           * med fungerande data gav rätt svar; det var TOMHETEN som utlöste
+           * gissningen.
+           *
+           * Instruktionen ligger i tool-resultatet, inte bara i systemprompten,
+           * för att den ska stå närmast felet när modellen frestas som mest.
+           */
+          error: 'INGA AVGÅNGAR KUNDE HÄMTAS för denna ö just nu.',
+          instruktion:
+            'Säg rakt ut att du inte kan hämta avgångarna just nu och hänvisa ' +
+            'till sl.se eller waxholmsbolaget.se. BESKRIV INTE vägen dit, ' +
+            'nämn INGEN hamn, brygga eller busslinje ur minnet — du vet inte ' +
+            'vilken hamn som gäller utan data, och fel hamn får någon att missa ' +
+            'båten. Att svara "jag vet inte just nu" är alltid rätt här.',
+        }
       : {
           islandSlug: slug,
           originName: cfg.originStopName,
