@@ -37,7 +37,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '1 dag (6–8 h)',
         level: 'Nybörjare',
         certificate: 'Intyg om kursdeltagande',
-        price: '800–1 500 kr',
+        // KÄLLA: Stockholms Segelsällskap, helgkurs nybörjare C55, kurstider 2026 — stockholmssegelsallskap.se/traning-kappsegling/seglarskola (avläst 2026-08-11)
+        price: '4 400 kr (2 700 kr för studerande)',
         desc: 'Grunderna i kurssegling: vind, manövrar, ankring och säkerhet. Perfekt för dig som aldrig seglat förut. Grupper om 4–6 deltagare på en segelbåt med instruktör.',
       },
       {
@@ -45,7 +46,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '2–3 helger',
         level: 'Nybörjare till medel',
         certificate: 'Förarintyget – erkänt av de flesta hyrbåtsbolag',
-        price: '4 000–7 500 kr',
+        // KÄLLA: Safety & Navigationsgruppen — sngruppen.se/kurs/forarbevis-och-forarintyg-bat-stockholm (avläst 2026-08-11)
+        price: 'från 1 995 kr + litteratur ca 400 kr',
         desc: 'Teoretisk genomgång av sjövägsregler, säkerhet och navigation plus praktik ombord. Med förarintyget kan du hyra de flesta motorbåtar och lättare segelbåtar.',
       },
       {
@@ -53,7 +55,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '5–7 dagar (kurs + examen)',
         level: 'Medel – kräver viss segling',
         certificate: 'Kustskepparintyget – internationellt erkänt',
-        price: '9 000–16 000 kr',
+        // KÄLLA: Safety & Navigationsgruppen, båtpraktik ingår — sngruppen.se/kurs/kustskepparintyg-kurs (avläst 2026-08-11)
+        price: 'från 2 995 kr + litteratur ca 700 kr',
         desc: 'Det mest erkända segel-certifikatet i Sverige. Täcker navigation, meteorologi, ankring, kajhantering och offshore-segling. Slutar med teoriprov och praktisk examen.',
       },
       {
@@ -61,7 +64,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '7–14 dagar',
         level: 'Avancerad',
         certificate: 'Offshoresegel-certifikat (SSRS/RYA)',
-        price: '15 000–30 000 kr',
+        price: 'Prisuppgift hos arrangören — varierar kraftigt med längd och destination',
         desc: 'Seglar från Stockholm mot Gotland, Åland eller utomlands. Dygns-navigering, vakt-system och bluewater-teknik. Kräver KA eller likvärdig erfarenhet.',
       },
     ],
@@ -80,7 +83,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Vad kostar en segelkurs i Stockholm?',
-        a: 'Introduktionskurs: 800–1 500 kr. Förarintyg: 4 000–7 500 kr. Kustskepparintyget: 9 000–16 000 kr. Offshore-kurser: 15 000–30 000 kr. Mat och boende ombord ingår ofta i längre kurser.',
+        // KÄLLA: SSS helgkurs (stockholmssegelsallskap.se), Safety & Navigationsgruppen (sngruppen.se) — avlästa 2026-08-11
+        a: 'Nybörjarhelgkurs hos Stockholms Segelsällskap: 4 400 kr (2 700 kr för studerande). Förarintyg: från 1 995 kr plus litteratur. Kustskepparintyg: från 2 995 kr plus litteratur, båtpraktik ingår. Offshore-kurser prissätts per arrangör och varierar kraftigt med längd och destination.',
       },
     ],
   },
@@ -106,7 +110,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '1–2 dagar',
         level: 'Nybörjare',
         certificate: 'Kursbevis',
-        price: '1 000–2 000 kr',
+        // KÄLLA: GKSS vuxenkurser 2026 — gkss.se/sv/seglarskola/vuxenkurser (avläst 2026-08-11)
+        price: '5 100–6 600 kr (weekend Långedrag 5 100, veckokurs 5 500, Marstrand med boende 5 600–6 600)',
         desc: 'Grundkurs i segling på Göteborgs skogsrika och klipprikt hav. Mindre grupper, erfarna instruktörer. Sätter fokus på manövrar i Västerhavet.',
       },
       {
@@ -114,7 +119,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '5–7 dagar',
         level: 'Medel',
         certificate: 'Kustskepparintyget (KA)',
-        price: '9 000–15 000 kr',
+        // KÄLLA: Safety & Navigationsgruppen, distanskurs — sngruppen.se/kurs/kustskepparintyg-pa-distans-online (avläst 2026-08-11)
+        price: 'från 2 995 kr (distans eller klassrum) + litteratur',
         desc: 'KA-kursen längs Bohusläns klippmiljöer är extra värdefull för den som vill segla Nordsjön och norska kusten. Kombinerar teori med praktik i verkliga förhållanden.',
       },
     ],
@@ -151,7 +157,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '1 dag',
         level: 'Absolut nybörjare',
         certificate: 'Kursbevis',
-        price: '500–1 200 kr',
+        price: 'Ofta gratis eller symbolisk avgift på klubbarnas prova-på-dagar — hör med din lokala klubb',
         desc: 'Du sitter med på en segelbåt med instruktör och en liten grupp. Ingen teori, ingen press – du provar rodret och känner vinden. Perfekt för att avgöra om segling är rätt för dig.',
       },
       {
@@ -159,7 +165,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '2–3 dagar eller 1 helg',
         level: 'Nybörjare',
         certificate: 'Grön flagg / Seglarbok',
-        price: '2 000–4 000 kr',
+        // KÄLLA: SSS helgkurs (stockholmssegelsallskap.se) och GKSS vuxenkurser (gkss.se), avlästa 2026-08-11
+        price: '4 400–6 600 kr hos SSS och GKSS',
         desc: 'Systematisk genomgång av segling från grunden. Teori och praktik varvas. Du lär dig terminologi, manövrar, sjövägsregler och hur du tar dig in och ut ur hamn.',
       },
       {
@@ -167,7 +174,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '2–3 helger',
         level: 'Nybörjare till medel',
         certificate: 'Förarintyget',
-        price: '4 000–7 500 kr',
+        // KÄLLA: Safety & Navigationsgruppen — sngruppen.se/kurs/forarbevis-och-forarintyg-bat-stockholm (avläst 2026-08-11)
+        price: 'från 1 995 kr + litteratur ca 400 kr',
         desc: 'Det vanligaste certifikatet i Sverige. Erkänt av hyrbåtsbolag och ger rätt att föra de flesta fritidsbåtar. Kan tas i kombination med Grön-kurs eller separat.',
       },
     ],
@@ -212,7 +220,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '5 dagar (mån–fre)',
         level: 'Nybörjare',
         certificate: 'Seglarbok / Grön flagg',
-        price: '1 500–3 500 kr/vecka',
+        // KÄLLA: KSSS seglarskola 2026, 4–5-dagarsläger 8–12 år — ksss.se/lager/seglarskola (avläst 2026-08-11)
+        price: '2 900–3 300 kr per lägervecka hos KSSS',
         desc: 'Barnet lär sig segla ensam i Optimistbåten under instruktörer i medseglingsbåt. Säker, pedagogisk och väldigt rolig. Normalt 6–10 barn per grupp.',
       },
       {
@@ -220,7 +229,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: 'Veckolång kurs eller säsongsprogram',
         level: 'Medel – viss segling',
         certificate: 'Gul flagg / Seniorflagg',
-        price: '2 000–4 500 kr',
+        price: 'Terminsavgift varierar per klubb — se klubbens seglarsektion',
         desc: 'Barn som kan grunderna avancerar till tävlingsklasser som Zoom8 och 29er. Fokus på kappsegling, taktik och träning i grupp. Inträdesbiljett till ungdomssegling på riksnivå.',
       },
       {
@@ -228,7 +237,7 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
         length: '5–7 dagar ombord',
         level: 'Medel till avancerad',
         certificate: 'Kustseglarcertifikat',
-        price: '4 000–8 000 kr',
+        price: 'Varierar per klubb och kurslängd — se klubbens seglarsektion',
         desc: 'Ungdomar seglar i sällskap med instruktör längs kusten, övernattning ombord. Lär sig navigation, vakt och oceanseglingens grunder. Steg mot förarintyg och KA.',
       },
     ],
@@ -247,7 +256,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Vad kostar seglarskolan?',
-        a: '1 500–3 500 kr per vecka för de flesta seglarskolor. Lunch ingår ibland. Utrustning (flytväst, våtdräkt) lånas ofta av sällskapet. Fråga om familjerabatt om flera barn går kursen.',
+        // KÄLLA: KSSS seglarskola 2026 — ksss.se/lager/seglarskola (avläst 2026-08-11)
+        a: 'KSSS seglarskola för 8–12-åringar kostar 2 900–3 300 kr för en lägervecka på 4–5 dagar (2026). Priser varierar mellan klubbar. Utrustning som flytväst lånas ofta av sällskapet. Fråga om familjerabatt om flera barn går kursen.',
       },
     ],
   },
