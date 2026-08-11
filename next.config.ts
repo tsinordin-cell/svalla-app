@@ -91,6 +91,19 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   images: {
     formats: ['image/avif', 'image/webp'],
+    /**
+     * 31 dagar. Utan denna gäller källans Cache-Control — och våra 576
+     * platsbilder i Supabase storage serveras med `no-cache` (fel metadata
+     * vid uppladdningen, går inte att rätta via SQL — verifierat 2026-08-10).
+     * Effekten var att Vercel slängde varje optimerad variant efter en timme
+     * och omhämtade 368 kB-original från Supabase, om och om igen: 8,25 GB
+     * cached egress/mån och kvotvarning med strypning 8 sep 2026.
+     *
+     * Optimerad variant: 15 kB för samma bild — 24× mindre. Bilderna är
+     * statiska kopior av Google Places-foton och ändras aldrig, så 31 dagar
+     * är konservativt. Byts en bild får den ny URL och ny cachepost.
+     */
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',
