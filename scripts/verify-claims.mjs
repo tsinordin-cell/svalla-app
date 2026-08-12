@@ -53,6 +53,10 @@ const UNDANTAG = [
 
 const KALLMARKORER = [
   'källa:', 'kalla:', 'source:', 'uppmätt', 'uppmatt', 'mätt ', 'matt ',
+  // PRODUKTREGEL: siffran är VÅR egen — ett pris eller villkor vi själva satt
+  // (Loppis-boost, push-tider, achievements). Vi är källan. Ändras regeln
+  // ändras koden, så den kan inte driva isär från verkligheten.
+  'produktregel:',
   'http://', 'https://', 'resrobot', 'trafiklab', 'strömma', 'stromma',
   'waxholmsbolaget', 'openstreetmap', 'osm ', 'open-meteo', 'google places',
 ]
@@ -156,10 +160,44 @@ for (const f of filer(ROT)) {
  * Skriv om baslinjen med:  node scripts/verify-claims.mjs --uppdatera-baslinje
  */
 const BASLINJE = 'scripts/verify-claims.baseline.json'
+const VAKT = 'scripts/verify-claims.vakt.json'
 const nyckel = (f) => `${f.fil}::${f.typ}::${f.text}`
+
+/**
+ * VAKTVÄRDET — lågvattenmärket för skulden.
+ *
+ * 2026-08-12 återinförde PR #111 de 83 raderade priserna i island-data.ts och
+ * KÖRDE OM BASLINJEN så att spärren tystnade. Regeln "baslinjen får aldrig
+ * växa" var en konvention, och konventioner överlever inte parallella
+ * sessioner. Detta gör den till kod:
+ *
+ * - Vaktvärdet sänks AUTOMATISKT när skulden krymper.
+ * - Är baslinjen STÖRRE än vaktvärdet failar varje bygge, tills någon
+ *   medvetet höjer det med --tillat-vaxt="motivering" (t.ex. dokumenterad
+ *   omfångsutökning av spärren). Motiveringen sparas i vaktfilen.
+ *
+ * En session som slentrianmässigt kör --uppdatera-baslinje efter att ha
+ * återinfört skuld får alltså rött bygge — högt och tydligt, inte tyst.
+ */
+const läsVakt = () => {
+  try { return JSON.parse(fs.readFileSync(VAKT, 'utf8')) } catch { return null }
+}
 
 if (process.argv.includes('--uppdatera-baslinje')) {
   const rader = fynd.map(nyckel).sort()
+  const vakt = läsVakt()
+  const växtArg = process.argv.find(a => a.startsWith('--tillat-vaxt='))
+  if (vakt && rader.length > vakt.lagvattenmarke && !växtArg) {
+    console.error(`\n✗ Baslinjen skulle VÄXA: ${vakt.lagvattenmarke} -> ${rader.length}.`)
+    console.error(`  Skulden ska krympa. Har du återinfört tidigare rättade påståenden?`)
+    console.error(`  Är växten en medveten omfångsutökning av spärren, kör:`)
+    console.error(`    node scripts/verify-claims.mjs --uppdatera-baslinje --tillat-vaxt="<motivering>"`)
+    process.exit(1)
+  }
+  const nyttVaktvarde = vakt && rader.length > vakt.lagvattenmarke
+    ? { lagvattenmarke: rader.length, hojd: new Date().toISOString().slice(0, 10), motivering: växtArg.slice('--tillat-vaxt='.length) }
+    : { lagvattenmarke: rader.length, sankt: new Date().toISOString().slice(0, 10), motivering: vakt?.motivering ?? null }
+  fs.writeFileSync(VAKT, JSON.stringify(nyttVaktvarde, null, 2) + '\n')
   fs.writeFileSync(BASLINJE, JSON.stringify({
     beskrivning: 'Kända påståenden utan källa. SKULD — ska krympa. Får bara växa vid dokumenterad omfångsutökning av spärren (senast 2026-08-11: hela src + mallsträngar).',
     skapad: new Date().toISOString().slice(0, 10),
@@ -172,7 +210,16 @@ if (process.argv.includes('--uppdatera-baslinje')) {
 
 let känd = new Set()
 if (fs.existsSync(BASLINJE)) {
-  känd = new Set(JSON.parse(fs.readFileSync(BASLINJE, 'utf8')).poster)
+  const bas = JSON.parse(fs.readFileSync(BASLINJE, 'utf8'))
+  känd = new Set(bas.poster)
+  const vakt = läsVakt()
+  if (vakt && bas.poster.length > vakt.lagvattenmarke) {
+    console.error(`\n✗ verify-claims: baslinjen (${bas.poster.length}) är STÖRRE än vaktvärdet (${vakt.lagvattenmarke}).`)
+    console.error(`  Någon har regenererat baslinjen efter att skuld återinförts — det tystade`)
+    console.error(`  spärren i PR #111 och får inte ske tyst igen. Ta bort de återinförda`)
+    console.error(`  påståendena, eller höj vaktvärdet MEDVETET med --tillat-vaxt="motivering".`)
+    process.exit(1)
+  }
 }
 const nya = fynd.filter(f => !känd.has(nyckel(f)))
 const kvarAvBaslinjen = fynd.length - nya.length

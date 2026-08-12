@@ -52,7 +52,8 @@ const UNIQUE_STOCKHOLM: Record<string, FAQ[]> = {
   ],
   moja: [
     { q: 'Hur kommer jag till Möja?',
-      a: 'Waxholmsbolaget från Stavsnäs (45 min) eller via Sollenkroka. Bilfärja går från Sollenkroka till Berg på Möja. Restid totalt: ca 1,5 timmar från Stockholm.' },
+      // KÄLLA: ResRobot-ben uppmätta 2026-08-11 — buss 434 Slussen→Sollenkroka, färja 14-1 Sollenkroka→Möjaström, total restid 2 tim 28 min–2 tim 54 min. Stavsnäs-påståendet var fel: därifrån skickar ResRobot dig med buss TILLBAKA till Sollenkroka.
+      a: 'Båtarna till Möja går från Sollenkroka brygga — buss 434 från Slussen tar dig dit, sedan färja över. Räkna med ungefär två och en halv timme totalt från Stockholm.' },
     { q: 'Vilken del av Möja ska jag åka till?',
       a: 'Berg och Långvik är de två huvudbyarna. Berg har mer service (Wikströms Fisk, Möjabutiken, krogar). Långvik är roligare för naturupplevelse och bad.' },
     { q: 'Finns det restauranger på Möja?',
