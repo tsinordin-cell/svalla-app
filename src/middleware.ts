@@ -72,6 +72,22 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // /planera/ny och /planera/<id> är PUBLIKA — hela den anonyma tratten är
+  // byggd för det: create-API:t tillåter user_id null ("för att undvika
+  // RLS-problem med anonyma användare"), RLS-policyn heter ordagrant
+  // "published routes viewable by anyone", SaveRouteCTA visar claim-länkar
+  // för utloggade, /api/planera/claim knyter rutten till kontot efteråt,
+  // och robots.txt fick "Allow: /planera/" 2026-07-28 för att delbara
+  // rutter ska kunna indexeras. Skyddet av hela /planera-trädet bröt allt
+  // detta: uppmätt 2026-08-12 — en utloggad besökare kunde slutföra alla
+  // tre stegen i guiden, rutten SPARADES, och personen dumpades ändå på
+  // "Skapa konto" utan ett ord om att rutten fanns. Det såg ut som att
+  // arbetet försvann. Bara ruttlistan (exakt /planera) förblir skyddad —
+  // den visar DINA rutter och kräver rimligen inloggning.
+  if (pathname === '/planera/ny' || /^\/planera\/[0-9a-f-]{36}$/.test(pathname)) {
+    isProtected = false
+  }
+
   if (!isProtected) return NextResponse.next()
 
   // Skapa en delad response-referens som setAll kan uppdatera.
