@@ -142,10 +142,7 @@ export default async function SasongPage({ params }: Props) {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-              <span style={{
-                fontSize: 48,
-                lineHeight: 1,
-              }}>{season.emoji}</span>
+              <span style={{lineHeight: 1}} aria-hidden><Icon name={emojiToIcon(season.emoji)} size={48} /></span>
               <div>
                 <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'rgba(255,255,255,0.65)' }}>
                   {season.monthsLabel}
@@ -273,7 +270,7 @@ export default async function SasongPage({ params }: Props) {
             padding: '28px 24px',
             marginBottom: 24,
           }}>
-            <div style={{ fontSize: 22, marginBottom: 8 }}>{season.emoji}</div>
+            <div style={{marginBottom: 8}} aria-hidden><Icon name={emojiToIcon(season.emoji)} size={22} /></div>
             <h3 style={{ fontSize: 18, fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>
               Få {season.name.toLowerCase()}ens bästa tips i inkorgen
             </h3>

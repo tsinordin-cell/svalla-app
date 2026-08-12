@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { SEASON_GUIDES, getSeasonGuide } from '../season-data'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import SvallaLogo from '@/components/SvallaLogo'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 interface Props {
   params: Promise<{ manad: string }>
@@ -223,7 +225,7 @@ export default async function SasonsguidePage({ params }: Props) {
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                    <span style={{ fontSize: 22 }}>{island.emoji}</span>
+                    <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={22} /></span>
                     <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--txt)' }}>{island.name}</span>
                   </div>
                   <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>

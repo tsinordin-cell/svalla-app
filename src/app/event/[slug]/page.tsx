@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { setAttendance, formatEventDate, type EventRow } from '@/lib/events'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 
@@ -30,7 +30,7 @@ export default function EventDetailPage() {
 
   useEffect(() => {
     if (!slug) return
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (user) setMe(user.id)
       load(user?.id ?? null)
     })

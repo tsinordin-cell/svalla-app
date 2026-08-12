@@ -10,6 +10,8 @@ import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
 import ShareButton from '@/components/ShareButton'
 import StickyNewsletterBar from '@/components/StickyNewsletterBar'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -292,7 +294,7 @@ export default async function GuidePage({ params }: Props) {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                   }}
                 >
-                  <span style={{ fontSize: 16 }}>{island.emoji}</span>
+                  <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={16} /></span>
                   {island.name} →
                 </Link>
               ))}
@@ -321,7 +323,7 @@ export default async function GuidePage({ params }: Props) {
                 border: '1px solid rgba(10,123,140,0.08)',
                 transition: 'box-shadow 0.15s',
               }}>
-                <div style={{ fontSize: 22, marginBottom: 8 }}>{r.emoji}</div>
+                <div style={{marginBottom: 8}} aria-hidden><Icon name={emojiToIcon(r.emoji)} size={22} /></div>
                 <div style={{
                   fontSize: 13.5, fontWeight: 700, color: 'var(--txt)',
                   lineHeight: 1.35, marginBottom: 6,

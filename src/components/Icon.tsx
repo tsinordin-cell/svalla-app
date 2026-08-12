@@ -95,6 +95,10 @@ const PATHS = {
 
 export type IconName = keyof typeof PATHS
 
+/** Alla giltiga ikonnamn i runtime — emojiToIcon använder den för att känna
+ *  igen datafält som redan innehåller ett ikonnamn istället för en emoji. */
+export const ICON_NAMES = new Set(Object.keys(PATHS))
+
 interface Props {
   name: IconName
   size?: number

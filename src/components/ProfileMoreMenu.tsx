@@ -2,7 +2,7 @@
 import { useState, useEffect, type ReactNode, type MouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { Ban, Flag } from '@/components/icons/LucideIcons'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import ReportButton from '@/components/ReportButton'
 import BlockButton from '@/components/BlockButton'
 import { isBlocked } from '@/lib/blocks'
@@ -20,7 +20,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
 
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       if (!user || user.id === targetUserId) return
       setMe(user.id)
       const b = await isBlocked(supabase, user.id, targetUserId)

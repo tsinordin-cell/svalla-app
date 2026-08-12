@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
 
@@ -55,7 +55,7 @@ export default function MeddelandenPage() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!user) { setLoading(false); return }
       setMe(user.id)
       load(user.id)
@@ -67,7 +67,7 @@ export default function MeddelandenPage() {
         .channel('inbox-feed')
         .on('postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'messages' },
-          () => { supabase.auth.getUser().then(({ data: { user } }) => user && load(user.id)) }
+          () => { getViewer(supabase).then(({ data: { user } }) => user && load(user.id)) }
         )
         .on('postgres_changes',
           { event: 'UPDATE', schema: 'public', table: 'conversations' },

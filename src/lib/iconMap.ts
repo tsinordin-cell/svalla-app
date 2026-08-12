@@ -5,7 +5,7 @@
  *
  * Fallback: 'compass' (neutral resa-/utforska-ikon).
  */
-import type { IconName } from '@/components/Icon'
+import { ICON_NAMES, type IconName } from '@/components/Icon'
 
 const MAP: Record<string, IconName> = {
   // Båtar / transport-på-vatten
@@ -106,11 +106,53 @@ const MAP: Record<string, IconName> = {
   '📚': 'mail',
   '✍️': 'mail',
 
+
+  // Väder
+  '❄️': 'snow', '⛈️': 'rain', '🌧️': 'rain', '🌦️': 'rain', '☁️': 'cloud',
+  '🌫️': 'fog', '💨': 'wind', '🌙': 'moon', '🌑': 'moon', '🌒': 'moon',
+  '🌞': 'sun', '⚡': 'sun',
+
+  // Aktivitet / rörelse
+  '🚴': 'navigation', '🏇': 'navigation', '🎒': 'navigation', '🚀': 'navigation',
+  '⛺': 'leaf', '🏁': 'flag', '🎯': 'target', '⏱': 'clock',
+
+  // Natur / djur / årstid
+  '🍂': 'leaf', '🌸': 'leaf', '🌼': 'leaf', '🌻': 'leaf', '🏞️': 'leaf',
+  '🌍': 'globe', '🗾': 'map', '🌉': 'building', '🔥': 'sun',
+  '🦀': 'utensils', '🦭': 'fish', '🐕': 'heart',
+
+  // Bebyggelse
+  '🏢': 'building', '🏘': 'building', '🏡': 'building', '🏠': 'building',
+  '🏚': 'building', '🏯': 'building',
+
+  // Båt
+  '🛥': 'sailboat',
+
+  // Utmärkelser / status
+  '🏆': 'trophy', '🏅': 'award', '🎓': 'award', '🗿': 'award', '⚖️': 'award',
+  '🌟': 'star', '✨': 'star', '🪄': 'star', '💥': 'star',
+  '🔴': 'pin', '📍': 'pin', '🧭': 'compass',
+
+  // Kontor / affär
+  '📊': 'target', '📈': 'target', '💰': 'target', '🎫': 'bookmark',
+  '🗝': 'bookmark', '🔒': 'bookmark', '📬': 'mail', '✏️': 'edit', '🤝': 'handshake',
+
+  // Människor
+  '👨‍👩‍👧‍👦': 'users', '👨‍👩‍👧': 'users',
+
   // Övrigt
   '💡': 'star',
 }
 
+/**
+ * Emoji → ikonnamn. Datafilerna får behålla sina emoji-fält; det är bara
+ * nyckeln in hit. Fälten kan också innehålla ett färdigt IconName (delar av
+ * datan är redan migrerad), och då används det rakt av.
+ */
 export function emojiToIcon(emoji: string | undefined | null): IconName {
   if (!emoji) return 'compass'
-  return MAP[emoji] ?? MAP[emoji.replace('️', '')] ?? 'compass'
+  const direct = MAP[emoji] ?? MAP[emoji.replace(/️/g, '')]
+  if (direct) return direct
+  if (ICON_NAMES.has(emoji)) return emoji as IconName
+  return 'compass'
 }

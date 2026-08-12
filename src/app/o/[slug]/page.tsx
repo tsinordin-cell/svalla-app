@@ -1100,7 +1100,7 @@ export default async function IslandPage({ params }: Props) {
        boxShadow: '0 1px 6px rgba(0,0,0,0.04)',
       }}
      >
-      <span style={{ fontSize: 20, flexShrink: 0 }}>{g.emoji}</span>
+      <span style={{flexShrink: 0}} aria-hidden><Icon name={emojiToIcon(g.emoji)} size={20} /></span>
       <div style={{ flex: 1, minWidth: 0 }}>
        <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.35, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{g.title}</div>
        <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{g.readTime}</div>

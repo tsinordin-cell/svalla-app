@@ -1,7 +1,7 @@
 'use client'
 export const dynamic = 'force-dynamic'
 import { useState, useEffect, useRef } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -143,7 +143,7 @@ export default function NotiserPage() {
  useEffect(() => {
  let channel: ReturnType<typeof supabase.channel> | null = null
 
- supabase.auth.getUser().then(({ data: { user } }) => {
+ getViewer(supabase).then(({ data: { user } }) => {
  if (!user) { setLoading(false); return }
  const uid = user.id
  setUserId(uid)

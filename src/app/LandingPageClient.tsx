@@ -404,7 +404,10 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
  .footer-col h5{font-size:11px;margin-bottom:8px}
  .footer-col ul li{margin-bottom:5px}
  .footer-col ul li a{font-size:12.5px}
- .hero-top{padding-top:70px}
+ /* Solen ritas på H*0.092 med radie H*0.034 (se HeroAnimation) — på mobil
+    hamnade rubriken rakt ovanpå den. vh-baserad padding följer solen på
+    alla skärmhöjder och lägger texten strax under glorian. */
+ .hero-top{padding-top:22vh}
  .hero-bottom{top:auto;bottom:4vh}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}

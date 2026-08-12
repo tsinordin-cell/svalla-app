@@ -9,7 +9,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
 
 const CONDITIONS = ['Nyskick', 'Mycket bra', 'Bra', 'Acceptabelt', 'Renoveringsobjekt'] as const
@@ -24,7 +24,7 @@ export default function NyAnnonsPage() {
   const [authReady, setAuthReady] = useState(false)
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data }) => {
+    getViewer(supabase).then(({ data }) => {
       if (!data.user) { router.push('/logga-in?returnTo=/forum/loppis/ny-annons'); return }
       setAuthReady(true)
     })

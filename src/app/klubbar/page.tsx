@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { createClub, type ClubBasic } from '@/lib/clubs'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import Icon, { type IconName } from '@/components/Icon'
@@ -23,7 +23,7 @@ export default function KlubbarPage() {
  const [showCreate, setShowCreate] = useState(false)
 
  useEffect(() => {
- supabase.auth.getUser().then(({ data: { user } }) => {
+ getViewer(supabase).then(({ data: { user } }) => {
  if (user) setMe(user.id)
  load(user?.id ?? null)
  })

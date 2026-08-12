@@ -16,7 +16,7 @@
 import posthog from 'posthog-js'
 import { PostHogProvider as PHProvider } from 'posthog-js/react'
 import { useEffect } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 let initialized = false
 
@@ -50,7 +50,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
 
     // Identifiera inloggad användare → kopplar events till rätt person i PostHog
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data }) => {
+    getViewer(supabase).then(({ data }) => {
       if (data.user) {
         posthog.identify(data.user.id, {
           email: data.user.email,
