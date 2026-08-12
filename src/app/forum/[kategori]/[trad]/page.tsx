@@ -64,7 +64,13 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { trad, kategori } = await params
   const thread = await getThreadById(trad, true)
-  if (!thread) return { title: { absolute: 'Forum — Svalla' } }
+  // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
+  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
+  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
+  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
+  // med loading.tsx). generateMetadata körs före headers och är därför
+  // enda stället som kan sätta riktig 404-status.
+  if (!thread) notFound()
 
   // Loppis-annons → optimerade SEO-tags för Google-indexering.
   // Title: "Modell från ÅR — Pris kr i Plats" (long-tail keywords).

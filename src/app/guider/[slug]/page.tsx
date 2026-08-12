@@ -5,6 +5,8 @@ import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
+import RegionGuides, { REGION_META } from './RegionGuides'
+import { URL_SLUG_TO_REGION, REGION_URL_SLUG } from '../guides-data'
 
 import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
@@ -16,13 +18,43 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  return GUIDES.map(g => ({ slug: g.slug }))
+  // Regionsidorna (/guider/stockholm m.fl.) delar denna route — de låg
+  // tidigare i guider/[region]/ vilket kolliderade med [slug] och sänkte
+  // produktionen i 25 dygn (CLAUDE.md p6). De renderas via RegionGuides.
+  return [
+    ...Object.values(REGION_URL_SLUG).map(slug => ({ slug })),
+    ...GUIDES.map(g => ({ slug: g.slug })),
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+
+  // Regionsida? (/guider/stockholm, /guider/gotland …)
+  const region = URL_SLUG_TO_REGION[slug]
+  if (region) {
+    const meta = REGION_META[region]
+    return {
+      title: meta.title,
+      description: meta.description,
+      keywords: meta.keywords,
+      alternates: { canonical: `https://svalla.se/guider/${slug}` },
+      openGraph: {
+        title: `${meta.title} – Svalla`,
+        description: meta.description,
+        url: `https://svalla.se/guider/${slug}`,
+        type: 'website',
+      },
+    }
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
-  if (!guide) return {}
+  // SOFT-404-SKYDD: loading.tsx streamar svaret — 200 flushas före sidkroppen,
+  // så bara ett notFound() HÄR (före headers) ger riktig 404-status. 'return {}'
+  // var orsaken till att /guider/<okänd> svarade 200 (uppmätt 2026-08-12),
+  // inklusive de fyra regionsidorna i sitemapen som tappade sin rendering
+  // när guider/[region] togs bort (CLAUDE.md p6/p10).
+  if (!guide) notFound()
   return {
     title: guide.title,
     description: guide.excerpt,
@@ -50,6 +82,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params
+
+  // Regionsida — rendera regionsvyn istället för en enskild guide.
+  // Regressionskontrollen i CLAUDE.md p10 letar efter 'RegionGuides regionSlug'.
+  if (URL_SLUG_TO_REGION[slug]) {
+    return <RegionGuides regionSlug={slug} />
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) notFound()
 

@@ -93,9 +93,14 @@ function mergeWithStatic(dbRow: Partial<ForumCategory> & { id: string }): ForumC
   }
 }
 
-export async function getForumCategories(): Promise<ForumCategory[]> {
+export async function getForumCategories(publik = false): Promise<ForumCategory[]> {
   try {
-    const supabase = await createServerSupabaseClient()
+    // publik: cookie-fri klient så anropande sida kan cachas. /forum
+    // deklarerade revalidate=300 men detta cookies()-anrop gjorde sidan
+    // dynamisk ändå (x-vercel-cache: MISS på varje anrop, uppmätt
+    // 2026-08-12). forum_categories har publik läspolicy — samma resonemang
+    // och mönster som getThreadsByIsland/getCategoryById nedan.
+    const supabase = publik ? createPublicSupabaseClient() : await createServerSupabaseClient()
     const { data, error } = await supabase
       .from('forum_categories')
       .select('id, name, description, icon, sort_order, thread_count, post_count')

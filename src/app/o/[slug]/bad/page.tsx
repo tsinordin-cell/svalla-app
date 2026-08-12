@@ -26,7 +26,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
-  if (!island) return {}
+  // SOFT-404-SKYDD: loading.tsx streamar svaret — 200 flushas före sidkroppen,
+  // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
+  // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
+  if (!island) notFound()
   return {
     title: `Bästa badplatser på ${island.name} 2026 | Svalla`,
     description: `Var badar man på ${island.name}? Klippbad, sandstränder och dolda badvikar — komplett guide med tips om hur du hittar dit.`,

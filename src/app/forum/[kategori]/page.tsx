@@ -28,7 +28,13 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { kategori } = await params
  const cat = await getCategoryById(kategori)
- if (!cat) return { title: 'Forum' }
+ // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
+  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
+  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
+  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
+  // med loading.tsx). generateMetadata körs före headers och är därför
+  // enda stället som kan sätta riktig 404-status.
+ if (!cat) notFound()
  const canonicalUrl = `https://svalla.se/forum/${kategori}`
  return {
   title: { absolute: `${cat.name} – Svalla Forum` },
