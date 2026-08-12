@@ -56,7 +56,12 @@ export default async function IslandForumPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const threads = await getThreadsByIsland(slug)
+  // publik=true: sidan läser bara publika trådar och använder ingen auth.
+  // Default-klienten drar cookies() vilket gjorde routen dynamisk — då var
+  // revalidate=60 verkningslös OCH dynamicParams=false kringgicks, så okända
+  // öar svarade 200 trots #118 (uppmätt live). Samma mönster som /o/[slug]
+  // (CLAUDE.md p26).
+  const threads = await getThreadsByIsland(slug, 0, true)
 
   return (
     <main style={{
