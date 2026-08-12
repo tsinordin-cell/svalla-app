@@ -276,7 +276,7 @@ export const ISLANDS: Island[] = [
             child_friendly: true,
             depth: 'Grunt och sandbotten nära stranden — bra för barn. Vattnet värms upp snabbt i juli.',
             directions: 'Gå söderut från hamnen ca 10 min förbi Sandhamns Värdshus, ta sedan stigen ned mot havet.',
-            insider_tip: 'Kom innan 11:00 eller efter 16:00 — bryggan mitt på dagen fylls av dagsturister. Lokalt bad = morgon.',
+            insider_tip: 'Kom tidigt på morgonen eller sent på eftermiddagen — bryggan mitt på dagen fylls av dagsturister. Lokalt bad = morgon.',
           },
           {
             name: 'Klippbad vid Västerudd',
@@ -820,7 +820,7 @@ export const ISLANDS: Island[] = [
             child_friendly: true,
             depth: 'Hopphällar finns, men även grunt parti för barn.',
             directions: 'Följ stigen norrut från vandrarhemet ca 15 min. Fråga personalen om den exakta leden.',
-            insider_tip: 'Ta med kaffe från kiosken och kom hit vid 07:00 — vattnet är klarare och kallare på morgonen, och du har hela klippan för dig själv.',
+            insider_tip: 'Ta med kaffe från kiosken och kom hit i gryningen — vattnet är klarare och kallare på morgonen, och du har hela klippan för dig själv.',
           },
           {
             name: 'Klippbad vid Långvik',
