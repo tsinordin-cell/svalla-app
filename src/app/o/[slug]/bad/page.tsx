@@ -1,10 +1,23 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ALL_ISLANDS, getIsland } from '../../island-data'
+import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 
 type Props = { params: Promise<{ slug: string }> }
+
+function isBeachObject(b: string | IslandBeach): b is IslandBeach {
+  return typeof b === 'object' && b !== null && 'name' in b
+}
+
+const typeLabel: Record<IslandBeach['type'], string> = {
+  sandstrand: '🏖 Sandstrand',
+  klippbad: '🪨 Klippbad',
+  grusstrand: '🪨 Grusstrand',
+  brygga: '🛶 Badbrygga',
+  trampolinbad: '🤸 Trampolinbad',
+  badvik: '🌊 Badvik',
+}
 
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
@@ -58,7 +71,7 @@ export default async function IslandBadPage({ params }: Props) {
     itemListElement: beaches.map((b, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      name: b,
+      name: isBeachObject(b) ? b.name : b,
     })),
   } : null
 
@@ -86,20 +99,60 @@ export default async function IslandBadPage({ params }: Props) {
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 16 }}>
               Badplatser på {island.name}
             </h2>
-            <div style={{ display: 'grid', gap: 12 }}>
+            <div style={{ display: 'grid', gap: 16 }}>
               {beaches.map((beach, i) => (
-                <div key={i} style={{
-                  background: 'var(--white)', borderRadius: 14,
-                  padding: '18px 20px',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
-                  border: '1px solid rgba(10,123,140,0.07)',
-                  display: 'flex', alignItems: 'center', gap: 14,
-                }}>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
-                    <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>Badplats på {island.name}</div>
+                isBeachObject(beach) ? (
+                  <div key={i} style={{
+                    background: 'var(--white)', borderRadius: 14,
+                    padding: '20px 22px',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
+                    border: '1px solid rgba(10,123,140,0.07)',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+                      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', background: 'rgba(10,123,140,0.08)', padding: '2px 10px', borderRadius: 20 }}>
+                        {typeLabel[beach.type] ?? beach.type}
+                      </span>
+                      {beach.child_friendly && (
+                        <span style={{ fontSize: 13, color: '#4a8c4a', background: 'rgba(74,140,74,0.08)', padding: '2px 10px', borderRadius: 20, fontWeight: 600 }}>
+                          👶 Barnvänlig
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ fontWeight: 700, fontSize: 17, color: 'var(--txt)', marginBottom: 6 }}>{beach.name}</div>
+                    <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.6, marginBottom: beach.depth || beach.directions || beach.insider_tip ? 12 : 0 }}>
+                      {beach.desc}
+                    </div>
+                    {beach.depth && (
+                      <div style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 4 }}>
+                        <span style={{ fontWeight: 600 }}>Djup: </span>{beach.depth}
+                      </div>
+                    )}
+                    {beach.directions && (
+                      <div style={{ fontSize: 13, color: 'var(--txt3)', marginBottom: 4 }}>
+                        <span style={{ fontWeight: 600 }}>Vägbeskrivning: </span>{beach.directions}
+                      </div>
+                    )}
+                    {beach.insider_tip && (
+                      <div style={{ fontSize: 13, background: 'rgba(232,146,74,0.08)', borderLeft: '3px solid #e8924a', padding: '8px 12px', borderRadius: '0 8px 8px 0', marginTop: 10 }}>
+                        <span style={{ fontWeight: 600, color: '#c07030' }}>Insidertips: </span>
+                        <span style={{ color: 'var(--txt2)' }}>{beach.insider_tip}</span>
+                      </div>
+                    )}
                   </div>
-                </div>
+                ) : (
+                  <div key={i} style={{
+                    background: 'var(--white)', borderRadius: 14,
+                    padding: '18px 20px',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
+                    border: '1px solid rgba(10,123,140,0.07)',
+                    display: 'flex', alignItems: 'center', gap: 14,
+                  }}>
+                    <div>
+                      <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{beach}</div>
+                      <div style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 3 }}>Badplats på {island.name}</div>
+                    </div>
+                  </div>
+                )
               ))}
             </div>
           </div>

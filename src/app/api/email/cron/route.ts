@@ -109,6 +109,98 @@ async function handle(req: Request) {
   }
   results.day3_newsletter = { sent: day3Sent, errors: day3Errors }
 
+  // ── 1b. Dag-14-mail (nyhetsbrevsprenumeranter) — Min Skärgård + 3 öar ──
+  // Prenumererade 12–16 dagar sen
+  const sixteenDaysAgo = new Date(today.getTime() - 16 * 24 * 60 * 60 * 1000).toISOString()
+  const twelveDaysAgo  = new Date(today.getTime() - 12 * 24 * 60 * 60 * 1000).toISOString()
+
+  const { data: day14Raw } = await service
+    .from('email_subscribers')
+    .select('email, created_at')
+    .eq('confirmed', true)
+    .eq('unsubscribed', false)
+    .gte('created_at', sixteenDaysAgo)
+    .lte('created_at', twelveDaysAgo)
+    .limit(500)
+
+  const day14Candidates = (day14Raw ?? []).filter(
+    (c): c is { email: string; created_at: string } => typeof c.email === 'string' && c.email.length > 0
+  )
+
+  let day14Sent = 0
+  let day14Errors = 0
+  if (day14Candidates.length > 0) {
+    const { data: alreadySentDay14 } = await service
+      .from('email_log')
+      .select('email')
+      .eq('template', 'day14_newsletter')
+      .in('email', day14Candidates.map(c => c.email))
+    const sentDay14 = new Set((alreadySentDay14 ?? []).map(r => r.email as string))
+
+    for (const candidate of day14Candidates) {
+      if (sentDay14.has(candidate.email)) continue
+      const result = await sendEmail({ template: 'day14_newsletter', to: candidate.email })
+      if (result.ok) {
+        day14Sent++
+        await service.from('email_log').insert({
+          email: candidate.email,
+          template: 'day14_newsletter',
+          sent_at: new Date().toISOString(),
+          resend_id: result.id,
+        }).then(() => {}, () => {})
+      } else {
+        day14Errors++
+      }
+    }
+  }
+  results.day14_newsletter = { sent: day14Sent, errors: day14Errors }
+
+  // ── 1c. Dag-30-mail (nyhetsbrevsprenumeranter) — återengagemang ─────────
+  // Prenumererade 28–32 dagar sen
+  const thirtyTwoDaysAgo = new Date(today.getTime() - 32 * 24 * 60 * 60 * 1000).toISOString()
+  const twentyEightDaysAgo = new Date(today.getTime() - 28 * 24 * 60 * 60 * 1000).toISOString()
+
+  const { data: day30Raw } = await service
+    .from('email_subscribers')
+    .select('email, created_at')
+    .eq('confirmed', true)
+    .eq('unsubscribed', false)
+    .gte('created_at', thirtyTwoDaysAgo)
+    .lte('created_at', twentyEightDaysAgo)
+    .limit(500)
+
+  const day30Candidates = (day30Raw ?? []).filter(
+    (c): c is { email: string; created_at: string } => typeof c.email === 'string' && c.email.length > 0
+  )
+
+  let day30Sent = 0
+  let day30Errors = 0
+  if (day30Candidates.length > 0) {
+    const { data: alreadySentDay30 } = await service
+      .from('email_log')
+      .select('email')
+      .eq('template', 'day30_newsletter')
+      .in('email', day30Candidates.map(c => c.email))
+    const sentDay30 = new Set((alreadySentDay30 ?? []).map(r => r.email as string))
+
+    for (const candidate of day30Candidates) {
+      if (sentDay30.has(candidate.email)) continue
+      const result = await sendEmail({ template: 'day30_newsletter', to: candidate.email })
+      if (result.ok) {
+        day30Sent++
+        await service.from('email_log').insert({
+          email: candidate.email,
+          template: 'day30_newsletter',
+          sent_at: new Date().toISOString(),
+          resend_id: result.id,
+        }).then(() => {}, () => {})
+      } else {
+        day30Errors++
+      }
+    }
+  }
+  results.day30_newsletter = { sent: day30Sent, errors: day30Errors }
+
   // ── 2. Dag-7-mail ───────────────────────────────────────────────────────
   // users skapade 6–8 dagar sen + email_subscribers bekräftade 6–8 dagar sen
   const eightDaysAgo = new Date(today.getTime() - 8 * 24 * 60 * 60 * 1000).toISOString()
