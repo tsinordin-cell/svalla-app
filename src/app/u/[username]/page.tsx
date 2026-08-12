@@ -77,6 +77,14 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
  const { username: rawUsername } = await params
  const username = decodeURIComponent(rawUsername)
 
+ // SOFT-404-SKYDD (2026-08-12): metadata gjorde inget uppslag alls, så okända
+ // användare fick 200 med 404-innehåll — loading.tsx streamar svaret och
+ // sidkroppens notFound() hinner aldrig påverka statusen. Uppslaget här är
+ // billigt (PK-index på username) och är enda stället som kan ge riktig 404.
+ const { data: exists } = await createPublicSupabaseClient()
+   .from('users').select('id').eq('username', username).maybeSingle()
+ if (!exists) notFound()
+
  return {
  title: `${username}`,
  description: `Se ${username}s seglarturer på Svalla.`,

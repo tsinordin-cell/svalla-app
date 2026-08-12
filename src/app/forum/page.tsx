@@ -25,7 +25,7 @@ const PINNED_ISLANDS = [
 ]
 
 export default async function ForumPage() {
- const categories = await getForumCategories()
+ const categories = await getForumCategories(true)
  const pinnedIslands = PINNED_ISLANDS
    .map(slug => ALL_ISLANDS.find(i => i.slug === slug))
    .filter(Boolean)

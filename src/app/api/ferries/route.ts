@@ -9,7 +9,8 @@ import { SEED_FERRY_ROUTES, fetchDepartures } from '@/lib/ferries'
  * GET /api/ferries?route=wxb-vaxholm
  *   → returnerar avgångar för en specifik rutt
  *
- * Cachas 60 sek i fetchLiveDepartures via next.revalidate.
+ * CDN-cachas 60 s (public + s-maxage — 'private' hade gjort s-maxage
+ * verkningslös, se CLAUDE.md p19). Upstream-fetchen cachas också 60 s.
  */
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
@@ -27,7 +28,7 @@ export async function GET(req: Request) {
       departures,
       source: departures[0]?.source ?? 'seed',
       updatedAt: new Date().toISOString(),
-    })
+    }, { headers: { 'Cache-Control': 'public, max-age=0, s-maxage=60, stale-while-revalidate=300' } })
   }
 
   const withDeps = await Promise.all(
@@ -42,5 +43,5 @@ export async function GET(req: Request) {
     routes: withDeps,
     source: anyLive ? 'mixed' : 'seed',
     updatedAt: new Date().toISOString(),
-  })
+  }, { headers: { 'Cache-Control': 'public, max-age=0, s-maxage=60, stale-while-revalidate=300' } })
 }
