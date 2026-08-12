@@ -19,6 +19,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
     monthIndex: 6,
     tagline: 'Skärgårdens uppvaknande — midsommar, ljusnätter och allt öppnar.',
     intro: 'Juni är månaden när skärgården vaknar. Restauranger, gästhamnar, kajakuthyrningar och naturreservat öppnar nästan samtidigt under de första veckorna. Vattnet är fortfarande lite kallt för bad men solen skiner länge, ljuset är fantastiskt och folkmassan har ännu inte anlänt. Midsommar är junihöjdpunkten och firas på ett tiotal öar med dans, mat och stockholmskt gäng.',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     weather: 'Medeltemperatur 16–21°C. Vattnet 14–17°C mot slutet av månaden. Långa dagar med solnedgång runt 22:00. Ibland regn men oftare sol. Myggen börjar mot slutet av juni.',
     openIslands: ['sandhamn', 'uto', 'grinda', 'moja', 'vaxholm', 'fjaderholmarna', 'finnhamn', 'ljustero', 'orno', 'dalaro', 'arholma', 'furusund'],
     activities: [
@@ -71,6 +72,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
     monthIndex: 8,
     tagline: 'Sensommaren och sista chansen — varmt, folkfyllt och fortfarande magiskt.',
     intro: 'Augusti är sommaren på upploppet. Vattnet är fortfarande varmt, alla krogar håller öppet, och det finns en underbar känsla av att ta vara på sista solstunderna. Mot slutet av månaden börjar turisttrycket lätta och priserna sjunker lite. En av sommarsäsongens bästa perioder är faktiskt de sista veckorna i augusti.',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     weather: 'Medeltemperatur 18–23°C. Vattnet 18–21°C i början, 16–18°C mot slutet. Risk för åskoväder. Dagarna börjar bli kortare — solnedgång runt 20:30 i slutet av månaden.',
     openIslands: ['sandhamn', 'uto', 'grinda', 'moja', 'vaxholm', 'fjaderholmarna', 'finnhamn', 'ljustero', 'orno', 'dalaro', 'arholma', 'furusund', 'svartso', 'runmaro', 'namdo', 'nattaro', 'gallno', 'ingmarso'],
     activities: [
@@ -147,6 +149,7 @@ export const SEASON_GUIDES: SeasonGuide[] = [
     monthIndex: 11,
     tagline: 'Vinter i skärgården — för den som vill ha den helt för sig själv.',
     intro: 'November är inte för alla — och det är precis vad som gör det speciellt. En dag i november-skärgården är en upplevelse som få turister känner till. Vaxholm med sin historia, Utö med sin havsbastu och Fjäderholmarna med sin rökeriet håller öppet. Resten av skärgården är ditt.',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     weather: 'Medeltemperatur 3–7°C. Mörkt tidigt — solnedgång runt 15:30. Möjlighet till frost och is mot slutet av månaden. Regn och blåst är vanligt.',
     openIslands: ['vaxholm', 'uto', 'fjaderholmarna'],
     activities: [

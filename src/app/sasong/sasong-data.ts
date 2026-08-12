@@ -73,6 +73,7 @@ export const SEASONS: Season[] = [
     tagline: 'Skärgårdens högsäsong — bad, segling, krogliv och solnedgångar.',
     intro: [
       'Sommaren är skärgårdens hjärta. Alla restauranger, hamnar, butiker och attraktioner är öppna. Färjor går med högsta frekvens, dagsturer från Stockholm täcker större delen av Stockholms skärgård och Bohusläns kustsamhällen är fulla av semesterfirare.',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       'Vattentemperaturen kryper upp över 18 °C i juli — bra för bad i klippvik eller på sandstrand. Solnedgången sker sent (efter 22:00 i juli) vilket ger långa kvällar på bryggan eller i naturhamnar.',
       'Nackdelen: trängsel. Sandhamn, Grinda, Smögen och Marstrand kan vara överfulla i juli. För dem som vill ha lugn — välj en yttre eller mindre känd ö, eller besök i juni eller sena augusti.',
     ],
@@ -118,6 +119,7 @@ export const SEASONS: Season[] = [
       { title: 'Kolla att stället är öppet', text: 'Många restauranger och boenden stänger i september eller oktober. Ring eller maila innan du åker.' },
       { title: 'Klä dig varmare än du tror', text: 'Vinden över öppet vatten är kallare än på fastlandet. Lägg på ett extra lager.' },
       { title: 'Svampplockning i september', text: 'Björk- och granskog på öar som Möja, Svartsö och Nämdö har bra svampställen. Allemansrätten gäller.' },
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       { title: 'Mörkare kvällar', text: 'Solen går ner före 18:00 i oktober — planera dagen så du är hemma innan det blir mörkt.' },
     ],
     seasonKeywords: ['höst', 'september', 'oktober', 'november', 'helår', 'året om', 'året runt'],

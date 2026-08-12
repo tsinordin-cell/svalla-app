@@ -74,6 +74,7 @@ export const UPPLÄGG: DagUpplägg[] = [
     slug: 'moja',
     name: 'Möja',
     tagline: 'Bilfri ö med äkta skärgårdsstämning',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     desc: 'Möja Värdshus & Bageri, Roland Svensson-museet och inga bilar — en av de mest autentiska öarna i Stockholms skärgård. Nybakt bröd från 7:00 och mat med utsikt. Passa på att fika vid bryggan i Berg.',
     tags: ['Par', 'Lugnt', 'Heldag'],
     duration: '7–9 timmar',

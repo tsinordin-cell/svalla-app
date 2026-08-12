@@ -95,6 +95,7 @@ export default function DagsturerPage() {
  {
  '@type': 'Question',
  name: 'Vad kostar dagstur till skärgården från Stockholm?',
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbåten kostar 50–150 kr per resa beroende på destination. Sammantaget kan en dagstur för två kosta från 300 kr (bara färja + eget kaffe) till 1 000+ kr (båt och restaurang).' },
  },
  ],

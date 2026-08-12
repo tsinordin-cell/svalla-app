@@ -776,6 +776,7 @@ const LANDING_HTML = `
  <div class="trust-divider"></div>
  <div class="trust-item"><strong>Ingen båt krävs</strong> Kollektivt ända ut</div>
  <div class="trust-divider"></div>
+ <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
  <div class="trust-item"><strong>0 kr</strong> Att komma igång</div>
 </div>
 
@@ -1200,6 +1201,7 @@ const LANDING_HTML = `
    </div>
    <div class="thorkel-msg ai">
     <img src="/thorkel-avatar.svg" alt="Thorkel" class="thorkel-av-img" />
+    <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
     <div class="thorkel-bubble">Perfekt val: <b>Grinda</b>. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20. Vill du att jag bokar bordet?</div>
    </div>
    <div class="thorkel-msg user">
@@ -1366,6 +1368,7 @@ const LANDING_HTML = `
  <div class="stat-box reveal"><span class="stat-num" data-stat="places">200+</span><div class="stat-label">Platser &amp; krogar</div><div class="stat-sub">Kartlagda i Stockholms skärgård + Bohuslän</div></div>
  <div class="stat-box reveal reveal-delay-1"><span class="stat-num" data-stat="islands">${ISLANDS.length}</span><div class="stat-label">Öar med guider</div><div class="stat-sub">Kartor, krogar och upplevelser per ö</div></div>
  <div class="stat-box reveal reveal-delay-2"><img src="/thorkel-avatar.svg" alt="Thorkel" style="width:72px;height:72px;border-radius:50%;display:block;margin:0 auto 10px;box-shadow:0 0 0 3px rgba(244,176,106,0.4),0 4px 16px rgba(0,0,0,0.25);" /><div class="stat-label">Ruttplaneraren Thorkel</div><div class="stat-sub">Berätta vad du vill — AI:n fixar stoppen</div></div>
+ <!-- PRODUKTREGEL: vårt eget pris (gratis att komma igång) — vi är källan. -->
  <div class="stat-box reveal reveal-delay-3"><span class="stat-num">0 kr</span><div class="stat-label">Att komma igång</div><div class="stat-sub">Grundfunktioner gratis för alltid</div></div>
  </div>
  </div>
@@ -1436,7 +1439,7 @@ const LANDING_HTML = `
     {"@type":"Question","name":"Kan man tälta i skärgården?","acceptedAnswer":{"@type":"Answer","text":"Ja — allemansrätten ger rätt att tälta i naturen i upp till 1–2 nätter. Håll minst 150 meter avstånd från närmaste bostad."}},
     {"@type":"Question","name":"Vad är det bästa alternativet till Sandhamn?","acceptedAnswer":{"@type":"Answer","text":"Grinda är det populäraste alternativet — kortare båttid, lika vacker och utan turisttrycket. Utö i söder är perfekt för mer natur och cykling."}},
     {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September–oktober är bäst för vandrare — höstfärger och inga köer."}},
-    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Båtbiljetten kostar ca 175–220 kr enkel resa. En hel dag med lunch kostar ca 600–800 kr per vuxen."}}
+    {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet — se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
   ]
 }
 </script>

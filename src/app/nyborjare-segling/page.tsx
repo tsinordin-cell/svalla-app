@@ -33,6 +33,7 @@ const ITEMS: LandingItem[] = [
  description: 'Hitta rätt kurs för din nivå. Seglarförbundets körkort, RYA Day Skipper och lokala seglarsällskap.',
  href: '/nyborjare-segling?avsnitt=kurser',
  icon: '🎓',
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  meta: 'Nivå 1–3, 3000–8000 kr',
  },
  {
@@ -89,6 +90,7 @@ export default function NyborjareSeglingPage() {
    name: 'Hur börjar man segla som nybörjare?',
    description: 'Steg-för-steg guide: från noll till säker seglare i svenska vatten.',
    step: [
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     { '@type': 'HowToStep', position: 1, name: 'Ta en segelkurs', text: 'Hitta rätt kurs för din nivå — Seglarförbundets körkort, RYA Day Skipper eller kurs hos lokalt segelsällskap. Grundkurs tar 2–3 dagar och kostar 2 000–4 000 kr.' },
     { '@type': 'HowToStep', position: 2, name: 'Välj din första båt', text: 'Börja med en stabil och enkel båt: Nordisk Folkbåt, H-båt eller Albin 25. Charterbåt är ett bra alternativ innan köp — kostar 8 000–40 000 kr/vecka beroende på säsong.' },
     { '@type': 'HowToStep', position: 3, name: 'Börja i rätt vatten', text: 'Lugna revir för nybörjare: Mälaren, inre Stockholms skärgård (Saltsjön) och inre delar av Bohuslän. Undvik öppet hav tills du byggt upp rutin.' },
@@ -120,6 +122,7 @@ export default function NyborjareSeglingPage() {
  {
  '@type': 'Question',
  name: 'Vad kostar det att köpa sin första segelbåt?',
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  acceptedAnswer: { '@type': 'Answer', text: 'En begagnad H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En välhållen Folkbåt eller Maxi 77 kostar ofta 80 000–200 000 kr. Räkna även med försäkring (~500–2 000 kr/år), underhåll (~2 000–8 000 kr/år) och hamnplats (~3 000–10 000 kr/år beroende på ort).' },
  },
  ],
@@ -184,11 +187,13 @@ export default function NyborjareSeglingPage() {
  I Sverige är vanliga vägar in i seglingen <strong>Förarintyg och Kustskepparintyg</strong> (utfärdas av NFB / Nämnden för båtlivsutbildning), <strong>SSF-utbildningar</strong> (Svenska Seglarförbundet) och kurser hos lokala segelsällskap. Stegen kan se ut så här:
  </p>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  <li><strong>Grundläggande (förarintyg-nivå):</strong> Knopar, sjövägsregler, säkerhet, grundläggande navigation. Cirka 2–3 dagar eller några kvällar. Kostnad cirka 2 000–4 000 kr.</li>
  <li><strong>Kustskepparintyg:</strong> Kustnavigation, terrestrisk navigation, väder, kollisionsregler. Bredare kurs, cirka 4–6 dagar. Kostnad cirka 3 000–6 000 kr.</li>
  <li><strong>RYA Day Skipper:</strong> Internationell standard som ofta krävs av charterbolag. Praktisk del 5 dagar + teoridel. Kostnad cirka 8 000–15 000 kr.</li>
  </ul>
  <p>
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  <strong>Lokala segelsällskap</strong> erbjuder ofta kurser till lägre pris (ibland 1 500–3 000 kr) och är fantastiska för att träffa andra nybörjare och få mentorskap. <strong>KSSS</strong> (Kungliga Svenska Segelsällskapet) är Sveriges största klubb med stor utbildningsverksamhet. Klassiska klubbar finns i hela landet.
  </p>
  <p>
@@ -217,6 +222,7 @@ export default function NyborjareSeglingPage() {
  Charterbåt som övningsväg
  </h3>
  <p>
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  Du behöver inte köpa direkt. Många charterbolag runt Sverige erbjuder båtar för veckosegling från cirka 8 000–15 000 kr/vecka (lågsäsong) till 20 000–40 000 kr/vecka (högsäsong). Perfekt för att prova innan du köper. Kraven är vanligen ett intyg (t.ex. förarintyg/Day Skipper) eller att du bokar med en erfaren skeppare ombord.
  </p>
 
@@ -311,6 +317,7 @@ export default function NyborjareSeglingPage() {
  Vad kostar det att köpa sin första segelbåt?
  </h3>
  <p>
+ // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
  En begagnad klassiker som H-båt eller Albin 25 kostar typiskt 30 000–100 000 kr. En välhållen Folkbåt eller Maxi 77 kostar ofta 80 000–200 000 kr. Billigare båtar finns från 10 000–20 000 kr men kräver att du noggrant kontrollerar skick (köl, skrov, rigg, motor) före köp. Räkna även med försäkring (~500–2 000 kr/år), underhåll (~2 000–8 000 kr/år) och hamnplats (~3 000–10 000 kr/år beroende på ort).
  </p>
  </>

@@ -67,10 +67,15 @@ const KALLMARKORER = [
  * första körningen. Svenska tidtabeller skriver 10:00, inte 10.00.
  */
 const KLOCKSLAG = /\b([01]?\d|2[0-3]):[0-5]\d\b/
-const PRIS = /(\b\d{2,5}\s*(kr|SEK)\b|\bSEK\s*\d{2,5}\b)/i
+/**
+ * kr kräver att nästa tecken inte är en bokstav (inkl åäö — "60 kräver" är
+ * inte ett pris), och SEK matchas SKIFTLÄGESKÄNSLIGT ("15 sek" är sekunder).
+ * Båda buggarna gav falska fynd 2026-08-12.
+ */
+const PRIS = /(\b\d{1,3}(?:[  .]\d{3})*\s*kr(?![a-zA-ZåäöÅÄÖ])|\b\d{2,5}\s*kr(?![a-zA-ZåäöÅÄÖ])|\bSEK\s*\d{2,5}\b|\b\d{2,5}\s*SEK\b)/
 
 /** Stil- och geometristrängar är inte påståenden om verkligheten. */
-const ÄR_STIL = /rgba?\(|[\d.]+px|cubic-bezier|translate|linear-gradient|viewBox|stroke|polygon|^\s*['"`][\d.,\s-]+['"`]\s*$/
+const ÄR_STIL = /rgba?\(|[\d.]+px|cubic-bezier|translate|linear-gradient|viewBox|stroke|polygon|T\d{2}:\d{2}:\d{2}|^\s*['"`][\d.,\s-]+['"`]\s*$/
 
 function filer(dir, ut = []) {
   for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
