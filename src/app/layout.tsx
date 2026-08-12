@@ -94,6 +94,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="sv" suppressHydrationWarning className={playfair.variable}>
       <head>
+        {/* Sätt data-theme FÖRE första målningen. ThemeProvider gör samma sak
+            i en useEffect, men den kör först efter hydrering — på tunga sidor
+            (t.ex. /team) hann sidan visas LJUS i flera sekunder innan mörkt
+            läge slog till. Rapporterat av Tom 2026-08-11 med skärmdump.
+            Logiken MÅSTE spegla resolvedTheme() i ThemeProvider.tsx: läs
+            'svalla-theme' ur localStorage; 'auto' = mörkt 20:00–05:59.
+            Blockerande med flit — ett async-script hade inte hindrat blixten. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('svalla-theme')||'auto';var h=new Date().getHours();var d=t==='dark'||(t==='auto'&&(h>=20||h<6));document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){}",
+          }}
+        />
         {/* Preconnect to Supabase — reduces connection latency for API + image CDN */}
         <link rel="preconnect" href="https://oiklttwylndesewauytj.supabase.co" />
         <link rel="dns-prefetch" href="https://oiklttwylndesewauytj.supabase.co" />
