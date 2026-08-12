@@ -4,7 +4,7 @@
  * Beräknar en fullkvalitets sjöledsrutt (precomputed → grid-A* → waypoint-Dijkstra).
  * Kallas från klienten asynkront — aldrig från SSR.
  *
- * Timeout: 300 s (Vercel Pro maxDuration). Grid-A* kan ta 30-120 s för stora
+ * Timeout: 150 s. Grid-A* kan ta 30-120 s för stora
  * bounding boxes (80 000 noder × 500 polygon-checks via turf.js).
  *
  * Caching — två nivåer:
@@ -14,7 +14,10 @@
  */
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 300 // sekunder — Vercel Pro
+export const maxDuration = 150 // sekunder. Sänkt från 300 2026-08-12:
+// uppmätt värsta fall för grid-A* är 120 s, och varje sekund en funktion
+// kör räknas mot Fluid-minnesposten på fakturan ($41 av $94 i juli–aug).
+// 150 täcker det uppmätta med marginal men halverar taket för skenande anrop.
 
 import { NextRequest, NextResponse } from 'next/server'
 import { DEPARTURES, requiresLock, isLandlocked } from '@/lib/planner-client'
