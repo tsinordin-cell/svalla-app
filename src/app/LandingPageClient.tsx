@@ -1326,7 +1326,8 @@ const LANDING_HTML = `
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
-    <div class="faq-a"><div class="faq-a-inner">Båtbiljetten med Strömma kostar ca 175–220 kr enkel resa (barn halv pris). Returbiljett ca 300 kr. Lunch på krogen kostar 200–350 kr per person. En hel dag med lunch och ett glas kostar alltså ca 600–800 kr per vuxen. Alternativt: ta SL-buss 80 till Lidingö och fika billigare på ön.</div></div>
+    <!-- KÄLLA: operatörernas namn och avgångsplatser verifierade 2026-08-12. Priserna borttagna — Strömmas sida är en JS-app som inte gick att avläsa, och tredjepartssiffror duger inte. Tidigare påstods 175–220 kr ENKEL; tredjepartskällor anger ~185 kr TUR OCH RETUR, så vårt påstående var sannolikt dubbelt för dyrt. Det gamla rådet "ta SL-buss 80 till Lidingö och fika billigare på ön" var nonsens — Fjäderholmarna nås inte via Lidingö. -->
+<div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Nybrokajen och Fjäderholmslinjen från Slussen — se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
    </div>
    <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
