@@ -114,6 +114,7 @@ export function packingForSeason(month: number): string[] {
       'Ordentliga vinterkängor + termobyxor',
       'Mössa + halsduk + vantar (det blåser ute på sjön)',
       'Termoflaska med varmt',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       'Stark ficklampa — det blir mörkt 15:30',
       'Reservbatteri till mobilen (kyla tar batteri)',
       'Boka boende inomhus — inte alla öar har vinteröppet',

@@ -635,6 +635,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       peak: 'Juli–Augusti',
       best: 'Juni eller September',
       bestReason: 'Kungshamn är det prisvärda alternativet till Smögen. Juni ger tomma gästhamnsplatser och räkfångsten är igång. September: räkorna är som fetast och boendet kostar hälften mot högsäsongen.',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       warning: 'Räkfisken landas tidiga morgnar — vill du köpa direkt från båten, kom dit före 08:00. Gästhamnen är fullbelagd i juli utan förbokning.',
       months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
     },
@@ -913,6 +914,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],
     insiderTips: [
       'Salt & Sill är populärt — men hamnkrogen bredvid ger liknande råvaror till halva priset om du vill ha räkor och utsikt utan restaurangkön.',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       'Boka hav­sastu tidigt på morgonen (öppnar 07:00) — du har hela Västerhavet för dig själv och inga andra gäster.',
     ],
     dog_friendly: true,

@@ -39,7 +39,6 @@ export type IslandRestaurant = {
   bookingUrl?: string
   /** URL till hemsida — visas som "Hemsida →" om bookingUrl saknas */
   websiteUrl?: string
-  price_example?: string
   open_season?: string
   open_hours?: string
   book_required?: boolean
@@ -57,13 +56,6 @@ export type IslandBeach = {
   depth?: string
   directions?: string
   insider_tip?: string
-}
-
-export type IslandDayCost = {
-  budget_per_person: string
-  includes: string
-  breakdown: { item: string; price: string }[]
-  tips: string[]
 }
 
 export type Island = {
@@ -84,7 +76,6 @@ export type Island = {
   getting_there: IslandTransport[]
   harbors: IslandHarbor[]
   restaurants: IslandRestaurant[]
-  day_cost?: IslandDayCost
   tips: string[]
   related: string[]
   tags: string[]
@@ -1152,27 +1143,10 @@ export const ISLANDS: Island[] = [
       { name: 'Linanäsbryggan', desc: 'Naturskönt läge, populärt ankare.', fuel: false },
     ],
     restaurants: [
-      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Lunch 195–265 kr, räkor och skaldjur 245–345 kr', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      { name: 'Klintan Sjöstation', type: 'Service/Café', desc: 'Bränsle, kaffe och enkla tilltugg.', slug: 'klintan-sjostation', price_example: 'Kaffe 45–55 kr, smörgås 75–95 kr', open_season: 'Maj–September', open_hours: '08–19' },
-      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra.', slug: 'pizzeria-ljustero', price_example: 'Pizza 105–155 kr, pasta 115–145 kr', open_season: 'Helår', open_hours: 'Mån–Sön 11–21' },
+      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', open_season: 'Juni–Augusti', open_hours: '11–21' },
+      { name: 'Klintan Sjöstation', type: 'Service/Café', desc: 'Bränsle, kaffe och enkla tilltugg.', slug: 'klintan-sjostation', open_season: 'Maj–September', open_hours: '08–19' },
+      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra.', slug: 'pizzeria-ljustero', open_season: 'Helår', open_hours: 'Mån–Sön 11–21' },
     ],
-    day_cost: {
-      budget_per_person: '250–550 kr',
-      includes: 'Avgiftsfri bilfärja, cykeltur, lunch eller pizza, kaffe vid Klintan',
-      breakdown: [
-        { item: 'Buss 621 från Danderyds sjukhus (SL-kort)', price: '0 kr' },
-        { item: 'Bilfärja Östanå–Ljusterö (avgiftsfri)', price: '0 kr' },
-        { item: 'Lunch Linanäsbryggan', price: '195–265 kr' },
-        { item: 'Alternativ: Pizza Ljusterö', price: '105–155 kr' },
-        { item: 'Kaffe + bulle Klintan', price: '55–70 kr' },
-        { item: 'Cykeluthyrning', price: '80–120 kr' },
-      ],
-      tips: [
-        'Ljusterö är en av de billigaste öarna att nå — avgiftsfri bilfärja och SL-buss.',
-        'Hyr cykel direkt vid färjeläget och kör norrut mot Linanäs (ca 15 km).',
-        'Pizzerian är öppen helår — bra val för besök utanför turistsäsongen.',
-      ],
-    },
     tips: [
       'Hyr cykel vid färjeläget och kör norrut längs kusten mot Linanäs.',
       'Klintan är ett utmärkt bränslestopp på väg mot norra skärgården.',
@@ -1445,25 +1419,9 @@ export const ISLANDS: Island[] = [
       { name: 'Kyrkviken', desc: 'Öns huvudhamn med krog och enkla tjänster.', spots: 30, fuel: false },
     ],
     restaurants: [
-      { name: 'Kyrkviken Bar & Bistro', type: 'Restaurang', desc: 'Öns samlingsplats. Husmanskost och sommarstämning.', slug: 'kyrkviken-bar-bistro', price_example: 'Lunch 165–225 kr, öl/vin 85–115 kr', open_season: 'Juni–Augusti', open_hours: '11–22', book_required: false },
-      { name: 'Ornö Brödbod o Deli', type: 'Deli', desc: 'Bröd, lokalproducerat och enkel mat.', price_example: 'Bröd 45–75 kr, smörgås 85–115 kr, kaffe 45 kr', open_season: 'Juni–Augusti', open_hours: '08–14' },
+      { name: 'Kyrkviken Bar & Bistro', type: 'Restaurang', desc: 'Öns samlingsplats. Husmanskost och sommarstämning.', slug: 'kyrkviken-bar-bistro', open_season: 'Juni–Augusti', open_hours: '11–22', book_required: false },
+      { name: 'Ornö Brödbod o Deli', type: 'Deli', desc: 'Bröd, lokalproducerat och enkel mat.', open_season: 'Juni–Augusti', open_hours: '08–14' },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Bilfärja från Dalarö, lunch på Kyrkviken, frukost från Brödboden',
-      breakdown: [
-        { item: 'Pendeltåg + buss till Dalarö', price: '~50 kr (SL)' },
-        { item: 'Ornö Sjötrafik bilfärja t/r (passagerare)', price: '~120 kr' },
-        { item: 'Lunch Kyrkviken Bar & Bistro', price: '165–225 kr' },
-        { item: 'Frukost Brödboden (bröd + kaffe)', price: '65–85 kr' },
-        { item: 'Proviant medhavt', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ornö Sjötrafik tar bil — kom med cykel och utforska öns vägar.',
-        'Brödboden öppnar tidigt — perfekt frukost före vandringen i naturreservatet.',
-        'Kombinera Ornö med Utö (tar båt mellan öarna) för ett naturupplevelse-fokuserat veckoslut.',
-      ],
-    },
     tips: [
       'Vandringen i naturreservatet i öns centrala del är bättre än man förväntar sig.',
       'Ta med matkasse — utbudet av restauranger är begränsat.',
@@ -1545,25 +1503,9 @@ export const ISLANDS: Island[] = [
       { name: 'Landsort Hamn', desc: 'Liten hamn på öns norra sida. Begränsat antal platser.', spots: 20, fuel: false },
     ],
     restaurants: [
-      { name: 'Saltboden Kök & Proviant', type: 'Handel/Restaurang', desc: 'Öns enda matplats. Enkel mat och proviant.', slug: 'saltboden-kok-proviant', price_example: 'Lunch 145–185 kr, smörgås 85–115 kr', open_season: 'Juni–Augusti', open_hours: '10–16' },
-      { name: 'Landsort Hamncafé', type: 'Café', desc: 'Kaffe och smörgåsar vid hamnen.', price_example: 'Kaffe 45–55 kr, smörgås 75–95 kr', open_season: 'Juni–Augusti', open_hours: '09–15' },
+      { name: 'Saltboden Kök & Proviant', type: 'Handel/Restaurang', desc: 'Öns enda matplats. Enkel mat och proviant.', slug: 'saltboden-kok-proviant', open_season: 'Juni–Augusti', open_hours: '10–16' },
+      { name: 'Landsort Hamncafé', type: 'Café', desc: 'Kaffe och smörgåsar vid hamnen.', open_season: 'Juni–Augusti', open_hours: '09–15' },
     ],
-    day_cost: {
-      budget_per_person: '400–750 kr',
-      includes: 'Buss + båt från Nynäshamn, lunch på Saltboden, ev. fyrtursguide',
-      breakdown: [
-        { item: 'SL-pendeltåg till Nynäshamn + buss 852', price: '~50–80 kr' },
-        { item: 'Skärgårdsbåt Ankarudden–Landsort t/r', price: '~160 kr' },
-        { item: 'Lunch Saltboden', price: '145–185 kr' },
-        { item: 'Kaffe + smörgås Hamncafé', price: '85–115 kr' },
-        { item: 'Guidad fyrturstur (om tillgänglig)', price: '0–100 kr' },
-      ],
-      tips: [
-        'Landsort är en av de dyrare dagstursöarna p.g.a. lång restid — planera en heldag.',
-        'Ta med matsäck som backup — Saltboden stänger tidigt (kl 16).',
-        'Fågelstationen är gratis och ger en unik upplevelse under sträcktider.',
-      ],
-    },
     tips: [
       'Kolla väderprognosen NOGGRANT — Landsort är exponerat för öppet hav.',
       'Fågelstationen vid fyren är en unik upplevelse under sträcktider (april-maj och aug-okt).',
@@ -1627,24 +1569,8 @@ export const ISLANDS: Island[] = [
       { name: 'Furusund Hamn', desc: 'Välplacerad hamn vid sundet. Bränsle och service.', spots: 40, fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
-      { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.', slug: 'furusund-vardshus', price_example: 'Lunch 145–195 kr, middag 225–345 kr', open_season: 'Maj–Oktober', open_hours: 'Lunch 12–15, middag 17–22', book_required: true, phone: '0176-208 90', child_menu: true },
+      { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.', slug: 'furusund-vardshus', open_season: 'Maj–Oktober', open_hours: 'Lunch 12–15, middag 17–22', book_required: true, phone: '0176-208 90', child_menu: true },
     ],
-    day_cost: {
-      budget_per_person: '450–800 kr',
-      includes: 'Bil/buss till Furusund, lunch + middag på Värdshuset, parkering',
-      breakdown: [
-        { item: 'Bil från Stockholm (bensin/parkeringsbidrag)', price: '~150–200 kr' },
-        { item: 'Alternativ: Waxholmsbåt t/r', price: '~280 kr' },
-        { item: 'Lunch Furusund Värdshus', price: '145–195 kr' },
-        { item: 'Middag Furusund Värdshus', price: '225–345 kr' },
-        { item: 'Kaffe + dryck', price: '60–100 kr' },
-      ],
-      tips: [
-        'Boka bord på Värdshuset i förväg — högsäsong är ofta fullbokat.',
-        'Kom med bil (2 h från Stockholm) och spara ner restiden jämfört med Waxholmsbåt (4 h).',
-        'Strömmen i sundet gör att seglare ofta stannar kvällen — Värdshuset är bäst som middagsplats.',
-      ],
-    },
     tips: [
       'Strömmen i Furusund kan vara stark — gå igenom med god marginal och håll noggrann uppsikt på trafik (smal led).',
       'Värdshuset är bäst för middag — boka i förväg under högsäsong.',
@@ -1695,24 +1621,9 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Blidö Brygga', desc: 'Enkel gästbrygga vid bistron.', fuel: false }],
     restaurants: [
-      { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Öns samlingspunkt vid bryggan.', slug: 'blido-brygga-bistro', price_example: 'Lunch 145–215 kr, räkor och skaldjur 225–295 kr', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      { name: 'Blidö Värdshus', type: 'Restaurang', desc: 'Klassiskt värdshus på ön.', price_example: 'Lunch 145–185 kr, middag 195–285 kr', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true },
+      { name: 'Blidö Brygga & Bistro', type: 'Restaurang', desc: 'Öns samlingspunkt vid bryggan.', slug: 'blido-brygga-bistro', open_season: 'Juni–Augusti', open_hours: '11–21' },
+      { name: 'Blidö Värdshus', type: 'Restaurang', desc: 'Klassiskt värdshus på ön.', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Waxholmsbåt t/r (norra linjen), lunch på Brygga & Bistro, cykeltur',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen', price: '~260 kr' },
-        { item: 'Lunch Blidö Brygga & Bistro', price: '145–215 kr' },
-        { item: 'Kaffe + fika', price: '55–70 kr' },
-        { item: 'Cykeluthyrning', price: '80–120 kr' },
-      ],
-      tips: [
-        'Blidö är ett bra alternativ till de mer besökta norraskärgårdsöarna — färre turister, samma natur.',
-        'Värdshuset kräver förbokning i högsäsong — ring i förväg.',
-        'Hyr cykel och kombinera Blidö med Furusund eller Arholma på samma dag.',
-      ],
-    },
     tips: [
       'Blidö passar bäst som del av en längre norra skärgårdstur — kombinera gärna med Arholma eller Räfsnäs.',
       'Hyr cykel vid Blidö brygga för att utforska hela ön — vägarna är nästan bilfria och landskapet varierar från skog till kust.',
@@ -1763,24 +1674,9 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Waxholmsbåt', from: 'Stavsnäs', time: '2 h', desc: 'Linje via Möja och Nämdö.', icon: '⛴' }],
     harbors: [{ name: 'Gällnö Hamn', desc: 'Liten naturhamn.', fuel: false }],
     restaurants: [
-      { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar', price_example: 'Öl 65–85 kr, vin 85–115 kr, enkel mat 95–135 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–22' },
+      { name: 'Gällnö Bar', type: 'Bar', desc: 'Enkel bar vid hamnen.', slug: 'gallno-bar', open_season: 'Juni–Mitten av Augusti', open_hours: '12–22' },
       { name: 'Gällnö Handelsbod', type: 'Handel', desc: 'Proviant och enkla drycker.', open_season: 'Juni–Augusti', open_hours: '09–17' },
     ],
-    day_cost: {
-      budget_per_person: '350–600 kr',
-      includes: 'Waxholmsbåt t/r från Stavsnäs, dryck på baren, medhavd matsäck',
-      breakdown: [
-        { item: 'Pendeltåg + buss till Stavsnäs (SL)', price: '~50 kr' },
-        { item: 'Waxholmsbåt t/r Stavsnäs–Gällnö', price: '~160 kr' },
-        { item: 'Dryck på Gällnö Bar (2 öl)', price: '130–170 kr' },
-        { item: 'Medhavd matsäck (lunch + snacks)', price: '100–150 kr' },
-      ],
-      tips: [
-        'Gällnö är en av de öar där du MÅSTE ta med mat — baren serverar enkel mat men begränsat.',
-        'Havsörnen häckar i reservatets yttre delar — ta med kikare och gå ut tidigt på morgonen.',
-        'Utmärkt ankringsö på väg mot Möja — bra alternativ till mer trånga hamnar.',
-      ],
-    },
     tips: [
       'Ta med mat — restaurangutbudet är mycket begränsat. En enkel handelsbod finns vid hamnen men räkna inte med varm mat.',
       'Ljunghedarna blommar lila i sensommaren (slutet av juli–aug) — ett av de vackraste naturskådestunden på ön.',
@@ -1827,23 +1723,8 @@ export const ISLANDS: Island[] = [
     getting_there: [{ method: 'Waxholmsbåt', from: 'Norrtälje', time: '3 h', desc: 'Norra linjen.', icon: '⛴' }],
     harbors: [{ name: 'Norröra Hamn', desc: 'Liten hamn.', fuel: false }],
     restaurants: [
-      { name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.', price_example: 'Lunch 125–165 kr, enkel middag 155–215 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–19', book_required: false },
+      { name: 'Norröra Krog', type: 'Restaurang', desc: 'Öns lilla krog.', open_season: 'Juni–Mitten av Augusti', open_hours: '12–19', book_required: false },
     ],
-    day_cost: {
-      budget_per_person: '450–750 kr',
-      includes: 'Waxholmsbåt t/r från Norrtälje (3 h enkel), lunch på krogen',
-      breakdown: [
-        { item: 'Buss från Stockholm till Norrtälje', price: '~50–80 kr (SL)' },
-        { item: 'Waxholmsbåt t/r Norrtälje–Norröra', price: '~180 kr' },
-        { item: 'Lunch Norröra Krog', price: '125–165 kr' },
-        { item: 'Medhavd matsäck (snacks + dryck)', price: '100–150 kr' },
-      ],
-      tips: [
-        'Norröra är ett Astrid Lindgren-pilgrimsmål — inspelningsplatserna för Saltkråkan är välbevarade.',
-        'Restiden är lång (3 h enkel) — planera en heldag eller övernattning.',
-        'Kombinera gärna med grannöarna Söderöra eller Fejan för ett längre norrskärgårdsäventyr.',
-      ],
-    },
     tips: [
       'Norröra är bäst kombinerat med en tur till Fejan eller Arholma för en längre norrskärgårdsdag.',
       'Inspelningsplatserna från "Vi på Saltkråkan" är utmärkta på ön — Saltkråkans hus och bryggan känns igen direkt om du vuxit upp med TV-serien.',
@@ -1914,23 +1795,8 @@ export const ISLANDS: Island[] = [
     ],
     harbors: [{ name: 'Nåttarö Naturhamn', desc: 'Skyddad naturhamn.', fuel: false }],
     restaurants: [
-      { name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.', price_example: 'Lunch 115–165 kr, kvällsmeny 155–225 kr', open_season: 'Juni–Mitten av Augusti', open_hours: '12–20', book_required: false },
+      { name: 'Nåttarö Krog', type: 'Restaurang', desc: 'Öns enda krog. Enkel husmanskost.', open_season: 'Juni–Mitten av Augusti', open_hours: '12–20', book_required: false },
     ],
-    day_cost: {
-      budget_per_person: '350–650 kr',
-      includes: 'Utö Express + buss från Nynäshamn, lunch på krogen, medhavd picknick',
-      breakdown: [
-        { item: 'Pendeltåg till Nynäshamn + buss', price: '~50–80 kr (SL)' },
-        { item: 'Utö Express (säsongsbar) t/r', price: '~160 kr' },
-        { item: 'Lunch Nåttarö Krog', price: '115–165 kr' },
-        { item: 'Medhavd picknick vid sandstranden', price: '50–100 kr' },
-      ],
-      tips: [
-        'Nåttarö är ett naturreservat — ta med allt du behöver, krogen är enda matplatsen.',
-        'Sandstranden vetter mot sydväst — bäst ljus och sol på eftermiddagen.',
-        'Utö Express kör bara juni–aug, kontrollera tidtabell i förväg.',
-      ],
-    },
     tips: [
       'Nåttarö nås bäst med egen båt — ingen reguljär Waxholmstrafik, men det är just det som gör ön lugn.',
       'Sandstranden på södra Nåttarö är en av de få riktiga sandstränderna i södra skärgården — sällsynt och värd resan.',
@@ -1995,25 +1861,10 @@ export const ISLANDS: Island[] = [
       { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn vid södra bryggan.', spots: 25, fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
-      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.', slug: 'ingmarso-krog', price_example: 'Dagens rätt 145–175 kr, kvällsmeny 195–265 kr', open_season: 'Juni–Augusti', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, child_menu: true },
-      { name: 'Ingmarsö Bageri', type: 'Bageri', desc: 'Nybakat bröd, fika och enkla bryggluncher.', price_example: 'Kaffe + bulle 65–75 kr, smörgås 85–115 kr', open_season: 'Maj–September', open_hours: '08–14' },
+      { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.', slug: 'ingmarso-krog', open_season: 'Juni–Augusti', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, child_menu: true },
+      { name: 'Ingmarsö Bageri', type: 'Bageri', desc: 'Nybakat bröd, fika och enkla bryggluncher.', open_season: 'Maj–September', open_hours: '08–14' },
       { name: 'Ingmarsö Lanthandel', type: 'Handel', desc: 'Dagligvaror — öppen året om.', open_season: 'Helår', open_hours: 'Vardagar 09–17, helg 10–15' },
     ],
-    day_cost: {
-      budget_per_person: '350–700 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, kaffe på bageriet, ev. proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen', price: '240 kr' },
-        { item: 'Lunch Ingmarsö Krog (dagens rätt)', price: '145–175 kr' },
-        { item: 'Kaffe + bulle Bageriet', price: '65–75 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Hyr cykel vid södra bryggan — spara tid och se mer av ön.',
-        'Lunch på krogen och frukost på bageriet är den naturliga kombinationen.',
-        'Kombination med Finnhamn (övernattning) gör att du får ut mer av resan.',
-      ],
-    },
     tips: [
       'Båtluffarleden mellan Ingmarsö och Finnhamn med roddbåt över sundet är ett klassiskt skärgårdsäventyr — ta hela dagen.',
       'Två bryggor — norra och södra — kontrollera tidtabellen för rätt brygga.',
@@ -2091,24 +1942,9 @@ export const ISLANDS: Island[] = [
       { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', spots: 20, fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.', price_example: 'Lunch 135–165 kr, enkel middag 175–225 kr', open_season: 'Juni–Augusti', open_hours: '12–20', book_required: false },
+      { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.', open_season: 'Juni–Augusti', open_hours: '12–20', book_required: false },
       { name: 'Nämdö Lanthandel', type: 'Handel', desc: 'Dagligvaror och proviant.', open_season: 'Maj–September', open_hours: '09–17' },
     ],
-    day_cost: {
-      budget_per_person: '300–600 kr',
-      includes: 'Båtbiljett t/r från Stavsnäs (ingår i SL), lunch på krogen, proviant',
-      breakdown: [
-        { item: 'SL-pendeltåg + buss till Stavsnäs', price: '~50 kr' },
-        { item: 'Waxholmsbåt t/r (med SL-kort)', price: '0 kr' },
-        { item: 'Lunch Nämdö Krog', price: '135–165 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Nämdö ingår i SL-zonen — ta med SL-kort och sänk transportkostnaden markant.',
-        'Ta med matsäck som backup — krogen har begränsade öppettider.',
-        'Bra halvdagsstopp kombinerat med Gällnö eller Möja.',
-      ],
-    },
     tips: [
       'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
       'Kyrkan från 1798 är öppen sommartid — den åttakantiga gustavianska träkyrkan är ovanlig i sitt slag.',
@@ -2188,24 +2024,9 @@ export const ISLANDS: Island[] = [
       { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', spots: 20, fuel: false, service: ['vatten'] },
     ],
     restaurants: [
-      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', price_example: 'Lunch 155–195 kr, middag 225–325 kr', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, phone: '08-542 480 40', child_menu: true },
+      { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, phone: '08-542 480 40', child_menu: true },
       { name: 'Svartsö Lanthandel', type: 'Handel', desc: 'Skärgårdens kanske bäst sorterade lanthandel — apotek- och Systembolagsombud.', open_season: 'Helår', open_hours: 'Mån–Fre 09–18, Lör–Sön 10–15' },
     ],
-    day_cost: {
-      budget_per_person: '350–700 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeluthyrning, ev. proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen/Stavsnäs', price: '240 kr' },
-        { item: 'Lunch Svartsö Krog', price: '155–195 kr' },
-        { item: 'Cykeluthyrning (heldagspass)', price: '100–150 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Boka bord på krogen i förväg — högsäsong kan vara fullbokat.',
-        'Hyr cykel vid lanthandeln och cykla hela ön runt (14 km bilfria vägar).',
-        'Lanthandeln med apoteksombud och Systembolaget är ett skäl i sig att besöka.',
-      ],
-    },
     tips: [
       'Lanthandeln är en sevärdhet i sig — överraskande välsorterad för en bilfri ö.',
       'Skola och året-runt-befolkning gör att ön är levande även utanför sommarsäsongen.',
@@ -2286,24 +2107,9 @@ export const ISLANDS: Island[] = [
       { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', spots: 50, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
     ],
     restaurants: [
-      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', price_example: 'Lunch 135–175 kr, kvällsmeny 185–255 kr', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
+      { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
       { name: 'Runmarö Lanthandel', type: 'Handel', desc: 'Proviant och dagligvaror.', open_season: 'Juli–Mitten av Augusti', open_hours: '09–18' },
     ],
-    day_cost: {
-      budget_per_person: '350–650 kr',
-      includes: 'Båtbiljett t/r (240 kr), lunch på krogen, cykeltur och proviant',
-      breakdown: [
-        { item: 'Waxholmsbåt t/r från Strömkajen/Stavsnäs', price: '240 kr' },
-        { item: 'Lunch Runmarö Krog', price: '135–175 kr' },
-        { item: 'Kaffe + bulle', price: '65–80 kr' },
-        { item: 'Proviant Lanthandeln', price: '50–100 kr' },
-      ],
-      tips: [
-        'Ta cykel med på båten och cykla till Tranströmer-platsen vid "Gatan".',
-        'Krogen och lanthandeln håller kort säsong — ring i förväg utanför juli.',
-        'Lugnare och billigare alternativ till Sandhamn för övernattning med direktbåt hem.',
-      ],
-    },
     tips: [
       'Runmarösund är en av mellersta skärgårdens finaste naturhamnar — anlöp tidigt.',
       'Runmarö är ett lugnare alternativ till Sandhamn för övernattning med direktbåt till stan nästa dag.',

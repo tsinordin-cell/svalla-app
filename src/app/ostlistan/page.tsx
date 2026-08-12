@@ -415,6 +415,7 @@ const OLISTS: OList[] = [
         name: 'Fjäderholmarna',
         emoji: '⛵',
         tagline: 'Billigast att nå',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         why: 'Waxholmsbåt tur-retur kostar runt 150 kr med SL-kort. Ta med picknick, vandra runt naturstigen och bad gratis från klipporna.',
         travel: 'SL-kort gäller med tilläggsbiljett, 25 min',
         badge: 'Lägst kostnad',
@@ -424,6 +425,7 @@ const OLISTS: OList[] = [
         name: 'Vaxholm',
         emoji: '🏰',
         tagline: 'Dag ut för lite pengar',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         why: 'Fästningen kostar runt 80 kr. Räksmörgåsen är skärgårdens bästa köp. Allt annat är gratis — promenaden, fästningsparken och hamnluften.',
         travel: 'Waxholmsbåt, 55 min',
       },
@@ -440,6 +442,7 @@ const OLISTS: OList[] = [
         slug: 'finnhamn',
         name: 'Finnhamn',
         emoji: '🌲',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         tagline: 'Vandrarhem från 300 kr/natt',
         why: 'Ett av skärgårdens billigaste boendealternativ. Vandrarhem med bra standard, naturskön hamn och inget krav på restaurangmiddag.',
         travel: 'Waxholmsbåt, ca 2 h',

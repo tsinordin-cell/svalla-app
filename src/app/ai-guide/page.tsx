@@ -176,6 +176,7 @@ export default function AIGuidePage() {
           <div style={{ padding: '24px 20px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
             {[
               { from: 'user', text: 'Vi är 4 vuxna, vill ha bad, bra lunch och inte för lång båtresa. Helst idag.' },
+              // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
               { from: 'thorkel', text: 'Perfekt val: Grinda. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20.' },
               { from: 'user', text: 'Finns det en bastu också?' },
               { from: 'thorkel', text: 'Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?' },
@@ -285,6 +286,7 @@ export default function AIGuidePage() {
               '"Vi är 6 seglare som ankrar vid Sandhamn. Bästa krogar för kvällen?"',
               '"Ensam dagstur med tåg från Göteborg — vad kan man se i Bohuslän på en dag?"',
               '"Vad ska man göra på Gotland i september utan eget fordon?"',
+              // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
               '"Snabbaste vägen till Utö från Södermalm med SL, med hemfärd senast 18:00."',
             ].map((q, i) => (
               <div key={i} style={{

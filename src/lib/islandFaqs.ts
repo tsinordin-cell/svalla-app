@@ -32,6 +32,7 @@ const UNIQUE_STOCKHOLM: Record<string, FAQ[]> = {
     { q: 'Kan man åka till Sandhamn på dagstur?',
       a: 'Absolut. Tidiga avgångar från Strömkajen ger dig 5–6 timmar på ön innan kvällsbåten tillbaka. En lunch på Seglarhotellet, ett bad på Trouville och en runda i den gamla bymiljön är en perfekt dag.' },
     { q: 'Kostar det att ligga i hamn på Sandhamn?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Sandhamns gästhamn tar 250–350 kr/natt under högsäsong (juli) beroende på båtens längd. Förboka via gästhamnen vid storhelger och Gotland Runt — det blir oftast fullt.' },
     { q: 'Är Sandhamn barnvänligt?',
       a: 'Ja. Trouville-stranden är grund och säker, det finns lekplats vid hamnen och kortare promenader passar familjer. Saknar dock barnaktiviteter inomhus, så välj fint väder.' },
@@ -52,7 +53,8 @@ const UNIQUE_STOCKHOLM: Record<string, FAQ[]> = {
   ],
   moja: [
     { q: 'Hur kommer jag till Möja?',
-      a: 'Waxholmsbolaget från Stavsnäs (45 min) eller via Sollenkroka. Bilfärja går från Sollenkroka till Berg på Möja. Restid totalt: ca 1,5 timmar från Stockholm.' },
+      // KÄLLA: ResRobot-ben uppmätta 2026-08-11 — buss 434 Slussen→Sollenkroka, färja 14-1 Sollenkroka→Möjaström, total restid 2 tim 28 min–2 tim 54 min. Stavsnäs-påståendet var fel: därifrån skickar ResRobot dig med buss TILLBAKA till Sollenkroka.
+      a: 'Båtarna till Möja går från Sollenkroka brygga — buss 434 från Slussen tar dig dit, sedan färja över. Räkna med ungefär två och en halv timme totalt från Stockholm.' },
     { q: 'Vilken del av Möja ska jag åka till?',
       a: 'Berg och Långvik är de två huvudbyarna. Berg har mer service (Wikströms Fisk, Möjabutiken, krogar). Långvik är roligare för naturupplevelse och bad.' },
     { q: 'Finns det restauranger på Möja?',
@@ -72,6 +74,7 @@ const UNIQUE_STOCKHOLM: Record<string, FAQ[]> = {
     { q: 'Finns det boende på Utö?',
       a: 'Utö Värdshus är klassikern (60-tal rum, restaurang, brygga). Pensionat och stugor i Bygatan. Boka tidigt för sommaren.' },
     { q: 'Är Utö bra för cykel?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Mycket bra. Bilfri, ca 8 km från norr till syd, asfalterade vägar mellan bygdarna. Cykeluthyrning vid hamnen — räkna 200 kr/dag.' },
     { q: 'Var ligger Utös bästa stränder?',
       a: 'Storsand (norra delen) är populär klippstranden. Bytviken har skyddad sandstrand bra för barn. Ålö (mindre ö norr om Utö) har också fina bad — kort båttur dit.' },
@@ -182,6 +185,7 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
     { q: 'Är Marstrand bra för dagstur?',
       a: 'Ja — perfekt dagstur från Göteborg. Räkna 50 min bil + färja, sen 4–5 timmar på ön (fästning, lunch, promenad, bad). Färjan går till sent på kvällen sommartid.' },
     { q: 'Finns det gästhamn för egen båt på Marstrand?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Marstrands gästhamn har plats för ca 350 båtar — en av västkustens största. El, dusch, mack, restauranger inom 50 m. Pris 320–450 kr/natt högsäsong (juli). Boka via gasthamn.se vid hummerveckan eller Match Cup-veckan.' },
   ],
   smogen: [
@@ -210,6 +214,7 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
     { q: 'Är Käringön bra för dagstur?',
       a: 'Ja. Räkna 1 h 30 min bil till Hälleviksstrand + 5 min färja, sen 3–4 timmar på ön — promenad runt, lunch, bad. Sista färjan tillbaka går oftast 22–23-tiden sommartid, kontrollera lokalt.' },
     { q: 'Kan man ligga med egen båt på Käringön?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Ja, Käringö gästhamn har ca 80 platser, dusch, el, mack. Pris 300–400 kr/natt högsäsong. Skyddat läge. Boka via gasthamn.se sommartid — fyller snabbt.' },
   ],
   kosterhavet: [
@@ -238,6 +243,7 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
     { q: 'Vad gör man på Fjällbacka?',
       a: 'Klättra upp på Vetteberget (15 min, fantastisk utsikt), Camilla Läckberg-tur, ta båt ut till Väderöarna (skärgårdens yttre rand), bad och promenad i hamnen. Fjällbacka Music Festival i juli.' },
     { q: 'Kan man ligga med egen båt i Fjällbacka?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Ja, Fjällbacka gästhamn (Badis) har ca 200 platser med el, dusch, restauranger inom 100 m. Pris 280–380 kr/natt högsäsong. Skyddat läge. Boka via gasthamn.se vid musikfestivalen eller storhelger.' },
   ],
   grundsund: [
@@ -252,6 +258,7 @@ const UNIQUE_BOHUSLAN: Record<string, FAQ[]> = {
     { q: 'Är Grundsund barnvänligt?',
       a: 'Ja — bilfri inom byn (smala gränder), klippbad runt om, lekplats vid hamnen och säkra promenader. Mindre kommersiellt än Smögen, vilket många familjer föredrar.' },
     { q: 'Kan man ligga med egen båt i Grundsund?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Ja, Grundsunds gästhamn har ca 60 platser med el, dusch och mack inom byn. Pris 250–320 kr/natt högsäsong. Skyddat läge i sundet. Bra hub för utflykter till Käringön, Lysekil eller Fiskebäckskil.' },
   ],
 }
@@ -268,6 +275,7 @@ const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
     { q: 'Är Gotland bra för en dagstur?',
       a: 'Möjligt men inte optimalt — färjan tar 3 timmar var väg, vilket ger lite tid på ön. En övernattning rekommenderas. Flyg från Arlanda eller Bromma (ca 45 min, Gotlandsflyg och SAS) är ett snabbare alternativ för en tätare dagstur.' },
     { q: 'Finns det gästhamn för egen båt på Gotland?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Ja. Visby gästhamn (ca 400 platser, el, dusch, tankstation) är störst och centralast. Slite, Klintehamn, Burgsvik och Ljugarn har också gästhamnar. Pris 300–400 kr/natt högsäsong. Förboka vid Medeltidsveckan i Visby (tidig augusti) — hamnen fylls snabbt.' },
     { q: 'Är Gotland barnvänligt?',
       a: 'Mycket. Långa sandstränder (Tofta, Ljugarn), raukar att klättra på, Visby medeltidsstad att utforska, och Gotlands museum för regniga dagar. Cykla runt ön med barn fungerar utmärkt — ön är relativt plan och har goda cykelvägar.' },
@@ -282,6 +290,7 @@ const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
     { q: 'Är Ulvön bra för en dagstur?',
       a: 'Ja, men en övernattning ger mer. Färjan tar 25 min och det går att hinna vandring, lunch och bad på en dag. Promenaden från Ulvöhamn till Sandviken (ca 3 km, 45 min) är en av Höga Kustens finaste stigar.' },
     { q: 'Finns det gästhamn för egen båt på Ulvön?',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       a: 'Ja, Ulvöhamn har gästbrygga med el, vatten och toaletter. Plats för ca 40 båtar. Pris ca 200–280 kr/natt. Naturskyddad hamn med lä från alla väderstreck — populär anhalt på Höga Kusten-leden.' },
     { q: 'Är Ulvön barnvänligt?',
       a: 'Ja. Bilfri ö, sandstrand i Sandviken, korta promenader och lugn miljö. Klyvbåtar i hamnen och möjlighet att se sälarna i skärgården utanför. Perfekt för familjer som vill ha natur utan trängsel.' },
@@ -314,6 +323,7 @@ const TEMPLATE_STOCKHOLM: FAQ[] = [
   { q: 'Är {{name}} bra för en dagstur?',
     a: 'Ja, om båtförbindelsen tillåter. Räkna med båttiden tur och retur plus minst 3–4 timmar på ön. Kontrollera sista båt tillbaka — den går oftast tidigare än man tror.' },
   { q: 'Finns det gästhamn för egen båt på {{name}}?',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     a: 'De flesta större öar har gästhamn med plats för 10–50 båtar, dusch och el. Pris: 200–350 kr/natt under högsäsong. Förboka via gästhamnen vid storhelger.' },
   { q: 'Är {{name}} barnvänligt?',
     a: 'De flesta öar i Stockholms skärgård är trygga och har badmöjligheter, korta promenader och sommaraktiviteter som passar barn. Saknas oftast inomhusalternativ — välj fina dagar.' },
@@ -329,6 +339,7 @@ const TEMPLATE_BOHUSLAN: FAQ[] = [
   { q: 'Är {{name}} bra för en dagstur?',
     a: 'Ja, många bohuslänsöar fungerar utmärkt som dagstur från Göteborg eller via E6. Räkna med körtid + ev. färjetid, sen 3–5 timmar på plats. Sommartid trängsel — välj morgon eller lågsäsong för bästa upplevelse.' },
   { q: 'Finns det gästhamn för egen båt på {{name}}?',
+    // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
     a: 'De flesta bohuslänsorter har gästhamn med el, dusch och mack. Pris: 250–450 kr/natt under högsäsong (juli). Förboka via gasthamn.se vid hummerveckan, midsommar och storhelger — fyller snabbt.' },
   { q: 'Är {{name}} barnvänligt?',
     a: 'Bohusläns kust har många trygga klippbad, lekplatser och korta promenader. Bilfria fiskelägen är särskilt familjevänliga. Saknas oftast inomhusalternativ — välj fina dagar.' },
