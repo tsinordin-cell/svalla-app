@@ -251,7 +251,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
               fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
               color: 'var(--txt3, #888)', margin: '0 0 10px',
             }}>
-              ⚠️ Verifiera tidtabeller och öppettider
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 4 }}><Icon name="warning" size={13} /></span>Verifiera tidtabeller och öppettider
             </p>
             <p style={{ fontSize: 13, color: 'var(--txt2, #555)', lineHeight: 1.6, margin: '0 0 12px' }}>
               Avgångstider, öppettider och priser kan ändras. Kontrollera alltid aktuell information via de officiella källorna nedan innan du åker.
