@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase'
+import Icon from '@/components/Icon'
 
 type Review = {
  id: string
@@ -232,7 +233,7 @@ export default function ReviewSection({ restaurantId }: { restaurantId: string }
  textAlign: 'center', color: 'var(--txt3)', fontSize: 13,
  boxShadow: '0 1px 6px rgba(0,45,60,0.05)',
  }}>
- <div style={{ fontSize: 32, marginBottom: 8 }}>📝</div>
+ <div style={{marginBottom: 8}} aria-hidden><Icon name="edit" size={32} /></div>
  Inga omdömen ännu. Var den första!
  </div>
  ) : (

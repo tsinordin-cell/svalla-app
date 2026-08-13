@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Kajak i Stockholms skärgård — guide för nybörjare och erfarna',
@@ -161,7 +162,7 @@ export default function KajakPage() {
           <Link href="/aktivitet" style={{ color: 'var(--white)', opacity: 0.8, fontSize: 14, textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             ← Aktiviteter
           </Link>
-          <div style={{ fontSize: 40, marginBottom: 12 }}>🛶</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="paddle" size={40} /></div>
           <h1 style={{ fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             Kajak i Stockholms skärgård
           </h1>
@@ -209,7 +210,7 @@ export default function KajakPage() {
                 color: 'inherit',
                 display: 'block',
               }}>
-                <div style={{ fontSize: 22, marginBottom: 8 }}>🛶</div>
+                <div style={{marginBottom: 8}} aria-hidden><Icon name="paddle" size={22} /></div>
                 <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>{island.name}</div>
                 <div style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.5, marginBottom: 8 }}>
                   {island.activity_meta?.kajak?.notes ?? 'Kajakhyrning vid hamnen.'}
@@ -257,7 +258,7 @@ export default function KajakPage() {
 
         {/* CTA till blogg */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>🛶</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="paddle" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Redo att paddla?</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Läs vår fullständiga guide om utrustning, säkerhet och de bästa lederna för din första kajaktur.

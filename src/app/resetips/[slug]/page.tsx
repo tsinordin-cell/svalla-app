@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { TRIPS, getTrip, type TripDifficulty } from '../trips-data'
+import Icon from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -214,7 +215,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
                     fontSize: 13, color: 'var(--txt2, #444)', lineHeight: 1.5,
                     marginBottom: 6,
                   }}>
-                    <span style={{ flexShrink: 0 }}>💡</span>
+                    <span style={{flexShrink: 0}} aria-hidden><Icon name="star" size={20} /></span>
                     <span>{stop.tip}</span>
                   </div>
                 )}

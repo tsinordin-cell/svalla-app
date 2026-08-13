@@ -204,7 +204,7 @@ export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>⛵</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>
             Logga dina turer på Svalla
           </h3>

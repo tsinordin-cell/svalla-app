@@ -12,6 +12,7 @@ import {
   type Story,
 } from '@/lib/stories'
 import { avatarGradient, initialsOf, timeAgoShort } from '@/lib/utils'
+import Icon from '@/components/Icon'
 
 type Group = {
   user_id: string
@@ -391,7 +392,7 @@ function UploadStory({
             border: '2px dashed rgba(10,123,140,0.25)', textAlign: 'center',
             background: 'rgba(10,123,140,0.03)', cursor: 'pointer', marginBottom: 14,
           }}>
-            <div style={{ fontSize: 32, marginBottom: 6 }}>📷</div>
+            <div style={{marginBottom: 6}} aria-hidden><Icon name="camera" size={32} /></div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Välj bild</div>
             <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>Försvinner efter 24h</div>
             <input type="file" accept="image/*" onChange={onPick} style={{ display: 'none' }} />

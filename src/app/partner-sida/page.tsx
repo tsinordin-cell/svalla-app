@@ -465,17 +465,14 @@ export default function PartnerSidaPage() {
                   I samarbete med Utö Värdshus
                 </div>
                 <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                  <div style={{
-                    width: 48,
+                  <div style={{width: 48,
                     height: 48,
                     borderRadius: 8,
                     background: 'linear-gradient(135deg, #0d3f5a, #1a6b7a)',
                     flexShrink: 0,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 20,
-                  }}>🏝</div>
+                    justifyContent: 'center'}} aria-hidden><Icon name="pin" size={20} /></div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 5 }}>Sensommar på Utö — 20 % rabatt i september</div>
                     <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 8px' }}>

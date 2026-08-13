@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import TripCard from '@/components/TripCard'
 import TagFollowButton from '@/components/TagFollowButton'
+import Icon from '@/components/Icon'
 
 // ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
 // läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
@@ -124,7 +125,7 @@ export default async function TagPage({ params }: Props) {
  <div style={{
  textAlign: 'center', padding: '60px 24px',
  }}>
- <div style={{ fontSize: 48, marginBottom: 16 }}>🏷️</div>
+ <div style={{marginBottom: 16}} aria-hidden><Icon name="bookmark" size={48} /></div>
  <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
  Inga turer ännu
  </h2>
