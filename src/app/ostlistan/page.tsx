@@ -771,11 +771,11 @@ export default function OstlistanPage() {
         {/* Relaterade sidor */}
         <div style={{ marginTop: 40, display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
           {[
-            { href: '/oar', label: '🗺️ Alla öar' },
-            { href: '/guider', label: '📖 Guider' },
-            { href: '/blogg', label: '✍️ Blogg' },
-            { href: '/utflykt', label: '⛵ Utflyktsplanerare' },
-          ].map(({ href, label }) => (
+            { href: '/oar', icon: 'map' as const, label: 'Alla öar' },
+            { href: '/guider', icon: 'bookmark' as const, label: 'Guider' },
+            { href: '/blogg', icon: 'edit' as const, label: 'Blogg' },
+            { href: '/utflykt', icon: 'sailboat' as const, label: 'Utflyktsplanerare' },
+          ].map(({ href, icon, label }) => (
             <Link key={href} href={href} style={{
               display: 'inline-block',
               padding: '9px 18px', borderRadius: 999,
@@ -785,7 +785,7 @@ export default function OstlistanPage() {
               border: '1px solid rgba(10,123,140,0.15)',
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
             }}>
-              {label}
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name={icon} size={14} /></span>{label}
             </Link>
           ))}
         </div>
