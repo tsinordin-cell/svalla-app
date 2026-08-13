@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { GUIDES } from '@/app/guider/guides-data'
 import { SEGELKURS_SUBS } from './segelkurs-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 export const revalidate = 86400
 
@@ -116,7 +118,7 @@ export default function SegelkursPage() {
                 background: 'var(--white)', borderRadius: 14, padding: '20px 18px',
                 border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit', display: 'block',
               }}>
-                <div style={{ fontSize: 28, marginBottom: 10 }}>{s.emoji}</div>
+                <div style={{marginBottom: 10}} aria-hidden><Icon name={emojiToIcon(s.emoji)} size={28} /></div>
                 <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', marginBottom: 6 }}>{s.h1}</div>
                 <p style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.6, margin: '0 0 12px' }}>{s.excerpt.substring(0, 100)}…</p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
@@ -189,7 +191,7 @@ export default function SegelkursPage() {
                   border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit',
                   display: 'flex', alignItems: 'center', gap: 14,
                 }}>
-                  <span style={{ fontSize: 24 }}>{g.emoji}</span>
+                  <span aria-hidden><Icon name={emojiToIcon(g.emoji)} size={24} /></span>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>{g.title}</div>
                     <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{g.readTime} · {g.category}</div>

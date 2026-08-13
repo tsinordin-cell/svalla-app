@@ -3,6 +3,8 @@ import Prisuppskattning from '@/components/Prisuppskattning'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { TEAMBUILDING_SUBS } from '../teambuilding-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -65,7 +67,7 @@ export default async function TeambuildingSlugPage({ params }: Props) {
           <Link href="/teambuilding" style={{ color: 'var(--white)', opacity: 0.8, fontSize: 14, textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             ← Teambuilding
           </Link>
-          <div style={{ fontSize: 40, marginBottom: 12 }}>{page.emoji}</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name={emojiToIcon(page.emoji)} size={40} /></div>
           <h1 style={{ fontSize: 'clamp(24px, 5vw, 38px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             {page.h1}
           </h1>
@@ -164,7 +166,7 @@ export default async function TeambuildingSlugPage({ params }: Props) {
                 border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit',
                 display: 'flex', alignItems: 'center', gap: 14,
               }}>
-                <span style={{ fontSize: 22 }}>{s.emoji}</span>
+                <span aria-hidden><Icon name={emojiToIcon(s.emoji)} size={22} /></span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>{s.h1}</div>
                   <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{s.readTime} · {s.location}</div>

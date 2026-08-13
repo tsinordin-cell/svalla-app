@@ -25,6 +25,7 @@ import { analytics } from '@/lib/analytics'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -1545,7 +1546,7 @@ export default function SparaPage() {
                   background: 'rgba(255,255,255,.12)', borderRadius: 16,
                   padding: '12px 16px',
                 }}>
-                  <span style={{ fontSize: 26 }}>{a.emoji}</span>
+                  <span aria-hidden><Icon name={emojiToIcon(a.emoji)} size={26} /></span>
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#fff' }}>{a.label}</div>
                     <div style={{ fontSize: 11, color: 'rgba(255,255,255,.6)', marginTop: 1 }}>Nytt märke uppnått</div>

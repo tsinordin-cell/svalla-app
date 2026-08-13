@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import HeroAnimation, { HeroVariant } from '@/components/HeroAnimation'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 const VARIANTS: { id: HeroVariant; name: string; desc: string; emoji: string }[] = [
  {
@@ -163,7 +165,7 @@ export default function HeroPreviewPage() {
  {/* Info */}
  <div style={{ padding: '18px 20px 20px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
- <span style={{ fontSize: 20 }}>{v.emoji}</span>
+ <span aria-hidden><Icon name={emojiToIcon(v.emoji)} size={20} /></span>
  <h2 style={{ color: '#fff', fontSize: 16, fontWeight: 700, margin: 0 }}>{v.name}</h2>
  </div>
  <p style={{ color: 'rgba(180,215,245,0.60)', fontSize: 13, margin: 0, lineHeight: 1.5 }}>

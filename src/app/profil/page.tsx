@@ -18,6 +18,8 @@ import FollowListButton from '@/components/FollowListSheet'
 import ProfileForumSubscriptions from '@/components/ProfileForumSubscriptions'
 import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, MapPin, Link2, LogOut, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
 import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 // ── Settings ─────────────────────────────────────────────────────────────────
 function SettingsSection() {
@@ -674,7 +676,7 @@ export default function ProfilPage() {
                           background: 'var(--green)',
                         }} />
                       )}
-                      <span style={{ fontSize: 20 }}>{a.emoji}</span>
+                      <span aria-hidden><Icon name={emojiToIcon(a.emoji)} size={20} /></span>
                       <span style={{
                         fontSize: 9, fontWeight: 600,
                         color: unlocked ? 'var(--txt)' : 'var(--txt3)',
@@ -719,7 +721,7 @@ export default function ProfilPage() {
                 const next = lockedAch[0]!
                 return (
                   <div style={{ marginTop: 10, padding: '10px 12px', background: 'rgba(201,110,42,0.07)', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <span style={{ fontSize: 20, filter: 'grayscale(0.3)', opacity: 0.8 }}>{next.emoji}</span>
+                    <span style={{filter: 'grayscale(0.3)', opacity: 0.8}} aria-hidden><Icon name={emojiToIcon(next.emoji)} size={20} /></span>
                     <div>
                       <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--acc)', marginBottom: 2 }}>Nästa: {next.label}</div>
                       <div style={{ fontSize: 11, color: 'var(--txt3)', lineHeight: 1.4 }}>{next.desc}</div>
