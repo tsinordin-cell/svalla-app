@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Icon from '@/components/Icon'
 
 interface Props {
   targetUserId: string
@@ -104,7 +105,7 @@ export default function BlockButton({
               boxShadow: '0 8px 40px rgba(0,20,30,0.2)',
             }}
           >
-            <div style={{ fontSize: 32, textAlign: 'center', marginBottom: 14 }}>🚫</div>
+            <div style={{textAlign: 'center', marginBottom: 14}} aria-hidden><Icon name="x" size={32} /></div>
             <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', textAlign: 'center', margin: '0 0 10px' }}>
               Blockera @{targetUsername}?
             </h2>

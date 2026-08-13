@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import Icon from '@/components/Icon'
 
 export default function PlaneraCTA({ routeId, hasDoneIt }: { routeId: string; hasDoneIt: boolean }) {
   const router = useRouter()
@@ -14,7 +15,7 @@ export default function PlaneraCTA({ routeId, hasDoneIt }: { routeId: string; ha
         padding: '14px 16px', border: '1px solid rgba(42,157,92,0.2)',
         display: 'flex', alignItems: 'center', gap: 10,
       }}>
-        <span style={{ fontSize: 20 }}>✅</span>
+        <span aria-hidden><Icon name="check" size={20} /></span>
         <span style={{ fontSize: 14, fontWeight: 700, color: '#2a9d5c' }}>Du har gjort den här turen!</span>
       </div>
     )

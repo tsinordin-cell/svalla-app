@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 import InviteRedeemClient from './InviteRedeemClient'
+import Icon from '@/components/Icon'
 
 export const dynamic = 'force-dynamic'
 
@@ -76,7 +77,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
  marginBottom: 20,
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
- <span style={{ fontSize: 22 }}>🔗</span>
+ <span aria-hidden><Icon name="link" size={22} /></span>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>
  Du har bjudits in
  </div>
@@ -117,7 +118,7 @@ export default async function InvitePage({ params }: { params: Promise<{ code: s
  marginBottom: 20,
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
- <span style={{ fontSize: 22 }}>⚠️</span>
+ <span aria-hidden><Icon name="warning" size={22} /></span>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--red)' }}>
  {expired ? 'Länken har gått ut' : exhausted ? 'Länken är slut' : 'Ogiltig länk'}
  </div>

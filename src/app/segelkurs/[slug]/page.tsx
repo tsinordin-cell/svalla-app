@@ -167,7 +167,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>⛵</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Logga dina seglarturer på Svalla</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Dokumentera kursen och turerna, spara rutter och dela med seglarkompisar.

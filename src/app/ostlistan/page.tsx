@@ -542,7 +542,7 @@ export default function OstlistanPage() {
             background: 'rgba(255,255,255,0.15)', borderRadius: 20,
             padding: '5px 14px', marginBottom: 18,
           }}>
-            <span style={{ fontSize: 14 }}>🗺️</span>
+            <span aria-hidden><Icon name="map" size={14} /></span>
             <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               Kuraterade listor 2026
             </span>
@@ -744,7 +744,7 @@ export default function OstlistanPage() {
           borderRadius: 20, padding: '36px 32px',
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>✉️</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="mail" size={32} /></div>
           <h2 style={{
             fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)',
             fontSize: 24, fontWeight: 800, color: '#fff',

@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
+import Icon from '@/components/Icon'
 
 export default function GlomtLosenordPage() {
   const [supabase] = useState(() => createClient())
@@ -29,7 +30,7 @@ export default function GlomtLosenordPage() {
     }}>
       {/* Branding top */}
       <div style={{ flex: '0 0 auto', padding: '60px 24px 40px', textAlign: 'center' }}>
-        <div style={{ fontSize: 44, marginBottom: 8 }}>🔑</div>
+        <div style={{marginBottom: 8}} aria-hidden><Icon name="bookmark" size={44} /></div>
         <h1 style={{ fontSize: 32, fontWeight: 700, color: '#fff', margin: '0 0 6px', letterSpacing: '-0.5px' }}>
           Glömt lösenordet?
         </h1>
@@ -48,7 +49,7 @@ export default function GlomtLosenordPage() {
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
           {sent ? (
             <div style={{ textAlign: 'center', paddingTop: 20 }}>
-              <div style={{ fontSize: 56, marginBottom: 16 }}>📬</div>
+              <div style={{marginBottom: 16}} aria-hidden><Icon name="mail" size={56} /></div>
               <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 8 }}>
                 Kolla din inkorg!
               </h2>

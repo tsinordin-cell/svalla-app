@@ -11,6 +11,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
+import Icon from '@/components/Icon'
 
 export const dynamic = 'force-dynamic' // uppdatera vid varje request (månads-byte)
 
@@ -269,7 +270,7 @@ export default function OppetNuPage() {
           marginBottom: 32,
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>📬</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="mail" size={32} /></div>
           <h3 style={{ fontSize: 22, fontWeight: 800, color: '#fff', margin: '0 0 10px' }}>
             Få uppdateringen automatiskt varje månad
           </h3>

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { getIsland } from '@/app/o/island-data'
 import type { Metadata } from 'next'
+import Icon from '@/components/Icon'
 
 export const revalidate = 60
 
@@ -129,7 +130,7 @@ export default async function IslandForumPage({ params }: Props) {
             border: '1px solid rgba(10,123,140,0.1)',
           }}>
             <div style={{ textAlign: 'center', marginBottom: 24 }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>🏝️</div>
+              <div style={{marginBottom: 12}} aria-hidden><Icon name="pin" size={36} /></div>
               <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', marginBottom: 6 }}>
                 Bli den första att skriva om {island.name}!
               </div>
@@ -169,7 +170,7 @@ export default async function IslandForumPage({ params }: Props) {
                       transition: 'background 0.15s, border-color 0.15s',
                     }}
                   >
-                    <span style={{ fontSize: 16, flexShrink: 0 }}>💬</span>
+                    <span style={{flexShrink: 0}} aria-hidden><Icon name="quote" size={16} /></span>
                     <span>{prompt}</span>
                     <span style={{ marginLeft: 'auto', color: 'var(--sea)', fontWeight: 700, fontSize: 13, flexShrink: 0 }}>Starta →</span>
                   </Link>

@@ -184,7 +184,7 @@ export default async function TeambuildingSlugPage({ params }: Props) {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>📍</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="pin" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Svalla – loggbok och planering för skärgårdsäventyr</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Dokumentera era turer, läs om öarna och hitta tips för varje destination i skärgården.

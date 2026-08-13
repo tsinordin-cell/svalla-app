@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Thorkel – AI-planeraren för skärgården',
@@ -168,7 +169,7 @@ export default function AIGuidePage() {
           border: '1px solid rgba(0,0,0,0.06)',
         }}>
           <div style={{ background: 'linear-gradient(90deg, #1a4a6b, #0d6e6e)', padding: '12px 20px', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>⚓</div>
+            <div style={{width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center'}} aria-hidden><Icon name="anchor" size={16} /></div>
             <span style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>Thorkel</span>
             <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12 }}>AI-planerare för skärgården</span>
           </div>
@@ -183,7 +184,7 @@ export default function AIGuidePage() {
             ].map((msg, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'user' ? 'flex-end' : 'flex-start', gap: 10, alignItems: 'flex-start' }}>
                 {msg.from === 'thorkel' && (
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #1a4a6b, #0d6e6e)', flexShrink: 0, marginTop: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>⚓</div>
+                  <div style={{width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #1a4a6b, #0d6e6e)', flexShrink: 0, marginTop: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff'}} aria-hidden><Icon name="anchor" size={12} /></div>
                 )}
                 <div style={{
                   maxWidth: '78%',

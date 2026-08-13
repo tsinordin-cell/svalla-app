@@ -2,6 +2,7 @@
 import { useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
+import Icon from '@/components/Icon'
 
 interface SearchResult {
  id: string
@@ -119,7 +120,7 @@ export default function ForumSokPage() {
  background: 'var(--white)', borderRadius: 18,
  border: '1px solid rgba(10,123,140,0.08)',
  }}>
- <div style={{ fontSize: 40, marginBottom: 12 }}>🔍</div>
+ <div style={{marginBottom: 12}} aria-hidden><Icon name="compass" size={40} /></div>
  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
  Inga träffar
  </div>

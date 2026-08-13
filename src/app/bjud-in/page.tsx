@@ -8,6 +8,7 @@ import {
   buildInviteUrl, createInvite, deleteInvite, listMyInvites,
   type Invite,
 } from '@/lib/invites'
+import Icon from '@/components/Icon'
 
 export default function InvitePage() {
   const supabase = useRef(createClient()).current
@@ -198,7 +199,7 @@ export default function InvitePage() {
             padding: '32px 20px', borderRadius: 14, border: '1px dashed rgba(10,123,140,0.20)',
             background: 'rgba(10,123,140,0.03)', textAlign: 'center',
           }}>
-            <div style={{ fontSize: 32, marginBottom: 8 }}>🔗</div>
+            <div style={{marginBottom: 8}} aria-hidden><Icon name="link" size={32} /></div>
             <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 4 }}>Inga inbjudningar än</div>
             <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Skapa din första länk ovan.</div>
           </div>

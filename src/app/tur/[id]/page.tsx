@@ -438,7 +438,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  padding: '3px 10px',
  marginBottom: 10,
  }}>
- <span style={{ fontSize: 10 }}>✨</span>
+ <span aria-hidden><Icon name="star" size={10} /></span>
  <span style={{
  fontSize: 10,
  fontWeight: 600,

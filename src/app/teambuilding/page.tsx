@@ -92,7 +92,7 @@ export default function TeambuildingPage() {
       {/* Header */}
       <div style={{ background: 'var(--grad-sea-hero)', padding: '0 20px 48px', paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <div style={{ fontSize: 40, marginBottom: 12 }}>⛵</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={40} /></div>
           <h1 style={{ fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             Teambuilding i skärgården
           </h1>
@@ -223,7 +223,7 @@ export default function TeambuildingPage() {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>⛵</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Logga era turer på Svalla</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Dokumentera teamets skärgårdsäventyr, spara rutterna och se statistik efter säsongen.

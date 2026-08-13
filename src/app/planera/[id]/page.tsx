@@ -341,7 +341,7 @@ export default async function PlaneraIdPage({ params }: Props) {
  border: '1px solid rgba(10,123,140,0.08)',
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-   <div style={{ fontSize: 24 }}>🗺️</div>
+   <div aria-hidden><Icon name="map" size={24} /></div>
    <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: 0 }}>Inga registrerade stopp längs rutten</p>
  </div>
  <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
@@ -354,7 +354,7 @@ export default async function PlaneraIdPage({ params }: Props) {
      background: 'rgba(10,123,140,0.06)', border: '1px solid rgba(10,123,140,0.12)',
      textDecoration: 'none', color: 'var(--sea)', fontSize: 13, fontWeight: 600,
    }}>
-     <span>🔍</span> Utforska platser i hela skärgården
+     <span aria-hidden><Icon name="compass" size={20} /></span> Utforska platser i hela skärgården
    </Link>
    <Link href="/planera/ny" style={{
      display: 'flex', alignItems: 'center', gap: 8,
@@ -362,7 +362,7 @@ export default async function PlaneraIdPage({ params }: Props) {
      background: 'rgba(10,123,140,0.04)', border: '1px solid rgba(10,123,140,0.08)',
      textDecoration: 'none', color: 'var(--txt2)', fontSize: 13, fontWeight: 500,
    }}>
-     <span>🧭</span> Planera en annan rutt
+     <span aria-hidden><Icon name="compass" size={20} /></span> Planera en annan rutt
    </Link>
  </div>
  </div>
