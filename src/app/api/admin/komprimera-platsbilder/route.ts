@@ -80,23 +80,38 @@ export async function POST(req: NextRequest) {
 
   const admin = getAdminClient()
 
-  // Objektlistan läses ur storage.objects direkt — list()-API:t är inte
-  // rekursivt och kan inte sortera på storlek. Service-rollen får läsa schemat.
-  const { data: objekt, error: listFel } = await admin
-    .schema('storage')
-    .from('objects')
-    .select('name, metadata')
-    .eq('bucket_id', BUCKET)
-    .like('name', `${PREFIX}%`)
-    .gt('metadata->size', TROSKEL_BYTES)
-    .order('metadata->size', { ascending: false })
-    .range(offset, offset + limit - 1)
-
-  if (listFel) {
-    return NextResponse.json({ error: `Kunde inte lista objekt: ${listFel.message}` }, { status: 500 })
+  /**
+   * Första varianten läste storage.objects via PostgREST — men storage-schemat
+   * är inte exponerat i API:t ("Invalid schema: storage"), och SQL-editorn för
+   * att skapa en RPC var onåbar. Därför list()-API:t i stället: bucketens
+   * struktur är places/<plats-id>/<n>.jpg, så vi listar MAPPAR på toppnivån
+   * och paginerar per mapp. offset = mappindex, inte objektindex.
+   */
+  const { data: mappar, error: mappFel } = await admin.storage
+    .from(BUCKET)
+    .list(PREFIX.replace(/\/$/, ''), { limit, offset, sortBy: { column: 'name', order: 'asc' } })
+  if (mappFel) {
+    return NextResponse.json({ error: `Kunde inte lista mappar: ${mappFel.message}` }, { status: 500 })
   }
-  if (!objekt || objekt.length === 0) {
+  if (!mappar || mappar.length === 0) {
     return NextResponse.json({ done: true, offset, behandlade: 0 })
+  }
+
+  const objekt: Array<{ name: string; metadata: { size?: number } | null }> = []
+  for (const mapp of mappar) {
+    if (mapp.id !== null) continue // fil på toppnivån, inte mapp — hoppa
+    const { data: filer } = await admin.storage
+      .from(BUCKET)
+      .list(`${PREFIX}${mapp.name}`, { limit: 20 })
+    for (const f of filer ?? []) {
+      const size = (f.metadata as { size?: number } | null)?.size ?? 0
+      if (size > TROSKEL_BYTES) {
+        objekt.push({ name: `${PREFIX}${mapp.name}/${f.name}`, metadata: { size } })
+      }
+    }
+  }
+  if (objekt.length === 0) {
+    return NextResponse.json({ done: mappar.length < limit, nastaOffset: offset + mappar.length, behandlade: 0, info: 'inga objekt över tröskeln i dessa mappar' })
   }
 
   const rapport: Array<Record<string, unknown>> = []
@@ -135,8 +150,8 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({
-    done: objekt.length < limit,
-    nastaOffset: offset + objekt.length,
+    done: mappar.length < limit,
+    nastaOffset: offset + mappar.length,
     behandlade: objekt.length,
     sparadeMB: Math.round(sparadeBytes / 1024 / 102.4) / 10,
     dry,
