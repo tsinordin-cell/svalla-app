@@ -17,6 +17,8 @@ import {
   windDirLabel,
   type WeatherPoint,
 } from '@/lib/weatherGrid'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 // ── Shared pill-container ────────────────────────────────────────────────────
 function PillShell({
@@ -141,7 +143,7 @@ export function WeatherPill({ lat, lng }: { lat: number; lng: number }) {
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
           {/* Temp + ikon */}
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-            <span style={{ fontSize: 14, lineHeight: 1 }}>{desc.emoji}</span>
+            <span style={{lineHeight: 1}} aria-hidden><Icon name={emojiToIcon(desc.emoji)} size={14} /></span>
             <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '-0.2px' }}>{data.temp}°</span>
           </span>
           <span aria-hidden="true" style={{ width: 1, height: 14, background: 'rgba(10,45,60,0.14)', flexShrink: 0 }} />

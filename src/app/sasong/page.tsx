@@ -4,6 +4,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SEASONS } from './sasong-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Skärgården året om – guider per säsong',
@@ -107,7 +109,7 @@ export default function SasongIndex() {
                     pointerEvents: 'none',
                   }} />
                   <div>
-                    <div style={{ fontSize: 40, lineHeight: 1, marginBottom: 12 }}>{s.emoji}</div>
+                    <div style={{lineHeight: 1, marginBottom: 12}} aria-hidden><Icon name={emojiToIcon(s.emoji)} size={40} /></div>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: 4 }}>
                       {s.monthsLabel}
                     </div>

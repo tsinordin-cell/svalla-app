@@ -3,6 +3,8 @@ import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
 import ShareButton from '@/components/ShareButton'
 import PublicFooter from '@/components/PublicFooter'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema | Svalla',
@@ -574,7 +576,7 @@ export default function OstlistanPage() {
                   backdropFilter: 'blur(4px)',
                 }}
               >
-                <span>{list.emoji}</span>
+                <span aria-hidden style={{ display: 'inline-flex' }}><Icon name={emojiToIcon(list.emoji)} size={14} /></span>
                 {list.title.replace('Bästa öarna för ', '').replace('Bästa öarna för ', '').replace('Bästa ', '')}
               </a>
             ))}
@@ -602,7 +604,7 @@ export default function OstlistanPage() {
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                    <span style={{ fontSize: 28 }}>{list.emoji}</span>
+                    <span aria-hidden><Icon name={emojiToIcon(list.emoji)} size={28} /></span>
                     <h2 style={{
                       fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)',
                       fontSize: 'clamp(20px,3vw,26px)',
@@ -659,7 +661,7 @@ export default function OstlistanPage() {
                     {/* Content */}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 16 }}>{island.emoji}</span>
+                        <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={16} /></span>
                         <span style={{
                           fontSize: 16, fontWeight: 700,
                           color: 'var(--txt,#1a2b3c)',

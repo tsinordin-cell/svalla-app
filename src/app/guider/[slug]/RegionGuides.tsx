@@ -9,6 +9,8 @@ import {
   getGuidesByRegion,
   type GuideRegion,
 } from '../guides-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 /**
  * Regionsvyn för /guider/<region>.
@@ -161,7 +163,7 @@ export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
                   display: 'flex', alignItems: 'center', gap: 16,
                   boxShadow: '0 1px 6px rgba(0,0,0,0.05)',
                 }}>
-                  <span style={{ fontSize: 28, flexShrink: 0 }}>{g.emoji}</span>
+                  <span style={{flexShrink: 0}} aria-hidden><Icon name={emojiToIcon(g.emoji)} size={28} /></span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--ink)', marginBottom: 3, lineHeight: 1.3 }}>{g.title}</div>
                     <div style={{ fontSize: 12, color: 'var(--ink-muted)', lineHeight: 1.5, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

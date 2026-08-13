@@ -4,6 +4,8 @@ import {
   fetchWeatherAt, fetchPlaceName, weatherDesc, windDirLabel,
   type WeatherPoint,
 } from '@/lib/weatherGrid'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 const FALLBACK_LAT = 59.32
 const FALLBACK_LNG = 18.50
@@ -47,7 +49,7 @@ export default function FeedWeatherRow() {
       display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'nowrap', overflow: 'hidden',
       fontSize: 13, color: 'var(--txt3)', fontWeight: 500,
     }}>
-      <span style={{ fontSize: 15, lineHeight: 1, flexShrink: 0 }}>{desc.emoji}</span>
+      <span style={{lineHeight: 1, flexShrink: 0}} aria-hidden><Icon name={emojiToIcon(desc.emoji)} size={15} /></span>
       <span style={{ fontWeight: 700, color: 'var(--txt2)', flexShrink: 0 }}>{data.temp}°</span>
       <span style={{ opacity: 0.4, flexShrink: 0 }}>·</span>
       <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="var(--sea)" strokeWidth={2}

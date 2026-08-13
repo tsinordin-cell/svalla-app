@@ -3,6 +3,7 @@ import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Forum',
@@ -150,7 +151,7 @@ export default async function ForumPage() {
       boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
      }}
     >
-     <span style={{ fontSize: 22 }}>{island.emoji}</span>
+     <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={22} /></span>
      <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt)', textAlign: 'center', lineHeight: 1.2, whiteSpace: 'nowrap' }}>
       {island.name}
      </span>
@@ -204,7 +205,7 @@ export default async function ForumPage() {
        whiteSpace: 'nowrap',
       }}
      >
-      <span style={{ fontSize: 13 }}>{island.emoji}</span>
+      <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={13} /></span>
       {island.name}
      </Link>
     ))}
