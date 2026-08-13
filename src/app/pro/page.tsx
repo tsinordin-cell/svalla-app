@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { isProEnabled } from '@/lib/pro'
 import { track } from '@/lib/analytics-events'
 
@@ -42,7 +42,7 @@ function ProPageInner() {
   useEffect(() => {
     if (!isProEnabled()) return
     const supabase = createClient()
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       if (!user) { setIsProUser(false); return }
       setUserEmail(user.email ?? null)
       const { data } = await supabase

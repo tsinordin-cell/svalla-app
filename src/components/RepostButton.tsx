@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { createRepost, deleteRepost, hasMyRepost, countReposts } from '@/lib/reposts'
 
 export default function RepostButton({
@@ -22,7 +22,7 @@ export default function RepostButton({
   const [busy, setBusy] = useState(false)
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       if (user) setMe(user.id)
       const c = await countReposts(supabase, tripId)
       setCount(c)

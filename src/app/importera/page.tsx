@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { parseGpx, gpxStats, simplifyPoints } from '@/lib/gpx'
 import type { GpxPoint } from '@/lib/gpx'
 import { toast } from '@/components/Toast'
@@ -53,7 +53,7 @@ export default function ImporteraPage() {
  const inputRef = useRef<HTMLInputElement>(null)
 
  useEffect(() => {
- createClient().auth.getUser().then(({ data: { user } }) => {
+ getViewer(createClient()).then(({ data: { user } }) => {
  if (!user) { router.push('/logga-in'); return }
  setUserId(user.id)
  })

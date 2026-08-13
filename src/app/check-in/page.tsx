@@ -4,7 +4,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { createCheckIn } from '@/lib/checkins'
 
 type Position = { lat: number; lng: number; accuracy: number }
@@ -35,7 +35,7 @@ function CheckInPage() {
   const [err, setErr] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!user) { router.replace('/logga-in?next=/check-in'); return }
       setMe(user.id)
     })

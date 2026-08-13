@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { joinClub, leaveClub, getOrCreateClubChat, type ClubBasic } from '@/lib/clubs'
 import { avatarGradient, initialsOf, timeAgo } from '@/lib/utils'
 
@@ -45,7 +45,7 @@ export default function KlubbPage() {
 
  useEffect(() => {
  if (!slug) return
- supabase.auth.getUser().then(({ data: { user } }) => {
+ getViewer(supabase).then(({ data: { user } }) => {
  if (user) setMe(user.id)
  load(user?.id ?? null)
  })

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import {
   buildInviteUrl, createInvite, deleteInvite, listMyInvites,
   type Invite,
@@ -23,7 +23,7 @@ export default function InvitePage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       if (!user) { router.replace('/logga-in?next=/bjud-in'); return }
       setMe(user.id)
       const list = await listMyInvites(supabase, user.id)

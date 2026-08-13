@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import ThorkelRouteCard from '@/components/thorkel/ThorkelRouteCard'
 import { THORKEL } from '@/lib/thorkel/persona'
@@ -155,7 +155,7 @@ function GuideContent() {
 
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       setIsLoggedIn(!!user)
       setAuthChecked(true)
     })
