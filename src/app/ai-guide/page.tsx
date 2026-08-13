@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Thorkel – AI-planeraren för skärgården',
@@ -262,7 +263,7 @@ export default function AIGuidePage() {
               boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
               border: '1px solid rgba(26,74,107,0.07)',
             }}>
-              <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
+              <div style={{ marginBottom: 12 }} aria-hidden><Icon name={emojiToIcon(f.icon)} size={28} /></div>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a4a6b', marginBottom: 8 }}>{f.title}</h3>
               <p style={{ fontSize: 14, color: '#6b8087', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
             </div>

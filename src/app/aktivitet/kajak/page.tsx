@@ -216,7 +216,7 @@ export default function KajakPage() {
                   {island.activity_meta?.kajak?.notes ?? 'Kajakhyrning vid hamnen.'}
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>
-                  {island.activity_meta?.kajak?.difficulty === 'lätt' ? '🟢 Lätt' : island.activity_meta?.kajak?.difficulty === 'medel' ? '🟡 Medel' : '🔴 Svår'} · Uthyrning: {island.activity_meta?.kajak?.rental ? 'Ja' : 'Nej'}
+                  <span aria-hidden style={{ color: island.activity_meta?.kajak?.difficulty === 'lätt' ? '#2e9e5b' : island.activity_meta?.kajak?.difficulty === 'medel' ? '#d9a413' : '#c94f3d' }}>●</span> {island.activity_meta?.kajak?.difficulty === 'lätt' ? 'Lätt' : island.activity_meta?.kajak?.difficulty === 'medel' ? 'Medel' : 'Svår'} · Uthyrning: {island.activity_meta?.kajak?.rental ? 'Ja' : 'Nej'}
                 </div>
               </Link>
             ))}
