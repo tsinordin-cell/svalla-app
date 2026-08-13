@@ -125,7 +125,7 @@ export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
           }}>
             ← Alla guider
           </Link>
-          <div style={{ fontSize: 44, marginBottom: 12 }}>{emoji}</div>
+          <div style={{ marginBottom: 12, display: 'flex', justifyContent: 'center', color: 'var(--sea)' }} aria-hidden><Icon name={emojiToIcon(emoji)} size={44} /></div>
           <h1 style={{
             fontSize: 'clamp(26px, 5vw, 40px)', fontWeight: 800,
             color: 'var(--white)', margin: '0 0 12px',
@@ -190,7 +190,7 @@ export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
                 border: '1px solid var(--surface-3)', textDecoration: 'none',
                 display: 'flex', alignItems: 'center', gap: 10,
               }}>
-                <span style={{ fontSize: 22 }}>{REGION_EMOJIS[r]}</span>
+                <span aria-hidden style={{ display: 'inline-flex', color: 'var(--sea)' }}><Icon name={emojiToIcon(REGION_EMOJIS[r])} size={22} /></span>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 13, color: 'var(--ink)' }}>{REGION_LABELS[r]}</div>
                   <div style={{ fontSize: 11, color: 'var(--sea)', fontWeight: 600, marginTop: 2 }}>

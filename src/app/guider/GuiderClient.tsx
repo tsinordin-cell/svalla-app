@@ -280,7 +280,7 @@ export default function GuiderClient() {
                 <section key={region} style={{ marginBottom: 52 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                     <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)', margin: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <span>{REGION_EMOJIS[region]}</span>
+                      <span aria-hidden style={{ display: 'inline-flex', color: 'var(--sea)' }}><Icon name={emojiToIcon(REGION_EMOJIS[region])} size={20} /></span>
                       {REGION_LABELS[region]}
                       <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink-muted)', marginLeft: 4 }}>
                         ({guides.length} guider)
