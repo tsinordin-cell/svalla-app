@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { timeAgoShort, absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { parseTokens, getActiveMention, extractMentions } from '@/lib/mentions'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
@@ -87,7 +87,7 @@ export default function Comments({
  const displayCount = hasLoadedRef.current ? comments.length : (initialCount ?? 0)
 
  useEffect(() => {
- supabase.auth.getUser().then(({ data: { user } }) => {
+ getViewer(supabase).then(({ data: { user } }) => {
  if (!user) return
  setUserId(user.id)
  supabase.from('users').select('username, avatar').eq('id', user.id).single()

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
-import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { buildRoutePoints } from '@/lib/routeSmooth'
 import { deriveUsername } from '@/lib/username'
 import {
@@ -150,7 +150,7 @@ export default function SparaPage() {
   }
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    getViewer(supabase).then(({ data }) => {
       if (!data.user) { router.push('/logga-in?redirect=/spara'); return }
       setCurrentUserId(data.user.id)
       setAuthLoading(false)

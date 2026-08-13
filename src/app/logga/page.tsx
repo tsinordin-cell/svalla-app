@@ -1,7 +1,7 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 
 function LoggaChoice() {
@@ -13,7 +13,7 @@ function LoggaChoice() {
   const [authReady, setAuthReady] = useState(false)
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data }) => {
+    getViewer(supabase).then(({ data }) => {
       if (!data.user) { router.push('/logga-in?redirect=/logga'); return }
       setAuthReady(true)
     })

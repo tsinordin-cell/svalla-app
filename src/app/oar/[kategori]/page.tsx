@@ -5,6 +5,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import { OAR_CATEGORIES, getOarCategory, islandsForCategory } from '../oar-categories'
+import IslandThumb from '@/components/IslandThumb'
 
 type Props = { params: Promise<{ kategori: string }> }
 
@@ -149,11 +150,15 @@ export default async function OarCategoryPage({ params }: Props) {
                         display: 'flex', alignItems: 'center', gap: 14,
                       }}
                     >
-                      <div style={{
-                        width: 84, height: 64, flexShrink: 0,
-                        borderRadius: 8, overflow: 'hidden',
-                        background: `url('${i.coverImage || `/api/og/island/${i.slug}`}') center/cover, linear-gradient(135deg, var(--sea), var(--sea-l, #2d7d8a))`,
-                      }} aria-hidden />
+                      {i.coverImage ? (
+                        <div style={{
+                          width: 84, height: 64, flexShrink: 0,
+                          borderRadius: 8, overflow: 'hidden',
+                          background: `url('${i.coverImage}') center/cover, linear-gradient(135deg, var(--sea)`,
+                        }} aria-hidden />
+                      ) : (
+                        <IslandThumb slug={i.slug} region={i.region} width={84} height={64} />
+                      )}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>
                           {i.name}

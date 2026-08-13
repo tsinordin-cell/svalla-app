@@ -7,6 +7,59 @@ export function createClient() {
   )
 }
 
+type BrowserClient = ReturnType<typeof createClient>
+
+/** Supabases egen User-typ, härledd så vi slipper importera den separat. */
+type Viewer = Awaited<ReturnType<BrowserClient['auth']['getUser']>>['data']['user']
+
+/**
+ * Är felet ett trasigt/förbrukat auth-token — inte ett riktigt serverfel?
+ * Vanligast är `refresh_token_already_used`: två flikar förnyar samma token
+ * samtidigt, den ena vinner och den andra får 400. Sessionen är död.
+ */
+function isDeadSession(e: unknown): boolean {
+  const err = e as { code?: string; status?: number; message?: string } | null
+  if (!err) return false
+  const code = err.code ?? ''
+  const msg = (err.message ?? '').toLowerCase()
+  return (
+    code === 'refresh_token_already_used' ||
+    code === 'refresh_token_not_found' ||
+    code === 'session_not_found' ||
+    msg.includes('refresh token') ||
+    msg.includes('invalid claim') ||
+    (err.status === 400 && msg.includes('token'))
+  )
+}
+
+/**
+ * getUser() för en session som kan dö under fötterna på oss.
+ *
+ * VARFÖR (2026-08-12): komponenter anropade `supabase.auth.getUser().then(…)`
+ * utan .catch. När en refresh-token var förbrukad avvisades löftet, togs
+ * aldrig om hand och felet bubblade till app/error.tsx — "Något gick fel" på
+ * en helt publik sida. NotificationBell och MessageBell ligger i layouten,
+ * så det drabbade VARJE sida, men bara inloggade besökare (Vercel-loggen:
+ * AuthApiError: Invalid Refresh Token). Returformen är identisk med
+ * getUser() så anropen byts rakt av. Vid död session rensas den lokala
+ * sessionen så nästa sidladdning börjar om rent.
+ */
+export async function getViewer(
+  client: BrowserClient,
+): Promise<{ data: { user: Viewer } }> {
+  try {
+    const { data, error } = await client.auth.getUser()
+    if (error) {
+      if (isDeadSession(error)) await client.auth.signOut({ scope: 'local' }).catch(() => {})
+      return { data: { user: null } }
+    }
+    return { data: { user: data.user } }
+  } catch (e) {
+    if (isDeadSession(e)) await client.auth.signOut({ scope: 'local' }).catch(() => {})
+    return { data: { user: null } }
+  }
+}
+
 export type Restaurant = {
   id: string
   name: string

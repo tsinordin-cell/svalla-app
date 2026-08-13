@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import {
   listTagsForTrip,
   addTripTag,
@@ -30,7 +30,7 @@ export default function TripTagger({
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
   useEffect(() => {
     let avbruten = false
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!avbruten) setCurrentUserId(user?.id ?? null)
     })
     return () => { avbruten = true }

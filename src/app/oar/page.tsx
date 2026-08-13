@@ -6,6 +6,7 @@ import PublicFooter from '@/components/PublicFooter'
 import Icon, { type IconName } from '@/components/Icon'
 import { ALL_ISLANDS, type Island } from '../o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
+import IslandThumb from '@/components/IslandThumb'
 
 export const metadata: Metadata = {
   title: 'Alla öar — Stockholms skärgård, Bohuslän, Gotland & mer | Svalla',
@@ -308,11 +309,15 @@ export default function OarIndexPage() {
                         display: 'flex', gap: 14, alignItems: 'center',
                       }}
                     >
-                      <div style={{
-                        width: 64, height: 48, flexShrink: 0,
-                        borderRadius: 8, overflow: 'hidden',
-                        background: `url('${i.coverImage || `/api/og/island/${i.slug}`}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
-                      }} aria-hidden />
+                      {i.coverImage ? (
+                        <div style={{
+                          width: 64, height: 48, flexShrink: 0,
+                          borderRadius: 8, overflow: 'hidden',
+                          background: `url('${i.coverImage}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
+                        }} aria-hidden />
+                      ) : (
+                        <IslandThumb slug={i.slug} region={i.region} width={64} height={48} />
+                      )}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
                           fontSize: 15, fontWeight: 700,

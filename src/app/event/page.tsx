@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic'
 import { useEffect, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { listUpcomingEvents, createEvent, type EventRow } from '@/lib/events'
 
 export default function EventPage() {
@@ -23,7 +23,7 @@ export default function EventPage() {
  }, [supabase])
 
  useEffect(() => {
- supabase.auth.getUser().then(({ data: { user } }) => {
+ getViewer(supabase).then(({ data: { user } }) => {
  if (user) setMe(user.id)
  load(user?.id ?? null)
  })

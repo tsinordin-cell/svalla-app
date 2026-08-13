@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 /**
  * Fixed signup-banner längst ner på en delad tur — bara för utloggade.
@@ -29,7 +29,7 @@ export default function TripSignupCta({
 
   useEffect(() => {
     let avbruten = false
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!avbruten) setVisa(!user)
     })
     return () => { avbruten = true }
