@@ -11,7 +11,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug: raw } = await params
+  const slug = decodeURIComponent(raw)
   const trip = getTrip(slug)
   if (!trip) return {}
   return {
@@ -59,7 +60,8 @@ const STOP_LABEL: Record<string, string> = {
 }
 
 export default async function ResetipsDetailPage({ params }: Props) {
-  const { slug } = await params
+  const { slug: raw } = await params
+  const slug = decodeURIComponent(raw)
   const trip = getTrip(slug)
   if (!trip) notFound()
 
