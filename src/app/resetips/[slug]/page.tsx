@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { TRIPS, getTrip, type TripDifficulty } from '../trips-data'
-import Icon from '@/components/Icon'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -38,14 +38,14 @@ const DIFFICULTY_COLOR: Record<TripDifficulty, string> = {
   krävande: '#c0392b',
 }
 
-const STOP_ICONS: Record<string, string> = {
-  transport: '⛵',
-  mat: '🍽',
-  kultur: '🏛',
-  natur: '🌿',
-  bad: '🏊',
-  aktivitet: '🎯',
-  boende: '🏡',
+const STOP_ICONS: Record<string, IconName> = {
+  transport: 'sailboat',
+  mat: 'utensils',
+  kultur: 'building',
+  natur: 'leaf',
+  bad: 'waves',
+  aktivitet: 'target',
+  boende: 'bed',
 }
 
 const STOP_LABEL: Record<string, string> = {
@@ -178,7 +178,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 16, flexShrink: 0, zIndex: 1,
                 }}>
-                  {STOP_ICONS[stop.type]}
+                  <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2 }}><Icon name={STOP_ICONS[stop.type] ?? 'pin'} size={14} /></span>
                 </div>
                 {i < trip.stops.length - 1 && (
                   <div style={{

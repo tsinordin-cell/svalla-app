@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { TRIPS, type TripDifficulty, type TransportTag } from './trips-data'
+import Icon, { type IconName } from '@/components/Icon'
 
 const DIFFICULTY_LABEL: Record<TripDifficulty, string> = {
   lätt: 'Lätt',
@@ -16,22 +17,22 @@ const DIFFICULTY_COLOR: Record<TripDifficulty, string> = {
   krävande: '#c0392b',
 }
 
-const STOP_ICONS: Record<string, string> = {
-  transport: '⛵',
-  mat: '🍽',
-  kultur: '🏛',
-  natur: '🌿',
-  bad: '🏊',
-  aktivitet: '🎯',
-  boende: '🏡',
+const STOP_ICONS: Record<string, IconName> = {
+  transport: 'sailboat',
+  mat: 'utensils',
+  kultur: 'building',
+  natur: 'leaf',
+  bad: 'waves',
+  aktivitet: 'target',
+  boende: 'bed',
 }
 
-const TRANSPORT_OPTIONS: { key: TransportTag; label: string; icon: string }[] = [
-  { key: 'båt',   label: 'Båt / färja', icon: '⛴' },
-  { key: 'buss',  label: 'Buss',        icon: '🚌' },
-  { key: 'tåg',   label: 'Tåg',         icon: '🚂' },
-  { key: 'bil',   label: 'Bil',         icon: '🚗' },
-  { key: 'cykel', label: 'Cykel',       icon: '🚲' },
+const TRANSPORT_OPTIONS: { key: TransportTag; label: string; icon: IconName }[] = [
+  { key: 'båt',   label: 'Båt / färja', icon: 'ship' },
+  { key: 'buss',  label: 'Buss',        icon: 'map' },
+  { key: 'tåg',   label: 'Tåg',         icon: 'navigation' },
+  { key: 'bil',   label: 'Bil',         icon: 'map' },
+  { key: 'cykel', label: 'Cykel',       icon: 'navigation' },
 ]
 
 const DIFFICULTY_OPTIONS: { key: TripDifficulty; label: string; color: string }[] = [
@@ -169,7 +170,7 @@ export default function ResetipsClient() {
                 onClick={() => toggleTransport(key)}
                 style={chip(transportFilters.has(key), '#0a7b8c')}
               >
-                <span style={{ fontSize: 13 }}>{icon}</span>
+                <span aria-hidden style={{ display: 'inline-flex' }}><Icon name={icon} size={13} /></span>
                 {label}
               </button>
             ))}
@@ -199,7 +200,7 @@ export default function ResetipsClient() {
                   background: 'rgba(10,123,140,0.1)', color: '#0a7b8c',
                   fontSize: 12, fontWeight: 500,
                 }}>
-                  {opt.icon} {opt.label}
+                  <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2 }}><Icon name={opt.icon} size={12} /></span> {opt.label}
                   <button onClick={() => removeTransport(v)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#0a7b8c', fontSize: 14, lineHeight: 1, padding: 0 }}>×</button>
                 </span>
               )
@@ -278,7 +279,7 @@ export default function ResetipsClient() {
                           padding: '3px 9px', borderRadius: 20,
                           transition: 'all 0.15s',
                         }}>
-                          {opt.icon} {opt.label}
+                          <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2 }}><Icon name={opt.icon} size={12} /></span> {opt.label}
                         </span>
                       )
                     })}
