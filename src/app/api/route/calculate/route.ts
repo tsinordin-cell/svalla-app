@@ -25,7 +25,7 @@ import { findSeaPathWithQuality, qualityToConfidence, type RouteQuality } from '
 import { validatePathLand, inMaskCoverage, hasNavigableWaterNear } from '@/lib/landMask'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
-import { passagerLangsRutt } from '@/lib/farbaraPassager'
+import { passagerLangsRutt, tillKlient } from '@/lib/farbaraPassager'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 /**
@@ -211,7 +211,7 @@ export async function POST(req: NextRequest) {
         validated: cached.validated,
         crossesAt: cached.crossesAt,
         source: 'cache',
-        passager: passagerLangsRutt(cached.path),
+        passager: passagerLangsRutt(cached.path).map(tillKlient),
         // Cachen bär inte skälet, men skälet är deterministiskt och billigt.
         // Utan detta visade ett cachat slussfall den röda "ingen vattenväg"-
         // rutan medan samma rutt på kall lambda fick den lugna sluss-texten.
@@ -253,7 +253,7 @@ export async function POST(req: NextRequest) {
               validated: !!dbCached.cached_validated,
               crossesAt: null,
               source: 'db-cache',
-              passager: passagerLangsRutt(dbPath),
+              passager: passagerLangsRutt(dbPath).map(tillKlient),
               // Samma sak som mem-cachen: skälet räknas om, annars tappas det.
               reason: dbQuality === 'unavailable'
                 ? avgorSkal(startLat, startLng, endLat, endLng) : null,
@@ -368,7 +368,7 @@ export async function POST(req: NextRequest) {
       // Passager med kand djup- eller hojdbegransning som rutten gar igenom.
       // Berakas fran path vid varje svar, aldrig fran cachen - annars saknar
       // gamla cacheposter faltet.
-      passager: passagerLangsRutt(finalPath),
+      passager: passagerLangsRutt(finalPath).map(tillKlient),
       ms,
     })
   } catch (err) {

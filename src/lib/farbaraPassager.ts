@@ -58,3 +58,21 @@ export function passagerLangsRutt(
   }
   return traffar
 }
+
+/**
+ * Den slimmade form som skickas till klienten.
+ *
+ * Hela Passage innehåller mittlinjen — 27 koordinatpar bara för Skurusundet —
+ * plus källhänvisningen. Inget av det behöver webbläsaren, och /api/route/
+ * calculate anropas vid varje ruttvisning. Skicka bara det gränssnittet ska
+ * visa.
+ */
+export type PassageForKlient = {
+  namn: string
+  maxDjupM: number | null
+  segelfriHojdM: number | null
+}
+
+export function tillKlient(p: Passage): PassageForKlient {
+  return { namn: p.namn, maxDjupM: p.maxDjupM, segelfriHojdM: p.segelfriHojdM }
+}
