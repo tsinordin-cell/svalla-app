@@ -219,7 +219,10 @@ export default function PlaneraRouteSection({
 
   return (
     <>
-      {/* Leaflet-karta — seaPath=null visar skelet tills rutten anländer.
+      {/* Leaflet-karta. OBS: den visar INGET skelett medan rutten beräknas —
+          kartan renderas fullt ut med markörer, bara utan ruttlinje. Det såg
+          ut som en trasig sida (rapporterat 2026-08-13). Spinnern nedan ligger
+          UNDER kartan och syns inte i samma blickfång.
           Routing-safety: quality skickas så solid-vs-streckad linjestil kan
           differentieras (precomputed/grid=solid, waypoint=streckad). */}
       <PlaneraMap
