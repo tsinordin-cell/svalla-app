@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import 'leaflet/dist/leaflet.css'
 import type { Map as LeafletMap } from 'leaflet'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
@@ -45,6 +45,14 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
   const initializedRef = useRef(false)
   // Refs to current route polylines so they can be replaced when seaPath updates
   const routeLinesRef = useRef<Array<{ remove: () => void }>>([])
+  // Kartan initieras asynkront (dynamisk import av Leaflet). Rit-effekten nedan
+  // måste veta NÄR den blivit klar — annars uppstår en kapplöpning där en snabb
+  // rutt anländer före kartan, effekten avbryter på mapRef.current === null och
+  // aldrig kör om, eftersom varken seaPath eller quality ändras igen.
+  // Resultat: färdig karta med markörer men utan ruttlinje, och utan omzoomning.
+  // Uppmätt 2026-08-13 på Hammarby Sjöstad → Sandhamn (precomputed, <1 ms
+  // serversvar) — just de snabbaste rutterna förlorar kapplöpningen oftast.
+  const [mapReady, setMapReady] = useState(false)
 
   // ── Init map (once) ─────────────────────────────────────────────────────────
   // Fits to start/end bounding box — route lines are added by the seaPath effect.
@@ -146,19 +154,24 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
 
       L.control.zoom({ position: 'bottomright' }).addTo(map)
       map.fitBounds(bounds, { padding: [48, 40], maxZoom: 13 })
+
+      // Signalera att kartan går att rita på. Rit-effekten lyssnar på detta och
+      // ritar en rutt som redan hunnit anlända.
+      setMapReady(true)
     }
 
     init().catch(console.error)
 
     return () => {
       if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; initializedRef.current = false }
+      setMapReady(false)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // ── Draw/replace route polylines when seaPath arrives ─────────────────────
   useEffect(() => {
-    if (!seaPath || !mapRef.current) return
+    if (!seaPath || !mapReady || !mapRef.current) return
 
     const update = async () => {
       const L = (await import('leaflet')).default
@@ -206,8 +219,9 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
     }
 
     update().catch(console.error)
-  // quality påverkar linjestil — kör om effekten när den ändras
-  }, [seaPath, quality])
+  // quality påverkar linjestil — kör om effekten när den ändras.
+  // mapReady MÅSTE vara med: utan den ritas aldrig en rutt som anlände före kartan.
+  }, [seaPath, quality, mapReady])
 
   return (
     <div style={{ marginBottom: 20 }}>
