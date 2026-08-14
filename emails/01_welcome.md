@@ -38,4 +38,5 @@ Svalla är skärgården samlad på ett ställe — guider till öarna, levande f
 
 Glad sommar — vi syns på vattnet.
 
-— **Thomas**, Svalla
+— **Team Svalla**
+*Ett gäng skärgårdsnördar med alldeles för många sjökort.*

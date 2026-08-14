@@ -35,4 +35,5 @@ STF-anläggning med naturreservat, fri camping och bra kajaktillgång. Lugnt och
 
 [Planera helgturen →](https://svalla.se/planera)
 
-— Thomas, Svalla
+— **Team Svalla**
+*Vi kollade prognosen tre gånger. Den höll sig.*

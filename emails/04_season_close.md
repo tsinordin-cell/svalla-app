@@ -37,5 +37,8 @@ Vi hörs i april igen med säsongsstart-mailet.
 
 ---
 
+— **Team Svalla**
+*Nu drar vi upp båtarna och börjar planera nästa sommar. Det är nästan lika kul.*
+
 PS: Hälsa gärna en seglarvän som inte är med oss än.
 [👉 Bjud in via länken](https://svalla.se/bjud-in)
