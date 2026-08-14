@@ -117,6 +117,109 @@ console.log('Mälarvatten öppnat:', (oppnat * 625 / 1e6).toFixed(0), 'km²')
 let land = 0; for (let i = 0; i < grid.length; i++) land += grid[i]
 console.log('landandel:', (land / grid.length * 100).toFixed(1), '%')
 
+// ── 3) VERIFIERADE FARBARA PASSAGER ────────────────────────────────────────
+//
+// Rasteriseringen målar vatten INÅT: en cell blir vatten bara om HELA cellen
+// är vatten. Det är rätt som grundregel — men i ett sund som smalnar av räcker
+// några få smala punkter för att kapa förbindelsen helt.
+//
+// UPPMÄTT 2026-08-14 med komponentanalys av hela vattenmasken (39,7 miljoner
+// celler, 2 753 vattenkomponenter): Skurusundet ÄR vatten i rastret, men
+// sönderbrutet i isolerade pussar som inte hänger ihop med havet.
+//   Strömmen / Trälhavet / Kanholmsfjärden  -> komponent 1 (havet, 16,1 milj celler)
+//   Skurusundet söder om 59,3145            -> komponent 1036
+//   Skurusundet norr om 59,3145             -> komponent 1087
+// Landproppar på sundets mittlinje låg vid 59,3050 och 59,3290 — den norra
+// precis där sundet är som smalast, 103–136 m.
+//
+// Följd: Saltsjöqvarn -> Boo (10,3 km fågelväg) ruttades 83,3 km norrut till
+// 59,42 och österut till 18,71, alltså ut till Kanholmsfjärden och tillbaka.
+//
+// VARFÖR PUNKTVIS OCH INTE GENERELLT: att göra rasteriseringen mindre
+// konservativ skulle sänka alla omvägskvoter och samtidigt öppna för rutter
+// genom grund och land. Här öppnas i stället en namngiven passage som någon
+// har intygat, med källan skriven ut. Bredden hålls långt under sundets
+// smalaste punkt.
+//
+// VARJE PASSAGE MÅSTE HA EN KÄLLA. Lägg aldrig till en rad här utan att någon
+// som känner vattnen har bekräftat den.
+const FARBARA_PASSAGER = [
+  {
+    namn: 'Skurusundet',
+    // Källa: Tom Nordin (delägare, Svalla) bekräftade farbarhet 2026-08-14.
+    // Stöd: OSM har seamark:type=fairway och seamark:type=bridge i sundet, och
+    // Skurubron är taggad maxheight=30 (segelfri höjd 30 m).
+    kalla: 'Tom Nordin 2026-08-14 + OSM seamark:type=fairway, Skurubron maxheight=30',
+    breddM: 40,   // sundets smalaste uppmätta punkt är 103 m
+    // Mittlinjen är HÄRLEDD ur OSM:s kustlinje, inte gissad: för varje
+    // latitudband togs västra och östra strandpunkten och mittpunkten mellan dem.
+    mittlinje: [
+      [59.3040, 18.22200],
+      [59.3050, 18.22113],
+      [59.3060, 18.22023],
+      [59.3070, 18.21895],
+      [59.3080, 18.21871],
+      [59.3090, 18.21901],
+      [59.3100, 18.21986],
+      [59.3110, 18.22080],
+      [59.3120, 18.22141],
+      [59.3130, 18.22162],
+      [59.3140, 18.22173],
+      [59.3150, 18.22179],
+      [59.3160, 18.22218],
+      [59.3170, 18.22273],
+      [59.3180, 18.22342],
+      [59.3190, 18.22356],
+      [59.3200, 18.22348],
+      [59.3210, 18.22329],
+      [59.3220, 18.22299],
+      [59.3230, 18.22146],
+      [59.3240, 18.22061],
+      [59.3250, 18.21952],
+      [59.3260, 18.21879],
+      [59.3270, 18.21863],
+      [59.3280, 18.21844],
+      [59.3290, 18.21785],
+      [59.3300, 18.21784]
+    ],
+  },
+]
+
+{
+  let oppnadeCeller = 0
+  for (const p of FARBARA_PASSAGER) {
+    const halvLat = (p.breddM / 2) / 111320
+    const halvLng = (p.breddM / 2) / M_PER_LNG
+    let fore = 0
+    for (let k = 0; k + 1 < p.mittlinje.length; k++) {
+      const [la0, ln0] = p.mittlinje[k], [la1, ln1] = p.mittlinje[k + 1]
+      // stega längs segmentet i halvcellssteg så inget hoppas över
+      const steg = Math.ceil(Math.max(Math.abs(la1 - la0) / CELL_LAT, Math.abs(ln1 - ln0) / CELL_LNG) * 2) + 1
+      for (let t = 0; t <= steg; t++) {
+        const la = la0 + (la1 - la0) * t / steg
+        const ln = ln0 + (ln1 - ln0) * t / steg
+        const r0 = Math.floor((la - halvLat - S) / CELL_LAT), r1 = Math.floor((la + halvLat - S) / CELL_LAT)
+        const c0 = Math.floor((ln - halvLng - W) / CELL_LNG), c1 = Math.floor((ln + halvLng - W) / CELL_LNG)
+        for (let r = r0; r <= r1; r++) {
+          if (r < 0 || r >= ROWS) continue
+          for (let c = c0; c <= c1; c++) {
+            if (c < 0 || c >= COLS) continue
+            const i = r * COLS + c
+            if (grid[i] === 1) { grid[i] = 0; fore++ }
+          }
+        }
+      }
+    }
+    oppnadeCeller += fore
+    console.log('passage öppnad: ' + p.namn + ' — ' + fore + ' celler (' + (fore * 625 / 1e6).toFixed(3) + ' km²), bredd ' + p.breddM + ' m')
+    console.log('  källa: ' + p.kalla)
+  }
+  if (oppnadeCeller > 20000) {
+    console.error('AVBRYTER: ' + oppnadeCeller + ' celler öppnade — orimligt mycket för punktvisa passager.')
+    process.exit(1)
+  }
+}
+
 // ── Sanity: handkontrollerade punkter, vägrar skriva vid fel ───────────────
 const SANITY = [
   ['Gamla stan', 59.3251, 18.0711, true], ['Sergels torg', 59.3326, 18.0649, true],
@@ -125,6 +228,13 @@ const SANITY = [
   ['Strömmen', 59.3238, 18.0776, false], ['Trälhavet', 59.4200, 18.3500, false],
   ['Kanholmsfjärden', 59.3400, 18.6500, false], ['Öppet hav', 59.2900, 19.0000, false],
   ['Riddarfjärden', 59.3240, 18.0350, false], ['Björkfjärden', 59.3300, 17.5000, false],
+  // Skurusundets två landproppar (uppmätta 2026-08-14) ska nu vara vatten.
+  // Går de tillbaka till LAND har passage-öppningen slutat fungera.
+  ['Skurusundet syd', 59.3050, 18.22113, false],
+  ['Skurusundet norr', 59.3290, 18.21785, false],
+  // Kontroll åt andra hållet: fast mark 300 m öster om sundet ska FÖRBLI land.
+  // Fångar att öppningen målat för brett.
+  ['Nacka öster om sundet', 59.3160, 18.2280, true],
 ]
 let fel = 0
 for (const [namn, la, ln, vill] of SANITY) {
