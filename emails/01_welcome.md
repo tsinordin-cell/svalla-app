@@ -5,7 +5,7 @@ subject_options:
   - "Din skärgård är samlad — börja här"
   - "Ombord, {{first_name}} — fem öar att börja med"
 preheader: Fem öar att börja med och allt du kan göra på Svalla.
-from: "Thomas på Svalla <hej@mail.svalla.se>"
+from: "Svalla <hej@mail.svalla.se>"
 ---
 
 # Välkommen ombord, {{first_name}}.
@@ -38,4 +38,4 @@ Svalla är skärgården samlad på ett ställe — guider till öarna, levande f
 
 Glad sommar — vi syns på vattnet.
 
-— **Thomas**, Svalla
+— Svalla

@@ -5,7 +5,7 @@ subject_options:
   - "Skärgårdssäsongen 2026 startar — börja planera"
   - "{{first_name}}, dags att boka skärgårdssommaren"
 preheader: 30 dagar till säsongsstart. Här är de tre saker du måste boka nu.
-from: "Thomas på Svalla <hello@svalla.se>"
+from: "Svalla <hello@svalla.se>"
 ---
 
 # Skärgårdssäsongen öppnar om 30 dagar
@@ -37,4 +37,4 @@ Du har sparat **{{saved_count}} öar** att besöka. Gå till [Min skärgård](ht
 
 Glad sommar.
 
-— **Thomas**, Svalla
+— Svalla

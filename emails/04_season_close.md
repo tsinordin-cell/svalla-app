@@ -5,7 +5,7 @@ subject_options:
   - "Tack för en fin sommar, {{first_name}}"
   - "Din Svalla-sammanfattning 2026"
 preheader: Din skärgårdssommar i siffror — och vad som väntar nästa år.
-from: "Thomas på Svalla <hello@svalla.se>"
+from: "Svalla <hello@svalla.se>"
 ---
 
 # Tack för säsongen, {{first_name}}
@@ -33,7 +33,7 @@ Vi stänger inte. Vinterversionen av Svalla har:
 
 Vi hörs i april igen med säsongsstart-mailet.
 
-— **Thomas**, Svalla
+— Svalla
 
 ---
 

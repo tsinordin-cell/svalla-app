@@ -4,7 +4,7 @@ subject_options:
   - "{{temp}}° i skärgården i helgen — dags att planera"
   - "Skärgårdsväder {{best_day}} — {{temp}}° och lite vind"
 preheader: Prognosen ser bra ut. Tre öar att fundera på.
-from: "Thomas på Svalla <hello@svalla.se>"
+from: "Svalla <hello@svalla.se>"
 ---
 
 # Skärgårdsväder i helgen
@@ -35,4 +35,4 @@ STF-anläggning med naturreservat, fri camping och bra kajaktillgång. Lugnt och
 
 [Planera helgturen →](https://svalla.se/planera)
 
-— Thomas, Svalla
+— Svalla
