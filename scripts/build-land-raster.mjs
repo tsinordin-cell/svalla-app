@@ -183,7 +183,47 @@ const FARBARA_PASSAGER = [
       [59.3300, 18.21784]
     ],
   },
+  {
+    namn: 'Baggensstäket, västra passagen',
+    // Källa: Tom Nordin (delägare, Svalla) bekräftade 2026-08-14.
+    // Stöd: Baggensstäket beskrivs i sjöguider som den smalaste och grundaste
+    // delen av farleden Baggensfjärden–Lännerstasundet–Skurusundet–Stockholm,
+    // med TVÅ trängre passager och 2,8–2,9 m mellan dem. Detta är den västra.
+    kalla: 'Tom Nordin 2026-08-14 + sjöguider (Baggensstäket, två trånga passager)',
+    breddM: 20,   // passagen är smalare än rastrets cell på 25 m
+    maxDjupM: 3,  // farleden tar båtar med upp till 3 m djupgående
+    mittlinje: [
+      [59.29900, 18.27600],
+      [59.30158, 18.28000],
+    ],
+  },
+  {
+    namn: 'Knapens hål',
+    // Källa: Tom Nordin (delägare, Svalla) bekräftade 2026-08-14.
+    // Stöd: Knapens hål är enligt uppslagsverk 3 m djupt och knappt 20 m brett.
+    // Namnet kommer av tulltjänstemannen Olof Knaap, som runt 1700 hade en
+    // bom under vattnet här. Det är Baggensstäkets östra trånga passage.
+    kalla: 'Tom Nordin 2026-08-14 + uppslagsverk: 3 m djup, knappt 20 m bred',
+    breddM: 20,   // uppmätt bredd i verkligheten är ca 20 m — smalare än en cell
+    maxDjupM: 3,
+    mittlinje: [
+      [59.30325, 18.28700],
+      [59.30449, 18.28950],
+    ],
+  },
 ]
+
+// OBS OM BREDDEN: Knapens hål är i verkligheten ~20 m brett medan rastrets
+// celler är 25 m. Passagen kan alltså ALDRIG representeras av den konservativa
+// regeln, hur bra kustlinjedata vi än har — den är smalare än upplösningen.
+// Därför öppnas den här, med källan utskriven. Bredden sätts till den verkliga
+// bredden, aldrig mer: en bredare korridor skulle måla vatten över land.
+//
+// OBS OM DJUPET: maxDjupM är INTE använt av rasteriseringen — den kan bara
+// säga vatten eller land. Fältet finns för att djupbegränsningen ska följa med
+// passagen i koden tills gränssnittet kan visa den. En segelbåt med 2,5 m
+// djupgående kommer igenom Baggensstäket; en med 3,5 m gör det inte, och det
+// vet inte rutten i dag.
 
 {
   let oppnadeCeller = 0
@@ -235,6 +275,12 @@ const SANITY = [
   // Kontroll åt andra hållet: fast mark 300 m öster om sundet ska FÖRBLI land.
   // Fångar att öppningen målat för brett.
   ['Nacka öster om sundet', 59.3160, 18.2280, true],
+  // Baggensstäkets två passager ska vara VATTEN efter öppningen.
+  ['Baggensstäket väst', 59.30030, 18.27800, false],
+  ['Knapens hål', 59.30390, 18.28830, false],
+  // Kontroll åt andra hållet: fast mark 250 m norr om Knapens hål ska FÖRBLI
+  // land. Fångar att den 20 m breda korridoren målat för brett.
+  ['Land norr om Knapens hål', 59.30620, 18.28830, true],
 ]
 let fel = 0
 for (const [namn, la, ln, vill] of SANITY) {
