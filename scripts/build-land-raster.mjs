@@ -143,75 +143,13 @@ console.log('landandel:', (land / grid.length * 100).toFixed(1), '%')
 //
 // VARJE PASSAGE MÅSTE HA EN KÄLLA. Lägg aldrig till en rad här utan att någon
 // som känner vattnen har bekräftat den.
-const FARBARA_PASSAGER = [
-  {
-    namn: 'Skurusundet',
-    // Källa: Tom Nordin (delägare, Svalla) bekräftade farbarhet 2026-08-14.
-    // Stöd: OSM har seamark:type=fairway och seamark:type=bridge i sundet, och
-    // Skurubron är taggad maxheight=30 (segelfri höjd 30 m).
-    kalla: 'Tom Nordin 2026-08-14 + OSM seamark:type=fairway, Skurubron maxheight=30',
-    breddM: 40,   // sundets smalaste uppmätta punkt är 103 m
-    // Mittlinjen är HÄRLEDD ur OSM:s kustlinje, inte gissad: för varje
-    // latitudband togs västra och östra strandpunkten och mittpunkten mellan dem.
-    mittlinje: [
-      [59.3040, 18.22200],
-      [59.3050, 18.22113],
-      [59.3060, 18.22023],
-      [59.3070, 18.21895],
-      [59.3080, 18.21871],
-      [59.3090, 18.21901],
-      [59.3100, 18.21986],
-      [59.3110, 18.22080],
-      [59.3120, 18.22141],
-      [59.3130, 18.22162],
-      [59.3140, 18.22173],
-      [59.3150, 18.22179],
-      [59.3160, 18.22218],
-      [59.3170, 18.22273],
-      [59.3180, 18.22342],
-      [59.3190, 18.22356],
-      [59.3200, 18.22348],
-      [59.3210, 18.22329],
-      [59.3220, 18.22299],
-      [59.3230, 18.22146],
-      [59.3240, 18.22061],
-      [59.3250, 18.21952],
-      [59.3260, 18.21879],
-      [59.3270, 18.21863],
-      [59.3280, 18.21844],
-      [59.3290, 18.21785],
-      [59.3300, 18.21784]
-    ],
-  },
-  {
-    namn: 'Baggensstäket, västra passagen',
-    // Källa: Tom Nordin (delägare, Svalla) bekräftade 2026-08-14.
-    // Stöd: Baggensstäket beskrivs i sjöguider som den smalaste och grundaste
-    // delen av farleden Baggensfjärden–Lännerstasundet–Skurusundet–Stockholm,
-    // med TVÅ trängre passager och 2,8–2,9 m mellan dem. Detta är den västra.
-    kalla: 'Tom Nordin 2026-08-14 + sjöguider (Baggensstäket, två trånga passager)',
-    breddM: 20,   // passagen är smalare än rastrets cell på 25 m
-    maxDjupM: 3,  // farleden tar båtar med upp till 3 m djupgående
-    mittlinje: [
-      [59.29900, 18.27600],
-      [59.30158, 18.28000],
-    ],
-  },
-  {
-    namn: 'Knapens hål',
-    // Källa: Tom Nordin (delägare, Svalla) bekräftade 2026-08-14.
-    // Stöd: Knapens hål är enligt uppslagsverk 3 m djupt och knappt 20 m brett.
-    // Namnet kommer av tulltjänstemannen Olof Knaap, som runt 1700 hade en
-    // bom under vattnet här. Det är Baggensstäkets östra trånga passage.
-    kalla: 'Tom Nordin 2026-08-14 + uppslagsverk: 3 m djup, knappt 20 m bred',
-    breddM: 20,   // uppmätt bredd i verkligheten är ca 20 m — smalare än en cell
-    maxDjupM: 3,
-    mittlinje: [
-      [59.30325, 18.28700],
-      [59.30449, 18.28950],
-    ],
-  },
-]
+// Listan ligger i src/lib/data/farbara-passager.json så att BÅDE det här
+// skriptet och appen läser samma data. Appen behöver den för att kunna visa
+// djupbegränsningen för användaren — rasteriseringen kan bara säga vatten
+// eller land, aldrig "farbar men bara till 3 meters djupgående".
+const FARBARA_PASSAGER = JSON.parse(
+  fs.readFileSync('src/lib/data/farbara-passager.json', 'utf8'),
+).passager
 
 // OBS OM BREDDEN: Knapens hål är i verkligheten ~20 m brett medan rastrets
 // celler är 25 m. Passagen kan alltså ALDRIG representeras av den konservativa

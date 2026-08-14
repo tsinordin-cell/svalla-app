@@ -13,6 +13,7 @@
 import { useState, useEffect } from 'react'
 import PlaneraMap from './PlaneraMapDynamic'
 import { estimateAllProfiles } from '@/lib/routeTime'
+import Icon from '@/components/Icon'
 
 // ── Inline haversine ────────────────────────────────────────────────────────
 // Importera ALDRIG calculatePathDistanceKm från seaPathfinder här —
@@ -87,6 +88,10 @@ export default function PlaneraRouteSection({
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [quality, setQuality] = useState<RouteQuality | null>(null)
   const [reason, setReason] = useState<UnavailableReason | null>(null)
+  // Passager med känd djup- eller höjdbegränsning som rutten går igenom.
+  const [passager, setPassager] = useState<Array<{
+    namn: string; maxDjupM: number | null; segelfriHojdM: number | null
+  }>>([])
   const [reportOpen, setReportOpen] = useState(false)
   const [reportReason, setReportReason] = useState('')
   const [reportState, setReportState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -121,12 +126,13 @@ export default function PlaneraRouteSection({
       // routeId skickas så API:n kan läsa/skriva DB-cache (2026-05-23 P2)
       body: JSON.stringify({ startLat, startLng, endLat, endLng, routeId }),
     })
-      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number; reason?: UnavailableReason | null }> : Promise.reject(r.status))
+      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number; reason?: UnavailableReason | null; passager?: Array<{ namn: string; maxDjupM: number | null; segelfriHojdM: number | null }> }> : Promise.reject(r.status))
       .then(data => {
         if (cancelled) return
         // path kan vara null när quality === 'unavailable' — då rendrar vi
         // EmptyState istället för polyline. Tid/bränsle hide:as automatiskt.
         setSeaPath(data.path)
+        setPassager(Array.isArray(data.passager) ? data.passager : [])
         setQuality(data.quality ?? null)
         setReason(data.reason ?? null)
         if (data.path && data.path.length > 1) {
@@ -274,6 +280,40 @@ export default function PlaneraRouteSection({
         seaPath={seaPath}
         quality={quality}
       />
+
+      {/* Passagevarning.
+          Rasteriseringen kan bara säga vatten eller land — aldrig "farbar men
+          bara till 3 meters djupgående". När Baggensstäket och Knapens hål
+          öppnades (PR #139) började vi rita en sjöled genom ett sund där
+          lodningar visar 2,8–2,9 m, utan att säga det. Rutten såg därmed mer
+          pålitlig ut än den var. Den här rutan säger det rakt ut. */}
+      {status === 'ready' && passager.length > 0 && (
+        <div style={{
+          background: 'rgba(196,120,32,0.08)',
+          border: '1px solid rgba(196,120,32,0.28)',
+          borderRadius: 12, padding: '12px 14px', marginBottom: 14,
+          display: 'flex', gap: 10, alignItems: 'flex-start',
+        }}>
+          <span aria-hidden style={{ display: 'inline-flex', flexShrink: 0, marginTop: 1 }}>
+            <Icon name="warning" size={16} />
+          </span>
+          <div style={{ fontSize: 13, lineHeight: 1.5 }}>
+            <strong style={{ display: 'block', marginBottom: 3, color: 'var(--txt)' }}>
+              Rutten går genom {passager.length === 1 ? 'en trång passage' : 'trånga passager'}
+            </strong>
+            <span style={{ color: 'var(--txt2)' }}>
+              {passager.map(p => {
+                const bitar: string[] = []
+                if (p.maxDjupM != null) bitar.push(`max ${String(p.maxDjupM).replace('.', ',')} m djupgående`)
+                if (p.segelfriHojdM != null) bitar.push(`segelfri höjd ${p.segelfriHojdM} m`)
+                return `${p.namn} — ${bitar.join(', ')}`
+              }).join('. ')}. Kontrollera att din båt tar sig igenom innan du
+              planerar efter rutten, och läs av aktuellt sjökort — djupet
+              varierar med vattenstånd.
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej.
           'danger'-ton används när ingen vattenrutt kunde beräknas (safety layer). */}
