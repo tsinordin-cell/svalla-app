@@ -37,4 +37,5 @@ Du har sparat **{{saved_count}} öar** att besöka. Gå till [Min skärgård](ht
 
 Glad sommar.
 
-— **Thomas**, Svalla
+— **Team Svalla**
+*Några av oss har redan sjösatt. Resten påstår att de "väntar på rätt väder".*
