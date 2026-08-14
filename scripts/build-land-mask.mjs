@@ -40,7 +40,12 @@ import { dirname } from 'node:path'
 // [syd, väst, nord, öst] — Overpass ordning.
 const BBOXES = {
   // Stockholms skärgård + Mälaren + en bit kust norr och söder.
-  stockholm: [58.70, 17.20, 60.10, 19.40],
+  // Norra kanten flyttad 60.10 -> 60.50 den 2026-08-13. Singö (60.1768) låg
+  // 8,5 km utanför och fick outside_coverage mot varenda annan hamn — den
+  // enda av 67 hamnar som aldrig kunde få en rutt. Grisslehamn låg dessutom
+  // bara 430 m innanför kanten, vilket är för tunt för en mask som ska klara
+  // vägsökning runt en hamn.
+  stockholm: [58.70, 17.20, 60.50, 19.40],
   // Hela svenska kusten inkl. Vänern/Vättern-regionen. Tung: räkna med
   // flera hundra MB rå-JSON och lång körtid.
   sweden: [55.00, 10.50, 66.00, 24.50],

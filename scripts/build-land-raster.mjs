@@ -56,7 +56,7 @@ if (fs.existsSync(CACHE)) {
   console.log('Mälaren:', malar.length, 'segment (' + rel.members.length + ' members) — cachad')
 }
 
-const S = 58.70, W = 17.20, N = 60.10, E = 19.40
+const S = 58.70, W = 17.20, N = 60.50, E = 19.40  // N höjd från 60.10 2026-08-13, se build-land-mask.mjs
 const CELL_LAT = 25 / 111320
 const M_PER_LNG = 111320 * Math.cos(((S + N) / 2) * Math.PI / 180)
 const CELL_LNG = 25 / M_PER_LNG
