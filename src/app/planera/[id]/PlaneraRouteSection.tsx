@@ -150,6 +150,35 @@ export default function PlaneraRouteSection({
   // Returtypen hålls medvetet bred ('success' ingår) fastän ingen gren
   // returnerar success just nu — jämförelserna i JSX:en nedan använder den,
   // och success ska tillbaka när rutterna genererats om.
+  // ── Omvägskvot ────────────────────────────────────────────────────────────
+  //
+  // routeKm är sjövägen, haversineDistKm fågelvägen. Kvoten mellan dem avslöjar
+  // när ruttsökningen tvingats runt något den inte borde ha behövt.
+  //
+  // UPPMÄTT 2026-08-13, 18 slumpade hamnpar under 25 km fågelväg:
+  //   Saltsjöqvarn → Boo          10,3 km → 83,3 km   8,1x
+  //   Hammarby Sjöstad → Boo      10,7 km → 82,8 km   7,8x
+  //   Saltsjöqvarn → Gustavsberg  16,5 km → 72,0 km   4,4x
+  //   Nacka Strand → Dalarö       24,8 km → 71,7 km   2,9x
+  //   Grinda → Ingarö             18,0 km → 41,0 km   2,3x   (rimlig skärgårdsomväg)
+  //   övriga fjorton              1,0–1,5x
+  //
+  // Orsaken till de fyra höga: Skurusundet och Lännerstasundet är helt stängda
+  // i kustlinjemasken — noll av de 25 närmaste cellerna är vatten. Sökningen
+  // måste därför runt hela Lidingö och Värmdö. Masken är medvetet konservativ
+  // och det ändrar vi inte här; men vi slutar kalla resultatet verifierat.
+  //
+  // Tröskeln 2,5 ligger över Grinda→Ingarö, som är en äkta skärgårdsomväg, och
+  // under Nacka Strand→Dalarö som inte är det. Den är vald mot mätdata, inte
+  // gissad — men den är ett trubbigt mått och kan behöva justeras när sunden
+  // öppnats.
+  const OMVAG_TROSKEL = 2.5
+  const omvagsKvot =
+    status === 'ready' && haversineDistKm > 0.5 && routeKm > 0
+      ? routeKm / haversineDistKm
+      : null
+  const orimligOmvag = omvagsKvot !== null && omvagsKvot > OMVAG_TROSKEL
+
   const qualityBanner = ((): { tone: 'success' | 'warning' | 'danger' | 'info'; label: string; desc: string } | null => {
     if (status !== 'ready' || !quality) return null
     // 2026-08-03 (em): precomputed ÅTERSTÄLLD till success. Alla 609 rutter
@@ -158,6 +187,19 @@ export default function PlaneraRouteSection({
     // 20-sampelregel + tät 30 m-sampling — 0 underkända (verify-routes-v2).
     // GRID förblir warning: den beräknas i runtime mot swedish-coastline.json
     // som saknar fastlandet. Uppgradera INTE grid förrän prod-masken bytts ut.
+    // Orimlig omväg går FÖRE kvalitetsgrenarna. Rutten kan vara både verifierad
+    // och orimlig samtidigt — den håller sig i vatten hela vägen, men vägen är
+    // inte den en båt faktiskt tar. Att då skriva "Verifierad sjöled" är
+    // formellt sant och ändå vilseledande: användaren läser det som "det här
+    // är vägen", inte "det här är en väg som inte går i land".
+    if (orimligOmvag && (quality === 'precomputed' || quality === 'grid')) {
+      const kvot = omvagsKvot!.toFixed(1).replace('.', ',')
+      return {
+        tone: 'warning' as const,
+        label: 'Ovanligt lång omväg — stäm av mot sjökort',
+        desc: `Sjövägen vi hittat är ${kvot} gånger längre än fågelvägen (${Math.round(routeKm)} km mot ${Math.round(haversineDistKm)} km). Rutten håller sig i vatten hela vägen, men en så stor omväg beror oftast på att vår kustlinjedata stängt en passage som i verkligheten är farbar. Använd den inte som planeringsunderlag utan att stämma av mot sjökort.`,
+      }
+    }
     if (quality === 'precomputed') {
       return { tone: 'success' as const, label: 'Verifierad sjöled', desc: 'Rutten är verifierad mot OSM:s kustlinje och korsar inte land. Följ sjökort för djup och farled.' }
     }
