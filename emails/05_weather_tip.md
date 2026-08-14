@@ -4,7 +4,7 @@ subject_options:
   - "{{temp}}° i skärgården i helgen — dags att planera"
   - "Skärgårdsväder {{best_day}} — {{temp}}° och lite vind"
 preheader: Prognosen ser bra ut. Tre öar att fundera på.
-from: "Thomas på Svalla <hello@svalla.se>"
+from: "Team Svalla <hello@svalla.se>"
 ---
 
 # Skärgårdsväder i helgen
