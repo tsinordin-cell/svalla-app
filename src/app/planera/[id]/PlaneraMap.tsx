@@ -223,16 +223,55 @@ export default function PlaneraMap({ startLat, startLng, startName, endLat, endL
   // mapReady MÅSTE vara med: utan den ritas aldrig en rutt som anlände före kartan.
   }, [seaPath, quality, mapReady])
 
+  // Kartan ritas ut direkt med start, mål och platser. Sjöleden kan dröja —
+  // grid-sökningen går igenom 80 000 punkter för par som inte är förberäknade.
+  // Under tiden ligger beskedet OVANPÅ kartan, inte under den: användaren ska
+  // se en riktig karta med sin start och sitt mål, och samtidigt förstå att
+  // linjen är på väg. Vi ritar medvetet INGEN fågelvägslinje i väntan — en rak
+  // linje går tvärs över öarna och vore missvisande på en sjökortstjänst.
+  const beraknarRutt = !seaPath
+
   return (
     <div style={{ marginBottom: 20 }}>
-      <div
-        ref={containerRef}
-        style={{
-          width: '100%', height: 300, borderRadius: 18, overflow: 'hidden',
-          border: '1px solid rgba(10,123,140,0.15)',
-          background: 'var(--sea-xl, #e8f2fa)',
-        }}
-      />
+      <div style={{ position: 'relative' }}>
+        <div
+          ref={containerRef}
+          style={{
+            width: '100%', height: 300, borderRadius: 18, overflow: 'hidden',
+            border: '1px solid rgba(10,123,140,0.15)',
+            background: 'var(--sea-xl, #e8f2fa)',
+          }}
+        />
+        {beraknarRutt && (
+          <div
+            role="status"
+            aria-live="polite"
+            style={{
+              position: 'absolute', left: '50%', bottom: 14,
+              transform: 'translateX(-50%)',
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '7px 14px', borderRadius: 999,
+              background: 'rgba(10,30,45,0.82)',
+              backdropFilter: 'blur(6px)',
+              WebkitBackdropFilter: 'blur(6px)',
+              color: '#eaf4fa', fontSize: 12, fontWeight: 500,
+              border: '1px solid rgba(255,255,255,0.14)',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.28)',
+              pointerEvents: 'none', zIndex: 500,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            <svg viewBox="0 0 24 24" width={13} height={13} aria-hidden="true"
+                 style={{ animation: 'svalla-snurr-karta 1s linear infinite' }}>
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor"
+                      strokeWidth="2.5" strokeLinecap="round"
+                      strokeDasharray="42" strokeDashoffset="14" opacity="0.7" />
+            </svg>
+            Beräknar sjöled…
+            <style>{'@keyframes svalla-snurr-karta{to{transform:rotate(360deg)}}'}</style>
+          </div>
+        )}
+      </div>
       <div style={{
         display: 'flex', alignItems: 'center', gap: 14, marginTop: 10, flexWrap: 'wrap',
         fontSize: 11, color: 'var(--txt3)',
