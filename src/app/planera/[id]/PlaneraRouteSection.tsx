@@ -91,6 +91,7 @@ export default function PlaneraRouteSection({
   // Passager med känd djup- eller höjdbegränsning som rutten går igenom.
   const [passager, setPassager] = useState<Array<{
     namn: string; maxDjupM: number | null; segelfriHojdM: number | null
+    oppningsbarBro?: { namn: string; oppettider: string; kontakt: string } | null
   }>>([])
   const [reportOpen, setReportOpen] = useState(false)
   const [reportReason, setReportReason] = useState('')
@@ -305,9 +306,20 @@ export default function PlaneraRouteSection({
               {passager.map(p => {
                 const bitar: string[] = []
                 if (p.maxDjupM != null) bitar.push(`max ${String(p.maxDjupM).replace('.', ',')} m djupgående`)
-                if (p.segelfriHojdM != null) bitar.push(`segelfri höjd ${p.segelfriHojdM} m`)
-                return `${p.namn} — ${bitar.join(', ')}`
-              }).join('. ')}. Kontrollera att din båt tar sig igenom innan du
+                // Vid öppningsbar bro gäller höjden bara när bron är STÄNGD.
+                // Utan det tillägget läser en seglare siffran som ett stopp,
+                // fast bron öppnas varje hel timme hela säsongen.
+                if (p.segelfriHojdM != null) {
+                  const h = String(p.segelfriHojdM).replace('.', ',')
+                  bitar.push(p.oppningsbarBro
+                    ? `segelfri höjd ${h} m vid stängd bro`
+                    : `segelfri höjd ${h} m`)
+                }
+                const bro = p.oppningsbarBro
+                  ? ` ${p.oppningsbarBro.namn} öppnas ${p.oppningsbarBro.oppettider} (${p.oppningsbarBro.kontakt}).`
+                  : ''
+                return `${p.namn} — ${bitar.join(', ')}.${bro}`
+              }).join(' ')} Kontrollera att din båt tar sig igenom innan du
               planerar efter rutten, och läs av aktuellt sjökort — djupet
               varierar med vattenstånd.
             </span>

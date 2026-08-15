@@ -32,6 +32,23 @@
       "maxDjupM": 3,
       "segelfriHojdM": null,
       "mittlinje": [[59.30325, 18.287], [59.30449, 18.2895]]
+    },
+    {
+      "namn": "Stäketsundet",
+      "kalla": "Sjöfartsverket, Kanaler slussar och broar > Stäket (sidan uppdaterad 2024-05-10, läst 2026-08-15): landsvägsbron 59-28,4N 017-47,5E, sjökort 111, svängbro, segelfri höjd vid stängd bro 2,7 m, fri bredd 8,7 m. Hamnkartan anger 2,2 m och 7,8 m för samma bro — Sjöfartsverket är väghållarens uppgiftslämnare och gäller. Sundet är allmän farled: fartyg över 300 BRT ska rapportera till VTS Södertälje på VHF 68 vid passage.",
+      "breddM": 25,
+      "maxDjupM": null,
+      "segelfriHojdM": 2.7,
+      "oppningsbarBro": {
+        "namn": "Stäketbron",
+        "oppettider": "1 maj–15 oktober varje hel timme 09.30–22.30, övrig tid efter förhandsbeställning",
+        "kontakt": "VHF kanal 14 eller 0700-91 46 17"
+      },
+      "mittlinje": [
+        [59.4745, 17.79159], [59.473, 17.79159], [59.4715, 17.79159],
+        [59.47075, 17.79203], [59.47041, 17.79292], [59.46996, 17.79381],
+        [59.46951, 17.7947], [59.46906, 17.79558], [59.4685, 17.79602]
+      ]
     }
   ]
 }
