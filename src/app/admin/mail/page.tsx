@@ -55,7 +55,11 @@ export default async function AdminMailPage() {
   const mail = ORDNING.map(t => ({
     nyckel: t,
     beskrivning: BESKRIVNING[t],
-    resultat: renderEmail(t, EXEMPELVARDEN[t]),
+    // {{email}} sätts normalt av sendEmail (avregistreringslänken i sidfoten).
+    // Förhandsvisningen skickar inte riktig post, men variabelspärren kräver
+    // den ändå — annars vägrar renderEmail, vilket den också gjorde: nio röda
+    // rutor på en nyss driftsatt sida. Spärren hade rätt, jag matade den fel.
+    resultat: renderEmail(t, { email: 'exempel@svalla.se', ...EXEMPELVARDEN[t] }),
   }))
 
   const trasiga = mail.filter(m => !m.resultat.ok).length
