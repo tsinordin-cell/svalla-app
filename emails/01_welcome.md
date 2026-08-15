@@ -1,42 +1,55 @@
 ---
 trigger: user_created
+layout: fullt
 subject_options:
-  - "Välkommen till Svalla"
+  - "Välkommen ombord, {{first_name}}"
   - "Din skärgård är samlad — börja här"
-  - "Ombord, {{first_name}} — fem öar att börja med"
-preheader: Fem öar att börja med och allt du kan göra på Svalla.
+  - "Välkommen till Svalla"
+preheader: 84 öguider, alla hamnar och en plats för dina egna turer.
 from: "Team Svalla <hej@mail.svalla.se>"
 ---
 
 # Välkommen ombord, {{first_name}}.
 
-Svalla är skärgården samlad på ett ställe — guider till öarna, levande färjetider, rutter och en plats att logga dina egna turer.
+Svalla är skärgården samlad på ett ställe: guider till öarna, gästhamnar och naturhamnar, krogarna värda att avvika för — och en plats för dina egna turer.
 
-## Fem öar att börja med
+Tre saker att göra först.
 
-[**Sandhamn**](https://svalla.se/o/sandhamn) — seglarnas huvudstad. Bra för första riktiga skärgårdshelgen.
+:::kort
+### 1. Planera sommarens tur
+Skriv in start och mål. Du får sjöleden, vädret längs vägen och vad som ligger vid rutten.
 
-[**Grinda**](https://svalla.se/o/grinda) — närmare än Sandhamn. Lugnare. Perfekt för dagstur.
+[Planera en rutt →](https://svalla.se/planera/ny)
+:::
 
-[**Möja**](https://svalla.se/o/moja) — autentisk skärgård utan bilar. Möja Värdshus & Bageri bakar eget bröd.
+:::kort
+### 2. Spara öarna du vill till
+Hjärtat på varje guide bygger upp *Min skärgård* — en privat lista att skicka till resten av crewet inför helgen.
 
-[**Utö**](https://svalla.se/o/uto) — söder om stan. Cykelparadis och historisk gruvort.
+[Utforska öarna →](https://svalla.se/oar)
+:::
 
-[**Finnhamn**](https://svalla.se/o/finnhamn) — för dig som vill övernatta i Skärgårdsstiftelsens klassiska värdshus.
+:::kort accent
+### 3. Logga din första tur
+Tryck *Logga tur* när du lägger ut. GPS:en sköter resten: distans, tid, fart och en ritad rutt på sjökortet. Med tiden en karta över skärgården du faktiskt seglat.
 
-## Tre saker du kan göra direkt
+[Så funkar GPS-loggen →](https://svalla.se/logga)
+:::
 
-**Spara öar** du vill besöka — hjärtknappen finns på varje sida och fyller i din profil med tiden.
+## Varför vi byggde Svalla
 
-**Logga turer** med GPS — appen ritar din rutt på sjökortet och summerar distans, tid och hastighet. Som Strava, fast på vatten.
+Skärgården är vacker men bökig. Turerna går olika beroende på vecka, krogarna har olika öppet beroende på månad, och det som gällde förra sommaren gäller inte nödvändigtvis i år.
 
-**Hitta krogar och hamnar** med live-färjetider och väderlager bredvid kartan.
+Så vi samlade det. Öguiderna, hamnarna, färjetiderna och vädret på samma ställe. Ingen flikjonglering.
 
-[**Öppna din profil →**](https://svalla.se/min-skargard)
+Loggade turer blir en del av kartan. Ju fler som är med, desto bättre blir den.
 
----
+:::knapp
+[Öppna Svalla](https://svalla.se)
+:::
 
-Glad sommar — vi syns på vattnet.
-
-— **Team Svalla**
+:::signatur
+Ses därute.
+— Team Svalla
 *Ett gäng skärgårdsnördar med alldeles för många sjökort.*
+:::

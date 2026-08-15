@@ -308,17 +308,27 @@ async function handle(req: Request) {
     if (activeUsers) {
       const userIds = activeUsers.map(u => u.id)
 
-      const [{ data: tripRows }, { data: visitRows }] = await Promise.all([
-        service.from('trips').select('user_id').in('user_id', userIds).gte('created_at', yearStart),
+      const [{ data: tripRows }, { data: visitRows }, { data: savedRows }] = await Promise.all([
+        // distance ligger i distansminuter (NM) — samma enhet som profileTeaser.ts
+        service.from('trips').select('user_id, distance').in('user_id', userIds).gte('created_at', yearStart),
         service.from('visited_islands').select('user_id').in('user_id', userIds),
+        service.from('saved_islands').select('user_id').in('user_id', userIds),
       ])
       const tripCountByUser = new Map<string, number>()
       for (const r of tripRows ?? []) {
         tripCountByUser.set(r.user_id as string, (tripCountByUser.get(r.user_id as string) ?? 0) + 1)
       }
+      const distanceByUser = new Map<string, number>()
+      for (const r of (tripRows ?? []) as Array<{ user_id: string; distance?: number }>) {
+        distanceByUser.set(r.user_id, (distanceByUser.get(r.user_id) ?? 0) + (r.distance ?? 0))
+      }
       const visitCountByUser = new Map<string, number>()
       for (const r of visitRows ?? []) {
         visitCountByUser.set(r.user_id as string, (visitCountByUser.get(r.user_id as string) ?? 0) + 1)
+      }
+      const savedCountByUser = new Map<string, number>()
+      for (const r of savedRows ?? []) {
+        savedCountByUser.set(r.user_id as string, (savedCountByUser.get(r.user_id as string) ?? 0) + 1)
       }
 
       for (const u of activeUsers) {
@@ -334,6 +344,8 @@ async function handle(req: Request) {
             first_name: u.username || 'där',
             trip_count: tripCount,
             visited_count: visitCount,
+            saved_count: savedCountByUser.get(u.id) ?? 0,
+            distance_nm: Math.round(distanceByUser.get(u.id) ?? 0),
             username: u.username || '',
           },
         })

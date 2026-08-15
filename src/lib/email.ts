@@ -1,6 +1,15 @@
 /**
- * Lättviktig Resend-wrapper för transaktionella mail.
- * Läser markdown-mallar från /emails/ och skickar dem.
+ * Mail: EN renderare, mallfilerna i /emails är enda sanningen.
+ *
+ * Tidigare fanns tre spår för samma nio mail — markdown-filer, handkodade
+ * HTML-funktioner och EMBEDDED_TEMPLATES — med olika text i varje. Den
+ * handkodade vann alltid, så markdown-filen kunde vara hur fel som helst
+ * utan att någon märkte det. Nu finns bara mallfilen.
+ *
+ * Anledningen till att de handkodade fanns: markdown-utdata var ostilad och
+ * såg billig ut. Därför har renderaren nedan inline-stil på varje element
+ * plus blockdirektiv (:::kort, :::panel, :::knapp …) som ger exakt samma
+ * kortlayout som de handkodade hade.
  *
  * Kräver env:
  *  - RESEND_API_KEY
@@ -9,6 +18,7 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { MAIL_MALLAR } from './email-templates.generated'
 
 export type EmailTemplate = 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip' | 'newsletter_welcome' | 'day3_newsletter' | 'day14_newsletter' | 'day30_newsletter'
 
@@ -24,19 +34,41 @@ const TEMPLATE_FILES: Record<EmailTemplate, string> = {
   day30_newsletter: '09_day30_newsletter.md',
 }
 
+/** fullt = redaktionellt (välkomst, nyhetsbrev). enkelt = kort och operativt (väder, säsong). */
+type Layout = 'fullt' | 'enkelt'
+
 type Frontmatter = {
   trigger?: string
   subject_options?: string[]
   preheader?: string
   from?: string
+  layout?: Layout
 }
 
-type ParsedTemplate = {
-  meta: Frontmatter
-  body: string
+type ParsedTemplate = { meta: Frontmatter; body: string }
+
+/* ─────────────────────────  FÄRG & SKALA  ───────────────────────── */
+
+const F = {
+  bläck: '#0d2a3e',
+  text: '#3d5865',
+  dämpad: '#6a8a96',
+  blå: '#1e5c82',
+  turkos: '#0a7b8c',
+  rost: '#c96e2a',
+  kortBg: '#f4f9fb',
+  vit: '#ffffff',
+  kant: '#e2eaf0',
+  serif: "Georgia,'Times New Roman',serif",
 }
 
-/** Parsar enkel YAML-frontmatter (matchar mallarna i /emails/) */
+const SKALA: Record<Layout, { h1: number; h2: number; h3: number; brödtext: number; ingress: number; luft: number }> = {
+  fullt: { h1: 28, h2: 19, h3: 17, brödtext: 15, ingress: 16, luft: 32 },
+  enkelt: { h1: 24, h2: 17, h3: 16, brödtext: 15, ingress: 15.5, luft: 24 },
+}
+
+/* ─────────────────────────  FRONTMATTER  ───────────────────────── */
+
 function parseFrontmatter(raw: string): ParsedTemplate {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
   if (!match || !match[1] || match[2] === undefined) return { meta: {}, body: raw }
@@ -59,52 +91,224 @@ function parseFrontmatter(raw: string): ParsedTemplate {
     if (currentKey === 'trigger') meta.trigger = value
     else if (currentKey === 'preheader') meta.preheader = value
     else if (currentKey === 'from') meta.from = value
+    else if (currentKey === 'layout') meta.layout = value === 'enkelt' ? 'enkelt' : 'fullt'
   }
-
   return { meta, body: match[2] }
 }
 
-/** Trivial markdown→html — räcker för våra mallar (rubriker, listor, länkar, stark) */
-function markdownToHtml(md: string): string {
-  let html = md
-  // Headings
-  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>')
-  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>')
-  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>')
-  // Bold
-  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color:#1e5c82">$1</a>')
-  // Horizontal rule
-  html = html.replace(/^---$/gm, '<hr style="border:none;border-top:1px solid #e2e2e2;margin:24px 0">')
-  // Lists
-  html = html.replace(/^(\d+)\.\s+(.+)$/gm, '<li>$2</li>')
-  html = html.replace(/(<li>[\s\S]+?<\/li>)/g, m => /^\d/.test(md.match(/<li>/) ? 'x' : '') ? `<ol>${m}</ol>` : `<ul>${m}</ul>`)
-  html = html.replace(/^-\s+(.+)$/gm, '<li>$1</li>')
-  // Paragraphs (split by blank lines)
-  const blocks = html.split(/\n{2,}/).map(b => {
-    if (/^<(h[1-3]|ol|ul|li|hr|p|div|blockquote)/.test(b.trim())) return b
-    return `<p>${b.replace(/\n/g, '<br>')}</p>`
-  })
-  html = blocks.join('\n')
-  return html
+
+/* ─────────────────────────  MARKDOWN  ───────────────────────── */
+
+/** Inline: **fet**, *kursiv*, [länk](url). Kör efter att blocket är valt så länkfärgen kan bli ljus på mörk botten. */
+function inline(md: string, mörk: boolean): string {
+  const länkFärg = mörk ? '#9fd8e4' : F.blå
+  return md
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, `$1<em>$2</em>`)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" style="color:${länkFärg};text-decoration:underline">$1</a>`)
 }
 
-/** Substituera {{first_name}}, {{visited_count}} osv */
-function substitute(template: string, vars: Record<string, string | number | undefined>): string {
-  return template.replace(/\{\{\s*([a-z_]+)\s*\}\}/g, (_, key) => {
+/**
+ * Renderar vanlig markdown med inline-stil på varje element.
+ * Utan stilen ser mailen ostilade ut — det var hela anledningen till att
+ * de handkodade HTML-funktionerna en gång skrevs.
+ */
+function markdownBlock(md: string, s: typeof SKALA['fullt'], mörk: boolean): string {
+  const brödFärg = mörk ? 'rgba(255,255,255,0.84)' : F.text
+  const rubrikFärg = mörk ? '#ffffff' : F.bläck
+  const ut: string[] = []
+
+  for (const stycke of md.trim().split(/\n{2,}/)) {
+    const rader = stycke.split('\n').filter(r => r.trim() !== '')
+    if (rader.length === 0) continue
+    const första = rader[0] ?? ''
+
+    if (/^---+$/.test(första.trim())) {
+      ut.push(`<hr style="border:none;border-top:1px solid ${F.kant};margin:${s.luft}px 0">`)
+      continue
+    }
+    if (/^###\s+/.test(första)) {
+      ut.push(`<h3 style="font-family:${F.serif};font-size:${s.h3}px;font-weight:700;color:${rubrikFärg};margin:0 0 8px;line-height:1.3">${inline(första.replace(/^###\s+/, ''), mörk)}</h3>`)
+      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
+      continue
+    }
+    if (/^##\s+/.test(första)) {
+      ut.push(`<h2 style="font-family:${F.serif};font-size:${s.h2}px;font-weight:700;color:${rubrikFärg};margin:${s.luft}px 0 14px;letter-spacing:-0.005em;line-height:1.3">${inline(första.replace(/^##\s+/, ''), mörk)}</h2>`)
+      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
+      continue
+    }
+    if (/^#\s+/.test(första)) {
+      ut.push(`<h1 style="font-family:${F.serif};font-size:${s.h1}px;font-weight:700;color:${rubrikFärg};margin:0 0 16px;letter-spacing:-0.01em;line-height:1.2">${inline(första.replace(/^#\s+/, ''), mörk)}</h1>`)
+      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
+      continue
+    }
+    if (rader.every(r => /^\s*-\s+/.test(r))) {
+      const li = rader.map(r => `<li style="margin:0 0 8px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${inline(r.replace(/^\s*-\s+/, ''), mörk)}</li>`).join('')
+      ut.push(`<ul style="margin:0 0 ${s.luft}px;padding-left:20px">${li}</ul>`)
+      continue
+    }
+    if (rader.every(r => /^\s*\d+\.\s+/.test(r))) {
+      const li = rader.map(r => `<li style="margin:0 0 8px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${inline(r.replace(/^\s*\d+\.\s+/, ''), mörk)}</li>`).join('')
+      ut.push(`<ol style="margin:0 0 ${s.luft}px;padding-left:22px">${li}</ol>`)
+      continue
+    }
+    ut.push(`<p style="font-size:${s.brödtext}px;line-height:1.65;margin:0 0 16px;color:${brödFärg}">${inline(rader.join('\n'), mörk).replace(/\n/g, '<br>')}</p>`)
+  }
+  return ut.join('\n')
+}
+
+/* ─────────────────────────  BLOCKDIREKTIV  ───────────────────────── */
+
+/** Kort med färgad vänsterkant — huvudbyggstenen i välkomst- och nyhetsbrevsmailen. */
+function kort(innehåll: string, s: typeof SKALA['fullt'], accent: boolean): string {
+  const kantFärg = accent ? F.rost : F.blå
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 12px">
+  <tr><td class="card" style="padding:18px 20px;background:${F.kortBg};border-radius:14px;border-left:3px solid ${kantFärg}">
+${markdownBlock(innehåll, s, false).replace(/margin:0 0 16px/g, 'margin:0 0 10px')}
+  </td></tr>
+</table>`
+}
+
+/** Vit ruta med tunn kant — listkort i nyhetsbreven. */
+function ruta(innehåll: string, s: typeof SKALA['fullt']): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 10px">
+  <tr><td class="card" style="padding:16px 18px;background:${F.vit};border-radius:12px;border:1px solid ${F.kant}">
+${markdownBlock(innehåll, s, false).replace(/margin:0 0 16px/g, 'margin:0 0 8px')}
+  </td></tr>
+</table>`
+}
+
+/** Mörk gradientpanel — används sparsamt, för ett enda blickfång per mail. */
+function panel(innehåll: string, s: typeof SKALA['fullt']): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 ${s.luft}px;background:#0d3a5c;border-radius:16px">
+  <tr><td class="card" style="padding:24px;background:linear-gradient(135deg,#0d3a5c 0%,#0a7b8c 100%);border-radius:16px">
+${markdownBlock(innehåll, s, true)}
+  </td></tr>
+</table>`
+}
+
+/** Ljus citatpanel. */
+function citat(innehåll: string, s: typeof SKALA['fullt']): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 ${s.luft}px;background:${F.kortBg};border-radius:16px">
+  <tr><td class="card" style="padding:24px;background:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px">
+${markdownBlock(innehåll, s, false)}
+  </td></tr>
+</table>`
+}
+
+/** Bulletproof-knapp. Innehållet ska vara exakt en markdown-länk. */
+function knapp(innehåll: string): string {
+  const m = innehåll.trim().match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+  if (!m) return markdownBlock(innehåll, SKALA.fullt, false)
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto 28px">
+  <tr><td class="cta" style="background:#1e5c82;background-image:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px">
+    <a href="${m[2]}" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">${m[1]}</a>
+  </td></tr>
+</table>`
+}
+
+/**
+ * Avsändarblock. Rad 1 = hälsning, rad 2 = "— Team Svalla", rad 3 = kursiv underrad.
+ * Alla mail signeras av teamet, aldrig av en enskild person — ett enmansnamn
+ * får avsändaren att se mindre ut än vi är.
+ */
+function signatur(innehåll: string): string {
+  const rader = innehåll.trim().split('\n').filter(r => r.trim() !== '')
+  const hälsning = rader[0] ?? ''
+  const namn = rader[1] ?? '— Team Svalla'
+  const underrad = (rader[2] ?? '').replace(/^\*|\*$/g, '')
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 0;border-top:1px solid ${F.kant}">
+  <tr><td style="padding:20px 0 0">
+    <p style="font-size:15px;line-height:1.6;margin:0 0 4px;color:${F.text}">${inline(hälsning, false)}</p>
+    <p style="font-size:15px;line-height:1.5;margin:0 0 2px;color:${F.bläck};font-weight:700">${inline(namn.replace(/^—\s*/, '— '), false)}</p>
+    ${underrad ? `<p style="font-size:13.5px;line-height:1.5;margin:0;color:${F.dämpad};font-style:italic">${inline(underrad, false)}</p>` : ''}
+  </td></tr>
+</table>`
+}
+
+const BLOCK: Record<string, (innehåll: string, s: typeof SKALA['fullt'], flagga: boolean) => string> = {
+  kort: (i, s, accent) => kort(i, s, accent),
+  ruta: (i, s) => ruta(i, s),
+  panel: (i, s) => panel(i, s),
+  citat: (i, s) => citat(i, s),
+  knapp: i => knapp(i),
+  signatur: i => signatur(i),
+}
+
+/**
+ * Kör hela mallkroppen genom block- och markdownrenderarna.
+ *
+ * HTML-kommentarer strippas först. Där ligger källhänvisningarna
+ * (`<!-- KÄLLA: ... -->`) intill sitt påstående: osynliga för läsaren,
+ * synliga för scripts/verify-claims.mjs via den genererade TS-filen.
+ */
+function renderBody(body: string, layout: Layout): string {
+  const s = SKALA[layout]
+  const rader = body.replace(/<!--[\s\S]*?-->/g, '').split('\n')
+  const ut: string[] = []
+  let vanlig: string[] = []
+  let öppet: { namn: string; flagga: boolean; rader: string[] } | null = null
+
+  const spolaVanlig = () => {
+    if (vanlig.join('').trim()) ut.push(markdownBlock(vanlig.join('\n'), s, false))
+    vanlig = []
+  }
+
+  for (const rad of rader) {
+    const start = rad.match(/^:::([a-zåäö]+)\s*(.*)$/)
+    if (!öppet && start && BLOCK[start[1] as string]) {
+      spolaVanlig()
+      öppet = { namn: start[1] as string, flagga: (start[2] ?? '').trim() === 'accent', rader: [] }
+      continue
+    }
+    if (öppet && /^:::\s*$/.test(rad)) {
+      const fn = BLOCK[öppet.namn]
+      if (fn) ut.push(fn(öppet.rader.join('\n'), s, öppet.flagga))
+      öppet = null
+      continue
+    }
+    if (öppet) öppet.rader.push(rad)
+    else vanlig.push(rad)
+  }
+  // Oavslutat block är ett skrivfel i mallen — rendera innehållet hellre än att tappa det.
+  if (öppet) {
+    const fn = BLOCK[öppet.namn]
+    if (fn) ut.push(fn(öppet.rader.join('\n'), s, öppet.flagga))
+  }
+  spolaVanlig()
+  return ut.join('\n')
+}
+
+/**
+ * Substituera {{first_name}}, {{visited_count}} osv.
+ *
+ * En variabel som saknas SAMLAS UPP i stället för att bli tom sträng.
+ * Tidigare gav en felstavad platshållare texten "du besökte  öar" utan att
+ * något gick sönder — samma familj av fel som resten av kodbasen: tomhet som
+ * fylls tyst. Nu stoppas mailet i stället, och renderEmail talar om vilken
+ * variabel som fattas.
+ */
+function substitute(
+  template: string,
+  vars: Record<string, string | number | undefined>,
+  saknade?: Set<string>,
+): string {
+  return template.replace(/\{\{\s*([a-z_]+)\s*\}\}/g, (_, key: string) => {
     const v = vars[key]
-    return v !== undefined ? String(v) : ''
+    if (v === undefined || v === null || String(v).trim() === '') {
+      saknade?.add(key)
+      return ''
+    }
+    return String(v)
   })
 }
+
+/* ─────────────────────────  RAM  ───────────────────────── */
 
 /**
  * Logo-URL — hostad PNG på Supabase Storage public bucket.
  * Bytt från inline SVG eftersom Gmail iOS strippar SVG-element.
  * PNG renderar pålitligt i alla mailklienter inkl. Outlook.
- *
- * Källa: scripts/build-email-logo.* (om du vill regenerera) — ankaret + Playfair-text på blå hero-bg.
- * Storlek: 560×128 (rendered as 140×32, retina-ready).
  */
 const EMAIL_LOGO_URL = 'https://oiklttwylndesewauytj.supabase.co/storage/v1/object/public/images/email/svalla-logo.png'
 
@@ -124,13 +328,7 @@ function wrapEmail(htmlBody: string, preheader?: string): string {
     .container { border-radius:0 !important; }
     .body-pad  { padding:24px 20px !important; }
     .hero-pad  { padding:22px 20px 18px !important; }
-    .h1        { font-size:24px !important; line-height:1.2 !important; }
-    .lead      { font-size:16px !important; line-height:1.55 !important; }
     .card      { padding:16px 18px !important; }
-    .card-title { font-size:16px !important; }
-    .card-body  { font-size:14.5px !important; }
-    .h2        { font-size:18px !important; }
-    .body      { font-size:15px !important; line-height:1.6 !important; }
     .cta a     { padding:14px 26px !important; font-size:15px !important; }
     .tagline   { display:none !important; }
     .logo      { width:120px !important; height:auto !important; }
@@ -142,20 +340,17 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f6">
   <tr><td align="center" style="padding:24px 0">
     <table role="presentation" width="600" class="container" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
-      <!-- HERO BAND med PNG-logo -->
       <tr>
-        <td class="hero-pad" style="background:linear-gradient(135deg,#0d3a5c 0%,#1e5c82 50%,#0a7b8c 100%);padding:28px 36px 26px">
+        <td class="hero-pad" style="background:#0d3a5c;background-image:linear-gradient(135deg,#0d3a5c 0%,#1e5c82 50%,#0a7b8c 100%);padding:28px 36px 26px">
           <img src="${EMAIL_LOGO_URL}" width="140" height="32" alt="Svalla" class="logo" style="display:block;border:0;max-width:140px;height:auto;outline:none;margin-bottom:8px">
           <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.65);letter-spacing:0.5px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">skärgården, samlad på ett ställe</p>
         </td>
       </tr>
-      <!-- BODY -->
       <tr>
         <td class="body-pad" style="padding:36px 36px 32px">
           ${htmlBody}
         </td>
       </tr>
-      <!-- FOOTER -->
       <tr>
         <td style="background:#fafcfd;padding:20px 36px;border-top:1px solid #e8eef2">
           <p style="font-size:11px;color:#6a8a96;line-height:1.6;margin:0">
@@ -167,7 +362,6 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
         </td>
       </tr>
     </table>
-    <!-- Tag-line under kortet (döljs på mobil) -->
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="tagline" style="max-width:600px;margin-top:12px">
       <tr><td align="center">
         <p style="font-size:11px;color:#8aa4b0;margin:0;letter-spacing:0.3px">Svalla AB · Stockholm · skärgården, samlad på ett ställe</p>
@@ -181,7 +375,6 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3
 
 /**
  * Skicka ett enkelt admin-mail utan mall — för interna notiser.
- * Kräver RESEND_API_KEY och EMAIL_FROM (eller default hej@mail.svalla.se).
  */
 export async function sendAdminEmail(opts: {
   subject: string
@@ -196,10 +389,7 @@ export async function sendAdminEmail(opts: {
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({ from, to: adminEmail, subject: opts.subject, html: opts.html }),
     })
     const data = await res.json().catch(() => ({}))
@@ -211,304 +401,59 @@ export async function sendAdminEmail(opts: {
 }
 
 /**
- * Hardcoded HTML body för welcome-mailet — markdown-parsern stödjer inte
- * card-layout med colored borders. Built ovanpå wrapEmail() som lägger på
- * hero-band + footer.
+ * Hämtar mallens råtext.
  *
- * Designprincip: aktivera, inte överväldiga. 3 huvudhandlingar (planera /
- * spara / logga) + ett kort manifesto + en CTA. Inga TODO-listor för
- * profil/följa/märken — de hör hemma i day-7-mailet och in-app-prompts
- * när användaren har en grund att bygga vidare på.
+ * Källan är MAIL_MALLAR, som genereras från /emails/*.md av
+ * scripts/build-email-templates.mjs i prebuild. Två skäl, båda uppmätta:
+ *
+ * 1. **Spärren såg aldrig mailen.** scripts/verify-claims.mjs har `src` som
+ *    omfång. /emails ligger utanför, så varje klockslag och pris i ett utskick
+ *    var osynligt för den. Via den genererade filen i src/lib granskas
+ *    mailtexten nu som all annan användarsynlig text.
+ * 2. **Saknad fil gav tyst fel text.** Fyra av nio mallar fanns inte på disk;
+ *    readFileSync kastade och koden föll tillbaka på en inbäddad kopia med
+ *    helt annan text. Nu avbryts bygget i stället.
+ *
+ * (Att filerna inte skulle följa med i Vercels bundle var en hypotes jag
+ * hade — den stämde inte. Next spårar dem via TEMPLATE_FILES. Skälen ovan
+ * är de som faktiskt håller.)
+ *
+ * I utvecklingsläge läses .md-filen direkt så en ändring syns utan ombygge.
  */
-function renderWelcomeBody(firstName: string): string {
-  const safeName = firstName.trim() || 'där'
-  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#0d2a3e;margin:0 0 18px;letter-spacing:-0.01em;line-height:1.2">Välkommen ombord, ${safeName}.</h1>
-
-<p style="font-size:16px;line-height:1.65;margin:0 0 32px;color:#3d5865">Säsongen öppnar nu. Svalla är skärgården samlad: 84 öguider, alla gästhamnar och naturhamnar, alla bastun, krogarna värda att avvika för. Plus en plats för dina egna turer.</p>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 36px">
-  <tr>
-    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #1e5c82">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">1. Planera sommarens tur</div>
-      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Skriv in start och mål. Du får sjöleden, väder längs vägen och vilka krogar, bastun och hamnar som ligger längs rutten.</p>
-      <a href="https://svalla.se/planera/ny" style="font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none">Planera en rutt →</a>
-    </td>
-  </tr>
-  <tr><td style="height:12px"></td></tr>
-  <tr>
-    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #1e5c82">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">2. Spara öar och hamnar du vill till</div>
-      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Hjärtat på varje guide bygger upp <em>Min skärgård</em>. En privat lista att skicka till resten av crewet inför helgen.</p>
-      <a href="https://svalla.se/oar" style="font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none">Utforska 84 öar →</a>
-    </td>
-  </tr>
-  <tr><td style="height:12px"></td></tr>
-  <tr>
-    <td style="padding:18px 20px;background:#f4f9fb;border-radius:14px;border-left:3px solid #c96e2a">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:6px">3. Logga din första tur</div>
-      <p style="font-size:14.5px;line-height:1.6;margin:0 0 10px;color:#3d5865">Tryck <em>Logga tur</em> när du lägger ut. GPS:en sköter resten. Distans, tid, hastighet, en ritad rutt på sjökortet. Med tiden en karta över skärgården du faktiskt seglat.</p>
-      <a href="https://svalla.se/logga" style="font-size:14px;font-weight:700;color:#c96e2a;text-decoration:none">Så funkar GPS-loggen →</a>
-    </td>
-  </tr>
-</table>
-
-<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.005em">Varför vi byggde Svalla</h2>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Skärgården är vacker men bökig. Färjorna går olika beroende på vecka, krogarna har olika öppet beroende på månad, och det som gällde förra sommaren gäller inte nödvändigtvis i år.</p>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Vi samlade allt på ett ställe. Plus Waxholmsbolagets färjetider och SMHI-väder. Ingen tab-jonglering.</p>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 32px;color:#3d5865">Loggade turer blir en del av kartan. Ju fler som är med, desto bättre blir den.</p>
-
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 28px">
-  <tr>
-    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
-      <a href="https://svalla.se" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Öppna Svalla</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:15px;line-height:1.65;margin:32px 0 0;color:#0d2a3e;text-align:center">Ses därute.<br><span style="color:#6a8a96">från teamet på Svalla</span></p>`
+function läsMall(template: EmailTemplate): string | null {
+  if (process.env.NODE_ENV !== 'production') {
+    try {
+      return fs.readFileSync(path.join(process.cwd(), 'emails', TEMPLATE_FILES[template]), 'utf-8')
+    } catch {
+      // faller igenom till den inbyggda
+    }
+  }
+  return MAIL_MALLAR[template] ?? null
 }
 
-/**
- * Välkomstmail för nyhetsbrevsprenumeranter (från /api/subscribe).
- * Skiljer sig från app-välkomsten: mer redaktionell, lyfter nyhetsbrevets värde,
- * inga app-feature-knappar. Prenumeranten har inget konto.
- */
-function renderNewsletterWelcomeBody(): string {
-  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.2">Välkommen till Svallanyheter.</h1>
+/** Renderar ett mail till färdig HTML utan att skicka — används av förhandsvisning och tester. */
+export function renderEmail(template: EmailTemplate, vars: Record<string, string | number | undefined> = {}):
+  { ok: true; subject: string; html: string; from?: string } | { ok: false; error: string } {
+  const raw = läsMall(template)
+  if (!raw) return { ok: false, error: `Mall saknas: ${TEMPLATE_FILES[template]}` }
 
-<p style="font-size:16px;line-height:1.65;margin:0 0 28px;color:#3d5865">Varannan tisdag i inkorgen. Öppna öar just nu, insider-tips och säsongsguider — utan annonser och utan fluff.</p>
+  const { meta, body } = parseFrontmatter(raw)
+  const saknade = new Set<string>()
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:#f4f9fb;border-radius:14px;border-left:3px solid #0a7b8c">
-  <tr>
-    <td style="padding:20px 22px">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-weight:700;color:#0d2a3e;margin-bottom:10px">Det här kan du förvänta dig:</div>
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">🏝 <strong>Öar som är öppna just nu</strong> — vad som faktiskt är tillgängligt den här månaden</td></tr>
-        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">⚓ <strong>Hamnar &amp; krogar</strong> — uppdaterat om vad som öppnat, stängt eller ändrat</td></tr>
-        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">🌤 <strong>Väderfönster</strong> — när vi ser en bra helg skickar vi ett extra tips</td></tr>
-        <tr><td style="padding:6px 0;font-size:14.5px;color:#3d5865;line-height:1.55">📌 <strong>Insider-tips</strong> — platser, lägen och timing som inte syns på Google Maps</td></tr>
-      </table>
-    </td>
-  </tr>
-</table>
+  // Kommentarerna bär källhänvisningarna och ska aldrig substitueras eller visas.
+  const kropp = body.replace(/<!--[\s\S]*?-->/g, '')
 
-<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:19px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Bra ställen att börja</h2>
+  const subject = substitute(meta.subject_options?.[0] || 'Svalla', vars, saknade)
+  const html = substitute(
+    wrapEmail(renderBody(substitute(kropp, vars, saknade), meta.layout ?? 'fullt'), meta.preheader),
+    vars,
+    saknade,
+  )
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px">
-  <tr>
-    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0;margin-bottom:10px">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Öppet just nu →</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Vilka öar som är i högsäsong, vad som är öppet och vad som har begränsad service — uppdateras varje månad.</p>
-      <a href="https://svalla.se/oppet-nu" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/oppet-nu →</a>
-    </td>
-  </tr>
-  <tr><td style="height:10px"></td></tr>
-  <tr>
-    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Hitta din ö →</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">120+ öar. Filtrera på barnvänlig, romantisk, bilfri, segling — eller bläddra igenom och låt dig överraskas.</p>
-      <a href="https://svalla.se/oar" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/oar →</a>
-    </td>
-  </tr>
-  <tr><td style="height:10px"></td></tr>
-  <tr>
-    <td style="padding:14px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">Säsongsguider →</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Vad som är bäst per säsong — höst, vinter, vår, sommar. Inklusive tips om när turister försvunnit och öarna är som finast.</p>
-      <a href="https://svalla.se/sasong" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">svalla.se/sasong →</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 12px;color:#3d5865">Nästa nummer kommer om två veckor. Tills dess — har du frågor om en specifik ö eller planerar något konkret? Svara på det här mailet. Vi läser allt.</p>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">/ Svalla</span></p>
-
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto">
-  <tr>
-    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
-      <a href="https://svalla.se/oppet-nu" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Utforska vad som är öppet nu →</a>
-    </td>
-  </tr>
-</table>`
-}
-
-/**
- * Dag-3-mail för nyhetsbrevsprenumeranter — introducerar Thorkel AI-guiden.
- * Skickas automatiskt 3 dagar efter prenumeration via cron-jobbet.
- * Tonen: redaktionell, inte produktdemo. Fokus på värdet, inte funktionen.
- */
-function renderDay3NewsletterBody(): string {
-  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">Har du träffat Thorkel?</h1>
-
-<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">För tre dagar sedan prenumererade du på Svallanyheter. Det här mailet finns för att tipsa om det vi faktiskt är mest stolta över.</p>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:linear-gradient(135deg,#0d3a5c 0%,#0a7b8c 100%);border-radius:16px;overflow:hidden">
-  <tr>
-    <td style="padding:24px 24px 20px">
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:8px">Möt Thorkel</div>
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3">Din personliga skärgårdsguide — som kan svara på allt</div>
-      <p style="font-size:14px;color:rgba(255,255,255,0.82);margin:0 0 18px;line-height:1.6">Thorkel är vår AI-guide. Ställ en fråga — var kräftskivan är bäst, hur man tar sig till Utö utan bil, vad man bör ha ombord för en nattsejlats — och du får ett konkret svar på sekunder.</p>
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;margin-bottom:6px;display:block">
-            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Vilken ö är bäst för en nybörjare med barn?"</em></span>
-          </td>
-        </tr>
-        <tr><td style="height:6px"></td></tr>
-        <tr>
-          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;display:block">
-            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Hur anmäler man man överbord?"</em></span>
-          </td>
-        </tr>
-        <tr><td style="height:6px"></td></tr>
-        <tr>
-          <td style="background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;display:block">
-            <span style="font-size:13.5px;color:rgba(255,255,255,0.9)">💬 <em>"Hummerpremären i Bohuslän — när och var?"</em></span>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-
-<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 14px">Varför det funkar</h2>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865">Google ger dig listor. Thorkel ger dig svar. Han känner till alla öar i Stockholms skärgård, Bohuslän, Gotland och Höga Kusten — inklusive färjelägen, säsongsöppet och praktiska tips som inte finns på någon officiell sida.</p>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#3d5865">Det är ingen chatbot som ber dig klicka vidare. Det är en guide som faktiskt svarar.</p>
-
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
-  <tr>
-    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
-      <a href="https://svalla.se/guide" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Prata med Thorkel →</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:13px;line-height:1.65;margin:0;color:#6a8a96;text-align:center">Nästa Svallanyheter kommer varannan tisdag.<br>Svara på det här mailet om du har frågor.</p>`
-}
-
-/**
- * Dag-14-mail för nyhetsbrevsprenumeranter.
- * Fokus: Min Skärgård (spara öar + dela med crewet) + tre konkreta öar att börja med.
- * Tonen: praktisk, värdeskapande — visa att Svalla räddar planering.
- */
-function renderDay14NewsletterBody(): string {
-  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">Har du sparat dina öar?</h1>
-
-<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">Det vanligaste problemet i skärgårdsplanering är inte att välja fel ö — det är att missa att man egentligen hade en idé om vart man ville, men aldrig samlade ihop den.</p>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px;background:#f4f9fb;border-radius:14px;border-left:3px solid #0a7b8c">
-  <tr>
-    <td style="padding:20px 22px">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:700;color:#0d2a3e;margin-bottom:10px">Min Skärgård — din privata ölist</div>
-      <p style="font-size:14.5px;line-height:1.6;margin:0 0 12px;color:#3d5865">Tryck hjärtat på en ö så sparas den till <em>Min Skärgård</em>. En lista som är din. Dela den med crewet inför helgen med en länk — inga appar att installera, inga konton att skapa.</p>
-      <a href="https://svalla.se/min-skargard" style="font-size:14px;font-weight:700;color:#0a7b8c;text-decoration:none">Öppna Min Skärgård →</a>
-    </td>
-  </tr>
-</table>
-
-<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Tre öar att spara nu</h2>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px">
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">🏖 Sandhamn</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Ytterskärgårdens seglarhamn. Trouville-stranden, Sandhamns Värdshus och klippor mot öppet hav. Boka bord i förväg under juli.</p>
-      <a href="https://svalla.se/o/sandhamn" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
-    </td>
-  </tr>
-  <tr><td style="height:10px"></td></tr>
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">🌿 Grinda</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Naturreservat med sandstrand vid gästhamnen och klippbad på norra sidan. Värdshuset lagar mat som matchar Stockholms bästa krogar. 2,5 h från Strömkajen.</p>
-      <a href="https://svalla.se/o/grinda" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
-    </td>
-  </tr>
-  <tr><td style="height:10px"></td></tr>
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:4px">⚒ Utö</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0 0 8px;line-height:1.5">Söder om det mesta — gammal gruvö med Ålö Storsand och en av skärgårdens bästa cykelleder. Hyr cykel vid Gruvbryggan och cykla ner till sandstranden.</p>
-      <a href="https://svalla.se/o/uto" style="font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none">Guiden →</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 28px;color:#3d5865">Om du letar efter något specifikt — barnvänligt, romantiskt, bilfritt, segling — filtrera på <a href="https://svalla.se/oar" style="color:#1e5c82">svalla.se/oar</a> och spara ett par kandidater. Beslut fattas lättare när man sett alternativen.</p>
-
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
-  <tr>
-    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
-      <a href="https://svalla.se/oar" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Utforska alla öar →</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:13px;line-height:1.65;margin:0;color:#6a8a96;text-align:center">Nästa Svallanyheter varannan tisdag.<br>Svara om du har frågor om en specifik ö.</p>`
-}
-
-/**
- * Dag-30-mail för nyhetsbrevsprenumeranter.
- * Fokus: Återengagemang + "inget ännu?" — låg tröskel, mjuk nudge.
- * Tonen: varm, ingen stress, ett konkret erbjudande (tur-planering).
- */
-function renderDay30NewsletterBody(): string {
-  return `<h1 style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:#0d2a3e;margin:0 0 14px;letter-spacing:-0.01em;line-height:1.25">En månad sedan du prenumererade.</h1>
-
-<p style="font-size:16px;line-height:1.65;margin:0 0 26px;color:#3d5865">Har du hunnit ut på vattnet? Oavsett svar skickar vi det här för att dela en sak vi brukar höra från dem som väl kommit igång.</p>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px;background:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px">
-  <tr>
-    <td style="padding:24px 24px">
-      <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin-bottom:12px;line-height:1.3">"Det var enklare än jag trodde."</div>
-      <p style="font-size:14.5px;line-height:1.6;margin:0 0 14px;color:#3d5865">Det vanligaste vi hör från folk som gjort sin första dagstur är att hindret var inbillat. Färjan tar sig dit. Värdshuset är öppet. Det finns var man badar.</p>
-      <p style="font-size:14.5px;line-height:1.6;margin:0;color:#3d5865">Den svåra biten är att bestämma sig. Resten löser Svalla.</p>
-    </td>
-  </tr>
-</table>
-
-<h2 style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#0d2a3e;margin:0 0 16px">Planera en dagstur — 10 minuter</h2>
-
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 28px">
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">1. Välj en ö</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Nybörjare: <a href="https://svalla.se/o/fjaderholmarna" style="color:#1e5c82">Fjäderholmarna</a> (25 min, ingen planering). Vill ha mer: <a href="https://svalla.se/o/grinda" style="color:#1e5c82">Grinda</a> eller <a href="https://svalla.se/o/finnhamn" style="color:#1e5c82">Finnhamn</a>.</p>
-    </td>
-  </tr>
-  <tr><td style="height:8px"></td></tr>
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">2. Kolla färjetiden</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Alla Waxholmsbolagets linjer finns på <a href="https://svalla.se/farjor" style="color:#1e5c82">svalla.se/farjor</a>. Kolla sista båten hem innan du åker.</p>
-    </td>
-  </tr>
-  <tr><td style="height:8px"></td></tr>
-  <tr>
-    <td style="padding:16px 18px;background:#fff;border-radius:12px;border:1px solid #e2eaf0">
-      <div style="font-size:15px;font-weight:700;color:#0d2a3e;margin-bottom:6px">3. Fråga Thorkel om du fastnar</div>
-      <p style="font-size:13.5px;color:#3d5865;margin:0;line-height:1.5">Vad tar det, vad kostar det, hur är vädret? <a href="https://svalla.se/guide" style="color:#1e5c82">Skriv din fråga →</a></p>
-    </td>
-  </tr>
-</table>
-
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto 32px">
-  <tr>
-    <td style="background:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px;padding:0">
-      <a href="https://svalla.se/planera" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">Planera din första tur →</a>
-    </td>
-  </tr>
-</table>
-
-<p style="font-size:15px;line-height:1.65;margin:0 0 8px;color:#3d5865">Nästa Svallanyheter kommer varannan tisdag. Vi skickar inte fler påminnelsemail efter det här — men du finns kvar i listan och får nyhetsbrevet.</p>
-
-<p style="font-size:15px;line-height:1.65;margin:0;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">/ Svalla</span></p>`
+  if (saknade.size > 0) {
+    return { ok: false, error: `Variabler saknas i ${TEMPLATE_FILES[template]}: ${[...saknade].join(', ')}` }
+  }
+  return { ok: true, subject, html, ...(meta.from ? { from: meta.from } : {}) }
 }
 
 /** Skicka mail via Resend API */
@@ -520,11 +465,8 @@ export async function sendEmail(opts: {
   const apiKey = process.env.RESEND_API_KEY
   if (!apiKey) return { ok: false, error: 'RESEND_API_KEY saknas' }
 
-  // Respektera unsubscribes — om mottagaren klickat "Avregistrera"
-  // tidigare så skipa utskick. Returnera ok:true för att inte trigga
-  // retry-loops i kod som anropar oss. Fail-open vid DB-fel (logga +
-  // skicka ändå) så ett tillfälligt Supabase-problem inte blockerar
-  // alla mail.
+  // Respektera unsubscribes. Fail-open vid DB-fel så ett tillfälligt
+  // Supabase-problem inte blockerar alla mail.
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -535,69 +477,31 @@ export async function sendEmail(opts: {
       )
       if (r.ok) {
         const rows = await r.json() as Array<{ email: string }>
-        if (rows.length > 0) {
-          return { ok: true, error: 'unsubscribed' }
-        }
+        if (rows.length > 0) return { ok: true, error: 'unsubscribed' }
       }
     }
   } catch {
     // fail-open: skicka ändå
   }
 
-  // Läs mall — frontmatter används för subject + preheader oavsett om
-  // body kommer från markdown eller hardcoded HTML.
-  const file = TEMPLATE_FILES[opts.template]
-  let raw: string
-  try {
-    const filePath = path.join(process.cwd(), 'emails', file)
-    raw = fs.readFileSync(filePath, 'utf-8')
-  } catch {
-    raw = EMBEDDED_TEMPLATES[opts.template]
-  }
-
-  const { meta, body } = parseFrontmatter(raw)
   const vars = { email: opts.to, ...opts.vars }
-  const subject = (meta.subject_options?.[0] || 'Svalla')
-  const subjectFinal = substitute(subject, vars)
+  const renderad = renderEmail(opts.template, vars)
+  if (!renderad.ok) return { ok: false, error: renderad.error }
 
-  // Hardkodade HTML-mallar (card-layout). Övriga templates kör markdown.
-  let htmlBody: string
-  if (opts.template === 'welcome') {
-    const firstName = String(opts.vars?.first_name ?? 'där')
-    htmlBody = renderWelcomeBody(firstName)
-  } else if (opts.template === 'newsletter_welcome') {
-    htmlBody = renderNewsletterWelcomeBody()
-  } else if (opts.template === 'day3_newsletter') {
-    htmlBody = renderDay3NewsletterBody()
-  } else if (opts.template === 'day14_newsletter') {
-    htmlBody = renderDay14NewsletterBody()
-  } else if (opts.template === 'day30_newsletter') {
-    htmlBody = renderDay30NewsletterBody()
-  } else {
-    const bodyFinal = substitute(body, vars)
-    htmlBody = markdownToHtml(bodyFinal)
-  }
-  const html = substitute(wrapEmail(htmlBody, meta.preheader), vars)
-
-  const from = process.env.EMAIL_FROM || meta.from || 'Svalla <info@svalla.se>'
+  const from = process.env.EMAIL_FROM || renderad.from || 'Svalla <info@svalla.se>'
 
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         from,
         to: opts.to,
-        subject: subjectFinal,
-        html,
-        // One-click unsubscribe (RFC 8058). Endpointen har redan haft en
-        // POST-handler, men HEADERNA har aldrig skickats — utan dem finns
-        // ingen avregistreringsknapp i Gmail/Apple Mail och utskicken raknas
-        // som bulk utan opt-out, vilket sanker leveransbarheten rejalt.
-        // Gmail och Yahoo kraver detta av avsandare sedan 2024.
+        subject: renderad.subject,
+        html: renderad.html,
+        // One-click unsubscribe (RFC 8058). Gmail och Yahoo kräver detta av
+        // avsändare sedan 2024 — utan headern räknas utskicken som bulk utan
+        // opt-out, vilket sänker leveransbarheten rejält.
         headers: {
           'List-Unsubscribe': `<https://svalla.se/api/email/unsubscribe?email=${encodeURIComponent(opts.to)}>`,
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
@@ -610,144 +514,4 @@ export async function sendEmail(opts: {
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : 'Network' }
   }
-}
-
-/** Embedded fallback om filsystemet inte är tillgängligt vid runtime */
-const EMBEDDED_TEMPLATES: Record<EmailTemplate, string> = {
-  welcome: `---
-subject_options:
-  - "Välkommen till Svalla"
-preheader: 5 öar att börja med.
----
-# Välkommen, {{first_name}}!
-Tack för att du gick med. Svalla är skärgårdens guide — vart du ska, vad som finns där, hur du tar dig dit.
-
-## 5 öar att börja med
-1. **Sandhamn** — [Läs guiden](https://svalla.se/o/sandhamn)
-2. **Grinda** — [Läs guiden](https://svalla.se/o/grinda)
-3. **Möja** — [Läs guiden](https://svalla.se/o/moja)
-4. **Utö** — [Läs guiden](https://svalla.se/o/uto)
-5. **Finnhamn** — [Läs guiden](https://svalla.se/o/finnhamn)
-
-[Se din profil](https://svalla.se/min-skargard)
-
-— Teamet på Svalla`,
-
-  day7: `---
-subject_options:
-  - "En ö du förmodligen inte tänkt på"
-preheader: Det är inte Sandhamn. Inte Fjäderholmarna heller.
----
-Hej {{first_name}},
-
-Det är en vecka sedan du prenumererade. Har du hunnit planera något, eller är det fortfarande ett vagt "i sommar"-projekt?
-
-De flesta börjar med Sandhamn eller Fjäderholmarna. Inget fel med det. Men om du vill ha något som inte är fullt av turister, som faktiskt är enkelt att ta sig till och som har mat som håller — prova Grinda.
-
-Det är ungefär 2,5 timmar med Waxholmsbåten från Strömkajen. Naturreservat, vandringsleder, klippbad och ett värdshus som har ett av de bättre köken i skärgården. Det fullbokas inte till tusen på en dag i juli.
-
-[Läs Grinda-guiden →](https://svalla.se/o/grinda)
-
-Om du redan vet vart du ska och bara behöver hjälp att planera:
-
-[Planera turen →](https://svalla.se/utflykt)
-
-Nästa brev från oss kommer varannan tisdag. Hör av dig om du har frågor om en specifik ö — svara bara på det här mailet.
-
-/ Svalla`,
-
-  season_open: `---
-subject_options:
-  - "Skärgårdssäsongen öppnar — är du redo?"
-preheader: Säsongen är här. Tre saker att veta.
----
-# Säsongen är öppen, {{first_name}}!
-Maj är här och färjorna går igen.
-
-## Tre saker att veta
-1. **Boka tidigt** — populära krogar fyller juli redan i april
-2. **Färjetider** är uppdaterade på [/farjor](https://svalla.se/farjor)
-3. **Skärgårdsbingo 2026** — [25 utmaningar](https://svalla.se/bingo)
-
-— Teamet på Svalla`,
-
-  season_close: `---
-subject_options:
-  - "Säsongen är slut — du besökte {{visited_count}} öar"
-preheader: Året i siffror.
----
-# Tack för säsongen, {{first_name}}!
-Du loggade {{trip_count}} turer och besökte {{visited_count}} öar.
-
-[Se din wrapped →](https://svalla.se/wrapped/{{username}}/2026)
-
-— Teamet på Svalla`,
-
-  newsletter_welcome: `---
-subject_options:
-  - "Välkommen till Svallanyheter — din första öinsider"
-preheader: Varannan tisdag i inkorgen. Öppna öar, tips och skärgårdsinsider.
----
-Välkommen till Svallanyheter!
-`,
-
-  day3_newsletter: `---
-subject_options:
-  - "Har du träffat Thorkel? Din personliga skärgårdsguide"
-preheader: Han kan svara på allt — från kräftskiva till hur man anmäler man överbord.
----
-Dag-3-mail för nyhetsbrevsprenumeranter.
-`,
-
-  day14_newsletter: `---
-subject_options:
-  - "Tre öar att spara — och en funktion du kanske missat"
-preheader: Min Skärgård: din privata ölist att dela med crewet.
----
-Dag-14-mail för nyhetsbrevsprenumeranter.
-`,
-
-  day30_newsletter: `---
-subject_options:
-  - "En månad sedan du prenumererade — har du hunnit ut?"
-preheader: Planera din första dagstur på 10 minuter.
----
-Dag-30-mail för nyhetsbrevsprenumeranter.
-`,
-
-  weather_tip: `---
-subject_options:
-  - "{{temp}}° i skärgården i helgen — dags att planera"
-preheader: Prognosen ser bra ut. Tre öar att fundera på.
-from: "Svalla <hej@svalla.se>"
----
-# Skärgårdsväder i helgen
-
-Hej {{first_name}}! Prognosen för {{best_day}} ser bra ut: **{{temp}}°** och bara **{{wind}} m/s vind**. Det är skärgårdsväder.
-
-Tre öar att fundera på:
-
-## Grinda
-
-Naturreservat mitt i skärgården. Vandringsleder, klippbad och ett av skärgårdens bästa värdshus. Nås med Waxholmsbåten på ungefär 2 timmar från Strömkajen.
-
-[Grinda-guiden →](https://svalla.se/o/grinda)
-
-## Sandhamn
-
-Seglarcentrum med bakeri, klippor mot öppet hav och Sandhamns Värdshus. Boka bord innan du åker.
-
-[Sandhamn-guiden →](https://svalla.se/o/sandhamn)
-
-## Finnhamn
-
-STF-anläggning med naturreservat, fri camping och bra kajaktillgång. Lugnt och välskött.
-
-[Finnhamn-guiden →](https://svalla.se/o/finnhamn)
-
----
-
-[Planera helgturen →](https://svalla.se/planera)
-
-— Svalla`,
 }
