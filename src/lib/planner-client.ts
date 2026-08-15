@@ -114,6 +114,20 @@ export const DEPARTURES: Departure[] = [
   { id: 'ekero',          name: 'Ekerö',             lat: 59.2798, lng: 17.7902, region: 'Mälaren', emoji: '', water: 'malaren' },
   { id: 'slagsta',        name: 'Slagsta',           lat: 59.2597, lng: 17.848, region: 'Mälaren', emoji: '', water: 'malaren' },
   { id: 'maelaren-skarven', name: 'Färentuna (Skarven)', lat: 59.3933, lng: 17.6624, region: 'Mälaren', emoji: '', water: 'malaren' },
+  // Tillagda 2026-08-14. Koordinaterna kommer från OSM (id i kommentaren),
+  // inte från en sökning på ortsnamnet — se kartläggningen
+  // Svalla/04_Rapporter/hamnutokning-20260814.md. Varje hamn är körd mot
+  // /api/route/calculate i produktion före commit; punktantalet står i
+  // PR-beskrivningen.
+  { id: 'kungsangen',     name: 'Kungsängen',        lat: 59.4763, lng: 17.7578, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w404301180
+  { id: 'hasselby-strand', name: 'Hässelby strand',  lat: 59.3573, lng: 17.8331, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM n483235754
+  { id: 'jungfrusund',    name: 'Jungfrusund',       lat: 59.2746, lng: 17.8481, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM n1662292866
+  { id: 'birka',          name: 'Birka',             lat: 59.3312, lng: 17.5399, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM n2942214116
+  // Stallarholmen ligger 1,1 km från landmaskens västra kant (17,20) och är
+  // den västligaste punkt vi kan erbjuda. Västerås och Strängnäs faller
+  // utanför masken och skulle ge outside_coverage — lägg inte till dem utan
+  // att bygga om rastret först.
+  { id: 'stallarholmen',  name: 'Stallarholmen',     lat: 59.3646, lng: 17.2108, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w209720781
   // Tullingesjön. Kommentaren här sa tidigare "ihopkopplad med Mälaren via
   // Albysjön/Tumba". Det kan stämma som vattendrag, men UPPMÄTT 2026-08-05
   // finns ingen farbar förbindelse: /api/route/calculate svarar
@@ -142,6 +156,7 @@ export const DEPARTURES: Departure[] = [
   // ── Innerskärgård (Vaxholm – Saltsjöbaden) ────────────────────────────────
   { id: 'saltsjobaden',   name: 'Saltsjöbaden',      lat: 59.2787, lng: 18.3111, region: 'Innerskärgård', emoji: '' },
   { id: 'boo',            name: 'Boo',               lat: 59.3307, lng: 18.2867, region: 'Innerskärgård', emoji: '' },
+  { id: 'fjaderholmarna', name: 'Fjäderholmarna',    lat: 59.3295, lng: 18.1760, region: 'Innerskärgård', emoji: '' },   // OSM n2421931536, tillagd 2026-08-14
   { id: 'vaxholm',        name: 'Vaxholm',           lat: 59.4033, lng: 18.3264, region: 'Innerskärgård', emoji: '' },
   { id: 'resaroe',        name: 'Resarö',            lat: 59.4288, lng: 18.3356, region: 'Innerskärgård', emoji: '' },
   { id: 'rindo',          name: 'Rindö',             lat: 59.3961, lng: 18.4009, region: 'Innerskärgård', emoji: '' },
@@ -150,6 +165,7 @@ export const DEPARTURES: Departure[] = [
   { id: 'ingmarso',       name: 'Ingmarsö',          lat: 59.4737, lng: 18.7694, region: 'Innerskärgård', emoji: '' },
   { id: 'grinda',         name: 'Grinda',            lat: 59.4111, lng: 18.563, region: 'Innerskärgård', emoji: '' },
   { id: 'finnhamn',       name: 'Finnhamn',          lat: 59.4775, lng: 18.8156, region: 'Innerskärgård', emoji: '' },
+  { id: 'loka',           name: 'Löka',              lat: 59.4115, lng: 18.8966, region: 'Innerskärgård', emoji: '' },   // OSM n5860551264, tillagd 2026-08-14
 
   // ── Mellanskärgård (Möja, Sandhamn-bältet) ────────────────────────────────
   { id: 'ingaro',         name: 'Ingarö',            lat: 59.2552, lng: 18.4777, region: 'Mellanskärgård', emoji: '' },
@@ -185,6 +201,7 @@ export const DEPARTURES: Departure[] = [
   { id: 'yxlan',          name: 'Yxlan',             lat: 59.6126, lng: 18.8472, region: 'Norra', emoji: '' },
   { id: 'lido',           name: 'Lidö',              lat: 59.7786, lng: 19.0744, region: 'Norra', emoji: '' },
   { id: 'tjocko',         name: 'Tjockö',            lat: 59.7482, lng: 19.1314, region: 'Norra', emoji: '' },
+  { id: 'fejan',          name: 'Fejan',             lat: 59.7437, lng: 19.1668, region: 'Norra', emoji: '' },   // OSM n2379190344, tillagd 2026-08-14
   { id: 'rodloga',        name: 'Rödlöga',           lat: 59.592, lng: 19.1654, region: 'Norra', emoji: '' },
   { id: 'kapellskar',     name: 'Kapellskär',        lat: 59.7189, lng: 19.0658, region: 'Norra', emoji: '' },
   { id: 'arholma',        name: 'Arholma',           lat: 59.8532, lng: 19.1345, region: 'Norra', emoji: '' },
