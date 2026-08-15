@@ -952,7 +952,7 @@ export const ISLANDS: Island[] = [
     dog_notes: 'Hundvänlig ö med gott om utrymme. Koppeltvång i hamnområden och på några naturreservatsdelar.',
     insiderTips: [
       'Möja har ungefär 200 fastboende och en fungerande byskola, en av de mer välbefolkade yttre öarna i Stockholms mellersta skärgård.',
-      'Wikströms på Möja säljer färsk fisk och räkor direkt från fiskaren. Öppet under sommarsäsongen vid hamnen.',
+      'Möja Värdshus & Bageri i Kyrkviken bakar eget bröd på morgonen. Fråga lokalt om vad som är öppet — utbudet varierar med säsong.',
       'Det finns en lanthandel på Möja med ett gott utbud för en ö utan fast vägförbindelse.',
       'Möja är bilfri för besökare men har ett internt bilsystem för de fastboende.',
     ],

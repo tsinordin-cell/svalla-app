@@ -74,8 +74,33 @@ const KLOCKSLAG = /\b([01]?\d|2[0-3]):[0-5]\d\b/
  */
 const PRIS = /(\b\d{1,3}(?:[  .]\d{3})*\s*kr(?![a-zA-ZåäöÅÄÖ])|\b\d{2,5}\s*kr(?![a-zA-ZåäöÅÄÖ])|\bSEK\s*\d{2,5}\b|\b\d{2,5}\s*SEK\b)/
 
-/** Stil- och geometristrängar är inte påståenden om verkligheten. */
-const ÄR_STIL = /rgba?\(|[\d.]+px|cubic-bezier|translate|linear-gradient|viewBox|stroke|polygon|T\d{2}:\d{2}:\d{2}|^\s*['"`][\d.,\s-]+['"`]\s*$/
+/**
+ * Stil- och geometristrängar är inte påståenden om verkligheten.
+ *
+ * BLINDFLÄCK 3, hittad 2026-08-12: filtret kördes på HELA RADEN. I en
+ * HTML-mall med inline-CSS betyder det att all text som råkar dela rad med
+ * ett style-attribut blev osynlig. Konkret dolde det påståendet "Wikströms
+ * räkmacka stänger 16:00 i maj, 21:00 i juli" i välkomstmailet — två
+ * klockslag om en namngiven verksamhet, i ett mail till varje ny användare,
+ * som ingen kontrollerat och som spärren aldrig kunde se.
+ *
+ * Fixen: skala bort style-attributens INNEHÅLL först, granska texten som
+ * blir kvar. font-size:15px försvinner, "16:00 i maj" syns.
+ */
+const ÄR_STIL = /^\s*['"`][\d.,\s-]+['"`]\s*$|cubic-bezier|linear-gradient|viewBox|polygon\s*\(|T\d{2}:\d{2}:\d{2}/
+
+/**
+ * Tar bort det som bevisligen är formatering, så att brödtexten på samma rad
+ * kan granskas: style="...", class="...", och lösa CSS-deklarationer.
+ */
+function utanStil(s) {
+  return s
+    .replace(/\bstyle\s*=\s*(["'])[\s\S]*?\1/gi, ' ')
+    .replace(/\bclass(Name)?\s*=\s*(["'])[\s\S]*?\2/gi, ' ')
+    .replace(/[a-z-]+\s*:\s*[^;"'`]*(px|em|rem|%|deg|vh|vw)\b[^;"'`]*/gi, ' ')
+    .replace(/rgba?\([^)]*\)/gi, ' ')
+    .replace(/#[0-9a-f]{3,8}\b/gi, ' ')
+}
 
 function filer(dir, ut = []) {
   for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -139,8 +164,9 @@ for (const f of filer(ROT)) {
     if (borjadeIMallstrang && rad.trim().length > 0) strangar.push(rad)
     for (const s of strangar) {
       if (ÄR_STIL.test(s)) continue
-      const träffKlocka = KLOCKSLAG.test(s)
-      const träffPris = PRIS.test(s)
+      const rent = utanStil(s)
+      const träffKlocka = KLOCKSLAG.test(rent)
+      const träffPris = PRIS.test(rent)
       if (!träffKlocka && !träffPris) continue
       if (harKallaNara(rader, i)) continue
       if (harUppskattningNara(rader, i)) { uppskattningar++; continue }

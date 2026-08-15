@@ -18,7 +18,7 @@ Svalla är skärgården samlad på ett ställe — guider till öarna, levande f
 
 [**Grinda**](https://svalla.se/o/grinda) — närmare än Sandhamn. Lugnare. Perfekt för dagstur.
 
-[**Möja**](https://svalla.se/o/moja) — autentisk skärgård. Wikströms räkmacka är legendarisk.
+[**Möja**](https://svalla.se/o/moja) — autentisk skärgård utan bilar. Möja Värdshus & Bageri bakar eget bröd.
 
 [**Utö**](https://svalla.se/o/uto) — söder om stan. Cykelparadis och historisk gruvort.
 
