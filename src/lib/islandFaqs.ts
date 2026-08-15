@@ -56,9 +56,10 @@ const UNIQUE_STOCKHOLM: Record<string, FAQ[]> = {
       // KÄLLA: ResRobot-ben uppmätta 2026-08-11 — buss 434 Slussen→Sollenkroka, färja 14-1 Sollenkroka→Möjaström, total restid 2 tim 28 min–2 tim 54 min. Stavsnäs-påståendet var fel: därifrån skickar ResRobot dig med buss TILLBAKA till Sollenkroka.
       a: 'Båtarna till Möja går från Sollenkroka brygga — buss 434 från Slussen tar dig dit, sedan färja över. Räkna med ungefär två och en halv timme totalt från Stockholm.' },
     { q: 'Vilken del av Möja ska jag åka till?',
-      a: 'Berg och Långvik är de två huvudbyarna. Berg har mer service (Wikströms Fisk, Möjabutiken, krogar). Långvik är roligare för naturupplevelse och bad.' },
+      a: 'Berg och Långvik är de två huvudbyarna. Berg har mer service (Möjabutiken, krogar). Långvik är roligare för naturupplevelse och bad.' },
     { q: 'Finns det restauranger på Möja?',
-      a: 'Möja Krog (Berg), Wikströms Fisk (Berg) — den legendariska räkmackan, och Långvik Krog (Långvik). Möja Lanthandel & Kök serverar enkel mat med lokala produkter.' },
+      // KÄLLA: Skärgården — "Wikströms fisk lägger ner restaurangverksamheten efter 33 år" (skargarden.se/wikstroms-fisk-lagger-ner), verifierat 2026-08-12. Restaurangen är struken ur listan.
+      a: 'Möja Krog (Berg), Långvik Krog (Långvik) och Möja Värdshus & Bageri. Möja Lanthandel & Kök serverar enkel mat med lokala produkter.' },
     { q: 'Kan man cykla på Möja?',
       a: 'Ja, ön är 6 km lång med få bilvägar. Cykla från Berg till Långvik tar 25–30 minuter på asfalt och grusvägar. Cykeluthyrning finns i Berg.' },
     { q: 'Är Möja barnvänligt?',

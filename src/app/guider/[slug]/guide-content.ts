@@ -1111,6 +1111,7 @@ export function getGuideContent(slug: string): string {
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Tips:</strong>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="margin:8px 0 0;font-size:14px">Ta morgonbåten (08:00–09:00) om du vill ha lugn och de bästa klipplplatserna. Kom tillbaka med kvällsbåten och njut av solnedgången på däck under återfärden.</p>
 </div>
 `,
@@ -1410,6 +1411,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Tre budgetscenarier</h3>
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Minibudget – under 350 kr/person</h4>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p>Waxholmsbolaget med SL-kort (tillägg ca 80 kr tur-retur) + matsäck hemifrån + bad från klippor + kaffe på bryggan. Destination: Grinda eller Finnhamn. Totalt: ca 150–200 kr med SL-kort, ca 350 kr utan.</p>
@@ -1417,6 +1419,7 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Mellannivå – 500–900 kr/person</h4>
 <p>Waxholmsbolaget tur-retur (ca 200–300 kr) + enklare restauranglunch (ca 200 kr) + glass och kaffe (ca 80 kr) + kortare kajaktur (ca 300 kr halvdag). Destination: Sandhamn eller Möja. Totalt: ca 700–900 kr.</p>
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Lyxdag – 1 500–2 500 kr/person</h4>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p>Cinderellabåten tur-retur till Sandhamn (ca 500 kr) + restaurangmiddag (ca 500–700 kr) + havsbastu (ca 250 kr) + guidad kajaktur (ca 600 kr). Totalt: ca 1 800–2 500 kr.</p>
@@ -2659,6 +2662,7 @@ export function getGuideContent(slug: string): string {
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Nationalparkstipset:</strong>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="margin:8px 0 0;font-size:14px">Boka en guidar snorkel- eller dyktur via Kosterhavets nationalpark. Det är en av de billigare upplevelserna på öarna (ca 200–400 kr) och ger ett exklusivt fönster mot det marina livet som du inte hittar någon annanstans i Sverige. Guiden visar dig vad du annars inte ser.</p>
 </div>
 `,
@@ -3488,6 +3492,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">På vattnet</h2>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Kajakpaddling</h3>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Juli är kajaksäsongens höjdpunkt. Vattnet är lugnt tidiga mornar, solen är ute länge och passagerna mellan öarna är relativt skyddade. Hyra kajak finns på Grinda, Finnhamn, Utö, Kymmendö och ett flertal andra öar. Priser ligger på 250–400 kr per timme eller 800–1 200 kr för heldag. Ta en guidad tur om du är nybörjare – guiden tar er till de bästa passagerna och berättar om öarnas historia.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">SUP och paddleboard</h3>
@@ -3508,6 +3513,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja, Utö, Gällnö och Ingmarsö är bäst för cykling. Alla bilfria eller nästan bilfria. Cykelhyrning finns på Möja (vid bryggan) och Utö (nära hamnen). Ta med egen cykel på Waxholmsbolaget mot en liten avgift.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 12px">Havsbastu</h3>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vedeldad bastu med dopp i havet är en skärgårdsklassiker. Utö, Finnhamn, Grinda och ett flertal privata bastustugor längs skärgården erbjuder bastu. Boka i god tid – det är populärt under juli. Pris ca 300–600 kr per session.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
@@ -3555,6 +3561,7 @@ export function getGuideContent(slug: string): string {
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Mat-tipset:</strong>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="margin:8px 0 0;font-size:14px">De bästa matupplevelserna i skärgården behöver inte kosta skjortan. En påse räkor vid bryggan (150–200 kr), egen medhavd dricka och utsikten på det – det slår de flesta restauranger. Spara restaurangbesöket till kvällsmaten och gör frukost och lunch enkel och lokal.</p>
 </div>
 `,
@@ -3563,6 +3570,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">En hel vecka i Stockholms skärgård är ett minne för livet. Men utan planering riskerar du att fastna på en ö när du egentligen vill se fem. Här är ett komplett dag-för-dag-itinerary för sju dagar i skärgården – baserat på Waxholmsbolagets turer och vad som verkligen är värt din tid.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Förutsättningar och filosofi</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det här itinerariet utgår från Stockholm och använder Waxholmsbolagets reguljärtrafik. Det är designat för ett par eller en liten grupp utan barn (barnvänlig variant finns i slutet). Du behöver: Waxholmsbolagets sommarkort (995 kr), boende förbeställt, stövlar och regnkläder, och förmågan att ta det lugnt.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dag 1 – Vaxholm: Introduktionen</h2>
@@ -4121,6 +4129,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa bastuplatserna i skärgården</h2>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Utö Värdshus havsbastu</h3>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utös havsbastu är en av skärgårdens mest välkända. Vedeldad bastu direkt vid vattnet med trappa ner i havet. Boka i förväg på Utö Värdshus hemsida – 2 timmar per session, ca 400–600 kr för 4 personer. Kombinera med Utö Runt-cykelturen.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Finnhamn bastu</h3>
@@ -4130,6 +4139,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda har bastu med tillgång till brygga och havsvatten. Bokningsbar för gäster och dag-besökare. Mysig miljö med skog runt om.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Privata flytande bastubåtar</h3>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">En ny trend: hyra en flytande bastu som bogseras ut till en ankarplats i skärgården. Konceptet erbjuds av flera aktörer runt Stockholm och Vaxholm. Du väljer din egen vik, badar i havet och äter medhavd mat. Prisnivå 2 000–4 000 kr för grupp om 4–6 per halvdag.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Badtemperaturen under bastusäsongen</h2>
@@ -4506,6 +4516,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohuslän är faktiskt bättre på hösten för många. Sommaren är intensiv och överfull – men i september och oktober är kustsamhällena tillbaka i sin naturliga rytm. Fiskarna är ute, restaurangerna serverar höstmenyer med ostron och hummer och klipphällarna är tomma. Västerhavet i höststorm är ett av de mest dramatiska naturfenomenen i Sverige.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostronstangning – Bohusläns höstpremiär</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostron är lagom att äta från september till april – månader med R i namnet. Grebbestad och Lysekil är ostronhuvudstäderna. Du kan boka ostronsafari där en guide tar dig ut till ostronbankarna, plockar och öppnar ostronen direkt. Priset är ca 500–800 kr per person inkl. ostron och dryck. Det är en av Bohusläns bästa upplevelser.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hummersäsongen</h2>
@@ -4821,6 +4832,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför Bohusläns ostron är unika</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns fjordar har en kombination av kallt, rent och syrerikt Västerhavsvatten som skapar perfekta förutsättningar för ostron. Arten Ostrea edulis (platt europeisk ostron) är vad som förekommer naturligt i Bohuslän. Dessa ostron tar 4–6 år att växa till skördemogen storlek och har en komplex, nötig smak som skiljer sig markant från odlade Stilla Havet-ostron.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ostronsafari</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ostronsafari innebär att du åker ut med en ostronguide, snorklar längs havsbotten och plockar egna ostron som du sedan öppnar och äter direkt vid havet. Det är Bohusläns mest autentiska matupplevelse. Aktiviteten arrangeras av aktörer i Grebbestad och Lysekil. Pris ca 500–800 kr per person inkl. utrustning och ostron.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du äter ostron</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Öppna ostronet med en ostronkniv vid gångjärnet. Kapa den undre muskeln och låt det havssaltade vattnet stanna i skalet. Ät direkt – ingen citron nödvändig för ett riktigt fräscht ostron, men en droppe kan lyfta smaken. Kombinera med ett glas torrt vitt vin eller kall snaps.</p>
@@ -4843,6 +4855,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa sajterna för uthyrning</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Blocket.se</strong> – fortfarande landets bästa sajt för privat stuguthyrning i skärgården. Sökt på "stuga skärgård" och välj ö eller region. Direktkontakt med ägaren ger bäst pris. <strong>Airbnb</strong> – mer internationellt men täcker nu även svenska skärgårdsöar. Bra recensioner. <strong>Stugknuten.se</strong> – specialiserad på fritidshus uthyrning i Sverige. <strong>Blocket Fritidshus</strong> – populär för längre hyresperioder (en vecka eller mer).</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Prisnivåer</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">En normal skärgårdsstuga kostar 3 000–8 000 kr per vecka utanför högsäsong. I juli stiger priset till 6 000–15 000 kr per vecka för ett bra läge. Stugor på öar med reguljär båttrafik (Grinda, Utö) tenderar att vara dyrare än stugor med privat båt på avlägsnare öar.</p>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Boka tidigt:</strong>
@@ -4860,6 +4873,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Runt Visby</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Praktisk om du vill ha nära till Visbys restauranger men ändå ha en stuga. Cykelvikstång till Visby är möjlig från de flesta stugor i 10 km-radie.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sajter och bokning</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Gotlands Stugservice</strong> – den mest etablerade gotländska uthyrningssajten med hundratals stugor. <strong>Airbnb</strong> – bra urval och recensioner. <strong>Blocket</strong> – direktkontakt med ägare, bäst pris. Priserna i juli är höga – räkna 8 000–20 000 kr per vecka för ett bra läge. Boka i november–december för bästa urval.</p>
 `,
 
@@ -4871,6 +4885,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ingmar Bergman och Fårö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ingmar Bergman kom till Fårö 1960 när han filmade "Såsom i en spegel" och lät sig fullständigt fascineras av öns karga skönhet. Han bosatte sig permanent 1966 och bodde här till sin död 2007. Filmer som "Persona", "Skammen" och "En passion" är djupt präglade av Fårös landskap — de kala klipporna, det vida havet och det speciella ljuset som bara finns här. Bergmans bostad Hammars är privat och ej öppen för besök, men atmosfären av ensamhet och konstnärskap finns överallt på ön.</p>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bergman Center i Fårösund — på fastlandssidan strax innan färjan — är det naturliga startbesöket. Centret berättar om Bergmans liv, filmer och relation till Fårö med utställningar, filmer och originaldokument. Öppet maj–september, ca 100 kr inträde.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Raukar — tre fält att välja mellan</h2>
@@ -4942,6 +4957,7 @@ export function getGuideContent(slug: string): string {
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Ta sig till Gotland med husvagn eller tält:</strong>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Destination Gotland kör bilfärja från Nynäshamn (3 tim) och Oskarshamn (3,5 tim) — husvagn och bil bokas separat. Priser för husvagn: ca 2 000–4 000 kr tur/retur beroende på storlek och säsong. Boka färja och camping samtidigt för bästa tillgänglighet i juli.</p>
 </div>
 `,
@@ -5258,6 +5274,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa uthyrarna i Stockholm 2026</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">BoatUS / GetMyBoat Stockholm</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Stor plattform med hundratals båtar i Stockholmsområdet. Priser från 600 kr/halvdag för elmotorbåt. Uthyrarna sätter egna krav – filtrera på "inget körkort krävs".</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5266,6 +5283,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Skärgårdsbåten (Vaxholm och Strömkajen)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Halvdags- och heldagsuthyrning av öppna motorbåtar. Ingen licens behövs. Från 1 200 kr/halvdag. Populärt för grupper upp till 6 personer.</p>
 </div>
 
@@ -5310,6 +5328,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Planering – så gör du det bra</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka minst 4–6 veckor i förväg för privatbåt under juni–aug. Fråga operatören om de kan stanna vid en ö (Fjäderholmarna, Nacka Strand) för mingel på land – det höjer upplevelsen markant. Tänk på att catering ombord kostar mer per person än restaurang; matcha mat-ambitionsnivå med budgeten.</p>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Solnedgångsturer (avg ca 19:00, hemkomst 21:30) är det populäraste AW-formatet. Boka med option på väderskyddat däck – sommarvädret i Stockholm är opålitligt.</p>
 `,
 
@@ -5335,6 +5354,7 @@ export function getGuideContent(slug: string): string {
 </div>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och vad som brukar ingå</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Konferenspaket i skärgården kostar typiskt 1 800–3 500 kr/pers/dag allt inkluderat (helpension, lokaler, teknik, aktivitet). Jämfört med Stockholms konferenshotell är det i linje eller något dyrare – men värdet i upplevelse och teamkänsla brukar anses väl motivera mellanskillnaden.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagskonferenser med lunchavfärd och hemresa på eftermiddagen kostar 800–1 500 kr/pers och är ett billigare alternativ för kortare träffar.</p>
 
@@ -5348,6 +5368,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kajakhyrning i Vaxholm</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Vaxholm Outdoor & Kajak</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Uthyrning av havskajaker, sittsajter och dubblar. Halvdag ca 350 kr/pers, heldag 500–650 kr/pers. Paketerade paddlingsturer med guide tillgängliga.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5370,6 +5391,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa uthyrarna i Stockholmsområdet</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Näcken Kajak & Kanot (Djurgården)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Centralt beläget på Djurgården. Hyra från 350 kr/halvdag. Paddla direkt ut i Djurgårdsbrunnsviken och Lilla Värtan. Perfekt för nybörjare.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5378,6 +5400,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Vaxholm Kajakcenter</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Utanför tullarna med direkt tillgång till skärgården. Guidade dagsturer till Rindö, Bogesundslandet och inre skärgården. Från 450 kr/halvdag.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5404,6 +5427,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa elbåtsuthyrarna i Stockholm</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Ekohamn</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst på elbåtar i Stockholm. Utgångspunkter i Hammarby Sjöstad och Nacka. Båtar för 2–8 pers. Priser från 595 kr/timme. Bokning online, omedelbar start.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5412,6 +5436,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">GoBoat Stockholm</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Danska konceptet med runda picknickbåtar etablerat i Stockholm. Självkörande, ingen licens. 8 pers per båt. Populärt för AW och firande. Priser ca 750 kr/timme.</p>
 </div>
 
@@ -5441,6 +5466,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa glamping-ställen i Stockholms skärgård</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Grinda Wärdshus Glamping</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Glamping-tält på Grinda med direktlänk till Wärdshuset. Frukost ingår. Vedeldad bastu tillgänglig. Nås med Waxholmsbåten. Priser från 1 900 kr/natt för 2 pers.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5469,6 +5495,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arrangörer i Stockholm</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Stockholm Sailing Events</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på företagssegling. Regattor och kryssningar för 10–200 pers. Avgår från Hammarby Sjöstad, Lidingö och Vaxholm. Priser från 1 200 kr/pers.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5481,6 +5508,7 @@ export function getGuideContent(slug: string): string {
 </div>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och att tänka på</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Räkna med 1 000–2 500 kr/pers för en heldags segeldag inkl. skipper, mat ombord och priset för instruktion. Halvdagspaket finns från 700 kr/pers. Boka 4–8 veckor i förväg för sommarhalvåret. Eventförsäkring rekommenderas.</p>
 `,
 
@@ -5493,6 +5521,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Arrangörer för kajakteambuilding i Stockholm</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Skärgårds Kajak (Stockholms skärgård)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserat på grupper. Paket från halvdag till 2-dagarsäventyr med övernattning i tält. 10–60 pers. Priser från 900 kr/pers halvdag, 1 800 kr/pers heldag.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5501,6 +5530,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Angö Kajak (Nacka)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Guidade gruppturer i Baggensfjärden. Möjlighet att kombinera med lunch på klipporna och havsbad. Från 800 kr/pers för halvdag med guide.</p>
 </div>
 
@@ -5520,6 +5550,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cykeluthyrning i Visby</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Gotlands Cykeluthyrning (hamnen)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Beläget direkt vid Destination Gotlands hamn i Visby. Öppnar när färjorna anländer. Vanlig cykel ca 120–160 kr/dag, elcykel 250–350 kr/dag. Barnvagnar och barnstolar tillgängliga.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5528,6 +5559,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Elcykel Gotland</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Specialiserar sig på elcyklar, perfekt för de som vill ta sig längre (Fårö, södra Gotland) utan att slita ut sig. Räckvidd 80–120 km per laddning. Heldagshyra från 295 kr.</p>
 </div>
 
@@ -5537,6 +5569,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fårö-leden</strong> (ca 50 km, 1–2 dagar): Norra Gotland och Fårö med färjeöverfart. Raukar, ödslig natur och Bergmansmuseet. Kräver elcykel eller god kondis.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser och tips</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vanlig cykel 100–160 kr/dag, elcykel 250–350 kr/dag. Boka elcykel i förväg under juli – de tar slut fort. Ta med pannkakelkorg och äta picknick vid raukarna på Fårö.</p>
 `,
 
@@ -5549,6 +5582,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kursgårdar i Stockholms skärgård</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Finnhamns Konferens (STF)</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Fullständig kursgård på Finnhamn i norra skärgården. Möjlighet att boka hela anläggningen för 15–100 pers. Enkelt boende, bra lokaler, naturreservat direkt utanför dörren. Från 1 200 kr/pers dygn.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5611,6 +5645,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa bokningssajterna</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Novasol / Blocket Bostad</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Störst utbud av stuguthyrning i Bohuslän. Filtrera på karta och välj beachfront-lägen. Priser varierar 5 000–25 000 kr/vecka beroende på storlek och läge.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5623,6 +5658,7 @@ export function getGuideContent(slug: string): string {
 </div>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Priser 2026</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Veckovecka i juli: 8 000–20 000 kr för en stuga för 4–6 pers i attraktivt läge. Maj–juni och aug–sept är 30–40% billigare och ofta lika vackert väder. Korttidsuthyrning (3–4 nätter) möjlig utanför juli men ovanlig i högsäsong.</p>
 `,
 
@@ -5641,6 +5677,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa workshop-lokaler i Stockholms skärgård</h2>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Grinda Wärdshus</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Workshop-lokaler för 10–60 pers. Helpension ingår i paket. Naturreservat runt knuten. Stark wifi. Boka via deras företagssida. Priser från 1 800 kr/pers dygn.</p>
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
@@ -5653,6 +5690,7 @@ export function getGuideContent(slug: string): string {
 </div>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Halvdag vs heldag vs flerdags</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvdagsworkshop (9:00–13:00) är populärast för kreativa sprint. Heldagsformat (9:00–17:00) med lunch ute i naturen ger mer djup. Flerdagars (2 nätter) ger tid för reflektion och är optimalt för strategiplaneringen – men kräver mer planering och budget.</p>
 `,
 
@@ -5680,6 +5718,7 @@ export function getGuideContent(slug: string): string {
 </div>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-bottom:16px">
   <strong style="color:var(--sea)">Grinda Wärdshus Konferens</strong>
+  <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
   <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Kombinera konferens, teambuilding och middag på Grinda. Helpaket 1 800–2 800 kr/pers/dag. Nås med Waxholmsbåten. Perfekt för övernattande event.</p>
 </div>
 
@@ -5715,6 +5754,7 @@ export function getGuideContent(slug: string): string {
 </div>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Kustskepparexamen – vad gäller?</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kustskepparexamen (tidigare "kustskepparexamen D") är inget lagkrav i Sverige men ett internationellt erkänt kompetensbevis som krävs av de flesta kommersiella uthyrare i Europa. Teoridelen klaras av de flesta på 2–3 veckors självstudier. Praktikdelen tar 3–5 dagar på vattnet. Total kostnad inkl. teorikurs och examen: 6 000–12 000 kr.</p>
 `,
 
@@ -5773,11 +5813,13 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Med kollektivtrafik:</strong> Västtrafik buss 301 från Göteborg Centralstationen till Koön/Marstrands färjeläge, ca 1 h 15 min. Sedan bilbåten till Marstrand.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagsplan – det bästa av Marstrand</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>09:30</strong> – Ankomst med morgonbåten. Marstrand är lugnast på förmiddagen – gå längs gränderna och ta en kaffe på kajen.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>10:30</strong> – Carlstens fästning öppnar. Guidad tur tar 1 h och ger historiken bakom fångarna och fästningens militärhistoria. Utsikten från tornets topp är hisnande.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>12:30</strong> – Räksmörgås vid kajen. Gå till en av fiskebodarna och köp nyfångad räka. Det är obligatoriskt. Mossby Strandkrog och Societetshusets restaurang är de bästa sittplatserna med havsvy.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>14:00</strong> – Promenad till klipporna söder om ön. Badplatser med kristallklart vatten. Ta ett dopp om vädret tillåter.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>16:00</strong> – Kaffe och kaka i stan. Marstrand har utmärkta konditorier längs huvudgatan.</p>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>17:30</strong> – Sista bilbåten tillbaka till Koön och hemvägen till Göteborg.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
@@ -6236,6 +6278,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Marstrand är Bohusläns seglarparadis, och att hyra båt här och utforska öarna runt omkring är en av kustsommarens bästa upplevelser. Klippöar, gömda vikar och fiskebyar som inte syns från landsidan.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Ta dig till Marstrand</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil via E6 norrut och sedan väg 168 västerut mot Marstrand. Ca 50 min från Göteborg. Parkera i Koön (stor, relativt gratis parkering) och ta bilbåten till Marstrand (5 min, ca 30 kr/pers).</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kollektivt: Västtrafik buss 301 från Göteborg Centralstation till Koön, ca 1 h 15 min. Sedan bilbåten.</p>
 
@@ -6548,6 +6591,7 @@ export function getGuideContent(slug: string): string {
 `,
 
   'skargard-pa-budget': `
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Skärgården behöver inte kosta förmögenhet. Med rätt planering kan du uppleva ytterskärgård, badplatser och öar för 300–500 kr per dag inklusive transport och mat. Det handlar om att välja rätt alternativ, inte att kompromissa med upplevelsen.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havet är gratis. Allemansrätten är gratis. Och SL-kortet kostar samma oavsett om du stannar i Stockholm eller tar pendelbåten till Fjäderholmarna.</p>
 
@@ -6559,6 +6603,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-boende</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Tältning via allemansrätten:</strong> Gratis på de flesta öar och kuststränder. Ta med eget tält, sovsäck och mat – kostnaden är noll. Lämna inga spår.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>STF vandrarhem:</strong> Finnhamn, Utö och Sandhamn har vandrarhem med priser 300–500 kr/natt. Boka i förväg för sommarmånaderna.</p>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Camping:</strong> Campingplatser på Utö och Ornö med mera. Tält 150–250 kr/natt.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Budget-mat</h2>
@@ -6928,6 +6973,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">En julmarknad vid havet är något alldeles eget. Saltig luft, lyktor i mörkret, lokalt hantverk och räkor och ostron på julmarknads-borden. Sveriges kustnära julmarknader är mindre och mer autentiska än stadsvarianten.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa julmarknaderna vid kusten</h2>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Marstrand:</strong> Julmarknaden på Marstrand är liten, charmig och bilfri. Lokala hantverkare, julmat och fästningens silhuett i advent-ljuset. December. Ta bil till Koön och sedan bilbåten (ca 30 kr).</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Smögen:</strong> Bryggan i december är oväntat stämningsfull. Färre turister, mer lokalt och en julfärja av autentisk fiskehamnstämning.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Visby, Gotland:</strong> Medeltidsstaden i adventsbelysning är en av Sveriges vackraste julmiljöer. Gotlands julmarknad i november–december drar besökare från hela landet. Destination Gotland från Nynäshamn.</p>
@@ -7498,18 +7544,21 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Gustafstaxibåtar erbjuder en av de mer unika bastulösningarna: en bastuflotte förankrad i den vackra skärgården vid Gällnö i Värmdö kommun. Vedeldad bastu, relaxrum, trädäck, kolgrill och plats för upp till 20 personer. Perfekt för gruppbokning — julfester, team-events och familjefiranden. Boka via gustafstaxibat.se och fråga specifikt om bastuflotten.</p>
 
 <h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 2: Skärgårdsstiftelsens öppna bastus</h3>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Skärgårdsstiftelsen driftar ett antal vedeldade bastustugor på öar i Stockholms skärgård. Principen är enkel och demokratisk: 50 kr per vuxen, betalning via Swish, max en timme, inga förbokningar — first come, first served. Bastusäsongen öppnar kring Valborg och håller öppet sommartid (precisa datum varierar per år och anläggning — kolla skargardsstiftelsen.se för aktuell information).</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">5. Möjaskärgården — Ostholmen</h4>
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Vedeldad bastu på Ostholmen i Möjaskärgården. Betalas med Swish till <strong>123 345 63 99</strong>. Typisk klippbastu med omklädningsutrymme och direkt tillgång till havet för dopp. Ingen bokning — kom och kolla om det finns plats.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">6. Möjaskärgården — Österviken</h4>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Ytterligare en bastu i Möjaskärgården, belägen vid Österviken. Swish: <strong>123 559 71 25</strong>. Samma princip — 50 kr/person, max 1h, inga förbokningar. Fantastisk utsikt och skyddat läge.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">7. Nämdö</h4>
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Skärgårdsstiftelsens bastu på Nämdö — en av de mer avlägsna öarna med fantastisk ytterskärgårdskaraktär. Nås med Waxholmsbolaget via Stavsnäs. Swish: <strong>123 568 68 11</strong>. 50 kr/person, max 1h. Kombinera bastun med en promenad runt ön — Nämdö är en av de vackraste öarna i mellersta skärgården.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">8. Träskö-Storö — Lilla bastun</h4>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Träskö-Storö naturreservat har inte en utan två bastustugor. Lilla bastun: Swish <strong>123 199 37 99</strong>. 50 kr/person, max 1h. Reservatet är bilfritt och nås med båt från Stockholm. Ta med picknick — det finns vackra klipplatser runt bastun.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">9. Träskö-Storö — Stora bastun</h4>
@@ -7539,6 +7588,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">STF Finnhamn är ett av skärgårdens mest välkända vandrarhem med bastu, restaurang och en av de vackraste lägena i mellersta skärgården. Nås med Waxholmsbolaget från Strömkajen på ca 2,5h. Bastun används av övernattande gäster och är populär kring påsk och midsommar. Boka i god tid via STF:s hemsida.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:22px 0 8px">16. Sandhamns Seglarhotell — inomhusspa och utomhusbastuflottar</h4>
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)">Seglarhotellet på Sandhamn erbjuder två bastualternativ: inomhusspa med pool, jacuzzi och bastu (tillgängligt för hotellets gäster samt externa besökare mot avgift, ca 195 kr/person), och vedeldade utomhusbastuflottar att hyra privat — från ca 2 600 kr för 1–6 personer. Bastufloatarna kan bokas separat utan att man bor på hotellet. Sandhamn nås via Waxholmsbolaget från Stavsnäs (buss 833 från Slussen) — ca 1,5–2h totalt. Boka via sandhamn.se.</p>
 
 <h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">DEL 5: Privata öar och stugbastus att hyra</h3>
@@ -7561,6 +7611,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:19px;font-weight:800;color:var(--sea);margin:32px 0 14px">Praktiska tips innan du bokar</h3>
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Skärgårdsstiftelsens bastus:</strong> Kräver ingen bokning — first come, first served. Ta med Swish och 50 kr/vuxen. Öppnar Valborgsmässoafton (30 april), håller öppet sommar och höst. Kolla skargardsstiftelsen.se för aktuell säsongsinfo — stängningstidpunkten varierar per år.</p>
 
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bastubåtar:</strong> Boka 2–4 veckor i förväg på sommaren. Helger i juli är praktiskt taget alltid fullbokade. Sökvardagar och maj/september för bästa tillgänglighet.</p>

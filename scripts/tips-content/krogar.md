@@ -34,9 +34,11 @@ Brygga: Sandhamns gästhamn, två minuter bort. Boka tidigt om du vill ha kväll
 
 Seglarhotellets matsal har den där atmosfären som bara fungerar i skärgården: vita dukar, regattaflaggor, panoramavy över Sandhamnsfjärden. Kvällsmenyn lutar mer mot fine dining — fem rätter i taget, vinpaket att välja till. Bra val när någon ska imponeras.
 
-### 6. Wikströms Fisk — Möja
+### 6. Möja Värdshus & Bageri — Möja
 
-Inte en krog i traditionell mening. Wikströms är ett fiskrökeri på Möja som öppnar luckan på sommaren och säljer rökt strömming, lax, böckling och hemgjord sillsallad. Ta med på bryggan, ät direkt ur papperet. Det är så det ska vara.
+Öns hjärta i Kyrkviken. Nybakat bröd på morgonen och restaurang med utsikt över viken. Ta med fikat ut på bryggan — det är så det ska vara.
+
+*Not: Wikströms Fisk, som länge var Möjas mest kända matställe, lade ner restaurangverksamheten efter 33 år (Skärgården, verifierat 2026-08-12).*
 
 ### 7. Finnhamns Krog — Finnhamn
 

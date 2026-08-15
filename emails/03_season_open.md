@@ -22,7 +22,7 @@ Värdshus och pensionat på populära öar (Sandhamn, Grinda, Finnhamn) bokar sl
 
 ## 2. Boka bord
 
-Seglarrestaurangen på Sandhamn, Wikströms Fisk på Möja, Wärdshusen — bokningar öppnar normalt i april.
+Krogarna på de populära öarna öppnar bokningen under våren. Ring hellre en vecka för tidigt än en dag för sent.
 
 ## 3. Kolla färjetider
 
