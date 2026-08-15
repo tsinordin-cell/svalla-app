@@ -199,6 +199,7 @@ export default function AlandPage() {
  Öppet hav och växlande väder
  </h3>
  <p>
+ {/* KÄLLA: SMHI, havsomraden/alands-hav — största djup ca 301 m, läst 2026-08-15 */}
  Ålands hav kan på sina ställen överstiga 200 meter djupt — en helt annan miljö än Stockholms grunda skärgård. Det betyder att väder och sjö utvecklas snabbare här. En sydlig vind som du knappt märker vid Sandhamn kan bli rejäl på vägen över, och strömmen omkring Åland är stark nog att påverka både fart och kurs. Planera alltid med tid över, ha uppdaterade väderrapporter och logga din fart tillsammans med GPS-position så att du kan se efteråt om du höll räkningen.
  </p>
 

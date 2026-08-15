@@ -7,11 +7,16 @@
  *   den här filen                  visar begränsningarna för användaren
  *
  * VARFÖR DET HÄR BEHÖVS: rasteriseringen kan bara säga vatten eller land. Den
- * kan inte säga "farbar men bara till 3 meters djupgående". När vi öppnade
+ * kan inte säga "farbar men bara till 2 meters djupgående". När vi öppnade
  * Baggensstäket och Knapens hål (PR #139) började vi rita en sjöled genom ett
- * sund där lodningar visar 2,8–2,9 m — utan att säga det. En segelbåt med
- * 3,5 m djupgående kommer inte igenom. Rutten såg alltså MER pålitlig ut än
- * den var, vilket är precis det fel vi försöker bort ifrån.
+ * trångt sund utan att säga något om begränsningen. Rutten såg alltså MER
+ * pålitlig ut än den var, vilket är precis det fel vi försöker bort ifrån.
+ *
+ * OCH DET RÄCKTE INTE. Granskningen 2026-08-15 visade att begränsningen vi
+ * SEDAN skrev ut var fel åt farligt håll: 3 m djupgående, hämtat ur en mening
+ * som handlade om sundets vattendjup, i ett sund som är skyltat 2 m. Att säga
+ * något är inte samma sak som att säga något sant. Se _maxDjupM i
+ * data/farbara-passager.json.
  */
 import data from './data/farbara-passager.json'
 
@@ -35,8 +40,21 @@ export type Passage = {
   namn: string
   kalla: string
   breddM: number
-  /** Största djupgående passagen tar, i meter. null = ingen känd begränsning. */
+  /**
+   * Största tillåtna DJUPGÅENDE i meter. null = ingen känd begränsning.
+   *
+   * INTE sundets vattendjup. Granskningen 2026-08-15 hittade att de två
+   * Baggensstäket-passagerna förväxlat dem: källan sa "sundet är tre meter
+   * djupt" och vi publicerade "max 3 m djupgående". En båt som går lika djupt
+   * som vattnet är på grund. Sätt aldrig fältet till ett lodat djup.
+   */
   maxDjupM: number | null
+  /**
+   * Är maxDjupM den SKYLTADE gränsen på plats, snarare än ett uppmätt djup?
+   * Då säger gränssnittet "skyltat max X m", vilket är både mer korrekt och
+   * mer användbart — skylten är det som gäller, oavsett vad lodningen visar.
+   */
+  skyltad?: boolean
   /** Segelfri höjd i meter. null = ingen känd begränsning. */
   segelfriHojdM: number | null
   /** Finns bron? Då gäller segelfriHojdM bara vid stängd bro. */
@@ -88,6 +106,7 @@ export function passagerLangsRutt(
 export type PassageForKlient = {
   namn: string
   maxDjupM: number | null
+  skyltad: boolean
   segelfriHojdM: number | null
   oppningsbarBro: OppningsbarBro | null
 }
@@ -96,6 +115,7 @@ export function tillKlient(p: Passage): PassageForKlient {
   return {
     namn: p.namn,
     maxDjupM: p.maxDjupM,
+    skyltad: p.skyltad ?? false,
     segelfriHojdM: p.segelfriHojdM,
     oppningsbarBro: p.oppningsbarBro ?? null,
   }

@@ -523,8 +523,8 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Wraken – historia under vattnet</h4>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>S/S Birger Jarl (Landsort)</strong>: Välbevarad ångare på 25–35 m djup. Kräver avancerat dyk-cert.</li>
-<li><strong>Vrak vid Dalarö skans</strong>: Flera historiska vrak på 5–20 m, bra för nybörjare.</li>
+<li><strong>S/S Birger Jarl (Landsort)</strong>: Välbevarad ångare, djupt vrak som kräver avancerat dyk-cert. Kolla aktuellt djup hos en lokal dykklubb innan du planerar.</li>
+<li><strong>Vrak vid Dalarö skans</strong>: Flera historiska vrak på grunt vatten, flera av dem nybörjarvänliga.</li>
 <li><strong>Sandhamns vrak</strong>: Minst 12 kända vrak i närheten av Sandhamn, varav flera nåbara från kajak.</li>
 </ul>
 
@@ -2845,6 +2845,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Skuleskogen nationalpark</h3>
 <p>Skuleskogen är Höga Kustens nationalpark och en av Skandinaviens vackraste vandringsdestinationer. Urskog klättrar längs landhöjda klippor med utsikter mot fjärdar och öar.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
+<!-- KÄLLA: sverigesnationalparker.se, Skuleskogens nationalpark, Slåttdalsberget med Slåttdalsskrevan (läst 2026-08-15): 200 m lång, 30 m djup, 7 m bred -->
 <li><strong>Slåttdalskrevan:</strong> Ca 200 m lång och 30 m djup klippspricka – nationalparkens mest fotograferade naturformation</li>
 <li><strong>Naturum Skuleskogen:</strong> Besökscentrum med info om geologi och fauna</li>
 <li><strong>Vandringsleder:</strong> Allt från 2-timmarsrundor till Höga Kustenleden (130 km)</li>
@@ -2874,7 +2875,7 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Kungsklyftan</h3>
-<p>Kungsklyftan är Fjällbackas mest fotograferade plats – en djup spricka i granitberget rätt i stadens centrum, ca 30 m djup och 2 m bred på smalaste stället. Oscar II besökte platsen 1887. Utsikten uppifrån ger en av Bohusläns bästa utblickar mot hamn och hav.</p>
+<p>Kungsklyftan är Fjällbackas mest fotograferade plats – en djup spricka i granitberget rätt i stadens centrum. Oscar II besökte platsen 1887. Utsikten uppifrån ger en av Bohusläns bästa utblickar mot hamn och hav.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Ingrid Bergman-torget och Camilla Läckberg</h3>
 <p>Stortorget heter officiellt Ingrid Bergmans Torg – ett hyllningstorg till Hollywood-legenden som hade sommarhem på ön Dannholmen utanför Fjällbacka. Camilla Läckbergs kriminalromaner utspelar sig här, och guidade Fjällbacka-vandringar baserade på böckerna arrangeras sommartid.</p>
@@ -7324,7 +7325,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">DE BÄSTA PLATSERNA FÖR HUMMERFISKE</h3>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Kosterfjorden och yttre Koster</h4>
-<p>Ett av Europas artrikaste havsområden och en utmärkt hummerlokal. Djup 10–40 meter längs klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
+<p>Ett av Europas artrikaste havsområden och en utmärkt hummerlokal. Branta klippbottnar. Bäst från Strömstad och med lokal fiskeguide. Kosterhavets nationalpark: kontrollera restriktioner.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Smögenskäret och Pater Noster</h4>
 <p>Trakterna kring Smögen och Väderöarna är klassisk hummerfiskevattne. Klippbottnar på 5–25 meters djup. Hyr båt i Smögen, sätt bурarna kvällen innan premiären.</p>
