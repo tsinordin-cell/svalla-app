@@ -200,10 +200,10 @@ from: "Team Svalla <hej@mail.svalla.se>"
 Det blev en sommar. Så här såg din ut:
 
 :::siffror
-- **{{visited_count}} öar** besökta
-- **{{trip_count}} turer** loggade
-- **{{distance_nm}} distansminuter** på vattnet
-- **{{saved_count}} öar** sparade till nästa år
+- **{{visited_count}}** öar besökta
+- **{{trip_count}}** turer loggade
+- **{{distance_nm}}** distansminuter på vattnet
+- **{{saved_count}}** öar sparade nästa år
 :::
 
 :::knapp

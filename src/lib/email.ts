@@ -133,6 +133,16 @@ function inline(md: string, mörk: boolean): string {
 
 /** En rad som bara är en länk är en åtgärd, inte brödtext — fet, större, utan understrykning. */
 const ENSAM_LÄNK = /^\[([^\]]+)\]\(([^)]+)\)$/
+/** Två eller fler länkar åtskilda av ·, |, — eller / och ingenting annat. */
+const LÄNKRAD = /^\[[^\]]+\]\([^)]+\)(\s*[·|—/]\s*\[[^\]]+\]\([^)]+\))+$/
+
+function länkrad(rad: string, mörk: boolean): string {
+  const färg = mörk ? '#9fd8e4' : F.blå
+  const delar = [...rad.matchAll(/\[([^\]]+)\]\(([^)]+)\)/g)]
+    .map(m => `<a href="${m[2]}" style="font-size:14px;font-weight:700;color:${färg};text-decoration:none;white-space:nowrap">${m[1]}</a>`)
+  const avdelare = `<span style="color:${F.dämpad};padding:0 7px">·</span>`
+  return `<p class="atgard" style="margin:${MT(12)}px 0 ${MB(0)}px;line-height:1.9">${delar.join(avdelare)}</p>`
+}
 
 function åtgärdslänk(text: string, url: string, mörk: boolean): string {
   const färg = mörk ? '#9fd8e4' : F.blå
@@ -184,9 +194,17 @@ function markdownBlock(md: string, s: typeof SKALA['fullt'], mörk: boolean): st
       ut.push(`<ol class="lista" style="margin:${MT(0)}px 0 ${MB(s.luft)}px;padding-left:22px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${li}</ol>`)
       continue
     }
-    const ensam = rader.length === 1 && (rader[0] as string).trim().match(ENSAM_LÄNK)
+    const enrad = rader.length === 1 ? (rader[0] as string).trim() : null
+    const ensam = enrad?.match(ENSAM_LÄNK)
     if (ensam) {
       ut.push(åtgärdslänk(ensam[1] as string, ensam[2] as string, mörk))
+      continue
+    }
+    // Rad som BARA är länkar med avdelare emellan — t.ex. "[Sandhamn](…) · [Grinda](…)".
+    // Utan det här blev de tunna understrukna brödtextlänkar bredvid kort som
+    // i övrigt avslutas med en fet pillänk. Samma sorts rad, två utseenden.
+    if (enrad && LÄNKRAD.test(enrad)) {
+      ut.push(länkrad(enrad, mörk))
       continue
     }
     ut.push(`<p class="brod" style="font-size:${s.brödtext}px;line-height:1.65;margin:${MT(0)}px 0 ${MB(16)}px;color:${brödFärg}">${inline(rader.join('\n'), mörk).replace(/\n/g, '<br>')}</p>`)
