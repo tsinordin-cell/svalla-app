@@ -15,6 +15,22 @@
  */
 import data from './data/farbara-passager.json'
 
+/**
+ * Öppningsbar bro över passagen.
+ *
+ * VARFÖR EGET FÄLT: utan det blir segelfriHojdM lögnaktig åt andra hållet.
+ * Stäketbron har 2,7 m segelfri höjd vid STÄNGD bro, men den är en svängbro
+ * som öppnas varje hel timme hela säsongen. Skrev vi bara "segelfri höjd
+ * 2,7 m" skulle varje segelbåt tro att Stäketsundet är stängt för dem — och
+ * då hade vi bytt ut ett för optimistiskt påstående mot ett för pessimistiskt.
+ * Båda är fel. Höjden gäller, men bara tills man ringer brovakten.
+ */
+export type OppningsbarBro = {
+  namn: string
+  oppettider: string
+  kontakt: string
+}
+
 export type Passage = {
   namn: string
   kalla: string
@@ -23,6 +39,8 @@ export type Passage = {
   maxDjupM: number | null
   /** Segelfri höjd i meter. null = ingen känd begränsning. */
   segelfriHojdM: number | null
+  /** Finns bron? Då gäller segelfriHojdM bara vid stängd bro. */
+  oppningsbarBro?: OppningsbarBro | null
   mittlinje: Array<[number, number]>
 }
 
@@ -71,8 +89,14 @@ export type PassageForKlient = {
   namn: string
   maxDjupM: number | null
   segelfriHojdM: number | null
+  oppningsbarBro: OppningsbarBro | null
 }
 
 export function tillKlient(p: Passage): PassageForKlient {
-  return { namn: p.namn, maxDjupM: p.maxDjupM, segelfriHojdM: p.segelfriHojdM }
+  return {
+    namn: p.namn,
+    maxDjupM: p.maxDjupM,
+    segelfriHojdM: p.segelfriHojdM,
+    oppningsbarBro: p.oppningsbarBro ?? null,
+  }
 }

@@ -219,6 +219,17 @@ const SANITY = [
   // Kontroll åt andra hållet: fast mark 250 m norr om Knapens hål ska FÖRBLI
   // land. Fångar att den 20 m breda korridoren målat för brett.
   ['Land norr om Knapens hål', 59.30620, 18.28830, true],
+  // Stäketsundets två proppar (uppmätta 2026-08-15) ska nu vara vatten.
+  // De var enkelcells-luckor på diagonalen: sundet ÄR vatten i rastret hela
+  // vägen, men flödesfyllningen går bara i fyra riktningar, så två diagonala
+  // steg räckte för att skära av hela norra Mälarbassängen (Sigtuna,
+  // Steninge, Skokloster, Stäket) från resten av sjön.
+  ['Stäketsundet norra proppen', 59.47041, 17.79292, false],
+  ['Stäketsundet södra proppen', 59.46951, 17.79470, false],
+  // Kontroll åt andra hållet: fast mark på båda sidor om sundet ska FÖRBLI
+  // land. Fångar att den 25 m breda korridoren målat för brett.
+  ['Land väster om Stäket', 59.47050, 17.78800, true],
+  ['Land öster om Stäket', 59.47050, 17.79750, true],
 ]
 let fel = 0
 for (const [namn, la, ln, vill] of SANITY) {

@@ -128,6 +128,18 @@ export const DEPARTURES: Departure[] = [
   // utanför masken och skulle ge outside_coverage — lägg inte till dem utan
   // att bygga om rastret först.
   { id: 'stallarholmen',  name: 'Stallarholmen',     lat: 59.3646, lng: 17.2108, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w209720781
+  // ── Norra Mälarbassängen ──────────────────────────────────────────────────
+  // Tillagda 2026-08-15, och de KRÄVER att Stäketsundet är öppet i rastret.
+  // Före det låg hela bassängen som en egen vattenkomponent: Sigtuna → Märsta
+  // gick, men Stäket → Skarven gick inte, så varje rutt härifrån mot resten av
+  // Mälaren svarade no_sea_route. Orsaken var två diagonala enkelcells-luckor
+  // i Stäketsundet — se farbara-passager.json och punkt 35 i CLAUDE.md.
+  // Tas passagen bort går de fem hamnarna sönder samtidigt.
+  { id: 'sigtuna',        name: 'Sigtuna',           lat: 59.6132, lng: 17.7164, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM n264218784
+  { id: 'steninge',       name: 'Steninge',          lat: 59.6010, lng: 17.7794, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w1177654677
+  { id: 'flottvik',       name: 'Flottvik (Märsta)', lat: 59.6090, lng: 17.7782, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w206171422
+  { id: 'skokloster',     name: 'Skokloster',        lat: 59.7049, lng: 17.6256, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM n3635989976 (heter "Gästhamnen" i OSM)
+  { id: 'staket',         name: 'Stäket',            lat: 59.4893, lng: 17.7968, region: 'Mälaren', emoji: '', water: 'malaren' },   // OSM w640127086
   // Tullingesjön. Kommentaren här sa tidigare "ihopkopplad med Mälaren via
   // Albysjön/Tumba". Det kan stämma som vattendrag, men UPPMÄTT 2026-08-05
   // finns ingen farbar förbindelse: /api/route/calculate svarar
