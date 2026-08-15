@@ -99,7 +99,30 @@ function parseFrontmatter(raw: string): ParsedTemplate {
 
 /* ─────────────────────────  MARKDOWN  ───────────────────────── */
 
-/** Inline: **fet**, *kursiv*, [länk](url). Kör efter att blocket är valt så länkfärgen kan bli ljus på mörk botten. */
+/**
+ * Marginaler skrivs som märken — {{MT:32}} uppåt, {{MB:16}} nedåt — och löses
+ * ut när blocken sätts ihop. Skälet: HTML-mail saknar `:last-child`, så utan
+ * det här får varje kort marginal kvar under sitt sista stycke. Uppmätt före
+ * fixen: 24–50 px luft under mot 16–24 px över i samtliga nio mail. Det är
+ * precis den sortens skevhet som får ett utskick att se hemmasnickrat ut.
+ */
+const MT = (px: number) => `{{MT:${px}}}`
+const MB = (px: number) => `{{MB:${px}}}`
+
+function lösMarginaler(block: string, första: boolean, sista: boolean): string {
+  return block
+    .replace(/\{\{MT:(\d+(?:\.\d+)?)\}\}/g, (_, v) => (första ? '0' : v))
+    .replace(/\{\{MB:(\d+(?:\.\d+)?)\}\}/g, (_, v) => (sista ? '0' : v))
+}
+
+/** Sätter ihop block och nollar ytterkanternas marginaler. */
+function foga(block: string[]): string {
+  return block
+    .map((b, i) => lösMarginaler(b, i === 0, i === block.length - 1))
+    .join('\n')
+}
+
+/** Inline: **fet**, *kursiv*, [länk](url). */
 function inline(md: string, mörk: boolean): string {
   const länkFärg = mörk ? '#9fd8e4' : F.blå
   return md
@@ -108,13 +131,23 @@ function inline(md: string, mörk: boolean): string {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, `<a href="$2" style="color:${länkFärg};text-decoration:underline">$1</a>`)
 }
 
+/** En rad som bara är en länk är en åtgärd, inte brödtext — fet, större, utan understrykning. */
+const ENSAM_LÄNK = /^\[([^\]]+)\]\(([^)]+)\)$/
+
+function åtgärdslänk(text: string, url: string, mörk: boolean): string {
+  const färg = mörk ? '#9fd8e4' : F.blå
+  return `<p class="atgard" style="margin:${MT(12)}px 0 ${MB(0)}px"><a href="${url}" style="font-size:14px;font-weight:700;color:${färg};text-decoration:none;letter-spacing:0.01em">${text}</a></p>`
+}
+
 /**
- * Renderar vanlig markdown med inline-stil på varje element.
- * Utan stilen ser mailen ostilade ut — det var hela anledningen till att
- * de handkodade HTML-funktionerna en gång skrevs.
+ * Renderar markdown med inline-stil på varje element.
+ *
+ * Klassnamnen (h1/h2/h3/brod/lista/atgard) finns för mediafrågan i wrapEmail —
+ * utan dem skalar ingenting på mobil, och 28 px rubrik på en 320 px skärm ser
+ * ut som ett misstag. Tidigare stylades klasser som ingen komponent satte.
  */
-function markdownBlock(md: string, s: typeof SKALA['fullt'], mörk: boolean): string {
-  const brödFärg = mörk ? 'rgba(255,255,255,0.84)' : F.text
+function markdownBlock(md: string, s: typeof SKALA['fullt'], mörk: boolean): string[] {
+  const brödFärg = mörk ? 'rgba(255,255,255,0.85)' : F.text
   const rubrikFärg = mörk ? '#ffffff' : F.bläck
   const ut: string[] = []
 
@@ -124,103 +157,149 @@ function markdownBlock(md: string, s: typeof SKALA['fullt'], mörk: boolean): st
     const första = rader[0] ?? ''
 
     if (/^---+$/.test(första.trim())) {
-      ut.push(`<hr style="border:none;border-top:1px solid ${F.kant};margin:${s.luft}px 0">`)
+      ut.push(`<hr style="border:none;border-top:1px solid ${F.kant};margin:${MT(s.luft)}px 0 ${MB(s.luft)}px">`)
       continue
     }
-    if (/^###\s+/.test(första)) {
-      ut.push(`<h3 style="font-family:${F.serif};font-size:${s.h3}px;font-weight:700;color:${rubrikFärg};margin:0 0 8px;line-height:1.3">${inline(första.replace(/^###\s+/, ''), mörk)}</h3>`)
-      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
+    const rubrik = första.match(/^(#{1,3})\s+(.+)$/)
+    if (rubrik) {
+      const nivå = (rubrik[1] as string).length
+      const txt = inline(rubrik[2] as string, mörk)
+      if (nivå === 1) {
+        ut.push(`<h1 class="h1" style="font-family:${F.serif};font-size:${s.h1}px;font-weight:700;color:${rubrikFärg};margin:${MT(0)}px 0 ${MB(16)}px;letter-spacing:-0.012em;line-height:1.18">${txt}</h1>`)
+      } else if (nivå === 2) {
+        ut.push(`<h2 class="h2" style="font-family:${F.serif};font-size:${s.h2}px;font-weight:700;color:${rubrikFärg};margin:${MT(s.luft)}px 0 ${MB(14)}px;letter-spacing:-0.006em;line-height:1.28">${txt}</h2>`)
+      } else {
+        ut.push(`<h3 class="h3" style="font-family:${F.serif};font-size:${s.h3}px;font-weight:700;color:${rubrikFärg};margin:${MT(0)}px 0 ${MB(8)}px;line-height:1.3">${txt}</h3>`)
+      }
+      if (rader.length > 1) ut.push(...markdownBlock(rader.slice(1).join('\n'), s, mörk))
       continue
     }
-    if (/^##\s+/.test(första)) {
-      ut.push(`<h2 style="font-family:${F.serif};font-size:${s.h2}px;font-weight:700;color:${rubrikFärg};margin:${s.luft}px 0 14px;letter-spacing:-0.005em;line-height:1.3">${inline(första.replace(/^##\s+/, ''), mörk)}</h2>`)
-      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
-      continue
-    }
-    if (/^#\s+/.test(första)) {
-      ut.push(`<h1 style="font-family:${F.serif};font-size:${s.h1}px;font-weight:700;color:${rubrikFärg};margin:0 0 16px;letter-spacing:-0.01em;line-height:1.2">${inline(första.replace(/^#\s+/, ''), mörk)}</h1>`)
-      if (rader.length > 1) ut.push(markdownBlock(rader.slice(1).join('\n'), s, mörk))
-      continue
-    }
-    if (rader.every(r => /^\s*-\s+/.test(r))) {
-      const li = rader.map(r => `<li style="margin:0 0 8px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${inline(r.replace(/^\s*-\s+/, ''), mörk)}</li>`).join('')
-      ut.push(`<ul style="margin:0 0 ${s.luft}px;padding-left:20px">${li}</ul>`)
+    if (rader.every(r => /^\s*[-*]\s+/.test(r))) {
+      const li = rader.map(r => `<li style="margin:0 0 8px;padding-left:2px">${inline(r.replace(/^\s*[-*]\s+/, ''), mörk)}</li>`).join('')
+      ut.push(`<ul class="lista" style="margin:${MT(0)}px 0 ${MB(s.luft)}px;padding-left:20px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${li}</ul>`)
       continue
     }
     if (rader.every(r => /^\s*\d+\.\s+/.test(r))) {
-      const li = rader.map(r => `<li style="margin:0 0 8px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${inline(r.replace(/^\s*\d+\.\s+/, ''), mörk)}</li>`).join('')
-      ut.push(`<ol style="margin:0 0 ${s.luft}px;padding-left:22px">${li}</ol>`)
+      const li = rader.map(r => `<li style="margin:0 0 8px;padding-left:2px">${inline(r.replace(/^\s*\d+\.\s+/, ''), mörk)}</li>`).join('')
+      ut.push(`<ol class="lista" style="margin:${MT(0)}px 0 ${MB(s.luft)}px;padding-left:22px;font-size:${s.brödtext}px;line-height:1.6;color:${brödFärg}">${li}</ol>`)
       continue
     }
-    ut.push(`<p style="font-size:${s.brödtext}px;line-height:1.65;margin:0 0 16px;color:${brödFärg}">${inline(rader.join('\n'), mörk).replace(/\n/g, '<br>')}</p>`)
+    const ensam = rader.length === 1 && (rader[0] as string).trim().match(ENSAM_LÄNK)
+    if (ensam) {
+      ut.push(åtgärdslänk(ensam[1] as string, ensam[2] as string, mörk))
+      continue
+    }
+    ut.push(`<p class="brod" style="font-size:${s.brödtext}px;line-height:1.65;margin:${MT(0)}px 0 ${MB(16)}px;color:${brödFärg}">${inline(rader.join('\n'), mörk).replace(/\n/g, '<br>')}</p>`)
   }
-  return ut.join('\n')
+  return ut
 }
 
 /* ─────────────────────────  BLOCKDIREKTIV  ───────────────────────── */
 
-/** Kort med färgad vänsterkant — huvudbyggstenen i välkomst- och nyhetsbrevsmailen. */
+/** Gemensam behållare: en tabellcell med jämn luft runt innehållet. */
+function behållare(innehåll: string, stil: string, klass: string, marginBotten: number): string {
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:${MT(0)}px 0 ${MB(marginBotten)}px">
+  <tr><td class="${klass}" style="${stil}">
+${innehåll}
+  </td></tr>
+</table>`
+}
+
+/** Kort med färgad vänsterkant — huvudbyggstenen. */
 function kort(innehåll: string, s: typeof SKALA['fullt'], accent: boolean): string {
   const kantFärg = accent ? F.rost : F.blå
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 12px">
-  <tr><td class="card" style="padding:18px 20px;background:${F.kortBg};border-radius:14px;border-left:3px solid ${kantFärg}">
-${markdownBlock(innehåll, s, false).replace(/margin:0 0 16px/g, 'margin:0 0 10px')}
-  </td></tr>
-</table>`
+  return behållare(
+    foga(markdownBlock(innehåll, s, false)),
+    `padding:18px 20px;background:${F.kortBg};border-radius:14px;border-left:3px solid ${kantFärg}`,
+    'card', 12,
+  )
 }
 
-/** Vit ruta med tunn kant — listkort i nyhetsbreven. */
+/** Vit ruta med tunn kant — listkort. */
 function ruta(innehåll: string, s: typeof SKALA['fullt']): string {
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 10px">
-  <tr><td class="card" style="padding:16px 18px;background:${F.vit};border-radius:12px;border:1px solid ${F.kant}">
-${markdownBlock(innehåll, s, false).replace(/margin:0 0 16px/g, 'margin:0 0 8px')}
-  </td></tr>
-</table>`
+  return behållare(
+    foga(markdownBlock(innehåll, s, false)),
+    `padding:16px 18px;background:${F.vit};border-radius:12px;border:1px solid ${F.kant}`,
+    'card', 10,
+  )
 }
 
-/** Mörk gradientpanel — används sparsamt, för ett enda blickfång per mail. */
+/** Mörk gradientpanel — ett enda blickfång per mail. */
 function panel(innehåll: string, s: typeof SKALA['fullt']): string {
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 ${s.luft}px;background:#0d3a5c;border-radius:16px">
-  <tr><td class="card" style="padding:24px;background:linear-gradient(135deg,#0d3a5c 0%,#0a7b8c 100%);border-radius:16px">
-${markdownBlock(innehåll, s, true)}
-  </td></tr>
-</table>`
+  return behållare(
+    foga(markdownBlock(innehåll, s, true)),
+    `padding:24px;background:#0d3a5c;background-image:linear-gradient(135deg,#0d3a5c 0%,#0a7b8c 100%);border-radius:16px`,
+    'card', s.luft,
+  )
 }
 
 /** Ljus citatpanel. */
 function citat(innehåll: string, s: typeof SKALA['fullt']): string {
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 ${s.luft}px;background:${F.kortBg};border-radius:16px">
-  <tr><td class="card" style="padding:24px;background:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px">
-${markdownBlock(innehåll, s, false)}
-  </td></tr>
-</table>`
+  return behållare(
+    foga(markdownBlock(innehåll, s, false)),
+    `padding:24px;background:${F.kortBg};background-image:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px`,
+    'card', s.luft,
+  )
+}
+
+/**
+ * Siffror i två kolumner. Raderna skrivs `- **12 öar** besökta`.
+ *
+ * Fanns som punktlista förut: fyra bullets i en gradientruta, med listans
+ * hela bottenmarginal kvar under sista punkten. En årssammanfattning är det
+ * enda stället i utskicken där siffran är poängen — då ska den se ut som det.
+ */
+function siffror(innehåll: string, s: typeof SKALA['fullt']): string {
+  const poster = innehåll.trim().split('\n')
+    .map(r => r.trim().match(/^[-*]\s+\*\*([^*]+)\*\*\s*(.*)$/))
+    .filter((m): m is RegExpMatchArray => Boolean(m))
+    .map(m => ({ tal: (m[1] as string).trim(), etikett: (m[2] as string).trim() }))
+
+  if (poster.length === 0) return foga(markdownBlock(innehåll, s, false))
+
+  const celler = poster.map(p => `<td width="50%" style="padding:12px 10px;vertical-align:top">
+        <div class="tal" style="font-family:${F.serif};font-size:24px;font-weight:700;color:${F.bläck};line-height:1.15;letter-spacing:-0.02em">${p.tal}</div>
+        <div style="font-size:13px;color:${F.dämpad};margin-top:3px;letter-spacing:0.01em">${p.etikett}</div>
+      </td>`)
+
+  const rader: string[] = []
+  for (let i = 0; i < celler.length; i += 2) {
+    rader.push(`    <tr>${celler[i]}${celler[i + 1] ?? '<td width="50%"></td>'}</tr>`)
+  }
+
+  return behållare(
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+${rader.join('\n')}
+    </table>`,
+    `padding:14px 14px;background:${F.kortBg};background-image:linear-gradient(135deg,#f4f9fb 0%,#edf4f7 100%);border-radius:16px`,
+    'card', s.luft,
+  )
 }
 
 /** Bulletproof-knapp. Innehållet ska vara exakt en markdown-länk. */
 function knapp(innehåll: string): string {
-  const m = innehåll.trim().match(/^\[([^\]]+)\]\(([^)]+)\)$/)
-  if (!m) return markdownBlock(innehåll, SKALA.fullt, false)
-  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:0 auto 28px">
+  const m = innehåll.trim().match(ENSAM_LÄNK)
+  if (!m) return foga(markdownBlock(innehåll, SKALA.fullt, false))
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin:${MT(4)}px auto ${MB(28)}px">
   <tr><td class="cta" style="background:#1e5c82;background-image:linear-gradient(135deg,#1e5c82,#0a7b8c);border-radius:12px">
-    <a href="${m[2]}" style="display:inline-block;padding:14px 32px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">${m[1]}</a>
+    <a href="${m[2]}" style="display:inline-block;padding:15px 34px;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.3px">${m[1]}</a>
   </td></tr>
 </table>`
 }
 
 /**
  * Avsändarblock. Rad 1 = hälsning, rad 2 = "— Team Svalla", rad 3 = kursiv underrad.
- * Alla mail signeras av teamet, aldrig av en enskild person — ett enmansnamn
- * får avsändaren att se mindre ut än vi är.
+ * Alla mail signeras av teamet, aldrig av en enskild person.
  */
 function signatur(innehåll: string): string {
   const rader = innehåll.trim().split('\n').filter(r => r.trim() !== '')
   const hälsning = rader[0] ?? ''
   const namn = rader[1] ?? '— Team Svalla'
   const underrad = (rader[2] ?? '').replace(/^\*|\*$/g, '')
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 0;border-top:1px solid ${F.kant}">
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:${MT(30)}px 0 ${MB(0)}px;border-top:1px solid ${F.kant}">
   <tr><td style="padding:20px 0 0">
-    <p style="font-size:15px;line-height:1.6;margin:0 0 4px;color:${F.text}">${inline(hälsning, false)}</p>
-    <p style="font-size:15px;line-height:1.5;margin:0 0 2px;color:${F.bläck};font-weight:700">${inline(namn.replace(/^—\s*/, '— '), false)}</p>
+    <p class="brod" style="font-size:15px;line-height:1.6;margin:0 0 5px;color:${F.text}">${inline(hälsning, false)}</p>
+    <p style="font-size:15px;line-height:1.5;margin:0 0 3px;color:${F.bläck};font-weight:700">${inline(namn.replace(/^—\s*/, '— '), false)}</p>
     ${underrad ? `<p style="font-size:13.5px;line-height:1.5;margin:0;color:${F.dämpad};font-style:italic">${inline(underrad, false)}</p>` : ''}
   </td></tr>
 </table>`
@@ -231,6 +310,7 @@ const BLOCK: Record<string, (innehåll: string, s: typeof SKALA['fullt'], flagga
   ruta: (i, s) => ruta(i, s),
   panel: (i, s) => panel(i, s),
   citat: (i, s) => citat(i, s),
+  siffror: (i, s) => siffror(i, s),
   knapp: i => knapp(i),
   signatur: i => signatur(i),
 }
@@ -250,7 +330,7 @@ function renderBody(body: string, layout: Layout): string {
   let öppet: { namn: string; flagga: boolean; rader: string[] } | null = null
 
   const spolaVanlig = () => {
-    if (vanlig.join('').trim()) ut.push(markdownBlock(vanlig.join('\n'), s, false))
+    if (vanlig.join('').trim()) ut.push(...markdownBlock(vanlig.join('\n'), s, false))
     vanlig = []
   }
 
@@ -276,7 +356,7 @@ function renderBody(body: string, layout: Layout): string {
     if (fn) ut.push(fn(öppet.rader.join('\n'), s, öppet.flagga))
   }
   spolaVanlig()
-  return ut.join('\n')
+  return foga(ut)
 }
 
 /**
@@ -324,12 +404,28 @@ function wrapEmail(htmlBody: string, preheader?: string): string {
 <title>Svalla</title>
 <style>
   /* Mobil-respons: större typografi, mindre padding, kant-till-kant container */
+  /* Typografin MÅSTE skala här. 28 px rubrik på en 320 px skärm bryts mitt i
+     ett ord; 15 px brödtext är i underkant på telefon. Klasserna sätts av
+     markdownBlock — tidigare stylades klassnamn som ingenting emitterade. */
   @media only screen and (max-width:600px) {
-    .container { border-radius:0 !important; }
-    .body-pad  { padding:24px 20px !important; }
+    /* Kortet behåller sin rundning ÄVEN på mobil och rör aldrig skärmkanten.
+       Tidigare: border-radius:0 (kant-till-kant) men kvar med 24 px luft
+       ovanför och noll i sidled — halvt kort, halvt fullbredd. Det lästes
+       som en vit lucka över hero-bandet. Antingen eller, inte både och. */
+    .outer-pad { padding:14px 12px !important; }
+    .container { border-radius:14px !important; }
+    .body-pad  { padding:26px 20px 24px !important; }
     .hero-pad  { padding:22px 20px 18px !important; }
-    .card      { padding:16px 18px !important; }
-    .cta a     { padding:14px 26px !important; font-size:15px !important; }
+    .card      { padding:16px 17px !important; }
+    .h1        { font-size:24px !important; line-height:1.2 !important; }
+    .h2        { font-size:18px !important; }
+    .h3        { font-size:16.5px !important; }
+    .brod      { font-size:15.5px !important; line-height:1.62 !important; }
+    .lista     { font-size:15.5px !important; }
+    .atgard a  { font-size:14.5px !important; }
+    .tal       { font-size:22px !important; }
+    .cta       { display:block !important; }
+    .cta a     { display:block !important; padding:15px 20px !important; font-size:15px !important; text-align:center !important; }
     .tagline   { display:none !important; }
     .logo      { width:120px !important; height:auto !important; }
   }
@@ -338,7 +434,7 @@ function wrapEmail(htmlBody: string, preheader?: string): string {
 <body style="margin:0;padding:0;background:#eef3f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#162d3a;-webkit-font-smoothing:antialiased">
 ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#eef3f6">${preheader}</div>` : ''}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f6">
-  <tr><td align="center" style="padding:24px 0">
+  <tr><td align="center" class="outer-pad" style="padding:24px 16px">
     <table role="presentation" width="600" class="container" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,45,60,0.08)">
       <tr>
         <td class="hero-pad" style="background:#0d3a5c;background-image:linear-gradient(135deg,#0d3a5c 0%,#1e5c82 50%,#0a7b8c 100%);padding:28px 36px 26px">

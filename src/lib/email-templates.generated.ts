@@ -199,7 +199,7 @@ from: "Team Svalla <hej@mail.svalla.se>"
 
 Det blev en sommar. Så här såg din ut:
 
-:::citat
+:::siffror
 - **{{visited_count}} öar** besökta
 - **{{trip_count}} turer** loggade
 - **{{distance_nm}} distansminuter** på vattnet
