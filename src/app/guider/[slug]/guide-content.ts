@@ -252,8 +252,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Toalettavfall på båt</h3>
 <p>Det här är ett område där många gör fel utan att veta om det.</p>
-<p><strong>I havet mer än 3 sjömil (5,5 km) från land:</strong> Det är tillåtet att pumpa ut orenat toalettavfall i internationellt vatten (utanför 12 nautiska mil) men Sverige är mer restriktivt.</p>
-<p><strong>I svenska inre vatten (skärgård och inomskärs):</strong> Det är <em>förbjudet</em> att pumpa ut orenat toalettavfall. Regler:</p>
+<!-- KÄLLA: Transportstyrelsen, Toalettavfall från fritidsbåtar (transportstyrelsen.se/sv/sjofart/fritidsbatar/batliv-miljo/avfall-fran-fritidsbat/toalettavfall/, läst 2026-08-16): sedan 1 april 2015 är det förbjudet att släppa ut toalettavfall från fritidsbåtar i HELA Sveriges sjöterritorium, som sträcker sig 12 sjömil ut. Gäller oavsett båtens ålder och storlek, även utländska båtar. Enda undantaget är K-märkta båtar byggda före 1965. -->
+<p><strong>I hela Sveriges sjöterritorium — ut till 12 sjömil från baslinjen:</strong> Det är <em>förbjudet</em> att släppa ut toalettavfall från fritidsbåtar, sedan 1 april 2015. Det gäller alltså inte bara skärgården utan även öppet hav långt från land, så länge du är i svenskt vatten. Regler:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>Använd alltid sugtömningsstationen i gästhamnar – dessa är gratis på de flesta ställen</li>
 <li>Kemisk toalett: töm i hamnarnas bränslestationer, aldrig direkt i havet</li>
