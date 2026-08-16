@@ -175,13 +175,26 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  recordedAt: p?.recorded_at ?? new Date().toISOString(),
  }))
 
+ const routePoints = Array.isArray(trip.route_points) && trip.route_points.length >= 2
+ ? (trip.route_points as { lat: number; lng: number }[])
+ : null
+
+ // Efter RLS-lasningen (beslut A, 2026-08-16, BESLUT-gps-integritet-och-
+ // stromning-20260816.md) far anonyma lasare inga rader ur gps_points -
+ // kartan byggs da ur trips.route_points (forenklad rutt, bara lat/lng).
+ // speedKnots 0 ar avsiktligt: fartlager utan fartdata vore pahittat.
+ const displayPoints = points.length >= 2 ? points : (routePoints ?? []).map(rp => ({
+   lat: rp.lat, lng: rp.lng, speedKnots: 0, heading: null, accuracy: 0,
+   recordedAt: trip.started_at ?? new Date().toISOString(),
+ }))
+
  // Historiska väderförhållanden vid turens start — berikar sidan med
  // kontext (vind, gust, våg). Degraderar tyst om API:t inte svarar.
  // Cache 24h via Next fetch-cache (väder för en historisk timestamp är immutabelt).
- const weather = points.length > 0 && trip.started_at
+ const weather = displayPoints.length > 0 && trip.started_at
  ? await getTripWeather(
- points[0]!.lat,
- points[0]!.lng,
+ displayPoints[0]!.lat,
+ displayPoints[0]!.lng,
  trip.started_at,
  trip.ended_at,
  )
@@ -204,8 +217,8 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  }))
 
  // restaurants near the route
- const nearbyRestaurants = points.length > 0 && allRestaurants
- ? restaurantsAlongRoute(points, allRestaurants.map(r => ({
+ const nearbyRestaurants = displayPoints.length > 0 && allRestaurants
+ ? restaurantsAlongRoute(displayPoints, allRestaurants.map(r => ({
  id: r.id,
  name: r.name,
  latitude: r.latitude,
@@ -233,9 +246,9 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  type TourRow = { id: string; title: string; start_location: string; destination: string; waypoints: { lat: number; lng: number }[] }
  let matchedRoute: (TourRow & { score: number }) | null = null
 
- if (points.length >= 10 && toursData && toursData.length > 0) {
- const tripStart = points[0]!
- const tripEnd = points[points.length - 1]!
+ if (displayPoints.length >= 10 && toursData && toursData.length > 0) {
+ const tripStart = displayPoints[0]!
+ const tripEnd = displayPoints[displayPoints.length - 1]!
  let bestScore = Infinity
 
  for (const tour of (toursData as TourRow[])) {
@@ -251,10 +264,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  }
  }
 
- const hasMap = points.length >= 2
- const routePoints = Array.isArray(trip.route_points) && trip.route_points.length >= 2
- ? (trip.route_points as { lat: number; lng: number }[])
- : null
+ const hasMap = displayPoints.length >= 2
 
  // All photos for carousel (primary + extras)
  const allPhotos = Array.from(new Set(
@@ -641,14 +651,14 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
        {existingHighlight.place_name}
      </Link>
    </div>
- ) : points.length > 0 ? (
+ ) : displayPoints.length > 0 ? (
    <ViewerGate
      ownerId={trip.user_id}
      agare={
        <div style={{ marginBottom: 18 }}>
          <TripHighlightPrompt
            tripId={trip.id}
-           routePoints={points.map(p => ({ lat: p.lat, lng: p.lng }))}
+           routePoints={displayPoints.map(p => ({ lat: p.lat, lng: p.lng }))}
          />
        </div>
      }
@@ -660,7 +670,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  <div style={{ marginBottom: 18 }}>
  <SectionTitle>Rutt</SectionTitle>
  <TripDetailMap
- points={points}
+ points={displayPoints}
  stops={stops}
  restaurants={nearbyRestaurants}
  windSamples={windSamples}
