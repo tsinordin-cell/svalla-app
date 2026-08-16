@@ -6197,7 +6197,8 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Utan bil:</strong> Tåg till Härnösand eller Kramfors, sedan taxi till nationalparken. Busstrafik är begränsad – bil ger klart mest flexibilitet.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa lederna</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Slåttdalsskrevan (3 km t/r):</strong> Nationalparken absoluta höjdpunkt. En dramatisk skreva som skär igenom berget, smal som en gång och 40 m hög. Enkel att gå men otroligt imponerande.</p>
+<!-- KÄLLA: Länsstyrelsen Västernorrland via SVT (svt.se/nyheter/lokalt/vasternorrland/vandringsled-genom-slattdalsskrevan-stangs-av-sakerhetsskal) + sverigesnationalparker.se, lästa 2026-08-16: leden GENOM skrevan stängd sedan 2023 pga risk för nedfallande block, leden omdragen förbi med utsiktspunkter. Mått: 200 m lång, 30 m djup, 7 m bred. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Slåttdalsskrevan (3 km t/r):</strong> Nationalparkens absoluta höjdpunkt — en dramatisk skreva som skär igenom berget, 200 m lång och 30 m djup. <strong>Leden genom själva skrevan är stängd sedan 2023</strong> på grund av rasrisk; den omdragna leden går förbi och har utsiktspunkter där du ser rakt ner i klippspringan. Mäktigt även utan att gå igenom.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skuleborgsstigen (8 km rundtur):</strong> Upp till Skuleborg (295 m) med panoramautsikt över hela Höga Kusten. Markerad led, kräver bra skor. Beräkna 4–5 h för full rundtur.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Kustleden Skuleskogen (delsträcka):</strong> Vandrarleden Höga Kustenleden passerar igenom nationalparken. Möjlighet till fleradagstur längs kusten.</p>
 
@@ -6220,7 +6221,8 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">E4 norrut, avfart Kramfors/Härnösand. Ca 4,5 h från Stockholm. Härnösand är ett bra basläge med fullgott utbud av boende och service.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Aktiviteter för barnfamiljer</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Slåttdalsskrevan, Skuleskogen:</strong> Dramatisk skreva som imponerar på barn i alla åldrar. Lätt att ta sig till, kort vandring. Minnesvärdt och gratis.</p>
+<!-- KÄLLA: samma som ovan — skrevan stängd för passage sedan 2023, utsiktspunkter längs omdragen led. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Slåttdalsskrevan, Skuleskogen:</strong> Dramatisk skreva som imponerar på barn i alla åldrar. Kort vandring till utsiktspunkterna — själva skrevan är stängd för passage sedan 2023 (rasrisk), men vyn ner i den är minnesvärd nog. Gratis.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Skuleberget linbana:</strong> Linbana upp till utsiktspunkten på 295 m. Perfekt för de som inte vill vandra upp men ändå vill ha utsikten. Kolla öppethållande och priser på skuleberget.se.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Badstränder:</strong> Hafsmon och Norrfällsviken har grunda sandstränder med barnvänligt vatten. Havet är lite svalare än i söder (ca 16–18°C i juli).</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Naturum Höga Kusten:</strong> Interaktiva utställningar om geologi och djurliv som engagerar barn. Fri entré.</p>
