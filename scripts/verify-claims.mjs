@@ -98,6 +98,15 @@ const PRIS = /(\b\d{1,3}(?:[  .]\d{3})*\s*kr(?![a-zA-ZåäöÅÄÖ])|\b\d{2,5}\s
 const DJUP = /\b\d{1,2}(?:[.,]\d)?\s*(?:–|-|till)?\s*\d{0,2}(?:[.,]\d)?\s*m(?:eter)?\s+djup|\bdjup(?:et|gående)?\s+(?:är\s+)?\d{1,2}(?:[.,]\d)?\s*m|\b\d{1,2}(?:[.,]\d)?\s*m\s+djupgående|\bdjup\s+\d{1,2}(?:[.,]\d)?\s*[–-]\s*\d{1,2}(?:[.,]\d)?\s*m/i
 const HOJD = /segelfri\s+höjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m|\bbrohöjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m/i
 const DISTANS = /\b\d{1,4}\s*(?:sjömil|distansminuter)\b/i
+/**
+ * KNOP — varningskategori sedan 2026-08-16. Fart används på två vis i koden:
+ * som VÅRT räkneantagande (restider) och som PÅSTÅENDE om världen
+ * (fartgränser: "7 knop innanför gul boj", "5 knop inom 300 m"). Det första
+ * ska vara märkt UPPSKATTNING/PRODUKTREGEL, det andra kräver källa — och
+ * granskningen 16/8 hittade fartgränspåståenden som ingen belagt. Varning,
+ * inte fel, tills de är genomgångna.
+ */
+const KNOP = /\b\d{1,2}(?:[.,]\d)?\s*knops?\b/i
 
 /**
  * Stil- och geometristrängar är inte påståenden om verkligheten.
@@ -196,16 +205,18 @@ for (const f of filer(ROT)) {
       const träffDjup = DJUP.test(rent)
       const träffHojd = HOJD.test(rent)
       const träffDistans = DISTANS.test(rent)
-      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans) continue
+      const träffKnop = KNOP.test(rent)
+      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans && !träffKnop) continue
       if (harKallaNara(rader, i)) continue
       if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
       const typ = träffKlocka ? 'klockslag'
         : träffPris ? 'pris'
         : träffDjup ? 'djup'
         : träffHojd ? 'segelfri höjd'
-        : 'distans'
-      // Distans varnar men fäller inte — se kommentaren vid DISTANS ovan.
-      if (typ === 'distans') { varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue }
+        : träffDistans ? 'distans'
+        : 'knop'
+      // Distans och knop varnar men fäller inte — se kommentarerna ovan.
+      if (typ === 'distans' || typ === 'knop') { varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue }
       fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
   })
@@ -290,12 +301,12 @@ const kvarAvBaslinjen = fynd.length - nya.length
 /** Varningar fäller inte bygget, men ska synas. Tystnad blir till glömska. */
 function skrivVarningar() {
   if (varningar.length === 0) return
-  console.log(`\n! ${varningar.length} distanspåståenden utan källa (varning, fäller inte bygget):`)
+  console.log(`\n! ${varningar.length} distans-/knoppåståenden utan källa (varning, fäller inte bygget):`)
   for (const v of varningar.slice(0, 20)) {
     console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ')}`)
   }
   if (varningar.length > 20) console.log(`    … och ${varningar.length - 20} till`)
-  console.log(`  Sjömil är nästa kategori att beta av. Se rapporten 2026-08-15.`)
+  console.log(`  Fartgränspåståenden (knop) är nästa kategori att granska. Se rapporten 2026-08-16.`)
 }
 
 if (nya.length === 0) {

@@ -85,6 +85,7 @@ export default function SnabbasteVagenPage() {
         </>
       }
       itemsTitle="Populära destinationer"
+      // UPPSKATTNING: 25 knop är räknefarten för tiderna på sidan — snabb motorbåt i lugnt väder (2026-08)
       itemsDescription="Alla tider är vid lugnt väder och 25 knop."
       items={ITEMS}
       deeperContent={
