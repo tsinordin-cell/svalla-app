@@ -1,46 +1,41 @@
 ---
-# PRODUKTREGEL: vårt eget cron-schema, inte en tid vi påstår om omvärlden
 trigger: cron 1 oktober kl 09:00
-layout: enkelt
 subject_options:
-  - "Din skärgårdssommar i siffror"
-  - "Tack för säsongen, {{first_name}}"
-  - "Säsongen är slut — {{visited_count}} öar blev det"
-preheader: Året i siffror — och vad Svalla gör under vintern.
-from: "Team Svalla <hej@mail.svalla.se>"
+  - "🍂 Säsongen är slut — du besökte {{visited_count}} öar"
+  - "Tack för en fin sommar, {{first_name}}"
+  - "Din Svalla-sammanfattning 2026"
+preheader: Din skärgårdssommar i siffror — och vad som väntar nästa år.
+from: "Svalla <hello@svalla.se>"
 ---
 
 # Tack för säsongen, {{first_name}}
 
-Det blev en sommar. Så här såg din ut:
+Det blev en sommar. Här är din skärgård 2026 i siffror:
 
-:::siffror
-- **{{visited_count}}** öar besökta
-- **{{trip_count}}** turer loggade
-- **{{distance_nm}}** distansminuter på vattnet
-- **{{saved_count}}** öar sparade nästa år
-:::
+- **{{visited_count}} öar** besökta
+- **{{saved_count}} öar** sparade att besöka nästa år
+- **{{trips_count}} turer** loggade
+- **{{distance_km}} km** seglat
 
-:::knapp
-[Se hela din sammanställning](https://svalla.se/min-skargard)
-:::
+Du är **{{rank}}** av Svallas användare i antal besökta öar i år.
 
-## Vi stänger inte
-
-Skärgården är öppen året om, den är bara tystare. Under vintern finns kvar:
-
-- **Väder och vind** — för dig som tar varje fönster som dyker upp
-- **Öguiderna** — vad som har öppet utanför säsong står på varje ö-sida
-- **Planeringen** — spara öar nu så är listan klar i april
-
-Vi hörs igen när säsongen drar i gång.
-
-:::signatur
-Tack för i år.
-— Team Svalla
-*Nu drar vi upp båtarna och börjar planera nästa sommar. Nästan lika kul.*
-:::
+[👉 Se din fullständiga sammanställning](https://svalla.se/min-skargard)
 
 ---
 
-Känner du någon som borde vara med? [Bjud in dem här →](https://svalla.se/bjud-in)
+## Vad händer nu
+
+Vi stänger inte. Vinterversionen av Svalla har:
+
+- **Live väder & vind** — för dig som tar varje fönster
+- **Vinterhamnar** — vilka som har plats för båten på land
+- **Planera 2027** — börja redan nu spara öar för nästa sommar
+
+Vi hörs i april igen med säsongsstart-mailet.
+
+— Svalla
+
+---
+
+PS: Hälsa gärna en seglarvän som inte är med oss än.
+[👉 Bjud in via länken](https://svalla.se/bjud-in)
