@@ -632,7 +632,10 @@ export default function SparaPage() {
     let maxSpd  = dist >= 0.01 ? maxSpeedKnots(points) : 0
     // Fallback: om GPS-enhetens noggranhet var dålig (>30m) sätts alla speedKnots=0
     // men distans och tid är korrekt uppmätta — beräkna snittfart geometriskt istället.
-    const elapsedHours = elapsed / 3_600_000
+    // elapsed raknas i SEKUNDER (setInterval 1000 ms) - dela med 3 600, inte
+    // 3 600 000. Det gamla ms-antagandet gav ~1000x for hog snittfart i
+    // fallbacken (5 NM / 1 h blev ~5 000 kn). Se PROMPT-gps-loggning-20260816.
+    const elapsedHours = elapsed / 3_600
     if (avgSpd < 0.5 && dist >= 0.1 && elapsedHours > 0) {
       avgSpd = parseFloat((dist / elapsedHours).toFixed(1))
     }
