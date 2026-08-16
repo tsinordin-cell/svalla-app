@@ -511,6 +511,49 @@ function renderDay30NewsletterBody(): string {
 <p style="font-size:15px;line-height:1.65;margin:0;color:#0d2a3e">Ses därute.<br><span style="color:#6a8a96">/ Svalla</span></p>`
 }
 
+/** Rendera en mall till HTML utan att skicka — används av /admin/mail för förhandsvisning */
+export function renderEmail(
+  template: EmailTemplate,
+  vars?: Record<string, string | number | undefined>,
+): { ok: boolean; subject?: string; html?: string; error?: string } {
+  try {
+    const file = TEMPLATE_FILES[template]
+    let raw: string
+    try {
+      const filePath = path.join(process.cwd(), 'emails', file)
+      raw = fs.readFileSync(filePath, 'utf-8')
+    } catch {
+      raw = EMBEDDED_TEMPLATES[template]
+    }
+
+    const { meta, body } = parseFrontmatter(raw)
+    const allVars = { email: vars?.email ?? '', ...vars }
+
+    let htmlBody: string
+    if (template === 'welcome') {
+      const firstName = String(vars?.first_name ?? 'där')
+      htmlBody = renderWelcomeBody(firstName)
+    } else if (template === 'newsletter_welcome') {
+      htmlBody = renderNewsletterWelcomeBody()
+    } else if (template === 'day3_newsletter') {
+      htmlBody = renderDay3NewsletterBody()
+    } else if (template === 'day14_newsletter') {
+      htmlBody = renderDay14NewsletterBody()
+    } else if (template === 'day30_newsletter') {
+      htmlBody = renderDay30NewsletterBody()
+    } else {
+      const bodyFinal = substitute(body, allVars)
+      htmlBody = markdownToHtml(bodyFinal)
+    }
+
+    const html = substitute(wrapEmail(htmlBody, meta.preheader), allVars)
+    const subject = substitute(meta.subject_options?.[0] ?? template, allVars)
+    return { ok: true, subject, html }
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : String(e) }
+  }
+}
+
 /** Skicka mail via Resend API */
 export async function sendEmail(opts: {
   template: EmailTemplate
