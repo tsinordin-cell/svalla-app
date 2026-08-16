@@ -83,7 +83,8 @@ export default function BlekingeSkargardPage() {
  {
  '@type': 'Question',
  name: 'Hur nära är Blekinge till Danmark och Tyskland?',
- acceptedAnswer: { '@type': 'Answer', text: 'Rügen i Tyskland ligger ungefär 80 sjömil söder om Karlskrona. Bornholm, Danmark, ligger omkring 50 sjömil västerut. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
+ // UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren (Bornholms nordspets) 59 nm, Karlskrona–Rønne 71 nm, Karlskrona–Kap Arkona (Rügen) 115 nm. Tidigare siffror 80 resp 50 var fel åt båda hållen.
+ acceptedAnswer: { '@type': 'Answer', text: 'Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
  },
  {
  '@type': 'Question',

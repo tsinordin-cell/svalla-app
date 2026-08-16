@@ -65,9 +65,11 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🍦',
  title: 'Möja',
- description: 'Mellanskärgårdens klassiska seglarö — känd för Bergs Glass och den lugna atmosfären. Bra naturhamnar vid Berg och Ramsmora. Runt 30 sjömil från Stockholm. Möja passar perfekt som etapp på en längre segeltur norrut.',
+ // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
+ description: 'Mellanskärgårdens klassiska seglarö — känd för Bergs Glass och den lugna atmosfären. Bra naturhamnar vid Berg och Ramsmora. Runt 29 sjömil från Stockholm. Möja passar perfekt som etapp på en längre segeltur norrut.',
  href: '/moja',
- meta: 'Mellanskärgården · 30 sjömil',
+ // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
+    meta: 'Mellanskärgården · 29 sjömil',
  },
  {
  icon: '🌊',

@@ -94,6 +94,7 @@ export default function GotlandPage() {
  {
  '@type': 'Question',
  name: 'Är det möjligt att segla runt hela Gotland?',
+ // UPPSKATTNING: konvex minimibana Visby–Fårö–Östergarn–Hoburgen–Visby är 161 nm (storcirkelberäknad 2026-08-16); realistisk rutt med marginal ~180 (2026-08)
  acceptedAnswer: { '@type': 'Answer', text: 'Ja, det är en klassisk tur på cirka 180 sjömil. Planera 7–10 dagar för en avslappnad tur med stopp på intressanta hamnar. Nordkusten kan vara utsatt vid nordanvind, så välj väder och timing noggrant.' },
  },
  ],
@@ -263,6 +264,7 @@ export default function GotlandPage() {
  </p>
  <p>
  <strong>Är det möjligt att segla runt hela Gotland?</strong><br />
+ {/* UPPSKATTNING: konvex minimibana 161 nm storcirkelberäknad, realistisk rutt ~180 (2026-08) */}
  Ja, det är en klassisk tur på cirka 180 sjömil. Planera 7–10 dagar för en avslappnad tur med stopp på intressanta hamnar. Nordkusten kan vara utsatt vid nordanvind, så välj väder och timing noggrant. Många seglare gör denna rundtur under sommaren och det är en fantastisk upplevelse.
  </p>
  </>
