@@ -78,7 +78,10 @@ function meter(aLat: number, aLng: number, bLat: number, bLng: number): number {
  *
  * Tröskeln 250 m är generös med flit: hellre visa en varning för en rutt som
  * går strax förbi, än att tiga om en som går rakt igenom. Passager utan
- * begränsning (Skurusundet) rapporteras inte — det finns inget att varna för.
+ * NÅGON känd begränsning (maxDjupM och segelfriHojdM båda null) rapporteras
+ * inte — det finns inget att varna för. OBS: Skurusundet HAR segelfri höjd
+ * satt och rapporteras alltså; en äldre version av den här kommentaren
+ * påstod motsatsen (hittat av haverikommissionen 2026-08-16).
  */
 export function passagerLangsRutt(
   path: Array<[number, number]> | null,
