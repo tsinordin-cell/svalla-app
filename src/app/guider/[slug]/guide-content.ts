@@ -263,7 +263,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Motorbuller och hastighet</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Hastighetsgräns 5 knop</strong> gäller inom 300 meter från land om inte annat utmärkts</li>
+<!-- KÄLLA: Transportstyrelsen, Regler för sjötrafiken + Kustbevakningen, Hastighetsövervakning (lästa 2026-08-16): det finns ingen generell fartgräns till sjöss i Sverige. Fartbegränsningar beslutas lokalt av länsstyrelsen och gäller där de är skyltade och utmärkta i sjökortet. Tidigare stod här "5 knop inom 300 meter från land" — en myt utan stöd i någon föreskrift. -->
+<li><strong>Fartgränser är lokala.</strong> Det finns ingen generell fartgräns till sjöss i Sverige — länsstyrelsen beslutar om fartbegränsningar område för område, och de gäller där de är skyltade och står i sjökortet. I sund, hamnar och naturhamnsområden i Stockholms skärgård är 5 eller 7 knop vanligt. Utanför begränsningsområdena gäller gott sjömanskap: anpassa farten efter omständigheterna.</li>
 <li>Svall från snabba båtar är olagligt nära badande och bryggor</li>
 <li>Många vikar och sund har lokala hastighetsbegränsningar – se sjökortet</li>
 <li>Körning med hög musik nära permanentboende kvällstid är mot ordningslagen</li>
@@ -5299,7 +5300,8 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Boka i förväg under juni–aug – populära uthyrare är fullbokade på helger.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Säkerhetsregler utan körkort</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan formell utbildning är det extra viktigt att känna till grundreglerna: farlederna är markerade med röda och gröna prickar (röd till höger vid inkommande), hastighetsgränsen är 5 knop inom 300 m från land, och flytväst ska finnas för varje person ombord. Alla seriösa uthyrare går igenom dessa regler vid uthyrningen.</p>
+<!-- KÄLLA: Transportstyrelsen, Regler för sjötrafiken (läst 2026-08-16): ingen generell fartgräns; lokala föreskrifter från länsstyrelsen gäller. Tidigare stod '5 knop inom 300 m från land' — myt. -->
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utan formell utbildning är det extra viktigt att känna till grundreglerna: farlederna är markerade med röda och gröna prickar (röd till höger vid inkommande), fartbegränsningar gäller där de är skyltade och står i sjökortet — det finns ingen generell fartgräns till sjöss — och flytväst ska finnas för varje person ombord. Alla seriösa uthyrare går igenom dessa regler vid uthyrningen.</p>
 `,
 
     'aw-pa-bat-stockholm': `

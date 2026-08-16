@@ -57,7 +57,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🚫',
     title: 'Hastighetsbegränsningar',
-    description: 'Var du måste sakta ner — innanför gul boj, i hamnar, förbi badplatser.',
+    description: 'Var du måste sakta ner — skyltade fartbegränsningar, hamnar, badplatser.',
     href: '/tips?kategori=hastighet',
   },
 ]
@@ -94,7 +94,8 @@ export default function SnabbasteVagenPage() {
             Lagar & regler
           </h2>
           <p>
-            Hastighetsgränser gäller: <strong>7 knop innanför gul boj</strong>, <strong>12 knop i många farleder</strong>, fullt fritt utanför. Vattenskoter är reglerat i Stockholms kommun med specifika tillåtna områden — se <a href="https://www.transportstyrelsen.se" style={{ color: 'var(--sea)' }} target="_blank" rel="noopener noreferrer">Transportstyrelsen</a>.
+            {/* KÄLLA: Transportstyrelsen, Regler för sjötrafiken + Kustbevakningen, Hastighetsövervakning (lästa 2026-08-16). Tidigare stod '7 knop innanför gul boj, 12 knop i många farleder, fullt fritt utanför' — påhittade generella regler. */}
+            Det finns ingen generell fartgräns till sjöss — begränsningarna är lokala beslut från länsstyrelsen och gäller där de är skyltade och står i sjökortet. Nära Stockholm är <strong>7 eller 12 knop</strong> vanligt i farleder, sund och hamnområden. Utanför begränsningsområdena gäller gott sjömanskap, inte fri fart. Vattenskoter är reglerat i Stockholms kommun med specifika tillåtna områden — se <a href="https://www.transportstyrelsen.se" style={{ color: 'var(--sea)' }} target="_blank" rel="noopener noreferrer">Transportstyrelsen</a>.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Säkerhet vid höga hastigheter
