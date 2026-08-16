@@ -10,7 +10,6 @@ const r = await fetch(`${SUPABASE_URL}/rest/v1/planned_routes?id=neq.00000000-00
   method: 'PATCH',
   headers: {
     apikey: SERVICE_KEY,
-    Authorization: `Bearer ${SERVICE_KEY}`,
     'Content-Type': 'application/json',
     Prefer: 'return=representation',
   },
