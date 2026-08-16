@@ -5,24 +5,69 @@ import { GUIDES } from '../guides-data'
 import { getGuideContent } from './guide-content'
 import { getIsland } from '../../o/island-data'
 import { GUIDE_ISLAND_MAP } from '../guide-island-map'
+import RegionGuides, { REGION_META } from './RegionGuides'
+import { URL_SLUG_TO_REGION, REGION_URL_SLUG } from '../guides-data'
 
 import FAQSection from '@/components/FAQSection'
 import EmailSignup from '@/components/EmailSignup'
 import ShareButton from '@/components/ShareButton'
 import StickyNewsletterBar from '@/components/StickyNewsletterBar'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 type Props = {
   params: Promise<{ slug: string }>
 }
 
+// SOFT-404, DEL 2 (2026-08-12). notFound() i generateMetadata (PR #117)
+// räckte inte: Vercel serverar ett byggtids-fallbackskal för ISR-rutter
+// med loading.tsx (x-nextjs-prerender: 1) — 200-statusen är satt INNAN
+// någon kod körs, och vår notFound() landar bara som en error-digest i
+// streamen (NEXT_HTTP_ERROR_FALLBACK;404 i body, status ändå 200).
+// Den här routens hela slug-mängd är känd vid bygget (data ligger i
+// repot), så dynamicParams=false är semantiskt rätt: okänd slug 404:ar
+// i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
+// u) — nya rader där måste kunna renderas utan ny deploy.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
-  return GUIDES.map(g => ({ slug: g.slug }))
+  // Regionsidorna (/guider/stockholm m.fl.) delar denna route — de låg
+  // tidigare i guider/[region]/ vilket kolliderade med [slug] och sänkte
+  // produktionen i 25 dygn (CLAUDE.md p6). De renderas via RegionGuides.
+  return [
+    ...Object.values(REGION_URL_SLUG).map(slug => ({ slug })),
+    ...GUIDES.map(g => ({ slug: g.slug })),
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
+
+  // Regionsida? (/guider/stockholm, /guider/gotland …)
+  const region = URL_SLUG_TO_REGION[slug]
+  if (region) {
+    const meta = REGION_META[region]
+    return {
+      title: meta.title,
+      description: meta.description,
+      keywords: meta.keywords,
+      alternates: { canonical: `https://svalla.se/guider/${slug}` },
+      openGraph: {
+        title: `${meta.title} – Svalla`,
+        description: meta.description,
+        url: `https://svalla.se/guider/${slug}`,
+        type: 'website',
+      },
+    }
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
-  if (!guide) return {}
+  // SOFT-404-SKYDD: loading.tsx streamar svaret — 200 flushas före sidkroppen,
+  // så bara ett notFound() HÄR (före headers) ger riktig 404-status. 'return {}'
+  // var orsaken till att /guider/<okänd> svarade 200 (uppmätt 2026-08-12),
+  // inklusive de fyra regionsidorna i sitemapen som tappade sin rendering
+  // när guider/[region] togs bort (CLAUDE.md p6/p10).
+  if (!guide) notFound()
   return {
     title: guide.title,
     description: guide.excerpt,
@@ -50,6 +95,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params
+
+  // Regionsida — rendera regionsvyn istället för en enskild guide.
+  // Regressionskontrollen i CLAUDE.md p10 letar efter 'RegionGuides regionSlug'.
+  if (URL_SLUG_TO_REGION[slug]) {
+    return <RegionGuides regionSlug={slug} />
+  }
+
   const guide = GUIDES.find(g => g.slug === slug)
   if (!guide) notFound()
 
@@ -292,7 +344,7 @@ export default async function GuidePage({ params }: Props) {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                   }}
                 >
-                  <span style={{ fontSize: 16 }}>{island.emoji}</span>
+                  <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={16} /></span>
                   {island.name} →
                 </Link>
               ))}
@@ -321,7 +373,7 @@ export default async function GuidePage({ params }: Props) {
                 border: '1px solid rgba(10,123,140,0.08)',
                 transition: 'box-shadow 0.15s',
               }}>
-                <div style={{ fontSize: 22, marginBottom: 8 }}>{r.emoji}</div>
+                <div style={{marginBottom: 8}} aria-hidden><Icon name={emojiToIcon(r.emoji)} size={22} /></div>
                 <div style={{
                   fontSize: 13.5, fontWeight: 700, color: 'var(--txt)',
                   lineHeight: 1.35, marginBottom: 6,

@@ -334,7 +334,7 @@ export default async function FarjorPage() {
             Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.
           </p>
 
-          {/* Sträckor — restid och pris från operatörens egen sida */}
+          {/* KÄLLA: Strömma/Cinderellabåtarna — restid och pris avlästa på operatörens egen sida (2026-08-05) */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>
             {[
               { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 255 kr' },

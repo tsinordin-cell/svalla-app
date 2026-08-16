@@ -83,7 +83,8 @@ export default function BlekingeSkargardPage() {
  {
  '@type': 'Question',
  name: 'Hur nära är Blekinge till Danmark och Tyskland?',
- acceptedAnswer: { '@type': 'Answer', text: 'Rügen i Tyskland ligger ungefär 80 sjömil söder om Karlskrona. Bornholm, Danmark, ligger omkring 50 sjömil västerut. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
+ // UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren (Bornholms nordspets) 59 nm, Karlskrona–Rønne 71 nm, Karlskrona–Kap Arkona (Rügen) 115 nm. Tidigare siffror 80 resp 50 var fel åt båda hållen.
+ acceptedAnswer: { '@type': 'Answer', text: 'Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
  },
  {
  '@type': 'Question',
@@ -168,7 +169,7 @@ export default function BlekingeSkargardPage() {
  Omkring Karlskrona sprider sig en härlig skärgård med både välkända och dolda pärlor. <strong>Aspö</strong> och <strong>Tjurkö</strong> är två större öar med gästbryggor och idyllisk skärgårdsstämning, perfekta för ett fritidsbesök eller att ankra över natten. <strong>Hästö</strong> väcker ofta intresse för sin populära kafébrygga där du kan få fika och god mat utan att lämna båten.
  </p>
  <p>
- För seglare som föredrar naturhamnar ligger <strong>Senoren</strong> lite inåt och erbjuder lugna ankringsförhållanden omgiven av skog och natur. De inre fahrlederna runt Karlskrona är väl märkta med röda och vita märken, men grundare partier förekommer — Svalla-kartan visar verifierade ankringsplatser och djupinformation som hjälper dig navigera säkert.
+ För seglare som föredrar naturhamnar ligger <strong>Senoren</strong> lite inåt och erbjuder lugna ankringsförhållanden omgiven av skog och natur. De inre fahrlederna runt Karlskrona är väl märkta med röda och vita märken, men grundare partier förekommer — Svalla-kartan visar platser och hamnar; djup och grund läser du av på sjökortet.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -200,7 +201,8 @@ export default function BlekingeSkargardPage() {
  </p>
  <p>
  <strong>Hur nära är Blekinge till Danmark och Tyskland?</strong><br />
- Rügen i Tyskland ligger ungefär 80 sjömil söder om Karlskrona. Bornholm, Danmark, ligger omkring 50 sjömil västerut. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer — många seglare tar sig hit före längre kryss.
+ {/* UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren 59 nm, Karlskrona–Kap Arkona 115 nm */}
+ Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer — många seglare tar sig hit före längre kryss.
  </p>
  <p>
  <strong>Vad är Östersjöleden?</strong><br />

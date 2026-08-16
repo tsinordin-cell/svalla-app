@@ -280,12 +280,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
                   background: 'var(--white)', border: '1px solid rgba(10,123,140,0.09)',
                 }}>
                   <div style={{ position: 'relative', flexShrink: 0 }}>
-                    <div style={{
-                      width: 36, height: 36, borderRadius: '50%',
+                    <div style={{width: 36, height: 36, borderRadius: '50%',
                       background: 'var(--grad-acc)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: 16,
-                    }}>🍴</div>
+                      display: 'flex', alignItems: 'center', justifyContent: 'center'}} aria-hidden><Icon name="utensils" size={16} /></div>
                     <div style={{
                       position: 'absolute', top: -4, right: -4,
                       width: 16, height: 16, borderRadius: '50%',

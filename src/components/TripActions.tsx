@@ -2,7 +2,7 @@
 import { useState, useEffect, type CSSProperties, type ReactNode, type MouseEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Pencil, MapPin, Trash2, MessageCircle, Flag } from '@/components/icons/LucideIcons'
-import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
@@ -48,7 +48,7 @@ export default function TripActions({
 
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       setUserId(user?.id ?? null)
       if (user && isProEnabled()) {
         const proActive = await isPro(supabase, user.id)

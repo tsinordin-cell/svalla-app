@@ -3,15 +3,38 @@ import { notFound } from 'next/navigation'
 import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { getIsland } from '@/app/o/island-data'
 import type { Metadata } from 'next'
+import Icon from '@/components/Icon'
 
 export const revalidate = 60
 
 type Props = { params: Promise<{ slug: string }> }
 
+// SOFT-404, DEL 2 (2026-08-12). notFound() i generateMetadata (PR #117)
+// räckte inte: Vercel serverar ett byggtids-fallbackskal för ISR-rutter
+// med loading.tsx (x-nextjs-prerender: 1) — 200-statusen är satt INNAN
+// någon kod körs, och vår notFound() landar bara som en error-digest i
+// streamen (NEXT_HTTP_ERROR_FALLBACK;404 i body, status ändå 200).
+// Den här routens hela slug-mängd är känd vid bygget (data ligger i
+// repot), så dynamicParams=false är semantiskt rätt: okänd slug 404:ar
+// i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
+// u) — nya rader där måste kunna renderas utan ny deploy.
+export const dynamicParams = false
+
+export async function generateStaticParams() {
+  const { ALL_ISLANDS } = await import('@/app/o/island-data')
+  return ALL_ISLANDS.map(i => ({ slug: i.slug }))
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
-  if (!island) return { title: 'Forum — Svalla' }
+  // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
+  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
+  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
+  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
+  // med loading.tsx). generateMetadata körs före headers och är därför
+  // enda stället som kan sätta riktig 404-status.
+  if (!island) notFound()
   const canonicalUrl = `https://svalla.se/forum/o/${slug}`
   const description = `Diskussioner, tips och frågor om ${island.name}. Dela erfarenheter, hitta lokala tjänster och knyt kontakter.`
   return {
@@ -34,7 +57,12 @@ export default async function IslandForumPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const threads = await getThreadsByIsland(slug)
+  // publik=true: sidan läser bara publika trådar och använder ingen auth.
+  // Default-klienten drar cookies() vilket gjorde routen dynamisk — då var
+  // revalidate=60 verkningslös OCH dynamicParams=false kringgicks, så okända
+  // öar svarade 200 trots #118 (uppmätt live). Samma mönster som /o/[slug]
+  // (CLAUDE.md p26).
+  const threads = await getThreadsByIsland(slug, 0, true)
 
   return (
     <main style={{
@@ -102,7 +130,7 @@ export default async function IslandForumPage({ params }: Props) {
             border: '1px solid rgba(10,123,140,0.1)',
           }}>
             <div style={{ textAlign: 'center', marginBottom: 24 }}>
-              <div style={{ fontSize: 36, marginBottom: 12 }}>🏝️</div>
+              <div style={{marginBottom: 12}} aria-hidden><Icon name="pin" size={36} /></div>
               <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--txt)', marginBottom: 6 }}>
                 Bli den första att skriva om {island.name}!
               </div>
@@ -142,7 +170,7 @@ export default async function IslandForumPage({ params }: Props) {
                       transition: 'background 0.15s, border-color 0.15s',
                     }}
                   >
-                    <span style={{ fontSize: 16, flexShrink: 0 }}>💬</span>
+                    <span style={{flexShrink: 0}} aria-hidden><Icon name="quote" size={16} /></span>
                     <span>{prompt}</span>
                     <span style={{ marginLeft: 'auto', color: 'var(--sea)', fontWeight: 700, fontSize: 13, flexShrink: 0 }}>Starta →</span>
                   </Link>

@@ -4,8 +4,9 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { createCheckIn } from '@/lib/checkins'
+import Icon from '@/components/Icon'
 
 type Position = { lat: number; lng: number; accuracy: number }
 
@@ -35,7 +36,7 @@ function CheckInPage() {
   const [err, setErr] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!user) { router.replace('/logga-in?next=/check-in'); return }
       setMe(user.id)
     })
@@ -207,7 +208,7 @@ function CheckInPage() {
             border: '2px dashed rgba(10,123,140,0.25)', textAlign: 'center',
             background: 'rgba(10,123,140,0.03)', cursor: 'pointer', marginBottom: 14,
           }}>
-            <div style={{ fontSize: 24, marginBottom: 6 }}>📸</div>
+            <div style={{marginBottom: 6}} aria-hidden><Icon name="camera" size={24} /></div>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)' }}>Lägg till bild</div>
             <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>JPG eller PNG, max 8 MB</div>
             <input id="ci-image" type="file" accept="image/*" onChange={onPickImage} style={{ display: 'none' }} />

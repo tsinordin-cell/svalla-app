@@ -4,7 +4,7 @@
  * Beräknar en fullkvalitets sjöledsrutt (precomputed → grid-A* → waypoint-Dijkstra).
  * Kallas från klienten asynkront — aldrig från SSR.
  *
- * Timeout: 300 s (Vercel Pro maxDuration). Grid-A* kan ta 30-120 s för stora
+ * Timeout: 150 s. Grid-A* kan ta 30-120 s för stora
  * bounding boxes (80 000 noder × 500 polygon-checks via turf.js).
  *
  * Caching — två nivåer:
@@ -14,7 +14,10 @@
  */
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 300 // sekunder — Vercel Pro
+export const maxDuration = 150 // sekunder. Sänkt från 300 2026-08-12:
+// uppmätt värsta fall för grid-A* är 120 s, och varje sekund en funktion
+// kör räknas mot Fluid-minnesposten på fakturan ($41 av $94 i juli–aug).
+// 150 täcker det uppmätta med marginal men halverar taket för skenande anrop.
 
 import { NextRequest, NextResponse } from 'next/server'
 import { DEPARTURES, requiresLock, isLandlocked } from '@/lib/planner-client'
@@ -22,6 +25,7 @@ import { findSeaPathWithQuality, qualityToConfidence, type RouteQuality } from '
 import { validatePathLand, inMaskCoverage, hasNavigableWaterNear } from '@/lib/landMask'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
+import { passagerLangsRutt, tillKlient } from '@/lib/farbaraPassager'
 import { getAdminClient } from '@/lib/supabase-admin'
 
 /**
@@ -87,7 +91,7 @@ function cacheKey(slat: number, slng: number, elat: number, elng: number): strin
  */
 export type UnavailableReason =
   | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
-  | 'landlocked'
+  | 'landlocked' | 'same_harbour'
 
 /** Samma tolerans som lookupPrecomputed använder: 0,0008° ≈ 80 m. */
 const HAMN_TOL = 0.0008
@@ -194,6 +198,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Ogiltiga koordinater' }, { status: 400 })
     }
 
+    // Start och mal ar samma hamn. Utan sparren svarade API:t med en
+    // "rutt" pa tre waypoint-punkter (uppmatt 2026-08-16: Sigtuna->Sigtuna
+    // gav waypoint 3p) - nonsens som dessutom gick att dela via URL.
+    // 200 m ar val under minsta hamnavstand (Steninge->Flottvik ar 740 m),
+    // sa ingen riktig rutt kan falla pa den. Grov plan approximation racker
+    // pa de har avstanden.
+    {
+      const dLatM = (endLat - startLat) * 111320
+      const dLngM = (endLng - startLng) * 111320 * Math.cos(startLat * Math.PI / 180)
+      if (Math.sqrt(dLatM * dLatM + dLngM * dLngM) < 200) {
+        return NextResponse.json({
+          path: null, quality: 'unavailable', confidence: 0, validated: false,
+          crossesAt: null, source: 'guard', passager: [],
+          reason: 'same_harbour' satisfies UnavailableReason,
+        })
+      }
+    }
+
     const key = cacheKey(startLat, startLng, endLat, endLng)
 
     // 1. In-memory cache hit (per Lambda)
@@ -207,6 +229,7 @@ export async function POST(req: NextRequest) {
         validated: cached.validated,
         crossesAt: cached.crossesAt,
         source: 'cache',
+        passager: passagerLangsRutt(cached.path).map(tillKlient),
         // Cachen bär inte skälet, men skälet är deterministiskt och billigt.
         // Utan detta visade ett cachat slussfall den röda "ingen vattenväg"-
         // rutan medan samma rutt på kall lambda fick den lugna sluss-texten.
@@ -248,6 +271,7 @@ export async function POST(req: NextRequest) {
               validated: !!dbCached.cached_validated,
               crossesAt: null,
               source: 'db-cache',
+              passager: passagerLangsRutt(dbPath).map(tillKlient),
               // Samma sak som mem-cachen: skälet räknas om, annars tappas det.
               reason: dbQuality === 'unavailable'
                 ? avgorSkal(startLat, startLng, endLat, endLng) : null,
@@ -359,6 +383,10 @@ export async function POST(req: NextRequest) {
       validated,
       crossesAt,
       source: finalQuality === 'precomputed' ? 'precomputed' : 'computed',
+      // Passager med kand djup- eller hojdbegransning som rutten gar igenom.
+      // Berakas fran path vid varje svar, aldrig fran cachen - annars saknar
+      // gamla cacheposter faltet.
+      passager: passagerLangsRutt(finalPath).map(tillKlient),
       ms,
     })
   } catch (err) {

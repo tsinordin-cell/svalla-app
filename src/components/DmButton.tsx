@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 /**
  * "Skicka meddelande"-knappen på en profil. Visas bara för inloggade, och
@@ -35,7 +35,7 @@ export default function DmButton({
 
   useEffect(() => {
     let avbruten = false
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (avbruten) return
       // Inloggad, och inte sin egen profil.
       setVisa(!!user && user.id !== targetUserId)

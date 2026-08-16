@@ -7,6 +7,7 @@ import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: { absolute: 'Partner — Synas på Svalla | För restauranger, hamnar och upplevelser' },
+  // PRODUKTREGEL: vårt eget pris — vi är källan.
   description: 'Sätt din verksamhet i karta över skärgården. 200+ platser, 120+ ösidor, växande organisk trafik. Från 500 kr/mån.',
   keywords: ['skärgård restaurang marknadsföring', 'gästhamn synas online', 'svalla partner', 'skärgård annonsering'],
   openGraph: {
@@ -109,6 +110,7 @@ export default function PartnerPage() {
           <p style={{ fontSize: 18, lineHeight: 1.55, opacity: 0.9, maxWidth: 560, margin: '0 auto 28px' }}>
             Svalla är den plats där båtfolk i Stockholms skärgård och Bohuslän planerar sina rutter.
             Tusentals besökare varje månad söker restauranger, hamnar och upplevelser.
+            {/* PRODUKTREGEL: vårt eget pris — vi är källan. */}
             Från 290 kr/mån.
           </p>
           <a href="#kontakt" style={{

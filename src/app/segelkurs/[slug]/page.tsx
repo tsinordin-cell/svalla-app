@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { SEGELKURS_SUBS } from '../segelkurs-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -64,7 +66,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
           <Link href="/segelkurs" style={{ color: 'var(--white)', opacity: 0.8, fontSize: 14, textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
             ← Segelkurser i Sverige
           </Link>
-          <div style={{ fontSize: 40, marginBottom: 12 }}>{page.emoji}</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name={emojiToIcon(page.emoji)} size={40} /></div>
           <h1 style={{ fontSize: 'clamp(24px, 5vw, 38px)', fontWeight: 800, color: 'var(--white)', margin: '0 0 12px' }}>
             {page.h1}
           </h1>
@@ -147,7 +149,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
                 border: '1px solid var(--surface-3)', textDecoration: 'none', color: 'inherit',
                 display: 'flex', alignItems: 'center', gap: 14,
               }}>
-                <span style={{ fontSize: 22 }}>{s.emoji}</span>
+                <span aria-hidden><Icon name={emojiToIcon(s.emoji)} size={22} /></span>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>{s.h1}</div>
                   <div style={{ fontSize: 12, color: 'var(--ink-muted)' }}>{s.readTime} · {s.location}</div>
@@ -165,7 +167,7 @@ export default async function SegelkursSlugPage({ params }: Props) {
 
         {/* CTA */}
         <div style={{ background: 'var(--surface-2)', borderRadius: 16, padding: '28px 24px', textAlign: 'center' }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>⛵</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="sailboat" size={32} /></div>
           <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 8 }}>Logga dina seglarturer på Svalla</h3>
           <p style={{ fontSize: 14, color: 'var(--ink-muted)', marginBottom: 20, lineHeight: 1.6 }}>
             Dokumentera kursen och turerna, spara rutter och dela med seglarkompisar.

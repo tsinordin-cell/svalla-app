@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
+import Icon from '@/components/Icon'
 
 function NyTradForm() {
   const router       = useRouter()
@@ -79,7 +80,7 @@ function NyTradForm() {
           border: '1px solid rgba(10,123,140,0.12)', boxShadow: '0 4px 24px rgba(10,123,140,0.10)',
           maxWidth: 380,
         }}>
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
+          <div style={{marginBottom: 16}} aria-hidden><Icon name="star" size={48} /></div>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
             Tråden är inskickad!
           </h2>

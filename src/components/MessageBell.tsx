@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { countUnreadMessages } from '@/lib/dm'
 
 /**
@@ -30,7 +30,7 @@ export default function MessageBell() {
       channelRef.current = null
     }
 
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!mounted || !user) return
       const uid = user.id
       setUserId(uid)

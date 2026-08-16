@@ -3,6 +3,8 @@ import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
 import ShareButton from '@/components/ShareButton'
 import PublicFooter from '@/components/PublicFooter'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Bästa öarna i Stockholms skärgård 2026 – listor per tema | Svalla',
@@ -415,6 +417,7 @@ const OLISTS: OList[] = [
         name: 'Fjäderholmarna',
         emoji: '⛵',
         tagline: 'Billigast att nå',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         why: 'Waxholmsbåt tur-retur kostar runt 150 kr med SL-kort. Ta med picknick, vandra runt naturstigen och bad gratis från klipporna.',
         travel: 'SL-kort gäller med tilläggsbiljett, 25 min',
         badge: 'Lägst kostnad',
@@ -424,6 +427,7 @@ const OLISTS: OList[] = [
         name: 'Vaxholm',
         emoji: '🏰',
         tagline: 'Dag ut för lite pengar',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         why: 'Fästningen kostar runt 80 kr. Räksmörgåsen är skärgårdens bästa köp. Allt annat är gratis — promenaden, fästningsparken och hamnluften.',
         travel: 'Waxholmsbåt, 55 min',
       },
@@ -440,6 +444,7 @@ const OLISTS: OList[] = [
         slug: 'finnhamn',
         name: 'Finnhamn',
         emoji: '🌲',
+        // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
         tagline: 'Vandrarhem från 300 kr/natt',
         why: 'Ett av skärgårdens billigaste boendealternativ. Vandrarhem med bra standard, naturskön hamn och inget krav på restaurangmiddag.',
         travel: 'Waxholmsbåt, ca 2 h',
@@ -537,7 +542,7 @@ export default function OstlistanPage() {
             background: 'rgba(255,255,255,0.15)', borderRadius: 20,
             padding: '5px 14px', marginBottom: 18,
           }}>
-            <span style={{ fontSize: 14 }}>🗺️</span>
+            <span aria-hidden><Icon name="map" size={14} /></span>
             <span style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.9)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
               Kuraterade listor 2026
             </span>
@@ -571,7 +576,7 @@ export default function OstlistanPage() {
                   backdropFilter: 'blur(4px)',
                 }}
               >
-                <span>{list.emoji}</span>
+                <span aria-hidden style={{ display: 'inline-flex' }}><Icon name={emojiToIcon(list.emoji)} size={14} /></span>
                 {list.title.replace('Bästa öarna för ', '').replace('Bästa öarna för ', '').replace('Bästa ', '')}
               </a>
             ))}
@@ -599,7 +604,7 @@ export default function OstlistanPage() {
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                    <span style={{ fontSize: 28 }}>{list.emoji}</span>
+                    <span aria-hidden><Icon name={emojiToIcon(list.emoji)} size={28} /></span>
                     <h2 style={{
                       fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)',
                       fontSize: 'clamp(20px,3vw,26px)',
@@ -656,7 +661,7 @@ export default function OstlistanPage() {
                     {/* Content */}
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 16 }}>{island.emoji}</span>
+                        <span aria-hidden><Icon name={emojiToIcon(island.emoji)} size={16} /></span>
                         <span style={{
                           fontSize: 16, fontWeight: 700,
                           color: 'var(--txt,#1a2b3c)',
@@ -739,7 +744,7 @@ export default function OstlistanPage() {
           borderRadius: 20, padding: '36px 32px',
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>✉️</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="mail" size={32} /></div>
           <h2 style={{
             fontFamily: 'var(--font-display,"Playfair Display",Georgia,serif)',
             fontSize: 24, fontWeight: 800, color: '#fff',
@@ -766,11 +771,11 @@ export default function OstlistanPage() {
         {/* Relaterade sidor */}
         <div style={{ marginTop: 40, display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
           {[
-            { href: '/oar', label: '🗺️ Alla öar' },
-            { href: '/guider', label: '📖 Guider' },
-            { href: '/blogg', label: '✍️ Blogg' },
-            { href: '/utflykt', label: '⛵ Utflyktsplanerare' },
-          ].map(({ href, label }) => (
+            { href: '/oar', icon: 'map' as const, label: 'Alla öar' },
+            { href: '/guider', icon: 'bookmark' as const, label: 'Guider' },
+            { href: '/blogg', icon: 'edit' as const, label: 'Blogg' },
+            { href: '/utflykt', icon: 'sailboat' as const, label: 'Utflyktsplanerare' },
+          ].map(({ href, icon, label }) => (
             <Link key={href} href={href} style={{
               display: 'inline-block',
               padding: '9px 18px', borderRadius: 999,
@@ -780,7 +785,7 @@ export default function OstlistanPage() {
               border: '1px solid rgba(10,123,140,0.15)',
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
             }}>
-              {label}
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name={icon} size={14} /></span>{label}
             </Link>
           ))}
         </div>

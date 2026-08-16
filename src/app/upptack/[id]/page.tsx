@@ -80,7 +80,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
    image_url?: string; tags?: string[]; slug?: string;
    google_photo_refs?: { reference: string }[] | null;
  } | null
- if (!data) return { title: { absolute: 'Restaurang – Svalla' } }
+ // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
+  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
+  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
+  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
+  // med loading.tsx). generateMetadata körs före headers och är därför
+  // enda stället som kan sätta riktig 404-status.
+ if (!data) notFound()
  // Canonical pekar alltid på slug-URL om sluggen finns, annars UUID
  const canonicalPath = data.slug ?? data.id
  const desc = data.description ?? `${data.name} på ${data.island ?? 'skärgårdsön'} – mat och dryck längs kusten.`

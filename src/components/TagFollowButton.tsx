@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 export default function TagFollowButton({ tag }: { tag: string }) {
   const [userId,    setUserId]    = useState<string | null>(null)
@@ -10,7 +10,7 @@ export default function TagFollowButton({ tag }: { tag: string }) {
 
   useEffect(() => {
     const supabase = createClient()
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getViewer(supabase).then(async ({ data: { user } }) => {
       if (!user) { setLoading(false); return }
       setUserId(user.id)
       const { count } = await supabase

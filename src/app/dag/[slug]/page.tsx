@@ -346,12 +346,9 @@ export default async function DagSlugPage({ params }: Props) {
                   padding: '16px 20px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                   display: 'flex', gap: 16, alignItems: 'flex-start',
                 }}>
-                  <div style={{
-                    minWidth: 36, height: 36, borderRadius: 10,
+                  <div style={{minWidth: 36, height: 36, borderRadius: 10,
                     background: 'var(--grad-sea)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 16,
-                  }}>🍴</div>
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'}} aria-hidden><Icon name="utensils" size={16} /></div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
                       <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{r.name}</span>
@@ -465,13 +462,10 @@ export default async function DagSlugPage({ params }: Props) {
               boxShadow: '0 6px 28px rgba(20,90,50,0.2)',
               border: '1px solid rgba(255,255,255,0.08)',
             }}>
-              <div style={{
-                width: 48, height: 48, flexShrink: 0, borderRadius: '50%',
+              <div style={{width: 48, height: 48, flexShrink: 0, borderRadius: '50%',
                 background: 'rgba(255,255,255,0.14)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                border: '1px solid rgba(255,255,255,0.18)',
-                fontSize: 24,
-              }}>⚓</div>
+                border: '1px solid rgba(255,255,255,0.18)'}} aria-hidden><Icon name="anchor" size={24} /></div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 10, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 5 }}>
                   AI-guide

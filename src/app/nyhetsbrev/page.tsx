@@ -19,7 +19,8 @@ const SAMPLE = {
   island: {
     name: 'Möja',
     slug: 'moja',
-    tip: 'Möja i september är svårt att slå. Bilfritt, cykelvänligt och med ett lugn som juli-Möja aldrig kan matcha. Möja Krog håller öppet september ut. Ta morgonbåten från Stavsnäs (09:15) och planera lunch på krogen. Du är tillbaka i Stockholm till kvällen.',
+    // KÄLLA: ResRobot 2026-08-11 — båtarna till Möja går från SOLLENKROKA (buss 434 från Slussen), inte Stavsnäs. Tredje Stavsnäs-Möja-kopian som rättas.
+    tip: 'Möja i september är svårt att slå. Bilfritt, cykelvänligt och med ett lugn som juli-Möja aldrig kan matcha. Ta buss 434 från Slussen till Sollenkroka och morgonbåten därifrån, planera lunch på ön. Du är tillbaka i Stockholm till kvällen.',
   },
   fact: 'Östersjöns ytvattentemperatur är som varmast i mitten av augusti — men värmen håller kvar ända till slutet av september. Vattnet svalnar långsammare än luften.',
   question: 'Har du någonsin besökt skärgården utanför högsäsong? Svara direkt på mailet — vi läser allt.',
@@ -67,6 +68,7 @@ export default function NyhetsbrevPage() {
           Varje brev handlar om <strong style={{ color: 'var(--txt)' }}>vilka öar som faktiskt är öppna just nu</strong> — inte en generell sommarguide utan vad som stämmer den månaden du läser det. Möja Krog stänger i mitten av september. Finnhamn är fullbokat varje lördag i juli men tomt en tisdag i juni. Det är den typen av saker.
         </p>
         <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: '0 0 16px' }}>
+          {/* UPPSKATTNING: exempeltext med ungefärliga tider (2026-08) */}
           Varje utgåva har en specifik ö med ett konkret besökstips — inte "Sandhamn är vackert" utan "ta morgonbåten 08:30 från Stavsnäs, hyr cykel vid bryggan och boka bord på Värdshuset till lunch, annars är det fullt".
         </p>
         <p style={{ fontSize: 16, color: 'var(--txt2)', lineHeight: 1.8, margin: 0 }}>

@@ -6,6 +6,17 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 
 type Props = { params: Promise<{ slug: string }> }
 
+// SOFT-404, DEL 2 (2026-08-12). notFound() i generateMetadata (PR #117)
+// räckte inte: Vercel serverar ett byggtids-fallbackskal för ISR-rutter
+// med loading.tsx (x-nextjs-prerender: 1) — 200-statusen är satt INNAN
+// någon kod körs, och vår notFound() landar bara som en error-digest i
+// streamen (NEXT_HTTP_ERROR_FALLBACK;404 i body, status ändå 200).
+// Den här routens hela slug-mängd är känd vid bygget (data ligger i
+// repot), så dynamicParams=false är semantiskt rätt: okänd slug 404:ar
+// i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
+// u) — nya rader där måste kunna renderas utan ny deploy.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
 }
@@ -13,7 +24,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
-  if (!island) return {}
+  // SOFT-404-SKYDD: loading.tsx streamar svaret — 200 flushas före sidkroppen,
+  // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
+  // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
+  if (!island) notFound()
   return {
     title: `${island.name} med barn — barnvänlig guide 2026 | Svalla`,
     description: `Är ${island.name} bra för barnfamiljer? Stränder, lugnt vatten, restauranger och tips för familjer med barn. Komplett guide.`,

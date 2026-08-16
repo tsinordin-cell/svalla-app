@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
   title: 'Naturhamnar i Stockholms skärgård — Ankringsguide',
-  description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler — djupinfo, bottenbeskrivning och vindskydd för varje ankringsplats. Gratis ankring via allemansrätten.',
+  description: 'Guide till naturhamnar i Stockholms skärgård 2026. Möja, Nämdö, Ornö, Nåttarö, Grinda och fler — vindskydd och läge för varje ankringsplats. Gratis ankring via allemansrätten.',
   keywords: [
     'naturhamnar stockholms skärgård',
     'ankra stockholms skärgård',
@@ -28,84 +28,85 @@ const ITEMS: LandingItem[] = [
   {
     icon: '⛵',
     title: 'Möja',
-    description: 'Mellanskärgårdens klassiska seglarö. Vikarna vid Berg (djup 3–5 m, lerbotten), Ramsmora och Långviksskär ger bra skydd från SW–NW. Bergs Glass och lanthandeln gör det enkelt att tillbringa flera dagar.',
+    description: 'Mellanskärgårdens klassiska seglarö. Vikarna vid Berg, Ramsmora och Långviksskär ger bra skydd från SW–NW. Bergs Glass och lanthandeln gör det enkelt att tillbringa flera dagar.',
     href: '/moja',
-    meta: 'Mellanskärgården · 30 sjömil från Stockholm',
+    // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
+    meta: 'Mellanskärgården · 29 sjömil från Stockholm',
   },
   {
     icon: '🏔️',
     title: 'Bullerö',
-    description: 'Naturreservat sedan 1967 i Nämdö-området, med Bruno Liljefors jaktstuga från 1909. Klippor och öppen vy mot havet. Ankra i den skyddade viken på öns nordvästra sida — ca 4 m djup, sandbotten. För erfarna seglare med god väderprognos.',
+    description: 'Naturreservat sedan 1967 i Nämdö-området, med Bruno Liljefors jaktstuga från 1909. Klippor och öppen vy mot havet. Ankra i den skyddade viken på öns nordvästra sida. För erfarna seglare med god väderprognos.',
     href: '/platser?kategori=naturhamn',
     meta: 'Yttre skärgården · Kräver god väderprognos',
   },
   {
     icon: '🌿',
     title: 'Ålö',
-    description: 'Naturreservat granne med Utö i södra skärgården. Tallskog och fina ankringsvikar med 3–6 m djup. Brobunden till Utö — kombinera gärna med middag på Utö Värdshus. Skyddar bra från N–NE.',
+    description: 'Naturreservat granne med Utö i södra skärgården. Tallskog och fina ankringsvikar. Brobunden till Utö — kombinera gärna med middag på Utö Värdshus. Skyddar bra från N–NE.',
     href: '/platser?kategori=naturhamn',
     meta: 'Södra skärgården · Nära Utö',
   },
   {
     icon: '💧',
     title: 'Svartsö',
-    description: 'Naturhamnsrik ö i mellanskärgården med vikar som skyddar från många vindkvartal. Vikarna på östsidan (Svartsölandet) har 2–4 m djup och lerbotten. Butik och lanthandel i byn — lätt att handla mat.',
+    description: 'Naturhamnsrik ö i mellanskärgården med vikar som skyddar från många vindkvartal. Vikarna på östsidan (Svartsölandet) ger skydd i flera vindriktningar. Butik och lanthandel i byn — lätt att handla mat.',
     href: '/platser?kategori=naturhamn',
     meta: 'Mellanskärgården · Butik på ön',
   },
   {
     icon: '🌳',
     title: 'Finnhamn',
-    description: 'STF-vandrarhem på en av mellanskärgårdens vackraste öar. Naturreservat med skyddade ankringsplatser vid Storkliven (4–6 m, lerbotten) och vikarna mot Idholmen. Skyddar bra från S–SW.',
+    description: 'STF-vandrarhem på en av mellanskärgårdens vackraste öar. Naturreservat med skyddade ankringsplatser vid Storkliven och vikarna mot Idholmen. Skyddar bra från S–SW.',
     href: '/platser?kategori=naturhamn',
     meta: 'Mellanskärgården · STF-vandrarhem',
   },
   {
     icon: '🪨',
     title: 'Nämdö',
-    description: 'Kyrkogårdsfjärden på Nämdös nordsida räknas bland skärgårdens bästa naturhamnar. Djup 3–8 m, lerbotten och utmärkt skydd från alla väder utom N. Lugn ö med fina promenadvägar och sommarcafé.',
+    description: 'Kyrkogårdsfjärden på Nämdös nordsida räknas bland skärgårdens bästa naturhamnar. Utmärkt skydd från alla väder utom N. Lugn ö med fina promenadvägar och sommarcafé.',
     href: '/platser?kategori=naturhamn',
     meta: 'Mellanskärgården · Nybörjarvänlig',
   },
   {
     icon: '🏝️',
     title: 'Nåttarö',
-    description: 'Naturreservat i södra skärgården med milslånga sandstränder — ovanligt för Stockholms skärgård. Ankra i viken på öns västra sida, 3–5 m djup, sandbotten. Skyddat från E–SE. Fantastiskt för familjebad.',
+    description: 'Naturreservat i södra skärgården med milslånga sandstränder — ovanligt för Stockholms skärgård. Ankra i viken på öns västra sida. Skyddat från E–SE. Fantastiskt för familjebad.',
     href: '/platser?kategori=naturhamn',
     meta: 'Södra skärgården · Sandstränder',
   },
   {
     icon: '🌊',
     title: 'Harö',
-    description: 'Liten naturhamnsö sydöst om Möja, perfekt för en natt på väg mot ytterskärgården. Välskyddad vik på sydvästra sidan, 3–4 m djup. Inga fasta faciliteter — ren naturkänsla.',
+    description: 'Liten naturhamnsö sydöst om Möja, perfekt för en natt på väg mot ytterskärgården. Välskyddad vik på sydvästra sidan. Inga fasta faciliteter — ren naturkänsla.',
     href: '/platser?kategori=naturhamn',
     meta: 'Mellanskärgården · Orörd natur',
   },
   {
     icon: '🌲',
     title: 'Ängsö',
-    description: 'Nationalpark i norra skärgården — en av de mest välbevarade öarna. Naturhamn på öns östra sida, 2–4 m djup. Landstigningsförbud i delar av reservatet 1/4–15/7. Perfekt för den som vill kombinera segling med naturupplevelse.',
+    description: 'Nationalpark i norra skärgården — en av de mest välbevarade öarna. Naturhamn på öns östra sida. Landstigningsförbud i delar av reservatet 1/4–15/7. Perfekt för den som vill kombinera segling med naturupplevelse.',
     href: '/platser?kategori=naturhamn',
     meta: 'Norra skärgården · Nationalpark',
   },
   {
     icon: '⚓',
     title: 'Ornö — Klasärterna',
-    description: 'Klasärterna på Ornös sydöstra sida räknas bland skärgårdens vackraste vikar. Djup 4–7 m, lerbotten, skyddat från N–NW. Ornö har butik och flera restauranger — bra bas för längre turer.',
+    description: 'Klasärterna på Ornös sydöstra sida räknas bland skärgårdens vackraste vikar. Skyddat från N–NW. Ornö har butik och flera restauranger — bra bas för längre turer.',
     href: '/platser?kategori=naturhamn',
     meta: 'Södra mellanskärgården · Vacker vik',
   },
   {
     icon: '🦅',
     title: 'Huvudskär',
-    description: 'Yttre skärgårdens vildmarkspärla öster om Ornö. Skyddad naturhamn på öns västsida, 4–6 m djup. Obevakad kust med dramatiska klippor — endast för erfarna seglare med bra väderprognos.',
+    description: 'Yttre skärgårdens vildmarkspärla öster om Ornö. Skyddad naturhamn på öns västsida. Obevakad kust med dramatiska klippor — endast för erfarna seglare med bra väderprognos.',
     href: '/platser?kategori=naturhamn',
     meta: 'Yttre skärgården · Erfarna seglare',
   },
   {
     icon: '🏖️',
     title: 'Grinda',
-    description: 'STF-anläggning i inre mellanskärgården — en av de mest tillgängliga naturhamnarna. Flera välskyddade vikar runt ön med 3–5 m djup. Bra för nybörjare — restaurang, café och bryggor med service.',
+    description: 'STF-anläggning i inre mellanskärgården — en av de mest tillgängliga naturhamnarna. Flera välskyddade vikar runt ön. Bra för nybörjare — restaurang, café och bryggor med service.',
     href: '/platser?kategori=naturhamn',
     meta: 'Inre mellanskärgården · Nybörjarvänlig',
   },
@@ -134,6 +135,7 @@ export default function NaturhamnarPage() {
       {
         '@type': 'Question',
         name: 'Hur djup ska en naturhamn vara?',
+        // UPPSKATTNING: typiskt djupgående för kölbåtar i skärgårdsstorlek (2026-08)
         acceptedAnswer: { '@type': 'Answer', text: 'För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ankrar. Östersjön har ingen reell tidvattendynamik — vattenståndet styrs av vind och lufttryck och varierar oftast bara några decimeter.' },
       },
     ],
@@ -154,7 +156,7 @@ export default function NaturhamnarPage() {
       heroGradient={['#0a4a5e', '#0a7b8c']}
       eyebrow="Naturhamnar"
       title="Ankra fritt i skärgården"
-      tagline="Möja, Nämdö, Ornö, Nåttarö och fler — skyddade vikar med djupinfo, bottenbeskrivning och vindskydd."
+      tagline="Möja, Nämdö, Ornö, Nåttarö och fler — skyddade vikar, läge och vindskydd."
       heroIcon={
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M12 2v20" />
@@ -179,7 +181,7 @@ export default function NaturhamnarPage() {
         </>
       }
       itemsTitle="Populära naturhamnar i Stockholms skärgård"
-      itemsDescription="Tolv klassiska ankringsplatser från norra till södra skärgården — alla fria, alla skyddade, med djupinfo och vindskydd."
+      itemsDescription="Tolv klassiska ankringsplatser från norra till södra skärgården — alla fria, alla skyddade. Djup och botten läser du av på sjökort och med lod."
       items={ITEMS}
       deeperContent={
         <>
@@ -211,6 +213,7 @@ export default function NaturhamnarPage() {
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
             Hur djup ska en naturhamn vara?
           </h3>
+          {/* UPPSKATTNING: typiskt djupgående för kölbåtar i skärgårdsstorlek (2026-08) */}
           <p>
             För typiska kölbåtar (1,4–1,8 m djupgående) vill du gärna ha minst 3 meter där du ligger för ankar, gärna mer för marginal vid vindändring. Östersjön har ingen reell tidvattendynamik — vattenståndet varierar med vind och lufttryck, oftast bara några decimeter. Lita inte blint på sjökortet; lodningar kan ha ändrats. Mät själv med ekolod eller lod när du går in.
           </p>

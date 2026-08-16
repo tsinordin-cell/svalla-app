@@ -41,11 +41,12 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'runmaro',           name: 'Runmarö',           lat: 59.2833, lng: 18.7667, radiusKm: 3.0 },
   { slug: 'husaro',            name: 'Husarö',            lat: 59.5064, lng: 18.8475, radiusKm: 2.0 },
   { slug: 'kymmendo',          name: 'Kymmendö',          lat: 59.1112, lng: 18.4992, radiusKm: 2.0 },
-  // OAVGJORD 2026-08-05. Nominatim känner bara till "Bullerö naturreservat",
-  // vars centroid ligger 3,9 km bort — men ett reservat täcker många öar, så
-  // avståndet säger inget om ön. Overpass hann inte svara innan den strypte
-  // (504/timeout på alla tre speglar). Raden är ORÖRD tills den kan mätas.
-  { slug: 'bullero',           name: 'Bullerö',           lat: 59.2005, lng: 18.8492, radiusKm: 2.0 },
+    // AVGJORD 2026-08-12: ön heter "Bullerön" i OSM (bestämd form) — därför gav
+  // "Bullerö" noll träffar i både Nominatim och tidigare Overpass-försök.
+  // KÄLLA: OSM way/248949716 place=island "Bullerön", centrum 59.2049, 18.8472.
+  // Vår gamla punkt (59.2005, 18.8492) var exakt Bullerö Gästhems position
+  // (way/221764551) — PÅ ön men 500 m från centrum. Nu öns eget centrum.
+  { slug: 'bullero',           name: 'Bullerö',           lat: 59.2049, lng: 18.8472, radiusKm: 2.0 },
   { slug: 'vindo',             name: 'Vindö',             lat: 59.3462, lng: 18.6990, radiusKm: 2.0 },
   { slug: 'ingaro',            name: 'Ingarö',            lat: 59.2500, lng: 18.4833, radiusKm: 4.0 },
   { slug: 'kanholmen',         name: 'Kanholmen',         lat: 59.3679, lng: 18.7263, radiusKm: 1.5 },

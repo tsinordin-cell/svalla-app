@@ -53,6 +53,10 @@ const UNDANTAG = [
 
 const KALLMARKORER = [
   'källa:', 'kalla:', 'source:', 'uppmätt', 'uppmatt', 'mätt ', 'matt ',
+  // PRODUKTREGEL: siffran är VÅR egen — ett pris eller villkor vi själva satt
+  // (Loppis-boost, push-tider, achievements). Vi är källan. Ändras regeln
+  // ändras koden, så den kan inte driva isär från verkligheten.
+  'produktregel:',
   'http://', 'https://', 'resrobot', 'trafiklab', 'strömma', 'stromma',
   'waxholmsbolaget', 'openstreetmap', 'osm ', 'open-meteo', 'google places',
 ]
@@ -63,10 +67,74 @@ const KALLMARKORER = [
  * första körningen. Svenska tidtabeller skriver 10:00, inte 10.00.
  */
 const KLOCKSLAG = /\b([01]?\d|2[0-3]):[0-5]\d\b/
-const PRIS = /(\b\d{2,5}\s*(kr|SEK)\b|\bSEK\s*\d{2,5}\b)/i
+/**
+ * kr kräver att nästa tecken inte är en bokstav (inkl åäö — "60 kräver" är
+ * inte ett pris), och SEK matchas SKIFTLÄGESKÄNSLIGT ("15 sek" är sekunder).
+ * Båda buggarna gav falska fynd 2026-08-12.
+ */
+const PRIS = /(\b\d{1,3}(?:[  .]\d{3})*\s*kr(?![a-zA-ZåäöÅÄÖ])|\b\d{2,5}\s*kr(?![a-zA-ZåäöÅÄÖ])|\bSEK\s*\d{2,5}\b|\b\d{2,5}\s*SEK\b)/
 
-/** Stil- och geometristrängar är inte påståenden om verkligheten. */
-const ÄR_STIL = /rgba?\(|[\d.]+px|cubic-bezier|translate|linear-gradient|viewBox|stroke|polygon|^\s*['"`][\d.,\s-]+['"`]\s*$/
+/**
+ * DJUP OCH SEGELFRI HÖJD — tillagt 2026-08-15 efter granskningen.
+ *
+ * Spärren såg bara klockslag och priser. Ett fel klockslag gör att någon står
+ * kvar på bryggan; ett fel djup gör att någon går på grund. Ändå var djupet
+ * den enda av de två som ingen kontrollerade.
+ *
+ * Vad granskningen hittade i produktion, allt osett av spärren:
+ *   • Baggensstäket och Knapens hål stod med "max 3 m djupgående". Källan sa
+ *     att sundet är tre meter DJUPT och att det är SKYLTAT 2 m. Vi hade läst
+ *     ett vattendjup som ett djupgående och struntat i parentesen.
+ *   • Skurusundet stod med segelfri höjd 30 m, hämtat ur OSM:s maxheight —
+ *     som är en fordonsbegränsning för trafiken PÅ bron. Nautiska taggen på
+ *     samma bro säger 29.
+ *   • /naturhamnar publicerade ankringsdjup och bottentyp för tolv öar utan
+ *     en enda källa.
+ *
+ * Distans (sjömil) räknas OCKSÅ, men som varning: tio träffar finns kvar och
+ * ingen av dem är granskad än. Att fälla bygget på dem nu hade tvingat fram
+ * snabba gissningar, vilket är precis fel medicin.
+ */
+const DJUP = /\b\d{1,2}(?:[.,]\d)?\s*(?:–|-|till)?\s*\d{0,2}(?:[.,]\d)?\s*m(?:eter)?\s+djup|\bdjup(?:et|gående)?\s+(?:är\s+)?\d{1,2}(?:[.,]\d)?\s*m|\b\d{1,2}(?:[.,]\d)?\s*m\s+djupgående|\bdjup\s+\d{1,2}(?:[.,]\d)?\s*[–-]\s*\d{1,2}(?:[.,]\d)?\s*m/i
+const HOJD = /segelfri\s+höjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m|\bbrohöjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m/i
+const DISTANS = /\b\d{1,4}\s*(?:sjömil|distansminuter)\b/i
+/**
+ * KNOP — varningskategori sedan 2026-08-16. Fart används på två vis i koden:
+ * som VÅRT räkneantagande (restider) och som PÅSTÅENDE om världen
+ * (fartgränser: "7 knop innanför gul boj", "5 knop inom 300 m"). Det första
+ * ska vara märkt UPPSKATTNING/PRODUKTREGEL, det andra kräver källa — och
+ * granskningen 16/8 hittade fartgränspåståenden som ingen belagt. Varning,
+ * inte fel, tills de är genomgångna.
+ */
+const KNOP = /\b\d{1,2}(?:[.,]\d)?\s*knops?\b/i
+
+/**
+ * Stil- och geometristrängar är inte påståenden om verkligheten.
+ *
+ * BLINDFLÄCK 3, hittad 2026-08-12: filtret kördes på HELA RADEN. I en
+ * HTML-mall med inline-CSS betyder det att all text som råkar dela rad med
+ * ett style-attribut blev osynlig. Konkret dolde det påståendet "Wikströms
+ * räkmacka stänger 16:00 i maj, 21:00 i juli" i välkomstmailet — två
+ * klockslag om en namngiven verksamhet, i ett mail till varje ny användare,
+ * som ingen kontrollerat och som spärren aldrig kunde se.
+ *
+ * Fixen: skala bort style-attributens INNEHÅLL först, granska texten som
+ * blir kvar. font-size:15px försvinner, "16:00 i maj" syns.
+ */
+const ÄR_STIL = /^\s*['"`][\d.,\s-]+['"`]\s*$|cubic-bezier|linear-gradient|viewBox|polygon\s*\(|T\d{2}:\d{2}:\d{2}/
+
+/**
+ * Tar bort det som bevisligen är formatering, så att brödtexten på samma rad
+ * kan granskas: style="...", class="...", och lösa CSS-deklarationer.
+ */
+function utanStil(s) {
+  return s
+    .replace(/\bstyle\s*=\s*(["'])[\s\S]*?\1/gi, ' ')
+    .replace(/\bclass(Name)?\s*=\s*(["'])[\s\S]*?\2/gi, ' ')
+    .replace(/[a-z-]+\s*:\s*[^;"'`]*(px|em|rem|%|deg|vh|vw)\b[^;"'`]*/gi, ' ')
+    .replace(/rgba?\([^)]*\)/gi, ' ')
+    .replace(/#[0-9a-f]{3,8}\b/gi, ' ')
+}
 
 function filer(dir, ut = []) {
   for (const f of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -108,6 +176,7 @@ function harKallaNara(rader, i) {
 }
 
 const fynd = []
+const varningar = []
 let uppskattningar = 0
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
@@ -130,16 +199,25 @@ for (const f of filer(ROT)) {
     if (borjadeIMallstrang && rad.trim().length > 0) strangar.push(rad)
     for (const s of strangar) {
       if (ÄR_STIL.test(s)) continue
-      const träffKlocka = KLOCKSLAG.test(s)
-      const träffPris = PRIS.test(s)
-      if (!träffKlocka && !träffPris) continue
+      const rent = utanStil(s)
+      const träffKlocka = KLOCKSLAG.test(rent)
+      const träffPris = PRIS.test(rent)
+      const träffDjup = DJUP.test(rent)
+      const träffHojd = HOJD.test(rent)
+      const träffDistans = DISTANS.test(rent)
+      const träffKnop = KNOP.test(rent)
+      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans && !träffKnop) continue
       if (harKallaNara(rader, i)) continue
       if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
-      fynd.push({
-        fil: f, rad: i + 1,
-        typ: träffKlocka ? 'klockslag' : 'pris',
-        text: s.slice(0, 90),
-      })
+      const typ = träffKlocka ? 'klockslag'
+        : träffPris ? 'pris'
+        : träffDjup ? 'djup'
+        : träffHojd ? 'segelfri höjd'
+        : träffDistans ? 'distans'
+        : 'knop'
+      // Distans och knop varnar men fäller inte — se kommentarerna ovan.
+      if (typ === 'distans' || typ === 'knop') { varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue }
+      fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
   })
 }
@@ -156,10 +234,44 @@ for (const f of filer(ROT)) {
  * Skriv om baslinjen med:  node scripts/verify-claims.mjs --uppdatera-baslinje
  */
 const BASLINJE = 'scripts/verify-claims.baseline.json'
+const VAKT = 'scripts/verify-claims.vakt.json'
 const nyckel = (f) => `${f.fil}::${f.typ}::${f.text}`
+
+/**
+ * VAKTVÄRDET — lågvattenmärket för skulden.
+ *
+ * 2026-08-12 återinförde PR #111 de 83 raderade priserna i island-data.ts och
+ * KÖRDE OM BASLINJEN så att spärren tystnade. Regeln "baslinjen får aldrig
+ * växa" var en konvention, och konventioner överlever inte parallella
+ * sessioner. Detta gör den till kod:
+ *
+ * - Vaktvärdet sänks AUTOMATISKT när skulden krymper.
+ * - Är baslinjen STÖRRE än vaktvärdet failar varje bygge, tills någon
+ *   medvetet höjer det med --tillat-vaxt="motivering" (t.ex. dokumenterad
+ *   omfångsutökning av spärren). Motiveringen sparas i vaktfilen.
+ *
+ * En session som slentrianmässigt kör --uppdatera-baslinje efter att ha
+ * återinfört skuld får alltså rött bygge — högt och tydligt, inte tyst.
+ */
+const läsVakt = () => {
+  try { return JSON.parse(fs.readFileSync(VAKT, 'utf8')) } catch { return null }
+}
 
 if (process.argv.includes('--uppdatera-baslinje')) {
   const rader = fynd.map(nyckel).sort()
+  const vakt = läsVakt()
+  const växtArg = process.argv.find(a => a.startsWith('--tillat-vaxt='))
+  if (vakt && rader.length > vakt.lagvattenmarke && !växtArg) {
+    console.error(`\n✗ Baslinjen skulle VÄXA: ${vakt.lagvattenmarke} -> ${rader.length}.`)
+    console.error(`  Skulden ska krympa. Har du återinfört tidigare rättade påståenden?`)
+    console.error(`  Är växten en medveten omfångsutökning av spärren, kör:`)
+    console.error(`    node scripts/verify-claims.mjs --uppdatera-baslinje --tillat-vaxt="<motivering>"`)
+    process.exit(1)
+  }
+  const nyttVaktvarde = vakt && rader.length > vakt.lagvattenmarke
+    ? { lagvattenmarke: rader.length, hojd: new Date().toISOString().slice(0, 10), motivering: växtArg.slice('--tillat-vaxt='.length) }
+    : { lagvattenmarke: rader.length, sankt: new Date().toISOString().slice(0, 10), motivering: vakt?.motivering ?? null }
+  fs.writeFileSync(VAKT, JSON.stringify(nyttVaktvarde, null, 2) + '\n')
   fs.writeFileSync(BASLINJE, JSON.stringify({
     beskrivning: 'Kända påståenden utan källa. SKULD — ska krympa. Får bara växa vid dokumenterad omfångsutökning av spärren (senast 2026-08-11: hela src + mallsträngar).',
     skapad: new Date().toISOString().slice(0, 10),
@@ -172,13 +284,34 @@ if (process.argv.includes('--uppdatera-baslinje')) {
 
 let känd = new Set()
 if (fs.existsSync(BASLINJE)) {
-  känd = new Set(JSON.parse(fs.readFileSync(BASLINJE, 'utf8')).poster)
+  const bas = JSON.parse(fs.readFileSync(BASLINJE, 'utf8'))
+  känd = new Set(bas.poster)
+  const vakt = läsVakt()
+  if (vakt && bas.poster.length > vakt.lagvattenmarke) {
+    console.error(`\n✗ verify-claims: baslinjen (${bas.poster.length}) är STÖRRE än vaktvärdet (${vakt.lagvattenmarke}).`)
+    console.error(`  Någon har regenererat baslinjen efter att skuld återinförts — det tystade`)
+    console.error(`  spärren i PR #111 och får inte ske tyst igen. Ta bort de återinförda`)
+    console.error(`  påståendena, eller höj vaktvärdet MEDVETET med --tillat-vaxt="motivering".`)
+    process.exit(1)
+  }
 }
 const nya = fynd.filter(f => !känd.has(nyckel(f)))
 const kvarAvBaslinjen = fynd.length - nya.length
 
+/** Varningar fäller inte bygget, men ska synas. Tystnad blir till glömska. */
+function skrivVarningar() {
+  if (varningar.length === 0) return
+  console.log(`\n! ${varningar.length} distans-/knoppåståenden utan källa (varning, fäller inte bygget):`)
+  for (const v of varningar.slice(0, 20)) {
+    console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ')}`)
+  }
+  if (varningar.length > 20) console.log(`    … och ${varningar.length - 20} till`)
+  console.log(`  Fartgränspåståenden (knop) är nästa kategori att granska. Se rapporten 2026-08-16.`)
+}
+
 if (nya.length === 0) {
   console.log(`✓ verify-claims: inga NYA påståenden utan källa`)
+  skrivVarningar()
   if (kvarAvBaslinjen > 0) {
     console.log(`  (${kvarAvBaslinjen} kända kvar i baslinjen — skuld att beta av)`)
   }

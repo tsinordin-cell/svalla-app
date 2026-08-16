@@ -2,10 +2,11 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { parseGpx, gpxStats, simplifyPoints } from '@/lib/gpx'
 import type { GpxPoint } from '@/lib/gpx'
 import { toast } from '@/components/Toast'
+import Icon from '@/components/Icon'
 
 const MAX_FILES = 50
 
@@ -53,7 +54,7 @@ export default function ImporteraPage() {
  const inputRef = useRef<HTMLInputElement>(null)
 
  useEffect(() => {
- createClient().auth.getUser().then(({ data: { user } }) => {
+ getViewer(createClient()).then(({ data: { user } }) => {
  if (!user) { router.push('/logga-in'); return }
  setUserId(user.id)
  })
@@ -233,7 +234,7 @@ export default function ImporteraPage() {
  marginBottom: 20,
  }}
  >
- <div style={{ fontSize: 40, marginBottom: 10 }}>📁</div>
+ <div style={{marginBottom: 10}} aria-hidden><Icon name="map" size={40} /></div>
  <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--txt)', margin: '0 0 6px' }}>
  Dra och släpp GPX-filer här
  </p>
@@ -287,7 +288,7 @@ export default function ImporteraPage() {
  <path d={path} fill="none" stroke="#4ab8d4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
  </svg>
  ) : (
- <span style={{ fontSize: 20 }}>⚠️</span>
+ <span aria-hidden><Icon name="warning" size={20} /></span>
  )}
  </div>
 

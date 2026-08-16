@@ -31,7 +31,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
  .eq('id', id)
  .single()
 
- if (!trip || trip.deleted_at) return { title: 'Tur – Svalla' }
+ // SOFT-404-SKYDD: notFound() måste kastas HÄR, inte bara i sidkroppen.
+  // loading.tsx gör att svaret streamas — 200-statusen flushas med skalet
+  // innan sidkroppen hunnit köra, så ett notFound() där ger 404-INNEHÅLL
+  // med STATUS 200 (soft 404, uppmätt live 2026-08-12 på samtliga rutter
+  // med loading.tsx). generateMetadata körs före headers och är därför
+  // enda stället som kan sätta riktig 404-status.
+ if (!trip || trip.deleted_at) notFound()
 
  const { data: metaUser } = await supabase
  .from('users').select('username').eq('id', trip.user_id).single()
@@ -432,7 +438,7 @@ export default async function TurPage({ params }: { params: Promise<{ id: string
  padding: '3px 10px',
  marginBottom: 10,
  }}>
- <span style={{ fontSize: 10 }}>✨</span>
+ <span aria-hidden><Icon name="star" size={10} /></span>
  <span style={{
  fontSize: 10,
  fontWeight: 600,

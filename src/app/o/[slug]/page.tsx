@@ -25,6 +25,17 @@ import IslandB2BCTA from '@/components/IslandB2BCTA'
 
 type Props = { params: Promise<{ slug: string }> }
 
+// SOFT-404, DEL 2 (2026-08-12). notFound() i generateMetadata (PR #117)
+// räckte inte: Vercel serverar ett byggtids-fallbackskal för ISR-rutter
+// med loading.tsx (x-nextjs-prerender: 1) — 200-statusen är satt INNAN
+// någon kod körs, och vår notFound() landar bara som en error-digest i
+// streamen (NEXT_HTTP_ERROR_FALLBACK;404 i body, status ändå 200).
+// Den här routens hela slug-mängd är känd vid bygget (data ligger i
+// repot), så dynamicParams=false är semantiskt rätt: okänd slug 404:ar
+// i routern, före skalet. Gäller INTE db-backade rutter (upptack, tur,
+// u) — nya rader där måste kunna renderas utan ny deploy.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
  return ALL_ISLANDS.map(island => ({ slug: island.slug }))
 }
@@ -32,7 +43,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { slug } = await params
  const island = getIsland(slug)
- if (!island) return {}
+  // SOFT-404-SKYDD: loading.tsx streamar svaret — 200 flushas före sidkroppen,
+  // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
+  // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
+  if (!island) notFound()
  return {
  title: island.seoTitle ? `${island.seoTitle} | Svalla` : `${island.name} 2026 – restauranger, boende & aktiviteter | Svalla`,
  description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
@@ -1100,7 +1114,7 @@ export default async function IslandPage({ params }: Props) {
        boxShadow: '0 1px 6px rgba(0,0,0,0.04)',
       }}
      >
-      <span style={{ fontSize: 20, flexShrink: 0 }}>{g.emoji}</span>
+      <span style={{flexShrink: 0}} aria-hidden><Icon name={emojiToIcon(g.emoji)} size={20} /></span>
       <div style={{ flex: 1, minWidth: 0 }}>
        <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.35, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{g.title}</div>
        <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{g.readTime}</div>

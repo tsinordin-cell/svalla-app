@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { getFollowPref, upsertFollowPref, type FollowPref } from '@/lib/followPrefs'
 
 export default function FollowPrefsButton({
@@ -24,7 +24,7 @@ export default function FollowPrefsButton({
  const [minDistance, setMinDistance] = useState<string>('')
 
  useEffect(() => {
- supabase.auth.getUser().then(async ({ data: { user } }) => {
+ getViewer(supabase).then(async ({ data: { user } }) => {
  if (!user) { setLoading(false); return }
  setMe(user.id)
  const p = await getFollowPref(supabase, user.id, followingId)

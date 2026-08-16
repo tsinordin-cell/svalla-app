@@ -3,7 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useState, useRef, useEffect, Suspense } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { createClient, BOAT_TYPES } from '@/lib/supabase'
+import { createClient, BOAT_TYPES, getViewer } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
 import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
@@ -101,7 +101,7 @@ function ManuellForm() {
 
   // Auth gate — block render until auth resolved (prevents flash + premature file picker)
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    getViewer(supabase).then(({ data }) => {
       if (!data.user) { router.push('/logga-in?redirect=/logga/manuell'); return }
       setAuthLoading(false)
     })

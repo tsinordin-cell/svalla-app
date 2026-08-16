@@ -56,7 +56,7 @@ if (fs.existsSync(CACHE)) {
   console.log('Mälaren:', malar.length, 'segment (' + rel.members.length + ' members) — cachad')
 }
 
-const S = 58.70, W = 17.20, N = 60.10, E = 19.40
+const S = 58.70, W = 17.20, N = 60.50, E = 19.40  // N höjd från 60.10 2026-08-13, se build-land-mask.mjs
 const CELL_LAT = 25 / 111320
 const M_PER_LNG = 111320 * Math.cos(((S + N) / 2) * Math.PI / 180)
 const CELL_LNG = 25 / M_PER_LNG
@@ -117,6 +117,87 @@ console.log('Mälarvatten öppnat:', (oppnat * 625 / 1e6).toFixed(0), 'km²')
 let land = 0; for (let i = 0; i < grid.length; i++) land += grid[i]
 console.log('landandel:', (land / grid.length * 100).toFixed(1), '%')
 
+// ── 3) VERIFIERADE FARBARA PASSAGER ────────────────────────────────────────
+//
+// Rasteriseringen målar vatten INÅT: en cell blir vatten bara om HELA cellen
+// är vatten. Det är rätt som grundregel — men i ett sund som smalnar av räcker
+// några få smala punkter för att kapa förbindelsen helt.
+//
+// UPPMÄTT 2026-08-14 med komponentanalys av hela vattenmasken (39,7 miljoner
+// celler, 2 753 vattenkomponenter): Skurusundet ÄR vatten i rastret, men
+// sönderbrutet i isolerade pussar som inte hänger ihop med havet.
+//   Strömmen / Trälhavet / Kanholmsfjärden  -> komponent 1 (havet, 16,1 milj celler)
+//   Skurusundet söder om 59,3145            -> komponent 1036
+//   Skurusundet norr om 59,3145             -> komponent 1087
+// Landproppar på sundets mittlinje låg vid 59,3050 och 59,3290 — den norra
+// precis där sundet är som smalast, 103–136 m.
+//
+// Följd: Saltsjöqvarn -> Boo (10,3 km fågelväg) ruttades 83,3 km norrut till
+// 59,42 och österut till 18,71, alltså ut till Kanholmsfjärden och tillbaka.
+//
+// VARFÖR PUNKTVIS OCH INTE GENERELLT: att göra rasteriseringen mindre
+// konservativ skulle sänka alla omvägskvoter och samtidigt öppna för rutter
+// genom grund och land. Här öppnas i stället en namngiven passage som någon
+// har intygat, med källan skriven ut. Bredden hålls långt under sundets
+// smalaste punkt.
+//
+// VARJE PASSAGE MÅSTE HA EN KÄLLA. Lägg aldrig till en rad här utan att någon
+// som känner vattnen har bekräftat den.
+// Listan ligger i src/lib/data/farbara-passager.json så att BÅDE det här
+// skriptet och appen läser samma data. Appen behöver den för att kunna visa
+// djupbegränsningen för användaren — rasteriseringen kan bara säga vatten
+// eller land, aldrig "farbar men bara till 3 meters djupgående".
+const FARBARA_PASSAGER = JSON.parse(
+  fs.readFileSync('src/lib/data/farbara-passager.json', 'utf8'),
+).passager
+
+// OBS OM BREDDEN: Knapens hål är i verkligheten ~20 m brett medan rastrets
+// celler är 25 m. Passagen kan alltså ALDRIG representeras av den konservativa
+// regeln, hur bra kustlinjedata vi än har — den är smalare än upplösningen.
+// Därför öppnas den här, med källan utskriven. Bredden sätts till den verkliga
+// bredden, aldrig mer: en bredare korridor skulle måla vatten över land.
+//
+// OBS OM DJUPET: maxDjupM är INTE använt av rasteriseringen — den kan bara
+// säga vatten eller land. Fältet finns för att djupbegränsningen ska följa med
+// passagen i koden tills gränssnittet kan visa den. En segelbåt med 2,5 m
+// djupgående kommer igenom Baggensstäket; en med 3,5 m gör det inte, och det
+// vet inte rutten i dag.
+
+{
+  let oppnadeCeller = 0
+  for (const p of FARBARA_PASSAGER) {
+    const halvLat = (p.breddM / 2) / 111320
+    const halvLng = (p.breddM / 2) / M_PER_LNG
+    let fore = 0
+    for (let k = 0; k + 1 < p.mittlinje.length; k++) {
+      const [la0, ln0] = p.mittlinje[k], [la1, ln1] = p.mittlinje[k + 1]
+      // stega längs segmentet i halvcellssteg så inget hoppas över
+      const steg = Math.ceil(Math.max(Math.abs(la1 - la0) / CELL_LAT, Math.abs(ln1 - ln0) / CELL_LNG) * 2) + 1
+      for (let t = 0; t <= steg; t++) {
+        const la = la0 + (la1 - la0) * t / steg
+        const ln = ln0 + (ln1 - ln0) * t / steg
+        const r0 = Math.floor((la - halvLat - S) / CELL_LAT), r1 = Math.floor((la + halvLat - S) / CELL_LAT)
+        const c0 = Math.floor((ln - halvLng - W) / CELL_LNG), c1 = Math.floor((ln + halvLng - W) / CELL_LNG)
+        for (let r = r0; r <= r1; r++) {
+          if (r < 0 || r >= ROWS) continue
+          for (let c = c0; c <= c1; c++) {
+            if (c < 0 || c >= COLS) continue
+            const i = r * COLS + c
+            if (grid[i] === 1) { grid[i] = 0; fore++ }
+          }
+        }
+      }
+    }
+    oppnadeCeller += fore
+    console.log('passage öppnad: ' + p.namn + ' — ' + fore + ' celler (' + (fore * 625 / 1e6).toFixed(3) + ' km²), bredd ' + p.breddM + ' m')
+    console.log('  källa: ' + p.kalla)
+  }
+  if (oppnadeCeller > 20000) {
+    console.error('AVBRYTER: ' + oppnadeCeller + ' celler öppnade — orimligt mycket för punktvisa passager.')
+    process.exit(1)
+  }
+}
+
 // ── Sanity: handkontrollerade punkter, vägrar skriva vid fel ───────────────
 const SANITY = [
   ['Gamla stan', 59.3251, 18.0711, true], ['Sergels torg', 59.3326, 18.0649, true],
@@ -125,6 +206,30 @@ const SANITY = [
   ['Strömmen', 59.3238, 18.0776, false], ['Trälhavet', 59.4200, 18.3500, false],
   ['Kanholmsfjärden', 59.3400, 18.6500, false], ['Öppet hav', 59.2900, 19.0000, false],
   ['Riddarfjärden', 59.3240, 18.0350, false], ['Björkfjärden', 59.3300, 17.5000, false],
+  // Skurusundets två landproppar (uppmätta 2026-08-14) ska nu vara vatten.
+  // Går de tillbaka till LAND har passage-öppningen slutat fungera.
+  ['Skurusundet syd', 59.3050, 18.22113, false],
+  ['Skurusundet norr', 59.3290, 18.21785, false],
+  // Kontroll åt andra hållet: fast mark 300 m öster om sundet ska FÖRBLI land.
+  // Fångar att öppningen målat för brett.
+  ['Nacka öster om sundet', 59.3160, 18.2280, true],
+  // Baggensstäkets två passager ska vara VATTEN efter öppningen.
+  ['Baggensstäket väst', 59.30030, 18.27800, false],
+  ['Knapens hål', 59.30390, 18.28830, false],
+  // Kontroll åt andra hållet: fast mark 250 m norr om Knapens hål ska FÖRBLI
+  // land. Fångar att den 20 m breda korridoren målat för brett.
+  ['Land norr om Knapens hål', 59.30620, 18.28830, true],
+  // Stäketsundets två proppar (uppmätta 2026-08-15) ska nu vara vatten.
+  // De var enkelcells-luckor på diagonalen: sundet ÄR vatten i rastret hela
+  // vägen, men flödesfyllningen går bara i fyra riktningar, så två diagonala
+  // steg räckte för att skära av hela norra Mälarbassängen (Sigtuna,
+  // Steninge, Skokloster, Stäket) från resten av sjön.
+  ['Stäketsundet norra proppen', 59.47041, 17.79292, false],
+  ['Stäketsundet södra proppen', 59.46951, 17.79470, false],
+  // Kontroll åt andra hållet: fast mark på båda sidor om sundet ska FÖRBLI
+  // land. Fångar att den 25 m breda korridoren målat för brett.
+  ['Land väster om Stäket', 59.47050, 17.78800, true],
+  ['Land öster om Stäket', 59.47050, 17.79750, true],
 ]
 let fel = 0
 for (const [namn, la, ln, vill] of SANITY) {

@@ -13,6 +13,8 @@ import {
   getGuideRegion,
   getGuidesByRegion,
 } from './guides-data'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 const ALL_CATEGORIES: GuideCategory[] = ['Praktisk', 'Transport', 'Aktivitet', 'Mat', 'Säsong', 'Region']
 
@@ -40,7 +42,7 @@ function GuideCard({ guide }: { guide: typeof GUIDES[0] }) {
           padding: '14px 18px 10px',
           display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
         }}>
-          <span style={{ fontSize: 24 }}>{guide.emoji}</span>
+          <span aria-hidden><Icon name={emojiToIcon(guide.emoji)} size={24} /></span>
           <span style={{
             fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em',
             background: 'rgba(255,255,255,0.18)', color: '#fff',
@@ -259,7 +261,7 @@ export default function GuiderClient() {
                     border: '1px solid rgba(10,123,140,0.10)', textDecoration: 'none',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
                   }}>
-                    <span style={{ fontSize: 26 }}>{l.emoji}</span>
+                    <span aria-hidden><Icon name={emojiToIcon(l.emoji)} size={26} /></span>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--ink)' }}>{l.label}</div>
                       <div style={{ fontSize: 11, color: 'var(--ink-muted)', marginTop: 2 }}>{l.sub}</div>
@@ -278,7 +280,7 @@ export default function GuiderClient() {
                 <section key={region} style={{ marginBottom: 52 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                     <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--ink)', margin: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <span>{REGION_EMOJIS[region]}</span>
+                      <span aria-hidden style={{ display: 'inline-flex', color: 'var(--sea)' }}><Icon name={emojiToIcon(REGION_EMOJIS[region])} size={20} /></span>
                       {REGION_LABELS[region]}
                       <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink-muted)', marginLeft: 4 }}>
                         ({guides.length} guider)

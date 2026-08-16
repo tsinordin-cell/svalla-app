@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 /**
  * Visar server-renderade slots beroende på vem som tittar — utan att sidan
@@ -42,7 +42,7 @@ export default function ViewerGate({
 
   useEffect(() => {
     let avbruten = false
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (!avbruten) setUid(user?.id ?? null)
     })
     return () => { avbruten = true }

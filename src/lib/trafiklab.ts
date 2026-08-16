@@ -236,8 +236,13 @@ export async function fetchTripsResult(
     const res = await fetch(url.toString(), {
       // ResRobot är inte alltid blixtsnabb — 8 sek timeout via AbortController
       signal: AbortSignal.timeout(8000),
-      // Server-side fetch — Next.js cachar inte automatiskt utöver vår egen.
-      cache: 'no-store',
+      // 60 s delad cache. Var 'no-store', vilket TYST gjorde varje sida som
+      // rör färjedata dynamisk: /farjor deklarerade revalidate=600 och
+      // /api/ferries PÅSTOD i kommentar att den cachades 60 s — båda var
+      // verkningslösa (uppmätt 2026-08-12: /farjor x-vercel-cache: MISS på
+      // varje anrop, /api/ferries 3,5 s). Avgångar är tidtabellsdata på
+      // minutnivå; 60 s färskhet är samma kontrakt som koden redan lovade.
+      next: { revalidate: 60 },
     })
     if (!res.ok) {
       // 429 = kvot slut. Skiljs ut eftersom det är åtgärdbart och tillfälligt.

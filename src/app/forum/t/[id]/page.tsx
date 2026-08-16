@@ -9,6 +9,19 @@ interface Props {
   params: Promise<{ id: string }>
 }
 
+// SOFT-404-SKYDD (2026-08-12): forum/loading.tsx streamar svaret, så body-ns
+// notFound() gav 200 med 404-innehåll. Uppslaget här (före headers) sätter
+// riktig status; kroppen återanvänder inte resultatet men frågan är en
+// PK-lookup och forum-trådar byts sällan — kostnaden är försumbar.
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params
+  const supabase = await createServerSupabaseClient()
+  const { data: thread } = await supabase
+    .from('forum_threads').select('id').eq('id', id).maybeSingle()
+  if (!thread) notFound()
+  return {}
+}
+
 export default async function ForumThreadShortlink({ params }: Props) {
   const { id } = await params
   const supabase = await createServerSupabaseClient()

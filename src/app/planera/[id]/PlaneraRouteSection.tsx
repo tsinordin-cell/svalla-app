@@ -13,6 +13,7 @@
 import { useState, useEffect } from 'react'
 import PlaneraMap from './PlaneraMapDynamic'
 import { estimateAllProfiles } from '@/lib/routeTime'
+import Icon from '@/components/Icon'
 
 // ── Inline haversine ────────────────────────────────────────────────────────
 // Importera ALDRIG calculatePathDistanceKm från seaPathfinder här —
@@ -73,7 +74,7 @@ type RouteQuality = 'precomputed' | 'grid' | 'waypoint' | 'unavailable'
  */
 type UnavailableReason =
   | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
-  | 'landlocked'
+  | 'landlocked' | 'same_harbour'
 
 export default function PlaneraRouteSection({
   startLat, startLng, startName,
@@ -87,6 +88,12 @@ export default function PlaneraRouteSection({
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [quality, setQuality] = useState<RouteQuality | null>(null)
   const [reason, setReason] = useState<UnavailableReason | null>(null)
+  // Passager med känd djup- eller höjdbegränsning som rutten går igenom.
+  const [passager, setPassager] = useState<Array<{
+    namn: string; maxDjupM: number | null; segelfriHojdM: number | null
+    skyltad?: boolean
+    oppningsbarBro?: { namn: string; oppettider: string; kontakt: string } | null
+  }>>([])
   const [reportOpen, setReportOpen] = useState(false)
   const [reportReason, setReportReason] = useState('')
   const [reportState, setReportState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -121,12 +128,13 @@ export default function PlaneraRouteSection({
       // routeId skickas så API:n kan läsa/skriva DB-cache (2026-05-23 P2)
       body: JSON.stringify({ startLat, startLng, endLat, endLng, routeId }),
     })
-      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number; reason?: UnavailableReason | null }> : Promise.reject(r.status))
+      .then(r => r.ok ? r.json() as Promise<{ path: [number, number][] | null; quality?: RouteQuality; validated?: boolean; confidence?: number; reason?: UnavailableReason | null; passager?: Array<{ namn: string; maxDjupM: number | null; segelfriHojdM: number | null }> }> : Promise.reject(r.status))
       .then(data => {
         if (cancelled) return
         // path kan vara null när quality === 'unavailable' — då rendrar vi
         // EmptyState istället för polyline. Tid/bränsle hide:as automatiskt.
         setSeaPath(data.path)
+        setPassager(Array.isArray(data.passager) ? data.passager : [])
         setQuality(data.quality ?? null)
         setReason(data.reason ?? null)
         if (data.path && data.path.length > 1) {
@@ -150,6 +158,35 @@ export default function PlaneraRouteSection({
   // Returtypen hålls medvetet bred ('success' ingår) fastän ingen gren
   // returnerar success just nu — jämförelserna i JSX:en nedan använder den,
   // och success ska tillbaka när rutterna genererats om.
+  // ── Omvägskvot ────────────────────────────────────────────────────────────
+  //
+  // routeKm är sjövägen, haversineDistKm fågelvägen. Kvoten mellan dem avslöjar
+  // när ruttsökningen tvingats runt något den inte borde ha behövt.
+  //
+  // UPPMÄTT 2026-08-13, 18 slumpade hamnpar under 25 km fågelväg:
+  //   Saltsjöqvarn → Boo          10,3 km → 83,3 km   8,1x
+  //   Hammarby Sjöstad → Boo      10,7 km → 82,8 km   7,8x
+  //   Saltsjöqvarn → Gustavsberg  16,5 km → 72,0 km   4,4x
+  //   Nacka Strand → Dalarö       24,8 km → 71,7 km   2,9x
+  //   Grinda → Ingarö             18,0 km → 41,0 km   2,3x   (rimlig skärgårdsomväg)
+  //   övriga fjorton              1,0–1,5x
+  //
+  // Orsaken till de fyra höga: Skurusundet och Lännerstasundet är helt stängda
+  // i kustlinjemasken — noll av de 25 närmaste cellerna är vatten. Sökningen
+  // måste därför runt hela Lidingö och Värmdö. Masken är medvetet konservativ
+  // och det ändrar vi inte här; men vi slutar kalla resultatet verifierat.
+  //
+  // Tröskeln 2,5 ligger över Grinda→Ingarö, som är en äkta skärgårdsomväg, och
+  // under Nacka Strand→Dalarö som inte är det. Den är vald mot mätdata, inte
+  // gissad — men den är ett trubbigt mått och kan behöva justeras när sunden
+  // öppnats.
+  const OMVAG_TROSKEL = 2.5
+  const omvagsKvot =
+    status === 'ready' && haversineDistKm > 0.5 && routeKm > 0
+      ? routeKm / haversineDistKm
+      : null
+  const orimligOmvag = omvagsKvot !== null && omvagsKvot > OMVAG_TROSKEL
+
   const qualityBanner = ((): { tone: 'success' | 'warning' | 'danger' | 'info'; label: string; desc: string } | null => {
     if (status !== 'ready' || !quality) return null
     // 2026-08-03 (em): precomputed ÅTERSTÄLLD till success. Alla 609 rutter
@@ -158,6 +195,19 @@ export default function PlaneraRouteSection({
     // 20-sampelregel + tät 30 m-sampling — 0 underkända (verify-routes-v2).
     // GRID förblir warning: den beräknas i runtime mot swedish-coastline.json
     // som saknar fastlandet. Uppgradera INTE grid förrän prod-masken bytts ut.
+    // Orimlig omväg går FÖRE kvalitetsgrenarna. Rutten kan vara både verifierad
+    // och orimlig samtidigt — den håller sig i vatten hela vägen, men vägen är
+    // inte den en båt faktiskt tar. Att då skriva "Verifierad sjöled" är
+    // formellt sant och ändå vilseledande: användaren läser det som "det här
+    // är vägen", inte "det här är en väg som inte går i land".
+    if (orimligOmvag && (quality === 'precomputed' || quality === 'grid')) {
+      const kvot = omvagsKvot!.toFixed(1).replace('.', ',')
+      return {
+        tone: 'warning' as const,
+        label: 'Ovanligt lång omväg — stäm av mot sjökort',
+        desc: `Sjövägen vi hittat är ${kvot} gånger längre än fågelvägen (${Math.round(routeKm)} km mot ${Math.round(haversineDistKm)} km). Rutten håller sig i vatten hela vägen, men en så stor omväg beror oftast på att vår kustlinjedata stängt en passage som i verkligheten är farbar. Använd den inte som planeringsunderlag utan att stämma av mot sjökort.`,
+      }
+    }
     if (quality === 'precomputed') {
       return { tone: 'success' as const, label: 'Verifierad sjöled', desc: 'Rutten är verifierad mot OSM:s kustlinje och korsar inte land. Följ sjökort för djup och farled.' }
     }
@@ -198,6 +248,10 @@ export default function PlaneraRouteSection({
           label: 'Insjöhamn utan förbindelse med havet',
           desc: 'Någon av hamnarna ligger i en insjö som saknar farbar förbindelse med skärgården. Det är inget fel — det finns helt enkelt ingen sjöväg att rita. Båten behöver trailas mellan vattnen.',
         },
+        same_harbour: {
+          label: 'Start och mål är samma hamn',
+          desc: 'Välj två olika hamnar för att få en rutt. Vill du planera en rundtur, lägg till ett delmål.',
+        },
       }
       const t = texter[reason ?? 'no_sea_route']
       // Slussfallet är INTE ett fel. Sträckan är fullt farbar — vi ritar bara
@@ -205,7 +259,7 @@ export default function PlaneraRouteSection({
       // Insjöfallet är, precis som slussfallet, inte ett fel — rutten är
       // omöjlig av geografi, inte av databrist. Ingen röd ruta för det.
       const tone: 'info' | 'danger' =
-        reason === 'lock_required' || reason === 'landlocked' ? 'info' : 'danger'
+        reason === 'lock_required' || reason === 'landlocked' || reason === 'same_harbour' ? 'info' : 'danger'
       return { tone, label: t.label, desc: t.desc }
     }
 
@@ -219,7 +273,10 @@ export default function PlaneraRouteSection({
 
   return (
     <>
-      {/* Leaflet-karta — seaPath=null visar skelet tills rutten anländer.
+      {/* Leaflet-karta. OBS: den visar INGET skelett medan rutten beräknas —
+          kartan renderas fullt ut med markörer, bara utan ruttlinje. Det såg
+          ut som en trasig sida (rapporterat 2026-08-13). Spinnern nedan ligger
+          UNDER kartan och syns inte i samma blickfång.
           Routing-safety: quality skickas så solid-vs-streckad linjestil kan
           differentieras (precomputed/grid=solid, waypoint=streckad). */}
       <PlaneraMap
@@ -229,6 +286,60 @@ export default function PlaneraRouteSection({
         seaPath={seaPath}
         quality={quality}
       />
+
+      {/* Passagevarning.
+          Rasteriseringen kan bara säga vatten eller land — aldrig "farbar men
+          bara till 3 meters djupgående". När Baggensstäket och Knapens hål
+          öppnades (PR #139) började vi rita en sjöled genom ett sund där
+          lodningar visar 2,8–2,9 m, utan att säga det. Rutten såg därmed mer
+          pålitlig ut än den var. Den här rutan säger det rakt ut. */}
+      {status === 'ready' && passager.length > 0 && (
+        <div style={{
+          background: 'rgba(196,120,32,0.08)',
+          border: '1px solid rgba(196,120,32,0.28)',
+          borderRadius: 12, padding: '12px 14px', marginBottom: 14,
+          display: 'flex', gap: 10, alignItems: 'flex-start',
+        }}>
+          <span aria-hidden style={{ display: 'inline-flex', flexShrink: 0, marginTop: 1 }}>
+            <Icon name="warning" size={16} />
+          </span>
+          <div style={{ fontSize: 13, lineHeight: 1.5 }}>
+            <strong style={{ display: 'block', marginBottom: 3, color: 'var(--txt)' }}>
+              Rutten går genom {passager.length === 1 ? 'en trång passage' : 'trånga passager'}
+            </strong>
+            <span style={{ color: 'var(--txt2)' }}>
+              {passager.map(p => {
+                const bitar: string[] = []
+                // "skyltat" när siffran är den anslagna gränsen på plats.
+                // Utan ordet läser man den som ett lodat djup, och det var
+                // precis förväxlingen som gjorde att Baggensstäket stod med
+                // 3 m djupgående när skylten säger 2.
+                if (p.maxDjupM != null) {
+                  const d = String(p.maxDjupM).replace('.', ',')
+                  bitar.push(p.skyltad
+                    ? `skyltat max ${d} m djupgående`
+                    : `max ${d} m djupgående`)
+                }
+                // Vid öppningsbar bro gäller höjden bara när bron är STÄNGD.
+                // Utan det tillägget läser en seglare siffran som ett stopp,
+                // fast bron öppnas varje hel timme hela säsongen.
+                if (p.segelfriHojdM != null) {
+                  const h = String(p.segelfriHojdM).replace('.', ',')
+                  bitar.push(p.oppningsbarBro
+                    ? `segelfri höjd ${h} m vid stängd bro`
+                    : `segelfri höjd ${h} m`)
+                }
+                const bro = p.oppningsbarBro
+                  ? ` ${p.oppningsbarBro.namn} öppnas ${p.oppningsbarBro.oppettider} (${p.oppningsbarBro.kontakt}).`
+                  : ''
+                return `${p.namn} — ${bitar.join(', ')}.${bro}`
+              }).join(' ')} Kontrollera att din båt tar sig igenom innan du
+              planerar efter rutten, och läs av aktuellt sjökort — djupet
+              varierar med vattenstånd.
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Kvalitetsbanner — visar användaren om rutten är pålitlig eller ej.
           'danger'-ton används när ingen vattenrutt kunde beräknas (safety layer). */}
@@ -373,6 +484,7 @@ export default function PlaneraRouteSection({
           marginBottom: 16,
         }}>
           {[
+            // UPPSKATTNING: typiska marschfarter — segelbåt 5,5 kn, planande motorbåt 18 kn, kajak 3,5 kn (2026-08)
             { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
             { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
             { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
@@ -409,6 +521,7 @@ export default function PlaneraRouteSection({
           marginBottom: 16,
         }}>
           {[
+            // UPPSKATTNING: typiska marschfarter — segelbåt 5,5 kn, planande motorbåt 18 kn, kajak 3,5 kn (2026-08)
             { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
             { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
             { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },

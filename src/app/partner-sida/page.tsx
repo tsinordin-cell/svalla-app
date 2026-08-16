@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { emojiToIcon } from '@/lib/iconMap'
+import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Annonsera och samarbeta med Svalla – mediakit 2026',
@@ -335,7 +337,7 @@ export default function PartnerSidaPage() {
                     whiteSpace: 'nowrap',
                   }}>{pkg.badge}</div>
                 )}
-                <div style={{ fontSize: 26, marginBottom: 12 }}>{pkg.emoji}</div>
+                <div style={{marginBottom: 12}} aria-hidden><Icon name={emojiToIcon(pkg.emoji)} size={26} /></div>
                 <div style={{ fontSize: 17, fontWeight: 800, color: pkg.highlight ? '#fff' : 'var(--txt)', marginBottom: 5 }}>{pkg.name}</div>
                 <p style={{ fontSize: 13, color: pkg.highlight ? 'rgba(255,255,255,0.65)' : 'var(--txt3)', margin: '0 0 18px', lineHeight: 1.55 }}>{pkg.tagline}</p>
 
@@ -463,17 +465,14 @@ export default function PartnerSidaPage() {
                   I samarbete med Utö Värdshus
                 </div>
                 <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                  <div style={{
-                    width: 48,
+                  <div style={{width: 48,
                     height: 48,
                     borderRadius: 8,
                     background: 'linear-gradient(135deg, #0d3f5a, #1a6b7a)',
                     flexShrink: 0,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 20,
-                  }}>🏝</div>
+                    justifyContent: 'center'}} aria-hidden><Icon name="pin" size={20} /></div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 5 }}>Sensommar på Utö — 20 % rabatt i september</div>
                     <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 8px' }}>

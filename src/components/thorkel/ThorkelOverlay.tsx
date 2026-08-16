@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect, useRef, useMemo } from 'react'
 import Link from 'next/link'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
 import ThorkelAvatar from './ThorkelAvatar'
@@ -80,7 +80,7 @@ export default function ThorkelOverlay({ open, onClose, preselectedQuestion }: P
   useEffect(() => {
     if (!open) return
     const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => setIsLoggedIn(!!user))
+    getViewer(supabase).then(({ data: { user } }) => setIsLoggedIn(!!user))
     if (preselectedQuestion) setQuestion(preselectedQuestion)
   }, [open, preselectedQuestion])
 

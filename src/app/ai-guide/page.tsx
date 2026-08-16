@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Thorkel – AI-planeraren för skärgården',
@@ -168,7 +170,7 @@ export default function AIGuidePage() {
           border: '1px solid rgba(0,0,0,0.06)',
         }}>
           <div style={{ background: 'linear-gradient(90deg, #1a4a6b, #0d6e6e)', padding: '12px 20px', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>⚓</div>
+            <div style={{width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center'}} aria-hidden><Icon name="anchor" size={16} /></div>
             <span style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>Thorkel</span>
             <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12 }}>AI-planerare för skärgården</span>
           </div>
@@ -176,13 +178,14 @@ export default function AIGuidePage() {
           <div style={{ padding: '24px 20px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
             {[
               { from: 'user', text: 'Vi är 4 vuxna, vill ha bad, bra lunch och inte för lång båtresa. Helst idag.' },
+              // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
               { from: 'thorkel', text: 'Perfekt val: Grinda. Waxholmsbåten (linjebåt — ingen båt krävs) från Strömkajen kl 10:15, framme 11:45. Lunch på Grinda Wärdshus (boka nu — fullt på helger). Bad vid naturhamnen på östra sidan, klippor med klart vatten. Båt hem kl 17:20.' },
               { from: 'user', text: 'Finns det en bastu också?' },
               { from: 'thorkel', text: 'Grinda har ingen bastu, men Finnhamn (nästa ö) har en fantastisk havsbastu öppen 14–19. Det är 20 min med lokalbåten — vill du att jag lägger till det i planen?' },
             ].map((msg, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: msg.from === 'user' ? 'flex-end' : 'flex-start', gap: 10, alignItems: 'flex-start' }}>
                 {msg.from === 'thorkel' && (
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #1a4a6b, #0d6e6e)', flexShrink: 0, marginTop: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff' }}>⚓</div>
+                  <div style={{width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #1a4a6b, #0d6e6e)', flexShrink: 0, marginTop: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff'}} aria-hidden><Icon name="anchor" size={12} /></div>
                 )}
                 <div style={{
                   maxWidth: '78%',
@@ -260,7 +263,7 @@ export default function AIGuidePage() {
               boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
               border: '1px solid rgba(26,74,107,0.07)',
             }}>
-              <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
+              <div style={{ marginBottom: 12 }} aria-hidden><Icon name={emojiToIcon(f.icon)} size={28} /></div>
               <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1a4a6b', marginBottom: 8 }}>{f.title}</h3>
               <p style={{ fontSize: 14, color: '#6b8087', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
             </div>
@@ -285,6 +288,7 @@ export default function AIGuidePage() {
               '"Vi är 6 seglare som ankrar vid Sandhamn. Bästa krogar för kvällen?"',
               '"Ensam dagstur med tåg från Göteborg — vad kan man se i Bohuslän på en dag?"',
               '"Vad ska man göra på Gotland i september utan eget fordon?"',
+              // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
               '"Snabbaste vägen till Utö från Södermalm med SL, med hemfärd senast 18:00."',
             ].map((q, i) => (
               <div key={i} style={{

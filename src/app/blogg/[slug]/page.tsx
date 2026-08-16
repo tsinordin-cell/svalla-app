@@ -77,6 +77,7 @@ Stockholms skärgård är ett av världens bästa paddlingslandskap. 30 000 öar
 
 ## Utrustning
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Du behöver inte köpa kajak direkt. I skärgården finns det uthyrning vid de flesta större hamnar och startpunkter. Räkna med 400–600 kr per dag för en havskajak.
 
 **Grundutrustning du behöver:**
@@ -234,6 +235,7 @@ Det är lätt att ta skärgården för given om man bor i Stockholm. Men det fin
 
 ## 1. Se soluppgången från en klippa
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Ställ klockan på 4:30. Ta med termos och en filt. Sitt på en klippa och se hur skärgården vaknar. Det är tyst på ett sätt som inte existerar resten av dagen. En upplevelse du inte glömmer.
 
 ## 2. Käka räkor direkt från båten
@@ -287,6 +289,7 @@ Om du aldrig sett Stockholms skärgård men vill starta försiktigt – Fjäderh
 
 ## Ta sig dit
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Båt från Strandvägen, Nybroplan eller Allmänna Gränd. Sommarsäsong med täta avgångar (var 30:e minut under högtrafik). Pris ca 125 kr tur och retur. Inga förkunskaper behövs – det är en riktig båt som Waxholmsbolaget kör.
 
 ## Vad du gör på Fjäderholmarna
@@ -338,6 +341,7 @@ Vaxholm kallas för porten till skärgården – och det är en rättvis beskriv
 
 Fästningen på Vaxholmen är Stockholms skärgårds bäst bevarade historiska monument. Ursprungligen byggd under 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende 1833–63. Idag museum – ta färjan ut till fästningen (5 minuters tur) och vandra runt i historien.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Militärmuseet på fästningen berättar om skärgårdens försvar under 400 år. Öppet sommarsäsong, biljett ca 120 kr.
 
 ## Stadsvandring
@@ -377,6 +381,7 @@ Utö har gruvor. Järnmalmsbrytning pågick här från 1100-talet till 1879 – 
 
 ## Cykla runt Utö
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Utö är bilfri för genomfartstrafik. Det gör ön perfekt för cykling. Hyr cykel vid bryggan (ca 150 kr/dag) och följ de markerade lederna som täcker hela ön.
 
 **Södra ruten** – längs kusten söderut mot Utö fyr. Ca 10 km, fin utsikt och lämplig för lite kondition.
@@ -420,6 +425,7 @@ Segling ser svårt ut utifrån. Det är det inte – men det kräver lite grundk
 
 ## Börja med en kurs
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Seglingen rätt: börja med en SXK (Segel sällskapet för att lära sig), KSSS eller liknande klubbs nybörjarkurs. En tvådagars grundkurs kostar ca 2 000–3 500 kr och lär dig det du behöver för att ta ut en hyrbåt i lugn skärgård.
 
 Du lär dig: kryssa (segla mot vinden), falla (segla med vinden), revning (minska segel i vind), förtöja och lägga till.
@@ -428,6 +434,7 @@ Du lär dig: kryssa (segla mot vinden), falla (segla med vinden), revning (minsk
 
 Det finns flera hyrbåtsföretag runt Stockholm. Vanligast är att hyra en 28–32 fots segelbåt – tillräckligt stor för 4 personer och tillräckligt liten för att hanteras av en nybörjare.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Räkna med 5 000–10 000 kr per vecka beroende på säsong och båtstorlek. De flesta hyrbåtsföretag kräver ett enklare certifikat eller intygad segelerfarenhet.
 
 ## Rätt väder att börja med
@@ -686,18 +693,21 @@ En bra gästhamn är mer än bara en förtöjningsplats. Det är slutpunkten på
 
 Skärgårdens mest kända gästhamn är också bland de bästa. Utmärkt service, välskötta faciliteter och ett fantastiskt läge i seglingens hjärta. Fullbokad i juli – boka platser via waxholmsbolaget.se eller direkt med hamnen.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Pris: ca 380 kr/natt för 30 fot.
 
 ## 2. Utö gästhamn ★★★★☆
 
 Perfekt läge vid Utö Värdshus. Nyrenoverade pontoner, el, vatten och rena faciliteter. Kombinera gästhamnen med middag på värdshuset för en av skärgårdens bästa kvällar.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Pris: ca 350 kr/natt.
 
 ## 3. Vaxholms gästhamn ★★★★☆
 
 Centralt läge i Vaxholms hamn. Bra service, promenadavstånd till stadens alla restauranger. Lite trafikerat av färjor men välskött och rimligt prisad.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Pris: ca 280 kr/natt.
 
 ## 4. Dalarö gästhamn ★★★★☆
@@ -1196,6 +1206,7 @@ Lövens första antydning av höstfärger börjar synas i ytterskärgårdens lö
 
 Klädsel förändras. Ta med ett lager extra – en rejäl fleece och regnfria ytterkläder om du är i båt. Nätterna är kalla.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Solnedgångarna är tidiga – runt 20:00 i september mot 21:30 i juli. Planera rutter med det i åtanke.
 
 Kollektivtrafiken tunnas ut. Waxholmsbolaget kör färre turer efter högsäsong. Kolla tidtabellen innan du lämnar bryggan.
@@ -1553,6 +1564,7 @@ Under sommarsäsongen (juni–aug) är populära öar som Sandhamn och Grinda fu
    faqs: [
      { q: 'Vilken skärgårdsö är bäst för en weekend?', a: 'Det beror på vad du söker. För romantik: Grinda. För aktivt: Möja eller Utö. För restauranger och stämning: Sandhamn. För kortast möjliga tidsåtgång: Fjäderholmarna.' },
      { q: 'Hur tar man sig till skärgårdsöarna utan bil?', a: 'Waxholmsbåtarna och Cinderella Boats går från Strömkajen i Stockholm city. Bil krävs inte till de flesta öar – pendelbåtar är snabba och bekväma.' },
+     // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
      { q: 'Vad kostar en skärgårdshelg?', a: 'En övernattning på Grinda Wärdshus kostar från ~1 500 kr/natt. Budget-alternativet är att campa med tält under allemansrätten. Båten till/från kostar ~180–350 kr tur-retur beroende på destination.' },
    ],
  },
@@ -1673,6 +1685,7 @@ Allemansrätten i Sverige ger rätt att tälta i naturen – även i skärgårde
 
 ## Gästhamnar
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Om du har egen båt är gästhamnarna skärgårdens hotell. Flertalet öar med besöksbryggor tar ut ~150–300 kr/natt för en kajplats. De flesta har el, vatten, dusch och toalett.
 
 **Bästa gästhamnarna:** Grinda, Möja, Sandhamn, Utö och Vaxholm har välskötta anläggningar med god kapacitet.
@@ -1683,6 +1696,7 @@ Om du har egen båt är gästhamnarna skärgårdens hotell. Flertalet öar med b
 
 | Typ | Prisnivå |
 |-----|----------|
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 | Värdshus/hotell (dubbel) | 1 500–3 000 kr/natt |
 | Stuga (familj) | 1 000–2 500 kr/natt |
 | Gästhamn (båtplats) | 150–300 kr/natt |
@@ -1921,6 +1935,7 @@ Grinda gästhamn är välskött med dusch, toalett, el och vatten vid bryggorna.
 
 **Boka i förväg** via marinadata.se eller via Grinda Wärdshus hemsida. Helgveckor i juli är fullbelagda – ring/boka minst en vecka i förväg.
 
+<!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 Avgiften 2026: ~180–220 kr/natt för en standardbåt, inkl. el.
 
 ## Aktiviteter på Grinda
@@ -1938,6 +1953,7 @@ Grinda med barn: barnvänlig, plana gångvägar, varm och lugn vattenyta vid sö
    `,
    faqs: [
      { q: 'Hur lång är båtresan till Grinda från Stockholm?', a: 'Direktbåten från Strömkajen med Waxholmsbåten tar ca 1 timme 20 minuter. Sommartid går det flera avgångar per dag.' },
+     // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
      { q: 'Kan man övernatta på Grinda?', a: 'Ja. Grinda Wärdshus har rum från ~1 400 kr/natt. Gästhamnen tar emot båtar till ~200 kr/natt. Boka i god tid — högsäsong är det fullbokat fort.' },
      { q: 'Är Grinda lämplig för barnfamiljer?', a: 'Absolut. Grinda är bilfri, har lugna badplatser, plana gångvägar och ett barnvänligt värdshus. En av de bästa öarna i Stockholms skärgård för familjer med barn.' },
    ],
@@ -2106,6 +2122,11 @@ function renderContent(content: string) {
 
  for (let i = 0; i < lines.length; i++) {
  const line = lines[i]!
+
+ // HTML-kommentarer i innehållet är redaktionella markörer (KÄLLA/UPPSKATTNING
+ // för verify-claims-spärren) och ska ALDRIG renderas. Utan detta undantag
+ // skrivs de ut som synlig brödtext — upptäckt 2026-08-12 innan det nådde prod.
+ if (line.trim().startsWith('<!--')) continue
 
  if (line.startsWith('## ')) {
  elements.push(

@@ -11,6 +11,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
+import Icon from '@/components/Icon'
 
 export const dynamic = 'force-dynamic' // uppdatera vid varje request (månads-byte)
 
@@ -41,10 +42,10 @@ const STATUS_BG: Record<Status, string> = {
   open: 'rgba(45,138,80,0.08)',
   limited: 'rgba(176,125,32,0.08)',
 }
-const STATUS_EMOJI: Record<Status, string> = {
-  peak: '🔥',
-  open: '✅',
-  limited: '⚡',
+const STATUS_ICON: Record<Status, 'sun' | 'check' | 'warning'> = {
+  peak: 'sun',
+  open: 'check',
+  limited: 'warning',
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -147,7 +148,7 @@ export default function OppetNuPage() {
               boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
               textAlign: 'center',
             }}>
-              <div style={{ fontSize: 24, marginBottom: 4 }}>{STATUS_EMOJI[status]}</div>
+              <div style={{ marginBottom: 4 }} aria-hidden><Icon name={STATUS_ICON[status]} size={24} /></div>
               <div style={{ fontSize: 28, fontWeight: 800, color: STATUS_COLOR[status] }}>
                 {grouped[status].length}
               </div>
@@ -165,7 +166,7 @@ export default function OppetNuPage() {
           return (
             <section key={status} style={{ marginBottom: 40 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <span style={{ fontSize: 20 }}>{STATUS_EMOJI[status]}</span>
+                <span aria-hidden style={{ display: 'inline-flex' }}><Icon name={STATUS_ICON[status]} size={20} /></span>
                 <h2 style={{
                   fontSize: 22,
                   fontWeight: 700,
@@ -248,7 +249,7 @@ export default function OppetNuPage() {
                           padding: '5px 8px',
                           lineHeight: 1.45,
                         }}>
-                          ⚠️ {island.seasonal.warning.length > 80
+                          <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 4 }}><Icon name="warning" size={13} /></span>{island.seasonal.warning.length > 80
                             ? island.seasonal.warning.slice(0, 77) + '…'
                             : island.seasonal.warning}
                         </div>
@@ -269,7 +270,7 @@ export default function OppetNuPage() {
           marginBottom: 32,
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 32, marginBottom: 12 }}>📬</div>
+          <div style={{marginBottom: 12}} aria-hidden><Icon name="mail" size={32} /></div>
           <h3 style={{ fontSize: 22, fontWeight: 800, color: '#fff', margin: '0 0 10px' }}>
             Få uppdateringen automatiskt varje månad
           </h3>
@@ -311,7 +312,7 @@ export default function OppetNuPage() {
         }}>
           <div>
             <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)', marginBottom: 4 }}>
-              🏝 Hitta din ö — kuraterade listor
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 6 }}><Icon name="pin" size={16} /></span>Hitta din ö — kuraterade listor
             </div>
             <div style={{ fontSize: 13, color: 'var(--txt2)' }}>
               Barnvänliga, romantiska, seglarfavoriter och mer — handplockade rekommendationer.

@@ -99,7 +99,7 @@ export function approximateTravelMinutes(
   const dLng = toRad(toLng - fromLng)
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(fromLat)) * Math.cos(toRad(toLat)) * Math.sin(dLng / 2) ** 2
   const distanceKm = 2 * R * Math.asin(Math.sqrt(a))
-  // Båtsnitt: 22 knop = ~40 km/h. Ger en GROVT uppskattat tid (verklig tid varierar med stoppmönster).
+  // UPPSKATTNING: båtsnitt 22 knop = ~40 km/h för taxibåt/RIB — ger grovt beräknad tid, verklig tid varierar med stoppmönster (2026-08)
   const hours = distanceKm / 40
   return Math.round(hours * 60)
 }
@@ -114,6 +114,7 @@ export function packingForSeason(month: number): string[] {
       'Ordentliga vinterkängor + termobyxor',
       'Mössa + halsduk + vantar (det blåser ute på sjön)',
       'Termoflaska med varmt',
+      // UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08)
       'Stark ficklampa — det blir mörkt 15:30',
       'Reservbatteri till mobilen (kyla tar batteri)',
       'Boka boende inomhus — inte alla öar har vinteröppet',

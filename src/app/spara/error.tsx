@@ -1,6 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import * as Sentry from '@sentry/nextjs'
+import Icon from '@/components/Icon'
 
 export default function Error({
   error,
@@ -17,7 +18,7 @@ export default function Error({
       alignItems: 'center', justifyContent: 'center',
       padding: '40px 24px', textAlign: 'center',
     }}>
-      <div style={{ fontSize: 44, marginBottom: 12 }}>💾</div>
+      <div style={{marginBottom: 12}} aria-hidden><Icon name="bookmark" size={44} /></div>
       <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: '0 0 8px' }}>
         Kunde inte spara turen
       </h2>

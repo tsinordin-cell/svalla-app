@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { TRIPS, getTrip, type TripDifficulty } from '../trips-data'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -10,7 +11,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
+  const { slug: raw } = await params
+  const slug = decodeURIComponent(raw)
   const trip = getTrip(slug)
   if (!trip) return {}
   return {
@@ -37,14 +39,14 @@ const DIFFICULTY_COLOR: Record<TripDifficulty, string> = {
   krävande: '#c0392b',
 }
 
-const STOP_ICONS: Record<string, string> = {
-  transport: '⛵',
-  mat: '🍽',
-  kultur: '🏛',
-  natur: '🌿',
-  bad: '🏊',
-  aktivitet: '🎯',
-  boende: '🏡',
+const STOP_ICONS: Record<string, IconName> = {
+  transport: 'sailboat',
+  mat: 'utensils',
+  kultur: 'building',
+  natur: 'leaf',
+  bad: 'waves',
+  aktivitet: 'target',
+  boende: 'bed',
 }
 
 const STOP_LABEL: Record<string, string> = {
@@ -58,7 +60,8 @@ const STOP_LABEL: Record<string, string> = {
 }
 
 export default async function ResetipsDetailPage({ params }: Props) {
-  const { slug } = await params
+  const { slug: raw } = await params
+  const slug = decodeURIComponent(raw)
   const trip = getTrip(slug)
   if (!trip) notFound()
 
@@ -177,7 +180,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 16, flexShrink: 0, zIndex: 1,
                 }}>
-                  {STOP_ICONS[stop.type]}
+                  <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2 }}><Icon name={STOP_ICONS[stop.type] ?? 'pin'} size={14} /></span>
                 </div>
                 {i < trip.stops.length - 1 && (
                   <div style={{
@@ -214,7 +217,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
                     fontSize: 13, color: 'var(--txt2, #444)', lineHeight: 1.5,
                     marginBottom: 6,
                   }}>
-                    <span style={{ flexShrink: 0 }}>💡</span>
+                    <span style={{flexShrink: 0}} aria-hidden><Icon name="star" size={20} /></span>
                     <span>{stop.tip}</span>
                   </div>
                 )}
@@ -250,7 +253,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
               fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
               color: 'var(--txt3, #888)', margin: '0 0 10px',
             }}>
-              ⚠️ Verifiera tidtabeller och öppettider
+              <span aria-hidden style={{ display: 'inline-flex', verticalAlign: -2, marginRight: 4 }}><Icon name="warning" size={13} /></span>Verifiera tidtabeller och öppettider
             </p>
             <p style={{ fontSize: 13, color: 'var(--txt2, #555)', lineHeight: 1.6, margin: '0 0 12px' }}>
               Avgångstider, öppettider och priser kan ändras. Kontrollera alltid aktuell information via de officiella källorna nedan innan du åker.

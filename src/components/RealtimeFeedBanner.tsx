@@ -7,7 +7,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 
 export default function RealtimeFeedBanner() {
   const [count,   setCount]   = useState(0)
@@ -20,7 +20,7 @@ export default function RealtimeFeedBanner() {
 
   // Hämta inloggad användares id — filtrera bort egna turer
   useEffect(() => {
-    supabaseRef.current.auth.getUser()
+    getViewer(supabaseRef.current)
       .then(({ data: { user } }) => {
         setMe(user?.id ?? null)
       })

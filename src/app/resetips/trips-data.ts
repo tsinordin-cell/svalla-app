@@ -981,7 +981,7 @@ export const TRIPS: Trip[] = [
   },
 
   {
-    slug: 'vindö-badparadiset',
+    slug: 'vindo-badparadiset',
     title: 'Vindö — skärgårdens badparadis med bro',
     tagline: 'Bilfritt paradis nära Stavsnäs med fantastiska klippbad och sandstränder.',
     duration: 'Halvdag–heldag',
@@ -1019,7 +1019,7 @@ export const TRIPS: Trip[] = [
   },
 
   {
-    slug: 'husaro-avskild-pärla',
+    slug: 'husaro-avskild-parla',
     title: 'Husarö — en av skärgårdens mest avskilda öar',
     tagline: 'Liten, tyst och vacker — Husarö kräver lite mer planering men ger det tillbaka dubbelt.',
     duration: 'Heldag',

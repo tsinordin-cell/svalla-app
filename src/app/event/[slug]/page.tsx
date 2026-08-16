@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import { setAttendance, formatEventDate, type EventRow } from '@/lib/events'
 import { avatarGradient, initialsOf } from '@/lib/utils'
+import Icon from '@/components/Icon'
 
 type Attendee = {
   user_id: string
@@ -30,7 +31,7 @@ export default function EventDetailPage() {
 
   useEffect(() => {
     if (!slug) return
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getViewer(supabase).then(({ data: { user } }) => {
       if (user) setMe(user.id)
       load(user?.id ?? null)
     })
@@ -102,7 +103,7 @@ export default function EventDetailPage() {
     return (
       <div style={{ minHeight: '100vh', background: 'var(--bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 48, marginBottom: 8 }}>🗓️</div>
+          <div style={{marginBottom: 8}} aria-hidden><Icon name="calendar" size={48} /></div>
           <h2 style={{ fontSize: 18, fontWeight: 600, color: 'var(--sea)', marginBottom: 6 }}>Eventet hittades inte</h2>
           <Link href="/event" style={{ color: 'var(--acc)', fontWeight: 700, fontSize: 13 }}>← Alla events</Link>
         </div>

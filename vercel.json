@@ -1,4 +1,5 @@
 {
+  "regions": ["arn1"],
   "crons": [
     {
       "path": "/api/email/cron",
@@ -8,5 +9,6 @@
       "path": "/api/notifications/social-visits",
       "schedule": "0 18 * * *"
     }
-  ]
+  ],
+  "ignoreCommand": "git diff HEAD^ HEAD --quiet -- ':!*.md' ':!docs/'"
 }
