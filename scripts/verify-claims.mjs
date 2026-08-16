@@ -75,6 +75,31 @@ const KLOCKSLAG = /\b([01]?\d|2[0-3]):[0-5]\d\b/
 const PRIS = /(\b\d{1,3}(?:[  .]\d{3})*\s*kr(?![a-zA-ZåäöÅÄÖ])|\b\d{2,5}\s*kr(?![a-zA-ZåäöÅÄÖ])|\bSEK\s*\d{2,5}\b|\b\d{2,5}\s*SEK\b)/
 
 /**
+ * DJUP OCH SEGELFRI HÖJD — tillagt 2026-08-15 efter granskningen.
+ *
+ * Spärren såg bara klockslag och priser. Ett fel klockslag gör att någon står
+ * kvar på bryggan; ett fel djup gör att någon går på grund. Ändå var djupet
+ * den enda av de två som ingen kontrollerade.
+ *
+ * Vad granskningen hittade i produktion, allt osett av spärren:
+ *   • Baggensstäket och Knapens hål stod med "max 3 m djupgående". Källan sa
+ *     att sundet är tre meter DJUPT och att det är SKYLTAT 2 m. Vi hade läst
+ *     ett vattendjup som ett djupgående och struntat i parentesen.
+ *   • Skurusundet stod med segelfri höjd 30 m, hämtat ur OSM:s maxheight —
+ *     som är en fordonsbegränsning för trafiken PÅ bron. Nautiska taggen på
+ *     samma bro säger 29.
+ *   • /naturhamnar publicerade ankringsdjup och bottentyp för tolv öar utan
+ *     en enda källa.
+ *
+ * Distans (sjömil) räknas OCKSÅ, men som varning: tio träffar finns kvar och
+ * ingen av dem är granskad än. Att fälla bygget på dem nu hade tvingat fram
+ * snabba gissningar, vilket är precis fel medicin.
+ */
+const DJUP = /\b\d{1,2}(?:[.,]\d)?\s*(?:–|-|till)?\s*\d{0,2}(?:[.,]\d)?\s*m(?:eter)?\s+djup|\bdjup(?:et|gående)?\s+(?:är\s+)?\d{1,2}(?:[.,]\d)?\s*m|\b\d{1,2}(?:[.,]\d)?\s*m\s+djupgående|\bdjup\s+\d{1,2}(?:[.,]\d)?\s*[–-]\s*\d{1,2}(?:[.,]\d)?\s*m/i
+const HOJD = /segelfri\s+höjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m|\bbrohöjd[^.]{0,25}?\d{1,3}(?:[.,]\d)?\s*m/i
+const DISTANS = /\b\d{1,4}\s*(?:sjömil|distansminuter)\b/i
+
+/**
  * Stil- och geometristrängar är inte påståenden om verkligheten.
  *
  * BLINDFLÄCK 3, hittad 2026-08-12: filtret kördes på HELA RADEN. I en
@@ -142,6 +167,7 @@ function harKallaNara(rader, i) {
 }
 
 const fynd = []
+const varningar = []
 let uppskattningar = 0
 for (const f of filer(ROT)) {
   if (!iOmfang(f)) continue
@@ -167,14 +193,20 @@ for (const f of filer(ROT)) {
       const rent = utanStil(s)
       const träffKlocka = KLOCKSLAG.test(rent)
       const träffPris = PRIS.test(rent)
-      if (!träffKlocka && !träffPris) continue
+      const träffDjup = DJUP.test(rent)
+      const träffHojd = HOJD.test(rent)
+      const träffDistans = DISTANS.test(rent)
+      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans) continue
       if (harKallaNara(rader, i)) continue
       if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
-      fynd.push({
-        fil: f, rad: i + 1,
-        typ: träffKlocka ? 'klockslag' : 'pris',
-        text: s.slice(0, 90),
-      })
+      const typ = träffKlocka ? 'klockslag'
+        : träffPris ? 'pris'
+        : träffDjup ? 'djup'
+        : träffHojd ? 'segelfri höjd'
+        : 'distans'
+      // Distans varnar men fäller inte — se kommentaren vid DISTANS ovan.
+      if (typ === 'distans') { varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue }
+      fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
   })
 }
@@ -255,8 +287,20 @@ if (fs.existsSync(BASLINJE)) {
 const nya = fynd.filter(f => !känd.has(nyckel(f)))
 const kvarAvBaslinjen = fynd.length - nya.length
 
+/** Varningar fäller inte bygget, men ska synas. Tystnad blir till glömska. */
+function skrivVarningar() {
+  if (varningar.length === 0) return
+  console.log(`\n! ${varningar.length} distanspåståenden utan källa (varning, fäller inte bygget):`)
+  for (const v of varningar.slice(0, 20)) {
+    console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ')}`)
+  }
+  if (varningar.length > 20) console.log(`    … och ${varningar.length - 20} till`)
+  console.log(`  Sjömil är nästa kategori att beta av. Se rapporten 2026-08-15.`)
+}
+
 if (nya.length === 0) {
   console.log(`✓ verify-claims: inga NYA påståenden utan källa`)
+  skrivVarningar()
   if (kvarAvBaslinjen > 0) {
     console.log(`  (${kvarAvBaslinjen} kända kvar i baslinjen — skuld att beta av)`)
   }

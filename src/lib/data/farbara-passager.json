@@ -1,12 +1,13 @@
 {
-  "_kommentar": "Verifierade farbara passager. Läses av BÅDE scripts/build-land-raster.mjs (som öppnar dem i rastret) och src/lib/farbaraPassager.ts (som visar djupbegränsningen för användaren). En passage får ALDRIG läggas till utan att någon som känner vattnen har bekräftat den, och källan ska stå i kalla-fältet.",
+  "_kommentar": "Verifierade farbara passager. Läses av BÅDE scripts/build-land-raster.mjs (som öppnar dem i rastret) och src/lib/farbaraPassager.ts (som visar begränsningen för användaren). En passage får ALDRIG läggas till utan att någon som känner vattnen har bekräftat den, och källan ska stå i kalla-fältet.",
+  "_maxDjupM": "LÄS DETTA INNAN DU RÖR maxDjupM. Fältet är STÖRSTA TILLÅTNA DJUPGÅENDE — inte sundets vattendjup. Granskningen 2026-08-15 hittade att de två Baggensstäket-passagerna blandat ihop dem: källan sa att sundet är tre meter DJUPT, och vi publicerade det som att båtar med tre meters DJUPGÅENDE kommer igenom. En båt som går lika djupt som vattnet är på grund. Sätt aldrig maxDjupM till ett lodat djup.",
   "passager": [
     {
       "namn": "Skurusundet",
-      "kalla": "Tom Nordin 2026-08-14 + OSM seamark:type=fairway, Skurubron maxheight=30",
+      "kalla": "Farbarhet: Tom Nordin 2026-08-14 + OSM seamark:type=fairway. Höjd: OSM seamark:bridge:clearance_height=29 på Gamla Skurubron (way 953173428), avläst 2026-08-15. RÄTTAD FRÅN 30 M: den siffran togs från maxheight=30 på way 23982652, som är samma bro — men maxheight är en fordonsbegränsning för trafiken PÅ bron, inte segelfri höjd under den. Nya Skurubron (2023) uppges av Trafikverket ha 32 m segelfri höjd, så det är gamla bron som är styrande. Ej kontrollerad mot sjökort.",
       "breddM": 40,
       "maxDjupM": null,
-      "segelfriHojdM": 30,
+      "segelfriHojdM": 29,
       "mittlinje": [
         [59.304, 18.222], [59.305, 18.22113], [59.306, 18.22023], [59.307, 18.21895],
         [59.308, 18.21871], [59.309, 18.21901], [59.31, 18.21986], [59.311, 18.2208],
@@ -19,17 +20,19 @@
     },
     {
       "namn": "Baggensstäket, västra passagen",
-      "kalla": "Tom Nordin 2026-08-14 + sjöguider (Baggensstäket, två trånga passager, 2,8–2,9 m mellan dem)",
+      "kalla": "Farbarhet: Tom Nordin 2026-08-14. Djupgående: sv.wikipedia.org/wiki/Baggensstäket, läst 2026-08-15, ordagrant: \"Sundet är grunt och smalt och kan passeras endast av små fartyg och båtar med upp till 3 meters djupgående (skyltat 2 meters djupgående).\" Vi publicerar den SKYLTADE gränsen, 2 m, eftersom det är den som gäller på plats. RÄTTAD FRÅN 3 M: parentesen lästes inte med. Sjöfartsverket ansvarar för leden sedan 1947; Knapens hål och Stäketsund muddrades och breddades hösten 1985. Djupet är INTE kontrollerat mot sjökort och ingen lodning är hämtad.",
       "breddM": 20,
-      "maxDjupM": 3,
+      "maxDjupM": 2,
+      "skyltad": true,
       "segelfriHojdM": null,
       "mittlinje": [[59.299, 18.276], [59.30158, 18.28]]
     },
     {
       "namn": "Knapens hål",
-      "kalla": "Tom Nordin 2026-08-14 + uppslagsverk: 3 m djup, knappt 20 m bred",
+      "kalla": "Farbarhet: Tom Nordin 2026-08-14. sv.wikipedia.org/wiki/Knapens_hål, läst 2026-08-15: \"Sundet är tre meter djupt och knappt 20 meter brett.\" Det är ett VATTENDJUP, inte ett djupgående, och artikelns tre källor är historiska (RAÄ, Populär historia, Vikingatida båtliv i Nacka) — ingen av dem är nautisk. RÄTTAD FRÅN 3 M DJUPGÅENDE, som var en felläsning av just den meningen. Knapens hål ligger i Baggensstäket och omfattas av samma skyltade gräns, 2 m. Bredden knappt 20 m är källbelagd. Djupet är INTE kontrollerat mot sjökort.",
       "breddM": 20,
-      "maxDjupM": 3,
+      "maxDjupM": 2,
+      "skyltad": true,
       "segelfriHojdM": null,
       "mittlinje": [[59.30325, 18.287], [59.30449, 18.2895]]
     },

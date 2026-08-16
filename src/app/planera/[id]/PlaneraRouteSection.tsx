@@ -91,6 +91,7 @@ export default function PlaneraRouteSection({
   // Passager med känd djup- eller höjdbegränsning som rutten går igenom.
   const [passager, setPassager] = useState<Array<{
     namn: string; maxDjupM: number | null; segelfriHojdM: number | null
+    skyltad?: boolean
     oppningsbarBro?: { namn: string; oppettider: string; kontakt: string } | null
   }>>([])
   const [reportOpen, setReportOpen] = useState(false)
@@ -305,7 +306,16 @@ export default function PlaneraRouteSection({
             <span style={{ color: 'var(--txt2)' }}>
               {passager.map(p => {
                 const bitar: string[] = []
-                if (p.maxDjupM != null) bitar.push(`max ${String(p.maxDjupM).replace('.', ',')} m djupgående`)
+                // "skyltat" när siffran är den anslagna gränsen på plats.
+                // Utan ordet läser man den som ett lodat djup, och det var
+                // precis förväxlingen som gjorde att Baggensstäket stod med
+                // 3 m djupgående när skylten säger 2.
+                if (p.maxDjupM != null) {
+                  const d = String(p.maxDjupM).replace('.', ',')
+                  bitar.push(p.skyltad
+                    ? `skyltat max ${d} m djupgående`
+                    : `max ${d} m djupgående`)
+                }
                 // Vid öppningsbar bro gäller höjden bara när bron är STÄNGD.
                 // Utan det tillägget läser en seglare siffran som ett stopp,
                 // fast bron öppnas varje hel timme hela säsongen.

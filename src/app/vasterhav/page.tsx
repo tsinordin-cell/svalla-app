@@ -170,6 +170,7 @@ export default function VasterhavetPage() {
  Skagerrak och norska gränsen — djupet och äventyret
  </h3>
  <p>
+ {/* KÄLLA: sverigesnationalparker.se, Kosterhavets nationalpark — Kosterrännan ca 247 m, Sveriges djupaste havsområde (läst 2026-08-15) */}
  Västerhavet kulminerar i norr vid Skagerrak. <strong>Kosterhavets nationalpark</strong> (Sveriges första marina nationalpark, 2009) ligger här och skyddar ett unikt marint ekosystem — bland annat Kosterrännan som är cirka 247 m djup och Sveriges djupaste havsdal. <strong>Strömstad</strong> är naturlig utgångspunkt för segling mot Norge.
  </p>
  <p>
