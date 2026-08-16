@@ -91,7 +91,7 @@ function cacheKey(slat: number, slng: number, elat: number, elng: number): strin
  */
 export type UnavailableReason =
   | 'outside_coverage' | 'harbour_not_in_water' | 'lock_required' | 'no_sea_route'
-  | 'landlocked'
+  | 'landlocked' | 'same_harbour'
 
 /** Samma tolerans som lookupPrecomputed använder: 0,0008° ≈ 80 m. */
 const HAMN_TOL = 0.0008
@@ -196,6 +196,24 @@ export async function POST(req: NextRequest) {
       typeof endLat   !== 'number' || typeof endLng   !== 'number'
     ) {
       return NextResponse.json({ error: 'Ogiltiga koordinater' }, { status: 400 })
+    }
+
+    // Start och mal ar samma hamn. Utan sparren svarade API:t med en
+    // "rutt" pa tre waypoint-punkter (uppmatt 2026-08-16: Sigtuna->Sigtuna
+    // gav waypoint 3p) - nonsens som dessutom gick att dela via URL.
+    // 200 m ar val under minsta hamnavstand (Steninge->Flottvik ar 740 m),
+    // sa ingen riktig rutt kan falla pa den. Grov plan approximation racker
+    // pa de har avstanden.
+    {
+      const dLatM = (endLat - startLat) * 111320
+      const dLngM = (endLng - startLng) * 111320 * Math.cos(startLat * Math.PI / 180)
+      if (Math.sqrt(dLatM * dLatM + dLngM * dLngM) < 200) {
+        return NextResponse.json({
+          path: null, quality: 'unavailable', confidence: 0, validated: false,
+          crossesAt: null, source: 'guard', passager: [],
+          reason: 'same_harbour' satisfies UnavailableReason,
+        })
+      }
     }
 
     const key = cacheKey(startLat, startLng, endLat, endLng)
