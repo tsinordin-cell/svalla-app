@@ -1,5 +1,5 @@
 {
-  "lagvattenmarke": 87,
-  "sankt": "2026-08-16",
-  "motivering": "Återapplicerad baseline från feature/data-restore-aug11 — priser, badplatser och email-sekvens. Skuld accepterad som startpunkt för fortsatt nedsankning."
+  "lagvattenmarke": 89,
+  "hojd": "2026-08-16",
+  "motivering": "email-templates.generated.ts inkluderas i bygget"
 }

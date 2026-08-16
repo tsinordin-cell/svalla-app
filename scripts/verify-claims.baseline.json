@@ -1,7 +1,7 @@
 {
   "beskrivning": "Kända påståenden utan källa. SKULD — ska krympa. Får bara växa vid dokumenterad omfångsutökning av spärren (senast 2026-08-11: hela src + mallsträngar).",
   "skapad": "2026-08-16",
-  "antal": 87,
+  "antal": 89,
   "poster": [
     "src/app/o/island-data.ts::pris::'0 kr'",
     "src/app/o/island-data.ts::pris::'0 kr'",
@@ -89,6 +89,8 @@
     "src/app/o/island-data.ts::pris::'~50–80 kr (SL)'",
     "src/app/o/island-data.ts::pris::'~50–80 kr'",
     "src/app/o/island-data.ts::pris::'Öl 65–85 kr, vin 85–115 kr, enkel mat 95–135 kr'",
+    "src/lib/email-templates.generated.ts::klockslag::trigger: cron 1 april kl 09:00",
+    "src/lib/email-templates.generated.ts::klockslag::trigger: cron 1 oktober kl 09:00",
     "src/lib/email.ts::klockslag::<p style=\"font-size:15px;line-height:1.65;margin:0 0 14px;color:#3d5865\">Skärgården är vac"
   ]
 }
