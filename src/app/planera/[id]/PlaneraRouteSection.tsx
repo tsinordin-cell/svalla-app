@@ -484,6 +484,7 @@ export default function PlaneraRouteSection({
           marginBottom: 16,
         }}>
           {[
+            // UPPSKATTNING: typiska marschfarter — segelbåt 5,5 kn, planande motorbåt 18 kn, kajak 3,5 kn (2026-08)
             { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
             { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
             { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },
@@ -520,6 +521,7 @@ export default function PlaneraRouteSection({
           marginBottom: 16,
         }}>
           {[
+            // UPPSKATTNING: typiska marschfarter — segelbåt 5,5 kn, planande motorbåt 18 kn, kajak 3,5 kn (2026-08)
             { label: 'Segelbåt', value: timeEstimates.segelbat, sub: '~5,5 knop' },
             { label: 'Motorbåt', value: timeEstimates.motorbat, sub: '~18 knop' },
             { label: 'Kajak',    value: timeEstimates.kajak,   sub: '~3,5 knop' },

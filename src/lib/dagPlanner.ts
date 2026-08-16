@@ -7,6 +7,10 @@
  * MVP-policy:
  *   - 3 stopp per dag (ej fler — beslutsförenkling)
  *   - max 30 min båtfärd mellan stopp (10 nm @ 20 knop)
+ *     PRODUKTREGEL: 20 knop är vår filterparameter, inte ett påstående om
+ *     användarens båt. OBS från granskningen 2026-08-16: en segelbåt i 5,5 knop
+ *     gör samma 10 nm på ~110 min — "30 min" stämmer bara för snabb motorbåt.
+ *     Vill vi vara ärliga mot seglare bör filtret ta båttyp som parameter.
  *   - mix: 1 sevärdhet/krog för lunch, 1 aktivitet, 1 krog för middag
  *   - filtrera bort poster med seasonality 'closed' eller där öppettider tyder på stängt
  *
