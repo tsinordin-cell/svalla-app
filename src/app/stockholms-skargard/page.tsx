@@ -36,9 +36,10 @@ const ITEMS: LandingItem[] = [
  {
  icon: '⛵',
  title: 'Sandhamn',
- description: 'KSSS:s hemmahamn och ytterskärgårdens kronjuvel. Ca 35 sjömil (65 km) från Stockholm — 5–8 timmars segling. Sandhamns Värdshus, flera gästhamnar och ett livligt sommarliv. Cinderella trafikerar linjen dagligen under säsong.',
+ // KÄLLA: Båtturistguidens distanstabell (batturistguide.se/images/pdf/distanstabeller.pdf, läst 2026-08-16): Stockholm–Sandhamn 31 nm. Egen ruttmotor mäter 33,7 nm — 31 är tabellvärdet längs utprickad led.
+ description: 'KSSS:s hemmahamn och ytterskärgårdens kronjuvel. Ca 31 sjömil (57 km) från Stockholm — 5–8 timmars segling. Sandhamns Värdshus, flera gästhamnar och ett livligt sommarliv. Cinderella trafikerar linjen dagligen under säsong.',
  href: '/sandhamn',
- meta: 'Yttre skärgården · 35 sjömil · Cinderella',
+ meta: 'Yttre skärgården · 31 sjömil · Cinderella',
  },
  {
  icon: '🏝️',
@@ -90,7 +91,7 @@ export default function StockholmsSkargardPage() {
  {
  '@type': 'Question',
  name: 'Hur långt är det att segla från Stockholm till Sandhamn?',
- acceptedAnswer: { '@type': 'Answer', text: 'Det är ungefär 35 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.' },
  },
  {
  '@type': 'Question',
@@ -144,7 +145,7 @@ export default function StockholmsSkargardPage() {
  </>
  }
  itemsTitle="Populära destinationer i Stockholms skärgård"
- itemsDescription="Sex klassiska öar — från Fjäderholmarna 25 minuter från Slussen till Sandhamn 35 sjömil ut i ytterskärgården."
+ itemsDescription="Sex klassiska öar — från Fjäderholmarna 25 minuter från Slussen till Sandhamn 31 sjömil ut i ytterskärgården."
  items={ITEMS}
  deeperContent={
  <>
@@ -179,7 +180,7 @@ export default function StockholmsSkargardPage() {
  Ytterskärgården — för den erfarne seglaren
  </h3>
  <p>
- Ytterskärgården kräver respekt och planering, men belönar med oförglömliga upplevelser. <strong>Sandhamn</strong> är skärgårdens mest ikoniska destination — hem för Kungliga Svenska Segelällskapet (KSSS) och det legendariska Sandhamns Värdshus. Hit tar det ungefär 35 sjömil från Stockholm (ca 65 km), vilket med god vind tar 5–8 timmar att segl. Det är värt varje minut.
+ Ytterskärgården kräver respekt och planering, men belönar med oförglömliga upplevelser. <strong>Sandhamn</strong> är skärgårdens mest ikoniska destination — hem för Kungliga Svenska Segelällskapet (KSSS) och det legendariska Sandhamns Värdshus. Hit tar det ungefär 31 sjömil från Stockholm (ca 57 km), vilket med god vind tar 5–8 timmar att segl. Det är värt varje minut.
  </p>
  <p>
  <strong>Utö</strong> i söder är unik — en före detta gruva som idag är en pittoresk by med Utö Värdshus, där du kan njuta av middag med havet som doplats. <strong>Landsort</strong> ligger ännu längre söderut och är Sveriges sydligaste punkt till sjöss — en rå och vacker destination för erfarna seglare. <strong>Huvudskär</strong> erbjuder ungefär samma vildmark och känsla av äventyr längre västerut, med små vikar och ankringsplatser som bara finns på kartan för den som vet var de ska titta.
@@ -213,7 +214,7 @@ export default function StockholmsSkargardPage() {
  Hur långt är det att segla från Stockholm till Sandhamn?
  </h3>
  <p>
- Det är ungefär 35 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
+ Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
