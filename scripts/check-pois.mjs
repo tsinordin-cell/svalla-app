@@ -11,7 +11,6 @@ async function rpc(table, params = '') {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}${params}`, {
     headers: {
       apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
       Prefer: 'count=exact',
       Range: '0-0',
     },
@@ -23,7 +22,7 @@ async function rpc(table, params = '') {
 
 async function selectAll(table, query) {
   const r = await fetch(`${SUPABASE_URL}/rest/v1/${table}?${query}`, {
-    headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` },
+    headers: { apikey: SERVICE_KEY },
   })
   return r.ok ? r.json() : { error: r.status }
 }

@@ -574,13 +574,22 @@ export async function sendEmail(opts: {
     if (supabaseUrl && serviceKey) {
       const r = await fetch(
         `${supabaseUrl}/rest/v1/email_unsubscribes?email=eq.${encodeURIComponent(opts.to.toLowerCase())}&select=email`,
-        { headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` } },
+        // Bara apikey-headern. En sb_secret_-nyckel far INTE skickas i
+        // Authorization: Bearer - Supabase avvisar den da. Se
+        // 04_Rapporter/NYCKELMIGRERING-service-role-20260816.md
+        { headers: { apikey: serviceKey } },
       )
       if (r.ok) {
         const rows = await r.json() as Array<{ email: string }>
         if (rows.length > 0) {
           return { ok: true, error: 'unsubscribed' }
         }
+      } else {
+        // Fail-open ar avsiktligt: ett tillfalligt Supabase-fel ska inte
+        // blockera all utgaende post. Men en TYST fail-open gor ett fel till
+        // "inga avregistreringar" - da mejlar vi folk som sagt nej, utan att
+        // nagot larmar. Jfr p14/p34: fangat-och-returnerat doljer trasiga API:er.
+        console.error('[email] unsubscribe-kontrollen svarade', r.status, '- skickar anda')
       }
     }
   } catch {

@@ -109,7 +109,7 @@ console.log(`  ${candidates.length} har namn + koordinater`)
 // ── 3. Hämta existerande restaurants för dedup ─────────────────────────────
 console.log('\nHämtar existerande restaurants för dedup...')
 const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/restaurants?select=name,latitude,longitude`, {
-  headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` },
+  headers: { apikey: SERVICE_KEY },
 })
 const existing = await existingRes.json()
 console.log(`  ${existing.length} existerande platser`)
@@ -182,7 +182,6 @@ for (const row of uniqueRows) {
     method: 'POST',
     headers: {
       apikey: SERVICE_KEY,
-      Authorization: `Bearer ${SERVICE_KEY}`,
       'Content-Type': 'application/json',
       Prefer: 'return=minimal',
     },
