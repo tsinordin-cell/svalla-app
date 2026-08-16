@@ -200,6 +200,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       {
         icon: '🏁',
         name: 'Klassisk regatta (halvdag)',
+        // PRODUKTREGEL: kurslängden är vår egen eventdesign, inte ett påstående om världen
         text: 'Kurs 3–5 sjömil i skyddade vatten. 2–3 lopp med tidtagning och taktisk briefing inför varje. Avslutas med prisudelning. Passar 8–40 deltagare på 2–5 båtar.',
         // UPPSKATTNING: spann över flera arrangörer, ej hämtat per aktör (2026-08)
         priceRange: '600–1 200 kr/person',

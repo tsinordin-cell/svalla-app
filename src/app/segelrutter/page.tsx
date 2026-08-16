@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
  title: 'Segelrutter i Sverige — Östersjöleden, Gotland Runt, Bohuslän',
- description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker 300 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
+ description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker cirka 350 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
  keywords: [
  'segelrutter sverige',
  'östersjöleden',
@@ -63,7 +63,8 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🏁',
  title: 'Gotland Runt (klassikern)',
- description: 'Cirka 300 sjömil runt Gotland — kappseglingsklassiker som startar i Sandhamn. Ettdygn eller mer för den beredde.',
+ // KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-08-16: banan är ca 350 nm (2025 kortad till 312 pga väder); 'for most of the boats the race takes closer to 3 days'. Tidigare stod 300 och 'ettdygn' — båda fel.
+ description: 'Cirka 350 sjömil — kappseglingsklassikern från Sandhamn runt Gotland och tillbaka. För de flesta båtar närmare tre dygn.',
  href: '/segelrutter/gotland-runt',
  meta: 'Nivå 3',
  },
@@ -200,7 +201,8 @@ export default function SegelrutterPage() {
  Gotland Runt — klassikern
  </h2>
  <p>
- Gotland Runt är den mest berömda kappseglingsklassikern i Sverige — en rutt som varje allvarlig seglare drömmer om att färdas på något tillfälle. Rundan går cirka 300 sjömil runt hela Gotland och startar traditionellt från Sandhamn i Stockholms skärgård.
+ {/* KÄLLA: KSSS (ksss.se/en/gotlandrunt), läst 2026-08-16: banan ca 350 nm */}
+ Gotland Runt är den mest berömda kappseglingsklassikern i Sverige — en rutt som varje allvarlig seglare drömmer om att färdas på något tillfälle. Rundan går cirka 350 sjömil runt hela Gotland och startar traditionellt från Sandhamn i Stockholms skärgård.
  </p>
  <p>
  Under den officiella Gotland Runt-regattan varje sommar deltar hundratals båtar av alla slag. Regattat är notoriskt för sitt impulsiva väder — ibland får du svag vind och behöver motorkraft, ibland möter du kraftiga östvindar som driver dig från vägen. En typisk segling tar mellan 30 timmar för snabba racingbåtar och 2–3 dygn för långsammare båtar. För privatseglare som inte tävlar rekommenderas ofta två etapper: Sandhamn–Visby (över Östersjön, cirka 120 sjömil) och sedan hela vägen runt Gotland (cirka 180 sjömil).
@@ -293,6 +295,7 @@ export default function SegelrutterPage() {
  <strong>Hur lång tid tar Östersjöleden?</strong>
  </h3>
  <p>
+ // UPPSKATTNING: ruttens längd beror helt på vilka ben man väljer; 800 nm är en grov helhetssiffra, ej verifierad mot någon tabell (2026-08)
  Östersjöleden är cirka 800 sjömil. Vid en genomsnittshastighet på 6 knop (genomsnittlig kryss- och seglingshastighet för de flesta båtar) tar detta cirka 5–6 veckor om du seglar alla dagar utan stopp. Många seglare gör detta som ett två veckor långt sommaräventyr genom att fokusera på en del av rutten, eller de sprider det över flera sommrar. Realistisk tid är 10–15 dagar för 300–400 sjömil (exempelvis Stockholm till Visby).
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
