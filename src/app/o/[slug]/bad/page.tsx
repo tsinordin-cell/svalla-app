@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland, type IslandBeach } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -10,13 +11,13 @@ function isBeachObject(b: string | IslandBeach): b is IslandBeach {
   return typeof b === 'object' && b !== null && 'name' in b
 }
 
-const typeLabel: Record<IslandBeach['type'], string> = {
-  sandstrand: '🏖 Sandstrand',
-  klippbad: '🪨 Klippbad',
-  grusstrand: '🪨 Grusstrand',
-  brygga: '🛶 Badbrygga',
-  trampolinbad: '🤸 Trampolinbad',
-  badvik: '🌊 Badvik',
+const typeLabel: Record<IslandBeach['type'], { icon: IconName; text: string }> = {
+  sandstrand:    { icon: 'waves',    text: 'Sandstrand' },
+  klippbad:      { icon: 'mountain', text: 'Klippbad' },
+  grusstrand:    { icon: 'mountain', text: 'Grusstrand' },
+  brygga:        { icon: 'anchor',   text: 'Badbrygga' },
+  trampolinbad:  { icon: 'star',     text: 'Trampolinbad' },
+  badvik:        { icon: 'water',    text: 'Badvik' },
 }
 
 export async function generateStaticParams() {
@@ -109,12 +110,14 @@ export default async function IslandBadPage({ params }: Props) {
                     border: '1px solid rgba(10,123,140,0.07)',
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', background: 'rgba(10,123,140,0.08)', padding: '2px 10px', borderRadius: 20 }}>
-                        {typeLabel[beach.type] ?? beach.type}
+                      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', background: 'rgba(10,123,140,0.08)', padding: '2px 10px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                        {typeLabel[beach.type]
+                          ? <><Icon name={typeLabel[beach.type].icon} size={13} stroke={2} />{typeLabel[beach.type].text}</>
+                          : beach.type}
                       </span>
                       {beach.child_friendly && (
-                        <span style={{ fontSize: 13, color: '#4a8c4a', background: 'rgba(74,140,74,0.08)', padding: '2px 10px', borderRadius: 20, fontWeight: 600 }}>
-                          👶 Barnvänlig
+                        <span style={{ fontSize: 13, color: '#4a8c4a', background: 'rgba(74,140,74,0.08)', padding: '2px 10px', borderRadius: 20, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                          <Icon name="users" size={13} stroke={2} />Barnvänlig
                         </span>
                       )}
                     </div>

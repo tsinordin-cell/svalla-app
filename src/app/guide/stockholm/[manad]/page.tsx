@@ -161,11 +161,11 @@ export default async function SasonsguidePage({ params }: Props) {
           </p>
           {/* Väder-chips */}
           <div style={{ display: 'flex', gap: 10, marginTop: 22, flexWrap: 'wrap' }}>
-            <span style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600 }}>
-              🌡 {guide.weather.split('.')[0]}
+            <span style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="sun" size={14} stroke={2} />{guide.weather.split('.')[0]}
             </span>
-            <span style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600 }}>
-              🏝 {guide.openIslands.length} öar öppna
+            <span style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="island" size={14} stroke={2} />{guide.openIslands.length} öar öppna
             </span>
           </div>
         </div>
@@ -194,8 +194,8 @@ export default async function SasonsguidePage({ params }: Props) {
           border: '1px solid var(--surface-3)',
           marginBottom: 28,
         }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 12, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)' }}>
-            🌤 Väder i {guide.month.toLowerCase()}
+          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 12, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <Icon name="sun" size={19} stroke={2} />Väder i {guide.month.toLowerCase()}
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--txt2)', margin: 0 }}>
             {guide.weather}
@@ -204,8 +204,8 @@ export default async function SasonsguidePage({ params }: Props) {
 
         {/* Öppna öar */}
         <section style={{ marginBottom: 28 }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)' }}>
-            🏝 Öppna öar i {guide.month.toLowerCase()}
+          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <Icon name="island" size={19} stroke={2} />Öppna öar i {guide.month.toLowerCase()}
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12 }}>
             {openIslandData.map(island => {
@@ -248,8 +248,8 @@ export default async function SasonsguidePage({ params }: Props) {
           border: '1px solid var(--surface-3)',
           marginBottom: 28,
         }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)' }}>
-            🎯 Aktiviteter i {guide.month.toLowerCase()}
+          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <Icon name="target" size={19} stroke={2} />Aktiviteter i {guide.month.toLowerCase()}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {guide.activities.map((activity, i) => (
@@ -276,8 +276,8 @@ export default async function SasonsguidePage({ params }: Props) {
           border: '1px solid #c8dfe8',
           marginBottom: 28,
         }}>
-          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)' }}>
-            💡 Tips för {guide.month.toLowerCase()}
+          <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <Icon name="lightbulb" size={19} stroke={2} />Tips för {guide.month.toLowerCase()}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {guide.tips.map((tip, i) => (
@@ -298,8 +298,8 @@ export default async function SasonsguidePage({ params }: Props) {
             border: '1px solid #f0d9c0',
             marginBottom: 28,
           }}>
-            <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8, color: '#c96e2a' }}>
-              ⚠️ Tänk på detta
+            <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8, color: '#c96e2a', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Icon name="warning" size={16} stroke={2} />Tänk på detta
             </h2>
             <p style={{ fontSize: 15, color: 'var(--txt)', lineHeight: 1.65, margin: 0 }}>
               {guide.avoid}

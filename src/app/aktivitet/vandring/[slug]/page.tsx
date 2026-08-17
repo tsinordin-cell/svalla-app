@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import { HIKES, REGIONS, type Hike } from '../hike-data'
 import { HIKE_DESCRIPTIONS } from '../hike-descriptions'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -62,7 +63,7 @@ const DIFFICULTY_DESC: Record<string, string> = {
   'krävande': 'Längre led eller brantare terräng. Kräver vandringskängor och erfarenhet.',
 }
 
-function Tag({ icon, label, active }: { icon: string; label: string; active: boolean }) {
+function Tag({ icon, label, active }: { icon: IconName; label: string; active: boolean }) {
   if (!active) return null
   return (
     <span style={{
@@ -71,7 +72,7 @@ function Tag({ icon, label, active }: { icon: string; label: string; active: boo
       background: 'var(--surface-2)', border: '1px solid var(--surface-3)',
       fontSize: 12, color: 'var(--txt2)',
     }}>
-      {icon} {label}
+      <Icon name={icon} size={13} stroke={2} />{label}
     </span>
   )
 }
@@ -226,13 +227,13 @@ export default async function VandringHikePage({ params }: Props) {
 
           {/* Tags */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
-            <Tag icon="⛴" label="Utan bil" active={!hike.carRequired} />
-            <Tag icon="🚢" label="Kräver färja" active={hike.ferryRequired} />
-            <Tag icon="🌊" label="Bad längs vägen" active={hike.hasBathing} />
-            <Tag icon="🍽" label="Restaurang" active={hike.hasRestaurant} />
-            <Tag icon="☕" label="Café" active={hike.hasCafe} />
-            <Tag icon="👨‍👩‍👧" label="Barnvänligt" active={hike.suitableForChildren} />
-            <Tag icon="🐕" label="Hundvänligt" active={hike.suitableForDogs} />
+            <Tag icon="ship" label="Utan bil" active={!hike.carRequired} />
+            <Tag icon="anchor" label="Kräver färja" active={hike.ferryRequired} />
+            <Tag icon="swim" label="Bad längs vägen" active={hike.hasBathing} />
+            <Tag icon="utensils" label="Restaurang" active={hike.hasRestaurant} />
+            <Tag icon="coffee" label="Café" active={hike.hasCafe} />
+            <Tag icon="child" label="Barnvänligt" active={hike.suitableForChildren} />
+            <Tag icon="dog" label="Hundvänligt" active={hike.suitableForDogs} />
           </div>
 
           {/* Description */}

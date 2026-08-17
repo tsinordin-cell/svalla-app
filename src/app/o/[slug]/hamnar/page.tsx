@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Icon from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -75,8 +76,8 @@ export default async function IslandHarborsPage({ params }: Props) {
                     </span>
                   )}
                   {h.fuel && (
-                    <span style={{ padding: '4px 10px', borderRadius: 999, background: 'rgba(201,110,42,0.10)', color: '#c96e2a', fontWeight: 700 }}>
-                      ⛽ Bränsle
+                    <span style={{ padding: '4px 10px', borderRadius: 999, background: 'rgba(201,110,42,0.10)', color: '#c96e2a', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                      <Icon name="fuel" size={13} stroke={2} />Bränsle
                     </span>
                   )}
                   {h.service?.map(s => (
