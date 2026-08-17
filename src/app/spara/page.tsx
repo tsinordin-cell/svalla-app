@@ -299,6 +299,9 @@ export default function SparaPage() {
         elapsed,
         tripId,
       })
+      // Stromning steg 2 (beslut A): skjut upp buffrade punkter till servern
+      // var 30:e sekund. Dor telefonen ar hogst en halvminut av sparet borta.
+      syncOfflineRef.current()
     }, 30_000)
     return () => { if (heartbeatRef.current) clearInterval(heartbeatRef.current) }
   }, [phase, tripId, boatType, elapsed])
@@ -519,13 +522,37 @@ export default function SparaPage() {
     const snap = recoverySnap
     setRecoverySnap(null)
 
-    // Återställ GPS-punkter från IndexedDB offline-buffer.
-    // Under aktiv tracking saknas tripId → punkter synkas aldrig till Supabase
-    // → de lever kvar i bufferten efter en krasch. Ladda tillbaka dem hit.
+    // Återställ GPS-punkter: server + IndexedDB-buffert.
+    // Sedan strömning steg 2 synkas punkter till servern under turen och
+    // rensas då ur bufferten - bufferten ensam är ett stympat spår. Hämta
+    // serverpunkterna för tripId (ägaren får via gps_select_own), slå ihop
+    // med bufferten och dedupa på recordedAt.
     try {
       const pending = await getPendingPoints()
-      if (pending.length > 0) {
-        const restored: GpsPoint[] = pending.map(p => p.point)
+      let restored: GpsPoint[] = pending.map(p => p.point)
+      if (snap.tripId) {
+        const { data: serverPts } = await supabase
+          .from('gps_points')
+          .select('latitude,longitude,speed_knots,heading,accuracy,recorded_at')
+          .eq('trip_id', snap.tripId)
+          .order('recorded_at', { ascending: true })
+        if (serverPts && serverPts.length > 0) {
+          const seen = new Set(restored.map(p => p.recordedAt))
+          const fromServer: GpsPoint[] = serverPts
+            .filter(p => p?.recorded_at && !seen.has(p.recorded_at))
+            .map(p => ({
+              lat: p.latitude,
+              lng: p.longitude,
+              speedKnots: (p.speed_knots ?? 0) as number,
+              heading: p.heading ?? null,
+              accuracy: (p.accuracy ?? 0) as number,
+              recordedAt: p.recorded_at,
+            }))
+          restored = [...fromServer, ...restored]
+            .sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
+        }
+      }
+      if (restored.length > 0) {
         setPoints(restored)
         pointsRef.current = restored
         setStops(detectStops(restored))
