@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Icon, { type IconName } from '@/components/Icon'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -128,16 +129,18 @@ export default async function IslandMedBarnPage({ params }: Props) {
             Snabbfakta — {island.name} med barn
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14 }}>
-            {[
-              { icon: '⛴', label: 'Restid', value: island.facts.travel_time },
-              { icon: '🏊', label: 'Badmöjligheter', value: beaches.length > 0 ? beaches.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
-              { icon: '🍽', label: 'Restauranger', value: island.restaurants.length > 0 ? `${island.restaurants.length} krogar och caféer` : 'Begränsat utbud — ta matsäck' },
-              { icon: '🚲', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
-              { icon: '📅', label: 'Bäst säsong', value: island.facts.season },
-              { icon: '👨‍👩‍👧', label: 'Passar', value: island.facts.best_for },
-            ].map((f, i) => (
+            {([
+              { icon: 'ship', label: 'Restid', value: island.facts.travel_time },
+              { icon: 'waves', label: 'Badmöjligheter', value: beaches.length > 0 ? beaches.slice(0, 2).join(', ') : (island.activity_meta?.bad ? 'Klippbad och bryggor' : 'Klippor längs kusten') },
+              { icon: 'utensils', label: 'Restauranger', value: island.restaurants.length > 0 ? `${island.restaurants.length} krogar och caféer` : 'Begränsat utbud — ta matsäck' },
+              { icon: 'navigation', label: 'Cykling', value: island.activity_meta?.cykel?.rental ? 'Cykeluthyrning finns' : (island.activity_meta?.cykel ? 'Cykelleder finns' : 'Kontrollera lokalt') },
+              { icon: 'calendar', label: 'Bäst säsong', value: island.facts.season },
+              { icon: 'users', label: 'Passar', value: island.facts.best_for },
+            ] satisfies { icon: IconName; label: string; value: React.ReactNode }[]).map((f, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                <span style={{ fontSize: 20, flexShrink: 0 }}>{f.icon}</span>
+                <span style={{ flexShrink: 0, color: 'var(--sea)', display: 'inline-flex', marginTop: 1 }}>
+                  <Icon name={f.icon} size={20} stroke={1.8} />
+                </span>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', marginBottom: 2 }}>{f.label}</div>
                   <div style={{ fontSize: 14, color: 'var(--txt)', fontWeight: 600 }}>{f.value}</div>
@@ -218,8 +221,9 @@ export default async function IslandMedBarnPage({ params }: Props) {
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12 }}>
-              💡 Barn under 7 år åker gratis med Waxholmsbolaget. Barn 7–19 år betalar halvpris.
+            <p style={{ fontSize: 13, color: 'var(--txt3)', marginTop: 12, display: 'flex', alignItems: 'flex-start', gap: 6 }}>
+              <Icon name="star" size={14} stroke={2} style={{ marginTop: 3 }} />
+              <span>Barn under 7 år åker gratis med Waxholmsbolaget. Barn 7–19 år betalar halvpris.</span>
             </p>
           </div>
         )}

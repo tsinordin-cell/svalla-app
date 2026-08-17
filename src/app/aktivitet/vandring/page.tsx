@@ -5,6 +5,7 @@ import Script from 'next/script'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { REGIONS, hikesForRegion, type Hike } from './hike-data'
+import Icon, { type IconName } from '@/components/Icon'
 
 export const metadata: Metadata = {
   title: 'Vandring i skärgården — kustleder, öar och tips | Svalla',
@@ -218,7 +219,9 @@ function HikeRow({ hike }: { hike: Hike }) {
           {hike.difficulty}
         </span>
         {!hike.carRequired && (
-          <span style={{ fontSize: 10, color: 'var(--sea)' }}>⛴ utan bil</span>
+          <span style={{ fontSize: 10, color: 'var(--sea)', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+            <Icon name="ship" size={11} stroke={2} />utan bil
+          </span>
         )}
       </div>
       <span style={{ color: 'var(--sea)', fontSize: 16, flexShrink: 0 }}>→</span>
@@ -326,19 +329,19 @@ export default function VandringPage() {
             marginBottom: 28, overflowX: 'auto',
           }}>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'nowrap', minWidth: 'max-content' }}>
-              {[
-                { label: '🗺 Nära Stockholm', href: '#stockholms-skargard' },
-                { label: '⛴ Utan bil', href: '#stockholms-skargard' },
-                { label: '👨‍👩‍👧 Barnvänligt', href: '#stockholms-skargard' },
-                { label: '🌊 Med bad', href: '#stockholms-skargard' },
-                { label: '🍽 Med krog', href: '#bohuslan' },
-                { label: '🐕 Hundvänligt', href: '#stockholms-skargard' },
-                { label: '🟢 Lätt', href: '#stockholms-skargard' },
-                { label: '🟡 Medel', href: '#hoga-kusten' },
-                { label: '🔴 Krävande', href: '#hoga-kusten' },
-                { label: '☀️ Heldag', href: '#stockholms-skargard' },
-                { label: '🌿 Naturreservat', href: '#stockholms-skargard' },
-              ].map(chip => (
+              {([
+                { icon: 'map',      label: 'Nära Stockholm', href: '#stockholms-skargard' },
+                { icon: 'ship',     label: 'Utan bil',       href: '#stockholms-skargard' },
+                { icon: 'users',    label: 'Barnvänligt',    href: '#stockholms-skargard' },
+                { icon: 'waves',    label: 'Med bad',        href: '#stockholms-skargard' },
+                { icon: 'utensils', label: 'Med krog',       href: '#bohuslan' },
+                { icon: 'heart',    label: 'Hundvänligt',    href: '#stockholms-skargard' },
+                { dot: '#3f9d5a',   label: 'Lätt',           href: '#stockholms-skargard' },
+                { dot: '#d6a318',   label: 'Medel',          href: '#hoga-kusten' },
+                { dot: '#c4462f',   label: 'Krävande',       href: '#hoga-kusten' },
+                { icon: 'sun',      label: 'Heldag',         href: '#stockholms-skargard' },
+                { icon: 'leaf',     label: 'Naturreservat',  href: '#stockholms-skargard' },
+              ] as { icon?: IconName; dot?: string; label: string; href: string }[]).map(chip => (
                 <a
                   key={chip.label}
                   href={chip.href}
@@ -351,8 +354,18 @@ export default function VandringPage() {
                     textDecoration: 'none',
                     whiteSpace: 'nowrap',
                     border: '1px solid var(--surface-3)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
                   }}
                 >
+                  {chip.icon && <Icon name={chip.icon} size={13} stroke={1.9} />}
+                  {chip.dot && (
+                    <span aria-hidden="true" style={{
+                      width: 8, height: 8, borderRadius: '50%',
+                      background: chip.dot, flexShrink: 0,
+                    }} />
+                  )}
                   {chip.label}
                 </a>
               ))}

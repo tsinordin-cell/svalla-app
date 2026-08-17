@@ -14,7 +14,7 @@ import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app
 import EmailSignup from '@/components/EmailSignup'
 import ShareButton from '@/components/ShareButton'
 import InlineFeedbackButton from '@/components/InlineFeedbackButton'
-import Icon from '@/components/Icon'
+import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import DepartureWidget from '@/components/DepartureWidget'
 import LastBoatPanel from '@/components/LastBoatPanel'
@@ -616,7 +616,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Om ön */}
  <section style={{ marginBottom: 36 }}>
- <SectionHeader icon="📖" title={`Om ${island.name}`} />
+ <SectionHeader icon="book" title={`Om ${island.name}`} />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
  {island.description.map((para, i) => (
  <p key={i} style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.75, margin: 0 }}>{para}</p>
@@ -644,7 +644,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Aktiviteter */}
  {island.activities.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="🎯" title="Se & Göra" />
+ <SectionHeader icon="target" title="Se & Göra" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
@@ -682,7 +682,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Restauranger */}
  {island.restaurants.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="" title="Mat & Dryck" />
+ <SectionHeader icon="utensils" title="Mat & Dryck" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {island.restaurants.map(r => (
  <div key={r.name} style={{
@@ -772,7 +772,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Boende */}
  {island.accommodation.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="🛏" title="Boende" />
+ <SectionHeader icon="bed" title="Boende" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
@@ -813,7 +813,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Ta sig dit */}
  {island.getting_there.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="" title="Ta sig dit" />
+ <SectionHeader icon="map" title="Ta sig dit" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {island.getting_there.map(t => (
  <div key={t.method} style={{
@@ -866,7 +866,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Hamnar */}
  {island.harbors.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="" title="Hamnar & Service" />
+ <SectionHeader icon="anchor" title="Hamnar & Service" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
@@ -919,7 +919,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Tips */}
  {island.tips.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="💡" title="Tips från oss" />
+ <SectionHeader icon="lightbulb" title="Tips från oss" />
  <div style={{
  background: 'linear-gradient(135deg, rgba(30,92,130,0.06) 0%, rgba(45,125,138,0.06) 100%)',
  borderRadius: 16,
@@ -957,7 +957,7 @@ export default async function IslandPage({ params }: Props) {
  if (matchingActivities.length === 0) return null
  return (
  <section style={{ marginBottom: 36 }}>
- <SectionHeader icon="✦" title="Vad du kan göra här" />
+ <SectionHeader icon="sparkles" title="Vad du kan göra här" />
  <div style={{
  display: 'flex', flexWrap: 'wrap', gap: 8,
  }}>
@@ -982,7 +982,7 @@ export default async function IslandPage({ params }: Props) {
 
    {/* Utforska mer om ön — intern länkning till bad, komma-dit, med-barn */}
    <section style={{ marginBottom: 36 }}>
-    <SectionHeader icon="✦" title={`Mer om ${island.name}`} />
+    <SectionHeader icon="binoculars" title={`Mer om ${island.name}`} />
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12 }}>
      <Link href={`/o/${slug}/bad`} style={{ textDecoration: 'none' }}>
       <div style={{
@@ -1053,7 +1053,7 @@ export default async function IslandPage({ params }: Props) {
    {/* Related islands */}
  {relatedIslands.length > 0 && (
  <section style={{ marginBottom: 0 }}>
- <SectionHeader icon="" title="Besök också" />
+ <SectionHeader icon="pin" title="Besök också" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
@@ -1096,7 +1096,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Guider om ön — intern länkning till /guider/[slug] (220 artiklar) */}
  {guideLinks.length > 0 && (
   <section style={{ marginBottom: 36 }}>
-   <SectionHeader icon="📖" title={`Guider om ${island.name}`} />
+   <SectionHeader icon="book" title={`Guider om ${island.name}`} />
    <div style={{
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
@@ -1130,7 +1130,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Guider om ön — intern länkning till bloggartiklar */}
  {island.blogLinks && island.blogLinks.length > 0 && (
   <section style={{ marginBottom: 36 }}>
-   <SectionHeader icon="📖" title={`Guider om ${island.name}`} />
+   <SectionHeader icon="book" title={`Guider om ${island.name}`} />
    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
     {island.blogLinks.map(link => (
      <Link
@@ -1341,21 +1341,12 @@ export default async function IslandPage({ params }: Props) {
  )
 }
 
-// Mappa de få emojis vi använder direkt på sektion-headers till IconName.
-// (Resten av appen använder emojiToIcon från lib.)
-const HEADER_ICON_MAP: Record<string, import('@/components/Icon').IconName> = {
- '📖': 'mail', // Om-sektion
- '🎯': 'target', // Se & Göra
- '': 'utensils',
- '🛏': 'bed',
- '': 'map',
- '': 'anchor',
- '💡': 'star',
- '✦': 'star',
-}
 
-function SectionHeader({ icon, title }: { icon: string; title: string }) {
- const iconName = HEADER_ICON_MAP[icon] ?? 'compass'
+function SectionHeader({ icon, title }: { icon: IconName; title: string }) {
+ // Tar ett IconName direkt. Har lag tidigare HEADER_ICON_MAP - kodbasens
+ // fjarde ikontabell - och den hade tappat emojin i tre nycklar, vilket gav
+ // fyra sektioner samma ankare. Ett typat props-varde kan inte tappas tyst.
+ const iconName = icon
  return (
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
  <span style={{

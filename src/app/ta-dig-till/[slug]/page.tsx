@@ -151,7 +151,7 @@ export default async function TaDigTillPage({ params }: Props) {
                 <Icon name="clock" size={14} stroke={2} />{tm.from_city_min} min från city
               </span>
               <span style={{ background: 'rgba(255,255,255,0.2)', color: 'var(--white)', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                <Icon name="sailboat" size={14} stroke={2} />{tm.operator}
+                <Icon name="ship" size={14} stroke={2} />{tm.operator}
               </span>
             </div>
           )}
@@ -192,7 +192,7 @@ export default async function TaDigTillPage({ params }: Props) {
         {tm?.car_parking && (
           <section style={{ marginBottom: 40, background: 'var(--surface-2)', borderRadius: 14, padding: '20px 22px' }}>
             <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Icon name="map" size={18} stroke={2} />Parkering &amp; biltrafik
+              <Icon name="parking" size={18} stroke={2} />Parkering &amp; biltrafik
             </h2>
             <p style={{ fontSize: 15, color: 'var(--ink-muted)', margin: 0, lineHeight: 1.7 }}>{tm.car_parking}</p>
           </section>

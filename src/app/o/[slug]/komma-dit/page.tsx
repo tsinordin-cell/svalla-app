@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -142,7 +144,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
                   border: '1px solid rgba(10,123,140,0.08)',
                   display: 'flex', gap: 16, alignItems: 'flex-start',
                 }}>
-                  <span style={{ fontSize: 26, flexShrink: 0, marginTop: 2 }}>{t.icon}</span>
+                  <span style={{ flexShrink: 0, marginTop: 2, color: 'var(--sea)', display: 'inline-flex' }}>
+                    <Icon name={emojiToIcon(t.icon)} size={24} stroke={1.7} />
+                  </span>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' as const }}>
                       <span style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{t.method}</span>
