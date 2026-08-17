@@ -193,7 +193,40 @@ export default function SparaPage() {
   // ── Check for crash recovery on mount ─────────────────────────────────────
   useEffect(() => {
     const snap = loadTripSnapshot()
-    if (snap) setRecoverySnap(snap)
+    if (snap) { setRecoverySnap(snap); return }
+    // Stromning steg 3 (beslut A): ingen lokal snapshot - men servern kan ha
+    // en aktiv tur (status='active' satts vid start sedan #163). Da gar
+    // recovery aven efter rensad lagring, annan webblasare eller >8 h.
+    // Aldre an 48 h raknas som overgiven och stadas bort - samma semantik
+    // som localStorage-snapshotens 8-timmarsutgang, fast pa serversidan.
+    void (async () => {
+      try {
+        const { data: active } = await supabase
+          .from('trips')
+          .select('id, boat_type, started_at')
+          .eq('status', 'active')
+          .order('started_at', { ascending: false })
+          .limit(1)
+        const t = active?.[0]
+        if (!t?.id || !t.started_at) return
+        const ageMs = Date.now() - new Date(t.started_at).getTime()
+        if (ageMs > 48 * 3600_000) {
+          await supabase.from('gps_points').delete().eq('trip_id', t.id)
+          await supabase.from('stops').delete().eq('trip_id', t.id)
+          await supabase.from('trips').delete().eq('id', t.id)
+          return
+        }
+        setRecoverySnap({
+          v: 3,
+          savedAt: new Date().toISOString(),
+          startedAt: t.started_at,
+          boatType: t.boat_type ?? 'segelbat',
+          phase: 'tracking',
+          elapsed: Math.max(0, Math.floor(ageMs / 1000)),
+          tripId: t.id,
+        })
+      } catch { /* tyst - ingen recovery ar samma lage som fore stromningen */ }
+    })()
   }, [])
 
   // ── Navigation guard — varna vid försök att lämna sidan under aktiv spårning ──
@@ -470,6 +503,11 @@ export default function SparaPage() {
     const boat = overrideBoat ?? boatType
     if (!boat) return
     haptic(200)
+    // Ren buffert: punkter fran en tidigare (slangd/kraschad) tur far inte
+    // folja med in i den nya via 30-sekunderssynken.
+    void getPendingPoints()
+      .then(p => p.length ? clearPoints(p.map(x => x.key)) : undefined)
+      .catch(() => {})
     startTimeRef.current = new Date()
     lastGpsPtRef.current = null
     anomalyCountRef.current = 0
@@ -576,8 +614,24 @@ export default function SparaPage() {
   }
 
   function handleDiscardRecovery() {
+    const snap = recoverySnap
     clearTripSnapshot()
     setRecoverySnap(null)
+    // Stada bufferten - kvarlamnade punkter skulle annars synkas in i
+    // nasta tur av 30-sekunderssynken.
+    void getPendingPoints()
+      .then(p => p.length ? clearPoints(p.map(x => x.key)) : undefined)
+      .catch(() => {})
+    if (snap?.tripId) {
+      const tid = snap.tripId
+      void (async () => {
+        try {
+          await supabase.from('gps_points').delete().eq('trip_id', tid)
+          await supabase.from('stops').delete().eq('trip_id', tid)
+          await supabase.from('trips').delete().eq('id', tid)
+        } catch { /* tyst */ }
+      })()
+    }
   }
 
   function handlePause() {
