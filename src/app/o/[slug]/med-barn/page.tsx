@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -163,8 +164,8 @@ export default async function IslandMedBarnPage({ params }: Props) {
                   boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
                   border: '1px solid rgba(10,123,140,0.07)',
                 }}>
-                  <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--txt)', marginBottom: 6 }}>
-                    {a.icon} {a.name}
+                  <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--txt)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Icon name={emojiToIcon(a.icon)} size={16} stroke={1.9} />{a.name}
                   </div>
                   <div style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.6 }}>{a.desc}</div>
                 </div>
@@ -211,7 +212,9 @@ export default async function IslandMedBarnPage({ params }: Props) {
                   border: '1px solid rgba(10,123,140,0.07)',
                   display: 'flex', gap: 14, alignItems: 'flex-start',
                 }}>
-                  <span style={{ fontSize: 22, flexShrink: 0 }}>{t.icon}</span>
+                  <span style={{ flexShrink: 0, color: 'var(--sea)', display: 'inline-flex', marginTop: 1 }}>
+                    <Icon name={emojiToIcon(t.icon)} size={22} stroke={1.7} />
+                  </span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 14, color: 'var(--txt)', marginBottom: 4 }}>
                       {t.method}{t.time ? ` — ${t.time}` : ''}
