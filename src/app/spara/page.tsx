@@ -484,6 +484,34 @@ export default function SparaPage() {
     void acquireWakeLock()
     // Initial snapshot
     snapshotTrip({ boatType: boat, phase: 'tracking', startedAt: new Date().toISOString(), elapsed: 0, tripId: null })
+    // Stromning steg 1 (beslut A 2026-08-16): skapa trip-raden redan vid
+    // start med status='active', sa att punkterna kan synkas till servern
+    // UNDER turen - dor telefonen ar sparet inte borta. Misslyckas skapandet
+    // (offline, kall auth) forblir tripId null och sparflodet gor insert
+    // precis som fore stromningen. image '' pga NOT NULL; sparet skriver om.
+    // Aktiva turer syns inte for andra: trips SELECT-policy slappar bara
+    // igenom status='done' (eller agaren sjalv).
+    void (async () => {
+      try {
+        const { data: { user } } = await supabase.auth.getUser()
+        if (!user) return
+        await supabase.from('users').upsert({
+          id: user.id,
+          username: deriveUsername(user.user_metadata?.username || user.email),
+          email: user.email ?? '',
+        }, { onConflict: 'id', ignoreDuplicates: true })
+        const { data: t } = await supabase.from('trips').insert({
+          user_id: user.id,
+          boat_type: boat,
+          status: 'active',
+          image: '',
+          distance: 0,
+          duration: 0,
+          started_at: startTimeRef.current?.toISOString() ?? new Date().toISOString(),
+        }).select('id').single()
+        if (t?.id) setTripId(t.id)
+      } catch { /* offline - sparflodet skapar raden istallet */ }
+    })()
   }
 
   async function handleRecoverTrip() {
@@ -678,8 +706,11 @@ export default function SparaPage() {
     // This removes GPS teleport jumps and micro-jitter before saving to DB
     const routePoints = buildRoutePoints(points)
 
-    // Insert trip
-    const { data: trip, error: tripErr } = await supabase.from('trips').insert({
+    // Spara turen. Stromning (beslut A): raden skapades vid start med
+    // status='active' - da UPPDATERAR vi den och satter status='done'.
+    // Saknas tripId (start-insert misslyckades, t.ex. offline) gors insert,
+    // exakt som fore stromningen.
+    const tripFields = {
       user_id:              user.id,
       boat_type:            boatType,
       distance:             parseFloat(dist.toFixed(2)),
@@ -694,7 +725,11 @@ export default function SparaPage() {
       caption:              caption.trim() || null,
       location_name:        locationName.trim() || null,
       route_points:         routePoints,
-    }).select('id').single()
+      status:               'done',
+    }
+    const { data: trip, error: tripErr } = tripId
+      ? await supabase.from('trips').update(tripFields).eq('id', tripId).select('id').single()
+      : await supabase.from('trips').insert(tripFields).select('id').single()
 
     if (tripErr || !trip) {
       setErr('Kunde inte spara turen: ' + (tripErr?.message ?? 'okänt fel'))
@@ -715,6 +750,10 @@ export default function SparaPage() {
     if (taggedCrew.length > 0) {
       await Promise.all(taggedCrew.map(u => addTripTag(supabase, user.id, tid, u.id)))
     }
+
+    // Stromning: punkter kan redan ligga pa servern (synkade under turen).
+    // Radera och skriv om hela sparet - idempotent, inga dubbletter.
+    await supabase.from('gps_points').delete().eq('trip_id', tid)
 
     // Batch insert GPS points (500 at a time) med error-check och retry
     for (let i = 0; i < points.length; i += 500) {

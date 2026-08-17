@@ -24,7 +24,7 @@ export async function GET() {
   const [restaurants, users, trips, visitedIslands] = await Promise.all([
     service.from('restaurants').select('*', { count: 'exact', head: true }),
     service.from('users').select('*', { count: 'exact', head: true }),
-    service.from('trips').select('*', { count: 'exact', head: true }),
+    service.from('trips').select('*', { count: 'exact', head: true }).eq('status', 'done'),
     service.from('visited_islands').select('*', { count: 'exact', head: true }),
   ])
 
