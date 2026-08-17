@@ -428,7 +428,18 @@ export default function SparaPage() {
 
         setPoints(prev => {
           const next = [...prev, pt]
-          setStops(detectStops(next))
+          // TVA fixar i en rad (bugg 3 + pausraderingen, 2026-08-16):
+          // 1. detectStops returnerar BARA auto-stopp. Att ersatta hela
+          //    stops-arrayen raderade varje pauspost sa fort forsta punkten
+          //    kom efter resume - pauser nadde aldrig sparningen eller
+          //    tidslinjen pa /tur. Pausposterna maste behallas.
+          // 2. Full omdetektering VAR punkt ar O(n) per punkt = O(n2) over
+          //    turen. Var 5:e punkt racker - stoppgransen ar 2 minuter,
+          //    5 sekunders fordrojning ar irrelevant. Slutlig detektering
+          //    gors i handleStop.
+          if (next.length % 5 === 0) {
+            setStops(prev2 => [...prev2.filter(s => s.type === 'pause'), ...detectStops(next)])
+          }
 
           // Movement state (every 5 points to avoid thrashing)
           if (next.length % 5 === 0) {
@@ -676,6 +687,9 @@ export default function SparaPage() {
     releaseWakeLock()
     kalmanRef.current?.reset()
     clearTripSnapshot()
+    // Slutlig stoppdetektering pa hela sparet - 5-punktsthrottlingen i
+    // punkthanteraren kan ligga nagra sekunder efter.
+    setStops(prev => [...prev.filter(s => s.type === 'pause'), ...detectStops(pointsRef.current)])
     setPhase('done')
   }
 
