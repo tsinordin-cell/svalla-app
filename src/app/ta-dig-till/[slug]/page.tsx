@@ -191,8 +191,8 @@ export default async function TaDigTillPage({ params }: Props) {
         {/* Parkering & praktisk info */}
         {tm?.car_parking && (
           <section style={{ marginBottom: 40, background: 'var(--surface-2)', borderRadius: 14, padding: '20px 22px' }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 10 }}>
-              🚗 Parkering & biltrafik
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Icon name="map" size={18} stroke={2} />Parkering &amp; biltrafik
             </h2>
             <p style={{ fontSize: 15, color: 'var(--ink-muted)', margin: 0, lineHeight: 1.7 }}>{tm.car_parking}</p>
           </section>
@@ -201,8 +201,8 @@ export default async function TaDigTillPage({ params }: Props) {
         {/* Avgångstider */}
         {tm && (
           <section style={{ marginBottom: 40 }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 12 }}>
-              📅 Avgångsfrekvens
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--ink)', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Icon name="calendar" size={18} stroke={2} />Avgångsfrekvens
             </h2>
             <div style={{ background: 'var(--white)', borderRadius: 12, padding: '16px 20px', border: '1px solid var(--surface-3)' }}>
               <div style={{ fontSize: 15, color: 'var(--ink)', marginBottom: 6 }}>
