@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import RelatedPosts from '@/components/RelatedPosts'
 import { getRelatedPosts } from '@/lib/postRelated'
-import Icon, { type IconName } from '@/components/Icon'
+import Icon from '@/components/Icon'
 import EmailSignup from '@/components/EmailSignup'
 import CopyLinkButton from '@/components/CopyLinkButton'
 
@@ -2243,6 +2243,7 @@ const REGION_LINKS: Record<string, { href: string; label: string }[]> = {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 import React from 'react'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export default async function BloggPostPage({
  params,
@@ -2352,7 +2353,7 @@ export default async function BloggPostPage({
    background: 'rgba(255,255,255,0.14)', color: '#fff',
    flexShrink: 0,
  }}>
- <Icon name={post.emoji as IconName} size={24} stroke={1.7} />
+ <Icon name={emojiToIcon(post.emoji)} size={24} stroke={1.7} />
  </span>
  {post.title}
  </h1>

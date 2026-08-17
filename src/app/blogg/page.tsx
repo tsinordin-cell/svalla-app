@@ -1,8 +1,9 @@
-import Icon, { type IconName } from '@/components/Icon'
+import Icon from '@/components/Icon'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { POSTS_META } from './posts-data'
 import SvallaLogo from '@/components/SvallaLogo'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Skärgårdsbloggen',
@@ -112,7 +113,7 @@ export default function BloggPage() {
                   minHeight: 120,
                   color: '#ffffff',
                 }}>
-                  <Icon name={post.emoji as IconName} size={56} stroke={1.6} />
+                  <Icon name={emojiToIcon(post.emoji)} size={56} stroke={1.6} />
                   {/* Category badge pinned top-right */}
                   <span style={{
                     position: 'absolute', top: 10, right: 10,

@@ -7,6 +7,7 @@ import RouteMap from '@/components/RouteMapClient'
 import Icon from '@/components/Icon'
 import BookmarkButton from '@/components/BookmarkButton'
 import type { Metadata } from 'next'
+import { emojiToIcon } from '@/lib/iconMap'
 
 // ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
 // läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
@@ -183,9 +184,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
           margin: '16px 0',
         }}>
           {[
-            { icon: '⏱', label: 'Tid', value: t.duration_label },
+            { icon: 'clock', label: 'Tid', value: t.duration_label },
             { icon: 'sailboat', label: 'Transport', value: t.transport_types.join(', ') },
-            { icon: '📅', label: 'Säsong', value: t.season },
+            { icon: 'calendar', label: 'Säsong', value: t.season },
           ].map(({ icon, label, value }) => (
             <div key={label} style={{
               background: 'var(--white)', borderRadius: 14,
@@ -193,7 +194,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
               padding: '11px 12px', textAlign: 'center',
               boxShadow: '0 1px 4px rgba(0,45,60,0.05)',
             }}>
-              <div style={{ fontSize: 18, marginBottom: 3 }}>{icon}</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 3, color: 'var(--sea)' }}>
+                <Icon name={emojiToIcon(icon)} size={18} stroke={1.8} />
+              </div>
               <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt)', lineHeight: 1.2 }}>{value}</div>
               <div style={{ fontSize: 10, color: 'var(--txt3)', fontWeight: 500, marginTop: 2 }}>{label}</div>
             </div>
@@ -220,7 +223,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Passar för */}
         {t.best_for.length > 0 && (
-          <Section title="👥 Passar för">
+          <Section title={<><Icon name="users" size={13} stroke={2} />Passar för</>}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {t.best_for.map((b) => (
                 <span key={b} style={{
@@ -313,7 +316,9 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
             border: '1.5px solid rgba(201,110,42,0.2)',
           }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--acc)', marginBottom: 5, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              💡 Insider-tip
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Icon name="star" size={14} stroke={2} />Insider-tip
+              </span>
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>{t.insider_tip}</p>
           </div>
@@ -321,7 +326,7 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
 
         {/* Log suggestions */}
         {t.log_suggestions.length > 0 && (
-          <Section title="📝 Tur-logg – tänk på det här">
+          <Section title={<><Icon name="edit" size={13} stroke={2} />Tur-logg – tänk på det här</>}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {t.log_suggestions.map((s) => (
                 <div key={s} style={{
@@ -412,14 +417,14 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
   )
 }
 
-function Section({ title, children }: { title: string; children: ReactNode }) {
+function Section({ title, children }: { title: ReactNode; children: ReactNode }) {
   return (
     <div style={{ margin: '16px 0' }}>
       <h2 style={{
         fontSize: 12, fontWeight: 600, color: 'var(--txt3)',
         textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: 10,
       }}>
-        {title}
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>{title}</span>
       </h2>
       {children}
     </div>

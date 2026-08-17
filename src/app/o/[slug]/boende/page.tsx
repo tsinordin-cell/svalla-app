@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -197,7 +199,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 18, flexShrink: 0,
                   }}>
-                    {t.icon}
+                    <Icon name={emojiToIcon(t.icon)} size={20} stroke={1.8} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: 3 }}>
@@ -209,8 +211,9 @@ export default async function IslandAccommodationPage({ params }: Props) {
                         <span style={{
                           fontSize: 11, fontWeight: 700, color: '#1e5c82',
                           background: 'rgba(30,92,130,0.09)', padding: '2px 8px', borderRadius: 10,
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
                         }}>
-                          ⏱ {t.time}
+                          <Icon name="clock" size={11} stroke={2} />{t.time}
                         </span>
                       )}
                     </div>

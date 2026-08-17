@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -145,11 +147,11 @@ export default async function TaDigTillPage({ params }: Props) {
           </p>
           {tm && (
             <div style={{ display: 'flex', gap: 12, marginTop: 20, flexWrap: 'wrap' }}>
-              <span style={{ background: 'rgba(255,255,255,0.2)', color: 'var(--white)', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600 }}>
-                ⏱ {tm.from_city_min} min från city
+              <span style={{ background: 'rgba(255,255,255,0.2)', color: 'var(--white)', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Icon name="clock" size={14} stroke={2} />{tm.from_city_min} min från city
               </span>
-              <span style={{ background: 'rgba(255,255,255,0.2)', color: 'var(--white)', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600 }}>
-                ⛴ {tm.operator}
+              <span style={{ background: 'rgba(255,255,255,0.2)', color: 'var(--white)', borderRadius: 20, padding: '6px 14px', fontSize: 14, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Icon name="sailboat" size={14} stroke={2} />{tm.operator}
               </span>
             </div>
           )}
@@ -166,14 +168,18 @@ export default async function TaDigTillPage({ params }: Props) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {gt.map((t, i) => (
               <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px 22px', border: '1px solid var(--surface-3)', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <span style={{ fontSize: 28, flexShrink: 0 }}>{t.icon}</span>
+                <span style={{ flexShrink: 0, color: 'var(--sea)', display: 'inline-flex' }}>
+                  <Icon name={emojiToIcon(t.icon)} size={26} stroke={1.7} />
+                </span>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--ink)', marginBottom: 4 }}>
                     {t.method}
                     {t.from && <span style={{ fontWeight: 400, color: 'var(--ink-muted)', fontSize: 14 }}> från {t.from}</span>}
                   </div>
                   {t.time && (
-                    <div style={{ fontSize: 13, color: 'var(--sea)', fontWeight: 600, marginBottom: 6 }}>⏱ {t.time}</div>
+                    <div style={{ fontSize: 13, color: 'var(--sea)', fontWeight: 600, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 5 }}>
+                      <Icon name="clock" size={13} stroke={2} />{t.time}
+                    </div>
                   )}
                   <p style={{ fontSize: 14, color: 'var(--ink-muted)', margin: 0, lineHeight: 1.6 }}>{t.desc}</p>
                 </div>

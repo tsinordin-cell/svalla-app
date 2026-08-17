@@ -293,7 +293,8 @@ export default async function DagSlugPage({ params }: Props) {
                         <span style={{
                           fontSize: 11, fontWeight: 700, color: 'var(--sea)',
                           background: 'rgba(45,125,138,0.1)', padding: '2px 8px', borderRadius: 10,
-                        }}>⏱ {t.time}</span>
+                          display: 'inline-flex', alignItems: 'center', gap: 4,
+                        }}><Icon name="clock" size={11} stroke={2} />{t.time}</span>
                       )}
                     </div>
                     <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0, lineHeight: 1.6 }}>{t.desc}</p>
