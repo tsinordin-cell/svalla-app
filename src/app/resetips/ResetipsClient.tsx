@@ -320,7 +320,9 @@ export default function ResetipsClient() {
                   borderTop: '1px solid var(--border, rgba(0,0,0,0.07))',
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 }}>
-                  <span style={{ fontSize: 12, color: 'var(--txt3, #888)' }}>⏱ {trip.duration}</span>
+                  <span style={{ fontSize: 12, color: 'var(--txt3, #888)', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                    <Icon name="clock" size={12} stroke={2} />{trip.duration}
+                  </span>
                   <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--sea, #0a7b8c)' }}>Se rutten →</span>
                 </div>
               </article>

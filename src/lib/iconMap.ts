@@ -172,6 +172,21 @@ const MAP: Record<string, IconName> = {
   '👨‍👩‍👧‍👦': 'users',
   '👨‍👩‍👧': 'users',
 
+  // Kompletteringar 2026-08-17 (uppgiftskortet "Ta bort emojis", sista vandan).
+  // 📅 saknades helt — emojiToIcon('📅') föll tillbaka på 'compass' fastän
+  // ikonen 'calendar' funnits hela tiden.
+  '📅': 'calendar',
+  '🗓': 'calendar',
+  '📆': 'calendar',
+  '👥': 'users',
+  '📝': 'edit',
+
+  // Blogg-korten: tva poster var "migrerade" till ikonnamn som aldrig funnits
+  // i Icon.tsx. Ovriga 27 tomma ikoner pa /blogg berodde inte pa luckor har —
+  // mappningarna fanns redan — utan pa att renderaren castade forbi dem. Se p42.
+  'island': 'palmtree',
+  'rock':   'mountain',
+
   // Övrigt
   '💡': 'star',
 }
