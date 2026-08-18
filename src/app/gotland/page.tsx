@@ -46,7 +46,7 @@ const ITEMS: LandingItem[] = [
  href: '/upptack',
  },
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Krogar & restauranger',
  description: 'Gotland har blommat ut matmässigt — från saffranspannkaka på krogen till mat gjord på gotländska råvaror.',
  href: '/krogar-och-mat',

@@ -46,7 +46,7 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=vinterbad',
  },
  {
- icon: '️',
+ icon: 'beach',
  title: 'Sandstränder',
  description: 'Björnö, Trosa, Dalarö och fler — breda sandstränder med parkering och badvakter.',
  href: '/platser?kategori=sandstrand',

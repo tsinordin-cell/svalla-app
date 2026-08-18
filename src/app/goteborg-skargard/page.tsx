@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '️',
+    icon: 'map',
     title: 'Karta över Göteborg',
     description: 'Verifierade platser i Göteborgs skärgård — naturhamnar, bryggor, krogar och sjömackar.',
     href: '/upptack',
@@ -50,7 +50,7 @@ const ITEMS: LandingItem[] = [
     href: '/platser?kategori=naturhamn',
   },
   {
-    icon: '️',
+    icon: 'utensils',
     title: 'Krogar och kajer',
     description: 'Från fiskrökerier på Donsö till exklusiv sjömat i Marstrand och Smögen.',
     href: '/krogar-och-mat',

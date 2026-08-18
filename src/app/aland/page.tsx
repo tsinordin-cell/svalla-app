@@ -51,13 +51,13 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=naturhamn',
  },
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Åländska krogar',
  description: 'Från Mariehamns restauranger till gamla handelshus ute i skärgården — unikt utbud med finsk-svensk karaktär.',
  href: '/krogar-och-mat',
  },
  {
- icon: '️',
+ icon: 'map',
  title: 'Skärgårdshavets karta',
  description: 'Navigera bland öar, grunder och smala sund med Svallas interaktiva karta och inbyggda GPS-spårning.',
  href: '/upptack',
