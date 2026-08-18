@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState, useCallback, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
+import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
@@ -928,11 +929,8 @@ export default function TeamDashboardClient({
               fontFamily: 'var(--font-display), var(--font-display-fallback)',
               display: 'flex', alignItems: 'center', gap: 8,
             }}>
-              <span style={{
-                width: 26, height: 26, borderRadius: 7, background: 'rgba(255,255,255,0.14)',
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 13,
-              }}>⛵</span>
-              Svalla Team
+              <SvallaLogo height={20} />
+              <span style={{ opacity: 0.92 }}>Team</span>
             </div>
             <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>Delad arbetsyta</div>
           </div>
