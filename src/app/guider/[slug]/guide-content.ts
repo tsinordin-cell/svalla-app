@@ -7637,6 +7637,7 @@ export function getGuideContent(slug: string): string {
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Östgötatrafiken kör Skärgårdslinjen från tre avgångspunkter: <strong>Arkösund</strong>, <strong>Tyrislöt</strong> och <strong>Fyrudden</strong>. Därifrån trafikeras öarna Harstena, Ämtö, Gräsmarö och Kopparholmarna.</p>
+<!-- KÄLLA: soderkoping.se/turism/sankt-anna-skargard/batturer-sankta-anna/ (hämtad 2026-08-18) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är beställningstrafik – du måste boka senast kl 18:00 dagen innan: <strong>0771-71 10 20</strong>. Utan bokning avgår ingen båt. Trafiken är aktiv under sommarsäsongen (kontrollera aktuella datum hos Östgötatrafiken).</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Arkösund tar du dig med tåg till Norrköping och sedan buss – eller med bil längs väg 209 söderifrån.</p>
 
