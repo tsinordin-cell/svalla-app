@@ -7705,6 +7705,174 @@ export function getGuideContent(slug: string): string {
 </ul>
 `,
 
+  // ── Batch N: Gap-analys-guider 2026-08-18 ────────────────────────────────
+
+  'island-hopping-stockholms-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Med 30 000 öar är Stockholms skärgård skapad för island hopping. Waxholmsbolagets reguljära linjer förbinder tiotals öar, och det enda du behöver är en biljett – ingen båtlicens, inget eget fartyg. Du kliver av på en ö, utforskar, tar nästa båt vidare.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Här är tre rutter anpassade efter restid och ambition – en dagstur, en helg och en tre-dagarsresa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Dagsrutten – tre öar på en dag</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Perfekt för den som vill få en bild av skärgården utan att boka boende. Startpunkt Strömkajen eller Strandvägen i Stockholm.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Fjäderholmarna → Vaxholm → Grinda</h3>
+<p><strong>Fjäderholmarna</strong> är närmast – ca 25 min från Strandvägen. Ta den tidiga båten, hantverksgallerier, räkfrukost vid bryggan, sedan vidare till Vaxholm med pendelbåt 83/83X (ca 55 min från Strömkajen) eller Waxholmsbolaget. Vaxholm är en riktig stad med fästning, fiskeläge och restauranger. Avsluta med en stund på Grinda – barnvänlig sandvik och tyst natur – innan sista båten hem.</p>
+<p><em>Tips: Planera tidtabellen på waxholmsbolaget.se innan du åker – mellanstoppstiderna varierar per dag och säsong.</em></p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Helgrutten – två öar och övernattning</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Med en övernattning öppnar sig skärgårdens verkliga rytm. Morgonljuset på vattnet, kvällsstillheten och frukost vid bryggan – det är en annan upplevelse än dagsturens.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Grinda → Sandhamn</h3>
+<p><strong>Lördag:</strong> Ta Waxholmsbolaget linje 11 från Strömkajen till Grinda (ca 1 h 45 min). Check in på Grinda Wärdshus, bada i sandviken, middag med havsvy. <strong>Söndag:</strong> Vidare med Waxholmsbåt till Sandhamn via Stavsnäs – skärgårdens mest kända destination med seglarkultur och klassiska krogar. Hem på kvällen.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tre-dagarsrutten – in i ytterskärgården</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Den klassiska island-hop-rutten som tar dig från innerskärgården ut mot det öppna havet.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Fjäderholmarna → Grinda → Sandhamn → Utö</h3>
+<p><strong>Dag 1 – Fjäderholmarna:</strong> Nära, lättillgänglig, perfekt startö. Räkfrukost och skärgårdsatmosfär redan 25 minuter från Stockholm. <strong>Dag 2 – Grinda:</strong> Bada, vandra, äta på Wärdshuset. Övrig tid på kobbar i närheten. <strong>Dag 3 – Sandhamn eller Utö:</strong> Sandhamn för seglarliv och kvällskrog. Utö (södra skärgården, nås via Nynäshamn) för spa, cykling och historisk gruvruin. Hem via Nynäshamn och pendeltåg om du väljer Utö.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Waxholmsbolaget ingår i SL – SL Access-kort fungerar för innerskärgårdens linjer</li>
+  <li>Yttre skärgården (Sandhamn, Utö) kräver Waxholmsbolagets egna biljetter</li>
+  <li>Boka boende i förväg – Grinda Wärdshus och Sandhamns Värdshus fyller snabbt sommartid</li>
+  <li>Ta med matsäck för mellanstopparna – båtrestaurangerna är begränsade</li>
+  <li>Kolla alltid aktuell tidtabell på waxholmsbolaget.se – tider varierar säsong</li>
+</ul>
+`,
+
+  'hund-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Att ta med hunden till skärgården är en av sommarsäsongens bästa upplevelser – för dig och för hunden. Klippor att utforska, saltluft och öar utan bilstraffik. Men det kräver lite mer planering än en hundfri resa.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Waxholmsbolaget och hund</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hund på koppel är välkommen på Waxholmsbolagets linjer. Hunden behöver ingen biljett men ska hållas kopplad under hela resan. På fullsatta sommarbåtar kan det vara trångt – välj aktern för mer utrymme. På de flesta linjer finns ingen officiell begränsning på hundar ombord, men kontrollera på waxholmsbolaget.se om du är osäker på din specifika linje.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Regler i naturreservat</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Många av skärgårdens öar är naturreservat med koppeltvång under fåglarnas häckningssäsong. Reglerna varierar per reservat och år – kontrollera alltid Länsstyrelsens skyltning och information på länsstyrelsen.se för det specifika reservat du planerar att besöka. En lös hund kan allvarligt störa häckande fåglar och utsätta dig för böter.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Generellt råd: håll hunden kopplad på alla öar under våren och försommaren.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öarna med hund</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Vaxholm – stadskänsla utan stress</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är den enklaste hundvänliga öen – det är en stad med gator, restauranger och hundvänliga kaféer. Du kan gå promenad längs kajen, utforska det gamla stadskärnan och äta lunch med hunden vid ett uteservering. Nästan inga restriktioner utanför naturreservaten i närheten.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Möja – bilfri och lugn</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Möja är bilfri, vilket gör den perfekt för hundar. Inga bilar, öppna marker och lantliga vägar att promenera på. Möja Krog är hundsympatisk med uteservering. Planera för en halvdags- eller heldagstur – resan dit tar ca 2,5 timmar från Strömkajen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Arholma – norra skärgårdens pärlor</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra Roslagen har sandstrand, STF-vandrarhem och öppna marker. Det är en av skärgårdens mest genuina öar – långt från turisttrycket. Kontrollera reservatsreglerna för specifika delar av ön.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Packlista för hunden</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Tillräckligt med vatten – saltvatten duger inte och sötvatten är begränsat på öarna</li>
+  <li>Extra koppel (ett kan gå förlorat eller gå sönder)</li>
+  <li>Hundpåsar – på öarna finns sällan papperskorgar nära</li>
+  <li>Solskydd för hundar med kort päls vid längre utevistelse i full sol</li>
+  <li>Flytväst om hunden följer med i kajak eller liten båt</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa säsongen</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sensommar och tidig höst (augusti–september) är idealiskt. Fåglarna är klara med häckningen, reservatsrestriktionerna lättar, och öarna är mindre trängda. Hunden kan bada i det fortfarande varma vattnet och promenera på öar som under juli hade köer vid bryggan.</p>
+`,
+
+  'barnfamilj-stockholms-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Stockholms skärgård med barn kräver inte lång planering eller dyr utrustning. Rätt öar är fantastiska för barn – grunt vatten, gratis natur och en frihet som nästan försvunnit på fastlandet.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa öarna för barnfamiljer</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">1. Fjäderholmarna – enklaste starten</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ca 25 min med direktbåt från Strandvägen eller Nybrokajen. Ingår i SL-systemet, så du behöver inte köpa separat biljett för innerstadszoner. Hantverksgallerier, en av Stockholms bästa skärgårdsrestauranger och klippbad vid vattnet. Barnvänligt utan att vara en nöjespark.</p>
+<p><em>Bäst för:</em> Dagstur, yngre barn, de som vill testa skärgården utan lång resa.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">2. Vaxholm – skärgårdsstad med service</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm är en riktig stad – glassbutiker, restauranger, toaletter och Waxholms fästning att utforska. Pendelbåt 83/83X från Strömkajen, ca 55 min. Barnen kan utforska fästningen (öppen sommartid) och bada vid de grunda vikarna norr om stan. Ingen känsla av "fastna på en ö" – alltid nästa båt hem.</p>
+<p><em>Bäst för:</em> Dagsutflykt, barn som vill ha lite mer att göra, familjer som vill ha mat och glass säkrat.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">3. Grinda – sandstrand och övernattning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda är den klassiska familjeön – sandvik, lugnt vatten och Grinda Wärdshus med mat och stugor att hyra. Waxholmsbolaget linje 11 från Strömkajen, ca 1 h 45 min. Ön är liten nog att gå runt på en förmiddag och stor nog att ha egna stränder. Perfekt för det första riktiga skärgårdsövernattandet.</p>
+<p><em>Bäst för:</em> Övernattning, barn från ca 4 år, familjer som vill bada och vandra.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">4. Arholma – norra skärgårdens hemlighet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i norra Roslagen har sandstrand, en bekräftad lekplats och STF-vandrarhem. Det är en genuint lugn ö utan turisttryck. Resan är längre – räkna med ca 3 timmar från Stockholm – men belöningen är en ö som är folktom jämfört med mellansk ärgårdens sommarmyller.</p>
+<p><em>Bäst för:</em> Familjer som vill ha "äkta" skärgård, barn som gillar sand och utrymme.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktiska råd</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Ta med matsäck – priserna på öarna är höga sommartid och mat för hela familjen kostar snabbt en hel del</li>
+  <li>Flytvästar för barn som inte simmar – det är ditt eget ansvar, öarna har inga livräddare</li>
+  <li>Boka boende minst 3–4 veckor i förväg för sommarveckorna – Grinda fyllser snabbt</li>
+  <li>Välj morgonturer – de tidiga båtarna är lugnare och barnen orkar bättre i hettan med god marginal</li>
+  <li>Ha alltid en karta eller nedladdad karta på mobilen – mobilnätet är svagt på många öar</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vilken ålder passar vad?</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>0–3 år:</strong> Fjäderholmarna eller Vaxholm. Kort resa, strollar funkar och det finns service nära. <strong>4–8 år:</strong> Grinda eller Vaxholm, gärna med övernattning. Sandstrand och utrymme att springa fritt. <strong>9+ år:</strong> Sandhamn, Utö och längre rutter – barnen är redo för längre turer och mer av öns natur.</p>
+`,
+
+  'romantisk-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns platser i världen som är gjorda för romantik. Stockholms skärgård är en av dem. Salt luft, solnedgångar som sträcker sig länge, bord med havsvy och öar utan biltrafikens ljud. En helg i skärgården för er två är svår att slå.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">De bästa öarna för en romantisk helg</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Grinda – intim skärgårdsstämning</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Grinda Wärdshus är känt för sin romantiska miljö. Det gamla trävärdshuset har en terrass med direkt havsvy och ett kök med fokus på lokala råvaror. Ön är liten nog för att ni ska ha strandar och kobbar för er själva. Inga bilar, inget buller – bara vattnet och skärgårdsljuset. Boka en av Wärdshussets stugor för den fullständiga upplevelsen.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Utö – spa, historia och cykling</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Utö Värdshus är ett av Stockholms skärgårds finaste boenden – historiskt, välskött och med spa. Hyra cykel och utforska öns gruvruin och långa sandstränder är ett perfekt par-program. Utö Havsbastu med kvällsdopp i Östersjön är en upplevelse få glömmer. Öppen helårsresort som fungerar från tidig vår till sen höst.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Sandhamn – kvällsatmosfär och seglarliv</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sandhamn är skärgårdens mest levande ö på kvällarna. Sandhamns Värdshus och Seglarhotellet skapar en stämning av lyx och avkoppling. Gå längs Trouville-stranden, ta ett glas vin på terrassen mot Sandhamns naturhamn och njut av en ö som aldrig riktigt somnar på sommaren. Yttre skärgården – vinden känns mer oceansk här.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Smögen (Bohuslän) – solnedgång på klipporna</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Om ni vill byta Östersjö mot Västerhavet är Smögen på Bohusläns kust oöverträffat för romantik. Klipporna väster om byn ger en av Sveriges vackraste solnedgångar. Smögen Fisk och de lokala krogarna erbjuder hummer och havskräftor direkt från fiskebryggan. Nå Smögen med bil från Göteborg eller tåg till Kungshamn.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad gör en helg romantisk?</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Boka stugan eller rummet med havsvy – betala mer om du måste, det är värt det</li>
+  <li>Välj en ö med max ett par restauranger – det skapar fokus och intimitet</li>
+  <li>Ta med champagne om din favoritbutik inte finns på ön</li>
+  <li>Planera ett havsbastu-pass på kvällen – det är den bästa skärgårdsupplevelsen som finns</li>
+  <li>Gå upp tidigt en morgon och se soluppgången på klipporna – inga turister, bara ni och havet</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Boka i god tid</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">De romantiska öarna är eftertraktade. Grinda Wärdshus, Utö Värdshus och Sandhamns Värdshus tar bokningar direkt via deras hemsidor. Boka helger i maj–september minst 3–4 veckor i förväg. Veckodagar är mer tillgängliga och ger en ännu lugnare upplevelse.</p>
+`,
+
+  'var-stockholms-skargard-2027': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Vår i Stockholms skärgård är en av naturens bästa hemligheter. Inga turister, fåglarna är tillbaka och öarna ser ut som de alltid borde ha sett ut – orörda och tysta. April och maj är månader som de flesta missar.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Varför våren är bättre än sommaren</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">I juli är Sandhamn fullt. I maj är det tomt. Samma klippor, samma vatten, samma vackra solnedgång – men bara ni. Priserna är lägre, restaurangerna har tid att servera dig ordentligt och öarna andas på ett annat sätt. Fågellivet är på topp i april och maj – ejdrar, havsörnar och tärnor anländer och skärgårdens kobbar fylls med liv.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Öar att besöka på våren</h2>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Fjäderholmarna – öppen tidigt</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjäderholmarna startar sin säsong tidigt och är en av de första öarna att öppna för besökare. Ca 25 min från Strandvägen. Hantverksgallerierna och restaurangen öppnar successivt under våren – kolla aktuella öppettider på fjaderholmarna.se.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Vaxholm – alltid öppet</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vaxholm fungerar som stad året runt. Kaféer, restauranger och Waxholms fästning är tillgängliga även tidigt på våren. Perfekt för en vårdag när du inte vill satsa på en ö som kanske inte har öppet än.</p>
+
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:24px 0 10px">Arholma – fågelskådning i norra skärgården</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Arholma i Roslagen är en av Sveriges bästa fågelskådningsplatser under vårflyttningen. Havsörnar, ejdrar och sträckfåglar passerar i stora mängder under april–maj. STF-vandrarhemmet kan ha vårstart – kontrollera arholma.se för aktuell öppning.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad kan man göra i skärgården på våren?</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li><strong>Fågelskådning</strong> – april–maj är årets bästa period. Ta kikare.</li>
+  <li><strong>Vandring</strong> – öarna utan sommarens fotgängartrafik. Lövspricket i slutet av maj är ett unikt skådespel.</li>
+  <li><strong>Havsbastu</strong> – kombinationen av vår-frisk luft och havsbastu är oslagbar. Boka Utö Havsbastu eller Arholma STF.</li>
+  <li><strong>Tidig räkfrukost</strong> – fisket är igång men krogarna är halvtomma. Njut med ro.</li>
+  <li><strong>Fotografering</strong> – vårljuset är mjukt och guld. Fåglarna är i rörelse. Öarna är rena och orörda.</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vad man ska tänka på</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör ett reducerat schema i april och maj jämfört med högsäsongen. Kontrollera aktuell tidtabell på waxholmsbolaget.se innan du planerar resan – populära öar kan ha enstaka avgångar per dag under tidig vår. Kolla alltid att restauranger och boenden är öppna – många startar säsongen i maj eller till midsommar.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Ta med varma kläder. April i skärgården kan vara strålande sol ena stunden och kall havsblåst nästa. Lager-på-lager är rätt approach.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vår vs. sommar – en snabb jämförelse</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vår:</strong> Inga köer, lägre priser, fågellivet på topp, frisk luft, inga mygg. Kräver mer planering kring vad som är öppet. <strong>Sommar:</strong> Fullt utbud av service, bad i varmt vatten, men trängda bryggor och högsäsongspriser. Välj vår om du söker stillhet och natur. Välj sommar om du vill ha service och sol garanterat.</p>
+`,
+
   }
 
   const content = guides[slug]
