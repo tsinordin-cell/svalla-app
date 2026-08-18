@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'map',
  title: 'Karta över Västerhavet',
  description: 'Alla verifierade platser längs Kattegatt och Skagerrak — gästhamnar, naturhamnar, sjömackar och kustrestauranger.',
  href: '/upptack',

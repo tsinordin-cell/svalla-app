@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'map',
  title: 'Karta över Bohuslän',
  description: 'Alla verifierade platser längs västkusten — gästhamnar, naturhamnar, hummerkrogar och sjömackar.',
  href: '/upptack',

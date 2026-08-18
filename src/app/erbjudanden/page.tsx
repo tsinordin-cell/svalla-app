@@ -40,7 +40,7 @@ const ITEMS: LandingItem[] = [
  href: '/aktiviteter',
  },
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Middags-paket',
  description: 'Krogkvällar med färjetransport t.o.r, ibland med övernattning — populärt för födelsedagar.',
  href: '/krogar-och-mat',

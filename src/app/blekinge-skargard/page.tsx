@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'map',
  title: 'Karta över Blekinge',
  description: 'Verifierade platser längs Blekinges kust — naturhamnar, bryggor, krogar och sjömackar.',
  href: '/upptack',
@@ -51,7 +51,7 @@ const ITEMS: LandingItem[] = [
  href: '/platser?kategori=naturhamn',
  },
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Krogar längs kusten',
  description: 'Från fiskrökerier i Ronneby skärgård till vällagad mat i Karlskronas restauranger.',
  href: '/krogar-och-mat',

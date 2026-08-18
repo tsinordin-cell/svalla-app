@@ -145,6 +145,15 @@ const PATHS = {
   pan:          '<path d="M3 11h13v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M16 11h3a2.5 2.5 0 0 0 0-5h-1.5"/><path d="m6.5 8 1-2.2"/><path d="m10.5 8 1-2.2"/>',
   climb:        '<circle cx="14" cy="4" r="2"/><path d="M5 21v-5l4-3 1-4"/><path d="m10 9 4 2 1 4"/><path d="M14 15v6"/><path d="m10 9-4 1"/><path d="M15 11h4"/>',
   toast:        '<path d="M5 3h6l-1.2 6a2 2 0 0 1-3.6 0z"/><path d="M8 12v8"/><path d="M5.5 20h5"/><path d="M13 3h6l-1.2 6a2 2 0 0 1-3.6 0z"/><path d="M16 12v8"/><path d="M13.5 20h5"/>',
+  // Tillagda 2026-08-18: begrepp som foll tillbaka pa kompassen
+  bread:        '<path d="M5 9.5C5 6.5 8 5 12 5s7 1.5 7 4.5c0 1.3-.9 2-2 2v6.5a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-6.5c-1.1 0-2-.7-2-2z"/><path d="M10 11.5v7"/><path d="M14 11.5v7"/>',
+  droplet:      '<path d="M12 2.7 6.8 8.5a7.2 7.2 0 1 0 10.4 0z"/>',
+  iceCream:     '<path d="M8 10a4 4 0 0 1 8 0z"/><path d="M7.5 10h9L12 21z"/><path d="M6.5 13.5h11"/>',
+  iceCube:      '<path d="M12 2.5 21 7v10l-9 4.5L3 17V7z"/><path d="M12 2.5V21.5"/><path d="M3 7l9 4.7L21 7"/>',
+  lifebuoy:     '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="m5.6 5.6 3.9 3.9"/><path d="m14.5 14.5 3.9 3.9"/><path d="m18.4 5.6-3.9 3.9"/><path d="m9.5 14.5-3.9 3.9"/>',
+  plane:        '<path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a1 1 0 0 0-1 1.6l5.4 4-2.4 3.2-2.6-.6a.8.8 0 0 0-.8 1.3l2.6 2.6a.8.8 0 0 0 1.3-.2l.6-2.6 3.2-2.4 4 5.4a1 1 0 0 0 1.6-1z"/>',
+  train:        '<rect x="4" y="3" width="16" height="13" rx="2"/><path d="M4 10h16"/><circle cx="8.5" cy="13" r=".8"/><circle cx="15.5" cy="13" r=".8"/><path d="m6 21 2-3"/><path d="m18 21-2-3"/><path d="M7 21h10"/>',
+  wine:         '<path d="M8 3h8l-.7 6.2a3.4 3.4 0 0 1-6.6 0z"/><path d="M12 12.6V20"/><path d="M8.5 20h7"/>',
 } as const
 
 export type IconName = keyof typeof PATHS
