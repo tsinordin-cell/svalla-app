@@ -7628,6 +7628,82 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:15px;line-height:1.7;color:var(--txt2)"><strong>Bästa säsong:</strong> Bastun är faktiskt bäst på hösten — september och oktober. Lufttemperaturen är lägre (kontrasterna blir mer dramatiska), havet är fortfarande relativt varmt (14–17°C i september) och du delar knappt platsen med någon annan. Sommarbastun funkar fint — men höst&shy;bastun i skärgården är en annan nivå.</p>
 `,
 
+  // ── Batch K: Geografiska gap-guider ───────────────────────────────────────
+
+  'ostgota-skargard': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">De flesta vet att Sverige har en skärgård. Färre vet att Östergötland har en av de vackraste. Sankt Anna och Gryt är namn som kustens folk känner till men som sällan syns i resetidningarna. Tusentals öar, smala sund och ett Östersjövatten som är klarare än stockholmarens – utan att dela det med en enda Cinderellabåt.</p>
+
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är en skärgård utan massturism. Den når du med ett telefonsamtal och en liten båt från Arkösund.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur du tar dig dit</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Östgötatrafiken kör Skärgårdslinjen från tre avgångspunkter: <strong>Arkösund</strong>, <strong>Tyrislöt</strong> och <strong>Fyrudden</strong>. Därifrån trafikeras öarna Harstena, Ämtö, Gräsmarö och Kopparholmarna.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Det är beställningstrafik – du måste boka senast kl 18:00 dagen innan: <strong>0771-71 10 20</strong>. Utan bokning avgår ingen båt. Trafiken är aktiv under sommarsäsongen (kontrollera aktuella datum hos Östgötatrafiken).</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Arkösund tar du dig med tåg till Norrköping och sedan buss – eller med bil längs väg 209 söderifrån.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Harstena – den levande ön</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Harstena är Östgöta skärgårds mest aktiva ö och den naturliga basen för ett besök. Här finns:</p>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Restaurang och café</li>
+  <li>Bageri</li>
+  <li>Rökt fisk och glass</li>
+  <li>Kajakhyrning</li>
+  <li>Gästplatser för båt</li>
+  <li>Stugor att hyra</li>
+</ul>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Harstena fungerar bra som dagsutflykt men är ännu bättre som övernattning – därifrån kan du paddla ut till kringliggande öar i lugn och ro.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sankt Anna och Gryts skärgård</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Sankt Anna och Gryt bildar tillsammans ett av Europas mest invecklade skärgårdslandskap. Tusentals öar, skär och kobbar sträcker sig utmed Östergötlands ostkust med naturhamnar och fria tältplatser längs hela kusten.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kajakpaddling är det naturliga sättet att utforska det här landskapet. Sunden är skyddade, vattnet klart och avstånden lagom. Det finns etablerade paddlingsrutter längs hela skärgårdsremsan.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Jämfört med Stockholms skärgård</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Klarare vatten – Östersjön är grundare och klarare här än i norra Stockholm</li>
+  <li>Inga köer – inga Cinderellabåtar, inga fullbokade bryggor i juli</li>
+  <li>Beställningstrafik i stället för regelbundna linjer – kräver planering men ger mer kontroll</li>
+  <li>Fler naturreservat och friluftsöar utan kommersiell service</li>
+  <li>Längre resa från Stockholm (ca 2,5 tim med bil till Arkösund)</li>
+</ul>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Praktisk info</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <!-- KÄLLA: soderkoping.se/turism/sankta-anna-skargard/batturer-sankta-anna/ och ostgotatrafiken.se/sa-reser-du-med-oss/bestallningstrafik/skargardstrafik/ -->
+  <li>Boka Skärgårdslinjen: 0771-71 10 20, senast 18:00 dagen innan</li>
+  <li>Avgångspunkter: Arkösund, Tyrislöt, Fyrudden</li>
+  <li>Öar med trafik: Harstena, Ämtö, Gräsmarö, Kopparholmarna</li>
+  <li>Trafiken är säsongsbetonad – kontrollera aktuella datum hos Östgötatrafiken</li>
+  <li>Kajakhyrning finns på Harstena</li>
+</ul>
+`,
+
+  'nattkryssning-skargarden': `
+<p style="font-size:17px;line-height:1.8;color:var(--txt2)">Det finns en speciell stämning i att vara ute på vattnet när Stockholm slagit igen sina kontorsdörrar. Brygglamporna tänds, kvällssolen drar långa skuggor över vattnet och middagen serveras utan stress om sista tåget hem. Det är kvällsskärgård – och den är undervärderad.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Sista båten – längre ute än du tror</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Waxholmsbolaget kör senare än de flesta tror under sommarsäsongen. Det innebär att du kan ta middagen på en skärgårdsrestaurang och fortfarande hinna hem med reguljär trafik.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kontrollera alltid aktuell tidtabell på <strong>waxholmsbolaget.se</strong> – avgångstiderna varierar per linje och säsong och uppdateras varje år.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Cinderellabåten</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Cinderellabåtarna kör kvällstrafik till populära öar under högsäsong. Avgångarna från Strömkajen är ett etablerat alternativ för den som vill ut i skärgården på kvällen utan att chartra privat båt. Kolla Cinderellabåtarnas hemsida för aktuell tidtabell och bokningsinfo.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Chartrade kvällskryssningar</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Flera aktörer erbjuder chartrade middagskryssningar och kvällsturer från Strömkajen och Strandvägen. Dessa passar grupper som vill ha en privat upplevelse med middag ombord. Boka i god tid – juli är fulltecknat.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa öarna för kvällsmiddag</h2>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Sandhamn:</strong> Sandhamns Värdshus serverar middag till sent på kvällen. Sista båten hem är sen under högsäsong – kontrollera tidtabellen.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Grinda:</strong> Grinda Wärdshus har kvällsservering sommartid. Lugnt och vackert i solnedgången.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Vaxholm:</strong> Nära och lättillgängligt hela säsongen. Flera restauranger öppna till 21–22.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Fjäderholmarna:</strong> 25 minuter från Strandvägen – perfekt för kvällsmiddag utan komplicerad planering.</p>
+
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Tips</h2>
+<ul style="font-size:16px;line-height:2;color:var(--txt2);padding-left:20px">
+  <li>Kontrollera alltid sista båten <em>innan</em> du bokar middag</li>
+  <li>Ta med ett extra lager kläder – kvällar ute på vattnet är svalare än på land</li>
+  <li>Boka restaurang i förväg – kvällssittningarna är ofta fullbokade i juli</li>
+  <li>Midsommarafton har specialavgångar – kolla separat tidtabell</li>
+</ul>
+`,
+
   }
 
   const content = guides[slug]
