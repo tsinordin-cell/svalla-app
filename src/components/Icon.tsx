@@ -141,6 +141,10 @@ const PATHS = {
   tree:        '<path d="M12 2 5 12h4l-4 6h14l-4-6h4z"/><path d="M12 18v4"/>',
   walk:        '<circle cx="13" cy="4" r="2"/><path d="m9.5 21 2.5-6 1-3-1-4"/><path d="m12 12 3 2 1.5 4"/><path d="m8 11 4-3"/><path d="M15 21h-2"/>',
   wheat:       '<path d="M12 22V8"/><path d="M12 12c-2.2-.8-3.2-2.8-2.2-4.8 2.2.2 3.4 2 2.2 4.8z"/><path d="M12 12c2.2-.8 3.2-2.8 2.2-4.8-2.2.2-3.4 2-2.2 4.8z"/><path d="M12 17c-2.2-.8-3.2-2.8-2.2-4.8 2.2.2 3.4 2 2.2 4.8z"/><path d="M12 17c2.2-.8 3.2-2.8 2.2-4.8-2.2.2-3.4 2-2.2 4.8z"/>',
+  // Tillagda 2026-08-17: teambuilding-aktiviteterna
+  pan:          '<path d="M3 11h13v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M16 11h3a2.5 2.5 0 0 0 0-5h-1.5"/><path d="m6.5 8 1-2.2"/><path d="m10.5 8 1-2.2"/>',
+  climb:        '<circle cx="14" cy="4" r="2"/><path d="M5 21v-5l4-3 1-4"/><path d="m10 9 4 2 1 4"/><path d="M14 15v6"/><path d="m10 9-4 1"/><path d="M15 11h4"/>',
+  toast:        '<path d="M5 3h6l-1.2 6a2 2 0 0 1-3.6 0z"/><path d="M8 12v8"/><path d="M5.5 20h5"/><path d="M13 3h6l-1.2 6a2 2 0 0 1-3.6 0z"/><path d="M16 12v8"/><path d="M13.5 20h5"/>',
 } as const
 
 export type IconName = keyof typeof PATHS

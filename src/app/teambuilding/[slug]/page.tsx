@@ -104,7 +104,9 @@ export default async function TeambuildingSlugPage({ params }: Props) {
               {page.activities.map((a, i) => (
                 <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '20px', border: '1px solid var(--surface-3)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
-                    <span style={{ fontSize: 24 }}>{a.icon}</span>
+                    <span style={{ display: 'inline-flex', color: 'var(--sea)', flexShrink: 0 }}>
+                      <Icon name={emojiToIcon(a.icon)} size={24} stroke={1.8} />
+                    </span>
                     <div>
                       <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--ink)' }}>{a.name}</div>
                       <div style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600, marginTop: 2 }}>{a.priceRange}</div>
@@ -128,8 +130,12 @@ export default async function TeambuildingSlugPage({ params }: Props) {
                 <div key={i} style={{ background: 'var(--white)', borderRadius: 14, padding: '18px', border: '1px solid var(--surface-3)' }}>
                   <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>{v.name}</div>
                   <div style={{ fontSize: 11, color: 'var(--sea)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>{v.type}</div>
-                  <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 4 }}>📍 {v.location}</div>
-                  <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 10 }}>👥 {v.capacity}</div>
+                  <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 5 }}>
+                    <Icon name="pin" size={12} stroke={2} />{v.location}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--ink-muted)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 5 }}>
+                    <Icon name="users" size={12} stroke={2} />{v.capacity}
+                  </div>
                   <p style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.6, margin: 0 }}>{v.description}</p>
                 </div>
               ))}
