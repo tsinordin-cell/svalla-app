@@ -169,6 +169,11 @@ const MAP: Record<string, IconName> = {
   '📬': 'mail',
   '🤝': 'handshake',
 
+  // Mat, aktivitet, tillstallning (teambuilding-datan)
+  '🍳': 'pan',
+  '🧗': 'climb',
+  '🥂': 'toast',
+
   // Personer
   '👥': 'users',
   '👨‍👩‍👧‍👦': 'users',

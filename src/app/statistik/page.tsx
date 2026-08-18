@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Icon from '@/components/Icon'
+import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
   title: 'Statistik om Stockholms skärgård — fakta, siffror och data',
@@ -203,7 +205,9 @@ export default function StatistikPage() {
         {SECTIONS.map(section => (
           <section key={section.title} style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-              <span style={{ fontSize: 22 }}>{section.icon}</span>
+              <span style={{ display: 'inline-flex', color: 'var(--sea)' }}>
+                <Icon name={emojiToIcon(section.icon)} size={20} stroke={1.8} />
+              </span>
               <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--txt)', margin: 0 }}>{section.title}</h2>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
