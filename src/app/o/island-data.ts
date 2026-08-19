@@ -3119,24 +3119,28 @@ export const ISLANDS: Island[] = [
     emoji: '🎨',
     tagline: 'Bruno Liljefors ö — naturreservat och jaktstuga i ytterskärgården',
     description: [
-      'Bullerö är en 0,78 km² stor ö i Stockholms mellersta ytterskärgård, sydost om Sandhamn. Konstnären Bruno Liljefors (1860–1939), en av Sveriges mest framstående djurmålare, köpte ön 1908 och byggde en jaktstuga och ateljé på dess östra sida, där han hämtade motiv direkt ur den vilda skärgårdsnaturen.',
-      'Bullerö med kringliggande öar köptes av staten 1967 och är idag ett naturreservat som förvaltas av Skärgårdsstiftelsen. Bruno Liljefors hus inrymmer Naturvårdsverkets Naturum med en utställning om skärgårdens natur och kultur, och visar reproduktioner av Liljefors målningar.',
+      // KÄLLA: bullero.se/sv/om-bullero/museum/ — "Jaktstugan uppfördes 1909 av målaren Bruno Liljefors" (hämtad 2026-08-19)
+      'Bullerö är en 0,78 km² stor ö i Stockholms mellersta ytterskärgård, sydost om Sandhamn. Konstnären Bruno Liljefors (1860–1939), en av Sveriges mest framstående djurmålare, köpte ön 1908 och byggde en jaktstuga och ateljé på dess östra sida 1909, där han hämtade motiv direkt ur den vilda skärgårdsnaturen.',
+      // KÄLLA: bullero.se — sidfot/kontakt visar Länsstyrelsen Stockholm (logga + bullero.stockholm@lansstyrelsen.se), inte Skärgårdsstiftelsen (hämtad 2026-08-19)
+      'Bullerö med kringliggande öar köptes av staten 1967 och är idag ett naturreservat som förvaltas av Länsstyrelsen Stockholm. Bruno Liljefors jaktstuga inrymmer ett litet museum om konstnärens liv och verk, öppet under sommarsäsongen.',
       'Bullerö passar för dagsturer och kortare övernattning för seglare och naturälskare som vill se den verkliga ytterskärgården och en del av svensk konsthistoria på samma plats.',
     ],
-    facts: { travel_time: '3–4 h med segelbåt från Stavsnäs', character: 'Naturreservat, ytterskärgård, konsthistorisk plats', season: 'Maj–september', best_for: 'Naturum-besök, fågelskådning, segling, kulturhistoria' },
+    facts: { travel_time: '3–4 h med segelbåt från Stavsnäs', character: 'Naturreservat, ytterskärgård, konsthistorisk plats', season: 'Maj–september', best_for: 'Museibesök, fågelskådning, segling, kulturhistoria' },
     activities: [
-      { icon: '🎨', name: 'Bruno Liljefors jaktstuga', desc: 'Konstnärens hus från 1908 — idag Naturvårdsverkets Naturum med utställning om skärgården.' },
+      { icon: '🎨', name: 'Bruno Liljefors jaktstuga', desc: 'Konstnärens hus, uppfört 1909 — idag ett litet museum om hans liv och konstnärskap.' },
       { icon: '🦅', name: 'Fågelliv', desc: 'Havsörn, ejder, vigg och olika sjöfågel häckar i området.' },
       { icon: '🚶', name: 'Vandringsstigar', desc: 'Markerade leder genom naturreservatets klipplandskap.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Skärgårdsbåt / egen båt', from: 'Stavsnäs', time: '2–3 h', desc: 'Waxholmsbolaget angör Bullerö under säsong — kontrollera tidtabell. Eller egen båt från Stavsnäs/Sandhamn.', icon: '⛴' }],
-    harbors: [{ name: 'Bullerö gästhamn', desc: 'Begränsade platser vid naturreservatets brygga — Skärgårdsstiftelsen förvaltar.', spots: 15 }],
+    // KÄLLA: bullero.se/sv/turtrafiken/ — "För att komma till Bullerö res med Bullerölinjen" (uppdaterad 2026-02-12, hämtad 2026-08-19)
+    getting_there: [{ method: 'Båttaxi (Bullerölinjen)', from: 'Stavsnäs', time: 'Se battaxi.se', desc: 'Bullerö nås med Bullerölinjen, inte Waxholmsbolaget. Boka plats och se aktuell tidtabell på battaxi.se, eller res med egen båt.', icon: '⛴' }],
+    // KÄLLA: bullero.se/sv/stora-bryggan/ — bryggan i Hemviken är reserverad för personal/entreprenörer; fritidsbåtar hänvisas till klipporna eller Bodkobbens två bryggor, förtöjning max 2 dygn (uppdaterad 2025-09-26, hämtad 2026-08-19)
+    harbors: [{ name: 'Bodkobbens bryggor', desc: 'Huvudbryggan i Hemviken är reserverad för personal och entreprenörer. Fritidsbåtar hänvisas till klipporna eller Bodkobbens två bryggor — förtöjning tillåten max två dygn i sträck.' }],
     restaurants: [],
-    tips: ['Naturum är öppet sommarsäsong — kontrollera öppettider innan besök.', 'Respektera fågelskyddet under häckningstid (april–juli).', 'Kombinera gärna med ett besök på Sandhamn på samma seglingstur.'],
+    tips: ['Museet i jaktstugan är öppet sommarsäsong — kontrollera öppettider innan besök.', 'Respektera fågelskyddet under häckningstid (april–juli).', 'Kombinera gärna med ett besök på Sandhamn på samma seglingstur.'],
     related: ['nattaro', 'gallno', 'sandhamn'],
     tags: ['naturreservat', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
-    did_you_know: 'Konstnären Bruno Liljefors — en av Sveriges mest kända djurmålare och guldmedaljör vid Stockholmsutställningen 1897 — köpte Bullerö 1908. Idag är hans jaktstuga och ateljé Naturum, och flera av hans mest kända motiv föddes i skärgårdsnaturen runt ön.',
+    did_you_know: 'Konstnären Bruno Liljefors — en av Sveriges mest kända djurmålare och guldmedaljör vid Stockholmsutställningen 1897 — köpte Bullerö 1908 och byggde sin jaktstuga och ateljé året efter. Idag rymmer huset ett litet museum om honom, och flera av hans mest kända motiv föddes i skärgårdsnaturen runt ön.',
     seasonal: {
       open: 'Maj–Oktober',
       peak: 'Juli',
