@@ -925,12 +925,18 @@ export default function TeamDashboardClient({
         <aside className="svt-sidebar">
           <div style={{ padding: '4px 10px 18px' }}>
             <div style={{
-              fontSize: 17, fontWeight: 700, color: '#fff',
-              fontFamily: 'var(--font-display), var(--font-display-fallback)',
-              display: 'flex', alignItems: 'center', gap: 8,
+              color: '#fff',
+              display: 'flex', alignItems: 'center',
             }}>
-              <SvallaLogo height={20} />
-              <span style={{ opacity: 0.92 }}>Team</span>
+              <SvallaLogo height={19} />
+              <span style={{
+                marginLeft: -7, paddingLeft: 11,
+                borderLeft: '1px solid rgba(255,255,255,0.22)',
+                fontFamily: "'Georgia','Times New Roman',serif",
+                fontSize: 12.5, fontWeight: 600, letterSpacing: 2.5,
+                textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)',
+                lineHeight: 1,
+              }}>Team</span>
             </div>
             <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>Delad arbetsyta</div>
           </div>
