@@ -306,7 +306,7 @@ function Card({ children, accent }: { children: React.ReactNode; accent?: string
   return (
     <div
       style={{
-        background: 'var(--card-bg)',
+        background: 'var(--surface-1)',
         border: '1px solid var(--surface-3)',
         borderLeft: accent ? `4px solid ${accent}` : '1px solid var(--surface-3)',
         borderRadius: 10,
@@ -434,7 +434,7 @@ REGLER SOM ALDRIG BRYTS:
                 style={{
                   flex: 1,
                   cursor: 'pointer',
-                  background: active ? sc.color : 'var(--card-bg)',
+                  background: active ? sc.color : 'var(--surface-1)',
                   color: active ? '#fff' : 'var(--txt2)',
                   border: `1px solid ${active ? sc.color : 'var(--surface-3)'}`,
                   borderRadius: 10,
