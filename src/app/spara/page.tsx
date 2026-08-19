@@ -31,6 +31,11 @@ const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: f
 
 type Phase = 'setup' | 'tracking' | 'paused' | 'done'
 
+// En grans for orimlig fart, anvand overallt (falttest 19/8): tidigare
+// kastade isGpsAnomaly punkter over 45 kn medan visningen klippte vid 30 -
+// tva olika sanningar. 60 tacker RIB och racerbat med marginal.
+const SPEED_CEILING_KNOTS = 60
+
 // ── Haptic feedback ───────────────────────────────────────────────────────────
 function haptic(pattern: number | number[]) {
   if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
@@ -357,8 +362,7 @@ export default function SparaPage() {
         if (lastGpsPtRef.current) {
           if (isGpsAnomaly(
             lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
-            point.lat, point.lng, now
-          )) {
+            point.lat, point.lng, now, SPEED_CEILING_KNOTS)) {
             anomalyCountRef.current += 1
             setAnomalyCount(anomalyCountRef.current)
             return
@@ -401,12 +405,14 @@ export default function SparaPage() {
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
 
         // Hastighets-rensning — GPS Doppler ger ofta skräp i kall start och tätort.
-        // 1) Cap absolut tak till 30 knop (max realistiskt för segelbåt/snabb motorbåt;
-        //    avgångar därifrån är troligen anomalier).
+        // 1) Tak 60 knop (falttest 19/8: gamla taket 30 klippte verklig fart
+        //    till exakt 30,00 i bade snitt och topp; RIB/racerbatar gar 40-60).
+        //    Samma grans matas nu in i isGpsAnomaly sa grind och tak ar ETT
+        //    varde, inte tva olika sanningar (45 vs 30).
         // 2) Om accuracy är dåligt (>30m) — strunta i hastigheten, GPS är opålitlig.
         // 3) Median av senaste 3 punkter — eliminerar enstaka spikar utan att
         //    fördröja äkta accelerationer.
-        let cleanSpeed = Math.min(Math.max(speedKnots, 0), 30)
+        let cleanSpeed = Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)
         if (point.accuracy > 30) {
           cleanSpeed = 0  // dålig GPS = ingen hastighet visas, hellre tomt än fel
         } else {
@@ -611,8 +617,13 @@ export default function SparaPage() {
       }
     } catch { /* tyst */ }
 
-    // Restore elapsed time accounting for time since snapshot
-    const extraSec = Math.round((Date.now() - new Date(snap.savedAt).getTime()) / 1000)
+    // Falttest 19/8 (Tom): recovery adderade ALL vaggtid sedan snapshoten
+    // till elapsed - en tur pa 19 min visades som 18 h 47 min efter en natt
+    // med dod telefon. Dod tid ar inte sparningstid. Vi lagger hogst till
+    // 60 s (glappet vid en vanlig webblasarkrasch); allt darutover var
+    // telefonen av och ingen sparning skedde.
+    const extraSec = Math.min(
+      Math.round((Date.now() - new Date(snap.savedAt).getTime()) / 1000), 60)
     setElapsed(snap.elapsed + extraSec)
     setTripId(snap.tripId)
     setBoatType(snap.boatType)
