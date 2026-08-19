@@ -639,7 +639,13 @@ export function findSeaPath(
   if (result.path === null) {
     return [[startLat, startLng], [endLat, endLng]]
   }
-  return result.path
+  // Bevara exakta andpunkter: tiers snappar till narmaste nod/waypoint,
+  // men korridor-berakningen i planner.ts utgar fran exakt start och mal.
+  const path = [...result.path]
+  const first = path[0]!, last = path[path.length - 1]!
+  if (first[0] !== startLat || first[1] !== startLng) path.unshift([startLat, startLng])
+  if (last[0] !== endLat || last[1] !== endLng) path.push([endLat, endLng])
+  return path
 }
 
 /**
@@ -716,6 +722,16 @@ export function findSeaPathWithQuality(
   endLat: number,
   endLng: number,
 ): { path: Array<[number, number]> | null; quality: RouteQuality } {
+  // 0. Inlandsspärr (återinförd 2026-08-19): en punkt >5 km från närmsta
+  //    saltvattens-waypoint är genuint inland (insjö/fastland) — båtrutt är
+  //    fysiskt omöjlig. isNearShore skrevs för detta 2026-05-23 men blev
+  //    föräldralös när sista-utvägssteget lades till 2026-05-27; safety-
+  //    testerna (Tullinge → unavailable) har varit röda sedan dess.
+  //    Kustnära mål (<5 km) berörs INTE — de tas fortsatt av harbor-snap.
+  if (!isNearShore(startLat, startLng) || !isNearShore(endLat, endLng)) {
+    return { path: null, quality: 'unavailable' }
+  }
+
   // 1. Pre-computed — hand-validerad vattenrutt (garanterat säker)
   const precompFirst = lookupPrecomputed(startLat, startLng, endLat, endLng)
   if (precompFirst) return { path: precompFirst, quality: 'precomputed' }
@@ -736,14 +752,16 @@ export function findSeaPathWithQuality(
   const harborPath = findPathViaHarborSnap(startLat, startLng, endLat, endLng)
   if (harborPath) return { path: harborPath, quality: 'waypoint' }
 
-  // 5. Sista utväg — rak linje. Validerad mot land-mask via segmentCrossesLand
-  // (sample-based). Om någon mittpunkt är på land, returnerar vi ändå rak linje
-  // eftersom användaren bett om det och vi inte har en bättre lösning just nu.
-  // unavailable returneras ALDRIG.
-  return {
-    path: [[startLat, startLng], [endLat, endLng]],
-    quality: 'waypoint',
+  // 5. Sista utväg — rak linje, men BARA om den inte korsar land
+  //    (2026-08-19: tidigare returnerades linjen även när mittpunkter låg
+  //    på land, med kommentaren "unavailable returneras ALDRIG" — det bröt
+  //    säkerhetskontraktet från 2026-05-23. Hellre "ingen rutt" än en
+  //    linje över en ö.)
+  const straight: Array<[number, number]> = [[startLat, startLng], [endLat, endLng]]
+  if (validatePathLand(straight).ok) {
+    return { path: straight, quality: 'waypoint' }
   }
+  return { path: null, quality: 'unavailable' }
 }
 
 /**
