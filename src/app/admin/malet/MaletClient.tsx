@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  TRAFFIC_MONTHLY,
   REVENUE_YEARLY_SEK,
   COSTS_YEARLY_SEK,
   BOOKING_GMV_YEARLY,
@@ -18,6 +17,14 @@ type Props = {
   partners: number
   guides: number
   islands: number
+  /** Antal företagssidor vi redan har (restaurants-tabellen) */
+  places: number
+  /** Unika sessioner senaste 30 dygnen */
+  sessions: number
+  /** Sidvisningar senaste 30 dygnen */
+  pageviews: number
+  /** true = siffran kommer live från analytics_events */
+  isLiveTraffic: boolean
 }
 
 type ScenarioKey = 'bas' | 'utokad' | 'plattform'
@@ -28,12 +35,15 @@ const msek = (n: number) => (n / 1_000_000).toFixed(2).replace('.', ',') + ' MSE
 // ═══ Värderingsmodell ══════════════════════════════════════════════════════
 // Multiplar hämtade från marknadsdata 2026, se källor längst ner på sidan.
 
-function basRevenue(subs: number, partners: number, side: 'low' | 'high') {
+function basRevenue(subs: number, partners: number, sessions: number, side: 'low' | 'high') {
   const partnerRev = partners * PARTNER_AVG_YEARLY_SEK
   const newsRev = subs * (side === 'low' ? 15 : 45) // SEK/prenumerant/år
-  const rpm = side === 'low' ? 30 : 60 // SEK per 1 000 visningar, svensk trafik
-  const displayRev = ((TRAFFIC_MONTHLY * 2) / 1000) * rpm * 12
-  return { partnerRev, newsRev, displayRev, total: partnerRev + newsRev + displayRev }
+  // Under 50 000 sessioner/mån släpps vi inte in hos Mediavine/Raptive och
+  // är hänvisade till AdSense — därav den kraftigt lägre RPM:en.
+  const qualified = sessions >= 50_000
+  const rpm = qualified ? (side === 'low' ? 30 : 60) : (side === 'low' ? 8 : 20)
+  const displayRev = ((sessions * 2) / 1000) * rpm * 12
+  return { partnerRev, newsRev, displayRev, rpm, qualified, total: partnerRev + newsRev + displayRev }
 }
 
 function saasMultiple(arr: number, side: 'low' | 'high') {
@@ -42,8 +52,8 @@ function saasMultiple(arr: number, side: 'low' | 'high') {
   return side === 'low' ? 5.0 : 8.0
 }
 
-function valuation(scenario: ScenarioKey, subs: number, partners: number, side: 'low' | 'high') {
-  const base = basRevenue(subs, partners, side)
+function valuation(scenario: ScenarioKey, subs: number, partners: number, sessions: number, side: 'low' | 'high') {
+  const base = basRevenue(subs, partners, sessions, side)
   const profit = Math.max(0, base.total - COSTS_YEARLY_SEK)
 
   if (scenario === 'bas') {
@@ -121,7 +131,7 @@ function targetsFor(
 ): Target[] {
   if (scenario === 'bas') {
     return [
-      { label: 'Besök per månad', value: TRAFFIC_MONTHLY, target: 150_000 },
+      { label: 'Sessioner per månad', value: d.sessions, target: 150_000 },
       { label: 'E-postprenumeranter', value: d.subs, target: 10_000 },
       { label: 'Betalande partners', value: d.partners, target: 125 },
       { label: 'Registrerade användare', value: d.users, target: 25_000 },
@@ -314,11 +324,11 @@ export default function MaletClient(d: Props) {
   const [scenario, setScenario] = useState<ScenarioKey>('bas')
   const s = SCENARIOS[scenario]
 
-  const low = valuation(scenario, d.subs, d.partners, 'low')
-  const high = valuation(scenario, d.subs, d.partners, 'high')
+  const low = valuation(scenario, d.subs, d.partners, d.sessions, 'low')
+  const high = valuation(scenario, d.subs, d.partners, d.sessions, 'high')
 
-  const revLow = basRevenue(d.subs, d.partners, 'low')
-  const revHigh = basRevenue(d.subs, d.partners, 'high')
+  const revLow = basRevenue(d.subs, d.partners, d.sessions, 'low')
+  const revHigh = basRevenue(d.subs, d.partners, d.sessions, 'high')
   const profitLow = revLow.total - COSTS_YEARLY_SEK
   const profitHigh = revHigh.total - COSTS_YEARLY_SEK
 
@@ -343,8 +353,8 @@ NULÄGE:
 • Registrerade användare: ${d.users}
 • E-postprenumeranter: ${d.subs}
 • Betalande partners: ${d.partners}
-• Besök/mån: ${TRAFFIC_MONTHLY.toLocaleString('sv-SE')}
-• Guider: ${d.guides} · Öprofiler: ${d.islands}
+• Sessioner/mån: ${d.sessions.toLocaleString('sv-SE')} · Sidvisningar/mån: ${d.pageviews.toLocaleString('sv-SE')}
+• Guider: ${d.guides} · Öprofiler: ${d.islands} · Företagssidor: ${d.places}
 • Faktisk årsintäkt: ${kr(REVENUE_YEARLY_SEK)}
 
 DE TRE SCENARIERNA:
@@ -400,8 +410,15 @@ REGLER SOM ALDRIG BRYTS:
           </div>
           <div style={{ fontSize: 14, color: '#ffd966' }}>{headline}</div>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', marginTop: 10, lineHeight: 1.6 }}>
-            {d.users} användare · {d.subs} prenumeranter · {d.partners} betalande partners ·{' '}
-            {TRAFFIC_MONTHLY.toLocaleString('sv-SE')} besök/mån · {d.guides} guider · {d.islands} öprofiler
+            {d.sessions.toLocaleString('sv-SE')} sessioner/mån · {d.pageviews.toLocaleString('sv-SE')} sidvisningar/mån ·{' '}
+            {d.subs} prenumeranter · {d.partners} betalande partners<br />
+            {d.users} användare · {d.guides} guider · {d.islands} öprofiler · {d.places} företagssidor
+            {d.isLiveTraffic && (
+              <><br /><span style={{ color: 'rgba(255,255,255,.3)' }}>
+                Trafik hämtas live ur analytics_events (senaste 30 dygnen). Kräver cookie-consent,
+                så verklig trafik är högre — jämför med Search Console.
+              </span></>
+            )}
           </div>
         </div>
 
@@ -472,7 +489,7 @@ REGLER SOM ALDRIG BRYTS:
               <tbody style={{ color: 'var(--txt2)' }}>
                 <tr><td style={{ padding: '6px 0' }}>Partnerintäkt ({d.partners} × {kr(PARTNER_AVG_YEARLY_SEK)})</td><td style={{ textAlign: 'right' }}>{kr(revLow.partnerRev)}</td><td style={{ textAlign: 'right' }}>{kr(revHigh.partnerRev)}</td></tr>
                 <tr><td style={{ padding: '6px 0' }}>Nyhetsbrev ({d.subs} × 15–45 kr/år)</td><td style={{ textAlign: 'right' }}>{kr(revLow.newsRev)}</td><td style={{ textAlign: 'right' }}>{kr(revHigh.newsRev)}</td></tr>
-                <tr><td style={{ padding: '6px 0' }}>Display/affiliate (RPM 30–60 kr)</td><td style={{ textAlign: 'right' }}>{kr(revLow.displayRev)}</td><td style={{ textAlign: 'right' }}>{kr(revHigh.displayRev)}</td></tr>
+                <tr><td style={{ padding: '6px 0' }}>Annons/affiliate (RPM {revLow.rpm}–{revHigh.rpm} kr{revLow.qualified ? '' : ', AdSense-nivå'})</td><td style={{ textAlign: 'right' }}>{kr(revLow.displayRev)}</td><td style={{ textAlign: 'right' }}>{kr(revHigh.displayRev)}</td></tr>
                 {scenario === 'utokad' && (
                   <tr><td style={{ padding: '6px 0' }}>Bokningsintäkt (GMV × 12%)</td><td style={{ textAlign: 'right' }}>{kr(BOOKING_GMV_YEARLY * .12)}</td><td style={{ textAlign: 'right' }}>{kr(BOOKING_GMV_YEARLY * .12)}</td></tr>
                 )}
@@ -497,6 +514,31 @@ REGLER SOM ALDRIG BRYTS:
             Multiplar sätts på vinst för content-sajter, men på omsättning för marknadsplatser och SaaS.
             Samma intäktskrona är därför värd 2–3x mer som abonnemang än som annonsplats.
             {REVENUE_YEARLY_SEK > 0 && <> Faktisk intäkt senaste 12 mån: <strong>{kr(REVENUE_YEARLY_SEK)}</strong>.</>}
+          </div>
+        </Card>
+
+        {/* ── ANNONSTRÖSKLAR ── */}
+        <H2>Annonsintäkt — var vi står mot trösklarna</H2>
+        <Card accent={revLow.qualified ? '#0a7b3c' : '#d97706'}>
+          <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.7, marginBottom: 14 }}>
+            Annonsnätverken har hårda inträdeskrav. Under dem är vi hänvisade till AdSense,
+            där svensk trafik ger ungefär en fjärdedel av vad ett premiumnätverk betalar.
+            Vid nuvarande trafik ger annonser <strong>{kr(revLow.displayRev / 12)}–{kr(revHigh.displayRev / 12)}</strong> i månaden.
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>Mediavine — 50 000 sessioner/mån</div>
+              <Bar value={d.sessions} target={50_000} color={revLow.qualified ? '#0a7b3c' : '#d97706'} />
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>Raptive — 100 000 sidvisningar/mån</div>
+              <Bar value={d.pageviews} target={100_000} color={revLow.qualified ? '#0a7b3c' : '#d97706'} />
+            </div>
+          </div>
+          <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic', marginTop: 14, lineHeight: 1.65 }}>
+            Annonsintäkt är den enklaste intäkten att starta och den lägst värderade vid en exit —
+            den kräver ingen försäljning, men den skalar bara med trafik och ger lägst multipel.
+            En betalande partner är strategiskt värd mer än motsvarande annonskronor.
           </div>
         </Card>
 

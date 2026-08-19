@@ -3,8 +3,13 @@
 //  Uppdatera dessa varje kvartal. Allt annat hämtas live från Supabase.
 // ═══════════════════════════════════════════════════════════════════════════
 
-/** Besök per månad — hämtas från Google Search Console / analytics */
-export const TRAFFIC_MONTHLY = 0
+/** Trafik hämtas numera AUTOMATISKT från tabellen `analytics_events`
+ *  (unika sessioner senaste 30 dygnen). Sätt ett värde här bara om du vill
+ *  skriva över med en siffra från Google Search Console — 0 = använd live-data.
+ *
+ *  Obs: vår egen mätning kräver analytics-consent, så den underskattar
+ *  jämfört med GSC. Räkna med att verklig trafik är högre. */
+export const TRAFFIC_OVERRIDE = 0
 
 /** Faktiska intäkter senaste 12 månaderna (SEK) */
 export const REVENUE_YEARLY_SEK = 0
