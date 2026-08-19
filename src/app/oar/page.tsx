@@ -171,9 +171,10 @@ export default function OarIndexPage() {
       <main style={{ maxWidth: 1080, margin: '-48px auto 0', padding: '0 16px 60px' }}>
         {/* Konvertering — varför skapa konto */}
         <section style={{
-          background: '#fff', borderRadius: 18,
+          background: 'var(--card-bg)', borderRadius: 18,
+          border: '1px solid var(--surface-3)',
           padding: '28px 32px',
-          boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
+          boxShadow: 'var(--shadow-md)',
           marginBottom: 48,
           position: 'relative', zIndex: 2,
           display: 'grid',

@@ -275,7 +275,7 @@ function Bar({ value, target, color, suffix }: { value: number | null; target: n
         <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>
           Mäts inte än — mål {target.toLocaleString('sv-SE')}{suffix ?? ''}
         </div>
-        <div style={{ height: 6, background: 'var(--border)', borderRadius: 4, marginTop: 4 }} />
+        <div style={{ height: 6, background: 'var(--surface-3)', borderRadius: 4, marginTop: 4 }} />
       </div>
     )
   }
@@ -286,7 +286,7 @@ function Bar({ value, target, color, suffix }: { value: number | null; target: n
         <span>{Math.round(value).toLocaleString('sv-SE')}{suffix ?? ''}</span>
         <span>mål {target.toLocaleString('sv-SE')}{suffix ?? ''}</span>
       </div>
-      <div style={{ height: 6, background: 'var(--border)', borderRadius: 4, overflow: 'hidden' }}>
+      <div style={{ height: 6, background: 'var(--surface-3)', borderRadius: 4, overflow: 'hidden' }}>
         <div style={{ height: '100%', width: pct + '%', background: color, borderRadius: 4, transition: 'width .5s ease' }} />
       </div>
       <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 3 }}>{pct.toFixed(1)}%</div>
@@ -306,9 +306,9 @@ function Card({ children, accent }: { children: React.ReactNode; accent?: string
   return (
     <div
       style={{
-        background: 'var(--card)',
-        border: '1px solid var(--border)',
-        borderLeft: accent ? `4px solid ${accent}` : '1px solid var(--border)',
+        background: 'var(--card-bg)',
+        border: '1px solid var(--surface-3)',
+        borderLeft: accent ? `4px solid ${accent}` : '1px solid var(--surface-3)',
         borderRadius: 10,
         padding: '16px 18px',
       }}
@@ -434,9 +434,9 @@ REGLER SOM ALDRIG BRYTS:
                 style={{
                   flex: 1,
                   cursor: 'pointer',
-                  background: active ? sc.color : 'var(--card)',
+                  background: active ? sc.color : 'var(--card-bg)',
                   color: active ? '#fff' : 'var(--txt2)',
-                  border: `1px solid ${active ? sc.color : 'var(--border)'}`,
+                  border: `1px solid ${active ? sc.color : 'var(--surface-3)'}`,
                   borderRadius: 10,
                   padding: '10px 6px',
                   fontFamily: 'inherit',
@@ -497,7 +497,7 @@ REGLER SOM ALDRIG BRYTS:
                   <tr><td style={{ padding: '6px 0' }}>ARR (MRR × 12)</td><td style={{ textAlign: 'right' }}>{kr(SAAS_MRR_SEK * 12)}</td><td style={{ textAlign: 'right' }}>{kr(SAAS_MRR_SEK * 12)}</td></tr>
                 )}
                 <tr style={{ color: 'var(--txt3)' }}><td style={{ padding: '6px 0' }}>Minus kostnader</td><td style={{ textAlign: 'right' }}>−{kr(COSTS_YEARLY_SEK)}</td><td style={{ textAlign: 'right' }}>−{kr(COSTS_YEARLY_SEK)}</td></tr>
-                <tr style={{ borderTop: '1px solid var(--border)', fontWeight: 700, color: 'var(--txt)' }}>
+                <tr style={{ borderTop: '1px solid var(--surface-3)', fontWeight: 700, color: 'var(--txt)' }}>
                   <td style={{ padding: '8px 0' }}>Årlig vinst (modell)</td>
                   <td style={{ textAlign: 'right' }}>{kr(profitLow)}</td>
                   <td style={{ textAlign: 'right' }}>{kr(profitHigh)}</td>
