@@ -1,5 +1,6 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 
 interface Props {
@@ -25,6 +26,29 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  const [styleMode, setStyleMode] = useState<'photo' | 'map'>(hasPhoto ? 'photo' : hasRoute ? 'map' : 'photo')
 
  const cardSrc = `/api/og/share/tur/${tripId}?style=${styleMode}`
+
+ // Falttest 19/8 (Tom): att dela en PRIVAT tur gav mottagaren 404
+ // ("Borttappad till havs"). #179 fixade DM-modalen (ShareTripModal) men
+ // DENNA modal - den man delar till Instagram/WhatsApp fran - hade samma
+ // hal: bild-delning funkar (agaren hamtar bilden sjalv), men lanken i
+ // "Dela"/"WhatsApp"/"Kopiera lank" 404:ar for alla utom agaren.
+ // Hamtas forst nar modalen oppnas (triggern ligger pa varje TripCard).
+ const supabase = useRef(createClient()).current
+ const [visibility, setVisibility] = useState<string | null>(null)
+ useEffect(() => {
+ if (!open) return
+ let cancel = false
+ supabase.from('trips').select('visibility').eq('id', tripId).single()
+ .then(({ data }) => { if (!cancel && data) setVisibility(data.visibility) })
+ return () => { cancel = true }
+ }, [supabase, tripId, open])
+ async function makePublic() {
+ const { error } = await supabase.from('trips')
+ .update({ visibility: 'public' }).eq('id', tripId)
+ if (error) { toast('Kunde inte ändra synligheten.', 'error'); return }
+ setVisibility('public')
+ toast('Turen är nu synlig för alla.', 'success')
+ }
 
  // Preload image when modal opens or style changes
  useEffect(() => {
@@ -187,6 +211,22 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  overflowY: 'auto',
  maxHeight: 'calc(92vh - env(safe-area-inset-bottom, 0px))',
  }}>
+
+ {visibility === 'private' && (
+ <div style={{
+ margin: '12px 16px 0', padding: '10px 14px', borderRadius: 12,
+ background: 'rgba(201,110,42,0.12)', border: '1px solid rgba(201,110,42,0.4)',
+ fontSize: 13, color: 'var(--txt)', display: 'flex',
+ alignItems: 'center', gap: 10, justifyContent: 'space-between',
+ }}>
+ <span>Turen är privat — länken visar 404 för alla utom dig. Bilden går att dela ändå.</span>
+ <button type="button" onClick={makePublic} style={{
+ flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
+ background: 'var(--sea)', color: '#fff', border: 'none',
+ fontSize: 12.5, fontWeight: 700,
+ }}>Gör synlig</button>
+ </div>
+ )}
 
  {/* ── MAIN VIEW ── */}
  {step === 'main' && (
