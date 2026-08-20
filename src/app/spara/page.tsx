@@ -26,15 +26,11 @@ import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
 type Phase = 'setup' | 'tracking' | 'paused' | 'done'
-
-// En grans for orimlig fart, anvand overallt (falttest 19/8): tidigare
-// kastade isGpsAnomaly punkter over 45 kn medan visningen klippte vid 30 -
-// tva olika sanningar. 60 tacker RIB och racerbat med marginal.
-const SPEED_CEILING_KNOTS = 60
 
 // ── Haptic feedback ───────────────────────────────────────────────────────────
 function haptic(pattern: number | number[]) {
@@ -404,24 +400,11 @@ export default function SparaPage() {
 
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
 
-        // Hastighets-rensning — GPS Doppler ger ofta skräp i kall start och tätort.
-        // 1) Tak 60 knop (falttest 19/8: gamla taket 30 klippte verklig fart
-        //    till exakt 30,00 i bade snitt och topp; RIB/racerbatar gar 40-60).
-        //    Samma grans matas nu in i isGpsAnomaly sa grind och tak ar ETT
-        //    varde, inte tva olika sanningar (45 vs 30).
-        // 2) Om accuracy är dåligt (>30m) — strunta i hastigheten, GPS är opålitlig.
-        // 3) Median av senaste 3 punkter — eliminerar enstaka spikar utan att
-        //    fördröja äkta accelerationer.
-        let cleanSpeed = Math.min(Math.max(speedKnots, 0), SPEED_CEILING_KNOTS)
-        if (point.accuracy > 30) {
-          cleanSpeed = 0  // dålig GPS = ingen hastighet visas, hellre tomt än fel
-        } else {
-          const recentSpeeds = [...pointsRef.current.slice(-2).map(p => p.speedKnots), cleanSpeed]
-          if (recentSpeeds.length >= 3) {
-            const sorted = [...recentSpeeds].sort((a, b) => a - b)
-            cleanSpeed = sorted[Math.floor(sorted.length / 2)]!
-          }
-        }
+        // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
+        // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
+        const cleanSpeed = cleanGpsSpeed(
+          speedKnots, point.accuracy,
+          pointsRef.current.slice(-2).map(p => p.speedKnots))
         setCurrentSpeed(cleanSpeed)
 
         const pt: GpsPoint = {
@@ -592,21 +575,9 @@ export default function SparaPage() {
           .select('latitude,longitude,speed_knots,heading,accuracy,recorded_at')
           .eq('trip_id', snap.tripId)
           .order('recorded_at', { ascending: true })
-        if (serverPts && serverPts.length > 0) {
-          const seen = new Set(restored.map(p => p.recordedAt))
-          const fromServer: GpsPoint[] = serverPts
-            .filter(p => p?.recorded_at && !seen.has(p.recorded_at))
-            .map(p => ({
-              lat: p.latitude,
-              lng: p.longitude,
-              speedKnots: (p.speed_knots ?? 0) as number,
-              heading: p.heading ?? null,
-              accuracy: (p.accuracy ?? 0) as number,
-              recordedAt: p.recorded_at,
-            }))
-          restored = [...fromServer, ...restored]
-            .sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
-        }
+        // Ihopslagningen bor i mergeRecoveredPoints (@/lib/tracking):
+        // dedupe på recordedAt (bufferten vinner), sorterad på tid, testad.
+        restored = mergeRecoveredPoints(restored, serverPts ?? [])
       }
       if (restored.length > 0) {
         setPoints(restored)
@@ -622,8 +593,7 @@ export default function SparaPage() {
     // med dod telefon. Dod tid ar inte sparningstid. Vi lagger hogst till
     // 60 s (glappet vid en vanlig webblasarkrasch); allt darutover var
     // telefonen av och ingen sparning skedde.
-    const extraSec = Math.min(
-      Math.round((Date.now() - new Date(snap.savedAt).getTime()) / 1000), 60)
+    const extraSec = recoveryExtraSeconds(snap.savedAt, Date.now())
     setElapsed(snap.elapsed + extraSec)
     setTripId(snap.tripId)
     setBoatType(snap.boatType)
