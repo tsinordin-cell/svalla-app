@@ -189,9 +189,13 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     region: 'bohuslan',
     regionLabel: 'Bohuslän',
     emoji: '🐟',
-    tagline: 'Sveriges enda marina nationalpark — vild natur, sälar och dykning i världsklass.',
+    tagline: 'Sveriges första marina nationalpark — vild natur, sälar och dykning i världsklass.',
     description: [
-      'Kosterhavets nationalpark är Sveriges enda marina nationalpark, etablerad 2009. Området täcker havet och de yttre öarna runt Nord- och Sydkoster utanför Strömstad.',
+      // KÄLLA: sverigesnationalparker.se — Kosterhavet bildades 2009; Nämdöskärgården blev
+      // Sveriges 31:a nationalpark 2025 och den ANDRA med marint fokus (den första i Östersjön).
+      // Kosterhavet är alltså Sveriges FÖRSTA marina nationalpark, inte längre den enda.
+      // Rättat 2026-08-21 efter att den nya skyddsstatus-kontrollen larmade. (hämtad 2026-08-21)
+      'Kosterhavets nationalpark är Sveriges första marina nationalpark, invigd 2009. Området täcker havet och de yttre öarna runt Nord- och Sydkoster utanför Strömstad.',
       'Vattnet är ovanligt salt och kallt och hyser Sveriges rikaste marina liv — omkring 6 000 arter, många unika för Skagerrak. Sälar lever här, valar passerar förbi, och korallrev finns på 80–200 meters djup.',
       'Koster-öarna i sig är två: Nordkoster (cykelparadis, klippvandring) och Sydkoster (lite större, populära strandvägar). Båda är bilfria.',
     ],

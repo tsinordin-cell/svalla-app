@@ -1,0 +1,179 @@
+/**
+ * update-tasks.mjs — synkar team_tasks mot verkligheten (2026-08-21).
+ *
+ * Bakgrund: dashboarden hade 69 öppna tasks, varav flera var byggda för länge
+ * sedan men aldrig flyttade. Tre av dem finns bevisligen som kod i repot.
+ * Samtidigt saknades allt arbete från 18–21 augusti helt.
+ *
+ * Kör: node scripts/update-tasks.mjs
+ * Kör: node scripts/update-tasks.mjs --torrkor    (visar utan att ändra något)
+ */
+
+/**
+ * Nyckeln läses ur miljön — ALDRIG hårdkodad. GitHub push protection stoppade
+ * en tidigare version av den här filen 2026-08-21 eftersom service-nyckeln låg
+ * i klartext på rad 13. Den spärren gjorde rätt.
+ *
+ * Kör så här:
+ *   SUPABASE_SERVICE_KEY=sb_secret_... node scripts/update-tasks.mjs --torrkor
+ *
+ * Eller lägg nyckeln i .env.local (som är gitignorerad) och kör:
+ *   set -a && source .env.local && set +a && node scripts/update-tasks.mjs
+ */
+const SB = process.env.SUPABASE_URL ?? 'https://oiklttwylndesewauytj.supabase.co'
+const KEY = process.env.SUPABASE_SERVICE_KEY
+if (!KEY) {
+  console.error('✗ SUPABASE_SERVICE_KEY saknas i miljön.')
+  console.error('  Kör: SUPABASE_SERVICE_KEY=sb_secret_... node scripts/update-tasks.mjs')
+  process.exit(1)
+}
+const HDRS = { apikey: KEY, Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json' }
+const TORRKOR = process.argv.includes('--torrkor')
+
+/** Titlar som ska stängas som klara. Matchas på att titeln BÖRJAR med strängen. */
+const STANG_SOM_KLARA = [
+  // Byggda — koden finns i repot, verifierat 2026-08-21
+  ['Bygg dynamisk jämförelsesida',        'Byggd: src/app/jamfor finns i repot.'],
+  ['Lägg till väderintegration',           'Byggd: WeatherPillServer.tsx + weather.ts/weatherGrid.ts/weatherServer.ts.'],
+  ['Lägg till PWA-manifest',               'Byggd: public/manifest.json finns.'],
+  // Klara genom arbete 18–21 augusti
+  ['Competitive gap-analys',               'Klar: rapport competitive-gap-analys-2026-08-18.md i Drive.'],
+  ['Skriv long-tail guider',               'Klar: long-tail-guider publicerade.'],
+  ['Skriv säsongsguider för höst/vinter',  'Klar: höst-, vinter- och vårguider publicerade.'],
+  ['Kom med förslag på bättre text',       'Klar: taglinen är nu "Sveriges samlade skärgårdssida".'],
+  ['Ta bort emojis',                       'Klar: se emoji-slutrapport-20260818.md i Drive.'],
+  // 2026-08-21
+  ['Rätta: Kosterhavet',
+   'Klar: rättat på 8 ställen i 5 filer. Kosterhavet är Sveriges FÖRSTA marina ' +
+   'nationalpark (2009), inte den enda — Nämdöskärgården blev den andra 2025. ' +
+   'Källkommentar tillagd i bohuslan-data.ts. Hittades av den nya ' +
+   'skyddsstatus-kontrollen i verify-claims.'],
+  ['Restaurangdata: open_hours',
+   'Klar 2026-08-21. Buggen bekräftad: datan fanns (23 open_hours, 23 open_season, ' +
+   '18 price_example) men ö-sidan renderade bara namn, typ, beskrivning och länkar.\n\n' +
+   'ÅTGÄRD: open_season och phone renderas nu — trögrörliga, låg risk. ' +
+   'open_hours och price_example renderas MEDVETET INTE eftersom alla 23 saknar ' +
+   'källa och ändras varje säsong. Besökaren skickas i stället till verksamhetens ' +
+   'egen sida, som alltid är aktuell. Kommentar i koden förklarar varför.\n\n' +
+   'Att göra senare: källmärk fälten, då kan de renderas.'],
+]
+
+/** Stängs som BESLUTAD — ska inte göras. */
+const STANG_SOM_BESLUTAD = [
+  ['Ta bort branch protection',
+   'BESLUT 2026-08-20: skyddet BEHÅLLS. CLAUDE.md dokumenterar att det infördes ' +
+   'efter att direkta pushar raderade canonical-taggar och revarterade 24 av 113 ' +
+   'filer i juli. Alternativet till friktionen är auto-merge på repot, inte att ' +
+   'ta bort spärren.'],
+]
+
+/** Nya tasks från arbetet 19–21 augusti. */
+const NYA = [
+  {
+    title: 'BRÅDSKANDE: sätt kvotgräns på Google Places API',
+    description:
+      'Google Cloud gick från 0 kr i juni och juli till 4 124 kr 1–19 augusti. ' +
+      'Trolig orsak: landingPhotos.ts bytte 2026-08-05 ut Next datacache mot en ' +
+      '5-minuters minnescache som inte överlever serverless cold starts — och som ' +
+      'inte cachar misslyckanden alls. Varje kallstart gör om 19 Places Text ' +
+      'Search-anrop.\n\nÅTGÄRD NU: Console → APIs & Services → Places API → Quotas, ' +
+      'sätt dagsgräns ~500. Sätt även budgetlarm under Billing → Budgets & alerts.',
+    priority: 'high',
+  },
+  {
+    title: 'Fixa landingPhotos-cachen — spara fotokartan i Supabase',
+    description:
+      'Grundorsaken till Places-räkningen. Minnescachen i src/lib/landingPhotos.ts ' +
+      'överlever inte serverless, och vid tomt svar sätts memCache aldrig — det ger ' +
+      'en loop som accelererar. Lös genom att persistera fotokartan i Supabase med ' +
+      'lång livslängd: 19 anrop i veckan i stället för tusentals.',
+    priority: 'high',
+  },
+  {
+    title: 'Kontrollera skyddsstatus på 29 öar mot myndighet',
+    description:
+      'Bullerö visade att skyddsstatus ändras utan att vår data följer med — ' +
+      'naturreservatet upphörde 2025 och uppgick i Nämdöskärgårdens nationalpark. ' +
+      'Beläggsrevisionen hittade 29 öar som hänvisar till naturreservat utan att ' +
+      'nämna nationalpark. Kontrollera mot naturvardsverket.se, ' +
+      'sverigesnationalparker.se och lansstyrelsen.se. Se ' +
+      'BELAGGSREVISION-odata-20260819.md i Drive.',
+    priority: 'high',
+  },
+  {
+    title: 'Bohuslän-data: 19 öar utan en enda källhänvisning',
+    description:
+      'bohuslan-data.ts har noll KÄLLA-kommentarer på 19 öar. Behöver samma ' +
+      'genomgång som Stockholm-datan fått. Se BELAGGSREVISION-odata-20260819.md.',
+    priority: 'normal',
+  },
+  {
+    title: 'Verifiera: Långskär eller Långviksskär?',
+    description:
+      'Officiella källan (sverigesnationalparker.se) skriver "Långviksskärs ' +
+      'naturreservat" — vår data säger "Långskärs". Kan vara samma plats eller två ' +
+      'olika. Texten i island-data.ts är medvetet öppet formulerad tills det är ' +
+      'bekräftat. Fråga Länsstyrelsen eller nationalparken.',
+    priority: 'normal',
+  },
+  {
+    title: 'Rätta: Kosterhavet är inte längre Sveriges enda marina nationalpark',
+    description:
+      'hike-data.ts:273 påstår "Sveriges enda marina nationalpark" om Kosterhavet. ' +
+      'Nämdöskärgården blev den andra marina nationalparken 2025. Hittades av den ' +
+      'nya skyddsstatus-kontrollen i verify-claims.',
+    priority: 'normal',
+  },
+  {
+    title: 'Beta av 162 skyddsstatus-varningar i verify-claims',
+    description:
+      'Nya kategorin skyddsstatus varnar men fäller inte bygget. 162 påståenden ' +
+      'saknar källa. När de är genomgångna kan kategorin göras build-failing, ' +
+      'på samma sätt som klockslag och priser är i dag.',
+    priority: 'normal',
+  },
+]
+
+// ── Körning ────────────────────────────────────────────────────────────────
+const res = await fetch(`${SB}/rest/v1/team_tasks?select=id,title,status`, { headers: HDRS })
+const tasks = await res.json()
+console.log(`Hämtade ${tasks.length} tasks.\n`)
+
+async function stang(prefix, notering, status = 'done') {
+  const träff = tasks.filter(t => t.title?.startsWith(prefix) && t.status !== 'done')
+  if (!träff.length) { console.log(`  – ingen öppen träff: "${prefix}"`); return 0 }
+  for (const t of träff) {
+    console.log(`  ✓ ${status}: ${t.title}`)
+    if (!TORRKOR) {
+      await fetch(`${SB}/rest/v1/team_tasks?id=eq.${t.id}`, {
+        method: 'PATCH', headers: { ...HDRS, Prefer: 'return=minimal' },
+        body: JSON.stringify({ status, description: notering }),
+      })
+    }
+  }
+  return träff.length
+}
+
+let n = 0
+console.log('── Stänger som KLARA ──')
+for (const [p, notering] of STANG_SOM_KLARA) n += await stang(p, notering)
+
+console.log('\n── Stänger som BESLUTAD ──')
+for (const [p, notering] of STANG_SOM_BESLUTAD) n += await stang(p, notering)
+
+console.log('\n── Lägger till NYA ──')
+for (const t of NYA) {
+  const finns = tasks.some(x => x.title === t.title)
+  if (finns) { console.log(`  – finns redan: ${t.title}`); continue }
+  console.log(`  + ${t.priority.padEnd(6)} ${t.title}`)
+  if (!TORRKOR) {
+    await fetch(`${SB}/rest/v1/team_tasks`, {
+      method: 'POST', headers: { ...HDRS, Prefer: 'return=minimal' },
+      body: JSON.stringify([{ ...t, status: 'todo' }]),
+    })
+  }
+}
+
+console.log(TORRKOR
+  ? '\nTORRKÖRNING — ingenting ändrat. Kör utan --torrkor för att spara.'
+  : `\nKlart. ${n} tasks stängda, ${NYA.length} nya tillagda (om de inte redan fanns).`)
