@@ -65,10 +65,34 @@ export function haversineKm(lat1: number, lng1: number, lat2: number, lng2: numb
   return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a))
 }
 
-/** Antagen genomsnittsfart 18 knop = 33 km/h. Ger minuter mellan punkter. */
-export function travelTimeMin(distanceKm: number): number {
-  const KM_PER_HOUR = 33
-  return Math.round((distanceKm / KM_PER_HOUR) * 60)
+/**
+ * PRODUKTREGEL: 18 knop är VÅRT planeringsantagande, inte ett påstående om
+ * användarens båt. Vi är källan — ändras regeln ändras koden, så den kan inte
+ * driva isär från verkligheten.
+ *
+ * MEN: antagandet är inte oskyldigt. 18 knop är en planande motorbåt. En
+ * segelbåt går 5–6 knop, en klassisk träbåt 7–8. För dem tar sträckan två till
+ * tre gånger längre tid än vad vi visar. Granskningen 2026-08-16 flaggade
+ * detta, och 2026-08-21 gjordes antagandet till en exporterad konstant så att
+ * gränssnittet KAN redovisa det — och så att en framtida fartväljare bara
+ * behöver skicka in ett annat värde.
+ *
+ * Det som INTE får hända är att en restid visas som fakta utan att det framgår
+ * vad den bygger på. Hellre "ca 30 min i 18 knop" än "30 min".
+ */
+export const ANTAGEN_FART_KNOP = 18
+const KM_PER_KNOP = 1.852
+
+/**
+ * Restid i minuter för en sträcka.
+ * @param distanceKm sträcka i kilometer
+ * @param fartKnop   fart att räkna på — default ANTAGEN_FART_KNOP (18).
+ *                   Skicka 5.5 för segelbåt, 7 för långsam motorbåt.
+ */
+export function travelTimeMin(distanceKm: number, fartKnop: number = ANTAGEN_FART_KNOP): number {
+  const kmPerHour = fartKnop * KM_PER_KNOP
+  if (kmPerHour <= 0) return 0
+  return Math.round((distanceKm / kmPerHour) * 60)
 }
 
 // ── Öppettidsparsning (best-effort på fri text) ───────────────────────────

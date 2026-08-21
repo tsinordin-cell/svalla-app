@@ -71,6 +71,27 @@ const STANG_SOM_KLARA = [
    'SYFTE: underlag till anspråksmejlen i tillväxtplanen — "er sida fick X besök ' +
    'förra månaden, ta över den gratis". Obs att siffrorna kräver cookie-consent ' +
    'och därför är ett golv, inte facit.'],
+  ['Skriv riktad outreach-text per bransch',
+   'Klar 2026-08-21: OUTREACH-mallar-per-bransch.md i Drive. Fyra mallar — ' +
+   'krogar, boende, båt/charter, konferens/teambuilding — plus en uppföljning ' +
+   'och en mätmall.\n\n' +
+   'Bygger på tre principer från dagens arbete: triggerbaserat (vi har redan en ' +
+   'sida om dem, konverterar ~4x bättre än kallt), gratis första steg (ta över ' +
+   'sidan), och vi säljer ALDRIG placering — rekommendationer går inte att köpa. ' +
+   'Besökssiffran per ö hämtas från /admin/oar-trafik och är det som gör mejlet.\n\n' +
+   'BÖRJA MED FEM, inte tvåhundra. Hela tillväxtplanen vilar på att detta ' +
+   'fungerar, och det är oprövat.'],
+  ['Granska knop-varden',
+   'Klar 2026-08-21. dagPlanner.travelTimeMin räknade på hårdkodade 33 km/h ' +
+   '(= 18 knop) utan att antagandet syntes någonstans. 18 knop är en planande ' +
+   'motorbåt; en segelbåt går 5–6 knop och tar då nästan dubbelt så lång tid ' +
+   '(10 km = 59 min mot 33 min).\n\n' +
+   'ÅTGÄRD: farten är nu en exporterad konstant ANTAGEN_FART_KNOP och en valfri ' +
+   'parameter till travelTimeMin, så gränssnittet kan redovisa antagandet och en ' +
+   'framtida fartväljare bara behöver skicka ett annat värde. Räkningen ger ' +
+   'identiskt resultat som förut.\n\n' +
+   'KVAR ATT GÖRA: gränssnittet visar fortfarande restiden utan att säga vad den ' +
+   'bygger på. Hellre "ca 30 min i 18 knop" än "30 min".'],
 ]
 
 /** Stängs som BESLUTAD — ska inte göras. */
