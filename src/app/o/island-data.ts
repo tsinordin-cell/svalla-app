@@ -1398,6 +1398,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌲',
     tagline: 'Södra skärgårdens största skogsö — vandring, naturreservat och genuint ösliv.',
     description: [
+      // KÄLLA: Länsstyrelsen Stockholm 2024-10-02 — nytt naturreservat "Norra skogen" på Ornö
+      // (Haninge kommun) bildat 2024. Skyddet UTÖKADES alltså; formuleringen "stora delar
+      // skyddas" är fortsatt korrekt. Kontrollerad 2026-08-21.
       'Ornö är en av Stockholms skärgårds största öar och en av de mest naturrika. Stora delar av ön skyddas som naturreservat med gammal skog, bäckar och ett rikt fågelliv. Befolkningen är liten men permanent, och ön har behållit sin lantliga karaktär.',
       'Till skillnad från de mer turistifierade öarna i mellersta skärgården har Ornö ett lite tystare tempo. Här åker man för naturens skull, inte för nöjeslivet. Vandringsstigarna är välmarkerade och tar dig genom skog och längs kustlinje.',
       'Kyrkviken är öns naturliga samlingsplats med krog och hamn. Från Ornö är Utö och Nåttarö enkla dagsutflykter med båt.',
@@ -1739,6 +1742,8 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Bilfri naturreservatstö med lägerverksamhet och enkel skärgårdsstämning.',
     description: [
+      // KÄLLA: Länsstyrelsen Stockholm 2024-10-02 — Gällnö naturreservat utökades med 64 hektar
+      // 2024. Skyddet finns kvar och är större än förut. Kontrollerad 2026-08-21.
       'Gällnö är en bilfri ö i mellersta skärgården, klassificerad som naturreservat för att bevara dess orörda karaktär. Ön är känd för sin lägerverksamhet, ungdomsgrupper och naturskolor nyttjar öns större öppna arealer under sommaren.',
       'Landskap på Gällnö varierar från skogspartier till öppna ljunghedar. Här finns inga stora restauranger eller hotell, bara en enkel bar och handelsbod. Det är just detta som gör Gällnö attraktiv för naturälskare som söker lugn och orördhet.',
       'Ön nås via Waxholmsbåt från Stavsnäs och är ett naturligt stopp på väg mot Möja eller Svartsö. Många seglare gör Gällnö till sitt favoritdestination.',

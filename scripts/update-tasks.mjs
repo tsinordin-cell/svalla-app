@@ -110,6 +110,28 @@ const STANG_SOM_BESLUTAD = [
    'ta bort spärren.'],
 ]
 
+/** Uppdaterar beskrivningen på en task utan att stänga den. */
+const UPPDATERA_BESKRIVNING = [
+  ['Kontrollera skyddsstatus på 29 öar',
+   'DELVIS GJORD 2026-08-21 — omfattningen är nu känd och mindre skrämmande än ' +
+   'befarat.\n\n' +
+   'METOD: i stället för att kontrollera 29 öar en och en (där felrisken är som ' +
+   'störst) söktes först efter vilka skyddsbeslut som faktiskt ändrats i ' +
+   'Stockholms län 2024–2025.\n\n' +
+   'FYND:\n' +
+   '• Ornö — nytt naturreservat "Norra skogen" bildat 2024 (Länsstyrelsen)\n' +
+   '• Gällnö — reservatet utökat med 64 hektar 2024\n' +
+   '• Nio nya Natura 2000-områden dec 2025, fem i Stockholms ytterskärgård\n' +
+   '• Bullerö — reservatet UPPHÖRT, uppgick i Nämdöskärgårdens nationalpark (åtgärdat)\n\n' +
+   'VIKTIG SLUTSATS: Ornö och Gällnö är kvalitativt KORREKTA hos oss. Skydden ' +
+   'blev större, inte upphävda — "stora delar skyddas som naturreservat" gäller ' +
+   'fortfarande. Bullerö var unikt: där upphörde reservatet att existera.\n\n' +
+   'Ornö och Gällnö är nu källmärkta i island-data.ts. ÅTERSTÅR: 27 öar, men ' +
+   'risken är lägre än revisionen antydde. Prioritera de fem i ytterskärgården ' +
+   'som berörs av Natura 2000-besluten.',
+   'todo'],
+]
+
 /** Nya tasks från arbetet 19–21 augusti. */
 const NYA = [
   {
@@ -208,6 +230,21 @@ for (const [p, notering] of STANG_SOM_KLARA) n += await stang(p, notering)
 
 console.log('\n── Stänger som BESLUTAD ──')
 for (const [p, notering] of STANG_SOM_BESLUTAD) n += await stang(p, notering)
+
+console.log('\n── Uppdaterar BESKRIVNING (utan att stänga) ──')
+for (const [prefix, notering, status] of UPPDATERA_BESKRIVNING) {
+  const träff = tasks.filter(t => t.title?.startsWith(prefix))
+  if (!träff.length) { console.log(`  – ingen träff: "${prefix}"`); continue }
+  for (const t of träff) {
+    console.log(`  ~ ${t.title}`)
+    if (!TORRKOR) {
+      await fetch(`${SB}/rest/v1/team_tasks?id=eq.${t.id}`, {
+        method: 'PATCH', headers: { ...HDRS, Prefer: 'return=minimal' },
+        body: JSON.stringify({ description: notering, status }),
+      })
+    }
+  }
+}
 
 console.log('\n── Lägger till NYA ──')
 for (const t of NYA) {
