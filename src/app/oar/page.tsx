@@ -164,6 +164,21 @@ export default function OarIndexPage() {
             >
               Planera utflykt
             </Link>
+            {/* /oar/slumpa är en route handler som omdirigerar — funkar utan JS. */}
+            <Link
+              href="/oar/slumpa"
+              prefetch={false}
+              style={{
+                padding: '14px 28px', borderRadius: 999,
+                background: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.22)',
+                color: '#fff', fontSize: 14, fontWeight: 600,
+                textDecoration: 'none',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
+              Slumpa en ö
+            </Link>
           </div>
         </div>
       </header>

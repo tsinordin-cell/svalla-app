@@ -126,6 +126,14 @@ const ADMIN_TOOLS: AdminTool[] = [
     color: '#7c3aed',
   },
   {
+    href:  '/admin/oar-trafik',
+    icon:  <IcoTarget color="#0a7b3c" />,
+    title: 'Besök per ö',
+    desc:  'Underlag till anspråksmejlen — vilka öar får trafik',
+    badge: 'NY',
+    color: '#0a7b3c',
+  },
+  {
     href:  '/admin/koordinater',
     icon:  <IcoMapPin color="#1d4ed8" />,
     title: 'Koordinatkorrigering',

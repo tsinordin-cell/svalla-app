@@ -56,6 +56,21 @@ const STANG_SOM_KLARA = [
    'källa och ändras varje säsong. Besökaren skickas i stället till verksamhetens ' +
    'egen sida, som alltid är aktuell. Kommentar i koden förklarar varför.\n\n' +
    'Att göra senare: källmärk fälten, då kan de renderas.'],
+  ['Bygg Slumpa en ö',
+   'Klar 2026-08-21. /oar/slumpa är en route handler som omdirigerar till en ' +
+   'slumpmässig ö — fungerar utan JavaScript, går att länka och dela. Undviker ' +
+   'att skicka besökaren tillbaka till ön hen just kom ifrån. force-dynamic + ' +
+   'no-store så Vercel inte cachar den första slumpen. Knapp tillagd på /oar.'],
+  ['Bygg besöksräknare per ö',
+   'Klar 2026-08-21: /admin/oar-trafik. Möjlig först nu — page_viewed-eventet ' +
+   'som lades till samma dag speglar sidbyten till analytics_events, så trafik ' +
+   'per ö går att räkna utan PostHogs API.\n\n' +
+   'Visar sidvisningar och unika sessioner per ö senaste 30 dygnen, plus vilka ' +
+   'öar som inte fått besök alls. Flaggar slugs som får trafik men saknas i ' +
+   'ö-datan.\n\n' +
+   'SYFTE: underlag till anspråksmejlen i tillväxtplanen — "er sida fick X besök ' +
+   'förra månaden, ta över den gratis". Obs att siffrorna kräver cookie-consent ' +
+   'och därför är ett golv, inte facit.'],
 ]
 
 /** Stängs som BESLUTAD — ska inte göras. */
@@ -137,6 +152,11 @@ const NYA = [
 // ── Körning ────────────────────────────────────────────────────────────────
 const res = await fetch(`${SB}/rest/v1/team_tasks?select=id,title,status`, { headers: HDRS })
 const tasks = await res.json()
+if (!Array.isArray(tasks)) {
+  console.error('✗ Supabase svarade inte med en lista. Trolig orsak: fel eller utgången nyckel.')
+  console.error('  Svar:', JSON.stringify(tasks).slice(0, 300))
+  process.exit(1)
+}
 console.log(`Hämtade ${tasks.length} tasks.\n`)
 
 async function stang(prefix, notering, status = 'done') {
