@@ -92,6 +92,13 @@ const STANG_SOM_KLARA = [
    'identiskt resultat som förut.\n\n' +
    'KVAR ATT GÖRA: gränssnittet visar fortfarande restiden utan att säga vad den ' +
    'bygger på. Hellre "ca 30 min i 18 knop" än "30 min".'],
+  ['Lägg till FAQ-sektioner på alla öprofiler',
+   'Klar 2026-08-21. Buggen var inte att FAQ saknades — den fanns och ' +
+   'publicerades till Google via FAQPage-schemat. Den renderades bara aldrig ' +
+   'för människor. 18 öar hade handskrivna svar som enbart sökmotorn kunde läsa.\n\n' +
+   'ÅTGÄRD: synlig FAQ-sektion på /o/[slug], hopfällbar med <details> så den ' +
+   'fungerar utan JavaScript. Alla öar får innehåll — 18 unika, resten via ' +
+   'regionmallar. Ingen ny faktarisk: exakt samma text som redan låg i JSON-LD.'],
 ]
 
 /** Stängs som BESLUTAD — ska inte göras. */

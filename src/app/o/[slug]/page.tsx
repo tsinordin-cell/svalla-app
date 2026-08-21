@@ -1077,6 +1077,49 @@ export default async function IslandPage({ params }: Props) {
     </div>
    </section>
 
+   {/*
+     FAQ — synlig för besökare sedan 2026-08-21.
+
+     Innehållet fanns redan och publicerades till Google via FAQPage-schemat
+     högre upp i filen, men renderades aldrig för människor. Sjutton öar hade
+     alltså handskrivna svar som bara sökmotorn kunde läsa.
+
+     Ingen ny faktarisk: exakt samma text som redan låg i JSON-LD.
+     <details> ger hopfällbarhet utan JavaScript.
+   */}
+   {(() => {
+     const faqs = getFaqsForIsland(island)
+     if (faqs.length === 0) return null
+     return (
+       <section style={{ marginBottom: 52 }}>
+         <SectionHeader icon="lightbulb" title={`Vanliga frågor om ${island.name}`} />
+         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+           {faqs.map(faq => (
+             <details key={faq.q} style={{
+               background: 'var(--white)',
+               border: '1px solid var(--surface-3)',
+               borderRadius: 12,
+               padding: '14px 18px',
+             }}>
+               <summary style={{
+                 fontSize: 14, fontWeight: 600, color: 'var(--txt)',
+                 cursor: 'pointer', listStyle: 'none',
+               }}>
+                 {faq.q}
+               </summary>
+               <p style={{
+                 fontSize: 13, color: 'var(--txt2)', lineHeight: 1.7,
+                 margin: '10px 0 0',
+               }}>
+                 {faq.a}
+               </p>
+             </details>
+           ))}
+         </div>
+       </section>
+     )
+   })()}
+
    {/* Related islands */}
  {relatedIslands.length > 0 && (
  <section style={{ marginBottom: 0 }}>
