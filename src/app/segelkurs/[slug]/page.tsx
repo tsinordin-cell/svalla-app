@@ -111,8 +111,8 @@ export default async function SegelkursSlugPage({ params }: Props) {
                     </div>
                   </div>
                   <p style={{ fontSize: 14, color: 'var(--ink-muted)', lineHeight: 1.7, margin: '0 0 10px' }}>{k.desc}</p>
-                  <div style={{ fontSize: 12, background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', borderRadius: 8, padding: '4px 10px', display: 'inline-block', fontWeight: 600 }}>
-                    🎓 {k.certificate}
+                  <div style={{ fontSize: 12, background: 'rgba(10,123,140,0.08)', color: 'var(--sea)', borderRadius: 8, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 600 }}>
+                    <Icon name="award" size={13} stroke={2} />{k.certificate}
                   </div>
                 </div>
               ))}

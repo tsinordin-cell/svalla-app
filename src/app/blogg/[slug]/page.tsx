@@ -2332,7 +2332,7 @@ export default async function BloggPostPage({
      background: 'rgba(255,255,255,0.18)', borderRadius: 20,
      padding: '5px 12px', border: '1px solid rgba(255,255,255,0.25)',
    }}>
-     ✉ Nyhetsbrev
+     <Icon name="mail" size={12} stroke={2} style={{ verticalAlign: '-2px', marginRight: 5 }} />Nyhetsbrev
    </Link>
  </div>
  </div>

@@ -20,6 +20,8 @@
 
 
 
+import { getAdminClient } from './supabase-admin'
+
 const PLACES_BASE = 'https://places.googleapis.com/v1'
 const KEY = process.env.GOOGLE_PLACES_API_KEY
 
@@ -48,6 +50,54 @@ const PLACES_TO_FETCH = [
 
 let memCache: { ts: number; data: Record<string, string> } | null = null
 const MEM_TTL = 5 * 60 * 1000
+
+/**
+ * 2026-08-20: PERSISTENT CACHE I SUPABASE (app_kv).
+ *
+ * Minnescachen ovan dor med varje serverless-instans. Fran 5/8 (nar Next
+ * datacache togs bort har, med ratta - den overlevde deployer och holl
+ * kvar TOMMA svar) var den har filens ENDA cache just minnescachen.
+ * Foljden: varje kall instans gjorde om alla 19 Text Search-anropen, och
+ * misslyckanden cachades inte alls. Googles rakning 1-19 aug: 4 124 kr,
+ * mot 0 kr i juli. Fixen fran 5/8 loste fel bilder men bytte dem mot en
+ * obegransad API-nota.
+ *
+ * Nu: fotokartan ligger i app_kv (7 dagars livslangd). En kall instans
+ * laser den darifran - noll Google-anrop. Google tillfragas forst nar
+ * kartan ar aldre an en vecka, och da av EN instans som skriver tillbaka.
+ * Misslyckanden negativ-cachas i minnet (5 min) och serverar hellre den
+ * gamla kartan an en tom.
+ */
+const DB_KEY = 'landing_photos'
+const DB_TTL = 7 * 24 * 60 * 60 * 1000
+
+async function lasDbCache(): Promise<{ data: Record<string, string>; ageMs: number } | null> {
+  try {
+    const admin = getAdminClient()
+    const { data: row, error } = await admin
+      .from('app_kv').select('value, updated_at').eq('key', DB_KEY).maybeSingle()
+    if (error || !row?.value) return null
+    return {
+      data: row.value as Record<string, string>,
+      ageMs: Date.now() - new Date(row.updated_at as string).getTime(),
+    }
+  } catch (e) {
+    console.error('[landing-photos] kunde inte läsa app_kv:', String(e).slice(0, 200))
+    return null
+  }
+}
+
+async function skrivDbCache(data: Record<string, string>): Promise<void> {
+  try {
+    const admin = getAdminClient()
+    const { error } = await admin
+      .from('app_kv')
+      .upsert({ key: DB_KEY, value: data, updated_at: new Date().toISOString() })
+    if (error) console.error('[landing-photos] kunde inte skriva app_kv:', error.message)
+  } catch (e) {
+    console.error('[landing-photos] kunde inte skriva app_kv:', String(e).slice(0, 200))
+  }
+}
 
 async function fetchPhotoRef(query: string, lat: number, lng: number, r: number): Promise<string | null> {
   if (!KEY) return null
@@ -86,13 +136,19 @@ async function fetchPhotoRef(query: string, lat: number, lng: number, r: number)
 }
 
 
-/** Hämtar fotokartan. Tom karta = misslyckande, se anroparens cache-logik. */
+/** Hämtar fotokartan: minne → app_kv (7 d) → Google (19 anrop, skrivs tillbaka). */
 export async function getLandingPhotos(): Promise<Record<string, string>> {
   if (memCache && Date.now() - memCache.ts < MEM_TTL) return memCache.data
 
+  const db = await lasDbCache()
+  if (db && db.ageMs < DB_TTL) {
+    memCache = { ts: Date.now(), data: db.data }
+    return db.data
+  }
+
   if (!KEY) {
     console.error('[landing-photos] GOOGLE_PLACES_API_KEY saknas i miljön')
-    return {}
+    return db?.data ?? {}
   }
 
   const results = await Promise.allSettled(
@@ -110,9 +166,16 @@ export async function getLandingPhotos(): Promise<Record<string, string>> {
 
   if (Object.keys(photoMap).length === 0) {
     console.error('[landing-photos] TOMT resultat —', PLACES_TO_FETCH.length, 'förfrågningar gav noll foton')
-    return photoMap
+    // 2026-08-20: tidigare returnerade den har grenen UTAN att satta
+    // memCache — varje request pa instansen gjorde da om alla 19 anropen.
+    // Nu negativ-cachas felet (5 min) och en utgangen DB-karta ar battre
+    // an en tom startsida.
+    const fallback = db?.data ?? photoMap
+    memCache = { ts: Date.now(), data: fallback }
+    return fallback
   }
 
   memCache = { ts: Date.now(), data: photoMap }
+  await skrivDbCache(photoMap)
   return photoMap
 }

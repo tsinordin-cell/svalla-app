@@ -21,11 +21,14 @@ import { snapshotTrip, loadTripSnapshot, clearTripSnapshot, type TripSnapshot } 
 import { detectVisitedIslands } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 import { addTripTag } from '@/lib/tripTags'
+import { buildTripFields } from '@/lib/tripFields'
+import * as Sentry from '@sentry/nextjs'
 import { analytics } from '@/lib/analytics'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { cleanGpsSpeed, recoveryExtraSeconds, mergeRecoveredPoints, SPEED_CEILING_KNOTS } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
 
@@ -357,8 +360,7 @@ export default function SparaPage() {
         if (lastGpsPtRef.current) {
           if (isGpsAnomaly(
             lastGpsPtRef.current.lat, lastGpsPtRef.current.lng, lastGpsPtRef.current.ts,
-            point.lat, point.lng, now
-          )) {
+            point.lat, point.lng, now, SPEED_CEILING_KNOTS)) {
             anomalyCountRef.current += 1
             setAnomalyCount(anomalyCountRef.current)
             return
@@ -400,22 +402,11 @@ export default function SparaPage() {
 
         lastGpsPtRef.current = { lat: smoothed.lat, lng: smoothed.lng, ts: now }
 
-        // Hastighets-rensning — GPS Doppler ger ofta skräp i kall start och tätort.
-        // 1) Cap absolut tak till 30 knop (max realistiskt för segelbåt/snabb motorbåt;
-        //    avgångar därifrån är troligen anomalier).
-        // 2) Om accuracy är dåligt (>30m) — strunta i hastigheten, GPS är opålitlig.
-        // 3) Median av senaste 3 punkter — eliminerar enstaka spikar utan att
-        //    fördröja äkta accelerationer.
-        let cleanSpeed = Math.min(Math.max(speedKnots, 0), 30)
-        if (point.accuracy > 30) {
-          cleanSpeed = 0  // dålig GPS = ingen hastighet visas, hellre tomt än fel
-        } else {
-          const recentSpeeds = [...pointsRef.current.slice(-2).map(p => p.speedKnots), cleanSpeed]
-          if (recentSpeeds.length >= 3) {
-            const sorted = [...recentSpeeds].sort((a, b) => a - b)
-            cleanSpeed = sorted[Math.floor(sorted.length / 2)]!
-          }
-        }
+        // Hastighets-rensning — logiken bor i cleanGpsSpeed (@/lib/tracking)
+        // och är låst av tracking.test.ts (tak 60, accuracy>30 -> 0, median-3).
+        const cleanSpeed = cleanGpsSpeed(
+          speedKnots, point.accuracy,
+          pointsRef.current.slice(-2).map(p => p.speedKnots))
         setCurrentSpeed(cleanSpeed)
 
         const pt: GpsPoint = {
@@ -541,7 +532,8 @@ export default function SparaPage() {
     // start med status='active', sa att punkterna kan synkas till servern
     // UNDER turen - dor telefonen ar sparet inte borta. Misslyckas skapandet
     // (offline, kall auth) forblir tripId null och sparflodet gor insert
-    // precis som fore stromningen. image '' pga NOT NULL; sparet skriver om.
+    // precis som fore stromningen. image null - kolumnen gjordes nullbar
+    // 21/8 (falttest: tur utan foto gick inte att spara). Sparet skriver om.
     // Aktiva turer syns inte for andra: trips SELECT-policy slappar bara
     // igenom status='done' (eller agaren sjalv).
     void (async () => {
@@ -557,7 +549,7 @@ export default function SparaPage() {
           user_id: user.id,
           boat_type: boat,
           status: 'active',
-          image: '',
+          image: null,
           distance: 0,
           duration: 0,
           started_at: startTimeRef.current?.toISOString() ?? new Date().toISOString(),
@@ -586,21 +578,9 @@ export default function SparaPage() {
           .select('latitude,longitude,speed_knots,heading,accuracy,recorded_at')
           .eq('trip_id', snap.tripId)
           .order('recorded_at', { ascending: true })
-        if (serverPts && serverPts.length > 0) {
-          const seen = new Set(restored.map(p => p.recordedAt))
-          const fromServer: GpsPoint[] = serverPts
-            .filter(p => p?.recorded_at && !seen.has(p.recorded_at))
-            .map(p => ({
-              lat: p.latitude,
-              lng: p.longitude,
-              speedKnots: (p.speed_knots ?? 0) as number,
-              heading: p.heading ?? null,
-              accuracy: (p.accuracy ?? 0) as number,
-              recordedAt: p.recorded_at,
-            }))
-          restored = [...fromServer, ...restored]
-            .sort((a, b) => a.recordedAt.localeCompare(b.recordedAt))
-        }
+        // Ihopslagningen bor i mergeRecoveredPoints (@/lib/tracking):
+        // dedupe på recordedAt (bufferten vinner), sorterad på tid, testad.
+        restored = mergeRecoveredPoints(restored, serverPts ?? [])
       }
       if (restored.length > 0) {
         setPoints(restored)
@@ -611,8 +591,12 @@ export default function SparaPage() {
       }
     } catch { /* tyst */ }
 
-    // Restore elapsed time accounting for time since snapshot
-    const extraSec = Math.round((Date.now() - new Date(snap.savedAt).getTime()) / 1000)
+    // Falttest 19/8 (Tom): recovery adderade ALL vaggtid sedan snapshoten
+    // till elapsed - en tur pa 19 min visades som 18 h 47 min efter en natt
+    // med dod telefon. Dod tid ar inte sparningstid. Vi lagger hogst till
+    // 60 s (glappet vid en vanlig webblasarkrasch); allt darutover var
+    // telefonen av och ingen sparning skedde.
+    const extraSec = recoveryExtraSeconds(snap.savedAt, Date.now())
     setElapsed(snap.elapsed + extraSec)
     setTripId(snap.tripId)
     setBoatType(snap.boatType)
@@ -795,8 +779,6 @@ export default function SparaPage() {
       const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
       uploadedUrls.push(publicUrl)
     }
-    const imageUrl   = uploadedUrls[0] ?? ''
-    const extraUrls  = uploadedUrls.slice(1)
 
     // Build route_points: accuracy filter → speed-outlier removal → Douglas-Peucker → dynamic cap
     // This removes GPS teleport jumps and micro-jitter before saving to DB
@@ -806,42 +788,33 @@ export default function SparaPage() {
     // status='active' - da UPPDATERAR vi den och satter status='done'.
     // Saknas tripId (start-insert misslyckades, t.ex. offline) gors insert,
     // exakt som fore stromningen.
-    const tripFields = {
-      user_id:              user.id,
-      boat_type:            boatType,
-      distance:             parseFloat(dist.toFixed(2)),
-      duration:             Math.round(elapsed / 60),
-      average_speed_knots:  parseFloat(avgSpd.toFixed(1)),
-      max_speed_knots:      parseFloat(maxSpd.toFixed(1)),
-      image:                imageUrl || null,
-      images:               extraUrls.length ? extraUrls : null,
-      started_at:           startedAt,
-      ended_at:             endedAt,
-      pinnar_rating:        pinnar > 0 ? pinnar : null,
-      caption:              caption.trim() || null,
-      location_name:        locationName.trim() || null,
-      route_points:         routePoints,
-      status:               'done',
-      visibility:           isPrivate ? 'private' : 'public',
-    }
+    // Faltmappningen bor i buildTripFields (@/lib/tripFields) — testad,
+    // inkl. falttestbugg 21/8 (tur utan foto -> image null).
+    const tripFields = buildTripFields({
+      userId: user.id, boatType, distanceNM: dist, elapsedSeconds: elapsed,
+      avgKnots: avgSpd, maxKnots: maxSpd, uploadedUrls, startedAt, endedAt,
+      pinnar, caption, locationName, routePoints, isPrivate,
+    })
     const { data: trip, error: tripErr } = tripId
       ? await supabase.from('trips').update(tripFields).eq('id', tripId).select('id').single()
       : await supabase.from('trips').insert(tripFields).select('id').single()
 
     if (tripErr || !trip) {
-      setErr('Kunde inte spara turen: ' + (tripErr?.message ?? 'okänt fel'))
+      // 21/8: ra Postgres-text visades for anvandaren och natt aldrig oss —
+      // bildbuggen lag orord april-augusti. Nu: svenska till anvandaren,
+      // radatat till Sentry.
+      Sentry.captureException(new Error('[spara] trip-sparning misslyckades: ' + (tripErr?.message ?? 'okänt fel')))
+      console.error('[spara] trip-sparning misslyckades', tripErr)
+      setErr('Kunde inte spara turen. Ingenting är förlorat — försök igen.')
       setSaving(false); return
     }
 
     const tid = trip.id
     setTripId(tid)
-    clearTripSnapshot()
-
-    // Rensa offline-bufferten — GPS-punkterna sparas via in-memory points nedan,
-    // inte via bufferten, så bufferten är redundant efter att trippen är sparad.
-    getPendingPoints().then(pending => {
-      if (pending.length > 0) clearPoints(pending.map(p => p.key)).then(() => setOfflineBuffered(0))
-    }).catch(() => {})
+    // 21/8: snapshot och offline-buffert rensas forst EFTER att sparet
+    // verifierats pa servern (langre ner) — tidigare rensades de har, sa
+    // ett misslyckat batch-skriv gav en "sparad" tur utan spar och utan
+    // nagot kvar att aterstalla fran.
 
     // Insert tagged crew
     if (taggedCrew.length > 0) {
@@ -853,6 +826,7 @@ export default function SparaPage() {
     await supabase.from('gps_points').delete().eq('trip_id', tid)
 
     // Batch insert GPS points (500 at a time) med error-check och retry
+    let sparFel: string | null = null
     for (let i = 0; i < points.length; i += 500) {
       const batch = points.slice(i, i + 500).map(p => ({
         trip_id:     tid,
@@ -871,13 +845,30 @@ export default function SparaPage() {
         if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
       }
       if (batchErr) {
-        // Logga till konsolen — Sentry fångar upp detta i produktionsmiljön
+        // 21/8: kommentaren har pastod att Sentry fangade detta — det gjorde
+        // den inte (bara krascher fangas av error boundaries, inte hanterade
+        // fel). Nu skickas felet explicit och skrivningen avbryts.
+        sparFel = batchErr.message
         console.error('[spara] gps_points batch insert failed after retries', {
           batchIndex: i / 500,
           error: batchErr.message,
         })
+        break
       }
     }
+
+    if (sparFel) {
+      Sentry.captureException(new Error('[spara] spåret kunde inte skrivas: ' + sparFel))
+      setErr('Turen sparades men spåret kunde inte laddas upp. Ingenting är förlorat — tryck Spara igen.')
+      setSaving(false); return
+    }
+
+    // Sparet ar verifierat pa servern — forst NU ar det sakert att rensa
+    // aterstallningsdatat.
+    clearTripSnapshot()
+    getPendingPoints().then(pending => {
+      if (pending.length > 0) clearPoints(pending.map(p => p.key)).then(() => setOfflineBuffered(0))
+    }).catch(() => {})
 
     // Insert stops
     const stopsData = stops

@@ -7,6 +7,7 @@
  */
 
 import { useState } from 'react'
+import Icon from '@/components/Icon'
 
 export default function CopyLinkButton({ url }: { url: string }) {
   const [copied, setCopied] = useState(false)
@@ -31,7 +32,8 @@ export default function CopyLinkButton({ url }: { url: string }) {
         transition: 'all .2s',
       }}
     >
-      {copied ? '✅ Kopierad!' : '📋 Kopiera länk'}
+      <Icon name={copied ? 'check' : 'clipboard'} size={14} stroke={2.2} />
+      {copied ? 'Kopierad!' : 'Kopiera länk'}
     </button>
   )
 }

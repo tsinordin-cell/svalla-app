@@ -140,6 +140,25 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  await sendToConv(res.id)
  }
 
+ // Falttest 19/8 (Tom): att dela en PRIVAT tur gav mottagaren 404
+ // ("Borttappad till havs") - RLS slapper bara agaren. Modalen visste
+ // inte om synligheten, sa vi hamtar den och varnar + erbjuder att gora
+ // turen synlig innan delning.
+ const [visibility, setVisibility] = useState<string | null>(null)
+ useEffect(() => {
+   let cancel = false
+   supabase.from('trips').select('visibility').eq('id', trip.id).single()
+     .then(({ data }) => { if (!cancel && data) setVisibility(data.visibility) })
+   return () => { cancel = true }
+ }, [supabase, trip.id])
+ async function makePublic() {
+   const { error } = await supabase.from('trips')
+     .update({ visibility: 'public' }).eq('id', trip.id)
+   if (error) { toast('Kunde inte andra synligheten.', 'error'); return }
+   setVisibility('public')
+   toast('Turen ar nu synlig for alla.', 'success')
+ }
+
  return (
  <>
  {/* Backdrop */}
@@ -159,6 +178,21 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  boxShadow: '0 -4px 32px rgba(0,30,50,0.20)',
  }}
  >
+ {visibility === 'private' && (
+   <div style={{
+     margin: '12px 16px 0', padding: '10px 14px', borderRadius: 12,
+     background: 'rgba(201,110,42,0.10)', border: '1px solid rgba(201,110,42,0.35)',
+     fontSize: 13, color: 'var(--txt)', display: 'flex',
+     alignItems: 'center', gap: 10, justifyContent: 'space-between',
+   }}>
+     <span>Turen är privat — länken visar 404 för alla utom dig.</span>
+     <button type="button" onClick={makePublic} style={{
+       flexShrink: 0, padding: '6px 12px', borderRadius: 999, cursor: 'pointer',
+       background: 'var(--sea)', color: '#fff', border: 'none',
+       fontSize: 12.5, fontWeight: 700,
+     }}>Gör synlig</button>
+   </div>
+ )}
  {/* Handle */}
  <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '12px auto 0' }} />
 

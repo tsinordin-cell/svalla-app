@@ -2,6 +2,8 @@
 import { useEffect, useMemo, useState, useCallback, useRef, Fragment } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
+import SvallaLogo from '@/components/SvallaLogo'
+import Icon from '@/components/Icon'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
 
@@ -710,6 +712,9 @@ export default function TeamDashboardClient({
   const [showNewProject, setShowNewProject] = useState(false)
   const [newProjectName, setNewProjectName] = useState('')
   const [newProjectColor, setNewProjectColor] = useState('#1e5c82')
+  const [editProjectId, setEditProjectId] = useState<string | null>(null)
+  const [editProjectName, setEditProjectName] = useState('')
+  const [editProjectColor, setEditProjectColor] = useState('#1e5c82')
 
   const memberById = useMemo(() => {
     const m = new Map<string, TeamMember>()
@@ -869,6 +874,28 @@ export default function TeamDashboardClient({
     if (!error && data) setProjects(prev => [...prev, data as Project])
   }, [supabase, currentUser.id])
 
+  const updateProject = useCallback(async (id: string, patch: { name?: string; color?: string }) => {
+    const { error } = await supabase.from('team_projects').update(patch).eq('id', id)
+    if (!error) setProjects(prev => prev.map(p => (p.id === id ? { ...p, ...patch } : p)))
+  }, [supabase])
+
+  const deleteProject = useCallback(async (id: string) => {
+    // Skyddsspärr: ett projekt med uppgifter får inte raderas — korten skulle
+    // tyst hamna utan kategori, vilket är precis röran vi städar bort.
+    if (tasks.some(t => t.project_id === id)) return
+    const { error } = await supabase.from('team_projects').delete().eq('id', id)
+    if (!error) {
+      setProjects(prev => prev.filter(p => p.id !== id))
+      setProjectFilter(prev => (prev === id ? null : prev))
+    }
+  }, [supabase, tasks])
+
+  function submitEditProject() {
+    if (!editProjectId || !editProjectName.trim()) return
+    updateProject(editProjectId, { name: editProjectName.trim(), color: editProjectColor })
+    setEditProjectId(null)
+  }
+
   function submitNewProject() {
     if (!newProjectName.trim()) return
     createProject({ name: newProjectName.trim(), color: newProjectColor, description: null })
@@ -898,15 +925,18 @@ export default function TeamDashboardClient({
         <aside className="svt-sidebar">
           <div style={{ padding: '4px 10px 18px' }}>
             <div style={{
-              fontSize: 17, fontWeight: 700, color: '#fff',
-              fontFamily: 'var(--font-display), var(--font-display-fallback)',
-              display: 'flex', alignItems: 'center', gap: 8,
+              color: '#fff',
+              display: 'flex', alignItems: 'center',
             }}>
+              <SvallaLogo height={19} />
               <span style={{
-                width: 26, height: 26, borderRadius: 7, background: 'rgba(255,255,255,0.14)',
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 13,
-              }}>⛵</span>
-              Svalla Team
+                marginLeft: -7, paddingLeft: 11,
+                borderLeft: '1px solid rgba(255,255,255,0.22)',
+                fontFamily: "'Georgia','Times New Roman',serif",
+                fontSize: 12.5, fontWeight: 600, letterSpacing: 2.5,
+                textTransform: 'uppercase', color: 'rgba(255,255,255,0.75)',
+                lineHeight: 1,
+              }}>Team</span>
             </div>
             <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.45)', marginTop: 3 }}>Delad arbetsyta</div>
           </div>
@@ -934,11 +964,45 @@ export default function TeamDashboardClient({
               <span style={{ fontSize: 11, opacity: 0.6 }}>{tasks.length}</span>
             </button>
             {projects.map(p => (
-              <button key={p.id} className={`svt-projrow${projectFilter === p.id ? ' active' : ''}`} onClick={() => setProjectFilter(projectFilter === p.id ? null : p.id)}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: p.color, flexShrink: 0 }} />
-                <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</span>
-                <span style={{ fontSize: 11, opacity: 0.6 }}>{taskCountForProject(p.id)}</span>
-              </button>
+              editProjectId === p.id ? (
+                <div key={p.id} style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <input
+                      value={editProjectName} onChange={e => setEditProjectName(e.target.value)}
+                      onKeyDown={e => { if (e.key === 'Enter') submitEditProject(); if (e.key === 'Escape') setEditProjectId(null) }}
+                      autoFocus
+                      style={{ ...inputStyle, flex: 1, background: 'rgba(255,255,255,0.10)', border: '1px solid rgba(255,255,255,0.16)', color: '#fff', fontSize: 12 }}
+                    />
+                    <input type="color" value={editProjectColor} onChange={e => setEditProjectColor(e.target.value)} style={{ width: 28, height: '100%', border: 'none', borderRadius: 6, padding: 0, background: 'none', cursor: 'pointer' }} />
+                  </div>
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <button onClick={submitEditProject} className="svt-btn-primary" style={{ ...btnPrimary, padding: '6px 10px', fontSize: 11.5, flex: 1, justifyContent: 'center' }}>Spara</button>
+                    <button onClick={() => setEditProjectId(null)} style={{ ...btnGhost, padding: '6px 10px', fontSize: 11.5, color: 'rgba(255,255,255,0.7)', border: '1.5px solid rgba(255,255,255,0.16)' }}>Avbryt</button>
+                  </div>
+                  {taskCountForProject(p.id) === 0 && (
+                    <button
+                      onClick={() => { if (confirm(`Ta bort projektet "${p.name}"?`)) { deleteProject(p.id); setEditProjectId(null) } }}
+                      style={{ ...btnGhost, padding: '6px 10px', fontSize: 11.5, color: '#ff9b9b', border: '1.5px solid rgba(255,155,155,0.25)', justifyContent: 'center' }}
+                    >Ta bort tomt projekt</button>
+                  )}
+                </div>
+              ) : (
+                <div key={p.id} style={{ display: 'flex', alignItems: 'center' }}>
+                  <button className={`svt-projrow${projectFilter === p.id ? ' active' : ''}`} style={{ flex: 1 }} onClick={() => setProjectFilter(projectFilter === p.id ? null : p.id)}>
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: p.color, flexShrink: 0 }} />
+                    <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</span>
+                    <span style={{ fontSize: 11, opacity: 0.6 }}>{taskCountForProject(p.id)}</span>
+                  </button>
+                  <button
+                    title="Byt namn eller färg"
+                    aria-label={`Ändra projektet ${p.name}`}
+                    onClick={() => { setEditProjectId(p.id); setEditProjectName(p.name); setEditProjectColor(p.color) }}
+                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.45)', padding: '4px 8px', display: 'flex', alignItems: 'center' }}
+                  >
+                    <Icon name="edit" size={13} stroke={2} />
+                  </button>
+                </div>
+              )
             ))}
 
             {showNewProject ? (

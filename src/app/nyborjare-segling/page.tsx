@@ -47,7 +47,7 @@ const ITEMS: LandingItem[] = [
  title: 'Börja i rätt vatten',
  description: 'Lugna revir för nybörjare: Mälaren, inre Stockholms skärgård och Bohuslän.',
  href: '/nyborjare-segling?avsnitt=revir',
- icon: '️',
+ icon: 'waves',
  meta: 'Saltsjön, Mälaren, fjärdar',
  },
  {

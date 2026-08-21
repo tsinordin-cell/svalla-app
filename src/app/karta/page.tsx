@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
  {
- icon: '️',
+ icon: 'utensils',
  title: 'Krogar & caféer',
  description: 'Från Fjäderholmarnas Krog i inloppet till Utö Värdshus längs kanalen. Filtrera på öppettider, bokningsbart och årstid.',
  href: '/krogar-och-mat',
@@ -56,7 +56,7 @@ const ITEMS: LandingItem[] = [
  href: '/vandring-och-natur',
  },
  {
- icon: '️',
+ icon: 'island',
  title: 'Alla öar',
  description: 'Sandhamn, Utö, Möja, Grinda, Finnhamn, Arholma — klassiker och mindre kända smultronställen.',
  href: '/resmal',
