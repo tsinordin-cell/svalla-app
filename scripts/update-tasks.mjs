@@ -135,6 +135,34 @@ const UPPDATERA_BESKRIVNING = [
 /** Nya tasks från arbetet 19–21 augusti. */
 const NYA = [
   {
+    title: 'ALLVARLIGT: säkerhetsinvarianten i seaPathfinder fallerar',
+    description:
+      'npm test ger 2 fel, båda i src/lib/seaPathfinder.test.ts (246 av 248 passerar). ' +
+      'Det ena är kosmetiskt, det andra är en säkerhetsspärr som inte håller.\n\n' +
+      'FEL 1 — SÄKERHET. Testet "Stadshuskajen → Tullinge (inland-sjö) returnerar ' +
+      'unavailable" fallerar: förväntat "unavailable", fick "waypoint".\n' +
+      'Tullingesjön är en insjö cirka 15 km från saltvatten. Dit går det inte att ' +
+      'segla. Planeraren svarar ändå med en rutt.\n\n' +
+      'TROLIG ORSAK: fallback-kedjan är precomputed → grid-A* → waypoint-Dijkstra → ' +
+      'unavailable. Steg 3 "lyckas", vilket betyder antingen att waypoint-grafen ' +
+      'har noder som överbryggar till insjön, eller — mer troligt — att destinationen ' +
+      'snappas till närmaste grafnod i saltvatten och att rutten dit returneras. ' +
+      'I så fall svarar planeraren på en ANNAN fråga än den som ställdes, tyst.\n\n' +
+      'Land-valideringen fångar det inte, eftersom en väg genom vatten inte korsar ' +
+      'land — även när vattnen inte hänger ihop.\n\n' +
+      'FEL 2 — precision. findSeaPath returnerar [59.32915, 18.07096] där testet ' +
+      'väntar [59.33, 18.07]. Pathfindern snappar till 50 m-rastret. Avgör om testet ' +
+      'eller koden ska ändras — men rör det inte förrän fel 1 är löst.\n\n' +
+      'KONTEXT: testet skrevs 2026-05-23 när rak-linje-fallbacken togs bort ' +
+      '("hellre ingen rutt än en falsk linje över land"). Routing-arbetet i PR #57, ' +
+      '#58 och #60 bytte ut kustmasken mot ett 50 m-raster. Sannolikt en regression ' +
+      'därifrån. Hänger ihop med de öppna taskerna om 8x för långa rutter och om ' +
+      'masken som stänger navigerbara sund.\n\n' +
+      'Hittat 2026-08-21. Inte åtgärdat — kräver någon som kan grafen, inte en ' +
+      'snabb patch.',
+    priority: 'high',
+  },
+  {
     title: 'BRÅDSKANDE: sätt kvotgräns på Google Places API',
     description:
       'Google Cloud gick från 0 kr i juni och juli till 4 124 kr 1–19 augusti. ' +
