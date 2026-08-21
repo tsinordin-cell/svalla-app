@@ -110,7 +110,7 @@ export type Trip = {
   duration: number
   average_speed_knots: number
   max_speed_knots: number
-  image: string
+  image: string | null           // null/'' = ingen bild — kortet visar kartan (nullbar 21/8)
   location_name: string | null    // "Grinda", "Sandhamn" etc
   start_location: string | null   // "Nynäshamn", "Stockholms ström" etc
   caption: string | null          // kort text, max 280 tecken
