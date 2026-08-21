@@ -53,7 +53,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Buss', from: 'Göteborg', time: '1 h 15 min', desc: 'Buss 312 från Nils Ericson Terminalen.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Marstrands Gästhamn', desc: 'Den största gästhamnen i Bohuslän, fyllt under sommaren.', spots: 200, fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt'] },
+      { name: 'Marstrands Gästhamn', desc: 'Den största gästhamnen i Bohuslän, fyllt under sommaren.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt'] },
     ],
     restaurants: [
       { name: 'Tenan', type: 'Restaurang', desc: 'Modern bohuslänsk meny med havsutsikt.' },
@@ -109,7 +109,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Buss', from: 'Göteborg', time: '2 h', desc: 'Västtrafik linje 860 till Kungshamn, sen kort buss till Smögen.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Smögens Gästhamn', desc: 'En av västkustens mest älskade gästhamnar.', spots: 400, fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt', 'Restaurang'] },
+      { name: 'Smögens Gästhamn', desc: 'En av västkustens mest älskade gästhamnar.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt', 'Restaurang'] },
     ],
     restaurants: [
       { name: 'Smögens Bryggrestaurang', type: 'Restaurang', desc: 'Räkor, fisk, livlig sommarmiljö.' },
@@ -163,7 +163,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Buss', from: 'Göteborg', time: '2 h 10 min', desc: 'Västtrafik linje 850.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Lysekils Gästhamn', desc: 'Stor gästhamn vid stadens centrum.', spots: 250, fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt'] },
+      { name: 'Lysekils Gästhamn', desc: 'Stor gästhamn vid stadens centrum.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'Tvätt'] },
     ],
     restaurants: [
       { name: 'Brygghuset', type: 'Restaurang', desc: 'Skaldjur och fisk i hamnmiljö.' },
@@ -216,8 +216,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil + båt', from: 'Strömstad', time: '45 min båt', desc: 'Kör till Strömstad. Kosterbåtar går varje 1–2 timmar sommartid.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Ekenäs (Sydkoster)', desc: 'Centrala gästhamnen, sommaröppen butik och krog.', spots: 50 },
-      { name: 'Långegärde (Nordkoster)', desc: 'Mindre gästhamn, mer avskild.', spots: 25 },
+      { name: 'Ekenäs (Sydkoster)', desc: 'Centrala gästhamnen, sommaröppen butik och krog.' },
+      { name: 'Långegärde (Nordkoster)', desc: 'Mindre gästhamn, mer avskild.' },
     ],
     restaurants: [
       { name: 'Ekenäs Värdshus', type: 'Restaurang', desc: 'Lokala fiskrätter, sjönära.' },
@@ -269,7 +269,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil', from: 'Göteborg', time: '1 h 50 min', desc: 'E6 norrut, avtag mot Grebbestad efter Munkedal.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Grebbestads Gästhamn', desc: 'Mysig gästhamn vid centrum.', spots: 150, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Grebbestads Gästhamn', desc: 'Mysig gästhamn vid centrum.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Everts Sjöbod', type: 'Restaurang', desc: 'Ostron och fisk i bohuslänsk miljö.' },
@@ -323,7 +323,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil', from: 'Göteborg', time: '2 h', desc: 'E6 norrut, avtag mot Fjällbacka efter Tanumshede.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Fjällbackas Gästhamn', desc: 'Centralt vid Ingrid Bergmans torg.', spots: 100, fuel: true },
+      { name: 'Fjällbackas Gästhamn', desc: 'Centralt vid Ingrid Bergmans torg.', fuel: true },
     ],
     restaurants: [
       { name: 'Fjällbacka Bistro', type: 'Restaurang', desc: 'Modern Bohuslän-meny.' },
@@ -374,7 +374,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Passagerarbåt', from: 'Lysekil', time: '30 min', desc: 'Västtrafik linje 847 från Lysekil till Fiskebäckskil — sedan kort buss eller bil till Grundsund.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Grundsunds Gästhamn', desc: 'Långsmal naturhamn längs kanalen mellan östra och västra Grundsund.', spots: 60 },
+      { name: 'Grundsunds Gästhamn', desc: 'Långsmal naturhamn längs kanalen mellan östra och västra Grundsund.' },
     ],
     restaurants: [
       { name: 'Grundsunds Krog', type: 'Krog', desc: 'Klassisk fiskmeny i bohuslänsk miljö.' },
@@ -416,7 +416,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil', from: 'Göteborg', time: '2 h', desc: 'E6 till Tanumshede, sedan väg 163 till Hamburgsund.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Hamburgsunds Gästhamn', desc: 'Skyddad gästhamn med klassisk Bohuslänsk miljö.', spots: 150, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Hamburgsunds Gästhamn', desc: 'Skyddad gästhamn med klassisk Bohuslänsk miljö.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Hamburgsunds Värdshus', type: 'Restaurang', desc: 'Klassisk västkustmeny.' },
@@ -466,7 +466,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil + passagerarbåt', from: 'Göteborg', time: '1 h 45 min', desc: 'Kör till Tuvesvik (Orust). Käringötrafiken går från Tuvesvik via Gullholmen till Käringön — året om, tätare turlista 15 juni–15 augusti. Båt går även från Hälleviksstrand sommartid.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Käringö Gästhamn', desc: 'Pittoresk hamn vid bymiljön.', spots: 50 },
+      { name: 'Käringö Gästhamn', desc: 'Pittoresk hamn vid bymiljön.' },
     ],
     restaurants: [
       { name: 'Käringö Värdshus', type: 'Restaurang', desc: 'Klassisk bohuslänsk meny.' },
@@ -517,8 +517,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil', from: 'Göteborg', time: '1 h 15 min', desc: 'E6 norrut till Stenungsund, över Tjörnbron till Tjörn, sedan Stigfjordsbron eller Nötesundsbron till Orust.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Henåns Gästhamn', desc: 'Skyddad gästhamn på östra Orust.', spots: 80, fuel: true },
-      { name: 'Mollösunds Gästhamn', desc: 'Pittoresk på västra sidan.', spots: 40 },
+      { name: 'Henåns Gästhamn', desc: 'Skyddad gästhamn på östra Orust.', fuel: true },
+      { name: 'Mollösunds Gästhamn', desc: 'Pittoresk på västra sidan.' },
     ],
     restaurants: [
       { name: 'Mollösunds Värdshus', type: 'Restaurang', desc: 'Klassisk bohuslänsk meny.' },
@@ -569,8 +569,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Buss', from: 'Göteborg', time: '1 h 30 min', desc: 'Västtrafik linje 312 eller 850.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Skärhamns Gästhamn', desc: 'Centralt vid Akvarellmuseet.', spots: 100, fuel: true },
-      { name: 'Klädesholmens Hamn', desc: 'Pittoresk fiskeläge.', spots: 40 },
+      { name: 'Skärhamns Gästhamn', desc: 'Centralt vid Akvarellmuseet.', fuel: true },
+      { name: 'Klädesholmens Hamn', desc: 'Pittoresk fiskeläge.' },
     ],
     restaurants: [
       { name: 'Salt & Sill Restaurang', type: 'Restaurang', desc: 'Sillrätter på flytande hotell.' },
@@ -620,7 +620,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil', from: 'Göteborg', time: '1 h 30 min', desc: 'E6 till Munkedal, sen väg 174.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Kungshamns Gästhamn', desc: 'Mindre besökt än Smögen, mer plats sommartid.', spots: 100, fuel: true },
+      { name: 'Kungshamns Gästhamn', desc: 'Mindre besökt än Smögen, mer plats sommartid.', fuel: true },
     ],
     restaurants: [
       { name: 'Räkans Vänner', type: 'Restaurang', desc: 'Räkmackor utan turisttillägg.' },
@@ -670,7 +670,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Båt', from: 'Marstrand', time: '30 min', desc: 'Båtshuttle bokas via hotellet.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Pater Noster Brygga', desc: 'Endast för båtshuttle och hotellets gäster.', spots: 5 },
+      { name: 'Pater Noster Brygga', desc: 'Endast för båtshuttle och hotellets gäster.' },
     ],
     restaurants: [
       { name: 'Pater Noster Restaurang', type: 'Restaurang', desc: 'Lokala råvaror, världsklass.' },
@@ -717,7 +717,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Båt', from: 'Göteborg', time: '1 h 15 min', desc: 'Vingaturer från Saltholmen sommartid.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Vinga Brygga', desc: 'Endast för Vingaturer.', spots: 0 },
+      { name: 'Vinga Brygga', desc: 'Endast för Vingaturer.' },
     ],
     restaurants: [
       { name: 'Vinga Café', type: 'Café', desc: 'Sommaröppet, kaffe och fika.' },
@@ -759,7 +759,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Bil till Lilla Varholmen, sen 5 min färja till Hönö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Hönö Klåvas Gästhamn', desc: 'Stor gästhamn med restaurang.', spots: 120, fuel: true },
+      { name: 'Hönö Klåvas Gästhamn', desc: 'Stor gästhamn med restaurang.', fuel: true },
     ],
     restaurants: [
       { name: 'Klåvas Hamnkrog', type: 'Restaurang', desc: 'Färska skaldjur i hamnmiljö.' },
@@ -822,7 +822,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       frequency: 'Flera avgångar dagligen sommartid',
     },
     harbors: [
-      { name: 'Gullholmens Gästhamn', desc: 'Liten gästhamn i fiskeläget. Charmig men trång — kom tidigt sommarmorgon för att säkra plats.', spots: 30, fuel: false, service: ['Vatten', 'El'] },
+      { name: 'Gullholmens Gästhamn', desc: 'Liten gästhamn i fiskeläget. Charmig men trång — kom tidigt sommarmorgon för att säkra plats.', fuel: false, service: ['Vatten', 'El'] },
     ],
     restaurants: [
       { name: 'Gullholmens Värdshus', type: 'Restaurang', desc: 'Lokal mat med skaldjur och fisk. Det naturliga valet för lunch eller middag på ön.' },
@@ -898,7 +898,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       frequency: 'Tillgänglig hela året med bil',
     },
     harbors: [
-      { name: 'Klädesholmens Gästhamn', desc: 'Välskyddad gästhamn i det historiska fiskeläget. Nära restauranger och havsbastu.', spots: 80, fuel: false, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Klädesholmens Gästhamn', desc: 'Välskyddad gästhamn i det historiska fiskeläget. Nära restauranger och havsbastu.', fuel: false, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Salt & Sill', type: 'Restaurang', desc: 'Bohusläns mest hyllade sjömatsrestaurang. Lokala skaldjur, kreativ meny och havsutsikt. Boka bord långt i förväg.' },
@@ -981,7 +981,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       frequency: 'Flera avgångar dagligen sommartid',
     },
     harbors: [
-      { name: 'Åstols Gästhamn', desc: 'Liten välbesökt hamn. Sommartid fullbokad tidigt på dagen — ankra utanför eller kom tidigt.', spots: 25, fuel: false, service: ['Vatten'] },
+      { name: 'Åstols Gästhamn', desc: 'Liten välbesökt hamn. Sommartid fullbokad tidigt på dagen — ankra utanför eller kom tidigt.', fuel: false, service: ['Vatten'] },
     ],
     restaurants: [
       { name: 'Åstols Rökeri', type: 'Café/Deli', desc: 'Rökt fisk, räkor och enkla skaldjurs­rätter. Den självklara lunchen på Åstol.' },
@@ -1056,7 +1056,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Dyrön brygga', desc: 'Liten brygga. Utrymmet är begränsat — ankra och rodd in är vanligare.', spots: 10, fuel: false, service: [] },
+      { name: 'Dyrön brygga', desc: 'Liten brygga. Utrymmet är begränsat — ankra och rodd in är vanligare.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [

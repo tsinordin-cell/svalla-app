@@ -1666,7 +1666,7 @@ export const GUIDES: GuideMeta[] = [
     category: "Aktivitet", emoji: "⛺", readTime: "7 min", fullContent: true,
     topics: ['camping', 'stockholm', 'natur'],
     faqs: [
-      { q: 'Var kan man campa i Stockholms skärgård?', a: 'STF driver vandrarhem och campingplatser på Finnhamn, Arholma, Kymmendö och fler öar. Allemansrätten tillåter fria tältövernattningar på naturreservatens mark. Bullerö naturreservat i södra skärgården är populärt för fri camping via kajak. Utö har kommersiell camping och stuguthyrning.' },
+      { q: 'Var kan man campa i Stockholms skärgård?', a: 'STF driver vandrarhem och campingplatser på Finnhamn, Arholma, Kymmendö och fler öar. Allemansrätten tillåter fria tältövernattningar på naturreservatens mark. Bullerö i Nämdöskärgårdens nationalpark är populärt att nå med kajak — men nationalparkens egna föreskrifter gäller där, inte allemansrätten fullt ut. Utö har kommersiell camping och stuguthyrning.' },
       { q: 'Kan man ta Waxholmsbåten till campingplatsen?', a: 'Finnhamn nås med Waxholmsbåt direkt från Stockholm. Arholma likaså med byte. Bullerö och andra friluftsmål nås enklast med kajak eller egen båt — inga reguljära linjer. Utö nås med pendelbåt från Nynäshamn.' },
       { q: 'Behöver man båt för att campa i skärgården?', a: 'Nej, Finnhamn, Arholma och Utö nås med kollektivtrafik (Waxholmsbolaget). Däremot är fria tältplatser på naturreservatsöar enklast att nå med kajak eller liten motorbåt. Kajak kan hyras i Vaxholm och Stavsnäs.' },
     ],
