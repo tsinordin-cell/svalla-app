@@ -717,6 +717,33 @@ export default async function IslandPage({ params }: Props) {
  }}>{r.type}</span>
  </div>
  <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 8px', lineHeight: 1.6 }}>{r.desc}</p>
+ {/*
+   Säsong och telefon renderas — de är trögrörliga och låg risk.
+   open_hours och price_example renderas MEDVETET INTE: alla 23 saknar källa,
+   och öppettider/priser ändras varje säsong. Hellre skicka besökaren till
+   verksamhetens egen sida än visa en siffra vi inte kan stå för.
+   Ändra detta först när fälten har KÄLLA. (2026-08-21)
+ */}
+ {(r.open_season || r.phone) && (
+ <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', margin: '0 0 8px' }}>
+ {r.open_season && (
+ <span style={{
+ fontSize: 11, fontWeight: 600, color: 'var(--txt2)',
+ background: 'var(--surface-2)', padding: '3px 9px', borderRadius: 8,
+ }}>
+ Öppet {r.open_season.toLowerCase()}
+ </span>
+ )}
+ {r.phone && (
+ <a href={`tel:${r.phone.replace(/[^\d+]/g, '')}`} style={{
+ fontSize: 11, fontWeight: 600, color: 'var(--sea)',
+ textDecoration: 'none',
+ }}>
+ {r.phone}
+ </a>
+ )}
+ </div>
+ )}
  {(r.bookingUrl || r.websiteUrl) && (
  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
  {r.bookingUrl && (
