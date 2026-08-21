@@ -32,6 +32,7 @@ const KNOWN_EVENTS = new Set([
   'forum_thread_created', 'forum_post_created', 'forum_subscribed', 'forum_best_answer_marked',
   'follow_added', 'push_prompt_shown', 'push_prompt_response',
   'search_performed', 'island_viewed', 'place_viewed',
+  'page_viewed',
   'route_planned', 'route_saved',
   'dag_pill_clicked', 'dag_page_viewed', 'dag_position_set', 'dag_plan_generated',
   'dag_save_clicked', 'dag_plan_saved', 'dag_save_failed',

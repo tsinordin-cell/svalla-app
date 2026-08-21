@@ -1324,7 +1324,7 @@ export const TRIPS: Trip[] = [
       },
     ],
     resources: [
-      { label: 'Naturvårdsverket — Bullerö naturreservat', url: 'https://www.naturvardsverket.se' },
+      { label: 'Sveriges Nationalparker — Nämdöskärgårdens nationalpark', url: 'https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark' },
       { label: 'Stockholms skärgårdsstiftelse', url: 'https://www.skargardsstiftelsen.se' },
     ],
     islandSlugs: ['bullero'],

@@ -1796,7 +1796,7 @@ Skärgårdens vandringsleder är sällan markerade på samma sätt som fjällede
 ### 4. Gällnö naturreservat (ca 6 km)
 Gällnö är ett naturreservat i Värmdö skärgård med markerade leder och vacker urbergsterräng. Enklare och kortare — perfekt för familjer med barn som kan gå.
 
-### 5. Bullerö naturreservat (ca 5 km)
+### 5. Bullerö, Nämdöskärgårdens nationalpark (ca 5 km)
 [Bullerö](/o/bullero) är en av skärgårdens vackraste öar och ett naturreservat utan fast boende. Kort slingled med utsiktsplatser. Nås med charter- eller privatbåt.
 
 ### 6. Grinda – Runt ön (ca 4 km)
@@ -2017,7 +2017,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 [Ornö](/o/orno) är för den som vill ha riktig natur. Bil krävs (vägfärja från Nynäshamn), men belöningen är en av skärgårdens bäst bevarade öar med runt-öled och fullständigt lugn.
 
-## 8. Bullerö naturreservat – klippor och frihet
+## 8. Bullerö i Nämdöskärgårdens nationalpark – klippor och frihet
 
 [Bullerö](/o/bullero) nås bara med båt och har ingen fast service. Charter eller privat båt, med tält och matsäck. En av Stockholms skärgårds vackraste öar för den som vill vara ifred.
 

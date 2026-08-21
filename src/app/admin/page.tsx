@@ -87,6 +87,16 @@ function IcoRoute({ color }: { color: string }) {
   )
 }
 
+function IcoTarget({ color }: { color: string }) {
+  return (
+    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  )
+}
+
 function IcoBarChart({ color }: { color: string }) {
   return (
     <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
@@ -107,6 +117,22 @@ type AdminTool = {
 }
 
 const ADMIN_TOOLS: AdminTool[] = [
+  {
+    href:  '/admin/malet',
+    icon:  <IcoTarget color="#7c3aed" />,
+    title: 'Vägen till miljonen',
+    desc:  'Exitvärdering, milstolpar och vad vi aldrig får glömma',
+    badge: 'MÅL',
+    color: '#7c3aed',
+  },
+  {
+    href:  '/admin/oar-trafik',
+    icon:  <IcoTarget color="#0a7b3c" />,
+    title: 'Besök per ö',
+    desc:  'Underlag till anspråksmejlen — vilka öar får trafik',
+    badge: 'NY',
+    color: '#0a7b3c',
+  },
   {
     href:  '/admin/koordinater',
     icon:  <IcoMapPin color="#1d4ed8" />,

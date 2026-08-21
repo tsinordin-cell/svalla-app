@@ -125,7 +125,7 @@ body{font-family:'Inter',sans-serif;background:var(--sand-light);color:var(--ink
 .hero-title em{font-style:italic;background:linear-gradient(135deg,var(--accent),#f4b06a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;}
 .hero-sub{font-size:clamp(14px,1.8vw,16px);font-weight:300;color:rgba(255,255,255,.72);max-width:600px;margin:8px auto 18px;line-height:1.6;text-shadow:0 1px 10px rgba(5,15,30,.55);}
 .hero-search{display:flex;max-width:480px;margin:0 auto 14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:50px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.25);}
-.hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:var(--ink);background:transparent;}
+.hero-search input{flex:1;border:none;outline:none;padding:16px 22px;font-size:15px;font-family:'Inter',sans-serif;color:#1c2b2e;background:transparent;}
 .hero-search input::placeholder{color:rgba(15,30,45,.55)}
 .hero-search button{margin:6px 6px 6px 0;padding:12px 28px;border-radius:50px;background:var(--accent);color:var(--white);border:none;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:.2s;white-space:nowrap;}
 .hero-search button:hover{background:var(--accent-light)}

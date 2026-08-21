@@ -50,6 +50,10 @@ export type SvallaEvent =
   | { name: 'push_prompt_shown';    props: { trigger: 'manual' | 'auto' } }
   | { name: 'push_prompt_response'; props: { granted: boolean } }
 
+  // Sidvisning — generisk, fyras vid varje route-byte. Ger oss trafiksiffror
+  // i vår egen tabell (inte bara i PostHog) så /admin/malet kan räkna själv.
+  | { name: 'page_viewed';          props: { path: string } }
+
   // Discovery / search
   | { name: 'search_performed';     props: { query: string; query_length: number; results: number; surface?: string } }
   | { name: 'island_viewed';        props: { island_slug: string } }

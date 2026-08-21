@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Svalla – Skärgårdslivet, loggat'
+export const alt = 'Svalla – Sveriges samlade skärgårdssida'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -209,7 +209,7 @@ export default function OGImage() {
  marginBottom: 20,
  lineHeight: 1.3,
  }}>
- Skargårdslivet, loggat.
+ Sveriges samlade skärgårdssida
  </div>
 
  {/* Feature pills — plain text, no emojis (ImageResponse has no emoji font) */}

@@ -270,7 +270,7 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Maj–september',
-    tagline: 'Sveriges enda marina nationalpark — dramatiska klippor och Västerhavet i alla riktningar.',
+    tagline: 'Sveriges första marina nationalpark — dramatiska klippor och Västerhavet i alla riktningar.',
     topSweden: 4,
   },
   {

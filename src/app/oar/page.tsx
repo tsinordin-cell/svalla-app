@@ -164,6 +164,21 @@ export default function OarIndexPage() {
             >
               Planera utflykt
             </Link>
+            {/* /oar/slumpa är en route handler som omdirigerar — funkar utan JS. */}
+            <Link
+              href="/oar/slumpa"
+              prefetch={false}
+              style={{
+                padding: '14px 28px', borderRadius: 999,
+                background: 'rgba(255,255,255,0.12)',
+                border: '1px solid rgba(255,255,255,0.22)',
+                color: '#fff', fontSize: 14, fontWeight: 600,
+                textDecoration: 'none',
+                backdropFilter: 'blur(8px)',
+              }}
+            >
+              Slumpa en ö
+            </Link>
           </div>
         </div>
       </header>
@@ -171,9 +186,10 @@ export default function OarIndexPage() {
       <main style={{ maxWidth: 1080, margin: '-48px auto 0', padding: '0 16px 60px' }}>
         {/* Konvertering — varför skapa konto */}
         <section style={{
-          background: '#fff', borderRadius: 18,
+          background: 'var(--surface-1)', borderRadius: 18,
+          border: '1px solid var(--surface-3)',
           padding: '28px 32px',
-          boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
+          boxShadow: 'var(--shadow-md)',
           marginBottom: 48,
           position: 'relative', zIndex: 2,
           display: 'grid',

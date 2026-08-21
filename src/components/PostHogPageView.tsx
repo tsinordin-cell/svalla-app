@@ -14,6 +14,7 @@
 import { usePathname, useSearchParams } from 'next/navigation'
 import { usePostHog } from 'posthog-js/react'
 import { useEffect } from 'react'
+import { track } from '@/lib/analytics-events'
 
 function PageViewTracker() {
   const pathname    = usePathname()
@@ -24,6 +25,10 @@ function PageViewTracker() {
     if (!pathname || !posthog) return
     const url = window.location.href
     posthog.capture('$pageview', { $current_url: url })
+    // Spegla till vår egen analytics_events-tabell så /admin/malet och
+    // /admin/insikter kan räkna trafik utan att gå via PostHogs API.
+    // track() är no-op utan analytics-consent.
+    track('page_viewed', { path: pathname })
   }, [pathname, searchParams, posthog])
 
   return null

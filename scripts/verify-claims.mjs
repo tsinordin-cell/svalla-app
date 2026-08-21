@@ -62,6 +62,83 @@ const KALLMARKORER = [
 ]
 
 /**
+ * ── KÄLLHIERARKI (införd 2026-08-19) ─────────────────────────────────────────
+ *
+ * Bakgrund: Bullerö. Sidan påstod att ön var ett naturreservat förvaltat av
+ * Skärgårdsstiftelsen, att Waxholmsbolaget trafikerade den, och att gästhamnen
+ * hade 15 platser. Allt fel. Reservatet hade upphört 2025 och uppgått i
+ * Nämdöskärgårdens nationalpark; trafiken sköts av Bullerölinjen; ön har inga
+ * gästhamnsplatser alls. Felen upptäcktes inte av oss utan av personal på
+ * nationalparken, som hörde av sig via feedbackformuläret.
+ *
+ * En rättelse gjordes först utifrån destinationens EGEN sida (bullero.se) och
+ * hade fortfarande fel om skyddsstatusen. Läxan: för juridisk och administrativ
+ * status gäller MYNDIGHETEN, aldrig destinationens egen presentation.
+ *
+ * NIVÅ 1 — myndighet. Enda giltiga källan för status, föreskrifter, sjökort:
+ *   sjofartsverket.se (Ufs), naturvardsverket.se, sverigesnationalparker.se,
+ *   lansstyrelsen.se, trafikverket.se, smhi.se, lantmateriet.se, kommuner (.se)
+ *
+ * NIVÅ 2 — operatör om sig själv. Giltig för egen tidtabell, eget pris,
+ *   egna öppettider: waxholmsbolaget.se, sl.se, vasttrafik.se, battaxi.se,
+ *   stromma.com, samt varje krogs/gästhamns egen webbplats.
+ *
+ * NIVÅ 3 — aggregator. Giltig men ska namnges:
+ *   gasthamnsguiden.se, svenskagasthamnar.se, destinationssajter.
+ *
+ * SVAGA KÄLLOR — duger för geometri och koordinater, ALDRIG för påståenden om
+ * djup, segelfri höjd, fartgräns, skyddsstatus, pris eller öppettid:
+ *   OpenStreetMap, Wikipedia, TripAdvisor, resebloggar.
+ *
+ * Skurusundet är exemplet: OSM:s maxheight-tagg är en fordonsbegränsning för
+ * trafiken PÅ bron, inte segelfri höjd under den. Vi läste den som det senare.
+ */
+const SVAGA_KALLOR = [
+  'openstreetmap', 'osm ', 'osm/', 'osm way', 'wikipedia', 'wikimedia',
+  'tripadvisor', 'blogg', 'blogspot', 'wordpress.com',
+]
+
+/** Påståendetyper där en svag källa INTE räcker — de kräver nivå 1 eller 2. */
+const KRAVER_STARK_KALLA = new Set(['djup', 'segelfri höjd', 'knop', 'skyddsstatus'])
+
+/**
+ * SKYDDSSTATUS — ny kategori 2026-08-19, direkt följd av Bullerö.
+ *
+ * Skyddsstatus ändras genom myndighetsbeslut och vår data blir gammal utan att
+ * någon märker det. Nationalparksreformen 2025 gjorde 29 av våra öar potentiellt
+ * inaktuella. Varning tills de är genomgångna — att fälla bygget nu hade tvingat
+ * fram gissningar, vilket är exakt fel medicin.
+ */
+const SKYDD_ORD = '(?:naturreservat|nationalpark|fågelskyddsområde|sälskyddsområde|Natura\\s*2000)'
+const SKYDDSSTATUS = new RegExp(
+  // "Bullerö naturreservat" — namngiven plats + skyddsform = statuspåstående
+  `\\b[A-ZÅÄÖ][a-zåäöé]{2,}(?:s|ns)?\\s+${SKYDD_ORD}\\b` +
+  // "är ett naturreservat", "ingår i nationalparken", "förvaltas av"
+  `|\\b(?:är|ingår\\s+i|del\\s+av|utgör|bildades|förvaltas\\s+av|skyddas\\s+som)\\s+` +
+  `(?:ett\\s+|en\\s+|den\\s+|delar\\s+av\\s+)?${SKYDD_ORD}` +
+  // "naturreservatets föreskrifter/regler" — påstår att regelverk gäller
+  `|${SKYDD_ORD}s(?:\\s+|)(?:föreskrifter|regler|bestämmelser)`,
+  'i'
+)
+
+/**
+ * FÄLTPÅSTÅENDEN — ny kategori 2026-08-19.
+ *
+ * BLINDFLÄCK 4: spärren läste bara STRÄNGAR. Ett påstående som `spots: 150`
+ * är en bar siffra utan citattecken och var därför osynlig. Det lät 90
+ * påhittade båtplatssiffror passera — Utö angavs till 150 när verkligheten är
+ * omkring 300, Sandhamn till 300 när det är omkring 150. Två av tre stickprov
+ * var materiellt fel, i båda riktningarna.
+ *
+ * Fältet renderas som "150 platser" för besökaren. Att siffran saknar
+ * citattecken i koden gör den inte mindre till ett påstående om verkligheten.
+ *
+ * TOMT ÄR ALLTID TILLÅTET. Ett utelämnat fält påstår ingenting och ska aldrig
+ * varna. Hellre kort text än fel text.
+ */
+const FALTPASTAENDEN = /^\s*(spots|depth_m|height_m|area_km2|population|beds|capacity|length_m|elevation_m)\s*:\s*\d/
+
+/**
  * Klockslag kräver KOLON. Punkt som avgränsare fångade varenda CSS-värde:
  * rgba(0,0,0,0.06) läses annars som "0.06" och gav 1 366 falska träffar vid
  * första körningen. Svenska tidtabeller skriver 10:00, inte 10.00.
@@ -175,6 +252,22 @@ function harKallaNara(rader, i) {
   return false
 }
 
+/**
+ * Är den närliggande källan SVAG? Används bara för påståendetyper i
+ * KRAVER_STARK_KALLA. En rad som citerar OpenStreetMap räknas fortfarande som
+ * källa för koordinater — men inte för brohöjd.
+ */
+function harBaraSvagKalla(rader, i) {
+  let sagSvag = false
+  for (let k = Math.max(0, i - 5); k <= i; k++) {
+    const l = (rader[k] || '').toLowerCase()
+    if (!KALLMARKORER.some(m => l.includes(m))) continue
+    if (SVAGA_KALLOR.some(m => l.includes(m))) { sagSvag = true; continue }
+    return false // hittade en källa som INTE är svag
+  }
+  return sagSvag
+}
+
 const fynd = []
 const varningar = []
 let uppskattningar = 0
@@ -194,6 +287,15 @@ for (const f of filer(ROT)) {
     const borjadeIMallstrang = iMallstrang
     if (((rad.match(/`/g) || []).length) % 2 === 1) iMallstrang = !iMallstrang
     if (ärKommentar(rad)) return
+
+    /**
+     * FÄLTPÅSTÅENDEN granskas på RADEN, inte i strängar — `spots: 150` har
+     * inga citattecken och var därför osynlig för spärren fram till 2026-08-19.
+     * Ett utelämnat fält matchar aldrig: tomt påstår ingenting.
+     */
+    if (FALTPASTAENDEN.test(rad) && !harKallaNara(rader, i)) {
+      varningar.push({ fil: f, rad: i + 1, typ: 'fältpåstående', text: rad.trim().slice(0, 90) })
+    }
     // strängliteraler på raden — plus hela raden om vi är inne i en mallsträng
     const strangar = rad.match(/'[^']{2,200}'|"[^"]{2,200}"|`[^`]{2,200}`/g) || []
     if (borjadeIMallstrang && rad.trim().length > 0) strangar.push(rad)
@@ -206,17 +308,34 @@ for (const f of filer(ROT)) {
       const träffHojd = HOJD.test(rent)
       const träffDistans = DISTANS.test(rent)
       const träffKnop = KNOP.test(rent)
-      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans && !träffKnop) continue
-      if (harKallaNara(rader, i)) continue
-      if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
+      const träffSkydd = SKYDDSSTATUS.test(rent)
+      if (!träffKlocka && !träffPris && !träffDjup && !träffHojd && !träffDistans && !träffKnop && !träffSkydd) continue
+
       const typ = träffKlocka ? 'klockslag'
         : träffPris ? 'pris'
         : träffDjup ? 'djup'
         : träffHojd ? 'segelfri höjd'
         : träffDistans ? 'distans'
-        : 'knop'
-      // Distans och knop varnar men fäller inte — se kommentarerna ovan.
-      if (typ === 'distans' || typ === 'knop') { varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue }
+        : träffKnop ? 'knop'
+        : 'skyddsstatus'
+
+      /**
+       * KÄLLKVALITET. En källa räcker inte alltid — för djup, segelfri höjd,
+       * fartgräns och skyddsstatus krävs myndighet eller operatör. OSM duger
+       * för koordinater, inte för brohöjd (Skurusundet, 2026-08-15).
+       */
+      if (harKallaNara(rader, i)) {
+        if (KRAVER_STARK_KALLA.has(typ) && harBaraSvagKalla(rader, i)) {
+          varningar.push({ fil: f, rad: i + 1, typ: `${typ} — SVAG KÄLLA`, text: s.slice(0, 90) })
+        }
+        continue
+      }
+      if (harUppskattningNara(rader, i)) { uppskattningar++; continue }
+
+      // Distans, knop och skyddsstatus varnar men fäller inte — se kommentarerna ovan.
+      if (typ === 'distans' || typ === 'knop' || typ === 'skyddsstatus') {
+        varningar.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) }); continue
+      }
       fynd.push({ fil: f, rad: i + 1, typ, text: s.slice(0, 90) })
     }
   })
@@ -301,12 +420,27 @@ const kvarAvBaslinjen = fynd.length - nya.length
 /** Varningar fäller inte bygget, men ska synas. Tystnad blir till glömska. */
 function skrivVarningar() {
   if (varningar.length === 0) return
-  console.log(`\n! ${varningar.length} distans-/knoppåståenden utan källa (varning, fäller inte bygget):`)
-  for (const v of varningar.slice(0, 20)) {
-    console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ')}`)
+  const grupper = {}
+  for (const v of varningar) (grupper[v.typ] ||= []).push(v)
+
+  console.log(`\n! ${varningar.length} påståenden att granska (varning, fäller inte bygget):`)
+  for (const [typ, lista] of Object.entries(grupper).sort((a, b) => b[1].length - a[1].length)) {
+    console.log(`\n  ── ${typ} (${lista.length}) ──`)
+    for (const v of lista.slice(0, 6)) {
+      console.log(`    ${v.fil}:${v.rad}  ${v.text.replace(/\s+/g, ' ').slice(0, 88)}`)
+    }
+    if (lista.length > 6) console.log(`    … och ${lista.length - 6} till`)
   }
-  if (varningar.length > 20) console.log(`    … och ${varningar.length - 20} till`)
-  console.log(`  Fartgränspåståenden (knop) är nästa kategori att granska. Se rapporten 2026-08-16.`)
+  console.log(`
+  Att beta av, i prioritetsordning:
+    1. SVAG KÄLLA   — källan duger inte för påståendetypen (t.ex. OSM för brohöjd)
+    2. skyddsstatus — ändras genom myndighetsbeslut; kontrollera mot
+                      naturvardsverket.se / sverigesnationalparker.se / lansstyrelsen.se
+    3. fältpåstående — bar siffra i datafil, t.ex. spots: 150 (Bullerö-felet)
+    4. knop/distans  — fartgränser och avstånd utan belägg
+
+  Kom ihåg: TOMT ÄR ALLTID TILLÅTET. Går siffran inte att belägga — ta bort den.
+  Hellre kort text än fel text.`)
 }
 
 if (nya.length === 0) {

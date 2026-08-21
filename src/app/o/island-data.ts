@@ -235,7 +235,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Segelbåt eller motorbåt till KSSS-hamnen. Förboka gästplats under högsäsong.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'KSSS Sandhamn', desc: 'Huvudhamnen med plats för 300+ båtar, bränsle, el och servicebyggnad. Boka i förväg juli–aug.', spots: 300, fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
+      { name: 'KSSS Sandhamn', desc: 'Huvudhamnen med bränsle, el och servicebyggnad. Boka i förväg juli–aug.', fuel: true, service: ['el', 'vatten', 'dusch', 'tvätt', 'bränsle'] },
       { name: 'Sandhamns Sjöstation', desc: 'Drivmedel och service vid inloppet.', fuel: true, service: ['bränsle', 'olja'] },
     ],
     restaurants: [
@@ -374,7 +374,7 @@ export const ISLANDS: Island[] = [
       { method: 'Pendel + båt', from: 'Stockholm C', time: '2 h totalt', desc: 'Pendeltåg till Nynäshamn (1 h), sedan kort buss/promenad till Årsta brygga + båt.', icon: '🚆' },
     ],
     harbors: [
-      { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', spots: 150, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
+      { name: 'Utö Gästhamn', desc: 'Välutrustad gästhamn med bränsle, el och service. Boka i förväg sommartid.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt'] },
     ],
     restaurants: [
       { name: 'Utö Värdshus', type: 'Restaurang', desc: 'Öns flaggskepp — vällagad mat med havsutsikt. Boka i förväg.', bookingUrl: 'https://www.utovardshus.se/restaurang/boka-bord-vardshuset/', websiteUrl: 'https://www.utovardshus.se' },
@@ -509,7 +509,7 @@ export const ISLANDS: Island[] = [
       { method: 'Buss', from: 'Tekniska Högskolan', time: '60 min', desc: 'SL-buss 670 från T-banan.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Vaxholms Gästhamn', desc: 'Centralt belägen gästhamn med god service. Gångavstånd till all service.', spots: 80, fuel: false, service: ['el', 'vatten', 'dusch', 'toilet'] },
+      { name: 'Vaxholms Gästhamn', desc: 'Centralt belägen gästhamn med god service. Gångavstånd till all service.', fuel: false, service: ['el', 'vatten', 'dusch', 'toilet'] },
     ],
     restaurants: [
       { name: 'Hamnkrogen Vaxholm', type: 'Restaurang', desc: 'Klassisk bryggkrog med räkor och husmanskost.' },
@@ -645,7 +645,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Gästhamnen tar emot alla. Boka el-plats i förväg.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Grinda Gästhamn (Hemviken)', desc: 'Välutrustad hamn med plats för 100+ båtar, bränsle och full service.', spots: 100, fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt', 'wifi'] },
+      { name: 'Grinda Gästhamn (Hemviken)', desc: 'Välutrustad hamn med bränsle och full service.', fuel: true, service: ['el', 'vatten', 'dusch', 'bränsle', 'tvätt', 'wifi'] },
     ],
     restaurants: [
       { name: 'Grinda Wärdshus Restaurang', type: 'Restaurang', desc: 'Skärgårdens bästa kök i detta prissegment. Boka.', bookingUrl: 'https://www.bokabord.se/restaurang/grinda-wardshus', websiteUrl: 'https://grinda.se' },
@@ -1248,7 +1248,7 @@ export const ISLANDS: Island[] = [
       { method: 'Pendeltåg + Buss', from: 'Stockholm Central', time: '90 min', desc: 'Pendeltåg till Handen, sedan buss 834 till Dalarö.', icon: '🚌' },
     ],
     harbors: [
-      { name: 'Dalarö Gästhamn', desc: 'Välskött hamn med full service. Bra utgångspunkt för vidare segling söderut.', spots: 60, fuel: false, service: ['el', 'vatten', 'dusch', 'toilet'] },
+      { name: 'Dalarö Gästhamn', desc: 'Välskött hamn med full service. Bra utgångspunkt för vidare segling söderut.', fuel: false, service: ['el', 'vatten', 'dusch', 'toilet'] },
     ],
     restaurants: [
       { name: 'Dalarö Krog', type: 'Restaurang', desc: 'Klassisk hamn­krog med husmanskost och räkor.' },
@@ -1359,7 +1359,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + passagerarfärja', from: 'Stockholm via Simpnäs', time: '2,5 h', desc: 'Kör till Simpnäs (på Björkö, norra Roslagen) — ca 90 min — sedan passagerarfärja Simpnäs–Arholma (ca 15 min, ingen bilfärja).', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Arholma Gästhamn', desc: 'Välskyddad hamn på öns södra sida. Bränsle och viss service.', spots: 60, fuel: true, service: ['el', 'vatten', 'bränsle'] },
+      { name: 'Arholma Gästhamn', desc: 'Välskyddad hamn på öns södra sida. Bränsle och viss service.', fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
       { name: 'Arholma Dansbana & Krog', type: 'Restaurang', desc: 'Öns krog och samlingspunkt. Enkel mat och sommarnöje.', slug: 'arholma-dansbana-krog' },
@@ -1398,6 +1398,9 @@ export const ISLANDS: Island[] = [
     emoji: '🌲',
     tagline: 'Södra skärgårdens största skogsö — vandring, naturreservat och genuint ösliv.',
     description: [
+      // KÄLLA: Länsstyrelsen Stockholm 2024-10-02 — nytt naturreservat "Norra skogen" på Ornö
+      // (Haninge kommun) bildat 2024. Skyddet UTÖKADES alltså; formuleringen "stora delar
+      // skyddas" är fortsatt korrekt. Kontrollerad 2026-08-21.
       'Ornö är en av Stockholms skärgårds största öar och en av de mest naturrika. Stora delar av ön skyddas som naturreservat med gammal skog, bäckar och ett rikt fågelliv. Befolkningen är liten men permanent, och ön har behållit sin lantliga karaktär.',
       'Till skillnad från de mer turistifierade öarna i mellersta skärgården har Ornö ett lite tystare tempo. Här åker man för naturens skull, inte för nöjeslivet. Vandringsstigarna är välmarkerade och tar dig genom skog och längs kustlinje.',
       'Kyrkviken är öns naturliga samlingsplats med krog och hamn. Från Ornö är Utö och Nåttarö enkla dagsutflykter med båt.',
@@ -1442,7 +1445,7 @@ export const ISLANDS: Island[] = [
       { method: 'Båt från Nynäshamn', from: 'Nynäshamn (sommar)', time: '~2 h', desc: 'Sommarsäsong: linje från Nynäshamn till Ornö Kyrka brygga, en avgång/dag.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Kyrkviken', desc: 'Öns huvudhamn med krog och enkla tjänster.', spots: 30, fuel: false },
+      { name: 'Kyrkviken', desc: 'Öns huvudhamn med krog och enkla tjänster.', fuel: false },
     ],
     restaurants: [
       { name: 'Kyrkviken Bar & Bistro', type: 'Restaurang', desc: 'Öns samlingsplats. Husmanskost och sommarstämning.', slug: 'kyrkviken-bar-bistro', price_example: 'Lunch 165–225 kr, öl/vin 85–115 kr', open_season: 'Juni–Augusti', open_hours: '11–22', book_required: false },
@@ -1542,7 +1545,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Nynäshamn/Utö', time: 'Varierar', desc: 'Planera noggrant med väderprognoser — Landsort ligger exponerat mot öppet hav.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Landsort Hamn', desc: 'Liten hamn på öns norra sida. Begränsat antal platser.', spots: 20, fuel: false },
+      { name: 'Landsort Hamn', desc: 'Liten hamn på öns norra sida. Begränsat antal platser.', fuel: false },
     ],
     restaurants: [
       { name: 'Saltboden Kök & Proviant', type: 'Handel/Restaurang', desc: 'Öns enda matplats. Enkel mat och proviant.', slug: 'saltboden-kok-proviant', price_example: 'Lunch 145–185 kr, smörgås 85–115 kr', open_season: 'Juni–Augusti', open_hours: '10–16' },
@@ -1624,7 +1627,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '4 h', desc: 'Lång men vacker resa norrut.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Furusund Hamn', desc: 'Välplacerad hamn vid sundet. Bränsle och service.', spots: 40, fuel: true, service: ['el', 'vatten', 'bränsle'] },
+      { name: 'Furusund Hamn', desc: 'Välplacerad hamn vid sundet. Bränsle och service.', fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
       { name: 'Furusund Värdshus', type: 'Restaurang', desc: 'Öns klassiska krog. God mat i historisk miljö.', slug: 'furusund-vardshus', price_example: 'Lunch 145–195 kr, middag 225–345 kr', open_season: 'Maj–Oktober', open_hours: 'Lunch 12–15, middag 17–22', book_required: true, phone: '0176-208 90', child_menu: true },
@@ -1739,6 +1742,8 @@ export const ISLANDS: Island[] = [
     emoji: '🌿',
     tagline: 'Bilfri naturreservatstö med lägerverksamhet och enkel skärgårdsstämning.',
     description: [
+      // KÄLLA: Länsstyrelsen Stockholm 2024-10-02 — Gällnö naturreservat utökades med 64 hektar
+      // 2024. Skyddet finns kvar och är större än förut. Kontrollerad 2026-08-21.
       'Gällnö är en bilfri ö i mellersta skärgården, klassificerad som naturreservat för att bevara dess orörda karaktär. Ön är känd för sin lägerverksamhet, ungdomsgrupper och naturskolor nyttjar öns större öppna arealer under sommaren.',
       'Landskap på Gällnö varierar från skogspartier till öppna ljunghedar. Här finns inga stora restauranger eller hotell, bara en enkel bar och handelsbod. Det är just detta som gör Gällnö attraktiv för naturälskare som söker lugn och orördhet.',
       'Ön nås via Waxholmsbåt från Stavsnäs och är ett naturligt stopp på väg mot Möja eller Svartsö. Många seglare gör Gällnö till sitt favoritdestination.',
@@ -1992,7 +1997,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Skärgårdslinjen mot Möja angör norra och södra Ingmarsö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn vid södra bryggan.', spots: 25, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Ingmarsö Gästhamn', desc: 'Enkel men fungerande gästhamn vid södra bryggan.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Ingmarsö Krog', type: 'Restaurang', desc: 'Öns krog — säsongsbaserad meny i skärgårdsmiljö.', slug: 'ingmarso-krog', price_example: 'Dagens rätt 145–175 kr, kvällsmeny 195–265 kr', open_season: 'Juni–Augusti', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, child_menu: true },
@@ -2088,7 +2093,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Stavsnäs', time: '90 min', desc: 'Linjen mot Möja och Gällnö stannar vid Nämdö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', spots: 20, fuel: false, service: ['vatten'] },
+      { name: 'Nämdö Hamn', desc: 'Liten gästhamn. Begränsat antal platser.', fuel: false, service: ['vatten'] },
     ],
     restaurants: [
       { name: 'Nämdö Krog', type: 'Restaurang', desc: 'Husmanskost sommartid.', price_example: 'Lunch 135–165 kr, enkel middag 175–225 kr', open_season: 'Juni–Augusti', open_hours: '12–20', book_required: false },
@@ -2185,7 +2190,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Strömkajen / Stavsnäs', time: '2 h', desc: 'Skärgårdslinjen mellan Stavsnäs och Möja stannar vid Svartsö.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', spots: 20, fuel: false, service: ['vatten'] },
+      { name: 'Svartsö gästhamn', desc: 'Liten gästhamn nära krogen och lanthandeln.', fuel: false, service: ['vatten'] },
     ],
     restaurants: [
       { name: 'Svartsö Krog', type: 'Restaurang', desc: 'Öns krog vid bryggan — säsongsbaserad meny.', slug: 'svartso-krog', price_example: 'Lunch 155–195 kr, middag 225–325 kr', open_season: 'Maj–September', open_hours: 'Lunch 12–15, middag 17–21', book_required: true, phone: '08-542 480 40', child_menu: true },
@@ -2283,7 +2288,7 @@ export const ISLANDS: Island[] = [
       { method: 'Eigen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Populärt segelstopp.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', spots: 50, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      { name: 'Runmarö Hamn', desc: 'Bränsle, el och vatten. Populärt stopp på Stockholmsleden.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
     ],
     restaurants: [
       { name: 'Runmarö Krog', type: 'Restaurang', desc: 'Öns krog med enkel skärgårdsmat.', price_example: 'Lunch 135–175 kr, kvällsmeny 185–255 kr', open_season: 'Juni–Augusti', open_hours: '12–21', book_required: false },
@@ -2416,7 +2421,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2,5 h', desc: 'Norra linjen. Ingår i SL-kort.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Husarö Hamn', desc: 'Liten välskött gästhamn.', spots: 15, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Husarö Hamn', desc: 'Liten välskött gästhamn.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Husarö Krog', type: 'Restaurang', desc: 'Öns krog med husmanskost och trevlig stämning.' },
@@ -2471,7 +2476,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Furusund', time: '30–60 min', desc: 'Naturligt stopp på Furusundsleden norrut.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Fejan Naturhamn', desc: 'Skyddad och välbesökt naturhamn. Fyrsektioner och eldplatser finns.', spots: 15, fuel: false, service: [] },
+      { name: 'Fejan Naturhamn', desc: 'Skyddad och välbesökt naturhamn. Fyrsektioner och eldplatser finns.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -2529,7 +2534,7 @@ export const ISLANDS: Island[] = [
       { method: 'Privat båt', from: 'Furusund / Arholma', time: '1–2 h', desc: 'Naturlig etapp på en längre norrlands-seglingstur.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Rödlöga Hamn', desc: 'Välskyddad inhamn med plats för ca 15 båtar. En av norra skärgårdens bästa.', spots: 15, fuel: false, service: ['vatten'] },
+      { name: 'Rödlöga Hamn', desc: 'Välskyddad inhamn — en av norra skärgårdens bästa.', fuel: false, service: ['vatten'] },
     ],
     restaurants: [
       { name: 'Rödlöga Krog', type: 'Restaurang', desc: 'Samlingsplatsen för seglare. Husmanskost och hamnstämning.' },
@@ -2640,7 +2645,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + Färja', from: 'Stockholm via E18', time: '2 h', desc: 'Kör mot Norrtälje, bilfärja till ön.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Lidö Gästhamn', desc: 'Välskött gästhamn vid herrgårdsbryggan.', spots: 30, fuel: false, service: ['el', 'vatten', 'dusch'] },
+      { name: 'Lidö Gästhamn', desc: 'Välskött gästhamn vid herrgårdsbryggan.', fuel: false, service: ['el', 'vatten', 'dusch'] },
     ],
     restaurants: [
       { name: 'Lidö Herrgårdsrestaurang', type: 'Restaurang', desc: 'Säsongsbaserad mat med lokala råvaror. Middag för hotelgäster och dagsgäster med bokning.' },
@@ -2806,7 +2811,7 @@ export const ISLANDS: Island[] = [
       { method: 'Privat båt', from: 'Nynäshamn', time: '3 h', desc: 'Nynäshamn är närmaste startpunkt. Öppet hav — planera vädret noga.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', spots: 10, fuel: false },
+      { name: 'Askö Hamn', desc: 'Liten hamn vid laboratoriet. Begränsat antal platser för besökare.', fuel: false },
     ],
     restaurants: [],
     tips: [
@@ -2917,7 +2922,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil', from: 'Stockholm', time: '60 min', desc: 'E4 söderut mot Nynäshamn, sedan skylt mot Torö.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Torö Marinstaden', desc: 'Marinstation och gästhamn.', spots: 30, fuel: true, service: ['el', 'vatten', 'bränsle'] },
+      { name: 'Torö Marinstaden', desc: 'Marinstation och gästhamn.', fuel: true, service: ['el', 'vatten', 'bränsle'] },
     ],
     restaurants: [
       { name: 'Torö Krog', type: 'Restaurang', desc: 'Strandbistro vid marinsstaden.' },
@@ -2972,7 +2977,7 @@ export const ISLANDS: Island[] = [
       { method: 'Egen båt', from: 'Dalarö / Utö', time: '1–2 h', desc: 'Fjärdlångsviken är en klassisk naturhamn för seglare.', icon: '⛵' },
     ],
     harbors: [
-      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar — Skärgårdsstiftelsen-förvaltad.', spots: 10, fuel: false },
+      { name: 'Norra Fjärdlångsviken', desc: 'En av södra skärgårdens finaste naturhamnar — Skärgårdsstiftelsen-förvaltad.', fuel: false },
     ],
     restaurants: [],
     tips: [
@@ -3018,7 +3023,7 @@ export const ISLANDS: Island[] = [
     getting_there: [
       { method: 'Bilfärja', from: 'Vaxholm', time: '10 min', desc: 'Reguljär bilfärja från Vaxholm centrum till Rindö (Trafikverkets vägfärja, avgiftsfri).', icon: '⛴' },
     ],
-    harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.', spots: 8 }],
+    harbors: [{ name: 'Rindö hamn', desc: 'Liten gästbrygga med begränsat antal platser.' }],
     restaurants: [],
     tips: ['Kombinera gärna med ett besök på Vaxholms fästning på Vaxholmen-sidan.', 'Vasallens omvandling av kasernerna är en av Sveriges större militära konversionsprojekt — värt en promenad.'],
     related: ['vaxholm', 'resaro', 'ljustero'],
@@ -3057,7 +3062,7 @@ export const ISLANDS: Island[] = [
       { method: 'Skärgårdsbåt', from: 'Strömkajen', time: '3–4 h', desc: 'Waxholmsbolaget angör åtta bryggor på ön — Köpmanholm är huvudbryggan.', icon: '⛴' },
       { method: 'Cinderellabåtarna', from: 'Strandvägen', time: '3 h', desc: 'Sommartrafik till Köpmanholm.', icon: '⛴' },
     ],
-    harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', spots: 30, service: ['El', 'Vatten', 'Dusch'] }],
+    harbors: [{ name: 'Köpmanholms Gästhamn', desc: 'Yxlans huvudhamn vid Köpmanholm — full service.', service: ['El', 'Vatten', 'Dusch'] }],
     restaurants: [{ name: 'Yxlans Café', type: 'Kafé', desc: 'Hemlagad mat och kaffe i lantlig miljö vid hamnen.' }],
     tips: ['Båda bilfärjorna (Furusund-Yxlan och Yxlan-Blidö) är avgiftsfria.', 'Cykla mellan bryggor — varje brygga har sin egen karaktär.', 'Köpmanholm är livligast under hummerveckan i september.'],
     related: ['blido', 'furusund', 'graddo'],
@@ -3095,7 +3100,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Strömkajen / Dalarö', time: '2,5–3 h / 1 h', desc: 'Reguljär skärgårdslinje — kontrollera Waxholmsbolagets tidtabell.', icon: '⛴' },
       { method: 'Egen båt', from: 'Valfri hamn', time: 'Varierar', desc: 'Naturhamnen på södra sidan tar emot ett fåtal båtar.', icon: '⛵' },
     ],
-    harbors: [{ name: 'Kymmendö naturhamn', desc: 'Skyddad vik på södra sidan. Ankring möjlig.', spots: 6 }],
+    harbors: [{ name: 'Kymmendö naturhamn', desc: 'Skyddad vik på södra sidan. Ankring möjlig.' }],
     restaurants: [],
     tips: ['Läs Hemsöborna innan besöket.', 'Ta med allt — ingen butik eller service finns.', 'Planera vistelsen med vädret i tanke, svår att lämna vid storm.'],
     related: ['orno', 'dalaro', 'nattaro'],
@@ -3117,32 +3122,39 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta ytterskärgården',
     emoji: '🎨',
-    tagline: 'Bruno Liljefors ö — naturreservat och jaktstuga i ytterskärgården',
+    tagline: 'Huvudentré till Nämdöskärgårdens nationalpark — Bruno Liljefors ö',
     description: [
-      'Bullerö är en 0,78 km² stor ö i Stockholms mellersta ytterskärgård, sydost om Sandhamn. Konstnären Bruno Liljefors (1860–1939), en av Sveriges mest framstående djurmålare, köpte ön 1908 och byggde en jaktstuga och ateljé på dess östra sida, där han hämtade motiv direkt ur den vilda skärgårdsnaturen.',
-      'Bullerö med kringliggande öar köptes av staten 1967 och är idag ett naturreservat som förvaltas av Skärgårdsstiftelsen. Bruno Liljefors hus inrymmer Naturvårdsverkets Naturum med en utställning om skärgårdens natur och kultur, och visar reproduktioner av Liljefors målningar.',
-      'Bullerö passar för dagsturer och kortare övernattning för seglare och naturälskare som vill se den verkliga ytterskärgården och en del av svensk konsthistoria på samma plats.',
+      // KÄLLA: sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark — "Huvudentrén finns på ön Bullerö", bildades 2025 (hämtad 2026-08-19)
+      // Uppgifterna bekräftade per telefon med Nämdöskärgårdens nationalpark 2026-08-19.
+      'Bullerö är huvudentré till Nämdöskärgårdens nationalpark — Sveriges 31:a nationalpark, invigd 2025 och den första marina nationalparken i Östersjön. Parken omfattar ett tusental öar, kobbar och skär, och 97 procent av ytan är hav.',
+      // KÄLLA: samma sida — "När nationalparken bildades år 2025 fanns två naturreservat i området, Bullerö och Långviksskärs naturreservat." Bullerö naturreservat uppgick alltså i nationalparken.
+      'Fram till 2025 var ön ett eget naturreservat. I dag ingår Bullerö i nationalparken, som förvaltas av Länsstyrelsen Stockholm. Konstnären Bruno Liljefors (1860–1939), en av Sveriges mest framstående djurmålare, köpte ön 1908 och byggde sin jaktstuga och ateljé här 1909.',
+      'Bullerö passar för dagsturer och naturhamnsbesök för seglare och naturälskare som vill se den verkliga ytterskärgården och en del av svensk konsthistoria på samma plats.',
     ],
-    facts: { travel_time: '3–4 h med segelbåt från Stavsnäs', character: 'Naturreservat, ytterskärgård, konsthistorisk plats', season: 'Maj–september', best_for: 'Naturum-besök, fågelskådning, segling, kulturhistoria' },
+    facts: { travel_time: '3–4 h med segelbåt från Stavsnäs', character: 'Nationalpark, ytterskärgård, konsthistorisk plats', season: 'Maj–september', best_for: 'Jaktstugan, bastu, fågelskådning, segling' },
     activities: [
-      { icon: '🎨', name: 'Bruno Liljefors jaktstuga', desc: 'Konstnärens hus från 1908 — idag Naturvårdsverkets Naturum med utställning om skärgården.' },
+      // KÄLLA: sverigesnationalparker.se — Jaktstugan, Bastun på Bullerö ("öppen för alla och går inte att boka"), Brunos slinga (hämtad 2026-08-19)
+      { icon: '🎨', name: 'Jaktstugan', desc: 'Bruno Liljefors jaktstuga från 1909 — i dag utställning om nationalparken och livet i Östersjön.' },
+      { icon: '🧖', name: 'Bastun på Bullerö', desc: 'Öppen för alla och går inte att boka.' },
+      { icon: '🚶', name: 'Brunos slinga', desc: 'Historisk vandringsled i konstnärens fotspår.' },
       { icon: '🦅', name: 'Fågelliv', desc: 'Havsörn, ejder, vigg och olika sjöfågel häckar i området.' },
-      { icon: '🚶', name: 'Vandringsstigar', desc: 'Markerade leder genom naturreservatets klipplandskap.' },
     ],
     accommodation: [],
-    getting_there: [{ method: 'Skärgårdsbåt / egen båt', from: 'Stavsnäs', time: '2–3 h', desc: 'Waxholmsbolaget angör Bullerö under säsong — kontrollera tidtabell. Eller egen båt från Stavsnäs/Sandhamn.', icon: '⛴' }],
-    harbors: [{ name: 'Bullerö gästhamn', desc: 'Begränsade platser vid naturreservatets brygga — Skärgårdsstiftelsen förvaltar.', spots: 15 }],
+    // KÄLLA: bullero.se/sv/turtrafiken/ — "För att komma till Bullerö res med Bullerölinjen" (uppdaterad 2026-02-12, hämtad 2026-08-19)
+    getting_there: [{ method: 'Båttaxi (Bullerölinjen)', from: 'Stavsnäs', time: 'Se battaxi.se', desc: 'Bullerö nås med Bullerölinjen, inte Waxholmsbolaget. Boka plats och se aktuell tidtabell på battaxi.se, eller res med egen båt.', icon: '⛴' }],
+    // KÄLLA: Nämdöskärgårdens nationalpark per telefon 2026-08-19 — naturhamn gäller, inga gästhamnsplatser, ingen restaurang och inget café på ön.
+    harbors: [{ name: 'Naturhamn', desc: 'Naturhamn gäller — inga gästhamnsplatser. Bryggan i Hemviken är reserverad för personal och entreprenörer. Ingen service, ingen restaurang, inget café.' }],
     restaurants: [],
-    tips: ['Naturum är öppet sommarsäsong — kontrollera öppettider innan besök.', 'Respektera fågelskyddet under häckningstid (april–juli).', 'Kombinera gärna med ett besök på Sandhamn på samma seglingstur.'],
+    tips: ['Jaktstugan är öppen sommarsäsong — kontrollera öppettider innan besök.', 'Ingen restaurang, inget café och ingen affär på ön. Ta med allt du behöver.', 'Nationalparkens föreskrifter gäller — läs på sverigesnationalparker.se innan besök.'],
     related: ['nattaro', 'gallno', 'sandhamn'],
-    tags: ['naturreservat', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
-    did_you_know: 'Konstnären Bruno Liljefors — en av Sveriges mest kända djurmålare och guldmedaljör vid Stockholmsutställningen 1897 — köpte Bullerö 1908. Idag är hans jaktstuga och ateljé Naturum, och flera av hans mest kända motiv föddes i skärgårdsnaturen runt ön.',
+    tags: ['nationalpark', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
+    did_you_know: 'Bullerö är huvudentré till Nämdöskärgårdens nationalpark, Sveriges 31:a och första marina nationalpark i Östersjön. Den invigdes på ön i september 2025. Konstnären Bruno Liljefors köpte Bullerö 1908 och byggde sin jaktstuga året efter — i dag rymmer den parkens utställning.',
     seasonal: {
       open: 'Maj–Oktober',
       peak: 'Juli',
       best: 'Maj–Juni eller September',
-      bestReason: 'Naturreservat utan fast boende — alltid lugnt. Naturum öppnar i maj. September ger havsfärger och inga andra besökare.',
-      warning: 'Inga restauranger, ingen service. Ta med allt du behöver. Båttrafik begränsad — kontrollera Waxholmsbåtens tidtabell.',
+      bestReason: 'Nationalpark utan fast boende — alltid lugnt. September ger havsfärger och få andra besökare.',
+      warning: 'Ingen restaurang, inget café, ingen service. Naturhamn utan gästhamnsplatser. Ta med allt du behöver. Res med Bullerölinjen — kontrollera tidtabell på battaxi.se.',
       months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
     },
   },
@@ -3170,7 +3182,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil', from: 'Stockholm via Värmdö', time: '1 h', desc: 'Väg 222 till Värmdö, sedan över Djurö och vidare till Vindö via fast brobindelse.', icon: '🚗' },
       { method: 'Buss', from: 'Slussen', time: '1 h 15 min', desc: 'SL-buss via Värmdö och Djurö till Vindö.', icon: '🚌' },
     ],
-    harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.', spots: 20 }],
+    harbors: [{ name: 'Vindö brygga', desc: 'Gästbrygga med vattenservice.' }],
     restaurants: [{ name: 'Vindö Hamnkafé', type: 'Kafé', desc: 'Fika och enkel mat vid bryggan, öppet sommarsäsong.' }],
     tips: ['Vindö är broförbunden — ingen färja krävs.', 'Bra utgångspunkt för båtutflykter mot Stavsnäs och Möja.', 'Cykla mellan Djurö och Vindö för en stilla halvdag.'],
     related: ['gallno', 'namdo', 'moja'],
@@ -3208,7 +3220,7 @@ export const ISLANDS: Island[] = [
     getting_there: [
       { method: 'Bil', from: 'Stockholm', time: '50 min', desc: 'E4 söderut mot Haninge, sen skylt mot Dalarö och Smådalarö.', icon: '🚗' },
     ],
-    harbors: [{ name: 'Smådalarö Gästhamn', desc: 'Hamn vid Smådalarö Gård — full service, bra skydd, populär sommarhamn.', spots: 60, fuel: true, service: ['El', 'Vatten', 'Duschar', 'Tvätt'] }],
+    harbors: [{ name: 'Smådalarö Gästhamn', desc: 'Hamn vid Smådalarö Gård — full service, bra skydd, populär sommarhamn.', fuel: true, service: ['El', 'Vatten', 'Duschar', 'Tvätt'] }],
     restaurants: [{ name: 'Smådalarö Gård Restaurant', type: 'Restaurang', desc: 'Skärgårdsmat med lokala råvaror i historisk herrgårdsmiljö.' }],
     tips: ['Boka spa-tider långt i förväg — särskilt helger juli–augusti.', 'Smådalarö Gård är broförbunden — ingen båt krävs.', 'Brunch på helger är populär även för icke-hotellgäster (bokas i förväg).'],
     related: ['dalaro', 'orno', 'toro'],
@@ -3247,7 +3259,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil', from: 'Stockholm via E4/Hölö', time: '1 h', desc: 'Mörköbron från Hölö-sidan (avtag från E4) — fast broförbindelse sedan 1972.', icon: '🚗' },
       { method: 'Bil + bilfärja', from: 'Sorunda/Grödinge', time: '1 h 15 min', desc: 'Trafikverkets avgiftsfria färja Skanssund från Sorunda-sidan, två turer i timmen.', icon: '⛴' },
     ],
-    harbors: [{ name: 'Mörkö hamn', desc: 'Enkel gästbrygga med begränsat antal platser.', spots: 12 }],
+    harbors: [{ name: 'Mörkö hamn', desc: 'Enkel gästbrygga med begränsat antal platser.' }],
     restaurants: [],
     tips: ['Ta med proviant — service är minimal.', 'Kontakta ö-borna för lokaltips.'],
     related: ['orno', 'dalaro', 'fjardlang'],
@@ -3284,7 +3296,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Bil via tunnel', from: 'Stockholm via Haninge', time: '1 h', desc: 'Muskötunneln (3 km, max 65 m under havsytan, invigd 1964) — Sveriges första undervattenstunnel för bilar, byggd för örlogsbasen.', icon: '🚗' }],
-    harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.', spots: 10 }],
+    harbors: [{ name: 'Muskö gästbrygga', desc: 'Enkel brygga nära gamla marininfarten.' }],
     restaurants: [],
     tips: ['Boka marinbas-tur i god tid, populärt sommartid.', 'Ta med fika och grillmat.'],
     related: ['dalaro', 'toro', 'galo'],
@@ -3320,7 +3332,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Båt (M/S Birka)', from: 'Stockholm Stadshuskajen', time: '3 h', desc: 'Reguljär daglig trafik maj–september.', icon: '⛴' }],
-    harbors: [{ name: 'Björkö brygga', desc: 'Turistbåtsbrygga med gästmöjligheter.', spots: 20 }],
+    harbors: [{ name: 'Björkö brygga', desc: 'Turistbåtsbrygga med gästmöjligheter.' }],
     restaurants: [{ name: 'Birka Bistro', type: 'Restaurang', desc: 'Enkel mat och fika nära museet.' }],
     tips: ['Boka biljett online — populärt sommartid.', 'Kombinera med Adelsö på samma dagstur.', 'Ta solkräm — lite träd på ön.'],
     related: ['adelsjo', 'vaxholm', 'fjaderholmarna'],
@@ -3357,7 +3369,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Bilfärja', from: 'Munsö', time: '10 min', desc: 'Kort bilfärjeöverfart till Adelsö.', icon: '⛴' }],
-    harbors: [{ name: 'Adelsö gästbrygga', desc: 'Enkel brygga med plats för ett dussin båtar.', spots: 12 }],
+    harbors: [{ name: 'Adelsö gästbrygga', desc: 'Enkel brygga med plats för ett dussin båtar.' }],
     restaurants: [],
     tips: ['Kombinera med Björkö/Birka på samma dag.', 'Hyr cykel för att utforska hela ön.'],
     related: ['bjorko', 'vindo', 'fjaderholmarna'],
@@ -3393,7 +3405,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [{ name: 'Ingarö Camping', type: 'Camping', desc: 'Välskött campingplats vid vattnet.' }],
     getting_there: [{ method: 'Bil/bro', time: '45 min', desc: 'Via Gustavsbergsleden, bro till Ingarö.', icon: '🚗' }],
-    harbors: [{ name: 'Brunns hamn', desc: 'Populär gästhamn med full service.', spots: 50, fuel: true, service: ['El', 'Vatten', 'Duschar'] }],
+    harbors: [{ name: 'Brunns hamn', desc: 'Populär gästhamn med full service.', fuel: true, service: ['El', 'Vatten', 'Duschar'] }],
     restaurants: [{ name: 'Ingarö Krog', type: 'Restaurang', desc: 'Skärgårdskrog med lokalt fångad fisk.' }],
     tips: [
       'Populärt utflyktsmål för stockholmare — undvik högsommarhelger i juli om du vill ha lugn och ro.',
@@ -3438,7 +3450,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Möja/Sandhamn', time: '5–7 h', desc: 'Inga reguljära förbindelser. Kräver erfaren besättning och stabil väderprognos.', icon: '⛵' }],
-    harbors: [{ name: 'Svenska Högarnas naturhamn', desc: 'Liten skyddad vik på Storön. Endast i gott väder.', spots: 8 }],
+    harbors: [{ name: 'Svenska Högarnas naturhamn', desc: 'Liten skyddad vik på Storön. Endast i gott väder.' }],
     restaurants: [],
     tips: ['Kontrollera SMHI noggrant — vid sydväst eller ostlig kuling är hamnen svår att lämna.', 'Fulltanka i Sandhamn eller Möja innan avfärd.', 'Naturreservatets regler gäller — respektera fågelhäckning april–juli.'],
     related: ['sandhamn', 'rodloga', 'huvudskar'],
@@ -3480,7 +3492,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Sandhamn / Dalarö', time: '4–5 h', desc: 'Inga reguljära förbindelser. Kräver erfaren besättning och stabil väderprognos.', icon: '⛵' }],
-    harbors: [{ name: 'Huvudskärs naturhamn', desc: 'Välskyddad naturhamn mellan Ålandsskär och övriga skär.', spots: 25 }],
+    harbors: [{ name: 'Huvudskärs naturhamn', desc: 'Välskyddad naturhamn mellan Ålandsskär och övriga skär.' }],
     restaurants: [],
     tips: ['Vid sydväst är det svårt att lämna hamnen — kontrollera SMHI noga innan avfärd.', 'Ta med all proviant — ingen service finns.', 'Lotshusen sköts av Skärgårdsstiftelsen — respektera anvisningar.'],
     related: ['sandhamn', 'landsort', 'svenska-hogarna'],
@@ -3507,7 +3519,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs', desc: 'Inga reguljära turlinjer.', icon: '⛵' }],
-    harbors: [{ name: 'Eknö brygga', desc: 'Liten brygga med begränsat antal platser.', spots: 8 }],
+    harbors: [{ name: 'Eknö brygga', desc: 'Liten brygga med begränsat antal platser.' }],
     restaurants: [],
     tips: ['Ta med all proviant — ingen butik finns.', 'Respektera privata sommartomter.'],
     related: ['namdo', 'gallno', 'moja'],
@@ -3535,7 +3547,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Dalarö / Utö', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Hasselö naturhamn', desc: 'Liten skyddad ankringsplats på nordvästsidan.', spots: 6 }],
+    harbors: [{ name: 'Hasselö naturhamn', desc: 'Liten skyddad ankringsplats på nordvästsidan.' }],
     restaurants: [],
     tips: ['Ta med all proviant — ingen service finns.', 'Vid sydliga vindar är hamnen mindre skyddad.'],
     related: ['fjardlang', 'toro', 'asko'],
@@ -3549,9 +3561,10 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '⛵',
-    tagline: 'Klippig ö söder om Nämdö — del av Bullerö naturreservat',
+    tagline: 'Klippig ö söder om Nämdö — i Nämdöskärgårdens nationalpark',
     description: [
-      'Ormskär ligger i Skoboraden söder om Nämdö i Stockholms mellersta skärgård. Den norra delen av ön ingår i Bullerö naturreservat och är därmed skyddad. Ön höjer sig oväntat högt ur havet, namnet kommer av huggormarna som funnits på ön.',
+      // KÄLLA: sverigesnationalparker.se — Bullerö naturreservat uppgick i Nämdöskärgårdens nationalpark när den bildades 2025 (hämtad 2026-08-19)
+      'Ormskär ligger i Skoboraden söder om Nämdö i Stockholms mellersta skärgård. Den norra delen av ön ingår i Nämdöskärgårdens nationalpark och är därmed skyddad. Ön höjer sig oväntat högt ur havet, namnet kommer av huggormarna som funnits på ön.',
       'Klippig kust och stilla vatten i lä-läge präglar miljön. Ön är obebodd och saknar service. Inga reguljära turistförbindelser går hit.',
       'Ormskär passar för seglare som söker en lugn ankringsplats i Bullerö-området. Notera att naturreservatets regler gäller för delar av ön.',
     ],
@@ -3562,12 +3575,12 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Ormskärs naturhamn', desc: 'Skyddad ankringsplats.', spots: 8 }],
+    harbors: [{ name: 'Ormskärs naturhamn', desc: 'Skyddad ankringsplats.' }],
     restaurants: [],
-    tips: ['Norra delen är del av Bullerö naturreservat — respektera reservatsreglerna.', 'Ta med all proviant.'],
+    tips: ['Norra delen ligger i Nämdöskärgårdens nationalpark — respektera nationalparkens föreskrifter.', 'Ta med all proviant.'],
     related: ['bullero', 'namdo', 'moja'],
     tags: ['naturreservat', 'naturhamn', 'mellersta', 'segling'],
-    did_you_know: 'Ormskär är en av flera öar i Skoboraden söder om Nämdö som ingår i Bullerö naturreservat. Namnet kommer av att det fanns gott om huggormar på ön.',
+    did_you_know: 'Ormskär är en av flera öar i Skoboraden söder om Nämdö som ingår i Nämdöskärgårdens nationalpark, invigd 2025. Namnet kommer av att det fanns gott om huggormar på ön.',
   },
 
   {
@@ -3589,7 +3602,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Sandhamn', desc: 'Enbart nåbar med båt — inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Kanholmens naturhamn', desc: 'Välskyddad ankringsplats på lä-sidan.', spots: 30 }],
+    harbors: [{ name: 'Kanholmens naturhamn', desc: 'Välskyddad ankringsplats på lä-sidan.' }],
     restaurants: [],
     tips: ['Kom tidigt — populär hamn fylls fort midsommar–juli.', 'Allemansrätten gäller — ta med soporna hem.'],
     related: ['sandhamn', 'gallno', 'ingmarso'],
@@ -3617,7 +3630,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt/kajak', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Norrpada naturhamn', desc: 'Liten skyddad ankringsplats.', spots: 5 }],
+    harbors: [{ name: 'Norrpada naturhamn', desc: 'Liten skyddad ankringsplats.' }],
     restaurants: [],
     tips: ['Respektera fågelhäckning april–juli.', 'Ta med all proviant.'],
     related: ['gallno', 'bullero'],
@@ -3644,7 +3657,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Färja', from: 'Räfsnäs / Furusund', desc: 'Färjetrafik året runt; vintertid beställningstrafik via M/S Riddarfjärden på Rödlöga-traden via Gräskö.', icon: '⛴' }],
-    harbors: [{ name: 'Gräskös brygga', desc: 'Den bebodda öns anlöpsbrygga.', spots: 10 }],
+    harbors: [{ name: 'Gräskös brygga', desc: 'Den bebodda öns anlöpsbrygga.' }],
     restaurants: [],
     tips: ['Respektera privata tomter — många sommarstugor och permanentbo.', 'Kombinera med en tur till närliggande Rödlöga.'],
     related: ['rodloga', 'fejan', 'arholma'],
@@ -3672,7 +3685,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Privat båt', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Långviksskärets naturhamn', desc: 'Skyddad vik.', spots: 10 }],
+    harbors: [{ name: 'Långviksskärets naturhamn', desc: 'Skyddad vik.' }],
     restaurants: [],
     tips: ['Perfekt för midsommar-firande.'],
     related: ['fjardlang', 'nattaro', 'landsort'],
@@ -3704,7 +3717,7 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbolaget', from: 'Stockholm (Strömkajen / Nybrokajen)', desc: 'Reguljär skärgårdsbåt sommartid. Kontrollera tidtabell på waxholmsbolaget.se.', icon: '⛴' },
       { method: 'Fritidsbåt', from: 'Lidingö eller valfri brygga', desc: 'Nås enkelt med egen båt. Gästbrygga finns vid huvudbryggan.', icon: '⚓' },
     ],
-    harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.', spots: 15 }],
+    harbors: [{ name: 'Storholmens brygga', desc: 'Huvudbrygga med plats för gästande båtar.' }],
     restaurants: [
       { name: 'Storholmens Restaurang', type: 'Skärgårdsmat', desc: 'Säsongsöppen restaurang med skärgårdsmat och utsikt. Populär — boka i förväg under högsäsong.' },
     ],
@@ -3727,7 +3740,10 @@ export const ISLANDS: Island[] = [
     emoji: '🌅',
     tagline: 'Naturreservat med ett 50-tal öar i Bulleröskärgården',
     description: [
-      'Långskärs naturreservat omfattar ungefär femtio öar i Bulleröskärgården i Stockholms mellersta skärgård. Tillsammans med Bullerö naturreservat bildar det ett stort sammanhängande skärgårdsområde.',
+      // OSÄKERT — ATT VERIFIERA: officiella källan (sverigesnationalparker.se) nämner "Långviksskärs naturreservat",
+      // inte "Långskärs". Kan vara samma plats eller två olika. Skyddsstatusen här är därför medvetet
+      // öppet formulerad tills den är bekräftad med Länsstyrelsen/nationalparken.
+      'Långskär omfattar ungefär femtio öar i Stockholms mellersta skärgård, i området kring Bullerö. Sedan 2025 ingår stora delar av den omgivande skärgården i Nämdöskärgårdens nationalpark — kontrollera vad som gäller för just Långskär innan besök.',
       'Området nås lättast med egen båt. Långskär finns bland de fiskehamnar/fiskeskär som omnämns i historiska källor från 1744. Klippig kust och stilla vatten i lä-läge präglar miljön.',
       'Långskär passar för seglare och naturvänner som söker ett ostört område utanför de stora destinationerna i Bullerö-arkipelagen.',
     ],
@@ -3738,7 +3754,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Stavsnäs / Möja', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Långskärs naturhamn', desc: 'Skyddad ankringsplats i lä-läge.', spots: 10 }],
+    harbors: [{ name: 'Långskärs naturhamn', desc: 'Skyddad ankringsplats i lä-läge.' }],
     restaurants: [],
     tips: ['Naturreservat — respektera reservatsreglerna och fågelskyddstiden.', 'Ta med all proviant och färskvatten.'],
     related: ['bullero', 'norrpada', 'moja'],
@@ -3765,7 +3781,7 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [{ method: 'Egen båt', from: 'Möja / Stavsnäs', desc: 'Inga reguljära förbindelser.', icon: '⛵' }],
-    harbors: [{ name: 'Storskärs naturhamn', desc: 'Skyddad ankringsplats.', spots: 15 }],
+    harbors: [{ name: 'Storskärs naturhamn', desc: 'Skyddad ankringsplats.' }],
     restaurants: [],
     tips: ['Södra delen av ön är naturreservat — respektera reservatsreglerna.', 'Ta med all proviant.'],
     related: ['moja', 'kanholmen', 'norrora'],
@@ -3809,7 +3825,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + färja', from: 'Stockholm', time: '5–6 h', desc: 'Kör E4 norrut till Docksta (ca 470 km), parkera och ta färjan till Ulvön.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Ulvöhamns Gästhamn', desc: 'Välskyddad hamn med full service. Populär etapp för seglare längs norrlandskusten.', spots: 80, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      { name: 'Ulvöhamns Gästhamn', desc: 'Välskyddad hamn med full service. Populär etapp för seglare längs norrlandskusten.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
     ],
     restaurants: [
       { name: 'Ulvö Hotell Restaurant', type: 'Restaurang', desc: 'Husmanskost och lokala råvaror i hamnmiljö. Surströmming serveras förstås på menyn.', slug: 'ulvo-hotell-restaurant' },
@@ -3883,8 +3899,8 @@ export const ISLANDS: Island[] = [
       car_parking: 'Parkering finns vid Nynäshamns färjeterminal (avgift). I Visby — planera för trängsel i juli.',
     },
     harbors: [
-      { name: 'Visby Gästhamn', desc: 'Stor välutrustad gästhamn direkt i Visby. Bränsle, service och gångavstånd till allt. Boka plats i förväg under högsäsong.', spots: 500, fuel: true, service: ['el', 'vatten', 'bränsle', 'pump-out', 'dusch', 'wi-fi'] },
-      { name: 'Klintehamns Gästhamn', desc: 'Lugn hamn på Gotlands västkust. Bra alternativ till Visby om du vill undvika folkvimlet.', spots: 120, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Visby Gästhamn', desc: 'Stor välutrustad gästhamn direkt i Visby. Bränsle, service och gångavstånd till allt. Boka plats i förväg under högsäsong.', fuel: true, service: ['el', 'vatten', 'bränsle', 'pump-out', 'dusch', 'wi-fi'] },
+      { name: 'Klintehamns Gästhamn', desc: 'Lugn hamn på Gotlands västkust. Bra alternativ till Visby om du vill undvika folkvimlet.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Gutekällaren', type: 'Restaurang', desc: 'Inne i Visby ringmur. Gotlandslamm, rödspätta och lokalt hantverk­söl i medeltida valvmiljö.', slug: 'gutekallaren-gotland' },
@@ -3957,8 +3973,8 @@ export const ISLANDS: Island[] = [
       { method: 'Flyg till Kalmar', from: 'Stockholm Arlanda', time: '3 h totalt', desc: 'BRA flyger Stockholm–Kalmar (55 min), sedan hyrbil eller taxi över bron (15 min).', icon: '✈️' },
     ],
     harbors: [
-      { name: 'Borgholms Gästhamn', desc: 'Välutrustad gästhamn i Borgholm med el, vatten och service. Nära centrum och slottsruinen.', spots: 200, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
-      { name: 'Köpingsvik Gästhamn', desc: 'Lugn hamn på nordvästra Öland. Populär bland seglare på väg norrut längs kusten.', spots: 80, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Borgholms Gästhamn', desc: 'Välutrustad gästhamn i Borgholm med el, vatten och service. Nära centrum och slottsruinen.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      { name: 'Köpingsvik Gästhamn', desc: 'Lugn hamn på nordvästra Öland. Populär bland seglare på väg norrut längs kusten.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Hamnkrogen Borgholm', type: 'Restaurang', desc: 'Klassisk hamnkrog med lokala råvaror — ölandslamm, abborre och rödspätta.', slug: 'hamnkrogen-borgholm' },
@@ -4022,7 +4038,7 @@ export const ISLANDS: Island[] = [
       { method: 'Bil + färja', from: 'Göteborg', time: '40 min', desc: 'Kör till Saltholmen (parkering finns), ta färjan. Bilar får ej tas med till ön.', icon: '🚗' },
     ],
     harbors: [
-      { name: 'Rödstens Gästhamn', desc: 'Skyddad gästhamn på östra sidan. El och vatten. Populär sommarhamn.', spots: 60, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Rödstens Gästhamn', desc: 'Skyddad gästhamn på östra sidan. El och vatten. Populär sommarhamn.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Brännö Värdshus', type: 'Krog', desc: 'Klassisk ömat — räkor, sill och husmanskost i ösamhällets mitt.', slug: 'branno-vardshus' },
@@ -4076,7 +4092,7 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '50–60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/282/283. Avgångstider på styrsöbolaget.se.', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Styrsö Tångens Gästhamn', desc: 'Gästhamn vid södra spetsen. Bra utgångspunkt för segling längs kusten.', spots: 50, fuel: false, service: ['el', 'vatten'] },
+      { name: 'Styrsö Tångens Gästhamn', desc: 'Gästhamn vid södra spetsen. Bra utgångspunkt för segling längs kusten.', fuel: false, service: ['el', 'vatten'] },
     ],
     restaurants: [
       { name: 'Styrsö Bratten', type: 'Topprestaurang', desc: 'Nordens kök i skärgårdsidyll. Säsongsmeny, lokala råvaror, en av Göteborgs bästa. Boka tidigt.', slug: 'styrso-bratten' },
@@ -4127,7 +4143,7 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '70–80 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281/283 via Brännö och Styrsö till Vrångö. Kontrollera tidtabell på styrsöbolaget.se.', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Vrångö Gästhamn', desc: 'Liten gästhamn på norra sidan. Enkelt men välskyddat läge.', spots: 25, fuel: false, service: ['el'] },
+      { name: 'Vrångö Gästhamn', desc: 'Liten gästhamn på norra sidan. Enkelt men välskyddat läge.', fuel: false, service: ['el'] },
     ],
     restaurants: [
       { name: 'Vrångö Café & Kiosk', type: 'Kafé', desc: 'Enkelt sommarcafé med glass, kaffe och enklare mat. Öppet sommartid.', slug: 'vrango-cafe' },
@@ -4180,7 +4196,7 @@ export const ISLANDS: Island[] = [
       { method: 'Spårvagn + Styrsöbolaget-färja', from: 'Göteborg C', time: '60 min totalt', desc: 'Spårvagn 11 till Saltholmen, sedan Styrsöbolagets linje 281 via Köpstadsö till Donsö (35–40 min).', icon: '🚋' },
     ],
     harbors: [
-      { name: 'Donsö Gästhamn', desc: 'Fullservicehamn med bränsle, el, vatten och servicebyggnader. En av södra skärgårdens bästa.', spots: 100, fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch', 'wi-fi'] },
+      { name: 'Donsö Gästhamn', desc: 'Fullservicehamn med bränsle, el, vatten och servicebyggnader. En av södra skärgårdens bästa.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch', 'wi-fi'] },
     ],
     restaurants: [
       { name: 'Donsö Hamnkrog', type: 'Restaurang', desc: 'Klassisk hamnkrog med räkor och säsongsmat. Populär bland seglare.', slug: 'donso-hamnkrog' },
@@ -4356,7 +4372,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommartid dagligen, vinter mer sällan',
     },
     harbors: [
-      { name: 'Tynningö Gästbrygga', desc: 'Enkel brygga på öns södra sida. Lämplig för mindre båtar.', spots: 15, fuel: false, service: [] },
+      { name: 'Tynningö Gästbrygga', desc: 'Enkel brygga på öns södra sida. Lämplig för mindre båtar.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -4419,7 +4435,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla tidtabell',
     },
     harbors: [
-      { name: 'Naturhamnar i reservatet', desc: 'Gott om naturliga ankrings­platser för segelbåtar och motorbåtar. Kom tidigt på helger i juli.', spots: 0, fuel: false, service: [] },
+      { name: 'Naturhamnar i reservatet', desc: 'Gott om naturliga ankrings­platser för segelbåtar och motorbåtar. Kom tidigt på helger i juli.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -4486,7 +4502,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong dagligen',
     },
     harbors: [
-      { name: 'Björkö Gästbrygga', desc: 'Brygga för båtar. Smalt inlopp — kliv av och bese Birka.', spots: 20, fuel: false, service: [] },
+      { name: 'Björkö Gästbrygga', desc: 'Brygga för båtar. Smalt inlopp — kliv av och bese Birka.', fuel: false, service: [] },
     ],
     restaurants: [
       { name: 'Birka Vikingastad Café', type: 'Café', desc: 'Enkel servering i anslutning till museet. Sommaröppen.' },
@@ -4605,7 +4621,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Begränsade avgångsdagar juni–sept — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Bränn­vigeln', desc: 'Öns enda angörings­plats. Ogästvänlig vid hög sjö — tur­operatörerna avgör om landstigning är möjlig.', spots: 10, fuel: false, service: [] },
+      { name: 'Bränn­vigeln', desc: 'Öns enda angörings­plats. Ogästvänlig vid hög sjö — tur­operatörerna avgör om landstigning är möjlig.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -4669,7 +4685,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Aspö Gästhamn', desc: 'Liten gästhamn i öns nordvästra del. Relativt skyddad sommartid.', spots: 30, fuel: false, service: ['Vatten'] },
+      { name: 'Aspö Gästhamn', desc: 'Liten gästhamn i öns nordvästra del. Relativt skyddad sommartid.', fuel: false, service: ['Vatten'] },
     ],
     restaurants: [],
     tips: [
@@ -4737,7 +4753,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Tillgänglig med bil hela året',
     },
     harbors: [
-      { name: 'Sturkö Gästhamn', desc: 'Gästhamn med grundläggande service. Populär bland seglare i Blekinges skärgård.', spots: 50, fuel: false, service: ['Vatten', 'El'] },
+      { name: 'Sturkö Gästhamn', desc: 'Gästhamn med grundläggande service. Populär bland seglare i Blekinges skärgård.', fuel: false, service: ['Vatten', 'El'] },
     ],
     restaurants: [
       { name: 'Sturkö Krog', type: 'Krog', desc: 'Lokal krog med husmanskost. Sommaröppen — kolla aktuella öppettider.' },
@@ -4861,7 +4877,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Hemsö Gästhamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som utforskar Höga Kusten.', spots: 30, fuel: false, service: ['Vatten', 'El'] },
+      { name: 'Hemsö Gästhamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som utforskar Höga Kusten.', fuel: false, service: ['Vatten', 'El'] },
     ],
     restaurants: [],
     tips: [
@@ -4923,7 +4939,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Dygnet runt, tät trafik',
     },
     harbors: [
-      { name: 'Fårösund Gästhamn', desc: 'Hamnen ligger på Gotlands sida av sundet, strax söder om färjeläget. Bra utgångspunkt för seglare som vill utforska Fårö.', spots: 60, fuel: false, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Fårösund Gästhamn', desc: 'Hamnen ligger på Gotlands sida av sundet, strax söder om färjeläget. Bra utgångspunkt för seglare som vill utforska Fårö.', fuel: false, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Kuttersmöjan', type: 'Krog', desc: 'Öns klassiska krog i Fårösund. Husmanskost, fisk och havsutsikt. Sommaröppen.' },
@@ -5014,7 +5030,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — begränsade avgångar, kolla tidtabell',
     },
     harbors: [
-      { name: 'Trysunda Gästhamn', desc: 'Liten gästhamn i fiskeläget. Grundare inlopp — lämpligt för mindre kölbåtar och jollar.', spots: 20, fuel: false, service: ['Vatten'] },
+      { name: 'Trysunda Gästhamn', desc: 'Liten gästhamn i fiskeläget. Grundare inlopp — lämpligt för mindre kölbåtar och jollar.', fuel: false, service: ['Vatten'] },
     ],
     restaurants: [
       { name: 'Trysunda Värdshus', type: 'Värdshus', desc: 'Öns enda servering med husmanskost och lokal fisk. Sommaröppen — begränsade platser.' },
@@ -5092,7 +5108,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Begränsade avgångar, kolla tidtabell',
     },
     harbors: [
-      { name: 'Hanö Gästhamn', desc: 'Liten naturhamn på öns skyddade sida. Smalare inlopp — ankra i skälet utanför om hamnen är full.', spots: 15, fuel: false, service: [] },
+      { name: 'Hanö Gästhamn', desc: 'Liten naturhamn på öns skyddade sida. Smalare inlopp — ankra i skälet utanför om hamnen är full.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -5165,7 +5181,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sällsynta avgångar — kolla tidtabell noggrant',
     },
     harbors: [
-      { name: 'Svartlöga naturhamn', desc: 'Naturliga ankringslägen på öns västra sida. Populärt bland seglare.', spots: 20, fuel: false, service: [] },
+      { name: 'Svartlöga naturhamn', desc: 'Naturliga ankringslägen på öns västra sida. Populärt bland seglare.', fuel: false, service: [] },
     ],
     restaurants: [],
     tips: [
@@ -5238,7 +5254,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommarsäsong täta avgångar',
     },
     harbors: [
-      { name: 'Visingsö Hamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som kryssar i Vättern.', spots: 40, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Visingsö Hamn', desc: 'Gästhamn på öns norra del. Populär bland seglare som kryssar i Vättern.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Visingsö Krögeri', type: 'Restaurang', desc: 'Lokal matservering med Vätternfisk och husmanskost. Sommarsäsong.' },
@@ -5303,7 +5319,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommartid täta avgångar',
     },
     harbors: [
-      { name: 'Bäckviken gästhamn', desc: 'Välkänd gästhamn för seglare korsandes Öresund. Bra service och skyddat läge.', spots: 80, fuel: true, service: ['Vatten', 'El', 'Dusch', 'Restaurang'] },
+      { name: 'Bäckviken gästhamn', desc: 'Välkänd gästhamn för seglare korsandes Öresund. Bra service och skyddat läge.', fuel: true, service: ['Vatten', 'El', 'Dusch', 'Restaurang'] },
     ],
     restaurants: [
       { name: 'Sankt Ibb Krog', type: 'Krog', desc: 'Lokal krog på Ven med säsongsbetonad mat och havsutsikt. Populär — boka.' },
@@ -5368,7 +5384,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommarsäsong — kolla aktuell tidtabell',
     },
     harbors: [
-      { name: 'Tjärö brygga', desc: 'Enkel brygga vid campingplatsen.', spots: 20, fuel: false, service: [] },
+      { name: 'Tjärö brygga', desc: 'Enkel brygga vid campingplatsen.', fuel: false, service: [] },
     ],
     restaurants: [
       { name: 'Tjärö Café', type: 'Café', desc: 'Enkelt café vid campingen. Sommarsäsong.' },
@@ -5437,7 +5453,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Tät trafik hela dagen med SL-liknande turtäthet',
     },
     harbors: [
-      { name: 'Öckerö Gästhamn', desc: 'Gästhamn i öns södra del. Fullgod service.', spots: 50, fuel: true, service: ['Vatten', 'El', 'Dusch'] },
+      { name: 'Öckerö Gästhamn', desc: 'Gästhamn i öns södra del. Fullgod service.', fuel: true, service: ['Vatten', 'El', 'Dusch'] },
     ],
     restaurants: [
       { name: 'Fiskehamnsrestauranger', type: 'Restaurang', desc: 'Lokala restauranger i fiskehamnen med färsk sjömat. Räkor och skaldjur direkt från fiskebåtarna.' },
@@ -5495,7 +5511,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Sommartid regelbundna avgångar',
     },
     harbors: [
-      { name: 'Rörö Gästhamn', desc: 'Liten gästhamn med grundläggande service.', spots: 25, fuel: false, service: ['Vatten'] },
+      { name: 'Rörö Gästhamn', desc: 'Liten gästhamn med grundläggande service.', fuel: false, service: ['Vatten'] },
     ],
     restaurants: [
       { name: 'Rörö Fisk & Kök', type: 'Restaurang', desc: 'Lokal sjömatstservering vid hamnen. Räkor, musslor och fisk. Sommarsäsong.' },
@@ -5555,7 +5571,7 @@ export const ISLANDS: Island[] = [
       frequency: 'Dagligen, sommarsäsong täta avgångar',
     },
     harbors: [
-      { name: 'Holmöns hamn', desc: 'Liten gästhamn vid öns södra del.', spots: 20, fuel: false, service: ['Vatten'] },
+      { name: 'Holmöns hamn', desc: 'Liten gästhamn vid öns södra del.', fuel: false, service: ['Vatten'] },
     ],
     restaurants: [
       { name: 'Holmöns Wärdshus', type: 'Wärdshus', desc: 'Sommarsäsongens krog med lokalt tillagad mat. Meny varierar med säsongens råvaror.' },

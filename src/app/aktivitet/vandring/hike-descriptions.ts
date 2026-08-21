@@ -102,7 +102,7 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── BOHUSLÄN ──────────────────────────────────────────────────────────
 
   nordkoster: {
-    body: 'Nordkoster är centrum av Sveriges enda marina nationalpark och en av landets bästa vandringsöar. De ~8 km längs leden tar dig runt dramatiska klippavsatser mot Västerhavet — ett landskap som ser ut som det är hämtat från en atlantisk nationalpark. Kombineras bäst med ett besök på systerön Sydkoster.',
+    body: 'Nordkoster är centrum av Sveriges första marina nationalpark och en av landets bästa vandringsöar. De ~8 km längs leden tar dig runt dramatiska klippavsatser mot Västerhavet — ett landskap som ser ut som det är hämtat från en atlantisk nationalpark. Kombineras bäst med ett besök på systerön Sydkoster.',
     tips: [
       'Tåg Göteborg → Strömstad, sedan båt till Koster (~3–4h totalt).',
       'Boka boende i god tid — ön är populär under sommaren.',
