@@ -20,7 +20,10 @@
     "routes:expand:write": "tsx scripts/expand-precomputed-routes.ts --write",
     "email:test": "tsx scripts/test-welcome-email.ts",
     "verify-claims": "node scripts/verify-claims.mjs",
-    "verify-claims:baslinje": "node scripts/verify-claims.mjs --uppdatera-baslinje"
+    "verify-claims:baslinje": "node scripts/verify-claims.mjs --uppdatera-baslinje",
+    "tasks": "node -r dotenv/config scripts/update-tasks.mjs dotenv_config_path=.env.local",
+    "tasks:torrkor": "node -r dotenv/config scripts/update-tasks.mjs --torrkor dotenv_config_path=.env.local",
+    "tasks:lista": "node -r dotenv/config scripts/list-tasks.mjs dotenv_config_path=.env.local"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.1",
