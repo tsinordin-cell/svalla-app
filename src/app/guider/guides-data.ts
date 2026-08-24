@@ -1140,7 +1140,7 @@ export const GUIDES: GuideMeta[] = [
       { q: 'Måste man ha bil på Utö?', a: 'Nej – Utö är bilfritt för turister. Ön har cykelhyra, och de flesta sevärdheter nås lätt till fots eller med cykel. Cykeln är faktiskt det bästa sättet att uppleva Utö.' },
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
       { q: 'Vad kostar övernattning på Utö?', a: 'Utö Värdshus kostar 1 500–3 000 kr/natt dubbelrum. Vandrarhem och stugor på ön kostar 400–900 kr/natt. Tältplatser finns från ca 150 kr/natt.' },
-      { q: 'Vad är Utö mest känt för?', a: 'Utö är känt för sin havsbastu vid stranden, Utö Runt-cykelled (ca 12 km), jerngruvan (en av Sveriges äldsta), sandstranden Kobbarnsudde och det välrenommerade Utö Värdshus.' },
+      { q: 'Vad är Utö mest känt för?', a: 'Utö är känt för sin havsbastu vid stranden, vandringsleden Utö Runt (ca 15 km), järngruvan (en av Sveriges äldsta), sandstränderna Barnens bad och Stora Sand samt det välrenommerade Utö Värdshus. Cykelvägen Gruvbryggan–Ålö (6–7 km enkel väg) är öns klassiska cykeltur.' },
     ],
   },
   {
@@ -1441,8 +1441,8 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Stockholms skärgård är inte känd för sandstränder – men de finns. Guide till alla sandstränder i skärgården och varför de är ovärderliga.",
     category: "Aktivitet", emoji: "🏝", readTime: "6 min", fullContent: true,
     faqs: [
-      { q: 'Finns det sandstränder i Stockholms skärgård?', a: 'Ja, men de är sällsynta. Grindas sandstrand (södra sidan), Nåttarös sandstrand och Utös Kobbarnsudde är de bästa. De flesta öar i Stockholms skärgård har klippstränder – sandstrand är undantaget, inte regeln.' },
-      { q: 'Vilken är den bästa sandstranden i Stockholms skärgård?', a: 'Grindas sandstrand på södra sidan är den mest välkända och barnvänligaste med grunt varmt vatten. Utös Kobbarnsudde ger mer vildmarkskaraktär. Nåttarös strand är bäst för tältare.' },
+      { q: 'Finns det sandstränder i Stockholms skärgård?', a: 'Ja, men de är sällsynta. Grindas sandstrand (södra sidan), Nåttarös sandstränder och Utös Barnens bad och Stora Sand är de bästa. De flesta öar i Stockholms skärgård har klippstränder – sandstrand är undantaget, inte regeln.' },
+      { q: 'Vilken är den bästa sandstranden i Stockholms skärgård?', a: 'Grindas sandstrand på södra sidan är den mest välkända och barnvänligaste med grunt varmt vatten. Utös Stora Sand ger mer vildmarkskaraktär. Nåttarös strand är bäst för tältare.' },
     ],
   },
   {
@@ -1474,7 +1474,7 @@ export const GUIDES: GuideMeta[] = [
     category: "Region", emoji: "⚖", readTime: "6 min", fullContent: true,
     faqs: [
       { q: 'Vad är skillnaden mellan Utö och Sandhamn?', a: 'Sandhamn är seglarsocieteten, restauranger och sommarfest – mer folklig och social. Utö är naturen, järngruvhistorian, havsbastun och cyklingen – lugnare och mer familjeorienterat. Sandhamn är skärgårdens Stureplan; Utö är natursemestern.' },
-      { q: 'Vilken ö är bäst för barnfamiljer – Utö eller Sandhamn?', a: 'Utö vinner klart för barnfamiljer. Sandstrand (Kobbarnsudde), cykelleder, havsbastu och ett mer avslappnat tempo. Sandhamn är bättre för vuxna och par som söker seglarliv och restauranger.' },
+      { q: 'Vilken ö är bäst för barnfamiljer – Utö eller Sandhamn?', a: 'Utö vinner klart för barnfamiljer. Sandstränder (Barnens bad, Stora Sand), cykelvägar, havsbastu och ett mer avslappnat tempo. Sandhamn är bättre för vuxna och par som söker seglarliv och restauranger.' },
       { q: 'Hur tar man sig till Utö respektive Sandhamn?', a: 'Sandhamn nås med Waxholmsbolaget via Stavsnäs (buss 833 från Slussen) – ca 1,5 h totalt. Utö nås via Nynäshamn med båt (ca 1 h) eller via Dalarö. Sandhamn är generellt lite lättare att nå.' },
     ],
   },
@@ -1763,7 +1763,7 @@ export const GUIDES: GuideMeta[] = [
     faqs: [
       // UPPSKATTNING: ungefärliga prisnivåer över flera aktörer, ej hämtat per aktör (2026-08)
       { q: 'Var hyr man cykel på Öland?', a: 'Cykelhyrning finns i Borgholm och vid Böda (norra Öland). Priserna är ca 100–150 kr/dag. Elcyklar finns för den som vill täcka mer av öns 137 km längd. Ta med lapp och lapp-utrustning – det blåser på Öland.' },
-      { q: 'Kan man cykla runt hela Öland?', a: 'Hela Öland är ca 240 km runt – 3–5 dagsturer för normalcyklister. Landsvägar och cykelvägar längs båda kusterna. Böda – Borgholm – Mörbylånga – Ottenby är en klassisk etapptur med vandrarhem längs vägen.' },
+      { q: 'Kan man cykla runt hela Öland?', a: 'Ja – cykelleden Ölandsleden går runt hela ön, fyr till fyr från Långe Jan till Långe Erik, ca 450 km totalt. Räkna med 5–7 dagar för hela leden, eller välj kortare etapper. Böda – Borgholm – Mörbylånga – Ottenby är en klassisk etapptur med vandrarhem längs vägen.' },
     ],
   },
   {
