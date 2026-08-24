@@ -686,7 +686,7 @@ export function getGuideContent(slug: string): string {
 <p>Laga alltid levande hummer. Koka upp rikligt med saltat vatten (2 msk salt per liter), lägg ner humrarna med huvudet först och koka 8–12 minuter beroende på storlek. Servera med smält smör, citron och bröd. Enkelt och perfekt.</p>
 
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
-<strong style="color:var(--sea)">Hummerpremiären 2025:</strong>
+<strong style="color:var(--sea)">Hummerpremiären 2026 – 21 september kl 07.00:</strong>
 <p style="margin:8px 0 0;font-size:14px">Kontrollera exakt datum på Havs- och vattenmyndighetens webbplats (hav.se) eller Visit Bohusläns evenemangssida. Premiären samlar tusentals besökare längs kusten och boenden i Grebbestad och Smögen tar slut månader i förväg.</p>
 </div>
 `,
@@ -859,7 +859,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Gotland – den stora och självständiga</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li><strong>Transport:</strong> Färja från Nynäshamn eller Oskarshamn (3–3,5 h), flyg från Arlanda</li>
-<li><strong>Storlek:</strong> 3 140 km² – landets största ö</li>
+<li><strong>Storlek:</strong> Huvudön ca 2 970 km² – landets största ö (hela ögruppen med Fårö, Gotska Sandön och Karlsöarna ca 3 140 km²)</li>
 <li><strong>Karaktär:</strong> Medeltidsstaden Visby, kalkstensraukar, rosévinodlingar, Almedalen</li>
 <li><strong>Bäst för:</strong> Par, kulturintresserade, mat- och vinälskare, de som vill ha stadskänsla</li>
 <li><strong>Högsäsong:</strong> Juli–aug. Almedalsveckan (politisk festival) i slutet av juni</li>
@@ -1765,8 +1765,8 @@ export function getGuideContent(slug: string): string {
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Gruvorna – historia från 1100-talet</h4>
 <p>Utö har Sveriges äldsta kända järngruvor, daterade till 1100-talet. Gruvbrytningen pågick under hundratals år och lämnade djupa vattenfyllda schakt och dramatiska gruvlandskap. Du kan promenera runt gruvområdet och läsa historisk information på informationsskyltar. En av skärgårdens mest fascinerande historiska miljöer.</p>
 
-<h4 style="font-size:15px;font-weight:700;margin:16kså 6px">Utö Runt – vandring runt hela ön</h4>
-<p>Utö Runt är en ca 8 km lång vandringsled som följer kustlinjen runt stora delar av ön. Startar vid Gruvbyn-hamnen och går via klipphällar, skog och naturreservat. Lagom krävande (medel), med möjlighet till bad på flera ställen längs vägen. Planera minst 3–4 timmar.</p>
+<h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Utö Runt – vandring runt hela ön</h4>
+<p>Utö Runt är en ca 15 km lång vandringsled som följer kustlinjen runt stora delar av ön. Startar vid färjeläget i Gruvbyn och går via klipphällar, skog och naturreservat. Lagom krävande (medel), med möjlighet till bad på flera ställen längs vägen. Planera en hel dag, 5–6 timmar.</p>
 
 <h4 style="font-size:15px;font-weight:700;margin:16px 0 6px">Stora Sand – Utös sandstrand</h4>
 <p>Stora Sand på Utö-Ålö är en av skärgårdens bredaste sandstränder med gradvis djuphöjning – perfekt för bad och för familjer. Ligger ca 3 km från Gruvbyn – enklast med cykel. Kontrollera om delar av stranden är tillgängliga (militärt område kan periodvis begränsa tillträdet – kontakta Utö Turistbyrå).</p>
