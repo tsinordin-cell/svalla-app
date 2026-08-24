@@ -137,7 +137,7 @@ Det finns öar i Stockholms skärgård som alla vet om – Sandhamn, Fjäderholm
 
 Möja är Stockholms skärgårds näst folkrikaste ö, men stämningen är allt annat än stadsmässig. Inga bilar, inga köer, inga hotellkedjor. Istället: cyklar, roddbåtar och ett tempo som påminner dig om vad sommaren egentligen är till för.
 
-Ön är stor nog att utforska – drygt 12 km lång – men liten nog att inte kännas anonym. Här vet folk vem du är när du kommit tillbaka andra gången.
+Ön är stor nog att utforska – cirka 5 km lång, och närmare 8 km räknar man in Södermöja – men liten nog att inte kännas anonym. Här vet folk vem du är när du kommit tillbaka andra gången.
 
 ## Komma dit
 
@@ -373,7 +373,7 @@ Vaxholm är bra som dagstur men ännu bättre som övernattning. Waxholms Hotell
  emoji: '🚲',
  tags: ['Utö', 'Cykling', 'Havsbastu'],
  content: `
-I södra Stockholms skärgård (Haninge kommun, cirka 16 km nordost om Nynäshamn) ligger Utö. Det är en av skärgårdens mest kompletta öar – historia, natur, mat, aktiviteter och infrastruktur som gör ett längre besök möjligt utan att sakna fastlandets bekvämligheter.
+I södra Stockholms skärgård (Haninge kommun, knappt 20 km nordost om Nynäshamn fågelvägen) ligger Utö. Det är en av skärgårdens mest kompletta öar – historia, natur, mat, aktiviteter och infrastruktur som gör ett längre besök möjligt utan att sakna fastlandets bekvämligheter.
 
 ## Historien under marken
 
@@ -590,7 +590,7 @@ Bilfria öar och cykel är en kombination som inte kan slå fel. Inga bilar att 
 
 ## Möja – den längsta cykelturen
 
-Möja är ca 12 km lång och skansen för den som vill cykla ordentligt. Öns vägnät täcker de flesta delar och kombinerar kustlinjer, skog och by i ett och samma svep.
+Möja är ca 5 km lång (8 km med Södermöja) och skansen för den som vill cykla ordentligt. Öns vägnät täcker de flesta delar och kombinerar kustlinjer, skog och by i ett och samma svep.
 
 **Norra rundan** (ca 8 km) – Från Möja brygga norrut och in mot bykärnan. Grusvägar, gammal bebyggelse och en naturhamn vid norra udden som är perfekt för en paus.
 
@@ -1820,7 +1820,7 @@ Gällnö är ett naturreservat i Värmdö skärgård med markerade leder och vac
 Skärgårdens vandringsleder kräver respekt och planering men ger enormt tillbaka. Bästa säsongen: maj–juni och september — grönare och svalare, utan högsommarens trängsel.
    `,
    faqs: [
-     { q: 'Vilken är den bästa vandringen i Stockholms skärgård?', a: 'Utö (Alsvik–Rånö, 12 km) och Ornö runt-led (20 km) är de mest kompletta vandringarna. För kortare dagsvandringar är Grinda och Möja utmärkta.' },
+     { q: 'Vilken är den bästa vandringen i Stockholms skärgård?', a: 'Utö-etappen av Stockholm Archipelago Trail (18,4 km, start Gruvbryggan eller Spränga) och Ornö-etappen (34,1 km) är de mest kompletta vandringarna. För kortare dagsvandringar är Grinda och Möja utmärkta.' },
      { q: 'Behöver man bil för att vandra i skärgården?', a: 'Nej. De flesta vandringsleder nås med Waxholmsbåten direkt från Stockholm. Utö nås med båt från Nynäshamn (pendeltåg + byte).' },
      { q: 'Är det markerade vandringsleder i skärgården?', a: 'Delvis. Gällnö naturreservat och Grinda har markerade leder. Utö och Ornö har skyltade leder men ladda ner kartappen Komoot med offline-karta som säkerhetsnet.' },
    ],
