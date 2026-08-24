@@ -77,7 +77,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vilka kustleder är bäst i Sverige?',
-    a: 'Höga kustenleden (130 km, UNESCO), Skåneledens kustdelar (bl.a. Kullaberg), Bohusleden (Göteborg–Strömstad), Sörmlandsleden (delar), Ölandsleden och Gotlandsleden är de mest etablerade. Höga kusten och Kullaberg rankas ofta högst för dramatik.',
+    // KÄLLA: STF (Signaturled Öland/Mörbylångaleden 84 km) + Länsstyrelsen Gotland (Klintkustleden 30 km). Ölandsleden och Gotlandsleden är cykelleder, inte vandringsleder.
+    a: 'Höga kustenleden (130 km, UNESCO-området Höga kusten), Skåneledens kustdelar (bl.a. Kullaberg), Bohusleden (Göteborg–Strömstad), Sörmlandsleden (delar), Mörbylångaleden på Öland (84 km genom världsarvet) och Klintkustleden på Gotland (30 km) är de mest etablerade. Höga kusten och Kullaberg rankas ofta högst för dramatik.',
   },
   {
     q: 'Vad är skillnaden på lätt, medel och krävande vandring?',
