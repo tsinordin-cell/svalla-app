@@ -191,7 +191,8 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     tags: ['Klippmiljö', 'Skaldjur', 'Kosterfjorden', 'Erfarenhet rekommenderas'],
     intro: [
       'Bohuslän är Sveriges mest dramatiska kust sett från havet. Granitklippor polerade av isen, kobbar och skär som omringar pittoreska fiskelägen – och Nordens bästa skaldjur tillgängliga direkt längs leden. Med hyrbåt kan du utforska platser som Fjällbacka, Kungshamn och Kosteröarna i din egen takt.',
-      'Kosterfjorden, Nordens djupaste fjord på den skandinaviska sidan, ger ett unikt upplevelsedyk om du är dykare. De bilfria Kosteröarna nås enbart med båt och är ett naturreservat i världsklass. Planerar du till norr om Strömstad är de ett absolut stopp.',
+      // KÄLLA: sverigesnationalparker.se (Naturvårdsverket): Kosterrännan 247 m vattendjup; Kosterhavet Sveriges första marina nationalpark 2009, ca 12 000 arter (2026-08-23)
+      'Kosterfjorden — där Kosterrännan når 247 meters djup, mest i svenska vatten på västkusten — ger ett unikt upplevelsedyk om du är dykare. De bilfria Kosteröarna nås enbart med båt och är ett naturreservat i världsklass. Planerar du till norr om Strömstad är de ett absolut stopp.',
       'Bohuslän är ett vatten för mer erfarna båtförare. Täta sjötrafikkorridorer nära Göteborg, exponerade passager och plötsliga vindförändringar kräver god situationsmedvetenhet. Välj rutter i lä vid osäkert väder.',
     ],
     priceTable: [
@@ -201,7 +202,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
     ],
     tips: [
       { icon: '🦐', heading: 'Köp räkor direkt av fiskare', text: 'I Smögen, Kungshamn och Lysekil säljer fiskare räkor direkt från båten vid kajen. Billigast och färskast – en Bohuslänsk klassiker.' },
-      { icon: '🌊', heading: 'Respektera Ytterhavet', text: 'Utanför skärgårdskorridoren möter du Nordsjön – respektera väderrapporten. Innanför leden är det skyddat och tryggt.' },
+      { icon: '🌊', heading: 'Respektera Ytterhavet', text: 'Utanför skärgårdskorridoren möter du Skagerrak – respektera väderrapporten. Innanför leden är det skyddat och tryggt.' },
     ],
     faqs: [
       {
@@ -210,7 +211,7 @@ export const HYRBAT_SUBS: HyrBatSub[] = [
       },
       {
         q: 'Kan man se Kosteröarna med hyrbåt?',
-        a: 'Ja, Kosteröarna nås enbart med båt och är ett perfekt mål för hyrbåt. Ta med sjödykutrustning – Kosterfjorden har Nordens rikaste marina liv. Ankra i skyddade lägen på öns östra sida.',
+        a: 'Ja, Kosteröarna nås enbart med båt och är ett perfekt mål för hyrbåt. Ta med sjödykutrustning – Kosterhavet är Sveriges artrikaste marina område med runt 12 000 arter. Ankra i skyddade lägen på öns östra sida.',
       },
     ],
   },

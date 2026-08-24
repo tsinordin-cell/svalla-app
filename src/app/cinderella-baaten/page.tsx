@@ -220,7 +220,8 @@ export default function CinderellaBaatenPage() {
               Kan man ta med hund eller cykel?
             </h3>
             <p>
-              Ja på båda. Hundar välkomnas ombord (koppel krävs). Cyklar tas med mot en avgift — boka i appen för att säkra plats, platser är begränsade. Under högsäsong (juli–aug) är det extra viktigt att boka cykelplats i förväg.
+              {/* KÄLLA: Strömmas FAQ (stromma.com) 2026-08-23: cykel i mån av plats, plats garanteras aldrig, avgift betalas vid ombordstigning, el- och lastcyklar tillåts inte; husdjur ej i restaurangdelen */}
+ Ja, med begränsningar. Hundar får följa med men inte vistas i restaurang- och serveringsdelarna. Vanliga cyklar tas med i mån av plats mot en avgift som betalas vid ombordstigning — plats kan inte bokas eller garanteras, och el- och lastcyklar tillåts inte. Under högsäsong (juli–aug) är det klokt att ha en reservplan om cykelplatserna är fulla.
             </p>
           </>
         }

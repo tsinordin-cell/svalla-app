@@ -28,10 +28,11 @@ const ITEMS: LandingItem[] = [
   {
     icon: '⛵',
     title: 'Möja',
-    description: 'Mellanskärgårdens klassiska seglarö. Vikarna vid Berg, Ramsmora och Långviksskär ger bra skydd från SW–NW. Bergs Glass och lanthandeln gör det enkelt att tillbringa flera dagar.',
+    description: 'Mellanskärgårdens klassiska seglarö. Vikarna vid Berg, Ramsmora och Långviksskär ger bra skydd från SW–NW. Sommarglasskiosken och lanthandeln i Berg gör det enkelt att tillbringa flera dagar.',
     href: '/moja',
     // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
-    meta: 'Mellanskärgården · 29 sjömil från Stockholm',
+    // UPPMÄTT: precomputed-routes stromkajen_to_moja 58,7 km = 31,7 NM, validated (2026-08-23)
+    meta: 'Mellanskärgården · 30 sjömil från Stockholm',
   },
   {
     icon: '🏔️',

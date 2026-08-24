@@ -66,10 +66,11 @@ const ITEMS: LandingItem[] = [
  icon: '🍦',
  title: 'Möja',
  // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
- description: 'Mellanskärgårdens klassiska seglarö — känd för Bergs Glass och den lugna atmosfären. Bra naturhamnar vid Berg och Ramsmora. Runt 29 sjömil från Stockholm. Möja passar perfekt som etapp på en längre segeltur norrut.',
+ description: 'Mellanskärgårdens klassiska seglarö — känd för sin jordgubbstradition och den lugna atmosfären. Bra naturhamnar vid Berg och Ramsmora. Drygt 30 sjömil från Stockholm. Möja passar perfekt som etapp på en längre segeltur norrut.',
  href: '/moja',
  // KÄLLA: Båtturistguidens distanstabell (batturistguide.se, läst 2026-08-16): Stockholm–Möja 29 nm
-    meta: 'Mellanskärgården · 29 sjömil',
+    // UPPMÄTT: precomputed-routes stromkajen_to_moja 58,7 km = 31,7 NM, validated (2026-08-23). KÄLLA jordgubbar: visitmoja.se (fiske + jordgubbsodling dominerade; ingen 'Bergs Glass' finns belagd)
+    meta: 'Mellanskärgården · 30 sjömil',
  },
  {
  icon: '🌊',
@@ -93,7 +94,7 @@ export default function StockholmsSkargardPage() {
  {
  '@type': 'Question',
  name: 'Hur långt är det att segla från Stockholm till Sandhamn?',
- acceptedAnswer: { '@type': 'Answer', text: 'Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar knappt 60 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.' },
  },
  {
  '@type': 'Question',
@@ -216,7 +217,8 @@ export default function StockholmsSkargardPage() {
  Hur långt är det att segla från Stockholm till Sandhamn?
  </h3>
  <p>
- Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar omkring 65 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
+ {/* UPPMÄTT: precomputed-routes stromkajen_to_sandhamn 58,9 km = 31,8 NM, validated (2026-08-23) */}
+ Det är ungefär 31 sjömil från Stockholms inlopp till Sandhamn — motsvarar knappt 60 kilometer. Med god vind och rätt segeltrim tar det mellan 5 och 8 timmar. Många seglare delar resan på två dagar och gör ett mellanstop i Vaxholm eller vid en ö i mellanskärgården.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>

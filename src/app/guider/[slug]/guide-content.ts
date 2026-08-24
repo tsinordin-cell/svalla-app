@@ -17,7 +17,7 @@ export function getGuideContent(slug: string): string {
 <p><strong>Insider-tips:</strong> Ta kvällsbåten tillbaka till Stockholm – solnedgången längs Vaxholmsleden är värd hela resan. Om du stannar natten, boka på Waxholms Hotell – det är det enda riktiga hotellet i stan.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">2. Sandhamn – seglarnas midsommar</h4>
-<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets linje 444 från Stavsnäs (nås med SL-buss från Slussen eller Gullmarsplan), ca 1 h 30 min. Alternativt Cinderellabåten från Strömkajen på midsommaraftonen – bokningsbiljett krävs.</p>
+<p><strong>Hur du tar dig dit:</strong> Waxholmsbolagets båt från Stavsnäs (nås med SL-buss från Slussen eller Gullmarsplan), ca 1 h 30 min. Alternativt Cinderellabåten från Strandvägen på midsommaraftonen – bokningsbiljett krävs.</p>
 <p><strong>Upplev:</strong> Sandhamn är seglarklubbars huvudkvarter. Under midsommar fylls Sandhamns naturhamn av hundratals segelbåtar, och festligheterna pågår nonstop. Sandhamns segelsällskap arrangerar dans och musik vid bryggan. Badplatsen Trouville är lysande midsommardag.</p>
 <p><strong>Var du äter:</strong> Sandhamns Värdshus är det självklara valet – välkänt för sin midsommarbuffé med lokalt rökta räkor. Boka bord minst en månad i förväg för midsommaraftonen. Seglarhotellet erbjuder också fullspäckad midsommarlunch.</p>
 <p><strong>Insider-tips:</strong> Kom gärna kvällen innan (midsommarafton minus ett) och inta de bästa bryggplatserna. Ta med tält om du planerar övernattning – alla boenden är fullbokade månader i förväg.</p>
@@ -343,10 +343,12 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Populäraste linjerna och restider</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Linje 80</strong>: Strömkajen → Vaxholm → Grinda → Sandhamn. Ca 3,5 h till Sandhamn.</li>
-<li><strong>Linje 444</strong>: Stavsnäs → Sandhamn. Ca 1,5 h.</li>
-<li><strong>Linje 350</strong>: Stavsnäs → Möja. Ca 2 h.</li>
-<li><strong>Linje 670/671</strong>: Strömkajen → Arholma (norra skärgård). Ca 4 h.</li>
+{/* KÄLLA: Waxholmsbolagets GTFS-linjelista (2-40-serien) + sl.se (pendelbåt 83 Strömkajen-Vaxholm) 2026-08-23. Tidigare linjenummer 80/350/444/670-671 fanns inte - beskriv rutter, hänvisa till SL-appen for nummer. */}
+<li><strong>Strömkajen → Vaxholm</strong>: pendelbåt 83, ca 55 min — tätast trafik i skärgården.</li>
+<li><strong>Strömkajen → Sandhamn</strong> via Vaxholm och Grinda: ca 3,5 h med Waxholmsbolaget.</li>
+<li><strong>Stavsnäs → Sandhamn</strong>: ca 1 h överfart (SL-buss 433/434 från Slussen till Stavsnäs).</li>
+<li><strong>Stavsnäs → Möja</strong>: ca 1 h 15 min till Möja Söderhamn.</li>
+<li><strong>Arholma</strong>: snabbast via Norrtälje och Simpnäs med kort överfart — kolla säsongens direktturer i SL-appen.</li>
 <li><strong>Utö-linjen</strong>: Nynäshamn → Utö. Ca 1 h 15 min.</li>
 </ul>
 `,
@@ -412,7 +414,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">8. Sandhamn – seglarklassikern</h4>
 <p><strong>Tillgänglighet:</strong> ★★☆☆☆</p>
-<p><strong>Transport:</strong> SL-buss 433 till Stavsnäs, sedan Waxholmsbolaget linje 444 till Sandhamn. Totalt ca 2 h 30 min.</p>
+<p><strong>Transport:</strong> SL-buss 433 till Stavsnäs, sedan Waxholmsbolagets båt till Sandhamn (ca 1 h). Totalt ca 2 h 30 min.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Buss gratis med SL-kort, Waxholmsbåt ca 220 kr enkel resa.</p>
 <p><strong>Upplev:</strong> Sandhamn är skärgårdslivet i koncentrat – seglarbåtar, klassiska restauranger och klippbad vid Trouville. Under sommarveckan (Juni KSSS) är det ett evenemang av rang.</p>
@@ -428,7 +430,7 @@ export function getGuideContent(slug: string): string {
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">10. Arholma – ytterskärgårdens yttersta</h4>
 <p><strong>Tillgänglighet:</strong> ★☆☆☆☆</p>
-<p><strong>Transport:</strong> Waxholmsbolaget linje 670/671 från Strömkajen, ca 4 h. Avgångarna är begränsade.</p>
+<p><strong>Transport:</strong> Waxholmsbolaget norrut, lång resa med begränsade avgångar — snabbast via Norrtälje och Simpnäs med kort överfart till ön.</p>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <p><strong>Pris:</strong> Ca 300 kr enkel resa.</p>
 <p><strong>Upplev:</strong> Arholma är ytterskärgård i ordets rätta bemärkelse – öppet hav, urbergsklippor och knappt några turister. För den riktiga äventyrsresenären utan båt.</p>
@@ -1212,7 +1214,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Vaxholms fästning</h3>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
-<p>Fästningen byggdes på 1500-talet och är ett av Stockholms läns mest välbevarade historiska monument. Läget mitt i farleden gav den strategisk betydelse i flera sekler. Öppen maj–september, guidade turer på svenska och engelska. Nås med en kort båtresa från Vaxholms hamn (en liten roddbåt tar dig dit, ca 20 kr).</p>
+{/* KÄLLA: SFV + vaxholmsfastning.se — anlagd 1548, nuvarande kastell 1833–1863 (2026-08-23) */}
+<p>Fästningen anlades 1548 under Gustav Vasa och fick sin nuvarande form 1833–1863 — i dag ett av Stockholms läns mest välbevarade historiska monument. Läget mitt i farleden gav den strategisk betydelse i flera sekler. Öppen maj–september, guidade turer på svenska och engelska. Nås med en kort båtresa från Vaxholms hamn (en liten roddbåt tar dig dit, ca 20 kr).</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Restauranger och mat</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
@@ -1303,12 +1306,12 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Waxholmsbolagets linjer – översikt</h3>
 <p>Waxholmsbolaget driver ca 50 linjer med tät trafik inomskärs under rushningstid. Dessa linjer fungerar som pendlingalternativ för boende i skärgårdssamhällen:</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Linje 80:</strong> Strömkajen – Vaxholm – Grinda – Sandhamn (tätast sommar)</li>
-<li><strong>Linje 83:</strong> Strömkajen – Vaxholm – Ljusterö (pendlingslinje)</li>
-<li><strong>Linje 89:</strong> Strömkajen – Lidingö – Vaxholm (inre skärgård)</li>
-<li><strong>Linje 350:</strong> Stavsnäs – Möja (söder och mittens linje)</li>
-<li><strong>Linje 444:</strong> Stavsnäs – Sandhamn (direkt, ca 1,5 h)</li>
-<li><strong>Linje 670/671:</strong> Strömkajen – Norrtälje-leden – Arholma (norra linje, 4 h)</li>
+{/* KÄLLA: sl.se (pendelbåt 83) + Waxholmsbolagets GTFS-linjelista 2026-08-23. Fabricerade linjenummer ersatta med rutter. */}
+<li><strong>Strömkajen – Vaxholm:</strong> pendelbåt 83 (ingår i SL-taxan), ca 55 min</li>
+<li><strong>Strömkajen – mellanskärgården:</strong> Waxholmsbolaget mot Grinda, Svartsö och Finnhamn</li>
+<li><strong>Stavsnäs – Sandhamn och Möja:</strong> Waxholmsbolagets båtar, ca 1–1,5 h</li>
+<li><strong>Norrtälje/Simpnäs – Arholma:</strong> kort överfart till norra skärgårdens utpost</li>
+<li>Linjenumren ändras mellan säsonger — sök alltid resan i SL-appen i stället för att memorera nummer.</li>
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Privata aktörer och specialbåtar</h3>
@@ -2004,11 +2007,11 @@ export function getGuideContent(slug: string): string {
 <p>Möja är en av Stockholms skärgårds folkrikaste öar med drygt 200 bofasta invånare – och det märks. Här finns affär, krog, pizzeria, biblitek, skola och en levande lokalgemenskap som skiljer sig markant från de öar som bara har ett sommarvärdshus. Möja är skärgårdslivet på riktigt, inte en kuliss.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Hur tar du dig till Möja?</h3>
-<p>Möja nås med Waxholmsbolagets linje 444 från Stavsnäs brygga. Stavsnäs når du med SL-buss 433 från Slussen (ca 55 min). Restid från Stavsnäs till Möja är ca 1 h 15 min. Totalt från Stockholm centrum: ca 2 h 30 min.</p>
+<p>Möja nås med Waxholmsbolagets båt från Stavsnäs brygga. Stavsnäs når du med SL-buss 433 från Slussen (ca 55 min). Restid från Stavsnäs till Möja är ca 1 h 15 min. Totalt från Stockholm centrum: ca 2 h 30 min.</p>
 <p>Möja har tre angöringsplatser: Möja Söderhamn, Sandvik och Möja Norra. De flesta väljer Möja Söderhamn som bas – det är här affären, krogen och hamnen finns.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
 <li>SL-buss 433 från Slussen till Stavsnäs: ca 55 min</li>
-<li>Waxholmsbolaget linje 444, Stavsnäs–Möja Söderhamn: ca 1 h 15 min</li>
+<li>Waxholmsbolaget, Stavsnäs–Möja Söderhamn: ca 1 h 15 min</li>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
 <li>Biljett: SL-kort + tilläggsbiljett (zon C), eller Waxholmsbolaget-biljett ca 140–160 kr enkel resa</li>
 <li>Sommar: avgångar 3–5 ggr/dag. Kolla tidtabellen i Waxholmsbolagets app.</li>
@@ -2725,8 +2728,8 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Transport och restid</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Grinda:</strong> Linje 80/82 från Strömkajen, ca 2 h 15 min. Cinderellabåten ca 1 h 40 min (sommar).</li>
-<li><strong>Finnhamn:</strong> Linje 80 från Strömkajen, ca 2 h 45 min. Ytterligare 30 min längre ut.</li>
+<li><strong>Grinda:</strong> Waxholmsbolaget från Strömkajen, ca 2 h. Cinderellabåten ca 1 h 40 min (sommar).</li>
+<li><strong>Finnhamn:</strong> Waxholmsbolaget från Strömkajen, ca 3 h. Ytterligare 30 min längre ut.</li>
 <li><strong>Vinnare:</strong> Grinda – kortare och mer flexibla avgångar</li>
 </ul>
 
@@ -2853,7 +2856,8 @@ export function getGuideContent(slug: string): string {
 </ul>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Höga Kustenbron</h3>
-<p>Höga Kustenbron (1 867 m) var vid invigningen 1997 världens längsta hängbro. Den sträcker sig över Ångermanälven vid Veda söder om Härnösand. Spektakulär utsikt och en sevärhet i sig.</p>
+{/* KÄLLA: hogakusten.com — huvudspann 1 210 m, världens nionde längsta hängbro vid öppnandet 1997 (2026-08-23) */}
+<p>Höga Kustenbron (1 867 m, huvudspann 1 210 m) var vid invigningen 1997 världens nionde längsta hängbro och är fortfarande en av Europas längsta. Den sträcker sig över Ångermanälven vid Veda söder om Härnösand. Spektakulär utsikt och en sevärdhet i sig.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Höga Kustenleden</h3>
 <!-- UPPSKATTNING: ungefärliga prisnivåer/tider över flera aktörer, ej hämtat per aktör (2026-08) -->
@@ -3746,7 +3750,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Marstrands bilfria miljö gör det tryggt för barn att springa fritt. Carlstens fästning med guidade turer är fascinerande för barn 6+. Bryggan och Kungsbackafärjan tillbaka är en del av upplevelsen. Badplatser finns på öns västra sida.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">4. Kosteröarna – Europas rikaste hav</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordkoster och Sydkoster är bilfria och barnvänliga. Kosterfjordens nationalpark erbjuder snorkling med sjöstjärnor och krabbor som fascinerar barn. Cykeluthyrning finns och öarna är lagom stora för en familj att utforska på en dag. Nås med färja från Strömstad.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Nordkoster och Sydkoster är bilfria och barnvänliga. Kosterhavets nationalpark erbjuder snorkling med sjöstjärnor och krabbor som fascinerar barn. Cykeluthyrning finns och öarna är lagom stora för en familj att utforska på en dag. Nås med färja från Strömstad.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">5. Fjällbacka – kulturupplevelse</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fjällbacka är kompakt och lättnavigerat med barn. Kungsklyftan (den smala klippspringan mitt i samhället) är magisk för barn. Glassboden vid kajen är obligatorisk. Badplatser finns strax utanför samhället.</p>
@@ -4736,7 +4740,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bohusläns skärgård har en unik kombination av skyddat innervattnen och öppet hav. De korta avstånden mellan öarna gör det möjligt att paddla från ö till ö utan långa öppna havspassager. Vattnet är klart och salthaltigt, vilket gör det enklare att se djur och natur under ytan.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa kajakrutter</h2>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Kosteröarna</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterfjordens nationalpark är Bohusläns klaraste vatten och ett kajakdröm. Paddla runt Sydkoster och Nordkoster med stopp vid klipphällar och naturhamnar. Guidade kajaktur arrangeras av lokala aktörer från Strömstad.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Kosterhavets nationalpark är Bohusläns klaraste vatten och ett kajakdröm. Paddla runt Sydkoster och Nordkoster med stopp vid klipphällar och naturhamnar. Guidade kajaktur arrangeras av lokala aktörer från Strömstad.</p>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marstrandsfjorden</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Paddla runt Marstrands fästning och utforska de mindre öarna i Marstrandsfjorden. Skyddat vatten med vackra miljöer och möjlighet att landa på obebodda kobbar för picknick.</p>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Ramsvikslandet</h3>
@@ -5163,7 +5167,7 @@ export function getGuideContent(slug: string): string {
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Swedish Open – tennisturneringen</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Swedish Open är Skandinaviens mest prestigefyllda tennisturnering och arrangeras i Båstad varje juli. Världsstjärnor och tusental åskådare fyller Bjärehallen och Stan Wawrinkas tenniscenter. Biljetter säljs på tennisbadstad.se – köp i god tid för de bästa matcherna.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bjärehalvön</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bjärehalvön söder om Båstad är ett naturreservat med dramatiska klippor mot Skälderviken, öppna betesmarker och en kustvandringsled (Bjäreleden). Cykla halvön runt eller vandra längs kustleden för fantastiska vyer mot Hallands Väderö och Kattegatt.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På Bjärehalvön vid Båstad ligger Bjärekustens naturreservat med Hovs hallar — dramatiska klippborgar mot havet, öppna betesmarker och kustvandringsleden Bjäreleden. <!-- KÄLLA: Länsstyrelsen Skåne, Bjärekusten med Hovs hallar (läst 2026-08-23) --> Cykla halvön runt eller vandra längs kustleden för fantastiska vyer mot Hallands Väderö och Kattegatt.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hallands Väderö</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Hallands Väderö – en naturreservatsö utanför Båstad – nås med sommarbåt från Torekov (ca 15 min). Ön har sälkoloni, klippbad och en dramatisk ytterskärskänsla. En av Västsveriges bästa dagsutflykter.</p>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
@@ -5764,12 +5768,12 @@ export function getGuideContent(slug: string): string {
     'yttre-garden-guide': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Yttre Gården är en av de minst kända – och mest orörda – öarna i Nynäshamns skärgård. Beläget i Gårdsfjärden precis öster om Bedarön är det ett naturreservat som nästan bara nås med kajak, och det är just det som gör den speciell. Inga reguljärfartyg, inga parkeringsnödiga bilar, ingen massa turister. Bara klippor, havstorn och det historiska fiskarstället Gårdsund.</p>
 
-<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Viktiga regler – ADF-förbud gäller</h2>
+<h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Viktiga regler – visa hänsyn</h2>
 <div style="background:rgba(192,32,32,0.07);border-left:3px solid #c02020;padding:16px 20px;border-radius:8px;margin-bottom:16px">
-  <strong style="color:#c02020">Ankring, dykning och fiske är förbjudet</strong>
-  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Yttre Gården är naturreservat med ADF-förbud (Ankring, Dykning, Fiske). Dessa aktiviteter är förbjudna inom reservatsgränserna. Bad är däremot tillåtet. Kom med kajak – ankra inte din motorbåt vid ön.</p>
+  <strong style="color:#c02020">Skyddsvärd natur — kolla reglerna före besök</strong>
+  <p style="margin:8px 0 0;font-size:14px;color:var(--txt2)">Yttre Gården är utpekad av Naturvårdsverket som skyddsvärd statlig skog men är i dag inte ett bildat naturreservat, och några särskilda förbud finns inte publicerade. Kontrollera Länsstyrelsens karta över skyddad natur inför besök och visa samma hänsyn som i ett reservat. Bad är tillåtet. Kom med kajak – ankra inte din motorbåt vid ön.</p>
 </div>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havsörn häckar i reservatets omgivningar och sjöfågelbeståndet är skyddat. Hundar ska hållas kopplade om de tas med. Respektera reservatets regler – det är de som håller ön orörda och värdefull för besök.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Havsörn häckar i trakten och sjöfågellivet är känsligt — håll avstånd till häckande fågel. Hundar ska enligt lag hållas under strikt tillsyn i naturen 1 mars–20 augusti. Visa samma hänsyn som i ett reservat – det är de som håller ön orörda och värdefull för besök.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Gårdsund – fiskarstället från 1912</h2>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">På öns nordöstra sida finns resterna av fiskarstället Gårdsund, uppfört 1912. Det var ett arbetsläge för yrkesfiskare som försörjde sig på Gårdsfjärdens vatten. Grundmurar, stenfundament och annan bebyggelserester vittnar om livet som levdes här – ett välbevarat stycke lokal maritim historia i naturreservatets mitt.</p>
@@ -5804,7 +5808,7 @@ export function getGuideContent(slug: string): string {
   <li>Gårdsfjärden är ett yttre vatten – kolla vind och väder noggrant innan paddling</li>
   <li>Tältning tillåtet (allemansrätten) – ta med allt eget och lämna inga spår</li>
   <li>Bäst att besöka maj–september</li>
-  <li>ADF-förbud gäller strikt – ankring, dykning och fiske är förbjudet</li>
+  <li>Kontrollera Länsstyrelsens karta över skyddad natur före besök – regler kan tillkomma</li>
 </ul>
 `,
 
@@ -7284,6 +7288,7 @@ export function getGuideContent(slug: string): string {
 <p>Vaxholm fungerar hela året som en liten stad. Kaféer och restauranger håller öppet, fästningsmuseet kör höstöppettider. En enkel dagsturs-skärgård utan planering. Pendelbåt 83/83X från Strömkajen, 55 minuter.</p>
 
 <h4 style="font-size:16px;font-weight:700;margin:20px 0 8px">Grinda – höstens lugn</h4>
+<!-- KÄLLA: Länsstyrelsen Stockholm, besöksmål naturreservat/Grinda (läst 2026-08-23) -->
 <p>Grinda är ett naturreservat och skärgårdens kanske vackraste vandringsterräng på hösten. Grinda Wärdshus håller höstöppet. Ta Waxholmsbolaget linje 11 från Strömkajen, ca 1h45 min.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">VAD GÖR MAN PÅ HÖSTEN?</h3>

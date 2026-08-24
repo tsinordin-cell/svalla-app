@@ -296,7 +296,7 @@ export const ISLANDS: Island[] = [
     dog_friendly: true,
     dog_notes: 'Hundar tillåtna på de flesta delar av ön. Hundförbud vid Trouville-stranden sommartid (juni–aug). Koppeltvång i hamn- och restaurangområden.',
     insiderTips: [
-      'Waxholmsbåten tar ungefär 2 timmar och 30 minuter från Strömkajen via linje 444. Snabbåt via Stavsnäs kortar restiden till ungefär en timme.',
+      'Waxholmsbåten tar ungefär 2,5–3,5 timmar från Strömkajen beroende på antal bryggstopp. Snabbåt via Stavsnäs kortar restiden rejält.',
       'Trouville är en av få sandstränder i hela Stockholms skärgård. De flesta öar har klippor och hällmarker, inte sand.',
       'KSSS (Kungliga Svenska Sällskapet) har sin flaggskeppshamn i Sandhamn. Round Gotland Race, en av världens mest välkända offshore-seglingstävlingar, startar härifrån varje år.',
       'Byn Sandhamn ligger i öns nordöstra del. Promenaden runt hela ön tar ungefär två timmar i lugnt tempo.',
@@ -569,7 +569,8 @@ export const ISLANDS: Island[] = [
     dog_notes: 'Vaxholm är hundvänligt med gott om promenadstråk. Koppeltvång i hamn och tätort.',
     insiderTips: [
       'Vaxholm nås med SL-buss 676 från Tekniska Högskolan (tunnelbana röd linje), ett billigare alternativ till båt och ofta lika snabbt.',
-      'Vaxholms Kastell byggdes på 1500-talet och användes som försvarsanläggning mot bland annat den ryska och danska flottan. Kastellet kan besökas sommartid.',
+      // KÄLLA: SFV + vaxholmsfastning.se — första fästningen 1548 (Gustav Vasa), nuvarande kastell byggt 1833–1863 (2026-08-23)
+      'Den första fästningen på Vaxholmen restes 1548 på Gustav Vasas order och avvisade både danska och ryska anfall. Det kastell som står här i dag byggdes 1833–1863, sedan den gamla fästningen rivits. Kastellet kan besökas sommartid.',
       'Vaxholm är en av få skärgårdsdestinationer med apotek, post och ett brett serviceutbud öppet hela året.',
       'Innerstan i Vaxholm har välbevarad trähusmiljö med byggnader från 1800-talets slut, en av de mer intakta trästadsmiljöerna i Stockholmsregionen.',
     ],
@@ -744,7 +745,7 @@ export const ISLANDS: Island[] = [
       'Kaféet och restaurangen vid vandrarhemmet serverar enkel mat under sommaren: smörgåsar, soppa, fiskrätter och fika. Verksamheten är primärt inriktad på vandrarhemsägterna men välkomnar dagsbesökare. Vänta inte ett elaborerat matutbud, maten är ärlig och passande för miljön.',
       'Fågelskådning på Finnhamn belönar besökare under vår och höst. Det norra skärgårdsläget och blandningen av biotoper lockar ett brett arturval. Ejdrar syns vanligen i de omgivande vattnen och skogarna rymmer de skogslevande arter som är typiska för den svenska boreofringe.',
       'Skolgrupper och ungdomsorganisationer nyttjar Finnhamn flitigt. Under sommaren, framför allt i juni och tidigt juli, kan vandrarhemmet hysa stora sällskap, vilket förändrar stämningen i de gemensamma utrymmena. Att besöka i augusti eller september ger vanligtvis en lugnare, mer vuxeninriktad atmosfär.',
-      'De omgivande öarna, Ängsö, Yxlan och de mindre öarna i området, är nåbara från Finnhamn med båt och lägger till alternativ för dem som stannar flera nätter. Ängsö är känt som ett ovanligt vackert naturreservat med ett rikt växtliv.',
+      'De omgivande öarna, Ängsö, Yxlan och de mindre öarna i området, är nåbara från Finnhamn med båt och lägger till alternativ för dem som stannar flera nätter. Ängsö är nationalpark sedan 1909 — en av Europas äldsta — och känd för sitt ovanligt rika växtliv.',
       'Vintern på Finnhamn är mycket annorlunda. Vandrarhemmet stänger typiskt eller reducerar öppettiderna markant från oktober till april. Öarna i djupvinter har ett kargare, kallt intryck, de bara klipporna, det grå vattnet och frånvaron av sommarbesökare skapar en stämning som en del finner tvingande och andra finner enkelt kall.',
       'Finnhamn är ärlig i vad det erbjuder: bra natur, bra vandring, enkelt men bekvämt boende och den sociala atmosfären hos ett vandrarhem. Det erbjuder inte kulinarisk ambition, spa-faciliteter eller något som liknar lyx. Besökare som vill ha det bör söka sig annorstädes. De som vill ha en genuin friluftsupplevelse i den norra skärgården, inom praktiskt reseavstånd från Stockholm, finner Finnhamn svårt att förbättra.',
       'Ängsö nationalpark, belägen relativt nära Finnhamn, är ett av de mer biologiskt värdefulla naturområdena i Stockholm-närheten. Nationalparken skyddar en rik blomsteräng och ett gammalt kulturlandskap. Dagsutflykter dit från Finnhamn är möjliga för dem som planerar i förväg och sätter samman en rutt med de lokala båtförbindelserna.',
@@ -1376,7 +1377,8 @@ export const ISLANDS: Island[] = [
     insiderTips: [
       'Arholma är en av de nordligaste bebodda öarna i Stockholms skärgård och nås med M/S Monsun från Simpnäs.',
       'Den gamla lotsstationen på Arholma var aktiv under lång tid. Lotsar var stationerade här för att guida fartyg genom de norra skärgårdspassagerna.',
-      'Arholma är ett naturreservat med vandringsstigar som leder ut till klippor med utsikt mot öppet hav mot norr.',
+      // KÄLLA: Länsstyrelsen Stockholm, naturreservatet Arholma-Idö (läst 2026-08-23)
+      'Arholma ligger i naturreservatet Arholma-Idö, med vandringsstigar som leder ut till klippor med utsikt mot öppet hav mot norr.',
       'Sommarsäsongen är kortare på Arholma än på öar längre söderut. Caféet och hamnen är öppna ungefär juni till mitten av september.',
     ],
     seasonal: {
@@ -1503,7 +1505,8 @@ export const ISLANDS: Island[] = [
       'Landsort är Stockholms skärgårds sydligaste bebodda utpost och en av de mest dramatiska öarna. Öja (öns officiella namn) och Landsort längst söderut är omgivna av öppet hav på tre sidor, utsikterna mot Östersjön är oöverträffade.',
       'Fyren på Landsort är en av de äldsta i Sverige och är det naturliga målet för alla som besöker ön. Saltboden säljer skafferivaror och mat för de som ankrar. Det är en plats som belönar den som tar sig dit.',
       'Landsort är inte för den hastvärksresenären. Det är en destination i sig, man planerar en tur hit, inte förbi. Vattnet är öppet och vindarna kan vara kraftiga.',
-      'Fyren på Landsort är en av Sveriges äldsta och klassificeras som byggnadsminne. Den nuvarande fyrtornet uppfördes 1870 och har lykt sedan dess. Lotsbostäderna runt fyren är välbevarade och bildar en liten by som levde av att pilota fartyg säkert in mot Stockholm. Det är enkelt att spendera en hel förmiddag i det området utan att tröttna.',
+      // KÄLLA: Sjöfartsverket (stentorn 1686, äldsta svenskbyggda fyrplatsen) + fyr.org (nuvarande form 1870: överdel i järn + linsapparat) (2026-08-23)
+      'Fyren på Landsort är Sveriges äldsta svenskbyggda fyrplats och klassificeras som byggnadsminne. Stentornet restes i slutet av 1600-talet och fick sin nuvarande form 1870, då överdelen ersattes med en järnkonstruktion och spegelapparaten byttes mot lins. Lotsbostäderna runt fyren är välbevarade och bildar en liten by som levde av att pilota fartyg säkert in mot Stockholm. Det är enkelt att spendera en hel förmiddag i det området utan att tröttna.',
       'Ön är smal, knappt 300 meter bred på bredaste stället, men klipporna på östra sidan öppnar sig mot ett Östersjöhav utan land i sikte. På klara dagar ser man fartyg på väg mot Finland och de baltiska staterna. Det är ett av de få ställen längs Stockholms kust där man verkligen förstår att Sverige är ett sjöfartsland.',
       'Landsort är en av de klassiska destinationerna för de seglare som kallar sig seriösa. Man har inte gjort Stockholms skärgård förrän man ankar vid Öja på en sommarkväll med solen i väst och ingenting utanför relingen. Det är en rituell resa som folk gör om och om igen.',
       'För den som inte seglar krävs lite mer planering, buss och skärgårdsbåt, men det är görbart och lönar sig. Saltboden vid hamnen säljer mat och dryck och har öppet under besökssäsongen. Ta med mer proviant än du tror att du behöver.',
@@ -1512,12 +1515,13 @@ export const ISLANDS: Island[] = [
       'Fågelskådningspotentialen vid Landsort är exceptionell. Den sydligaste punkten av skärgården fungerar som ett tratt-läge för fåglar som migrerar längs den svenska kusten. På hösten, i synnerhet september och oktober, kan koncentrationen av migrerande rovfåglar, vadare och tättingar vara mycket hög. Erfarna fågelskådare reser specifikt till Landsort för höstflyttningen.',
       'Vattnet runt Landsort förändrar karaktär jämfört med resten av Stockholms skärgård. Det är djupare, strömmarna starkare och den marina miljön mer besläktad med öppna Östersjön än med den skyddade innerskärgården. Det gör fisket produktivt för arter som inte förekommer i inre skärgårdsvatten.',
       'Ön har ett litet permanent samhälle, några tiotal boende under hela året, i ett kluster av hus nära fyren och den lilla hamnen. Gemenskapens skala och det avlägsna läget ger ön en känsla som är klart annorlunda än mer välbesökta destinationer. Det kommersiella utbudet är begränsat och besökare bör vara förberedda på en självförsörjande upplevelse.',
-      'Att ta sig till Landsort kräver planering. Den primära förbindelsen är med båt från Nynäshamn, en stad tillgänglig med tåg från Stockholms Central. Beroende på tidtabell kan resan ta en till flera timmar. Det finns ingen hög-frekvens-service, att kontrollera Waxholmsbåtens tidtabell i förväg är nödvändigt.',
+      // KÄLLA: landsortsvandrarhem.se + Waxholmsbolaget — båten går från Ankarudden på Torö (buss 852 från Nynäshamn), överfart ca 30 min, trafik året runt (2026-08-23)
+      'Att ta sig till Landsort kräver planering. Den primära förbindelsen är Waxholmsbolagets båt från Ankarudden längst ut på Torö — dit tar du dig med buss 852 från Nynäshamn, som i sin tur nås med pendeltåg från Stockholm. Själva överfarten tar bara runt en halvtimme, men avgångarna är få, så kontrollera tidtabellen i förväg.',
       'Vattnet runt Landsort är bra för dykning. Kombinationen av klart vatten, djup och de relativt öppna havsförhållandena skapar intressanta undervattenmiljöer med klippväggar och varierat havsliv. Dykarorganisationer anordnar ibland turer specifikt till den här platsen.',
       'Landsort passar besökare med specifika intressen: fågelskådning, maritim historia, fiske, dykning eller helt enkelt upplevelsen av att befinna sig vid en genuint avlägsen och historiskt betydelsefull punkt. Det är inte en familjestrands-destination eller en restaurang-hoppande ö, men inom sin specifika nisch levererar det upplevelser otillgängliga på annat håll i skärgårdssystemet.',
       'Det södra läget innebär att havsvyerna här skiljer sig från alla andra punkter i skärgården. Att stå vid sydspetsen är att se öppet vatten i tre riktningar utan land synligt. På en klar dag har ljuset en specifik kvalitet, bredare och hårdare och med mer saltkant, som är den visuella motsvararigheten till ytterhavsbranten. Det är vad ytterskärgårdsbesökare i grunden söker, och Landsort levererar det så fullt som någon punkt i systemet.',
       'Lotshistorien är ett återkommande tema i Stockholms ytterskärgård, men Landsort är en av de platser där den historien är som mest konkret. Lotsar stationerade vid Landsort var ansvariga för en av de viktigaste navigationspunkterna i hela Östersjöinloppet. Det ansvaret formade samhällets karaktär och arkitektur på ett sätt som fortfarande märks i bebyggelsestrukturen.',
-      'Båtförbindelserna till Landsort koordineras bäst via Waxholmsbolagets och Cinderella Baternas tidtabeller, beroende på säsong. Att planera en tur dit kräver en halvtimmes research men resulterar typiskt i en resplan som fungerar utan problem. Det är den typen av planering som öns karaktär faktiskt belönar.',
+      'Båtförbindelserna till Landsort koordineras bäst via Waxholmsbolagets tidtabell för Ankarudden–Landsort. Att planera en tur dit kräver en halvtimmes research men resulterar typiskt i en resplan som fungerar utan problem. Det är den typen av planering som öns karaktär faktiskt belönar.',
       'Landsorts fyrs historia som aktiv navigeringspunkt i Östersjötrafiken ger platsen en dimension som går utöver vanlig skärgårdsturism. Att övernatta i fyren är att bo i ett verktyg som sjömän litat på under sekler. Det är en av de upplevelser som har en historisk tyngd som inte går att fejka.',
       'Kombinationen av biologisk mångfald och historisk närvaro gör Landsort till ett av de mer sammansatta besöksmålen i systemet. En dag här kan innehålla fågelskådning på morgonen, en promenad förbi historiska militärinstallationer på förmiddagen och ett besök i fyren på eftermiddagen. Det är täthet av innehåll ovanlig för en ö av denna storlek.',
     
@@ -1586,7 +1590,7 @@ export const ISLANDS: Island[] = [
       peak: 'Juli–Mitten av Augusti',
       best: 'Maj eller September',
       bestReason: 'Fågelstationen vid fyren är aktivast under sträcktiderna i maj och september. Då är Landsort på sitt allra mest dramatiska — vind, fyr och tusentals migrerande fåglar.',
-      warning: 'Waxholmsbåten till Landsort trafikerar bara sommarsäsongen. Utanför juni–sept: ingen reguljär trafik. Enda matalternativet är Saltboden — kontrollera öppettider.',
+      warning: 'Båten Ankarudden–Landsort går året runt, men med gles vintertidtabell — planera efter avgångarna. Enda matalternativet är Saltboden, som har kort säsong — kontrollera öppettider.',
       months: ['off','off','off','off','limited','open','peak','open','limited','off','off','off'],
     },
   },
@@ -1877,6 +1881,7 @@ export const ISLANDS: Island[] = [
     emoji: '🪨',
     tagline: 'Naturreservat i södra skärgården — klippor, lugn och äkta ytterskärgård.',
     description: [
+      // KÄLLA: Länsstyrelsen Stockholm, besöksmål naturreservat/Nåttarö (läst 2026-08-23)
       'Nåttarö är ett naturreservat i södra skärgården med vacker och vild natur. Ön är ett populärt ankringsläge för seglare som söker lugn och orördhet.',
       'Naturreservatet skyddas för att bevara den rika biologiska mångfalden och det unika klippekosystemet. Vandringsstigar leder förbi blockhudar, öppna klippor och små naturhamnar. Klippbaden är rena och inbjudande.',
       'Nåttarö nås enkelt med Waxholmsbåtens fartyg "Utö Express" från Nynäshamns fiskehamn under sommarsäsongen, ca 30 minuter. Egen båt fungerar också.',
@@ -3225,7 +3230,8 @@ export const ISLANDS: Island[] = [
     tips: ['Boka spa-tider långt i förväg — särskilt helger juli–augusti.', 'Smådalarö Gård är broförbunden — ingen båt krävs.', 'Brunch på helger är populär även för icke-hotellgäster (bokas i förväg).'],
     related: ['dalaro', 'orno', 'toro'],
     tags: ['spa-hotell', 'herrgård', 'broförbunden', 'södra', 'sabis'],
-    did_you_know: 'Smådalarö Gård byggdes 1810 av kapten Per Niklas Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 är Gården ett av Sveriges mest påkostade spa-hotell med 118 rum och 2 000 m² spa.',
+    // KÄLLA: smadalarogard.se — sjökaptenen Carl Peter Blom, köp 1802 (Brita Bonde), klart 1810; hotellets egen sida: 110 rum, 2 000 m² spa (2026-08-24)
+    did_you_know: 'Smådalarö Gård byggdes 1802–1810 av sjökaptenen Carl Peter Blom efter att han 1802 köpt hela "Tyresö skärgården" från grevinnan Brita Bonde för 12 000 riksdaler. Efter renoveringen 2021 är Gården ett av Sveriges mest påkostade spa-hotell med 110 rum och 2 000 m² spa.',
     seasonal: {
       open: 'Helår',
       peak: 'Juli–Augusti',
@@ -3533,14 +3539,15 @@ export const ISLANDS: Island[] = [
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
     emoji: '🌻',
-    tagline: 'Liten ö i mellersta skärgården nordost om Sandhamn',
+    tagline: 'Liten ö i mellersta skärgården nordväst om Sandhamn',
     description: [
-      'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, belägen runt tre sjömil nordost om Sandhamn med Kanholmsfjärden norr om sig och Eknösundet i söder. Läget gör den till ett naturligt mellansteg för seglare som rör sig mellan Sandhamn och de norra öarna.',
-      'Ön är permanent bebodd och trafikeras av Waxholmsbolaget — en sällsynthet bland de mindre öarna i mellersta skärgården. Service är begränsad och vardagslivet här är stilla, men det är just det som gör Hasselö attraktiv för den som söker ett lugnt alternativ till Sandhamns sommarvimmel.',
+      // UPPMÄTT: OSM-brygga Hasselö 59,317N 18,845E — 2,8 NM nordväst om Sandhamn; ferry_terminal enligt OSM (2026-08-23)
+      'Hasselö är en cirka 1,5 km lång ö i Stockholms mellersta skärgård, belägen runt tre sjömil nordväst om Sandhamn med Kanholmsfjärden norr om sig och Eknösundet i söder. Läget gör den till ett naturligt mellansteg för seglare som rör sig mellan Sandhamn och de norra öarna.',
+      'Ön har egen brygga och trafikeras av Waxholmsbolaget — en sällsynthet bland de mindre öarna i mellersta skärgården. Service är begränsad och vardagslivet här är stilla, men det är just det som gör Hasselö attraktiv för den som söker ett lugnt alternativ till Sandhamns sommarvimmel.',
       'Naturmarken dominerar öns inre med barrskog och öppna klipphällar. Ankringsplatsen på nordvästsidan ger bra skydd vid de vanligaste vindriktningarna och klipporna längs östsidan är rena och inbjudande för bad.',
       'Hasselö är ön du väljer när du vill komma bort från det du åkte till Sandhamn för att undvika. Tyst, enkel och genuint skärgård.',
     ],
-    facts: { travel_time: '3–4 h med segelbåt från Dalarö', character: 'Liten, obebodd, naturhamn', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
+    facts: { travel_time: '3–4 h med segelbåt från Dalarö', character: 'Liten, stillsam, naturhamn', season: 'Juni–augusti', best_for: 'Segling, ankring, naturvistelse' },
     activities: [
       { icon: '🏊', name: 'Klippbad', desc: 'Rena vatten längs öns klippkust.' },
       { icon: '⛵', name: 'Ankring', desc: 'Skyddad naturhamn på nordvästsidan.' },
@@ -4268,15 +4275,16 @@ export const ISLANDS: Island[] = [
     lat: 58.895,
     lng: 17.925,
     description: [
-      'Yttre Gården är en ö och ett naturreservat i Nynäshamns skärgård, beläget i Gårdsfjärden precis öster om Bedarön. Ön är ett populärt mål för kajakpaddlare och naturälskare som söker orördhet i den södra skärgårdens yttre delar.',
+      'Yttre Gården är en ö i Nynäshamns skärgård, belägen i Gårdsfjärden precis öster om Bedarön. Ön är ett populärt mål för kajakpaddlare och naturälskare som söker orördhet i den södra skärgårdens yttre delar.',
       'På öns nordöstra sida finns resterna av det historiska fiskarstället Gårdsund, uppfört 1912 och en gång i tiden ett levande arbetsläge för yrkesfiskare som försörjde sig på Gårdsfjärdens rika vatten. Idag vittnar grundmurar och stenfundament om livet som levdes här, ett stycke lokal maritim historia i naturreservatets mitt.',
-      'Yttre Gården är ett naturreservat och det råder viktiga regler att känna till innan besök: ankring, dykning och fiske är förbjudet (ADF-förbud) inom reservatets gränser. Däremot är bad tillåtet och ön är fritt tillgänglig för besök under den tid fågelskyddsbestämmelserna tillåter.',
+      // KÄLLA: Naturvårdsverkets objektlista skyddsvärd statlig skog, objekt 3706 Yttre Gården, Nynäshamn 56 ha (läst 2026-08-23). Faktagranskning s.d.: inget bildat naturreservat och inga publicerade förbud hittades hos Länsstyrelsen eller kommunen.
+      'Yttre Gården är utpekad av Naturvårdsverket som skyddsvärd statlig skog, men ön är i dag inte ett bildat naturreservat och några särskilda förbud finns inte publicerade. Kontrollera Länsstyrelsens karta över skyddad natur inför besök och visa samma hänsyn som i ett reservat inom reservatets gränser. Däremot är bad tillåtet och ön är fritt tillgänglig för besök under den tid fågelskyddsbestämmelserna tillåter.',
       'Öns östsida döljer en av södra skärgårdens mest ovanliga hemligheter: en stor sandstrand med varmt, grunt vatten. Här kan man gå barfota i sanden och bada bekymmersfritt — långt från turiststråken. Södra sidan bjuder på dramatiska klipphällar och djupare vatten för dem som föredrar att kliva i från kanten. Vattenklarheten i Gårdsfjärden är bland de bästa i södra skärgården.',
       'Yttre Gården nås enklast med kajak eller egen liten motorbåt från Nynäshamns fiskehamn eller från Lövhagen och Segersäng. Det är ingen reguljär båttrafik till ön, vilket bidrar till dess stillhet. Räkna med 30–60 minuters paddling från närmaste kajakhyrning eller startpunkt.',
     ],
     facts: {
       travel_time: '30–60 min med kajak från Nynäshamns fiskehamn',
-      character: 'Naturreservat, bilfri, ADF-förbud, kajak',
+      character: 'Skyddsvärd, orörd, bilfri, kajak',
       season: 'Maj–September',
       best_for: 'Kajakpaddlare, naturälskare, fågelskådning',
     },
@@ -4296,17 +4304,17 @@ export const ISLANDS: Island[] = [
     harbors: [],
     restaurants: [],
     tips: [
-      'Kom ihåg ADF-reglerna: ankring, dykning och fiske är förbjudet inom reservatsgränserna.',
+      'Kontrollera Länsstyrelsens karta över skyddad natur före besök — och visa samma hänsyn som i ett reservat.',
       'Ta med all mat och dryck — ingen service finns på ön.',
       'Vill du övernatta? Tältning är tillåtet enligt allemansrätten. Sandstranden på östsidan är en ypperlig plats för tält.',
       'Tidigt morgon eller sen eftermiddag ger bäst ljus och störst chans att se havsörn — två exemplar brukar kretsa över ön.',
       'Planera paddlingen efter väder — passagen genom Gårdsund och det yttre läget kan vara blåsiga.',
     ],
     related: ['landsort', 'nattaro', 'uto'],
-    tags: ['naturreservat', 'kajak', 'ADF', 'södra', 'nynäshamn', 'fiske förbjudet', 'orört'],
+    tags: ['skyddsvärd natur', 'kajak', 'södra', 'nynäshamn', 'sandstrand', 'orört'],
     did_you_know: 'Det historiska fiskarstället Gårdsund på Yttre Gårdens nordöstra sida uppfördes 1912. Platsen är ett av skärgårdens välbevarade fiskelämningar och visar hur yrkesfisket i den yttre skärgården bedrevs under tidigt 1900-tal.',
     insiderTips: [
-      'ADF-förbud gäller — ankring, dykning och fiske är förbjudet. Kom med kajak och ankra inte.',
+      'Ön saknar brygga och service — kajak är bästa sättet att komma i land. Sjöfågellivet är känsligt, håll avstånd under häckningstid.',
       'Österstrandens sand är ovanlig i södra skärgården — ta av skorna och njut. Stranden är stor och grund, perfekt för barn.',
       'Gårdsund-lämningarna på nordöstra sidan är lätta att missa — sök upp stenfundamenten och grundmurarna nära strandkanten.',
       'Övernattning fungerar utmärkt — tälta på klipphällarna eller nära sandstranden. Ingen el, ingen service — bara stjärnhimmel.',
@@ -5072,17 +5080,18 @@ export const ISLANDS: Island[] = [
     emoji: '⚓',
     tagline: 'Blekinges klippö — engelsk kyrkogård, raukar och vild Östersjönatur.',
     description: [
-      'Hanö är en av Blekinges mest besökta öar — och en av de mest ovanliga. Ön är naturreservat, har inga fasta boende och nås med båt från Karlshamn. Det är ett resmål som kräver lite ansträngning, och som belönar den ansträngningen generöst.',
+      'Hanö är en av Blekinges mest besökta öar — och en av de mest ovanliga. Stora delar av ön ingår i Hanö naturreservat (bildat 2017), här finns bofasta sedan 1830-talet, och ön nås med reguljär båt från Nogersund på Listerlandet. Det är ett resmål som kräver lite ansträngning, och som belönar den ansträngningen generöst.',
       'Det mest oväntade på Hanö är dess engelska historia. Under Napoleonkrigen 1809–1812 använde brittiska Royal Navy Hanö som flottbas i Östersjön. Sjömän som dog under övervintringen begravdes på ön — kyrkogården är i dag en av de märkligaste platserna längs hela svenska kusten.',
       'Naturen är dramatisk: kuperade klippor, barrskog, strandhed och den steniga stranden vid Engelskabadet. En liten fyr markerar öns höjdpunkt.',
     ],
     facts: {
       area: '2,8 km²',
-      population: '0 (naturreservat, inga fasta boende)',
+      // KÄLLA: Länsstyrelsen Blekinge — naturreservat 2017 (192 ha land), bofast befolkning sedan 1830-talet, båt från Nogersund (2026-08-23)
+      population: 'Litet antal bofasta (fiskeläge sedan 1830-talet)',
       known_for: 'Engelsk kyrkogård, naturreservat, klipplandskap',
       season: 'Maj–September',
     
-      travel_time: 'ca 4 tim',
+      travel_time: 'Kort överfart med reguljär båt från Nogersund',
       character: 'Historia, naturreservat',
       best_for: 'Historieintresserade, vandrare, fågelskådare',
     },
@@ -5351,6 +5360,7 @@ export const ISLANDS: Island[] = [
     emoji: '🏕',
     tagline: 'Blekinges naturreservat med sandstränder — camping och urskogar vid Östersjön.',
     description: [
+      // KÄLLA: Länsstyrelsen Blekinge, besöksmål naturreservat/Tjärö (läst 2026-08-23)
       'Tjärö är ett naturreservat och en av Blekinges vackraste öar — en skogig klippö i Ronneby kommuns ytterskärgård med vita sandstränder, tallskogsmiljöer och ett rikt maritimt fågelliv.',
       'Ön är nästan bilfri och känd för sin välordnade camping som driftas av Blekinges naturturism. Sandstranden på öns sydöstra sida är en av de finaste längs hela Blekingekusten. Tjärö är ett populärt mål för familjer, vandrare och kajakpaddlare.',
     ],

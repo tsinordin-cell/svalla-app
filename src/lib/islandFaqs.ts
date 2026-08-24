@@ -306,7 +306,7 @@ const UNIQUE_OVRIGA: Record<string, FAQ[]> = {
     { q: 'Är Yttre Gården bra för en dagstur?',
       a: 'Absolut. Kajak från Nynäshamn till Yttre Gården är en av södra skärgårdens bästa dagsturer. Räkna med ca 1 timme paddling dit, 3–5 timmar på ön (bad på sandstranden, utforskning av Gårdsund-lämningarna från 1912, picknick) och 1 timme tillbaka. Kolla vind och väder — Gårdsfjärden är ett yttre vatten som kan vara blåsigt.' },
     { q: 'Finns det gästhamn för egen båt på Yttre Gården?',
-      a: 'Nej. Yttre Gården är naturreservat med ADF-förbud vilket innebär att ankring är förbjudet inom reservatsgränserna. Med motorbåt kan du lägga upp kortvarigt längs strandkanten och ro eller paddla iland — men inte förtöja eller ankra. Kajak rekommenderas starkt.' },
+      a: 'Nej — det finns varken gästhamn eller besöksbrygga, och ön saknar all service. Med motorbåt kan du lägga upp kortvarigt längs strandkanten och ro eller paddla iland — men inte förtöja eller ankra. Kajak rekommenderas starkt.' },
     { q: 'Är Yttre Gården barnvänligt?',
       a: 'Ja, ön passar familjer bra. Sandstranden på östsidan är stor, grund och varm — perfekt för barn att bada och leka i sanden. Det finns inga farliga platser nära stranden. Tänk på att ta med all mat, dryck och solskydd — ingen service finns. Paddlingen ut kräver att barnen är bekväma i kajak.' },
   ],
