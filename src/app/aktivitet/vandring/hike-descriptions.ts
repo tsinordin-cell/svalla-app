@@ -9,7 +9,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   // ── STOCKHOLMS SKÄRGÅRD ────────────────────────────────────────────────
 
   uto: {
-    body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor från 1700-talet, en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön — allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus.',
+    // KÄLLA: Stockholms läns museum (stockholmslansmuseum.se/besoksmal/uto) — brytning från medeltiden, möjligen redan 1100-talet, nedlagd 1879; möjligen Sveriges äldsta järngruvor.
+    body: 'Utö har Stockholms skärgårds mest varierade vandringsstig. De ~8 km passerar järngruvor med anor från medeltiden — möjligen Sveriges äldsta — en gammal kvarn, öppna skogspartier och havsklippor mot Östersjön — allt på en och samma ö. En fullständig dag som kombinerar historia, naturreservat och möjligheten att avsluta med middag på Utö Värdshus.',
     tips: [
       'Pendeltåg linje 43 till Nynäshamn, sedan pendelbåt — ingen bil krävs.',
       'Boka bord på Utö Värdshus i förväg under juni–augusti.',
@@ -394,7 +395,8 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   trysunda: {
-    body: 'Trysunda är en liten fiskehamnsö med ett av Sveriges bäst bevarade 1800-talssamhällen, nådd med sommarbåt. Den korta leden (~3 km) ger stor känsla — tyst, välhållen och med en hamnatmosfär som är genuint annorlunda. En av de starkaste upplevelserna längs Höga kusten.',
+    // KÄLLA: Länsstyrelsen Västernorrland (lansstyrelsen.se, naturreservatet Trysunda) — fiskeläget grundat av Gävlefiskare på 1500-talet, kapell från 1600-talet, Ångermanlandskustens bäst bevarade fiskeläge. Även Maringuiden.
+    body: 'Trysunda är en liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge — grundat av Gävlefiskare på 1500-talet, med fiskarkapell från 1600-talet — nådd med sommarbåt. Den korta leden (~3 km) ger stor känsla — tyst, välhållen och med en hamnatmosfär som är genuint annorlunda. En av de starkaste upplevelserna längs Höga kusten.',
     tips: [
       'Sommarbåt från Kramfors-hållet — kontrollera aktuella tidtabeller.',
       'Restaurang och café öppet sommartid.',
