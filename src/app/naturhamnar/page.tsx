@@ -37,7 +37,8 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🏔️',
     title: 'Bullerö',
-    description: 'Naturreservat sedan 1967 i Nämdö-området, med Bruno Liljefors jaktstuga från 1909. Klippor och öppen vy mot havet. Ankra i den skyddade viken på öns nordvästra sida. För erfarna seglare med god väderprognos.',
+    // KÄLLA: Naturvårdsverket — Bullerö ingår sedan 2025 i Nämdöskärgårdens nationalpark (Sveriges 31:a); reservat 1967 föregick parken (2026-08-24)
+    description: 'Sedan 2025 en del av Nämdöskärgårdens nationalpark (naturreservat redan 1967), med Bruno Liljefors jaktvilla från tidigt 1900-tal. Klippor och öppen vy mot havet. Ankra i den skyddade viken på öns nordvästra sida. För erfarna seglare med god väderprognos.',
     href: '/platser?kategori=naturhamn',
     meta: 'Yttre skärgården · Kräver god väderprognos',
   },
