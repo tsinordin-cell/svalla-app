@@ -4760,17 +4760,17 @@ export function getGuideContent(slug: string): string {
   'vandring-gotland': `
 <p style="font-size:17px;line-height:1.8;color:var(--txt2)">Gotland erbjuder ett unikt vandringslandskap – platt men varierat, med kalkstensraukar, kustklippor och blomsterängar som varierar med årstiderna. Guide till de bästa vandringslederna och -turerna på Gotland.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Vandring på Gotland – vad gör det unikt</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland saknar höjdskillnader men kompenserar med raukfält, medeltidsruiner längs lederna och ett landskapsskifte från tätare blandskog till det öppna alvar-landskapet. Gotlandsleden är öns huvudled och sträcker sig 870 km runt hela ön.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotland saknar höjdskillnader men kompenserar med raukfält, medeltidsruiner längs lederna och ett landskapsskifte från tätare blandskog till det öppna alvar-landskapet. Vandringens huvudled är Klintkustleden längs nordvästkusten — 30 km från Björkume till Hallshuk genom sex naturreservat (Länsstyrelsen Gotland). Gotlandsleden är däremot en 540 km lång cykelled runt ön.</p>
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa vandringarna</h2>
-<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Gotlandsleden – hela varvet</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">870 km runt hela Gotland – för den ambitiöse. Delat på ca 30–40 dagsetapper. De flesta vandrar delar av leden och kombinerar med cykel eller bil för att ta sig mellan etapperna.</p>
+<h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Klintkustleden – Gotlands kustled</h3>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">30 km dramatisk klintkust från Björkume i söder till Hallshuk i norr, kallad en av Sveriges finaste kustleder. Leden passerar sex naturreservat, gamla fiskelägen och fornborgar — vandra en delsträcka eller hela på två dagar.</p>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Fårö raukleder</h3>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Fårös raukleder leder dig runt de mest spektakulära raukfälten på ön. Langhammars raukfält har de högsta och mest dramatiska raukarna. Enkel vandringsled på 3–5 km med stopp vid varje rauk.</p>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Närsholmen</h3>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Gotlands sydspets med sin fyrtornsudd och sina vilda stränder. Vandringen runt Närsholmen (ca 6 km) ger utsikt mot öppet Östersjön och är ett av öns vackraste rundturer.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Halvö vid Ljugarn på östkusten med fyr och vilda stränder (öns sydspets är Hoburgen). Vandringen runt Närsholmen (ca 6 km) ger utsikt mot öppet Östersjön och är en av öns vackraste rundturer.</p>
 <div style="background:rgba(10,123,140,0.06);border-left:3px solid var(--sea);padding:16px 20px;border-radius:8px;margin-top:24px">
 <strong style="color:var(--sea)">Praktiskt:</strong>
-<p style="margin:8px 0 0;font-size:14px">Gotlandsleden är välmärkt med orange markeringar. Kartor finns på gotlandsleden.se. Vattenkällor är begränsade längs leden – ta med tillräckligt med vatten. De bästa månaderna för vandring är maj–juni och september–oktober.</p>
+<p style="margin:8px 0 0;font-size:14px">Klintkustleden är markerad med orange band eller brickor och beskrivs etappvis hos Länsstyrelsen Gotland. Vattenkällor är begränsade längs leden – ta med tillräckligt med vatten. De bästa månaderna för vandring är maj–juni och september–oktober.</p>
 </div>
 `,
 

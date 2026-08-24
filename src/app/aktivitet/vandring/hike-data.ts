@@ -1374,7 +1374,8 @@ export const HIKES: Hike[] = [
   },
   {
     slug: 'olandsleden',
-    name: 'Ölandsleden (etapp)',
+    // KÄLLA: STF Signaturled Öland — Mörbylångaleden, 84 km i fem etapper (12–18 km/dag), Färjestaden–Ottenby. 'Ölandsleden' är cykelleden.
+    name: 'Mörbylångaleden (etapp)',
     region: 'oland',
     distanceKm: 15,
     durationMin: 5,
@@ -1389,7 +1390,7 @@ export const HIKES: Hike[] = [
     suitableForChildren: false,
     suitableForDogs: true,
     bestSeason: 'Maj–oktober',
-    tagline: 'Hela Ölands längd i välmarkerade etapper — välj en dag eller hela ön.',
+    tagline: 'Södra Ölands världsarv i fem etapper — 84 km från Färjestaden till Ottenby, vandra en dagsetapp eller hela leden.',
   },
   {
     slug: 'kopingsvik-oland',

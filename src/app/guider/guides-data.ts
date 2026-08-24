@@ -1740,7 +1740,7 @@ export const GUIDES: GuideMeta[] = [
     excerpt: "Gotlands platta landskap är perfekt för vandring. Raukleder, kustleder och skogsstigar. Guide till de bästa vandringsupplevelserna på ön.",
     category: "Aktivitet", emoji: "🥾", readTime: "7 min", fullContent: true,
     faqs: [
-      { q: 'Vilka är de bästa vandringslederna på Gotland?', a: 'Gotlandsleden (200 km runt hela ön) är flaggskeppet. Raukleder till Langhammars och Gamla Hamn på Fårö är höjdpunkter. Hoburgen i söder och Lummelundasgrottornas omgivningar ger varierad natur.' },
+      { q: 'Vilka är de bästa vandringslederna på Gotland?', a: 'Klintkustleden (30 km längs nordvästkusten, Björkume–Hallshuk) är flaggskeppet bland vandringslederna. Raukleder till Langhammars och Gamla Hamn på Fårö är höjdpunkter, och Hoburgen i söder ger varierad natur. Gotlandsleden är en 540 km cykelled runt ön.' },
       { q: 'Hur svåra är vandringslederna på Gotland?', a: 'Gotland är platt – lederna är lätta till medelsvåra. Inga branta stigningar. Perfekt för nybörjarvandring och familjer. Det enda som krävs är bra skor och vätska – det kan vara blåsigt och soligt utan skugga.' },
     ],
   },
