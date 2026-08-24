@@ -25,7 +25,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     seoTitle: 'Marstrand 2026 – Carlstens fästning & segling',
     seoDescription: 'Guide till Marstrand: Carlstens fästning, bilfri ö på Bohuskusten, Match Cup Sweden och de bästa restaurangerna. Hur du tar dig dit och var du bor.',
     description: [
-      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den vita Carlstens fästning — påbörjad 1658 och utbyggd från 1682 efter Erik Dahlbergs ritningar — tornar över hamnen och är ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
+      'Marstrand är Bohusläns mest kända ö och en av Sveriges mest fotograferade kustdestinationer. Den mäktiga stenfästningen Carlsten — påbörjad 1658 och utbyggd från 1682 efter Erik Dahlbergs ritningar — tornar över hamnen och är ett av Nordens bäst bevarade fästningsverk och ett av de mest besökta sevärdheterna i hela Västra Götaland.',
       'Som segeldestination är Marstrand utan motstycke i Sverige. Match Cup Sweden — en av världens mest prestigefyllda match-racing-regattor — lockar världens bästa seglare till Marstrands gästhamn varje juli. Hamnen är med sina 200 platser en av västkustens absolut största och ligger skyddad innanför Koön.',
       'Ön är helt bilfri, vilket ger Marstrand en unik stämning sommartid. En liten passagerarfärja trafikerar sundet till Koön i princip kontinuerligt under högsäsongen. Det gör att man kan parkera på fastlandet och ta sig till ön på under en minut.',
       'Utöver fästningen och seglingen har Marstrand ett rikt restaurangutbud för en så liten ö. Allt från skaldjursrestauranger med havsutsikt till enklare hamnkrogar och glassbarer längs kajkanten. Kallt öl och nykokt hummer i solnedgången är en sommarbild de flesta förknippar med Marstrand.',
@@ -703,7 +703,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     emoji: '🎵',
     tagline: 'Evert Taubes hemö — fyr, klippor och visans hjärta.',
     description: [
-      'Vinga ligger 12 kilometer utanför Göteborg och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrvaktare här och Evert växte upp på ön under sent 1800-tal. Det är från Vingas klippor, havsljus och fiskarkultur han hämtade bilderna som genomsyrar hans visor.',
+      'Vinga ligger ytterst i Göteborgs skärgård, ca 15 kilometer från Saltholmen, och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrmästare här och Evert växte upp på ön under sent 1800-tal. Det är från Vingas klippor, havsljus och fiskarkultur han hämtade bilderna som genomsyrar hans visor.',
       // KÄLLA: Sjöfartsverket — nuvarande fyr byggd 1890 (Emil Karlsson, 29 m); föregångare 1841 och 1856 (2026-08-23)
       'Vinga fyr (1890) är fortfarande aktiv och syns långt ut till sjöss. Ön rymmer en liten Taube-utställning i det gamla fyrmästarbostaden, ett kapell och välmarkerade klippvandringar med utsikt mot öppet hav och Göteborgs inlopp.',
       'Inga övernattningsmöjligheter på ön. Dagsturer från Göteborg är enkla — Vingabåten avgår från Saltholmen 4–6 gånger dagligen sommartid och tar drygt en timme. Planera 2–3 timmar på ön.',
