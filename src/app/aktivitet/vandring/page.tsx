@@ -132,7 +132,7 @@ const TOP_10 = [
   { rank: 5, name: 'Kullaberg, Skåne', region: 'Nordvästra Skåne', desc: '70 meter höga klippavsatser, fyrar och sällsynt flora. Naturreservat med Sverige-unik geologi och välskött lednat.', slug: '/aktivitet/vandring/kullaberg' },
   { rank: 6, name: 'Finnhamn, Stockholms skärgård', region: 'Stockholms skärgård', desc: 'Det perfekta skärgårdsintrot: kompakt, vacker, utan bil och med STF-vandrarhem om du vill stanna kvar.', slug: '/aktivitet/vandring/finnhamn' },
   { rank: 7, name: 'Trollskogen, Öland', region: 'Öland', desc: 'Urskog med gamla vridna träd precis vid havsstranden — en av Sveriges märkligaste och mest fotogeniska naturupplevelser.', slug: '/aktivitet/vandring/trollskogen-oland' },
-  { rank: 8, name: 'Trysunda, Höga kusten', region: 'Höga kusten', desc: 'Liten fiskehamnsö med välbevarat 1800-talssamhälle. Kort led men stor känsla. Nås med sommarbåt.', slug: '/aktivitet/vandring/trysunda' },
+  { rank: 8, name: 'Trysunda, Höga kusten', region: 'Höga kusten', desc: 'Liten fiskehamnsö med Ångermanlandskustens bäst bevarade fiskeläge och kapell från 1600-talet. Kort led men stor känsla. Nås med sommarbåt.', slug: '/aktivitet/vandring/trysunda' },
   { rank: 9, name: 'Grötö / Fjällbacka, Bohuslän', region: 'Bohuslän', desc: 'Bohusläns klipphällar och det dramatiska havsljuset. Tillgängligt med buss, lagom svår vandring för en halv dag.', slug: '/aktivitet/vandring/fjallbacka' },
   { rank: 10, name: 'Hanö, Blekinge', region: 'Blekinge', desc: 'Blekinges utpost i Östersjön: unik engelsk kyrkogård, fågelrika strandängar och råa ankringsplatser. Nås med sommarbåt.', slug: '/aktivitet/vandring/hano-blekinge' },
 ]

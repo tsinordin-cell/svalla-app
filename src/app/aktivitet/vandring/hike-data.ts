@@ -887,7 +887,8 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Juni–september',
-    tagline: 'Välbevarad 1800-talshamn på liten ö — nås med sommarbåt och stannar kvar i minnet.',
+    // KÄLLA: Länsstyrelsen Västernorrland — Ångermanlandskustens bäst bevarade fiskeläge, grundat på 1500-talet, kapell från 1600-talet.
+    tagline: 'Ångermanlandskustens bäst bevarade fiskeläge på liten ö — nås med sommarbåt och stannar kvar i minnet.',
     topSweden: 8,
   },
   {
