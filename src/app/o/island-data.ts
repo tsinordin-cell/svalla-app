@@ -433,7 +433,8 @@ export const ISLANDS: Island[] = [
     dog_friendly: true,
     dog_notes: 'Hundar välkomna. Naturreservat i södra delen har koppeltvång under häckningssäsong (april–juli). Värdshuset tillåter hundar i uteserveringen.',
     insiderTips: [
-      'Järngruvan på Utö var i drift från 1600-talet till 1879 och är en av Sveriges äldsta kända järngruvor. Gruvsystemet kan besökas.',
+      // KÄLLA: Stockholms läns museum — brytning möjligen redan på 1100-talet, nedlagd 1879 (2026-08-24)
+      'Järngruvan på Utö var i drift från medeltiden — möjligen redan på 1100-talet — till 1879 och räknas till Sveriges äldsta kända järngruvor. Gruvsystemet kan besökas.',
       'Utö är den sydligaste bebodda ön i Stockholms skärgård med reguljär färjetrafik från Stockholm.',
       'Cykellederna på Utö är välmarkerade. Ön är ungefär 18 kilometer lång och en tur runt tar 3 till 4 timmar i lugnt tempo.',
       'Utö Värdshus är ett av de äldsta värdshuset i Stockholms skärgård och har serverats mat och dryck till sjöfarare under lång tid.',
@@ -2716,7 +2717,8 @@ export const ISLANDS: Island[] = [
     ],
     related: ['furusund', 'blido', 'norrora'],
     tags: ['sandstrand', 'lättillgänglig', 'norra', 'bad', 'dagstur'],
-    did_you_know: 'Gräddö har ett av Stockholms äldsta och fortfarande aktiva skeppsvarf. Träbåtar har byggts och reparerats här sedan 1800-talets mitt.',
+    // KÄLLA: Sjöhistoriska museet/DigitaltMuseum — Gräddö båtvarv grundat 1924 av bröderna Eriksson, nedlagt 1965, 54 båtar byggda (2026-08-24)
+    did_you_know: 'På Gräddö drev bröderna Eriksson ett träbåtsvarv 1924–1965 som hann bygga ett femtiotal båtar innan det lades ner — i dag lever varvstraditionen vidare i form av båtservice vid hamnen.',
     seasonal: {
       open: 'Maj–Oktober',
       peak: 'Juli',
