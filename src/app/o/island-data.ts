@@ -2063,9 +2063,9 @@ export const ISLANDS: Island[] = [
     tagline: 'Gles, bilfri ö på Stavsnäsleden — ett genuint skärgårdssamhälle.',
     description: [
       'Nämdö är en bilfri ö på Waxholmsbåtens linje från Stavsnäs mot Möja. Ön har haft fast befolkning sedan tidig medeltid, på 1870-talet var befolkningen som störst med 321 personer skrivna i församlingen. Idag är ön ett genuint litet skärgårdssamhälle med kyrka, lanthandel och båtbrygga.',
-      'Nämdö kyrka är en av skärgårdens mest karakteristiska, den nuvarande åttakantiga träkyrkan i gustaviansk stil uppfördes 1798 och ersatte ett tidigare kapell. Det första kända kapellet på ön byggdes före 1630 och brändes ned vid de ryska härjningarna 1719.',
+      'Nämdö kyrka är en av skärgårdens mest karakteristiska — den nuvarande vita träkyrkan i nygotisk stil invigdes hösten 1876 och ersatte tidigare kapell. Det äldsta kända kapellet på ön var från omkring 1630.',
       'Naturen är varierad med klippbad, vandringsstigar och fina naturhamnar på öns södra sida. Nämdö passar som stopp på en längre seglingstur mot Sandhamn, eller som dagsdestination för den som söker autentiskt skärgårdsliv.',
-      'Nämdö kyrka är en av de märkligaste kyrkorna i Stockholms skärgård, en åttakantig träkyrka i gustaviansk stil från 1768, stående ensam på en liten höjd mitt på ön. Den byggdes för den bofasta skärgårdsbefolkningens skull, som inte kunde ta sig till fastlandets kyrkor på vintern. Inuti är den enkel och välbevarad, med en stillhet som känns ovanlig.',
+      'Nämdö kyrka är en av de mest karakteristiska kyrkorna i Stockholms skärgård, en vit träkyrka i nygotisk stil invigd 1876, stående ensam på en liten höjd mitt på ön. Den byggdes för den bofasta skärgårdsbefolkningens skull, som inte kunde ta sig till fastlandets kyrkor på vintern. Inuti är den enkel och välbevarad, med en stillhet som känns ovanlig.',
       'Öns grusvägar lämpar sig väl för cykel. Det tar en halv dag att cykla runt och se de viktigaste delarna, kyrkan, de gamla gårdarna i byn, klipporna söderut och de naturhamnar som länge varit seglares hemliga viloplatser. Cyklar kan hyras på ön under sommarsäsongen.',
       'Nämdö har haft fast befolkning sedan medeltiden och det märks i bebyggelsens täthet och variation. Det är inte en öde ö med en sommarkiosk, det är ett fungerande samhälle med egna traditioner, egna invånare och en historia som inte började med turismen. Det gör det till en annan typ av skärgårdsupplevelse.',
       'Nämdö är en avsevärd ö i den södra Stockholmsskärgården som förblir märkbart mindre besökt än jämförbara öar i liknande läge. Det beror delvis på båtlogistiken, förbindelserna är färre och kräver mer planering, och delvis på öns egen karaktär, som erbjuder natur och stillhet framför kommersiell attraktion. Resultatet är en genuint avlägsen känsla kombinerad med rimlig tillgänglighet från Stockholm.',
@@ -2097,7 +2097,8 @@ export const ISLANDS: Island[] = [
       best_for: 'Seglare, naturälskare, genuint skärgårdsliv',
     },
     activities: [
-      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Åttakantig träkyrka i gustaviansk stil från 1798 — en av skärgårdens mest distinkta kyrkobyggnader. Öppen sommartid.' },
+      // KÄLLA: Svenska kyrkan (Djurö, Möja och Nämdö församling) + RAÄ bebyggelseregistret — nygotisk träkyrka, invigd hösten 1876; tidigare uppgifter om åttakantig gustaviansk kyrka 1768/1798 var fel.
+      { icon: '⛪', name: 'Nämdö kyrka', desc: 'Vit träkyrka i nygotisk stil, invigd 1876 — en av skärgårdens mest distinkta kyrkobyggnader. Öppen sommartid.' },
       { icon: '🏊', name: 'Klippbad', desc: 'Klara vatten och fina klippor längs södra kustlinjen.' },
       { icon: '🚶', name: 'Vandring', desc: 'Promenera runt ön och utforska de gamla fiskelägena.' },
       { icon: '⛵', name: 'Segling', desc: 'Naturhamnen på södsidan är ett populärt seglarankar.' },
@@ -2132,13 +2133,13 @@ export const ISLANDS: Island[] = [
     },
     tips: [
       'Nämdö passar perfekt som halvdagsstopp på väg mot Möja eller Gällnö.',
-      'Kyrkan från 1798 är öppen sommartid — den åttakantiga gustavianska träkyrkan är ovanlig i sitt slag.',
+      'Kyrkan, invigd 1876, är öppen sommartid — den vita nygotiska träkyrkan med sin höga takresning är ett landmärke mitt på ön.',
     ],
     related: ['moja', 'gallno', 'sandhamn'],
     tags: ['bilfri', 'genuint', 'segling', 'natur', 'kyrka'],
     did_you_know: 'Nämdös tidigaste kapell brändes ned vid de ryska härjningarna 1719 — under Stora nordiska kriget gjorde ryska galärer flera räder mot Stockholms skärgård och brände bebyggelsen på många öar. Den nuvarande åttakantiga kyrkan från 1798 är en av få av sitt slag i landet.',
     insiderTips: [
-      'Nämdö kyrka från 1798 är en av få åttakantiga kyrkor i landet och ett ovanligt arkitektoniskt inslag i skärgårdslandskapet.',
+      'Nämdö kyrka, invigd 1876, är en vit nygotisk träkyrka med hög takresning och spetsbågade fönster — ett karakteristiskt inslag i skärgårdslandskapet.',
       'Nämdö har ett fåtal fastboende och nås med Waxholmsbåten från Stavsnäs.',
       'Ön är känd bland seglare för sina skyddade naturhamnar och är ett populärt ankringsställe.',
       'Det finns inget kafé eller restaurang på Nämdö. Ta med eget.',
