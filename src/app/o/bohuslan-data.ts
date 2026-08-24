@@ -304,7 +304,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     description: [
       'Fjällbacka är en av Bohusläns mest välkända och omtyckta destinationer — liten och pittoresk med vita trähus, röda sjöbodar och en hamn som fylls av seglare varje sommar. Byn fick internationell uppmärksamhet genom Camilla Läckbergs kriminalromaner, som utspelar sig här, och har sedan dess lockat bokfans och skärgårdsälskare i lika stora skaror.',
       'Vetteberget är Fjällbackas landmärke. Det knappt 75 meter höga berget reser sig dramatiskt direkt bakom bykärnan och nås via Kungsklyftan — en 200 meter lång klippskreva som delar berget i Stora och Lilla Vetteberget. Stigen genom klyftan upp till toppen tar 20–30 minuter och utsikten är bland de bästa i hela Bohuslän: skärgårdens öar, sund och vida hav.',
-      'Ingrid Bergman — en av 1900-talets största filmstjärnor — bodde sommartid i Fjällbacka i över 30 år och valde att få sin aska spridd i havet utanför byn 1982. Torget vid hamnen bär hennes namn och sommartid arrangeras guidade turer om hennes liv i Fjällbacka.',
+      'Ingrid Bergman — en av 1900-talets största filmstjärnor — tillbringade somrarna på Dannholmen utanför Fjällbacka i nästan 25 år, från 1958 till sin död 1982, och fick sin aska spridd i havet utanför byn. Torget vid hamnen bär hennes namn och sommartid arrangeras guidade turer om hennes liv i Fjällbacka.',
       'Fjällbacka är ett utmärkt utgångsläge för skärgårdsutflykter. Därifrån kan man ta båt till Väderöarna — ett av Bohusläns vildaste och mest avlägset belägna naturreservat — eller paddla ut till mindre öar som Sälö. Gästhamnen mitt i byn tar emot seglare på 100 platser och har fullservice.',
       'Till skillnad från Marstrand och Smögen är Fjällbacka fortfarande relativt opåverkad av masstourism. Det gör att charmen är mer autentisk och att det går att hitta bord på restaurang utan att boka veckor i förväg — även om det ändras snabbt under högsäsongen.',
     ],
@@ -337,7 +337,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Vetteberget tar 30 min upp — kom på morgonen innan turistmassorna.', 'Boka Läckbergs-tur i förväg.', 'Båtturer till Väderöarna kräver bra väder — håll koll dagen innan.'],
     related: ['grebbestad', 'kosterhavet', 'hamburgsund'],
     tags: ['kriminalromaner', 'klippvandring', 'pittoreskt', 'ingrid bergman'],
-    did_you_know: 'Ingrid Bergman ägde sommarhuset Dannholmen utanför Fjällbacka i över 30 år. Hennes aska skingrades i havet utanför Fjällbacka 1982.',
+    // KÄLLA: fjallbacka.com (Ingrid Bergman-sidan) — första besöket mars 1958, sista somrarna t.o.m. augusti 1982.
+    did_you_know: 'Ingrid Bergman tillbringade somrarna på Dannholmen utanför Fjällbacka i nästan 25 år, 1958–1982. Hennes aska skingrades i havet utanför Fjällbacka 1982.',
     seasonal: {
       open: 'Juni–September',
       peak: 'Juli–Augusti',
