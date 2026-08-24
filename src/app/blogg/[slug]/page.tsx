@@ -1449,9 +1449,9 @@ Vi har gått igenom alternativen och rangordnat dem – inte efter vad som är v
 
 ## 5. [Utö](/o/uto) – bäst för aktiva familjer med äldre barn (barn 8+)
 
-**Varför:** Cykelleder, gruvmuseum, havsbastu, sandstrand (Alsvik), heldagsupplevelse.
+**Varför:** Cykelleder, gruvmuseum, havsbastu, sandstränder (Barnens bad, Stora Sand), heldagsupplevelse.
 **Hur tar man sig dit:** Pendeltåg till Nynäshamn + bilfärja till Utö. Totalt ca 2,5 timme.
-**Badmöjligheter:** Alsvik på Utö har en av skärgårdens enda riktiga sandstränder. Värd resan i sig.
+**Badmöjligheter:** Utö har flera riktiga sandstränder — Barnens bad nära Gruvbryggan, Stora Sand på södra ön och Ålö Storsand på grannön. Värda resan i sig.
 **Att göra:** Gruvmuseum, cykling, sandstrand, havsbastu (Utö Värdshus), vandring.
 **Bra att veta:** Utö är stor – det finns matbutik, restauranger och alla bekvämligheter. Planera att stanna minst en dag.
 
@@ -1491,7 +1491,7 @@ Skärgården med barn är en av de bästa sommarminnena man kan ge. Välj rätt 
    `,
    faqs: [
      { q: 'Vilken är den bästa skärgårdsön för barn?', a: 'Det beror på barnens ålder. För de minsta (0–4 år): Fjäderholmarna. För familjer med barn 6–10 år: Grinda eller Möja. För äldre barn: Utö med sandstrand och cykelleder.' },
-     { q: 'Finns det sandstränder i Stockholms skärgård?', a: 'Ja, men de är få. Utö (Alsvik) har en av de finaste sandstränderna. Nynäshamn har också sandstrand nära pendeltågsstationen.' },
+     { q: 'Finns det sandstränder i Stockholms skärgård?', a: 'Ja, men de är få. Utö (Barnens bad, Stora Sand) och grannön Ålö (Storsand) har de finaste sandstränderna. Nynäshamn har också sandstrand nära pendeltågsstationen.' },
      { q: 'Kan man ta med barnvagn på Waxholmsbåtarna?', a: 'Ja. Waxholmsbåtarna tar emot barnvagnar. Vik ihop den vid påstigning om möjligt. Vaxholm och Fjäderholmarna är barnvagnsanpassade destinationer med plana gångvägar.' },
    ],
  },
@@ -1547,7 +1547,7 @@ Det kortaste och enklaste alternativet. [Fjäderholmarna](/o/fjaderholmarna) lig
 
 ## 7. Utö – strand, sand och cykel (2–3 dagar, sommar)
 
-[Utö](/o/uto) är unik i Stockholms skärgård med sin sandstrand vid Alsvik. Cykeluthyrning, en charmig hamn och Utö Värdshus för middag. Nås med båt från Nynäshamn (ca 1 timme).
+[Utö](/o/uto) är unik i Stockholms skärgård med sina sandstränder Barnens bad och Stora Sand. Cykeluthyrning, en charmig hamn och Utö Värdshus för middag. Nås med båt från Nynäshamn (ca 1 timme).
 
 **Bäst för:** De som vill ha strand, sommarliv och en ö att utforska.
 
@@ -1784,8 +1784,8 @@ Skärgårdens vandringsleder är sällan markerade på samma sätt som fjällede
 
 ## De 8 bästa lederna
 
-### 1. Utö – Alsvik till Rånö (ca 12 km)
-[Utö](/o/uto) har en av skärgårdens bästa vandringsleder. Från Alsvik (med sandstrand!) söderut längs öns klippkust till Rånö. Kuperat, havsnära och med dramatiska vyer. Nås med båt från Nynäshamn.
+### 1. Utö – Utö runt (ca 15 km)
+[Utö](/o/uto) har en av skärgårdens bästa vandringsleder. Från Gruvbryggan förbi långgrunda Barnens bad, söderut mot sandstranden Stora Sand och tillbaka längs östra klippkusten via Södra Sandvik. Kuperat, havsnära och med dramatiska vyer. Nås med båt från Nynäshamn.
 
 ### 2. Ornö – Runt hela ön (ca 20 km)
 [Ornö](/o/orno) är en av de större öarna söder om Stockholm med ett välskyltat runt-öled. Gammelskogar, klippor och vyer mot yttre skärgården. Bra att kombinera med övernattning. Bil till Nynäshamn + vägfärja.
@@ -2011,7 +2011,7 @@ Den kortaste och lättaste. [Fjäderholmarna](/o/fjaderholmarna) är bara 25 min
 
 ## 6. Utö – sandstrand och cykel
 
-[Utö](/o/uto) är unik med sin sandstrand (Alsvik) och cykelleder. Nås med pendeltåg till Nynäshamn + båt (ca 1 timme). En av de bästa dagar du kan ha i Stockholms skärgård.
+[Utö](/o/uto) är unik med sina sandstränder (Barnens bad, Stora Sand) och cykelleder. Nås med pendeltåg till Nynäshamn + båt (ca 1 timme). En av de bästa dagar du kan ha i Stockholms skärgård.
 
 ## 7. Ornö – vandring och vildmark
 
