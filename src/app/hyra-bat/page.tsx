@@ -102,7 +102,7 @@ export default function HyraBatPage() {
         {/* Intro */}
         <section style={{ marginBottom: 48 }}>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: '0 0 16px' }}>
-            Sverige har 270 000 km kustlinje och 221 800 öar – och du behöver inget körkort för att utforska dem med hyrbåt. En vanlig motorbåt, en sjökortsapp och en halvdag är allt som krävs för en minnesvärd dag bland öarna. Det är en av landets mest underskattade upplevelser.
+            Sverige har närmare 45 000 km kustlinje räknat med öarna, och 221 800 öar (SCB) – och du behöver inget körkort för att utforska dem med hyrbåt. En vanlig motorbåt, en sjökortsapp och en halvdag är allt som krävs för en minnesvärd dag bland öarna. Det är en av landets mest underskattade upplevelser.
           </p>
           <p style={{ fontSize: 16, lineHeight: 1.75, color: 'var(--ink-muted)', margin: 0 }}>
             Den här guiden täcker hyra båt i alla Nordens viktigaste vatten: Stockholms skärgård, Göteborg och Bohuslän, Gotland och Höga Kusten. Välj destination nedan för priser, licenskrav och de bästa hyrbåtsbolagen.
