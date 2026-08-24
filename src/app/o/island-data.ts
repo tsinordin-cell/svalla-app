@@ -1145,33 +1145,43 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor & B&B', type: 'Stugor', desc: 'Flera privata uthyrare längs öns vägar. Sök online.' },
     ],
     getting_there: [
-      { method: 'Buss + Bilfärja', from: 'Danderyds sjukhus', time: '60 min', desc: 'Buss 621 från Danderyds sjukhus till Östanå färjeläge, sedan avgiftsfri bilfärja Östanå–Ljusterö (7 min). Buss 626 går vidare på ön.', icon: '🚌' },
+      // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö (giltig dec 2025–juni 2026); linje 621 går Åkersberga–Norrtälje. Färjan avgiftsfri enligt Trafikverket (Ljusteröleden).
+      { method: 'Buss + Bilfärja', from: 'Danderyds sjukhus', time: '60 min', desc: 'Buss 626 från Danderyds sjukhus till Östanå färjeläge, sedan avgiftsfri bilfärja Östanå–Ljusterö (7 min). Samma linje fortsätter ut på ön.', icon: '🚌' },
       { method: 'Bil + Färja', from: 'Stockholm', time: '50 min', desc: 'Kör till Östanå färjeläge norr om Åkersberga, ta avgiftsfri bilfärja över till Ljusterö (Ljusteröleden, ca 7 min).', icon: '🚗' },
       { method: 'Waxholmsbåt', from: 'Strömkajen / Vaxholm', time: 'Varierar', desc: 'Skärgårdsbåtar trafikerar bryggor som Linanäs, Grundvik, Åsättra m.fl.', icon: '⛴' },
     ],
     harbors: [
-      { name: 'Klintan', desc: 'Välbesökt hamn med bränsle och service.', fuel: true, service: ['el', 'vatten', 'bränsle', 'dusch'] },
+      // KÄLLA: klintsundetmarina.se — marina, sjömack, lanthandel, café och gästhamn vid Klintsundet ("Klintan Sjöstation" fanns inte under det namnet).
+      { name: 'Klintsundet Marina', desc: 'Marina med sjömack, lanthandel, café och gästhamn vid Klintsundet.', fuel: true, service: ['el', 'vatten', 'bränsle', 'gästhamn'] },
       { name: 'Linanäsbryggan', desc: 'Naturskönt läge, populärt ankare.', fuel: false },
     ],
     restaurants: [
-      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Lunch 195–265 kr, räkor och skaldjur 245–345 kr', open_season: 'Juni–Augusti', open_hours: '11–21' },
-      { name: 'Klintan Sjöstation', type: 'Service/Café', desc: 'Bränsle, kaffe och enkla tilltugg.', slug: 'klintan-sjostation', price_example: 'Kaffe 45–55 kr, smörgås 75–95 kr', open_season: 'Maj–September', open_hours: '08–19' },
-      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra.', slug: 'pizzeria-ljustero', price_example: 'Pizza 105–155 kr, pasta 115–145 kr', open_season: 'Helår', open_hours: 'Mån–Sön 11–21' },
+      // KÄLLA: linanasbryggan.se/meny — varmrätter 255–285 kr (2026), öppet dagligen 11–21.
+      { name: 'Linanäsbryggan', type: 'Restaurang', desc: 'Klassisk brygga med mat och utsikt.', price_example: 'Varmrätter ca 255–285 kr (2026)', open_season: 'Juni–Augusti', open_hours: '11–21' },
+      // KÄLLA: klintsundetmarina.se — café, lanthandel, sjömack och kajakuthyrning; öppet alla dagar 10–18 juni–augusti. Kajak från 370 kr/halvdag (2026).
+      { name: 'Klintsundet Marina', type: 'Service/Café', desc: 'Sjömack, lanthandel och café vid Klintsundet — hyr även ut kajaker.', slug: 'klintan-sjostation', price_example: 'Kajak från 370 kr/halvdag (2026)', open_season: 'Juni–Augusti', open_hours: '10–18' },
+      // KÄLLA: explorearchipelago.com (Fnaych Pizzabagaren KB, Långsjöängen 20) — öppet dagligen 10–20; priser publiceras inte, därför ingen siffra.
+      { name: 'Pizzeria Ljusterö', type: 'Restaurang', desc: 'Lokalbefolkningens val — avslappnat och bra. Pizza, kebab och hamburgare.', slug: 'pizzeria-ljustero', price_example: 'Aktuella priser anslås på plats', open_season: 'Helår', open_hours: 'Mån–Sön 10–20' },
     ],
     day_cost: {
-      budget_per_person: '250–550 kr',
-      includes: 'Avgiftsfri bilfärja, cykeltur, lunch eller pizza, kaffe vid Klintan',
+      budget_per_person: '150–420 kr',
+      includes: 'Avgiftsfri bilfärja, lunch eller pizza, kaffe vid Klintsundet',
       breakdown: [
-        { item: 'Buss 621 från Danderyds sjukhus (SL-kort)', price: '0 kr' },
+        // KÄLLA: SL:s tidtabell linje 626 Danderyds sjukhus–Ljusterö + Trafikverket, Ljusteröleden avgiftsfri (hämtad 2026-08-24)
+        { item: 'Buss 626 från Danderyds sjukhus (SL-kort)', price: '0 kr' },
         { item: 'Bilfärja Östanå–Ljusterö (avgiftsfri)', price: '0 kr' },
-        { item: 'Lunch Linanäsbryggan', price: '195–265 kr' },
-        { item: 'Alternativ: Pizza Ljusterö', price: '105–155 kr' },
-        { item: 'Kaffe + bulle Klintan', price: '55–70 kr' },
-        { item: 'Cykeluthyrning', price: '80–120 kr' },
+        // KÄLLA: linanasbryggan.se/meny-4 — varmrätter 255–285 kr (hämtad 2026-08-24)
+        { item: 'Lunch Linanäsbryggan', price: '255–285 kr (2026)' },
+        // KÄLLA: restaurangljusterotorget.se/meny — pizza 99–145 kr (hämtad 2026-08-24)
+        { item: 'Alternativ: pizza, Restaurang Torget vid Ljusterö torg', price: '99–145 kr (2026)' },
+        // UPPSKATTNING: cafépriser publiceras inte av klintsundetmarina.se, normalt caféspann (2026-08)
+        { item: 'Kaffe + bulle, Klintsundets café', price: '55–70 kr' },
+        // KÄLLA: klintsundetmarina.se — enmanskajak 370 kr halvdag, 530 kr heldag (hämtad 2026-08-24)
+        { item: 'Kajakhyra Klintsundet Marina (halvdag)', price: 'från 370 kr (2026)' },
       ],
       tips: [
         'Ljusterö är en av de billigaste öarna att nå — avgiftsfri bilfärja och SL-buss.',
-        'Hyr cykel direkt vid färjeläget och kör norrut mot Linanäs (ca 15 km).',
+        'Hyr kajak vid Klintsundet Marina eller ta buss 626 som fortsätter ut på ön mot Linanäs.',
         'Pizzerian är öppen helår — bra val för besök utanför turistsäsongen.',
       ],
     },
