@@ -3964,7 +3964,7 @@ export const ISLANDS: Island[] = [
     emoji: '🌾',
     tagline: 'Solens och vindarnas ö — UNESCO-alvaret, 400 väderkvarnar och Östersjöns längsta sandstrand.',
     description: [
-      'Öland är Sveriges näst längsta ö och ett av landets mest omtyckta sommarmål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
+      'Öland är Sveriges längsta och näst största ö och ett av landets mest omtyckta sommarmål. Den 137 km långa ön förbinds med fastlandet via Ölandsbron från Kalmar — en av Europas längsta broar. Borgholm är den lilla huvudstaden med ett sommarliv i särklass.',
       'Södra Ölands odlingslandskap är UNESCO-världsarv sedan 2000. Det så kallade Alvaret — en unik, kalkstensbaserad stäpp — är en av Europas mest sällsynta naturmiljöer och hem till hundratals växt- och fågelarter. Mer än 400 väderkvarnar ger Öland sin karaktäristiska siluett.',
       'I norr väntar Böda Sand, en av Skandinaviens längsta sandstränder, omgiven av Trollskogen — en vresig bokskog som ger en närmast magisk atmosfär. Eketorps ringborg från järnåldern och Borgholms slottsruin är välbevarade pärlor längs landsvägen.',
     ],
@@ -5020,7 +5020,8 @@ export const ISLANDS: Island[] = [
     facts: {
       area: 'ca 2 km²',
       population: 'ca 30 (helårsboende), ca 200 (sommar)',
-      known_for: 'Välbevarat fiskesamhälle, kapell från 1666, bilfritt',
+      // KÄLLA: RAÄ bebyggelseregistret ('sannolikt byggt 1654') + Svenska kyrkan (1600-tal, målningar 1711).
+      known_for: 'Välbevarat fiskesamhälle, kapell från 1654, bilfritt',
       season: 'Juni–Augusti',
     
       travel_time: 'ca 5 tim',
@@ -5029,7 +5030,7 @@ export const ISLANDS: Island[] = [
     },
     activities: [
       { icon: '⛵', name: 'Kajakpaddling', desc: 'Trysunda är ett nav för Höga Kustens kajak­rutter. Paddla till Ulvön (ca 45 min) eller längs klippkusten söderut.' },
-      { icon: '⛪', name: 'Trysunda kapell', desc: 'Kapellet från 1666 är ett av Höga Kustens äldsta bevarade byggnader. Sommargudstjänster hålls än idag.' },
+      { icon: '⛪', name: 'Trysunda kapell', desc: 'Kapellet från 1654 är ett av Höga Kustens äldsta bevarade byggnader, med väggmålningar från 1711. Sommargudstjänster hålls än idag.' },
       { icon: '🥾', name: 'Vandring på ön', desc: 'Välmärkta leder runt öns klipp­kust och genom fiskesamhället. Utsikter över Ulvöfjärden.' },
       { icon: '🏊', name: 'Bad från klippor', desc: 'Klart, djupt vatten runt hela ön. Klassiska klipp­bad i skydd av vindstilla vikar.' },
       { icon: '🎣', name: 'Fiske', desc: 'Handlina, abborre och gädda i fjärdarna. Fråga på ön om rätt platser.' },
@@ -5094,7 +5095,7 @@ export const ISLANDS: Island[] = [
     tagline: 'Blekinges klippö — engelsk kyrkogård, raukar och vild Östersjönatur.',
     description: [
       'Hanö är en av Blekinges mest besökta öar — och en av de mest ovanliga. Stora delar av ön ingår i Hanö naturreservat (bildat 2017), här finns bofasta sedan 1830-talet, och ön nås med reguljär båt från Nogersund på Listerlandet. Det är ett resmål som kräver lite ansträngning, och som belönar den ansträngningen generöst.',
-      'Det mest oväntade på Hanö är dess engelska historia. Under Napoleonkrigen 1809–1812 använde brittiska Royal Navy Hanö som flottbas i Östersjön. Sjömän som dog under övervintringen begravdes på ön — kyrkogården är i dag en av de märkligaste platserna längs hela svenska kusten.',
+      'Det mest oväntade på Hanö är dess engelska historia. Under Napoleonkrigen 1810–1812 använde brittiska Royal Navy Hanö som flottbas i Östersjön. Sjömän som dog under övervintringen begravdes på ön — kyrkogården är i dag en av de märkligaste platserna längs hela svenska kusten.',
       'Naturen är dramatisk: kuperade klippor, barrskog, strandhed och den steniga stranden vid Engelskabadet. En liten fyr markerar öns höjdpunkt.',
     ],
     facts: {
@@ -5109,7 +5110,7 @@ export const ISLANDS: Island[] = [
       best_for: 'Historieintresserade, vandrare, fågelskådare',
     },
     activities: [
-      { icon: '⚱️', name: 'Engelska kyrkogården', desc: 'Brittiska sjömän begravda 1809–1812. En av Sverige mest ovanliga historiska platser — läs inskriptionerna och unna dig ett stilla ögonblick.' },
+      { icon: '⚱️', name: 'Engelska kyrkogården', desc: 'Brittiska sjömän begravda 1810–1812. En av Sverige mest ovanliga historiska platser — läs inskriptionerna och unna dig ett stilla ögonblick.' },
       { icon: '🥾', name: 'Vandringsleder', desc: 'Välmärkta leder runt hela ön, ca 8 km totalt. Klippstränder, barrskog och vid utsikt över Hanöbukten.' },
       { icon: '🏊', name: 'Engelskabadet', desc: 'Öns populäraste badplats. Stenig strand med klart vatten och tillräcklig avskildheten för att kännas som en hemlighet.' },
       { icon: '🦅', name: 'Fågelskådning', desc: 'Hanö är rastplats för sträckande fåglar höst och vår. Havsörn observeras regelbundet.' },
@@ -5240,11 +5241,12 @@ export const ISLANDS: Island[] = [
     region: 'ovriga',
     regionLabel: 'Vättern',
     emoji: '🏇',
-    tagline: 'Vätterns sagolika ö — Brahehus, ekskog och häst­skjuts i Europas näst renaste sjö.',
+    tagline: 'Vätterns sagolika ö — Brahehus, ekskog och hästskjuts i en av Europas klaraste sjöar.',
     description: [
       'Visingsö är en långsmal ö i södra Vättern, ett par kilometer utanför Gränna i Jönköpings län. Ön är 14 km lång och känd för sin dramatiska historia, märkliga natur och det faktum att man tar sig runt med häst och vagn — en tradition som lockar hundratusentals besökare varje år.',
       'Ruinerna av Brahehus (1600-tal) och Näs slott (medeltid) ger historisk tyngd, och ekskogen som planterades på 1800-talet för att ge virke till den svenska flottan täcker idag delar av ön med en urgammal karaktär.',
-      'Vättern är Europas näst renaste sjö, och vattnet runt Visingsö är kristallklart med sikt ned till 10–20 meter. Bad och fiske hör sommaren till.',
+      // KÄLLA: Vätternvårdsförbundet (vattern.org) — näringsfattig klarvattensjö, siktdjup 15–16 m.
+      'Vättern är en näringsfattig klarvattensjö med siktdjup på hela 15–16 meter, och vattnet runt Visingsö är kristallklart. Bad och fiske hör sommaren till.',
     ],
     facts: {
       area: 'ca 24 km²',
