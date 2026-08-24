@@ -3,7 +3,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
  title: 'Blekinges skärgård — Logga turer, hitta platser',
- description: 'Segling i Blekinges skärgård: Karlskrona gästhamn, Hanö, Östersjöleden. Logga båtturer, ankringsplatser och naturhamnar på Svalla.',
+ description: 'Segling i Blekinges skärgård: Karlskrona gästhamn, Hanö, Hanöbukten. Logga båtturer, ankringsplatser och naturhamnar på Svalla.',
  keywords: [
  'blekinge skärgård',
  'segla blekinge',
@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
  },
  {
  icon: '',
- title: 'Etapp på Östersjöleden',
+ title: 'Etapp på ostkustseglingen',
  description: 'Blekinge är en naturlig etapp om du seglar längs kusten mot Gotland eller Danmark. Logga varje dag.',
  href: '/logga-in',
  },
@@ -88,8 +88,9 @@ export default function BlekingeSkargardPage() {
  },
  {
  '@type': 'Question',
- name: 'Vad är Östersjöleden?',
- acceptedAnswer: { '@type': 'Answer', text: 'Östersjöleden är en märkt segelrutt som sträcker sig längs hela svenska Östersjökusten från Stockholm i norr till Malmö i söder. Blekinge utgör en av de vackraste etapperna, med ungefär två dagars segling från Karlskrona.' },
+ name: 'Finns det en märkt segelled längs ostkusten?',
+ // KÄLLA: faktagranskning 2026-08-23 — ingen myndighet eller operatör känner en märkt segelrutt Sthlm–Malmö. ARK56: naturkartan.se/ark56 (läst 2026-08-23)
+ acceptedAnswer: { '@type': 'Answer', text: 'Nej — någon officiellt märkt segelrutt Stockholm–Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56 — Blekinges länkade kustleder.' },
  },
  {
  '@type': 'Question',
@@ -205,8 +206,9 @@ export default function BlekingeSkargardPage() {
  Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer — många seglare tar sig hit före längre kryss.
  </p>
  <p>
- <strong>Vad är Östersjöleden?</strong><br />
- Östersjöleden är en märkt segelrutt som sträcker sig längs hela svenska Östersjökusten från Stockholm i norr till Malmö i söder. Blekinge utgör en av de vackraste etapperna, med ungefär två dagars segling från Karlskrona. Svalla hjälper dig logga varje dag och planera dina etapper.
+ <strong>Finns det en märkt segelled längs ostkusten?</strong><br />
+ {/* KÄLLA: faktagranskning 2026-08-23 — ingen märkt segelrutt Sthlm–Malmö existerar; ARK56 enligt naturkartan.se/ark56 (läst 2026-08-23) */}
+ Nej — någon officiellt märkt segelrutt Stockholm–Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56 — Blekinges länkade kustleder. Svalla hjälper dig logga varje dag och planera dina etapper.
  </p>
  <p>
  <strong>Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?</strong><br />

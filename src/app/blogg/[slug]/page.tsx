@@ -218,7 +218,7 @@ Du får ankra fritt i naturhamnar upp till ett par nätter. Allemansrätten gäl
 - Svalla-kartan visar bränsleplatser markerade med ⛽ — filtrera på kategorin för att hitta närmaste station längs din rutt.
 - Kontrollera alltid öppettider online innan – öppettider varierar kraftigt med säsong.
 - Ha alltid en reservdunk ombord för de sista milen.
-- Vattenbryggor är gratis de första 12 timmarna på de flesta platser – kolla lokala skyltar.
+- Vid många gäst- och naturhamnsbryggor är kortare angöring gratis, men reglerna skiljer sig åt mellan hamnar – kolla alltid lokala skyltar.
  `,
  },
 
@@ -480,12 +480,12 @@ Segla varsamt och njut. Skärgården från en segelbåt är en helt annan upplev
  tags: ['Bad', 'Badplatser', 'Sommar'],
  faqs: [
    { q: 'Vilka är de bästa badplatserna i Stockholms skärgård?', a: 'Trouville på Sandhamn är den mest kända sandstranden. Stora Sand på Utö är bäst för barnfamiljer med grunt vatten. Fejan naturreservat norr om Furusund har kristallklart vatten och vita klipphällar. Kymmendö (Strindbergs ö) är en av de mest stämningsfulla platserna att bada på i hela skärgården.' },
-   { q: 'Kan man bada gratis i Stockholms skärgård?', a: 'Ja — alla badplatser i Stockholms skärgård är gratis tack vare Allemansrätten. Du har rätt att bada och vistas på land som inte är privattomt, vilket täcker de allra flesta klippor och stränder i skärgårdslandskapet.' },
+   { q: 'Kan man bada gratis i Stockholms skärgård?', a: 'Ja — naturliga badplatser, klippbad och stränder i Stockholms skärgård är gratis tack vare allemansrätten (anlagda friluftsbad och kallbadhus kan ta inträde). Du har rätt att bada och vistas på land som inte är privattomt, vilket täcker de allra flesta klippor och stränder i skärgårdslandskapet.' },
    { q: 'Vilken badplats i skärgården är bäst för barn?', a: 'Stora Sand på Utö har grunt, sandigt vatten och är ett av de säkraste badfamiljealternativen. Dalarö klapperstensstrand nås med bil och passar för barn. Fjäderholmarna (25 min från Stockholm) har klippbad som är tryggt och lättillgängligt utan lång resväg.' },
    { q: 'Hur tar man sig till badplatser i skärgården utan båt?', a: 'Waxholmsbolaget kör till Sandhamn, Utö, Möja, Ingmarsö och många fler. Dalarö nås med buss 834/840 från Handen. Fjäderholmarna nås med båt från Strandvägen på 25 minuter. Västerudd på Värmdö nås med buss och promenad från Gustavsberg.' },
  ],
  content: `
-Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Alla är gratis tack vare allemansrätten. Här är våra tolv favoriter.
+Stockholms skärgård har hundratals badplatser. De flesta är dolda klippor nåbara bara med båt. Några är klassiker. Naturbaden är gratis tack vare allemansrätten. Här är våra tolv favoriter.
 
 ## 1. Trouville, Sandön (Sandhamn)
 Sandhamns mest kända badstrand på södra sidan av Sandön — vit sandstrand med fin sand, cirka 15–20 min promenad från hamnen genom skogen. Klassisk skärgårdsbadplats.

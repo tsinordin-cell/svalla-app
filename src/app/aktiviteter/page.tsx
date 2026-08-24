@@ -45,7 +45,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '',
     title: 'Fiske',
-    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöver du inget fiskekort, men regler och fredningsperioder gäller.',
+    description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I saltvatten behöver du inget fiskekort, men fredningsområden, fredningstider och artregler gäller.',
     href: '/platser?kategori=fiske',
   },
   {
@@ -88,7 +88,8 @@ export default function AktiviteterPage() {
       {
         '@type': 'Question',
         name: 'Behöver man fiskekort för fiske i havet?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I saltvatten (havet längs kusten) behöver du inget fiskekort för att fiska. Du kan fiska gratis från brygga, båt eller strand året runt. Dock gäller fredningsperioder och vissa fiskar är skyddade. I sjöar och älvar behöver du alltid ett fiskekort.' },
+        // KÄLLA: Länsstyrelsen Stockholm (djur/fiske) + Havs- och vattenmyndigheten, lästa 2026-08-23: fritt handredskapsfiske i havet och de fem stora sjöarna; 62 fredningsområden i Sthlms skärgård på våren, 9 året runt
+        acceptedAnswer: { '@type': 'Answer', text: 'Nej. I havet längs kusten — och i de fem stora sjöarna Vänern, Vättern, Mälaren, Hjälmaren och Storsjön — är fiske med handredskap fritt utan fiskekort. Men fredningsområden och fredningstider gäller: bara i Stockholms skärgård är över 60 vikar fiskeförbjudna under våren och nio områden året runt, och vissa arter är skyddade. Kontrollera svenskafiskeregler.se för platsen du fiskar på. I övriga sjöar och vattendrag krävs fiskekort.' },
       },
       {
         '@type': 'Question',

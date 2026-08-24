@@ -139,7 +139,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     description: [
       'Lysekil är en av västkustens mest klassiska badorter. Staden ligger på Stångenäs sydspets och blickar ut över Gullmarsfjorden — Sveriges enda äkta tröskelfjord.',
       'Lysekil har en stark marinbiologisk profil. Havets Hus akvarium och universitetets Marine Center gör staden till en utbildningsdestination såväl som turistdestination.',
-      'Sommaren brukar vara packad — fisk, segling, simskola och konstutställningar samtidigt. Lysekil har också varit centrum för svensk valfangst under 1900-talets början, vilket fortfarande syns i hamnen.',
+      'Sommaren brukar vara packad — fisk, segling, simskola och konstutställningar samtidigt. Lysekil växte fram som fashionabel badort under 1800-talets andra hälft — varmbadhus redan 1849 — vilket fortfarande präglar stadsbilden.',
     ],
     facts: {
       travel_time: '1 h 50 min med bil från Göteborg',
@@ -173,7 +173,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka räkfisketur 1–2 dagar i förväg — väldigt populärt.', 'Stångehuvud är magiskt vid soluppgång, undvik mitten av dagen.', 'Pinnviks bad är säkrast för småbarn.'],
     related: ['fiskebackskil', 'grundsund', 'kosterhavet'],
     tags: ['badort', 'akvarium', 'vandring', 'familjer'],
-    did_you_know: 'Lysekil var huvudort för svensk valfangst under tidigt 1900-tal — Pacific Whaling Company hade anläggning här fram till 1934.',
+    // KÄLLA: Lysekils historia — badort fran 1849, granitindustri 1850-1950 (fem stenbrott 1909, export varlden over), konservindustrin bakom Lysekils kaviar fran 1893. Tidigare valfangst-pastaende var obelagt. (2026-08-23)
+    did_you_know: 'Lysekil levde lange pa den roda bohusgraniten — mellan 1850 och 1950 exporterades sten harifran till bland annat Storbritannien, Tyskland och Argentina. Ur konservindustrin foddes ocksa Lysekils kaviar, i produktion sedan 1893.',
     seasonal: {
       open: 'Maj–September',
       peak: 'Juli–Augusti',
@@ -479,7 +480,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tips: ['Boka övernattning på Värdshuset 6 mån i förväg för sommaren.', 'Solnedgång från västsidan är magisk.', 'Båten Tuvesvik–Käringön är huvudförbindelsen och tar ca 15 min.'],
     related: ['mollosund', 'orust', 'tjorn'],
     tags: ['bilfri', 'pittoresk', 'fotografi', 'romantik'],
-    did_you_know: 'Käringön är skyddad som kulturreservat och får inte ändras byggnadsmässigt — varje hus måste behålla sin 1800-talskaraktär.',
+    // KÄLLA: RAÄ:s riksintresselista Västra Götaland — Käringön ingår i riksintresset Nordvästra Orustskärgården [O 34]; kulturreservat är ett annat skyddsinstrument (2026-08-24)
+    did_you_know: 'Käringöns bebyggelse ingår i riksintresset för kulturmiljövården Nordvästra Orustskärgården, och husens 1800-talskaraktär skyddas genom kommunens bevarandebestämmelser — fasaderna får inte ändras hur som helst.',
     seasonal: {
       open: 'Juni–September',
       peak: 'Juli–mitten av Augusti',
@@ -551,7 +553,7 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     description: [
       'Tjörn är Sveriges sjätte största ö och ofta den första destinationen folk besöker när de norrifrån kör in i Bohuslän. Tjörnbron — en av Sveriges mest kända snedkabelbroar — är öns symbol och förbinder Tjörn med fastlandet via Källön och Almön.',
       'Skärhamn på västra Tjörn är hjärtat av öns kulturliv med Nordiska Akvarellmuseet — Skandinaviens viktigaste akvarellsamling, byggd vid hamnen i en spektakulär arkitektur.',
-      'Tjörn har också flera fiskelägen som Klädesholmen (känd för sina sillinläggningar) och Rönnäng. Ön är 200 km² stor och kräver en hel dag att utforska.',
+      'Tjörn har också flera fiskelägen som Klädesholmen (känd för sina sillinläggningar) och Rönnäng. Ön är knappt 150 km² stor — Sveriges sjunde största ö — och kräver en hel dag att utforska.',
     ],
     facts: {
       travel_time: '1 h med bil från Göteborg',
@@ -701,7 +703,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     tagline: 'Evert Taubes hemö — fyr, klippor och visans hjärta.',
     description: [
       'Vinga ligger 12 kilometer utanför Göteborg och är hemö för Evert Taube — Sveriges mest kända visdiktare. Hans far var fyrvaktare här och Evert växte upp på ön under sent 1800-tal. Det är från Vingas klippor, havsljus och fiskarkultur han hämtade bilderna som genomsyrar hans visor.',
-      'Vinga fyr (1854) är fortfarande aktiv och syns långt ut till sjöss. Ön rymmer en liten Taube-utställning i det gamla fyrmästarbostaden, ett kapell och välmarkerade klippvandringar med utsikt mot öppet hav och Göteborgs inlopp.',
+      // KÄLLA: Sjöfartsverket — nuvarande fyr byggd 1890 (Emil Karlsson, 29 m); föregångare 1841 och 1856 (2026-08-23)
+      'Vinga fyr (1890) är fortfarande aktiv och syns långt ut till sjöss. Ön rymmer en liten Taube-utställning i det gamla fyrmästarbostaden, ett kapell och välmarkerade klippvandringar med utsikt mot öppet hav och Göteborgs inlopp.',
       'Inga övernattningsmöjligheter på ön. Dagsturer från Göteborg är enkla — Vingabåten avgår från Saltholmen 4–6 gånger dagligen sommartid och tar drygt en timme. Planera 2–3 timmar på ön.',
       'Vinga är en pilgrimsresa för Taube-älskare och en naturupplevelse för alla andra. Klipporna på öns yttersta spets, med utsikt mot havet som Evert beskrev i "Fritiof och Carmencita", är svåra att glömma.',
     ],

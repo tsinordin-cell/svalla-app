@@ -513,10 +513,11 @@ export const HIKE_DESCRIPTIONS: Record<string, { body: string; tips?: string[] }
   },
 
   'solvesborg-kust': {
-    body: 'Sölvesborg på Blekinges västra kust är en bra startpunkt för Östersjöleden med en enkel kustpromenad och gott om service. Halvstaden har ett charmigt centrum och strandlinjen ger direkt havsutsikt.',
+    // KÄLLA: eurovelo.com/ev10 + solvesborg.se (lästa 2026-08-23): Östersjöleden = EuroVelo 10, en cykelled — ingen vandringsled
+    body: 'Sölvesborg på Blekinges västra kust är en bra utgångspunkt vid cykelleden EuroVelo 10 (Östersjöleden), med en enkel kustpromenad och gott om service. Halvstaden har ett charmigt centrum och strandlinjen ger direkt havsutsikt.',
     tips: [
       'SJ → Sölvesborg (~3h30 från Stockholm).',
-      'Östersjöleden startar här — bra för den som vill vandra längre.',
+      'Cykelleden EuroVelo 10 (Östersjöleden) passerar här — havsnära etapper åt båda håll.',
     ],
   },
 

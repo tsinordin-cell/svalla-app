@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
- title: 'Segelrutter i Sverige — Östersjöleden, Gotland Runt, Bohuslän',
+ title: 'Segelrutter i Sverige — ostkusten, Gotland Runt, Bohuslän',
  description: 'Kompletta segelrutter i Sverige: Stockholm–Malmö (östkust-segling), Gotland Runt (klassiker cirka 350 sjömil), Bohusleden, Mälaren och Stockholms skärgård. Nivåer 1–3, sjökort, vindanpassningar.',
  keywords: [
  'segelrutter sverige',
- 'östersjöleden',
+ 'segla ostkusten',
  'gotland runt',
  'bohusleden',
  'segelrutter stockholms skärgård',
@@ -42,14 +42,14 @@ const ITEMS: LandingItem[] = [
  {
  icon: 'ship',
  title: 'Ytterskärgården',
- description: 'Sandhamn, Huvudskär, Rödlöga — öppna vatten, tidvattenströmmar, stora upplevelser.',
+ description: 'Sandhamn, Huvudskär, Rödlöga — öppna vatten, hårdare sjö, stora upplevelser.',
  href: '/segelrutter/ytterskargarden',
  meta: 'Nivå 3',
  },
  {
  icon: 'map',
- title: 'Östersjöleden (Stockholm–Malmö)',
- description: 'Kustens stora segelrutt längs svenska östkusten via Sandhamn, Visby, Blekinge-skärgården och Skånes kust. Dagsetapper, historia och skyddade farleder.',
+ title: 'Ostkusten Stockholm–Malmö',
+ description: 'Långfärdssegling längs svenska östkusten via Sandhamn, Visby, Blekinge-skärgården och Skånes kust. Dagsetapper, historia och skyddade farleder.',
  href: '/segelrutter/osterjosleden',
  meta: 'Nivå 2–3',
  },
@@ -118,7 +118,7 @@ export default function SegelrutterPage() {
  {
  '@type': 'Question',
  name: 'Vilka sjökort behöver man för segling i Sverige?',
- acceptedAnswer: { '@type': 'Answer', text: 'För Stockholms skärgård: kort 6111, 6113. För Östersjöleden: 6103, 6104, 6105, 6112. För Bohuslän: 6058, 6059. Sjöfartsverkets officiella sjökort finns i papper- och digitalt format. Många använder tabletappar som Navily men papperskort rekommenderas alltid som backup.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'För Stockholms skärgård: kort 6111, 6113. För ostkusten söderut: 6103, 6104, 6105, 6112. För Bohuslän: 6058, 6059. Sjöfartsverkets officiella sjökort finns i papper- och digitalt format. Många använder tabletappar som Navily men papperskort rekommenderas alltid som backup.' },
  },
  ],
  }
@@ -138,7 +138,7 @@ export default function SegelrutterPage() {
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Segelrutter"
  title="Segelrutter i Sverige"
- tagline="Från Stockholms skärgård till västkusten: kurerade rutter sorterade efter nivå, distans och säsong. Östersjöleden, Gotland Runt, Bohusleden och mer."
+ tagline="Från Stockholms skärgård till västkusten: kurerade rutter sorterade efter nivå, distans och säsong. ostkusten, Gotland Runt, Bohuskusten och mer."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M2 20h20" />
@@ -156,7 +156,7 @@ export default function SegelrutterPage() {
  Vad är en segelrutt? Det är en planerad väg mellan två eller flera hamnar eller ankringsplatser, ofta med utgångspunkt i en särskild vind, säsong eller svårighetsnivå. Svenska rutterna bygger på århundraden av erfarenhet — från handelsmän som navigerade mellan Stockholm och Visby till moderna racingseglare som tävlar runt Gotland varje sommar.
  </p>
  <p>
- Sverige delas in i flera klassiska segelrevir. Stockholms skärgård domineras av tätare öar och skyddade vatten. Östersjöleden sträcker sig som en 800 sjömil lång väg från Stockholm till Malmö längs kusten. Bohusleden på västkusten möter Nordsjöns krafter och är känd för tidvatten, hummervatten och vild skönhet. Mälaren erbjuder lugna, historiska insjövatten med gamla slott och börande historia.
+ Sverige delas in i flera klassiska segelrevir. Stockholms skärgård domineras av tätare öar och skyddade vatten. Ostkusten från Stockholm till Malmö är en klassisk långfärd — någon officiellt märkt segelled finns inte, men vägen via Gotland och Blekinge är väl beseglad med utprickade farleder. Bohuskusten i väster möter Skagerrak och är känd för hummervatten, granitöar och vild skönhet. Mälaren erbjuder lugna, historiska insjövatten med gamla slott och börande historia.
  </p>
  <p>
  Varje rutt i denna guide listar distans, uppskattad tid vid normal vind, rekommenderade naturhamnar, vindanpassningar och vilka sjökort du behöver. Vi sorterar efter svårighetsnivå (1–3) så du kan välja enligt din erfarenhet, båttyp och tid. Rutterna är testade av erfarna seglare och uppdateras löpande med säsongsnoteringar — farleder som är stängda, bryggor som försvunnit, nya ankringsplatser och säkerhetsfaktorer.
@@ -169,13 +169,14 @@ export default function SegelrutterPage() {
  deeperContent={
  <>
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Östersjöleden — kustens stora segelrutt
+ Ostkusten Stockholm–Malmö — den långa klassikern
  </h2>
  <p>
  Östkusten — från Stockholms skärgård söderut längs Sveriges östkust — är en klassisk segeltur för den som vill utforska kusten över längre tid. Vanlig rutt går genom Stockholms skärgård, ut till Sandhamn, vidare över Östersjön till Gotland, ner längs Smålandskusten och Blekinge till Karlskrona, och slutligen till Skånes ostkust och vidare till Öresund. Sommaren är populärast för sin stabilare vind och milda väder.
  </p>
  <p>
- Klassiska etapper är Stockholm–Sandhamn (cirka 25 sjömil, en dag), Sandhamn–Visby (cirka 90 sjömil — vanligen seglas över natten eller på en lång dag), Visby–Karlskrona (cirka 130–140 sjömil, två dagar med stopp), och Karlskrona–Malmö (cirka 130 sjömil längs Skånes ostkust och runt Falsterbo, två till tre dagar). Många seglare gör detta som ett tvåveckors sommaräventyr, andra delar upp över flera somrar. De flesta väljer juli–augusti för stabilast väder.
+ {/* UPPMÄTT: stromkajen_to_sandhamn 58,9 km = 31,8 NM (precomputed-routes, validated); Sandhamn–Visby storcirkel 187,6 km = 101 NM (2026-08-23) */}
+ Klassiska etapper är Stockholm–Sandhamn (cirka 30 sjömil, en dag), Sandhamn–Visby (cirka 100 sjömil — vanligen seglas över natten eller på en lång dag), Visby–Karlskrona (cirka 130–140 sjömil, två dagar med stopp), och Karlskrona–Malmö (cirka 130 sjömil längs Skånes ostkust och runt Falsterbo, två till tre dagar). Många seglare gör detta som ett tvåveckors sommaräventyr, andra delar upp över flera somrar. De flesta väljer juli–augusti för stabilast väder.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Blekinge och Gotland
@@ -246,7 +247,7 @@ export default function SegelrutterPage() {
  Nivå 2: Medel & erfarna
  </h3>
  <p>
- Längre dagar, möjlig öppen vattensegling, behov av navigation och väderläsning. Exempel: Mellanskärgården, Östersjöleden norra delen, Mälaren längre sträckor. Dessa rutter passar för:
+ Längre dagar, möjlig öppen vattensegling, behov av navigation och väderläsning. Exempel: Mellanskärgården, östkustens norra del, Mälaren längre sträckor. Dessa rutter passar för:
  </p>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
  <li>Du har flera seglingar under båtens kelar</li>
@@ -258,7 +259,7 @@ export default function SegelrutterPage() {
  Nivå 3: Erfarna & racingseglare
  </h3>
  <p>
- Långdistans, öppet hav, kräver mycket säkerhet och beslutsförmåga. Exempel: Ytterskärgården, Gotland Runt, Östersjöleden i sin helhet, Bohusleden. Dessa rutter passar för:
+ Långdistans, öppet hav, kräver mycket säkerhet och beslutsförmåga. Exempel: Ytterskärgården, Gotland Runt, hela ostkusten Stockholm–Malmö, Bohuskusten. Dessa rutter passar för:
  </p>
  <ul style={{ margin: '8px 0 12px', paddingLeft: '20px' }}>
  <li>Du har flera längre seglingar (flera dagar) i ditt CV</li>
@@ -292,11 +293,11 @@ export default function SegelrutterPage() {
  Nej, det finns ingen laglig seglarcertifikatskrävning för privat segling i Sverige. Många seglare tar dock en segelkurs för säkerhet och kunskapers skull — bland annat ett DSV-certifikat eller motsvarande utbildning. För kommersiell segling eller andras båtar måste det finnas en ansvarig person med relevant utbildning ombord.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- <strong>Hur lång tid tar Östersjöleden?</strong>
+ <strong>Hur lång tid tar det att segla Stockholm–Malmö?</strong>
  </h3>
  <p>
- // UPPSKATTNING: ruttens längd beror helt på vilka ben man väljer; 800 nm är en grov helhetssiffra, ej verifierad mot någon tabell (2026-08)
- Östersjöleden är cirka 800 sjömil. Vid en genomsnittshastighet på 6 knop (genomsnittlig kryss- och seglingshastighet för de flesta båtar) tar detta cirka 5–6 veckor om du seglar alla dagar utan stopp. Många seglare gör detta som ett två veckor långt sommaräventyr genom att fokusera på en del av rutten, eller de sprider det över flera sommrar. Realistisk tid är 10–15 dagar för 300–400 sjömil (exempelvis Stockholm till Visby).
+ {/* UPPSKATTNING: summering av etappexemplen ovan, ej verifierad mot ruttdata; faktagranskning 2026-08-23 tog bort tidigare pastaende om en markt 800-sjomilsled som ingen kalla kanner till */}
+ Det finns ingen officiellt märkt led — sträckan längs kusten via Gotland och Blekinge är i storleksordningen 350–400 sjömil beroende på vägval. Många gör den som ett par veckors sommaräventyr, andra delar upp den över flera somrar och seglar en del i taget.
  </p>
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  <strong>Vad är bästa månaden att segla i Sverige?</strong>

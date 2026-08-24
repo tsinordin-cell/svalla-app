@@ -1176,7 +1176,7 @@ export const HIKES: Hike[] = [
     suitableForChildren: true,
     suitableForDogs: true,
     bestSeason: 'Maj–september',
-    tagline: 'Bra startpunkt för Östersjöleden med enkel kustpromenad och god service.',
+    tagline: 'Enkel kustpromenad med god service — cykelleden EuroVelo 10 (Östersjöleden) passerar längs kusten.',
   },
   {
     slug: 'tromto-blekinge',

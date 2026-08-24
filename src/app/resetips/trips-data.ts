@@ -212,7 +212,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Vaxholms fästning',
         type: 'kultur',
-        desc: 'Historisk befästning från 1500-talet med museum. Nås med liten färja från hamnen.',
+        // KÄLLA: SFV + vaxholmsfastning.se — forsta fastningen 1548, nuvarande kastell 1833-1863 (2026-08-23)
+        desc: 'Fästningsö med museum — första fästningen restes 1548, dagens kastell byggdes 1833–1863. Nås med liten färja från hamnen.',
         tip: 'Guidad tur tar 45 min och är väl värd pengarna.',
         bookingUrl: 'https://www.vaxholmsfastning.se',
       },
@@ -433,7 +434,8 @@ export const TRIPS: Trip[] = [
       {
         name: 'Arholma båk',
         type: 'kultur',
-        desc: 'En av Roslagens mest kända sjömärken — en båk (inte fyr) byggd 1768 av Pehr Ridderstad. 16 meter hög och har bland annat tjänat som optisk telegraf. Klättra upp för havsutsikt.',
+        // KÄLLA: Sjöfartsverket — Arholma båk 1768, Pehr Ridderstad, 12,5 m, optisk telegraf 1809 (2026-08-24)
+        desc: 'En av Roslagens mest kända sjömärken — en båk (inte fyr) byggd 1768 av Pehr Ridderstad. 12,5 meter hög och har bland annat tjänat som optisk telegraf. Klättra upp för havsutsikt.',
         tip: 'Öppen för besökare under sommaren — verifiera tider via lokala turistbyråer.',
       },
       {
@@ -1291,7 +1293,8 @@ export const TRIPS: Trip[] = [
     transportTags: ['bil', 'båt'] as TransportTag[],
     season: 'Juni–Augusti',
     difficulty: 'krävande',
-    description: 'Bullerö är ett naturreservat i ytterskärgården som nås med privat båt eller chartrad tur från Stavsnäs. Ön är skyddad och känd för sitt rika fågelliv, öppna hällmarker och storslagna havsvyer.',
+    // KÄLLA: Naturvårdsverket 2025-09-05 — Nämdöskärgårdens nationalpark invigd; Bullerö naturreservat uppgick i parken (läst 2026-08-23)
+    description: 'Bullerö ligger i Nämdöskärgårdens nationalpark — Sveriges 31:a, invigd 2025 — och nås med privat båt eller chartrad tur från Stavsnäs. Ön är skyddad och känd för sitt rika fågelliv, öppna hällmarker och storslagna havsvyer.',
     stops: [
       {
         name: 'Båt från Stavsnäs',

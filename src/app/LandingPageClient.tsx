@@ -1016,7 +1016,7 @@ const LANDING_HTML = `
     <div class="region-card-content">
      <div class="region-card-label">Östersjön</div>
      <div class="region-card-name">Blekinge</div>
-     <div class="region-card-sub">Karlskrona · Hanö · Östersjöleden</div>
+     <div class="region-card-sub">Karlskrona · Hanö · Hanöbukten</div>
      <span class="region-card-tag">20 platser kartlagda</span>
     </div>
    </a>
