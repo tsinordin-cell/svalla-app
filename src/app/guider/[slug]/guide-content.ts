@@ -2497,7 +2497,7 @@ export function getGuideContent(slug: string): string {
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Sevärdigheter utanför Mariehamn</h3>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Kastelholm slott:</strong> Medeltida borg från 1300-talet, öppen för visning sommar. Ca 40 km från Mariehamn.</li>
+<li><strong>Kastelholm slott:</strong> Medeltida borg från 1300-talet, öppen för visning sommar. Ca 22 km från Mariehamn.</li>
 <li><strong>Bomarsund fästningsruin:</strong> Rysk fästning från 1800-talet, sprängd under Krimkriget 1854. Unik militärhistoria.</li>
 <li><strong>Sund socken:</strong> Pittoreskt jordbrukslandskap med röda ladugårdar och stiltje – typiskt Åland</li>
 <li><strong>Ålands skärgård:</strong> Mer än 6 700 öar. Reguljär skärgårdstrafik med mindre passagerarbåtar.</li>
@@ -2610,7 +2610,7 @@ export function getGuideContent(slug: string): string {
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:28px 0 12px">Norra Öland – Böda sands och vindmöllor</h3>
 <p>Norra Öland är mer skogigt och grönare än söder. Böda sand är Sveriges längsta sandstrand och ett sommarmål i sig – ca 20 km ljus sand med camping, restauranger och familjevänligt vatten.</p>
 <ul style="margin:8px 0 16px;padding-left:20px;line-height:1.9">
-<li><strong>Böda sand:</strong> Ca 10 km sandstrand i norra Öland. Grunt och barnvänligt.</li>
+<li><strong>Böda sand:</strong> Sveriges längsta sandstrand — ca två mil längs Bödabukten i norra Öland. Grunt och barnvänligt.</li>
 <li><strong>Historiska vindmöllor:</strong> Öland har fler bevarade traditionella vindmöllor än något annat landskap i Sverige – ca 400 st</li>
 <li><strong>Trollskogen:</strong> Gammal vresig ekskog vid Böda – unik naturupplevelse</li>
 </ul>
@@ -6030,7 +6030,7 @@ export function getGuideContent(slug: string): string {
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Bil via Ölandsbron från Kalmar – bron är gratis och tar ca 6 minuter att köra. Tåg till Kalmar med SJ eller Kustpilen, sedan buss 101 (Länstrafiken) längs öns västra sida. Bil ger mest frihet för att komma åt spridda badplatser.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bästa badplatserna på Öland</h2>
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Böda Sand:</strong> Nordens längsta sandstrand – 5 km vit sand i norra Öland. Grunt och säkert för barn, gott om plats även i högsäsong. Servering och parkering i anslutning.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Böda Sand:</strong> Sveriges längsta sandstrand – ca två mil vit sand längs Bödabukten i norra Öland. Grunt och säkert för barn, gott om plats även i högsäsong. Servering och parkering i anslutning.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Ottenby Alvarets badplats:</strong> I södra Öland, vild och naturskön. Bra snorkling i klart vatten. Nära Ottenby fågelstation.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Räpplinge:</strong> Populär familjebadet på västra sidan, nära Borgholm. Lugnt vatten, sandstrand och servicefaciliteter.</p>
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)"><strong>Mörbylånga:</strong> Sandstrand med grunt vatten och sol från morgon till kväll. Bra för familjer med små barn.</p>
