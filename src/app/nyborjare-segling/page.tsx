@@ -210,7 +210,7 @@ export default function NyborjareSeglingPage() {
  Klassiska nybörjarbåtar
  </h3>
  <ul style={{ margin: '12px 0', paddingLeft: 20 }}>
- <li><strong>Nordisk Folkbåt (7,64 m / ca 25 fot):</strong> Tidlös klassiker, ritad 1942 av Tord Sundén. Stabil, vacker att segla och stort utbud på andrahandsmarknaden.</li>
+ <li><strong>Nordisk Folkbåt (7,68 m / ca 25 fot):</strong> Tidlös klassiker, ritad 1942 av Tord Sundén. Stabil, vacker att segla och stort utbud på andrahandsmarknaden.</li>
  <li><strong>H-båt (8,25 m / ca 27 fot):</strong> Treminutsbåt ritad 1967 av Hans Groop, med storsegel, fock och spinnaker. Mycket populär i Sverige och Finland.</li>
  <li><strong>Albin 25:</strong> Klassisk plastbåt från tidigt 1970-tal. Säker, lätt att segla och finns gott om dem i Sverige.</li>
  <li><strong>Maxi 77 / Maxi 87:</strong> Praktiska familjebåtar från Pelle Petterson, hyfsat utrymme och bra prislapp på begagnatmarknaden.</li>
