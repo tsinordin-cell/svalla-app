@@ -166,7 +166,7 @@ export default function StockholmsSkargardPage() {
  Innerskärgården är skärgårdens mest lättillgängliga del. Hit tar det bara 15 minuter från Slussen till <strong>Fjäderholmarna</strong>, där du hittar flera restauranger och ett populärt naturhamnsbad. För första gången ute i skärgården? Fjäderholmarna är startpunkten.
  </p>
  <p>
- <strong>Vaxholm</strong> ligger bara drygt 30 minuter ut och erbjuder historia, kultur och gästhamn. Vaxholms fästning, ursprungligen byggd på 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende på 1800-talet, är väl värd ett besök. Restauranger och affärer gör det enkelt att tillbringa en hel dag här. <strong>Nämdö</strong> är nästa naturliga steg — fortfarande väl skyddat vatten men med mer avskildhet än Fjäderholmarna.
+ <strong>Vaxholm</strong> ligger ca 40 minuter ut med bil, 50 med buss 670 och ungefär en timme med Waxholmsbolagets båt, och erbjuder historia, kultur och gästhamn. Vaxholms fästning, ursprungligen byggd på 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende på 1800-talet, är väl värd ett besök. Restauranger och affärer gör det enkelt att tillbringa en hel dag här. <strong>Nämdö</strong> är nästa naturliga steg — fortfarande väl skyddat vatten men med mer avskildhet än Fjäderholmarna.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
