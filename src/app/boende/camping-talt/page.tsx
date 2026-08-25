@@ -131,7 +131,7 @@ export default function CampingPage() {
             Allemansrätten och dess gränser
           </h2>
           <p>
-            I Sverige får du tälta på mark du inte äger — men inte hur som helst. Du ska välja en plats tillräckligt långt från bostadshus så att de boende inte kan se dig från sitt fönster, och inte ligga kvar mer än ett par nätter på samma plats. I naturreservat gäller reservatets egna föreskrifter, som kan förbjuda tältning helt eller begränsa den till anvisade platser. Fågelskyddsområden med landstigningsförbud 1 april–15 juli gäller på en del öar.
+            I Sverige får du tälta på mark du inte äger — men inte hur som helst. Du ska välja en plats tillräckligt långt från bostadshus så att de boende inte kan se dig från sitt fönster, och inte ligga kvar mer än ett par nätter på samma plats. I naturreservat gäller reservatets egna föreskrifter, som kan förbjuda tältning helt eller begränsa den till anvisade platser. Fågelskyddsområden med landstigningsförbud under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) gäller på en del öar.
           </p>
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
             Campingplatser med service

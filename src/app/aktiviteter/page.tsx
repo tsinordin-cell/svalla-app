@@ -190,7 +190,7 @@ export default function AktiviteterPage() {
             Allemansrätten och havskajak
           </h3>
           <p>
-            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (1 april–15 juli). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på länsstyrelsens webbplats eller kontakta naturvårdsverket.
+            Du får bygga läger nästan överallt i Sverige, men vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat kan ha egna regler. Innan du paddlar långt bort bör du kolla dessa restriktioner på länsstyrelsens webbplats eller kontakta naturvårdsverket.
           </p>
           <p>
             Du bör inte paddla ensam långt från land. Använd alltid livväst, ha en väderstation på telefonen och säg till nära vän var du är på väg.
@@ -269,7 +269,7 @@ export default function AktiviteterPage() {
             Allemansrätten i skärgården
           </h2>
           <p>
-            Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (1 april–15 juli) och naturreservat kan ha egna regler. Du får bygga läger överallt men du måste hålla minst 150 meter från närmaste bostad och inte lägga tält på samma plats mer än två nätter.
+            Allemansrätten gäller men med lokala variationer — vissa öar har landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) och naturreservat kan ha egna regler. Du får bygga läger överallt men du måste hålla minst 150 meter från närmaste bostad och inte lägga tält på samma plats mer än två nätter.
           </p>
           <p>
             Många öar längs kusten är naturreservat — dessa är ofta helt avstängda för beträdande under våren för att inte störa fågelkolonierna. Kontrollera alltid innan du paddlar långt bort.

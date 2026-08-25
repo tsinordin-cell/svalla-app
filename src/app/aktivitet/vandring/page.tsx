@@ -53,7 +53,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Kan man ta med hund på skärgårdsvandring?',
-    a: 'Generellt ja, men med viktiga undantag. Hundar är förbjudna i fågelskyddsområden under häckningstid (vanligtvis 1 april–15 juli). Naturreservat med strikta regler kan ha hundförbud året runt. Kontrollera alltid lokala föreskrifter. Waxholmsbolaget tillåter hundar ombord.',
+    a: 'Generellt ja, men med viktiga undantag. Hundar är förbjudna i fågelskyddsområden under häckningstid (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Naturreservat med strikta regler kan ha hundförbud året runt. Kontrollera alltid lokala föreskrifter. Waxholmsbolaget tillåter hundar ombord.',
   },
   {
     q: 'Vilka vandringar har badplatser längs vägen?',
@@ -105,7 +105,7 @@ const GUIDES = [
   },
   {
     title: 'Hur funkar allemansrätten i skärgården?',
-    body: 'Allemansrätten gäller i skärgården som på fastlandet — med viktiga tillägg. Du får röra dig fritt i skog och mark, tälta kortare tid (normalt 1–2 nätter på samma plats) och plocka bär, svamp och blommor som inte är fridlysta. Du får inte tälta, göra upp eld eller beträda naturreservat med strikta tillträdesrestriktioner, eller köra motorbåt för nära land i fågelskyddsområden under häckningstid (1 april–15 juli för många). Hundar: i fågelskyddsområden är hundar förbjudna hela eller delar av året. Kontrollera Länsstyrelsens webbplats för regler i specifika reservat.',
+    body: 'Allemansrätten gäller i skärgården som på fastlandet — med viktiga tillägg. Du får röra dig fritt i skog och mark, tälta kortare tid (normalt 1–2 nätter på samma plats) och plocka bär, svamp och blommor som inte är fridlysta. Du får inte tälta, göra upp eld eller beträda naturreservat med strikta tillträdesrestriktioner, eller köra motorbåt för nära land i fågelskyddsområden under häckningstid (under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti) för många). Hundar: i fågelskyddsområden är hundar förbjudna hela eller delar av året. Kontrollera Länsstyrelsens webbplats för regler i specifika reservat.',
   },
   {
     title: 'Kan man vandra utan bil?',

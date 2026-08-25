@@ -702,7 +702,7 @@ export const ISLANDS: Island[] = [
     },
     amenities: { toilets: true, shower: true, cafe: true, grocery: true, atm: false },
     dog_friendly: true,
-    dog_notes: 'Naturreservat — koppeltvång gäller hela ön under häckningssäsong (1 april–31 juli). Hundar välkomna i övrigt.',
+    dog_notes: 'Naturreservat — koppeltvång gäller hela ön under häckningssäsong (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Hundar välkomna i övrigt.',
     insiderTips: [
       'Grinda ägs av STF och är ett naturreservat utan privat bebyggelse och utan bilar.',
       'Grinda har två hamnar: Norra Grinda (gästhamn, mer besökt) och Södra Grinda (naturhamn, lugnare). De flesta turistbåtar lägger till i norr.',

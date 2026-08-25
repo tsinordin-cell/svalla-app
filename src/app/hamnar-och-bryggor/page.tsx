@@ -60,7 +60,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: '🚧',
     title: 'Naturreservat — restriktioner',
-    description: 'Öar och vikar med landstigningsförbud under fågelskyddsperioden 1 april–15 juli i skärgårdarna.',
+    description: 'Öar och vikar med landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter) i skärgårdarna.',
     href: '/vandring-och-natur',
   },
 ]
@@ -83,7 +83,7 @@ export default function HamnarOchBryggorPage() {
       {
         '@type': 'Question',
         name: 'Är naturhamnar alltid gratis?',
-        acceptedAnswer: { '@type': 'Answer', text: 'Ja, enligt allemansrätten. Du får ankra i vilken vika som helst för kortare tid utan tillstånd. Men många naturhamnar ligger i fågelskyddsområden med landstigningsförbud 1 april–15 juli. Svalla visar dessa restriktioner på varje plats.' },
+        acceptedAnswer: { '@type': 'Answer', text: 'Ja, enligt allemansrätten. Du får ankra i vilken vika som helst för kortare tid utan tillstånd. Men många naturhamnar ligger i fågelskyddsområden med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Svalla visar dessa restriktioner på varje plats.' },
       },
       {
         '@type': 'Question',
@@ -128,7 +128,7 @@ export default function HamnarOchBryggorPage() {
             Data kommer från hamnoperatörer, Waxholmsbolagets depåkartor, Svenska Segelföreningens rutter, och framförallt från seglare och motorbåtsfolk som loggat sina egna turer i Svalla. Om du ser en hamn, brygga eller naturhamn som saknas, lägg till den. <strong>VHF-kanal 16</strong> är nödkanalen; använd <strong>kanal 9–12</strong> för att anropa en hamnradio innan du kommer in.
           </p>
           <p>
-            Allemansrätten ger dig rätt att ankra utanför oinöjd mark för kortare tid. Observera dock lokala förbud — många vikar är <strong>fågelskyddsområden</strong> med landstigningsförbud 1 april–15 juli. Varje platssida visar aktuella restriktioner. Ankra alltid tryggt och respektera miljön.
+            Allemansrätten ger dig rätt att ankra utanför oinöjd mark för kortare tid. Observera dock lokala förbud — många vikar är <strong>fågelskyddsområden</strong> med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Varje platssida visar aktuella restriktioner. Ankra alltid tryggt och respektera miljön.
           </p>
         </>
       }
@@ -245,7 +245,7 @@ export default function HamnarOchBryggorPage() {
             Är naturhamnar alltid gratis?
           </h3>
           <p>
-            <strong>Ja, enligt allemansrätten.</strong> Du får ankra i vilken vika som helst för kortare tid (upp till några dagar) utan tillstånd. Men många naturhamnar ligger i <strong>fågelskyddsområden</strong> eller andra naturreservat med restriktioner — landstigningsförbud under fågelskyddsperioden 1 april–15 juli. Du kan ofta ankra (ej stiga av båten), men vissa områden förbjuder även det. Svalla visar dessa restriktioner på varje plats.
+            <strong>Ja, enligt allemansrätten.</strong> Du får ankra i vilken vika som helst för kortare tid (upp till några dagar) utan tillstånd. Men många naturhamnar ligger i <strong>fågelskyddsområden</strong> eller andra naturreservat med restriktioner — landstigningsförbud under fågelskyddsperioden (perioderna varierar mellan områden, vanligen någon gång mellan 1 februari och 31 augusti — datumen står på skyltarna och i länsstyrelsens föreskrifter). Du kan ofta ankra (ej stiga av båten), men vissa områden förbjuder även det. Svalla visar dessa restriktioner på varje plats.
           </p>
 
           <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -259,7 +259,7 @@ export default function HamnarOchBryggorPage() {
             Allemansrätt och ankring
           </h2>
           <p>
-            Allemansrätten tillåter ankring utanför tomt, utan störning och för kortare tid. Observera dock lokala förbud — många vikar i skärgårdarna är <strong>fågelskyddsområden</strong> med landstigningsförbud 1 april–15 juli. Varje platssida visar aktuella restriktioner. Ankra alltid tryggt: välj botten av lerslick eller sand, lägg dubbel ankarlina, lämna avstånd till grannar, och kontrollera ankringen regelbundet.
+            Allemansrätten tillåter ankring utanför tomt, utan störning och för kortare tid. Observera dock lokala förbud — många vikar i skärgårdarna är <strong>fågelskyddsområden</strong> med landstigningsförbud under häckningstid (perioderna varierar, vanligen 1 februari–31 augusti). Varje platssida visar aktuella restriktioner. Ankra alltid tryggt: välj botten av lerslick eller sand, lägg dubbel ankarlina, lämna avstånd till grannar, och kontrollera ankringen regelbundet.
           </p>
 
           <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '24px 0 12px' }}>
